@@ -1,27 +1,29 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C9FF452079
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 737CF52079
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Feb 2012 14:14:21 +0000 (UTC)
+	Mon,  6 Feb 2012 14:14:23 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q16EEJMl012889
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2012 08:14:20 -0600
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id q16EEIXh004025
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2012 19:44:18 +0530 (IST)
-Received: from dbdp31.itg.ti.com (172.24.170.98) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 6 Feb 2012 19:44:18 +0530
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q16EELrX015454
+	for <meta-arago@arago-project.org>; Mon, 6 Feb 2012 08:14:22 -0600
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id q16EELOS004041
+	for <meta-arago@arago-project.org>; Mon, 6 Feb 2012 19:44:21 +0530 (IST)
+Received: from dbdp31.itg.ti.com (172.24.170.98) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 6 Feb 2012 19:44:20 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp31.itg.ti.com (8.13.8/8.13.8) with ESMTP id q16EEFvt006687;
-	Mon, 6 Feb 2012 19:44:17 +0530 (IST)
+	dbdp31.itg.ti.com (8.13.8/8.13.8) with ESMTP id q16EEFvv006687;
+	Mon, 6 Feb 2012 19:44:19 +0530 (IST)
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 6 Feb 2012 08:14:09 -0600
-Message-ID: <1328537652-22986-1-git-send-email-Chase.Maupin@ti.com>
+Date: Mon, 6 Feb 2012 08:14:11 -0600
+Message-ID: <1328537652-22986-3-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1328537652-22986-1-git-send-email-Chase.Maupin@ti.com>
+References: <1328537652-22986-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/4] matrix-gui-browser: port from old arago overlay
+Subject: [PATCH 3/4] matrix-lighttpd-config: enable matrix in lighttpd
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,49 +36,401 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2012 14:14:22 -0000
+X-List-Received-Date: Mon, 06 Feb 2012 14:14:23 -0000
 Content-Type: text/plain
 
-* This package adds a simple web browser GUI application with
-  no decorations used to display matrix on the local display.
-* Ported from old arago overlay
+* Moved this recipe from the meta-texasinstruments layer to the
+  meta-arago-extras layer.
+* Original recipe authored by:
+    * Koen Kooi <koen@dominion.thruhere.net>
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |   24 ++++++++++++++++++++
- 1 files changed, 24 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
+ .../recipes-core/matrix/matrix-lighttpd-config.bb  |   26 ++
+ .../matrix-lighttpd-config/lighttpd.conf.matrix    |  341 ++++++++++++++++++++
+ 2 files changed, 367 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
+ create mode 100755 meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
 new file mode 100644
-index 0000000..2574ace
+index 0000000..3b92133
 --- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -0,0 +1,24 @@
-+DESCRIPTION = "Simple Qt web display using webkit"
-+HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix_browser"
++++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
+@@ -0,0 +1,26 @@
++DESCRIPTION = "ligHTTPD config for matrix"
++
 +LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://main.cpp;beginline=9;endline=37;md5=884b90f5bf0d711fe32c4f04b5276496"
-+SECTION = "multimedia"
++LIC_FILES_CHKSUM = "file://../lighttpd.conf.matrix;md5=58caecbd847bcc4d5141dea2ee4c42ec"
 +
-+# Make sure that QT font libraries have been installed
-+RDEPENDS += "qt4-embedded-fonts"
++inherit allarch
 +
-+PR = "r0"
-+
-+SRCREV = "db2e6b10e5a14358b6120a4a28de2f9d591bc55c"
-+BRANCH ?= "master"
-+
-+SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+inherit qt4e
++SRC_URI = "file://lighttpd.conf.matrix"
 +
 +do_install() {
-+	install -d ${D}/${bindir}
-+	install -m 0755 ${S}/matrix_browser ${D}/${bindir}
++	install -d ${D}${sysconfdir}
++	install -m 0644 ${WORKDIR}/lighttpd.conf.matrix ${D}${sysconfdir}/lighttpd.conf.matrix
 +}
++
++FILES_${PN} = "${sysconfdir}/lighttpd.conf.matrix"
++RDEPENDS_${PN} = "lighttpd"
++
++pkg_postinst_${PN} () {
++if [ -f $D${sysconfdir}/lighttpd.conf ] ; then
++	cp $D${sysconfdir}/lighttpd.conf.matrix $D${sysconfdir}/lighttpd.conf
++else
++	echo "No lighttpd.conf found, aborting"
++	exit 1
++fi
++}
++
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
+new file mode 100755
+index 0000000..dc6215f
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
+@@ -0,0 +1,341 @@
++# lighttpd configuration file
++#
++# use it as a base for lighttpd 1.0.0 and above
++#
++# $Id: lighttpd.conf,v 1.7 2004/11/03 22:26:05 weigon Exp $
++
++############ Options you really have to take care of ####################
++
++## modules to load
++# at least mod_access and mod_accesslog should be loaded
++# all other module should only be loaded if really neccesary
++# - saves some time
++# - saves memory
++server.modules              = (
++#                               "mod_rewrite",
++#                               "mod_redirect",
++#                               "mod_alias",
++                                "mod_access",
++#                               "mod_cml",
++#                               "mod_trigger_b4_dl",
++#                               "mod_auth",
++#                               "mod_status",
++#                               "mod_setenv",
++                                "mod_expire",
++#                               "mod_fastcgi",
++#                               "mod_proxy",
++#                               "mod_simple_vhost",
++#                               "mod_evhost",
++#                               "mod_userdir",
++                                "mod_cgi",
++                                "mod_compress"
++#                               "mod_ssi",
++#                               "mod_usertrack",
++
++#                               "mod_secdownload",
++#                               "mod_rrdtool",
++#				"mod_webdav",
++#                               "mod_accesslog"
++				 )
++
++## a static document-root, for virtual-hosting take look at the
++## server.virtual-* options
++server.document-root        = "/usr/share/matrix-gui-2.0/"
++
++## where to send error-messages to
++#server.errorlog             = "/www/logs/lighttpd.error.log"
++
++# files to check for if .../ is requested
++index-file.names            = ( "index.php", "index.html",
++                                "index.htm", "default.htm" )
++
++## set the event-handler (read the performance section in the manual)
++# server.event-handler = "freebsd-kqueue" # needed on OS X
++
++# mimetype mapping
++mimetype.assign             = (
++  ".pdf"          =>      "application/pdf",
++  ".sig"          =>      "application/pgp-signature",
++  ".spl"          =>      "application/futuresplash",
++  ".class"        =>      "application/octet-stream",
++  ".ps"           =>      "application/postscript",
++  ".torrent"      =>      "application/x-bittorrent",
++  ".dvi"          =>      "application/x-dvi",
++  ".gz"           =>      "application/x-gzip",
++  ".pac"          =>      "application/x-ns-proxy-autoconfig",
++  ".swf"          =>      "application/x-shockwave-flash",
++  ".tar.gz"       =>      "application/x-tgz",
++  ".tgz"          =>      "application/x-tgz",
++  ".tar"          =>      "application/x-tar",
++  ".zip"          =>      "application/zip",
++  ".mp3"          =>      "audio/mpeg",
++  ".m3u"          =>      "audio/x-mpegurl",
++  ".wma"          =>      "audio/x-ms-wma",
++  ".wax"          =>      "audio/x-ms-wax",
++  ".ogg"          =>      "application/ogg",
++  ".wav"          =>      "audio/x-wav",
++  ".gif"          =>      "image/gif",
++  ".jpg"          =>      "image/jpeg",
++  ".jpeg"         =>      "image/jpeg",
++  ".png"          =>      "image/png",
++  ".xbm"          =>      "image/x-xbitmap",
++  ".xpm"          =>      "image/x-xpixmap",
++  ".xwd"          =>      "image/x-xwindowdump",
++  ".css"          =>      "text/css",
++  ".html"         =>      "text/html",
++  ".htm"          =>      "text/html",
++  ".js"           =>      "text/javascript",
++  ".asc"          =>      "text/plain",
++  ".c"            =>      "text/plain",
++  ".cpp"          =>      "text/plain",
++  ".log"          =>      "text/plain",
++  ".conf"         =>      "text/plain",
++  ".text"         =>      "text/plain",
++  ".txt"          =>      "text/plain",
++  ".dtd"          =>      "text/xml",
++  ".xml"          =>      "text/xml",
++  ".mpeg"         =>      "video/mpeg",
++  ".mpg"          =>      "video/mpeg",
++  ".mov"          =>      "video/quicktime",
++  ".qt"           =>      "video/quicktime",
++  ".avi"          =>      "video/x-msvideo",
++  ".asf"          =>      "video/x-ms-asf",
++  ".asx"          =>      "video/x-ms-asf",
++  ".wmv"          =>      "video/x-ms-wmv",
++  ".bz2"          =>      "application/x-bzip",
++  ".tbz"          =>      "application/x-bzip-compressed-tar",
++  ".tar.bz2"      =>      "application/x-bzip-compressed-tar"
++ )
++
++# Use the "Content-Type" extended attribute to obtain mime type if possible
++#mimetype.use-xattr        = "enable"
++
++
++## send a different Server: header
++## be nice and keep it at lighttpd
++# server.tag                 = "lighttpd"
++
++#### accesslog module
++#accesslog.filename          = "/www/logs/access.log"
++#debug.log-request-handling = "enable"
++
++
++
++
++## deny access the file-extensions
++#
++# ~    is for backupfiles from vi, emacs, joe, ...
++# .inc is often used for code includes which should in general not be part
++#      of the document-root
++url.access-deny             = ( "~", ".inc" )
++
++$HTTP["url"] =~ "\.pdf$" {
++  server.range-requests = "disable"
++}
++
++##
++# which extensions should not be handle via static-file transfer
++#
++# .php, .pl, .fcgi are most often handled by mod_fastcgi or mod_cgi
++static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
++
++######### Options that are good to be but not neccesary to be changed #######
++
++## bind to port (default: 80)
++server.port                = 8080
++
++## bind to localhost (default: all interfaces)
++#server.bind                = "grisu.home.kneschke.de"
++
++## error-handler for status 404
++#server.error-handler-404   = "/error-handler.html"
++#server.error-handler-404   = "/error-handler.php"
++
++## to help the rc.scripts
++#server.pid-file            = "/var/run/lighttpd.pid"
++
++
++###### virtual hosts
++##
++##  If you want name-based virtual hosting add the next three settings and load
++##  mod_simple_vhost
++##
++## document-root =
++##   virtual-server-root + virtual-server-default-host + virtual-server-docroot
++## or
++##   virtual-server-root + http-host + virtual-server-docroot
++##
++#simple-vhost.server-root   = "/home/weigon/wwwroot/servers/"
++#simple-vhost.default-host  = "grisu.home.kneschke.de"
++#simple-vhost.document-root = "/pages/"
++
++
++##
++## Format: <errorfile-prefix><status-code>.html
++## -> ..../status-404.html for 'File not found'
++#server.errorfile-prefix    = "/home/weigon/projects/lighttpd/doc/status-"
++
++## virtual directory listings
++#dir-listing.activate       = "enable"
++
++## enable debugging
++#debug.log-request-header   = "enable"
++#debug.log-response-header  = "enable"
++#debug.log-request-handling = "enable"
++#debug.log-file-not-found   = "enable"
++
++### only root can use these options
++#
++# chroot() to directory (default: no chroot() )
++#server.chroot              = "/"
++
++## change uid to <uid> (default: don't care)
++#server.username            = "wwwrun"
++
++## change uid to <uid> (default: don't care)
++#server.groupname           = "wwwrun"
++
++#### compress module
++compress.cache-dir         = "/tmp/lighttpd/cache/compress/"
++compress.filetype          = ("text/plain", "text/html","text/javascript","text/css","image/png","text/php")
++
++#### proxy module
++## read proxy.txt for more info
++#proxy.server               = ( ".php" =>
++#                               ( "localhost" =>
++#                                 (
++#                                   "host" => "192.168.0.101",
++#                                   "port" => 80
++#                                 )
++#                               )
++#                             )
++
++
++
++#### fastcgi module
++## read fastcgi.txt for more info
++## for PHP don't forget to set cgi.fix_pathinfo = 1 in the php.ini
++#fastcgi.server             = ( ".php" =>
++#                               ( "localhost" =>
++#                                 (
++#                                   "socket" => "/tmp/php-fastcgi.socket",
++#                                   "bin-path" => "/usr/bin/php-cgi -n -c /usr/share/matrix-gui-2.0/php.ini"
++#                                 )
++#                               )
++#                            )
++
++#### CGI module
++cgi.assign                 = ( ".php"  => "/usr/bin/php-cgi")
++#cgi.assign                 = ( ".pl"  => "/usr/bin/perl",
++#                               ".cgi" => "/usr/bin/perl" )
++#
++
++#### SSL engine
++#ssl.engine                 = "enable"
++#ssl.pemfile                = "server.pem"
++
++#### status module
++#status.status-url          = "/server-status"
++#status.config-url          = "/server-config"
++
++#### auth module
++## read authentication.txt for more info
++#auth.backend               = "plain"
++#auth.backend.plain.userfile = "lighttpd.user"
++#auth.backend.plain.groupfile = "lighttpd.group"
++
++#auth.backend.ldap.hostname = "localhost"
++#auth.backend.ldap.base-dn  = "dc=my-domain,dc=com"
++#auth.backend.ldap.filter   = "(uid=$)"
++
++#auth.require               = ( "/server-status" =>
++#                               (
++#                                 "method"  => "digest",
++#                                 "realm"   => "download archiv",
++#                                 "require" => "user=jan"
++#                               ),
++#                               "/server-config" =>
++#                               (
++#                                 "method"  => "digest",
++#                                 "realm"   => "download archiv",
++#                                 "require" => "valid-user"
++#                               )
++#                             )
++
++#### url handling modules (rewrite, redirect, access)
++#url.rewrite                = ( "^/$"             => "/server-status" )
++#url.redirect               = ( "^/wishlist/(.+)" => "http://www.123.org/$1" )
++
++#### both rewrite/redirect support back reference to regex conditional using %n
++#$HTTP["host"] =~ "^www\.(.*)" {
++#  url.redirect            = ( "^/(.*)" => "http://%1/$1" )
++#}
++
++#
++# define a pattern for the host url finding
++# %% => % sign
++# %0 => domain name + tld
++# %1 => tld
++# %2 => domain name without tld
++# %3 => subdomain 1 name
++# %4 => subdomain 2 name
++#
++#evhost.path-pattern        = "/home/storage/dev/www/%3/htdocs/"
++
++#### expire module
++#expire.url                 = ( "/images/" => "access 2 hours", "/css/" => "access plus 1 seconds 2 minutes")
++$HTTP["url"] =~ "\.(jpg|gif|png)$" { expire.url = ( "" => "access 3 years" ) }
++
++#### ssi
++#ssi.extension              = ( ".shtml" )
++
++#### rrdtool
++#rrdtool.binary             = "/usr/bin/rrdtool"
++#rrdtool.db-name            = "/var/www/lighttpd.rrd"
++
++#### setenv
++#setenv.add-request-header  = ( "TRAV_ENV" => "mysql://user@host/db" )
++#setenv.add-response-header = ( "X-Secret-Message" => "42" )
++
++## for mod_trigger_b4_dl
++# trigger-before-download.gdbm-filename = "/home/weigon/testbase/trigger.db"
++# trigger-before-download.memcache-hosts = ( "127.0.0.1:11211" )
++# trigger-before-download.trigger-url = "^/trigger/"
++# trigger-before-download.download-url = "^/download/"
++# trigger-before-download.deny-url = "http://127.0.0.1/index.html"
++# trigger-before-download.trigger-timeout = 10
++
++## for mod_cml
++## don't forget to add index.cml to server.indexfiles
++# cml.extension               = ".cml"
++# cml.memcache-hosts          = ( "127.0.0.1:11211" )
++
++#### variable usage:
++## variable name without "." is auto prefixed by "var." and becomes "var.bar"
++#bar = 1
++#var.mystring = "foo"
++
++## integer add
++#bar += 1
++## string concat, with integer cast as string, result: "www.foo1.com"
++#server.name = "www." + mystring + var.bar + ".com"
++## array merge
++#index-file.names = (foo + ".php") + index-file.names
++#index-file.names += (foo + ".php")
++
++#### include
++#include /etc/lighttpd/lighttpd-inc.conf
++## same as above if you run: "lighttpd -f /etc/lighttpd/lighttpd.conf"
++#include "lighttpd-inc.conf"
++
++#### include_shell
++#include_shell "echo var.a=1"
++## the above is same as:
++#var.a=1
++
++
++###Franklin
++etag.use-inode = "enable"
++etag.use-mtime = "enable"
++etag.use-size = "enable"
++static-file.etags = "enable"
 -- 
 1.7.0.4
 
