@@ -1,32 +1,26 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 34F7C52A5F
+Return-Path: <denis@denix.org>
+Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
+	[206.46.173.3])
+	by arago-project.org (Postfix) with ESMTP id 5DF1352993
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Feb 2012 22:07:28 +0000 (UTC)
-Received: from dlep26.itg.ti.com ([157.170.170.121])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q1SM7RFY011222
-	for <meta-arago@arago-project.org>; Tue, 28 Feb 2012 16:07:27 -0600
-Received: from DFLE70.ent.ti.com (localhost [127.0.0.1])
-	by dlep26.itg.ti.com (8.13.8/8.13.8) with ESMTP id q1SM7RUu017156
-	for <meta-arago@arago-project.org>;
-	Tue, 28 Feb 2012 16:07:27 -0600 (CST)
-Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DFLE70.ent.ti.com ([fe80::db3:609a:aa62:e1ec%22]) with mapi id
-	14.01.0323.003; Tue, 28 Feb 2012 16:07:27 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [PATCH 0/3] update matrix sources
-Thread-Index: AQHM9mLCDBKbYzHso0agC6lR49KGqZZS3coQ
-Date: Tue, 28 Feb 2012 22:07:26 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1012F04379A@DLEE12.ent.ti.com>
+	Tue, 28 Feb 2012 22:36:59 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.178.225.66])
+	by vms173003.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M0400A15K56EA63@vms173003.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 28 Feb 2012 16:36:42 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 1C1782016E; Tue,
+	28 Feb 2012 17:36:41 -0500 (EST)
+Date: Tue, 28 Feb 2012 17:36:41 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-id: <20120228223641.GB12073@denix.org>
 References: <1330465723-24817-1-git-send-email-Chase.Maupin@ti.com>
-In-Reply-To: <1330465723-24817-1-git-send-email-Chase.Maupin@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
-MIME-Version: 1.0
+	<7D46E86EC0A8354091174257B2FED1012F04379A@DLEE12.ent.ti.com>
+MIME-version: 1.0
+In-reply-to: <7D46E86EC0A8354091174257B2FED1012F04379A@DLEE12.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH 0/3] update matrix sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -40,46 +34,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2012 22:07:28 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 28 Feb 2012 22:36:59 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Looks like Denys already got these, so NM
+On Tue, Feb 28, 2012 at 10:07:26PM +0000, Maupin, Chase wrote:
+> Looks like Denys already got these, so NM
 
-Sincerely,
-Chase Maupin
-Software Applications
-ARM MPU
-e-mail: chase.maupin@ti.com
-phone: (214) 567-2950
+I didn't see your patches. I already synced up with changes you sent against 
+arago, but then got distracted by a meeting, before pushing them in.
 
-For support:
-Forums - http://community.ti.com/forums/
-Wiki - http://wiki.davincidsp.com/=20
+They look the same though, I just commented out nbench until it gets into 
+oe-core/meta-oe...
+
+-- 
+Denys
 
 
-> -----Original Message-----
-> From: Maupin, Chase
-> Sent: Tuesday, February 28, 2012 3:49 PM
-> To: meta-arago@arago-project.org
-> Cc: Maupin, Chase
-> Subject: [PATCH 0/3] update matrix sources
->=20
-> The following patches update the matrix sources.
->=20
-> Patches 2 and 3 depend on the nbench-byte recipe being added
-> into meta-oe first.  The patch has been submitted to the list
-> but has not yet been committed.
->=20
-> Chase Maupin (3):
->   refresh-screen: update to latest sources
->   matrix-gui-apps-git: update to latest sources
->   matrix-gui-armbenchmarks-demos: update dependencies
->=20
->  .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
->  .../matrix/matrix-gui-armbenchmarks-demos_2.0.bb   |    4 ++--
->  .../recipes-core/matrix/refresh-screen_2.0.bb      |    4 ++--
->  3 files changed, 6 insertions(+), 6 deletions(-)
-
+> > -----Original Message-----
+> > From: Maupin, Chase
+> > Sent: Tuesday, February 28, 2012 3:49 PM
+> > To: meta-arago@arago-project.org
+> > Cc: Maupin, Chase
+> > Subject: [PATCH 0/3] update matrix sources
+> > 
+> > The following patches update the matrix sources.
+> > 
+> > Patches 2 and 3 depend on the nbench-byte recipe being added
+> > into meta-oe first.  The patch has been submitted to the list
+> > but has not yet been committed.
+> > 
+> > Chase Maupin (3):
+> >   refresh-screen: update to latest sources
+> >   matrix-gui-apps-git: update to latest sources
+> >   matrix-gui-armbenchmarks-demos: update dependencies
+> > 
+> >  .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+> >  .../matrix/matrix-gui-armbenchmarks-demos_2.0.bb   |    4 ++--
+> >  .../recipes-core/matrix/refresh-screen_2.0.bb      |    4 ++--
+> >  3 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
