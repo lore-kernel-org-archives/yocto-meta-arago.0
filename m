@@ -1,27 +1,23 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 42CE8529BA
+Return-Path: <denis@denix.org>
+Received: from vms173009pub.verizon.net (vms173009pub.verizon.net
+	[206.46.173.9])
+	by arago-project.org (Postfix) with ESMTP id 1243052A63
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Mar 2012 23:09:26 +0000 (UTC)
-Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q21N9OJ2029613
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2012 17:09:24 -0600
-Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id q21N9Mp0015475
-	for <meta-arago@arago-project.org>; Fri, 2 Mar 2012 04:39:23 +0530 (IST)
-Received: from dbdp31.itg.ti.com (172.24.170.98) by dbde70.ent.ti.com
-	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Fri, 2 Mar 2012 04:39:22 +0530
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp31.itg.ti.com (8.13.8/8.13.8) with ESMTP id q21N9JVa015091;
-	Fri, 2 Mar 2012 04:39:21 +0530 (IST)
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 1 Mar 2012 17:09:17 -0600
-Message-ID: <1330643357-7307-1-git-send-email-Chase.Maupin@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Subject: [PATCH] matrix-gui-armbenchmarks-demo: add nbench-byte RDEPENDS
+	Wed, 21 Mar 2012 15:52:37 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.178.225.66])
+	by vms173009.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M1800DRUS3CS140@vms173009.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 21 Mar 2012 10:52:25 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id A82B72016F; Wed,
+	21 Mar 2012 11:52:24 -0400 (EDT)
+Date: Wed, 21 Mar 2012 11:52:24 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Message-id: <20120321155224.GA9860@denix.org>
+MIME-version: 1.0
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: Test email
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,43 +30,9 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2012 23:09:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 21 Mar 2012 15:52:37 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* nbench-byte is not available in meta-openembedded so this
-  RDEPENDS can be added back in.
-* Bump the PR
-
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
----
- .../matrix/matrix-gui-armbenchmarks-demos_2.0.bb   |    7 ++-----
- 1 files changed, 2 insertions(+), 5 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb
-index a5cc474..fe85a0b 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb
-@@ -4,7 +4,7 @@ LICENSE = "CC-BY-SA"
- 
- require matrix-gui-apps-git.inc
- 
--PR = "${INC_PR}.1"
-+PR = "${INC_PR}.2"
- 
- inherit allarch
- 
-@@ -14,9 +14,6 @@ S = "${WORKDIR}/git/arm_apps"
- RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-arm"
- 
- # Make sure the benchmarks have been installed
--RDEPENDS += "arm-benchmarks lmbench"
--
--# Uncomment when nbench-byte (BYTEmark) is available in OE-Core
--#RDEPENDS += "nbench-byte"
-+RDEPENDS += "arm-benchmarks lmbench nbench-byte"
- 
- FILES_${PN} += "${MATRIX_BASE_DIR}/*"
--- 
-1.7.0.4
-
+Just testing after recovery, please ignore.
 
