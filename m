@@ -1,31 +1,32 @@
-Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 203415299F
+Return-Path: <chase.maupin@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 4FED452079
 	for <meta-arago@arago-project.org>;
-	Thu, 19 Jul 2012 23:58:09 +0000 (UTC)
+	Fri, 20 Jul 2012 18:39:03 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q6JNw8Ih019281
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2012 18:58:08 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q6JNw8Gq025887
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2012 18:58:08 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 19 Jul 2012 18:58:08 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q6JNw84U024937;	Thu, 19 Jul 2012 18:58:08 -0500
-Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
-	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
-	1Ss0bI-0001F1-7D; Thu, 19 Jul 2012 18:57:44 -0500
-From: Franklin S Cooper Jr <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 19 Jul 2012 18:57:43 -0500
-Message-ID: <1342742263-4743-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q6KIcxd3022831
+	for <meta-arago@arago-project.org>; Fri, 20 Jul 2012 13:38:59 -0500
+Received: from DFLE70.ent.ti.com (dfle70.ent.ti.com [128.247.5.40])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q6KIcxPI021120
+	for <meta-arago@arago-project.org>; Fri, 20 Jul 2012 13:38:59 -0500
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	DFLE70.ent.ti.com ([fe80::db3:609a:aa62:e1ec%22]) with mapi id
+	14.01.0323.003; Fri, 20 Jul 2012 13:38:59 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 1/2] qt4-embedded: Update version to 4.8.1
+Thread-Index: AQHNZgmRMgy6pS+szE+MfBbmBTrKupcygWWA
+Date: Fri, 20 Jul 2012 18:38:58 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015914C6AB@DLEE12.ent.ti.com>
+References: <1342741925-3980-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1342741925-3980-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: Franklin S Cooper Jr <fcooper@ti.com>
-Subject: [PATCH] am-sysinfo: Spell out protocol
+Subject: Re: [PATCH 1/2] qt4-embedded: Update version to 4.8.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,34 +39,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2012 23:58:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 20 Jul 2012 18:39:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* Get rid of the warning that complains that in the SRC_URI proto is used
-  instead of protocol
+This patch looks slightly mangled but maybe that is my mail client.  The go=
+al is correct but the line returns look wrong.  Can you verify your patch h=
+as correct newlines?  Aside from that=20
 
-Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/am-sysinfo/am-sysinfo_svn.bb      |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+Acked-by: Chase Maupin <chase.maupin@ti.com>
 
-diff --git a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_svn.bb b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_svn.bb
-index 11ce229..40daafa 100644
---- a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_svn.bb
-+++ b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_svn.bb
-@@ -9,9 +9,9 @@ PACKAGE_STRIP = "no"
- 
- SRCREV = "16"
- PV = "1.0"
--PR = "r2+svnr${SRCPV}"
-+PR = "r3+svnr${SRCPV}"
- 
--SRC_URI = "svn://gforge.ti.com/svn/am_sysinfo/;module=trunk;proto=https;user=anonymous;pswd=''"
-+SRC_URI = "svn://gforge.ti.com/svn/am_sysinfo/;module=trunk;protocol=https;user=anonymous;pswd=''"
- 
- S = "${WORKDIR}/trunk"
- 
--- 
-1.7.0.4
+Sincerely,
+Chase Maupin
+Software Applications
+ARM MPU
+e-mail: chase.maupin@ti.com
+phone: (214) 567-2950
 
+For support:
+Forums - http://community.ti.com/forums/
+Wiki - http://wiki.davincidsp.com/=20
+
+
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> Sent: Thursday, July 19, 2012 6:52 PM
+> To: meta-arago@arago-project.org
+> Cc: Cooper Jr., Franklin
+> Subject: [meta-arago] [PATCH 1/2] qt4-embedded: Update version to
+> 4.8.1
+>=20
+> * Updating qt4-embedded version from 4.8.0 to 4.8.1
+>=20
+> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-qt/qt4/qt4-embedded_4.8.0.bbappend     |    5 -----
+>  .../recipes-qt/qt4/qt4-embedded_4.8.1.bbappend     |    5 +++++
+>  2 files changed, 5 insertions(+), 5 deletions(-)
+>  delete mode 100644 meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.0.bbappend
+>  create mode 100644 meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.1.bbappend
+>=20
+> diff --git a/meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.0.bbappend b/meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.0.bbappend
+> deleted file mode 100644
+> index 462a746..0000000
+> --- a/meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.0.bbappend
+> +++ /dev/null
+> @@ -1,5 +0,0 @@
+> -# Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+> -# For our distribution purposes we only use LGPLv2.1
+> -LICENSE =3D "LGPLv2.1"
+> -
+> -PR_append =3D "-arago1"
+> diff --git a/meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.1.bbappend b/meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.1.bbappend
+> new file mode 100644
+> index 0000000..a2dc984
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-qt/qt4/qt4-
+> embedded_4.8.1.bbappend
+> @@ -0,0 +1,5 @@
+> +# Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+> +# For our distribution purposes we only use LGPLv2.1
+> +LICENSE =3D "LGPLv2.1"
+> +
+> +PR_append =3D "-arago0"
+> --
+> 1.7.0.4
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
