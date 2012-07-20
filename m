@@ -1,36 +1,32 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 7485D52079
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id EF5BA52079
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Jul 2012 18:39:57 +0000 (UTC)
+	Fri, 20 Jul 2012 18:40:18 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q6KIdub2027952
-	for <meta-arago@arago-project.org>; Fri, 20 Jul 2012 13:39:56 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q6KIduI6021814
-	for <meta-arago@arago-project.org>; Fri, 20 Jul 2012 13:39:56 -0500
-Received: from DFLE51.ent.ti.com (128.247.5.136) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server (TLS) id 14.1.323.3;
-	Fri, 20 Jul 2012 13:39:56 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q6KIeHmx009152
+	for <meta-arago@arago-project.org>; Fri, 20 Jul 2012 13:40:17 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q6KIeHDu022343
+	for <meta-arago@arago-project.org>; Fri, 20 Jul 2012 13:40:17 -0500
 Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DFLE51.ent.ti.com ([fe80::d0bc:5ddf:b0f3:7664%25]) with mapi id
-	14.01.0323.003; Fri, 20 Jul 2012 13:39:56 -0500
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Fri, 20 Jul 2012 13:40:17 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 2/2] arm-benchmarks: Fix compile and
-	install	issues
-Thread-Index: AQHNZgly6HvDTuKz5UCeHhIso3JGbJcygfTA
-Date: Fri, 20 Jul 2012 18:39:55 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015914C708@DLEE12.ent.ti.com>
-References: <1342741832-3905-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1342741832-3905-1-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] [PATCH] am-sysinfo: Spell out protocol
+Thread-Index: AQHNZgpsh3GPs9qNIkalS4+TJvK625cyghNA
+Date: Fri, 20 Jul 2012 18:40:16 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015914C712@DLEE12.ent.ti.com>
+References: <1342742263-4743-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1342742263-4743-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] arm-benchmarks: Fix compile and install	issues
+Subject: Re: [PATCH] am-sysinfo: Spell out protocol
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,7 +39,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jul 2012 18:39:58 -0000
+X-List-Received-Date: Fri, 20 Jul 2012 18:40:19 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -65,61 +61,42 @@ Wiki - http://wiki.davincidsp.com/=20
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> Sent: Thursday, July 19, 2012 6:51 PM
+> Sent: Thursday, July 19, 2012 6:58 PM
 > To: meta-arago@arago-project.org
 > Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH 2/2] arm-benchmarks: Fix compile and
-> install issues
+> Subject: [meta-arago] [PATCH] am-sysinfo: Spell out protocol
 >=20
-> * The TUNE_PKGARCH variable isn't providing the expected arch
-> value. Switch to
->   ARMPKGARCH since it returns the expected value.
-> * Spell out protocol to get rid of warning.
+> * Get rid of the warning that complains that in the SRC_URI proto
+> is used
+>   instead of protocol
 >=20
 > Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 > ---
->  .../arm-benchmarks/arm-benchmarks_1.3.bb           |    8 ++++--
-> --
->  1 files changed, 4 insertions(+), 4 deletions(-)
+>  .../recipes-core/am-sysinfo/am-sysinfo_svn.bb      |    4 ++--
+>  1 files changed, 2 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/meta-arago-extras/recipes-benchmark/arm-
-> benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-
-> benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-> index 6746ed5..e1f700e 100644
-> --- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-
-> benchmarks_1.3.bb
-> +++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-
-> benchmarks_1.3.bb
-> @@ -5,20 +5,20 @@ LIC_FILES_CHKSUM =3D
-> "file://COPYING;md5=3D7aefb5e1cffc7b6a3ef18b803f957922"
->  SECTION =3D "system"
+> diff --git a/meta-arago-extras/recipes-core/am-sysinfo/am-
+> sysinfo_svn.bb b/meta-arago-extras/recipes-core/am-sysinfo/am-
+> sysinfo_svn.bb
+> index 11ce229..40daafa 100644
+> --- a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_svn.bb
+> +++ b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_svn.bb
+> @@ -9,9 +9,9 @@ PACKAGE_STRIP =3D "no"
 >=20
->  SRCREV =3D "76"
-> -PR =3D "r0+svnr${SRCPV}"
-> +PR =3D "r1+svnr${SRCPV}"
+>  SRCREV =3D "16"
+>  PV =3D "1.0"
+> -PR =3D "r2+svnr${SRCPV}"
+> +PR =3D "r3+svnr${SRCPV}"
 >=20
 > -SRC_URI =3D
-> "svn://gforge.ti.com/svn/am_benchmarks/;module=3Dtrunk;proto=3Dhttps;
-> user=3Danonymous;pswd=3D''"
+> "svn://gforge.ti.com/svn/am_sysinfo/;module=3Dtrunk;proto=3Dhttps;use
+> r=3Danonymous;pswd=3D''"
 > +SRC_URI =3D
-> "svn://gforge.ti.com/svn/am_benchmarks/;module=3Dtrunk;protocol=3Dhtt
-> ps;user=3Danonymous;pswd=3D''"
+> "svn://gforge.ti.com/svn/am_sysinfo/;module=3Dtrunk;protocol=3Dhttps;
+> user=3Danonymous;pswd=3D''"
 >=20
 >  S =3D "${WORKDIR}/trunk"
 >=20
->  do_compile() {
->  	export CROSS_COMPILE=3D${TARGET_PREFIX}
-> -	export ARCH=3D${TUNE_PKGARCH}
-> +	export ARCH=3D${ARMPKGARCH}
->  	# build the release version
->  	make release
->  }
->=20
->  do_install() {
-> -	export ARCH=3D${TUNE_PKGARCH}
-> +	export ARCH=3D${ARMPKGARCH}
->  	make DESTDIR=3D${D} install
->  }
 > --
 > 1.7.0.4
 >=20
