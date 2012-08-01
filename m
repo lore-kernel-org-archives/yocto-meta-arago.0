@@ -1,30 +1,38 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4467852A01
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id E6C5952092
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Aug 2012 22:35:52 +0000 (UTC)
+	Wed,  1 Aug 2012 22:41:23 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q71MZptK027410
-	for <meta-arago@arago-project.org>; Wed, 1 Aug 2012 17:35:51 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q71MfNDQ028060
+	for <meta-arago@arago-project.org>; Wed, 1 Aug 2012 17:41:23 -0500
 Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q71MZpo9002315
-	for <meta-arago@arago-project.org>; Wed, 1 Aug 2012 17:35:51 -0500
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q71MfNKF006498
+	for <meta-arago@arago-project.org>; Wed, 1 Aug 2012 17:41:23 -0500
 Received: from DFLE30.ent.ti.com ([fe80::648b:2220:c6fb:4e6]) by
 	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Wed, 1 Aug 2012 17:35:51 -0500
+	14.01.0323.003; Wed, 1 Aug 2012 17:41:23 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] opkg: Port opkg patch from arago to meta-arago
-Thread-Index: Ac1wNfwTFiT9KcRLQFKxEqFoJ/V6IA==
-Date: Wed, 1 Aug 2012 22:35:50 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C27EB14@DFLE30.ent.ti.com>
+Thread-Topic: [PATCH] curl: Disable crypto related features
+Thread-Index: Ac1wNriDCQUHClOkS4yrYw2fZfTCYg==
+Date: Wed, 1 Aug 2012 22:41:22 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C27EB98@DFLE30.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: BE6L BGYu BK/5 B+Q5 CoXa C/6Z D6AV E6Pk FM79 F3wq F+HA
+	GxrN Ixnm JFA5 JHN3 JN5A; 1;
+	bQBlAHQAYQAtAGEAcgBhAGcAbwBAAGEAcgBhAGcAbwAtAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {72BC4459-CD3C-4745-AE36-E766521D551A};
+	ZgBjAG8AbwBwAGUAcgBAAHQAaQAuAGMAbwBtAA==; Wed,
+	01 Aug 2012 22:41:19 GMT;
+	WwBQAEEAVABDAEgAXQAgAGMAdQByAGwAOgAgAEQAaQBzAGEAYgBsAGUAIABjAHIAeQBwAHQAbwAgAHIAZQBsAGEAdABlAGQAIABmAGUAYQB0AHUAcgBlAHMA
+x-cr-puzzleid: {72BC4459-CD3C-4745-AE36-E766521D551A}
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
 Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
-Subject: [PATCH] opkg: Port opkg patch from arago to meta-arago
+Subject: [PATCH] curl: Disable crypto related features
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,28 +45,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 22:35:52 -0000
-X-Groupsio-MsgNum: 66
+X-List-Received-Date: Wed, 01 Aug 2012 22:41:24 -0000
+X-Groupsio-MsgNum: 67
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_"
+	boundary="_004_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_"
 
---_004_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_
+--_004_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_
 Content-Type: multipart/alternative;
-	boundary="_000_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_"
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_"
 
---_000_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_
+--_000_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Denys,
 
-The sole purpose of this patch is to port over a patch that you created in =
-arago. I didn't see any comments or change of status to your patch submissi=
-on (http://code.google.com/p/opkg/issues/detail?id=3D63). I did see a brief=
- discussion of your patch here (https://groups.google.com/forum/?fromgroups=
-#!topic/opkg-devel/6ZIXY8ESwek)  Do you want to drop this patch, keep carry=
-ing this patch in meta-arago or maybe push it to oe-core?
 
 Regards,
 Franklin Cooper Jr.
@@ -67,7 +68,7 @@ Application Engineer
 fcooper@ti.com<mailto:fcooper@ti.com>
 
 
---_000_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_
+--_000_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -123,18 +124,7 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Denys,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The sole purpose of this patch is to port over a pat=
-ch that you created in arago. I didn&#8217;t see any comments or change of =
-status to your patch submission (<a href=3D"http://code.google.com/p/opkg/i=
-ssues/detail?id=3D63">http://code.google.com/p/opkg/issues/detail?id=3D63</=
-a>).
- I did see a brief discussion of your patch here (<a href=3D"https://groups=
-.google.com/forum/?fromgroups#!topic/opkg-devel/6ZIXY8ESwek">https://groups=
-.google.com/forum/?fromgroups#!topic/opkg-devel/6ZIXY8ESwek</a>) &nbsp;Do y=
-ou want to drop this patch, keep carrying
- this patch in meta-arago or maybe push it to oe-core?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Regards,<o:p></o:p></p>
 <p class=3D"MsoNormal">Franklin Cooper Jr.<o:p></o:p></p>
@@ -147,63 +137,47 @@ ou want to drop this patch, keep carrying
 </body>
 </html>
 
---_000_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_--
+--_000_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_--
 
---_004_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_
+--_004_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_
 Content-Type: application/octet-stream;
-	name="0001-opkg-Port-opkg-patch-from-arago-to-meta-arago.patch"
-Content-Description: 0001-opkg-Port-opkg-patch-from-arago-to-meta-arago.patch
+	name="0001-curl-Disable-crypto-related-features.patch"
+Content-Description: 0001-curl-Disable-crypto-related-features.patch
 Content-Disposition: attachment;
-	filename="0001-opkg-Port-opkg-patch-from-arago-to-meta-arago.patch";
-	size=2597; creation-date="Wed, 01 Aug 2012 22:20:05 GMT";
-	modification-date="Wed, 01 Aug 2012 22:08:14 GMT"
+	filename="0001-curl-Disable-crypto-related-features.patch"; size=1672;
+	creation-date="Wed, 01 Aug 2012 22:20:05 GMT";
+	modification-date="Wed, 01 Aug 2012 22:08:01 GMT"
 Content-Transfer-Encoding: base64
 
-RnJvbSAzZDY0YjA5NTQyNTkxZjFhOWE3YmJhNzU3NjVlOGQ4NzhhODY1MGE3IE1vbiBTZXAgMTcg
+RnJvbSA1ZTEzZWZhNTZiNGRmMmQ4ZjVkNjQwZTFkOGMzNTg3YWMwYmYzZDVhIE1vbiBTZXAgMTcg
 MDA6MDA6MDAgMjAwMQpGcm9tOiBGcmFua2xpbiBTIENvb3BlciBKciA8ZmNvb3BlckB0aS5jb20+
-CkRhdGU6IFdlZCwgMSBBdWcgMjAxMiAxMToxNzoyNyAtMDUwMApTdWJqZWN0OiBbUEFUQ0hdIG9w
-a2c6IFBvcnQgb3BrZyBwYXRjaCBmcm9tIGFyYWdvIHRvIG1ldGEtYXJhZ28KClNpZ25lZC1vZmYt
-Ynk6IEZyYW5rbGluIFMgQ29vcGVyIEpyIDxmY29vcGVyQHRpLmNvbT4KLS0tCiAuLi5lLXNlbmQt
-Q29sbGVjdGVkLWVycm9ycy1tZXNzYWdlcy10by1zdGRlci5wYXRjaCB8ICAgMzIgKysrKysrKysr
-KysrKysrKysrKysKIC4uLi9yZWNpcGVzLWRldnRvb2xzL29wa2cvb3BrZ19zdm4uYmJhcHBlbmQg
-ICAgICAgIHwgICAgNiArKysrCiAyIGZpbGVzIGNoYW5nZWQsIDM4IGluc2VydGlvbnMoKyksIDAg
-ZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1leHRyYXMvcmVjaXBl
-cy1kZXZ0b29scy9vcGtnL29wa2cvMDAwMS1vcGtnX21lc3NhZ2Utc2VuZC1Db2xsZWN0ZWQtZXJy
-b3JzLW1lc3NhZ2VzLXRvLXN0ZGVyLnBhdGNoCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFn
-by1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9vcGtnL29wa2dfc3ZuLmJiYXBwZW5kCgpkaWZmIC0t
-Z2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9vcGtnL29wa2cvMDAwMS1v
-cGtnX21lc3NhZ2Utc2VuZC1Db2xsZWN0ZWQtZXJyb3JzLW1lc3NhZ2VzLXRvLXN0ZGVyLnBhdGNo
-IGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9vcGtnL29wa2cvMDAwMS1vcGtn
-X21lc3NhZ2Utc2VuZC1Db2xsZWN0ZWQtZXJyb3JzLW1lc3NhZ2VzLXRvLXN0ZGVyLnBhdGNoCm5l
-dyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLmRkODI5MWMKLS0tIC9kZXYvbnVsbAor
-KysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWRldnRvb2xzL29wa2cvb3BrZy8wMDAxLW9w
-a2dfbWVzc2FnZS1zZW5kLUNvbGxlY3RlZC1lcnJvcnMtbWVzc2FnZXMtdG8tc3RkZXIucGF0Y2gK
-QEAgLTAsMCArMSwzMiBAQAorRnJvbSA0OWU0OWNhNzZkMmMxODE3NzJlNzQ0NDdiNGYyMzFmZjI2
-MDEwMmQ3IE1vbiBTZXAgMTcgMDA6MDA6MDAgMjAwMQorRnJvbTogRGVueXMgRG15dHJpeWVua28g
-PGRlbnlzQHRpLmNvbT4KK0RhdGU6IE1vbiwgOCBBdWcgMjAxMSAxNjo1OToxNiAtMDQwMAorU3Vi
-amVjdDogW1BBVENIXSBvcGtnX21lc3NhZ2U6IHNlbmQgIkNvbGxlY3RlZCBlcnJvcnM6IiBtZXNz
-YWdlcyB0byBzdGRlcnIgbm90IHN0ZG91dAorCitVcHN0cmVhbS1zdGF0dXM6IFN1Ym1pdHRlZCBb
-aHR0cDovL2NvZGUuZ29vZ2xlLmNvbS9wL29wa2cvaXNzdWVzL2RldGFpbD9pZD02M10KKworU2ln
-bmVkLW9mZi1ieTogRGVueXMgRG15dHJpeWVua28gPGRlbnlzQHRpLmNvbT4KKy0tLQorIGxpYm9w
-a2cvb3BrZ19tZXNzYWdlLmMgfCAgICA0ICsrLS0KKyAxIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKKworZGlmZiAtLWdpdCBhL2xpYm9wa2cvb3BrZ19tZXNz
-YWdlLmMgYi9saWJvcGtnL29wa2dfbWVzc2FnZS5jCitpbmRleCA3MTE0ZTNhLi4yODYyZWE2IDEw
-MDY0NAorLS0tIGEvbGlib3BrZy9vcGtnX21lc3NhZ2UuYworKysrIGIvbGlib3BrZy9vcGtnX21l
-c3NhZ2UuYworQEAgLTY0LDEwICs2NCwxMCBAQCBwcmludF9lcnJvcl9saXN0KHZvaWQpCisgCXN0
-cnVjdCBlcnJsaXN0ICplcnIgPSBlcnJvcl9saXN0X2hlYWQ7CisgCisgCWlmIChlcnIpIHsKKy0J
-CXByaW50ZigiQ29sbGVjdGVkIGVycm9yczpcbiIpOworKwkJZnByaW50ZihzdGRlcnIsICJDb2xs
-ZWN0ZWQgZXJyb3JzOlxuIik7CisgCQkvKiBIZXJlIHdlIHByaW50IHRoZSBlcnJvcnMgY29sbGVj
-dGVkIGFuZCBmcmVlIHRoZSBsaXN0ICovCisgCQl3aGlsZSAoZXJyICE9IE5VTEwpIHsKKy0JCQlw
-cmludGYoIiAqICVzIiwgZXJyLT5lcnJtc2cpOworKwkJCWZwcmludGYoc3RkZXJyLCAiICogJXMi
-LCBlcnItPmVycm1zZyk7CisgCQkJZXJyID0gZXJyLT5uZXh0OworIAkJfQorIAl9CistLSAKKzEu
-Ny4wLjQKKwpkaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9v
-cGtnL29wa2dfc3ZuLmJiYXBwZW5kIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29s
-cy9vcGtnL29wa2dfc3ZuLmJiYXBwZW5kCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAw
-MDAuLmIyMTViNWUKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVz
-LWRldnRvb2xzL29wa2cvb3BrZ19zdm4uYmJhcHBlbmQKQEAgLTAsMCArMSw2IEBACisjIGxvb2sg
-Zm9yIGZpbGVzIGluIHRoaXMgbGF5ZXIgZmlyc3QKK0ZJTEVTRVhUUkFQQVRIU19wcmVwZW5kIDo9
-ICIke1RISVNESVJ9LyR7UE59OiIKKworUFJfYXBwZW5kID0gIi1hcmFnbzAiCisKK1NSQ19VUkkg
-Kz0gImZpbGU6Ly8wMDAxLW9wa2dfbWVzc2FnZS1zZW5kLUNvbGxlY3RlZC1lcnJvcnMtbWVzc2Fn
-ZXMtdG8tc3RkZXIucGF0Y2giCi0tIAoxLjcuMC40Cgo=
+CkRhdGU6IFR1ZSwgMzEgSnVsIDIwMTIgMTM6MTE6NTQgLTA1MDAKU3ViamVjdDogW1BBVENIXSBj
+dXJsOiBEaXNhYmxlIGNyeXB0byByZWxhdGVkIGZlYXR1cmVzCgpTaWduZWQtb2ZmLWJ5OiBGcmFu
+a2xpbiBTIENvb3BlciBKciA8ZmNvb3BlckB0aS5jb20+Ci0tLQogLi4uL3JlY2lwZXMtc3VwcG9y
+dC9jdXJsL2N1cmxfNy4yNC4wLmJiYXBwZW5kICAgICAgfCAgIDI4ICsrKysrKysrKysrKysrKysr
+KysrCiAxIGZpbGVzIGNoYW5nZWQsIDI4IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pCiBj
+cmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1zdXBwb3J0L2N1cmwv
+Y3VybF83LjI0LjAuYmJhcHBlbmQKCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNp
+cGVzLXN1cHBvcnQvY3VybC9jdXJsXzcuMjQuMC5iYmFwcGVuZCBiL21ldGEtYXJhZ28tZGlzdHJv
+L3JlY2lwZXMtc3VwcG9ydC9jdXJsL2N1cmxfNy4yNC4wLmJiYXBwZW5kCm5ldyBmaWxlIG1vZGUg
+MTAwNjQ0CmluZGV4IDAwMDAwMDAuLmI5ZDhhZTUKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhLWFy
+YWdvLWRpc3Ryby9yZWNpcGVzLXN1cHBvcnQvY3VybC9jdXJsXzcuMjQuMC5iYmFwcGVuZApAQCAt
+MCwwICsxLDI4IEBACitQUl9hcHBlbmQgPSAiLWFyYWdvMCIKKworIyBEaXNhYmxlIGFsbCBjcnlw
+dCBzdXBwb3J0IGluIGN1cmwgZHVlIHRvIGV4cG9ydCByZXN0cmljdGlvbnMKKyMgRXhwbGljaXRs
+eSBzZXQgdGhlIGJlbG93IHZhcmlhYmxlcyB0byBiZSBzdXJlIGFsbCBjcnlwdG8gcmVsYXRlZAor
+IyBmZWF0dXJlcyBhcmUgZGlzYWJsZWQKKworRVhUUkFfT0VDT05GID0gIlwKKyAgICAgICAgICAg
+IC0tZGlzYWJsZS1hcmVzIFwKKyAgICAgICAgICAgIC0tZW5hYmxlLWNvb2tpZXMgXAorICAgICAg
+ICAgICAgLS1kaXNhYmxlLWNyeXB0by1hdXRoIFwKKyAgICAgICAgICAgIC0tZW5hYmxlLWRpY3Qg
+XAorICAgICAgICAgICAgLS1lbmFibGUtZmlsZSBcCisgICAgICAgICAgICAtLWVuYWJsZS1mdHAg
+XAorICAgICAgICAgICAgLS1lbmFibGUtaHR0cCBcCisgICAgICAgICAgICAtLWRpc2FibGUtaXB2
+NiBcCisgICAgICAgICAgICAtLXdpdGhvdXQtbGliaWRuIFwJCisgICAgICAgICAgICAtLXdpdGhv
+dXQtbGlic3NoMiBcCQorICAgICAgICAgICAgLS13aXRoLXJhbmRvbT0vZGV2L3VyYW5kb20gXAor
+ICAgICAgICAgICAgLS13aXRob3V0LXNzbCBcICAgCQkKKyAgICAgICAgICAgIC0tZW5hYmxlLXRl
+bG5ldCBcCisgICAgICAgICAgICAtLWVuYWJsZS10ZnRwIFwKKyAgICAgICAgICAgIC0td2l0aC16
+bGliPSR7U1RBR0lOR19MSUJESVJ9Ly4uLyBcCisgICAgICAgICAgICAke0NVUkxHTlVUTFN9IFwK
+KwkJICAgICIKK0NVUkxHTlVUTFMgPSAiLS13aXRob3V0LWdudXRscyIKKworIyBSZW1vdmluZyBn
+bnV0bHMgZGVwZW5kZW5jeSBzaW5jZSB0aGF0IGZlYXR1cmUgaGFzIGJlZW4gZGlzYWJsZWQKK0RF
+UEVORFMgOj0gIiR7QGQuZ2V0VmFyKCdERVBFTkRTJywgVHJ1ZSkucmVwbGFjZSgnZ251dGxzJywg
+JycpfSIKLS0gCjEuNy4wLjQKCg==
 
---_004_8F29D6B095ED194EA1980491A5E029710C27EB14DFLE30entticom_--
+--_004_8F29D6B095ED194EA1980491A5E029710C27EB98DFLE30entticom_--
