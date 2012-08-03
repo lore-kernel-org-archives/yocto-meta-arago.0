@@ -1,32 +1,34 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 33747529A4
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 74396529A4
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Aug 2012 13:44:30 +0000 (UTC)
+	Fri,  3 Aug 2012 16:18:42 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q73DiT7J009020
-	for <meta-arago@arago-project.org>; Fri, 3 Aug 2012 08:44:29 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q73GIfS2023740
+	for <meta-arago@arago-project.org>; Fri, 3 Aug 2012 11:18:41 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q73DiThX029442
-	for <meta-arago@arago-project.org>; Fri, 3 Aug 2012 08:44:29 -0500
-Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q73GIfhS025139
+	for <meta-arago@arago-project.org>; Fri, 3 Aug 2012 11:18:41 -0500
+Received: from DFLE30.ent.ti.com ([fe80::648b:2220:c6fb:4e6]) by
 	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Fri, 3 Aug 2012 08:44:28 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	14.01.0323.003; Fri, 3 Aug 2012 11:18:41 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [meta-arago] [PATCHES] Porting sysvinit changes from arago to
 	meta-arago
-Thread-Index: Ac1wNJO500+KIoe7Qy+fdCut5SXD5QAi20TQ
-Date: Fri, 3 Aug 2012 13:44:28 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015917808A@DLEE12.ent.ti.com>
+Thread-Index: AQHNcX4aA/h2KND7IkyKZalJwSWZWZdIRAmA
+Date: Fri, 3 Aug 2012 16:18:41 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C280F3D@DFLE30.ent.ti.com>
 References: <8F29D6B095ED194EA1980491A5E029710C27EAD2@DFLE30.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C27EAD2@DFLE30.ent.ti.com>
+	<7D46E86EC0A8354091174257B2FED1015917808A@DLEE12.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015917808A@DLEE12.ent.ti.com>
 Accept-Language: en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
+Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
 Subject: Re: [PATCHES] Porting sysvinit changes from arago to	meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -40,14 +42,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 13:44:30 -0000
+X-List-Received-Date: Fri, 03 Aug 2012 16:18:43 -0000
+X-Groupsio-MsgNum: 70
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_"
+Content-Type: multipart/mixed;
+	boundary="_005_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_"
 
---_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_
+--_005_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_
+Content-Type: multipart/alternative;
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_"
+
+--_000_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Please use these updated patches instead.
+
+From: Maupin, Chase
+Sent: Friday, August 03, 2012 8:44 AM
+To: Cooper Jr., Franklin; meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCHES] Porting sysvinit changes from arago to =
+meta-arago
 
 Use : in the commit message instead of -.
 
@@ -81,7 +96,7 @@ Application Engineer
 fcooper@ti.com<mailto:fcooper@ti.com>
 
 
---_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_
+--_000_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -160,6 +175,10 @@ span.EmailStyle17
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
 span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle19
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
@@ -181,6 +200,25 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please use these updat=
+ed patches instead.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Maupin, =
+Chase
+<br>
+<b>Sent:</b> Friday, August 03, 2012 8:44 AM<br>
+<b>To:</b> Cooper Jr., Franklin; meta-arago@arago-project.org<br>
+<b>Subject:</b> RE: [meta-arago] [PATCHES] Porting sysvinit changes from ar=
+ago to meta-arago<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Use : in the commit me=
 ssage instead of -.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
@@ -242,4 +280,105 @@ to meta-arago<o:p></o:p></span></p>
 </body>
 </html>
 
---_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_--
+--_000_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_--
+
+--_005_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_
+Content-Type: application/octet-stream;
+	name="0001-sysvinit-Port-from-arago-to-meta-arago.patch"
+Content-Description: 0001-sysvinit-Port-from-arago-to-meta-arago.patch
+Content-Disposition: attachment;
+	filename="0001-sysvinit-Port-from-arago-to-meta-arago.patch"; size=3172;
+	creation-date="Fri, 03 Aug 2012 16:17:47 GMT";
+	modification-date="Fri, 03 Aug 2012 16:19:15 GMT"
+Content-Transfer-Encoding: base64
+
+RnJvbSA1OGFiYjJjNzczMzM3MmM3MmUzNTc5YWU4YzE5NDJmNzlmMzMzMDQyIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBGcmFua2xpbiBTIENvb3BlciBKciA8ZmNvb3BlckB0aS5jb20+
+CkRhdGU6IE1vbiwgMzAgSnVsIDIwMTIgMTE6NDk6MDkgLTA1MDAKU3ViamVjdDogW1BBVENIIDEv
+Ml0gc3lzdmluaXQ6IFBvcnQgZnJvbSBhcmFnbyB0byBtZXRhLWFyYWdvCgoqIFBvcnQgY2hhbmdl
+cyBmcm9tIGFyYWdvIHRvIG1ldGEtYXJhZ28KKiBDb3B5IHJjUy1kZWZhdWx0IGZyb20gb2UtY29y
+ZSAvbWV0YS9yZWNpcGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXQKClNpZ25lZC1vZmYtYnk6IEZy
+YW5rbGluIFMgQ29vcGVyIEpyIDxmY29vcGVyQHRpLmNvbT4KLS0tCiAuLi4vcmVjaXBlcy1jb3Jl
+L3N5c3Zpbml0L3N5c3Zpbml0L3JjUy1kZWZhdWx0ICAgICB8ICAgMjUgKysrKysrKysrKysrKysr
+KysrKysKIC4uLi9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kICAgICAgICAgICAg
+IHwgICAyNCArKysrKysrKysrKysrKysrKysrCiAyIGZpbGVzIGNoYW5nZWQsIDQ5IGluc2VydGlv
+bnMoKyksIDAgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1leHRy
+YXMvcmVjaXBlcy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0L3JjUy1kZWZhdWx0CiBjcmVhdGUgbW9k
+ZSAxMDA2NDQgbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0
+XzIuODhkc2YuYmJhcHBlbmQKCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVz
+LWNvcmUvc3lzdmluaXQvc3lzdmluaXQvcmNTLWRlZmF1bHQgYi9tZXRhLWFyYWdvLWV4dHJhcy9y
+ZWNpcGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXQvcmNTLWRlZmF1bHQKbmV3IGZpbGUgbW9kZSAx
+MDA2NDQKaW5kZXggMDAwMDAwMC4uZmM2ZDQxNQotLS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJh
+Z28tZXh0cmFzL3JlY2lwZXMtY29yZS9zeXN2aW5pdC9zeXN2aW5pdC9yY1MtZGVmYXVsdApAQCAt
+MCwwICsxLDI1IEBACisjCisjCURlZmF1bHRzIGZvciB0aGUgYm9vdCBzY3JpcHRzIGluIC9ldGMv
+cmNTLmQKKyMKKworIyBUaW1lIGZpbGVzIGluIC90bXAgYXJlIGtlcHQgaW4gZGF5cy4KK1RNUFRJ
+TUU9MAorIyBTZXQgdG8geWVzIGlmIHlvdSB3YW50IHN1bG9naW4gdG8gYmUgc3Bhd25lZCBvbiBi
+b290dXAKK1NVTE9HSU49bm8KKyMgU2V0IHRvIG5vIGlmIHlvdSB3YW50IHRvIGJlIGFibGUgdG8g
+bG9naW4gb3ZlciB0ZWxuZXQvcmxvZ2luCisjIGJlZm9yZSBzeXN0ZW0gc3RhcnR1cCBpcyBjb21w
+bGV0ZSAoYXMgc29vbiBhcyBpbmV0ZCBpcyBzdGFydGVkKQorREVMQVlMT0dJTj1ubworIyBTZXQg
+VVRDPXllcyBpZiB5b3VyIHN5c3RlbSBjbG9jayBpcyBzZXQgdG8gVVRDIChHTVQpLCBhbmQgVVRD
+PW5vIGlmIG5vdC4KKyMgVVRDPXllcworIyBTZXQgVkVSQk9TRSB0byAibm8iIGlmIHlvdSB3b3Vs
+ZCBsaWtlIGEgbW9yZSBxdWlldCBib290dXAuCitWRVJCT1NFPW5vCisjIFNldCBFRElUTU9URCB0
+byAibm8iIGlmIHlvdSBkb24ndCB3YW50IC9ldGMvbW90ZCB0byBiZSBlZGl0ZWQgYXV0b21hdGlj
+YWxseQorRURJVE1PVEQ9bm8KKyMgV2hldGhlciB0byBmc2NrIHJvb3Qgb24gYm9vdAorRU5BQkxF
+X1JPT1RGU19GU0NLPW5vCisjIFNldCBGU0NLRklYIHRvICJ5ZXMiIGlmIHlvdSB3YW50IHRvIGFk
+ZCAiLXkiIHRvIHRoZSBmc2NrIGF0IHN0YXJ0dXAuCitGU0NLRklYPXllcworIyBTZXQgVElDS0FE
+SiB0byB0aGUgY29ycmVjdCB0aWNrIHZhbHVlIGZvciB0aGlzIHNwZWNpZmljIG1hY2hpbmUKKyNU
+SUNLQURKPTEwMDAwCisjIEVuYWJsZSBjYWNoaW5nIGluIHBvcHVsYXRlLXZvbGF0aWxlLnNoCitW
+T0xBVElMRV9FTkFCTEVfQ0FDSEU9eWVzCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9y
+ZWNpcGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXRfMi44OGRzZi5iYmFwcGVuZCBiL21ldGEtYXJh
+Z28tZXh0cmFzL3JlY2lwZXMtY29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5k
+Cm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLjA3YzgyMmIKLS0tIC9kZXYvbnVs
+bAorKysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXRf
+Mi44OGRzZi5iYmFwcGVuZApAQCAtMCwwICsxLDI0IEBACisjIEFyYWdvLXNwZWNpZmljIGFtZW5k
+bWVudHMgdG8gdGhlIHN0YW5kYXJkIE9FIFN5c1Zpbml0IHJlY2lwZQorCisjIGxvb2sgZm9yIGZp
+bGVzIGluIHRoaXMgbGF5ZXIgZmlyc3QKK0ZJTEVTRVhUUkFQQVRIU19wcmVwZW5kIDo9ICIke1RI
+SVNESVJ9LyR7UE59OiIKKworUFJfYXBwZW5kID0gIi1hcmFnbzAiCisKKyMgV2hlbiBidWlsZGlu
+ZyBmb3IgInVuaWZpZWQiIGFyYWdvIG1hY2hpbmUsIHN0YXJ0IGdldHR5cyBvbiBmaXJzdCAzIHNl
+cmlhbCBjb25zb2xlcyAodHR5Uz8vdHR5Tz8pCithZGRfYXJhZ29fZ2V0dHlzICgpIHsKKwllY2hv
+ICJTMDoyMzQ1OnJlc3Bhd246JHtiYXNlX3NiaW5kaXJ9L2dldHR5IDExNTIwMCB0dHlTMCIgPj4g
+JHtEfSR7c3lzY29uZmRpcn0vaW5pdHRhYgorCWVjaG8gIlMxOjIzNDU6cmVzcGF3bjoke2Jhc2Vf
+c2JpbmRpcn0vZ2V0dHkgMTE1MjAwIHR0eVMxIiA+PiAke0R9JHtzeXNjb25mZGlyfS9pbml0dGFi
+CisJZWNobyAiUzI6MjM0NTpyZXNwYXduOiR7YmFzZV9zYmluZGlyfS9nZXR0eSAxMTUyMDAgdHR5
+UzIiID4+ICR7RH0ke3N5c2NvbmZkaXJ9L2luaXR0YWIKKwllY2hvICJPMDoyMzQ1OnJlc3Bhd246
+JHtiYXNlX3NiaW5kaXJ9L2dldHR5IDExNTIwMCB0dHlPMCIgPj4gJHtEfSR7c3lzY29uZmRpcn0v
+aW5pdHRhYgorCWVjaG8gIk8xOjIzNDU6cmVzcGF3bjoke2Jhc2Vfc2JpbmRpcn0vZ2V0dHkgMTE1
+MjAwIHR0eU8xIiA+PiAke0R9JHtzeXNjb25mZGlyfS9pbml0dGFiCisJZWNobyAiTzI6MjM0NTpy
+ZXNwYXduOiR7YmFzZV9zYmluZGlyfS9nZXR0eSAxMTUyMDAgdHR5TzIiID4+ICR7RH0ke3N5c2Nv
+bmZkaXJ9L2luaXR0YWIKK30KKworZG9faW5zdGFsbF9hcHBlbmRfYXJhZ28tYXJtdjUgKCkgewor
+CWFkZF9hcmFnb19nZXR0eXMKK30KKworZG9faW5zdGFsbF9hcHBlbmRfYXJhZ28tYXJtdjcgKCkg
+eworCWFkZF9hcmFnb19nZXR0eXMKK30KLS0gCjEuNy4wLjQKCg==
+
+--_005_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_
+Content-Type: application/octet-stream;
+	name="0002-sysvinit-Port-changes-to-rcS-default-from-arago.patch"
+Content-Description: 0002-sysvinit-Port-changes-to-rcS-default-from-arago.patch
+Content-Disposition: attachment;
+	filename="0002-sysvinit-Port-changes-to-rcS-default-from-arago.patch";
+	size=1183; creation-date="Fri, 03 Aug 2012 16:17:47 GMT";
+	modification-date="Fri, 03 Aug 2012 16:19:15 GMT"
+Content-Transfer-Encoding: base64
+
+RnJvbSBmY2Y4NTQ5ODMzNmFiMzQ1NGM2N2ZlNDYwNDhhODkyYjE1ZjdmN2RjIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBGcmFua2xpbiBTIENvb3BlciBKciA8ZmNvb3BlckB0aS5jb20+
+CkRhdGU6IE1vbiwgMzAgSnVsIDIwMTIgMTE6NTM6MjcgLTA1MDAKU3ViamVjdDogW1BBVENIIDIv
+Ml0gc3lzdmluaXQ6IFBvcnQgY2hhbmdlcyB0byByY1MtZGVmYXVsdCBmcm9tIGFyYWdvCgoqIE1v
+ZGlmeSB0aGUgYmFzZSByY1MtZGVmYXVsdCBmaWxlIHdoaWNoIHdhcyB0YWtlbiBmcm9tIG9lLWNv
+cmUKICBhbmQgdHdlYWsgdGhlIGZpbGUgYmFzZWQgb24gdGhlIHJjUy1kZWZhdWx0IGZpbGUgbG9j
+YXRlZCBpbiBhcmFnbwoKU2lnbmVkLW9mZi1ieTogRnJhbmtsaW4gUyBDb29wZXIgSnIgPGZjb29w
+ZXJAdGkuY29tPgotLS0KIC4uLi9yZWNpcGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXQvcmNTLWRl
+ZmF1bHQgICAgIHwgICAgMiArKwogMSBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDAg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3Jl
+L3N5c3Zpbml0L3N5c3Zpbml0L3JjUy1kZWZhdWx0IGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBl
+cy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0L3JjUy1kZWZhdWx0CmluZGV4IGZjNmQ0MTUuLjkxMDQz
+ZjIgMTAwNjQ0Ci0tLSBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS9zeXN2aW5pdC9z
+eXN2aW5pdC9yY1MtZGVmYXVsdAorKysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUv
+c3lzdmluaXQvc3lzdmluaXQvcmNTLWRlZmF1bHQKQEAgLTExLDYgKzExLDggQEAgU1VMT0dJTj1u
+bwogREVMQVlMT0dJTj1ubwogIyBTZXQgVVRDPXllcyBpZiB5b3VyIHN5c3RlbSBjbG9jayBpcyBz
+ZXQgdG8gVVRDIChHTVQpLCBhbmQgVVRDPW5vIGlmIG5vdC4KICMgVVRDPXllcworIyBTZXQgdG8g
+bm8gdG8gbm90IHJ1biBod2Nsb2NrIGZvciBydGMKK0hXQ0xPQ0tBQ0NFU1M9bm8KICMgU2V0IFZF
+UkJPU0UgdG8gIm5vIiBpZiB5b3Ugd291bGQgbGlrZSBhIG1vcmUgcXVpZXQgYm9vdHVwLgogVkVS
+Qk9TRT1ubwogIyBTZXQgRURJVE1PVEQgdG8gIm5vIiBpZiB5b3UgZG9uJ3Qgd2FudCAvZXRjL21v
+dGQgdG8gYmUgZWRpdGVkIGF1dG9tYXRpY2FsbHkKLS0gCjEuNy4wLjQKCg==
+
+--_005_8F29D6B095ED194EA1980491A5E029710C280F3DDFLE30entticom_--
