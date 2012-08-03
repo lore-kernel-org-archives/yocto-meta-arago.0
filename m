@@ -1,30 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 9D1D852092
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 33747529A4
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Aug 2012 22:44:38 +0000 (UTC)
+	Fri,  3 Aug 2012 13:44:30 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q71Mic76012033
-	for <meta-arago@arago-project.org>; Wed, 1 Aug 2012 17:44:38 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q71Mibui008494
-	for <meta-arago@arago-project.org>; Wed, 1 Aug 2012 17:44:37 -0500
-Received: from DFLE30.ent.ti.com ([fe80::648b:2220:c6fb:4e6]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Wed, 1 Aug 2012 17:44:37 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] base-files: Port configuration files override
-Thread-Index: Ac1wNznzZCWt6Y2+SrSFAUJL2IMHCw==
-Date: Wed, 1 Aug 2012 22:44:36 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C27EC30@DFLE30.ent.ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q73DiT7J009020
+	for <meta-arago@arago-project.org>; Fri, 3 Aug 2012 08:44:29 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q73DiThX029442
+	for <meta-arago@arago-project.org>; Fri, 3 Aug 2012 08:44:29 -0500
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Fri, 3 Aug 2012 08:44:28 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCHES] Porting sysvinit changes from arago to
+	meta-arago
+Thread-Index: Ac1wNJO500+KIoe7Qy+fdCut5SXD5QAi20TQ
+Date: Fri, 3 Aug 2012 13:44:28 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015917808A@DLEE12.ent.ti.com>
+References: <8F29D6B095ED194EA1980491A5E029710C27EAD2@DFLE30.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C27EAD2@DFLE30.ent.ti.com>
 Accept-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
-Subject: [PATCH] base-files: Port configuration files override
+Subject: Re: [PATCHES] Porting sysvinit changes from arago to	meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,19 +40,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 22:44:38 -0000
-X-Groupsio-MsgNum: 68
+X-List-Received-Date: Fri, 03 Aug 2012 13:44:30 -0000
 Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_004_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_"
-
---_004_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_
 Content-Type: multipart/alternative;
-	boundary="_000_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_"
+	boundary="_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_"
 
---_000_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_
+--_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Use : in the commit message instead of -.
+
+
+
+Sincerely,
+Chase Maupin
+Software Applications
+ARM MPU
+e-mail: chase.maupin@ti.com
+phone: (214) 567-2950
+
+For support:
+Forums - http://community.ti.com/forums/
+Wiki - http://wiki.davincidsp.com/
+
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Cooper Jr., Franklin
+Sent: Wednesday, August 01, 2012 5:26 PM
+To: meta-arago@arago-project.org
+Cc: Cooper Jr., Franklin
+Subject: [meta-arago] [PATCHES] Porting sysvinit changes from arago to meta=
+-arago
 
 
 
@@ -60,14 +81,50 @@ Application Engineer
 fcooper@ti.com<mailto:fcooper@ti.com>
 
 
---_000_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_
+--_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
 osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
@@ -81,6 +138,9 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -96,11 +156,16 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -116,6 +181,53 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Use : in the commit me=
+ssage instead of -.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;color:#1F497D">Since=
+rely,<br>
+Chase Maupin<br>
+Software Applications<br>
+ARM MPU<br>
+e-mail: chase.maupin@ti.com<br>
+phone: (214) 567-2950<br>
+<br>
+For support:<br>
+Forums - </span><a href=3D"http://community.ti.com/forums/"><span style=3D"=
+font-size:10.0pt">http://community.ti.com/forums/</span></a><span style=3D"=
+font-size:10.0pt;color:#1F497D"><br>
+Wiki - </span><a href=3D"http://wiki.davincidsp.com/"><span style=3D"font-s=
+ize:
+10.0pt">http://wiki.davincidsp.com/</span></a><span style=3D"color:#1F497D"=
+>
+<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-ara=
+go-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
+<b>On Behalf Of </b>Cooper Jr., Franklin<br>
+<b>Sent:</b> Wednesday, August 01, 2012 5:26 PM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Cc:</b> Cooper Jr., Franklin<br>
+<b>Subject:</b> [meta-arago] [PATCHES] Porting sysvinit changes from arago =
+to meta-arago<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Regards,<o:p></o:p></p>
@@ -126,86 +238,8 @@ div.WordSection1
 <o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
+</div>
 </body>
 </html>
 
---_000_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_--
-
---_004_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_
-Content-Type: application/octet-stream;
-	name="0001-base-files-Port-configuration-files-override.patch"
-Content-Description: 0001-base-files-Port-configuration-files-override.patch
-Content-Disposition: attachment;
-	filename="0001-base-files-Port-configuration-files-override.patch";
-	size=3719; creation-date="Wed, 01 Aug 2012 22:20:05 GMT";
-	modification-date="Wed, 01 Aug 2012 22:07:19 GMT"
-Content-Transfer-Encoding: base64
-
-RnJvbSBlZTIxMmE3MWVmYWQ1NDZiOTM3MGU4ZDYzMjA0MGQ0MWNjMzEyZjQyIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBGcmFua2xpbiBTIENvb3BlciBKciA8ZmNvb3BlckB0aS5jb20+
-CkRhdGU6IE1vbiwgMzAgSnVsIDIwMTIgMTE6Mzk6NDggLTA1MDAKU3ViamVjdDogW1BBVENIXSBi
-YXNlLWZpbGVzOiBQb3J0IGNvbmZpZ3VyYXRpb24gZmlsZXMgb3ZlcnJpZGUKCiogUG9ydCB2YXJp
-b3VzIGNvbmZpZ3VyYXRpb24gZmlsZXMgZnJvbSBhcmFnbyB0byBtZXRhLWFyYWdvCgpTaWduZWQt
-b2ZmLWJ5OiBGcmFua2xpbiBTIENvb3BlciBKciA8ZmNvb3BlckB0aS5jb20+Ci0tLQogLi4uL3Jl
-Y2lwZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXMvZnN0YWIgICAgICAgfCAgIDEzICsrKysr
-KysrKysrKysKIC4uLi9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzL2lzc3VlICAg
-ICAgIHwgICAgOCArKysrKysrKwogLi4uL3JlY2lwZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmls
-ZXMvaXNzdWUubmV0ICAgfCAgICA4ICsrKysrKysrCiAuLi4vYmFzZS1maWxlcy9iYXNlLWZpbGVz
-XzMuMC4xNC5iYmFwcGVuZCAgICAgICAgICB8ICAgIDQgKysrKwogNCBmaWxlcyBjaGFuZ2VkLCAz
-MyBpbnNlcnRpb25zKCspLCAwIGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEt
-YXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXMvZnN0YWIKIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvYmFzZS1maWxl
-cy9iYXNlLWZpbGVzL2lzc3VlCiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1leHRyYXMv
-cmVjaXBlcy1jb3JlL2Jhc2UtZmlsZXMvYmFzZS1maWxlcy9pc3N1ZS5uZXQKIGNyZWF0ZSBtb2Rl
-IDEwMDY0NCBtZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZp
-bGVzXzMuMC4xNC5iYmFwcGVuZAoKZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lw
-ZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXMvZnN0YWIgYi9tZXRhLWFyYWdvLWV4dHJhcy9y
-ZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzL2ZzdGFiCm5ldyBmaWxlIG1vZGUgMTAw
-NjQ0CmluZGV4IDAwMDAwMDAuLjM4OGRlNjgKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhLWFyYWdv
-LWV4dHJhcy9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzL2ZzdGFiCkBAIC0wLDAg
-KzEsMTMgQEAKKyMgc3RvY2sgZnN0YWIgLSB5b3UgcHJvYmFibHkgd2FudCB0byBvdmVycmlkZSB0
-aGlzIHdpdGggYSBtYWNoaW5lIHNwZWNpZmljIG9uZQorCityb290ZnMgICAgICAgICAgICAgICAv
-ICAgICAgICAgICAgICAgICAgICBhdXRvICAgICAgIGRlZmF1bHRzICAgICAgICAgICAgICAxICAx
-Citwcm9jICAgICAgICAgICAgICAgICAvcHJvYyAgICAgICAgICAgICAgICBwcm9jICAgICAgIGRl
-ZmF1bHRzICAgICAgICAgICAgICAwICAwCitkZXZwdHMgICAgICAgICAgICAgICAvZGV2L3B0cyAg
-ICAgICAgICAgICBkZXZwdHMgICAgIG1vZGU9MDYyMCxnaWQ9NSAgICAgICAwICAwCit1c2JmcyAg
-ICAgICAgICAgICAgICAvcHJvYy9idXMvdXNiICAgICAgICB1c2JmcyAgICAgIGRlZmF1bHRzICAg
-ICAgICAgICAgICAwICAwCit0bXBmcyAgICAgICAgICAgICAgICAvdmFyL3ZvbGF0aWxlICAgICAg
-ICB0bXBmcyAgICAgIGRlZmF1bHRzLHNpemU9MTZNICAgICAwICAwCit0bXBmcyAgICAgICAgICAg
-ICAgICAvZGV2L3NobSAgICAgICAgICAgICB0bXBmcyAgICAgIG1vZGU9MDc3NyAgICAgICAgICAg
-ICAwICAwCit0bXBmcyAgICAgICAgICAgICAgICAvbWVkaWEvcmFtICAgICAgICAgICB0bXBmcyAg
-ICAgIGRlZmF1bHRzLHNpemU9MTZNICAgICAwICAwCisKKyMgdW5jb21tZW50IHRoaXMgaWYgeW91
-ciBkZXZpY2UgaGFzIGEgU0QvTU1DL1RyYW5zZmxhc2ggc2xvdAorIy9kZXYvbW1jYmxrMHAxICAg
-ICAgIC9tZWRpYS9jYXJkICAgICAgICAgIGF1dG8gICAgICAgZGVmYXVsdHMsc3luYyxub2F1dG8g
-IDAgIDAKKwpkaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL2Jhc2Ut
-ZmlsZXMvYmFzZS1maWxlcy9pc3N1ZSBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS9i
-YXNlLWZpbGVzL2Jhc2UtZmlsZXMvaXNzdWUKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAw
-MDAwMC4uNGYyMmZkOQotLS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lw
-ZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXMvaXNzdWUKQEAgLTAsMCArMSw4IEBACisgX19f
-X18gICAgICAgICAgICAgICAgICAgIF9fX19fICAgICAgICAgICBfICAgICAgICAgXyAgIAorfCAg
-XyAgfF9fXyBfX18gX19fIF9fXyAgIHwgIF8gIHxfX18gX19fICB8X3xfX18gX19ffCB8XyAKK3wg
-ICAgIHwgIF98IC4nfCAuIHwgLiB8ICB8ICAgX198ICBffCAuIHwgfCB8IC1ffCAgX3wgIF98Cit8
-X198X198X3wgfF9fLHxfICB8X19ffCAgfF9ffCAgfF98IHxfX198X3wgfF9fX3xfX198X3wgIAor
-ICAgICAgICAgICAgICB8X19ffCAgICAgICAgICAgICAgICAgICAgfF9fX3wgICAgICAgICAgICAK
-KworQXJhZ28gUHJvamVjdCBodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcgXG4gXGwKKwpkaWZmIC0t
-Z2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL2Jhc2UtZmlsZXMvYmFzZS1maWxl
-cy9pc3N1ZS5uZXQgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9i
-YXNlLWZpbGVzL2lzc3VlLm5ldApuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwLi44
-Y2U3MjA3Ci0tLSAvZGV2L251bGwKKysrIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3Jl
-L2Jhc2UtZmlsZXMvYmFzZS1maWxlcy9pc3N1ZS5uZXQKQEAgLTAsMCArMSw4IEBACisgX19fX18g
-ICAgICAgICAgICAgICAgICAgIF9fX19fICAgICAgICAgICBfICAgICAgICAgXyAgIAorfCAgXyAg
-fF9fXyBfX18gX19fIF9fXyAgIHwgIF8gIHxfX18gX19fICB8X3xfX18gX19ffCB8XyAKK3wgICAg
-IHwgIF98IC4nfCAuIHwgLiB8ICB8ICAgX198ICBffCAuIHwgfCB8IC1ffCAgX3wgIF98Cit8X198
-X198X3wgfF9fLHxfICB8X19ffCAgfF9ffCAgfF98IHxfX198X3wgfF9fX3xfX198X3wgIAorICAg
-ICAgICAgICAgICB8X19ffCAgICAgICAgICAgICAgICAgICAgfF9fX3wgICAgICAgICAgICAKKwor
-QXJhZ28gUHJvamVjdCBodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcgJWgKKwpkaWZmIC0tZ2l0IGEv
-bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL2Jhc2UtZmlsZXMvYmFzZS1maWxlc18zLjAu
-MTQuYmJhcHBlbmQgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9i
-YXNlLWZpbGVzXzMuMC4xNC5iYmFwcGVuZApuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAw
-MDAwLi5jMGFiMDY5Ci0tLSAvZGV2L251bGwKKysrIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBl
-cy1jb3JlL2Jhc2UtZmlsZXMvYmFzZS1maWxlc18zLjAuMTQuYmJhcHBlbmQKQEAgLTAsMCArMSw0
-IEBACisjIGxvb2sgZm9yIGZpbGVzIGluIHRoaXMgbGF5ZXIgZmlyc3QKK0ZJTEVTRVhUUkFQQVRI
-U19wcmVwZW5kIDo9ICIke1RISVNESVJ9LyR7UE59OiIKKworUFJfYXBwZW5kID0gIi1hcmFnbzAi
-Ci0tIAoxLjcuMC40Cgo=
-
---_004_8F29D6B095ED194EA1980491A5E029710C27EC30DFLE30entticom_--
+--_000_7D46E86EC0A8354091174257B2FED1015917808ADLEE12entticom_--
