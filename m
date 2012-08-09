@@ -1,37 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 020D35298F
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0CDEB529FF
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Aug 2012 15:13:49 +0000 (UTC)
+	Thu,  9 Aug 2012 16:21:49 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q79FDlgN020868;
-	Thu, 9 Aug 2012 10:13:47 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q79FDlpY019261;
-	Thu, 9 Aug 2012 10:13:47 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q79GLmgd001639
+	for <meta-arago@arago-project.org>; Thu, 9 Aug 2012 11:21:48 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q79GLmSg030537
+	for <meta-arago@arago-project.org>; Thu, 9 Aug 2012 11:21:48 -0500
 Received: from DFLE30.ent.ti.com ([fe80::648b:2220:c6fb:4e6]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Thu, 9 Aug 2012 10:13:46 -0500
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Thu, 9 Aug 2012 11:21:48 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, Denys Dmytriyenko
-	<denis@denix.org>
-Thread-Topic: [meta-arago] [PATCHES] Porting sysvinit changes from arago to
-	meta-arago
-Thread-Index: Ac1wNJO500+KIoe7Qy+fdCut5SXD5QFANCQAAB+C7hAAI2xH4A==
-Date: Thu, 9 Aug 2012 15:13:46 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C287556@DFLE30.ent.ti.com>
-References: <8F29D6B095ED194EA1980491A5E029710C27EAD2@DFLE30.ent.ti.com>
-	<20120808021404.GA32275@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C285FB0@DFLE30.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C285FB0@DFLE30.ent.ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [PATCH] base-files: Port configuration files override
+Thread-Index: Ac1wNznzZCWt6Y2+SrSFAUJL2IMHCwGE8t9g
+Date: Thu, 9 Aug 2012 16:21:47 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C2879A3@DFLE30.ent.ti.com>
+References: <8F29D6B095ED194EA1980491A5E029710C27EC30@DFLE30.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C27EC30@DFLE30.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper
-	Jr., Franklin" <fcooper@ti.com>
-Subject: Re: [PATCHES] Porting sysvinit changes from arago to meta-arago
+Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH] base-files: Port configuration files override
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,74 +40,127 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2012 15:13:54 -0000
+X-List-Received-Date: Thu, 09 Aug 2012 16:21:50 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C2879A3DFLE30entticom_"
+
+--_000_8F29D6B095ED194EA1980491A5E029710C2879A3DFLE30entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-In oe-core, the modification to inittab is done in a new recipe called sysv=
-init-inittab. Unlike in oe-classic they added support for having multiple s=
-erial consoles being added to inittab via the SERIAL_CONSOLES variable whic=
-h is set inside the machine's conf file.=20
-Ex:
-SERIAL_CONSOLES =3D "115200;ttyO0 \
-	             115200;ttyO2 \
-			 115200;ttyO4
+Please ignore this recipe. I will send out a different patch shortly.
 
-If you use the SERIAL_CONSOLES variable in your generic/unified arago machi=
-ne file then we can avoid having to make any modifications to the sysvinit/=
-sysvinit-inittab recipe.
+From: Cooper Jr., Franklin
+Sent: Wednesday, August 01, 2012 5:45 PM
+To: meta-arago@arago-project.org
+Cc: Cooper Jr., Franklin
+Subject: [PATCH] base-files: Port configuration files override
 
-Unless there is a specific feature in RTC that is still an issue that requi=
-res disabling hwclock we can ignore my two patches since they both aren't n=
-eeded.
 
------Original Message-----
-From: Cooper Jr., Franklin=20
-Sent: Wednesday, August 08, 2012 5:19 PM
-To: Denys Dmytriyenko
-Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-Subject: RE: [meta-arago] [PATCHES] Porting sysvinit changes from arago to =
-meta-arago
 
-Your right. The "add_arago_gettys" can stay and I will probably modify the =
-commit to explain why it is needed. What was the exact issue that required =
-hwclock to be disabled? RTC is currently supported by all of our platforms =
-but I don't know what to really look to make sure this problem still doesn'=
-t exist.
+Regards,
+Franklin Cooper Jr.
+Texas Instruments
+Application Engineer
+fcooper@ti.com<mailto:fcooper@ti.com>
 
------Original Message-----
-From: Denys Dmytriyenko [mailto:denis@denix.org]=20
-Sent: Tuesday, August 07, 2012 9:14 PM
-To: Cooper Jr., Franklin
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCHES] Porting sysvinit changes from arago to =
-meta-arago
 
-Franklin,
+--_000_8F29D6B095ED194EA1980491A5E029710C2879A3DFLE30entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-As previously mentioned, we should not blindly port all the old fixes and=20
-workarounds from Arago to meta-arago. Specifically, in these 2 patches you =
-are=20
-bringing in setting default gettys for the fake "arago" machine, which you=
-=20
-don't need or have (although, I'll be porting that soon) as well as disabli=
-ng=20
-hwclock due to some old issue we used to have. I'd recommend checking the=20
-history of such changes before deciding if we still need those in meta-arag=
-o:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please ignore this rec=
+ipe. I will send out a different patch shortly.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Cooper J=
+r., Franklin
+<br>
+<b>Sent:</b> Wednesday, August 01, 2012 5:45 PM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Cc:</b> Cooper Jr., Franklin<br>
+<b>Subject:</b> [PATCH] base-files: Port configuration files override<o:p><=
+/o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Franklin Cooper Jr.<o:p></o:p></p>
+<p class=3D"MsoNormal">Texas Instruments<o:p></o:p></p>
+<p class=3D"MsoNormal">Application Engineer<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"mailto:fcooper@ti.com">fcooper@ti.com</a>=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-$ git log recipes/sysvinit/sysvinit/rcS-default
-
-commit 393de1d0a68bd371328c3765b5df0fc32bb3f0be
-Author: Denys Dmytriyenko <denis@denix.org>
-Date:   Wed Jun 17 21:35:04 2009 -0400
-
-    rcS-default: disable hwclock use due to missing RTC (temporary?)
-
-Do we still have this issue with our current platforms? Is it applicable to=
-=20
-all out supported platforms?
-
-Denys
-
+--_000_8F29D6B095ED194EA1980491A5E029710C2879A3DFLE30entticom_--
