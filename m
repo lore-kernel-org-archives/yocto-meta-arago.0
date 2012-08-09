@@ -1,35 +1,27 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 1ACC5529FF
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id 9D96C52A83
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Aug 2012 22:18:56 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q78MIsAC026491;
-	Wed, 8 Aug 2012 17:18:54 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q78MIscf001796;
-	Wed, 8 Aug 2012 17:18:54 -0500
-Received: from DFLE30.ent.ti.com ([fe80::648b:2220:c6fb:4e6]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Wed, 8 Aug 2012 17:18:54 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Thread-Topic: [meta-arago] [PATCHES] Porting sysvinit changes from arago to
-	meta-arago
-Thread-Index: Ac1wNJO500+KIoe7Qy+fdCut5SXD5QFANCQAAB+C7hA=
-Date: Wed, 8 Aug 2012 22:18:54 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C285FB0@DFLE30.ent.ti.com>
-References: <8F29D6B095ED194EA1980491A5E029710C27EAD2@DFLE30.ent.ti.com>
-	<20120808021404.GA32275@denix.org>
-In-Reply-To: <20120808021404.GA32275@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper
-	Jr., Franklin" <fcooper@ti.com>
-Subject: Re: [PATCHES] Porting sysvinit changes from arago to meta-arago
+	Thu,  9 Aug 2012 04:23:57 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.115])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M8H0005V076EXJ0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 08 Aug 2012 23:23:46 -0500 (CDT)
+Received: from [25.230.225.209] (m882336d0.tmodns.net [208.54.35.136])
+	by gandalf.denix.org (Postfix) with ESMTPA id 4F06020094; Thu,
+	09 Aug 2012 00:23:30 -0400 (EDT)
+References: <1344462645-2945-1-git-send-email-fcooper@ti.com>
+	<1344462645-2945-2-git-send-email-fcooper@ti.com>
+User-Agent: K-9 Mail for Android
+In-reply-to: <1344462645-2945-2-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+From: Denys Dmytriyenko <denis@denix.org>
+Date: Thu, 09 Aug 2012 00:23:25 -0400
+To: Franklin S Cooper Jr <fcooper@ti.com>,meta-arago@arago-project.org
+Message-id: <2fc6fdb7-a8a9-4517-8ec5-7cb4c245a6fa@email.android.com>
+Subject: Re: [branches:master][PATCH 2/2 v3] busybox: Enable vlan,	tftpd, udpsvd, tcpsvd and inetd
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,49 +34,109 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 22:18:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 09 Aug 2012 04:23:58 -0000
+Content-type: multipart/alternative;
+	boundary=----7VE81AQ2ME0US4W95AJYOT6TO4C2X3
 
-Your right. The "add_arago_gettys" can stay and I will probably modify the =
-commit to explain why it is needed. What was the exact issue that required =
-hwclock to be disabled? RTC is currently supported by all of our platforms =
-but I don't know what to really look to make sure this problem still doesn'=
-t exist.
+------7VE81AQ2ME0US4W95AJYOT6TO4C2X3
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
------Original Message-----
-From: Denys Dmytriyenko [mailto:denis@denix.org]=20
-Sent: Tuesday, August 07, 2012 9:14 PM
-To: Cooper Jr., Franklin
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCHES] Porting sysvinit changes from arago to =
-meta-arago
-
-Franklin,
-
-As previously mentioned, we should not blindly port all the old fixes and=20
-workarounds from Arago to meta-arago. Specifically, in these 2 patches you =
-are=20
-bringing in setting default gettys for the fake "arago" machine, which you=
-=20
-don't need or have (although, I'll be porting that soon) as well as disabli=
-ng=20
-hwclock due to some old issue we used to have. I'd recommend checking the=20
-history of such changes before deciding if we still need those in meta-arag=
-o:
-
-$ git log recipes/sysvinit/sysvinit/rcS-default
-
-commit 393de1d0a68bd371328c3765b5df0fc32bb3f0be
-Author: Denys Dmytriyenko <denis@denix.org>
-Date:   Wed Jun 17 21:35:04 2009 -0400
-
-    rcS-default: disable hwclock use due to missing RTC (temporary?)
-
-Do we still have this issue with our current platforms? Is it applicable to=
-=20
-all out supported platforms?
+A quick comment - these should go to meta-arago-distro and not extras.
 
 Denys
 
+
+Franklin S Cooper Jr <fcooper@ti.com> wrote:
+
+* Enable vconfig which is useful for devices that support the virtual
+lan kernel option such as the am335x
+
+* Enable tftpd ,udpsvd and tcpsvd
+
+* Enable inetd service which is used by various programs including tftpd
+
+Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+---
+.../recipes-core/busybox/busybox/defconfig | 20 ++++++++++----------
+1 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-core/busybox/busybox/defconfig b/meta-arago-extras/recipes-core/busybox/busybox/defconfig
+index 372d7b5..4aa0e7e 100644
+--- a/meta-arago-extras/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-extras/recipes-core/busybox/busybox/defconfig
+@@ -774,12 +774,12 @@ CONFIG_FEATURE_IFUPDOWN_IPV4=y
+CONFIG_FEATURE_IFUPDOWN_IPV6=y
+CONFIG_FEATURE_IFUPDOWN_MAPPING=y
+# CONFIG_FEATURE_IFUPDOWN_EXTERNAL_DHCP is not set
+-# CONFIG_INETD is not set
+-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_ECHO is not set
+-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD is not set
+-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME is not set
+-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DAYTIME is not set
+-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN is not set
++CONFIG_INETD=y
++CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_ECHO=y
++CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD=y
++CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME=y
++CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DAYTIME=y
++CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN=y
+# CONFIG_FEATURE_INETD_RPC is not set
+CONFIG_IP=y
+CONFIG_FEATURE_IP_ADDRESS=y
+@@ -806,7 +806,7 @@ CONFIG_NSLOOKUP=y
+# CONFIG_PSCAN is not set
+CONFIG_ROUTE=y
+# CONFIG_SLATTACH is not set
+-# CONFIG_TCPSVD is not set
++CONFIG_TCPSVD=y
+CONFIG_TELNET=y
+# CONFIG_FEATURE_TELNET_TTYPE is not set
+CONFIG_FEATURE_TELNET_AUTOLOGIN=y
+@@ -814,7 +814,7 @@ CONFIG_FEATURE_TELNET_AUTOLOGIN=y
+# CONFIG_FEATURE_TELNETD_STANDALONE is not set
+# CONFIG_FEATURE_TELNETD_INETD_WAIT is not set
+CONFIG_TFTP=y
+-# CONFIG_TFTPD is not set
++CONFIG_TFTPD=y
+
+#
+# Common options for tftp/tftpd
+@@ -846,8 +846,8 @@ CONFIG_UDHCP_DEBUG=0
+CONFIG_UDHCPC_DEFAULT_SCRIPT="/usr/share/udhcpc/default.script"
+CONFIG_UDHCPC_SLACK_FOR_BUGGY_SERVERS=80
+CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n"
+-# CONFIG_UDPSVD is not set
+-# CONFIG_VCONFIG is not set
++CONFIG_UDPSVD=y
++CONFIG_VCONFIG=y
+CONFIG_WGET=y
+CONFIG_FEATURE_WGET_STATUSBAR=y
+CONFIG_FEATURE_WGET_AUTHENTICATION=y
+-- 
+1.7.0.4
+
+_____________________________________________
+
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+
+------7VE81AQ2ME0US4W95AJYOT6TO4C2X3
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html><head></head><body>A quick comment - these should go to meta-arago-distro and not extras.<br>
+<br>
+Denys<br>
+<br><br><div class="gmail_quote">Franklin S Cooper Jr &lt;fcooper@ti.com&gt; wrote:<blockquote class="gmail_quote" style="margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
+<pre style="white-space: pre-wrap; word-wrap:break-word; font-family: sans-serif">* Enable vconfig which is useful for devices that support the virtual<br />  lan kernel option such as the am335x<br /><br />* Enable tftpd ,udpsvd and tcpsvd<br /><br />* Enable inetd service which is used by various programs including tftpd<br /><br />Signed-off-by: Franklin S Cooper Jr &lt;fcooper@ti.com&gt;<br />---<br /> .../recipes-core/busybox/busybox/defconfig         |   20 ++++++++++----------<br /> 1 files changed, 10 insertions(+), 10 deletions(-)<br /><br />diff --git a/meta-arago-extras/recipes-core/busybox/busybox/defconfig b/meta-arago-extras/recipes-core/busybox/busybox/defconfig<br />index 372d7b5..4aa0e7e 100644<br />--- a/meta-arago-extras/recipes-core/busybox/busybox/defconfig<br />+++ b/meta-arago-extras/recipes-core/busybox/busybox/defconfig<br />@@ -774,12 +774,12 @@ CONFIG_FEATURE_IFUPDOWN_IPV4=y<br /> CONFIG_FEATURE_IFUPDOWN_IPV6=y<br /> CONFIG_FEATURE_IFUPDOWN_MAPPING=
+ y<br />
+# CONFIG_FEATURE_IFUPDOWN_EXTERNAL_DHCP is not set<br />-# CONFIG_INETD is not set<br />-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_ECHO is not set<br />-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD is not set<br />-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME is not set<br />-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DAYTIME is not set<br />-# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN is not set<br />+CONFIG_INETD=y<br />+CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_ECHO=y<br />+CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD=y<br />+CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME=y<br />+CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DAYTIME=y<br />+CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN=y<br /> # CONFIG_FEATURE_INETD_RPC is not set<br /> CONFIG_IP=y<br /> CONFIG_FEATURE_IP_ADDRESS=y<br />@@ -806,7 +806,7 @@ CONFIG_NSLOOKUP=y<br /> # CONFIG_PSCAN is not set<br /> CONFIG_ROUTE=y<br /> # CONFIG_SLATTACH is not set<br />-# CONFIG_TCPSVD is not set<br />+CONFIG_TCPSVD=y<br /> CONFIG_TELNET=y<br /> #
+CONFIG_FEATURE_TELNET_TTYPE is not set<br /> CONFIG_FEATURE_TELNET_AUTOLOGIN=y<br />@@ -814,7 +814,7 @@ CONFIG_FEATURE_TELNET_AUTOLOGIN=y<br /> # CONFIG_FEATURE_TELNETD_STANDALONE is not set<br /> # CONFIG_FEATURE_TELNETD_INETD_WAIT is not set<br /> CONFIG_TFTP=y<br />-# CONFIG_TFTPD is not set<br />+CONFIG_TFTPD=y<br /> <br /> #<br /> # Common options for tftp/tftpd<br />@@ -846,8 +846,8 @@ CONFIG_UDHCP_DEBUG=0<br /> CONFIG_UDHCPC_DEFAULT_SCRIPT="/usr/share/udhcpc/default.script"<br /> CONFIG_UDHCPC_SLACK_FOR_BUGGY_SERVERS=80<br /> CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n"<br />-# CONFIG_UDPSVD is not set<br />-# CONFIG_VCONFIG is not set<br />+CONFIG_UDPSVD=y<br />+CONFIG_VCONFIG=y<br /> CONFIG_WGET=y<br /> CONFIG_FEATURE_WGET_STATUSBAR=y<br /> CONFIG_FEATURE_WGET_AUTHENTICATION=y<br />-- <br /><a href="http://1.7.0.4">1.7.0.4</a><br /><br /><hr /><br />meta-arago mailing list<br />meta-arago@arago-project.org<br /><a
+href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br /><br /></pre></blockquote></div></body></html>
+
+------7VE81AQ2ME0US4W95AJYOT6TO4C2X3--
