@@ -1,25 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTP id 48A17529FF
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 051C6529FF
 	for <meta-arago@arago-project.org>;
-	Mon, 13 Aug 2012 18:33:09 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173019.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0M8P00M21I6ANY50@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 13 Aug 2012 13:32:49 -0500 (CDT)
-Received: from android-2dd7591933f7702a.denix (unknown [192.168.0.194])
-	by gandalf.denix.org (Postfix) with ESMTPA id D99C92007F; Mon,
-	13 Aug 2012 14:32:33 -0400 (EDT)
+	Mon, 13 Aug 2012 18:36:27 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7DIaR5r026737;
+	Mon, 13 Aug 2012 13:36:27 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7DIaRrA019010;
+	Mon, 13 Aug 2012 13:36:27 -0500
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Mon, 13 Aug 2012 13:36:27 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] dbus: Set License to GPLv2+
+	Signed-off-by:	Franklin S Cooper Jr <fcooper@ti.com>
+Thread-Index: AQHNeYIO9NxASDEQgEaeSqqnBIuzEJdYEXPQ
+Date: Mon, 13 Aug 2012 18:36:26 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C29D5C8@DFLE09.ent.ti.com>
 References: <1344882389-23852-1-git-send-email-fcooper@ti.com>
-User-Agent: K-9 Mail for Android
-In-reply-to: <1344882389-23852-1-git-send-email-fcooper@ti.com>
-MIME-version: 1.0
-From: Denys Dmytriyenko <denis@denix.org>
-Date: Mon, 13 Aug 2012 14:32:31 -0400
-To: Franklin S Cooper Jr <fcooper@ti.com>,meta-arago@arago-project.org
-Message-id: <1ea18a0e-2f06-486c-919b-65e586d24fe4@email.android.com>
+	<1ea18a0e-2f06-486c-919b-65e586d24fe4@email.android.com>
+In-Reply-To: <1ea18a0e-2f06-486c-919b-65e586d24fe4@email.android.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
 Subject: Re: [PATCH] dbus: Set License to GPLv2+ Signed-off-by:	Franklin S Cooper Jr <fcooper@ti.com>
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -33,49 +42,127 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 18:33:10 -0000
-Content-type: multipart/alternative;
-	boundary=----Q3NSVBDK040115IAUZFVOSZ1JHGTBR
+X-List-Received-Date: Mon, 13 Aug 2012 18:36:28 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C29D5C8DFLE09entticom_"
 
-------Q3NSVBDK040115IAUZFVOSZ1JHGTBR
-Content-Type: text/plain;
- charset=UTF-8
-Content-Transfer-Encoding: 8bit
+--_000_8F29D6B095ED194EA1980491A5E029710C29D5C8DFLE09entticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Why?
+SW4gQXJhZ28sIHdoZW4gZ2l2ZW4gYSBjaG9pY2UgYmV0d2VlbiBsaWNlbnNlcyB3ZSBjaG9zZSBH
+UEx2MisuICBXaHkgd291bGQgdGhhdCBjaGFuZ2U/DQoNCkZyb206IERlbnlzIERteXRyaXllbmtv
+IFttYWlsdG86ZGVuaXNAZGVuaXgub3JnXQ0KU2VudDogTW9uZGF5LCBBdWd1c3QgMTMsIDIwMTIg
+MTozMyBQTQ0KVG86IENvb3BlciBKci4sIEZyYW5rbGluOyBtZXRhLWFyYWdvQGFyYWdvLXByb2pl
+Y3Qub3JnDQpTdWJqZWN0OiBSZTogW21ldGEtYXJhZ29dIFtQQVRDSF0gZGJ1czogU2V0IExpY2Vu
+c2UgdG8gR1BMdjIrIFNpZ25lZC1vZmYtYnk6IEZyYW5rbGluIFMgQ29vcGVyIEpyIDxmY29vcGVy
+QHRpLmNvbT4NCg0KV2h5Pw0KRnJhbmtsaW4gUyBDb29wZXIgSnIgPGZjb29wZXJAdGkuY29tPiB3
+cm90ZToNCg0KLS0tDQoNCiAuLi4vcmVjaXBlcy1jb3JlL2RidXMvZGJ1c18xLjQuMTYuYmJhcHBl
+bmQgICAgICAgICB8ICAgIDMgKysrDQoNCiAxIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygr
+KSwgMCBkZWxldGlvbnMoLSkNCg0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWFyYWdvLWRpc3Ry
+by9yZWNpcGVzLWNvcmUvZGJ1cy9kYnVzXzEuNC4xNi5iYmFwcGVuZA0KDQoNCg0KZGlmZiAtLWdp
+dCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9kYnVzL2RidXNfMS40LjE2LmJiYXBw
+ZW5kIGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL2RidXMvZGJ1c18xLjQuMTYuYmJh
+cHBlbmQNCg0KbmV3IGZpbGUgbW9kZSAxMDA2NDQNCg0KaW5kZXggMDAwMDAwMC4uNjY0MWNiNQ0K
+DQotLS0gL2Rldi9udWxsDQoNCisrKyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9k
+YnVzL2RidXNfMS40LjE2LmJiYXBwZW5kDQoNCkBAIC0wLDAgKzEsMyBAQA0KDQorUFJfYXBwZW5k
+ID0gIi1hcmFnbzAiDQoNCisNCg0KK0xJQ0VOU0UgPSAiR1BMdjIrIg0KDQotLQ0KDQoxLjcuMC40
+PGh0dHA6Ly8xLjcuMC40Pg0KDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xw0KDQoNCg0KDQoNCm1ldGEtYXJhZ28gbWFpbGluZyBsaXN0DQoNCm1ldGEtYXJhZ29AYXJhZ28t
+cHJvamVjdC5vcmcNCg0KaHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9s
+aXN0aW5mby9tZXRhLWFyYWdvDQo=
 
-Franklin S Cooper Jr <fcooper@ti.com> wrote:
+--_000_8F29D6B095ED194EA1980491A5E029710C29D5C8DFLE09entticom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
----
-.../recipes-core/dbus/dbus_1.4.16.bbappend | 3 +++
-1 files changed, 3 insertions(+), 0 deletions(-)
-create mode 100644 meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
+ZiAhbXNvXT4NCjxzdHlsZT4NCnZcOioge2JlaGF2aW9yOnVybCgjZGVmYXVsdCNWTUwpO30NCm9c
+Oioge2JlaGF2aW9yOnVybCgjZGVmYXVsdCNWTUwpO30NCndcOioge2JlaGF2aW9yOnVybCgjZGVm
+YXVsdCNWTUwpO30NCi5zaGFwZSB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0KPC9zdHls
+ZT4NCjwhW2VuZGlmXS0tPjxzdHlsZT4NCjwhLS0NCiAvKiBGb250IERlZmluaXRpb25zICovDQog
+QGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQg
+NSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglw
+YW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5
+OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30N
+CiAvKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KIHAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRp
+di5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9u
+dC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30N
+CmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNv
+bG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4u
+TXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1
+cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJp
+b3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1h
+cmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJ
+Zm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJ
+e21zby1zdHlsZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJp
+b3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZh
+bWlseTpDb25zb2xhczt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJz
+b25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9y
+OiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
+DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
+MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
+bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+DQo8L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5
+XT48eG1sPg0KIDxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+
+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCiA8bzpzaGFwZWxh
+eW91dCB2OmV4dD0iZWRpdCI+DQogIDxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
+IDwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
+IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0
+aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+DQpjb2xvcjojMUY0OTdEIj5JbiBBcmFnbywgd2hlbiBnaXZlbiBhIGNob2ljZSBiZXR3ZWVuIGxp
+Y2Vuc2VzIHdlIGNob3NlIEdQTHYyJiM0MzsuICZuYnNwO1doeSB3b3VsZCB0aGF0IGNoYW5nZT88
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVD
+NERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFo
+b21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90OyI+IERlbnlzIERteXRyaXllbmtvIFttYWlsdG86ZGVuaXNAZGVu
+aXgub3JnXQ0KPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgQXVndXN0IDEzLCAyMDEyIDE6MzMg
+UE08YnI+DQo8Yj5Ubzo8L2I+IENvb3BlciBKci4sIEZyYW5rbGluOyBtZXRhLWFyYWdvQGFyYWdv
+LXByb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbbWV0YS1hcmFnb10gW1BBVENI
+XSBkYnVzOiBTZXQgTGljZW5zZSB0byBHUEx2MiYjNDM7IFNpZ25lZC1vZmYtYnk6IEZyYW5rbGlu
+IFMgQ29vcGVyIEpyICZsdDtmY29vcGVyQHRpLmNvbSZndDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPldo
+eT88bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5GcmFua2xpbiBT
+IENvb3BlciBKciAmbHQ7ZmNvb3BlckB0aS5jb20mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0K
+PHByZSBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQ7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d29y
+ZC13cmFwOmJyZWFrLXdvcmQiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4tLS08YnI+DQombmJzcDsuLi4vcmVjaXBlcy1j
+b3JlL2RidXMvZGJ1c18xLjQuMTYuYmJhcHBlbmQmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsgfCZuYnNwOyZuYnNwOyZuYnNwOyAzICYjNDM7JiM0MzsmIzQz
+Ozxicj4NCiZuYnNwOzEgZmlsZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCYjNDM7KSwgMCBkZWxl
+dGlvbnMoLSk8YnI+DQombmJzcDtjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1kaXN0cm8v
+cmVjaXBlcy1jb3JlL2RidXMvZGJ1c18xLjQuMTYuYmJhcHBlbmQ8YnI+DQo8YnI+DQpkaWZmIC0t
+Z2l0IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL2RidXMvZGJ1c18xLjQuMTYuYmJh
+cHBlbmQgYi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvZGJ1cy9kYnVzXzEuNC4xNi5i
+YmFwcGVuZDxicj4NCm5ldyBmaWxlIG1vZGUgMTAwNjQ0PGJyPg0KaW5kZXggMDAwMDAwMC4uNjY0
+MWNiNTxicj4NCi0tLSAvZGV2L251bGw8YnI+DQomIzQzOyYjNDM7JiM0MzsgYi9tZXRhLWFyYWdv
+LWRpc3Ryby9yZWNpcGVzLWNvcmUvZGJ1cy9kYnVzXzEuNC4xNi5iYmFwcGVuZDxicj4NCkBAIC0w
+LDAgJiM0MzsxLDMgQEA8YnI+DQomIzQzO1BSX2FwcGVuZCA9ICZxdW90Oy1hcmFnbzAmcXVvdDs8
+YnI+DQomIzQzOzxicj4NCiYjNDM7TElDRU5TRSA9ICZxdW90O0dQTHYyJiM0MzsmcXVvdDs8YnI+
+DQotLSA8YnI+DQo8YSBocmVmPSJodHRwOi8vMS43LjAuNCI+MS43LjAuNDwvYT48bzpwPjwvbzpw
+Pjwvc3Bhbj48L3ByZT4NCjxwcmUgc3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
+DQoNCjxociBzaXplPSIyIiB3aWR0aD0iMTAwJSIgYWxpZ249ImNlbnRlciI+DQoNCjwvc3Bhbj48
+L3ByZT4NCjxwcmUgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48c3BhbiBzdHlsZT0iZm9u
+dC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PGJyPg0K
+bWV0YS1hcmFnbyBtYWlsaW5nIGxpc3Q8YnI+DQptZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3Jn
+PGJyPg0KPGEgaHJlZj0iaHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9s
+aXN0aW5mby9tZXRhLWFyYWdvIj5odHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dpLWJpbi9tYWls
+bWFuL2xpc3RpbmZvL21ldGEtYXJhZ288L2E+PG86cD48L286cD48L3NwYW4+PC9wcmU+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-diff --git a/meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend b/meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend
-new file mode 100644
-index 0000000..6641cb5
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend
-@@ -0,0 +1,3 @@
-+PR_append = "-arago0"
-+
-+LICENSE = "GPLv2+"
--- 
-1.7.0.4
-
-_____________________________________________
-
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
-
-------Q3NSVBDK040115IAUZFVOSZ1JHGTBR
-Content-Type: text/html;
- charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html><head></head><body>Why?<br><br><div class="gmail_quote">Franklin S Cooper Jr &lt;fcooper@ti.com&gt; wrote:<blockquote class="gmail_quote" style="margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
-<pre style="white-space: pre-wrap; word-wrap:break-word; font-family: sans-serif">---<br /> .../recipes-core/dbus/dbus_1.4.16.bbappend         |    3 +++<br /> 1 files changed, 3 insertions(+), 0 deletions(-)<br /> create mode 100644 meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend<br /><br />diff --git a/meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend b/meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend<br />new file mode 100644<br />index 0000000..6641cb5<br />--- /dev/null<br />+++ b/meta-arago-distro/recipes-core/dbus/dbus_1.4.16.bbappend<br />@@ -0,0 +1,3 @@<br />+PR_append = "-arago0"<br />+<br />+LICENSE = "GPLv2+"<br />-- <br /><a href="http://1.7.0.4">1.7.0.4</a><br /><br /><hr /><br />meta-arago mailing list<br />meta-arago@arago-project.org<br /><a href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br /><br /></pre></blockquote></div></body></html>
-
-------Q3NSVBDK040115IAUZFVOSZ1JHGTBR--
+--_000_8F29D6B095ED194EA1980491A5E029710C29D5C8DFLE09entticom_--
