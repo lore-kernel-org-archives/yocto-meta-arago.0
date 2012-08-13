@@ -1,26 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
-	[206.46.173.1])
-	by arago-project.org (Postfix) with ESMTP id A76B052A0B
+Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 11BFE529EF
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Aug 2012 22:21:09 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173001.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0M8I00I8CE386SKF@vms173001.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 09 Aug 2012 17:21:08 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 43C4620264; Thu,
-	09 Aug 2012 18:21:07 -0400 (EDT)
-Date: Thu, 09 Aug 2012 18:21:07 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Franklin S Cooper Jr <fcooper@ti.com>
-Message-id: <20120809222107.GB9728@denix.org>
-References: <1344535813-10364-1-git-send-email-fcooper@ti.com>
-MIME-version: 1.0
-In-reply-to: <1344535813-10364-1-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [branches: master][PATCH] base-files: Add in custom Arago prelogin message
+	Mon, 13 Aug 2012 15:48:23 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7DFmNK4025017
+	for <meta-arago@arago-project.org>; Mon, 13 Aug 2012 10:48:23 -0500
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7DFmNkV020251
+	for <meta-arago@arago-project.org>; Mon, 13 Aug 2012 10:48:23 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 13 Aug 2012 10:48:22 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	q7DFmM69015032;	Mon, 13 Aug 2012 10:48:22 -0500
+Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
+	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
+	1T0x0v-000216-UA; Mon, 13 Aug 2012 10:57:09 -0500
+From: Franklin S Cooper Jr <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 13 Aug 2012 10:57:06 -0500
+Message-ID: <1344873428-7710-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+MIME-Version: 1.0
+Cc: Franklin S Cooper Jr <fcooper@ti.com>
+Subject: [PATCH] oprofile-example: Create oprofile-example application
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,87 +38,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2012 22:21:10 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Mon, 13 Aug 2012 15:48:25 -0000
+Content-Type: text/plain
 
-Franklin,
+* This application was split from am-sysinfo.
 
-I already pushed another version of this patch 2 days ago:
+Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+---
+ .../oprofile-example/oprofile-example_git.bb       |   30 ++++++++++++++++++++
+ 1 files changed, 30 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
 
-http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=7161310feffd8d09ef753610a9ce27f77c222ee0
+diff --git a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
+new file mode 100644
+index 0000000..79278fb
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
+@@ -0,0 +1,30 @@
++DESCRIPTION = "OProfile Example"
++HOMEPAGE = "https://gitorious.org/oprofile-example"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://signal_parent.c;beginline=1;endline=37;md5=3c72149bb458105db5d2e6fbcb2da66e"
++
++SECTION = "system"
++
++PACKAGE_STRIP = "no"
++
++PR = "r0"
++
++BRANCH ?= "master"
++SRCREV = "875147fcaf0706f91b1bcbf9d80821de78257955"
++
++SRC_URI = "git://gitorious.org/oprofile-example/oprofile-example.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
++
++do_compile() {
++    install -d  ${S}/Debug
++    install -d  ${S}/Debug1
++	${CC} ${CFLAGS} ${LDFLAGS} -o Debug/signal_parent signal_parent.c
++	${CC} ${CFLAGS} -DUSE_SIGNALS ${LDFLAGS} -o Debug1/signal_parent.opt signal_parent.c
++}
++
++do_install() {
++	install -d ${D}/${bindir}
++	install -m 0755 ${S}/Debug/signal_parent ${D}/${bindir}
++	install -m 0755 ${S}/Debug1/signal_parent.opt ${D}/${bindir}
++}
+-- 
+1.7.0.4
 
-That one had fstab changes - and I was wondering why you were asking about 
-tmpfs size today...
-
-
-BTW, are you subscribed to arago-commits mailing list?
-
-http://arago-project.org/cgi-bin/mailman/listinfo/arago-commits
-
---
-Denys
-
-
-On Thu, Aug 09, 2012 at 01:10:13PM -0500, Franklin S Cooper Jr wrote:
-> * Override issues.net to add custom prelogin message when connected via telnet
-> * Override issues to add custom prelogin message when connected via
->   network/serial (not including telnet)
-> 
-> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
-> ---
->  .../recipes-core/base-files/base-files/issue       |    8 ++++++++
->  .../recipes-core/base-files/base-files/issue.net   |    8 ++++++++
->  .../base-files/base-files_3.0.14.bbappend          |    4 ++++
->  3 files changed, 20 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-core/base-files/base-files/issue
->  create mode 100644 meta-arago-extras/recipes-core/base-files/base-files/issue.net
->  create mode 100644 meta-arago-extras/recipes-core/base-files/base-files_3.0.14.bbappend
-> 
-> diff --git a/meta-arago-extras/recipes-core/base-files/base-files/issue b/meta-arago-extras/recipes-core/base-files/base-files/issue
-> new file mode 100644
-> index 0000000..4f22fd9
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/base-files/base-files/issue
-> @@ -0,0 +1,8 @@
-> + _____                    _____           _         _   
-> +|  _  |___ ___ ___ ___   |  _  |___ ___  |_|___ ___| |_ 
-> +|     |  _| .'| . | . |  |   __|  _| . | | | -_|  _|  _|
-> +|__|__|_| |__,|_  |___|  |__|  |_| |___|_| |___|___|_|  
-> +              |___|                    |___|            
-> +
-> +Arago Project http://arago-project.org \n \l
-> +
-> diff --git a/meta-arago-extras/recipes-core/base-files/base-files/issue.net b/meta-arago-extras/recipes-core/base-files/base-files/issue.net
-> new file mode 100644
-> index 0000000..8ce7207
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/base-files/base-files/issue.net
-> @@ -0,0 +1,8 @@
-> + _____                    _____           _         _   
-> +|  _  |___ ___ ___ ___   |  _  |___ ___  |_|___ ___| |_ 
-> +|     |  _| .'| . | . |  |   __|  _| . | | | -_|  _|  _|
-> +|__|__|_| |__,|_  |___|  |__|  |_| |___|_| |___|___|_|  
-> +              |___|                    |___|            
-> +
-> +Arago Project http://arago-project.org %h
-> +
-> diff --git a/meta-arago-extras/recipes-core/base-files/base-files_3.0.14.bbappend b/meta-arago-extras/recipes-core/base-files/base-files_3.0.14.bbappend
-> new file mode 100644
-> index 0000000..c0ab069
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/base-files/base-files_3.0.14.bbappend
-> @@ -0,0 +1,4 @@
-> +# look for files in this layer first
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +
-> +PR_append = "-arago0"
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
