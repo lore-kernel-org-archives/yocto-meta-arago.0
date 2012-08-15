@@ -1,29 +1,26 @@
 Return-Path: <denis@denix.org>
-Received: from vms173005pub.verizon.net (vms173005pub.verizon.net
-	[206.46.173.5])
-	by arago-project.org (Postfix) with ESMTP id DF27852986
+Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
+	[206.46.173.3])
+	by arago-project.org (Postfix) with ESMTP id CE08452986
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Aug 2012 19:30:57 +0000 (UTC)
+	Wed, 15 Aug 2012 19:36:30 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173005.mailsrvcs.net
+	by vms173003.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0M8T0089MA6EC8J2@vms173005.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 15 Aug 2012 14:30:25 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 25DAB201AC; Wed,
-	15 Aug 2012 15:30:13 -0400 (EDT)
-Date: Wed, 15 Aug 2012 15:30:13 -0400
+	2009)) with ESMTPA id <0M8T00EE0AG8G082@vms173003.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 15 Aug 2012 14:36:09 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 7DE7B201AC; Wed,
+	15 Aug 2012 15:36:08 -0400 (EDT)
+Date: Wed, 15 Aug 2012 15:36:08 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-id: <20120815193013.GA7503@denix.org>
-References: <1344873428-7710-1-git-send-email-fcooper@ti.com>
-	<1344873428-7710-2-git-send-email-fcooper@ti.com>
-	<20120814154647.GA1094@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C29F728@DFLE09.ent.ti.com>
+To: Franklin S Cooper Jr <fcooper@ti.com>
+Message-id: <20120815193608.GB7503@denix.org>
+References: <1344888323-30885-1-git-send-email-fcooper@ti.com>
 MIME-version: 1.0
-In-reply-to: <8F29D6B095ED194EA1980491A5E029710C29F728@DFLE09.ent.ti.com>
+In-reply-to: <1344888323-30885-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] matrix-gui-oprofile-demos: Update RDEPENDS
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] meta-arago-upstream: Create new upstream layer
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,77 +33,114 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 19:31:07 -0000
+X-List-Received-Date: Wed, 15 Aug 2012 19:36:31 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Tue, Aug 14, 2012 at 09:11:27PM +0000, Cooper Jr., Franklin wrote:
-> That makes sense. Will do so in the future. Thx
+On Mon, Aug 13, 2012 at 03:05:23PM -0500, Franklin S Cooper Jr wrote:
+> * This patch creates a new layer called meta-arago-upstream. The purpose
+>   of this layer is store needed changes that were pulled from the applicable
+>   master branch but can't be pulled into the corresponding maintenance branch.
+> * Once meta-arago tracks a new maintenance branch, the contents of this layer
+>   should be cleared since all the changes pulled into this layer should be
+>   located in the new maintenance branch.
 
-Thanks. The point is to ensure every commit is atomic and does not break the 
-build - try to avoid having one patch break the build and another right after 
-that to fix it. Patches should be split into functional entities, but it 
-doesn't mean they always have to be one patch per recipe...
+I'm thinking creating a separate layer for tracking changes might be an 
+overkill... Can we put the psplash fix in the meta-arago-distro/master for 
+now? Let's see how many of those we would need - so far there's only couple of 
+such bbappends or changes that are already in oe-core/master, but needed for 
+denzil. If the number starts growing rapidly, we'll look into a separate 
+"next" branch or even a layer...
 
 Denys
 
 
-> -----Original Message-----
-> From: Denys Dmytriyenko [mailto:denis@denix.org] 
-> Sent: Tuesday, August 14, 2012 10:47 AM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] matrix-gui-oprofile-demos: Update RDEPENDS
+> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+> ---
+>  meta-arago-upstream/COPYING.MIT     |   17 +++++++++++++++++
+>  meta-arago-upstream/README          |   26 ++++++++++++++++++++++++++
+>  meta-arago-upstream/conf/layer.conf |    9 +++++++++
+>  3 files changed, 52 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-upstream/COPYING.MIT
+>  create mode 100644 meta-arago-upstream/README
+>  create mode 100644 meta-arago-upstream/conf/layer.conf
 > 
-> Franklin,
+> diff --git a/meta-arago-upstream/COPYING.MIT b/meta-arago-upstream/COPYING.MIT
+> new file mode 100644
+> index 0000000..fb950dc
+> --- /dev/null
+> +++ b/meta-arago-upstream/COPYING.MIT
+> @@ -0,0 +1,17 @@
+> +Permission is hereby granted, free of charge, to any person obtaining a copy 
+> +of this software and associated documentation files (the "Software"), to deal 
+> +in the Software without restriction, including without limitation the rights 
+> +to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+> +copies of the Software, and to permit persons to whom the Software is 
+> +furnished to do so, subject to the following conditions:
+> +
+> +The above copyright notice and this permission notice shall be included in 
+> +all copies or substantial portions of the Software.
+> +
+> +THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+> +IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+> +FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+> +AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+> +LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+> +OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+> +THE SOFTWARE.
+> diff --git a/meta-arago-upstream/README b/meta-arago-upstream/README
+> new file mode 100644
+> index 0000000..38416f8
+> --- /dev/null
+> +++ b/meta-arago-upstream/README
+> @@ -0,0 +1,26 @@
+> +meta-arago-upstream provides a place to store changes that were upstreamed but aren't
+> +currently located in the applicable maintenance branch.
+> +
+> +Once meta-arago tracks a new maintenance branch, the contents of this layer should be 
+> +cleared since all the changes pulled into this layer should be located in the new 
+> +maintenance branch.
+> +
+> +This layer works with the latest Yocto Project release (currently 1.2) and tracks
+> +the stable/maintenance branches (currently "denzil") of the corresponding layers:
+> +
+> +URI: git://git.openembedded.org/openembedded-core
+> +branch: denzil
+> +revision: HEAD
+> +
+> +URI: git://git.openembedded.org/meta-openembedded
+> +branch: denzil
+> +revision: HEAD
+> +
+> +URI: git://arago-project.org/git/meta-ti
+> +branch: denzil
+> +revision: HEAD
+> +
+> +Send pull requests to meta-arago@arago-project.org
+> +
+> +Layer maintainers: Chase Maupin <chase.maupin@ti.com>
+> +                   Denys Dmytriyenko <denys@ti.com>
+> diff --git a/meta-arago-upstream/conf/layer.conf b/meta-arago-upstream/conf/layer.conf
+> new file mode 100644
+> index 0000000..87b6c8c
+> --- /dev/null
+> +++ b/meta-arago-upstream/conf/layer.conf
+> @@ -0,0 +1,9 @@
+> +# We have a conf and classes directory, append to BBPATH
+> +BBPATH .= ":${LAYERDIR}"
+> +
+> +# We have a recipes directory, add to BBFILES
+> +BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
+> +
+> +BBFILE_COLLECTIONS += "meta-arago-upstream"
+> +BBFILE_PATTERN_meta-arago-upstream := "^${LAYERDIR}/"
+> +BBFILE_PRIORITY_meta-arago-upstream = "10"
+> -- 
+> 1.7.7
 > 
-> Just a nit-pick for the future - to not break bisectability, you should 
-> normally do this in 2 commits:
-> 
-> 1. add oprofile-example recipe AND switch the RDEPENDS
-> 2. remove the old reference from am-sysinfo
-> 
-> Denys
-> 
-> 
-> On Mon, Aug 13, 2012 at 10:57:07AM -0500, Franklin S Cooper Jr wrote:
-> > * Replace the RDEPENDS from am-sysinfo to oprofile-example.
-> >   The application oprofile-example use to be located within
-> >   am-sysinfo but now is located in its own repository.
-> > 
-> > Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../matrix/matrix-gui-oprofile-demos_2.0.bb        |    4 ++--
-> >  1 files changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-oprofile-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-oprofile-demos_2.0.bb
-> > index e8aad0b..d3246f9 100644
-> > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-oprofile-demos_2.0.bb
-> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-oprofile-demos_2.0.bb
-> > @@ -4,7 +4,7 @@ LICENSE = "CC-BY-SA"
-> >  
-> >  require matrix-gui-apps-git.inc
-> >  
-> > -PR = "${INC_PR}.0"
-> > +PR = "${INC_PR}.1"
-> >  
-> >  inherit allarch
-> >  
-> > @@ -13,6 +13,6 @@ S = "${WORKDIR}/git/oprofile_apps"
-> >  # Make sure profiling submenu and app images  has been installed
-> >  # Include am-sysinfo because that package has the sample
-> >  # executables for profiling.
-> > -RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-oprofile oprofile am-sysinfo"
-> > +RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-oprofile oprofile oprofile-example"
-> >  
-> >  FILES_${PN} += "${MATRIX_BASE_DIR}/*"
-> > -- 
-> > 1.7.0.4
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > 
 
