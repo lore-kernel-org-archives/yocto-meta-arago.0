@@ -1,31 +1,31 @@
 Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 1B85152986
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 8F33252986
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Aug 2012 22:10:04 +0000 (UTC)
+	Thu, 16 Aug 2012 17:09:57 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7FMA2P2017312
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2012 17:10:02 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7FMA24x024651
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2012 17:10:02 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 15 Aug 2012 17:10:01 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7GH9tQt015903
+	for <meta-arago@arago-project.org>; Thu, 16 Aug 2012 12:09:55 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7GH9tVG006902
+	for <meta-arago@arago-project.org>; Thu, 16 Aug 2012 12:09:55 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
+	Thu, 16 Aug 2012 12:09:55 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q7FMA2eR008095;	Wed, 15 Aug 2012 17:10:02 -0500
+	q7GH9twn023220;	Thu, 16 Aug 2012 12:09:55 -0500
 Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
 	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
-	1T1lwB-0005Sq-Fj; Wed, 15 Aug 2012 17:19:39 -0500
+	1T23jb-0005Pe-9n; Thu, 16 Aug 2012 12:19:51 -0500
 From: Franklin S Cooper Jr <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 15 Aug 2012 17:19:35 -0500
-Message-ID: <1345069175-20491-1-git-send-email-fcooper@ti.com>
+Date: Thu, 16 Aug 2012 12:19:50 -0500
+Message-ID: <1345137590-20636-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
 Cc: Franklin S Cooper Jr <fcooper@ti.com>
-Subject: [PATCH] postgresql: Fix compiler error message (Temporary)
+Subject: [meta-arago-distro][PATCH] arago.conf: Set Qt PREFERRED_VERSION
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,32 +38,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 22:10:06 -0000
+X-List-Received-Date: Thu, 16 Aug 2012 17:09:58 -0000
 Content-Type: text/plain
 
-* Compiling postgresql using our current external Linaro base tool chain
-  results in a compiler error message: "Error: selected processor does not
-  support Thumb mode"
-* Adding the -mimplicity-it=thumb option fixes this issue.
-* This should only be a temporary fix until a proper fix is made in the
-  toolchain
+* The various qt version 4.8.0 recipes have set the DEFAULT_PREFERENCE variable
+  to -1 which causes version 4.7.4 to be used instead.
+* Setting the PREFERRED_VERSION variable to pull in qt version 4.8.0 instead.
 
 Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 ---
- .../postgresql/postgresql_8.4.7.bbappend           |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
+ meta-arago-distro/conf/distro/arago.conf |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend b/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
-new file mode 100644
-index 0000000..4c60634
---- /dev/null
-+++ b/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
-@@ -0,0 +1,3 @@
-+PR_append = "-arago0"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index ab8e6d6..cfef500 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -13,3 +13,8 @@ TOOLCHAIN_PATH := "${@bool(bb.data.getVar('TOOLCHAIN_SYSPATH', d, 1)) and (os.pa
+ EXTERNAL_TOOLCHAIN = "${TOOLCHAIN_PATH}"
+ 
+ PREFERRED_PROVIDER_virtual/gettext = "gettext"
 +
-+EXTRA_OEMAKE += "-mimplicit-it=thumb"
++PREFERRED_VERSION_qt4-embedded = "4.8.0"
++PREFERRED_VERSION_qt4-native = "4.8.0"
++PREFERRED_VERSION_qt4-tools-nativesdk = "4.8.0"
++
 -- 
-1.7.7
+1.7.0.4
 
 
