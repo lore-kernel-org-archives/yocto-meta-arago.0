@@ -1,31 +1,31 @@
 Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E10F552986
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 790CB52A9A
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Aug 2012 19:41:03 +0000 (UTC)
+	Fri, 17 Aug 2012 16:26:47 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7GJf2en011247
-	for <meta-arago@arago-project.org>; Thu, 16 Aug 2012 14:41:02 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7GJf2wX009916
-	for <meta-arago@arago-project.org>; Thu, 16 Aug 2012 14:41:02 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 16 Aug 2012 14:41:02 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7HGQjSj023840
+	for <meta-arago@arago-project.org>; Fri, 17 Aug 2012 11:26:45 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7HGQjBj021908
+	for <meta-arago@arago-project.org>; Fri, 17 Aug 2012 11:26:45 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
+	Fri, 17 Aug 2012 11:26:45 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q7GJf2Tk018195;	Thu, 16 Aug 2012 14:41:02 -0500
+	q7HGQjPP030326;	Fri, 17 Aug 2012 11:26:45 -0500
 Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
 	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
-	1T265t-0002Ah-4C; Thu, 16 Aug 2012 14:51:01 -0500
+	1T2PXj-0004bV-Cr; Fri, 17 Aug 2012 11:37:03 -0500
 From: Franklin S Cooper Jr <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 16 Aug 2012 14:49:55 -0500
-Message-ID: <1345146595-5682-1-git-send-email-fcooper@ti.com>
+Date: Fri, 17 Aug 2012 11:37:02 -0500
+Message-ID: <1345221422-17662-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
 Cc: Franklin S Cooper Jr <fcooper@ti.com>
-Subject: [meta-arago-extras][PATCH] matrix-gui-multimedia-demos: Depend on essential audio and video files
+Subject: [meta-arago-distro][PATCH] task-arago-base-tisdk: Change the psplash recipe used and add LICENSE information
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,39 +38,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2012 19:41:04 -0000
+X-List-Received-Date: Fri, 17 Aug 2012 16:26:49 -0000
 Content-Type: text/plain
 
-* The multimedia demos for Matrix depends on some multimedia files being
-  installed. Adding a dependency to these multimedia files to make sure
-  that they are installed.
+* As of now we are no longer using psplash-ti. Will be using the base psplash
+  recipe with overrides from within this layer.
+* Task was missing LICENSE information. Copied the LICENSE information that was
+  used in other tasks in this layer.
 
 Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 ---
- .../matrix/matrix-gui-multimedia-demos_2.0.bb      |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/tasks/task-arago-base-tisdk.bb    |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
-index 7ebc54d..feb01fd 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
-@@ -4,13 +4,13 @@ LICENSE = "CC-BY-SA"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/tasks/task-arago-base-tisdk.bb
+index ce16835..c884352 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-base-tisdk.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-base-tisdk.bb
+@@ -1,6 +1,7 @@
+ DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+ LICENSE = "MIT"
+-PR = "r8"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++PR = "r9"
  
- require matrix-gui-apps-git.inc
+ inherit task
  
--PR = "${INC_PR}.0"
-+PR = "${INC_PR}.1"
- 
- inherit allarch
- 
- S = "${WORKDIR}/git/multimedia_apps"
- 
- # Make sure multimedia submenu and app images has been installed
--RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-multimedia"
-+RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-multimedia amsdk-av-files"
- 
- FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+@@ -19,7 +20,7 @@ RDEPENDS_${PN} = "\
+     libpcre \
+     iptables \
+     iperf \
+-    psplash-ti \
++    psplash \
+     u-boot \
+     arago-gpl-notice \
+     nfs-utils-client \
 -- 
-1.7.0.4
+1.7.7
 
 
