@@ -1,33 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id CDE6352A6F
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0E4D852A7E
 	for <meta-arago@arago-project.org>;
-	Wed, 22 Aug 2012 19:29:58 +0000 (UTC)
+	Wed, 22 Aug 2012 19:36:04 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7MJTwHm002311
-	for <meta-arago@arago-project.org>; Wed, 22 Aug 2012 14:29:58 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7MJTw5S009981
-	for <meta-arago@arago-project.org>; Wed, 22 Aug 2012 14:29:58 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 22 Aug 2012 14:29:57 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id q7MJTvEW027198;
-	Wed, 22 Aug 2012 14:29:57 -0500
-Date: Wed, 22 Aug 2012 15:29:57 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20120822192957.GH21025@edge>
-References: <1344889987-31288-1-git-send-email-fcooper@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C2A8788@DFLE09.ent.ti.com>
-	<20120822181421.GG21025@edge>
-	<8F29D6B095ED194EA1980491A5E029710C2A87E5@DFLE09.ent.ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7MJa4hV022581
+	for <meta-arago@arago-project.org>; Wed, 22 Aug 2012 14:36:04 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7MJa4Nd017957
+	for <meta-arago@arago-project.org>; Wed, 22 Aug 2012 14:36:04 -0500
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Wed, 22 Aug 2012 14:36:03 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: Choosing a location for tasks in meta-arago-distro
+Thread-Index: Ac2AnV4yq98Mb4L2Tf+2Hsg62Gk8qg==
+Date: Wed, 22 Aug 2012 19:36:03 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C2A8965@DFLE09.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C2A87E5@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] psplash: Update to latest version of psplash. Tweak LIC_FILES_CHKSUM variable
+Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
+Subject: Choosing a location for tasks in meta-arago-distro
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,81 +37,112 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 19:29:59 -0000
+X-List-Received-Date: Wed, 22 Aug 2012 19:36:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C2A8965DFLE09entticom_"
+
+--_000_8F29D6B095ED194EA1980491A5E029710C2A8965DFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 22, 2012 at 02:17:10PM -0400, Cooper Jr., Franklin wrote:
-> Dropping it into master. I add comments to the recipe and to the commit 
-> history explaining that these changes were already made in oe-core master. I 
-> don't quite understand Chase's comment in the other thread
-> " Could we perhaps us the PV value in the recipe of 0.1+git${SRCPV} in the 
-> bbappend to force the append to that specific version and therefore break on 
-> an upgrade?" But I am sure what ever changes he wants we can add later.
+Right now we have two separate location for tasks in meta-arago-distro:
+meta-arago-distro / recipes-core / tasks /
+meta-arago-distro / recipes-tisdk / tasks /
 
-What he meant was that psplash_git.bbappend is too generic and will try to 
-apply a year later, even though underlying psplash.bb recipe could have 
-evolved a lot. We can try creating a more specific bbappend with the version 
-in the name - psplash_${PV}.bbappend. Then when PV changes, our bbappend will 
-no longer apply with a big message that the underlying recipe has changed and 
-require our attention.
+Each of these directories have several tasks inside of them. Since this is =
+a distribution specific layer I don't see a need for two separate tasks dir=
+ectories which are Arago specific.  I  vote for using recipes-core/task whi=
+ch seems to be the standard. We should also have the images directory locat=
+ed in the same place that we choose to put the tasks directory. The bigger =
+issue that we have now is that we have two files with the name task-arago-b=
+ase-tisdk.bb in the directories mentioned above.
 
--- 
-Denys
+Regards,
+Franklin Cooper Jr.
+Texas Instruments
+Application Engineer
+fcooper@ti.com<mailto:fcooper@ti.com>
 
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Wednesday, August 22, 2012 1:14 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] psplash: Update to latest version of psplash. Tweak LIC_FILES_CHKSUM variable
-> 
-> On Wed, Aug 22, 2012 at 06:06:43PM +0000, Cooper Jr., Franklin wrote:
-> > Ignore this patch. A new patch will be sent out that addresses the concern 
-> > of patch [meta-arago] [PATCH] meta-arago-upstream: Create new upstream layer
-> 
-> Right, are you going to use a separate "next" branch or just drop it in 
-> "master" for now, as we discussed?
-> 
-> -- 
-> Denys
-> 
-> 
-> > -----Original Message-----
-> > From: Cooper Jr., Franklin 
-> > Sent: Monday, August 13, 2012 3:33 PM
-> > To: meta-arago@arago-project.org
-> > Cc: Cooper Jr., Franklin
-> > Subject: [meta-arago][PATCH] psplash: Update to latest version of psplash. Tweak LIC_FILES_CHKSUM variable
-> > 
-> > * Add the change to the variable LIC_FILES_CHKSUM to insure that only
-> >   the lines that contains license information are used for the checksum
-> > * Update to the latest version of psplash.
-> > * The above changes are already found in the psplash recipe located in oe-core
-> >   master
-> > 
-> > Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../recipes-core/psplash/psplash_git.bbappend      |    4 ++++
-> >  1 files changed, 4 insertions(+), 0 deletions(-)
-> >  create mode 100644 meta-arago-upstream/recipes-core/psplash/psplash_git.bbappend
-> > 
-> > diff --git a/meta-arago-upstream/recipes-core/psplash/psplash_git.bbappend b/meta-arago-upstream/recipes-core/psplash/psplash_git.bbappend
-> > new file mode 100644
-> > index 0000000..0ddbd6a
-> > --- /dev/null
-> > +++ b/meta-arago-upstream/recipes-core/psplash/psplash_git.bbappend
-> > @@ -0,0 +1,4 @@
-> > +LIC_FILES_CHKSUM = "file://psplash.h;beginline=1;endline=16;md5=840fb2356b10a85bed78dd09dc7745c6"
-> > +
-> > +SRCREV = "de9979aefbc56af59b4d236a4b63dd19dcdcfb53"
-> > +PRINC := "${@int(PRINC) + 1}"
-> > -- 
-> > 1.7.0.4
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+--_000_8F29D6B095ED194EA1980491A5E029710C2A8965DFLE09entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Right now we have two separate location for tasks in=
+ meta-arago-distro:<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-arago-distro / recipes-core / tasks / <o:p></o:=
+p></p>
+<p class=3D"MsoNormal">meta-arago-distro / recipes-tisdk / tasks / <o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Each of these directories have several tasks inside =
+of them. Since this is a distribution specific layer I don&#8217;t see a ne=
+ed for two separate tasks directories which are Arago specific. &nbsp;I &nb=
+sp;vote for using recipes-core/task which seems to
+ be the standard. We should also have the images directory located in the s=
+ame place that we choose to put the tasks directory. The bigger issue that =
+we have now is that we have two files with the name task-arago-base-tisdk.b=
+b in the directories mentioned above.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Franklin Cooper Jr.<o:p></o:p></p>
+<p class=3D"MsoNormal">Texas Instruments<o:p></o:p></p>
+<p class=3D"MsoNormal">Application Engineer<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"mailto:fcooper@ti.com">fcooper@ti.com</a>=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_8F29D6B095ED194EA1980491A5E029710C2A8965DFLE09entticom_--
