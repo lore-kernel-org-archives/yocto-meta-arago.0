@@ -1,31 +1,31 @@
 Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id A502352A4B
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id AFF8E52A4B
 	for <meta-arago@arago-project.org>;
-	Wed, 22 Aug 2012 01:21:49 +0000 (UTC)
+	Wed, 22 Aug 2012 01:22:42 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7M1Lm3c025435
-	for <meta-arago@arago-project.org>; Tue, 21 Aug 2012 20:21:48 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7M1LmkU014319
-	for <meta-arago@arago-project.org>; Tue, 21 Aug 2012 20:21:48 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Tue, 21 Aug 2012 20:21:47 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7M1MfeX007585
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2012 20:22:41 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7M1Mf2A015176
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2012 20:22:41 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
+	Tue, 21 Aug 2012 20:22:41 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q7M1LmKi000741;	Tue, 21 Aug 2012 20:21:48 -0500
+	q7M1MfPo001314;	Tue, 21 Aug 2012 20:22:41 -0500
 Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
 	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
-	1T3zpH-0001gW-0q; Tue, 21 Aug 2012 20:33:43 -0500
+	1T3zq9-0002Xz-4q; Tue, 21 Aug 2012 20:34:37 -0500
 From: Franklin S Cooper Jr <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 21 Aug 2012 20:33:39 -0500
-Message-ID: <1345599219-5897-1-git-send-email-fcooper@ti.com>
+Date: Tue, 21 Aug 2012 20:34:35 -0500
+Message-ID: <1345599275-9169-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
 Cc: Franklin S Cooper Jr <fcooper@ti.com>
-Subject: [meta-arago-extras][PATCH] matrix-gui-apps-git.inc: Tweak LICENSE settings
+Subject: [meta-arago-distro][PATCH] recipes: correct the previous fix to properly pass options to the compiler
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,39 +38,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 01:21:49 -0000
+X-List-Received-Date: Wed, 22 Aug 2012 01:22:43 -0000
 Content-Type: text/plain
 
-* For some Matrix v2 apps that use the same default LICENSE file, the path to
-  the LICENSE file is different.
-* Add a new variable to store the LICENSE information which allows needed
-  recipes to override the path to the LICENSE file without having to duplicate
-  the LICENSE checksum value.
+* Correctly pass the options to the compiler instead of to make.
+* For some reason the incorrect approach allowed the software to be compiled.
+  Errors were being ignored which made it seem like everything was compiling
+  successfull until you realized files/libraries were missing.
 
 Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-apps-git.inc    |    6 ++++--
- 1 files changed, 4 insertions(+), 2 deletions(-)
+ .../pulseaudio/libatomics-ops_1.2.bbappend         |    2 +-
+ .../postgresql/postgresql_8.4.7.bbappend           |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 6503fad..ca5f69d 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -1,10 +1,12 @@
- LICENSE = "CC-BY-SA"
--LIC_FILES_CHKSUM = "file://../LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
-+#By default all Matrix v2 applications use the same license.
-+LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
-+LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend b/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend
+index 4c60634..57c9972 100644
+--- a/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend
++++ b/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend
+@@ -1,3 +1,3 @@
+ PR_append = "-arago0"
  
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
- SRCREV = "cf78c056a48573600438535adb31b4415377bc00"
- BRANCH = "master"
--INC_PR = "r3"
-+INC_PR = "r4"
+-EXTRA_OEMAKE += "-mimplicit-it=thumb"
++EXTRA_OEMAKE += "CFLAGS+='-Wa, -mimplicit-it=thumb'"
+diff --git a/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend b/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
+index 4c60634..57c9972 100644
+--- a/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
++++ b/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
+@@ -1,3 +1,3 @@
+ PR_append = "-arago0"
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+-EXTRA_OEMAKE += "-mimplicit-it=thumb"
++EXTRA_OEMAKE += "CFLAGS+='-Wa, -mimplicit-it=thumb'"
 -- 
 1.7.0.4
 
