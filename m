@@ -1,31 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 3F871529A1
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 4F72152960
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Aug 2012 14:55:03 +0000 (UTC)
+	Mon, 27 Aug 2012 16:31:03 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7REt2Xb013183
-	for <meta-arago@arago-project.org>; Mon, 27 Aug 2012 09:55:02 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7REt1OQ028157
-	for <meta-arago@arago-project.org>; Mon, 27 Aug 2012 09:55:01 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Mon, 27 Aug 2012 09:55:01 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] curl: Disable crypto related features
-Thread-Index: Ac1wNriDCQUHClOkS4yrYw2fZfTCYgULSctA
-Date: Mon, 27 Aug 2012 14:55:01 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C2A9EA9@DFLE09.ent.ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7RGV1oT027656
+	for <meta-arago@arago-project.org>; Mon, 27 Aug 2012 11:31:01 -0500
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7RGV12R010003
+	for <meta-arago@arago-project.org>; Mon, 27 Aug 2012 11:31:01 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 27 Aug 2012 11:31:00 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id q7RGV0SP004878;
+	Mon, 27 Aug 2012 11:31:00 -0500
+Date: Mon, 27 Aug 2012 12:31:00 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20120827163100.GA23636@edge>
 References: <8F29D6B095ED194EA1980491A5E029710C27EB98@DFLE30.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C27EB98@DFLE30.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	<8F29D6B095ED194EA1980491A5E029710C2A9EA9@DFLE09.ent.ti.com>
 MIME-Version: 1.0
-Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C2A9EA9@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] curl: Disable crypto related features
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -39,129 +38,18 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Aug 2012 14:55:05 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_8F29D6B095ED194EA1980491A5E029710C2A9EA9DFLE09entticom_"
-
---_000_8F29D6B095ED194EA1980491A5E029710C2A9EA9DFLE09entticom_
+X-List-Received-Date: Mon, 27 Aug 2012 16:31:05 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Please ignore this patch. I will be sending an updated inline version of th=
-is patch.
+On Mon, Aug 27, 2012 at 02:55:01PM +0000, Cooper Jr., Franklin wrote:
+> Please ignore this patch. I will be sending an updated inline version of 
+> this patch.
 
-From: Cooper Jr., Franklin
-Sent: Wednesday, August 01, 2012 5:41 PM
-To: meta-arago@arago-project.org
-Cc: Cooper Jr., Franklin
-Subject: [PATCH] curl: Disable crypto related features
+Franklin,
 
+You might want to wait a little bit on this one - we'll do it differently.
 
+-- 
+Denys
 
-Regards,
-Franklin Cooper Jr.
-Texas Instruments
-Application Engineer
-fcooper@ti.com<mailto:fcooper@ti.com>
-
-
---_000_8F29D6B095ED194EA1980491A5E029710C2A9EA9DFLE09entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please ignore this pat=
-ch. I will be sending an updated inline version of this patch.<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Cooper J=
-r., Franklin
-<br>
-<b>Sent:</b> Wednesday, August 01, 2012 5:41 PM<br>
-<b>To:</b> meta-arago@arago-project.org<br>
-<b>Cc:</b> Cooper Jr., Franklin<br>
-<b>Subject:</b> [PATCH] curl: Disable crypto related features<o:p></o:p></s=
-pan></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Franklin Cooper Jr.<o:p></o:p></p>
-<p class=3D"MsoNormal">Texas Instruments<o:p></o:p></p>
-<p class=3D"MsoNormal">Application Engineer<o:p></o:p></p>
-<p class=3D"MsoNormal"><a href=3D"mailto:fcooper@ti.com">fcooper@ti.com</a>=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_8F29D6B095ED194EA1980491A5E029710C2A9EA9DFLE09entticom_--
