@@ -1,31 +1,26 @@
-Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 38B1752960
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id A7D5D529F2
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Aug 2012 01:38:25 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7U1cOFQ006149
-	for <meta-arago@arago-project.org>; Wed, 29 Aug 2012 20:38:24 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7U1cOpN024195
-	for <meta-arago@arago-project.org>; Wed, 29 Aug 2012 20:38:24 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 29 Aug 2012 20:38:24 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q7U1cOMU004077;	Wed, 29 Aug 2012 20:38:24 -0500
-Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
-	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
-	1T6twd-0002Zd-D8; Wed, 29 Aug 2012 20:53:19 -0500
-From: Franklin S Cooper Jr <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 29 Aug 2012 20:53:18 -0500
-Message-ID: <1346291598-9859-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Cc: Franklin S Cooper Jr <fcooper@ti.com>
-Subject: [meta-arago-distro][PATCH] task-arago-gst-target: Add task to install gstreamer related dev packages
+	Thu, 30 Aug 2012 03:07:59 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.115])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M9J0050FSOOKF40@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 29 Aug 2012 22:07:43 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 8181F20087; Wed,
+	29 Aug 2012 23:07:35 -0400 (EDT)
+Date: Wed, 29 Aug 2012 23:07:35 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Franklin S Cooper Jr <fcooper@ti.com>
+Message-id: <20120830030735.GA11821@denix.org>
+References: <1346273233-31154-1-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1346273233-31154-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago-distro][PATCH] recipes: Consolidate tasks directory
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,40 +33,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Aug 2012 01:38:25 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 30 Aug 2012 03:08:00 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* This task is used to install gstreamer and gstreamer plugins dev packages
+I think -M option to git format-patch would help here a lot.
 
-Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/tasks/task-arago-gst-target.bb    |   16 ++++++++++++++++
- 1 files changed, 16 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-gst-target.bb
+Denys
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst-target.bb
-new file mode 100644
-index 0000000..feba1ee
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst-target.bb
-@@ -0,0 +1,16 @@
-+DESCRIPTION = "Task to build and install header and libs in sdk"
-+
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+COMPATIBLE_MACHINE = "(am335x-evm|am3517-evm|am37x-evm|omap3evm|beagleboard|beaglebone)"
-+PR = "r0"
-+
-+inherit task
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+RDEPENDS_${PN} = "\
-+    gstreamer-dev \
-+    gst-plugins-base-dev \
-+    gst-plugins-good-dev \
-+    gst-plugins-bad-dev \
-+    "
--- 
-1.7.0.4
 
+On Wed, Aug 29, 2012 at 03:47:13PM -0500, Franklin S Cooper Jr wrote:
+> * Both recipes-core and recipes-tisdk contained a tasks directory with a set
+>   of tasks inside of them. Both directories actually contained a duplicate task
+>   called task-arago-base-tisdk.
+> * Consolidating all the tasks into a single directory recipes-core/tasks since
+>   it is the standard location for tasks.
+> 
+> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-core/tasks/task-arago-gst.bb           |   23 +++++++++++++++++
+>  .../recipes-core/tasks/task-arago-tisdk-addons.bb  |   22 ++++++++++++++++
+>  .../recipes-tisdk/tasks/task-arago-base-tisdk.bb   |   27 --------------------
+>  .../recipes-tisdk/tasks/task-arago-gst.bb          |   23 -----------------
+>  .../recipes-tisdk/tasks/task-arago-tisdk-addons.bb |   22 ----------------
+>  5 files changed, 45 insertions(+), 72 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+>  create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+>  delete mode 100644 meta-arago-distro/recipes-tisdk/tasks/task-arago-base-tisdk.bb
+>  delete mode 100644 meta-arago-distro/recipes-tisdk/tasks/task-arago-gst.bb
+>  delete mode 100644 meta-arago-distro/recipes-tisdk/tasks/task-arago-tisdk-addons.bb
+> 
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+> new file mode 100644
+> index 0000000..d34402a
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+> @@ -0,0 +1,23 @@
+> +DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> +COMPATIBLE_MACHINE = "(am335x-evm|am3517-evm|am37x-evm|omap3evm|beagleboard|beaglebone)"
+> +PR = "r0"
+> +
+> +inherit task
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +GSTREAMER = " \
+> +    gstreamer \
+> +    gst-plugins-base \
+> +    gst-plugins-good \
+> +    gst-plugins-bad \
+> +    gst-plugins-base-meta \
+> +    gst-plugins-good-meta \
+> +    gst-plugins-bad-meta \
+> +    "
+> +
+> +RDEPENDS_${PN} = "\
+> +    ${GSTREAMER} \
+> +    gst-ffmpeg \
+> +    "
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+> new file mode 100644
+> index 0000000..789700d
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+> @@ -0,0 +1,22 @@
+> +DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+> +PR = "r0"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> +
+> +inherit task
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +UTILS = " \
+> +    matrix-gui-settings-demos \
+> +    matrix-gui-armbenchmarks-demos \
+> +    task-arago-test \
+> +    gdbserver \
+> +    matrix-gui-oprofile-demos \
+> +    "
+> +
+> +# Add PRU examples for am180x-evm devices
+> +# UTILS_append_am180x-evm = " ti-pru-sw-examples"
+> +
+> +RDEPENDS_${PN} = "\
+> +    ${UTILS} \
+> +    "
+> diff --git a/meta-arago-distro/recipes-tisdk/tasks/task-arago-base-tisdk.bb b/meta-arago-distro/recipes-tisdk/tasks/task-arago-base-tisdk.bb
+> deleted file mode 100644
+> index 9991b7b..0000000
+> --- a/meta-arago-distro/recipes-tisdk/tasks/task-arago-base-tisdk.bb
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+> -LICENSE = "MIT"
+> -LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> -PR = "r0"
+> -
+> -inherit task
+> -
+> -PACKAGE_ARCH = "${MACHINE_ARCH}"
+> -
+> -SECONDARY_BOOTLOADER = ""
+> -SECONDARY_BOOTLOADER_omap3 = "u-boot-spl"
+> -
+> -RDEPENDS_${PN} = "\
+> -    dbus \
+> -    dbus-x11 \
+> -    expat \
+> -    glib-2.0 \
+> -    libxml2 \
+> -    libpcre \
+> -    iptables \
+> -    iperf \
+> -    psplash-ti \
+> -    u-boot \
+> -    arago-gpl-notice \
+> -    nfs-utils-client \
+> -    ${SECONDARY_BOOTLOADER} \
+> -    "
+> diff --git a/meta-arago-distro/recipes-tisdk/tasks/task-arago-gst.bb b/meta-arago-distro/recipes-tisdk/tasks/task-arago-gst.bb
+> deleted file mode 100644
+> index d34402a..0000000
+> --- a/meta-arago-distro/recipes-tisdk/tasks/task-arago-gst.bb
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
+> -LICENSE = "MIT"
+> -LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> -COMPATIBLE_MACHINE = "(am335x-evm|am3517-evm|am37x-evm|omap3evm|beagleboard|beaglebone)"
+> -PR = "r0"
+> -
+> -inherit task
+> -PACKAGE_ARCH = "${MACHINE_ARCH}"
+> -
+> -GSTREAMER = " \
+> -    gstreamer \
+> -    gst-plugins-base \
+> -    gst-plugins-good \
+> -    gst-plugins-bad \
+> -    gst-plugins-base-meta \
+> -    gst-plugins-good-meta \
+> -    gst-plugins-bad-meta \
+> -    "
+> -
+> -RDEPENDS_${PN} = "\
+> -    ${GSTREAMER} \
+> -    gst-ffmpeg \
+> -    "
+> diff --git a/meta-arago-distro/recipes-tisdk/tasks/task-arago-tisdk-addons.bb b/meta-arago-distro/recipes-tisdk/tasks/task-arago-tisdk-addons.bb
+> deleted file mode 100644
+> index 789700d..0000000
+> --- a/meta-arago-distro/recipes-tisdk/tasks/task-arago-tisdk-addons.bb
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+> -PR = "r0"
+> -LICENSE = "MIT"
+> -LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> -
+> -inherit task
+> -PACKAGE_ARCH = "${MACHINE_ARCH}"
+> -
+> -UTILS = " \
+> -    matrix-gui-settings-demos \
+> -    matrix-gui-armbenchmarks-demos \
+> -    task-arago-test \
+> -    gdbserver \
+> -    matrix-gui-oprofile-demos \
+> -    "
+> -
+> -# Add PRU examples for am180x-evm devices
+> -# UTILS_append_am180x-evm = " ti-pru-sw-examples"
+> -
+> -RDEPENDS_${PN} = "\
+> -    ${UTILS} \
+> -    "
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
