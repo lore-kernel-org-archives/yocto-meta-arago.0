@@ -1,31 +1,34 @@
-Return-Path: <a0273011@sdit-build02.dal.design.ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id A425E52960
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 1C4D4529A1
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Aug 2012 19:13:26 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q7UJDPmT012144
-	for <meta-arago@arago-project.org>; Thu, 30 Aug 2012 14:13:25 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q7UJDPRl001960
-	for <meta-arago@arago-project.org>; Thu, 30 Aug 2012 14:13:25 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 30 Aug 2012 14:13:25 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	q7UJDPsw012728;	Thu, 30 Aug 2012 14:13:25 -0500
-Received: from a0273011 by sdit-build02.dal.design.ti.com with local (Exim
-	4.71)	(envelope-from <a0273011@sdit-build02.dal.design.ti.com>)	id
-	1T7APt-0005nu-24; Thu, 30 Aug 2012 14:28:37 -0500
-From: Franklin S Cooper Jr <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 30 Aug 2012 14:28:35 -0500
-Message-ID: <1346354915-22274-1-git-send-email-fcooper@ti.com>
+	Sat,  1 Sep 2012 18:06:18 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so6986403obb.38
+	for <meta-arago@arago-project.org>;
+	Sat, 01 Sep 2012 11:06:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=KU0Hg7XJ4nO7KjkYbvVWzC3u7gcNpsJ9tHid7cSsWVo=;
+	b=vM0iRgOFf4hG7Rn7o+UwW9q96aDxedIiuyn/K2MTbrrIg8nnCreo5FJvG5swIfPMHY
+	xIyrWORDDTwKFQOY1qObyA8C6BP+wLE9c8o900hswuK87aGQ6UYswJh6obXsrQhngJ2u
+	0oOkwfH0uwMZuSOQc5+gka2lyIc5gvYpwNPnZJyDJg818xcjt397ZdMZtC5ooe178Bxd
+	CEzjcPEDJO6pIxFqBOQoGW9aMa9R3oXXYbIthNLzci3ZzkjZg7w1HGDcLOI65QB3SD/3
+	eyrPUMIGtKySHlCzm2aT4KmQqJtQkKHS+tRD9PAgd/KCpJmeZSPNk36RKCsToXrTASY7
+	BJCg==
+Received: by 10.60.8.67 with SMTP id p3mr10952581oea.128.1346522777384;
+	Sat, 01 Sep 2012 11:06:17 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id jl8sm7138734obb.18.2012.09.01.11.06.16
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 01 Sep 2012 11:06:16 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Sat,  1 Sep 2012 13:22:07 -0500
+Message-Id: <1346523727-332-1-git-send-email-fcooper27jr@gmail.com>
 X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Cc: Franklin S Cooper Jr <fcooper@ti.com>
-Subject: [meta-arago-distro][PATCH] task-arago-tisdk-multimedia: Port multimedia task from arago to meta-arago
+Cc: "Franklin S. Cooper Jr" <fcooper27jr@gmail.com>
+Subject: [meta-arago-distro][PATCH] recipes: Revert temporary compiler fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,101 +41,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Aug 2012 19:13:26 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 01 Sep 2012 18:06:18 -0000
 
-* Port task-arago-tisdk-multimedia from arago to meta-arago.
+* Several commits were made due to issues with an external linaro toolchain.
+  Until these issues are resolved we are switching to the external toolchain
+  used in arago. Therefore, these temporary fixes are no longer needed.
 
-Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+Revert "libatomics-ops: Fix compiler error message (Temporary)"
+
+This reverts commit 6bc795a800fbd9bb26655b156e39945e059ed0ae.
+
+Revert "tremor: Fix compiler error message (Temporary)"
+
+This reverts commit ee2a70d55bcb72c9bc5df1540b894cdbcd48f3d3.
+
+Revert "postgresql: Fix compiler error message (Temporary)"
+
+This reverts commit 56d541690539dd0e5f8e15760d0544430fb833a4.
+
+Revert "tremor: correct the previous fix to properly pass the flags to assembler"
+
+This reverts commit 315725a4e11954a455f92378099829d390889fc3
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper27jr@gmail.com>
 ---
- .../tasks/task-arago-tisdk-multimedia-host.bb      |   21 ++++++++++++++
- .../tasks/task-arago-tisdk-multimedia-target.bb    |   11 +++++++
- .../tasks/task-arago-tisdk-multimedia.bb           |   30 ++++++++++++++++++++
- 3 files changed, 62 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-host.bb
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-target.bb
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb
+ .../pulseaudio/libatomics-ops_1.2.bbappend         |    3 ---
+ .../tremor/tremor_20120314.bbappend                |    3 ---
+ .../postgresql/postgresql_8.4.7.bbappend           |    3 ---
+ 3 files changed, 0 insertions(+), 9 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend
+ delete mode 100644 meta-arago-distro/recipes-multimedia/tremor/tremor_20120314.bbappend
+ delete mode 100644 meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-host.bb
-new file mode 100644
-index 0000000..17defc2
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-host.bb
-@@ -0,0 +1,21 @@
-+DESCRIPTION = "Task to add multimedia related sources into the SDK"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+MULTIMEDIA = ""
-+
-+MULTIMEDIA_append_am37x-evm = " \
-+    av-examples-src \
-+"
-+
-+MULTIMEDIA_append_am3517-evm = " \
-+    av-examples-src \
-+"
-+
-+RDEPENDS_${PN} = "\
-+    ${MULTIMEDIA} \
-+"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-target.bb
-new file mode 100644
-index 0000000..72cb0f8
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-target.bb
-@@ -0,0 +1,11 @@
-+DESCRIPTION = "Task to build and install header and libs into sdk"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+RDEPENDS_${PN} = "\
-+    task-arago-gst-target \
-+"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb
-new file mode 100644
-index 0000000..8cd0d2a
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb
-@@ -0,0 +1,30 @@
-+DESCRIPTION = "Task to add multimedia related packages"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+MULTIMEDIA = ""
-+
-+MULTIMEDIA_append_omap3 = " \
-+    amsdk-av-files \
-+"
-+
-+MULTIMEDIA_append_ti33x = " \
-+    amsdk-av-files \
-+"
-+
-+MULTIMEDIA_append_am37x-evm = " \
-+    av-examples \
-+"
-+
-+MULTIMEDIA_append_am3517-evm = " \
-+    av-examples \
-+"
-+
-+RDEPENDS_${PN} = "\
-+    task-arago-gst \
-+    ${MULTIMEDIA} \
-+"
+diff --git a/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend b/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend
+deleted file mode 100644
+index 4c60634..0000000
+--- a/meta-arago-distro/recipes-multimedia/pulseaudio/libatomics-ops_1.2.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-PR_append = "-arago0"
+-
+-EXTRA_OEMAKE += "-mimplicit-it=thumb"
+diff --git a/meta-arago-distro/recipes-multimedia/tremor/tremor_20120314.bbappend b/meta-arago-distro/recipes-multimedia/tremor/tremor_20120314.bbappend
+deleted file mode 100644
+index 74afa9d..0000000
+--- a/meta-arago-distro/recipes-multimedia/tremor/tremor_20120314.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-PR_append = "-arago1"
+-
+-EXTRA_OEMAKE += "CFLAGS+='-Wa,-mimplicit-it=thumb'"
+diff --git a/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend b/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
+deleted file mode 100644
+index 4c60634..0000000
+--- a/meta-arago-distro/recipes-support/postgresql/postgresql_8.4.7.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-PR_append = "-arago0"
+-
+-EXTRA_OEMAKE += "-mimplicit-it=thumb"
 -- 
 1.7.0.4
 
