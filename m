@@ -1,34 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id C8D3F529D8
+	by arago-project.org (Postfix) with ESMTPS id 2FFA9529D8
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Sep 2012 17:29:05 +0000 (UTC)
-Received: by obbeh20 with SMTP id eh20so4784053obb.38
+	Fri,  7 Sep 2012 17:29:10 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id eh20so4784053obb.38
 	for <meta-arago@arago-project.org>;
-	Fri, 07 Sep 2012 10:29:04 -0700 (PDT)
+	Fri, 07 Sep 2012 10:29:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=Rl4h+M71sPwOH4TpbqY4GOTKlIvK6KG+GA+5o0ir1WA=;
-	b=Zbmqcu5/gY5Rv95545a625W03YTlgdtshU5uI9iSaLeJ2i6HIxOy8xLTd8GPculd0e
-	j/c/RH3duLHemBurVbKrNf3bcQ5fNRnXSA6XY0XrTP37E0TdSStXlvZ7sEtD30lbeDqK
-	mFPgFiyNyFiuW9ze7lWy9heUg4q/yW4aIWgc6x3O8Hjv5YyLoJ/mDDQVXn0dVrd3vPtK
-	Xe5+Xkeoh7OFBvBfqNlWIeg3zpauATBEf/B2+v0d2lqA1eDpGv5BbvkY1MTeKNO7/CgM
-	V0uaa7ptXJ9bcRlLB3b9PkwBBHX59a5nawK6elYWD2N49V99n5bV+QsUQ+07DsoQ3Qp8
-	T7bw==
-Received: by 10.60.19.36 with SMTP id b4mr6836691oee.92.1347038944911;
-	Fri, 07 Sep 2012 10:29:04 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
+	bh=TdAXS5lOxuMQ7WR9lWPT7LJ/Mt3SalDxIFeV+VORDFY=;
+	b=ZR8wJoJH/GlwdhfEbaJ1gGaBWEGtviMW4WR7uVrNsdjpBGnz/XCydhJmnMeNTjWjxf
+	64XsC9SaVfToQxPt9yyt0x8p3dNtRpJcUbrdiKV5VJp+MtR0XUsXkcArMT9IlDJ/1PE4
+	1BR7aeZDNY47KjfjMpyCYMhrYYGX8MY4+ktTWyrQqYz4sTqBiUlomy2s7X9xs/8twv5q
+	7sxuqA9wrhF54MWBk/Vxj2u77TJ58BFd4AkXIrtxQGsFccEFYFhA7qCWY2y3sVBev9HP
+	4rY+RGySDRDg8IlSfBKtXItvfvYfuFAbTf+NlNcd1z0F/E0wSPZod8kFfhXVdy64yMyf
+	Cq5Q==
+Received: by 10.182.110.40 with SMTP id hx8mr6987906obb.47.1347038950019;
+	Fri, 07 Sep 2012 10:29:10 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id a20sm4183815oei.2.2012.09.07.10.29.03
+	by mx.google.com with ESMTPS id a20sm4183815oei.2.2012.09.07.10.29.09
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 07 Sep 2012 10:29:04 -0700 (PDT)
+	Fri, 07 Sep 2012 10:29:09 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  7 Sep 2012 12:47:07 -0500
-Message-Id: <1347040028-10047-1-git-send-email-fcooper27jr@gmail.com>
+Date: Fri,  7 Sep 2012 12:47:08 -0500
+Message-Id: <1347040028-10047-2-git-send-email-fcooper27jr@gmail.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1347040028-10047-1-git-send-email-fcooper27jr@gmail.com>
+References: <1347040028-10047-1-git-send-email-fcooper27jr@gmail.com>
 Cc: "Franklin S. Cooper Jr" <fcooper27jr@gmail.com>
-Subject: [meta-arago-distro][PATCH 1/2] pinmux-utility: Add pinmux utility tool
+Subject: [meta-arago-distro][PATCH 2/2] pinmux-utility: Add temporary license file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,77 +43,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 17:29:06 -0000
+X-List-Received-Date: Fri, 07 Sep 2012 17:29:10 -0000
 
-* Add Windows base pinmux utility.
-* This application is packaged in the Sitara SDK.
-* Port pinmux-utility from arago.
-* The current recipe pulls in an zip file that doesn't contain license
-  information. License information will be added in an updated recipe.
+* Add temporary license file to the pinmux-utility. This file was
+  grabbed from the license agreement screen when installing the non
+  am18x version of the pinmux utility. A proper license file needs to
+  be added to the zip file that is apart of the offical pinmux utility
+  release.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper27jr@gmail.com>
 ---
- .../pinmux-utility/pinmux-utility.inc              |   19 +++++++++++++++
- .../pinmux-utility/pinmux-utility_2.3.1.0.bb       |   24 ++++++++++++++++++++
- 2 files changed, 43 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc
- create mode 100644 meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
+ .../pinmux-utility/pinmux-utility_2.3.1.0.bb       |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc
-new file mode 100644
-index 0000000..e10ee67
---- /dev/null
-+++ b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "Texas Instruments Pinmux Utility"
-+LICENSE = "BSD"
-+
-+PR = "r0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+S = "${WORKDIR}"
-+
-+installdir = "host-tools/pinmux_utils/windows"
-+
-+do_install() {
-+    install -d ${D}/${installdir}
-+    install ${S}/Pin_Mux_Utility.msi ${D}/${installdir}
-+    install ${S}/setup.exe ${D}/${installdir}
-+    install ${S}/Release_Notes.txt ${D}/${installdir}
-+}
-+
-+FILES_${PN} += "${installdir}/*"
 diff --git a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
-new file mode 100644
-index 0000000..624ffae
---- /dev/null
+index 624ffae..fadbdc6 100644
+--- a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
 +++ b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
-@@ -0,0 +1,24 @@
-+require pinmux-utility.inc
+@@ -1,6 +1,6 @@
+ require pinmux-utility.inc
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
+ 
+ SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxUtility_v2_03_01_00.zip;name=base"
+ 
+@@ -22,3 +22,8 @@ do_install_omapl138() {
+ 
+ SRC_URI[omapl138.md5sum] = "5a4eb834bde44c662aaf669882adbfe6"
+ SRC_URI[omapl138.sha256sum] = "6701ca0e91761b9eb80b0097fbb2e2ce2cd8e0bcdc0bd18c34cd0221d9d450d0"
 +
-+PR_append = "-arago0"
-+
-+SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxUtility_v2_03_01_00.zip;name=base"
-+
-+SRC_URI[base.md5sum] = "31f28b06f72c042e5400fc53b4a29c0e"
-+SRC_URI[base.sha256sum] = "2b0de3592c5f4b803a207d092dba227d10e1af65e0d4f06e1d8d23f317a452f9"
-+
-+# Currently for omapl138 devices we are using a different pinmux utility
-+# program.  This requires a separate SRC_URI as well as a different
-+# do_install.
-+SRC_URI_omapl138 = "\
-+    https://gforge.ti.com/gf/download/frsrelease/461/4210/Pin_Setup_AM18xx_01_00_1076_03.zip;name=omapl138 \
-+    "
-+
-+do_install_omapl138() {
-+    install -d ${D}/${installdir}
-+    cp -rf ${S}/bin ${D}/${installdir}/
-+    cp -rf ${S}/configurations ${D}/${installdir}/
-+}
-+
-+SRC_URI[omapl138.md5sum] = "5a4eb834bde44c662aaf669882adbfe6"
-+SRC_URI[omapl138.sha256sum] = "6701ca0e91761b9eb80b0097fbb2e2ce2cd8e0bcdc0bd18c34cd0221d9d450d0"
++# Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
++# from the License Agreement screen when installing the non am18x version of the pinmux utility.
++SRC_URI += "file://LICENSE"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=7f400ac8ac09799ccf153aab40deff94"
 -- 
 1.7.0.4
 
