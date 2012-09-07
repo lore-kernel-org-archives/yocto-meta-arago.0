@@ -1,35 +1,26 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 03457529B9
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id 913AF529A1
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Sep 2012 18:52:56 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q87Iqt3G008387;
-	Fri, 7 Sep 2012 13:52:56 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q87Iqt2O013884;
-	Fri, 7 Sep 2012 13:52:55 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Fri, 7 Sep 2012 13:52:55 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [meta-arago-distro][PATCH 2/2] pinmux-utility:
-	Add	temporary license file
-Thread-Index: AQHNjSnkzNhlbvk2bk6WgG+HON/gW5d/OaNA
-Date: Fri, 7 Sep 2012 18:52:55 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C2B7D50@DFLE09.ent.ti.com>
-References: <1347040028-10047-1-git-send-email-fcooper27jr@gmail.com>
-	<1347040028-10047-2-git-send-email-fcooper27jr@gmail.com>
-In-Reply-To: <1347040028-10047-2-git-send-email-fcooper27jr@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper27jr@gmail.com>
-Subject: Re: [meta-arago-distro][PATCH 2/2] pinmux-utility: Add	temporary license file
+	Fri,  7 Sep 2012 20:40:28 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.115])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M9Z00JKZYQSJ791@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 07 Sep 2012 15:40:05 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 75B28201B8; Fri,
+	07 Sep 2012 16:40:01 -0400 (EDT)
+Date: Fri, 07 Sep 2012 16:40:01 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Franklin S Cooper Jr <fcooper@ti.com>
+Message-id: <20120907204001.GB13366@denix.org>
+References: <1346288619-21223-1-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1346288619-21223-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago-distro][PATCH] task-arago-tisdk-addons: Port task-arago-tisdk-addons-host from arago to meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,63 +33,112 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 18:52:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 07 Sep 2012 20:40:29 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Please ignore this patch. A version 2 of this patch will be submitted soon.
+On Wed, Aug 29, 2012 at 08:03:38PM -0500, Franklin S Cooper Jr wrote:
+> * This is a initial port of task-arago-tisdk-addons-host from arago to meta-arago.
+>   In arago, this task was originally called task-arago-toolchain-tisdk-addons-host.
 
------Original Message-----
-From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]=20
-Sent: Friday, September 07, 2012 12:47 PM
-To: meta-arago@arago-project.org
-Cc: Franklin S. Cooper Jr
-Subject: [meta-arago] [meta-arago-distro][PATCH 2/2] pinmux-utility: Add te=
-mporary license file
+I would agree that task-arago-toolchain-tisdk-addons-host is a very long name, 
+but we need to clearly mark the tasks that are used for SDK/toolchain/devkit 
+vs. the ones that are used for the filesystem/image.
 
-* Add temporary license file to the pinmux-utility. This file was
-  grabbed from the license agreement screen when installing the non
-  am18x version of the pinmux utility. A proper license file needs to
-  be added to the zip file that is apart of the offical pinmux utility
-  release.
+As an alternative, we can use task-arago-tisdk-sdk-host. I.e. all 3 would look 
+like:
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper27jr@gmail.com>
----
- .../pinmux-utility/pinmux-utility_2.3.1.0.bb       |    7 ++++++-
- 1 files changed, 6 insertions(+), 1 deletions(-)
+task-arago-tisdk-addons
+task-arago-tisdk-addons-sdk-host
+task-arago-tisdk-addons-sdk-target
 
-diff --git a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_=
-2.3.1.0.bb b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_=
-2.3.1.0.bb
-index 624ffae..fadbdc6 100644
---- a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0=
-.bb
-+++ b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.
-+++ 1.0.bb
-@@ -1,6 +1,6 @@
- require pinmux-utility.inc
-=20
--PR_append =3D "-arago0"
-+PR_append =3D "-arago1"
-=20
- SRC_URI =3D "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxU=
-tility_v2_03_01_00.zip;name=3Dbase"
-=20
-@@ -22,3 +22,8 @@ do_install_omapl138() {
-=20
- SRC_URI[omapl138.md5sum] =3D "5a4eb834bde44c662aaf669882adbfe6"
- SRC_URI[omapl138.sha256sum] =3D "6701ca0e91761b9eb80b0097fbb2e2ce2cd8e0bcd=
-c0bd18c34cd0221d9d450d0"
-+
-+# Temporarily add LICENSE file here since zip files don't contain any=20
-+license information. This file was grabbed # from the License Agreement sc=
-reen when installing the non am18x version of the pinmux utility.
-+SRC_URI +=3D "file://LICENSE"
-+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D7f400ac8ac09799ccf153aab40deff9=
-4"
---
-1.7.0.4
+The next step would be to start dropping "arago" and "tisdk" parts from the 
+name... :)
+
+-- 
+Denys
 
 
+> * Remove references to Matrix applications since the new Matrix task should
+>   handle Matrix related applications
+> 
+> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+> ---
+>  .../tasks/task-arago-tisdk-addons-host.bb          |   21 ++++++++++++++++++++
+>  .../recipes-core/tasks/task-arago-tisdk-addons.bb  |   17 +++++++++------
+>  2 files changed, 31 insertions(+), 7 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-host.bb
+> 
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-host.bb
+> new file mode 100644
+> index 0000000..3856197
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-host.bb
+> @@ -0,0 +1,21 @@
+> +DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> +PR = "r0"
+> +
+> +inherit task
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +UTILS = " \
+> +    am-sysinfo-src \
+> +    arm-benchmarks-src \
+> +"
+> +
+> +# Add pru and profibus sources for omapl138 devices
+> +UTILS_append_am180x-evm = " \
+> +    ti-pru-sw-examples-src \
+> +"
+> +
+> +RDEPENDS_${PN} = "\
+> +    ${UTILS} \
+> +"
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+> index 789700d..167df12 100644
+> --- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+> @@ -1,22 +1,25 @@
+>  DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+> -PR = "r0"
+>  LICENSE = "MIT"
+>  LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> +PR = "r1"
+>  
+>  inherit task
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+>  UTILS = " \
+> -    matrix-gui-settings-demos \
+> -    matrix-gui-armbenchmarks-demos \
+> +    am-sysinfo \
+> +    dt \
+>      task-arago-test \
+>      gdbserver \
+> -    matrix-gui-oprofile-demos \
+> -    "
+> +    oprofile \
+> +    nbench-byte \
+> +    trace-cmd \
+> +    arm-benchmarks \
+> +"
+>  
+>  # Add PRU examples for am180x-evm devices
+> -# UTILS_append_am180x-evm = " ti-pru-sw-examples"
+> +UTILS_append_am180x-evm = " ti-pru-sw-examples"
+>  
+>  RDEPENDS_${PN} = "\
+>      ${UTILS} \
+> -    "
+> +"
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
