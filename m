@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 36DBD529AB
+	by arago-project.org (Postfix) with ESMTPS id C8D3F529D8
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Sep 2012 15:12:34 +0000 (UTC)
-Received: by obbeh20 with SMTP id eh20so4521973obb.38
+	Fri,  7 Sep 2012 17:29:05 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so4784053obb.38
 	for <meta-arago@arago-project.org>;
-	Fri, 07 Sep 2012 08:12:33 -0700 (PDT)
+	Fri, 07 Sep 2012 10:29:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=XIkvZuWBst/KFa0JJNrkColIDfm1b8f4j3JshduOUu0=;
-	b=Fbx+cQxW0bJb54xXohNy15XtRVRgMTVtS5G2lzZwLb98yFQhhLdjzZ+SWkCQdsGUFY
-	fg0WvDQpOyiZrrxi+NqFYYOa/jMEK8dsjGJNpvvo2v+DG6t57mb58Y3eN4oedQl/OduN
-	6QzTnhUm+vYcwGsEDr1ndfjxvYFQ5+T2UCFFypypfBAvz+mKFcjAM3W+kmWd0yputQ7/
-	3+gDs5QUI92QqDeMISr17TEHdYX9PFt9IL1nvafyoqp+QhQhto0kG5G4SLziB+3KaT7g
-	VrOAX/cyRY3ghD47BSrwXgLwdMq5kBU9/wENqfBgXjUvw4F4NvRXWhT/RejvztclipTV
-	H42Q==
-Received: by 10.60.7.104 with SMTP id i8mr6336653oea.31.1347030753136;
-	Fri, 07 Sep 2012 08:12:33 -0700 (PDT)
+	bh=Rl4h+M71sPwOH4TpbqY4GOTKlIvK6KG+GA+5o0ir1WA=;
+	b=Zbmqcu5/gY5Rv95545a625W03YTlgdtshU5uI9iSaLeJ2i6HIxOy8xLTd8GPculd0e
+	j/c/RH3duLHemBurVbKrNf3bcQ5fNRnXSA6XY0XrTP37E0TdSStXlvZ7sEtD30lbeDqK
+	mFPgFiyNyFiuW9ze7lWy9heUg4q/yW4aIWgc6x3O8Hjv5YyLoJ/mDDQVXn0dVrd3vPtK
+	Xe5+Xkeoh7OFBvBfqNlWIeg3zpauATBEf/B2+v0d2lqA1eDpGv5BbvkY1MTeKNO7/CgM
+	V0uaa7ptXJ9bcRlLB3b9PkwBBHX59a5nawK6elYWD2N49V99n5bV+QsUQ+07DsoQ3Qp8
+	T7bw==
+Received: by 10.60.19.36 with SMTP id b4mr6836691oee.92.1347038944911;
+	Fri, 07 Sep 2012 10:29:04 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id l10sm3943390oeb.13.2012.09.07.08.12.31
+	by mx.google.com with ESMTPS id a20sm4183815oei.2.2012.09.07.10.29.03
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 07 Sep 2012 08:12:32 -0700 (PDT)
+	Fri, 07 Sep 2012 10:29:04 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  7 Sep 2012 10:30:33 -0500
-Message-Id: <1347031833-6602-1-git-send-email-fcooper27jr@gmail.com>
+Date: Fri,  7 Sep 2012 12:47:07 -0500
+Message-Id: <1347040028-10047-1-git-send-email-fcooper27jr@gmail.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper27jr@gmail.com>
-Subject: [meta-arago-distro][PATCH] canutils: Add error frame's handling.
+Subject: [meta-arago-distro][PATCH 1/2] pinmux-utility: Add pinmux utility tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,32 +41,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 15:12:35 -0000
+X-List-Received-Date: Fri, 07 Sep 2012 17:29:06 -0000
 
-* Update the TAG used to include additional patches that add additional error
-  capabilities not found in the latest release of canutils.
-* This patch was base on a similar patch from arago.
+* Add Windows base pinmux utility.
+* This application is packaged in the Sitara SDK.
+* Port pinmux-utility from arago.
+* The current recipe pulls in an zip file that doesn't contain license
+  information. License information will be added in an updated recipe.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper27jr@gmail.com>
 ---
- .../socketcan/canutils_4.0.6.bbappend              |    8 ++++++++
- 1 files changed, 8 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-extended/socketcan/canutils_4.0.6.bbappend
+ .../pinmux-utility/pinmux-utility.inc              |   19 +++++++++++++++
+ .../pinmux-utility/pinmux-utility_2.3.1.0.bb       |   24 ++++++++++++++++++++
+ 2 files changed, 43 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc
+ create mode 100644 meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
 
-diff --git a/meta-arago-distro/recipes-extended/socketcan/canutils_4.0.6.bbappend b/meta-arago-distro/recipes-extended/socketcan/canutils_4.0.6.bbappend
+diff --git a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc
 new file mode 100644
-index 0000000..63b72ca
+index 0000000..e10ee67
 --- /dev/null
-+++ b/meta-arago-distro/recipes-extended/socketcan/canutils_4.0.6.bbappend
-@@ -0,0 +1,8 @@
-+# Take the top of the tree which is currenlty 4.0.6 plus two patches.
-+# One of the patches adds error message support which is what we want
-+TAG = "bab595e38295dcafcfc17a011d3d51f2df1618e6"
++++ b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility.inc
+@@ -0,0 +1,19 @@
++DESCRIPTION = "Texas Instruments Pinmux Utility"
++LICENSE = "BSD"
 +
-+# Set the PV to 4.0.6 plus the commit id
-+PV = "4.0.6+gitr${SRCPV}"
++PR = "r0"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++S = "${WORKDIR}"
++
++installdir = "host-tools/pinmux_utils/windows"
++
++do_install() {
++    install -d ${D}/${installdir}
++    install ${S}/Pin_Mux_Utility.msi ${D}/${installdir}
++    install ${S}/setup.exe ${D}/${installdir}
++    install ${S}/Release_Notes.txt ${D}/${installdir}
++}
++
++FILES_${PN} += "${installdir}/*"
+diff --git a/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
+new file mode 100644
+index 0000000..624ffae
+--- /dev/null
++++ b/meta-arago-distro/recipes-arago/pinmux-utility/pinmux-utility_2.3.1.0.bb
+@@ -0,0 +1,24 @@
++require pinmux-utility.inc
 +
 +PR_append = "-arago0"
++
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxUtility_v2_03_01_00.zip;name=base"
++
++SRC_URI[base.md5sum] = "31f28b06f72c042e5400fc53b4a29c0e"
++SRC_URI[base.sha256sum] = "2b0de3592c5f4b803a207d092dba227d10e1af65e0d4f06e1d8d23f317a452f9"
++
++# Currently for omapl138 devices we are using a different pinmux utility
++# program.  This requires a separate SRC_URI as well as a different
++# do_install.
++SRC_URI_omapl138 = "\
++    https://gforge.ti.com/gf/download/frsrelease/461/4210/Pin_Setup_AM18xx_01_00_1076_03.zip;name=omapl138 \
++    "
++
++do_install_omapl138() {
++    install -d ${D}/${installdir}
++    cp -rf ${S}/bin ${D}/${installdir}/
++    cp -rf ${S}/configurations ${D}/${installdir}/
++}
++
++SRC_URI[omapl138.md5sum] = "5a4eb834bde44c662aaf669882adbfe6"
++SRC_URI[omapl138.sha256sum] = "6701ca0e91761b9eb80b0097fbb2e2ce2cd8e0bcdc0bd18c34cd0221d9d450d0"
 -- 
 1.7.0.4
 
