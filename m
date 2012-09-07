@@ -1,36 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id AD712529A1
+	by arago-project.org (Postfix) with ESMTPS id 796CB529AB
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Sep 2012 22:43:34 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id eh20so1246999obb.38
+	Thu,  6 Sep 2012 23:46:11 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so3410782obb.38
 	for <meta-arago@arago-project.org>;
-	Wed, 05 Sep 2012 15:43:34 -0700 (PDT)
+	Thu, 06 Sep 2012 16:46:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=TksrI58tT97yExq2yN6OX7UURJbuVso9WgbfGPKF0aQ=;
-	b=wPH/+WQcpYDX7JGe4XK8fV49Edo0iCoJ9Oar/cikgUL5F76/F8ihd2eNtVh/4v+NuK
-	71K/1EFF2FqEFFsc1w0ddoSwU54++U8dq/xzQBx7m0s9/DekjzLofz0MU54A1rWX/auW
-	JHWuP7TZAlqjHJIlM1D3NgfPmAitN0aP3jTtvoVU3Q60Av8qjh3nzaJ+nqRORpSg1VyA
-	ENWSEmZPk/SryqfE6lowffDK3F4VlmgZSP1DZlNX7lKZCfbGdQVJmLOxKAUhUI56PwOA
-	bJHyMkTr+Uot5DZ9YgsT42nMC4SzhTYwy0okyiGklmahRl45xi1o8gSEwz/dtXHLLvpg
-	hhKw==
-Received: by 10.182.222.39 with SMTP id qj7mr90334obc.16.1346885014472;
-	Wed, 05 Sep 2012 15:43:34 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=IcnIhJ+98g7WmUHhX5LLzKUMhzEySjHo8bAR7Uzbt+8=;
+	b=QUv/34I+rtZ61cLgnIy1tQZ5ULj69t0/OVqR68soRMvwjBDTddTCoLiml+xrng23im
+	IVhpTVO0iDNqe4n8SW8MpIlOa03uuUq5T9i8H5Akd6PCciTZcjNe3VW2QpPM3mlFydCI
+	6JQzc829uTQZKYt1AhYCwFnd/zaFzH82BeN7050SJ1pF9cJyCywaZG4TZqq+rldaDL/e
+	3zfECzUpdqzFEaq10fEK7gwZjxZ6tapA70fqyFkFyFplcWGyTvvArMS3m4F4ocgaDaqw
+	EpcNvJ/mYcZaG7p4PHMxLAUlE6qB1RN8SWDMgjC7xopFDxBZq2VRQzwX4WoDvA7E9Pij
+	D1ng==
+Received: by 10.182.192.101 with SMTP id hf5mr3928653obc.96.1346975169726;
+	Thu, 06 Sep 2012 16:46:09 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id q3sm249558oef.0.2012.09.05.15.43.33
+	by mx.google.com with ESMTPS id d4sm3297205obx.3.2012.09.06.16.46.08
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 05 Sep 2012 15:43:34 -0700 (PDT)
+	Thu, 06 Sep 2012 16:46:09 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Wed,  5 Sep 2012 18:00:57 -0500
-Message-Id: <1346886057-7807-2-git-send-email-fcooper27jr@gmail.com>
+Date: Thu,  6 Sep 2012 19:03:57 -0500
+Message-Id: <1346976237-18449-1-git-send-email-fcooper27jr@gmail.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1346886057-7807-1-git-send-email-fcooper27jr@gmail.com>
-References: <1346886057-7807-1-git-send-email-fcooper27jr@gmail.com>
 Cc: "Franklin S. Cooper Jr" <fcooper27jr@gmail.com>
-Subject: [meta-arago-distro][PATCH 2/2] thttpd: Port arago changes
+Subject: [meta-arago-distro][PATCH] task-arago-tisdk-connectivity: Add bluetooth stack
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,52 +41,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 22:43:35 -0000
+X-List-Received-Date: Thu, 06 Sep 2012 23:46:12 -0000
 
-* Port changes from arago.
-* Set the port used by thttpd to 8080
+* Add list of bluetooth stack libraries to task-arago-tisdk-connectivity.
+* This list was previously located in task-arago-tisdk-bsp and
+  task-arago-toolchain-tisdk-bsp-target in arago.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper27jr@gmail.com>
 ---
- .../recipes-extended/thttpd/thttpd/init            |    8 ++++----
- 1 files changed, 4 insertions(+), 4 deletions(-)
+ .../tasks/task-arago-tisdk-connectivity-target.bb  |    9 ++++++++-
+ .../tasks/task-arago-tisdk-connectivity.bb         |   16 +++++++++++++---
+ 2 files changed, 21 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-extended/thttpd/thttpd/init b/meta-arago-distro/recipes-extended/thttpd/thttpd/init
-index df6d648..e1ee23f 100644
---- a/meta-arago-distro/recipes-extended/thttpd/thttpd/init
-+++ b/meta-arago-distro/recipes-extended/thttpd/thttpd/init
-@@ -13,7 +13,7 @@ test -x "$thttpd" || exit 0
- case "$1" in
-   start)
-     echo -n "Starting thttpd"
--    start-stop-daemon --start --quiet --exec $thttpd -- -d @@SRVDIR
-+    start-stop-daemon --start --quiet --exec $thttpd -- -d @@SRVDIR -p 8080
-     echo "."
-     ;;
-   stop)
-@@ -22,11 +22,11 @@ case "$1" in
-     echo "."
-     ;;
-   reload|force-reload)
--    start-stop-daemon --stop --quiet --signal 1 --exec $thttpd 
-+    start-stop-daemon --stop --quiet --signal 1 --exec $thttpd
-     ;;
-   restart)
-     echo -n "Stopping thttpd"
--    start-stop-daemon --stop --quiet --exec $thttpd -- -d @@SRVDIR
-+    start-stop-daemon --stop --quiet --exec $thttpd -- -d @@SRVDIR -p 8080
-     echo "."
-     echo -n "Waiting for thttpd to die off"
-     for i in 1 2 3 ;
-@@ -36,7 +36,7 @@ case "$1" in
-     done
-     echo ""
-     echo -n "Starting thttpd"
--    start-stop-daemon --start --quiet --exec $thttpd -- -d @@SRVDIR
-+    start-stop-daemon --start --quiet --exec $thttpd -- -d @@SRVDIR -p 8080
-     echo "."
-     ;;
-   *)
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-target.bb
+index deb7b7b..a63c801 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-target.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-target.bb
+@@ -1,12 +1,19 @@
+ DESCRIPTION = "Task to install wlan and bluetooth sources in SDK"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r0"
++PR = "r1"
+ 
+ inherit task
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ COMPATIBLE_MACHINE = "(am37x-evm|am180x-evm|ti33x)"
+ 
++# Bluetooth development packages
++BLUETOOTH_STACK = "\
++    bluez4-dev \
++    openobex-dev \
++"
++
+ RDEPENDS_${PN} = "\
++    ${BLUETOOTH_STACK} \
+     wpa-supplicant-dev \
+     "
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
+index 1ff849c..17f97d1 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to install wlan and bluetooth packages into target FS"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r0"
++PR = "r1"
+ 
+ inherit task
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -42,10 +42,20 @@ WLAN_COMPAT = "ti-compat-wireless-wl12xx \
+                bt-enable \
+ "
+ 
+-BLUETOOTH = "bluetooth-gui"
++BLUETOOTH_STACK = "\
++    bluez4 \
++    bluez4-agent \
++    libasound-module-bluez \
++    bluez-hcidump \
++    openobex \
++    openobex-apps \
++    obexftp \
++    ussp-push \
++    "
+ 
+ RDEPENDS_${PN} = "\
+     ${WLAN_COMMON} \
+     ${WLAN_COMPAT} \
+-    ${BLUETOOTH} \
++    ${BLUETOOTH_STACK} \
++    bluetooth-gui \
+ "
 -- 
 1.7.0.4
 
