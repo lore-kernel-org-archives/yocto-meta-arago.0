@@ -1,28 +1,34 @@
 Return-Path: <denis@denix.org>
-Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
-	[206.46.173.11])
-	by arago-project.org (Postfix) with ESMTP id C7BFA52A69
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTP id 9F56C52A6D
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Sep 2012 18:37:18 +0000 (UTC)
+	Tue, 18 Sep 2012 19:20:51 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173011.mailsrvcs.net
+	by vms173013.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MAK00JWG6E2PAN0@vms173011.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 18 Sep 2012 13:37:14 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id E975C20369; Tue,
-	18 Sep 2012 14:37:13 -0400 (EDT)
-Date: Tue, 18 Sep 2012 14:37:13 -0400
+	2009)) with ESMTPA id <0MAK00CD08E40E81@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 18 Sep 2012 14:20:34 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 46C4820099; Tue,
+	18 Sep 2012 15:20:28 -0400 (EDT)
+Date: Tue, 18 Sep 2012 15:20:28 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-Message-id: <20120918183713.GB11454@denix.org>
-References: <1347043857-20831-1-git-send-email-fcooper27jr@gmail.com>
-	<1347043857-20831-2-git-send-email-fcooper27jr@gmail.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-id: <20120918192028.GC11454@denix.org>
+References: <7D46E86EC0A8354091174257B2FED101591DDA07@DLEE12.ent.ti.com>
+	<7F14B13F-2AE6-4F01-9612-23A1DBB11022@ti.com>
+	<20120908173849.GE23896@denix.org>
+	<CE36FDB5-3FE9-4108-9038-DE71F2D3BC81@ti.com>
+	<7D46E86EC0A8354091174257B2FED101591DDF06@DLEE12.ent.ti.com>
+	<BDA53CED-8BB7-4BB4-A4AA-6341F31B1C91@ti.com>
+	<7D46E86EC0A8354091174257B2FED101591DDF84@DLEE12.ent.ti.com>
+	<20120910180327.GF21288@edge> <20120918181642.GA11454@denix.org>
+	<8F29D6B095ED194EA1980491A5E029710C2D74C9@DFLE09.ent.ti.com>
 MIME-version: 1.0
-In-reply-to: <1347043857-20831-2-git-send-email-fcooper27jr@gmail.com>
+In-reply-to: <8F29D6B095ED194EA1980491A5E029710C2D74C9@DFLE09.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org,
-	"Franklin S. Cooper Jr" <fcooper27jr@gmail.com>
-Subject: Re: [meta-arago-distro][PATCH 2/2] flash-utility: Add temporary license file
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [meta-arago-distro][PATCH] task-arago-tisdk-connectivity: Add	bluetooth stack
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,142 +41,282 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2012 18:37:22 -0000
+X-List-Received-Date: Tue, 18 Sep 2012 19:20:51 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Fri, Sep 07, 2012 at 01:50:57PM -0500, Franklin S. Cooper Jr wrote:
-> * Add temporary license file to the flash-utility.
-> * This file was grabbed from the license agreement screen when
->   installing the flash utility.
-> * A proper license file needs to be added to the zip file that is apart
->   of the official flash utility release.
+On Tue, Sep 18, 2012 at 06:24:23PM +0000, Cooper Jr., Franklin wrote:
+> Your right. Will be starting that process fairly soon.
 
-Oops, this is something I wanted to comment on before, but forgot:
+Thanks again. Just wanted to mention, that I went again through my meta-arago 
+queue and besides the updated thttpd patches that I promised to take in (which 
+I just did), there was nothing else left that had no comments or was not 
+pending resubmission. Still, please feel free to ping on anything I might have 
+missed. Thanks.
 
-While only LICENSE is required to be set in the recipe during parsing time and 
-not the LIC_FILES_CHKSUM, the latter is still required to be present for the 
-recipe to build. So, by adding those in 2 steps/patches technically breaks 
-bisectability. One of the requirements for a good patch is to be atomically 
-complete as individual entity...
-
--- 
 Denys
 
 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper27jr@gmail.com>
-> ---
->  .../flash-utility/flash-utility-1.6.0.0/LICENSE    |   63 ++++++++++++++++++++
->  .../flash-utility/flash-utility_1.6.0.0.bb         |   14 ++++-
->  2 files changed, 76 insertions(+), 1 deletions(-)
->  create mode 100644 meta-arago-distro/recipes-arago/flash-utility/flash-utility-1.6.0.0/LICENSE
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
+> Sent: Tuesday, September 18, 2012 1:17 PM
+> To: Dmytriyenko, Denys
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-arago-tisdk-connectivity: Add bluetooth stack
 > 
-> diff --git a/meta-arago-distro/recipes-arago/flash-utility/flash-utility-1.6.0.0/LICENSE b/meta-arago-distro/recipes-arago/flash-utility/flash-utility-1.6.0.0/LICENSE
-> new file mode 100644
-> index 0000000..dc4f3dd
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-arago/flash-utility/flash-utility-1.6.0.0/LICENSE
-> @@ -0,0 +1,63 @@
-> +Copyright (c) 2010, Texas Instruments Incorporated
-> +All rights reserved.
-> +
-> +Redistribution and use in source and binary forms, with or without modification, 
-> +are permitted provided that the following conditions are met:
-> +
-> + - Redistributions of source code must retain the above copyright notice, 
-> +   this list of conditions and the following disclaimer.
-> + - Redistributions in binary form must reproduce the above copyright notice, 
-> +   this list of conditions and the following disclaimer in the documentation 
-> +   and/or other materials provided with the distribution.
-> + - Neither the name of Texas Instruments nor the names of its contributors 
-> +   may be used to endorse or promote products derived from this software  
-> +   without specific prior written permission.
-> +
-> + THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-> + "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-> + LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-> + FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-> + COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-> + INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-> + BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-> + OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
-> + AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-> + OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
-> + OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-> + SUCH DAMAGE.
-> +
-> +Copyright (C) 2008 The Android Open Source Project
-> +All rights reserved.
-> +
-> +Redistribution and use in source and binary forms, with or without
-> +modification, are permitted provided that the following conditions
-> +are met:
-> +
-> + - Redistributions of source code must retain the above copyright
-> +   notice, this list of conditions and the following disclaimer.
-> + - Redistributions in binary form must reproduce the above copyright
-> +   notice, this list of conditions and the following disclaimer in
-> +   the documentation and/or other materials provided with the 
-> +   distribution.
-> + 
-> + THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-> + "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-> + LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-> + FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-> + COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-> + INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-> + BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-> + OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
-> + AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-> + OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
-> + OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-> + SUCH DAMAGE.
-> + 
-> +Copyright (c) 1996 L. Peter Deutsch and Jean-Loup Gailly
-> +
-> +Permission is granted to copy and distribute this document for any
-> +purpose and without charge, including translations into other
-> +languages and incorporation into compilations, provided that the
-> +copyright notice and this notice are preserved, and that any
-> +substantive changes or deletions from the original are clearly
-> +marked.
-> \ No newline at end of file
-> diff --git a/meta-arago-distro/recipes-arago/flash-utility/flash-utility_1.6.0.0.bb b/meta-arago-distro/recipes-arago/flash-utility/flash-utility_1.6.0.0.bb
-> index 94d78f6..e25557e 100644
-> --- a/meta-arago-distro/recipes-arago/flash-utility/flash-utility_1.6.0.0.bb
-> +++ b/meta-arago-distro/recipes-arago/flash-utility/flash-utility_1.6.0.0.bb
-> @@ -1,15 +1,27 @@
->  DESCRIPTION = "Texas Instruments Flash Utility"
->  LICENSE = "BSD"
-> +LIC_FILES_CHKSUM = "file://LICENSE;md5=3fff2f9c28a0f21bdb38a7a718701562"
->  
-> -PR = "r0"
-> +PR = "r1"
->  
->  COMPATIBLE_MACHINE = "am37x-evm|am3517-evm"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
->  SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/580/4785/Flash_v1.6.0.0.zip;name=base;subdir=${P}"
-> +
-> +# Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
-> +# from the License Agreement screen when installing the flash utility application.
-> +SRC_URI += "file://LICENSE"
-> +
->  S = "${WORKDIR}/${P}"
->  
-> +do_unpack_extra() {
-> +    mv ${WORKDIR}/LICENSE ${WORKDIR}/${P}
-> +}
-> +
-> +addtask unpack_extra after do_unpack before do_patch
-> +
->  installdir = "host-tools/flash_utils/windows"
->  
->  do_install() {
-> -- 
-> 1.7.0.4
+> On Mon, Sep 10, 2012 at 02:03:27PM -0400, Denys Dmytriyenko wrote:
+> > On Sat, Sep 08, 2012 at 03:05:48PM -0400, Maupin, Chase wrote:
+> > > Denys,
+> > > 
+> > > I'll leave this to your call for what is your preferred method.
+> > > 
+> > > This is making me think we should set Franklin up with his own git 
+> > > tree so he can do pull requests.  What do you think?
+> > 
+> > Own git tree for pull requests is always a good idea regardless of the 
+> > situation... :)
 > 
+> I believe the agreement we reached with Franklin last week was that he will resubmit the patches with the new naming convention, but will ping on the ones that are still good, so I don't miss anything from the queue.
+> 
+> Franklin, please correct me if I misunderstood. Thanks.
+> 
+> --
+> Denys
+> 
+> 
+> 
+> > > > -----Original Message-----
+> > > > From: Cooper Jr., Franklin
+> > > > Sent: Saturday, September 08, 2012 1:56 PM
+> > > > To: Maupin, Chase
+> > > > Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
+> > > > Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-arago-
+> > > > tisdk-connectivity: Add bluetooth stack
+> > > > 
+> > > > It's the difference between sending 1 patch that renames all the
+> > > > recipes vs submitting 11 v2 of patches that have yet to be
+> > > > committed and will be affected by the new naming scheme. I prefer
+> > > > the one patch approach but if you both insist I can redo all the
+> > > > patches.
+> > > > 
+> > > > On Sep 8, 2012, at 1:18 PM, "Maupin, Chase" <chase.maupin@ti.com>
+> > > > wrote:
+> > > > 
+> > > > > I'm not sure I understand that question.  You would have to fix
+> > > > the naming no matter what.  If you have patches later in your
+> > > > patchset that use the old name, then yes you would need to fix
+> > > > them and resubmit them.  Then again, you would have to do the
+> > > > same thing either way.
+> > > > >
+> > > > > Sincerely,
+> > > > > Chase Maupin
+> > > > > Software Applications
+> > > > > ARM MPU
+> > > > > e-mail: chase.maupin@ti.com
+> > > > > phone: (214) 567-2950
+> > > > >
+> > > > > For support:
+> > > > > Forums - http://community.ti.com/forums/
+> > > > > Wiki - http://wiki.davincidsp.com/
+> > > > >
+> > > > >
+> > > > >> -----Original Message-----
+> > > > >> From: Cooper Jr., Franklin
+> > > > >> Sent: Saturday, September 08, 2012 12:50 PM
+> > > > >> To: Dmytriyenko, Denys
+> > > > >> Cc: Maupin, Chase; meta-arago@arago-project.org
+> > > > >> Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-
+> > > > arago-
+> > > > >> tisdk-connectivity: Add bluetooth stack
+> > > > >>
+> > > > >> Will me renaming these tasks result in me having to resubmit
+> > > > all
+> > > > >> the patches that are built on top of the these tasks?
+> > > > >>
+> > > > >> On Sep 8, 2012, at 12:38 PM, "Dmytriyenko, Denys"
+> > > > <denys@ti.com>
+> > > > >> wrote:
+> > > > >>
+> > > > >>> On Sat, Sep 08, 2012 at 04:01:42PM +0000, Cooper Jr.,
+> > > > Franklin
+> > > > >> wrote:
+> > > > >>>> There are quite a bit of patches that need to be renamed
+> > > > that
+> > > > >> still haven't
+> > > > >>>> been committed. I would prefer sending a single patch that
+> > > > >> renames all of
+> > > > >>>> the tasks once the patches are committed.
+> > > > >>>
+> > > > >>> I understand your position on this, but all the previous
+> > > > >> patches were
+> > > > >>> submitted to drop the toolchain part from the name - will you
+> > > > >> be able to
+> > > > >>> separate them afterwards?
+> > > > >>>
+> > > > >>> Denys
+> > > > >>>
+> > > > >>>
+> > > > >>>> On Sep 8, 2012, at 10:58 AM, "Maupin, Chase"
+> > > > >> <chase.maupin@ti.com> wrote:
+> > > > >>>>
+> > > > >>>>> Will you re-submit with new naming?
+> > > > >>>>>
+> > > > >>>>> Sincerely,
+> > > > >>>>> Chase Maupin
+> > > > >>>>> Software Applications
+> > > > >>>>> ARM MPU
+> > > > >>>>> e-mail: chase.maupin@ti.com
+> > > > >>>>> phone: (214) 567-2950
+> > > > >>>>>
+> > > > >>>>> For support:
+> > > > >>>>> Forums - http://community.ti.com/forums/
+> > > > >>>>> Wiki - http://wiki.davincidsp.com/
+> > > > >>>>>
+> > > > >>>>>
+> > > > >>>>>> -----Original Message-----
+> > > > >>>>>> From: meta-arago-bounces@arago-project.org [mailto:meta-
+> > > > >> arago-
+> > > > >>>>>> bounces@arago-project.org] On Behalf Of Franklin S. Cooper
+> > > > >> Jr
+> > > > >>>>>> Sent: Thursday, September 06, 2012 7:04 PM
+> > > > >>>>>> To: meta-arago@arago-project.org
+> > > > >>>>>> Cc: Franklin S. Cooper Jr
+> > > > >>>>>> Subject: [meta-arago] [meta-arago-distro][PATCH] task-
+> > > > arago-
+> > > > >>>>>> tisdk-connectivity: Add bluetooth stack
+> > > > >>>>>>
+> > > > >>>>>> * Add list of bluetooth stack libraries to task-arago-
+> > > > tisdk-
+> > > > >>>>>> connectivity.
+> > > > >>>>>> * This list was previously located in task-arago-tisdk-bsp
+> > > > >> and
+> > > > >>>>>> task-arago-toolchain-tisdk-bsp-target in arago.
+> > > > >>>>>>
+> > > > >>>>>> Signed-off-by: Franklin S. Cooper Jr
+> > > > <fcooper27jr@gmail.com>
+> > > > >>>>>> ---
+> > > > >>>>>> .../tasks/task-arago-tisdk-connectivity-target.bb  |    9
+> > > > >>>>>> ++++++++-
+> > > > >>>>>> .../tasks/task-arago-tisdk-connectivity.bb         |   16
+> > > > >>>>>> +++++++++++++---
+> > > > >>>>>> 2 files changed, 21 insertions(+), 4 deletions(-)
+> > > > >>>>>>
+> > > > >>>>>> diff --git a/meta-arago-distro/recipes-core/tasks/task-
+> > > > >> arago-
+> > > > >>>>>> tisdk-connectivity-target.bb b/meta-arago-distro/recipes-
+> > > > >>>>>> core/tasks/task-arago-tisdk-connectivity-target.bb
+> > > > >>>>>> index deb7b7b..a63c801 100644
+> > > > >>>>>> --- a/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > > tisdk-
+> > > > >>>>>> connectivity-target.bb
+> > > > >>>>>> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > > tisdk-
+> > > > >>>>>> connectivity-target.bb
+> > > > >>>>>> @@ -1,12 +1,19 @@
+> > > > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth sources
+> > > > in
+> > > > >>>>>> SDK"
+> > > > >>>>>> LICENSE = "MIT"
+> > > > >>>>>> LIC_FILES_CHKSUM =
+> > > > >>>>>>
+> > > > >>
+> > > > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
+> > > > >>>>>> 4de20420"
+> > > > >>>>>> -PR = "r0"
+> > > > >>>>>> +PR = "r1"
+> > > > >>>>>>
+> > > > >>>>>> inherit task
+> > > > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
+> > > > >>>>>> COMPATIBLE_MACHINE = "(am37x-evm|am180x-evm|ti33x)"
+> > > > >>>>>>
+> > > > >>>>>> +# Bluetooth development packages
+> > > > >>>>>> +BLUETOOTH_STACK = "\
+> > > > >>>>>> +    bluez4-dev \
+> > > > >>>>>> +    openobex-dev \
+> > > > >>>>>> +"
+> > > > >>>>>> +
+> > > > >>>>>> RDEPENDS_${PN} = "\
+> > > > >>>>>> +    ${BLUETOOTH_STACK} \
+> > > > >>>>>>   wpa-supplicant-dev \
+> > > > >>>>>>   "
+> > > > >>>>>> diff --git a/meta-arago-distro/recipes-core/tasks/task-
+> > > > >> arago-
+> > > > >>>>>> tisdk-connectivity.bb b/meta-arago-distro/recipes-
+> > > > >>>>>> core/tasks/task-arago-tisdk-connectivity.bb
+> > > > >>>>>> index 1ff849c..17f97d1 100644
+> > > > >>>>>> --- a/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > > tisdk-
+> > > > >>>>>> connectivity.bb
+> > > > >>>>>> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > > tisdk-
+> > > > >>>>>> connectivity.bb
+> > > > >>>>>> @@ -1,7 +1,7 @@
+> > > > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth packages
+> > > > >> into
+> > > > >>>>>> target FS"
+> > > > >>>>>> LICENSE = "MIT"
+> > > > >>>>>> LIC_FILES_CHKSUM =
+> > > > >>>>>>
+> > > > >>
+> > > > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
+> > > > >>>>>> 4de20420"
+> > > > >>>>>> -PR = "r0"
+> > > > >>>>>> +PR = "r1"
+> > > > >>>>>>
+> > > > >>>>>> inherit task
+> > > > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
+> > > > >>>>>> @@ -42,10 +42,20 @@ WLAN_COMPAT = "ti-compat-wireless-
+> > > > wl12xx
+> > > > >> \
+> > > > >>>>>>              bt-enable \
+> > > > >>>>>> "
+> > > > >>>>>>
+> > > > >>>>>> -BLUETOOTH = "bluetooth-gui"
+> > > > >>>>>> +BLUETOOTH_STACK = "\
+> > > > >>>>>> +    bluez4 \
+> > > > >>>>>> +    bluez4-agent \
+> > > > >>>>>> +    libasound-module-bluez \
+> > > > >>>>>> +    bluez-hcidump \
+> > > > >>>>>> +    openobex \
+> > > > >>>>>> +    openobex-apps \
+> > > > >>>>>> +    obexftp \
+> > > > >>>>>> +    ussp-push \
+> > > > >>>>>> +    "
+> > > > >>>>>>
+> > > > >>>>>> RDEPENDS_${PN} = "\
+> > > > >>>>>>   ${WLAN_COMMON} \
+> > > > >>>>>>   ${WLAN_COMPAT} \
+> > > > >>>>>> -    ${BLUETOOTH} \
+> > > > >>>>>> +    ${BLUETOOTH_STACK} \
+> > > > >>>>>> +    bluetooth-gui \
+> > > > >>>>>> "
+> > > > >>>>>> --
+> > > > >>>>>> 1.7.0.4
+> > > > >>>>>>
+> > > > >>>>>> _______________________________________________
+> > > > >>>>>> meta-arago mailing list
+> > > > >>>>>> meta-arago@arago-project.org
+> > > > >>>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
+> > > > arago
+> > > > >>>>> _______________________________________________
+> > > > >>>>> meta-arago mailing list
+> > > > >>>>> meta-arago@arago-project.org
+> > > > >>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
+> > > > arago
+> > > > >>>> _______________________________________________
+> > > > >>>> meta-arago mailing list
+> > > > >>>> meta-arago@arago-project.org
+> > > > >>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > > > >>>>
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
