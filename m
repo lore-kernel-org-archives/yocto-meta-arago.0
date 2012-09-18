@@ -1,24 +1,20 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 29FFD529E5
+Return-Path: <denis@denix.org>
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTP id A268C5209D
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Sep 2012 18:03:31 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8AI3T9N020905
-	for <meta-arago@arago-project.org>; Mon, 10 Sep 2012 13:03:29 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8AI3Tkf017292
-	for <meta-arago@arago-project.org>; Mon, 10 Sep 2012 13:03:29 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 10 Sep 2012 13:03:29 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id q8AI3SMJ008245;
-	Mon, 10 Sep 2012 13:03:28 -0500
-Date: Mon, 10 Sep 2012 14:03:27 -0400
+	Tue, 18 Sep 2012 18:17:20 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.115])
+	by vms173011.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MAK00AGC5FUKIJ1@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 18 Sep 2012 13:16:59 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 8942C201CA; Tue,
+	18 Sep 2012 14:16:42 -0400 (EDT)
+Date: Tue, 18 Sep 2012 14:16:42 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20120910180327.GF21288@edge>
+To: Denys Dmytriyenko <denys@ti.com>
+Message-id: <20120918181642.GA11454@denix.org>
 References: <1346976237-18449-1-git-send-email-fcooper27jr@gmail.com>
 	<7D46E86EC0A8354091174257B2FED101591DDA07@DLEE12.ent.ti.com>
 	<7F14B13F-2AE6-4F01-9612-23A1DBB11022@ti.com>
@@ -27,8 +23,9 @@ References: <1346976237-18449-1-git-send-email-fcooper27jr@gmail.com>
 	<7D46E86EC0A8354091174257B2FED101591DDF06@DLEE12.ent.ti.com>
 	<BDA53CED-8BB7-4BB4-A4AA-6341F31B1C91@ti.com>
 	<7D46E86EC0A8354091174257B2FED101591DDF84@DLEE12.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED101591DDF84@DLEE12.ent.ti.com>
+	<20120910180327.GF21288@edge>
+MIME-version: 1.0
+In-reply-to: <20120910180327.GF21288@edge>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [meta-arago-distro][PATCH] task-arago-tisdk-connectivity: Add	bluetooth stack
@@ -44,245 +41,259 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Sep 2012 18:03:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 18 Sep 2012 18:17:21 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-On Sat, Sep 08, 2012 at 03:05:48PM -0400, Maupin, Chase wrote:
-> Denys,
+On Mon, Sep 10, 2012 at 02:03:27PM -0400, Denys Dmytriyenko wrote:
+> On Sat, Sep 08, 2012 at 03:05:48PM -0400, Maupin, Chase wrote:
+> > Denys,
+> > 
+> > I'll leave this to your call for what is your preferred method.
+> > 
+> > This is making me think we should set Franklin up with his own git tree so 
+> > he can do pull requests.  What do you think?
 > 
-> I'll leave this to your call for what is your preferred method.
-> 
-> This is making me think we should set Franklin up with his own git tree so 
-> he can do pull requests.  What do you think?
+> Own git tree for pull requests is always a good idea regardless of the 
+> situation... :)
 
-Own git tree for pull requests is always a good idea regardless of the 
-situation... :)
+I believe the agreement we reached with Franklin last week was that he will 
+resubmit the patches with the new naming convention, but will ping on the ones 
+that are still good, so I don't miss anything from the queue.
 
+Franklin, please correct me if I misunderstood. Thanks.
+
+-- 
 Denys
 
 
-> > -----Original Message-----
-> > From: Cooper Jr., Franklin
-> > Sent: Saturday, September 08, 2012 1:56 PM
-> > To: Maupin, Chase
-> > Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-arago-
-> > tisdk-connectivity: Add bluetooth stack
-> > 
-> > It's the difference between sending 1 patch that renames all the
-> > recipes vs submitting 11 v2 of patches that have yet to be
-> > committed and will be affected by the new naming scheme. I prefer
-> > the one patch approach but if you both insist I can redo all the
-> > patches.
-> > 
-> > On Sep 8, 2012, at 1:18 PM, "Maupin, Chase" <chase.maupin@ti.com>
-> > wrote:
-> > 
-> > > I'm not sure I understand that question.  You would have to fix
-> > the naming no matter what.  If you have patches later in your
-> > patchset that use the old name, then yes you would need to fix
-> > them and resubmit them.  Then again, you would have to do the
-> > same thing either way.
-> > >
-> > > Sincerely,
-> > > Chase Maupin
-> > > Software Applications
-> > > ARM MPU
-> > > e-mail: chase.maupin@ti.com
-> > > phone: (214) 567-2950
-> > >
-> > > For support:
-> > > Forums - http://community.ti.com/forums/
-> > > Wiki - http://wiki.davincidsp.com/
-> > >
-> > >
-> > >> -----Original Message-----
-> > >> From: Cooper Jr., Franklin
-> > >> Sent: Saturday, September 08, 2012 12:50 PM
-> > >> To: Dmytriyenko, Denys
-> > >> Cc: Maupin, Chase; meta-arago@arago-project.org
-> > >> Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-
-> > arago-
-> > >> tisdk-connectivity: Add bluetooth stack
-> > >>
-> > >> Will me renaming these tasks result in me having to resubmit
-> > all
-> > >> the patches that are built on top of the these tasks?
-> > >>
-> > >> On Sep 8, 2012, at 12:38 PM, "Dmytriyenko, Denys"
-> > <denys@ti.com>
-> > >> wrote:
-> > >>
-> > >>> On Sat, Sep 08, 2012 at 04:01:42PM +0000, Cooper Jr.,
-> > Franklin
-> > >> wrote:
-> > >>>> There are quite a bit of patches that need to be renamed
-> > that
-> > >> still haven't
-> > >>>> been committed. I would prefer sending a single patch that
-> > >> renames all of
-> > >>>> the tasks once the patches are committed.
-> > >>>
-> > >>> I understand your position on this, but all the previous
-> > >> patches were
-> > >>> submitted to drop the toolchain part from the name - will you
-> > >> be able to
-> > >>> separate them afterwards?
-> > >>>
-> > >>> Denys
-> > >>>
-> > >>>
-> > >>>> On Sep 8, 2012, at 10:58 AM, "Maupin, Chase"
-> > >> <chase.maupin@ti.com> wrote:
-> > >>>>
-> > >>>>> Will you re-submit with new naming?
-> > >>>>>
-> > >>>>> Sincerely,
-> > >>>>> Chase Maupin
-> > >>>>> Software Applications
-> > >>>>> ARM MPU
-> > >>>>> e-mail: chase.maupin@ti.com
-> > >>>>> phone: (214) 567-2950
-> > >>>>>
-> > >>>>> For support:
-> > >>>>> Forums - http://community.ti.com/forums/
-> > >>>>> Wiki - http://wiki.davincidsp.com/
-> > >>>>>
-> > >>>>>
-> > >>>>>> -----Original Message-----
-> > >>>>>> From: meta-arago-bounces@arago-project.org [mailto:meta-
-> > >> arago-
-> > >>>>>> bounces@arago-project.org] On Behalf Of Franklin S. Cooper
-> > >> Jr
-> > >>>>>> Sent: Thursday, September 06, 2012 7:04 PM
-> > >>>>>> To: meta-arago@arago-project.org
-> > >>>>>> Cc: Franklin S. Cooper Jr
-> > >>>>>> Subject: [meta-arago] [meta-arago-distro][PATCH] task-
-> > arago-
-> > >>>>>> tisdk-connectivity: Add bluetooth stack
-> > >>>>>>
-> > >>>>>> * Add list of bluetooth stack libraries to task-arago-
-> > tisdk-
-> > >>>>>> connectivity.
-> > >>>>>> * This list was previously located in task-arago-tisdk-bsp
-> > >> and
-> > >>>>>> task-arago-toolchain-tisdk-bsp-target in arago.
-> > >>>>>>
-> > >>>>>> Signed-off-by: Franklin S. Cooper Jr
-> > <fcooper27jr@gmail.com>
-> > >>>>>> ---
-> > >>>>>> .../tasks/task-arago-tisdk-connectivity-target.bb  |    9
-> > >>>>>> ++++++++-
-> > >>>>>> .../tasks/task-arago-tisdk-connectivity.bb         |   16
-> > >>>>>> +++++++++++++---
-> > >>>>>> 2 files changed, 21 insertions(+), 4 deletions(-)
-> > >>>>>>
-> > >>>>>> diff --git a/meta-arago-distro/recipes-core/tasks/task-
-> > >> arago-
-> > >>>>>> tisdk-connectivity-target.bb b/meta-arago-distro/recipes-
-> > >>>>>> core/tasks/task-arago-tisdk-connectivity-target.bb
-> > >>>>>> index deb7b7b..a63c801 100644
-> > >>>>>> --- a/meta-arago-distro/recipes-core/tasks/task-arago-
-> > tisdk-
-> > >>>>>> connectivity-target.bb
-> > >>>>>> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-
-> > tisdk-
-> > >>>>>> connectivity-target.bb
-> > >>>>>> @@ -1,12 +1,19 @@
-> > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth sources
-> > in
-> > >>>>>> SDK"
-> > >>>>>> LICENSE = "MIT"
-> > >>>>>> LIC_FILES_CHKSUM =
-> > >>>>>>
-> > >>
-> > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
-> > >>>>>> 4de20420"
-> > >>>>>> -PR = "r0"
-> > >>>>>> +PR = "r1"
-> > >>>>>>
-> > >>>>>> inherit task
-> > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > >>>>>> COMPATIBLE_MACHINE = "(am37x-evm|am180x-evm|ti33x)"
-> > >>>>>>
-> > >>>>>> +# Bluetooth development packages
-> > >>>>>> +BLUETOOTH_STACK = "\
-> > >>>>>> +    bluez4-dev \
-> > >>>>>> +    openobex-dev \
-> > >>>>>> +"
-> > >>>>>> +
-> > >>>>>> RDEPENDS_${PN} = "\
-> > >>>>>> +    ${BLUETOOTH_STACK} \
-> > >>>>>>   wpa-supplicant-dev \
-> > >>>>>>   "
-> > >>>>>> diff --git a/meta-arago-distro/recipes-core/tasks/task-
-> > >> arago-
-> > >>>>>> tisdk-connectivity.bb b/meta-arago-distro/recipes-
-> > >>>>>> core/tasks/task-arago-tisdk-connectivity.bb
-> > >>>>>> index 1ff849c..17f97d1 100644
-> > >>>>>> --- a/meta-arago-distro/recipes-core/tasks/task-arago-
-> > tisdk-
-> > >>>>>> connectivity.bb
-> > >>>>>> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-
-> > tisdk-
-> > >>>>>> connectivity.bb
-> > >>>>>> @@ -1,7 +1,7 @@
-> > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth packages
-> > >> into
-> > >>>>>> target FS"
-> > >>>>>> LICENSE = "MIT"
-> > >>>>>> LIC_FILES_CHKSUM =
-> > >>>>>>
-> > >>
-> > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
-> > >>>>>> 4de20420"
-> > >>>>>> -PR = "r0"
-> > >>>>>> +PR = "r1"
-> > >>>>>>
-> > >>>>>> inherit task
-> > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > >>>>>> @@ -42,10 +42,20 @@ WLAN_COMPAT = "ti-compat-wireless-
-> > wl12xx
-> > >> \
-> > >>>>>>              bt-enable \
-> > >>>>>> "
-> > >>>>>>
-> > >>>>>> -BLUETOOTH = "bluetooth-gui"
-> > >>>>>> +BLUETOOTH_STACK = "\
-> > >>>>>> +    bluez4 \
-> > >>>>>> +    bluez4-agent \
-> > >>>>>> +    libasound-module-bluez \
-> > >>>>>> +    bluez-hcidump \
-> > >>>>>> +    openobex \
-> > >>>>>> +    openobex-apps \
-> > >>>>>> +    obexftp \
-> > >>>>>> +    ussp-push \
-> > >>>>>> +    "
-> > >>>>>>
-> > >>>>>> RDEPENDS_${PN} = "\
-> > >>>>>>   ${WLAN_COMMON} \
-> > >>>>>>   ${WLAN_COMPAT} \
-> > >>>>>> -    ${BLUETOOTH} \
-> > >>>>>> +    ${BLUETOOTH_STACK} \
-> > >>>>>> +    bluetooth-gui \
-> > >>>>>> "
-> > >>>>>> --
-> > >>>>>> 1.7.0.4
-> > >>>>>>
-> > >>>>>> _______________________________________________
-> > >>>>>> meta-arago mailing list
-> > >>>>>> meta-arago@arago-project.org
-> > >>>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
-> > arago
-> > >>>>> _______________________________________________
-> > >>>>> meta-arago mailing list
-> > >>>>> meta-arago@arago-project.org
-> > >>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
-> > arago
-> > >>>> _______________________________________________
-> > >>>> meta-arago mailing list
-> > >>>> meta-arago@arago-project.org
-> > >>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >>>>
+
+> > > -----Original Message-----
+> > > From: Cooper Jr., Franklin
+> > > Sent: Saturday, September 08, 2012 1:56 PM
+> > > To: Maupin, Chase
+> > > Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
+> > > Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-arago-
+> > > tisdk-connectivity: Add bluetooth stack
+> > > 
+> > > It's the difference between sending 1 patch that renames all the
+> > > recipes vs submitting 11 v2 of patches that have yet to be
+> > > committed and will be affected by the new naming scheme. I prefer
+> > > the one patch approach but if you both insist I can redo all the
+> > > patches.
+> > > 
+> > > On Sep 8, 2012, at 1:18 PM, "Maupin, Chase" <chase.maupin@ti.com>
+> > > wrote:
+> > > 
+> > > > I'm not sure I understand that question.  You would have to fix
+> > > the naming no matter what.  If you have patches later in your
+> > > patchset that use the old name, then yes you would need to fix
+> > > them and resubmit them.  Then again, you would have to do the
+> > > same thing either way.
+> > > >
+> > > > Sincerely,
+> > > > Chase Maupin
+> > > > Software Applications
+> > > > ARM MPU
+> > > > e-mail: chase.maupin@ti.com
+> > > > phone: (214) 567-2950
+> > > >
+> > > > For support:
+> > > > Forums - http://community.ti.com/forums/
+> > > > Wiki - http://wiki.davincidsp.com/
+> > > >
+> > > >
+> > > >> -----Original Message-----
+> > > >> From: Cooper Jr., Franklin
+> > > >> Sent: Saturday, September 08, 2012 12:50 PM
+> > > >> To: Dmytriyenko, Denys
+> > > >> Cc: Maupin, Chase; meta-arago@arago-project.org
+> > > >> Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-
+> > > arago-
+> > > >> tisdk-connectivity: Add bluetooth stack
+> > > >>
+> > > >> Will me renaming these tasks result in me having to resubmit
+> > > all
+> > > >> the patches that are built on top of the these tasks?
+> > > >>
+> > > >> On Sep 8, 2012, at 12:38 PM, "Dmytriyenko, Denys"
+> > > <denys@ti.com>
+> > > >> wrote:
+> > > >>
+> > > >>> On Sat, Sep 08, 2012 at 04:01:42PM +0000, Cooper Jr.,
+> > > Franklin
+> > > >> wrote:
+> > > >>>> There are quite a bit of patches that need to be renamed
+> > > that
+> > > >> still haven't
+> > > >>>> been committed. I would prefer sending a single patch that
+> > > >> renames all of
+> > > >>>> the tasks once the patches are committed.
+> > > >>>
+> > > >>> I understand your position on this, but all the previous
+> > > >> patches were
+> > > >>> submitted to drop the toolchain part from the name - will you
+> > > >> be able to
+> > > >>> separate them afterwards?
+> > > >>>
+> > > >>> Denys
+> > > >>>
+> > > >>>
+> > > >>>> On Sep 8, 2012, at 10:58 AM, "Maupin, Chase"
+> > > >> <chase.maupin@ti.com> wrote:
+> > > >>>>
+> > > >>>>> Will you re-submit with new naming?
+> > > >>>>>
+> > > >>>>> Sincerely,
+> > > >>>>> Chase Maupin
+> > > >>>>> Software Applications
+> > > >>>>> ARM MPU
+> > > >>>>> e-mail: chase.maupin@ti.com
+> > > >>>>> phone: (214) 567-2950
+> > > >>>>>
+> > > >>>>> For support:
+> > > >>>>> Forums - http://community.ti.com/forums/
+> > > >>>>> Wiki - http://wiki.davincidsp.com/
+> > > >>>>>
+> > > >>>>>
+> > > >>>>>> -----Original Message-----
+> > > >>>>>> From: meta-arago-bounces@arago-project.org [mailto:meta-
+> > > >> arago-
+> > > >>>>>> bounces@arago-project.org] On Behalf Of Franklin S. Cooper
+> > > >> Jr
+> > > >>>>>> Sent: Thursday, September 06, 2012 7:04 PM
+> > > >>>>>> To: meta-arago@arago-project.org
+> > > >>>>>> Cc: Franklin S. Cooper Jr
+> > > >>>>>> Subject: [meta-arago] [meta-arago-distro][PATCH] task-
+> > > arago-
+> > > >>>>>> tisdk-connectivity: Add bluetooth stack
+> > > >>>>>>
+> > > >>>>>> * Add list of bluetooth stack libraries to task-arago-
+> > > tisdk-
+> > > >>>>>> connectivity.
+> > > >>>>>> * This list was previously located in task-arago-tisdk-bsp
+> > > >> and
+> > > >>>>>> task-arago-toolchain-tisdk-bsp-target in arago.
+> > > >>>>>>
+> > > >>>>>> Signed-off-by: Franklin S. Cooper Jr
+> > > <fcooper27jr@gmail.com>
+> > > >>>>>> ---
+> > > >>>>>> .../tasks/task-arago-tisdk-connectivity-target.bb  |    9
+> > > >>>>>> ++++++++-
+> > > >>>>>> .../tasks/task-arago-tisdk-connectivity.bb         |   16
+> > > >>>>>> +++++++++++++---
+> > > >>>>>> 2 files changed, 21 insertions(+), 4 deletions(-)
+> > > >>>>>>
+> > > >>>>>> diff --git a/meta-arago-distro/recipes-core/tasks/task-
+> > > >> arago-
+> > > >>>>>> tisdk-connectivity-target.bb b/meta-arago-distro/recipes-
+> > > >>>>>> core/tasks/task-arago-tisdk-connectivity-target.bb
+> > > >>>>>> index deb7b7b..a63c801 100644
+> > > >>>>>> --- a/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > tisdk-
+> > > >>>>>> connectivity-target.bb
+> > > >>>>>> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > tisdk-
+> > > >>>>>> connectivity-target.bb
+> > > >>>>>> @@ -1,12 +1,19 @@
+> > > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth sources
+> > > in
+> > > >>>>>> SDK"
+> > > >>>>>> LICENSE = "MIT"
+> > > >>>>>> LIC_FILES_CHKSUM =
+> > > >>>>>>
+> > > >>
+> > > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
+> > > >>>>>> 4de20420"
+> > > >>>>>> -PR = "r0"
+> > > >>>>>> +PR = "r1"
+> > > >>>>>>
+> > > >>>>>> inherit task
+> > > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
+> > > >>>>>> COMPATIBLE_MACHINE = "(am37x-evm|am180x-evm|ti33x)"
+> > > >>>>>>
+> > > >>>>>> +# Bluetooth development packages
+> > > >>>>>> +BLUETOOTH_STACK = "\
+> > > >>>>>> +    bluez4-dev \
+> > > >>>>>> +    openobex-dev \
+> > > >>>>>> +"
+> > > >>>>>> +
+> > > >>>>>> RDEPENDS_${PN} = "\
+> > > >>>>>> +    ${BLUETOOTH_STACK} \
+> > > >>>>>>   wpa-supplicant-dev \
+> > > >>>>>>   "
+> > > >>>>>> diff --git a/meta-arago-distro/recipes-core/tasks/task-
+> > > >> arago-
+> > > >>>>>> tisdk-connectivity.bb b/meta-arago-distro/recipes-
+> > > >>>>>> core/tasks/task-arago-tisdk-connectivity.bb
+> > > >>>>>> index 1ff849c..17f97d1 100644
+> > > >>>>>> --- a/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > tisdk-
+> > > >>>>>> connectivity.bb
+> > > >>>>>> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-
+> > > tisdk-
+> > > >>>>>> connectivity.bb
+> > > >>>>>> @@ -1,7 +1,7 @@
+> > > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth packages
+> > > >> into
+> > > >>>>>> target FS"
+> > > >>>>>> LICENSE = "MIT"
+> > > >>>>>> LIC_FILES_CHKSUM =
+> > > >>>>>>
+> > > >>
+> > > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
+> > > >>>>>> 4de20420"
+> > > >>>>>> -PR = "r0"
+> > > >>>>>> +PR = "r1"
+> > > >>>>>>
+> > > >>>>>> inherit task
+> > > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
+> > > >>>>>> @@ -42,10 +42,20 @@ WLAN_COMPAT = "ti-compat-wireless-
+> > > wl12xx
+> > > >> \
+> > > >>>>>>              bt-enable \
+> > > >>>>>> "
+> > > >>>>>>
+> > > >>>>>> -BLUETOOTH = "bluetooth-gui"
+> > > >>>>>> +BLUETOOTH_STACK = "\
+> > > >>>>>> +    bluez4 \
+> > > >>>>>> +    bluez4-agent \
+> > > >>>>>> +    libasound-module-bluez \
+> > > >>>>>> +    bluez-hcidump \
+> > > >>>>>> +    openobex \
+> > > >>>>>> +    openobex-apps \
+> > > >>>>>> +    obexftp \
+> > > >>>>>> +    ussp-push \
+> > > >>>>>> +    "
+> > > >>>>>>
+> > > >>>>>> RDEPENDS_${PN} = "\
+> > > >>>>>>   ${WLAN_COMMON} \
+> > > >>>>>>   ${WLAN_COMPAT} \
+> > > >>>>>> -    ${BLUETOOTH} \
+> > > >>>>>> +    ${BLUETOOTH_STACK} \
+> > > >>>>>> +    bluetooth-gui \
+> > > >>>>>> "
+> > > >>>>>> --
+> > > >>>>>> 1.7.0.4
+> > > >>>>>>
+> > > >>>>>> _______________________________________________
+> > > >>>>>> meta-arago mailing list
+> > > >>>>>> meta-arago@arago-project.org
+> > > >>>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
+> > > arago
+> > > >>>>> _______________________________________________
+> > > >>>>> meta-arago mailing list
+> > > >>>>> meta-arago@arago-project.org
+> > > >>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
+> > > arago
+> > > >>>> _______________________________________________
+> > > >>>> meta-arago mailing list
+> > > >>>> meta-arago@arago-project.org
+> > > >>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > > >>>>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
