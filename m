@@ -1,20 +1,24 @@
-Return-Path: <denis@denix.org>
-Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
-	[206.46.173.11])
-	by arago-project.org (Postfix) with ESMTP id A268C5209D
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id AE5AC5209D
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Sep 2012 18:17:20 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173011.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MAK00AGC5FUKIJ1@vms173011.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 18 Sep 2012 13:16:59 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 8942C201CA; Tue,
-	18 Sep 2012 14:16:42 -0400 (EDT)
-Date: Tue, 18 Sep 2012 14:16:42 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Message-id: <20120918181642.GA11454@denix.org>
+	Tue, 18 Sep 2012 18:24:25 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8IIOOZJ020315
+	for <meta-arago@arago-project.org>; Tue, 18 Sep 2012 13:24:25 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8IIOOhZ028513
+	for <meta-arago@arago-project.org>; Tue, 18 Sep 2012 13:24:24 -0500
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Tue, 18 Sep 2012 13:24:24 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [meta-arago-distro][PATCH]
+	task-arago-tisdk-connectivity: Add	bluetooth stack
+Thread-Index: AQHNjejQcDbqPF8MGUmo2f/IfDA4YJeAuOYFgABbqAD//7a1VYAAVqYAgAMTPoCADJZaAP//rhJw
+Date: Tue, 18 Sep 2012 18:24:23 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C2D74C9@DFLE09.ent.ti.com>
 References: <1346976237-18449-1-git-send-email-fcooper27jr@gmail.com>
 	<7D46E86EC0A8354091174257B2FED101591DDA07@DLEE12.ent.ti.com>
 	<7F14B13F-2AE6-4F01-9612-23A1DBB11022@ti.com>
@@ -23,10 +27,13 @@ References: <1346976237-18449-1-git-send-email-fcooper27jr@gmail.com>
 	<7D46E86EC0A8354091174257B2FED101591DDF06@DLEE12.ent.ti.com>
 	<BDA53CED-8BB7-4BB4-A4AA-6341F31B1C91@ti.com>
 	<7D46E86EC0A8354091174257B2FED101591DDF84@DLEE12.ent.ti.com>
-	<20120910180327.GF21288@edge>
-MIME-version: 1.0
-In-reply-to: <20120910180327.GF21288@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+	<20120910180327.GF21288@edge> <20120918181642.GA11454@denix.org>
+In-Reply-To: <20120918181642.GA11454@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
+MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [meta-arago-distro][PATCH] task-arago-tisdk-connectivity: Add	bluetooth stack
 X-BeenThere: meta-arago@arago-project.org
@@ -41,29 +48,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2012 18:17:21 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Tue, 18 Sep 2012 18:24:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Your right. Will be starting that process fairly soon.
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Dmytriyenko, Denys
+Sent: Tuesday, September 18, 2012 1:17 PM
+To: Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-arago-tisdk-conne=
+ctivity: Add bluetooth stack
 
 On Mon, Sep 10, 2012 at 02:03:27PM -0400, Denys Dmytriyenko wrote:
 > On Sat, Sep 08, 2012 at 03:05:48PM -0400, Maupin, Chase wrote:
 > > Denys,
-> > 
+> >=20
 > > I'll leave this to your call for what is your preferred method.
-> > 
-> > This is making me think we should set Franklin up with his own git tree so 
-> > he can do pull requests.  What do you think?
-> 
-> Own git tree for pull requests is always a good idea regardless of the 
+> >=20
+> > This is making me think we should set Franklin up with his own git=20
+> > tree so he can do pull requests.  What do you think?
+>=20
+> Own git tree for pull requests is always a good idea regardless of the=20
 > situation... :)
 
-I believe the agreement we reached with Franklin last week was that he will 
-resubmit the patches with the new naming convention, but will ping on the ones 
-that are still good, so I don't miss anything from the queue.
+I believe the agreement we reached with Franklin last week was that he will=
+ resubmit the patches with the new naming convention, but will ping on the =
+ones that are still good, so I don't miss anything from the queue.
 
 Franklin, please correct me if I misunderstood. Thanks.
 
--- 
+--
 Denys
 
 
@@ -75,16 +94,16 @@ Denys
 > > > Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
 > > > Subject: Re: [meta-arago] [meta-arago-distro][PATCH] task-arago-
 > > > tisdk-connectivity: Add bluetooth stack
-> > > 
+> > >=20
 > > > It's the difference between sending 1 patch that renames all the
 > > > recipes vs submitting 11 v2 of patches that have yet to be
 > > > committed and will be affected by the new naming scheme. I prefer
 > > > the one patch approach but if you both insist I can redo all the
 > > > patches.
-> > > 
+> > >=20
 > > > On Sep 8, 2012, at 1:18 PM, "Maupin, Chase" <chase.maupin@ti.com>
 > > > wrote:
-> > > 
+> > >=20
 > > > > I'm not sure I understand that question.  You would have to fix
 > > > the naming no matter what.  If you have patches later in your
 > > > patchset that use the old name, then yes you would need to fix
@@ -196,29 +215,29 @@ Denys
 > > > tisdk-
 > > > >>>>>> connectivity-target.bb
 > > > >>>>>> @@ -1,12 +1,19 @@
-> > > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth sources
+> > > >>>>>> DESCRIPTION =3D "Task to install wlan and bluetooth sources
 > > > in
 > > > >>>>>> SDK"
-> > > >>>>>> LICENSE = "MIT"
-> > > >>>>>> LIC_FILES_CHKSUM =
+> > > >>>>>> LICENSE =3D "MIT"
+> > > >>>>>> LIC_FILES_CHKSUM =3D
 > > > >>>>>>
 > > > >>
-> > > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
+> > > "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
 > > > >>>>>> 4de20420"
-> > > >>>>>> -PR = "r0"
-> > > >>>>>> +PR = "r1"
+> > > >>>>>> -PR =3D "r0"
+> > > >>>>>> +PR =3D "r1"
 > > > >>>>>>
 > > > >>>>>> inherit task
-> > > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > > >>>>>> COMPATIBLE_MACHINE = "(am37x-evm|am180x-evm|ti33x)"
+> > > >>>>>> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> > > >>>>>> COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
 > > > >>>>>>
 > > > >>>>>> +# Bluetooth development packages
-> > > >>>>>> +BLUETOOTH_STACK = "\
+> > > >>>>>> +BLUETOOTH_STACK =3D "\
 > > > >>>>>> +    bluez4-dev \
 > > > >>>>>> +    openobex-dev \
 > > > >>>>>> +"
 > > > >>>>>> +
-> > > >>>>>> RDEPENDS_${PN} = "\
+> > > >>>>>> RDEPENDS_${PN} =3D "\
 > > > >>>>>> +    ${BLUETOOTH_STACK} \
 > > > >>>>>>   wpa-supplicant-dev \
 > > > >>>>>>   "
@@ -234,28 +253,28 @@ Denys
 > > > tisdk-
 > > > >>>>>> connectivity.bb
 > > > >>>>>> @@ -1,7 +1,7 @@
-> > > >>>>>> DESCRIPTION = "Task to install wlan and bluetooth packages
+> > > >>>>>> DESCRIPTION =3D "Task to install wlan and bluetooth packages
 > > > >> into
 > > > >>>>>> target FS"
-> > > >>>>>> LICENSE = "MIT"
-> > > >>>>>> LIC_FILES_CHKSUM =
+> > > >>>>>> LICENSE =3D "MIT"
+> > > >>>>>> LIC_FILES_CHKSUM =3D
 > > > >>>>>>
 > > > >>
-> > > "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b
+> > > "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
 > > > >>>>>> 4de20420"
-> > > >>>>>> -PR = "r0"
-> > > >>>>>> +PR = "r1"
+> > > >>>>>> -PR =3D "r0"
+> > > >>>>>> +PR =3D "r1"
 > > > >>>>>>
 > > > >>>>>> inherit task
-> > > >>>>>> PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > > >>>>>> @@ -42,10 +42,20 @@ WLAN_COMPAT = "ti-compat-wireless-
+> > > >>>>>> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> > > >>>>>> @@ -42,10 +42,20 @@ WLAN_COMPAT =3D "ti-compat-wireless-
 > > > wl12xx
 > > > >> \
 > > > >>>>>>              bt-enable \
 > > > >>>>>> "
 > > > >>>>>>
-> > > >>>>>> -BLUETOOTH = "bluetooth-gui"
-> > > >>>>>> +BLUETOOTH_STACK = "\
+> > > >>>>>> -BLUETOOTH =3D "bluetooth-gui"
+> > > >>>>>> +BLUETOOTH_STACK =3D "\
 > > > >>>>>> +    bluez4 \
 > > > >>>>>> +    bluez4-agent \
 > > > >>>>>> +    libasound-module-bluez \
@@ -266,7 +285,7 @@ Denys
 > > > >>>>>> +    ussp-push \
 > > > >>>>>> +    "
 > > > >>>>>>
-> > > >>>>>> RDEPENDS_${PN} = "\
+> > > >>>>>> RDEPENDS_${PN} =3D "\
 > > > >>>>>>   ${WLAN_COMMON} \
 > > > >>>>>>   ${WLAN_COMPAT} \
 > > > >>>>>> -    ${BLUETOOTH} \
@@ -295,5 +314,9 @@ Denys
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+>=20
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
