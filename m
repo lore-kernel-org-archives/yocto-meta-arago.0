@@ -1,33 +1,33 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 72BDE529A1
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 98CF1529A1
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Sep 2012 05:18:58 +0000 (UTC)
-Received: by obbeh20 with SMTP id eh20so654116obb.38
-	for <meta-arago@arago-project.org>;
-	Tue, 18 Sep 2012 22:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=4GGFkvynd8NFKEYyC/98GmK3uLnt1Wy8BbsL1KMCHd4=;
-	b=FE0yVMFiDBbprTr9srxrZkZ6QlS4l4TCGRJzEbUwTDzzEECGnf3ZSaRsYI3VIXUJDr
-	FU3X9ZNeUx/hk0JyaNTd2kroGCITs49bHoESy7ELOnAwCJi7Mn96gwtrxXxX7gkelMxH
-	IwFSx2snMDRkjmzBxKfYY8juUHwYP3HtcExhWJIss90u1UeFXd9r0mpZttcXKNcE+qtR
-	zEjzU+B4hSaZiqJgb7f1iDzDuMpe0NB8VPOK1SFSkz5ITYHD2S/7qVG4Oz2tUZHwKcgv
-	7Fd8yyYO4CnES1ii1oi4EM7sikHv9Ob5h8omyB/t5YR4xb8gFk1mv1my4LDXyQGiyunT
-	6LJA==
-Received: by 10.182.124.102 with SMTP id mh6mr2124561obb.48.1348031937868;
-	Tue, 18 Sep 2012 22:18:57 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id kc5sm1707299obb.21.2012.09.18.22.18.56
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 18 Sep 2012 22:18:57 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Wed, 19 Sep 2012 00:41:19 -0500
-Message-Id: <1348033279-2846-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Subject: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port task-arago-tisdk-addons-sdk-host from arago
+	Wed, 19 Sep 2012 05:23:20 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8J5NJ5D012286;
+	Wed, 19 Sep 2012 00:23:19 -0500
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8J5NJZR010077;
+	Wed, 19 Sep 2012 00:23:19 -0500
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
+	14.01.0323.003; Wed, 19 Sep 2012 00:23:19 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port
+	task-arago-tisdk-addons-sdk-host from arago
+Thread-Index: AQHNliZFVrbhDOSkDkSw8oYbPL19/5eRIE0A
+Date: Wed, 19 Sep 2012 05:23:18 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C2D815B@DFLE09.ent.ti.com>
+References: <1348033279-2846-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1348033279-2846-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
+MIME-Version: 1.0
+Subject: Re: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port task-arago-tisdk-addons-sdk-host from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,7 +40,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 05:18:58 -0000
+X-List-Received-Date: Wed, 19 Sep 2012 05:23:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Finally I sent the patch for this recipe correctly....=20
+
+I am using the format task-arago-tisdk-xxxx and task-arago-tisdk-xxxx-sdk-x=
+xx for all my tasks. I was originally going to leave out the tisdk part but=
+ Chase felt it was better to leave it in. Once this patch is commited and I=
+ know that everyone is ok with this new naming convention I will go ahead a=
+nd slowly submit the rest of my task related patches.
+
+-----Original Message-----
+From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]=20
+Sent: Wednesday, September 19, 2012 12:41 AM
+To: meta-arago@arago-project.org
+Cc: Cooper Jr., Franklin
+Subject: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port task-a=
+rago-tisdk-addons-sdk-host from arago
 
 From: Franklin S Cooper Jr <fcooper@ti.com>
 
@@ -57,53 +76,62 @@ Version 3 addresses the following issues:
  Using new naming convention.
  Update commit message to reflect naming convention changes.
 
- .../tasks/task-arago-tisdk-addons-sdk-host.bb      |   21 ++++++++++++++++++++
- .../recipes-core/tasks/task-arago-tisdk-addons.bb  |   19 +++++++++++------
- 2 files changed, 33 insertions(+), 7 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-host.bb
+ .../tasks/task-arago-tisdk-addons-sdk-host.bb      |   21 ++++++++++++++++=
+++++
+ .../recipes-core/tasks/task-arago-tisdk-addons.bb  |   19 +++++++++++-----=
+-
+ 2 files changed, 33 insertions(+), 7 deletions(-)  create mode 100644 meta=
+-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-host.bb
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-host.bb
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-s=
+dk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-s=
+dk-host.bb
 new file mode 100644
 index 0000000..3856197
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-h
++++ ost.bb
 @@ -0,0 +1,21 @@
-+DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
++DESCRIPTION =3D "Task to install sources for additional utilities/demos fo=
+r SDKs"
++LICENSE =3D "MIT"
++LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb7=
+88c80a0384361b4de20420"
++PR =3D "r0"
 +
 +inherit task
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
++PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 +
-+UTILS = " \
++UTILS =3D " \
 +    am-sysinfo-src \
 +    arm-benchmarks-src \
 +"
 +
-+# Add pru and profibus sources for omapl138 devices
-+UTILS_append_am180x-evm = " \
++# Add pru and profibus sources for omapl138 devices=20
++UTILS_append_am180x-evm =3D " \
 +    ti-pru-sw-examples-src \
 +"
 +
-+RDEPENDS_${PN} = "\
++RDEPENDS_${PN} =3D "\
 +    ${UTILS} \
 +"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.b=
+b b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
 index 789700d..d8eec2b 100644
 --- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
 +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
 @@ -1,22 +1,27 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
--PR = "r0"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r1"
- 
+ DESCRIPTION =3D "Task to install additional utilities/demos for SDKs"
+-PR =3D "r0"
+ LICENSE =3D "MIT"
+ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb7=
+88c80a0384361b4de20420"
++PR =3D "r1"
+=20
  inherit task
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- UTILS = " \
+ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+=20
+ UTILS =3D " \
 -    matrix-gui-settings-demos \
 -    matrix-gui-armbenchmarks-demos \
 +    am-sysinfo \
@@ -119,16 +147,16 @@ index 789700d..d8eec2b 100644
 +    dropbear \
 +    openssh-sftp-server \
 +"
- 
- # Add PRU examples for am180x-evm devices
--# UTILS_append_am180x-evm = " ti-pru-sw-examples"
-+UTILS_append_am180x-evm = " ti-pru-sw-examples"
- 
- RDEPENDS_${PN} = "\
+=20
+ # Add PRU examples for am180x-evm devices -# UTILS_append_am180x-evm =3D "=
+ ti-pru-sw-examples"
++UTILS_append_am180x-evm =3D " ti-pru-sw-examples"
+=20
+ RDEPENDS_${PN} =3D "\
      ${UTILS} \
 -    "
 +"
--- 
+--
 1.7.0.4
 
 
