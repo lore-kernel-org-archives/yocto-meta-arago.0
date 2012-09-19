@@ -1,33 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 98CF1529A1
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id E863B529CF
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Sep 2012 05:23:20 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8J5NJ5D012286;
-	Wed, 19 Sep 2012 00:23:19 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8J5NJZR010077;
-	Wed, 19 Sep 2012 00:23:19 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Wed, 19 Sep 2012 00:23:19 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port
-	task-arago-tisdk-addons-sdk-host from arago
-Thread-Index: AQHNliZFVrbhDOSkDkSw8oYbPL19/5eRIE0A
-Date: Wed, 19 Sep 2012 05:23:18 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C2D815B@DFLE09.ent.ti.com>
-References: <1348033279-2846-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1348033279-2846-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
-MIME-Version: 1.0
-Subject: Re: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port task-arago-tisdk-addons-sdk-host from arago
+	Wed, 19 Sep 2012 15:28:33 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so1121868obb.38
+	for <meta-arago@arago-project.org>;
+	Wed, 19 Sep 2012 08:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=OQ7gVmpA8tJkLJrrxTMuUH2GMeVyW/jo+/OIFlai2JU=;
+	b=tnAVrSK73s2zg2GdePP4tN/VIQ8qvXkpa6ewOIbR0KNkDoNYwchlSvpQCNBRIqQUaH
+	AYsKK8Jx2Ah8ttOM9/gxmMDxJaFP2n/WT6LCLaHp1IODSdCa3vP9CEimCx5PVo1URRLP
+	YGATJkL6cFbDMH4SQm8XNv6JtLKmznPD/HibHMcc7RVYxvDCGbtTKgmpvnugMscnpXnZ
+	Lq94n7HpfoumvHGz+XoJ58x4dkYFRWvn6d148oRaADjgHPIvCQXW/j8+RFfQ/hL0gluE
+	MzOX0+G8VlGh5TpO0rqRbOJrVLTkJJhCs7uQBmS36u6VWvXFB4ardFBoqykkqxKa0gol
+	xa1Q==
+Received: by 10.60.11.104 with SMTP id p8mr3211615oeb.133.1348068512347;
+	Wed, 19 Sep 2012 08:28:32 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id y10sm2246526oed.12.2012.09.19.08.28.28
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 19 Sep 2012 08:28:30 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Wed, 19 Sep 2012 10:50:58 -0500
+Message-Id: <1348069858-29530-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [meta-arago-extras][PATCH v3] pinmux-utility: Add pinmux utility
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,123 +40,106 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 05:23:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 19 Sep 2012 15:28:34 -0000
 
-Finally I sent the patch for this recipe correctly....=20
+* Add Windows base pinmux utility
+* Port pinmux-utility recipe from arago.
+* The current recipe pulls in a zip file that doesn't contain
+  license information.
+* Create a LICENSE file that contains the text from the license
+  agreement screen that is displayed when installing this software.
 
-I am using the format task-arago-tisdk-xxxx and task-arago-tisdk-xxxx-sdk-x=
-xx for all my tasks. I was originally going to leave out the tisdk part but=
- Chase felt it was better to leave it in. Once this patch is commited and I=
- know that everyone is ok with this new naming convention I will go ahead a=
-nd slowly submit the rest of my task related patches.
-
------Original Message-----
-From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]=20
-Sent: Wednesday, September 19, 2012 12:41 AM
-To: meta-arago@arago-project.org
-Cc: Cooper Jr., Franklin
-Subject: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port task-a=
-rago-tisdk-addons-sdk-host from arago
-
-From: Franklin S Cooper Jr <fcooper@ti.com>
-
-* This is a initial port of task-arago-tisdk-addons-sdk-host from arago to
-  meta-arago. In arago, this task was originally called
-  task-arago-toolchain-tisdk-addons-host.
-* Remove references to Matrix applications since the new Matrix task should
-  handle Matrix related applications
-* Add additional recipes to this task.
-
-Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 Version 3 addresses the following issues:
- Using new naming convention.
- Update commit message to reflect naming convention changes.
+Add LICENSE file in this commit instead of in a seperate commit.
+Typos in commit message.
+Adding information on what is different within this version of the
+commit.
 
- .../tasks/task-arago-tisdk-addons-sdk-host.bb      |   21 ++++++++++++++++=
-++++
- .../recipes-core/tasks/task-arago-tisdk-addons.bb  |   19 +++++++++++-----=
--
- 2 files changed, 33 insertions(+), 7 deletions(-)  create mode 100644 meta=
--arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-host.bb
+ .../pinmux-utility/pinmux-utility/LICENSE          |   30 +++++++++++++++++
+ .../pinmux-utility/pinmux-utility_2.3.1.0.bb       |   34 ++++++++++++++++++++
+ 2 files changed, 64 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility/LICENSE
+ create mode 100644 meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-s=
-dk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-s=
-dk-host.bb
+diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility/LICENSE b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility/LICENSE
 new file mode 100644
-index 0000000..3856197
+index 0000000..32f2b0a
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons-sdk-h
-+++ ost.bb
-@@ -0,0 +1,21 @@
-+DESCRIPTION =3D "Task to install sources for additional utilities/demos fo=
-r SDKs"
-+LICENSE =3D "MIT"
-+LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb7=
-88c80a0384361b4de20420"
-+PR =3D "r0"
++++ b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility/LICENSE
+@@ -0,0 +1,30 @@
++This distribution contains contributions or derivatives under copyright
++as follows:
++Copyright (c) 2010, Texas Instruments Incorporated
++All rights reserved.
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions are
++met:
++- Redistributions of source code must retain the above copyright notice,
++  this list of conditions and the following disclaimer.
++- Redistributions in binary form must reproduce the above copyright
++  notice, this list of conditions and the following disclaimer in the
++  documentation and/or other materials provided with the distribution.
++- Neither the name of Texas Instruments nor the names of its
++  contributors may be used to endorse or promote products derived
++  from this software without specific prior written permission.
++THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS
++AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
++WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
++PARTICULAR PURPOSE ARE DISCLAIMED.
++IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS
++BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
++SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++POSSIBILITY OF SUCH DAMAGE.
+diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
+new file mode 100644
+index 0000000..6cd5b0c
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
+@@ -0,0 +1,34 @@
++DESCRIPTION = "Texas Instruments Pinmux Utility"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=2b328fcf0477d688d8b85f7310f9e6b9"
++COMPATIBLE_MACHINE = "am335x-evm|am37x-evm|am3517-evm|beagleboard"
 +
-+inherit task
-+PACKAGE_ARCH =3D "${MACHINE_ARCH}"
++PR = "r0"
 +
-+UTILS =3D " \
-+    am-sysinfo-src \
-+    arm-benchmarks-src \
-+"
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxUtility_v2_03_01_00.zip;name=base;subdir=${P}"
 +
-+# Add pru and profibus sources for omapl138 devices=20
-+UTILS_append_am180x-evm =3D " \
-+    ti-pru-sw-examples-src \
-+"
++# Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
++# from the License Agreement screen when installing this application.
++SRC_URI += "file://LICENSE"
 +
-+RDEPENDS_${PN} =3D "\
-+    ${UTILS} \
-+"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.b=
-b b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
-index 789700d..d8eec2b 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-addons.bb
-@@ -1,22 +1,27 @@
- DESCRIPTION =3D "Task to install additional utilities/demos for SDKs"
--PR =3D "r0"
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb7=
-88c80a0384361b4de20420"
-+PR =3D "r1"
-=20
- inherit task
- PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-=20
- UTILS =3D " \
--    matrix-gui-settings-demos \
--    matrix-gui-armbenchmarks-demos \
-+    am-sysinfo \
-+    dt \
-     task-arago-test \
-     gdbserver \
--    matrix-gui-oprofile-demos \
--    "
-+    oprofile \
-+    nbench-byte \
-+    trace-cmd \
-+    arm-benchmarks \
-+    dropbear \
-+    openssh-sftp-server \
-+"
-=20
- # Add PRU examples for am180x-evm devices -# UTILS_append_am180x-evm =3D "=
- ti-pru-sw-examples"
-+UTILS_append_am180x-evm =3D " ti-pru-sw-examples"
-=20
- RDEPENDS_${PN} =3D "\
-     ${UTILS} \
--    "
-+"
---
++SRC_URI[base.md5sum] = "31f28b06f72c042e5400fc53b4a29c0e"
++SRC_URI[base.sha256sum] = "2b0de3592c5f4b803a207d092dba227d10e1af65e0d4f06e1d8d23f317a452f9"
++
++S = "${WORKDIR}/${P}"
++
++do_unpack_extra() {
++    mv ${WORKDIR}/LICENSE ${WORKDIR}/${P}
++}
++
++addtask unpack_extra after do_unpack before do_patch
++
++installdir = "host-tools/pinmux_utils/windows"
++
++do_install() {
++    install -d ${D}/${installdir}
++    install ${S}/Pin_Mux_Utility.msi ${D}/${installdir}
++    install ${S}/setup.exe ${D}/${installdir}
++    install ${S}/Release_Notes.txt ${D}/${installdir}
++}
++
++FILES_${PN} += "${installdir}/*"
+-- 
 1.7.0.4
 
 
