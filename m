@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 04E8D529A1
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 72BDE529A1
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Sep 2012 05:17:30 +0000 (UTC)
-Received: by oagl20 with SMTP id l20so635754oag.38
+	Wed, 19 Sep 2012 05:18:58 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so654116obb.38
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Sep 2012 22:17:30 -0700 (PDT)
+	Tue, 18 Sep 2012 22:18:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
 	bh=4GGFkvynd8NFKEYyC/98GmK3uLnt1Wy8BbsL1KMCHd4=;
-	b=yeMZsl5WG5LZe1OFTb3AdUgx1W3tVf8PwOVj2ha86QPP8f8kuaxXQkn+ZpCEHvHGb1
-	gS7GrgobORqIuzDtBfh+byWVjScHddlFLT/UKHzEljLMP/UhBPe5jJZI9aOwaDQUQX5L
-	HT64K0gR6V5QJKHeG3tMSUEismY8DXZ/O5LCzuLUS3JTCmQkPKH/GvUiOUb6sP9nLJs/
-	bAbYwIAHJVcg1QezqBfu16YufwS1ipHvx33PyoFaajC7AIwXyvBpIX4ailqMlEBXqwIw
-	1MFdwuTlBNjLVgsC0EdyynIi+DoU3NIfSjwGkUSeHTGYfSGa8OvCTeFDrxXtXg3fN03J
-	8HOw==
-Received: by 10.182.75.33 with SMTP id z1mr2271338obv.9.1348031850431;
-	Tue, 18 Sep 2012 22:17:30 -0700 (PDT)
+	b=FE0yVMFiDBbprTr9srxrZkZ6QlS4l4TCGRJzEbUwTDzzEECGnf3ZSaRsYI3VIXUJDr
+	FU3X9ZNeUx/hk0JyaNTd2kroGCITs49bHoESy7ELOnAwCJi7Mn96gwtrxXxX7gkelMxH
+	IwFSx2snMDRkjmzBxKfYY8juUHwYP3HtcExhWJIss90u1UeFXd9r0mpZttcXKNcE+qtR
+	zEjzU+B4hSaZiqJgb7f1iDzDuMpe0NB8VPOK1SFSkz5ITYHD2S/7qVG4Oz2tUZHwKcgv
+	7Fd8yyYO4CnES1ii1oi4EM7sikHv9Ob5h8omyB/t5YR4xb8gFk1mv1my4LDXyQGiyunT
+	6LJA==
+Received: by 10.182.124.102 with SMTP id mh6mr2124561obb.48.1348031937868;
+	Tue, 18 Sep 2012 22:18:57 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id 2sm1713831obi.20.2012.09.18.22.17.29
+	by mx.google.com with ESMTPS id kc5sm1707299obb.21.2012.09.18.22.18.56
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 18 Sep 2012 22:17:29 -0700 (PDT)
+	Tue, 18 Sep 2012 22:18:57 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Wed, 19 Sep 2012 00:39:51 -0500
-Message-Id: <1348033191-2732-1-git-send-email-fcooper@ti.com>
+Date: Wed, 19 Sep 2012 00:41:19 -0500
+Message-Id: <1348033279-2846-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [meta-arago-distro][PATCH] task-arago-tisdk-addons: Port task-arago-tisdk-addons-sdk-host from arago
+Subject: [meta-arago-distro][PATCH v3] task-arago-tisdk-addons: Port task-arago-tisdk-addons-sdk-host from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,7 +40,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 05:17:31 -0000
+X-List-Received-Date: Wed, 19 Sep 2012 05:18:58 -0000
 
 From: Franklin S Cooper Jr <fcooper@ti.com>
 
