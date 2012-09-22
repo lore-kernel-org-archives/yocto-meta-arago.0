@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id D5DE5529A1
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 3C01D529A1
 	for <meta-arago@arago-project.org>;
-	Sat, 22 Sep 2012 00:19:37 +0000 (UTC)
-Received: by oagl20 with SMTP id l20so3742193oag.38
+	Sat, 22 Sep 2012 00:21:47 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so3675356obb.38
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Sep 2012 17:19:36 -0700 (PDT)
+	Fri, 21 Sep 2012 17:21:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=+idApnpf+JXkRPZED9rTDfnShmZQOSsVoBZpwt8+uro=;
-	b=voMqyCZrDPBxjhSl8dA7Wg5ulsy+vFwmyhnIkGafgpQbv/94RdnXMeIAh2qnFv0cX8
-	Iok8KtjjYZrZI74NZoAhQGoCqwyEzFifWf1Rg/yAshsKOy9K49HOQ774kv/Cnl9hbHSC
-	8UhpVrQZOzMqHHXTKXDm7/T/PF9jyLQw7eb342WxVjwiAQWI5wAMzzA5Ea1G75oc4Kf6
-	xWO2Ihn+5lXHim+WNNjoYRVUccf/ZfYF1W2iOi6RXoye6qAQ22p3xao371WvBUV7cssk
-	NLO6KCzTJCmlw99SRc6QE0r3I83PPNkPkCrsoiUbu+Q4P62H8/Cvln5YLRlRS54umwHO
-	7PQg==
-Received: by 10.60.5.129 with SMTP id s1mr5059882oes.85.1348273176801;
-	Fri, 21 Sep 2012 17:19:36 -0700 (PDT)
+	bh=2DIhiqNoiG27L+HULMUL9Q3xVuTNDg4tlhE6kpo4QWI=;
+	b=oRgTxBM9XKkLsngzFc+tXBtqrt3VJHI6Fwq1dz5nlbXwGVkfWj2Xuyp2ZyrTNITqoK
+	oBWCDR05Gt7Iq4Cyuxs623btb+0R0TeasfbURGha8x3mSwNRFo8g4oAe7v5t9kzQ0AbF
+	mS0Kto1PTSX5CXowUvJ+TX4p8uuVwAMQzqcVt+CF6nkWqluCn37eZkfdvm/BCO7RP2Bt
+	ZedWeBHLLiI8aL4jThmRCXhmcItC/OY+MyO7B0DfZPnCdxJNLLw7vLh6xtxW0xmox007
+	mSB6LsAk5lAsgP2vA0z+MUfZIbUza2gn1U0fqKt4O8827eV9iqo2npHoJrwvhHqhyAWC
+	s6xQ==
+Received: by 10.60.20.8 with SMTP id j8mr5056275oee.127.1348273306574;
+	Fri, 21 Sep 2012 17:21:46 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id x1sm7353444oef.8.2012.09.21.17.19.35
+	by mx.google.com with ESMTPS id bp7sm9288097obc.12.2012.09.21.17.21.45
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 21 Sep 2012 17:19:36 -0700 (PDT)
+	Fri, 21 Sep 2012 17:21:46 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri, 21 Sep 2012 19:43:00 -0500
-Message-Id: <1348274580-27428-1-git-send-email-fcooper@ti.com>
+Date: Fri, 21 Sep 2012 19:45:10 -0500
+Message-Id: <1348274710-27514-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [meta-arago-extra][PATCH] pinmux-utility: Add pinmux utility for am1808
+Subject: [meta-arago-extras][PATCH] gadget-init: Overlay gadget-init recipe.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,62 +40,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Sep 2012 00:19:38 -0000
+X-List-Received-Date: Sat, 22 Sep 2012 00:21:47 -0000
 
-* Add Windows base pinmux utility for am1808.
-* This recipe was split from the pinmux-utility_2.3.1.0 recipe in arago.
-* The current recipe pulls in a zip file that doesn't contain license
-  information. No where within the zip file or actually application contains
-  licensing information.
-* Use the LICENSE file that contains the license agreement text that is
-  displayed when installing the pinmux-utility version 2.3.1.0.
+* Grabbed gadget-init recipe from arago which is based on a recipe
+  with the same name in meta-ti. This version however is based on
+  sysvinit while the meta-ti version is based on systemd.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../pinmux-utility/pinmux-utility_1.0.1076.3.bb    |   34 ++++++++++++++++++++
- 1 files changed, 34 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_1.0.1076.3.bb
+ .../recipes-tisdk/gadget-init/gadget-init.bb       |   24 +++++++++++++++++++
+ .../recipes-tisdk/gadget-init/gadget-init/init     |   25 ++++++++++++++++++++
+ 2 files changed, 49 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
+ create mode 100644 meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init
 
-diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_1.0.1076.3.bb b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_1.0.1076.3.bb
+diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
 new file mode 100644
-index 0000000..24f4a15
+index 0000000..773dd49
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_1.0.1076.3.bb
-@@ -0,0 +1,34 @@
-+DESCRIPTION = "Texas Instruments Pinmux Utility"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=2b328fcf0477d688d8b85f7310f9e6b9"
-+COMPATIBLE_MACHINE = "am180x-evm"
++++ b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
+@@ -0,0 +1,24 @@
++# This recipe is based on the recipe by Koen in meta-texasinstruments
++DESCRIPTION = "Scripts to initialize usb gadgets"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++
++COMPATIBLE_MACHINE = "ti33x"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
 +PR = "r0"
 +
-+SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/461/4210/Pin_Setup_AM18xx_01_00_1076_03.zip;name=omapl138;subdir=${P}"
++SRC_URI = "file://init"
 +
-+# Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
-+# from the License Agreement screen when installing pinmux-utility_2.3.1.0. No license information exist for this
-+# version of the pinmux utility.
-+SRC_URI += "file://LICENSE"
++INITSCRIPT_NAME = "storage-gadget-init"
++INITSCRIPT_PARAMS = "defaults 98"
 +
-+SRC_URI[base.md5sum] = "5a4eb834bde44c662aaf669882adbfe6"
-+SRC_URI[base.sha256sum] = "6701ca0e91761b9eb80b0097fbb2e2ce2cd8e0bcdc0bd18c34cd0221d9d450d0"
-+
-+S = "${WORKDIR}/${P}"
-+
-+do_unpack_extra() {
-+    mv ${WORKDIR}/LICENSE ${WORKDIR}/${P}
-+}
-+
-+addtask unpack_extra after do_unpack before do_patch
-+
-+installdir = "host-tools/pinmux_utils/windows"
++inherit update-rc.d
 +
 +do_install() {
-+    install -d ${D}/${installdir}
-+    cp -rf ${S}/bin ${D}/${installdir}/
-+    cp -rf ${S}/configurations ${D}/${installdir}/
++    install -d ${D}${sysconfdir}/init.d
++    install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/storage-gadget-init
 +}
 +
-+FILES_${PN} += "${installdir}/*"
++FILES_${PN} = "${sysconfdir} ${bindir}"
++RDEPENDS += "kernel-module-g-ether kernel-module-g-mass-storage"
+diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init
+new file mode 100644
+index 0000000..872f7f5
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init
+@@ -0,0 +1,25 @@
++#!/bin/sh
++
++
++case "$1" in
++    start )
++        # If this is a 3 partition card mount the first and third
++        # partition.  Else only mount the first one.
++        if [ -e /dev/mmcblk0p1 -a -e /dev/mmcblk0p3 ]
++        then
++            modprobe g_mass_storage file=/dev/mmcblk0p1,/dev/mmcblk0p3
++        elif [ -e /dev/mmcblk0p1 ]
++        then
++            modprobe g_mass_storage file=/dev/mmcblk0p1
++        fi
++    ;;
++    stop )
++        lsmod | grep g_mass_storage > /dev/null
++        if [ "$?" == "0" ]
++        then
++            rmmod g_mass_storage
++        fi
++    ;;
++esac
++
++exit 0
 -- 
 1.7.0.4
 
