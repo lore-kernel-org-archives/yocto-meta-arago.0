@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id BE4D8529A1
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id CAE23529A1
 	for <meta-arago@arago-project.org>;
-	Sat, 22 Sep 2012 00:23:58 +0000 (UTC)
-Received: by oagl20 with SMTP id l20so3743914oag.38
+	Sat, 22 Sep 2012 00:24:43 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so3676472obb.38
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Sep 2012 17:23:57 -0700 (PDT)
+	Fri, 21 Sep 2012 17:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=ZEBzKT8OU/nq3nnSAvhruJPXmZFa7o+UbdcmJoi4plw=;
-	b=TEMhcwxWCqBtfwrUDKVSGmgBYjmc2118ZhYpZf0+DjiGhFgaYqss16aIowRVSIkfaZ
-	Rxclraf0UGFVvQB7RekbhORz9A9KZlMr6ZDY+sTi4Yl+JDTbX2v2fh6aivQnZZLRfsU9
-	xWT3vo/lZTK0+vH/EUlWLdlVPAOYItsInGev47yCfAGq54GG2a0NwmqhCVoWLlQ+ly4i
-	JEGxwKBSVBKED4Ryvv02wOBSK5DYYjfBVXplHRteVoRCrKutaF7PDbSRSynJl11WbDEd
-	kEosF0jeyh8B71Y1kbCHREmZUHIoqnNy0g/WlGgtIpYzuKLkRS0HkDYSAN3seGc2RMaU
-	fjmQ==
-Received: by 10.182.174.100 with SMTP id br4mr5079658obc.62.1348273437876;
-	Fri, 21 Sep 2012 17:23:57 -0700 (PDT)
+	bh=opZYiWAPeLyuHSpOpjlb9yj8rAfKvbS3yAZwYRfrF/U=;
+	b=COOjgRHp5uKjAevFfhFVmmwTYAZqvwQ5TlwisodytFVpeXP0dKotEjzRjpcbsuxp/Y
+	oWLaV5fK+CXYZLA0WurynteKhWzpxgJ7/zGAcwOQRCTphfVSpWwi8tTF1ztl7ZBa/NxF
+	bhFFIRmL7pWWmy2ZQrf1qyl0cW6kOdHT0lRZLkx+vTaeDfhXewVFVaTI3xiTJVC49gel
+	mEb+/civNSUgiLk+pP4aMYVqvQqE0RAQf1dX5bPWRZ6lKMsJgHihmZzpecmq4do5Ryko
+	GHEozHptSFcBRLlg8AMu7PFidpZAMJC3mUka09O5WO/VXSGKhjfVOq2aZBeETjBwxah1
+	vaAg==
+Received: by 10.60.170.47 with SMTP id aj15mr5118621oec.29.1348273482904;
+	Fri, 21 Sep 2012 17:24:42 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id jd10sm9291567obb.13.2012.09.21.17.23.57
+	by mx.google.com with ESMTPS id d4sm9336124obx.3.2012.09.21.17.24.42
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 21 Sep 2012 17:23:57 -0700 (PDT)
+	Fri, 21 Sep 2012 17:24:42 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri, 21 Sep 2012 19:47:21 -0500
-Message-Id: <1348274841-27630-1-git-send-email-fcooper@ti.com>
+Date: Fri, 21 Sep 2012 19:48:06 -0500
+Message-Id: <1348274886-27669-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [meta-arago-extras][PATCH] psplash: Add TI color customization
+Subject: [meta-arago-extras][PATCH] ussp-push: Add ussp-push
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,83 +40,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Sep 2012 00:23:59 -0000
+X-List-Received-Date: Sat, 22 Sep 2012 00:24:44 -0000
 
-* Port TI color customization from psplash-ti in oe-classic.
+* Port ussp-push recipes from oe-classic.
+* Adds ussp-push which is a OBEX object pusher for Linux that uses
+  the BlueZ bluetooth stack.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../0001-psplash-Add-Arago-custom-color.patch      |   39 ++++++++++++++++++++
- .../recipes-core/psplash/psplash_git.bbappend      |    3 +-
- 2 files changed, 41 insertions(+), 1 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/psplash/psplash/0001-psplash-Add-Arago-custom-color.patch
+ .../ussp-push/ussp-push-0.11/hci_remote_name.patch |   13 ++++++++++++
+ .../ussp-push/ussp-push_0.11.bb                    |   21 ++++++++++++++++++++
+ 2 files changed, 34 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch
+ create mode 100644 meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb
 
-diff --git a/meta-arago-distro/recipes-core/psplash/psplash/0001-psplash-Add-Arago-custom-color.patch b/meta-arago-distro/recipes-core/psplash/psplash/0001-psplash-Add-Arago-custom-color.patch
+diff --git a/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch
 new file mode 100644
-index 0000000..c13790e
+index 0000000..956e048
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/psplash/psplash/0001-psplash-Add-Arago-custom-color.patch
-@@ -0,0 +1,39 @@
-+From be4eb4c5c3992deee2cfaa5da8913473623f728b Mon Sep 17 00:00:00 2001
-+From: Franklin S. Cooper Jr <fcooper@ti.com>
-+Date: Fri, 21 Sep 2012 15:18:24 -0500
-+Subject: [PATCH] psplash: Add Arago custom color
++++ b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch
+@@ -0,0 +1,13 @@
++diff -urN ussp-push-0.11/src/obex_socket.c ussp-push-0.11_Demo/src/obex_socket.c
++--- ussp-push-0.11/src/obex_socket.c	2008-08-25 02:18:53.000000000 +0530
+++++ ussp-push-0.11_Demo/src/obex_socket.c	2010-04-16 15:11:27.000000000 +0530
++@@ -197,7 +197,8 @@
++	for (i = 0; i < niinf; i++) {
++		char devname[128];
 +
-+* Port custom colors used in psplash-ti from oe-classic.
++-		if (hci_remote_name(dd, &piinf[i].bdaddr, sizeof(devname) - 1,
+++		if (hci_read_remote_name(dd, &piinf[i].bdaddr,
+++					sizeof(devname) - 1,
++				    devname, 100000) >= 0) {
++			if (strcasecmp(devname, btname) == 0) {
++				*btaddr = piinf[i].bdaddr;
+diff --git a/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb
+new file mode 100644
+index 0000000..a2ca571
+--- /dev/null
++++ b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb
+@@ -0,0 +1,21 @@
++DESCRIPTION = "OBEX object pusher"
++HOMEPAGE = "http://www.xmailserver.org/ussp-push.html"
++SECTION = "console"
++PRIORITY = "optional"
++DEPENDS = "bluez4 openobex"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
 +
-+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-+---
-+ psplash-colors.h |    8 ++++----
-+ 1 files changed, 4 insertions(+), 4 deletions(-)
++PR = "r0"
 +
-+diff --git a/psplash-colors.h b/psplash-colors.h
-+index d701089..a6a5992 100644
-+--- a/psplash-colors.h
-++++ b/psplash-colors.h
-+@@ -20,15 +20,15 @@
-+ #define _HAVE_PSPLASH_COLORS_H
-+ 
-+ /* This is the overall background color */
-+-#define PSPLASH_BACKGROUND_COLOR 0xec,0xec,0xe1
-++#define PSPLASH_BACKGROUND_COLOR 0x00,0x00,0x00
-+ 
-+ /* This is the color of any text output */
-+-#define PSPLASH_TEXT_COLOR 0x6d,0x6d,0x70
-++#define PSPLASH_TEXT_COLOR 0xff,0xff,0xff
-+ 
-+ /* This is the color of the progress bar indicator */
-+-#define PSPLASH_BAR_COLOR 0x6d,0x6d,0x70
-++#define PSPLASH_BAR_COLOR 0xe3,0x71,0x00
-+ 
-+ /* This is the color of the progress bar background */
-+-#define PSPLASH_BAR_BACKGROUND_COLOR 0xec,0xec,0xe1
-++#define PSPLASH_BAR_BACKGROUND_COLOR 0x00,0x00,0x00
-+ 
-+ #endif
-+-- 
-+1.7.0.4
++SRC_URI = "http://www.xmailserver.org/ussp-push-${PV}.tar.gz \
++	       file://hci_remote_name.patch"
 +
-diff --git a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
-index b279daa..aaa6167 100644
---- a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
-+++ b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
-@@ -1,7 +1,7 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = "-arago1"
-+PR_append = "-arago2"
- 
- # Update which portion of the psplash.h file to use as a checksum. This tweak
- # has already been done in oe-core master
-@@ -14,6 +14,7 @@ SRC_URI += "file://psplash-18bpp.patch                      \
-             file://0003-Updated-configurability.patch.patch \
-             file://psplash-poky-img.h                       \
-             file://psplash-bar-img.h                        \
-+            file://0001-psplash-Add-Arago-custom-color.patch\
- "
- 
- do_configure_prepend() {
++S = "${WORKDIR}/ussp-push-${PV}"
++
++EXTRA_OECONF = "--with-bluez-libs=${STAGING_LIBDIR} --with-bluez-includes=${STAGING_INCDIR}"
++
++inherit autotools
++
++SRC_URI[md5sum] = "5c44983ee27809867041feff6bb4423a"
++SRC_URI[sha256sum] = "bb2748eaed6164812555b4a1e186c4f2820c5ef9ce30f12d7aac28a452719bbd"
 -- 
 1.7.0.4
 
