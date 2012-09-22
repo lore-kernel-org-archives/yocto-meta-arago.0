@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id CAE23529A1
+	by arago-project.org (Postfix) with ESMTPS id 683F1529A1
 	for <meta-arago@arago-project.org>;
-	Sat, 22 Sep 2012 00:24:43 +0000 (UTC)
-Received: by obbeh20 with SMTP id eh20so3676472obb.38
+	Sat, 22 Sep 2012 00:25:27 +0000 (UTC)
+Received: by obbeh20 with SMTP id eh20so3676751obb.38
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Sep 2012 17:24:42 -0700 (PDT)
+	Fri, 21 Sep 2012 17:25:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=opZYiWAPeLyuHSpOpjlb9yj8rAfKvbS3yAZwYRfrF/U=;
-	b=COOjgRHp5uKjAevFfhFVmmwTYAZqvwQ5TlwisodytFVpeXP0dKotEjzRjpcbsuxp/Y
-	oWLaV5fK+CXYZLA0WurynteKhWzpxgJ7/zGAcwOQRCTphfVSpWwi8tTF1ztl7ZBa/NxF
-	bhFFIRmL7pWWmy2ZQrf1qyl0cW6kOdHT0lRZLkx+vTaeDfhXewVFVaTI3xiTJVC49gel
-	mEb+/civNSUgiLk+pP4aMYVqvQqE0RAQf1dX5bPWRZ6lKMsJgHihmZzpecmq4do5Ryko
-	GHEozHptSFcBRLlg8AMu7PFidpZAMJC3mUka09O5WO/VXSGKhjfVOq2aZBeETjBwxah1
-	vaAg==
-Received: by 10.60.170.47 with SMTP id aj15mr5118621oec.29.1348273482904;
-	Fri, 21 Sep 2012 17:24:42 -0700 (PDT)
+	bh=7S/R297ujj9whSEl07ZaipU7qGWHRinZHvWKkDwf/qk=;
+	b=pSmXEB+ztnqueJPhE9uJCGo0DrFZpBda0fb5kHFTFU5XB+l0n9IlO9fIwEohU5IcS2
+	aV1+6p00/KKsQDKmajzjYgkS04rPYT5+TYWdFedzyKlO+Zr0HYski7RfmvtLQBh17Tx1
+	JdTRsJ3h3Ew9E7b84OAzrarHanhbLjusQ2IswcQRiklG7rvU0PMkaNKpqF+NcWbfoo5n
+	iYcHtYe3J8xSVaSFFk2WyWVCfSQSu4q9g4fq3HV1wGiegM8n3UDMQcYQmSWUM1f3s79T
+	PrikkiGrX3FDoPUOSFg4kR7MsumV4ASmMKWCap8WQBFMIWDXJG7iaHuHoxugkOsWizwM
+	h38Q==
+Received: by 10.60.170.83 with SMTP id ak19mr4750457oec.113.1348273526469;
+	Fri, 21 Sep 2012 17:25:26 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id d4sm9336124obx.3.2012.09.21.17.24.42
+	by mx.google.com with ESMTPS id hz6sm9342729obb.1.2012.09.21.17.25.25
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 21 Sep 2012 17:24:42 -0700 (PDT)
+	Fri, 21 Sep 2012 17:25:26 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri, 21 Sep 2012 19:48:06 -0500
-Message-Id: <1348274886-27669-1-git-send-email-fcooper@ti.com>
+Date: Fri, 21 Sep 2012 19:48:50 -0500
+Message-Id: <1348274930-27708-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [meta-arago-extras][PATCH] ussp-push: Add ussp-push
+Subject: [meta-arago-extras][PATCH] obexftp: Add ObexFTP
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,66 +40,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Sep 2012 00:24:44 -0000
+X-List-Received-Date: Sat, 22 Sep 2012 00:25:27 -0000
 
-* Port ussp-push recipes from oe-classic.
-* Adds ussp-push which is a OBEX object pusher for Linux that uses
-  the BlueZ bluetooth stack.
+* Port obexftp recipe from oe-classic.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ussp-push/ussp-push-0.11/hci_remote_name.patch |   13 ++++++++++++
- .../ussp-push/ussp-push_0.11.bb                    |   21 ++++++++++++++++++++
- 2 files changed, 34 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch
- create mode 100644 meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb
+ .../recipes-connectivity/obexftp/obexftp_0.23.bb   |   29 ++++++++++++++++++++
+ 1 files changed, 29 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/obexftp/obexftp_0.23.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch
+diff --git a/meta-arago-extras/recipes-connectivity/obexftp/obexftp_0.23.bb b/meta-arago-extras/recipes-connectivity/obexftp/obexftp_0.23.bb
 new file mode 100644
-index 0000000..956e048
+index 0000000..b540efe
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push-0.11/hci_remote_name.patch
-@@ -0,0 +1,13 @@
-+diff -urN ussp-push-0.11/src/obex_socket.c ussp-push-0.11_Demo/src/obex_socket.c
-+--- ussp-push-0.11/src/obex_socket.c	2008-08-25 02:18:53.000000000 +0530
-++++ ussp-push-0.11_Demo/src/obex_socket.c	2010-04-16 15:11:27.000000000 +0530
-+@@ -197,7 +197,8 @@
-+	for (i = 0; i < niinf; i++) {
-+		char devname[128];
-+
-+-		if (hci_remote_name(dd, &piinf[i].bdaddr, sizeof(devname) - 1,
-++		if (hci_read_remote_name(dd, &piinf[i].bdaddr,
-++					sizeof(devname) - 1,
-+				    devname, 100000) >= 0) {
-+			if (strcasecmp(devname, btname) == 0) {
-+				*btaddr = piinf[i].bdaddr;
-diff --git a/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb
-new file mode 100644
-index 0000000..a2ca571
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/ussp-push/ussp-push_0.11.bb
-@@ -0,0 +1,21 @@
-+DESCRIPTION = "OBEX object pusher"
-+HOMEPAGE = "http://www.xmailserver.org/ussp-push.html"
-+SECTION = "console"
-+PRIORITY = "optional"
-+DEPENDS = "bluez4 openobex"
++++ b/meta-arago-extras/recipes-connectivity/obexftp/obexftp_0.23.bb
+@@ -0,0 +1,29 @@
++DESCRIPTION = "OBEX Ftp Client based on openobex."
++SECTION = "console/network"
++HOMEPAGE = "http://dev.zuckschwerdt.org/openobex/wiki/ObexFtp"
 +LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
++LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
 +
++DEPENDS = "openobex bluez4 virtual/libusb0 virtual/libiconv"
 +PR = "r0"
 +
-+SRC_URI = "http://www.xmailserver.org/ussp-push-${PV}.tar.gz \
-+	       file://hci_remote_name.patch"
-+
-+S = "${WORKDIR}/ussp-push-${PV}"
-+
-+EXTRA_OECONF = "--with-bluez-libs=${STAGING_LIBDIR} --with-bluez-includes=${STAGING_INCDIR}"
++SRC_URI = "${SOURCEFORGE_MIRROR}/openobex/obexftp-${PV}.tar.bz2"
 +
 +inherit autotools
 +
-+SRC_URI[md5sum] = "5c44983ee27809867041feff6bb4423a"
-+SRC_URI[sha256sum] = "bb2748eaed6164812555b4a1e186c4f2820c5ef9ce30f12d7aac28a452719bbd"
++EXTRA_OECONF += "--enable-bluetooth \
++		 --disable-swig \
++		 --disable-perl \
++		 --disable-python \
++		 --disable-tcl \
++		 --disable-ruby \
++		 --disable-builddocs \
++		 --disable-rpath \
++		"
++
++PARALLEL_MAKE = ""
++
++LEAD_SONAME = "libobexftp.so"
++
++SRC_URI[md5sum] = "f20762061b68bc921e80be4aebc349eb"
++SRC_URI[sha256sum] = "44a74ff288d38c0f75354d6bc2efe7d6dec10112eaff2e7b10e292b0d2105b36"
 -- 
 1.7.0.4
 
