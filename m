@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id A8A08529A4
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 6E58F529A4
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Sep 2012 15:11:43 +0000 (UTC)
-Received: by obblz20 with SMTP id lz20so1287940obb.38
+	Tue, 25 Sep 2012 15:13:40 +0000 (UTC)
+Received: by oagn12 with SMTP id n12so1561667oag.38
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Sep 2012 08:11:43 -0700 (PDT)
+	Tue, 25 Sep 2012 08:13:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=naWBn5JBnmTzaXxfLqfUW6x8UwyALJ8587olcP9HSlI=;
-	b=iqm5GqsbS/NCA/lK7qyghsaSH7k4tYc0Abe0njiCHr0rdJLf8B/Em3WbQWYC6Uwv9y
-	+lPTlV/z4WBx+IidOVqZMrK0NrhsCTQrEXfhs9qwA5zsOVVFqsienmDMbr86hQ9eSCqF
-	MP4ggch8RxnTs1pifVBbCo5FHGtxU/vbpj3qXUMTfdoEVawOSxrr4b75giIAeP9BjuVA
-	Otf2MURiUdYh6eCS/i9/aiSaMRpZRluHe5xMX6zST4Djeq+oktOrmodKnYc9LhnL4A8Y
-	pUWOg9vy8UgXIp7pI+yQIDhNXo8yZQrX1DUTo4I5ZutqUvLBC8eQOumNVvvwzz3XfiUo
-	eE9A==
-Received: by 10.60.170.104 with SMTP id al8mr12977532oec.78.1348585903135;
-	Tue, 25 Sep 2012 08:11:43 -0700 (PDT)
+	bh=vCQzqjzSyCGSoE50MK/lgg/wNKKH6dMsHq7rmd0J5tw=;
+	b=uNIlX9qvGHgQnvyz/V2ryw7ddMCrSEyoDdoun3XX07jqLscVsuMtq8IuqGLk+O9gcB
+	M2FtFHf7YqghS5pzNx8/db6LjAGNEAXW6LB0Auy7ebP2VkJCvlh9tAXcscAVk4ApUuoZ
+	Uk+JILW36OXfyI6Wfpoh01LvDnTR/JeOJm9UXjZVuKPmNYPyXXM1OUHqHXduShg0Ld9a
+	p0ODvupRAit/S+lvQdHDUQMUKdI6mfjXOAazJDk9yrWDZPmhfQYoNmTbgr8lx5IsjwBw
+	ybgK1QLZoGSYk6nJaEq8B7WrXOVhhonFxlcFZrcGCcP9XEjJpPNaLsdxcjijiqlyEO9v
+	leOg==
+Received: by 10.182.18.143 with SMTP id w15mr12487785obd.6.1348586019841;
+	Tue, 25 Sep 2012 08:13:39 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id q6sm360082oec.7.2012.09.25.08.11.42
+	by mx.google.com with ESMTPS id ea6sm467417obc.9.2012.09.25.08.13.38
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 25 Sep 2012 08:11:42 -0700 (PDT)
+	Tue, 25 Sep 2012 08:13:39 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Tue, 25 Sep 2012 10:36:18 -0500
-Message-Id: <1348587378-25412-1-git-send-email-fcooper@ti.com>
+Date: Tue, 25 Sep 2012 10:38:22 -0500
+Message-Id: <1348587502-25473-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] crda: Port crda recipe from oe-classic
+Subject: [PATCH] dt: Port dt recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,61 +40,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Sep 2012 15:11:43 -0000
+X-List-Received-Date: Tue, 25 Sep 2012 15:13:40 -0000
 
-* Port the crda recipe from oe-classic. The version in oe-classic
-  was version 1.1.1
-* Version 1.1.1 had compiling issues with the version of LIBNL used in oe-core.
-  Upgraded version of crda to 1.1.2 which fixed that issue.
+* Port dt recipe from oe-core
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-connectivity/crda/crda_1.1.2.bb        |   36 ++++++++++++++++++++
- 1 files changed, 36 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
+ .../recipes-devtools/dt/dt/no_aio.patch            |   17 +++++++++++
+ meta-arago-extras/recipes-devtools/dt/dt_17.07.bb  |   30 ++++++++++++++++++++
+ 2 files changed, 47 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb b/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
+diff --git a/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
 new file mode 100644
-index 0000000..82047db
+index 0000000..8253e86
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
-@@ -0,0 +1,36 @@
-+DESCRIPTION = "Wireless Central Regulatory Domain Agent"
-+HOMEPAGE = "http://wireless.kernel.org/en/developers/Regulatory/CRDA"
-+SECTION = "base"
-+PRIORITY = "optional"
-+LICENSE = "ISC"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=07c4f6dea3845b02a18dc00c8c87699c"
++++ b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+@@ -0,0 +1,17 @@
++---
++ Makefile.linux |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+PR = "r0"
++Index: dt.d-WIP/Makefile.linux
++===================================================================
++--- dt.d-WIP/Makefile.linux
+++++ dt.d-WIP/Makefile.linux
++@@ -68,7 +68,7 @@ LINTLIBS=
 +
-+DEPENDS = "libgcrypt libnl python-native python-m2crypto-native"
-+RDEPENDS_${PN} = "udev"
++ PORG      = -O3
 +
-+SRC_URI = "http://wireless.kernel.org/download/crda/${P}.tar.bz2;name=crda \
-+	http://wireless.kernel.org/download/wireless-regdb/regulatory.bins/2011.04.28-regulatory.bin;name=reg \
-+	"
++-CFLAGS= $(PORG) -DAIO -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
+++CFLAGS= $(PORG) -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
++ CPP=	/lib/cpp
++ CPPOPTS= -D__GNUC__ -DFIFO -DMMAP -D__linux__ -D_GNU_SOURCE
++ LDFLAGS=
+diff --git a/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
+new file mode 100644
+index 0000000..22fd6ac
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
+@@ -0,0 +1,30 @@
++HOMEPAGE = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/dt.html"
++DESCRIPTION = "The Data Test Program (dt) is a generic data test program used to verify proper \
++operation of peripherals, file systems, device drivers, or any data stream supported by the \
++operating system."
 +
-+EXTRA_OEMAKE = "MAKEFLAGS="
++SECTION = "console/tests"
++
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=fb073c94d1f584010fc75867b686d6d3"
++
++INC_PR = "r0"
++
++SRC_URI = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/ftp/dt/dt-source.tar.gz"
++S = "${WORKDIR}/dt.d"
++
++TARGET_CC_ARCH += "${LDFLAGS}"
++
 +do_compile() {
-+	oe_runmake all_noverify
++	${MAKE} -f Makefile.linux
 +}
++
++SRC_URI_append_libc-uclibc = " file://no_aio.patch "
 +
 +do_install() {
-+	oe_runmake DESTDIR=${D} install
-+	install -d ${D}/usr/lib/crda/
-+	install -m 0644 ${WORKDIR}/2011.04.28-regulatory.bin ${D}/usr/lib/crda/regulatory.bin
++	install -d ${D}${bindir}
++	install -m 0755 dt ${D}${bindir}
 +}
 +
-+SRC_URI[crda.md5sum] = "5226f65aebacf94baaf820f8b4e06df4"
-+SRC_URI[crda.sha256sum] = "e469348a5d0bb933df31995869130f68901de9be02e666437f52125698851864"
-+SRC_URI[reg.md5sum] = "1535e98bcaba732e2f8e8f62dac6f369"
-+SRC_URI[reg.sha256sum] = "bb6ba6f5dcdf7106a19c588b0e4d43ab7af26f6474fe01011a318b3dceaba33b"
-+
-+FILES_${PN} += "\
-+	/lib/udev/rules.d/85-regulatory.rules \
-+	/usr/lib/crda/regulatory.bin \
-+	"
++SRC_URI[md5sum] = "fc3373e30868698b90f02cc5fab9aabd"
++SRC_URI[sha256sum] = "6a213b8da2b8907c4f1633c3b90229085ac239e4d43aa5879b0123c21f951cab"
 -- 
 1.7.0.4
 
