@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 6E58F529A4
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id E149C529A4
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Sep 2012 15:13:40 +0000 (UTC)
-Received: by oagn12 with SMTP id n12so1561667oag.38
+	Tue, 25 Sep 2012 15:14:31 +0000 (UTC)
+Received: by obblz20 with SMTP id lz20so1291270obb.38
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Sep 2012 08:13:39 -0700 (PDT)
+	Tue, 25 Sep 2012 08:14:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=vCQzqjzSyCGSoE50MK/lgg/wNKKH6dMsHq7rmd0J5tw=;
-	b=uNIlX9qvGHgQnvyz/V2ryw7ddMCrSEyoDdoun3XX07jqLscVsuMtq8IuqGLk+O9gcB
-	M2FtFHf7YqghS5pzNx8/db6LjAGNEAXW6LB0Auy7ebP2VkJCvlh9tAXcscAVk4ApUuoZ
-	Uk+JILW36OXfyI6Wfpoh01LvDnTR/JeOJm9UXjZVuKPmNYPyXXM1OUHqHXduShg0Ld9a
-	p0ODvupRAit/S+lvQdHDUQMUKdI6mfjXOAazJDk9yrWDZPmhfQYoNmTbgr8lx5IsjwBw
-	ybgK1QLZoGSYk6nJaEq8B7WrXOVhhonFxlcFZrcGCcP9XEjJpPNaLsdxcjijiqlyEO9v
-	leOg==
-Received: by 10.182.18.143 with SMTP id w15mr12487785obd.6.1348586019841;
-	Tue, 25 Sep 2012 08:13:39 -0700 (PDT)
+	bh=e69F0pLzwAxixq6rFSdRDEZbSavMqzj3q/QDOhNvegI=;
+	b=u6eNjtPWYMvHYLMidZzTu0TF9CGOOKdHDUlQkInZCdQ8g1W177r6LGN1Vu5UMMMwF0
+	M798m+qX8g/K8esoveDNHLGfVrCsdnIWIKwkK4DAh/OSFE5WkFqlmW3GRqYgdO7AyT2m
+	sTwxHtV4xh9vcKijXk7tKhQ6OqIqNWJ/t+eRgBSVrGurHc58dQ8zjs8lFh7eSAqWFhsW
+	IYbKmxPWDyxzod91Wr5lCPZ2JsZOcU+jyE+/CdkBn0a+uZt5hUSslMRF8mbhLB4NR7TW
+	YDVjPi928+phpNDyPXYGDJ4BU/yFfRy02wc8CdufImzxTO9I8wYOwjqN1aaEPRjycM0J
+	5Lig==
+Received: by 10.182.152.36 with SMTP id uv4mr12475350obb.81.1348586071372;
+	Tue, 25 Sep 2012 08:14:31 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id ea6sm467417obc.9.2012.09.25.08.13.38
+	by mx.google.com with ESMTPS id 9sm453897obi.22.2012.09.25.08.14.30
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 25 Sep 2012 08:13:39 -0700 (PDT)
+	Tue, 25 Sep 2012 08:14:30 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Tue, 25 Sep 2012 10:38:22 -0500
-Message-Id: <1348587502-25473-1-git-send-email-fcooper@ti.com>
+Date: Tue, 25 Sep 2012 10:39:10 -0500
+Message-Id: <1348587550-25528-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] dt: Port dt recipe
+Subject: [PATCH] eventdump: Port eventdump tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,77 +40,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Sep 2012 15:13:40 -0000
+X-List-Received-Date: Tue, 25 Sep 2012 15:14:32 -0000
 
-* Port dt recipe from oe-core
+* Port eventdump tool from arago
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-devtools/dt/dt/no_aio.patch            |   17 +++++++++++
- meta-arago-extras/recipes-devtools/dt/dt_17.07.bb  |   30 ++++++++++++++++++++
- 2 files changed, 47 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
- create mode 100644 meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
+ .../recipes-devtools/eventdump/eventdump_git.bb    |   15 +++++++++++++++
+ 1 files changed, 15 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+diff --git a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
 new file mode 100644
-index 0000000..8253e86
+index 0000000..57996b3
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
-@@ -0,0 +1,17 @@
-+---
-+ Makefile.linux |    2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
++++ b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
+@@ -0,0 +1,15 @@
++DESCRIPTION = "Utility for parsing system events"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://eventdump.c;beginline=1;endline=34;md5=23b59be24a88ddc407b553035f3fd3e9"
 +
-+Index: dt.d-WIP/Makefile.linux
-+===================================================================
-+--- dt.d-WIP/Makefile.linux
-++++ dt.d-WIP/Makefile.linux
-+@@ -68,7 +68,7 @@ LINTLIBS=
++PR = "r0+gitr${SRCREV}"
 +
-+ PORG      = -O3
++SRCREV = "5db45a36a05a78ea44a4cb25312ed5ee3c2bd76d"
 +
-+-CFLAGS= $(PORG) -DAIO -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
-++CFLAGS= $(PORG) -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
-+ CPP=	/lib/cpp
-+ CPPOPTS= -D__GNUC__ -DFIFO -DMMAP -D__linux__ -D_GNU_SOURCE
-+ LDFLAGS=
-diff --git a/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
-new file mode 100644
-index 0000000..22fd6ac
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
-@@ -0,0 +1,30 @@
-+HOMEPAGE = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/dt.html"
-+DESCRIPTION = "The Data Test Program (dt) is a generic data test program used to verify proper \
-+operation of peripherals, file systems, device drivers, or any data stream supported by the \
-+operating system."
++SRC_URI = "git://github.com/TI-ECS/eventdump.git;protocol=git"
 +
-+SECTION = "console/tests"
-+
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=fb073c94d1f584010fc75867b686d6d3"
-+
-+INC_PR = "r0"
-+
-+SRC_URI = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/ftp/dt/dt-source.tar.gz"
-+S = "${WORKDIR}/dt.d"
-+
-+TARGET_CC_ARCH += "${LDFLAGS}"
-+
-+do_compile() {
-+	${MAKE} -f Makefile.linux
-+}
-+
-+SRC_URI_append_libc-uclibc = " file://no_aio.patch "
++S = "${WORKDIR}/git"
 +
 +do_install() {
-+	install -d ${D}${bindir}
-+	install -m 0755 dt ${D}${bindir}
++	oe_runmake 'DEST_DIR=${D}' 'BIN_DIR=${bindir}' install
 +}
-+
-+SRC_URI[md5sum] = "fc3373e30868698b90f02cc5fab9aabd"
-+SRC_URI[sha256sum] = "6a213b8da2b8907c4f1633c3b90229085ac239e4d43aa5879b0123c21f951cab"
 -- 
 1.7.0.4
 
