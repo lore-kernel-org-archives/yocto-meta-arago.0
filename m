@@ -1,33 +1,31 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 1DE03529A4
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 934E252A68
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Sep 2012 15:15:35 +0000 (UTC)
-Received: by obblz20 with SMTP id lz20so1292461obb.38
-	for <meta-arago@arago-project.org>;
-	Tue, 25 Sep 2012 08:15:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=e16rGM0+J9f2GZH2+ttrreTaioQ0dTVgXWvRFuQ+098=;
-	b=Vm0ZHMM8DaF2LMWiaemecmya3BqbEZ6i1/6NRJKY26q1XFz8wWoOJD+v4UO9xEa/5+
-	CDZ55WGScoZtk1iUfMBYm2kKr11xe2CcIj/qDNsdsIJvPNLPKELic9QGFxSYhIMrsYfX
-	xyGUKtr5MSv9rsUQVQVGQUFID3LY0CbFL5LWNhelfEp8tr0Sc2ARbb9szDAxMC8RVRWf
-	suUWYtYkCg6xSWS8geKJ8xQ2ELDjJYE+rXkX6lwSSu77DQ32EuP4ULACgw5ft9y8WIlH
-	ejXiKf4Q8f/o7XoKom03zAfZe4iKR2LFdIWdaLSH2jW46CXJO9dsQP/MFZwLmgl4Y0Rb
-	Xcwg==
-Received: by 10.182.43.40 with SMTP id t8mr12799904obl.93.1348586134431;
-	Tue, 25 Sep 2012 08:15:34 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id kc5sm457999obb.21.2012.09.25.08.15.33
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 25 Sep 2012 08:15:33 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Tue, 25 Sep 2012 10:40:18 -0500
-Message-Id: <1348587618-25590-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] bluez-tools: Port bluez-tools recipe
+	Wed, 26 Sep 2012 03:14:33 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8Q3EWQf031849;
+	Tue, 25 Sep 2012 22:14:32 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8Q3EWkG001099;
+	Tue, 25 Sep 2012 22:14:32 -0500
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Tue, 25 Sep 2012 22:14:32 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Thread-Topic: [meta-arago] [PATCH] crda: Port crda recipe from oe-classic
+Thread-Index: AQHNmzAUO3xsaOUtBkytrjjZeI/CYJeb87iA
+Date: Wed, 26 Sep 2012 03:14:31 +0000
+Message-ID: <42E43DBC-7C8E-4F65-AEAB-6888AC38591E@ti.com>
+References: <1348587378-25412-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1348587378-25412-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] crda: Port crda recipe from oe-classic
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,53 +38,91 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Sep 2012 15:15:35 -0000
+X-List-Received-Date: Wed, 26 Sep 2012 03:14:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* Port bluez-tools recipe from arago.
+Will you be sending this to meta-oe or oe-core.  An indication of the final=
+ destination would be nice.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../bluez-tools/bluez-tools_git.bb                 |   30 ++++++++++++++++++++
- 1 files changed, 30 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-connectivity/bluez-tools/bluez-tools_git.bb
+Also, we seem to be adding a lot of recipes to arago that will need to be r=
+emoved later.  Should we look into a layer or directory for these to help u=
+s know what to check?
 
-diff --git a/meta-arago-extras/recipes-connectivity/bluez-tools/bluez-tools_git.bb b/meta-arago-extras/recipes-connectivity/bluez-tools/bluez-tools_git.bb
-new file mode 100644
-index 0000000..0f53343
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/bluez-tools/bluez-tools_git.bb
-@@ -0,0 +1,30 @@
-+DESCRIPTION = "Bluez Tools"
-+HOMEPAGE = "http://code.google.com/p/bluez-tools/"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
-+
-+RDEPENDS = "bluez4 obexd"
-+DEPENDS = "glib-2.0 dbus-glib"
-+
-+PR = "r0+gitr${SRCREV}"
-+
-+SRCREV = "171181b6ef6c94aefc828dc7fd8de136b9f97532"
-+
-+S = "${WORKDIR}/git"
-+
-+SRC_URI = "git://gitorious.org/bluez-tools/bluez-tools.git;protocol=git"
-+
-+inherit autotools
-+
-+do_install() {
-+       install -d ${D}${bindir}
-+       install -m 755 ${S}/src/bt-adapter ${D}${bindir}
-+       install -m 755 ${S}/src/bt-agent   ${D}${bindir}
-+       install -m 755 ${S}/src/bt-audio   ${D}${bindir}
-+       install -m 755 ${S}/src/bt-device  ${D}${bindir}
-+       install -m 755 ${S}/src/bt-input   ${D}${bindir}
-+       install -m 755 ${S}/src/bt-monitor ${D}${bindir}
-+       install -m 755 ${S}/src/bt-network ${D}${bindir}
-+       install -m 755 ${S}/src/bt-obex    ${D}${bindir}
-+       install -m 755 ${S}/src/bt-serial  ${D}${bindir}
-+}
--- 
-1.7.0.4
+Sincerely,
+Chase Maupin
+On Sep 25, 2012, at 5:11 PM, "Franklin S. Cooper Jr" <fcooperjr27@gmail.com=
+> wrote:
 
+> * Port the crda recipe from oe-classic. The version in oe-classic
+>  was version 1.1.1
+> * Version 1.1.1 had compiling issues with the version of LIBNL used in oe=
+-core.
+>  Upgraded version of crda to 1.1.2 which fixed that issue.
+>=20
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+> .../recipes-connectivity/crda/crda_1.1.2.bb        |   36 +++++++++++++++=
++++++
+> 1 files changed, 36 insertions(+), 0 deletions(-)
+> create mode 100644 meta-arago-extras/recipes-connectivity/crda/crda_1.1.2=
+.bb
+>=20
+> diff --git a/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb b/=
+meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
+> new file mode 100644
+> index 0000000..82047db
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
+> @@ -0,0 +1,36 @@
+> +DESCRIPTION =3D "Wireless Central Regulatory Domain Agent"
+> +HOMEPAGE =3D "http://wireless.kernel.org/en/developers/Regulatory/CRDA"
+> +SECTION =3D "base"
+> +PRIORITY =3D "optional"
+> +LICENSE =3D "ISC"
+> +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D07c4f6dea3845b02a18dc00c8c876=
+99c"
+> +
+> +PR =3D "r0"
+> +
+> +DEPENDS =3D "libgcrypt libnl python-native python-m2crypto-native"
+> +RDEPENDS_${PN} =3D "udev"
+> +
+> +SRC_URI =3D "http://wireless.kernel.org/download/crda/${P}.tar.bz2;name=
+=3Dcrda \
+> +    http://wireless.kernel.org/download/wireless-regdb/regulatory.bins/2=
+011.04.28-regulatory.bin;name=3Dreg \
+> +    "
+> +
+> +EXTRA_OEMAKE =3D "MAKEFLAGS=3D"
+> +do_compile() {
+> +    oe_runmake all_noverify
+> +}
+> +
+> +do_install() {
+> +    oe_runmake DESTDIR=3D${D} install
+> +    install -d ${D}/usr/lib/crda/
+> +    install -m 0644 ${WORKDIR}/2011.04.28-regulatory.bin ${D}/usr/lib/cr=
+da/regulatory.bin
+> +}
+> +
+> +SRC_URI[crda.md5sum] =3D "5226f65aebacf94baaf820f8b4e06df4"
+> +SRC_URI[crda.sha256sum] =3D "e469348a5d0bb933df31995869130f68901de9be02e=
+666437f52125698851864"
+> +SRC_URI[reg.md5sum] =3D "1535e98bcaba732e2f8e8f62dac6f369"
+> +SRC_URI[reg.sha256sum] =3D "bb6ba6f5dcdf7106a19c588b0e4d43ab7af26f6474fe=
+01011a318b3dceaba33b"
+> +
+> +FILES_${PN} +=3D "\
+> +    /lib/udev/rules.d/85-regulatory.rules \
+> +    /usr/lib/crda/regulatory.bin \
+> +    "
+> --=20
+> 1.7.0.4
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
