@@ -1,31 +1,31 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 934E252A68
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 736DC52A68
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Sep 2012 03:14:33 +0000 (UTC)
+	Wed, 26 Sep 2012 03:14:53 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8Q3EWQf031849;
-	Tue, 25 Sep 2012 22:14:32 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8Q3Eq0k005181;
+	Tue, 25 Sep 2012 22:14:52 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8Q3EWkG001099;
-	Tue, 25 Sep 2012 22:14:32 -0500
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8Q3Eqok001246;
+	Tue, 25 Sep 2012 22:14:52 -0500
 Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
 	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Tue, 25 Sep 2012 22:14:32 -0500
+	14.01.0323.003; Tue, 25 Sep 2012 22:14:52 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-Thread-Topic: [meta-arago] [PATCH] crda: Port crda recipe from oe-classic
-Thread-Index: AQHNmzAUO3xsaOUtBkytrjjZeI/CYJeb87iA
-Date: Wed, 26 Sep 2012 03:14:31 +0000
-Message-ID: <42E43DBC-7C8E-4F65-AEAB-6888AC38591E@ti.com>
-References: <1348587378-25412-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1348587378-25412-1-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] [PATCH] dt: Port dt recipe
+Thread-Index: AQHNmzBsdzim39D5eUKWNymBUgnEcZeb889I
+Date: Wed, 26 Sep 2012 03:14:52 +0000
+Message-ID: <9AB6F8BA-EDBA-4BBE-B3D7-100AA06A0F70@ti.com>
+References: <1348587502-25473-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1348587502-25473-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] crda: Port crda recipe from oe-classic
+Subject: Re: [PATCH] dt: Port dt recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,86 +38,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2012 03:14:34 -0000
+X-List-Received-Date: Wed, 26 Sep 2012 03:14:53 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Will you be sending this to meta-oe or oe-core.  An indication of the final=
- destination would be nice.
-
-Also, we seem to be adding a lot of recipes to arago that will need to be r=
-emoved later.  Should we look into a layer or directory for these to help u=
-s know what to check?
+Please explain why.  See previous email
 
 Sincerely,
 Chase Maupin
-On Sep 25, 2012, at 5:11 PM, "Franklin S. Cooper Jr" <fcooperjr27@gmail.com=
+On Sep 25, 2012, at 5:14 PM, "Franklin S. Cooper Jr" <fcooperjr27@gmail.com=
 > wrote:
 
-> * Port the crda recipe from oe-classic. The version in oe-classic
->  was version 1.1.1
-> * Version 1.1.1 had compiling issues with the version of LIBNL used in oe=
--core.
->  Upgraded version of crda to 1.1.2 which fixed that issue.
+> * Port dt recipe from oe-core
 >=20
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
-> .../recipes-connectivity/crda/crda_1.1.2.bb        |   36 +++++++++++++++=
+> .../recipes-devtools/dt/dt/no_aio.patch            |   17 +++++++++++
+> meta-arago-extras/recipes-devtools/dt/dt_17.07.bb  |   30 +++++++++++++++=
 +++++
-> 1 files changed, 36 insertions(+), 0 deletions(-)
-> create mode 100644 meta-arago-extras/recipes-connectivity/crda/crda_1.1.2=
-.bb
+> 2 files changed, 47 insertions(+), 0 deletions(-)
+> create mode 100644 meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+> create mode 100644 meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
 >=20
-> diff --git a/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb b/=
-meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
+> diff --git a/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch b/meta=
+-arago-extras/recipes-devtools/dt/dt/no_aio.patch
 > new file mode 100644
-> index 0000000..82047db
+> index 0000000..8253e86
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-connectivity/crda/crda_1.1.2.bb
-> @@ -0,0 +1,36 @@
-> +DESCRIPTION =3D "Wireless Central Regulatory Domain Agent"
-> +HOMEPAGE =3D "http://wireless.kernel.org/en/developers/Regulatory/CRDA"
-> +SECTION =3D "base"
-> +PRIORITY =3D "optional"
-> +LICENSE =3D "ISC"
-> +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D07c4f6dea3845b02a18dc00c8c876=
-99c"
+> +++ b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+> @@ -0,0 +1,17 @@
+> +---
+> + Makefile.linux |    2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
 > +
-> +PR =3D "r0"
+> +Index: dt.d-WIP/Makefile.linux
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +--- dt.d-WIP/Makefile.linux
+> ++++ dt.d-WIP/Makefile.linux
+> +@@ -68,7 +68,7 @@ LINTLIBS=3D
 > +
-> +DEPENDS =3D "libgcrypt libnl python-native python-m2crypto-native"
-> +RDEPENDS_${PN} =3D "udev"
+> + PORG      =3D -O3
 > +
-> +SRC_URI =3D "http://wireless.kernel.org/download/crda/${P}.tar.bz2;name=
-=3Dcrda \
-> +    http://wireless.kernel.org/download/wireless-regdb/regulatory.bins/2=
-011.04.28-regulatory.bin;name=3Dreg \
-> +    "
+> +-CFLAGS=3D $(PORG) -DAIO -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -=
+D_FILE_OFFSET_BITS=3D64
+> ++CFLAGS=3D $(PORG) -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE=
+_OFFSET_BITS=3D64
+> + CPP=3D    /lib/cpp
+> + CPPOPTS=3D -D__GNUC__ -DFIFO -DMMAP -D__linux__ -D_GNU_SOURCE
+> + LDFLAGS=3D
+> diff --git a/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb b/meta-ara=
+go-extras/recipes-devtools/dt/dt_17.07.bb
+> new file mode 100644
+> index 0000000..22fd6ac
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
+> @@ -0,0 +1,30 @@
+> +HOMEPAGE =3D "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/dt=
+.html"
+> +DESCRIPTION =3D "The Data Test Program (dt) is a generic data test progr=
+am used to verify proper \
+> +operation of peripherals, file systems, device drivers, or any data stre=
+am supported by the \
+> +operating system."
 > +
-> +EXTRA_OEMAKE =3D "MAKEFLAGS=3D"
+> +SECTION =3D "console/tests"
+> +
+> +LICENSE =3D "MIT"
+> +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dfb073c94d1f584010fc75867b686d=
+6d3"
+> +
+> +INC_PR =3D "r0"
+> +
+> +SRC_URI =3D "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/ftp=
+/dt/dt-source.tar.gz"
+> +S =3D "${WORKDIR}/dt.d"
+> +
+> +TARGET_CC_ARCH +=3D "${LDFLAGS}"
+> +
 > +do_compile() {
-> +    oe_runmake all_noverify
+> +    ${MAKE} -f Makefile.linux
 > +}
+> +
+> +SRC_URI_append_libc-uclibc =3D " file://no_aio.patch "
 > +
 > +do_install() {
-> +    oe_runmake DESTDIR=3D${D} install
-> +    install -d ${D}/usr/lib/crda/
-> +    install -m 0644 ${WORKDIR}/2011.04.28-regulatory.bin ${D}/usr/lib/cr=
-da/regulatory.bin
+> +    install -d ${D}${bindir}
+> +    install -m 0755 dt ${D}${bindir}
 > +}
 > +
-> +SRC_URI[crda.md5sum] =3D "5226f65aebacf94baaf820f8b4e06df4"
-> +SRC_URI[crda.sha256sum] =3D "e469348a5d0bb933df31995869130f68901de9be02e=
-666437f52125698851864"
-> +SRC_URI[reg.md5sum] =3D "1535e98bcaba732e2f8e8f62dac6f369"
-> +SRC_URI[reg.sha256sum] =3D "bb6ba6f5dcdf7106a19c588b0e4d43ab7af26f6474fe=
-01011a318b3dceaba33b"
-> +
-> +FILES_${PN} +=3D "\
-> +    /lib/udev/rules.d/85-regulatory.rules \
-> +    /usr/lib/crda/regulatory.bin \
-> +    "
+> +SRC_URI[md5sum] =3D "fc3373e30868698b90f02cc5fab9aabd"
+> +SRC_URI[sha256sum] =3D "6a213b8da2b8907c4f1633c3b90229085ac239e4d43aa587=
+9b0123c21f951cab"
 > --=20
 > 1.7.0.4
 >=20
