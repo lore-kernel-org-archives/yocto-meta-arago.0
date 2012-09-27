@@ -1,26 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTP id 4D38C529AB
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 0FD70529A4
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Sep 2012 20:56:29 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173021.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MB1008KZ0TGU590@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 27 Sep 2012 15:56:21 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 3818D201C1; Thu,
-	27 Sep 2012 16:56:03 -0400 (EDT)
-Date: Thu, 27 Sep 2012 16:56:03 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-Message-id: <20120927205603.GE16856@denix.org>
-References: <1348723598-9521-1-git-send-email-fcooper@ti.com>
-MIME-version: 1.0
-In-reply-to: <1348723598-9521-1-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago-extras][PATCH] python-m2crypto: Port python-m2crypto recipe
+	Thu, 27 Sep 2012 21:12:23 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q8RLCMY0002741;
+	Thu, 27 Sep 2012 16:12:22 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q8RLCM1l012478;
+	Thu, 27 Sep 2012 16:12:22 -0500
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Thu, 27 Sep 2012 16:12:22 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [meta-arago-distro][PATCH 1/2]
+	busybox-udhcpd-config: Add udhcpd config option
+Thread-Index: AQHNnGyQYVWJtDnM6Ui362PIsHAqCZee/4AA//+xOKw=
+Date: Thu, 27 Sep 2012 21:12:21 +0000
+Message-ID: <4A7E6929-3436-400B-92AD-22079CD6B4BA@ti.com>
+References: <1348723352-9479-1-git-send-email-fcooper@ti.com>,
+	<20120927205420.GD16856@denix.org>
+In-Reply-To: <20120927205420.GD16856@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [meta-arago-distro][PATCH 1/2] busybox-udhcpd-config: Add udhcpd config option
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,822 +40,1031 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Sep 2012 20:56:29 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 27 Sep 2012 21:12:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-You should have submitted this patch before the one for crda, as crda depends 
-on python-m2crypto-native that is being added here.
+I didn't associate busybox with udhcpd so I made the change. I will change =
+it back if it's indeed redundant.
 
--- 
-Denys
+On Sep 27, 2012, at 3:54 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
 
-
-On Thu, Sep 27, 2012 at 12:26:38AM -0500, Franklin S. Cooper Jr wrote:
-> * Port python-m2crypto recipe from oe-classic.
-> * This recipe will be submitted to oe-core. If accepted in oe-core this recipe
->   should be removed from this layer.
-> 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../python/python-m2crypto/install.patch           |   24 +
->  .../m2crypto-0.20.2-openssl-1.0.0.patch            |  713 ++++++++++++++++++++
->  .../python/python-m2crypto_0.20.2.bb               |   29 +
->  3 files changed, 766 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-devtools/python/python-m2crypto/install.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/python/python-m2crypto/m2crypto-0.20.2-openssl-1.0.0.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/python/python-m2crypto_0.20.2.bb
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/python/python-m2crypto/install.patch b/meta-arago-extras/recipes-devtools/python/python-m2crypto/install.patch
-> new file mode 100644
-> index 0000000..0ee354e
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-devtools/python/python-m2crypto/install.patch
-> @@ -0,0 +1,24 @@
-> +Index: m2crypto-0.18.2/setup.py
-> +===================================================================
-> +--- m2crypto-0.18.2.orig/setup.py
-> ++++ m2crypto-0.18.2/setup.py
-> +@@ -38,7 +38,7 @@ class _M2CryptoBuildExt(build_ext.build_
-> +             self.openssl = 'c:\\pkg'
-> +         else:
-> +             self.libraries = ['ssl', 'crypto']
-> +-            self.openssl = '/usr'
-> ++            self.openssl = os.environ.get( "STAGING_DIR" )
-> +
-> +
-> +     def finalize_options(self):
-> +@@ -47,8 +47,8 @@ class _M2CryptoBuildExt(build_ext.build_
-> +
-> +         build_ext.build_ext.finalize_options(self)
-> +
-> +-        opensslIncludeDir = os.path.join(self.openssl, 'include')
-> +-        opensslLibraryDir = os.path.join(self.openssl, 'lib')
-> ++        opensslIncludeDir = os.environ.get( "STAGING_INCDIR" )
-> ++        opensslLibraryDir = os.environ.get( "STAGING_LIBDIR" )
-> +
-> +         self.swig_opts = ['-I%s' % i for i in self.include_dirs + \
-> +                           [opensslIncludeDir]]
-> diff --git a/meta-arago-extras/recipes-devtools/python/python-m2crypto/m2crypto-0.20.2-openssl-1.0.0.patch b/meta-arago-extras/recipes-devtools/python/python-m2crypto/m2crypto-0.20.2-openssl-1.0.0.patch
-> new file mode 100644
-> index 0000000..710b7a5
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-devtools/python/python-m2crypto/m2crypto-0.20.2-openssl-1.0.0.patch
-> @@ -0,0 +1,713 @@
-> +--- SWIG/_aes.i
-> ++++ SWIG/_aes.i
-> +@@ -76,7 +76,7 @@
-> +         AES_encrypt((const unsigned char *)in, out, key);
-> +     else
-> +         AES_decrypt((const unsigned char *)in, out, key);
-> +-    return PyString_FromStringAndSize(out, outlen);
-> ++    return PyString_FromStringAndSize((char*)out, outlen);
-> + }
-> +
-> + int AES_type_check(AES_KEY *key) {
-> +--- SWIG/_evp.i
-> ++++ SWIG/_evp.i
-> +@@ -4,6 +4,9 @@
-> +
-> + Portions Copyright (c) 2004-2007 Open Source Applications Foundation.
-> + Author: Heikki Toivonen
-> ++
-> ++Copyright (c) 2009-2010 Heikki Toivonen. All rights reserved.
-> ++
-> + */
-> +
-> + %include <openssl/opensslconf.h>
-> +@@ -180,7 +183,7 @@
-> +
-> +     PKCS5_PBKDF2_HMAC_SHA1(passbuf, passlen, saltbuf, saltlen, iter,
-> +                            keylen, key);
-> +-    ret = PyString_FromStringAndSize(key, keylen);
-> ++    ret = PyString_FromStringAndSize((char*)key, keylen);
-> +     OPENSSL_cleanse(key, keylen);
-> +     return ret;
-> + }
-> +@@ -339,7 +342,7 @@
-> +     klen = EVP_BytesToKey(cipher, md, (unsigned char *)sbuf,
-> +         (unsigned char *)dbuf, dlen, iter,
-> +         key, NULL); /* Since we are not returning IV no need to derive it */
-> +-    ret = PyString_FromStringAndSize(key, klen);
-> ++    ret = PyString_FromStringAndSize((char*)key, klen);
-> +     return ret;
-> + }
-> +
-> +@@ -435,7 +438,7 @@
-> +         PyErr_SetString(_evp_err, ERR_reason_error_string(ERR_get_error()));
-> +         return NULL;
-> +     }
-> +-    ret = PyString_FromStringAndSize(sigbuf, siglen);
-> ++    ret = PyString_FromStringAndSize((char*)sigbuf, siglen);
-> +     OPENSSL_cleanse(sigbuf, siglen);
-> +     OPENSSL_free(sigbuf);
-> +     return ret;
-> +@@ -513,7 +516,7 @@
-> +         PyErr_SetString(PyExc_ValueError, "EVP_PKEY as DER failed");
-> +         return NULL;
-> +     }
-> +-    der = PyString_FromStringAndSize(pp, len);
-> ++    der = PyString_FromStringAndSize((char*)pp, len);
-> +     OPENSSL_free(pp);
-> +     return der;
-> + }
-> +--- SWIG/_m2crypto.i
-> ++++ SWIG/_m2crypto.i
-> +@@ -3,6 +3,9 @@
-> +  *
-> +  * Portions created by Open Source Applications Foundation (OSAF) are
-> +  * Copyright (C) 2004-2006 OSAF. All Rights Reserved.
-> ++ *
-> ++ * Copyright (c) 2009-2010 Heikki Toivonen. All rights reserved.
-> ++ *
-> +  */
-> +
-> + %module(threads=1) _m2crypto
-> +@@ -38,6 +41,19 @@
-> + #define CONST098
-> + #endif
-> +
-> ++/* Bring in STACK_OF macro definition */
-> ++%include <openssl/safestack.h>
-> ++
-> ++/* Bring in LHASH_OF macro definition */
-> ++/* XXX Can't include lhash.h where LHASH_OF is defined, because it includes
-> ++   XXX stdio.h etc. which we fail to include. So we have to (re)define
-> ++   XXX LHASH_OF here instead.
-> ++%include <openssl/lhash.h>
-> ++*/
-> ++#if OPENSSL_VERSION_NUMBER >= 0x10000000L
-> ++#define LHASH_OF(type) struct lhash_st_##type
-> ++#endif
-> ++
-> + %include constraints.i
-> + %include _threads.i
-> + %include _lib.i
-> +--- SWIG/_pkcs7.i
-> ++++ SWIG/_pkcs7.i
-> +@@ -12,7 +12,7 @@
-> + %apply Pointer NONNULL { EVP_CIPHER * };
-> + %apply Pointer NONNULL { EVP_PKEY * };
-> + %apply Pointer NONNULL { PKCS7 * };
-> +-%apply Pointer NONNULL { STACK * };
-> ++%apply Pointer NONNULL { STACK_OF(X509) * };
-> + %apply Pointer NONNULL { X509 * };
-> +
-> + %rename(pkcs7_new) PKCS7_new;
-> +@@ -54,8 +54,8 @@
-> +
-> + %threadallow pkcs7_encrypt;
-> + %inline %{
-> +-PKCS7 *pkcs7_encrypt(STACK *stack, BIO *bio, EVP_CIPHER *cipher, int flags) {
-> +-    return PKCS7_encrypt((STACK_OF(X509) *)stack, bio, cipher, flags);
-> ++PKCS7 *pkcs7_encrypt(STACK_OF(X509) *stack, BIO *bio, EVP_CIPHER *cipher, int flags) {
-> ++    return PKCS7_encrypt(stack, bio, cipher, flags);
-> + }
-> +
-> + PyObject *pkcs7_decrypt(PKCS7 *pkcs7, EVP_PKEY *pkey, X509 *cert, int flags) {
-> +@@ -96,14 +96,14 @@
-> +
-> + %threadallow pkcs7_sign1;
-> + %inline %{
-> +-PKCS7 *pkcs7_sign1(X509 *x509, EVP_PKEY *pkey, STACK *stack, BIO *bio, int flags) {
-> +-    return PKCS7_sign(x509, pkey, (STACK_OF(X509) *)stack, bio, flags);
-> ++PKCS7 *pkcs7_sign1(X509 *x509, EVP_PKEY *pkey, STACK_OF(X509) *stack, BIO *bio, int flags) {
-> ++    return PKCS7_sign(x509, pkey, stack, bio, flags);
-> + }
-> + %}
-> +
-> + %threadallow pkcs7_verify1;
-> + %inline %{
-> +-PyObject *pkcs7_verify1(PKCS7 *pkcs7, STACK *stack, X509_STORE *store, BIO *data, int flags) {
-> ++PyObject *pkcs7_verify1(PKCS7 *pkcs7, STACK_OF(X509) *stack, X509_STORE *store, BIO *data, int flags) {
-> +     int outlen;
-> +     char *outbuf;
-> +     BIO *bio;
-> +@@ -113,7 +113,7 @@
-> +         PyErr_SetString(PyExc_MemoryError, "pkcs7_verify1");
-> +         return NULL;
-> +     }
-> +-    if (!PKCS7_verify(pkcs7, (STACK_OF(X509) *)stack, store, data, bio, flags)) {
-> ++    if (!PKCS7_verify(pkcs7, stack, store, data, bio, flags)) {
-> +         PyErr_SetString(_pkcs7_err, ERR_reason_error_string(ERR_get_error()));
-> +         BIO_free(bio);
-> +         return NULL;
-> +@@ -131,7 +131,7 @@
-> +     return ret;
-> + }
-> +
-> +-PyObject *pkcs7_verify0(PKCS7 *pkcs7, STACK *stack, X509_STORE *store, int flags) {
-> ++PyObject *pkcs7_verify0(PKCS7 *pkcs7, STACK_OF(X509) *stack, X509_STORE *store, int flags) {
-> +     return pkcs7_verify1(pkcs7, stack, store, NULL, flags);
-> + }
-> + %}
-> +@@ -229,7 +229,7 @@
-> + }
-> +
-> + /* return STACK_OF(X509)* */
-> +-STACK *pkcs7_get0_signers(PKCS7 *p7, STACK *certs, int flags) {
-> ++STACK_OF(X509) *pkcs7_get0_signers(PKCS7 *p7, STACK_OF(X509) *certs, int flags) {
-> +     return PKCS7_get0_signers(p7, certs, flags);
-> + }
-> +
-> +--- SWIG/_rand.i
-> ++++ SWIG/_rand.i
-> +@@ -87,7 +87,7 @@
-> +         Py_INCREF(Py_None);
-> +         return Py_None;
-> +     } else {
-> +-        PyTuple_SET_ITEM(tuple, 0, PyString_FromStringAndSize(blob, n));
-> ++        PyTuple_SET_ITEM(tuple, 0, PyString_FromStringAndSize((char*)blob, n));
-> +         PyMem_Free(blob);
-> +         PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong((long)ret));
-> +         return tuple;
-> +--- SWIG/_ssl.i
-> ++++ SWIG/_ssl.i
-> +@@ -3,6 +3,9 @@
-> + /*
-> + ** Portions created by Open Source Applications Foundation (OSAF) are
-> + ** Copyright (C) 2004-2005 OSAF. All Rights Reserved.
-> ++**
-> ++** Copyright (c) 2009-2010 Heikki Toivonen. All rights reserved.
-> ++**
-> + */
-> + /* $Id: m2crypto-0.20.2-openssl-1.0.0.patch,v 1.1 2010/04/30 18:21:16 arfrever Exp $ */
-> +
-> +@@ -17,13 +20,17 @@
-> + %apply Pointer NONNULL { SSL_CTX * };
-> + %apply Pointer NONNULL { SSL * };
-> + %apply Pointer NONNULL { SSL_CIPHER * };
-> +-%apply Pointer NONNULL { STACK * };
-> ++%apply Pointer NONNULL { STACK_OF(SSL_CIPHER) * };
-> ++%apply Pointer NONNULL { STACK_OF(X509) * };
-> + %apply Pointer NONNULL { BIO * };
-> + %apply Pointer NONNULL { DH * };
-> + %apply Pointer NONNULL { RSA * };
-> + %apply Pointer NONNULL { EVP_PKEY *};
-> + %apply Pointer NONNULL { PyObject *pyfunc };
-> +
-> ++%rename(ssl_get_ciphers) SSL_get_ciphers;
-> ++extern STACK_OF(SSL_CIPHER) *SSL_get_ciphers(const SSL *ssl);
-> ++
-> + %rename(ssl_get_version) SSL_get_version;
-> + extern const char *SSL_get_version(CONST SSL *);
-> + %rename(ssl_get_error) SSL_get_error;
-> +@@ -668,28 +675,24 @@
-> +     return SSL_CIPHER_get_bits(c, NULL);
-> + }
-> +
-> +-STACK *ssl_get_ciphers(SSL *ssl) {
-> +-    return (STACK *)SSL_get_ciphers(ssl);
-> +-}
-> +-
-> +-int sk_ssl_cipher_num(STACK *stack) {
-> +-    return sk_num(stack);
-> ++int sk_ssl_cipher_num(STACK_OF(SSL_CIPHER) *stack) {
-> ++    return sk_SSL_CIPHER_num(stack);
-> + }
-> +
-> +-SSL_CIPHER *sk_ssl_cipher_value(STACK *stack, int idx) {
-> +-    return (SSL_CIPHER *)sk_value(stack, idx);
-> ++SSL_CIPHER *sk_ssl_cipher_value(STACK_OF(SSL_CIPHER) *stack, int idx) {
-> ++    return sk_SSL_CIPHER_value(stack, idx);
-> + }
-> +
-> +-STACK *ssl_get_peer_cert_chain(SSL *ssl) {
-> +-    return (STACK *)SSL_get_peer_cert_chain(ssl);
-> ++STACK_OF(X509) *ssl_get_peer_cert_chain(SSL *ssl) {
-> ++    return SSL_get_peer_cert_chain(ssl);
-> + }
-> +
-> +-int sk_x509_num(STACK *stack) {
-> +-    return sk_num(stack);
-> ++int sk_x509_num(STACK_OF(X509) *stack) {
-> ++    return sk_X509_num(stack);
-> + }
-> +
-> +-X509 *sk_x509_value(STACK *stack, int idx) {
-> +-    return (X509 *)sk_value(stack, idx);
-> ++X509 *sk_x509_value(STACK_OF(X509) *stack, int idx) {
-> ++    return sk_X509_value(stack, idx);
-> + }
-> + %}
-> +
-> +--- SWIG/_util.i
-> ++++ SWIG/_util.i
-> +@@ -48,7 +48,7 @@
-> +         PyErr_SetString(_util_err, ERR_reason_error_string(ERR_get_error()));
-> +         return NULL;
-> +     }
-> +-    obj = PyString_FromStringAndSize(ret, len);
-> ++    obj = PyString_FromStringAndSize((char*)ret, len);
-> +     OPENSSL_free(ret);
-> +     return obj;
-> + }
-> +--- SWIG/_x509.i
-> ++++ SWIG/_x509.i
-> +@@ -3,6 +3,9 @@
-> + /*
-> + ** Portions created by Open Source Applications Foundation (OSAF) are
-> + ** Copyright (C) 2004-2005 OSAF. All Rights Reserved.
-> ++**
-> ++** Copyright (c) 2009-2010 Heikki Toivonen. All rights reserved.
-> ++**
-> + */
-> + /* $Id: m2crypto-0.20.2-openssl-1.0.0.patch,v 1.1 2010/04/30 18:21:16 arfrever Exp $   */
-> +
-> +@@ -148,8 +151,15 @@
-> + extern int X509_NAME_print_ex(BIO *, X509_NAME *, int, unsigned long);
-> + %rename(x509_name_print_ex_fp) X509_NAME_print_ex_fp;
-> + extern int X509_NAME_print_ex_fp(FILE *, X509_NAME *, int, unsigned long);
-> ++
-> ++#if OPENSSL_VERSION_NUMBER >= 0x10000000L
-> ++%rename(x509_name_hash) X509_NAME_hash_old;
-> ++extern unsigned long X509_NAME_hash_old(X509_NAME *);
-> ++#else
-> + %rename(x509_name_hash) X509_NAME_hash;
-> + extern unsigned long X509_NAME_hash(X509_NAME *);
-> ++#endif
-> ++
-> + %rename(x509_name_get_index_by_nid) X509_NAME_get_index_by_NID;
-> + extern int X509_NAME_get_index_by_NID(X509_NAME *, int, int);
-> +
-> +@@ -171,7 +181,7 @@
-> +     if (PyString_Check($input)) {
-> +         Py_ssize_t len;
-> +
-> +-        $1 = PyString_AsString($input);
-> ++        $1 = (unsigned char *)PyString_AsString($input);
-> +         len = PyString_Size($input);
-> +         if (len > INT_MAX) {
-> +             PyErr_SetString(PyExc_ValueError, "object too large");
-> +@@ -184,7 +194,7 @@
-> +     }
-> + }
-> + %rename(x509_name_entry_set_data) X509_NAME_ENTRY_set_data;
-> +-extern int X509_NAME_ENTRY_set_data( X509_NAME_ENTRY *, int, CONST unsigned char *, int);
-> ++extern int X509_NAME_ENTRY_set_data(X509_NAME_ENTRY *, int, CONST unsigned char *, int);
-> + %typemap(in) (CONST unsigned char *, int);
-> +
-> + %rename(x509_req_new) X509_REQ_new;
-> +@@ -230,7 +240,7 @@
-> + %rename(x509_store_ctx_free) X509_STORE_CTX_free;
-> + extern void X509_STORE_CTX_free(X509_STORE_CTX *);
-> + %rename(x509_store_ctx_get1_chain) X509_STORE_CTX_get1_chain;
-> +-extern STACK *X509_STORE_CTX_get1_chain(X509_STORE_CTX *);
-> ++extern STACK_OF(X509) *X509_STORE_CTX_get1_chain(X509_STORE_CTX *);
-> +
-> + %rename(x509_extension_get_critical) X509_EXTENSION_get_critical;
-> + extern int X509_EXTENSION_get_critical(X509_EXTENSION *);
-> +@@ -348,7 +358,7 @@
-> +         PyErr_SetString(_x509_err, ERR_reason_error_string(ERR_get_error()));
-> +     }
-> +     else {
-> +-        ret = PyString_FromStringAndSize(buf, len);
-> ++        ret = PyString_FromStringAndSize((char*)buf, len);
-> +         OPENSSL_free(buf);
-> +     }
-> +     return ret;
-> +@@ -435,12 +445,12 @@
-> + }
-> +
-> + int x509_name_set_by_nid(X509_NAME *name, int nid, PyObject *obj) {
-> +-    return X509_NAME_add_entry_by_NID(name, nid, MBSTRING_ASC, PyString_AsString(obj), -1, -1, 0);
-> ++    return X509_NAME_add_entry_by_NID(name, nid, MBSTRING_ASC, (unsigned char *)PyString_AsString(obj), -1, -1, 0);
-> + }
-> +
-> + /* x509_name_add_entry_by_txt */
-> + int x509_name_add_entry_by_txt(X509_NAME *name, char *field, int type, char *bytes, int len, int loc, int set) {
-> +-    return X509_NAME_add_entry_by_txt(name, field, type, bytes, len, loc, set);
-> ++    return X509_NAME_add_entry_by_txt(name, field, type, (unsigned char *)bytes, len, loc, set);
-> + }
-> +
-> + PyObject *x509_name_get_der(X509_NAME *name)
-> +@@ -450,23 +460,23 @@
-> + }
-> +
-> + /* sk_X509_new_null() is a macro returning "STACK_OF(X509) *". */
-> +-STACK *sk_x509_new_null(void) {
-> +-    return (STACK *)sk_X509_new_null();
-> ++STACK_OF(X509) *sk_x509_new_null(void) {
-> ++    return sk_X509_new_null();
-> + }
-> +
-> + /* sk_X509_free() is a macro. */
-> +-void sk_x509_free(STACK *stack) {
-> +-    sk_X509_free((STACK_OF(X509) *)stack);
-> ++void sk_x509_free(STACK_OF(X509) *stack) {
-> ++    sk_X509_free(stack);
-> + }
-> +
-> + /* sk_X509_push() is a macro. */
-> +-int sk_x509_push(STACK *stack, X509 *x509) {
-> +-    return sk_X509_push((STACK_OF(X509) *)stack, x509);
-> ++int sk_x509_push(STACK_OF(X509) *stack, X509 *x509) {
-> ++    return sk_X509_push(stack, x509);
-> + }
-> +
-> + /* sk_X509_pop() is a macro. */
-> +-X509 *sk_x509_pop(STACK *stack) {
-> +-    return sk_X509_pop((STACK_OF(X509) *)stack);
-> ++X509 *sk_x509_pop(STACK_OF(X509) *stack) {
-> ++    return sk_X509_pop(stack);
-> + }
-> +
-> + int x509_store_load_locations(X509_STORE *store, const char *file) {
-> +@@ -493,21 +503,29 @@
-> +     return X509_REQ_set_version(x, version);
-> + }
-> +
-> +-int x509_req_add_extensions(X509_REQ *req, STACK *exts) {
-> +-    return X509_REQ_add_extensions(req, (STACK_OF(X509_EXTENSION) *)exts);
-> ++int x509_req_add_extensions(X509_REQ *req, STACK_OF(X509_EXTENSION) *exts) {
-> ++    return X509_REQ_add_extensions(req, exts);
-> + }
-> +
-> +-X509_NAME_ENTRY *x509_name_entry_create_by_txt( X509_NAME_ENTRY **ne, char *field, int type, char *bytes, int len) {
-> +-    return X509_NAME_ENTRY_create_by_txt( ne, field, type, bytes, len);
-> ++X509_NAME_ENTRY *x509_name_entry_create_by_txt(X509_NAME_ENTRY **ne, char *field, int type, char *bytes, int len) {
-> ++    return X509_NAME_ENTRY_create_by_txt( ne, field, type, (unsigned char *)bytes, len);
-> + }
-> +
-> +-LHASH *
-> +-x509v3_lhash(){
-> +-       return lh_new(NULL,NULL);
-> ++#if OPENSSL_VERSION_NUMBER >= 0x10000000L
-> ++LHASH_OF(CONF_VALUE)
-> ++#else
-> ++LHASH
-> ++#endif
-> ++*x509v3_lhash() {
-> ++    return lh_new(NULL, NULL); /* Should probably be lh_CONF_VALUE_new but won't compile. */
-> + }
-> +
-> + X509V3_CTX *
-> +-x509v3_set_conf_lhash(LHASH * lhash){
-> ++#if OPENSSL_VERSION_NUMBER >= 0x10000000L
-> ++x509v3_set_conf_lhash(LHASH_OF(CONF_VALUE) * lhash) {
-> ++#else
-> ++x509v3_set_conf_lhash(LHASH                * lhash) {
-> ++#endif
-> +       X509V3_CTX * ctx;
-> +       if (!(ctx=(X509V3_CTX *)PyMem_Malloc(sizeof(X509V3_CTX)))) {
-> +           PyErr_SetString(PyExc_MemoryError, "x509v3_set_conf_lhash");
-> +@@ -517,11 +535,20 @@
-> +       return ctx;
-> + }
-> +
-> +-X509_EXTENSION *x509v3_ext_conf(LHASH *conf, X509V3_CTX *ctx, char *name, char *value) {
-> ++X509_EXTENSION *
-> ++#if OPENSSL_VERSION_NUMBER >= 0x10000000L
-> ++x509v3_ext_conf(LHASH_OF(CONF_VALUE) *conf, X509V3_CTX *ctx, char *name, char *value) {
-> ++#else
-> ++x509v3_ext_conf(LHASH                *conf, X509V3_CTX *ctx, char *name, char *value) {
-> ++#endif
-> +       X509_EXTENSION * ext = NULL;
-> +       ext = X509V3_EXT_conf(conf, ctx, name, value);
-> +       PyMem_Free(ctx);
-> ++#if OPENSSL_VERSION_NUMBER >= 0x10000000L
-> ++      lh_CONF_VALUE_free(conf);
-> ++#else
-> +       lh_free(conf);
-> ++#endif
-> +       return ext;
-> + }
-> +
-> +@@ -543,33 +570,33 @@
-> + }
-> +
-> + /* sk_X509_EXTENSION_new_null is a macro. */
-> +-STACK *sk_x509_extension_new_null(void) {
-> +-    return (STACK *)sk_X509_EXTENSION_new_null();
-> ++STACK_OF(X509_EXTENSION) *sk_x509_extension_new_null(void) {
-> ++    return sk_X509_EXTENSION_new_null();
-> + }
-> +
-> + /* sk_X509_EXTENSION_free() is a macro. */
-> +-void sk_x509_extension_free(STACK *stack) {
-> +-    sk_X509_EXTENSION_free((STACK_OF(X509_EXTENSION) *)stack);
-> ++void sk_x509_extension_free(STACK_OF(X509_EXTENSION) *stack) {
-> ++    sk_X509_EXTENSION_free(stack);
-> + }
-> +
-> + /* sk_X509_EXTENSION_push() is a macro. */
-> +-int sk_x509_extension_push(STACK *stack, X509_EXTENSION *x509_ext) {
-> +-    return sk_X509_EXTENSION_push((STACK_OF(X509_EXTENSION) *)stack, x509_ext);
-> ++int sk_x509_extension_push(STACK_OF(X509_EXTENSION) *stack, X509_EXTENSION *x509_ext) {
-> ++    return sk_X509_EXTENSION_push(stack, x509_ext);
-> + }
-> +
-> + /* sk_X509_EXTENSION_pop() is a macro. */
-> +-X509_EXTENSION *sk_x509_extension_pop(STACK *stack) {
-> +-    return sk_X509_EXTENSION_pop((STACK_OF(X509_EXTENSION) *)stack);
-> ++X509_EXTENSION *sk_x509_extension_pop(STACK_OF(X509_EXTENSION) *stack) {
-> ++    return sk_X509_EXTENSION_pop(stack);
-> + }
-> +
-> + /* sk_X509_EXTENSION_num() is a macro. */
-> +-int sk_x509_extension_num(STACK *stack) {
-> +-    return sk_X509_EXTENSION_num((STACK_OF(X509_EXTENSION) *)stack);
-> ++int sk_x509_extension_num(STACK_OF(X509_EXTENSION) *stack) {
-> ++    return sk_X509_EXTENSION_num(stack);
-> + }
-> +
-> + /* sk_X509_EXTENSION_value() is a macro. */
-> +-X509_EXTENSION *sk_x509_extension_value(STACK *stack, int i) {
-> +-    return sk_X509_EXTENSION_value((STACK_OF(X509_EXTENSION) *)stack, i);
-> ++X509_EXTENSION *sk_x509_extension_value(STACK_OF(X509_EXTENSION) *stack, int i) {
-> ++    return sk_X509_EXTENSION_value(stack, i);
-> + }
-> +
-> + /* X509_STORE_CTX_get_app_data is a macro. */
-> +@@ -590,7 +617,7 @@
-> + #define I2DTYPE int (*)()
-> + #endif
-> +
-> +-STACK *
-> ++STACK_OF(X509) *
-> + make_stack_from_der_sequence(PyObject * pyEncodedString){
-> +     STACK_OF(X509) *certs;
-> +     Py_ssize_t encoded_string_len;
-> +@@ -606,7 +633,7 @@
-> +         return NULL;
-> +     }
-> +
-> +-    certs = ASN1_seq_unpack((unsigned char *)encoded_string, encoded_string_len, (D2ITYPE)d2i_X509, (void(*)())X509_free );
-> ++    certs = ASN1_seq_unpack_X509((unsigned char *)encoded_string, encoded_string_len, d2i_X509, X509_free );
-> +     if (!certs) {
-> +        PyErr_SetString(_x509_err, ERR_reason_error_string(ERR_get_error()));
-> +        return NULL;
-> +@@ -616,13 +643,13 @@
-> + }
-> +
-> + PyObject *
-> +-get_der_encoding_stack(STACK * stack){
-> ++get_der_encoding_stack(STACK_OF(X509) *stack){
-> +     PyObject * encodedString;
-> +
-> +     unsigned char * encoding;
-> +     int len;
-> +
-> +-    encoding = ASN1_seq_pack((STACK_OF(X509)*) stack, (I2DTYPE)i2d_X509, NULL, &len);
-> ++    encoding = ASN1_seq_pack_X509(stack, i2d_X509, NULL, &len);
-> +     if (!encoding) {
-> +        PyErr_SetString(_x509_err, ERR_reason_error_string(ERR_get_error()));
-> +        return NULL;
-> +--- tests/alltests.py
-> ++++ tests/alltests.py
-> +@@ -37,6 +37,7 @@
-> +         'tests.test_rc4',
-> +         'tests.test_rsa',
-> +         'tests.test_smime',
-> ++        'tests.test_ssl_offline',
-> +         'tests.test_threading',
-> +         'tests.test_x509']
-> +     if os.name == 'posix':
-> +--- tests/test_smime.py
-> ++++ tests/test_smime.py
-> +@@ -37,7 +37,7 @@
-> +         buf = BIO.MemoryBuffer(self.cleartext)
-> +         s = SMIME.SMIME()
-> +         s.load_key('tests/signer_key.pem', 'tests/signer.pem')
-> +-        p7 = s.sign(buf)
-> ++        p7 = s.sign(buf, SMIME.PKCS7_DETACHED)
-> +         assert len(buf) == 0
-> +         assert p7.type() == SMIME.PKCS7_SIGNED, p7.type()
-> +         assert isinstance(p7, SMIME.PKCS7), p7
-> +@@ -73,9 +73,8 @@
-> +
-> +         p7, data = SMIME.smime_load_pkcs7_bio(self.signed)
-> +
-> +-        assert data.read() == self.cleartext
-> +         assert isinstance(p7, SMIME.PKCS7), p7
-> +-        v = s.verify(p7)
-> ++        v = s.verify(p7, data)
-> +         assert v == self.cleartext
-> +
-> +         t = p7.get0_signers(sk)
-> +@@ -95,7 +94,6 @@
-> +         s.set_x509_store(st)
-> +
-> +         p7, data = SMIME.smime_load_pkcs7_bio(self.signed)
-> +-        assert data.read() == self.cleartext
-> +         assert isinstance(p7, SMIME.PKCS7), p7
-> +         self.assertRaises(SMIME.PKCS7_Error, s.verify, p7) # Bad signer
-> +
-> +@@ -169,7 +167,7 @@
-> +         s.set_cipher(SMIME.Cipher('des_ede3_cbc'))
-> +
-> +         tmp = BIO.MemoryBuffer()
-> +-        s.write(tmp, p7, buf)
-> ++        s.write(tmp, p7)
-> +
-> +         p7 = s.encrypt(tmp)
-> +
-> +@@ -211,6 +209,7 @@
-> +         assert p7.write(f) == 1
-> +         f.close()
-> +
-> ++        p7 = s.sign(BIO.MemoryBuffer('some text'), SMIME.PKCS7_DETACHED)
-> +         self.filenameSmime = 'tests/sig.p7s'
-> +         f = BIO.openfile(self.filenameSmime, 'wb')
-> +         assert s.write(f, p7, BIO.MemoryBuffer('some text')) == 1
-> +@@ -220,7 +219,7 @@
-> +         buf = BIO.MemoryBuffer()
-> +         assert SMIME.load_pkcs7(self.filename).write_der(buf) == 1
-> +         s = buf.read()
-> +-        assert len(s) == 1204, len(s)
-> ++        assert len(s) in (1204, 1243), len(s)
-> +
-> +     def test_load_pkcs7(self):
-> +         assert SMIME.load_pkcs7(self.filename).type() == SMIME.PKCS7_SIGNED
-> +--- tests/test_ssl_offline.py
-> ++++ tests/test_ssl_offline.py
-> +@@ -0,0 +1,60 @@
-> ++"""Unit tests for M2Crypto.SSL offline parts
-> ++
-> ++Copyright (C) 2006 Open Source Applications Foundation. All Rights Reserved.
-> ++
-> ++Copyright (C) 2009-2010 Heikki Toivonen. All Rights Reserved.
-> ++"""
-> ++
-> ++import unittest, doctest
-> ++from M2Crypto.SSL import Checker
-> ++from M2Crypto import X509
-> ++from M2Crypto import SSL
-> ++from test_ssl import srv_host
-> ++
-> ++
-> ++class CheckerTestCase(unittest.TestCase):
-> ++    def test_checker(self):
-> ++
-> ++        check = Checker.Checker(host=srv_host,
-> ++                                peerCertHash='7B754EFA41A264AAD370D43460BC8229F9354ECE')
-> ++        x509 = X509.load_cert('tests/server.pem')
-> ++        assert check(x509, srv_host)
-> ++        self.assertRaises(Checker.WrongHost, check, x509, 'example.com')
-> ++
-> ++        doctest.testmod(Checker)
-> ++
-> ++
-> ++class ContextTestCase(unittest.TestCase):
-> ++    def test_ctx_load_verify_locations(self):
-> ++        ctx = SSL.Context()
-> ++        self.assertRaises(ValueError, ctx.load_verify_locations, None, None)
-> ++
-> ++    def test_map(self):
-> ++        from M2Crypto.SSL.Context import map, _ctxmap
-> ++        assert isinstance(map(), _ctxmap)
-> ++        ctx = SSL.Context()
-> ++        assert map()
-> ++        ctx.close()
-> ++        assert map() is _ctxmap.singleton
-> ++
-> ++    def test_certstore(self):
-> ++        ctx = SSL.Context()
-> ++        ctx.set_verify(SSL.verify_peer | SSL.verify_fail_if_no_peer_cert, 9)
-> ++        ctx.load_verify_locations('tests/ca.pem')
-> ++        ctx.load_cert('tests/x509.pem')
-> ++
-> ++        store = ctx.get_cert_store()
-> ++        assert isinstance(store, X509.X509_Store)
-> ++
-> ++
-> ++def suite():
-> ++    suite = unittest.TestSuite()
-> ++    suite.addTest(unittest.makeSuite(CheckerTestCase))
-> ++    suite.addTest(unittest.makeSuite(ContextTestCase))
-> ++    return suite
-> ++
-> ++
-> ++if __name__ == '__main__':
-> ++    Rand.load_file('randpool.dat', -1)
-> ++    unittest.TextTestRunner().run(suite())
-> ++    Rand.save_file('randpool.dat')
-> +--- tests/test_ssl.py
-> ++++ tests/test_ssl.py
-> +@@ -2,7 +2,10 @@
-> +
-> + """Unit tests for M2Crypto.SSL.
-> +
-> +-Copyright (c) 2000-2004 Ng Pheng Siong. All rights reserved."""
-> ++Copyright (c) 2000-2004 Ng Pheng Siong. All rights reserved.
-> ++
-> ++Copyright (c) 2009-2010 Heikki Toivonen. All rights reserved.
-> ++"""
-> +
-> + """
-> + TODO
-> +@@ -405,8 +408,11 @@
-> +         try:
-> +             ctx = SSL.Context('sslv23', weak_crypto=1)
-> +             s = SSL.Connection(ctx)
-> +-            s.connect(self.srv_addr)
-> +-            self.failUnlessEqual(s.get_version(), 'SSLv2')
-> ++            if m2.OPENSSL_VERSION_NUMBER < 0x10000000: # SSLv2 ciphers disabled by default in newer OpenSSL
-> ++                s.connect(self.srv_addr)
-> ++                self.failUnlessEqual(s.get_version(), 'SSLv2')
-> ++            else:
-> ++                self.assertRaises(SSL.SSLError, s.connect, self.srv_addr)
-> +             s.close()
-> +         finally:
-> +             self.stop_server(pid)
-> +@@ -1032,45 +1038,6 @@
-> +         # XXX need server to test against
-> +
-> +
-> +-class CheckerTestCase(unittest.TestCase):
-> +-    def test_checker(self):
-> +-        from M2Crypto.SSL import Checker
-> +-        from M2Crypto import X509
-> +-
-> +-        check = Checker.Checker(host=srv_host,
-> +-                                peerCertHash='7B754EFA41A264AAD370D43460BC8229F9354ECE')
-> +-        x509 = X509.load_cert('tests/server.pem')
-> +-        assert check(x509, srv_host)
-> +-        self.assertRaises(Checker.WrongHost, check, x509, 'example.com')
-> +-
-> +-        import doctest
-> +-        doctest.testmod(Checker)
-> +-
-> +-
-> +-class ContextTestCase(unittest.TestCase):
-> +-    def test_ctx_load_verify_locations(self):
-> +-        ctx = SSL.Context()
-> +-        self.assertRaises(ValueError, ctx.load_verify_locations, None, None)
-> +-
-> +-    def test_map(self):
-> +-        from M2Crypto.SSL.Context import map, _ctxmap
-> +-        assert isinstance(map(), _ctxmap)
-> +-        ctx = SSL.Context()
-> +-        assert map()
-> +-        ctx.close()
-> +-        assert map() is _ctxmap.singleton
-> +-
-> +-    def test_certstore(self):
-> +-        ctx = SSL.Context()
-> +-        ctx.set_verify(SSL.verify_peer | SSL.verify_fail_if_no_peer_cert, 9)
-> +-        ctx.load_verify_locations('tests/ca.pem')
-> +-        ctx.load_cert('tests/x509.pem')
-> +-
-> +-        from M2Crypto import X509
-> +-        store = ctx.get_cert_store()
-> +-        assert isinstance(store, X509.X509_Store)
-> +-
-> +-
-> + class SessionTestCase(unittest.TestCase):
-> +     def test_session_load_bad(self):
-> +         self.assertRaises(SSL.SSLError, SSL.Session.load_session,
-> +@@ -1086,8 +1053,6 @@
-> +
-> + def suite():
-> +     suite = unittest.TestSuite()
-> +-    suite.addTest(unittest.makeSuite(CheckerTestCase))
-> +-    suite.addTest(unittest.makeSuite(ContextTestCase))
-> +     suite.addTest(unittest.makeSuite(SessionTestCase))
-> +     suite.addTest(unittest.makeSuite(XmlRpcLibTestCase))
-> +     suite.addTest(unittest.makeSuite(FtpsLibTestCase))
-> diff --git a/meta-arago-extras/recipes-devtools/python/python-m2crypto_0.20.2.bb b/meta-arago-extras/recipes-devtools/python/python-m2crypto_0.20.2.bb
-> new file mode 100644
-> index 0000000..b7e03bb
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-devtools/python/python-m2crypto_0.20.2.bb
-> @@ -0,0 +1,29 @@
-> +DESCRIPTION = "A Python crypto and SSL toolkit"
-> +SECTION = "devel/python"
-> +HOMEPAGE = "http://chandlerproject.org/bin/view/Projects/MeTooCrypto"
-> +PRIORITY = "optional"
-> +DEPENDS = "openssl swig-native"
-> +LICENSE = "BSD"
-> +LIC_FILES_CHKSUM = "file://LICENCE;md5=8064d5f6760668814ca309788894e713"
-> +
-> +SRCNAME = "M2Crypto"
-> +PR = "r0"
-> +
-> +SRC_URI = "\
-> +  http://pypi.python.org/packages/source/M/${SRCNAME}/${SRCNAME}-${PV}.tar.gz \
-> +  file://install.patch \
-> +  file://m2crypto-0.20.2-openssl-1.0.0.patch;striplevel=0 \
-> +"
-> +S = "${WORKDIR}/${SRCNAME}-${PV}"
-> +
-> +inherit setuptools
-> +
-> +export STAGING_DIR
-> +export STAGING_INCDIR
-> +export STAGING_LIBDIR
-> +
-> +SRC_URI[md5sum] = "f93d8462ff7646397a9f77a2fe602d17"
-> +SRC_URI[sha256sum] = "25b94498505c2d800ee465db0cc1aff097b1615adc3ac042a1c85ceca264fc0a"
-> +
-> +NATIVE_INSTALL_WORKS = "1"
-> +BBCLASSEXTEND = "native"
-> -- 
-> 1.7.0.4
-> 
+> On Thu, Sep 27, 2012 at 12:22:31AM -0500, Franklin S. Cooper Jr wrote:
+>> * Install udhcpd.conf file for setting up networking for Soft AP.
+>> * Default udhcp.conf grabbed from busybox. Arago specific patches
+>>  will be added later.
+>> * This patch is based on a similar recipe from Arago called
+>>  softap-udhcpd-config.
+>=20
+> Any specific reason you changed the name of the package?
+>=20
+> The old name seems to be more descriptive - softap-udhcpcd-config. The na=
+me=20
+> 'udhcpd' already implies it is done by the busybox team, so 'busybox-udhc=
+pd'=20
+> is kind of redundant.
+>=20
+> --=20
+> Denys
+>=20
+>=20
+>> * License file pulled from busybox since this is where the original
+>>  udhcpd.conf file was grabbed from.
+>>=20
+>> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>> ---
+>> .../busybox/busybox-udhcpd-config/LICENSE          |  348 ++++++++++++++=
+++++++
+>> .../busybox-udhcpd-config/omap3/udhcpd.conf        |  113 +++++++
+>> .../busybox-udhcpd-config/omapl138/udhcpd.conf     |  113 +++++++
+>> .../busybox-udhcpd-config/ti33x/udhcpd.conf        |  113 +++++++
+>> .../busybox/busybox-udhcpd-config/udhcpd.conf      |  113 +++++++
+>> .../busybox/busybox-udhcpd-config_1.0.bb           |   23 ++
+>> 6 files changed, 823 insertions(+), 0 deletions(-)
+>> create mode 100644 meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/LICENSE
+>> create mode 100644 meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/omap3/udhcpd.conf
+>> create mode 100644 meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/omapl138/udhcpd.conf
+>> create mode 100644 meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/ti33x/udhcpd.conf
+>> create mode 100644 meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/udhcpd.conf
+>> create mode 100644 meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config_1.0.bb
+>>=20
+>> diff --git a/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g/LICENSE b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config/LI=
+CENSE
+>> new file mode 100644
+>> index 0000000..6f50a71
+>> --- /dev/null
+>> +++ b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config/LICEN=
+SE
+>> @@ -0,0 +1,348 @@
+>> +--- A note on GPL versions
+>> +
+>> +BusyBox is distributed under version 2 of the General Public License (i=
+ncluded
+>> +in its entirety, below).  Version 2 is the only version of this license=
+ which
+>> +this version of BusyBox (or modified versions derived from this one) ma=
+y be
+>> +distributed under.
+>> +
+>> +-----------------------------------------------------------------------=
+-
+>> +            GNU GENERAL PUBLIC LICENSE
+>> +               Version 2, June 1991
+>> +
+>> + Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+>> +     51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+>> + Everyone is permitted to copy and distribute verbatim copies
+>> + of this license document, but changing it is not allowed.
+>> +
+>> +                Preamble
+>> +
+>> +  The licenses for most software are designed to take away your
+>> +freedom to share and change it.  By contrast, the GNU General Public
+>> +License is intended to guarantee your freedom to share and change free
+>> +software--to make sure the software is free for all its users.  This
+>> +General Public License applies to most of the Free Software
+>> +Foundation's software and to any other program whose authors commit to
+>> +using it.  (Some other Free Software Foundation software is covered by
+>> +the GNU Library General Public License instead.)  You can apply it to
+>> +your programs, too.
+>> +
+>> +  When we speak of free software, we are referring to freedom, not
+>> +price.  Our General Public Licenses are designed to make sure that you
+>> +have the freedom to distribute copies of free software (and charge for
+>> +this service if you wish), that you receive source code or can get it
+>> +if you want it, that you can change the software or use pieces of it
+>> +in new free programs; and that you know you can do these things.
+>> +
+>> +  To protect your rights, we need to make restrictions that forbid
+>> +anyone to deny you these rights or to ask you to surrender the rights.
+>> +These restrictions translate to certain responsibilities for you if you
+>> +distribute copies of the software, or if you modify it.
+>> +
+>> +  For example, if you distribute copies of such a program, whether
+>> +gratis or for a fee, you must give the recipients all the rights that
+>> +you have.  You must make sure that they, too, receive or can get the
+>> +source code.  And you must show them these terms so they know their
+>> +rights.
+>> +
+>> +  We protect your rights with two steps: (1) copyright the software, an=
+d
+>> +(2) offer you this license which gives you legal permission to copy,
+>> +distribute and/or modify the software.
+>> +
+>> +  Also, for each author's protection and ours, we want to make certain
+>> +that everyone understands that there is no warranty for this free
+>> +software.  If the software is modified by someone else and passed on, w=
+e
+>> +want its recipients to know that what they have is not the original, so
+>> +that any problems introduced by others will not reflect on the original
+>> +authors' reputations.
+>> +
+>> +  Finally, any free program is threatened constantly by software
+>> +patents.  We wish to avoid the danger that redistributors of a free
+>> +program will individually obtain patent licenses, in effect making the
+>> +program proprietary.  To prevent this, we have made it clear that any
+>> +patent must be licensed for everyone's free use or not licensed at all.
+>> +
+>> +  The precise terms and conditions for copying, distribution and
+>> +modification follow.
+>> +=0C
+>> +            GNU GENERAL PUBLIC LICENSE
+>> +   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+>> +
+>> +  0. This License applies to any program or other work which contains
+>> +a notice placed by the copyright holder saying it may be distributed
+>> +under the terms of this General Public License.  The "Program", below,
+>> +refers to any such program or work, and a "work based on the Program"
+>> +means either the Program or any derivative work under copyright law:
+>> +that is to say, a work containing the Program or a portion of it,
+>> +either verbatim or with modifications and/or translated into another
+>> +language.  (Hereinafter, translation is included without limitation in
+>> +the term "modification".)  Each licensee is addressed as "you".
+>> +
+>> +Activities other than copying, distribution and modification are not
+>> +covered by this License; they are outside its scope.  The act of
+>> +running the Program is not restricted, and the output from the Program
+>> +is covered only if its contents constitute a work based on the
+>> +Program (independent of having been made by running the Program).
+>> +Whether that is true depends on what the Program does.
+>> +
+>> +  1. You may copy and distribute verbatim copies of the Program's
+>> +source code as you receive it, in any medium, provided that you
+>> +conspicuously and appropriately publish on each copy an appropriate
+>> +copyright notice and disclaimer of warranty; keep intact all the
+>> +notices that refer to this License and to the absence of any warranty;
+>> +and give any other recipients of the Program a copy of this License
+>> +along with the Program.
+>> +
+>> +You may charge a fee for the physical act of transferring a copy, and
+>> +you may at your option offer warranty protection in exchange for a fee.
+>> +
+>> +  2. You may modify your copy or copies of the Program or any portion
+>> +of it, thus forming a work based on the Program, and copy and
+>> +distribute such modifications or work under the terms of Section 1
+>> +above, provided that you also meet all of these conditions:
+>> +
+>> +    a) You must cause the modified files to carry prominent notices
+>> +    stating that you changed the files and the date of any change.
+>> +
+>> +    b) You must cause any work that you distribute or publish, that in
+>> +    whole or in part contains or is derived from the Program or any
+>> +    part thereof, to be licensed as a whole at no charge to all third
+>> +    parties under the terms of this License.
+>> +
+>> +    c) If the modified program normally reads commands interactively
+>> +    when run, you must cause it, when started running for such
+>> +    interactive use in the most ordinary way, to print or display an
+>> +    announcement including an appropriate copyright notice and a
+>> +    notice that there is no warranty (or else, saying that you provide
+>> +    a warranty) and that users may redistribute the program under
+>> +    these conditions, and telling the user how to view a copy of this
+>> +    License.  (Exception: if the Program itself is interactive but
+>> +    does not normally print such an announcement, your work based on
+>> +    the Program is not required to print an announcement.)
+>> +=0C
+>> +These requirements apply to the modified work as a whole.  If
+>> +identifiable sections of that work are not derived from the Program,
+>> +and can be reasonably considered independent and separate works in
+>> +themselves, then this License, and its terms, do not apply to those
+>> +sections when you distribute them as separate works.  But when you
+>> +distribute the same sections as part of a whole which is a work based
+>> +on the Program, the distribution of the whole must be on the terms of
+>> +this License, whose permissions for other licensees extend to the
+>> +entire whole, and thus to each and every part regardless of who wrote i=
+t.
+>> +
+>> +Thus, it is not the intent of this section to claim rights or contest
+>> +your rights to work written entirely by you; rather, the intent is to
+>> +exercise the right to control the distribution of derivative or
+>> +collective works based on the Program.
+>> +
+>> +In addition, mere aggregation of another work not based on the Program
+>> +with the Program (or with a work based on the Program) on a volume of
+>> +a storage or distribution medium does not bring the other work under
+>> +the scope of this License.
+>> +
+>> +  3. You may copy and distribute the Program (or a work based on it,
+>> +under Section 2) in object code or executable form under the terms of
+>> +Sections 1 and 2 above provided that you also do one of the following:
+>> +
+>> +    a) Accompany it with the complete corresponding machine-readable
+>> +    source code, which must be distributed under the terms of Sections
+>> +    1 and 2 above on a medium customarily used for software interchange=
+; or,
+>> +
+>> +    b) Accompany it with a written offer, valid for at least three
+>> +    years, to give any third party, for a charge no more than your
+>> +    cost of physically performing source distribution, a complete
+>> +    machine-readable copy of the corresponding source code, to be
+>> +    distributed under the terms of Sections 1 and 2 above on a medium
+>> +    customarily used for software interchange; or,
+>> +
+>> +    c) Accompany it with the information you received as to the offer
+>> +    to distribute corresponding source code.  (This alternative is
+>> +    allowed only for noncommercial distribution and only if you
+>> +    received the program in object code or executable form with such
+>> +    an offer, in accord with Subsection b above.)
+>> +
+>> +The source code for a work means the preferred form of the work for
+>> +making modifications to it.  For an executable work, complete source
+>> +code means all the source code for all modules it contains, plus any
+>> +associated interface definition files, plus the scripts used to
+>> +control compilation and installation of the executable.  However, as a
+>> +special exception, the source code distributed need not include
+>> +anything that is normally distributed (in either source or binary
+>> +form) with the major components (compiler, kernel, and so on) of the
+>> +operating system on which the executable runs, unless that component
+>> +itself accompanies the executable.
+>> +
+>> +If distribution of executable or object code is made by offering
+>> +access to copy from a designated place, then offering equivalent
+>> +access to copy the source code from the same place counts as
+>> +distribution of the source code, even though third parties are not
+>> +compelled to copy the source along with the object code.
+>> +=0C
+>> +  4. You may not copy, modify, sublicense, or distribute the Program
+>> +except as expressly provided under this License.  Any attempt
+>> +otherwise to copy, modify, sublicense or distribute the Program is
+>> +void, and will automatically terminate your rights under this License.
+>> +However, parties who have received copies, or rights, from you under
+>> +this License will not have their licenses terminated so long as such
+>> +parties remain in full compliance.
+>> +
+>> +  5. You are not required to accept this License, since you have not
+>> +signed it.  However, nothing else grants you permission to modify or
+>> +distribute the Program or its derivative works.  These actions are
+>> +prohibited by law if you do not accept this License.  Therefore, by
+>> +modifying or distributing the Program (or any work based on the
+>> +Program), you indicate your acceptance of this License to do so, and
+>> +all its terms and conditions for copying, distributing or modifying
+>> +the Program or works based on it.
+>> +
+>> +  6. Each time you redistribute the Program (or any work based on the
+>> +Program), the recipient automatically receives a license from the
+>> +original licensor to copy, distribute or modify the Program subject to
+>> +these terms and conditions.  You may not impose any further
+>> +restrictions on the recipients' exercise of the rights granted herein.
+>> +You are not responsible for enforcing compliance by third parties to
+>> +this License.
+>> +
+>> +  7. If, as a consequence of a court judgment or allegation of patent
+>> +infringement or for any other reason (not limited to patent issues),
+>> +conditions are imposed on you (whether by court order, agreement or
+>> +otherwise) that contradict the conditions of this License, they do not
+>> +excuse you from the conditions of this License.  If you cannot
+>> +distribute so as to satisfy simultaneously your obligations under this
+>> +License and any other pertinent obligations, then as a consequence you
+>> +may not distribute the Program at all.  For example, if a patent
+>> +license would not permit royalty-free redistribution of the Program by
+>> +all those who receive copies directly or indirectly through you, then
+>> +the only way you could satisfy both it and this License would be to
+>> +refrain entirely from distribution of the Program.
+>> +
+>> +If any portion of this section is held invalid or unenforceable under
+>> +any particular circumstance, the balance of the section is intended to
+>> +apply and the section as a whole is intended to apply in other
+>> +circumstances.
+>> +
+>> +It is not the purpose of this section to induce you to infringe any
+>> +patents or other property right claims or to contest validity of any
+>> +such claims; this section has the sole purpose of protecting the
+>> +integrity of the free software distribution system, which is
+>> +implemented by public license practices.  Many people have made
+>> +generous contributions to the wide range of software distributed
+>> +through that system in reliance on consistent application of that
+>> +system; it is up to the author/donor to decide if he or she is willing
+>> +to distribute software through any other system and a licensee cannot
+>> +impose that choice.
+>> +
+>> +This section is intended to make thoroughly clear what is believed to
+>> +be a consequence of the rest of this License.
+>> +=0C
+>> +  8. If the distribution and/or use of the Program is restricted in
+>> +certain countries either by patents or by copyrighted interfaces, the
+>> +original copyright holder who places the Program under this License
+>> +may add an explicit geographical distribution limitation excluding
+>> +those countries, so that distribution is permitted only in or among
+>> +countries not thus excluded.  In such case, this License incorporates
+>> +the limitation as if written in the body of this License.
+>> +
+>> +  9. The Free Software Foundation may publish revised and/or new versio=
+ns
+>> +of the General Public License from time to time.  Such new versions wil=
+l
+>> +be similar in spirit to the present version, but may differ in detail t=
+o
+>> +address new problems or concerns.
+>> +
+>> +Each version is given a distinguishing version number.  If the Program
+>> +specifies a version number of this License which applies to it and "any
+>> +later version", you have the option of following the terms and conditio=
+ns
+>> +either of that version or of any later version published by the Free
+>> +Software Foundation.  If the Program does not specify a version number =
+of
+>> +this License, you may choose any version ever published by the Free Sof=
+tware
+>> +Foundation.
+>> +
+>> +  10. If you wish to incorporate parts of the Program into other free
+>> +programs whose distribution conditions are different, write to the auth=
+or
+>> +to ask for permission.  For software which is copyrighted by the Free
+>> +Software Foundation, write to the Free Software Foundation; we sometime=
+s
+>> +make exceptions for this.  Our decision will be guided by the two goals
+>> +of preserving the free status of all derivatives of our free software a=
+nd
+>> +of promoting the sharing and reuse of software generally.
+>> +
+>> +                NO WARRANTY
+>> +
+>> +  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRA=
+NTY
+>> +FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHE=
+N
+>> +OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+>> +PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRES=
+SED
+>> +OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+>> +MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK =
+AS
+>> +TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
+>> +PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING=
+,
+>> +REPAIR OR CORRECTION.
+>> +
+>> +  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRI=
+TING
+>> +WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+>> +REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAG=
+ES,
+>> +INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARI=
+SING
+>> +OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMIT=
+ED
+>> +TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED B=
+Y
+>> +YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OT=
+HER
+>> +PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+>> +POSSIBILITY OF SUCH DAMAGES.
+>> +
+>> +             END OF TERMS AND CONDITIONS
+>> +=0C
+>> +        How to Apply These Terms to Your New Programs
+>> +
+>> +  If you develop a new program, and you want it to be of the greatest
+>> +possible use to the public, the best way to achieve this is to make it
+>> +free software which everyone can redistribute and change under these te=
+rms.
+>> +
+>> +  To do so, attach the following notices to the program.  It is safest
+>> +to attach them to the start of each source file to most effectively
+>> +convey the exclusion of warranty; and each file should have at least
+>> +the "copyright" line and a pointer to where the full notice is found.
+>> +
+>> +    <one line to give the program's name and a brief idea of what it do=
+es.>
+>> +    Copyright (C) <year>  <name of author>
+>> +
+>> +    This program is free software; you can redistribute it and/or modif=
+y
+>> +    it under the terms of the GNU General Public License as published b=
+y
+>> +    the Free Software Foundation; either version 2 of the License, or
+>> +    (at your option) any later version.
+>> +
+>> +    This program is distributed in the hope that it will be useful,
+>> +    but WITHOUT ANY WARRANTY; without even the implied warranty of
+>> +    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+>> +    GNU General Public License for more details.
+>> +
+>> +    You should have received a copy of the GNU General Public License
+>> +    along with this program; if not, write to the Free Software
+>> +    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-13=
+01  USA
+>> +
+>> +
+>> +Also add information on how to contact you by electronic and paper mail=
+.
+>> +
+>> +If the program is interactive, make it output a short notice like this
+>> +when it starts in an interactive mode:
+>> +
+>> +    Gnomovision version 69, Copyright (C) year  name of author
+>> +    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `sh=
+ow w'.
+>> +    This is free software, and you are welcome to redistribute it
+>> +    under certain conditions; type `show c' for details.
+>> +
+>> +The hypothetical commands `show w' and `show c' should show the appropr=
+iate
+>> +parts of the General Public License.  Of course, the commands you use m=
+ay
+>> +be called something other than `show w' and `show c'; they could even b=
+e
+>> +mouse-clicks or menu items--whatever suits your program.
+>> +
+>> +You should also get your employer (if you work as a programmer) or your
+>> +school, if any, to sign a "copyright disclaimer" for the program, if
+>> +necessary.  Here is a sample; alter the names:
+>> +
+>> +  Yoyodyne, Inc., hereby disclaims all copyright interest in the progra=
+m
+>> +  `Gnomovision' (which makes passes at compilers) written by James Hack=
+er.
+>> +
+>> +  <signature of Ty Coon>, 1 April 1989
+>> +  Ty Coon, President of Vice
+>> +
+>> +This General Public License does not permit incorporating your program =
+into
+>> +proprietary programs.  If your program is a subroutine library, you may
+>> +consider it more useful to permit linking proprietary applications with=
+ the
+>> +library.  If this is what you want to do, use the GNU Library General
+>> +Public License instead of this License.
+>> diff --git a/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g/omap3/udhcpd.conf b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/omap3/udhcpd.conf
+>> new file mode 100644
+>> index 0000000..cd2957c
+>> --- /dev/null
+>> +++ b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config/omap3=
+/udhcpd.conf
+>> @@ -0,0 +1,113 @@
+>> +# Sample udhcpd configuration file (/etc/udhcpd.conf)
+>> +# Values shown are defaults
+>> +
+>> +# The start and end of the IP lease block
+>> +start        192.168.0.20
+>> +end        192.168.0.254
+>> +
+>> +# The interface that udhcpd will use
+>> +interface    eth0
+>> +
+>> +# The maximum number of leases (includes addresses reserved
+>> +# by OFFER's, DECLINE's, and ARP conflicts). Will be corrected
+>> +# if it's bigger than IP lease block, but it ok to make it
+>> +# smaller than lease block.
+>> +#max_leases    254
+>> +
+>> +# The amount of time that an IP will be reserved (leased to nobody)
+>> +# if a DHCP decline message is received (seconds)
+>> +#decline_time    3600
+>> +
+>> +# The amount of time that an IP will be reserved
+>> +# if an ARP conflict occurs (seconds)
+>> +#conflict_time    3600
+>> +
+>> +# How long an offered address is reserved (seconds)
+>> +#offer_time    60
+>> +
+>> +# If client asks for lease below this value, it will be rounded up
+>> +# to this value (seconds)
+>> +#min_lease    60
+>> +
+>> +# The location of the pid file
+>> +#pidfile    /var/run/udhcpd.pid
+>> +
+>> +# The location of the leases file
+>> +#lease_file    /var/lib/misc/udhcpd.leases
+>> +
+>> +# The time period at which udhcpd will write out leases file.
+>> +# If this is 0, udhcpd will never automatically write leases file.
+>> +# Specified in seconds.
+>> +#auto_time    7200
+>> +
+>> +# Every time udhcpd writes a leases file, the below script will be call=
+ed
+>> +#notify_file            # default: no script
+>> +#notify_file    dumpleases    # useful for debugging
+>> +
+>> +# The following are bootp specific options
+>> +# next server to use in bootstrap
+>> +#siaddr        192.168.0.22    # default: 0.0.0.0 (none)
+>> +# tftp server name
+>> +#sname        zorak        # default: none
+>> +# tftp file to download (e.g. kernel image)
+>> +#boot_file    /var/nfs_root    # default: none
+>> +
+>> +# Static leases map
+>> +#static_lease 00:60:08:11:CE:4E 192.168.0.54
+>> +#static_lease 00:60:08:11:CE:3E 192.168.0.44
+>> +
+>> +# The remainder of options are DHCP options and can be specified with t=
+he
+>> +# keyword 'opt' or 'option'. If an option can take multiple items, such
+>> +# as the dns option, they can be listed on the same line, or multiple
+>> +# lines.
+>> +# Examples:
+>> +opt    dns    192.168.10.2 192.168.10.10
+>> +option    subnet    255.255.255.0
+>> +opt    router    192.168.10.2
+>> +opt    wins    192.168.10.10
+>> +option    dns    129.219.13.81    # appended to above DNS servers for a=
+ total of 3
+>> +option    domain    local
+>> +option    lease    864000        # default: 10 days
+>> +# Arbitrary option in hex form:
+>> +option    0x08    01020304    # option 8: "cookie server IP addr: 1.2.3=
+.4"
+>> +
+>> +# Currently supported options (for more info, see options.c):
+>> +#opt lease      NUM
+>> +#opt subnet     IP
+>> +#opt broadcast  IP
+>> +#opt router     IP_LIST
+>> +#opt ipttl      NUM
+>> +#opt mtu        NUM
+>> +#opt hostname   STRING        # client's hostname
+>> +#opt domain     STRING        # client's domain suffix
+>> +#opt search     STRING_LIST    # search domains
+>> +#opt nisdomain  STRING
+>> +#opt timezone   NUM        # (localtime - UTC_time) in seconds. signed
+>> +#opt tftp       STRING        # tftp server name
+>> +#opt bootfile   STRING        # tftp file to download (e.g. kernel imag=
+e)
+>> +#opt bootsize   NUM        # size of that file
+>> +#opt rootpath   STRING        # (NFS) path to mount as root fs
+>> +#opt wpad       STRING
+>> +#opt serverid   IP        # default: server's IP
+>> +#opt message    STRING        # error message (udhcpd sends it on succe=
+ss too)
+>> +#opt vlanid     NUM        # 802.1P VLAN ID
+>> +#opt vlanpriority NUM        # 802.1Q VLAN priority
+>> +# Options specifying server(s)
+>> +#opt dns        IP_LIST
+>> +#opt wins       IP_LIST
+>> +#opt nissrv     IP_LIST
+>> +#opt ntpsrv     IP_LIST
+>> +#opt lprsrv     IP_LIST
+>> +#opt swapsrv    IP
+>> +# Options specifying routes
+>> +#opt routes     IP_PAIR_LIST
+>> +# Obsolete options, no longer supported
+>> +#opt logsrv     IP_LIST    # 704/UDP log server (not syslog!)
+>> +#opt namesrv    IP_LIST    # IEN 116 name server, obsolete (August 1979=
+!!!)
+>> +#opt cookiesrv  IP_LIST    # RFC 865 "quote of the day" server, rarely =
+(never?) used
+>> +#opt timesrv    IP_LIST    # RFC 868 time server, rarely (never?) used
+>> +# TODO: in development
+>> +#opt userclass  STRING        # RFC 3004. set of LASCII strings. "I am =
+a printer" etc
+>> +#opt sipserv    STRING LIST    # RFC 3361. flag byte, then: 0: domain n=
+ames, 1: IP addrs
+>> +#opt staticroutes   STATIC_ROUTES
+>> +#opt msstaticroutes STATIC_ROUTES
+>> diff --git a/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g/omapl138/udhcpd.conf b/meta-arago-distro/recipes-core/busybox/busybox-udh=
+cpd-config/omapl138/udhcpd.conf
+>> new file mode 100644
+>> index 0000000..cd2957c
+>> --- /dev/null
+>> +++ b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config/omapl=
+138/udhcpd.conf
+>> @@ -0,0 +1,113 @@
+>> +# Sample udhcpd configuration file (/etc/udhcpd.conf)
+>> +# Values shown are defaults
+>> +
+>> +# The start and end of the IP lease block
+>> +start        192.168.0.20
+>> +end        192.168.0.254
+>> +
+>> +# The interface that udhcpd will use
+>> +interface    eth0
+>> +
+>> +# The maximum number of leases (includes addresses reserved
+>> +# by OFFER's, DECLINE's, and ARP conflicts). Will be corrected
+>> +# if it's bigger than IP lease block, but it ok to make it
+>> +# smaller than lease block.
+>> +#max_leases    254
+>> +
+>> +# The amount of time that an IP will be reserved (leased to nobody)
+>> +# if a DHCP decline message is received (seconds)
+>> +#decline_time    3600
+>> +
+>> +# The amount of time that an IP will be reserved
+>> +# if an ARP conflict occurs (seconds)
+>> +#conflict_time    3600
+>> +
+>> +# How long an offered address is reserved (seconds)
+>> +#offer_time    60
+>> +
+>> +# If client asks for lease below this value, it will be rounded up
+>> +# to this value (seconds)
+>> +#min_lease    60
+>> +
+>> +# The location of the pid file
+>> +#pidfile    /var/run/udhcpd.pid
+>> +
+>> +# The location of the leases file
+>> +#lease_file    /var/lib/misc/udhcpd.leases
+>> +
+>> +# The time period at which udhcpd will write out leases file.
+>> +# If this is 0, udhcpd will never automatically write leases file.
+>> +# Specified in seconds.
+>> +#auto_time    7200
+>> +
+>> +# Every time udhcpd writes a leases file, the below script will be call=
+ed
+>> +#notify_file            # default: no script
+>> +#notify_file    dumpleases    # useful for debugging
+>> +
+>> +# The following are bootp specific options
+>> +# next server to use in bootstrap
+>> +#siaddr        192.168.0.22    # default: 0.0.0.0 (none)
+>> +# tftp server name
+>> +#sname        zorak        # default: none
+>> +# tftp file to download (e.g. kernel image)
+>> +#boot_file    /var/nfs_root    # default: none
+>> +
+>> +# Static leases map
+>> +#static_lease 00:60:08:11:CE:4E 192.168.0.54
+>> +#static_lease 00:60:08:11:CE:3E 192.168.0.44
+>> +
+>> +# The remainder of options are DHCP options and can be specified with t=
+he
+>> +# keyword 'opt' or 'option'. If an option can take multiple items, such
+>> +# as the dns option, they can be listed on the same line, or multiple
+>> +# lines.
+>> +# Examples:
+>> +opt    dns    192.168.10.2 192.168.10.10
+>> +option    subnet    255.255.255.0
+>> +opt    router    192.168.10.2
+>> +opt    wins    192.168.10.10
+>> +option    dns    129.219.13.81    # appended to above DNS servers for a=
+ total of 3
+>> +option    domain    local
+>> +option    lease    864000        # default: 10 days
+>> +# Arbitrary option in hex form:
+>> +option    0x08    01020304    # option 8: "cookie server IP addr: 1.2.3=
+.4"
+>> +
+>> +# Currently supported options (for more info, see options.c):
+>> +#opt lease      NUM
+>> +#opt subnet     IP
+>> +#opt broadcast  IP
+>> +#opt router     IP_LIST
+>> +#opt ipttl      NUM
+>> +#opt mtu        NUM
+>> +#opt hostname   STRING        # client's hostname
+>> +#opt domain     STRING        # client's domain suffix
+>> +#opt search     STRING_LIST    # search domains
+>> +#opt nisdomain  STRING
+>> +#opt timezone   NUM        # (localtime - UTC_time) in seconds. signed
+>> +#opt tftp       STRING        # tftp server name
+>> +#opt bootfile   STRING        # tftp file to download (e.g. kernel imag=
+e)
+>> +#opt bootsize   NUM        # size of that file
+>> +#opt rootpath   STRING        # (NFS) path to mount as root fs
+>> +#opt wpad       STRING
+>> +#opt serverid   IP        # default: server's IP
+>> +#opt message    STRING        # error message (udhcpd sends it on succe=
+ss too)
+>> +#opt vlanid     NUM        # 802.1P VLAN ID
+>> +#opt vlanpriority NUM        # 802.1Q VLAN priority
+>> +# Options specifying server(s)
+>> +#opt dns        IP_LIST
+>> +#opt wins       IP_LIST
+>> +#opt nissrv     IP_LIST
+>> +#opt ntpsrv     IP_LIST
+>> +#opt lprsrv     IP_LIST
+>> +#opt swapsrv    IP
+>> +# Options specifying routes
+>> +#opt routes     IP_PAIR_LIST
+>> +# Obsolete options, no longer supported
+>> +#opt logsrv     IP_LIST    # 704/UDP log server (not syslog!)
+>> +#opt namesrv    IP_LIST    # IEN 116 name server, obsolete (August 1979=
+!!!)
+>> +#opt cookiesrv  IP_LIST    # RFC 865 "quote of the day" server, rarely =
+(never?) used
+>> +#opt timesrv    IP_LIST    # RFC 868 time server, rarely (never?) used
+>> +# TODO: in development
+>> +#opt userclass  STRING        # RFC 3004. set of LASCII strings. "I am =
+a printer" etc
+>> +#opt sipserv    STRING LIST    # RFC 3361. flag byte, then: 0: domain n=
+ames, 1: IP addrs
+>> +#opt staticroutes   STATIC_ROUTES
+>> +#opt msstaticroutes STATIC_ROUTES
+>> diff --git a/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g/ti33x/udhcpd.conf b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd=
+-config/ti33x/udhcpd.conf
+>> new file mode 100644
+>> index 0000000..cd2957c
+>> --- /dev/null
+>> +++ b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config/ti33x=
+/udhcpd.conf
+>> @@ -0,0 +1,113 @@
+>> +# Sample udhcpd configuration file (/etc/udhcpd.conf)
+>> +# Values shown are defaults
+>> +
+>> +# The start and end of the IP lease block
+>> +start        192.168.0.20
+>> +end        192.168.0.254
+>> +
+>> +# The interface that udhcpd will use
+>> +interface    eth0
+>> +
+>> +# The maximum number of leases (includes addresses reserved
+>> +# by OFFER's, DECLINE's, and ARP conflicts). Will be corrected
+>> +# if it's bigger than IP lease block, but it ok to make it
+>> +# smaller than lease block.
+>> +#max_leases    254
+>> +
+>> +# The amount of time that an IP will be reserved (leased to nobody)
+>> +# if a DHCP decline message is received (seconds)
+>> +#decline_time    3600
+>> +
+>> +# The amount of time that an IP will be reserved
+>> +# if an ARP conflict occurs (seconds)
+>> +#conflict_time    3600
+>> +
+>> +# How long an offered address is reserved (seconds)
+>> +#offer_time    60
+>> +
+>> +# If client asks for lease below this value, it will be rounded up
+>> +# to this value (seconds)
+>> +#min_lease    60
+>> +
+>> +# The location of the pid file
+>> +#pidfile    /var/run/udhcpd.pid
+>> +
+>> +# The location of the leases file
+>> +#lease_file    /var/lib/misc/udhcpd.leases
+>> +
+>> +# The time period at which udhcpd will write out leases file.
+>> +# If this is 0, udhcpd will never automatically write leases file.
+>> +# Specified in seconds.
+>> +#auto_time    7200
+>> +
+>> +# Every time udhcpd writes a leases file, the below script will be call=
+ed
+>> +#notify_file            # default: no script
+>> +#notify_file    dumpleases    # useful for debugging
+>> +
+>> +# The following are bootp specific options
+>> +# next server to use in bootstrap
+>> +#siaddr        192.168.0.22    # default: 0.0.0.0 (none)
+>> +# tftp server name
+>> +#sname        zorak        # default: none
+>> +# tftp file to download (e.g. kernel image)
+>> +#boot_file    /var/nfs_root    # default: none
+>> +
+>> +# Static leases map
+>> +#static_lease 00:60:08:11:CE:4E 192.168.0.54
+>> +#static_lease 00:60:08:11:CE:3E 192.168.0.44
+>> +
+>> +# The remainder of options are DHCP options and can be specified with t=
+he
+>> +# keyword 'opt' or 'option'. If an option can take multiple items, such
+>> +# as the dns option, they can be listed on the same line, or multiple
+>> +# lines.
+>> +# Examples:
+>> +opt    dns    192.168.10.2 192.168.10.10
+>> +option    subnet    255.255.255.0
+>> +opt    router    192.168.10.2
+>> +opt    wins    192.168.10.10
+>> +option    dns    129.219.13.81    # appended to above DNS servers for a=
+ total of 3
+>> +option    domain    local
+>> +option    lease    864000        # default: 10 days
+>> +# Arbitrary option in hex form:
+>> +option    0x08    01020304    # option 8: "cookie server IP addr: 1.2.3=
+.4"
+>> +
+>> +# Currently supported options (for more info, see options.c):
+>> +#opt lease      NUM
+>> +#opt subnet     IP
+>> +#opt broadcast  IP
+>> +#opt router     IP_LIST
+>> +#opt ipttl      NUM
+>> +#opt mtu        NUM
+>> +#opt hostname   STRING        # client's hostname
+>> +#opt domain     STRING        # client's domain suffix
+>> +#opt search     STRING_LIST    # search domains
+>> +#opt nisdomain  STRING
+>> +#opt timezone   NUM        # (localtime - UTC_time) in seconds. signed
+>> +#opt tftp       STRING        # tftp server name
+>> +#opt bootfile   STRING        # tftp file to download (e.g. kernel imag=
+e)
+>> +#opt bootsize   NUM        # size of that file
+>> +#opt rootpath   STRING        # (NFS) path to mount as root fs
+>> +#opt wpad       STRING
+>> +#opt serverid   IP        # default: server's IP
+>> +#opt message    STRING        # error message (udhcpd sends it on succe=
+ss too)
+>> +#opt vlanid     NUM        # 802.1P VLAN ID
+>> +#opt vlanpriority NUM        # 802.1Q VLAN priority
+>> +# Options specifying server(s)
+>> +#opt dns        IP_LIST
+>> +#opt wins       IP_LIST
+>> +#opt nissrv     IP_LIST
+>> +#opt ntpsrv     IP_LIST
+>> +#opt lprsrv     IP_LIST
+>> +#opt swapsrv    IP
+>> +# Options specifying routes
+>> +#opt routes     IP_PAIR_LIST
+>> +# Obsolete options, no longer supported
+>> +#opt logsrv     IP_LIST    # 704/UDP log server (not syslog!)
+>> +#opt namesrv    IP_LIST    # IEN 116 name server, obsolete (August 1979=
+!!!)
+>> +#opt cookiesrv  IP_LIST    # RFC 865 "quote of the day" server, rarely =
+(never?) used
+>> +#opt timesrv    IP_LIST    # RFC 868 time server, rarely (never?) used
+>> +# TODO: in development
+>> +#opt userclass  STRING        # RFC 3004. set of LASCII strings. "I am =
+a printer" etc
+>> +#opt sipserv    STRING LIST    # RFC 3361. flag byte, then: 0: domain n=
+ames, 1: IP addrs
+>> +#opt staticroutes   STATIC_ROUTES
+>> +#opt msstaticroutes STATIC_ROUTES
+>> diff --git a/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g/udhcpd.conf b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g/udhcpd.conf
+>> new file mode 100644
+>> index 0000000..cd2957c
+>> --- /dev/null
+>> +++ b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config/udhcp=
+d.conf
+>> @@ -0,0 +1,113 @@
+>> +# Sample udhcpd configuration file (/etc/udhcpd.conf)
+>> +# Values shown are defaults
+>> +
+>> +# The start and end of the IP lease block
+>> +start        192.168.0.20
+>> +end        192.168.0.254
+>> +
+>> +# The interface that udhcpd will use
+>> +interface    eth0
+>> +
+>> +# The maximum number of leases (includes addresses reserved
+>> +# by OFFER's, DECLINE's, and ARP conflicts). Will be corrected
+>> +# if it's bigger than IP lease block, but it ok to make it
+>> +# smaller than lease block.
+>> +#max_leases    254
+>> +
+>> +# The amount of time that an IP will be reserved (leased to nobody)
+>> +# if a DHCP decline message is received (seconds)
+>> +#decline_time    3600
+>> +
+>> +# The amount of time that an IP will be reserved
+>> +# if an ARP conflict occurs (seconds)
+>> +#conflict_time    3600
+>> +
+>> +# How long an offered address is reserved (seconds)
+>> +#offer_time    60
+>> +
+>> +# If client asks for lease below this value, it will be rounded up
+>> +# to this value (seconds)
+>> +#min_lease    60
+>> +
+>> +# The location of the pid file
+>> +#pidfile    /var/run/udhcpd.pid
+>> +
+>> +# The location of the leases file
+>> +#lease_file    /var/lib/misc/udhcpd.leases
+>> +
+>> +# The time period at which udhcpd will write out leases file.
+>> +# If this is 0, udhcpd will never automatically write leases file.
+>> +# Specified in seconds.
+>> +#auto_time    7200
+>> +
+>> +# Every time udhcpd writes a leases file, the below script will be call=
+ed
+>> +#notify_file            # default: no script
+>> +#notify_file    dumpleases    # useful for debugging
+>> +
+>> +# The following are bootp specific options
+>> +# next server to use in bootstrap
+>> +#siaddr        192.168.0.22    # default: 0.0.0.0 (none)
+>> +# tftp server name
+>> +#sname        zorak        # default: none
+>> +# tftp file to download (e.g. kernel image)
+>> +#boot_file    /var/nfs_root    # default: none
+>> +
+>> +# Static leases map
+>> +#static_lease 00:60:08:11:CE:4E 192.168.0.54
+>> +#static_lease 00:60:08:11:CE:3E 192.168.0.44
+>> +
+>> +# The remainder of options are DHCP options and can be specified with t=
+he
+>> +# keyword 'opt' or 'option'. If an option can take multiple items, such
+>> +# as the dns option, they can be listed on the same line, or multiple
+>> +# lines.
+>> +# Examples:
+>> +opt    dns    192.168.10.2 192.168.10.10
+>> +option    subnet    255.255.255.0
+>> +opt    router    192.168.10.2
+>> +opt    wins    192.168.10.10
+>> +option    dns    129.219.13.81    # appended to above DNS servers for a=
+ total of 3
+>> +option    domain    local
+>> +option    lease    864000        # default: 10 days
+>> +# Arbitrary option in hex form:
+>> +option    0x08    01020304    # option 8: "cookie server IP addr: 1.2.3=
+.4"
+>> +
+>> +# Currently supported options (for more info, see options.c):
+>> +#opt lease      NUM
+>> +#opt subnet     IP
+>> +#opt broadcast  IP
+>> +#opt router     IP_LIST
+>> +#opt ipttl      NUM
+>> +#opt mtu        NUM
+>> +#opt hostname   STRING        # client's hostname
+>> +#opt domain     STRING        # client's domain suffix
+>> +#opt search     STRING_LIST    # search domains
+>> +#opt nisdomain  STRING
+>> +#opt timezone   NUM        # (localtime - UTC_time) in seconds. signed
+>> +#opt tftp       STRING        # tftp server name
+>> +#opt bootfile   STRING        # tftp file to download (e.g. kernel imag=
+e)
+>> +#opt bootsize   NUM        # size of that file
+>> +#opt rootpath   STRING        # (NFS) path to mount as root fs
+>> +#opt wpad       STRING
+>> +#opt serverid   IP        # default: server's IP
+>> +#opt message    STRING        # error message (udhcpd sends it on succe=
+ss too)
+>> +#opt vlanid     NUM        # 802.1P VLAN ID
+>> +#opt vlanpriority NUM        # 802.1Q VLAN priority
+>> +# Options specifying server(s)
+>> +#opt dns        IP_LIST
+>> +#opt wins       IP_LIST
+>> +#opt nissrv     IP_LIST
+>> +#opt ntpsrv     IP_LIST
+>> +#opt lprsrv     IP_LIST
+>> +#opt swapsrv    IP
+>> +# Options specifying routes
+>> +#opt routes     IP_PAIR_LIST
+>> +# Obsolete options, no longer supported
+>> +#opt logsrv     IP_LIST    # 704/UDP log server (not syslog!)
+>> +#opt namesrv    IP_LIST    # IEN 116 name server, obsolete (August 1979=
+!!!)
+>> +#opt cookiesrv  IP_LIST    # RFC 865 "quote of the day" server, rarely =
+(never?) used
+>> +#opt timesrv    IP_LIST    # RFC 868 time server, rarely (never?) used
+>> +# TODO: in development
+>> +#opt userclass  STRING        # RFC 3004. set of LASCII strings. "I am =
+a printer" etc
+>> +#opt sipserv    STRING LIST    # RFC 3361. flag byte, then: 0: domain n=
+ames, 1: IP addrs
+>> +#opt staticroutes   STATIC_ROUTES
+>> +#opt msstaticroutes STATIC_ROUTES
+>> diff --git a/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-confi=
+g_1.0.bb b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config_1.0=
+.bb
+>> new file mode 100644
+>> index 0000000..b0dc96b
+>> --- /dev/null
+>> +++ b/meta-arago-distro/recipes-core/busybox/busybox-udhcpd-config_1.0.b=
+b
+>> @@ -0,0 +1,23 @@
+>> +DESCRIPTION =3D "Configuration files for SoftAP with udhcpd"
+>> +SECTION =3D "console/network"
+>> +HOMEPAGE =3D "http://udhcp.busybox.net/"
+>> +LICENSE =3D "GPLv2 & BSD-4-Clause"
+>> +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dde10de48642ab74318e893a61105=
+afbb"
+>> +
+>> +PR =3D "r0"
+>> +
+>> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+>> +
+>> +S =3D "${WORKDIR}"
+>> +
+>> +# Default configuration file is from the base udhcp package
+>> +SRC_URI =3D "file://udhcpd.conf \
+>> +           file://LICENSE"
+>> +
+>> +do_install() {
+>> +    install -d ${D}${sysconfdir}
+>> +    install -m 0755 ${S}/udhcpd.conf ${D}${sysconfdir}
+>> +}
+>> +
+>> +FILES_${PN} +=3D "${sysconfdir}/udhcpd.conf"
+>> +CONFFILES_${PN} +=3D "${sysconfdir}/udhcpd.conf"
+>> --=20
+>> 1.7.0.4
+>>=20
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>>=20
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
