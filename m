@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 6473D52A7A
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id A4BE452AB8
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Sep 2012 19:27:51 +0000 (UTC)
-Received: by obblz20 with SMTP id lz20so1024991obb.38
+	Thu, 27 Sep 2012 04:29:12 +0000 (UTC)
+Received: by oagn12 with SMTP id n12so1417477oag.38
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Sep 2012 12:27:50 -0700 (PDT)
+	Wed, 26 Sep 2012 21:29:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=O+PK+gE9uv9KDepLf/vYtC2bJBp/CY0deEWxWi1xL20=;
-	b=H9nUAu+pVisVek2xr4Bv8pwWFGXJwPSA/qJv8G0ctV8B9H7VecAOQqQc5gE9UDjT/k
-	OfY87yqvGj1Wgpel9kCAZYTK+YM4STktnGnrG/9mVLa231AeNQF0Ued9nrBdm8LN/cXe
-	slQOAq4tA8ywnlqNtcOyhw66udM1vn2LFcSyy7UQ3GNYJX4jK5APUMgyl+asxKlOl7OA
-	/SavVGiqMkJLHjCjeJisRBRdTiksRJdnVx0PpGFRCwzYT1ExsNMQ5ZQZ0+RutJh1SVP7
-	U5bAx1ybyOVzNh11hldK5tXhfmizXXW/EMD10Yp0951+jyQPMxSu98hr+YwKA+ERJPrk
-	SgxA==
-Received: by 10.182.8.6 with SMTP id n6mr1276669oba.39.1348687670676;
-	Wed, 26 Sep 2012 12:27:50 -0700 (PDT)
+	bh=or0Annmb3DZ6d7vyYfTOpmJDL/UY1eIUZ0qb39PAXvk=;
+	b=pygeqfV2at5QVEwWIQLM5ifYcnXbP2x16tz6whK1+mE4LiIa0xO0VKS0y/vU71cC2o
+	nxTTZKNL6pxSDWAh9b0FfsfZNv0O/T7RMwHwls0qJ+sTQ+wCbxHPYEhfmghYAU/Nnoto
+	n+0dlE4+pLfSNdHWXqhXApyRpyK6VpPgrhR5FZiUEaPakLx21wPU5TRjfgZ/bJOtFgD6
+	3dZTxr2gtyqTK4gSRHttEi3LVPe0icmIvSVrMMbisO2h9TlCd0b9XJGLzbrVMr9m/67s
+	bVZjzdgLUXARXgea3tZtMQubfTbk6ROII1nBL161cakcwTW7e/TIEUAKa17S/pf1beIw
+	60nA==
+Received: by 10.182.207.71 with SMTP id lu7mr2111492obc.78.1348720151929;
+	Wed, 26 Sep 2012 21:29:11 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id kc5sm3707997obb.21.2012.09.26.12.27.48
+	by mx.google.com with ESMTPS id ez16sm4812811obc.8.2012.09.26.21.29.11
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 26 Sep 2012 12:27:49 -0700 (PDT)
+	Wed, 26 Sep 2012 21:29:11 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Wed, 26 Sep 2012 14:53:00 -0500
-Message-Id: <1348689180-28996-1-git-send-email-fcooper@ti.com>
+Date: Wed, 26 Sep 2012 23:54:30 -0500
+Message-Id: <1348721670-8186-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [meta-arago-distro][PATCH v2] recipes: TSU exemption notice
+Subject: [PATCH v2] dt: Port dt recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,80 +40,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2012 19:27:52 -0000
+X-List-Received-Date: Thu, 27 Sep 2012 04:29:13 -0000
 
-From: Franklin S Cooper Jr <fcooper@ti.com>
+* Port dt recipe from oe-classic
 
-* Add TSU exemption notice to applications/libraries that require it.
-* Currently investigating the current version of the different software
-  to determine if a new TSU exemption is required.
-
-Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-Version 2 of this patch addresses the following issues:
-Removed reference to wpa-supplicant.
+Version 2 addresses the following issues:
+Incorrect commit message. Previous commit implied recipe was ported from
+oe-core instead of oe-classic.
 
- .../openssh/openssh_5.9p1.bbappend                 |   10 ++++++++++
- .../openssl/openssl_1.0.0i.bbappend                |   12 +++++++++++-
- .../dropbear/dropbear_2012.55.bbappend             |   10 ++++++++++
- 3 files changed, 31 insertions(+), 1 deletions(-)
- create mode 100644 meta-arago-distro/recipes-connectivity/openssh/openssh_5.9p1.bbappend
- create mode 100644 meta-arago-distro/recipes-core/dropbear/dropbear_2012.55.bbappend
+ .../recipes-devtools/dt/dt/no_aio.patch            |   17 +++++++++++
+ meta-arago-extras/recipes-devtools/dt/dt_17.07.bb  |   30 ++++++++++++++++++++
+ 2 files changed, 47 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
 
-diff --git a/meta-arago-distro/recipes-connectivity/openssh/openssh_5.9p1.bbappend b/meta-arago-distro/recipes-connectivity/openssh/openssh_5.9p1.bbappend
+diff --git a/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
 new file mode 100644
-index 0000000..c0f449e
+index 0000000..8253e86
 --- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/openssh/openssh_5.9p1.bbappend
-@@ -0,0 +1,10 @@
-+################################################################################
-+######################### TSU EXEMPTION REQUIRED ###############################
-+################################################################################
-+# This package requires TSU exemption. Any update to the version of openssh being
-+# appended must be double checked to see if a new TSU exemption must be made.
-+#
-+# Versions of openssh that are TSU Exempted:
-+# openssh-5.6p1
++++ b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+@@ -0,0 +1,17 @@
++---
++ Makefile.linux |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+PR_append = "-arago0"
-diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.0i.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.0i.bbappend
-index ec5e2f0..3536316 100644
---- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.0i.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.0i.bbappend
-@@ -1,6 +1,16 @@
-+################################################################################
-+######################### TSU EXEMPTION REQUIRED ###############################
-+################################################################################
-+# Versions of openssl that are TSU Exempted:
-+# openssl-1.0.0a
-+# openssl-1.0.0d
-+#
-+# This package requires TSU exemption. Any update to the version of openssl being
-+# appended must be double checked to see if a new TSU exemption must be made.
++Index: dt.d-WIP/Makefile.linux
++===================================================================
++--- dt.d-WIP/Makefile.linux
+++++ dt.d-WIP/Makefile.linux
++@@ -68,7 +68,7 @@ LINTLIBS=
 +
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR = "${INC_PR}.3"
-+PR = "${INC_PR}.4"
- 
- SRC_URI += " \
-             file://find.pl \
-diff --git a/meta-arago-distro/recipes-core/dropbear/dropbear_2012.55.bbappend b/meta-arago-distro/recipes-core/dropbear/dropbear_2012.55.bbappend
++ PORG      = -O3
++
++-CFLAGS= $(PORG) -DAIO -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
+++CFLAGS= $(PORG) -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
++ CPP=	/lib/cpp
++ CPPOPTS= -D__GNUC__ -DFIFO -DMMAP -D__linux__ -D_GNU_SOURCE
++ LDFLAGS=
+diff --git a/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
 new file mode 100644
-index 0000000..f766014
+index 0000000..22fd6ac
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/dropbear/dropbear_2012.55.bbappend
-@@ -0,0 +1,10 @@
-+################################################################################
-+######################### TSU EXEMPTION REQUIRED ###############################
-+################################################################################
-+# Versions of dropbear that are TSU Exempted:
-+# dropbear-0.51
-+#
-+# This package requires TSU exemption. Any update to the version of dropbear being
-+# appended must be double checked to see if a new TSU exemption must be made.
++++ b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
+@@ -0,0 +1,30 @@
++HOMEPAGE = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/dt.html"
++DESCRIPTION = "The Data Test Program (dt) is a generic data test program used to verify proper \
++operation of peripherals, file systems, device drivers, or any data stream supported by the \
++operating system."
 +
-+PR_append = "-arago0"
++SECTION = "console/tests"
++
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=fb073c94d1f584010fc75867b686d6d3"
++
++INC_PR = "r0"
++
++SRC_URI = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/ftp/dt/dt-source.tar.gz"
++S = "${WORKDIR}/dt.d"
++
++TARGET_CC_ARCH += "${LDFLAGS}"
++
++do_compile() {
++	${MAKE} -f Makefile.linux
++}
++
++SRC_URI_append_libc-uclibc = " file://no_aio.patch "
++
++do_install() {
++	install -d ${D}${bindir}
++	install -m 0755 dt ${D}${bindir}
++}
++
++SRC_URI[md5sum] = "fc3373e30868698b90f02cc5fab9aabd"
++SRC_URI[sha256sum] = "6a213b8da2b8907c4f1633c3b90229085ac239e4d43aa5879b0123c21f951cab"
 -- 
 1.7.0.4
 
