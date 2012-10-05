@@ -1,23 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
-	[206.46.173.15])
-	by arago-project.org (Postfix) with ESMTP id 95FE7529D6
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 919AC529E1
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 16:37:52 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173015.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MBF003UNI6PSPE0@vms173015.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 05 Oct 2012 11:37:37 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 5B42C2038D; Fri,
-	05 Oct 2012 12:37:37 -0400 (EDT)
-Date: Fri, 05 Oct 2012 12:37:36 -0400
+	Fri,  5 Oct 2012 16:59:28 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95GxRnV027755;
+	Fri, 5 Oct 2012 11:59:27 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95GxRvw001383;
+	Fri, 5 Oct 2012 11:59:27 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
+	Fri, 5 Oct 2012 11:58:00 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id q95Gw0Da023732;
+	Fri, 5 Oct 2012 11:58:00 -0500
+Date: Fri, 5 Oct 2012 12:58:00 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-Message-id: <20121005163736.GG23366@denix.org>
+Message-ID: <20121005165800.GA31500@edge>
 References: <1349419808-21687-1-git-send-email-fcooper@ti.com>
-MIME-version: 1.0
-In-reply-to: <1349419808-21687-1-git-send-email-fcooper@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1349419808-21687-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
 Subject: Re: [PATCH] iperf: Update to version 2.0.5
@@ -33,21 +37,16 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 16:37:53 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Fri, 05 Oct 2012 16:59:28 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
 On Fri, Oct 05, 2012 at 01:50:08AM -0500, Franklin S. Cooper Jr wrote:
 > * Upgrading to newer version of iperf.
 > * Newer versions of iperf reduced CPU load thus increasing performance in
 >   wl12xx tests.
 
-I know this recipe is mostly the same as the copy from meta-oe, just with 
-updated version, but it can be cleaned up in several places... I guess I'll 
-try submitting it for meta-oe then.
-
--- 
-Denys
+And one more question - sorry for separate emails.
 
 
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
@@ -69,6 +68,14 @@ Denys
 > +LIC_FILES_CHKSUM = "file://COPYING;md5=e8478eae9f479e39bc34975193360298"
 > +
 > +SRC_URI = " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz"
+
+You dropped all the other patches that were part of 2.0.4 - did you verify 
+they are already there in 2.0.5 tree or they no longer needed?
+
+-- 
+Denys
+
+
 > +
 > +SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"
 > +SRC_URI[sha256sum] = "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b"
@@ -103,5 +110,4 @@ Denys
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
