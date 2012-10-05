@@ -1,35 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id CEBED52A00
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id C16C452A00
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 20:56:58 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so2031827obb.38
+	Fri,  5 Oct 2012 21:07:13 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so2060239oag.38
 	for <meta-arago@arago-project.org>;
-	Fri, 05 Oct 2012 13:56:58 -0700 (PDT)
+	Fri, 05 Oct 2012 14:07:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=WAz+WroNEACSFlBC2ZOBYcaVChBz+64FWJy5RU3eZJE=;
-	b=DC6QfxFkjXaH6qNzsHuL5Qujsjnqf+7tBjZeoNO7AbKWlbXM7HqH6e750I5KcCDpT8
-	3wtMPE40p2MML5puU1nipiCrrwWEGjo3v2Tl1qTQHmwAQgeSI1/u2br+c1FuC/tk8ocO
-	hhLQ0QTKXFJp19a0BjZF2XeYUKReKBSMe2TuOc5XuIQL2RH530NlxXXRyXemDVN/+HNb
-	R5z90OVJQC/7BKiJQltDigdt/h3dTRdNrXgqlIbuy0D5NrN9vfSCQiCpyCecvBTQaPEq
-	uhQeasCq1FN6Aqu7skHrzEHp9Tj3s+4X3n25xPUhVZ+44cTaFHLPkA1L9bq8YC7ca6LH
-	R2bw==
-Received: by 10.60.13.41 with SMTP id e9mr8286505oec.15.1349470618586;
-	Fri, 05 Oct 2012 13:56:58 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=8ojttpWoOwyXo1/9lvWlKwR5F+MolOAM/eHqCJrDLV4=;
+	b=cVgZJzXiSQDU4TnTTM4QKoZGUtdrDXR1eK7Tqs6OWSYNAtANsfN5fqqQx6knlKUBCc
+	LBxyHRjW/Sw3BEXDuqct/DhzB+wUlQoOKF6nk22LK9OJiE9NyFhrDLqjaaAdxeJRpXXa
+	0Oi8AY8HsM0EXIgv+9wCJbGuwk3Yh2YzZoqf51ng/qm1sG5UPQWI6074FDtaLe6mVh7b
+	3/gp0Qb1o4efsqAj1dGWyesdPXU3GPswKNxDG+UGQ2xAXrtWhYTBEjcwFQH7vHUFpYrw
+	Qd1AbZiNpGx2gIgfg02XleK7+JK2wAA7510o9qotZRlONw2oc2HY89S5zOLNq5ZDsoUQ
+	IpfQ==
+Received: by 10.60.172.201 with SMTP id be9mr7962670oec.141.1349471232979;
+	Fri, 05 Oct 2012 14:07:12 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id h2sm10400939obn.11.2012.10.05.13.56.57
+	by mx.google.com with ESMTPS id hz6sm10435809obb.1.2012.10.05.14.07.11
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 05 Oct 2012 13:56:58 -0700 (PDT)
+	Fri, 05 Oct 2012 14:07:12 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 16:25:29 -0500
-Message-Id: <1349472329-1054-2-git-send-email-fcooper@ti.com>
+Date: Fri,  5 Oct 2012 16:35:44 -0500
+Message-Id: <1349472944-1681-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1349472329-1054-1-git-send-email-fcooper@ti.com>
-References: <1349472329-1054-1-git-send-email-fcooper@ti.com>
-Subject: [PATCH 2/2] gst-plugins-bad: Add faad as a dependency
+Subject: [PATCH v2] gst-plugins-bad: Remove gtk+ dependencys
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,35 +40,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 20:56:59 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 21:07:14 -0000
 
-* Add faad2 as a dependency and libfaad as a runtime dependency. This
-  insures gst-plugins-bad-faad package is created. The gstreamer faad
-  element is needed for the AAC related gstreamer demos.
+* Disable rsvg and remove dependency to prevent gtk+ from being pulled in.
+* Remove the --with-plugins list to ensure all plugins are built. Previously
+  fbdevsink was not being built which is needed by the gstreamer demos in the
+  SDK.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    6 +++++-
- 1 files changed, 5 insertions(+), 1 deletions(-)
+Version 2 changes:
+Add additional detailed comments to the recipe and commit message.
+
+ .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
 
 diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-index 0c7035b..ba06fb4 100644
---- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+new file mode 100644
+index 0000000..74c822c
+--- /dev/null
 +++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-arago1"
-+PR_append = "-arago2"
- 
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-@@ -11,3 +11,7 @@ EXTRA_OECONF += "--disable-rsvg"
- EXTRA_OECONF := "${@oe_filter_out('--with-plugins=musicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECONF}', d)}"
- 
- SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch"
+@@ -0,0 +1,9 @@
++PR_append = "-arago0"
 +
-+# Add faad has a dependency to insure gst-plugins-bad-faad is built.
-+DEPENDS += "faad2"
-+RDEPENDS += "libfaad"
++# Disable rsvg which caused gtk+ to be pulled in
++DEPENDS := "${@oe_filter_out('librsvg','${DEPENDS}', d)}"
++EXTRA_OECONF += "--disable-rsvg"
++
++# Remove the restriction of which plugins are built. Previously fbdevsink
++# was not built which is needed by the gstreamer demos included in the SDK.
++EXTRA_OECONF := "${@oe_filter_out('--with-plugins=musicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECONF}', d)}"
 -- 
 1.7.0.4
 
