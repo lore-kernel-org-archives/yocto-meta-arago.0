@@ -1,32 +1,33 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 32705529D2
+	by arago-project.org (Postfix) with ESMTPS id 4EDE0529D2
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 12:24:46 +0000 (UTC)
+	Fri,  5 Oct 2012 12:30:57 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95COjx7027459;
-	Fri, 5 Oct 2012 07:24:45 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95COjN0027789;
-	Fri, 5 Oct 2012 07:24:45 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95CUuZD028248;
+	Fri, 5 Oct 2012 07:30:56 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95CUuCn001306;
+	Fri, 5 Oct 2012 07:30:56 -0500
 Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Fri, 5 Oct 2012 07:24:45 -0500
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Fri, 5 Oct 2012 07:30:56 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
 	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] bt-obex: Port recipe from arago
-Thread-Index: AQHNosCIC/Dhvi4DdEuLhnQbGL0wW5eqoxag
-Date: Fri, 5 Oct 2012 12:24:44 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159247BB7@DLEE12.ent.ti.com>
-References: <1349419299-21431-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1349419299-21431-1-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] [PATCH v2] task-arago-tisdk-connectivity: Create
+	new	connectivity tasks
+Thread-Index: AQHNosCroZqTPZvm1Um0JYt7GpxNopeqpGWg
+Date: Fri, 5 Oct 2012 12:30:56 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159247C17@DLEE12.ent.ti.com>
+References: <1349419361-21472-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1349419361-21472-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [PATCH] bt-obex: Port recipe from arago
+Subject: Re: [PATCH v2] task-arago-tisdk-connectivity: Create new	connectivity tasks
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,74 +40,198 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 12:24:46 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 12:30:57 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
-
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> Sent: Friday, October 05, 2012 1:42 AM
+> Sent: Friday, October 05, 2012 1:43 AM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] bt-obex: Port recipe from arago
+> Subject: [meta-arago] [PATCH v2] task-arago-tisdk-connectivity:
+> Create new connectivity tasks
 >=20
-> * Port recipe from Arago.
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> From: Franklin S Cooper Jr <fcooper@ti.com>
+>=20
+> * Create new task-arago-tisdk-connectivity task including host
+> and target
+>   versions. The contents of these tasks were originally located
+> in
+>   task-arago-tisdk-crypto and task-arago-toolchain-tisdk-crypto-
+> host and also
+>   the target version.
+>=20
+> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 > ---
->  .../recipes-connectivity/bt-obex/bt-obex.bb        |   33
-> ++++++++++++++++++++
->  1 files changed, 33 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-connectivity/bt-
-> obex/bt-obex.bb
+> Version 2 changes:
+> Use new task naming convention.
+> Added bt-obex
 >=20
-> diff --git a/meta-arago-extras/recipes-connectivity/bt-obex/bt-
-> obex.bb b/meta-arago-extras/recipes-connectivity/bt-obex/bt-
-> obex.bb
+>  .../task-arago-tisdk-connectivity-sdk-host.bb      |   18 ++++++
+>  .../task-arago-tisdk-connectivity-sdk-target.bb    |   19 ++++++
+>  .../tasks/task-arago-tisdk-connectivity.bb         |   65
+> ++++++++++++++++++++
+>  3 files changed, 102 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
+> arago-tisdk-connectivity-sdk-host.bb
+>  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
+> arago-tisdk-connectivity-sdk-target.bb
+>  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
+> arago-tisdk-connectivity.bb
+>=20
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
+> tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-
+> core/tasks/task-arago-tisdk-connectivity-sdk-host.bb
 > new file mode 100644
-> index 0000000..594e5bc
+> index 0000000..74e4f3f
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
-> @@ -0,0 +1,33 @@
-> +DESCRIPTION =3D "BT Obex - Agentfor OBEXD (OPP/FTP profile)"
-> +LICENSE =3D "GPLv2"
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
+> connectivity-sdk-host.bb
+> @@ -0,0 +1,18 @@
+> +DESCRIPTION =3D "Task to install wlan and bluetooth sources in
+> SDK"
+> +LICENSE =3D "MIT"
 > +LIC_FILES_CHKSUM =3D
-> "file://COPYING;md5=3D12f884d2ae1ff87c09e5b7ccc2c4ca7e"
+> "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
+> 4de20420"
+> +PR =3D "r0"
 > +
-> +RDEPENDS +=3D "bluez4"
-> +DEPENDS +=3D "glib-2.0 dbus-glib"
+> +inherit task
+> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> +COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
 > +
-> +PR =3D "r0+gitr${SRCREV}"
+> +WLAN_SOURCES =3D "ti-compat-wireless-wl12xx-src \
+> +                ti-compat-bluetooth-src \
+> +                bt-firmware-src \
+> +                bt-enable-src \
+> +               "
 > +
-> +SRCREV =3D "171181b6ef6c94aefc828dc7fd8de136b9f97532"
+> +RDEPENDS_${PN} =3D "\
+> +    ${WLAN_SOURCES} \
+> +    "
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
+> tisdk-connectivity-sdk-target.bb b/meta-arago-distro/recipes-
+> core/tasks/task-arago-tisdk-connectivity-sdk-target.bb
+> new file mode 100644
+> index 0000000..a63c801
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
+> connectivity-sdk-target.bb
+> @@ -0,0 +1,19 @@
+> +DESCRIPTION =3D "Task to install wlan and bluetooth sources in
+> SDK"
+> +LICENSE =3D "MIT"
+> +LIC_FILES_CHKSUM =3D
+> "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
+> 4de20420"
+> +PR =3D "r1"
 > +
-> +SRC_URI =3D "git://gitorious.org/bluez-tools/bluez-
-> tools.git;protocol=3Dgit \
-> +          "
+> +inherit task
+> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> +COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
 > +
-> +S =3D "${WORKDIR}/git"
+> +# Bluetooth development packages
+> +BLUETOOTH_STACK =3D "\
+> +    bluez4-dev \
+> +    openobex-dev \
+> +"
 > +
-> +inherit autotools
+> +RDEPENDS_${PN} =3D "\
+> +    ${BLUETOOTH_STACK} \
+> +    wpa-supplicant-dev \
+> +    "
+> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
+> tisdk-connectivity.bb b/meta-arago-distro/recipes-
+> core/tasks/task-arago-tisdk-connectivity.bb
+> new file mode 100644
+> index 0000000..e0aa0bd
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
+> connectivity.bb
+> @@ -0,0 +1,65 @@
+> +DESCRIPTION =3D "Task to install wlan and bluetooth packages into
+> target FS"
+> +LICENSE =3D "MIT"
+> +LIC_FILES_CHKSUM =3D
+> "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
+> 4de20420"
+> +PR =3D "r0"
 > +
-> +do_install() {
-> +       install -d ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-adapter ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-agent   ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-audio   ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-device  ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-input   ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-monitor ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-network ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-obex    ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-serial  ${D}${bindir}
-> +}
+> +inherit task
+> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> +COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
 > +
-> +SRC_URI[md5sum] =3D "36080a767e63e54878cd6bcfb20c4f3b"
-> +SRC_URI[sha256sum] =3D
-> "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a
-> "
+> +# WLAN support packages.
+> +# These are the packages that all platforms use for WLAN support
+> +WLAN_COMMON =3D "hostap-daemon \
+> +               ti-wifi-utils \
+> +               wireless-tools \
+> +               htop \
+> +               netperf \
+> +               iw \
+> +               wl12xx-firmware \
+
+You need to submit the wl12xx-firmware to meta-ti in order for this to work=
+.
+
+> +               crda \
+> +               softap-udhcpd-config \
+> +               oppserver \
+> +               bt-obex \
+> +               bluez-tools \
+> +               obexd \
+> +               pulseaudio \
+> +               pulseaudio-server \
+> +               pulseaudio-module-loopback \
+> +               pulseaudio-module-bluetooth-discover \
+> +               pulseaudio-module-bluetooth-device \
+> +               eventdump \
+> +               wpa-supplicant \
+> +"
+> +
+> +# These are the WLAN packages that are used for compatibility
+> with the
+> +# 2.6.37 kernel used by some devices
+
+This comment can be modified to not say 2.6.37.  The compat is used to make=
+ the drivers work with older and newer kernel versions.
+
+> +WLAN_COMPAT =3D "ti-compat-wireless-wl12xx \
+> +               ti-compat-bluetooth \
+> +               bt-firmware \
+> +               wl1271-demo \
+> +               bt-enable \
+> +"
+> +
+> +BLUETOOTH_STACK =3D "\
+> +    bluez4 \
+> +    bluez4-agent \
+> +    libasound-module-bluez \
+> +    bluez-hcidump \
+> +    openobex \
+> +    openobex-apps \
+> +    obexftp \
+> +    ussp-push \
+> +"
+> +# battleship is not included since it doesn't compile with Qt
+> 4.8
+
+Please make sure you send this feedback to the battleship owner
+
+> +DEMO_APPS =3D "\
+> +    bluetooth-gui \
+> +    wifi-direct-demo \
+> +    wpa-gui-e \
+> +"
+> +
+> +RDEPENDS_${PN} =3D "\
+> +    ${WLAN_COMMON} \
+> +    ${WLAN_COMPAT} \
+> +    ${BLUETOOTH_STACK} \
+> +    ${DEMO_APPS} \
+> +"
 > --
 > 1.7.0.4
 >=20
