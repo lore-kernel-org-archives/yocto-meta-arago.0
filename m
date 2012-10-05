@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id BB333529A1
+	by arago-project.org (Postfix) with ESMTPS id 81FC7529A1
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 06:22:37 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so1321581oag.38
+	Fri,  5 Oct 2012 06:23:19 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so1321929oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 04 Oct 2012 23:22:37 -0700 (PDT)
+	Thu, 04 Oct 2012 23:23:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=r3z0AK00+c+/pOksqGZycRz3ywZeffhvRY1slHX9+XQ=;
-	b=f0fity8UioXBcm1k5XBLtDqigBFC2uU2ZPC34TC68bMy3NRz2Yea1vCInTWo7Jccv5
-	llK/7nGJx7uJtXdZ470b3nm/R+vP3u9fefBaXr12vaL/7tgnsnBwQ9gB8e79wF0KAFS8
-	MQsXCgWhBTIZ5mb0l0SYE8OPs835Smx6SXxhMAeWi7SpOtu+fd/FG43e2wmfMeBVCROD
-	zop64Ti2FCJ0jkhez+UhsGawmyHD/dos8sUv1CO3UilA1Z/s8YuoITz4aZXL+7htPrAh
-	JQYfsMZ9Z1wYJ7r4RkQm/u40n5yRR0bBxHlCC8zTCQrBQ9clTWhEheuG2QO44Cs7Rk8/
-	I6OA==
-Received: by 10.60.4.67 with SMTP id i3mr6543765oei.38.1349418157147;
-	Thu, 04 Oct 2012 23:22:37 -0700 (PDT)
+	bh=bbUXc9X3OG6uSZN+1Xzbv4miDyzcREm4V1weDeWlkFc=;
+	b=R/nL/JsKCs7JE5fqs9hFLvvTYga3ZBWs/pEFsMUtqLIp28lXycmNl8ZYmebOjPCmDp
+	BLPkCgkzF9mj1m+rqrKr1X4+xHJULODEsrbh9PTd5z7eZK7ZqOgX1a19zeq9XGGPTwde
+	h9ZLytx409TQgP5f4i3F28V53UkqjAuQ6aZuwPl2vkDT6FxlnjuK4xog3WGZBJ0mJcGB
+	AjURr6dXEU91jf9XzNFfsJ0qtnLWlSLPo7TzzYcZD9Hkw0Q7cNas+65RmpWbFGy9g1gp
+	VRJWXLhAxTYt3IFKyzuaLRnt/MQAOL4YGdI9vnubp8qClSvaOxRKyVTrVCHQvKPX+UW3
+	/VYg==
+Received: by 10.60.31.170 with SMTP id b10mr6278450oei.107.1349418199062;
+	Thu, 04 Oct 2012 23:23:19 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id k7sm6799440oek.6.2012.10.04.23.22.36
+	by mx.google.com with ESMTPS id 5sm6804641oeq.4.2012.10.04.23.23.18
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 04 Oct 2012 23:22:36 -0700 (PDT)
+	Thu, 04 Oct 2012 23:23:18 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 01:50:58 -0500
-Message-Id: <1349419858-21729-1-git-send-email-fcooper@ti.com>
+Date: Fri,  5 Oct 2012 01:51:33 -0500
+Message-Id: <1349419893-21772-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] ltp-ddt: Add Arago tweaks
+Subject: [PATCH] matrix-lighttpd: Fix PATH environment variable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,56 +40,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 06:22:37 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 06:23:19 -0000
 
-* Port tweaks from Arago
-* AUTOREV the recipe to get the latest changes.
-* Compile test kernel modules.
+* Alot of Matrix applications were failing due to an incomplete list of
+  paths listed in the PATH environment variable when a shell script is
+  executed by PHP.
+* Add and configure mod_setenv module to explicitly set the PATH variable
+  to properly include all the necessary paths.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ltp-ddt/ltp-ddt_0.0.4.bbappend                 |   32 ++++++++++++++++++++
- 1 files changed, 32 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+ .../recipes-core/matrix/matrix-lighttpd-config.bb  |    6 +++---
+ .../matrix-lighttpd-config/lighttpd.conf.matrix    |    5 ++++-
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-new file mode 100644
-index 0000000..65a16f9
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-@@ -0,0 +1,32 @@
-+PR_append = "-arago0+gitr${SRCPV}"
-+
-+# Auto rev so we pick up the latest changes
-+SRCREV = "${AUTOREV}"
-+
-+do_compile_kmodules() {
-+        unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
-+        oe_runmake modules
-+}
-+
-+addtask compile_kmodules after do_compile before do_install
-+
-+# Grab a portion of the module.bbclass to provide the needed kernel application
-+# scripts/basic/fixdep. This issue is discussed in the following thread.
-+# http://lists.linuxtogo.org/pipermail/openembedded-core/2011-July/005536.html
-+
-+inherit module-base
-+
-+#
-+# Ensure the hostprogs are available for module compilation. Modules that
-+# inherit this recipe and override do_compile() should be sure to call
-+# do_make_scripts() or ensure the scripts are built independently.
-+#
-+do_make_scripts() {
-+	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
-+	oe_runmake CC="${KERNEL_CC}" LD="${KERNEL_LD}" AR="${KERNEL_AR}" \
-+	           -C ${STAGING_KERNEL_DIR} scripts
-+}
-+
-+addtask make_scripts before do_compile
-+do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
-+do_make_scripts[deptask] = "do_populate_sysroot"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
+index 8ecfa55..25188af 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
+@@ -1,11 +1,11 @@
+ DESCRIPTION = "Lighttpd config for Matrix"
+ 
+ LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://../lighttpd.conf.matrix;md5=bf036dce30a4114d5942c1f8d0152191"
++LIC_FILES_CHKSUM = "file://../lighttpd.conf.matrix;md5=298ec80f6b2b837211de52081c5eecc5"
+ 
+ inherit allarch
+ 
+-PR = "1"
++PR = "2"
+ 
+ SRC_URI = "file://lighttpd.conf.matrix"
+ 
+@@ -15,7 +15,7 @@ do_install() {
+ }
+ 
+ FILES_${PN} = "${sysconfdir}/lighttpd.conf.matrix"
+-RDEPENDS_${PN} = "lighttpd"
++RDEPENDS_${PN} = "lighttpd lighttpd-module-setenv"
+ 
+ pkg_postinst_${PN} () {
+ if [ -f $D${sysconfdir}/lighttpd.conf ] ; then
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
+index d2e9217..82a9fb8 100755
+--- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
++++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
+@@ -20,7 +20,7 @@ server.modules              = (
+ #                               "mod_trigger_b4_dl",
+ #                               "mod_auth",
+ #                               "mod_status",
+-#                               "mod_setenv",
++                                "mod_setenv",
+                                 "mod_expire",
+ #                               "mod_fastcgi",
+ #                               "mod_proxy",
+@@ -296,6 +296,9 @@ $HTTP["url"] =~ "\.(jpg|gif|png)$" { expire.url = ( "" => "access 3 years" ) }
+ #### setenv
+ #setenv.add-request-header  = ( "TRAV_ENV" => "mysql://user@host/db" )
+ #setenv.add-response-header = ( "X-Secret-Message" => "42" )
++setenv.add-environment = (
++    "PATH" => "/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:."
++)
+ 
+ ## for mod_trigger_b4_dl
+ # trigger-before-download.gdbm-filename = "/home/weigon/testbase/trigger.db"
 -- 
 1.7.0.4
 
