@@ -1,33 +1,32 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 64F15529D2
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 32705529D2
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 06:33:08 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so1308660obb.38
-	for <meta-arago@arago-project.org>;
-	Thu, 04 Oct 2012 23:33:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=m1zDcVI59wjDpVAt9B5b3eT/N/1i9P0LTzUwwuvD5Mg=;
-	b=KCDn4Ha+P6mTP9IZRyrcTFlIRKqJxmkHBur8nt+o30L/LYWrAOwoW9aYubzb0+0Mu0
-	+WlawGSm2yhngQ4Xy3dR2h6OrKP6uAWPDPagJPtpehHhx/4bhcXG0d4sNFuk6EEQiVAw
-	Odam3+LG4dKjyP7dq4bIiqDmbSKi7MRX1k8dqKRL4Kt5YrRWmFk+SX5ou3RqYsSbpOwC
-	qiyZRw+uUILZi0xVIC4JybpoCRe4LmrHsX0Zl8J2oF1/gwJU+aq6zlXfuxxBndKTu2h3
-	l3IFqd2ohiCQYaaK0nO4QNPa+uWq6pyoLmvLDU74SiN0k7NUk7nf8tokELskhq/mbvl/
-	gzNQ==
-Received: by 10.60.4.199 with SMTP id m7mr4500152oem.106.1349418787845;
-	Thu, 04 Oct 2012 23:33:07 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id hz6sm8752498obb.1.2012.10.04.23.33.06
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 04 Oct 2012 23:33:07 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 02:01:29 -0500
-Message-Id: <1349420489-22513-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH v2] task-arago-tisdk-matrix: Add task to install Matrix related sources
+	Fri,  5 Oct 2012 12:24:46 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95COjx7027459;
+	Fri, 5 Oct 2012 07:24:45 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95COjN0027789;
+	Fri, 5 Oct 2012 07:24:45 -0500
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Fri, 5 Oct 2012 07:24:45 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] bt-obex: Port recipe from arago
+Thread-Index: AQHNosCIC/Dhvi4DdEuLhnQbGL0wW5eqoxag
+Date: Fri, 5 Oct 2012 12:24:44 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159247BB7@DLEE12.ent.ti.com>
+References: <1349419299-21431-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1349419299-21431-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Subject: Re: [PATCH] bt-obex: Port recipe from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,118 +39,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 06:33:08 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 12:24:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Franklin S Cooper Jr <fcooper@ti.com>
+Acked-by: Chase Maupin <chase.maupin@ti.com>
 
-* Rename task-arago-matrix to use new naming convention.
-* task-arago-tisdk-matrix-sdk-host is used to install Matrix v2 and
-  associated applications sources.
-* In arago, this was originally done in the task-arago-toolchain-tisdk-graphics-host
-  task.
-* Add several Matrix demos
-
-Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
----
-Version 2 changes:
-Use updated task naming convention.
-Add additional demos.
-
- .../tasks/task-arago-tisdk-matrix-sdk-host.bb      |   13 +++++++++++++
- ...-arago-matrix.bb => task-arago-tisdk-matrix.bb} |   17 ++++++++++++-----
- 2 files changed, 25 insertions(+), 5 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix-sdk-host.bb
- rename meta-arago-distro/recipes-core/tasks/{task-arago-matrix.bb => task-arago-tisdk-matrix.bb} (83%)
-
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix-sdk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix-sdk-host.bb
-new file mode 100644
-index 0000000..3ed39b3
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix-sdk-host.bb
-@@ -0,0 +1,13 @@
-+DESCRIPTION = "Task to install Matrix v2 and associated applications sources in the SDK"
-+
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+
-+RDEPENDS_${PN} = "\
-+    matrix-gui-src \
-+    matrix-gui-browser-src \
-+    refresh-screen-src \
-+"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-matrix.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
-similarity index 83%
-rename from meta-arago-distro/recipes-core/tasks/task-arago-matrix.bb
-rename to meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
-index 13c555a..f4feef3 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-matrix.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r0"
-+PR = "r1"
- 
- inherit task
- 
-@@ -30,10 +30,10 @@ MATRIX_APPS_append_omap3 = "        \
- "
- 
- MATRIX_APPS_append_ti33x = "        \
-+    matrix-gui-ethernet-demos       \
-     matrix-gui-3d-demos             \
-     matrix-gui-multimedia-demos     \
-                                     \
--    matrix-gui-clocks               \
-     matrix-gui-clocks-275mhz        \
-     matrix-gui-clocks-500mhz        \
-     matrix-gui-clocks-600mhz        \
-@@ -41,7 +41,10 @@ MATRIX_APPS_append_ti33x = "        \
-                                     \
-     matrix-gui-generic-pm           \
-     matrix-gui-pm-demos-suspend     \
-+                                    \
-     matrix-gui-wifi-demos           \
-+    matrix-gui-bluetooth-demos      \
-+    matrix-gui-wifi-direct-demo     \
- "
- 
- MATRIX_APPS_append_beagleboard = "  \
-@@ -53,7 +56,6 @@ MATRIX_APPS_append_am3517-evm = "   \
- "
- 
- MATRIX_APPS_append_am37x-evm = "    \
--    matrix-gui-clocks               \
-     matrix-gui-clocks-300mhz        \
-     matrix-gui-clocks-600mhz        \
-     matrix-gui-clocks-800mhz        \
-@@ -67,14 +69,19 @@ MATRIX_APPS_append_am37x-evm = "    \
-     matrix-gui-pm-demos-suspend     \
-                                     \
-     matrix-gui-wifi-demos           \
-+    matrix-gui-wifi-direct-demo     \
-+    matrix-gui-bluetooth-demos      \
-+                                    \
-     matrix-gui-display-control      \
-     matrix-gui-camera-loopback      \
-     matrix-gui-v4l2-demos           \
-     matrix-gui-display-control      \
- "
- 
--RDEPENDS_append_am180x-evm = "  \
--    matrix-gui-wifi-demos       \
-+RDEPENDS_append_am180x-evm = "      \
-+    matrix-gui-wifi-demos           \
-+    matrix-gui-bluetooth-demos      \
-+    matrix-gui-wifi-direct-demo     \
- "
- 
- RDEPENDS_${PN} = "        \
--- 
-1.7.0.4
-
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
+> Sent: Friday, October 05, 2012 1:42 AM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCH] bt-obex: Port recipe from arago
+>=20
+> * Port recipe from Arago.
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-connectivity/bt-obex/bt-obex.bb        |   33
+> ++++++++++++++++++++
+>  1 files changed, 33 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-connectivity/bt-
+> obex/bt-obex.bb
+>=20
+> diff --git a/meta-arago-extras/recipes-connectivity/bt-obex/bt-
+> obex.bb b/meta-arago-extras/recipes-connectivity/bt-obex/bt-
+> obex.bb
+> new file mode 100644
+> index 0000000..594e5bc
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
+> @@ -0,0 +1,33 @@
+> +DESCRIPTION =3D "BT Obex - Agentfor OBEXD (OPP/FTP profile)"
+> +LICENSE =3D "GPLv2"
+> +LIC_FILES_CHKSUM =3D
+> "file://COPYING;md5=3D12f884d2ae1ff87c09e5b7ccc2c4ca7e"
+> +
+> +RDEPENDS +=3D "bluez4"
+> +DEPENDS +=3D "glib-2.0 dbus-glib"
+> +
+> +PR =3D "r0+gitr${SRCREV}"
+> +
+> +SRCREV =3D "171181b6ef6c94aefc828dc7fd8de136b9f97532"
+> +
+> +SRC_URI =3D "git://gitorious.org/bluez-tools/bluez-
+> tools.git;protocol=3Dgit \
+> +          "
+> +
+> +S =3D "${WORKDIR}/git"
+> +
+> +inherit autotools
+> +
+> +do_install() {
+> +       install -d ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-adapter ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-agent   ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-audio   ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-device  ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-input   ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-monitor ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-network ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-obex    ${D}${bindir}
+> +       install -m 755 ${S}/src/bt-serial  ${D}${bindir}
+> +}
+> +
+> +SRC_URI[md5sum] =3D "36080a767e63e54878cd6bcfb20c4f3b"
+> +SRC_URI[sha256sum] =3D
+> "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a
+> "
+> --
+> 1.7.0.4
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
