@@ -1,41 +1,33 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 3497A52ACC
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id E745E529D6
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 20:07:56 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95K7tUf005826;
-	Fri, 5 Oct 2012 15:07:55 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95K7t0W010848;
-	Fri, 5 Oct 2012 15:07:55 -0500
-Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Fri, 5 Oct 2012 15:07:54 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v2] pulseaudio: Remove console-kit from
-	pulseaudio-module-server
-Thread-Index: AQHNozRNhUUMJQE/Z0ir6COfTPJgJ5erI66w
-Date: Fri, 5 Oct 2012 20:07:53 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159249577@DLEE12.ent.ti.com>
-References: <1349469034-8348-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1349469034-8348-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: AAJj A3MH CYed DlRc Dw/9 ExJl JgnM Jw1B KgoD K0PC LCZQ
-	NefH RHmJ RKUp S1Fy W94Q; 2;
-	ZgBjAG8AbwBwAGUAcgBqAHIAMgA3AEAAZwBtAGEAaQBsAC4AYwBvAG0AOwBtAGUAdABhAC0AYQByAGEAZwBvAEAAYQByAGEAZwBvAC0AcAByAG8AagBlAGMAdAAuAG8AcgBnAA==;
-	Sosha1_v1; 7; {7293DA48-F766-4582-8330-D9AD0F7A5CD4};
-	YwBoAGEAcwBlAC4AbQBhAHUAcABpAG4AQAB0AGkALgBjAG8AbQA=; Fri,
-	05 Oct 2012 20:07:50 GMT;
-	UgBFADoAIABbAG0AZQB0AGEALQBhAHIAYQBnAG8AXQAgAFsAUABBAFQAQwBIACAAdgAyAF0AIABwAHUAbABzAGUAYQB1AGQAaQBvADoAIABSAGUAbQBvAHYAZQAgAGMAbwBuAHMAbwBsAGUALQBrAGkAdAAgAGYAcgBvAG0ACQBwAHUAbABzAGUAYQB1AGQAaQBvAC0AbQBvAGQAdQBsAGUALQBzAGUAcgB2AGUAcgA=
-x-cr-puzzleid: {7293DA48-F766-4582-8330-D9AD0F7A5CD4}
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH v2] pulseaudio: Remove console-kit from	pulseaudio-module-server
+	Fri,  5 Oct 2012 20:19:16 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so2006835obb.38
+	for <meta-arago@arago-project.org>;
+	Fri, 05 Oct 2012 13:19:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=gCgNgEmjXStoEBcaV2A02q6ygQXetvu+ZFkVPUsEL5A=;
+	b=WGFZt7phMMjfGBHld+eQFNDRuULZYI/TSVblWExexOuw3T0hY5NM2rjVq7dbdbKRr+
+	EYlDt40JfVlfEd9OlDiSXw2oUfnMgZ8qgXtFhhgpXqvVD2UMX1mCIfTEVF7ZM/DU4Zda
+	k5IDY/DXoqjWJOeAR/kZ6jAQEUD0H5DXZF6GEMhvHstHBzDRX6wqMDL+M4fghFfk6kaW
+	hZnH5JI1iZ7G2225CWm3rLVHilpJ8nplqa1k8qAhAU4gZhW1g66EJdinoRTmOL2133Hh
+	ixVSXlMilKzyE/j8aGfoWHAbcpa+J5E4fqpXzciGFF8mo1DpWiza1J9eUzZJJw2Wke64
+	b7gQ==
+Received: by 10.182.117.74 with SMTP id kc10mr7930298obb.63.1349468356171;
+	Fri, 05 Oct 2012 13:19:16 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id m3sm9639721obm.21.2012.10.05.13.19.15
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 05 Oct 2012 13:19:15 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Fri,  5 Oct 2012 15:47:47 -0500
+Message-Id: <1349470067-26340-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH v2] bt-obex: Port recipe from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,65 +40,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 20:07:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Oct 2012 20:19:17 -0000
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+* Port recipe from Arago.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Version 2 changes:
+Use proper RDEPENDS syntax.
 
+ .../recipes-connectivity/bt-obex/bt-obex.bb        |   33 ++++++++++++++++++++
+ 1 files changed, 33 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> Sent: Friday, October 05, 2012 3:31 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH v2] pulseaudio: Remove console-kit
-> from pulseaudio-module-server
->=20
-> * Remove the required dependency of pulseaudio-module-console-kit
->   when using pulseaudio-module-server. Pulseaudio-module-console-
-> kit
->   brings in consolekit which can not be built in an non x11
-> environment.
-> * Due to X11 not being apart of the DISTRO_FEATURES, recipes such
-> as libx11
->   and its dependencies aren't buildable.
-> * pulseaudio-module-server is used by the bluetooth demo.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
-> Version 2 changes:
-> Update typo in commit message.
-> Added comment about the removal of pulseaudio-module-console-kit
->=20
->  .../pulseaudio/pulseaudio_2.1.bbappend             |    5 +++++
->  1 files changed, 5 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-distro/recipes-
-> multimedia/pulseaudio/pulseaudio_2.1.bbappend
->=20
-> diff --git a/meta-arago-distro/recipes-
-> multimedia/pulseaudio/pulseaudio_2.1.bbappend b/meta-arago-
-> distro/recipes-multimedia/pulseaudio/pulseaudio_2.1.bbappend
-> new file mode 100644
-> index 0000000..2fc3ce6
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-
-> multimedia/pulseaudio/pulseaudio_2.1.bbappend
-> @@ -0,0 +1,5 @@
-> +PR_append =3D "-arago0"
-> +
-> +# Removing pulseaudio-module-console-kit which depends on
-> console-kit.
-> +# Console-kit has x11 dependencies which can't be built do to
-> Arago being a non x11 distro.
-> +RDEPENDS_pulseaudio-server :=3D "${@oe_filter_out('pulseaudio-
-> module-console-kit','${RDEPENDS_pulseaudio-server}', d)}"
-> --
-> 1.7.0.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
+new file mode 100644
+index 0000000..5c561f9
+--- /dev/null
++++ b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
+@@ -0,0 +1,33 @@
++DESCRIPTION = "BT Obex - Agentfor OBEXD (OPP/FTP profile)"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
++
++RDEPENDS_${PN} += "bluez4"
++DEPENDS += "glib-2.0 dbus-glib"
++
++PR = "r0+gitr${SRCREV}"
++
++SRCREV = "171181b6ef6c94aefc828dc7fd8de136b9f97532"
++
++SRC_URI = "git://gitorious.org/bluez-tools/bluez-tools.git;protocol=git \
++          "
++
++S = "${WORKDIR}/git"
++
++inherit autotools
++
++do_install() {
++       install -d ${D}${bindir}
++       install -m 755 ${S}/src/bt-adapter ${D}${bindir}
++       install -m 755 ${S}/src/bt-agent   ${D}${bindir}
++       install -m 755 ${S}/src/bt-audio   ${D}${bindir}
++       install -m 755 ${S}/src/bt-device  ${D}${bindir}
++       install -m 755 ${S}/src/bt-input   ${D}${bindir}
++       install -m 755 ${S}/src/bt-monitor ${D}${bindir}
++       install -m 755 ${S}/src/bt-network ${D}${bindir}
++       install -m 755 ${S}/src/bt-obex    ${D}${bindir}
++       install -m 755 ${S}/src/bt-serial  ${D}${bindir}
++}
++
++SRC_URI[md5sum] = "36080a767e63e54878cd6bcfb20c4f3b"
++SRC_URI[sha256sum] = "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a"
+-- 
+1.7.0.4
+
 
