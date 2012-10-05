@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id E68C1529A1
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id D45BB529A1
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 06:15:15 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so1299440obb.38
+	Fri,  5 Oct 2012 06:16:21 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so1318323oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 04 Oct 2012 23:15:15 -0700 (PDT)
+	Thu, 04 Oct 2012 23:16:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=Cr432TTwnIZFBXIlawjqAcrektfnv8TORaYJgI2sz7U=;
-	b=Ha2KrqaqUKi+O6DywqN3TJ2G2AsVzbLDBimVMw94EapVjZLbg5lin+iP+iliLz9URr
-	lC9s6aGOJq9OpwJfW0AMaaKgumLG25AvqgTcv7dXuqvK7kspTzBk+3aIwhLEyynRUJ1z
-	fUU+cAlQ4e4MSW2odQAMdhND0gpArlj7+EqxuekeTT7IvSsJQ/YsfZk1TYIm/rZUwvy+
-	Y9Xe5DineUupZL5PhK9idsdvAyY0cCe57pmwOhLw6RGVvpHoXElaQO2dUNEQWEgs86wb
-	vcFCNva9qP+OUr1UdO/1TUnaMgjVdumBgLM1xG6FB7Gnwoelu1M0BJMRJ5Niq1vYuK9q
-	5+Vw==
-Received: by 10.60.25.104 with SMTP id b8mr6199193oeg.140.1349417715409;
-	Thu, 04 Oct 2012 23:15:15 -0700 (PDT)
+	bh=+Bszy4l14kVREnwDUU0M30qkNPRZawxdCFYP+A6AbJQ=;
+	b=wSnbera7EE8PhsVwLA22gdpkVJYy47pCeYasJ3RCRK9tBug+mxxH1qEg0vvLKy1XhX
+	gGR5XRME/rlE7e8eu2yr5szxQJ8UenGGR3kNYWQ2kNkgnZy11eZVFol/BUq9/gpWOwes
+	lmFWRo4OY7xv8noXSUebY7H8iZQfnJdx2KUvWLydanrK2YXdzTK5SwhHdcY8H6P8jtrY
+	RH0qlO0CenHfyvGiXBoiOQJv/uLQBOYnfKdfmFkU+RjcYgP7e+74qTa3Z6/j0srtJFP/
+	QiKNJJ2rkoRzGFMsNoV5FnNS84C7MEOb9psYR7r6xqNgI2XPJ4fJwWfIzw7ffD/MJneO
+	IAvA==
+Received: by 10.182.192.101 with SMTP id hf5mr6204103obc.96.1349417781422;
+	Thu, 04 Oct 2012 23:16:21 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id ea6sm8713044obc.9.2012.10.04.23.15.14
+	by mx.google.com with ESMTPS id n7sm945251obd.16.2012.10.04.23.16.20
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 04 Oct 2012 23:15:15 -0700 (PDT)
+	Thu, 04 Oct 2012 23:16:20 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 01:43:35 -0500
-Message-Id: <1349419415-21517-1-git-send-email-fcooper@ti.com>
+Date: Fri,  5 Oct 2012 01:44:40 -0500
+Message-Id: <1349419480-21560-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH v2] task-arago-gst-sdk-target: Add task to install gstreamer related dev packages
+Subject: [PATCH v2] task-arago-tisdk-multimedia: Port multimedia task from arago to meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,29 +40,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 06:15:16 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 06:16:22 -0000
 
 From: Franklin S Cooper Jr <fcooper@ti.com>
 
-* This task is used to install gstreamer and gstreamer plugins dev packages
-* Remove COMPATIBLE_MACHINE restriction
+* Port task-arago-tisdk-multimedia from arago to meta-arago.
+
 Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 ---
 Version 2 changes:
 Use new task naming convention
 
- .../tasks/task-arago-gst-sdk-target.bb             |   14 ++++++++++++++
- .../recipes-core/tasks/task-arago-gst.bb           |    3 +--
- 2 files changed, 15 insertions(+), 2 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
+ .../tasks/task-arago-tisdk-multimedia-sdk-host.bb  |   21 ++++++++++++++
+ .../task-arago-tisdk-multimedia-sdk-target.bb      |   11 +++++++
+ .../tasks/task-arago-tisdk-multimedia.bb           |   30 ++++++++++++++++++++
+ 3 files changed, 62 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-host.bb
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-target.bb
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-host.bb
 new file mode 100644
-index 0000000..655cd20
+index 0000000..17defc2
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
-@@ -0,0 +1,14 @@
-+DESCRIPTION = "Task to build and install header and libs in sdk"
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-host.bb
+@@ -0,0 +1,21 @@
++DESCRIPTION = "Task to add multimedia related sources into the SDK"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++PR = "r0"
++
++inherit task
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++MULTIMEDIA = ""
++
++MULTIMEDIA_append_am37x-evm = " \
++    av-examples-src \
++"
++
++MULTIMEDIA_append_am3517-evm = " \
++    av-examples-src \
++"
++
++RDEPENDS_${PN} = "\
++    ${MULTIMEDIA} \
++"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-target.bb
+new file mode 100644
+index 0000000..1f17f87
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia-sdk-target.bb
+@@ -0,0 +1,11 @@
++DESCRIPTION = "Task to build and install header and libs into sdk"
 +LICENSE = "MIT"
 +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 +PR = "r0"
@@ -71,25 +101,44 @@ index 0000000..655cd20
 +PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
 +RDEPENDS_${PN} = "\
-+    gstreamer-dev \
-+    gst-plugins-base-dev \
-+    gst-plugins-good-dev \
-+    gst-plugins-bad-dev \
++    task-arago-gst-sdk-target \
 +"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
-index d34402a..da9e41c 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
-@@ -1,8 +1,7 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--COMPATIBLE_MACHINE = "(am335x-evm|am3517-evm|am37x-evm|omap3evm|beagleboard|beaglebone)"
--PR = "r0"
-+PR = "r1"
- 
- inherit task
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb
+new file mode 100644
+index 0000000..8cd0d2a
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-multimedia.bb
+@@ -0,0 +1,30 @@
++DESCRIPTION = "Task to add multimedia related packages"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++PR = "r0"
++
++inherit task
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++MULTIMEDIA = ""
++
++MULTIMEDIA_append_omap3 = " \
++    amsdk-av-files \
++"
++
++MULTIMEDIA_append_ti33x = " \
++    amsdk-av-files \
++"
++
++MULTIMEDIA_append_am37x-evm = " \
++    av-examples \
++"
++
++MULTIMEDIA_append_am3517-evm = " \
++    av-examples \
++"
++
++RDEPENDS_${PN} = "\
++    task-arago-gst \
++    ${MULTIMEDIA} \
++"
 -- 
 1.7.0.4
 
