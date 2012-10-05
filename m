@@ -1,33 +1,27 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id C16C452A00
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTP id D1198529D6
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 21:07:13 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2060239oag.38
-	for <meta-arago@arago-project.org>;
-	Fri, 05 Oct 2012 14:07:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=8ojttpWoOwyXo1/9lvWlKwR5F+MolOAM/eHqCJrDLV4=;
-	b=cVgZJzXiSQDU4TnTTM4QKoZGUtdrDXR1eK7Tqs6OWSYNAtANsfN5fqqQx6knlKUBCc
-	LBxyHRjW/Sw3BEXDuqct/DhzB+wUlQoOKF6nk22LK9OJiE9NyFhrDLqjaaAdxeJRpXXa
-	0Oi8AY8HsM0EXIgv+9wCJbGuwk3Yh2YzZoqf51ng/qm1sG5UPQWI6074FDtaLe6mVh7b
-	3/gp0Qb1o4efsqAj1dGWyesdPXU3GPswKNxDG+UGQ2xAXrtWhYTBEjcwFQH7vHUFpYrw
-	Qd1AbZiNpGx2gIgfg02XleK7+JK2wAA7510o9qotZRlONw2oc2HY89S5zOLNq5ZDsoUQ
-	IpfQ==
-Received: by 10.60.172.201 with SMTP id be9mr7962670oec.141.1349471232979;
-	Fri, 05 Oct 2012 14:07:12 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id hz6sm10435809obb.1.2012.10.05.14.07.11
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 05 Oct 2012 14:07:12 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 16:35:44 -0500
-Message-Id: <1349472944-1681-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH v2] gst-plugins-bad: Remove gtk+ dependencys
+	Fri,  5 Oct 2012 21:30:42 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.115])
+	by vms173015.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MBF0010MVQRSBF0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 05 Oct 2012 16:30:28 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id A761A20487; Fri,
+	05 Oct 2012 17:30:27 -0400 (EDT)
+Date: Fri, 05 Oct 2012 17:30:27 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-id: <20121005213027.GB27533@denix.org>
+References: <1349472329-1054-1-git-send-email-fcooper@ti.com>
+	<1349472329-1054-2-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1349472329-1054-2-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 2/2] gst-plugins-bad: Add faad as a dependency
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,38 +34,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 21:07:14 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 21:30:43 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* Disable rsvg and remove dependency to prevent gtk+ from being pulled in.
-* Remove the --with-plugins list to ensure all plugins are built. Previously
-  fbdevsink was not being built which is needed by the gstreamer demos in the
-  SDK.
+On Fri, Oct 05, 2012 at 04:25:29PM -0500, Franklin S. Cooper Jr wrote:
+> * Add faad2 as a dependency and libfaad as a runtime dependency. This
+>   insures gst-plugins-bad-faad package is created. The gstreamer faad
+>   element is needed for the AAC related gstreamer demos.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    6 +++++-
+>  1 files changed, 5 insertions(+), 1 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+> index 0c7035b..ba06fb4 100644
+> --- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+> +++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+> @@ -1,4 +1,4 @@
+> -PR_append = "-arago1"
+> +PR_append = "-arago2"
+>  
+>  # look for files in this layer first
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> @@ -11,3 +11,7 @@ EXTRA_OECONF += "--disable-rsvg"
+>  EXTRA_OECONF := "${@oe_filter_out('--with-plugins=musicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECONF}', d)}"
+>  
+>  SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch"
+> +
+> +# Add faad has a dependency to insure gst-plugins-bad-faad is built.
+> +DEPENDS += "faad2"
+> +RDEPENDS += "libfaad"
+^^^^^^^^^^^
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 2 changes:
-Add additional detailed comments to the recipe and commit message.
-
- .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    9 +++++++++
- 1 files changed, 9 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-
-diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-new file mode 100644
-index 0000000..74c822c
---- /dev/null
-+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-@@ -0,0 +1,9 @@
-+PR_append = "-arago0"
-+
-+# Disable rsvg which caused gtk+ to be pulled in
-+DEPENDS := "${@oe_filter_out('librsvg','${DEPENDS}', d)}"
-+EXTRA_OECONF += "--disable-rsvg"
-+
-+# Remove the restriction of which plugins are built. Previously fbdevsink
-+# was not built which is needed by the gstreamer demos included in the SDK.
-+EXTRA_OECONF := "${@oe_filter_out('--with-plugins=musicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECONF}', d)}"
 -- 
-1.7.0.4
-
+Denys
 
