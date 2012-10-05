@@ -1,33 +1,32 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 1DBBB52A00
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 6BC8152A81
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 12:35:33 +0000 (UTC)
+	Fri,  5 Oct 2012 12:39:00 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95CZWvB026187;
-	Fri, 5 Oct 2012 07:35:32 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95CZWEK005524;
-	Fri, 5 Oct 2012 07:35:32 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95CcxoD012621;
+	Fri, 5 Oct 2012 07:38:59 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95Ccxo2008196;
+	Fri, 5 Oct 2012 07:38:59 -0500
 Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Fri, 5 Oct 2012 07:35:32 -0500
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Fri, 5 Oct 2012 07:38:59 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
 	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v2] task-arago-tisdk-multimedia: Port
-	multimedia task from arago to meta-arago
-Thread-Index: AQHNosEFtDG3Bxv33UuSlDni4FLArpeqpjmw
-Date: Fri, 5 Oct 2012 12:35:32 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159247CAE@DLEE12.ent.ti.com>
-References: <1349419480-21560-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1349419480-21560-1-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] [PATCH] iperf: Update to version 2.0.5
+Thread-Index: AQHNosG2rvQJPbSPu0mRB6DjT2yG7Jeqpqng
+Date: Fri, 5 Oct 2012 12:38:57 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159247CE5@DLEE12.ent.ti.com>
+References: <1349419808-21687-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1349419808-21687-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] task-arago-tisdk-multimedia: Port	multimedia task from arago to meta-arago
+Subject: Re: [PATCH] iperf: Update to version 2.0.5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,141 +39,86 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 12:35:33 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 12:39:00 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+This needs to be submitted to oe-core (I didn't notice it there but maybe I=
+ missed it).
+
+Then please note in the commit log if not as a comment in the recipe itself=
+ that it can be removed later when we switch to a new maintenance branch th=
+at has this version.
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> Sent: Friday, October 05, 2012 1:45 AM
+> Sent: Friday, October 05, 2012 1:50 AM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH v2] task-arago-tisdk-multimedia:
-> Port multimedia task from arago to meta-arago
+> Subject: [meta-arago] [PATCH] iperf: Update to version 2.0.5
 >=20
-> From: Franklin S Cooper Jr <fcooper@ti.com>
+> * Upgrading to newer version of iperf.
+> * Newer versions of iperf reduced CPU load thus increasing
+> performance in
+>   wl12xx tests.
 >=20
-> * Port task-arago-tisdk-multimedia from arago to meta-arago.
->=20
-> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
-> Version 2 changes:
-> Use new task naming convention
->=20
->  .../tasks/task-arago-tisdk-multimedia-sdk-host.bb  |   21
-> ++++++++++++++
->  .../task-arago-tisdk-multimedia-sdk-target.bb      |   11
-> +++++++
->  .../tasks/task-arago-tisdk-multimedia.bb           |   30
+>  .../recipes-benchmark/iperf/iperf_2.0.5.bb         |   34
 > ++++++++++++++++++++
->  3 files changed, 62 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-multimedia-sdk-host.bb
->  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-multimedia-sdk-target.bb
->  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-multimedia.bb
+>  1 files changed, 34 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-
+> benchmark/iperf/iperf_2.0.5.bb
 >=20
-> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
-> tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-
-> core/tasks/task-arago-tisdk-multimedia-sdk-host.bb
+> diff --git a/meta-arago-extras/recipes-
+> benchmark/iperf/iperf_2.0.5.bb b/meta-arago-extras/recipes-
+> benchmark/iperf/iperf_2.0.5.bb
 > new file mode 100644
-> index 0000000..17defc2
+> index 0000000..aff06b2
 > --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
-> multimedia-sdk-host.bb
-> @@ -0,0 +1,21 @@
-> +DESCRIPTION =3D "Task to add multimedia related sources into the
-> SDK"
-> +LICENSE =3D "MIT"
+> +++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
+> @@ -0,0 +1,34 @@
+> +DESCRIPTION =3D "Iperf is a tool to measure maximum TCP bandwidth,
+> allowing the tuning of various parameters and UDP
+> characteristics"
+> +HOMEPAGE =3D "http://dast.nlanr.net/Projects/Iperf/"
+> +SECTION =3D "console/network"
+> +LICENSE =3D "NewBSD"
 > +LIC_FILES_CHKSUM =3D
-> "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
-> 4de20420"
+> "file://COPYING;md5=3De8478eae9f479e39bc34975193360298"
+> +
+> +SRC_URI =3D " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz"
+> +
+> +SRC_URI[md5sum] =3D "44b5536b67719f4250faed632a3cd016"
+> +SRC_URI[sha256sum] =3D
+> "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b
+> "
+> +
 > +PR =3D "r0"
 > +
-> +inherit task
-> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> +inherit autotools
 > +
-> +MULTIMEDIA =3D ""
+> +S=3D"${WORKDIR}/iperf-${PV}"
 > +
-> +MULTIMEDIA_append_am37x-evm =3D " \
-> +    av-examples-src \
-> +"
+> +EXTRA_OECONF =3D "--exec-
+> prefix=3D${STAGING_DIR_HOST}${layout_exec_prefix}"
 > +
-> +MULTIMEDIA_append_am3517-evm =3D " \
-> +    av-examples-src \
-> +"
+> +do_configure() {
+> +	export ac_cv_func_malloc_0_nonnull=3Dyes
+> +	gnu-configize
+> +	oe_runconf
+> +}
 > +
-> +RDEPENDS_${PN} =3D "\
-> +    ${MULTIMEDIA} \
-> +"
-> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
-> tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-
-> core/tasks/task-arago-tisdk-multimedia-sdk-target.bb
-> new file mode 100644
-> index 0000000..1f17f87
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
-> multimedia-sdk-target.bb
-> @@ -0,0 +1,11 @@
-> +DESCRIPTION =3D "Task to build and install header and libs into
-> sdk"
-> +LICENSE =3D "MIT"
-> +LIC_FILES_CHKSUM =3D
-> "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
-> 4de20420"
-> +PR =3D "r0"
+> +do_compile() {
+> +	cd ${WORKDIR}/iperf-${PV}
+> +	oe_runmake
+> +}
 > +
-> +inherit task
-> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> +
-> +RDEPENDS_${PN} =3D "\
-> +    task-arago-gst-sdk-target \
-> +"
-> diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
-> tisdk-multimedia.bb b/meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-multimedia.bb
-> new file mode 100644
-> index 0000000..8cd0d2a
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
-> multimedia.bb
-> @@ -0,0 +1,30 @@
-> +DESCRIPTION =3D "Task to add multimedia related packages"
-> +LICENSE =3D "MIT"
-> +LIC_FILES_CHKSUM =3D
-> "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
-> 4de20420"
-> +PR =3D "r0"
-> +
-> +inherit task
-> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> +
-> +MULTIMEDIA =3D ""
-> +
-> +MULTIMEDIA_append_omap3 =3D " \
-> +    amsdk-av-files \
-> +"
-> +
-> +MULTIMEDIA_append_ti33x =3D " \
-> +    amsdk-av-files \
-> +"
-> +
-> +MULTIMEDIA_append_am37x-evm =3D " \
-> +    av-examples \
-> +"
-> +
-> +MULTIMEDIA_append_am3517-evm =3D " \
-> +    av-examples \
-> +"
-> +
-> +RDEPENDS_${PN} =3D "\
-> +    task-arago-gst \
-> +    ${MULTIMEDIA} \
-> +"
+> +do_install() {
+> +	cd ${WORKDIR}/iperf-${PV}/src
+> +	oe_runmake DESTDIR=3D${D} install
+> +}
 > --
 > 1.7.0.4
 >=20
