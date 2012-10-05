@@ -1,30 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 0B46652AB6
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 5CCDE52A00
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 20:26:18 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q95KQGjh017242;
-	Fri, 5 Oct 2012 15:26:16 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q95KQGis025685;
-	Fri, 5 Oct 2012 15:26:16 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Fri, 5 Oct 2012 15:26:16 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id q95KQGb0012389;
-	Fri, 5 Oct 2012 15:26:16 -0500
-Date: Fri, 5 Oct 2012 16:26:16 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-Message-ID: <20121005202616.GB32317@edge>
-References: <1349470067-26340-1-git-send-email-fcooper@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1349470067-26340-1-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] bt-obex: Port recipe from arago
+	Fri,  5 Oct 2012 20:56:56 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so2031827obb.38
+	for <meta-arago@arago-project.org>;
+	Fri, 05 Oct 2012 13:56:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=4nFfI16Arp67gDpT1l2tUi571XVQB2gkIyLMN/Kw53I=;
+	b=hzF6GRT1aM1KAeMrDzpfar36+AjVS7IgWzshIl7I7OuqcQt84JP8z/y9xGv3ZdMCgr
+	SShaYhMymzCiRvmnd/A1UbJJ27cXEEeVui9lH2SkHsK+sHedTxZdyQShafnOgkMGHoXp
+	EHVFAW4ApY4d95W94vxlPDWJHA4CC7ogisQa6sdUVSO7CRNij2fycFIlBysH2omSAFxo
+	ljHeHIP33LViDVamiPcMjPHnxcwVCcDM2Za26xRUnAiYDR1TX5+G/FmTrmkb3U5Iltt+
+	6Y6hA1pdW8ekAtzgqPSWZSvLbED/f65+rzTs0teU62jYcFlzv2TbKQs7XSpaWOTaD5oc
+	eqog==
+Received: by 10.60.27.6 with SMTP id p6mr7902081oeg.37.1349470615366;
+	Fri, 05 Oct 2012 13:56:55 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id h2sm10400939obn.11.2012.10.05.13.56.53
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 05 Oct 2012 13:56:54 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Fri,  5 Oct 2012 16:25:28 -0500
+Message-Id: <1349472329-1054-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 1/2 v2] gst-plugins-bad: Add patch to fix depth value in gstfbdevsink
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,71 +40,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 20:26:18 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 05 Oct 2012 20:56:56 -0000
 
-On Fri, Oct 05, 2012 at 03:47:47PM -0500, Franklin S. Cooper Jr wrote:
-> * Port recipe from Arago.
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
-> Version 2 changes:
-> Use proper RDEPENDS syntax.
+* Port patch from Arago.
+* Gstreamer plugin adds the length of alpha data for 16bit RGB data format
+  which could yield wrong results.
 
-Ack, will push it probably tonight.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Version 2 changes:
+Split the adding of the faad2 and libfaad into a seperate patch.
 
+ ...k-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch |   29 ++++++++++++++++++++
+ .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    7 ++++-
+ 2 files changed, 35 insertions(+), 1 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch
+
+diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch
+new file mode 100644
+index 0000000..5905591
+--- /dev/null
++++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch
+@@ -0,0 +1,29 @@
++From ec785d544f417aa2d88f8803e4392ff02ab424ae Mon Sep 17 00:00:00 2001
++From: Punya Prakash <pprakash@ti.com>
++Date: Fri, 4 Nov 2011 13:03:57 -0500
++Subject: [PATCH]  gstfbdevsink: Fix depth value for GST_VIDEO_CAPS_RGB_15
++
++RGB color format does not have any alpha components, adding alpha length to depth could yield wrong results.
++
++Upstream-Status: Pending
++
++Signed-off-by: Punya Prakash <pprakash@ti.com>
++---
++ sys/fbdev/gstfbdevsink.c |    3 +--
++ 1 files changed, 1 insertions(+), 2 deletions(-)
++
++diff --git a/sys/fbdev/gstfbdevsink.c b/sys/fbdev/gstfbdevsink.c
++index 8925f3d..568f091 100644
++--- a/sys/fbdev/gstfbdevsink.c
+++++ b/sys/fbdev/gstfbdevsink.c
++@@ -185,8 +185,7 @@ gst_fbdevsink_getcaps (GstBaseSink * bsink)
++       "bpp", G_TYPE_INT, fbdevsink->varinfo.bits_per_pixel,
++       "depth", G_TYPE_INT, fbdevsink->varinfo.red.length +
++       fbdevsink->varinfo.green.length +
++-      fbdevsink->varinfo.blue.length +
++-      fbdevsink->varinfo.transp.length,
+++      fbdevsink->varinfo.blue.length,
++       "endianness", G_TYPE_INT, endianness,
++       "red_mask", G_TYPE_INT, rmask,
++       "green_mask", G_TYPE_INT, gmask, "blue_mask", G_TYPE_INT, bmask, NULL);
++-- 
+diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+index 52739e4..0c7035b 100644
+--- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
++++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+@@ -1,4 +1,7 @@
+-PR_append = "-arago0"
++PR_append = "-arago1"
++
++# look for files in this layer first
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ # Disable rsvg which caused gtk+ to be pulled in
+ DEPENDS := "${@oe_filter_out('librsvg','${DEPENDS}', d)}"
+@@ -6,3 +9,5 @@ EXTRA_OECONF += "--disable-rsvg"
+ 
+ # Build all the various plugins
+ EXTRA_OECONF := "${@oe_filter_out('--with-plugins=musicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECONF}', d)}"
++
++SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch"
 -- 
-Denys
+1.7.0.4
 
-
->  .../recipes-connectivity/bt-obex/bt-obex.bb        |   33 ++++++++++++++++++++
->  1 files changed, 33 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
-> 
-> diff --git a/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
-> new file mode 100644
-> index 0000000..5c561f9
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
-> @@ -0,0 +1,33 @@
-> +DESCRIPTION = "BT Obex - Agentfor OBEXD (OPP/FTP profile)"
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
-> +
-> +RDEPENDS_${PN} += "bluez4"
-> +DEPENDS += "glib-2.0 dbus-glib"
-> +
-> +PR = "r0+gitr${SRCREV}"
-> +
-> +SRCREV = "171181b6ef6c94aefc828dc7fd8de136b9f97532"
-> +
-> +SRC_URI = "git://gitorious.org/bluez-tools/bluez-tools.git;protocol=git \
-> +          "
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +inherit autotools
-> +
-> +do_install() {
-> +       install -d ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-adapter ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-agent   ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-audio   ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-device  ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-input   ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-monitor ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-network ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-obex    ${D}${bindir}
-> +       install -m 755 ${S}/src/bt-serial  ${D}${bindir}
-> +}
-> +
-> +SRC_URI[md5sum] = "36080a767e63e54878cd6bcfb20c4f3b"
-> +SRC_URI[sha256sum] = "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a"
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
