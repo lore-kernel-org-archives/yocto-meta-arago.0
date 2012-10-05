@@ -1,26 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173009pub.verizon.net (vms173009pub.verizon.net
-	[206.46.173.9])
-	by arago-project.org (Postfix) with ESMTP id 704D0529D6
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTP id 95FE7529D6
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 16:32:50 +0000 (UTC)
+	Fri,  5 Oct 2012 16:37:52 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173009.mailsrvcs.net
+	by vms173015.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MBF0059VHY0VW60@vms173009.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 05 Oct 2012 11:32:35 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id C12F62038D; Fri,
-	05 Oct 2012 12:32:24 -0400 (EDT)
-Date: Fri, 05 Oct 2012 12:32:23 -0400
+	2009)) with ESMTPA id <0MBF003UNI6PSPE0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 05 Oct 2012 11:37:37 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 5B42C2038D; Fri,
+	05 Oct 2012 12:37:37 -0400 (EDT)
+Date: Fri, 05 Oct 2012 12:37:36 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-id: <20121005163223.GF23366@denix.org>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-id: <20121005163736.GG23366@denix.org>
 References: <1349419808-21687-1-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159247CE5@DLEE12.ent.ti.com>
 MIME-version: 1.0
-In-reply-to: <7D46E86EC0A8354091174257B2FED10159247CE5@DLEE12.ent.ti.com>
+In-reply-to: <1349419808-21687-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Cc: meta-arago@arago-project.org
 Subject: Re: [PATCH] iperf: Update to version 2.0.5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -34,97 +33,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 16:32:51 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 16:37:53 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Fri, Oct 05, 2012 at 12:38:57PM +0000, Maupin, Chase wrote:
-> This needs to be submitted to oe-core (I didn't notice it there but maybe I 
-> missed it).
+On Fri, Oct 05, 2012 at 01:50:08AM -0500, Franklin S. Cooper Jr wrote:
+> * Upgrading to newer version of iperf.
+> * Newer versions of iperf reduced CPU load thus increasing performance in
+>   wl12xx tests.
 
-This is not in oe-core, but rather in meta-oe, which has 2.0.4. Updating to 
-2.0.5 there shouldn't be a problem...
+I know this recipe is mostly the same as the copy from meta-oe, just with 
+updated version, but it can be cleaned up in several places... I guess I'll 
+try submitting it for meta-oe then.
+
+-- 
+Denys
 
 
-> Then please note in the commit log if not as a comment in the recipe itself 
-> that it can be removed later when we switch to a new maintenance branch that 
-> has this version.
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-benchmark/iperf/iperf_2.0.5.bb         |   34 ++++++++++++++++++++
+>  1 files changed, 34 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
 > 
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> > Sent: Friday, October 05, 2012 1:50 AM
-> > To: meta-arago@arago-project.org
-> > Subject: [meta-arago] [PATCH] iperf: Update to version 2.0.5
-> > 
-> > * Upgrading to newer version of iperf.
-> > * Newer versions of iperf reduced CPU load thus increasing
-> > performance in
-> >   wl12xx tests.
-> > 
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../recipes-benchmark/iperf/iperf_2.0.5.bb         |   34
-> > ++++++++++++++++++++
-> >  1 files changed, 34 insertions(+), 0 deletions(-)
-> >  create mode 100644 meta-arago-extras/recipes-
-> > benchmark/iperf/iperf_2.0.5.bb
-> > 
-> > diff --git a/meta-arago-extras/recipes-
-> > benchmark/iperf/iperf_2.0.5.bb b/meta-arago-extras/recipes-
-> > benchmark/iperf/iperf_2.0.5.bb
-> > new file mode 100644
-> > index 0000000..aff06b2
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
-> > @@ -0,0 +1,34 @@
-> > +DESCRIPTION = "Iperf is a tool to measure maximum TCP bandwidth,
-> > allowing the tuning of various parameters and UDP
-> > characteristics"
-> > +HOMEPAGE = "http://dast.nlanr.net/Projects/Iperf/"
-> > +SECTION = "console/network"
-> > +LICENSE = "NewBSD"
-> > +LIC_FILES_CHKSUM =
-> > "file://COPYING;md5=e8478eae9f479e39bc34975193360298"
-> > +
-> > +SRC_URI = " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz"
-> > +
-> > +SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"
-> > +SRC_URI[sha256sum] =
-> > "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b
-> > "
-> > +
-> > +PR = "r0"
-> > +
-> > +inherit autotools
-> > +
-> > +S="${WORKDIR}/iperf-${PV}"
-> > +
-> > +EXTRA_OECONF = "--exec-
-> > prefix=${STAGING_DIR_HOST}${layout_exec_prefix}"
-> > +
-> > +do_configure() {
-> > +	export ac_cv_func_malloc_0_nonnull=yes
-> > +	gnu-configize
-> > +	oe_runconf
-> > +}
-> > +
-> > +do_compile() {
-> > +	cd ${WORKDIR}/iperf-${PV}
-> > +	oe_runmake
-> > +}
-> > +
-> > +do_install() {
-> > +	cd ${WORKDIR}/iperf-${PV}/src
-> > +	oe_runmake DESTDIR=${D} install
-> > +}
-> > --
-> > 1.7.0.4
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
+> new file mode 100644
+> index 0000000..aff06b2
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
+> @@ -0,0 +1,34 @@
+> +DESCRIPTION = "Iperf is a tool to measure maximum TCP bandwidth, allowing the tuning of various parameters and UDP characteristics"
+> +HOMEPAGE = "http://dast.nlanr.net/Projects/Iperf/"
+> +SECTION = "console/network"
+> +LICENSE = "NewBSD"
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=e8478eae9f479e39bc34975193360298"
+> +
+> +SRC_URI = " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz"
+> +
+> +SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"
+> +SRC_URI[sha256sum] = "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b"
+> +
+> +PR = "r0"
+> +
+> +inherit autotools
+> +
+> +S="${WORKDIR}/iperf-${PV}"
+> +
+> +EXTRA_OECONF = "--exec-prefix=${STAGING_DIR_HOST}${layout_exec_prefix}"
+> +
+> +do_configure() {
+> +	export ac_cv_func_malloc_0_nonnull=yes
+> +	gnu-configize
+> +	oe_runconf
+> +}
+> +
+> +do_compile() {
+> +	cd ${WORKDIR}/iperf-${PV}
+> +	oe_runmake
+> +}
+> +
+> +do_install() {
+> +	cd ${WORKDIR}/iperf-${PV}/src
+> +	oe_runmake DESTDIR=${D} install
+> +}
+> -- 
+> 1.7.0.4
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
