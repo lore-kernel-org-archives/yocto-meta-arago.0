@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id B5A5952A99
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id CD59D529D2
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 06:26:59 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so1305447obb.38
+	Fri,  5 Oct 2012 06:27:28 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so1324147oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 04 Oct 2012 23:26:59 -0700 (PDT)
+	Thu, 04 Oct 2012 23:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=tBGoU+U9rOueKcbbUmRpDJsHWe6R+OQgYXjjS48dL10=;
-	b=qrPZW05rIAdADz9vyuJ7ufMESni4FNbV2J/od7pVTQ1DtWxOxsv/MwYjOceFhnN6qQ
-	aHYKXoZkm35SBSOferfDy7NJ1QhrM+5iP+kX8gN0wO14HurwqxeLqofWYmmulq+u70Hu
-	euCRc4lGkjiSx2aqsrrQtlxcb3ISAX2fs2KXnv1cluuuvTAnST/dv2rIcmqkStXK4mdJ
-	XpRwo3dmFkcYet7gwRWj2r5TwVDEVu/Ersxyb00MWGQbs+US8gpyK/r3VLcUXX/RFgHR
-	hpWfQaSyZ1bt92VQalCRPIunhvhFGvoguaVufNLQml6puOR9VvHfkRF0pWt7q/+VbH13
-	iMOg==
-Received: by 10.60.19.37 with SMTP id b5mr6550589oee.16.1349418419093;
-	Thu, 04 Oct 2012 23:26:59 -0700 (PDT)
+	bh=5QgrERlRwIeYuJ/pcza9icRCyo/feMpNcjrr/N7sFyY=;
+	b=Q2452Z+AkTIcSXVM6GdiZwWlV6xzzm3XzWx3sYXJCYr2ifsMbu+k4j/Y9m44Q/B+yA
+	A0oGCoGsP3eFxFzNZYFOuTkyTmVnK8a9qS56eOziQeA2O/DS/Gji3esHFvHDghefv3RW
+	Js7jooupIu9hJWM6MQxz282U6ozudAJdN7AtmjeCm4tAqDH3iqPKzWw3VYuCCBfbr7DR
+	j43iqwrnCHdAqoDU0RiF+lU9pBSzArWgG/FnaF7EvNnLAnvmskSDm+qiJLKG2zr0X0lb
+	cfcXbrM+sSb94jxGkHdNpui+i4Ib/gtkOVpQGn6VrmSw50fEBe+MQajC0eEIn7AEeDqH
+	E16A==
+Received: by 10.60.171.164 with SMTP id av4mr6301962oec.59.1349418448368;
+	Thu, 04 Oct 2012 23:27:28 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id x1sm6801401oef.8.2012.10.04.23.26.58
+	by mx.google.com with ESMTPS id b7sm5496236oef.12.2012.10.04.23.27.27
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 04 Oct 2012 23:26:58 -0700 (PDT)
+	Thu, 04 Oct 2012 23:27:27 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 01:55:20 -0500
-Message-Id: <1349420120-22075-1-git-send-email-fcooper@ti.com>
+Date: Fri,  5 Oct 2012 01:55:50 -0500
+Message-Id: <1349420150-22115-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] gst-plugins-good: Remove gtk dependency
+Subject: [PATCH] pulseaudio: Remove console-kit from pulseaudio-module-server
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,36 +40,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 06:27:00 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 06:27:29 -0000
 
-* This mimics the patch "gst-plugins-good: disable (uninstalled) examples"
-  that has been applied to oe-core master branch. This patch can be removed
-  once the patch mentioned above has been applied to the denzil branch.
+* Remove the required dependency of pulseaudio-module-console-kit
+  when using pulseaudio-module-server. Pulseaudio-module-console-kit
+  brings in consolekit which can not be built in an non x11 environment.
+* Due to X11 not being apart of the DISTRO_FEATURES, recipes such as libx11
+  and its dependencies aren't built able.
+* pulseaudio-module-server is used by the bluetooth demo.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../gstreamer/gst-plugins-good_0.10.31.bbappend    |   12 ++++++++++++
- 1 files changed, 12 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+ .../pulseaudio/pulseaudio_2.1.bbappend             |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-multimedia/pulseaudio/pulseaudio_2.1.bbappend
 
-diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+diff --git a/meta-arago-distro/recipes-multimedia/pulseaudio/pulseaudio_2.1.bbappend b/meta-arago-distro/recipes-multimedia/pulseaudio/pulseaudio_2.1.bbappend
 new file mode 100644
-index 0000000..6f2a76c
+index 0000000..0ddc49f
 --- /dev/null
-+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
-@@ -0,0 +1,12 @@
++++ b/meta-arago-distro/recipes-multimedia/pulseaudio/pulseaudio_2.1.bbappend
+@@ -0,0 +1,3 @@
 +PR_append = "-arago0"
 +
-+# The below changes are meant to mimic the patch
-+# "gst-plugins-good: disable (uninstalled) examples" commit
-+# eef5cca4f364545759d8cf624f38e3cd6e8fd295 The patch mentioned above has
-+# already been applied to master and has been requested to be pulled into
-+# denzil. The below changes can be removed once that patch has been applied
-+# to the denzil branch
-+
-+DEPENDS := "${@oe_filter_out('gtk+','${DEPENDS}', d)}"
-+
-+EXTRA_OECONF += "--disable-examples"
++RDEPENDS_pulseaudio-server := "${@oe_filter_out('pulseaudio-module-console-kit','${RDEPENDS_pulseaudio-server}', d)}"
 -- 
 1.7.0.4
 
