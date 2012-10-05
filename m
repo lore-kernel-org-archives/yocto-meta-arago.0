@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 81FC7529A1
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 82D4D529A1
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 06:23:19 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so1321929oag.38
+	Fri,  5 Oct 2012 06:24:19 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so1304151obb.38
 	for <meta-arago@arago-project.org>;
-	Thu, 04 Oct 2012 23:23:19 -0700 (PDT)
+	Thu, 04 Oct 2012 23:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=bbUXc9X3OG6uSZN+1Xzbv4miDyzcREm4V1weDeWlkFc=;
-	b=R/nL/JsKCs7JE5fqs9hFLvvTYga3ZBWs/pEFsMUtqLIp28lXycmNl8ZYmebOjPCmDp
-	BLPkCgkzF9mj1m+rqrKr1X4+xHJULODEsrbh9PTd5z7eZK7ZqOgX1a19zeq9XGGPTwde
-	h9ZLytx409TQgP5f4i3F28V53UkqjAuQ6aZuwPl2vkDT6FxlnjuK4xog3WGZBJ0mJcGB
-	AjURr6dXEU91jf9XzNFfsJ0qtnLWlSLPo7TzzYcZD9Hkw0Q7cNas+65RmpWbFGy9g1gp
-	VRJWXLhAxTYt3IFKyzuaLRnt/MQAOL4YGdI9vnubp8qClSvaOxRKyVTrVCHQvKPX+UW3
-	/VYg==
-Received: by 10.60.31.170 with SMTP id b10mr6278450oei.107.1349418199062;
-	Thu, 04 Oct 2012 23:23:19 -0700 (PDT)
+	bh=juxTjdWQlyjCYko8U6wHwbXUn0YCcLZBjnZxAtCktXU=;
+	b=v02cjLKpdOPaNpBPA4RqpBH4ljqI5fDpRTFhO27Du/GYgY05qGG5UCUGUsSDIEekDa
+	SigTl+i7vacGkLi7JNyLcI4eoGsj2jVOGsRjV8TVLVKt+QKiXxnSztNwcvXKwiAhsGob
+	laktyhBA/p6+Hc566zIht8n8soJ/nrCpmJx3tmqVLr5A0MuT6d+BGOnbrMU761ix/DXz
+	S18CBB5BkLE65WpfAELdjuNXSjj+MLlRMNRh0xQBdfiQZiKfzSdWSDzoDXuNYqQbuo7m
+	qQVwDIJgtupuQON3E7XOc+RetzFt2/dkVp8zEipiViy1rJdf8JYBCS9PA9hvB2jHlVwi
+	hn1w==
+Received: by 10.182.1.72 with SMTP id 8mr6257127obk.61.1349418259010;
+	Thu, 04 Oct 2012 23:24:19 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id 5sm6804641oeq.4.2012.10.04.23.23.18
+	by mx.google.com with ESMTPS id 2sm8716627obi.20.2012.10.04.23.24.18
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 04 Oct 2012 23:23:18 -0700 (PDT)
+	Thu, 04 Oct 2012 23:24:18 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 01:51:33 -0500
-Message-Id: <1349419893-21772-1-git-send-email-fcooper@ti.com>
+Date: Fri,  5 Oct 2012 01:52:39 -0500
+Message-Id: <1349419959-21857-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] matrix-lighttpd: Fix PATH environment variable
+Subject: [PATCH] task-arago-gst: Add gst-plugins-ugly
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,70 +40,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 06:23:19 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 06:24:19 -0000
 
-* Alot of Matrix applications were failing due to an incomplete list of
-  paths listed in the PATH environment variable when a shell script is
-  executed by PHP.
-* Add and configure mod_setenv module to explicitly set the PATH variable
-  to properly include all the necessary paths.
+* Gst-plugins-ugly and several dependencies have a commercial license.
+* Add back gst-plugins-ugly and whitelist these needed recipes.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-lighttpd-config.bb  |    6 +++---
- .../matrix-lighttpd-config/lighttpd.conf.matrix    |    5 ++++-
- 2 files changed, 7 insertions(+), 4 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf           |    9 +++++++++
+ .../tasks/task-arago-gst-sdk-target.bb             |    3 ++-
+ .../recipes-core/tasks/task-arago-gst.bb           |    2 ++
+ 3 files changed, 13 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
-index 8ecfa55..25188af 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
-@@ -1,11 +1,11 @@
- DESCRIPTION = "Lighttpd config for Matrix"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 381118d..002f000 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -27,3 +27,12 @@ POLKITAUTH = ""
  
- LICENSE = "BSD"
--LIC_FILES_CHKSUM = "file://../lighttpd.conf.matrix;md5=bf036dce30a4114d5942c1f8d0152191"
-+LIC_FILES_CHKSUM = "file://../lighttpd.conf.matrix;md5=298ec80f6b2b837211de52081c5eecc5"
+ # Enable generation of source packages for SDKs
+ require arago-source-ipk.conf
++
++# Whitelist several recipes that have commercial licenses
++# Need to verify with legal that the following recipes are ok to distribute
++# with the SDK
++LICENSE_FLAGS_WHITELIST = "\
++    commercial_gst-plugins-ugly \
++    commercial_mpeg2dec \
++    commercial_lame \
++"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
+index 655cd20..d2ccba3 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to build and install header and libs in sdk"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r0"
++PR = "r1"
  
- inherit allarch
+ inherit task
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -11,4 +11,5 @@ RDEPENDS_${PN} = "\
+     gst-plugins-base-dev \
+     gst-plugins-good-dev \
+     gst-plugins-bad-dev \
++    gst-plugins-ugly-dev \
+ "
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+index da9e41c..fc0962a 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+@@ -11,9 +11,11 @@ GSTREAMER = " \
+     gst-plugins-base \
+     gst-plugins-good \
+     gst-plugins-bad \
++    gst-plugins-ugly \
+     gst-plugins-base-meta \
+     gst-plugins-good-meta \
+     gst-plugins-bad-meta \
++    gst-plugins-ugly-meta \
+     "
  
--PR = "1"
-+PR = "2"
- 
- SRC_URI = "file://lighttpd.conf.matrix"
- 
-@@ -15,7 +15,7 @@ do_install() {
- }
- 
- FILES_${PN} = "${sysconfdir}/lighttpd.conf.matrix"
--RDEPENDS_${PN} = "lighttpd"
-+RDEPENDS_${PN} = "lighttpd lighttpd-module-setenv"
- 
- pkg_postinst_${PN} () {
- if [ -f $D${sysconfdir}/lighttpd.conf ] ; then
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
-index d2e9217..82a9fb8 100755
---- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
-@@ -20,7 +20,7 @@ server.modules              = (
- #                               "mod_trigger_b4_dl",
- #                               "mod_auth",
- #                               "mod_status",
--#                               "mod_setenv",
-+                                "mod_setenv",
-                                 "mod_expire",
- #                               "mod_fastcgi",
- #                               "mod_proxy",
-@@ -296,6 +296,9 @@ $HTTP["url"] =~ "\.(jpg|gif|png)$" { expire.url = ( "" => "access 3 years" ) }
- #### setenv
- #setenv.add-request-header  = ( "TRAV_ENV" => "mysql://user@host/db" )
- #setenv.add-response-header = ( "X-Secret-Message" => "42" )
-+setenv.add-environment = (
-+    "PATH" => "/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:."
-+)
- 
- ## for mod_trigger_b4_dl
- # trigger-before-download.gdbm-filename = "/home/weigon/testbase/trigger.db"
+ RDEPENDS_${PN} = "\
 -- 
 1.7.0.4
 
