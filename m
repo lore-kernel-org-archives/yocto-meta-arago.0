@@ -1,32 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 32D8D529A4
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 01AEB529A1
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Oct 2012 01:49:08 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id q931n7bj024972
-	for <meta-arago@arago-project.org>; Tue, 2 Oct 2012 20:49:07 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q931n7jG006915
-	for <meta-arago@arago-project.org>; Tue, 2 Oct 2012 20:49:07 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Tue, 2 Oct 2012 20:49:06 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id q931n6N8023566;
-	Tue, 2 Oct 2012 20:49:07 -0500
-Date: Tue, 2 Oct 2012 21:49:06 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20121003014906.GD32243@edge>
-References: <8F29D6B095ED194EA1980491A5E029710C2F57E0@DFLE09.ent.ti.com>
-	<20121003005937.GC32243@edge>
-	<8F29D6B095ED194EA1980491A5E029710C2F589A@DFLE09.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C2F589A@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: python-m2crypto-native broken
+	Fri,  5 Oct 2012 06:13:21 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so1298457obb.38
+	for <meta-arago@arago-project.org>;
+	Thu, 04 Oct 2012 23:13:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=N771aA2+bU0gm5tpp2vsZKN0aPxV6cjO/wRnDnIAFuU=;
+	b=Ichk5Yic83uyPycQEi4QhMIV9If7AGaGB6LluEXtJO/zV71tNOP+g/j/SV5vouE3YV
+	peUs1y86hqiQNdddZi3yutVyqbay6ZnilWb6QuSwYaPJOqvfevsEkRTY0YWuGVc7wM2B
+	RNWWVt8wxKkw8T5HOSIAqyPM2Iu1eTsy5/KSuwI8r7Ru19v4P4ThfwlvTUUmcD+Nhk//
+	nlrN0Cngfb3G0n7iycd7FnaZvCcE2ElqEHoYl9NsIFtPm04VtKMh0v7CNcP9aI/dQI2q
+	U835tpKBU8j9U9AJQ+JLRfx3a7PGGgynNRCswmzBmCKKZs5cSTL8zGe5O/CwLNMd1dTQ
+	wktg==
+Received: by 10.182.108.69 with SMTP id hi5mr6486696obb.43.1349417600997;
+	Thu, 04 Oct 2012 23:13:20 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id d6sm8702942obx.15.2012.10.04.23.13.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 04 Oct 2012 23:13:20 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Fri,  5 Oct 2012 01:41:39 -0500
+Message-Id: <1349419299-21431-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH] bt-obex: Port recipe from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,24 +40,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 01:49:08 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 05 Oct 2012 06:13:23 -0000
 
-On Tue, Oct 02, 2012 at 09:11:06PM -0400, Cooper Jr., Franklin wrote:
-> I tried doing a cleanall on python-m2crypto-native and python-m2crypto since 
-> I figured that might be the potential issue. That did not solve the issue. 
-> The weird part is that it isn't a actually compile error it is a patch 
-> error. Is there something else I can try instead of deleting my entire temp 
-> directory?
+* Port recipe from Arago.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../recipes-connectivity/bt-obex/bt-obex.bb        |   33 ++++++++++++++++++++
+ 1 files changed, 33 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
 
-Well, I don't think it has anything to do with the recent change, but rather 
-looks like the recipe is bad - when building from scratch, it first fails on 
-the bad checksums, and then when checksums are corrected, fails to apply the 
-first patch. Doing so manually fails the same way. So, I'm wondering how it 
-used to work for you before, but that's why it still works when re-using the 
-old temp/work directory...
-
+diff --git a/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
+new file mode 100644
+index 0000000..594e5bc
+--- /dev/null
++++ b/meta-arago-extras/recipes-connectivity/bt-obex/bt-obex.bb
+@@ -0,0 +1,33 @@
++DESCRIPTION = "BT Obex - Agentfor OBEXD (OPP/FTP profile)"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
++
++RDEPENDS += "bluez4"
++DEPENDS += "glib-2.0 dbus-glib"
++
++PR = "r0+gitr${SRCREV}"
++
++SRCREV = "171181b6ef6c94aefc828dc7fd8de136b9f97532"
++
++SRC_URI = "git://gitorious.org/bluez-tools/bluez-tools.git;protocol=git \
++          "
++
++S = "${WORKDIR}/git"
++
++inherit autotools
++
++do_install() {
++       install -d ${D}${bindir}
++       install -m 755 ${S}/src/bt-adapter ${D}${bindir}
++       install -m 755 ${S}/src/bt-agent   ${D}${bindir}
++       install -m 755 ${S}/src/bt-audio   ${D}${bindir}
++       install -m 755 ${S}/src/bt-device  ${D}${bindir}
++       install -m 755 ${S}/src/bt-input   ${D}${bindir}
++       install -m 755 ${S}/src/bt-monitor ${D}${bindir}
++       install -m 755 ${S}/src/bt-network ${D}${bindir}
++       install -m 755 ${S}/src/bt-obex    ${D}${bindir}
++       install -m 755 ${S}/src/bt-serial  ${D}${bindir}
++}
++
++SRC_URI[md5sum] = "36080a767e63e54878cd6bcfb20c4f3b"
++SRC_URI[sha256sum] = "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a"
 -- 
-Denys
+1.7.0.4
+
 
