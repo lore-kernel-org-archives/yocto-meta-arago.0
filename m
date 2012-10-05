@@ -1,33 +1,33 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 58D28529B9
+	by arago-project.org (Postfix) with ESMTPS id 86025529B9
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Oct 2012 06:25:40 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so1323219oag.38
+	Fri,  5 Oct 2012 06:26:11 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so1323469oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 04 Oct 2012 23:25:39 -0700 (PDT)
+	Thu, 04 Oct 2012 23:26:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=fjf+gmLBV9h9wZoyO0LYdbTipK/LFy2yyrJjtXBVbTs=;
-	b=DsiOJO+ijj6JEM1kA3MlQFhTxPauyoQRL30av8jzbL07R5Zet/Ows9xvqkrepT5bTY
-	wPOys7suFSal2pOstBFtHLQTWvQUGLoTwCkXC9rF2o7nFAbBVLkhvoa0KZZb6joc+nWl
-	tLu8hKtYZHiX0ZMoKX91Rq0rjFC46SdikDQ9VpMamAjuGyMr7uWtuC6p8GJNqulGtpz+
-	tp0gHUuU7seB/6odfviJzMAcpkK5a6B27GrFa+WfKcG60bFIGdVoXDZV/O675rBBlF2Q
-	TMaC4sh+PwsfvELjlcPRp/cjkjdyi2DBCHZDbRgTx5W8tVLONbp0WcqMEnUFwMnb3jEg
-	6s8Q==
-Received: by 10.60.28.167 with SMTP id c7mr1968706oeh.44.1349418339782;
-	Thu, 04 Oct 2012 23:25:39 -0700 (PDT)
+	bh=vtbMeEcE36gTiNOF5rWhKsqK6T09Z34F7w9kJt9q21Y=;
+	b=VZidMli5eC+/y/xZFHniSNDVX9qyIssoD35Ete+/BjfpzKs2D4tg13bcm3Ay2WTdUc
+	F6SryoGZ7P9P1rROEGvAQfvhu6c5zFKQ1x5VN0HbNjApkMlq4tVSHKrsrorS8lGbLJl3
+	eM12kWv6QEQ8aYBHXBtUJS+rP0e21ADvUJzXWAMMbMFKzrt27v9Y7jqRGQqAm/BRJcts
+	DSp5LTiUs2uEaqnPQpQacNjogZwqpeEW6wjIIV1x0xykCNJ4T9WOyfG3mgaEg9S56qGb
+	u3RJ77L3jAAmTb2AXkZCv2iEGnVs8g+/wMCv7K3erk2JOxrSHqYH7UC66PL+WWOvuQiX
+	UFWQ==
+Received: by 10.60.5.129 with SMTP id s1mr6232374oes.85.1349418371035;
+	Thu, 04 Oct 2012 23:26:11 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id n7sm960801obd.16.2012.10.04.23.25.38
+	by mx.google.com with ESMTPS id ig3sm8741028obb.0.2012.10.04.23.26.10
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 04 Oct 2012 23:25:39 -0700 (PDT)
+	Thu, 04 Oct 2012 23:26:10 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  5 Oct 2012 01:53:59 -0500
-Message-Id: <1349420039-21942-1-git-send-email-fcooper@ti.com>
+Date: Fri,  5 Oct 2012 01:54:32 -0500
+Message-Id: <1349420072-21985-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH] arago: Add wlan related preferred versions
+Subject: [PATCH] gconf: Remove gtk dependency
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,29 +40,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 06:25:41 -0000
+X-List-Received-Date: Fri, 05 Oct 2012 06:26:11 -0000
 
-* Add preferred versions for wpa-supplicant and hostap-daemon.
-* This ensures the TI version of the above recipes are used.
+* This patch mimics the patch "gconf: Disable gtk support" that has been
+  applied to oe-core master branch. This patch can be removed once the
+  patch mentioned above has been applied to the denzil branch.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ .../recipes-gnome/gnome/gconf_3.2.3.bbappend       |   14 ++++++++++++++
+ 1 files changed, 14 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-gnome/gnome/gconf_3.2.3.bbappend
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index c5d826c..a99a8df 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -18,6 +18,8 @@ PREFERRED_PROVIDER_virtual/gettext = "gettext"
- PREFERRED_VERSION_qt4-embedded = "4.8.0"
- PREFERRED_VERSION_qt4-native = "4.8.0"
- PREFERRED_VERSION_qt4-tools-nativesdk = "4.8.0"
-+PREFERRED_VERSION_wpa-supplicant = "0.7.3+0.8.0-rc-ti"
-+PREFERRED_VERSION_hostap-daemon = "0.7.3+0.8.0-rc-ti"
- 
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
- PREFERRED_VERSION_udev = "164"
+diff --git a/meta-arago-distro/recipes-gnome/gnome/gconf_3.2.3.bbappend b/meta-arago-distro/recipes-gnome/gnome/gconf_3.2.3.bbappend
+new file mode 100644
+index 0000000..ce85ced
+--- /dev/null
++++ b/meta-arago-distro/recipes-gnome/gnome/gconf_3.2.3.bbappend
+@@ -0,0 +1,14 @@
++PR_append = "-arago0"
++
++# The below changes are meant to mimic the patch
++# "gconf: Disable gtk support" commit 6facee8443966b646cd1e72f14ae13e58a13f621
++# The patch mentioned above has already been applied to master and has been 
++# requested to be pulled into denzil. The below changes can be removed once 
++# that patch has been applied to the denzil branch
++
++DEPENDS := "${@oe_filter_out('gtk+','${DEPENDS}', d)}"
++EXTRA_OECONF += "--disable-gtk"
++
++# Clear GTKOECONF variable to ensure gconf isn't configured to use gtk
++GTKOECONF = ""
++GTKOECONF_virtclass-native = ""
 -- 
 1.7.0.4
 
