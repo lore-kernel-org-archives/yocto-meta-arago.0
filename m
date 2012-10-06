@@ -1,35 +1,34 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 48F1052AC6
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id AA89A52AC9
 	for <meta-arago@arago-project.org>;
-	Sat,  6 Oct 2012 18:49:17 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q96InGEI000734
-	for <meta-arago@arago-project.org>; Sat, 6 Oct 2012 13:49:16 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q96InGul016526
-	for <meta-arago@arago-project.org>; Sat, 6 Oct 2012 13:49:16 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Sat, 6 Oct 2012 13:49:16 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] iperf: Update to version 2.0.5
-Thread-Index: AQHNosG0cHidp72OpUGutB+zE4gVbZerQ3QA//+yYGKAAFRpgIABVhVA
-Date: Sat, 6 Oct 2012 18:49:15 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C2FDC7B@DFLE09.ent.ti.com>
-References: <1349419808-21687-1-git-send-email-fcooper@ti.com>
-	<20121005165800.GA31500@edge>
-	<A0CC959A-B26A-43D1-BE47-61EBB6E7A6DD@ti.com>
-	<20121005172217.GI23366@denix.org>
-In-Reply-To: <20121005172217.GI23366@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] iperf: Update to version 2.0.5
+	Sat,  6 Oct 2012 18:51:13 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so2568878oag.38
+	for <meta-arago@arago-project.org>;
+	Sat, 06 Oct 2012 11:51:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=xpg0uHYezfcHSctA+aNZtHtOtJN+GXDjBAXJ7jpDtIY=;
+	b=KZj93TrC12NhFNBYL2V0pNOGMOtKCOsHaW6biNubxSVn393yrQp4JD3qv2YuW+TyJ4
+	DtyvaOfBJXY7IP7B0583SL8qvug1hM7G82wgwdf3bVnZUoxAZIaJeEf/eGpZVN6Y0AlD
+	Tx/q8aQQJIICD7Mj5it9sXbnv6g8q/46Jrfzx6j961hA0vhgfJI0Kzo567lLiDiec/+P
+	56s2y9H3kImJjtGF7h5pWCEZUvDJorG+8Q1hfzNuQ+88IUK716HNlWJ7zdF/kcQCsNJ/
+	H4QWnvvIRKjaRabl2m+aMoknU+mo8XbjPf4L1cdKhMsefsRKK1QqfqecXYOHpQ19HD02
+	X1bw==
+Received: by 10.60.171.134 with SMTP id au6mr9641702oec.69.1349549472912;
+	Sat, 06 Oct 2012 11:51:12 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id a6sm9997962oeh.1.2012.10.06.11.51.12
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 06 Oct 2012 11:51:12 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Sat,  6 Oct 2012 14:20:07 -0500
+Message-Id: <1349551207-12985-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH v2] iperf: Upgrade to version 2.0.5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,131 +41,462 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Oct 2012 18:49:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 06 Oct 2012 18:51:14 -0000
 
-Sent the below message to only Denys. Didn't realize I didn't copy the enti=
-re list.
+* Upgrade to version 2.0.5.
+* New version needed since it was observed to have lower CPU utilization
+  which resulted in better throughput performance.
+* Below patches used in version 2.0.4 are no longer needed:
+    004-svn-r43-ro.patch (already applied)
+    006-iperf-die-on-connect-fail.patch (already applied)
+    009-delayloop.patch (equivalent solution already exists)
+* Patch 000-Iperf_Fix-CPU-Usage.diff has been updated to apply to
+  version 2.0.5
 
-Anyway. I will be sending a version 2 of this iperf patch and also sending =
-a patch to meta-oe.
+  Upstream status: Submitted to meta-oe (master)
 
------Original Message-----
-From: Cooper Jr., Franklin=20
-Sent: Friday, October 05, 2012 12:42 PM
-To: Dmytriyenko, Denys
-Subject: Re: [meta-arago] [PATCH] iperf: Update to version 2.0.5
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Version 2 changes:
+Add patches for iperf 2.0.4 from meta-oe.
+Removed unneeded patches.
+Massaged a patch that orginally didn't apply.
 
-I was referring to this recipe which I ported from arago. This recipe didn'=
-t have the patches the the meta-oe 2.0.4 version included.
+ .../iperf/iperf-2.0.5/000-Iperf_Fix-CPU-Usage.diff |   45 +++++
+ .../001-cast-to-max_size_t-instead-of-int.patch    |   14 ++
+ .../003-fix-hyphen-used-as-minus-sign.patch        |  178 ++++++++++++++++++++
+ .../iperf-2.0.5/005-iperf-die-on-bind-fail.patch   |   15 ++
+ .../iperf-2.0.5/007-iperf-reporter-deadlock.patch  |   68 ++++++++
+ .../iperf/iperf-2.0.5/008-numofreport.patch        |   15 ++
+ .../recipes-benchmark/iperf/iperf_2.0.5.bb         |   41 +++++
+ 7 files changed, 376 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/000-Iperf_Fix-CPU-Usage.diff
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/001-cast-to-max_size_t-instead-of-int.patch
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/003-fix-hyphen-used-as-minus-sign.patch
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/005-iperf-die-on-bind-fail.patch
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/007-iperf-reporter-deadlock.patch
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/008-numofreport.patch
+ create mode 100644 meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
 
-http://arago-project.org/git/?p=3Darago.git;a=3Dblob;f=3Drecipes/iperf/iper=
-f_2.0.5.bb;h=3D63f23262dda0284f01f1a76105dec606b46fbc8c;hb=3DHEAD
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/000-Iperf_Fix-CPU-Usage.diff b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/000-Iperf_Fix-CPU-Usage.diff
+new file mode 100644
+index 0000000..ff801a4
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/000-Iperf_Fix-CPU-Usage.diff
+@@ -0,0 +1,45 @@
++From c7c18bc93441872e7ff2fa47a18a12ef319b7949 Mon Sep 17 00:00:00 2001
++From: Franklin S. Cooper Jr <fcooper@ti.com>
++Date: Sat, 6 Oct 2012 12:32:29 -0500
++Subject: [PATCH] iperf: Fix CPU Usage
++
++* Updated the patch 000-Iperf_Fix-CPU-Usage.diff to apply to iperf v2.0.5
++* That patch was largely based on the patch:
++  http://marc.info/?l=linux-kernel&m=119088670113210&w=2
++* The majority of the changes from 000-Iperf_Fix-CPU-Usage.diff have been
++  incorporated into iperf v2.0.5.
++* The two remaining thread_rest changes that 000-Iperf_Fix-CPU-Usage.diff
++  made have been added to this version of iperf v2.0.5
++
++Upstream-Status: Inappropriate [not author]
++
++Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
++---
++ src/Reporter.c |    4 ++--
++ 1 files changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/src/Reporter.c b/src/Reporter.c
++index 7d9263b..4fbb712 100644
++--- a/src/Reporter.c
+++++ b/src/Reporter.c
++@@ -391,7 +391,7 @@ void EndReport( ReportHeader *agent ) {
++     if ( agent != NULL ) {
++         int index = agent->reporterindex;
++         while ( index != -1 ) {
++-            thread_rest();
+++            Condition_Wait( &ReportDoneCond );
++             index = agent->reporterindex;
++         }
++         agent->agentindex = -1;
++@@ -412,7 +412,7 @@ void EndReport( ReportHeader *agent ) {
++ Transfer_Info *GetReport( ReportHeader *agent ) {
++     int index = agent->reporterindex;
++     while ( index != -1 ) {
++-        thread_rest();
+++        Condition_Wait( &ReportDoneCond );
++         index = agent->reporterindex;
++     }
++     return &agent->report.info;
++-- 
++1.7.0.4
++
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/001-cast-to-max_size_t-instead-of-int.patch b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/001-cast-to-max_size_t-instead-of-int.patch
+new file mode 100644
+index 0000000..b6728d4
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/001-cast-to-max_size_t-instead-of-int.patch
+@@ -0,0 +1,14 @@
++Import Debian patches and fix a lot of real bugs. 
++
++Upstream-Status: Inappropriate [not author. Above message was get from oe.dev c10c33f86903c93611023197a7f812459c2dfe2d]
++--- iperf-2.0.4.orig/src/Settings.cpp.orig	2008-04-08 04:37:54.000000000 +0200
+++++ iperf-2.0.4/src/Settings.cpp	2008-05-07 17:41:03.923942801 +0200
++@@ -458,7 +458,7 @@
++         case 't': // seconds to write for
++             // time mode (instead of amount mode)
++             setModeTime( mExtSettings );
++-            mExtSettings->mAmount = (int) (atof( optarg ) * 100.0);
+++            mExtSettings->mAmount = (max_size_t) (atof( optarg ) * 100.0);
++             break;
++ 
++         case 'u': // UDP instead of TCP
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/003-fix-hyphen-used-as-minus-sign.patch b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/003-fix-hyphen-used-as-minus-sign.patch
+new file mode 100644
+index 0000000..929b5ac
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/003-fix-hyphen-used-as-minus-sign.patch
+@@ -0,0 +1,178 @@
++Import Debian patches and fix a lot of real bugs. 
++
++Upstream-Status: Inappropriate [not author. Above message was get from oe.dev c10c33f86903c93611023197a7f812459c2dfe2d]
++
++--- iperf-2.0.4.orig/man/iperf.1	2008-08-21 00:21:49.290527643 +0200
+++++ iperf-2.0.4/man/iperf.1	2008-08-21 00:35:17.850640445 +0200
++@@ -2,21 +2,21 @@
++ .SH NAME
++ iperf \- perform network throughput tests
++ .SH SYNOPSIS
++-.B iperf -s [
+++.B iperf \-s [
++ .I options
++ .B ]
++ 
++-.B iperf -c 
+++.B iperf \-c 
++ .I server
++ .B [
++ .I options
++ .B ]
++ 
++-.B iperf -u -s [
+++.B iperf \-u \-s [
++ .I options
++ .B ]
++ 
++-.B iperf -u -c 
+++.B iperf \-u \-c 
++ .I server
++ .B [
++ .I options
++@@ -28,103 +28,103 @@
++ traffic).  
++ .SH "GENERAL OPTIONS"
++ .TP
++-.BR -f ", " --format " "
+++.BR \-f ", " \-\-format " "
++ [kmKM]   format to report: Kbits, Mbits, KBytes, MBytes
++ .TP
++-.BR -h ", " --help " "
+++.BR \-h ", " \-\-help " "
++ print a help synopsis
++ .TP
++-.BR -i ", " --interval " \fIn\fR"
+++.BR \-i ", " \-\-interval " \fIn\fR"
++ pause \fIn\fR seconds between periodic bandwidth reports
++ .TP
++-.BR -l ", " --len " \fIn\fR[KM]"
+++.BR \-l ", " \-\-len " \fIn\fR[KM]"
++ set length read/write buffer to \fIn\fR (default 8 KB)
++ .TP
++-.BR -m ", " --print_mss " "
+++.BR \-m ", " \-\-print_mss " "
++ print TCP maximum segment size (MTU - TCP/IP header)
++ .TP
++-.BR -o ", " --output " <filename>"
+++.BR \-o ", " \-\-output " <filename>"
++ output the report or error message to this specified file
++ .TP
++-.BR -p ", " --port " \fIn\fR"
+++.BR \-p ", " \-\-port " \fIn\fR"
++ set server port to listen on/connect to to \fIn\fR (default 5001)
++ .TP
++-.BR -u ", " --udp " "
+++.BR \-u ", " \-\-udp " "
++ use UDP rather than TCP
++ .TP
++-.BR -w ", " --window " \fIn\fR[KM]"
+++.BR \-w ", " \-\-window " \fIn\fR[KM]"
++ TCP window size (socket buffer size)
++ .TP
++-.BR -B ", " --bind " <host>"
+++.BR \-B ", " \-\-bind " <host>"
++ bind to <host>, an interface or multicast address
++ .TP
++-.BR -C ", " --compatibility " "
+++.BR \-C ", " \-\-compatibility " "
++ for use with older versions does not sent extra msgs
++ .TP
++-.BR -M ", " --mss " \fIn\fR"
+++.BR \-M ", " \-\-mss " \fIn\fR"
++ set TCP maximum segment size (MTU - 40 bytes)
++ .TP
++-.BR -N ", " --nodelay " "
+++.BR \-N ", " \-\-nodelay " "
++ set TCP no delay, disabling Nagle's Algorithm
++ .TP
++-.BR -v ", " --version " "
+++.BR \-v ", " \-\-version " "
++ print version information and quit
++ .TP
++-.BR -V ", " --IPv6Version " "
+++.BR \-V ", " \-\-IPv6Version " "
++ Set the domain to IPv6
++ .TP
++-.BR -x ", " --reportexclude " "
+++.BR \-x ", " \-\-reportexclude " "
++ [CDMSV]   exclude C(connection) D(data) M(multicast) S(settings) V(server) reports
++ .TP
++-.BR -y ", " --reportstyle " C|c"
+++.BR \-y ", " \-\-reportstyle " C|c"
++ if set to C or c report results as CSV (comma separated values)
++ .SH "SERVER SPECIFIC OPTIONS"
++ .TP
++-.BR -s ", " --server " "
+++.BR \-s ", " \-\-server " "
++ run in server mode
++ .TP
++-.BR -U ", " --single_udp " "
+++.BR \-U ", " \-\-single_udp " "
++ run in single threaded UDP mode
++ .TP
++-.BR -D ", " --daemon " "
+++.BR \-D ", " \-\-daemon " "
++ run the server as a daemon
++ .SH "CLIENT SPECIFIC OPTIONS"
++ .TP
++-.BR -b ", " --bandwidth " \fIn\fR[KM]"
+++.BR \-b ", " \-\-bandwidth " \fIn\fR[KM]"
++ set target bandwidth to \fIn\fR bits/sec (default 1 Mbit/sec).
++-This setting requires UDP (-u).
+++This setting requires UDP (\-u).
++ .TP
++-.BR -c ", " --client " <host>"
+++.BR \-c ", " \-\-client " <host>"
++ run in client mode, connecting to <host>
++ .TP
++-.BR -d ", " --dualtest " "
+++.BR \-d ", " \-\-dualtest " "
++ Do a bidirectional test simultaneously
++ .TP
++-.BR -n ", " --num " \fIn\fR[KM]"
++-number of bytes to transmit (instead of -t)
+++.BR \-n ", " \-\-num " \fIn\fR[KM]"
+++number of bytes to transmit (instead of \-t)
++ .TP
++-.BR -r ", " --tradeoff " "
+++.BR \-r ", " \-\-tradeoff " "
++ Do a bidirectional test individually
++ .TP
++-.BR -t ", " --time " \fIn\fR"
+++.BR \-t ", " \-\-time " \fIn\fR"
++ time in seconds to transmit for (default 10 secs)
++ .TP
++-.BR -F ", " --fileinput " <name>"
+++.BR \-F ", " \-\-fileinput " <name>"
++ input the data to be transmitted from a file
++ .TP
++-.BR -I ", " --stdin " "
+++.BR \-I ", " \-\-stdin " "
++ input the data to be transmitted from stdin
++ .TP
++-.BR -L ", " --listenport " \fIn\fR"
+++.BR \-L ", " \-\-listenport " \fIn\fR"
++ port to recieve bidirectional tests back on
++ .TP
++-.BR -P ", " --parallel " \fIn\fR"
+++.BR \-P ", " \-\-parallel " \fIn\fR"
++ number of parallel client threads to run
++ .TP
++-.BR -T ", " --ttl " \fIn\fR"
+++.BR \-T ", " \-\-ttl " \fIn\fR"
++ time-to-live, for multicast (default 1)
++ .TP
++-.BR -Z ", " --linux-congestion " <algo>"
+++.BR \-Z ", " \-\-linux\-congestion " <algo>"
++ set TCP congestion control algorithm (Linux only)
++ .SH ENVIRONMENT
++ .TP
++@@ -143,6 +143,6 @@
++ Kevin Gibbs,
++ John Estabrook <jestabro at ncsa.uiuc.edu>,
++ Andrew Gallatin <gallatin at gmail.com>,
++-Stephen Hemminger <shemminger at linux-foundation.org>
+++Stephen Hemminger <shemminger at linux\-foundation.org>
++ .SH "SEE ALSO"
++ http://iperf.sourceforge.net/
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/005-iperf-die-on-bind-fail.patch b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/005-iperf-die-on-bind-fail.patch
+new file mode 100644
+index 0000000..ec13d6b
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/005-iperf-die-on-bind-fail.patch
+@@ -0,0 +1,15 @@
++Import Debian patches and fix a lot of real bugs. 
++
++Upstream-Status: Inappropriate [not author. Above message was get from oe.dev c10c33f86903c93611023197a7f812459c2dfe2d]
++
++--- iperf-2.0.4/src/Listener.cpp	2009-02-23 16:20:31.000000000 -0500
+++++ iperf-2.0.4-fixed/src/Listener.cpp	2009-02-23 16:20:40.000000000 -0500
++@@ -333,7 +333,7 @@
++ #endif
++     {
++         rc = bind( mSettings->mSock, (sockaddr*) &mSettings->local, mSettings->size_local );
++-        WARN_errno( rc == SOCKET_ERROR, "bind" );
+++        FAIL_errno( rc == SOCKET_ERROR, "bind", mSettings );
++     }
++     // listen for connections (TCP only).
++     // default backlog traditionally 5
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/007-iperf-reporter-deadlock.patch b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/007-iperf-reporter-deadlock.patch
+new file mode 100644
+index 0000000..4b5f914
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/007-iperf-reporter-deadlock.patch
+@@ -0,0 +1,68 @@
++by Kirby Zhou < kirbyzhou \x40 sohu-rd.com >
++add a Condition_Wait_Event for ReporterDoneCond
++
++Upstream-Status: Inappropriate [not author]
++
++--- iperf-2.0.4.orig/include/Condition.h	2007-08-30 00:06:19.000000000 +0200
+++++ iperf-2.0.4/include/Condition.h	2009-07-06 11:45:02.407700310 +0200
++@@ -115,6 +115,11 @@ typedef struct Condition {
++     // sleep this thread, waiting for condition signal
++ #if   defined( HAVE_POSIX_THREAD )
++     #define Condition_Wait( Cond ) pthread_cond_wait( &(Cond)->mCondition, &(Cond)->mMutex )
+++    #define Condition_Wait_Event( Cond ) do { \
+++        Mutex_Lock( &(Cond)->mMutex ); \
+++        pthread_cond_wait( &(Cond)->mCondition, &(Cond)->mMutex ); \
+++        Mutex_Unlock( &(Cond)->mMutex ); \
+++    } while ( 0 )
++ #elif defined( HAVE_WIN32_THREAD )
++     // atomically release mutex and wait on condition,                      
++     // then re-acquire the mutex
++@@ -122,6 +127,10 @@ typedef struct Condition {
++         SignalObjectAndWait( (Cond)->mMutex, (Cond)->mCondition, INFINITE, false ); \
++         Mutex_Lock( &(Cond)->mMutex );                          \
++     } while ( 0 )
+++    #define Condition_Wait_Event( Cond ) do { \
+++        Mutex_Lock( &(Cond)->mMutex ); \
+++        SignalObjectAndWait( (Cond)->mMutex, (Cond)->mCondition, INFINITE, false ); \
+++    } while ( 0 )
++ #else
++     #define Condition_Wait( Cond )
++ #endif
++--- iperf-2.0.4.orig/src/Reporter.c	2009-07-06 11:49:05.996443011 +0200
+++++ iperf-2.0.4/src/Reporter.c	2009-07-06 11:46:52.919699530 +0200
++@@ -339,7 +339,7 @@ void ReportPacket( ReportHeader* agent, 
++             // item
++             while ( index == 0 ) {
++                 Condition_Signal( &ReportCond );
++-                Condition_Wait( &ReportDoneCond );
+++                Condition_Wait_Event( &ReportDoneCond );
++                 index = agent->reporterindex;
++             }
++             agent->agentindex = 0;
++@@ -347,7 +347,7 @@ void ReportPacket( ReportHeader* agent, 
++         // Need to make sure that reporter is not about to be "lapped"
++         while ( index - 1 == agent->agentindex ) {
++             Condition_Signal( &ReportCond );
++-            Condition_Wait( &ReportDoneCond );
+++            Condition_Wait_Event( &ReportDoneCond );
++             index = agent->reporterindex;
++         }
++ 
++@@ -391,7 +391,7 @@ void EndReport( ReportHeader *agent ) {
++     if ( agent != NULL ) {
++         int index = agent->reporterindex;
++         while ( index != -1 ) {
++-            Condition_Wait( &ReportDoneCond );
+++            Condition_Wait_Event( &ReportDoneCond );
++             index = agent->reporterindex;
++         }
++         agent->agentindex = -1;
++@@ -412,7 +412,7 @@ void EndReport( ReportHeader *agent ) {
++ Transfer_Info *GetReport( ReportHeader *agent ) {
++     int index = agent->reporterindex;
++     while ( index != -1 ) {
++-        Condition_Wait( &ReportDoneCond );
+++        Condition_Wait_Event( &ReportDoneCond );
++         index = agent->reporterindex;
++     }
++     return &agent->report.info;
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/008-numofreport.patch b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/008-numofreport.patch
+new file mode 100644
+index 0000000..c5d85b1
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf-2.0.5/008-numofreport.patch
+@@ -0,0 +1,15 @@
++by Kirby Zhou < kirbyzhou \x40 sohu-rd.com >
++increase the queue length to avoid thread racing
++
++Upstream-Status: Inappropriate [not author]
++--- iperf-2.0.4.orig/include/Reporter.h	2008-04-08 04:37:54.000000000 +0200
+++++ iperf-2.0.4/include/Reporter.h	2009-07-06 11:53:58.700541554 +0200
++@@ -61,7 +61,7 @@ struct server_hdr;
++ 
++ #include "Settings.hpp"
++ 
++-#define NUM_REPORT_STRUCTS 700
+++#define NUM_REPORT_STRUCTS 5700
++ #define NUM_MULTI_SLOTS    5
++ 
++ #ifdef __cplusplus
+diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
+new file mode 100644
+index 0000000..7e5f1bf
+--- /dev/null
++++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
+@@ -0,0 +1,41 @@
++DESCRIPTION = "Iperf is a tool to measure maximum TCP bandwidth, allowing the tuning of various parameters and UDP characteristics"
++HOMEPAGE = "http://dast.nlanr.net/Projects/Iperf/"
++SECTION = "console/network"
++LICENSE = "NewBSD"
++LIC_FILES_CHKSUM = "file://COPYING;md5=e8478eae9f479e39bc34975193360298"
++
++PR = "r0"
++
++SRC_URI = " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz \
++            file://000-Iperf_Fix-CPU-Usage.diff \
++            file://001-cast-to-max_size_t-instead-of-int.patch \
++            file://003-fix-hyphen-used-as-minus-sign.patch \
++            file://005-iperf-die-on-bind-fail.patch \
++            file://007-iperf-reporter-deadlock.patch \
++            file://008-numofreport.patch \
++	"
++
++SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"
++SRC_URI[sha256sum] = "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b"
++
++inherit autotools
++
++S="${WORKDIR}/iperf-${PV}"
++
++EXTRA_OECONF = "--exec-prefix=${STAGING_DIR_HOST}${layout_exec_prefix}"
++
++do_configure() {
++	export ac_cv_func_malloc_0_nonnull=yes
++	gnu-configize
++	oe_runconf
++}
++
++do_compile() {
++	cd ${WORKDIR}/iperf-${PV}
++	oe_runmake
++}
++
++do_install() {
++	cd ${WORKDIR}/iperf-${PV}/src
++	oe_runmake DESTDIR=${D} install
++}
+-- 
+1.7.0.4
 
-Most likely I will send a v2 if those patches from meta-oe are still needed
-
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Friday, October 05, 2012 12:22 PM
-To: Cooper Jr., Franklin
-Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH] iperf: Update to version 2.0.5
-
-On Fri, Oct 05, 2012 at 05:20:09PM +0000, Cooper Jr., Franklin wrote:
-> Original recipe didn't use the patches from 2.0.4 I didn't check if it di=
-dn't apply or not.=20
-
-Huh?
-http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-benchma=
-rk/iperf/iperf_2.0.4.bb
-
-
-> On Oct 5, 2012, at 11:59 AM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
->=20
-> > On Fri, Oct 05, 2012 at 01:50:08AM -0500, Franklin S. Cooper Jr wrote:
-> >> * Upgrading to newer version of iperf.
-> >> * Newer versions of iperf reduced CPU load thus increasing=20
-> >> performance in  wl12xx tests.
-> >=20
-> > And one more question - sorry for separate emails.
-> >=20
-> >=20
-> >> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> >> ---
-> >> .../recipes-benchmark/iperf/iperf_2.0.5.bb         |   34 ++++++++++++=
-++++++++
-> >> 1 files changed, 34 insertions(+), 0 deletions(-) create mode=20
-> >> 100644 meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
-> >>=20
-> >> diff --git=20
-> >> a/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb=20
-> >> b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
-> >> new file mode 100644
-> >> index 0000000..aff06b2
-> >> --- /dev/null
-> >> +++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
-> >> @@ -0,0 +1,34 @@
-> >> +DESCRIPTION =3D "Iperf is a tool to measure maximum TCP bandwidth, al=
-lowing the tuning of various parameters and UDP characteristics"
-> >> +HOMEPAGE =3D "http://dast.nlanr.net/Projects/Iperf/"
-> >> +SECTION =3D "console/network"
-> >> +LICENSE =3D "NewBSD"
-> >> +LIC_FILES_CHKSUM =3D "file://COPYING;md5=3De8478eae9f479e39bc34975193=
-360298"
-> >> +
-> >> +SRC_URI =3D " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz"
-> >=20
-> > You dropped all the other patches that were part of 2.0.4 - did you=20
-> > verify they are already there in 2.0.5 tree or they no longer needed?
-> >=20
-> > --
-> > Denys
-> >=20
-> >=20
-> >> +
-> >> +SRC_URI[md5sum] =3D "44b5536b67719f4250faed632a3cd016"
-> >> +SRC_URI[sha256sum] =3D "636b4eff0431cea80667ea85a67ce4c68698760a9837e=
-1e9d13096d20362265b"
-> >> +
-> >> +PR =3D "r0"
-> >> +
-> >> +inherit autotools
-> >> +
-> >> +S=3D"${WORKDIR}/iperf-${PV}"
-> >> +
-> >> +EXTRA_OECONF =3D "--exec-prefix=3D${STAGING_DIR_HOST}${layout_exec_pr=
-efix}"
-> >> +
-> >> +do_configure() {
-> >> +    export ac_cv_func_malloc_0_nonnull=3Dyes
-> >> +    gnu-configize
-> >> +    oe_runconf
-> >> +}
-> >> +
-> >> +do_compile() {
-> >> +    cd ${WORKDIR}/iperf-${PV}
-> >> +    oe_runmake
-> >> +}
-> >> +
-> >> +do_install() {
-> >> +    cd ${WORKDIR}/iperf-${PV}/src
-> >> +    oe_runmake DESTDIR=3D${D} install }
-> >> --
-> >> 1.7.0.4
-> >>=20
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->=20
 
