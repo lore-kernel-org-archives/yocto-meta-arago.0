@@ -1,36 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id A7B2752A65
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 92CBB52A65
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Oct 2012 19:24:39 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so886528oag.38
+	Wed, 10 Oct 2012 19:25:23 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so887943obb.38
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Oct 2012 12:24:39 -0700 (PDT)
+	Wed, 10 Oct 2012 12:25:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=Lk8PIsdvRd0XM08raeYnONNmQ+PyXln4SO+opaXNMSI=;
-	b=itc/CPGdBCHeKxHtpJCYpcZhoWDHB3+/k5v0CG2DgLmi7/yGWB53uI/BY3BEIICFM+
-	cSf91W3YF49PzKKMUL4UvTrEGjRShnzoL6jRiJtfgp2QJ/LIB0g97B3mfpwmLajnBN1t
-	Y89FqszAgP43XDn2ABykXFK1FmXf4OW5o4kG2ygWI5SrrOgzG5MUwqWntDFwsTELXblt
-	iBdqVpJoxB99Bb47xB/TFfhW/Yqh7u0YOVs7EXaNXlorCM3c7T/QRcQ3mxF/g5FX9r1L
-	6AuZLatSYS/NZlKaUCe8kB3tIuDBG5x/esuDgNqCe1AhRPojFRQAWZ0uk1U6iwZ2gpin
-	yVVw==
-Received: by 10.60.5.193 with SMTP id u1mr20205363oeu.111.1349897079249;
-	Wed, 10 Oct 2012 12:24:39 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=RtS6IP987enHpDXUyFu+67XB1ktkXr0KuauuFb7yDWc=;
+	b=QL6Zcv2yLr4JZeVBhmhE/5rkm7aSpZoJkvhBrvnxSBiuOaNg6Bi5vpzbkOWMn3Zxp/
+	cQ+Vi8qMNO8lcgV5tvAR1stxV8oY8ONqQ/uz+rLwnl55CFRMyyithgY49wx1pGMnkngP
+	7coKcp/Ob14EVdHiEvSr5SzOyskClAx3Br/hAxAoafaJlguNw1e+OD+tzS/AAQV3jGVD
+	/VxoNDWot25YT2Ir1OTZldubqy2GSpeIt5ykUoT2/M9QsIK5IM7EOG6iUb8EweFX39cH
+	Udm0laJiXih8ZBTN7LAkrMihwbSE8W0pmEePcjlyY54nHsYRhtmZISeSzTwVZlSKLoPH
+	zFdg==
+Received: by 10.182.48.69 with SMTP id j5mr5636830obn.17.1349897123142;
+	Wed, 10 Oct 2012 12:25:23 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id bp7sm1947959obc.12.2012.10.10.12.24.38
+	by mx.google.com with ESMTPS id a6sm1513526oeh.1.2012.10.10.12.25.22
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 10 Oct 2012 12:24:38 -0700 (PDT)
+	Wed, 10 Oct 2012 12:25:22 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Wed, 10 Oct 2012 14:55:01 -0500
-Message-Id: <1349898901-32630-2-git-send-email-fcooper@ti.com>
+Date: Wed, 10 Oct 2012 14:55:49 -0500
+Message-Id: <1349898949-413-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1349898901-32630-1-git-send-email-fcooper@ti.com>
-References: <1349898901-32630-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/2] arago.conf: Select PREFERRED_PROVIDER of qt4-embedded
+Subject: [PATCH] linux: Add copy-defconfig and setup-defconfig include files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,35 +41,71 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 19:24:39 -0000
+X-List-Received-Date: Wed, 10 Oct 2012 19:25:23 -0000
 
-* Set the PREFERRED_PROVIDER for qt4-embedded depending on
-  the ARM architecture. This is needed since the only non armv7
-  device we have (am1808) does not have a SGX core therefore can
-  not use qt4-embedded-gles
+* Port copy-defconfig and setup-defconfig from Arago.
+* These include files are used in a variety of kernel recipes in the Arago SDK.
+* copy-defconfig copies the config file used by the SDK build to the kernel
+  sources to be packaged into the sourceipk.
+* setup-defconfig.inc determines which kernel configuration file to use.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    6 ++++++
- 1 files changed, 6 insertions(+), 0 deletions(-)
+ .../recipes-kernel/linux/copy-defconfig.inc        |   11 ++++++++
+ .../recipes-kernel/linux/setup-defconfig.inc       |   26 ++++++++++++++++++++
+ 2 files changed, 37 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+ create mode 100644 meta-arago-distro/recipes-kernel/linux/setup-defconfig.inc
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 1bd272f..1ce64ce 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -23,6 +23,12 @@ PREFERRED_VERSION_qt4-tools-nativesdk = "4.8.0"
- PREFERRED_VERSION_wpa-supplicant = "0.7.3+0.8.0-rc-ti"
- PREFERRED_VERSION_hostap-daemon = "0.7.3+0.8.0-rc-ti"
- 
-+ARAGO_QT_PROVIDER = "qt4-embedded"
-+# Enable Qt+GLES for ARM v7a devices
-+ARAGO_QT_PROVIDER_armv7a = "qt4-embedded-gles"
+diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+new file mode 100644
+index 0000000..10be10c
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+@@ -0,0 +1,11 @@
++CONFIG_NAME ?= "tisdk_${MACHINE}_defconfig"
 +
-+PREFERRED_PROVIDER_qt4-embedded = "${ARAGO_QT_PROVIDER}"
++# Copy the configuration file used during the SDK build in Arago to
++# the kernel sources to be packaged into the sourceipk.  Then call
++# the function to build the sourceipk again.  This is done as a
++# do_compile_prepend so that we can pick up any changes to the
++# defconfig thay may have been done by the sanitizer code.
++do_compile_prepend() {
++    cp ${S}/.config ${S}/arch/arm/configs/${CONFIG_NAME}
++    sourceipk_do_create_srcipk
++}
+diff --git a/meta-arago-distro/recipes-kernel/linux/setup-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/setup-defconfig.inc
+new file mode 100644
+index 0000000..fc5e18e
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/linux/setup-defconfig.inc
+@@ -0,0 +1,26 @@
++# Check the defconfig file and see if it points to an in kernel
++# defconfig that should be used, or if it is a complete config file
 +
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
- PREFERRED_VERSION_udev = "164"
- 
++addtask setup_defconfig before do_configure after do_patch
++do_setup_defconfig() {
++    # Always copy the defconfig file to .config to keep consistency
++    # between the case where there is a real config and the in kernel
++    # tree config
++    cp ${WORKDIR}/defconfig ${S}/.config
++}
++
++# define our own do_configure that will:
++#   1. Check the .config file and see if string use-kernel-config= is present
++#   2. If the use-kernel-config string is present parse out the config to use
++#      and run make ${config}
++#   3. else run yes '' | oe_runmake oldconfig like the default do_configure
++#      does
++do_configure() {
++    config=`cat ${S}/.config | grep use-kernel-config | cut -d= -f2`
++    if [ "x${config}" != "x" ]
++    then
++        oe_runmake ${config}
++    else
++        yes '' | oe_runmake oldconfig
++    fi
++}
 -- 
 1.7.0.4
 
