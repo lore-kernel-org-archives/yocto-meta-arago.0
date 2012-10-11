@@ -1,41 +1,27 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 73F4152A70
+Return-Path: <denis@denix.org>
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTP id 22AB952980
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Oct 2012 03:18:36 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9B3IZpA008831
-	for <meta-arago@arago-project.org>; Wed, 10 Oct 2012 22:18:35 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9B3IZRo010562
-	for <meta-arago@arago-project.org>; Wed, 10 Oct 2012 22:18:35 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Wed, 10 Oct 2012 22:18:35 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [meta-arago-extras][PATCH] ti-tisdk-setup: Port
-	ti-tisdk-setup from arago
-Thread-Index: AQHNmFkY5UdyyyUSCkSeh1clB6luSZeaYi6AgBiUgLCAAF04gIAAAMiA//+wAjKAAAjwgIAAWH4A//+tAfCAAMaJAP//rNOSAAqNqwD//62IboAAVzAA//+t3jI=
-Date: Thu, 11 Oct 2012 03:18:34 +0000
-Message-ID: <E9FDD8DC-5880-4F88-82D3-0044A820B42E@ti.com>
-References: <20121010185225.GC32682@edge> <20121010185513.GD16944@denix.org>
-	<9EA37CA2-92CB-4988-9E82-9D39A13B0F3C@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159257395@DLEE12.ent.ti.com>
-	<20121010195738.GF16944@denix.org>
-	<7D46E86EC0A8354091174257B2FED10159257515@DLEE12.ent.ti.com>
-	<20121011025110.GB17839@edge>
-	<9769EB7C-4976-4506-8936-C3CCB7687A1C@ti.com>
-	<20121011025538.GC17839@edge>
-	<E6C61D21-EF97-41E2-BAF9-FEA1CEA8AA44@ti.com>,
-	<20121011031231.GD17839@edge>
-In-Reply-To: <20121011031231.GD17839@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [meta-arago-extras][PATCH] ti-tisdk-setup: Port ti-tisdk-setup from arago
+	Thu, 11 Oct 2012 03:49:19 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.115])
+	by vms173011.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MBP00EE3MM52WR3@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 10 Oct 2012 22:49:17 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id F1790200DD; Wed,
+	10 Oct 2012 23:49:16 -0400 (EDT)
+Date: Wed, 10 Oct 2012 23:49:16 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-id: <20121011034916.GB19991@denix.org>
+References: <1349898999-485-1-git-send-email-fcooper@ti.com>
+	<1349898999-485-2-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1349898999-485-2-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH 2/2] arago.conf: Set preferred u-boot version for am335x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,79 +34,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Oct 2012 03:18:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 11 Oct 2012 03:49:19 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
+
+On Wed, Oct 10, 2012 at 02:56:39PM -0500, Franklin S. Cooper Jr wrote:
+> * For now u-boot_am335x-evm version 2011.09-psp04.06.00.08 is not the default
+>   version of u-boot for am335x. Therefore, a PREFERRED_VERSION needs to be set
+>   to make sure the Arago SDK picks up the right u-boot
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  meta-arago-distro/conf/distro/arago.conf |    3 +++
+>  1 files changed, 3 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index 1ce64ce..2e5b796 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -29,6 +29,9 @@ ARAGO_QT_PROVIDER_armv7a = "qt4-embedded-gles"
+>  
+>  PREFERRED_PROVIDER_qt4-embedded = "${ARAGO_QT_PROVIDER}"
+>  
+> +# This should be temporary until meta-ti sets this u-boot version as the default
+
+I have nothing against the patch on its own, but the comment above is 
+incorrect and misleading - it doesn't make much sense to make 2011.09 a 
+default version in meta-ti, as there are newer versions with as much BSP 
+support as meta-ti requires...
+
+On the other hand, setting it just for am335x-evm is probably acceptable, but 
+either way, meta-ti may not be the right place to set any PREFERRED_VERSION 
+variables...
+
+Either way, what I'm saying is it's perfectly fine to set it here in 
+meta-arago, but it might be wrong to expect "until meta-ti sets this u-boot 
+version as the defaul".
 
 
-
-On Oct 10, 2012, at 10:12 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
-
-> On Wed, Oct 10, 2012 at 11:00:28PM -0400, Cooper Jr., Franklin wrote:
->> Most likely TI-tisdk-license will have a similar problem as this recipe.=
- Can=20
->> we go ahead and create a repo for that one also? Its the recipe that=20
->> packages all the different licenses for the sdk software manifest. I pla=
-n to=20
->> submit it tomorrow.
->=20
-> Can we reuse oe-core/meta/files/common-licenses/?
-
-That might work. I will try using that.
->=20
->> On Oct 10, 2012, at 9:55 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
->>=20
->>> On Wed, Oct 10, 2012 at 10:53:27PM -0400, Cooper Jr., Franklin wrote:
->>>> Me=20
->>>=20
->>> Ok, you too.
->>>=20
->>>> On Oct 10, 2012, at 9:51 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote=
-:
->>>>=20
->>>>> On Wed, Oct 10, 2012 at 04:01:17PM -0400, Maupin, Chase wrote:
->>>>>>> -----Original Message-----
->>>>>>> From: Dmytriyenko, Denys
->>>>>>> Sent: Wednesday, October 10, 2012 2:58 PM
->>>>>>> To: Maupin, Chase
->>>>>>> Cc: Cooper Jr., Franklin; Dmytriyenko, Denys; meta-arago@arago-
->>>>>>> project.org
->>>>>>> Subject: Re: [meta-arago] [meta-arago-extras][PATCH] ti-tisdk-
->>>>>>> setup: Port ti-tisdk-setup from arago
->>>>>>>=20
->>>>>>> On Wed, Oct 10, 2012 at 07:43:08PM +0000, Maupin, Chase wrote:
->>>>>>>> There are lots of tweaks to the actual scripts that would be
->>>>>>> nice, but aside
->>>>>>>> from that no.  They all need to go into an SDK.  They make up a
->>>>>>> large part
->>>>>>>> of the OOBE and they tend to go together.  The only one that
->>>>>>> could be
->>>>>>>> separated (in that it is not a dependecy for another one) would
->>>>>>> be
->>>>>>>> create-sdcard.sh but we consider that script as critical as all
->>>>>>> the others
->>>>>>>> and a mandatory install as part of the setup for an SDK.
->>>>>>>=20
->>>>>>> First of all, let's cut the patch from the email - I'm tired
->>>>>>> going to the
->>>>>>> administrative interface to approve the oversize message to the
->>>>>>> list... :)
->>>>>>>=20
->>>>>>> Second, why can't we have a separate git repository for all those
->>>>>>> shell
->>>>>>> scripts that are used for OOBE - you'll get version control and
->>>>>>> move the bulk
->>>>>>> outside of the metadata. Is it feasible?
->>>>>>=20
->>>>>> I'm OK with a separate git repo.  Can you create a tisdk-setup-scrip=
-ts repo=20
->>>>>> on arago for us?
->>>>>=20
->>>>> You know I can, and I did :) Who do you want in contributors, besides=
-=20
->>>>> yourself?
->>>>>=20
->>>>> --=20
->>>>> Denys
+> +PREFERRED_VERSION_u-boot_am335x-evm = "2011.09-psp04.06.00.08"
+> +
+>  # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
+>  PREFERRED_VERSION_udev = "164"
+>  
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
