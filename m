@@ -1,34 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id E4655529AB
+	by arago-project.org (Postfix) with ESMTPS id 806C5529AA
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Oct 2012 13:37:33 +0000 (UTC)
+	Fri, 12 Oct 2012 13:41:21 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9CDbWWM007119;
-	Fri, 12 Oct 2012 08:37:32 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9CDbWVV004579;
-	Fri, 12 Oct 2012 08:37:32 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9CDfK7D009255;
+	Fri, 12 Oct 2012 08:41:20 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9CDfKFp008893;
+	Fri, 12 Oct 2012 08:41:20 -0500
 Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Fri, 12 Oct 2012 08:37:32 -0500
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Fri, 12 Oct 2012 08:41:20 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
 	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v3] task-arago-tisdk-connectivity: Create
-	new	connectivity tasks
-Thread-Index: AQHNqDYasFByIpfbL0uKmXsHh2QlZ5e1rKog
-Date: Fri, 12 Oct 2012 13:37:31 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015925C2AC@DLEE12.ent.ti.com>
-References: <1350019703-10480-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1350019703-10480-1-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] [PATCH v3] task-arago-tisdk-crypto: Port crypto
+	tasks	from arago to meta-arago
+Thread-Index: AQHNqDaLNm/gdNjwbEyTsrTnL3ObTpe1rUvQ
+Date: Fri, 12 Oct 2012 13:41:19 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015925C2D2@DLEE12.ent.ti.com>
+References: <1350019860-10978-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1350019860-10978-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
 Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH v3] task-arago-tisdk-connectivity: Create new	connectivity tasks
+Subject: Re: [PATCH v3] task-arago-tisdk-crypto: Port crypto tasks	from arago to meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,199 +41,145 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2012 13:37:34 -0000
+X-List-Received-Date: Fri, 12 Oct 2012 13:41:21 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+
+
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> Sent: Friday, October 12, 2012 12:28 AM
+> Sent: Friday, October 12, 2012 12:31 AM
 > To: meta-arago@arago-project.org
 > Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH v3] task-arago-tisdk-connectivity:
-> Create new connectivity tasks
+> Subject: [meta-arago] [PATCH v3] task-arago-tisdk-crypto: Port
+> crypto tasks from arago to meta-arago
 >=20
 > From: Franklin S Cooper Jr <fcooper@ti.com>
 >=20
-> * Create new task-arago-tisdk-connectivity task including host
-> and target
->   versions. The contents of these tasks were originally located
-> in
->   task-arago-tisdk-crypto and task-arago-toolchain-tisdk-crypto-
-> host and also
->   the target version.
+> * Port task-arago-tisdk-crypto including the host and target
+> version
+>   from arago to meta-arago. These tasks are significantly smaller
+>   compared to the versions in arago. This is due to the contents
+> of
+>   these tasks being either split into new tasks or simply moved
+> to
+>   other tasks.
 >=20
 > Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 > ---
 > Version 3 changes:
-> Removed bt-obex since it was renamed to bluez-tools which was
-> already added.
-> Removed recieps from the RDEPENDS if they still haven't been
-> commited to
-> meta-ti. Only firmware/drivers related recipes fall under this
-> catagory.
+> Remove unneeded PACKAGE_ARCH
 >=20
->  .../task-arago-tisdk-connectivity-sdk-host.bb      |   19 ++++++
->  .../task-arago-tisdk-connectivity-sdk-target.bb    |   19 ++++++
->  .../tasks/task-arago-tisdk-connectivity.bb         |   65
+>  .../tasks/task-arago-tisdk-crypto-sdk-host.bb      |   11
+> +++++++
+>  .../tasks/task-arago-tisdk-crypto-sdk-target.bb    |   11
+> +++++++
+>  .../recipes-core/tasks/task-arago-tisdk-crypto.bb  |   30
 > ++++++++++++++++++++
->  3 files changed, 103 insertions(+), 0 deletions(-)
+>  3 files changed, 52 insertions(+), 0 deletions(-)
 >  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-connectivity-sdk-host.bb
+> arago-tisdk-crypto-sdk-host.bb
 >  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-connectivity-sdk-target.bb
+> arago-tisdk-crypto-sdk-target.bb
 >  create mode 100644 meta-arago-distro/recipes-core/tasks/task-
-> arago-tisdk-connectivity.bb
+> arago-tisdk-crypto.bb
 >=20
 > diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
-> tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-
-> core/tasks/task-arago-tisdk-connectivity-sdk-host.bb
+> tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-
+> core/tasks/task-arago-tisdk-crypto-sdk-host.bb
 > new file mode 100644
-> index 0000000..14e793a
+> index 0000000..34093d6
 > --- /dev/null
 > +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
-> connectivity-sdk-host.bb
-> @@ -0,0 +1,19 @@
-> +DESCRIPTION =3D "Task to install wlan and bluetooth sources in
-> SDK"
+> crypto-sdk-host.bb
+> @@ -0,0 +1,11 @@
+> +DESCRIPTION =3D "Task to install crypto sources in SDK"
+> +PR =3D "r0"
 > +LICENSE =3D "MIT"
 > +LIC_FILES_CHKSUM =3D
 > "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
 > 4de20420"
-> +COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
-> +
-> +PR =3D "r0"
+> +COMPATIBLE_MACHINE =3D "(am37x-evm|am3517-evm)"
 > +
 > +inherit task
 > +
-> +FIRMWARE_AND_DRIVERS_SRC =3D "ti-compat-wireless-wl12xx-src \
-> +                            ti-compat-bluetooth-src \
-> +                            bt-firmware-src \
-> +                            bt-enable-src \
-> +"
-> +
-> +# Need to add ${FIRMWARE_AND_DRIVERS_SRC} to the below list once
-> the recipes have
-> +# been added to meta-ti
 > +RDEPENDS_${PN} =3D "\
-> +"
+> +    ti-ocf-crypto-module-src \
+> +    "
 
-I thought we were going to go ahead and make these recipes ready to go and =
-just apply them after the patches were accepted in meta-ti.  I guess I'm OK=
- with this approach but it will be an empty package here.
+This cannot be COMPATIBLE_MACHINE specific.  The package list is included f=
+or all machines so for devices like am335x-evm this would fail to build.  I=
+nstead if you have nothing to install then make this an empty package (you =
+will still need to set ALLOW_EMPTY)
 
 > diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
-> tisdk-connectivity-sdk-target.bb b/meta-arago-distro/recipes-
-> core/tasks/task-arago-tisdk-connectivity-sdk-target.bb
+> tisdk-crypto-sdk-target.bb b/meta-arago-distro/recipes-
+> core/tasks/task-arago-tisdk-crypto-sdk-target.bb
 > new file mode 100644
-> index 0000000..c1ad218
+> index 0000000..15f4b99
 > --- /dev/null
 > +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
-> connectivity-sdk-target.bb
-> @@ -0,0 +1,19 @@
-> +DESCRIPTION =3D "Task to install wlan and bluetooth sources in
-> SDK"
+> crypto-sdk-target.bb
+> @@ -0,0 +1,11 @@
+> +DESCRIPTION =3D "Task to install crypto dev packages in SDK"
+> +PR =3D "r0"
 > +LICENSE =3D "MIT"
 > +LIC_FILES_CHKSUM =3D
 > "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
 > 4de20420"
-> +COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
-> +
-> +PR =3D "r0"
 > +
 > +inherit task
 > +
-> +# Bluetooth development packages
-> +BLUETOOTH_STACK =3D "\
-> +    bluez4-dev \
-> +    openobex-dev \
-> +"
-> +
 > +RDEPENDS_${PN} =3D "\
-> +    ${BLUETOOTH_STACK} \
-> +    wpa-supplicant-dev \
-> +"
+> +    openssl-dev \
+> +    ocf-linux-dev \
+> +    "
 > diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-
-> tisdk-connectivity.bb b/meta-arago-distro/recipes-
-> core/tasks/task-arago-tisdk-connectivity.bb
+> tisdk-crypto.bb b/meta-arago-distro/recipes-core/tasks/task-
+> arago-tisdk-crypto.bb
 > new file mode 100644
-> index 0000000..ecb86a9
+> index 0000000..9636644
 > --- /dev/null
 > +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-
-> connectivity.bb
-> @@ -0,0 +1,65 @@
-> +DESCRIPTION =3D "Task to install wlan and bluetooth packages into
-> target FS"
+> crypto.bb
+> @@ -0,0 +1,30 @@
+> +DESCRIPTION =3D "Task to install crypto packages into target FS"
+> +PR =3D "r0"
 > +LICENSE =3D "MIT"
 > +LIC_FILES_CHKSUM =3D
 > "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b
 > 4de20420"
-> +COMPATIBLE_MACHINE =3D "(am37x-evm|am180x-evm|ti33x)"
-> +
-> +PR =3D "r0"
 > +
 > +inherit task
 > +
-> +# WLAN support packages.
-> +# These are the packages that all platforms use for WLAN support
-> +WLAN_COMMON =3D "hostap-daemon \
-> +               ti-wifi-utils \
-> +               wireless-tools \
-> +               htop \
-> +               netperf \
-> +               iw \
-> +               crda \
-> +               softap-udhcpd-config \
-> +               oppserver \
-> +               bluez-tools \
-> +               obexd \
-> +               pulseaudio \
-> +               pulseaudio-server \
-> +               pulseaudio-module-loopback \
-> +               pulseaudio-module-bluetooth-discover \
-> +               pulseaudio-module-bluetooth-device \
-> +               eventdump \
-> +               wpa-supplicant \
-> +"
+> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 > +
-> +FIRMWARE_AND_DRIVERS =3D "ti-compat-wireless-wl12xx \
-> +                        ti-compat-bluetooth \
-> +                        bt-firmware \
-> +                        bt-enable \
-> +                        wl12xx-firmware \
-> +"
+> +# Add openssl-misc to get the openssl.cnf file which is
+> +# needed for "openssl req" and to avoid warnings.
+> +# NOTE: This may change to openssl-conf in the future
+> +CRYPTO_SUPPORT =3D "\
+> +    openssl \
+> +    openssl-misc \
+> +    "
 > +
-> +BLUETOOTH_STACK =3D "\
-> +    bluez4 \
-> +    bluez4-agent \
-> +    libasound-module-bluez \
-> +    bluez-hcidump \
-> +    openobex \
-> +    openobex-apps \
-> +    obexftp \
-> +    ussp-push \
-> +"
+> +# Add crypto hardware support for am37x-evm
+> +# NOTE: this package depends on a kernel patch which also has a
+> TSU
+> +#       exemption filed.  The current name and checksums of the
+> +#       kernel patch are:
+> +# Name: 0001-linux-omap3-PSP-3.0.1.6-kernel-with-OCF-Linux.patch
+> +# md5sum: 00bb20f2f33a37489d8c52212933368d
+> +# sha256sum:
+> 1fea8323d12cf1ee4f743f0f1c82d7f3821a7d9b7996c44b17d7761579bb090d
+> +CRYPTO_SUPPORT_append_am37x-evm =3D " ti-ocf-crypto-module"
+> +CRYPTO_SUPPORT_append_am3517-evm =3D " ti-ocf-crypto-module"
 > +
-> +# Need to add battleship to the below list once the application
-> has been fixed
-> +DEMO_APPS =3D "\
-> +    bluetooth-gui \
-> +    wifi-direct-demo \
-> +    wpa-gui-e \
-> +    wl1271-demo \
-> +"
-> +
-> +# Need to add ${FIRMWARE_AND_DRIVERS} to the below list once the
-> recipes have
-> +# been added to meta-ti
 > +RDEPENDS_${PN} =3D "\
-> +    ${WLAN_COMMON} \
-> +    ${WLAN_COMPAT} \
-> +    ${BLUETOOTH_STACK} \
-> +    ${DEMO_APPS} \
-> +"
+> +    ${CRYPTO_SUPPORT} \
+> +    "
 > --
 > 1.7.0.4
 >=20
