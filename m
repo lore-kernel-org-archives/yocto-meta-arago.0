@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 56F79529AB
+	by arago-project.org (Postfix) with ESMTPS id B196B52A70
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Oct 2012 05:34:02 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so2452280obb.38
+	Fri, 12 Oct 2012 05:35:49 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so2453080obb.38
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Oct 2012 22:34:01 -0700 (PDT)
+	Thu, 11 Oct 2012 22:35:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=xTjO08FZQhvQK7SkvklzjxuIWZfM4mqYWXJ5DXz5bMk=;
-	b=W4V4b9Qejo3AqvxtYonHsbMnn/aYzbxANkepcH6qD6FPPGs9D50yBuWdRZqAZPiPYD
-	dhu6+5wBr0e1Fv6fHPWw193wMH1bkytXkGbXmsp1Mr8cRRzJRFVI7BqHsSLuVYt6RdH/
-	Adtkgsp0PKquRO7IOYUVQCEZioSVGY8mmtqmuEtKwjtzxN1UXgFKwND1OZ2JAw1YneIs
-	08G0D3TD+YbZsqdKwYZU3vyburgZOdc3cOdfyKLtUPVlpd4EvS7iW5LDXQcCyR3Rssfk
-	UOoZ9q1/1qddwKu8zMjb2tVaJelCkEVad92JV4Vfjh/CVfgdLXY8JIKCjKfL6ZJHawej
-	cIPw==
-Received: by 10.182.177.99 with SMTP id cp3mr2545975obc.92.1350020041769;
-	Thu, 11 Oct 2012 22:34:01 -0700 (PDT)
+	bh=5aujWvW+BvuEb4V8QXZvLTuqxmHwyPGI9LFgmnURkT8=;
+	b=FqiTVN8IDuw4PWwGr/XULibs8rySn6keHKaEi47EsZyMjmsyvYNIJtjT/1wu3otnne
+	XYRqrpRzxAMrAxqyO/JbplIl3Lq8OIcDHq5ciNxqa8TCOD256nqnz+I5oPAAA4LUbXZ4
+	kVtlG6vIDOL4fAJJOYPX2rRSr7Oh//vgdvspkJZo3nStEad/UDdLcP4IVde+ed73GlCU
+	m3VYa1rGKhhz72REQ+ZODJPpYIrfNj4voGoSE/I3/DdhqqD+S9OTvC8ROvT5w15g+Hj/
+	u95fawvG6EgrHd2huY6LHDcTLYdugLgJfanhkNhccWG6vAsSF0ELxCjotQwoV50MilYG
+	IsCg==
+Received: by 10.182.144.100 with SMTP id sl4mr2739478obb.14.1350020149137;
+	Thu, 11 Oct 2012 22:35:49 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id jd10sm6019389obb.13.2012.10.11.22.34.01
+	by mx.google.com with ESMTPS id 3sm4693859oee.13.2012.10.11.22.35.48
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 11 Oct 2012 22:34:01 -0700 (PDT)
+	Thu, 11 Oct 2012 22:35:48 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri, 12 Oct 2012 01:04:55 -0500
-Message-Id: <1350021895-13144-1-git-send-email-fcooper@ti.com>
+Date: Fri, 12 Oct 2012 01:06:44 -0500
+Message-Id: <1350022004-13294-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] task-arago-qte: Port task-arago-qte task from Arago
+Subject: [PATCH] arago-tisdk-image: Create image that builds Sitara SDK filesystem
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,76 +41,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2012 05:34:02 -0000
-
-* Port task-arago-qte task from Arago to meta-arago.
+X-List-Received-Date: Fri, 12 Oct 2012 05:35:49 -0000
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../tasks/task-arago-qte-sdk-target.bb             |   28 ++++++++++++++++++++
- .../recipes-core/tasks/task-arago-qte.bb           |   18 ++++++++++++
- 2 files changed, 46 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
+ .../recipes-core/images/arago-tisdk-image.bb       |   21 ++++++++++++++++++++
+ 1 files changed, 21 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
+diff --git a/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
 new file mode 100644
-index 0000000..c89ab6b
+index 0000000..e9e6781
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
-@@ -0,0 +1,28 @@
-+DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
++++ b/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
+@@ -0,0 +1,21 @@
++# Arago TI SDK base image
++# gives you an image with Qt/E and other common packages shared by all TI SDKs.
 +
-+inherit task
++require arago-image.inc
++PR_append = "-arago0"
++COMPATIBLE_MACHINE = "omap3|omapl138|ti33x"
 +
-+RDEPENDS_${PN} = "\
-+    qt4-embedded-dev \
-+    qt4-embedded-mkspecs \
-+    libqt-embeddedphonon4-dev \
-+    libqt-embedded3support4-dev \
-+    libqt-embeddedclucene4-dev \
-+    libqt-embeddedcore4-dev \
-+    libqt-embeddeddbus4-dev \
-+    libqt-embeddeddesignercomponents4-dev \
-+    libqt-embeddeddesigner4-dev \
-+    libqt-embeddeduitools4-dev \
-+    libqt-embeddedgui4-dev \
-+    libqt-embeddedhelp4-dev \
-+    libqt-embeddednetwork4-dev \
-+    libqt-embeddedscript4-dev \
-+    libqt-embeddedscripttools4-dev \
-+    libqt-embeddedsvg4-dev \
-+    libqt-embeddedtest4-dev \
-+    libqt-embeddedwebkit4-dev \
-+    libqt-embeddedxml4-dev \
++IMAGE_INSTALL += "\
++    task-arago-base \
++    task-arago-base-tisdk \
++    task-arago-console \
++    task-arago-tisdk-graphics \
++    task-arago-qte \
++    task-arago-tisdk-addons \
++    task-arago-tisdk-connectivity \
++    task-arago-tisdk-crypto \
++    task-arago-tisdk-matrix \
++    task-arago-tisdk-multimedia \
 +"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-new file mode 100644
-index 0000000..d09f3e2
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-@@ -0,0 +1,18 @@
-+DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
 +
-+inherit task
-+
-+RDEPENDS_${PN} = "\
-+    qt4-embedded \
-+    qt4-embedded-plugin-mousedriver-tslib \
-+    qt4-embedded-plugin-gfxdriver-gfxtransformed \
-+    qt4-embedded-plugin-phonon-backend-gstreamer \
-+    qt4-embedded-plugin-imageformat-gif \
-+    qt4-embedded-plugin-imageformat-jpeg \
-+    qt4-embedded-qmlimports-particles \
-+    qt4-embedded-qmlimports-webkit \
-+    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'qt4-embedded-plugin-gfxdriver-gfxpvregl', '', d)} \
-+"
++export IMAGE_BASENAME = "tisdk-rootfs"
 -- 
 1.7.0.4
 
