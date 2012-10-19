@@ -1,34 +1,34 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 1A733529B9
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 8241952AB5
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Oct 2012 22:32:51 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so8930073oag.38
-	for <meta-arago@arago-project.org>;
-	Thu, 18 Oct 2012 15:32:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=aJtvkDDNpvvqHGMjDZV1W0stWJfvB7EovlP2cfiWfY4=;
-	b=bSZzc32ZCZzBjGbHJ8AWurW6nMM5EYLuM/5/eBDiVIx0PKcHStBdTt3h4+uCkXX3zn
-	KcQn26P172UAFXEbFt5fcAoMQY196nmbHJq2l/eeg2V7tmccwAUhSLgGFKlCjXFp7G1e
-	yh5LgT+fWOe2ORg74JoOptJvSo3CU54+Um1QHYqaWNNwO4NDp1Og4vq5N+i4MwNUW1lQ
-	I6jRfz2L4TCTvfXyhwxDhB710fKvoYpmh+Ob7SWWLF/wxjA+nV2ME2uW+iQV2yYBNs+l
-	tHN/ZYRWCJ9QFx+ANZOrk1JgIYc3QO+HJv6RwzAnlY+0JHZJid6rCoeIIrOg0otokZ6I
-	Zzvw==
-Received: by 10.60.24.228 with SMTP id x4mr5718035oef.5.1350599570550;
-	Thu, 18 Oct 2012 15:32:50 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id o3sm10303648obk.13.2012.10.18.15.32.49
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 18 Oct 2012 15:32:50 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Thu, 18 Oct 2012 17:32:43 -0500
-Message-Id: <1350599563-18636-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH v2] task-arago-qte: Port task-arago-qte task from Arago
+	Fri, 19 Oct 2012 17:35:25 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9JHZOko012208;
+	Fri, 19 Oct 2012 12:35:24 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9JHZOQi030602;
+	Fri, 19 Oct 2012 12:35:24 -0500
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Fri, 19 Oct 2012 12:35:24 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH v2] arago-tisdk-image: Create image that
+	builds	Sitara SDK filesystem
+Thread-Index: AQHNrYAcOZkPxhrj70SyrBd09LpTzpfA5QrQ
+Date: Fri, 19 Oct 2012 17:35:23 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159271744@DLEE12.ent.ti.com>
+References: <1350599386-7511-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1350599386-7511-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH v2] arago-tisdk-image: Create image that builds	Sitara SDK filesystem
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,79 +41,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2012 22:32:51 -0000
+X-List-Received-Date: Fri, 19 Oct 2012 17:35:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* Port task-arago-qte task from Arago to meta-arago.
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
+> Sent: Thursday, October 18, 2012 5:30 PM
+> To: meta-arago@arago-project.org
+> Cc: Cooper Jr., Franklin
+> Subject: [meta-arago] [PATCH v2] arago-tisdk-image: Create image
+> that builds Sitara SDK filesystem
+>=20
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+> Version 2 changes:
+> Removed PR_append
+>=20
+>  .../recipes-core/images/arago-tisdk-image.bb       |   20
+> ++++++++++++++++++++
+>  1 files changed, 20 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/images/arago-
+> tisdk-image.bb
+>=20
+> diff --git a/meta-arago-distro/recipes-core/images/arago-tisdk-
+> image.bb b/meta-arago-distro/recipes-core/images/arago-tisdk-
+> image.bb
+> new file mode 100644
+> index 0000000..2011ab7
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
+> @@ -0,0 +1,20 @@
+> +# Arago TI SDK base image
+> +# gives you an image with Qt/E and other common packages shared
+> by all TI SDKs.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 2 changes:
-Replace qt4-embedded-qmlimports-* with qt4-embedded-qml-plugins.
+This comment doesn't seem right.  This gives you all the packages for an SD=
+K, it is not the base image.
 
- .../tasks/task-arago-qte-sdk-target.bb             |   28 ++++++++++++++++++++
- .../recipes-core/tasks/task-arago-qte.bb           |   17 ++++++++++++
- 2 files changed, 45 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
-new file mode 100644
-index 0000000..c89ab6b
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
-@@ -0,0 +1,28 @@
-+DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+
-+RDEPENDS_${PN} = "\
-+    qt4-embedded-dev \
-+    qt4-embedded-mkspecs \
-+    libqt-embeddedphonon4-dev \
-+    libqt-embedded3support4-dev \
-+    libqt-embeddedclucene4-dev \
-+    libqt-embeddedcore4-dev \
-+    libqt-embeddeddbus4-dev \
-+    libqt-embeddeddesignercomponents4-dev \
-+    libqt-embeddeddesigner4-dev \
-+    libqt-embeddeduitools4-dev \
-+    libqt-embeddedgui4-dev \
-+    libqt-embeddedhelp4-dev \
-+    libqt-embeddednetwork4-dev \
-+    libqt-embeddedscript4-dev \
-+    libqt-embeddedscripttools4-dev \
-+    libqt-embeddedsvg4-dev \
-+    libqt-embeddedtest4-dev \
-+    libqt-embeddedwebkit4-dev \
-+    libqt-embeddedxml4-dev \
-+"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-new file mode 100644
-index 0000000..c89e3f0
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-@@ -0,0 +1,17 @@
-+DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+
-+RDEPENDS_${PN} = "\
-+    qt4-embedded \
-+    qt4-embedded-plugin-mousedriver-tslib \
-+    qt4-embedded-plugin-gfxdriver-gfxtransformed \
-+    qt4-embedded-plugin-phonon-backend-gstreamer \
-+    qt4-embedded-plugin-imageformat-gif \
-+    qt4-embedded-plugin-imageformat-jpeg \
-+    qt4-embedded-qml-plugins \
-+    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'qt4-embedded-plugin-gfxdriver-gfxpvregl', '', d)} \
-+"
--- 
-1.7.0.4
-
+> +COMPATIBLE_MACHINE =3D "omap3|omapl138|ti33x"
+> +
+> +require arago-image.inc
+> +
+> +IMAGE_INSTALL +=3D "\
+> +    task-arago-base \
+> +    task-arago-base-tisdk \
+> +    task-arago-console \
+> +    task-arago-tisdk-graphics \
+> +    task-arago-qte \
+> +    task-arago-tisdk-addons \
+> +    task-arago-tisdk-connectivity \
+> +    task-arago-tisdk-crypto \
+> +    task-arago-tisdk-matrix \
+> +    task-arago-tisdk-multimedia \
+> +"
+> +
+> +export IMAGE_BASENAME =3D "tisdk-rootfs"
+> --
+> 1.7.0.4
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
