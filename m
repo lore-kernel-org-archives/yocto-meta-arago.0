@@ -1,34 +1,34 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id B74025296D
+Return-Path: <denis@denix.org>
+Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
+	[206.46.173.1])
+	by arago-project.org (Postfix) with ESMTP id 54DC95209D
 	for <meta-arago@arago-project.org>;
-	Tue, 23 Oct 2012 22:39:21 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so3902179oag.38
-	for <meta-arago@arago-project.org>;
-	Tue, 23 Oct 2012 15:39:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=0zCuokiICzvHXnvE7ByvIPbGzV4TPKsKaYKdj6PiZ5E=;
-	b=Ip5Ahvxha+yCcqe9Z9gMdWFOmz+C6mnYYw2eXC1nkDncDsxWpJ1FkIE6KtfxTpK6ky
-	S40OPXYw7jb9cNThCczoU10sB4jWooZB5pPf9NOqYjYC+YCK7sO4W6nSzW6goavtkqPD
-	jMDlZunzJzgoYcDKNZAkeMPMNexdPOZs9pzfotHpbG4UM/yd3+Ouev0PZBBWYlgbWhuS
-	jz9UXoixPk01POAYPcCG182siwuc0LThQ39yK9QIt89CyZSE0hF3pJeVa0YMYBUUhU/J
-	jQvebEL6StAHoFIobJfwqFQ/g4kt+ktq4W//wijMbveguCqWG38Tw+N+AbWIZUg8+A6e
-	4Gpw==
-Received: by 10.60.28.234 with SMTP id e10mr12704698oeh.67.1351031961035;
-	Tue, 23 Oct 2012 15:39:21 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id c1sm10829002oee.10.2012.10.23.15.39.20
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Oct 2012 15:39:20 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Tue, 23 Oct 2012 17:39:16 -0500
-Message-Id: <1351031956-2850-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH v3] task-arago-qte: Port task-arago-qte task from Arago
+	Wed, 24 Oct 2012 19:45:34 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173001.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MCE006N6XJ6Q161@vms173001.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 24 Oct 2012 14:45:07 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id EAF972038D; Wed,
+	24 Oct 2012 15:45:05 -0400 (EDT)
+Date: Wed, 24 Oct 2012 15:45:05 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-id: <20121024194505.GA3465@denix.org>
+References: <20121010185225.GC32682@edge> <20121010185513.GD16944@denix.org>
+	<9EA37CA2-92CB-4988-9E82-9D39A13B0F3C@ti.com>
+	<7D46E86EC0A8354091174257B2FED10159257395@DLEE12.ent.ti.com>
+	<20121010195738.GF16944@denix.org>
+	<7D46E86EC0A8354091174257B2FED10159257515@DLEE12.ent.ti.com>
+	<20121011025110.GB17839@edge>
+	<9769EB7C-4976-4506-8936-C3CCB7687A1C@ti.com>
+	<20121011025538.GC17839@edge>
+	<8F29D6B095ED194EA1980491A5E029710C303705@DFLE09.ent.ti.com>
+MIME-version: 1.0
+In-reply-to: <8F29D6B095ED194EA1980491A5E029710C303705@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [meta-arago-extras][PATCH] ti-tisdk-setup: Port ti-tisdk-setup from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,82 +41,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 22:39:22 -0000
+X-List-Received-Date: Wed, 24 Oct 2012 19:45:34 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* Port task-arago-qte task from Arago to meta-arago.
+On Fri, Oct 12, 2012 at 04:20:03AM +0000, Cooper Jr., Franklin wrote:
+> Do you have a git url to that repo? I don't see it on the http://arago-project.org/git/projects list.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 3 changes:
-Correct recipes descriptions
+You won't see it until you populate it. The name is tisdk-setup-scripts under 
+projects.
 
-Version 2 changes:
-Replace qt4-embedded-qmlimports-* with qt4-embedded-qml-plugins
 
- .../tasks/task-arago-qte-sdk-target.bb             |   28 ++++++++++++++++++++
- .../recipes-core/tasks/task-arago-qte.bb           |   17 ++++++++++++
- 2 files changed, 45 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
- create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
-new file mode 100644
-index 0000000..cf444f9
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte-sdk-target.bb
-@@ -0,0 +1,28 @@
-+DESCRIPTION = "Task to build and install Qt embedded headers and libs into the sdk"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+
-+RDEPENDS_${PN} = "\
-+    qt4-embedded-dev \
-+    qt4-embedded-mkspecs \
-+    libqt-embeddedphonon4-dev \
-+    libqt-embedded3support4-dev \
-+    libqt-embeddedclucene4-dev \
-+    libqt-embeddedcore4-dev \
-+    libqt-embeddeddbus4-dev \
-+    libqt-embeddeddesignercomponents4-dev \
-+    libqt-embeddeddesigner4-dev \
-+    libqt-embeddeduitools4-dev \
-+    libqt-embeddedgui4-dev \
-+    libqt-embeddedhelp4-dev \
-+    libqt-embeddednetwork4-dev \
-+    libqt-embeddedscript4-dev \
-+    libqt-embeddedscripttools4-dev \
-+    libqt-embeddedsvg4-dev \
-+    libqt-embeddedtest4-dev \
-+    libqt-embeddedwebkit4-dev \
-+    libqt-embeddedxml4-dev \
-+"
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-new file mode 100644
-index 0000000..420a061
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-@@ -0,0 +1,17 @@
-+DESCRIPTION = "Task to add Qt embedded related packages"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit task
-+
-+RDEPENDS_${PN} = "\
-+    qt4-embedded \
-+    qt4-embedded-plugin-mousedriver-tslib \
-+    qt4-embedded-plugin-gfxdriver-gfxtransformed \
-+    qt4-embedded-plugin-phonon-backend-gstreamer \
-+    qt4-embedded-plugin-imageformat-gif \
-+    qt4-embedded-plugin-imageformat-jpeg \
-+    qt4-embedded-qml-plugins \
-+    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'qt4-embedded-plugin-gfxdriver-gfxpvregl', '', d)} \
-+"
--- 
-1.7.0.4
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys 
+> Sent: Wednesday, October 10, 2012 9:56 PM
+> To: Cooper Jr., Franklin
+> Cc: Maupin, Chase; meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [meta-arago-extras][PATCH] ti-tisdk-setup: Port ti-tisdk-setup from arago
+> 
+> On Wed, Oct 10, 2012 at 10:53:27PM -0400, Cooper Jr., Franklin wrote:
+> > Me
+> 
+> Ok, you too.
+> 
+> > On Oct 10, 2012, at 9:51 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
+> > 
+> > > On Wed, Oct 10, 2012 at 04:01:17PM -0400, Maupin, Chase wrote:
+> > >>> -----Original Message-----
+> > >>> From: Dmytriyenko, Denys
+> > >>> Sent: Wednesday, October 10, 2012 2:58 PM
+> > >>> To: Maupin, Chase
+> > >>> Cc: Cooper Jr., Franklin; Dmytriyenko, Denys; meta-arago@arago- 
+> > >>> project.org
+> > >>> Subject: Re: [meta-arago] [meta-arago-extras][PATCH] ti-tisdk-
+> > >>> setup: Port ti-tisdk-setup from arago
+> > >>> 
+> > >>> On Wed, Oct 10, 2012 at 07:43:08PM +0000, Maupin, Chase wrote:
+> > >>>> There are lots of tweaks to the actual scripts that would be
+> > >>> nice, but aside
+> > >>>> from that no.  They all need to go into an SDK.  They make up a
+> > >>> large part
+> > >>>> of the OOBE and they tend to go together.  The only one that
+> > >>> could be
+> > >>>> separated (in that it is not a dependecy for another one) would
+> > >>> be
+> > >>>> create-sdcard.sh but we consider that script as critical as all
+> > >>> the others
+> > >>>> and a mandatory install as part of the setup for an SDK.
+> > >>> 
+> > >>> First of all, let's cut the patch from the email - I'm tired going 
+> > >>> to the administrative interface to approve the oversize message to 
+> > >>> the list... :)
+> > >>> 
+> > >>> Second, why can't we have a separate git repository for all those 
+> > >>> shell scripts that are used for OOBE - you'll get version control 
+> > >>> and move the bulk outside of the metadata. Is it feasible?
+> > >> 
+> > >> I'm OK with a separate git repo.  Can you create a 
+> > >> tisdk-setup-scripts repo on arago for us?
+> > > 
+> > > You know I can, and I did :) Who do you want in contributors, 
+> > > besides yourself?
+> > > 
+> > > --
+> > > Denys
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
