@@ -1,34 +1,26 @@
 Return-Path: <denis@denix.org>
 Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
 	[206.46.173.1])
-	by arago-project.org (Postfix) with ESMTP id 54DC95209D
+	by arago-project.org (Postfix) with ESMTP id 080F15209D
 	for <meta-arago@arago-project.org>;
-	Wed, 24 Oct 2012 19:45:34 +0000 (UTC)
+	Wed, 24 Oct 2012 20:00:16 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.12])
 	by vms173001.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MCE006N6XJ6Q161@vms173001.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 24 Oct 2012 14:45:07 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id EAF972038D; Wed,
-	24 Oct 2012 15:45:05 -0400 (EDT)
-Date: Wed, 24 Oct 2012 15:45:05 -0400
+	2009)) with ESMTPA id <0MCE008N3Y8DYK30@vms173001.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 24 Oct 2012 15:00:14 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 5DA492038D; Wed,
+	24 Oct 2012 16:00:12 -0400 (EDT)
+Date: Wed, 24 Oct 2012 16:00:12 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-id: <20121024194505.GA3465@denix.org>
-References: <20121010185225.GC32682@edge> <20121010185513.GD16944@denix.org>
-	<9EA37CA2-92CB-4988-9E82-9D39A13B0F3C@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159257395@DLEE12.ent.ti.com>
-	<20121010195738.GF16944@denix.org>
-	<7D46E86EC0A8354091174257B2FED10159257515@DLEE12.ent.ti.com>
-	<20121011025110.GB17839@edge>
-	<9769EB7C-4976-4506-8936-C3CCB7687A1C@ti.com>
-	<20121011025538.GC17839@edge>
-	<8F29D6B095ED194EA1980491A5E029710C303705@DFLE09.ent.ti.com>
+To: Chase Maupin <Chase.Maupin@ti.com>
+Message-id: <20121024200012.GB3465@denix.org>
+References: <1350942384-27039-1-git-send-email-Chase.Maupin@ti.com>
 MIME-version: 1.0
-In-reply-to: <8F29D6B095ED194EA1980491A5E029710C303705@DFLE09.ent.ti.com>
+In-reply-to: <1350942384-27039-1-git-send-email-Chase.Maupin@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [meta-arago-extras][PATCH] ti-tisdk-setup: Port ti-tisdk-setup from arago
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 1/2] remove-net-rules: Add a class to remove net rules from images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,70 +33,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 19:45:34 -0000
+X-List-Received-Date: Wed, 24 Oct 2012 20:00:17 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Fri, Oct 12, 2012 at 04:20:03AM +0000, Cooper Jr., Franklin wrote:
-> Do you have a git url to that repo? I don't see it on the http://arago-project.org/git/projects list.
-
-You won't see it until you populate it. The name is tisdk-setup-scripts under 
-projects.
-
-
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Wednesday, October 10, 2012 9:56 PM
-> To: Cooper Jr., Franklin
-> Cc: Maupin, Chase; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [meta-arago-extras][PATCH] ti-tisdk-setup: Port ti-tisdk-setup from arago
+On Mon, Oct 22, 2012 at 04:46:23PM -0500, Chase Maupin wrote:
+> * Inherit the remove-net-rules class in the TISDK images to remove
+>   the utility that creates the persistent net rules file.
+> * This allows moving SD cards between EVMs.
 > 
-> On Wed, Oct 10, 2012 at 10:53:27PM -0400, Cooper Jr., Franklin wrote:
-> > Me
+> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> ---
+>  meta-arago-distro/classes/remove-net-rules.bbclass |   15 +++++++++++++++
+>  1 files changed, 15 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/classes/remove-net-rules.bbclass
 > 
-> Ok, you too.
+> diff --git a/meta-arago-distro/classes/remove-net-rules.bbclass b/meta-arago-distro/classes/remove-net-rules.bbclass
+> new file mode 100644
+> index 0000000..3227221
+> --- /dev/null
+> +++ b/meta-arago-distro/classes/remove-net-rules.bbclass
+> @@ -0,0 +1,15 @@
+> +# Add a ROOTFS_POSTPROCESS_COMMAND that will strip the write_net_rules
+> +# executable from the file system.  This will prevent the
+> +# 70-persistent-net.rules from being created.  Not having this file
+> +# will allow moving SD cards between EVMs and similar boards such as
+> +# beaglebone and the EVM.
+> +
+> +ROOTFS_POSTPROCESS_COMMAND += "rootfs_remove_net_rules"
+
+ROOTFS_POSTPROCESS_COMMAND is a list of shell commands/functions - you need to 
+terminate it with a semicolon, i.e. R_P_C += "func;"
+
+> +
+> +rootfs_remove_net_rules () {
+> +    if [ -e ${IMAGE_ROOTFS}/lib/udev/write_net_rules ]
+> +    then
+> +        rm ${IMAGE_ROOTFS}/lib/udev/write_net_rules
+> +    fi
+> +}
+> +
+> -- 
+> 1.7.0.4
 > 
-> > On Oct 10, 2012, at 9:51 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
-> > 
-> > > On Wed, Oct 10, 2012 at 04:01:17PM -0400, Maupin, Chase wrote:
-> > >>> -----Original Message-----
-> > >>> From: Dmytriyenko, Denys
-> > >>> Sent: Wednesday, October 10, 2012 2:58 PM
-> > >>> To: Maupin, Chase
-> > >>> Cc: Cooper Jr., Franklin; Dmytriyenko, Denys; meta-arago@arago- 
-> > >>> project.org
-> > >>> Subject: Re: [meta-arago] [meta-arago-extras][PATCH] ti-tisdk-
-> > >>> setup: Port ti-tisdk-setup from arago
-> > >>> 
-> > >>> On Wed, Oct 10, 2012 at 07:43:08PM +0000, Maupin, Chase wrote:
-> > >>>> There are lots of tweaks to the actual scripts that would be
-> > >>> nice, but aside
-> > >>>> from that no.  They all need to go into an SDK.  They make up a
-> > >>> large part
-> > >>>> of the OOBE and they tend to go together.  The only one that
-> > >>> could be
-> > >>>> separated (in that it is not a dependecy for another one) would
-> > >>> be
-> > >>>> create-sdcard.sh but we consider that script as critical as all
-> > >>> the others
-> > >>>> and a mandatory install as part of the setup for an SDK.
-> > >>> 
-> > >>> First of all, let's cut the patch from the email - I'm tired going 
-> > >>> to the administrative interface to approve the oversize message to 
-> > >>> the list... :)
-> > >>> 
-> > >>> Second, why can't we have a separate git repository for all those 
-> > >>> shell scripts that are used for OOBE - you'll get version control 
-> > >>> and move the bulk outside of the metadata. Is it feasible?
-> > >> 
-> > >> I'm OK with a separate git repo.  Can you create a 
-> > >> tisdk-setup-scripts repo on arago for us?
-> > > 
-> > > You know I can, and I did :) Who do you want in contributors, 
-> > > besides yourself?
-> > > 
-> > > --
-> > > Denys
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
