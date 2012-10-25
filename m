@@ -1,28 +1,34 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8B0D952AB7
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 166715209D
 	for <meta-arago@arago-project.org>;
-	Wed, 24 Oct 2012 21:18:28 +0000 (UTC)
-Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9OLIQr6003948
-	for <meta-arago@arago-project.org>; Wed, 24 Oct 2012 16:18:27 -0500
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9OLIPok009605
+	Thu, 25 Oct 2012 01:20:00 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so1035468oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Oct 2012 02:48:26 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 25 Oct 2012 02:48:25 +0530
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9OLIMYP016932;
-	Thu, 25 Oct 2012 02:48:24 +0530
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 24 Oct 2012 16:18:20 -0500
-Message-ID: <1351113500-16655-1-git-send-email-Chase.Maupin@ti.com>
+	Wed, 24 Oct 2012 18:19:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=BxWB1n03MWi9GWwHc2kl2++Gqqw/SSZHpFN3YBeyfSo=;
+	b=I22Fy1iUk9sMxQ1mBaGhTdh0Yi3srE1Mk+md516/GgdHPJovhUgZ8qB27cOyg1rTEM
+	1hlAcxXjOEQMAXu3AD6OT0W0Wla0py/dWuZkc+ms8KaDrJSrhxRv/O96TDGycrbVIrZh
+	mQQwDw6fD4Xfbf/g0KZiyov0zQ61c25wsKH4wu7Bvkh9MALC8c7ftmu7/KskPY1X+kkV
+	SJaxppbrmkE2wH01NHA7txBuN3Gv5T75SXGdilDQgb8AIVN6GNdA3h17GzLi+AjiInHp
+	B43quRLauz/okONcxz8vcbThdoI8zaDbwUfzcFIAjhpUQw8WWcf38lWBAV8Fr+OoLaC6
+	bYYA==
+Received: by 10.182.89.42 with SMTP id bl10mr14341355obb.27.1351127999640;
+	Wed, 24 Oct 2012 18:19:59 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id s5sm17146063obo.10.2012.10.24.18.19.58
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 24 Oct 2012 18:19:58 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Wed, 24 Oct 2012 20:19:55 -0500
+Message-Id: <1351127995-16678-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Subject: [PATCHv2] remove-net-rules: Add a class to remove net rules from images
+Cc: Franklin S Cooper Jr <fcooper@ti.com>
+Subject: [PATCH v5] task-arago-tisdk-connectivity: Create new connectivity tasks
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,44 +41,210 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 21:18:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 25 Oct 2012 01:20:04 -0000
 
-* Inherit the remove-net-rules class in the TISDK images to remove
-  the utility that creates the persistent net rules file.
-* This allows moving SD cards between EVMs.
+From: Franklin S Cooper Jr <fcooper@ti.com>
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+* Create new task-arago-tisdk-connectivity task including host and target
+  versions. The contents of these tasks were originally located in
+  task-arago-tisdk-crypto and task-arago-toolchain-tisdk-crypto-host and also
+  the target version.
+
+Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
 ---
-* Updated in version 2
-    * Added a semicolon to the end of the ROOTFS_POSTPROCESS_COMMAND
-      list to properly terminate the command.
----
- meta-arago-distro/classes/remove-net-rules.bbclass |   15 +++++++++++++++
- 1 files changed, 15 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/classes/remove-net-rules.bbclass
+Version 5 changes:
+Use the standard 4 spaces for indentation
+Update comments
 
-diff --git a/meta-arago-distro/classes/remove-net-rules.bbclass b/meta-arago-distro/classes/remove-net-rules.bbclass
+Version 4 changes:
+Removed COMPATIBLE_MACHINE
+Added PACKAGE_ARCH and ALLOW_EMPTY when needed.
+
+Version 3 changes:
+Removed bt-objex since it was renamed to bluez-tools which was already added.
+Removed recipes from the RDEPENDS if they still haven't been commited to
+meta-ti.
+
+ .../task-arago-tisdk-connectivity-sdk-host.bb      |   30 +++++++
+ .../task-arago-tisdk-connectivity-sdk-target.bb    |   37 ++++++++
+ .../tasks/task-arago-tisdk-connectivity.bb         |   87 ++++++++++++++++++++
+ 3 files changed, 154 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-host.bb
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-target.bb
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
+
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-host.bb
 new file mode 100644
-index 0000000..fcad9c7
+index 0000000..92a6353
 --- /dev/null
-+++ b/meta-arago-distro/classes/remove-net-rules.bbclass
-@@ -0,0 +1,15 @@
-+# Add a ROOTFS_POSTPROCESS_COMMAND that will strip the write_net_rules
-+# executable from the file system.  This will prevent the
-+# 70-persistent-net.rules from being created.  Not having this file
-+# will allow moving SD cards between EVMs and similar boards such as
-+# beaglebone and the EVM.
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-host.bb
+@@ -0,0 +1,30 @@
++DESCRIPTION = "Task to install wlan and bluetooth sources into the SDK"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 +
-+ROOTFS_POSTPROCESS_COMMAND += "rootfs_remove_net_rules;"
++PR = "r0"
 +
-+rootfs_remove_net_rules () {
-+    if [ -e ${IMAGE_ROOTFS}/lib/udev/write_net_rules ]
-+    then
-+        rm ${IMAGE_ROOTFS}/lib/udev/write_net_rules
-+    fi
-+}
++inherit task
 +
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++ALLOW_EMPTY = "1"
++
++FIRMWARE_AND_DRIVERS_SRC = "
++    ti-compat-wireless-wl12xx-src \
++    ti-compat-bluetooth-src \
++    bt-firmware-src \
++    bt-enable-src \
++"
++
++CONNECTIVITY_RDEPENDS = ""
++
++# Need to add ${FIRMWARE_AND_DRIVERS_SRC} to the below lists once the recipes
++# have been added to meta-ti
++
++CONNECTIVITY_RDEPENDS_am37x-evm = ""
++CONNECTIVITY_RDEPENDS_am180x-evm = ""
++CONNECTIVITY_RDEPENDS_ti33x = ""
++
++RDEPENDS_${PN} = "\
++    ${CONNECTIVITY_RDEPENDS} \
++"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-target.bb
+new file mode 100644
+index 0000000..a60bd34
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk-target.bb
+@@ -0,0 +1,37 @@
++DESCRIPTION = "Task to install wlan and bluetooth headers and libraries into the SDK"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++
++PR = "r0"
++
++inherit task
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++ALLOW_EMPTY = "1"
++
++# Bluetooth development packages
++BLUETOOTH_STACK = "\
++    bluez4-dev \
++    openobex-dev \
++"
++
++CONNECTIVITY_RDEPENDS = ""
++
++CONNECTIVITY_RDEPENDS_am37x-evm = "\
++    ${BLUETOOTH_STACK} \
++    wpa-supplicant-dev \
++"
++
++CONNECTIVITY_RDEPENDS_am180x-evm = "\
++    ${BLUETOOTH_STACK} \
++    wpa-supplicant-dev \
++"
++
++CONNECTIVITY_RDEPENDS_ti33x  = "\
++    ${BLUETOOTH_STACK} \
++    wpa-supplicant-dev \
++"
++
++RDEPENDS_${PN} = "\
++    ${CONNECTIVITY_RDEPENDS} \
++"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
+new file mode 100644
+index 0000000..1cbd0cc
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
+@@ -0,0 +1,87 @@
++DESCRIPTION = "Task to install wlan and bluetooth packages into the target FS"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++
++PR = "r0"
++
++inherit task
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++ALLOW_EMPTY = "1"
++
++# WLAN support packages.
++# These are the packages that all platforms use for WLAN support
++WLAN_COMMON = "\
++    hostap-daemon \
++    ti-wifi-utils \
++    wireless-tools \
++    htop \
++    netperf \
++    iw \
++    crda \
++    softap-udhcpd-config \
++    oppserver \
++    bluez-tools \
++    obexd \
++    pulseaudio \
++    pulseaudio-server \
++    pulseaudio-module-loopback \
++    pulseaudio-module-bluetooth-discover \
++    pulseaudio-module-bluetooth-device \
++    eventdump \
++    wpa-supplicant \
++"
++
++FIRMWARE_AND_DRIVERS = "\
++    ti-compat-wireless-wl12xx \
++    ti-compat-bluetooth \
++    bt-firmware \
++    bt-enable \
++    wl12xx-firmware \
++"
++
++BLUETOOTH_STACK = "\
++    bluez4 \
++    bluez4-agent \
++    libasound-module-bluez \
++    bluez-hcidump \
++    openobex \
++    openobex-apps \
++    obexftp \
++    ussp-push \
++"
++
++# Need to add battleship to the below list once the application has been fixed
++DEMO_APPS = "\
++    bluetooth-gui \
++    wifi-direct-demo \
++    wpa-gui-e \
++    wl1271-demo \
++"
++
++CONNECTIVITY_RDEPENDS = ""
++
++# Need to add ${FIRMWARE_AND_DRIVERS} to the below lists once the recipes have
++# been added to meta-ti
++
++CONNECTIVITY_RDEPENDS_am37x-evm = "\
++    ${WLAN_COMMON} \
++    ${BLUETOOTH_STACK} \
++    ${DEMO_APPS} \
++"
++
++CONNECTIVITY_RDEPENDS_am180x-evm  = "\
++    ${WLAN_COMMON} \
++    ${BLUETOOTH_STACK} \
++    ${DEMO_APPS} \
++"
++
++CONNECTIVITY_RDEPENDS_ti33x = "\
++    ${WLAN_COMMON} \
++    ${BLUETOOTH_STACK} \
++    ${DEMO_APPS} \
++"
++
++RDEPENDS_${PN} = "\
++    ${CONNECTIVITY_RDEPENDS} \
++"
 -- 
 1.7.0.4
 
