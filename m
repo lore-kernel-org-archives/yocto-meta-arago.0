@@ -1,35 +1,34 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 77DA05209D
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 59F4D5209D
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Oct 2012 02:33:10 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9P2X9lx029325;
-	Wed, 24 Oct 2012 21:33:09 -0500
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9P2X9rZ004714;
-	Wed, 24 Oct 2012 21:33:09 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Wed, 24 Oct 2012 21:33:09 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "Franklin S. Cooper Jr"
-	<fcooperjr27@gmail.com>
-Thread-Topic: [meta-arago] [PATCH v5] task-arago-tisdk-connectivity: Create
-	new connectivity tasks
-Thread-Index: AQHNsk7swwTHnGD9fEGotoUcj2aXrpfJnSgA//+wJiA=
-Date: Thu, 25 Oct 2012 02:33:08 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C30B63B@DFLE09.ent.ti.com>
-References: <1351127995-16678-1-git-send-email-fcooper@ti.com>
-	<20121025021810.GE3465@denix.org>
-In-Reply-To: <20121025021810.GE3465@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v5] task-arago-tisdk-connectivity: Create new connectivity tasks
+	Thu, 25 Oct 2012 02:33:41 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so1072031obb.38
+	for <meta-arago@arago-project.org>;
+	Wed, 24 Oct 2012 19:33:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=l5C/0WrDlkFO5Nltzq/gbqMd4QyVZZP+6YHEzwUl0TM=;
+	b=SYLfo5QUZ5dQ/78MyVBu5Ok+TcwTKeesY/wvqXmcJ2uTXdKS4VjY20Alc9g3S+qzQd
+	iDXohSn0e+DZbuZ4QyIO60O5Kkdda0ViO5F0KQ4AY44WXUIBoCAeslzmFtzzjflI6/Zx
+	qj4EHwFAHyxN7sogtbVoXUCrHZorJalplFl+o5k7riy9hf/mI7zvOTG1MrKZbprQnMng
+	6paKUbpxAN55Q8E5CmQFM5upWlbAk9UI6OJRMo9aLDRQFkMH9S4A7exBP4CqYdQ3ZmJV
+	GE/K0KwtPzkZP271mfkDtZb3LoztIi7SSzeS2KWduuystasL/pek7fXJZS9EKgILQ8c/
+	DOTQ==
+Received: by 10.60.25.198 with SMTP id e6mr15995333oeg.83.1351132420884;
+	Wed, 24 Oct 2012 19:33:40 -0700 (PDT)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id xj9sm17299070obb.17.2012.10.24.19.33.40
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 24 Oct 2012 19:33:40 -0700 (PDT)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Wed, 24 Oct 2012 21:33:37 -0500
+Message-Id: <1351132417-21255-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH v2] ti-tisdk-setup: Port ti-tisdk-setup from arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,260 +41,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Oct 2012 02:33:10 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 25 Oct 2012 02:33:41 -0000
 
-I was hoping I could send out my updated version before you looked at it bu=
-t you beat me to it. :)
+* Port ti-tisdk-setup from arago to meta-arago.
+* This recipe brings in various scripts used to setup the SDK on
+  a user's development machine.
 
------Original Message-----
-From: Denys Dmytriyenko [mailto:denis@denix.org]=20
-Sent: Wednesday, October 24, 2012 9:18 PM
-To: Franklin S. Cooper Jr
-Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-Subject: Re: [meta-arago] [PATCH v5] task-arago-tisdk-connectivity: Create =
-new connectivity tasks
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Version 2 changes:
+Move setup scripts into their own git repository
 
-On Wed, Oct 24, 2012 at 08:19:55PM -0500, Franklin S. Cooper Jr wrote:
-> From: Franklin S Cooper Jr <fcooper@ti.com>
->=20
-> * Create new task-arago-tisdk-connectivity task including host and target
->   versions. The contents of these tasks were originally located in
->   task-arago-tisdk-crypto and task-arago-toolchain-tisdk-crypto-host and =
-also
->   the target version.
->=20
-> Signed-off-by: Franklin S Cooper Jr <fcooper@ti.com>
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |   36 ++++++++++++++++++++
+ 1 files changed, 36 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
 
-Ack, will push tomorrow.
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+new file mode 100644
+index 0000000..d9b5da3
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -0,0 +1,36 @@
++DESCRIPTION = "Package containing scripts to setup the development host and target board"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
++
++COMPATIBLE_MACHINE = "am37x-evm|am3517-evm|beagleboard|ti33x|am180x-evm"
++
++PR = "r0"
++
++BRANCH ?= "master"
++SRCREV = "5bbfa583671b87bc8c17316bb3a9787fbc884ec6"
++SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git/"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++UBOOT_ENV_am37x-evm = "setup-uboot-env-am37x.sh"
++UBOOT_ENV_beagleboard = "setup-uboot-env-beagleboard.sh"
++UBOOT_ENV_am3517-evm = "setup-uboot-env-am3517.sh"
++UBOOT_ENV_am180x-evm = "setup-uboot-env-am18x.sh"
++UBOOT_ENV_ti33x = "setup-uboot-env-am335x.sh"
++
++do_install () {
++    install -m 0755 ${S}/setup.sh ${D}/
++    install -d ${D}/bin
++    install -m 0755 ${S}/common.sh ${D}/bin
++    install -m 0755 ${S}/setup-host-check.sh ${D}/bin
++    install -m 0755 ${S}/setup-minicom.sh ${D}/bin
++    install -m 0755 ${S}/setup-package-install.sh ${D}/bin
++    install -m 0755 ${S}/setup-targetfs-nfs.sh ${D}/bin
++    install -m 0755 ${S}/setup-tftp.sh ${D}/bin
++    install -m 0755 ${S}/create-sdcard.sh ${D}/bin
++    install -m 0755 ${S}/${UBOOT_ENV} ${D}/bin/setup-uboot-env.sh
++}
++
++FILES_${PN} += "setup.sh"
+-- 
+1.7.0.4
 
-> ---
-> Version 5 changes:
-> Use the standard 4 spaces for indentation Update comments
->=20
-> Version 4 changes:
-> Removed COMPATIBLE_MACHINE
-> Added PACKAGE_ARCH and ALLOW_EMPTY when needed.
->=20
-> Version 3 changes:
-> Removed bt-objex since it was renamed to bluez-tools which was already ad=
-ded.
-> Removed recipes from the RDEPENDS if they still haven't been commited=20
-> to meta-ti.
->=20
->  .../task-arago-tisdk-connectivity-sdk-host.bb      |   30 +++++++
->  .../task-arago-tisdk-connectivity-sdk-target.bb    |   37 ++++++++
->  .../tasks/task-arago-tisdk-connectivity.bb         |   87 ++++++++++++++=
-++++++
->  3 files changed, 154 insertions(+), 0 deletions(-)  create mode=20
-> 100644=20
-> meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk
-> -host.bb  create mode 100644=20
-> meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-sdk
-> -target.bb  create mode 100644=20
-> meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.bb
->=20
-> diff --git=20
-> a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-s
-> dk-host.bb=20
-> b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-s
-> dk-host.bb
-> new file mode 100644
-> index 0000000..92a6353
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivi
-> +++ ty-sdk-host.bb
-> @@ -0,0 +1,30 @@
-> +DESCRIPTION =3D "Task to install wlan and bluetooth sources into the SDK=
-"
-> +LICENSE =3D "MIT"
-> +LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-> +
-> +PR =3D "r0"
-> +
-> +inherit task
-> +
-> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> +ALLOW_EMPTY =3D "1"
-> +
-> +FIRMWARE_AND_DRIVERS_SRC =3D "
-> +    ti-compat-wireless-wl12xx-src \
-> +    ti-compat-bluetooth-src \
-> +    bt-firmware-src \
-> +    bt-enable-src \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS =3D ""
-> +
-> +# Need to add ${FIRMWARE_AND_DRIVERS_SRC} to the below lists once the=20
-> +recipes # have been added to meta-ti
-> +
-> +CONNECTIVITY_RDEPENDS_am37x-evm =3D ""
-> +CONNECTIVITY_RDEPENDS_am180x-evm =3D ""
-> +CONNECTIVITY_RDEPENDS_ti33x =3D ""
-> +
-> +RDEPENDS_${PN} =3D "\
-> +    ${CONNECTIVITY_RDEPENDS} \
-> +"
-> diff --git=20
-> a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-s
-> dk-target.bb=20
-> b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity-s
-> dk-target.bb
-> new file mode 100644
-> index 0000000..a60bd34
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivi
-> +++ ty-sdk-target.bb
-> @@ -0,0 +1,37 @@
-> +DESCRIPTION =3D "Task to install wlan and bluetooth headers and librarie=
-s into the SDK"
-> +LICENSE =3D "MIT"
-> +LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-> +
-> +PR =3D "r0"
-> +
-> +inherit task
-> +
-> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> +ALLOW_EMPTY =3D "1"
-> +
-> +# Bluetooth development packages
-> +BLUETOOTH_STACK =3D "\
-> +    bluez4-dev \
-> +    openobex-dev \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS =3D ""
-> +
-> +CONNECTIVITY_RDEPENDS_am37x-evm =3D "\
-> +    ${BLUETOOTH_STACK} \
-> +    wpa-supplicant-dev \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS_am180x-evm =3D "\
-> +    ${BLUETOOTH_STACK} \
-> +    wpa-supplicant-dev \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS_ti33x  =3D "\
-> +    ${BLUETOOTH_STACK} \
-> +    wpa-supplicant-dev \
-> +"
-> +
-> +RDEPENDS_${PN} =3D "\
-> +    ${CONNECTIVITY_RDEPENDS} \
-> +"
-> diff --git=20
-> a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.b
-> b=20
-> b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivity.b
-> b
-> new file mode 100644
-> index 0000000..1cbd0cc
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-connectivi
-> +++ ty.bb
-> @@ -0,0 +1,87 @@
-> +DESCRIPTION =3D "Task to install wlan and bluetooth packages into the ta=
-rget FS"
-> +LICENSE =3D "MIT"
-> +LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-> +
-> +PR =3D "r0"
-> +
-> +inherit task
-> +
-> +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> +ALLOW_EMPTY =3D "1"
-> +
-> +# WLAN support packages.
-> +# These are the packages that all platforms use for WLAN support=20
-> +WLAN_COMMON =3D "\
-> +    hostap-daemon \
-> +    ti-wifi-utils \
-> +    wireless-tools \
-> +    htop \
-> +    netperf \
-> +    iw \
-> +    crda \
-> +    softap-udhcpd-config \
-> +    oppserver \
-> +    bluez-tools \
-> +    obexd \
-> +    pulseaudio \
-> +    pulseaudio-server \
-> +    pulseaudio-module-loopback \
-> +    pulseaudio-module-bluetooth-discover \
-> +    pulseaudio-module-bluetooth-device \
-> +    eventdump \
-> +    wpa-supplicant \
-> +"
-> +
-> +FIRMWARE_AND_DRIVERS =3D "\
-> +    ti-compat-wireless-wl12xx \
-> +    ti-compat-bluetooth \
-> +    bt-firmware \
-> +    bt-enable \
-> +    wl12xx-firmware \
-> +"
-> +
-> +BLUETOOTH_STACK =3D "\
-> +    bluez4 \
-> +    bluez4-agent \
-> +    libasound-module-bluez \
-> +    bluez-hcidump \
-> +    openobex \
-> +    openobex-apps \
-> +    obexftp \
-> +    ussp-push \
-> +"
-> +
-> +# Need to add battleship to the below list once the application has=20
-> +been fixed DEMO_APPS =3D "\
-> +    bluetooth-gui \
-> +    wifi-direct-demo \
-> +    wpa-gui-e \
-> +    wl1271-demo \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS =3D ""
-> +
-> +# Need to add ${FIRMWARE_AND_DRIVERS} to the below lists once the=20
-> +recipes have # been added to meta-ti
-> +
-> +CONNECTIVITY_RDEPENDS_am37x-evm =3D "\
-> +    ${WLAN_COMMON} \
-> +    ${BLUETOOTH_STACK} \
-> +    ${DEMO_APPS} \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS_am180x-evm  =3D "\
-> +    ${WLAN_COMMON} \
-> +    ${BLUETOOTH_STACK} \
-> +    ${DEMO_APPS} \
-> +"
-> +
-> +CONNECTIVITY_RDEPENDS_ti33x =3D "\
-> +    ${WLAN_COMMON} \
-> +    ${BLUETOOTH_STACK} \
-> +    ${DEMO_APPS} \
-> +"
-> +
-> +RDEPENDS_${PN} =3D "\
-> +    ${CONNECTIVITY_RDEPENDS} \
-> +"
-> --
-> 1.7.0.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->=20
 
