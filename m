@@ -1,34 +1,29 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 59F4D5209D
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 267F052A8B
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Oct 2012 02:33:41 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so1072031obb.38
-	for <meta-arago@arago-project.org>;
-	Wed, 24 Oct 2012 19:33:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=l5C/0WrDlkFO5Nltzq/gbqMd4QyVZZP+6YHEzwUl0TM=;
-	b=SYLfo5QUZ5dQ/78MyVBu5Ok+TcwTKeesY/wvqXmcJ2uTXdKS4VjY20Alc9g3S+qzQd
-	iDXohSn0e+DZbuZ4QyIO60O5Kkdda0ViO5F0KQ4AY44WXUIBoCAeslzmFtzzjflI6/Zx
-	qj4EHwFAHyxN7sogtbVoXUCrHZorJalplFl+o5k7riy9hf/mI7zvOTG1MrKZbprQnMng
-	6paKUbpxAN55Q8E5CmQFM5upWlbAk9UI6OJRMo9aLDRQFkMH9S4A7exBP4CqYdQ3ZmJV
-	GE/K0KwtPzkZP271mfkDtZb3LoztIi7SSzeS2KWduuystasL/pek7fXJZS9EKgILQ8c/
-	DOTQ==
-Received: by 10.60.25.198 with SMTP id e6mr15995333oeg.83.1351132420884;
-	Wed, 24 Oct 2012 19:33:40 -0700 (PDT)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id xj9sm17299070obb.17.2012.10.24.19.33.40
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 24 Oct 2012 19:33:40 -0700 (PDT)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Wed, 24 Oct 2012 21:33:37 -0500
-Message-Id: <1351132417-21255-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH v2] ti-tisdk-setup: Port ti-tisdk-setup from arago
+	Fri, 26 Oct 2012 14:30:16 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id q9QEUEwn020857
+	for <meta-arago@arago-project.org>; Fri, 26 Oct 2012 09:30:14 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q9QEUEnN005019
+	for <meta-arago@arago-project.org>; Fri, 26 Oct 2012 09:30:14 -0500
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Fri, 26 Oct 2012 09:30:14 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: task-arago-qte-toolchain-target: standard qte target sdk packages
+Thread-Index: Ac2zhbg+HDyoEX4QQFWuZshtvE204g==
+Date: Fri, 26 Oct 2012 14:30:12 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C30CDB1@DFLE09.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Subject: task-arago-qte-toolchain-target: standard qte target sdk packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,64 +36,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Oct 2012 02:33:41 -0000
+X-List-Received-Date: Fri, 26 Oct 2012 14:30:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-* Port ti-tisdk-setup from arago to meta-arago.
-* This recipe brings in various scripts used to setup the SDK on
-  a user's development machine.
-
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 2 changes:
-Move setup scripts into their own git repository
-
- .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |   36 ++++++++++++++++++++
- 1 files changed, 36 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-new file mode 100644
-index 0000000..d9b5da3
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -0,0 +1,36 @@
-+DESCRIPTION = "Package containing scripts to setup the development host and target board"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
-+
-+COMPATIBLE_MACHINE = "am37x-evm|am3517-evm|beagleboard|ti33x|am180x-evm"
-+
-+PR = "r0"
-+
-+BRANCH ?= "master"
-+SRCREV = "5bbfa583671b87bc8c17316bb3a9787fbc884ec6"
-+SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git/"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+UBOOT_ENV_am37x-evm = "setup-uboot-env-am37x.sh"
-+UBOOT_ENV_beagleboard = "setup-uboot-env-beagleboard.sh"
-+UBOOT_ENV_am3517-evm = "setup-uboot-env-am3517.sh"
-+UBOOT_ENV_am180x-evm = "setup-uboot-env-am18x.sh"
-+UBOOT_ENV_ti33x = "setup-uboot-env-am335x.sh"
-+
-+do_install () {
-+    install -m 0755 ${S}/setup.sh ${D}/
-+    install -d ${D}/bin
-+    install -m 0755 ${S}/common.sh ${D}/bin
-+    install -m 0755 ${S}/setup-host-check.sh ${D}/bin
-+    install -m 0755 ${S}/setup-minicom.sh ${D}/bin
-+    install -m 0755 ${S}/setup-package-install.sh ${D}/bin
-+    install -m 0755 ${S}/setup-targetfs-nfs.sh ${D}/bin
-+    install -m 0755 ${S}/setup-tftp.sh ${D}/bin
-+    install -m 0755 ${S}/create-sdcard.sh ${D}/bin
-+    install -m 0755 ${S}/${UBOOT_ENV} ${D}/bin/setup-uboot-env.sh
-+}
-+
-+FILES_${PN} += "setup.sh"
--- 
-1.7.0.4
-
+VGhpcyB0YXNrIGR1cGxpY2F0ZXMgdGFzay1hcmFnby1xdGUtc2RrLXRhcmdldCBxdWl0ZSBhIGJp
+dC4NCmh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9naXQvP3A9bWV0YS1hcmFnby5naXQ7YT1ibG9i
+X3BsYWluO2Y9bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3Rhc2tzL3Rhc2stYXJhZ28t
+cXRlLXNkay10YXJnZXQuYmI7aGI9SEVBRA0KDQpJIGRvbid0IHNlZSBhIG5lZWQgZm9yIGJvdGgg
+dGFza3Mgc28gbW9zdCBsaWtlbHkgd2Ugd2lsbCBnZXQgcmlkIG9mIHRhc2stYXJhZ28tcXRlLXNk
+ay10YXJnZXQuIE9ubHkgdGhpbmcgSSBzZWUgdGhhdCB5b3VyIHRhc2sgZG9lc24ndCBpbmNsdWRl
+IGlzICJxdDQtZW1iZWRkZWQtZGV2IiB3aGljaCBJIHdvdWxkIHRoaW5rIGlzIGFsc28gbmVlZGVk
+Lg0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBBcmFnbyBQcm9qZWN0IGdp
+dCBbbWFpbHRvOmdpdEBhcmFnby1wcm9qZWN0Lm9yZ10gDQpTZW50OiBGcmlkYXksIE9jdG9iZXIg
+MjYsIDIwMTIgMTI6MDUgQU0NClRvOiBhcmFnby1jb21taXRzQGFyYWdvLXByb2plY3Qub3JnDQpT
+dWJqZWN0OiBbYXJhZ28tY29tbWl0c10gRGVueXMgRG15dHJpeWVua28gOiB0YXNrLWFyYWdvLXF0
+ZS10b29sY2hhaW4tdGFyZ2V0OiBzdGFuZGFyZCBxdGUgdGFyZ2V0IHNkayBwYWNrYWdlcw0KDQpN
+b2R1bGU6IG1ldGEtYXJhZ28NCkJyYW5jaDogbWFzdGVyDQpDb21taXQ6IDAwMTMzNjRkZjZjZGNm
+MWM1MDUwODdlMTA2NGVlMzIxYjM2ZDhmNzYNClVSTDogICAgaHR0cDovL2FyYWdvLXByb2plY3Qu
+b3JnL2dpdC9tZXRhLWFyYWdvLmdpdD9hPWNvbW1pdDtoPTAwMTMzNjRkZjZjZGNmMWM1MDUwODdl
+MTA2NGVlMzIxYjM2ZDhmNzYNCg0KQXV0aG9yOiBEZW55cyBEbXl0cml5ZW5rbyA8ZGVueXNAdGku
+Y29tPg0KRGF0ZTogICBGcmkgT2N0IDI2IDAxOjAyOjUyIDIwMTIgLTA0MDANCg0KdGFzay1hcmFn
+by1xdGUtdG9vbGNoYWluLXRhcmdldDogc3RhbmRhcmQgcXRlIHRhcmdldCBzZGsgcGFja2FnZXMN
+Cg0KU2lnbmVkLW9mZi1ieTogRGVueXMgRG15dHJpeWVua28gPGRlbnlzQHRpLmNvbT4NCg0KLS0t
+DQoNCiAuLi4vdGFza3MvdGFzay1hcmFnby1xdGUtdG9vbGNoYWluLXRhcmdldC5iYiAgICAgICB8
+ICAgMzEgKysrKysrKysrKysrKysrKysrKysNCiAxIGZpbGVzIGNoYW5nZWQsIDMxIGluc2VydGlv
+bnMoKyksIDAgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9y
+ZWNpcGVzLWNvcmUvdGFza3MvdGFzay1hcmFnby1xdGUtdG9vbGNoYWluLXRhcmdldC5iYiBiL21l
+dGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS90YXNrcy90YXNrLWFyYWdvLXF0ZS10b29sY2hh
+aW4tdGFyZ2V0LmJiDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uNjdiMmZi
+Yw0KLS0tIC9kZXYvbnVsbA0KKysrIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL3Rh
+c2tzL3Rhc2stYXJhZ28tcXRlLXRvb2xjaGFpbi10YXJnZXQuYmINCkBAIC0wLDAgKzEsMzEgQEAN
+CitERVNDUklQVElPTiA9ICJUYXJnZXQgcGFja2FnZXMgZm9yIFF0IEVtYmVkZGVkIFNESyINCitM
+SUNFTlNFID0gIk1JVCINCitBTExPV19FTVBUWSA9ICIxIg0KKw0KK1BSID0gInIxIg0KKw0KK0xJ
+Q19GSUxFU19DSEtTVU0gPSAiZmlsZTovLyR7Q09SRUJBU0V9L0xJQ0VOU0U7bWQ1PTNmNDBkNzk5
+NDM5NzEwOTI4NWVjN2I4MWZkZWIzYjU4IFwNCisgICAgICAgICAgICAgICAgICAgIGZpbGU6Ly8k
+e0NPUkVCQVNFfS9tZXRhL0NPUFlJTkcuTUlUO21kNT0zZGE5Y2ZiY2I3ODhjODBhMDM4NDM2MWI0
+ZGUyMDQyMCINCisNCitSREVQRU5EU18ke1BOfSArPSAiIFwNCisgICAgICAgIHRhc2stY29yZS1z
+dGFuZGFsb25lLXNkay10YXJnZXQgXA0KKyAgICAgICAgcXQ0LWVtYmVkZGVkLW1rc3BlY3MgXA0K
+KyAgICAgICAgbGlicXQtZW1iZWRkZWRtdWx0aW1lZGlhNC1kZXYgXA0KKyAgICAgICAgbGlicXQt
+ZW1iZWRkZWRwaG9ub240LWRldiBcDQorICAgICAgICBsaWJxdC1lbWJlZGRlZDNzdXBwb3J0NC1k
+ZXYgXA0KKyAgICAgICAgbGlicXQtZW1iZWRkZWRjbHVjZW5lNC1kZXYgXA0KKyAgICAgICAgbGli
+cXQtZW1iZWRkZWRjb3JlNC1kZXYgXA0KKyAgICAgICAgbGlicXQtZW1iZWRkZWRkYnVzNC1kZXYg
+XA0KKyAgICAgICAgbGlicXQtZW1iZWRkZWRkZXNpZ25lcmNvbXBvbmVudHM0LWRldiBcDQorICAg
+ICAgICBsaWJxdC1lbWJlZGRlZGRlc2lnbmVyNC1kZXYgXA0KKyAgICAgICAgbGlicXQtZW1iZWRk
+ZWR1aXRvb2xzNC1kZXYgXA0KKyAgICAgICAgbGlicXQtZW1iZWRkZWRndWk0LWRldiBcDQorICAg
+ICAgICBsaWJxdC1lbWJlZGRlZGhlbHA0LWRldiBcDQorICAgICAgICBsaWJxdC1lbWJlZGRlZG5l
+dHdvcms0LWRldiBcDQorICAgICAgICBsaWJxdC1lbWJlZGRlZHNjcmlwdDQtZGV2IFwNCisgICAg
+ICAgIGxpYnF0LWVtYmVkZGVkc2NyaXB0dG9vbHM0LWRldiBcDQorICAgICAgICBsaWJxdC1lbWJl
+ZGRlZHN2ZzQtZGV2IFwNCisgICAgICAgIGxpYnF0LWVtYmVkZGVkdGVzdDQtZGV2IFwNCisgICAg
+ICAgIGxpYnF0LWVtYmVkZGVkd2Via2l0NC1kZXYgXA0KKyAgICAgICAgbGlicXQtZW1iZWRkZWR4
+bWw0LWRldiBcDQorICAgICAgICAiDQoNCg0K
 
