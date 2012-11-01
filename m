@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id C0F6B529B8
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id E5AAB529A5
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:38:52 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2650442oag.38
+	Thu,  1 Nov 2012 18:39:33 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so2630528obb.38
 	for <meta-arago@arago-project.org>;
-	Thu, 01 Nov 2012 11:38:52 -0700 (PDT)
+	Thu, 01 Nov 2012 11:39:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=USY61uU8HVH6+R//wfNu7Ujwx8t9M7NtKkWkQltWhOA=;
-	b=coPGzy8Eq0aUt9bPWrA/MiUM4Lf9ZxTU1zbXz4nzeZqCbtFDWs1Hbt/riWD172larK
-	UchzD+VGDr1IqGfK1nUKmXuauPmqhIg1VUDApAoPXGxhe33QvSTlcXaBsQIdBxpOYnS3
-	cdwHC9GcqSbkW0/e+rcu9XkvKuq4zqE3ZcgJXgu6qCHAu+LYujXwvOvG2cecN8kEXNHl
-	pw2svip12ZbKSR/ZrBESb6r6wM0kEUtGojuFHIkAyToKbQAaMmmCMtp6d0wUkdUCnqUP
-	nGKB84LqAlOdRdlz9LOA92bW3zNuBobEasmtjw8IK2pggkmvsyQJBNGtFYO2psJ8Am6d
-	lkbQ==
-Received: by 10.182.117.74 with SMTP id kc10mr33863301obb.63.1351795132590;
-	Thu, 01 Nov 2012 11:38:52 -0700 (PDT)
+	bh=qC+ll/NjpcC/T39MZV4vGZBcI0Vw8bKEedLPK3oMzZM=;
+	b=c1lPWCQjnnEZuJTByNVqQl4s1hApG6Nj+EFhHPHt7xSHLa5APhoxAXyl8BRlFfrO43
+	a11Q3xpMRB5vgC/55doYo71cDQrI0bw6y9cShX0ZcbhC/TsoSnkOe6dQv74iULvq3Kff
+	IcRGrSlQWFpQZVA3KsbBGBF0ONBUklK6VCWFUH/Iw6I/6tU0vhnfQ6N7XD8Wbzul6Dwh
+	dc41sRfrQ2c0kLPN+g5Z3sihAGTBUQ1gD7nSDz6+MjXhKSAHYyOItuODY6U8NR/wAds0
+	m+bbM5oQW+LdOSBNiklc+jyknfb5wra822GSG9+ngsWfi4DqjuswFMvwudR7RuKVKsVi
+	/72Q==
+Received: by 10.60.30.100 with SMTP id r4mr35800929oeh.121.1351795173458;
+	Thu, 01 Nov 2012 11:39:33 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id a7sm6965325obw.6.2012.11.01.11.38.51
+	by mx.google.com with ESMTPS id hc1sm6966140obc.7.2012.11.01.11.39.32
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 01 Nov 2012 11:38:51 -0700 (PDT)
+	Thu, 01 Nov 2012 11:39:33 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Nov 2012 13:38:48 -0500
-Message-Id: <1351795128-4661-1-git-send-email-fcooper@ti.com>
+Date: Thu,  1 Nov 2012 13:39:28 -0500
+Message-Id: <1351795168-4726-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] arago-amsdk-image: Add task-arago-tisdk-amsdk-sdk-host
+Subject: [PATCH] arago-tisdk-image: Add task-arago-tisdk-amsdk
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,27 +41,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:38:53 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 18:39:34 -0000
 
-* Add amsdk task which pulls in SDK specific scripts, files and applications.
+* Add amsdk task which pulls in SDK specific scripts and files.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/images/arago-amsdk-image.bb       |    1 +
+ .../recipes-core/images/arago-tisdk-image.bb       |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-index 6ddcb8b..05778dd 100644
---- a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-@@ -22,6 +22,7 @@ IMAGE_INSTALL = "\
-     task-arago-tisdk-matrix-sdk-host \
-     task-arago-tisdk-multimedia-sdk-host \
-     task-arago-tisdk-qte-sdk-host \
-+    task-arago-tisdk-amsdk-sdk-host \
+diff --git a/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
+index 9e1eaea..970e7a9 100644
+--- a/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
+@@ -14,6 +14,7 @@ IMAGE_INSTALL += "\
+     task-arago-tisdk-crypto \
+     task-arago-tisdk-matrix \
+     task-arago-tisdk-multimedia \
++    task-arago-tisdk-amsdk \
  "
  
- export IMAGE_BASENAME = "arago-amsdk-image"
+ export IMAGE_BASENAME = "tisdk-rootfs"
 -- 
 1.7.0.4
 
