@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id D5022529B8
+	by arago-project.org (Postfix) with ESMTPS id 4A3FC529B8
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:37:40 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2649562oag.38
+	Thu,  1 Nov 2012 18:38:25 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so2650442oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 01 Nov 2012 11:37:40 -0700 (PDT)
+	Thu, 01 Nov 2012 11:38:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=upW7w+jLSoV+sIO0IrbwwLusSvCh0zLIJC6rimjAj88=;
-	b=mr8CoOnQo2mQEoPnLEqAOIGcgILWr4SRUTwV7zBxmEPo7PpzTHth2dzZU93+nrs7ia
-	8yYifs5TehiOj40/QK/d78FZEHjzmDLJwtI3ok0MXVH0wmH+9nR1RMXb1k9bl6lSPYk3
-	A716ztmPxydALKWnsn70VEqV68j/U99hx2jVnnVc35F3xlHKxm/p0PiPDoS7lJdZ5xsu
-	qbTVkPEdXGyeiN52TBcxzjmmpomIFH6voiQX5tVE+luGUIKJGKGZqyuxssFEYfGeYJhE
-	zmqMz8INXgwH1JULn9na4QdJ7thLhMje8VvcP6sZaMkwBxzx8tLEpF/jfNIQZlSEo1KS
-	ZdFA==
-Received: by 10.182.157.45 with SMTP id wj13mr34331192obb.58.1351795060381;
-	Thu, 01 Nov 2012 11:37:40 -0700 (PDT)
+	bh=bidHthPxkYk2kMd5XQaQCQkH7bbZXTurimNtxN+P4zQ=;
+	b=K8jeBsIUPSDVKa66/y2RgSdru0h/nuXqK5+vVP9g26FT5p8FueQRg3Vve+wddryb02
+	5arp/WuoqCPwmAdlpZ1lxagzRhutUTJLpAshEVtIc0Hq9MoFjcyUF9sTRqExzneJCawO
+	Z+Z54Eq4Z3AXx+OY//9cRLeQr2blJuVymW9iTqLPgLbBH5E4dvi7u5NmM8NLyol4BKck
+	PvEeuBOlZtvHxV9q3kUTJrCArFEBiyVtQtdvllwypkX8Q8+fdOpCXZxOnDQKTNnK4Ug5
+	XK6brICehlmeUgdEJZgLdm5drAFmlcgUHBMpkmm+83GCplDQR0GQSUTbOYiDnEhOYtyC
+	EtUQ==
+Received: by 10.182.150.34 with SMTP id uf2mr34450568obb.66.1351795104744;
+	Thu, 01 Nov 2012 11:38:24 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id c18sm3128522obc.17.2012.11.01.11.37.39
+	by mx.google.com with ESMTPS id hz6sm6969607obb.1.2012.11.01.11.38.23
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 01 Nov 2012 11:37:39 -0700 (PDT)
+	Thu, 01 Nov 2012 11:38:24 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Nov 2012 13:37:36 -0500
-Message-Id: <1351795056-4531-1-git-send-email-fcooper@ti.com>
+Date: Thu,  1 Nov 2012 13:38:20 -0500
+Message-Id: <1351795100-4596-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] matrix-gui-clocks: Remove ${PN} package and fix RDEPENDS
+Subject: [PATCH] board-port-labs: Tweak recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,57 +41,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:37:41 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 18:38:25 -0000
 
-* Nothing should actually go inside the matrix-gui-clocks package. So remove
-  it from the list of packages.
-* This also fixed an issue where script files were being pulled into the ${PN}
-  package instead of being packaged with the appropriate clock frequency package.
-* Each provided package should use the same RDEPENDS. Update the recipe so each
-  package has the correct RDEPENDS.
+* Move the git repositories links from the REPOS variable to the SRC_URI.
+* Remove the repos_checkout task. This allows do_fetch to handle the fetching
+  which is alot faster since the two repositories do not have to be redownloaded
+  every time this recipe is built.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-clocks_2.0.bb   |   18 +++++++++++++-----
- 1 files changed, 13 insertions(+), 5 deletions(-)
+ .../board-port-labs/board-port-labs_git.bb         |   29 ++++++++-----------
+ 1 files changed, 12 insertions(+), 17 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-clocks_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-clocks_2.0.bb
-index b8d4e50..62028ec 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-clocks_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-clocks_2.0.bb
-@@ -4,19 +4,27 @@ LICENSE = "CC-BY-SA"
+diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
+index 97ca84d..d7329cc 100644
+--- a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
++++ b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
+@@ -3,29 +3,24 @@ HOMEPAGE = "https://gitorious.org/sitara-board-port"
+ LICENSE = "GPLv2"
+ DEPENDS += "git-native"
  
- require matrix-gui-apps-git.inc
+-SRC_URI = "file://LICENSE"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=d9fb2a547cd8e6bb75c0ecf427a139a9"
++LIC_FILES_CHKSUM = "file://../LICENSE;md5=d9fb2a547cd8e6bb75c0ecf427a139a9"
  
--PR = "${INC_PR}.2"
-+PR = "${INC_PR}.3"
- 
- inherit allarch
- 
- S = "${WORKDIR}/git/clocks_apps"
- 
--# Make sure power submenu and app images has been installed
--RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-power matrix-gui-generic-pm"
--
- # Break out the individual files into separate packages.  That way only the
- # clocks supported for each device can be installed.  Prepend the list so
- # that we can get the files in ${bindir} first
--PACKAGES =+ "${PN}-275mhz ${PN}-300mhz ${PN}-500mhz ${PN}-600mhz ${PN}-720mhz ${PN}-800mhz ${PN}-1ghz"
-+PACKAGES = "${PN}-275mhz ${PN}-300mhz ${PN}-500mhz ${PN}-600mhz ${PN}-720mhz ${PN}-800mhz ${PN}-1ghz"
+ PACKAGE_ARCH = "all"
 +
-+# Make sure power submenu and app images has been installed
-+CLOCK_RDEPENDS = "matrix-gui-apps-images matrix-gui-submenus-power matrix-gui-generic-pm"
-+
-+RDEPENDS_${PN}-275mhz += "${CLOCK_RDEPENDS}"
-+RDEPENDS_${PN}-300mhz += "${CLOCK_RDEPENDS}"
-+RDEPENDS_${PN}-500mhz += "${CLOCK_RDEPENDS}"
-+RDEPENDS_${PN}-600mhz += "${CLOCK_RDEPENDS}"
-+RDEPENDS_${PN}-720mhz += "${CLOCK_RDEPENDS}"
-+RDEPENDS_${PN}-800mhz += "${CLOCK_RDEPENDS}"
-+RDEPENDS_${PN}-1ghz += "${CLOCK_RDEPENDS}"
+ CREATE_SRCIPK = "1"
+ SRCIPK_INSTALL_DIR = "board-support/board-port-labs"
  
- # Split the matrix files by clock
- FILES_${PN}-275mhz += "${MATRIX_APP_DIR}/power_set_275mhz/*"
+-PR = "r0"
++PR = "r1"
+ 
+-REPOS ?= "git://gitorious.org/sitara-board-port/sitara-board-port-linux.git \
+-          git://gitorious.org/sitara-board-port/sitara-board-port-uboot.git \
+-         "
++BRANCH = "board-port-05.05.00.00"
+ 
+-S = "${WORKDIR}"
++SRC_URI = "\
++    file://LICENSE \
++    git://gitorious.org/sitara-board-port/sitara-board-port-linux.git;protocol=git;branch=${BRANCH};destsuffix=board-support/sitara-board-port-linux;name=board-support-linux \
++    git://gitorious.org/sitara-board-port/sitara-board-port-uboot.git;protocol=git;branch=${BRANCH};destsuffix=board-support/sitara-board-port-uboot;name=board-support-u-boot \
++"
+ 
+-# Checkout the REPOS before the do_patch task so that it will be done prior
+-# to the srcipk being made.
+-do_repos_checkout() {
+-    cd ${S}
+-    for r in ${REPOS}
+-    do
+-        git clone $r
+-    done
+-}
++SRCREV_board-support-linux = "eaf6d6b4447b132592896fb87d914d130892cd2e"
++SRCREV_board-support-u-boot = "c817fbabece6218f128dc1ce4410563d503cecae"
+ 
+-addtask repos_checkout after do_fetch before do_patch
++S = "${WORKDIR}/board-support"
 -- 
 1.7.0.4
 
