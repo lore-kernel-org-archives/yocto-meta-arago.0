@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 4E79C529B8
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 613B9529B8
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:36:28 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so2627663obb.38
+	Thu,  1 Nov 2012 18:37:01 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so2648870oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 01 Nov 2012 11:36:27 -0700 (PDT)
+	Thu, 01 Nov 2012 11:37:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=K0MK1qpI68jDMy18T9qqRElJIZ49O8NM9dRxRHsT038=;
-	b=RzLGP+q0Ac36E1O3H+8wfvz8+Ue2CthFopPvPcNVtXhP0bwz/qGw3kA0qKZt/vr78g
-	zs8/thvgQtr+MaHVMONmQY+BoQlkmy90rbCnzTDay7HjRZyTGOaDBvpD4z7rX56uqhIe
-	7ygsTMIfCB6B3kiOLbTFuX2s7BAWPVFaU8mdpzDhnSORG413JndkUnAS8Bh26lzSJD7w
-	8hLpLgT+irtA7h1cuo0a1NhN8bNhta5DDZpcO+KtDcpDA7g8VCfbMJK4r/7WAI+dLlDj
-	fFXRVQcKxd0Elq23L+8RV/riIDMwqKeshXTHFP7IoHIVV67tWK6f+AXZJRcWXAFNfx15
-	pxBg==
-Received: by 10.60.0.166 with SMTP id 6mr34413026oef.6.1351794987845;
-	Thu, 01 Nov 2012 11:36:27 -0700 (PDT)
+	bh=NI7uH9dkUSU9X6gQUgNSsn4XZDkYzoD5J3Lup2n5nto=;
+	b=D8V6GCmXbVGad/bJYZjTznvDMfBxSc+tyaoiyyi73SO0cUOM/i2oG2xVag/71d4LTf
+	uLhstnq0tChBVFpPJfQP7zf/zg6FGHxKrcpPNMPrWmfsN27JU9afa4NMBOmK0oCqx0se
+	suYSEukqbEsKW+YyG9mOqIpnSBmb2stKVdgoo3L4Zi8MaK8EkjQmG3qVr6xQioN7/Ubq
+	XVfXreXvGNLFu0w+C+ZcXyNdzcga2tmerT9O0Jt4pjTPwOGtqixt6AW7GxfBZst41o/2
+	mOYdOkvm+reeVQv9+UJti3tXbOZZBk1V69DsNJ/gNEgS9Dvnktpdl3MpubhBt921/PHN
+	EFdQ==
+Received: by 10.60.32.135 with SMTP id j7mr34247337oei.132.1351795020715;
+	Thu, 01 Nov 2012 11:37:00 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id n7sm6946023obd.16.2012.11.01.11.36.27
+	by mx.google.com with ESMTPS id on10sm6958363obc.9.2012.11.01.11.36.59
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 01 Nov 2012 11:36:27 -0700 (PDT)
+	Thu, 01 Nov 2012 11:37:00 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Nov 2012 13:36:23 -0500
-Message-Id: <1351794983-4386-1-git-send-email-fcooper@ti.com>
+Date: Thu,  1 Nov 2012 13:36:56 -0500
+Message-Id: <1351795016-4461-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] task-arago-tisdk-matrix: Remove wifi and bluetooth demos
+Subject: [PATCH] matrix-gui-apps-git: Correct .desktop filenames
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,62 +41,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:36:28 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 18:37:01 -0000
 
-* Wifi and bluetooth firmware and drivers have not been accepted in meta-ti.
-* There are also issues with required scripts and other applications.
-* Pulling wifi and bluetooth demos until these issues are fixed.
+* Some of the .desktops for power management related demos had incorrect
+  filenames.
+* Pulling in the commit that provides the correct filenames.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/tasks/task-arago-tisdk-matrix.bb  |   13 +------------
- 1 files changed, 1 insertions(+), 12 deletions(-)
+ .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
-index 91e095f..754b98d 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r2"
-+PR = "r3"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index ca5f69d..ddbc7a7 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
- inherit task
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "cf78c056a48573600438535adb31b4415377bc00"
++SRCREV = "6a0c9776adfef03463535de6c7059d8525a336aa"
+ BRANCH = "master"
+-INC_PR = "r4"
++INC_PR = "r5"
  
-@@ -42,10 +42,6 @@ MATRIX_APPS_append_ti33x = "        \
-                                     \
-     matrix-gui-generic-pm           \
-     matrix-gui-pm-demos-suspend     \
--                                    \
--    matrix-gui-wifi-demos           \
--    matrix-gui-bluetooth-demos      \
--    matrix-gui-wifi-direct-demo     \
- "
- 
- MATRIX_APPS_append_beagleboard = "  \
-@@ -69,10 +65,6 @@ MATRIX_APPS_append_am37x-evm = "    \
-     matrix-gui-pm-demos-snapshot2   \
-     matrix-gui-pm-demos-suspend     \
-                                     \
--    matrix-gui-wifi-demos           \
--    matrix-gui-wifi-direct-demo     \
--    matrix-gui-bluetooth-demos      \
--                                    \
-     matrix-gui-display-control      \
-     matrix-gui-camera-loopback      \
-     matrix-gui-v4l2-demos           \
-@@ -80,9 +72,6 @@ MATRIX_APPS_append_am37x-evm = "    \
- "
- 
- RDEPENDS_append_am180x-evm = "      \
--    matrix-gui-wifi-demos           \
--    matrix-gui-bluetooth-demos      \
--    matrix-gui-wifi-direct-demo     \
- "
- 
- RDEPENDS_${PN} = "        \
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.7.0.4
 
