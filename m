@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id CF48A529A5
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id A0B10529A5
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:44:48 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2657611oag.38
+	Thu,  1 Nov 2012 18:45:17 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so2635972obb.38
 	for <meta-arago@arago-project.org>;
-	Thu, 01 Nov 2012 11:44:48 -0700 (PDT)
+	Thu, 01 Nov 2012 11:45:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=ZxVg/+Z6F93GzceLTDC/JTZQJiUnFMffr2bgm4n27/k=;
-	b=VuozjriY0eJHXqyQS/CWKISUVt3/n11LDI8ZlLpJtIorCh5prT0LlDximrT5E0/60e
-	e+Z3xKYg81l8tbDj4ULJHNztf3r9OUYYiAvOcj7RMhpnzNjaD2n5YZCDinr9RAHixkGd
-	8XSOXzr3df42SbhKbwZpl6waQE6u+KOSAzaKxjsjSj0V8zkuNQi1BGomX8u0tGqQYt6M
-	R3QsQi4bNj5fCqXMmzI7aLAaIW4k4kPiCuE5deaV1HWzJM05KSbSFrC4dve9WBT0zYM/
-	KhKS+u2DSJL7dGBMb6LIdC6ZfRmm+EjoR1Ja1L0z0e4cS4pq8mCwb5SuCnPq661xJia+
-	KWdg==
-Received: by 10.182.89.42 with SMTP id bl10mr33954507obb.27.1351795488335;
-	Thu, 01 Nov 2012 11:44:48 -0700 (PDT)
+	bh=0ma7eQwr3Mb/DgU5lW6vp9zrWJNALutufo8EmFEE+P4=;
+	b=goJK/cPxmmXjnJfdNiSkHiVrYJfKKW+UpmvLgdQSUKX2zeRcyEgU3NpSRLMzel+M/7
+	MxHkn6RjLFaOUwfqRumbH0+JjTDGm3F+0FETFwFE5/HXcVKWk1xEKf+STbR62YfwATRY
+	g1Dj32Xg2lcis2up9wFwgJ6D0ln6atCaKe81HD4Mmd0ZNAn+REmWWhxcYVJThiTd2I5W
+	HFtkbkjqQnwOra1sZyA8ysxi4UM6o3bqkOXM4GsPIYxeVogy/DjUMf503h1AK3w2QAMp
+	ADUQal4OQUFMPvqJ5yS9JcfDRopOgHCYjJtDuJ0PLYppTO2wkdVEFObzSKsSarheP6+q
+	CwwQ==
+Received: by 10.60.11.105 with SMTP id p9mr30891454oeb.128.1351795517129;
+	Thu, 01 Nov 2012 11:45:17 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id g17sm1136353oei.10.2012.11.01.11.44.47
+	by mx.google.com with ESMTPS id v6sm5456636oeh.13.2012.11.01.11.45.16
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 01 Nov 2012 11:44:47 -0700 (PDT)
+	Thu, 01 Nov 2012 11:45:16 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Nov 2012 13:44:44 -0500
-Message-Id: <1351795484-5273-1-git-send-email-fcooper@ti.com>
+Date: Thu,  1 Nov 2012 13:45:13 -0500
+Message-Id: <1351795513-5333-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] arago.conf: Setting PREFERRED_VERSIONS
+Subject: [PATCH] gst-ffmpeg: Select a non GPLv3 license
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,33 +41,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:44:49 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 18:45:17 -0000
 
-* Setting PREFERRED_VERSIONS to use a specific version of a library or
-  application that does not require a GPLv3 license.
+* Gst-ffmpeg has two license selection options. Selecting non GPLv3 license.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    6 ++++++
- 1 files changed, 6 insertions(+), 0 deletions(-)
+ .../gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend         |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-multimedia/gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 013e496..84d0050 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -67,6 +67,12 @@ PREFERRED_VERSION_udev = "164"
- PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
- PREFERRED_PROVIDER_jpeg_armv5te = "jpeg"
- 
-+# Setting PREFERRED_VERSIONS due to selecting a specific version of a library or
-+# application that does not have a GPLv3 license
-+PREFERRED_VERSION_gdbm = "1.8.3"
-+PREFERRED_VERSION_readline = "5.2"
+diff --git a/meta-arago-distro/recipes-multimedia/gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend b/meta-arago-distro/recipes-multimedia/gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend
+new file mode 100644
+index 0000000..ca5a52a
+--- /dev/null
++++ b/meta-arago-distro/recipes-multimedia/gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend
+@@ -0,0 +1,5 @@
++PR_append = "-arago0"
 +
-+
- # Disable polkit's systemd configuration from meta-oe
- POLKITAUTH = ""
- 
++# Select the non GPLv3 license option for distribution of this plugin with our
++# SDK
++LICENSE = "GPLv2+ & LGPLv2+ & (GPLv2+ & LGPLv2.1+)"
 -- 
 1.7.0.4
 
