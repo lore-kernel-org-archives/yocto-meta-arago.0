@@ -1,35 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6E353529A5
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id CEFE1529A5
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 19:02:01 +0000 (UTC)
+	Thu,  1 Nov 2012 19:02:23 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA1J20uq023081;
-	Thu, 1 Nov 2012 14:02:00 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA1J2Nsn022441;
+	Thu, 1 Nov 2012 14:02:23 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA1J20SR030045;
-	Thu, 1 Nov 2012 14:02:00 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Thu, 1 Nov 2012 14:02:00 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "Franklin S. Cooper Jr"
-	<fcooperjr27@gmail.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] arago-amsdk-image: Add additional tasks
-	and	image
-Thread-Index: AQHNuF+99QtHwv/Vnk293+WX4lPdMpfVp80A//+tRCA=
-Date: Thu, 1 Nov 2012 19:01:59 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C313819@DFLE09.ent.ti.com>
-References: <1351794950-4321-1-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159290E2B@DLEE12.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED10159290E2B@DLEE12.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA1J2Nqv030597;
+	Thu, 1 Nov 2012 14:02:23 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
+	Thu, 1 Nov 2012 14:02:22 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id qA1J2M04011310;
+	Thu, 1 Nov 2012 14:02:22 -0500
+Date: Thu, 1 Nov 2012 15:02:22 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-ID: <20121101190222.GF22705@edge>
+References: <1351795396-5146-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arago-amsdk-image: Add additional tasks and	image
+In-Reply-To: <1351795396-5146-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH] meta-toolchain-arago-tisdk: Add Arago SDK specific toolchain recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,87 +37,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 19:02:01 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 01 Nov 2012 19:02:23 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-I submitted the patches based on my commit order. However , your right. Som=
-e of these patches I created and then rebased when I added new recipes late=
-r on. I don't think this with be an issue with the remaining patches I sent=
- but I will double check
-
------Original Message-----
-From: Maupin, Chase=20
-Sent: Thursday, November 01, 2012 1:55 PM
-To: Franklin S. Cooper Jr; meta-arago@arago-project.org
-Cc: Cooper Jr., Franklin
-Subject: RE: [meta-arago] [PATCH] arago-amsdk-image: Add additional tasks a=
-nd image
-
-This depends on your patch that renames the arago-tisdk-image.  Without pat=
-ch series numbers it's hard to know the ordering.
-
-Sincerely,
-Chase Maupin
-Software Applications
-ARM MPU
-e-mail: chase.maupin@ti.com
-phone: (214) 567-2950
-
-For support:
-Forums - http://community.ti.com/forums/ Wiki - http://wiki.davincidsp.com/=
-=20
-
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
-> bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> Sent: Thursday, November 01, 2012 1:36 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH] arago-amsdk-image: Add additional tasks=20
-> and image
->=20
-> * Add additional sdk-host tasks and target filesystem image
->=20
+On Thu, Nov 01, 2012 at 01:43:16PM -0500, Franklin S. Cooper Jr wrote:
+> * Add a meta toolchain recipe that builds on top of meta-toolchain-arago-qte
+>   but includes components and tasks specific to the Arago SDK.
+> 
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  .../recipes-core/images/arago-amsdk-image.bb       |   13
-> ++++++++++---
->  1 files changed, 10 insertions(+), 3 deletions(-)
->=20
-> diff --git a/meta-arago-distro/recipes-core/images/arago-amsdk-
-> image.bb b/meta-arago-distro/recipes-core/images/arago-amsdk-
-> image.bb
-> index 82e0527..6ddcb8b 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-> @@ -13,9 +13,16 @@ HOST_CLEANUP_PACKAGES =3D ""
->  TOOLCHAIN_CLEANUP_PACKAGES =3D ""
->=20
->  # List of target side images to build for the SDK -TARGET_IMAGES =3D=20
-> "arago-base-tisdk-image"
-> -
-> -IMAGE_INSTALL =3D "task-arago-tisdk-addons-sdk-host"
-> +TARGET_IMAGES =3D "arago-base-tisdk-image tisdk-rootfs-image"
+>  .../meta/meta-toolchain-arago-tisdk.bb             |   18 ++++++++++++++++++
+>  1 files changed, 18 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+> 
+> diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+> new file mode 100644
+> index 0000000..17f3966
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+> @@ -0,0 +1,18 @@
+> +require recipes-core/meta/meta-toolchain-arago-qte.bb
 > +
-> +IMAGE_INSTALL =3D "\
-> +    task-arago-tisdk-addons-sdk-host \
-> +    task-arago-tisdk-connectivity-sdk-host \
-> +    task-arago-tisdk-crypto-sdk-host \
-> +    task-arago-tisdk-matrix-sdk-host \
-> +    task-arago-tisdk-multimedia-sdk-host \
-> +    task-arago-tisdk-qte-sdk-host \
-> +"
->=20
->  export IMAGE_BASENAME =3D "arago-amsdk-image"
->=20
-> --
-> 1.7.0.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> +TOOLCHAIN_TARGET_TASK = "task-arago-toolchain-tisdk-target"
+> +TOOLCHAIN_OUTPUTNAME = "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
+
+Hmm, this essentially returns it back to the one used by the generic 
+meta-toolchain-arago...
+
+> +
+> +PR = "0"
+
+^^^^ it's "r0"
+
+> +
+> +toolchain_create_sdk_env_script_append() {
+> +    echo -e 'export CPP="\x24{TARGET_PREFIX}gcc -E"' >> $script
+> +    echo -e 'export NM=\x24{TARGET_PREFIX}nm' >> $script
+> +    echo -e 'export RANLIB=\x24{TARGET_PREFIX}ranlib' >> $script
+> +    echo -e 'export OBJCOPY=\x24{TARGET_PREFIX}objcopy' >> $script
+> +    echo -e 'export STRIP=\x24{TARGET_PREFIX}strip' >> $script
+> +    echo -e 'export AS=\x24{TARGET_PREFIX}as' >> $script
+> +    echo -e 'export AR=\x24{TARGET_PREFIX}ar' >> $script
+> +    echo -e 'export OBJDUMP=\x24{TARGET_PREFIX}objdump' >> $script
+> +    echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
+
+All these vars are not TI-SDK specific, should we rather place them in the 
+meta-toolchain-arago instead?
 
