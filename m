@@ -1,34 +1,30 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 9F15D529A5
+	by arago-project.org (Postfix) with ESMTPS id B1C49529A5
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:54:50 +0000 (UTC)
+	Thu,  1 Nov 2012 18:57:55 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA1Isn3W021618;
-	Thu, 1 Nov 2012 13:54:49 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA1IvsML021948;
+	Thu, 1 Nov 2012 13:57:54 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA1IsnEU023292;
-	Thu, 1 Nov 2012 13:54:49 -0500
-Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Thu, 1 Nov 2012 13:54:49 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] arago-amsdk-image: Add additional tasks
-	and	image
-Thread-Index: AQHNuF+8eUDVxRuYSkC7eNX4icLRF5fVU6dA
-Date: Thu, 1 Nov 2012 18:54:48 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159290E2B@DLEE12.ent.ti.com>
-References: <1351794950-4321-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1351794950-4321-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA1IvsR5025669;
+	Thu, 1 Nov 2012 13:57:54 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
+	Thu, 1 Nov 2012 13:57:54 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id qA1Ivsol009630;
+	Thu, 1 Nov 2012 13:57:54 -0500
+Date: Thu, 1 Nov 2012 14:57:54 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-ID: <20121101185754.GE22705@edge>
+References: <1351795310-4966-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH] arago-amsdk-image: Add additional tasks and	image
+In-Reply-To: <1351795310-4966-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH] meta-toolchain-arago-qte: Fix Qt library and include files path
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,72 +37,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:54:50 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 01 Nov 2012 18:57:55 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-This depends on your patch that renames the arago-tisdk-image.  Without pat=
-ch series numbers it's hard to know the ordering.
-
-Sincerely,
-Chase Maupin
-Software Applications
-ARM MPU
-e-mail: chase.maupin@ti.com
-phone: (214) 567-2950
-
-For support:
-Forums - http://community.ti.com/forums/
-Wiki - http://wiki.davincidsp.com/=20
-
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> Sent: Thursday, November 01, 2012 1:36 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH] arago-amsdk-image: Add additional
-> tasks and image
->=20
-> * Add additional sdk-host tasks and target filesystem image
->=20
+On Thu, Nov 01, 2012 at 01:41:50PM -0500, Franklin S. Cooper Jr wrote:
+> * Within the toolchain sdk the Qt library files are located at
+>   SDK_PATH/arm-arago-linux-gnueabi/usr/lib not at SDK_PATH/usr/lib.
+>   The Qt include files are located in a similar location but instead of /usr/lib
+>   it is located at /usr/include.
+> * This commit points qmake to the proper location of these Qt library and include
+>   files.
+> 
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  .../recipes-core/images/arago-amsdk-image.bb       |   13
-> ++++++++++---
->  1 files changed, 10 insertions(+), 3 deletions(-)
->=20
-> diff --git a/meta-arago-distro/recipes-core/images/arago-amsdk-
-> image.bb b/meta-arago-distro/recipes-core/images/arago-amsdk-
-> image.bb
-> index 82e0527..6ddcb8b 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-> @@ -13,9 +13,16 @@ HOST_CLEANUP_PACKAGES =3D ""
->  TOOLCHAIN_CLEANUP_PACKAGES =3D ""
->=20
->  # List of target side images to build for the SDK
-> -TARGET_IMAGES =3D "arago-base-tisdk-image"
-> -
-> -IMAGE_INSTALL =3D "task-arago-tisdk-addons-sdk-host"
-> +TARGET_IMAGES =3D "arago-base-tisdk-image tisdk-rootfs-image"
-> +
-> +IMAGE_INSTALL =3D "\
-> +    task-arago-tisdk-addons-sdk-host \
-> +    task-arago-tisdk-connectivity-sdk-host \
-> +    task-arago-tisdk-crypto-sdk-host \
-> +    task-arago-tisdk-matrix-sdk-host \
-> +    task-arago-tisdk-multimedia-sdk-host \
-> +    task-arago-tisdk-qte-sdk-host \
-> +"
->=20
->  export IMAGE_BASENAME =3D "arago-amsdk-image"
->=20
-> --
+>  .../recipes-core/meta/meta-toolchain-arago-qte.bb  |    6 +++---
+>  1 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> index 54040e0..e349783 100644
+> --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> @@ -5,7 +5,7 @@ TOOLCHAIN_OUTPUTNAME = "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-qte-sdk-${SDK_ARC
+>  
+>  require meta-toolchain-arago.bb
+>  
+> -PR = "r3"
+> +PR = "r4"
+>  
+>  QT_DIR_NAME = "qtopia"
+>  
+> @@ -17,8 +17,8 @@ toolchain_create_sdk_env_script_append() {
+>      echo -e 'export OE_QMAKE_CXX=\x24{TARGET_PREFIX}g++' >> $script
+>      echo -e 'export OE_QMAKE_LINK=\x24{TARGET_PREFIX}g++' >> $script
+>      echo -e 'export OE_QMAKE_AR=\x24{TARGET_PREFIX}ar' >> $script
+> -    echo 'export OE_QMAKE_LIBDIR_QT=$SDK_PATH${libdir}' >> $script
+> -    echo 'export OE_QMAKE_INCDIR_QT=$SDK_PATH${includedir}/${QT_DIR_NAME}' >> $script
+> +    echo 'export OE_QMAKE_LIBDIR_QT=$SDK_PATH/$TARGET_SYS${libdir}' >> $script
+> +    echo 'export OE_QMAKE_INCDIR_QT=$SDK_PATH/$TARGET_SYS${includedir}/${QT_DIR_NAME}' >> $script
+
+Ah, right, I didn't notice that I borked these 2 with my last patch...
+
+
+>      echo 'export OE_QMAKE_MOC=$SDK_PATH${bindir_nativesdk}/moc4' >> $script
+>      echo 'export OE_QMAKE_UIC=$SDK_PATH${bindir_nativesdk}/uic4' >> $script
+>      echo 'export OE_QMAKE_UIC3=$SDK_PATH${bindir_nativesdk}/uic34' >> $script
+> -- 
 > 1.7.0.4
->=20
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
