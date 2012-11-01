@@ -1,32 +1,23 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 3EAC6529A5
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id C1ED0529AD
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 19:12:45 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA1JCihc029842;
-	Thu, 1 Nov 2012 14:12:44 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA1JCiZu008523;
-	Thu, 1 Nov 2012 14:12:44 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 1 Nov 2012 14:12:44 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id qA1JCiCd014065;
-	Thu, 1 Nov 2012 14:12:44 -0500
-Date: Thu, 1 Nov 2012 15:12:44 -0400
+	Thu,  1 Nov 2012 19:32:31 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MCT00EFZQ9RM0B2@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 01 Nov 2012 14:32:16 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 840BA201BB; Thu,
+	01 Nov 2012 15:32:15 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20121101191243.GG22705@edge>
-References: <1351794950-4321-1-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159290E2B@DLEE12.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C313819@DFLE09.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C313819@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] arago-amsdk-image: Add additional tasks and	image
+To: meta-arago@arago-project.org
+Date: Thu, 01 Nov 2012 15:32:14 -0400
+Message-id: <1351798334-12904-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 1.7.12.4
+Subject: [PATCH] meta-toolchain-arago: remove MULTIMACH_TARGET_SYS suffix from top level files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,89 +30,85 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 19:12:45 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 01 Nov 2012 19:32:32 -0000
 
-The order cannot be guaranteed for the patches sent in the same batch w/o 
-patch series numbers. Emails often come out of order.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/meta/meta-toolchain-arago.bb      | 40 +++++++++++++++++++---
+ 1 file changed, 35 insertions(+), 5 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index 1e5d140..8c92b10 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -4,19 +4,19 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
+ 
+ require recipes-core/meta/meta-toolchain.bb
+ 
+-PR = "r2"
++PR = "r3"
+ 
+ SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
+ 
+ # This function creates an environment-setup-script for use in a deployable SDK
+ toolchain_create_sdk_env_script () {
+ 	# Create environment setup script
+-	script=${SDK_OUTPUT}/${SDKPATH}/environment-setup-${MULTIMACH_TARGET_SYS}
++	script=${SDK_OUTPUT}/${SDKPATH}/environment-setup
+ 	rm -f $script
+ 	touch $script
+ 	echo 'SDK_PATH="${SDKPATHNATIVE}"' >> $script
+-	echo 'if [ -z "$ZSH_NAME" ] && [ "x$0" = "x./environment-setup-${MULTIMACH_TARGET_SYS}" ]; then' >> $script
+-	echo '    echo "Error: This script needs to be sourced. Please run as \". ./environment-setup-${MULTIMACH_TARGET_SYS}\""' >> $script
++	echo 'if [ -z "$ZSH_NAME" ] && [ "x$0" = "x./environment-setup" ]; then' >> $script
++	echo '    echo "Error: This script needs to be sourced. Please run as \". ./environment-setup\""' >> $script
+ 	echo '    exit 1' >> $script
+ 	echo 'else' >> $script
+ 	echo '    if [ -n "$BASH_SOURCE" ]; then' >> $script
+@@ -31,7 +31,7 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export CPATH=$SDK_PATH/$TARGET_SYS/usr/include:$CPATH' >> $script
+ 	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH/$TARGET_SYS' >> $script
+ 	echo 'export PKG_CONFIG_PATH=$SDK_PATH/$TARGET_SYS${libdir}/pkgconfig' >> $script
+-	echo 'export CONFIG_SITE=$SDK_PATH/site-config-${MULTIMACH_TARGET_SYS}' >> $script
++	echo 'export CONFIG_SITE=$SDK_PATH/site-config' >> $script
+ 	echo -e 'export CC=\x24{TARGET_PREFIX}gcc' >> $script
+ 	echo -e 'export CXX=\x24{TARGET_PREFIX}g++' >> $script
+ 	echo -e 'export GDB=\x24{TARGET_PREFIX}gdb' >> $script
+@@ -46,3 +46,33 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
+ 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
+ }
++
++#This function create a site config file
++toolchain_create_sdk_siteconfig () {
++	local siteconfig=${SDK_OUTPUT}/${SDKPATH}/site-config
++
++	rm -f $siteconfig
++	touch $siteconfig
++
++	for sitefile in ${TOOLCHAIN_CONFIGSITE_NOCACHE} ; do
++		cat $sitefile >> $siteconfig
++	done
++
++	#get cached site config
++	for sitefile in ${TOOLCHAIN_NEED_CONFIGSITE_CACHE}; do
++		if [ -r ${TOOLCHAIN_CONFIGSITE_SYSROOTCACHE}/${sitefile}_config ]; then
++			cat ${TOOLCHAIN_CONFIGSITE_SYSROOTCACHE}/${sitefile}_config >> $siteconfig
++		fi
++	done
++}
++
++#This function create a version information file
++toolchain_create_sdk_version () {
++	local versionfile=${SDK_OUTPUT}/${SDKPATH}/version
++	rm -f $versionfile
++	touch $versionfile
++	echo 'Distro: ${DISTRO}' >> $versionfile
++	echo 'Distro Version: ${DISTRO_VERSION}' >> $versionfile
++	echo 'Metadata Revision: ${METADATA_REVISION}' >> $versionfile
++	echo 'Timestamp: ${DATETIME}' >> $versionfile
++}
+-- 
+1.7.12.4
 
-On Thu, Nov 01, 2012 at 07:01:59PM +0000, Cooper Jr., Franklin wrote:
-> I submitted the patches based on my commit order. However , your right. Some of these patches I created and then rebased when I added new recipes later on. I don't think this with be an issue with the remaining patches I sent but I will double check
-> 
-> -----Original Message-----
-> From: Maupin, Chase 
-> Sent: Thursday, November 01, 2012 1:55 PM
-> To: Franklin S. Cooper Jr; meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: RE: [meta-arago] [PATCH] arago-amsdk-image: Add additional tasks and image
-> 
-> This depends on your patch that renames the arago-tisdk-image.  Without patch series numbers it's hard to know the ordering.
-> 
-> Sincerely,
-> Chase Maupin
-> Software Applications
-> ARM MPU
-> e-mail: chase.maupin@ti.com
-> phone: (214) 567-2950
-> 
-> For support:
-> Forums - http://community.ti.com/forums/ Wiki - http://wiki.davincidsp.com/ 
-> 
-> 
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago- 
-> > bounces@arago-project.org] On Behalf Of Franklin S. Cooper Jr
-> > Sent: Thursday, November 01, 2012 1:36 PM
-> > To: meta-arago@arago-project.org
-> > Cc: Cooper Jr., Franklin
-> > Subject: [meta-arago] [PATCH] arago-amsdk-image: Add additional tasks 
-> > and image
-> > 
-> > * Add additional sdk-host tasks and target filesystem image
-> > 
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../recipes-core/images/arago-amsdk-image.bb       |   13
-> > ++++++++++---
-> >  1 files changed, 10 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/meta-arago-distro/recipes-core/images/arago-amsdk-
-> > image.bb b/meta-arago-distro/recipes-core/images/arago-amsdk-
-> > image.bb
-> > index 82e0527..6ddcb8b 100644
-> > --- a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-> > +++ b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-> > @@ -13,9 +13,16 @@ HOST_CLEANUP_PACKAGES = ""
-> >  TOOLCHAIN_CLEANUP_PACKAGES = ""
-> > 
-> >  # List of target side images to build for the SDK -TARGET_IMAGES = 
-> > "arago-base-tisdk-image"
-> > -
-> > -IMAGE_INSTALL = "task-arago-tisdk-addons-sdk-host"
-> > +TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
-> > +
-> > +IMAGE_INSTALL = "\
-> > +    task-arago-tisdk-addons-sdk-host \
-> > +    task-arago-tisdk-connectivity-sdk-host \
-> > +    task-arago-tisdk-crypto-sdk-host \
-> > +    task-arago-tisdk-matrix-sdk-host \
-> > +    task-arago-tisdk-multimedia-sdk-host \
-> > +    task-arago-tisdk-qte-sdk-host \
-> > +"
-> > 
-> >  export IMAGE_BASENAME = "arago-amsdk-image"
-> > 
-> > --
-> > 1.7.0.4
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
