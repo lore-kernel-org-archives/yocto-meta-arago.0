@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id BDB73529A5
+	by arago-project.org (Postfix) with ESMTPS id 5B2DD529A5
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:40:48 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2653368oag.38
+	Thu,  1 Nov 2012 18:41:21 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so2653916oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 01 Nov 2012 11:40:48 -0700 (PDT)
+	Thu, 01 Nov 2012 11:41:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=EKv4wqgZ0VQFMQeWlx9GdU6kxZwwC0wB7Z2/lhlROY8=;
-	b=XtNgk1hANz4qgJSdGSdVRpUHbXrPMjorOTRm/fnNc/5BShEZhX2/pv/KGv94wqgyAI
-	yqc0bXjAYJm9jD5kb7eoW4hII3SvsbI8QIB9sMBEAW1+/pyGs0r2jhp5lVaFZ0XeuxRy
-	L03wkERvRX2tGEOn9vYtQvfRP4R6vaIAVjXDkwnEGzwoY8NxPXIIUbN4M17gBBjaj1bl
-	FykuSuzIr3JQxTTnpICTIE+tc92evD2ZM9xjuN7DWIMz+iTmkuC3jA6RhWEfAw938HB3
-	mykzwUBvP2CI5GEPcdImilmuARLNLeKwBbMjJVkLcf3qjkHQTp/xROteTyN95w4+iBde
-	e2JQ==
-Received: by 10.60.31.135 with SMTP id a7mr34086011oei.26.1351795248260;
-	Thu, 01 Nov 2012 11:40:48 -0700 (PDT)
+	bh=JiG+/Nh8jeNQgptaSMxs9xLhZnwYplOWeLg3z4RYD5U=;
+	b=DOwW0hg1trX/uQg/Oa7faEym/3hJHjXByXVMvLwSHpXhFdtD1KBBH9fBa5turZCCMv
+	YieG5X/q21OWBh5EQ310ZXd4fnzxh6wXI3mKBlM9A8YonzEKE/K7resUDdDCgdyttwOT
+	4+Ky9yKM9wq7+T4TlIgAU44sKndW4CKiRDFWXEJiyzWi9bkLOvh8UDMEAAyu8bKHKrmZ
+	4qrwpHzssOzRucXs+XbhlQhKDDGF10jIjvAWtvHAN7B578n2lVgFBYUEkofd5PJ/aHsS
+	veKIicniv6fdMybo1LIalvHuiMPq1a5fgSLgzilwrRO+lTxJ/FCY2HCHTov9HLl3RY90
+	Iocw==
+Received: by 10.60.10.37 with SMTP id f5mr27796131oeb.2.1351795280886;
+	Thu, 01 Nov 2012 11:41:20 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id k8sm5450933oee.11.2012.11.01.11.40.47
+	by mx.google.com with ESMTPS id m9sm5460377oem.4.2012.11.01.11.41.20
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 01 Nov 2012 11:40:47 -0700 (PDT)
+	Thu, 01 Nov 2012 11:41:20 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Nov 2012 13:40:44 -0500
-Message-Id: <1351795244-4846-1-git-send-email-fcooper@ti.com>
+Date: Thu,  1 Nov 2012 13:41:17 -0500
+Message-Id: <1351795277-4906-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] arago-tisdk-image: Rename recipe to tisdk-rootfs-image
+Subject: [PATCH] am-sysinfo: Update am-sysinfo to pulled in makefile fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,31 +41,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:40:48 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 18:41:21 -0000
 
-* The class tisdk-image had issues with an image having a name that is
-  different than the recipe name.
-* Renaming the image recipe to match the name of the image that is created.
+* Updated commit addressed an issue that required the makefile to create and
+  remove the Release and Debug directory.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- ...{arago-tisdk-image.bb => tisdk-rootfs-image.bb} |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
- rename meta-arago-distro/recipes-core/images/{arago-tisdk-image.bb => tisdk-rootfs-image.bb} (90%)
+ .../recipes-core/am-sysinfo/am-sysinfo_git.bb      |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-similarity index 90%
-rename from meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
-rename to meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index 970e7a9..fc5d39e 100644
---- a/meta-arago-distro/recipes-core/images/arago-tisdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -17,4 +17,4 @@ IMAGE_INSTALL += "\
-     task-arago-tisdk-amsdk \
- "
+diff --git a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
+index 2ec4e92..a5e0afe 100644
+--- a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
++++ b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
+@@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://mem_util/mem_util.c;beginline=1;endline=37;md5=8aa8e7
+ SECTION = "system"
  
--export IMAGE_BASENAME = "tisdk-rootfs"
-+export IMAGE_BASENAME = "tisdk-rootfs-image"
+ PACKAGE_STRIP = "no"
+-PR = "r5"
++PR = "r6"
+ 
+ BRANCH ?= "master"
+-SRCREV = "f2b325741ebcd440c4b2fc91a65270391224426e"
++SRCREV = "86e936b0a50e450089471b53ae8c68e933c15bbd"
+ 
+ SRC_URI = "git://gitorious.org/am_sysinfo/am_sysinfo.git;protocol=git;branch=${BRANCH}"
+ 
 -- 
 1.7.0.4
 
