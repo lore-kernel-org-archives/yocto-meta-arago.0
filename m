@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id E8C29529B8
+	by arago-project.org (Postfix) with ESMTPS id 4E79C529B8
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Nov 2012 18:35:55 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so2627119obb.38
+	Thu,  1 Nov 2012 18:36:28 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id lz20so2627663obb.38
 	for <meta-arago@arago-project.org>;
-	Thu, 01 Nov 2012 11:35:55 -0700 (PDT)
+	Thu, 01 Nov 2012 11:36:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=SXRGg8eGaBUudrURt5UhAWul1FXMPGsbDTy49OM21OU=;
-	b=ny9Rwtcs7zluycHh+vXD09xZNJySzLxHm7IK8HPizqDEXwuDCEQtQluh5lhAHoXWhO
-	F5aXpo5c8+x4TdWcuTz5p2J+4AnBgcZnwFN1bjwtPqAAqEtc7oxGCmwsJTelzjQrMwMr
-	OAIHRZVReHml4p0WDe+LzKoDoZ5mglZSVMJ/gOkiT0qPEMSK9F0OVxNxY9DGeOxIvRzW
-	98XiKTepf6Y6BldCUhyAUbndkw9YFak+SwadjWyDnpQF3FLxbifC6spE/GP5q0vTj3wv
-	kBOMd89jOjMWlb7QDXYNRTc2MUjE8AnHdsiZd1nXzWD/P3yvCabKgoEG7DtFbjQLtzob
-	A6/w==
-Received: by 10.60.22.104 with SMTP id c8mr4676464oef.78.1351794955439;
-	Thu, 01 Nov 2012 11:35:55 -0700 (PDT)
+	bh=K0MK1qpI68jDMy18T9qqRElJIZ49O8NM9dRxRHsT038=;
+	b=RzLGP+q0Ac36E1O3H+8wfvz8+Ue2CthFopPvPcNVtXhP0bwz/qGw3kA0qKZt/vr78g
+	zs8/thvgQtr+MaHVMONmQY+BoQlkmy90rbCnzTDay7HjRZyTGOaDBvpD4z7rX56uqhIe
+	7ygsTMIfCB6B3kiOLbTFuX2s7BAWPVFaU8mdpzDhnSORG413JndkUnAS8Bh26lzSJD7w
+	8hLpLgT+irtA7h1cuo0a1NhN8bNhta5DDZpcO+KtDcpDA7g8VCfbMJK4r/7WAI+dLlDj
+	fFXRVQcKxd0Elq23L+8RV/riIDMwqKeshXTHFP7IoHIVV67tWK6f+AXZJRcWXAFNfx15
+	pxBg==
+Received: by 10.60.0.166 with SMTP id 6mr34413026oef.6.1351794987845;
+	Thu, 01 Nov 2012 11:36:27 -0700 (PDT)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id q1sm5445793oeh.8.2012.11.01.11.35.54
+	by mx.google.com with ESMTPS id n7sm6946023obd.16.2012.11.01.11.36.27
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 01 Nov 2012 11:35:54 -0700 (PDT)
+	Thu, 01 Nov 2012 11:36:27 -0700 (PDT)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Nov 2012 13:35:50 -0500
-Message-Id: <1351794950-4321-1-git-send-email-fcooper@ti.com>
+Date: Thu,  1 Nov 2012 13:36:23 -0500
+Message-Id: <1351794983-4386-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] arago-amsdk-image: Add additional tasks and image
+Subject: [PATCH] task-arago-tisdk-matrix: Remove wifi and bluetooth demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,39 +41,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 18:35:56 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 18:36:28 -0000
 
-* Add additional sdk-host tasks and target filesystem image
+* Wifi and bluetooth firmware and drivers have not been accepted in meta-ti.
+* There are also issues with required scripts and other applications.
+* Pulling wifi and bluetooth demos until these issues are fixed.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/images/arago-amsdk-image.bb       |   13 ++++++++++---
- 1 files changed, 10 insertions(+), 3 deletions(-)
+ .../recipes-core/tasks/task-arago-tisdk-matrix.bb  |   13 +------------
+ 1 files changed, 1 insertions(+), 12 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-index 82e0527..6ddcb8b 100644
---- a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
-@@ -13,9 +13,16 @@ HOST_CLEANUP_PACKAGES = ""
- TOOLCHAIN_CLEANUP_PACKAGES = ""
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
+index 91e095f..754b98d 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-matrix.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r2"
++PR = "r3"
  
- # List of target side images to build for the SDK
--TARGET_IMAGES = "arago-base-tisdk-image"
--
--IMAGE_INSTALL = "task-arago-tisdk-addons-sdk-host"
-+TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
-+
-+IMAGE_INSTALL = "\
-+    task-arago-tisdk-addons-sdk-host \
-+    task-arago-tisdk-connectivity-sdk-host \
-+    task-arago-tisdk-crypto-sdk-host \
-+    task-arago-tisdk-matrix-sdk-host \
-+    task-arago-tisdk-multimedia-sdk-host \
-+    task-arago-tisdk-qte-sdk-host \
-+"
+ inherit task
  
- export IMAGE_BASENAME = "arago-amsdk-image"
+@@ -42,10 +42,6 @@ MATRIX_APPS_append_ti33x = "        \
+                                     \
+     matrix-gui-generic-pm           \
+     matrix-gui-pm-demos-suspend     \
+-                                    \
+-    matrix-gui-wifi-demos           \
+-    matrix-gui-bluetooth-demos      \
+-    matrix-gui-wifi-direct-demo     \
+ "
  
+ MATRIX_APPS_append_beagleboard = "  \
+@@ -69,10 +65,6 @@ MATRIX_APPS_append_am37x-evm = "    \
+     matrix-gui-pm-demos-snapshot2   \
+     matrix-gui-pm-demos-suspend     \
+                                     \
+-    matrix-gui-wifi-demos           \
+-    matrix-gui-wifi-direct-demo     \
+-    matrix-gui-bluetooth-demos      \
+-                                    \
+     matrix-gui-display-control      \
+     matrix-gui-camera-loopback      \
+     matrix-gui-v4l2-demos           \
+@@ -80,9 +72,6 @@ MATRIX_APPS_append_am37x-evm = "    \
+ "
+ 
+ RDEPENDS_append_am180x-evm = "      \
+-    matrix-gui-wifi-demos           \
+-    matrix-gui-bluetooth-demos      \
+-    matrix-gui-wifi-direct-demo     \
+ "
+ 
+ RDEPENDS_${PN} = "        \
 -- 
 1.7.0.4
 
