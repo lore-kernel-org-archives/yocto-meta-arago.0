@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id DA5B852A9A
+	by arago-project.org (Postfix) with ESMTPS id 4A9A252A9A
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Nov 2012 01:54:29 +0000 (UTC)
+	Mon,  5 Nov 2012 01:54:31 +0000 (UTC)
 Received: by mail-oa0-f51.google.com with SMTP id n12so4861422oag.38
 	for <meta-arago@arago-project.org>;
-	Sun, 04 Nov 2012 17:54:29 -0800 (PST)
+	Sun, 04 Nov 2012 17:54:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=oKBWY+vj6ZxezZ5QXMKSZV2ANcluD3ltAAtONVR7MHc=;
-	b=I+8Ffn5fHHnHr62RrgpfXg90fe+IimX6gz5KHY7ucUK93XCCmp7FU7wuE0AaCcgcz3
-	8nhrRV1tDgg1K4PQ76lo0ddO8vItZYcrWPX335gSaXuFp6jH5qTqle/ueNeL91Lz4BL7
-	nDUz4GOyF2zB587O/lIAkrB6SUPGmIc3OGDpM70goQVJwbw6NVRXlO8d/lXd1xj4r396
-	dNHxRimhRc97oF3QSo68x+Gs7IdhHCr8ceDQeVR+vZ9JBJsq19ShXZip3DZQXz+mowVK
-	nmxVVHGB4Na+LUlvMzf/Y/2EXJhOoGzAgq4cdkuo63FuUngFeMt8PnoW1tI42hjioO0u
-	yDAA==
-Received: by 10.60.13.193 with SMTP id j1mr6598994oec.41.1352080469573;
-	Sun, 04 Nov 2012 17:54:29 -0800 (PST)
+	bh=w6vWipcdWpeqi0bFJS/zSHoa0YBbMlkAOB9cc+/maV0=;
+	b=XQ2/XoZ9bdPQasITpEoxIuhAC2QTze337nztardBfVUgsbWWp4oK/kYR1WEv7FrWLK
+	rvUNODq+93854XX07yn+qes+qipOgKspoNgvjVMTwtHBs2Nu8wSaV5VND2m25+PC3SPE
+	uOGOpwwN98nkjzgV6hPpYB6WqJmjxyah8bxzawycFZsxjimre8NwecboMz7H8q5jm/5l
+	OhbOYNUYB/aYLwjSqjQdFBvYTcIoT9w5KdCJy4CwGB/KSEVH5ctN1qDQLfubRUMyG1mp
+	O2W8aAAMGxrzlPCsCTEnORJdni1VuJEowhfDGEBA28xXoH6OWaF/i0xp0eN845Q5W1Q5
+	Yemg==
+Received: by 10.60.21.193 with SMTP id x1mr6568309oee.142.1352080471025;
+	Sun, 04 Nov 2012 17:54:31 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id v6sm12820300oeh.13.2012.11.04.17.54.28
+	by mx.google.com with ESMTPS id v6sm12820300oeh.13.2012.11.04.17.54.30
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 04 Nov 2012 17:54:29 -0800 (PST)
+	Sun, 04 Nov 2012 17:54:30 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Sun,  4 Nov 2012 19:53:32 -0600
-Message-Id: <1352080417-9792-35-git-send-email-fcooper@ti.com>
+Date: Sun,  4 Nov 2012 19:53:33 -0600
+Message-Id: <1352080417-9792-36-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1352080417-9792-1-git-send-email-fcooper@ti.com>
 References: <1352080417-9792-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 37/42] ti-tisdk-setup: Update targetNFS filesystem
+Subject: [PATCH 38/42] busybox: Fix NFS issues
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,33 +43,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2012 01:54:30 -0000
+X-List-Received-Date: Mon, 05 Nov 2012 01:54:31 -0000
 
-* Update SRCREV to pull in tweaks to the setup-targetfs-nfs.sh
-* Update extracting of file system to match the tar.bz2 file extension
+* Certain nfs servers were having issues connecting to the board.
+* The oe-core patch master "busybox: udhcpc shouldn't be a service" commit id:
+  8329c4679ec0ce319d2a81d755a0da5b05474688 seems to have resolved this issue.
+* Mimic the changes of that patch here.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/busybox/busybox_1.19.4.bbappend   |   18 +++++++++++++++++-
+ 1 files changed, 17 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index d9b5da3..96df155 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -4,10 +4,10 @@ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
+index b8f21dd..b7cd903 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
+@@ -1,9 +1,25 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- COMPATIBLE_MACHINE = "am37x-evm|am3517-evm|beagleboard|ti33x|am180x-evm"
++PR_append = "-arago2"
++
+ SRC_URI += " \
+ 	file://inetd \
+ 	file://inetd.conf \
+ "
  
--PR = "r0"
-+PR = "r1"
- 
- BRANCH ?= "master"
--SRCREV = "5bbfa583671b87bc8c17316bb3a9787fbc884ec6"
-+SRCREV = "b7d67ebb3c3267248210e2e66b1bad273747f9b6"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
+-PR_append = "-arago1"
++# Remove ${PN}-udhcpc from the list of init scripts since this was causing issues
++# when using NFS for some machines. This mimics changes from the patch
++# "busybox: udhcpc shouldn't be a service" commit "8329c4679ec0ce319d2a81d755a0da5b05474688"
++# Once the patch mentioned above is pulled into the maintance branch the changes below can be
++# removed.
++
++FILES_${PN}-udhcpc := "${sysconfdir}/udhcpc.d ${datadir}/udhcpc"
++
++INITSCRIPT_PACKAGES := "${@oe_filter_out('${PN}-udhcpc','${INITSCRIPT_PACKAGES}', d)}"
++
++do_install_append () {
++	if grep "CONFIG_UDHCPC=y" ${WORKDIR}/defconfig; then
++		rm ${D}${sysconfdir}/init.d/busybox-udhcpc
++	fi
++}
 -- 
 1.7.0.4
 
