@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id D7B855208C
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id F2A3A5208C
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Nov 2012 01:54:20 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id lz20so4802582obb.38
+	Mon,  5 Nov 2012 01:54:21 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so4861422oag.38
 	for <meta-arago@arago-project.org>;
-	Sun, 04 Nov 2012 17:54:20 -0800 (PST)
+	Sun, 04 Nov 2012 17:54:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=MX+H8EQVXkObZVH2sYfoS3vH8dNmWvwipO97hNmBdjs=;
-	b=0hWhj+aPTHjbo4mhu9M2SFEgGG+uGASANtazYliMsDSHBVE96SXR1b9R+PbGC4HnYr
-	2KiPKwLlMGAXiO9bv3FM2xrN2UN8oSbS095AYFmPmSLbXn3VLgCkEVDAhtn04wpdynF/
-	/U1cuKxFCeBPpniktAJbM1HDjPEhUMZ2+XO/MQInh39iS5h86PnHmIFUTHMcqOQsrF+i
-	/x3Byh45uoIJY/6VBIWPtHjJkiWKV9MiMiucy6Eg/i6HZpzv1hurBmXGm98ZvJXvwOne
-	doveClR1mBVUuQ9IN/BcDVdahWf5KNN/xV0s2cYdhvCfqB80YIrlEbXgkG0I+AXDkB6z
-	HSzg==
-Received: by 10.182.4.174 with SMTP id l14mr6642447obl.88.1352080460575;
-	Sun, 04 Nov 2012 17:54:20 -0800 (PST)
+	bh=6kfqhy10z46Lt59f604F3jssVNwt13j36cXoqpf0TXQ=;
+	b=WnXvtvQvzqmkY55Q/lYRSGfujdJjFUj5O26QyLd8/U9Q85kwqLzEfA+4riUDXmvpzx
+	Vu0UMt4W9s0P/F/MQ//+bCkROE/ecQ511PoZlHIQV9Zw5uYD9Qn8TIVz/qZhAbOyhh3y
+	0PYsgpPCZdI03lFvoy7eZz5IDlZx9jV0hLbwdkalNTPt1Wa5lYaznqa4KwODYy+0SKNM
+	g/8ft3Xg4cHntTneu9V4X/0sFvo/mVBNmJ4e59Bu3WPCQ/S4UwvkhrvwnwY2fu4LmURu
+	cIe6Xl6YMCOP6zmLANSB7HxfeX00u3wwByiWXh2/saTbn51rt5fI+W1PhKQMZnjzoeex
+	5HXA==
+Received: by 10.60.0.166 with SMTP id 6mr6605182oef.6.1352080461666;
+	Sun, 04 Nov 2012 17:54:21 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id v6sm12820300oeh.13.2012.11.04.17.54.19
+	by mx.google.com with ESMTPS id v6sm12820300oeh.13.2012.11.04.17.54.20
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 04 Nov 2012 17:54:20 -0800 (PST)
+	Sun, 04 Nov 2012 17:54:21 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Sun,  4 Nov 2012 19:53:25 -0600
-Message-Id: <1352080417-9792-28-git-send-email-fcooper@ti.com>
+Date: Sun,  4 Nov 2012 19:53:26 -0600
+Message-Id: <1352080417-9792-29-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1352080417-9792-1-git-send-email-fcooper@ti.com>
 References: <1352080417-9792-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 30/42] linux-am335x: Update psp 04.06.00.08 recipe
+Subject: [PATCH 31/42] netbase: Add arago custom init
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,37 +43,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2012 01:54:21 -0000
+X-List-Received-Date: Mon, 05 Nov 2012 01:54:22 -0000
 
-* The defconfig that is supposed to override the defconfig in meta-ti was placed
-  in the wrong directory. This was due to a rename of the recipe in meta-ti.
-* Also the append was adding ${PN} to the additional file path. Updating to ${P}
-  to reflect that the directory is based on both ${PN}-${PV}
+* Custom init is based on a commit from classic oe:
+  netbase/init: Do not run 'ifup -a' if root is network mounted.
+  commit 26af5ed1db81d29a59eb93cd9860d246d8dfa6a2
+* This change is being added to fix an issue discovered by nfs failures
+  when opentest is trying to run tests.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../defconfig                                      |    0
- .../linux-am335x_3.2.0-psp04.06.00.08.bbappend     |    4 ++--
- 2 files changed, 2 insertions(+), 2 deletions(-)
- rename meta-arago-distro/recipes-kernel/linux/{linux-am335x-3.2.0-psp04.06.00.08.sdk => linux-am335x-3.2.0-psp04.06.00.08}/defconfig (100%)
+ .../recipes-core/netbase/netbase/init              |   63 ++++++++++++++++++++
+ .../recipes-core/netbase/netbase_4.47.bbappend     |    2 +-
+ 2 files changed, 64 insertions(+), 1 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-core/netbase/netbase/init
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp04.06.00.08.sdk/defconfig b/meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp04.06.00.08/defconfig
-similarity index 100%
-rename from meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp04.06.00.08.sdk/defconfig
-rename to meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp04.06.00.08/defconfig
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp04.06.00.08.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp04.06.00.08.bbappend
-index 3f7b524..c100597 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp04.06.00.08.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp04.06.00.08.bbappend
-@@ -1,6 +1,6 @@
--PR_append = "-arago0"
-+PR_append = "-arago1"
+diff --git a/meta-arago-distro/recipes-core/netbase/netbase/init b/meta-arago-distro/recipes-core/netbase/netbase/init
+new file mode 100644
+index 0000000..86aff88
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/netbase/netbase/init
+@@ -0,0 +1,63 @@
++#!/bin/sh
++#
++### BEGIN INIT INFO
++# Provides:          networking
++# Required-Start:    $local_fs mountvirtfs
++# Required-Stop:     $local_fs
++# Default-Start:     S
++# Default-Stop:      0 6
++# Short-Description: Raise network interfaces and configure them
++### END INIT INFO
++
++PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
++
++if ! [ -x /sbin/ifup ]; then
++    exit 0
++fi
++
++case "$1" in
++    start)
++        if sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts | 
++          grep -q "^/ nfs$"; then
++            echo "NOT configuring network interfaces: / is an NFS mount"
++        elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts |  
++          grep -q "^/ smbfs$"; then
++            echo "NOT configuring network interfaces: / is an SMB mount"
++	elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts | 
++          grep -qE '^(nfs|smbfs|ncp|coda)$'; then
++            echo "NOT configuring network interfaces: network shares still mounted."
++        else
++            echo -n "Configuring network interfaces... "
++            ifup -a
++	    echo "done."
++      fi
++	;;
++    stop)
++        if sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts | 
++          grep -q "^/ nfs$"; then
++            echo "NOT deconfiguring network interfaces: / is an NFS mount"
++        elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts |  
++          grep -q "^/ smbfs$"; then
++            echo "NOT deconfiguring network interfaces: / is an SMB mount"
++	elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts | 
++          grep -qE '^(nfs|smbfs|ncp|coda)$'; then
++            echo "NOT deconfiguring network interfaces: network shares still mounted."
++        else
++            echo -n "Deconfiguring network interfaces... "
++            ifdown -a
++	    echo "done."
++        fi
++	;;
++    force-reload|restart)
++        echo -n "Reconfiguring network interfaces... "
++        ifdown -a
++        ifup -a
++	echo "done."
++	;;
++    *)
++	echo "Usage: /etc/init.d/networking {start|stop|restart|force-reload}"
++	exit 1
++	;;
++esac
++
++exit 0
+diff --git a/meta-arago-distro/recipes-core/netbase/netbase_4.47.bbappend b/meta-arago-distro/recipes-core/netbase/netbase_4.47.bbappend
+index 997adf2..8c65bd1 100644
+--- a/meta-arago-distro/recipes-core/netbase/netbase_4.47.bbappend
++++ b/meta-arago-distro/recipes-core/netbase/netbase_4.47.bbappend
+@@ -1,4 +1,4 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
- 
- # KVER is used by arago-source-ipk.conf
- KVER = "${PV}"
+-PR_append = "-arago1"
++PR_append = "-arago2"
 -- 
 1.7.0.4
 
