@@ -1,23 +1,35 @@
-Return-Path: <denys@ti.com>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id 615F752A0E
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id F2A3252A0E
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Nov 2012 21:03:30 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.12])
-	by vms173007.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MD400ISQYH1L2Z0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 07 Nov 2012 15:03:01 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 3463920031; Wed,
-	07 Nov 2012 16:03:01 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
+	Wed,  7 Nov 2012 21:05:16 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so1952029oag.38
+	for <meta-arago@arago-project.org>;
+	Wed, 07 Nov 2012 13:05:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=83xU+emsvkPN64CvA4UEA6X71+AZU74mYJKpqG6tRGg=;
+	b=zTecsjdRswJLXCVtdUFZDeOLl0GGltJZwOmHm+3Dnti8LnbXI7QlHkI0V16I3SSnwz
+	5t2VYGnKyL23OWmnLHjEDLNB+Mg31ymkssEpCJKUNT5RiQ+tCWsqSHvZny8kIrEdix+y
+	9ztiADD9rpbOB2cHHbI//ZxwjpkjzK5yRVM79i4pCTEy+eHOn6/N9r/smuiSdhMpx71c
+	pCXc3hwQwIxC8mF38RoA7Lc/VOKFBc9ennFQIPjX3JRBbR3IJj74ukGvk2O6nzrCzyjS
+	hRT0PiBYQZ4rXOGDsRWgSNp1/JoWO+NckhkhvWrVNB89JAU9A76dcF0cOh3Q8DB1WUSw
+	GvNQ==
+Received: by 10.60.31.135 with SMTP id a7mr3042246oei.26.1352322316302;
+	Wed, 07 Nov 2012 13:05:16 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id
+	nd14sm24647558obb.14.2012.11.07.13.05.15
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 07 Nov 2012 13:05:15 -0800 (PST)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Wed, 07 Nov 2012 16:03:00 -0500
-Message-id: <1352322180-17306-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 1.8.0
-Subject: [PATCHv2] meta-toolchain-arago: make SDK/devkit relocatable
+Date: Wed,  7 Nov 2012 15:05:11 -0600
+Message-Id: <1352322311-11941-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] shadow-securetty: Allow remote telnet login as root
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,53 +42,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2012 21:03:30 -0000
+X-List-Received-Date: Wed, 07 Nov 2012 21:05:17 -0000
 
-Implement poor man's relocation technique for self-contained crosssdk binaries
+* Need to add pts/X to the securetty file to allow remote login via telnet as root
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-In v2 use stub shell scripts instead of aliases, to work in Makefiles
+ .../shadow/shadow-securetty_4.1.4.3.bbappend       |   15 +++++++++++++++
+ 1 files changed, 15 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend
 
- meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
-
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index d2fe982..81bdeed 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
- 
- require recipes-core/meta/meta-toolchain.bb
- 
--PR = "r5"
-+PR = "r6"
- 
- SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
- 
-@@ -28,6 +28,7 @@ toolchain_create_sdk_env_script () {
- 	echo 'export TARGET_SYS=${ARAGO_TARGET_SYS}' >> $script
- 	echo 'export TARGET_PREFIX=$TARGET_SYS-' >> $script
- 	echo 'export PATH=$SDK_PATH/bin:$PATH' >> $script
-+	echo 'export LD_LIBRARY_PATH=$SDK_PATH/lib:$LD_LIBRARY_PATH' >> $script
- 	echo 'export CPATH=$SDK_PATH/$TARGET_SYS/usr/include:$CPATH' >> $script
- 	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH/$TARGET_SYS' >> $script
- 	echo 'export PKG_CONFIG_PATH=$SDK_PATH/$TARGET_SYS${libdir}/pkgconfig' >> $script
-@@ -55,3 +56,13 @@ toolchain_create_sdk_env_script () {
- 	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
- 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
- }
+diff --git a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend
+new file mode 100644
+index 0000000..a09c514
+--- /dev/null
++++ b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend
+@@ -0,0 +1,15 @@
++PR_append = "-arago0"
 +
-+populate_sdk_ipk_append () {
-+	cd ${SDK_OUTPUT}/${SDKPATH}/bin
-+	binfiles=`find ! -name "${ARAGO_TARGET_SYS}-*" -type f -perm +111 -exec file {} \;|grep -v ":.*ASCII.*text"|cut -d":" -f1|cut -c3-`
-+	for i in $binfiles; do
-+		mv $i $i.real
-+		printf "#!/bin/sh\n\x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" > $i
-+		chmod +x $i
-+	done
++do_install_append () {
++    # Allow telnet sessions to login as root
++    securetty_file=${D}${sysconfdir}/securetty
++
++    printf '\n' >> $securetty_file
++    printf '# Allow 5 telnet login\n' >> $securetty_file
++    printf 'pts/0\n' >> $securetty_file
++    printf 'pts/1\n' >> $securetty_file
++    printf 'pts/2\n' >> $securetty_file
++    printf 'pts/3\n' >> $securetty_file
++    printf 'pts/4\n' >> $securetty_file
++
 +}
 -- 
-1.8.0
+1.7.0.4
 
 
