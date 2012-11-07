@@ -1,36 +1,23 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 904225208C
+Return-Path: <denys@ti.com>
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTP id C030E529AD
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Nov 2012 01:15:35 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so1025239oag.38
-	for <meta-arago@arago-project.org>;
-	Tue, 06 Nov 2012 17:15:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=PYXagy41KwfInamM2m8efMGgPQs/6t9sUH6zYEIBYvI=;
-	b=KMAB1icIE0L4qMTS7SMMnrzocwl3nQ0x6vm8Zg9mp6LTQhiZjvYa1cbT4n5oc3j/XH
-	OiJSqRZdNqO1LGo2/oH9EnUdT9wrs//GbJDJTZM8Y8OBwXjMDl3cwsx1rT2uyk50aU8t
-	QlGkFRy8zgJ0qeAh55KAH4ecBXJlrn3MZU9LBaNuZ8aJe/AQ4kfbQMruo/efnKa02Tq3
-	NxWv+qqL0fsNm+3jemarJSpJ31180diqVo3drvKlocEZYyHhg0fKARMP2gjumhbMYIPc
-	ngVifpHYHP85nNH7tvY+Rh40H5viGSeq4Wcar3Q7RS1Tj1EyVJko54Swa0ym0xJ6UxCi
-	dkiw==
-Received: by 10.60.24.7 with SMTP id q7mr495176oef.108.1352250935340;
-	Tue, 06 Nov 2012 17:15:35 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id fw9sm22288514obc.19.2012.11.06.17.15.34
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 06 Nov 2012 17:15:34 -0800 (PST)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+	Wed,  7 Nov 2012 06:25:32 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173013.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MD3000O6TU0C8O0@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 07 Nov 2012 00:25:14 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id C63A7200BE; Wed,
+	07 Nov 2012 01:25:11 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue,  6 Nov 2012 19:15:25 -0600
-Message-Id: <1352250925-12259-2-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1352250925-12259-1-git-send-email-fcooper@ti.com>
-References: <1352250925-12259-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] arago-source-ipk: Remove libgles-omap3
+Date: Wed, 07 Nov 2012 01:25:11 -0500
+Message-id: <1352269511-5899-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 1.8.0
+Subject: [PATCH] meta-toolchain-arago: make SDK/devkit relocatable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,32 +30,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2012 01:15:35 -0000
+X-List-Received-Date: Wed, 07 Nov 2012 06:25:33 -0000
 
-* do_create_srcipk was causing build failures for libgles-omap3.
-* Remove libgles-omap3 from the list of packages that have sourceipk enabled
-  since it wasn't suppose to be enabled in the first place.
+Implement poor man's relocation technique for self-contained crosssdk binaries
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../conf/distro/arago-source-ipk.conf              |    3 ---
- 1 files changed, 0 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index 7a36f1f..312f629 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -262,9 +262,6 @@ CREATE_SRCIPK_pn-ti-audio-soc-example = "1"
- SRCIPK_INSTALL_DIR_pn-ti-audio-soc-example = "audio-soc-example_${PV}"
- SRCIPK_PACKAGE_ARCH_pn-ti-audio-soc-example = "${MACHINE_ARCH}"
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index d2fe982..27782f7 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
  
--CREATE_SRCIPK_pn-libgles-omap3 = "1"
--SRCIPK_INSTALL_DIR_pn-libgles-omap3 = "component-sources/graphics-sdk_${PV}"
--
- CREATE_SRCIPK_pn-ti-c6run = "1"
- SRCIPK_INSTALL_DIR_pn-ti-c6run = "component-sources/c6run_${PV}"
- SRCIPK_PACKAGE_ARCH_pn-ti-c6run = "${MACHINE_ARCH}"
+ require recipes-core/meta/meta-toolchain.bb
+ 
+-PR = "r5"
++PR = "r6"
+ 
+ SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
+ 
+@@ -28,6 +28,7 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export TARGET_SYS=${ARAGO_TARGET_SYS}' >> $script
+ 	echo 'export TARGET_PREFIX=$TARGET_SYS-' >> $script
+ 	echo 'export PATH=$SDK_PATH/bin:$PATH' >> $script
++	echo 'export LD_LIBRARY_PATH=$SDK_PATH/lib:$LD_LIBRARY_PATH' >> $script
+ 	echo 'export CPATH=$SDK_PATH/$TARGET_SYS/usr/include:$CPATH' >> $script
+ 	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH/$TARGET_SYS' >> $script
+ 	echo 'export PKG_CONFIG_PATH=$SDK_PATH/$TARGET_SYS${libdir}/pkgconfig' >> $script
+@@ -54,4 +55,5 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export OECORE_ACLOCAL_OPTS="-I $SDK_PATH/usr/share/aclocal"' >> $script
+ 	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
+ 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
++	echo 'for i in `cd $SDK_PATH/bin; find -L ! -name "$TARGET_SYS-*" -type f -perm +111 -exec file {} \;|grep -v ":.*ASCII.*text"|cut -d":" -f1|cut -c3-`; do alias $i="$SDK_PATH/lib/ld-linux.so.2 $SDK_PATH/bin/$i"; done' >> $script
+ }
 -- 
-1.7.0.4
+1.8.0
 
 
