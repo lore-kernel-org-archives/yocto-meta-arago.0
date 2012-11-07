@@ -1,35 +1,34 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 2A344529AD
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 046E4529AD
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Nov 2012 21:40:46 +0000 (UTC)
+	Wed,  7 Nov 2012 23:11:06 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA7Lejxn002702;
-	Wed, 7 Nov 2012 15:40:45 -0600
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA7LejRA003389;
-	Wed, 7 Nov 2012 15:40:45 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA7NB5vU022783
+	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 17:11:05 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA7NB5g2029584
+	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 17:11:05 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Wed, 7 Nov 2012 15:40:45 -0600
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Wed, 7 Nov 2012 17:11:05 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Franklin S. Cooper Jr"
-	<fcooperjr27@gmail.com>
-Thread-Topic: [meta-arago] [PATCH] shadow-securetty: Allow remote telnet
-	login as root
-Thread-Index: AQHNvSuXktSVTqIJskql1s+Nvfici5ffRfGA//+gJmA=
-Date: Wed, 7 Nov 2012 21:40:44 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C31ABCD@DFLE09.ent.ti.com>
-References: <1352322311-11941-1-git-send-email-fcooper@ti.com>
-	<20121107212129.GH11967@edge>
-In-Reply-To: <20121107212129.GH11967@edge>
+To: "Dmytriyenko, Denys" <denys@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCHv2] meta-toolchain-arago: make SDK/devkit
+	relocatable
+Thread-Index: AQHNvStZvFzI4fX2vUuK8FbOUvk1upffQYkA//+cMyA=
+Date: Wed, 7 Nov 2012 23:11:05 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C31AD06@DFLE09.ent.ti.com>
+References: <1352322180-17306-1-git-send-email-denys@ti.com>
+	<20121107210542.GG11967@edge>
+In-Reply-To: <20121107210542.GG11967@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] shadow-securetty: Allow remote telnet login as root
+Subject: Re: [PATCHv2] meta-toolchain-arago: make SDK/devkit	relocatable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,7 +41,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2012 21:40:47 -0000
+X-List-Received-Date: Wed, 07 Nov 2012 23:11:08 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -50,65 +49,88 @@ Content-Transfer-Encoding: quoted-printable
 
 
 -----Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Wednesday, November 07, 2012 3:21 PM
-To: Franklin S. Cooper Jr
-Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-Subject: Re: [meta-arago] [PATCH] shadow-securetty: Allow remote telnet log=
-in as root
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Dmytriyenko, Denys
+Sent: Wednesday, November 07, 2012 3:06 PM
+To: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCHv2] meta-toolchain-arago: make SDK/devkit r=
+elocatable
 
-On Wed, Nov 07, 2012 at 03:05:11PM -0600, Franklin S. Cooper Jr wrote:
-> * Need to add pts/X to the securetty file to allow remote login via=20
-> telnet as root
+On Wed, Nov 07, 2012 at 04:03:00PM -0500, Denys Dmytriyenko wrote:
+> Implement poor man's relocation technique for self-contained crosssdk=20
+> binaries
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+> In v2 use stub shell scripts instead of aliases, to work in Makefiles
 
-Why do we need telnetd and specifically with root login? Isn't sshd not eno=
-ugh? Previously telnetd was enabled because we couldn't ship sshd...
+Ok, this seems to work fine in shell and in Makefiles too. And it also work=
+s when environment-setup is sources before calling make, but not inside the=
+ Makefile.
 
 Franklin:
-We still have some customers that want to use telnet to login into the syst=
-em and some of our backend systems use telnet to login into to the system t=
-o perform our testing.
-=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../shadow/shadow-securetty_4.1.4.3.bbappend       |   15 ++++++++++++++=
-+
->  1 files changed, 15 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-distro/recipes-extended/shadow/shadow-secu=
-retty_4.1.4.3.bbappend
+export LD_LIBRARY_PATH=3D$SDK_PATH/lib:$LD_LIBRARY_PATH is causing issues. =
+Once I source that file I get a Segmentation fault when calling qmake, make=
+,arm-arago-linux-gnueabi-gcc,ls , etc....
+Removing that line from environment-setup gets rid of the Segmentation faul=
+t issue but of course qmake and the other executables don't work. I get a "=
+error while loading shared libraries: libstdc++.so.6: cannot open shared ob=
+ject file: No such file or directory".
+
+Since you got this working is there anything the host machine needs to conf=
+igure to get this to work?
+
+>  meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 13=20
+> ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4=
-.1.4.3.bbappend b/meta-arago-distro/recipes-extended/shadow/shadow-securett=
-y_4.1.4.3.bbappend
-> new file mode 100644
-> index 0000000..a09c514
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.=
-bbappend
-> @@ -0,0 +1,15 @@
-> +PR_append =3D "-arago0"
+> diff --git=20
+> a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb=20
+> b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> index d2fe982..81bdeed 100644
+> --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> @@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?=3D "${SDK_NAME}-${ARMPKGARCH}-${TA=
+RGET_OS}-sdk-${SDK_ARCH}"
+> =20
+>  require recipes-core/meta/meta-toolchain.bb
+> =20
+> -PR =3D "r5"
+> +PR =3D "r6"
+> =20
+>  SDKTARGETSYSROOT =3D "${SDKPATH}/${ARAGO_TARGET_SYS}"
+> =20
+> @@ -28,6 +28,7 @@ toolchain_create_sdk_env_script () {
+>  	echo 'export TARGET_SYS=3D${ARAGO_TARGET_SYS}' >> $script
+>  	echo 'export TARGET_PREFIX=3D$TARGET_SYS-' >> $script
+>  	echo 'export PATH=3D$SDK_PATH/bin:$PATH' >> $script
+> +	echo 'export LD_LIBRARY_PATH=3D$SDK_PATH/lib:$LD_LIBRARY_PATH' >>=20
+> +$script
+>  	echo 'export CPATH=3D$SDK_PATH/$TARGET_SYS/usr/include:$CPATH' >> $scri=
+pt
+>  	echo 'export PKG_CONFIG_SYSROOT_DIR=3D$SDK_PATH/$TARGET_SYS' >> $script
+>  	echo 'export=20
+> PKG_CONFIG_PATH=3D$SDK_PATH/$TARGET_SYS${libdir}/pkgconfig' >> $script @@=
+ -55,3 +56,13 @@ toolchain_create_sdk_env_script () {
+>  	echo 'export OECORE_DISTRO_VERSION=3D"${DISTRO_VERSION}"' >> $script
+>  	echo 'export OECORE_SDK_VERSION=3D"${SDK_VERSION}"' >> $script  }
 > +
-> +do_install_append () {
-> +    # Allow telnet sessions to login as root
-> +    securetty_file=3D${D}${sysconfdir}/securetty
-> +
-> +    printf '\n' >> $securetty_file
-> +    printf '# Allow 5 telnet login\n' >> $securetty_file
-> +    printf 'pts/0\n' >> $securetty_file
-> +    printf 'pts/1\n' >> $securetty_file
-> +    printf 'pts/2\n' >> $securetty_file
-> +    printf 'pts/3\n' >> $securetty_file
-> +    printf 'pts/4\n' >> $securetty_file
-
-You don't need to escape anything here, why not simply use "echo"?
-
-> +
+> +populate_sdk_ipk_append () {
+> +	cd ${SDK_OUTPUT}/${SDKPATH}/bin
+> +	binfiles=3D`find ! -name "${ARAGO_TARGET_SYS}-*" -type f -perm +111 -ex=
+ec file {} \;|grep -v ":.*ASCII.*text"|cut -d":" -f1|cut -c3-`
+> +	for i in $binfiles; do
+> +		mv $i $i.real
+> +		printf "#!/bin/sh\n\x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.=
+real \x24\x2a\n" > $i
+> +		chmod +x $i
+> +	done
 > +}
-> --=20
-> 1.7.0.4
+> --
+> 1.8.0
 >=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
