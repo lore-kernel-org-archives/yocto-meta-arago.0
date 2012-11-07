@@ -1,29 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 8FB0052A0E
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9E89552A12
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Nov 2012 21:05:43 +0000 (UTC)
+	Wed,  7 Nov 2012 21:21:34 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA7L5hjl006731
-	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 15:05:43 -0600
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA7L5gpG008656
-	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 15:05:42 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 7 Nov 2012 15:05:42 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA7LLUVF005007;
+	Wed, 7 Nov 2012 15:21:30 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA7LLUOu020829;
+	Wed, 7 Nov 2012 15:21:30 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 7 Nov 2012 15:21:29 -0600
 Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id qA7L5grN007857	for
-	<meta-arago@arago-project.org>; Wed, 7 Nov 2012 15:05:42 -0600
-Date: Wed, 7 Nov 2012 16:05:42 -0500
+	(8.13.8/8.13.8) with ESMTP id qA7LLTGe012112;
+	Wed, 7 Nov 2012 15:21:29 -0600
+Date: Wed, 7 Nov 2012 16:21:29 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20121107210542.GG11967@edge>
-References: <1352322180-17306-1-git-send-email-denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-ID: <20121107212129.GH11967@edge>
+References: <1352322311-11941-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1352322180-17306-1-git-send-email-denys@ti.com>
+In-Reply-To: <1352322311-11941-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [PATCHv2] meta-toolchain-arago: make SDK/devkit relocatable
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH] shadow-securetty: Allow remote telnet login as root
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,61 +37,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2012 21:05:43 -0000
+X-List-Received-Date: Wed, 07 Nov 2012 21:21:36 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Nov 07, 2012 at 04:03:00PM -0500, Denys Dmytriyenko wrote:
-> Implement poor man's relocation technique for self-contained crosssdk binaries
-> 
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+On Wed, Nov 07, 2012 at 03:05:11PM -0600, Franklin S. Cooper Jr wrote:
+> * Need to add pts/X to the securetty file to allow remote login via telnet as root
+
+Why do we need telnetd and specifically with root login? Isn't sshd not 
+enough? Previously telnetd was enabled because we couldn't ship sshd...
+
+
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
-> In v2 use stub shell scripts instead of aliases, to work in Makefiles
-
-Ok, this seems to work fine in shell and in Makefiles too. And it also works 
-when environment-setup is sources before calling make, but not inside the 
-Makefile.
-
-
->  meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
+>  .../shadow/shadow-securetty_4.1.4.3.bbappend       |   15 +++++++++++++++
+>  1 files changed, 15 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend
 > 
-> diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> index d2fe982..81bdeed 100644
-> --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> @@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
->  
->  require recipes-core/meta/meta-toolchain.bb
->  
-> -PR = "r5"
-> +PR = "r6"
->  
->  SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
->  
-> @@ -28,6 +28,7 @@ toolchain_create_sdk_env_script () {
->  	echo 'export TARGET_SYS=${ARAGO_TARGET_SYS}' >> $script
->  	echo 'export TARGET_PREFIX=$TARGET_SYS-' >> $script
->  	echo 'export PATH=$SDK_PATH/bin:$PATH' >> $script
-> +	echo 'export LD_LIBRARY_PATH=$SDK_PATH/lib:$LD_LIBRARY_PATH' >> $script
->  	echo 'export CPATH=$SDK_PATH/$TARGET_SYS/usr/include:$CPATH' >> $script
->  	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH/$TARGET_SYS' >> $script
->  	echo 'export PKG_CONFIG_PATH=$SDK_PATH/$TARGET_SYS${libdir}/pkgconfig' >> $script
-> @@ -55,3 +56,13 @@ toolchain_create_sdk_env_script () {
->  	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
->  	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
->  }
+> diff --git a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend
+> new file mode 100644
+> index 0000000..a09c514
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_4.1.4.3.bbappend
+> @@ -0,0 +1,15 @@
+> +PR_append = "-arago0"
 > +
-> +populate_sdk_ipk_append () {
-> +	cd ${SDK_OUTPUT}/${SDKPATH}/bin
-> +	binfiles=`find ! -name "${ARAGO_TARGET_SYS}-*" -type f -perm +111 -exec file {} \;|grep -v ":.*ASCII.*text"|cut -d":" -f1|cut -c3-`
-> +	for i in $binfiles; do
-> +		mv $i $i.real
-> +		printf "#!/bin/sh\n\x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" > $i
-> +		chmod +x $i
-> +	done
+> +do_install_append () {
+> +    # Allow telnet sessions to login as root
+> +    securetty_file=${D}${sysconfdir}/securetty
+> +
+> +    printf '\n' >> $securetty_file
+> +    printf '# Allow 5 telnet login\n' >> $securetty_file
+> +    printf 'pts/0\n' >> $securetty_file
+> +    printf 'pts/1\n' >> $securetty_file
+> +    printf 'pts/2\n' >> $securetty_file
+> +    printf 'pts/3\n' >> $securetty_file
+> +    printf 'pts/4\n' >> $securetty_file
+
+You don't need to escape anything here, why not simply use "echo"?
+
+> +
 > +}
 > -- 
-> 1.8.0
+> 1.7.0.4
 > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
