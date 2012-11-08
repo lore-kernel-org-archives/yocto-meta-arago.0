@@ -1,28 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
-	[206.46.173.11])
-	by arago-project.org (Postfix) with ESMTP id D215F529EF
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id EA25A529EF
 	for <meta-arago@arago-project.org>;
-	Thu,  8 Nov 2012 01:20:25 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.12])
-	by vms173011.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MD5009STADB3O20@vms173011.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 07 Nov 2012 19:20:15 -0600 (CST)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id D111920120; Wed,
-	07 Nov 2012 20:19:58 -0500 (EST)
-Date: Wed, 07 Nov 2012 20:19:58 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-id: <20121108011958.GA1740@denix.org>
-References: <1352322180-17306-1-git-send-email-denys@ti.com>
-	<20121107210542.GG11967@edge>
-	<8F29D6B095ED194EA1980491A5E029710C31AD06@DFLE09.ent.ti.com>
-MIME-version: 1.0
-In-reply-to: <8F29D6B095ED194EA1980491A5E029710C31AD06@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv2] meta-toolchain-arago: make SDK/devkit relocatable
+	Thu,  8 Nov 2012 03:06:55 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA836tMn012543
+	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 21:06:55 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA836tfm004961
+	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 21:06:55 -0600
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Wed, 7 Nov 2012 21:06:55 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: meta-toolchain-arago: move LD_LIBRARY_PATH setting into each
+	shell stub [issue]
+Thread-Index: Ac29XL9r7FdJOoPAQCq8P1ndHtAB8Q==
+Date: Thu, 8 Nov 2012 03:06:52 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C31AF50@DFLE09.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Subject: meta-toolchain-arago: move LD_LIBRARY_PATH setting into each shell stub [issue]
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,104 +37,124 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2012 01:20:26 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 08 Nov 2012 03:06:56 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C31AF50DFLE09entticom_"
 
-On Wed, Nov 07, 2012 at 11:11:05PM +0000, Cooper Jr., Franklin wrote:
-> 
-> 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> Sent: Wednesday, November 07, 2012 3:06 PM
-> To: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCHv2] meta-toolchain-arago: make SDK/devkit relocatable
-> 
-> On Wed, Nov 07, 2012 at 04:03:00PM -0500, Denys Dmytriyenko wrote:
-> > Implement poor man's relocation technique for self-contained crosssdk 
-> > binaries
-> > 
-> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > ---
-> > In v2 use stub shell scripts instead of aliases, to work in Makefiles
-> 
-> Ok, this seems to work fine in shell and in Makefiles too. And it also works 
-> when environment-setup is sources before calling make, but not inside the 
-> Makefile.
-> 
-> Franklin:
-> export LD_LIBRARY_PATH=$SDK_PATH/lib:$LD_LIBRARY_PATH is causing issues. 
-> Once I source that file I get a Segmentation fault when calling qmake, 
-> make,arm-arago-linux-gnueabi-gcc,ls , etc....
-> Removing that line from environment-setup gets rid of the Segmentation fault 
-> issue but of course qmake and the other executables don't work. I get a 
-> "error while loading shared libraries: libstdc++.so.6: cannot open shared 
-> object file: No such file or directory".
+--_000_8F29D6B095ED194EA1980491A5E029710C31AF50DFLE09entticom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Yeah, that explains the segfault Chase was seeing. I didn't see the segfault 
-on regular system apps, like make, ls etc. But it did segfault on Arago 
-toolchain binaries, like arm-arago-linux-gnueabi-gcc etc. It's better to set 
-LD_LIBRARY_PATH variable only for select SDK tools that we have shell stubs 
-for, instead of globally. The fix is now in.
+Some more progress being made. Building non Qt applications working again a=
+nd qmake works. But make is having issues finding include files
+
+/home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-evm-05.06.00.00/linux-d=
+evkit/arm-arago-linux-gnueabi/usr/include/qtopia/QtCore/qglobal.h:68:21: fa=
+tal error: algorithm: No such file or directory
+compilation terminated.
+make: *** [main.o] Error 1
+
+That header is apart of the C++ standard library and is located at /home/fc=
+ooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-evm-05.06.00.00/linux-devkit/ar=
+m-arago-linux-gnueabi/usr/include/c++/4.5.3
+
+I am currently fiddling with mkspecs, linux.conf and QMAKE_INCDIR with no l=
+uck.
+
+Complete log: pastebin.com/xRh4tWik
 
 
-> Since you got this working is there anything the host machine needs to 
-> configure to get this to work?
+Regards,
+Franklin Cooper Jr.
+Texas Instruments
+Application Engineer
+fcooper@ti.com<mailto:fcooper@ti.com>
 
-I guess it's rather host system specific...
 
+--_000_8F29D6B095ED194EA1980491A5E029710C31AF50DFLE09entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-> >  meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 13 
-> > ++++++++++++-
-> >  1 file changed, 12 insertions(+), 1 deletion(-)
-> > 
-> > diff --git 
-> > a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb 
-> > b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > index d2fe982..81bdeed 100644
-> > --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > @@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
-> >  
-> >  require recipes-core/meta/meta-toolchain.bb
-> >  
-> > -PR = "r5"
-> > +PR = "r6"
-> >  
-> >  SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
-> >  
-> > @@ -28,6 +28,7 @@ toolchain_create_sdk_env_script () {
-> >  	echo 'export TARGET_SYS=${ARAGO_TARGET_SYS}' >> $script
-> >  	echo 'export TARGET_PREFIX=$TARGET_SYS-' >> $script
-> >  	echo 'export PATH=$SDK_PATH/bin:$PATH' >> $script
-> > +	echo 'export LD_LIBRARY_PATH=$SDK_PATH/lib:$LD_LIBRARY_PATH' >> 
-> > +$script
-> >  	echo 'export CPATH=$SDK_PATH/$TARGET_SYS/usr/include:$CPATH' >> $script
-> >  	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH/$TARGET_SYS' >> $script
-> >  	echo 'export 
-> > PKG_CONFIG_PATH=$SDK_PATH/$TARGET_SYS${libdir}/pkgconfig' >> $script @@ -55,3 +56,13 @@ toolchain_create_sdk_env_script () {
-> >  	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
-> >  	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script  }
-> > +
-> > +populate_sdk_ipk_append () {
-> > +	cd ${SDK_OUTPUT}/${SDKPATH}/bin
-> > +	binfiles=`find ! -name "${ARAGO_TARGET_SYS}-*" -type f -perm +111 -exec file {} \;|grep -v ":.*ASCII.*text"|cut -d":" -f1|cut -c3-`
-> > +	for i in $binfiles; do
-> > +		mv $i $i.real
-> > +		printf "#!/bin/sh\n\x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" > $i
-> > +		chmod +x $i
-> > +	done
-> > +}
-> > --
-> > 1.8.0
-> > 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Some more progress being made. Building non Qt appli=
+cations working again and qmake works. But make is having issues finding in=
+clude files<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">/home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-=
+evm-05.06.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/include/qtopia/QtC=
+ore/qglobal.h:68:21: fatal error: algorithm: No such file or directory<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">compilation terminated.<o:p></o:p></p>
+<p class=3D"MsoNormal">make: *** [main.o] Error 1<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">That header is apart of the C&#43;&#43; standard lib=
+rary and is located at /home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-=
+evm-05.06.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/include/c&#43;&#43=
+;/4.5.3<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am currently fiddling with mkspecs, linux.conf and=
+ QMAKE_INCDIR with no luck.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Complete log: pastebin.com/xRh4tWik<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Franklin Cooper Jr.<o:p></o:p></p>
+<p class=3D"MsoNormal">Texas Instruments<o:p></o:p></p>
+<p class=3D"MsoNormal">Application Engineer<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"mailto:fcooper@ti.com">fcooper@ti.com</a>=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
+--_000_8F29D6B095ED194EA1980491A5E029710C31AF50DFLE09entticom_--
