@@ -1,33 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id B4723529EF
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 1ADFB52A79
 	for <meta-arago@arago-project.org>;
-	Thu,  8 Nov 2012 04:25:51 +0000 (UTC)
+	Thu,  8 Nov 2012 04:43:01 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA84Pokl020213;
-	Wed, 7 Nov 2012 22:25:50 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA84PoWr031367;
-	Wed, 7 Nov 2012 22:25:50 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Wed, 7 Nov 2012 22:25:50 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH][for-comment] external-arago-toolchain:
-	de-bashify
-Thread-Index: AQHNvUGfJOc3aQlaMkyrVR2xZqp+qZffVmgw
-Date: Thu, 8 Nov 2012 04:25:48 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C31B00A@DFLE09.ent.ti.com>
-References: <1352331770-27964-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1352331770-27964-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA84h0iP010035
+	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 22:43:00 -0600
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA84h0wv013698
+	for <meta-arago@arago-project.org>; Wed, 7 Nov 2012 22:43:00 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 7 Nov 2012 22:43:00 -0600
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id qA84h0aw031206;
+	Wed, 7 Nov 2012 22:43:00 -0600
+Date: Wed, 7 Nov 2012 23:42:59 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20121108044258.GA14870@edge>
+References: <8F29D6B095ED194EA1980491A5E029710C31AF50@DFLE09.ent.ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH][for-comment] external-arago-toolchain:	de-bashify
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C31AF50@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: meta-toolchain-arago: move LD_LIBRARY_PATH setting into each shell stub [issue]
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,101 +37,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2012 04:25:52 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 08 Nov 2012 04:43:01 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-This patch fixed my build failure when building external-arago-toolchain. T=
-he issue is with all the bracket expansion statements in the do_install tas=
-k. However, in later recipes I was getting several toolchain errors complai=
-ning about missing files.
+Ok, so the good news is that all the SDK binaries are working fine.
 
-I reverted this patch and simply switched my shell form dash to bash to fix=
- the build issue with this recipe.
+Now, as of the C++ headers, I'm surprised it used to work like that in 
+previous SDKs, but I see that the headers are installed in the wrong place, 
+not where toolchain expects them to find:
 
------Original Message-----
-From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
--project.org] On Behalf Of Franklin S. Cooper Jr
-Sent: Wednesday, November 07, 2012 5:43 PM
-To: meta-arago@arago-project.org
-Subject: [meta-arago] [PATCH][for-comment] external-arago-toolchain: de-bas=
-hify
+/linux-devkit/arm-arago-linux-gnueabi/usr/include/c++/4.5.3
 
-From: Franklin Cooper <fcooper@ubuntu.(none)>
+And they should be:
 
-* In dash shells bracket expansion is not supported. Replacing bracket
-  expansion with logically equivalent statements.
+/linux-devkit/arm-arago-linux-gnueabi/include/c++/4.5.3
 
-Signed-off-by: Franklin Cooper <fcooper@ubuntu.(none)>
----
- .../recipes-core/meta/external-arago-toolchain.bb  |   21 +++++++++++++---=
----
- 1 files changed, 14 insertions(+), 7 deletions(-)
+Fixed now.
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-arago-toolchain.b=
-b b/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb
-index 26b9a6e..a73dc40 100644
---- a/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb
-+++ b/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb
-@@ -2,7 +2,7 @@ require recipes-core/eglibc/eglibc-package.inc
-=20
- require external-arago-toolchain.inc
-=20
--PR =3D "r2"
-+PR =3D "r3"
-=20
- INHIBIT_DEFAULT_DEPS =3D "1"
-=20
-@@ -234,15 +234,22 @@ do_install() {
- 	install -d ${D}${includedir}
-=20
- 	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${datadir}/* ${D}${datadir}
--	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${base_libdir}/{lib*,ld*} ${D}=
-${base_libdir}
-+	cd ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${base_libdir}/
-+	cp -a lib* ld* ${D}${base_libdir}
- 	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${base_sbindir}/ldconfig ${D}$=
-{base_sbindir}
--	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${bindir}/{gdbserver,gencat,ge=
-tconf,getent,iconv,locale,mtrace,pcprofiledump,rpcgen,sprof,tzselect,xtrace=
-} ${D}${bindir}
--	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${sbindir}/{iconvconfig,rpcinf=
-o,zdump,zic} ${D}${sbindir}
--	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${includedir}/{arpa,asm*,bits,=
-drm,gnu,linux,mtd,net*,nfs,protocols,rdma,rpc*,scsi,sound,sys*,video,*.h} $=
-{D}${includedir}
--	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${libdir}/{?crt1.o,crt?.o,libB=
-rokenLocale*,libanl*,libc.*,libc_*,libcrypt.*,libcidn.*,libdl.*,libg.*,libi=
-eee.*,libm.*,libmcheck.*,libnsl*,libnss*,libpthread*,libresolv*,librt*,libs=
-tdc*,libsupc*,libthread*,libutil*} ${D}${libdir}
-+	cd ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${bindir}/
-+	cp -a gdbserver gencat getconf getent iconv locale mtrace pcprofiledump r=
-pcgen sprof tzselect xtrace ${D}${bindir}
-+	cd ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${sbindir}/
-+	cp -a iconvconfig rpcinfo zdump zic ${D}${sbindir}
-+	cd ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${includedir}/
-+	cp -a arpa asm* bits drm gnu linux mtd net* nfs protocols rdma rpc* scsi =
-sound sys* video *.h ${D}${includedir}
-+	cd ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}${libdir}/
-+	cp -a ?crt1.o crt?.o libBrokenLocale* libanl* libc.* libc_* libcrypt.* li=
-bcidn.* libdl.* libg.* libieee.* libm.* libmcheck.* libnsl* libnss* libpthr=
-ead* libresolv* librt* libstdc* libsupc* libthread* libutil* ${D}${libdir}
-+
- 	rm -rf ${D}${base_libdir}/*.la
- 	rm -rf ${D}${libdir}/*.la
--	rm -rf ${D}${includedir}/{zconf,zlib}.h
-+	rm -rf ${D}${includedir}/zlib.h
-+	rm -rf ${D}${includedir}/zconf.h
-=20
- 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-ar=
-ago-toolchain', '', 'rm -rf ${D}${includedir}/linux', d)}
-=20
---=20
-1.7.0.4
+Denys
 
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+On Thu, Nov 08, 2012 at 03:06:52AM +0000, Cooper Jr., Franklin wrote:
+> Some more progress being made. Building non Qt applications working again and qmake works. But make is having issues finding include files
+> 
+> /home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-evm-05.06.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/include/qtopia/QtCore/qglobal.h:68:21: fatal error: algorithm: No such file or directory
+> compilation terminated.
+> make: *** [main.o] Error 1
+> 
+> That header is apart of the C++ standard library and is located at /home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-evm-05.06.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/include/c++/4.5.3
+> 
+> I am currently fiddling with mkspecs, linux.conf and QMAKE_INCDIR with no luck.
+> 
+> Complete log: pastebin.com/xRh4tWik
+> 
+> 
+> Regards,
+> Franklin Cooper Jr.
+> Texas Instruments
+> Application Engineer
+> fcooper@ti.com<mailto:fcooper@ti.com>
+> 
+
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
 
