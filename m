@@ -1,36 +1,26 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 2BFD8529C6
+Return-Path: <denis@denix.org>
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTP id 4C91B5208C
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 22:46:48 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so6217172oag.38
-	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 14:46:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=LYLCn+0ZiFnhODPSOdivRkfJR0cWY3TXRfvacVps/mw=;
-	b=OE0wUr7AktaG5LuHHwA0KG/oxhrzm5MM/gzRUqSr6mFGMOjcp2RgcAqT/27+6XNx5m
-	oGMz84Qakf8LGvswQv5ZQ3pOjU3HC57xUVQXdfboCk9go1rVHMu9VB8rOchxbw8F2pFs
-	zNeRzwTWAWyJQYqQQVmBTUkyLzwxiZYft9JFuxTFMFzcD1+70Efwzff4T/2o1Wcz2aGo
-	TurWJGagippyh25PvgCmx2mtRN6zv1RhZQWp3wEL94O29/bnsn606b8TLqKsjhQYAbnd
-	sK0MmoEQujy0MqyDy/vJ8hwz9ENQvhgcd7NA09KOgE4DXMF6FiUmplj7XU6lB5R7MccN
-	boUw==
-Received: by 10.60.19.202 with SMTP id h10mr15531659oee.99.1352760407954;
-	Mon, 12 Nov 2012 14:46:47 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id nd14sm8285868obb.14.2012.11.12.14.46.47
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 12 Nov 2012 14:46:47 -0800 (PST)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Mon, 12 Nov 2012 16:46:36 -0600
-Message-Id: <1352760396-7331-5-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1352760396-7331-1-git-send-email-fcooper@ti.com>
-References: <1352760396-7331-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 5/5] arago.conf: Switch to latest PSP u-boot release
+	Mon, 12 Nov 2012 23:20:36 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173013.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MDE00M25E65KKR0@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 12 Nov 2012 17:20:30 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id B31F3200E5; Mon,
+	12 Nov 2012 18:20:29 -0500 (EST)
+Date: Mon, 12 Nov 2012 18:20:29 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+Message-id: <20121112232029.GB8900@denix.org>
+References: <1352759598-5183-1-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1352759598-5183-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH] meta-toolchain-arago: de-bashify
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,30 +33,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2012 22:46:48 -0000
+X-List-Received-Date: Mon, 12 Nov 2012 23:20:36 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* Switch to the latest PSP u-boot release being developed for the 2012 fourth
-  quarter Sitara SDK.
+On Mon, Nov 12, 2012 at 04:33:18PM -0600, Franklin S. Cooper Jr wrote:
+> * Replacing "echo -e" with "printf".
+> * This mimics a previous de-bashify patch applied to this same recipe.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+How is it different from this:
+http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=7f47dbad47a44c8d16c12139260a00b80d603e71
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 1378255..cca90f6 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -56,7 +56,7 @@ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x"
- PREFERRED_VERSION_virtual/kernel_am335x-evm = "3.2.0-psp05.06.00.00"
- 
- # Use the SDK supported u-boot version
--PREFERRED_VERSION_u-boot_am335x-evm = "2011.09-psp04.06.00.08"
-+PREFERRED_VERSION_u-boot_am335x-evm = "2012.10-psp05.06.00.00"
- 
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
- PREFERRED_VERSION_udev = "164"
--- 
-1.7.0.4
+I'd suggest you update your tree to the latest code base...
 
+> ---
+>  .../recipes-core/meta/meta-toolchain-arago.bb      |   20 ++++++++++----------
+>  1 files changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> index 09996d6..3d3fb0d 100644
+> --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> @@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
+>  
+>  require recipes-core/meta/meta-toolchain.bb
+>  
+> -PR = "r7"
+> +PR = "r8"
+>  
+>  SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
+>  
+> @@ -54,15 +54,15 @@ toolchain_create_sdk_env_script () {
+>  	echo 'export OECORE_ACLOCAL_OPTS="-I $SDK_PATH/usr/share/aclocal"' >> $script
+>  	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
+>  	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
+> -    echo -e 'export CPP="\x24{TARGET_PREFIX}gcc -E"' >> $script
+> -    echo -e 'export NM=\x24{TARGET_PREFIX}nm' >> $script
+> -    echo -e 'export RANLIB=\x24{TARGET_PREFIX}ranlib' >> $script
+> -    echo -e 'export OBJCOPY=\x24{TARGET_PREFIX}objcopy' >> $script
+> -    echo -e 'export STRIP=\x24{TARGET_PREFIX}strip' >> $script
+> -    echo -e 'export AS=\x24{TARGET_PREFIX}as' >> $script
+> -    echo -e 'export AR=\x24{TARGET_PREFIX}ar' >> $script
+> -    echo -e 'export OBJDUMP=\x24{TARGET_PREFIX}objdump' >> $script
+> -    echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
+> +	printf 'export CPP="\x24{TARGET_PREFIX}gcc -E"\n' >> $script
+> +	printf 'export NM=\x24{TARGET_PREFIX}nm\n' >> $script
+> +	printf 'export RANLIB=\x24{TARGET_PREFIX}ranlib\n' >> $script
+> +	printf 'export OBJCOPY=\x24{TARGET_PREFIX}objcopy\n' >> $script
+> +	printf 'export STRIP=\x24{TARGET_PREFIX}strip\n' >> $script
+> +	printf 'export AS=\x24{TARGET_PREFIX}as\n' >> $script
+> +	printf 'export AR=\x24{TARGET_PREFIX}ar\n' >> $script
+> +	printf 'export OBJDUMP=\x24{TARGET_PREFIX}objdump\n' >> $script
+> +	echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
+>  }
+>  
+>  populate_sdk_ipk_append () {
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
