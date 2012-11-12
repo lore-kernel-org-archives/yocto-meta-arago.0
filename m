@@ -1,32 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 577C752A7B
+Return-Path: <chase.maupin@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C2BF452AAE
 	for <meta-arago@arago-project.org>;
-	Thu,  8 Nov 2012 06:44:17 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id qA86iGk2004895
-	for <meta-arago@arago-project.org>; Thu, 8 Nov 2012 00:44:16 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qA86iGRV009214
-	for <meta-arago@arago-project.org>; Thu, 8 Nov 2012 00:44:16 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 8 Nov 2012 00:44:16 -0600
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id qA86iG1d007443;
-	Thu, 8 Nov 2012 00:44:16 -0600
-Date: Thu, 8 Nov 2012 01:44:15 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20121108064415.GB14870@edge>
-References: <8F29D6B095ED194EA1980491A5E029710C31AF50@DFLE09.ent.ti.com>
-	<20121108044258.GA14870@edge>
-	<8F29D6B095ED194EA1980491A5E029710C31B146@DFLE09.ent.ti.com>
+	Mon, 12 Nov 2012 13:33:00 +0000 (UTC)
+Received: from dbdp20.itg.ti.com ([172.24.170.38])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qACDWwWJ025054
+	for <meta-arago@arago-project.org>; Mon, 12 Nov 2012 07:32:59 -0600
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id qACDWuPj008267
+	for <meta-arago@arago-project.org>;
+	Mon, 12 Nov 2012 19:02:58 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 12 Nov 2012 19:02:56 +0530
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id qACDWsB0021812;
+	Mon, 12 Nov 2012 19:02:55 +0530
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 12 Nov 2012 07:32:49 -0600
+Message-ID: <1352727169-26824-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C31B146@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: meta-toolchain-arago: move LD_LIBRARY_PATH setting into each shell stub [issue]
+Subject: [PATCH] tisdk-rootfs-image: derive the rootfs image from base image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,65 +35,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2012 06:44:17 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 12 Nov 2012 13:33:01 -0000
+Content-Type: text/plain
 
-Great! I can go get some sleep now... :)
+* Derive the tisdk-rootfs-image from the arago-base-tisdk-image.
+* This brings in functionality like remove-net-rules as well as
+  keeping these two images aligned.
 
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+---
+ .../recipes-core/images/tisdk-rootfs-image.bb      |    5 +----
+ 1 files changed, 1 insertions(+), 4 deletions(-)
 
-On Thu, Nov 08, 2012 at 01:25:56AM -0500, Cooper Jr., Franklin wrote:
-> Success! I just need to test building these applications via Qt Creator and Code Composer Studio but building from the command line works without a problem!
-> 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Wednesday, November 07, 2012 10:43 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] meta-toolchain-arago: move LD_LIBRARY_PATH setting into each shell stub [issue]
-> 
-> Ok, so the good news is that all the SDK binaries are working fine.
-> 
-> Now, as of the C++ headers, I'm surprised it used to work like that in previous SDKs, but I see that the headers are installed in the wrong place, not where toolchain expects them to find:
-> 
-> /linux-devkit/arm-arago-linux-gnueabi/usr/include/c++/4.5.3
-> 
-> And they should be:
-> 
-> /linux-devkit/arm-arago-linux-gnueabi/include/c++/4.5.3
-> 
-> Fixed now.
-> 
-> Denys
-> 
-> 
-> On Thu, Nov 08, 2012 at 03:06:52AM +0000, Cooper Jr., Franklin wrote:
-> > Some more progress being made. Building non Qt applications working 
-> > again and qmake works. But make is having issues finding include files
-> > 
-> > /home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-evm-05.06.00.00/li
-> > nux-devkit/arm-arago-linux-gnueabi/usr/include/qtopia/QtCore/qglobal.h:68:21: fatal error: algorithm: No such file or directory compilation terminated.
-> > make: *** [main.o] Error 1
-> > 
-> > That header is apart of the C++ standard library and is located at 
-> > /home/fcooper/sdk/alpha/11_07_8_10_PM/ti-sdk-am335x-evm-05.06.00.00/li
-> > nux-devkit/arm-arago-linux-gnueabi/usr/include/c++/4.5.3
-> > 
-> > I am currently fiddling with mkspecs, linux.conf and QMAKE_INCDIR with no luck.
-> > 
-> > Complete log: pastebin.com/xRh4tWik
-> > 
-> > 
-> > Regards,
-> > Franklin Cooper Jr.
-> > Texas Instruments
-> > Application Engineer
-> > fcooper@ti.com<mailto:fcooper@ti.com>
-> > 
-> 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+index fc5d39e..2574329 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+@@ -1,12 +1,9 @@
+ # Arago TI SDK filesystem image
+ COMPATIBLE_MACHINE = "omap3|omapl138|ti33x"
+ 
+-require arago-image.inc
++require arago-base-tisdk-image.bb
+ 
+ IMAGE_INSTALL += "\
+-    task-arago-base \
+-    task-arago-console \
+-    task-arago-base-tisdk \
+     task-arago-tisdk-graphics \
+     task-arago-tisdk-qte \
+     task-arago-tisdk-addons \
+-- 
+1.7.0.4
+
 
