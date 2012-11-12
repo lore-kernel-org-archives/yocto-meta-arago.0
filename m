@@ -1,28 +1,34 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C2BF452AAE
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 365DB5296D
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 13:33:00 +0000 (UTC)
-Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qACDWwWJ025054
-	for <meta-arago@arago-project.org>; Mon, 12 Nov 2012 07:32:59 -0600
-Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id qACDWuPj008267
+	Mon, 12 Nov 2012 22:33:05 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so6205625oag.38
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 19:02:58 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
-	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 12 Nov 2012 19:02:56 +0530
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id qACDWsB0021812;
-	Mon, 12 Nov 2012 19:02:55 +0530
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 12 Nov 2012 07:32:49 -0600
-Message-ID: <1352727169-26824-1-git-send-email-Chase.Maupin@ti.com>
+	Mon, 12 Nov 2012 14:33:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=CayiBSzn/V5gPwNE6oYRDBHyvBVdJRozmvVFxi6rNl4=;
+	b=LprbsmVAcdc3nyo8rAiXK/N/YS70wdTPfvpVc+ObUS3ObKhYOWXHxZOz1Oyphk1esh
+	wMaX47mL6iWVcbPbfmpnqiQneDkSNCP1VOTHXNgpu4qYH/3Ybleapcl8fd6mlVgD8F7Z
+	28TPQxfPogeguP57x76BkvDwZ0W7WAVWKV9KhpMnapgyLloDAo4g0JLUpEPglTxZg40y
+	J0Geqea23EJC8a00dUjIW4D4JZdOEJX6dlGzkuk/oHWfuJ4gU661gANKNhQumfjKMBln
+	W+akfllGMKfQcjPnz5kJHzvor4+aWAp42njx+wQUCLGpHSXb9WwEmUZoQdWM59PFWYQQ
+	W5bA==
+Received: by 10.60.28.3 with SMTP id x3mr15502352oeg.14.1352759584063;
+	Mon, 12 Nov 2012 14:33:04 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id 9sm8242783obi.22.2012.11.12.14.33.02
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 12 Nov 2012 14:33:03 -0800 (PST)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Mon, 12 Nov 2012 16:32:56 -0600
+Message-Id: <1352759576-5144-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Subject: [PATCH] tisdk-rootfs-image: derive the rootfs image from base image
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] meta-toolchain-arago-qte: Fix mkspecs location
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,36 +41,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2012 13:33:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 12 Nov 2012 22:33:05 -0000
 
-* Derive the tisdk-rootfs-image from the arago-base-tisdk-image.
-* This brings in functionality like remove-net-rules as well as
-  keeping these two images aligned.
+* Mkspecs symbolic link was previously being placed way out side of the toolchain
+  sdk directory.
+* Create the mkspecs symbolic link inside of the toolchain sdk directory.
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/images/tisdk-rootfs-image.bb      |    5 +----
- 1 files changed, 1 insertions(+), 4 deletions(-)
+ .../recipes-core/meta/meta-toolchain-arago-qte.bb  |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index fc5d39e..2574329 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -1,12 +1,9 @@
- # Arago TI SDK filesystem image
- COMPATIBLE_MACHINE = "omap3|omapl138|ti33x"
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+index e11b7e6..cadb861 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+@@ -5,7 +5,7 @@ TOOLCHAIN_OUTPUTNAME = "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-qte-sdk-${SDK_ARC
  
--require arago-image.inc
-+require arago-base-tisdk-image.bb
+ require meta-toolchain-arago.bb
  
- IMAGE_INSTALL += "\
--    task-arago-base \
--    task-arago-console \
--    task-arago-base-tisdk \
-     task-arago-tisdk-graphics \
-     task-arago-tisdk-qte \
-     task-arago-tisdk-addons \
+-PR = "r8"
++PR = "r9"
+ 
+ QT_DIR_NAME = "qtopia"
+ 
+@@ -40,5 +40,5 @@ toolchain_create_sdk_env_script_append() {
+ 
+ 	# make a symbolic link to mkspecs for compatibility with Nokia's SDK
+ 	# and QTCreator
+-	(cd ${SDK_OUTPUT}/${QT_TOOLS_PREFIX}/..; ln -sf ${ARAGO_TARGET_SYS}${datadir}/${QT_DIR_NAME}/mkspecs mkspecs;)
++	(cd ${SDK_OUTPUT}/${SDKPATH}; ln -sf ${ARAGO_TARGET_SYS}${datadir}/${QT_DIR_NAME}/mkspecs mkspecs;)
+ }
 -- 
 1.7.0.4
 
