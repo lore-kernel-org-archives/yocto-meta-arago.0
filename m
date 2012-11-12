@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
 	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 8A9155296D
+	by arago-project.org (Postfix) with ESMTPS id 929205208C
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 22:35:12 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id eq6so2768654obc.38
+	Mon, 12 Nov 2012 22:41:00 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id eq6so2773026obc.38
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 14:35:12 -0800 (PST)
+	Mon, 12 Nov 2012 14:41:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=LE4ZYAS9BSuzcwfK+/rrpSi/c/8wT83aJczOVt8Q3Dw=;
-	b=1HimaEjZwULoLQSyqH0btmEujCqykDIWlHObBgWKtA+g/dvBOUc422Zq5Uq2mveyvj
-	/Mu1NeR7FEtxOS2plml3otX2fqM0rGi+hpJpc+UrpKnoRmz4sDlW5F/tRY333c3pOhk2
-	rTXNbXLj7WXBU8lykLAeGffbrhwFWow1i2yDrGVHHXpucMfKkhwILmkKUNu4/Rd3LeTe
-	KQ4fzkc1zP7gHsMZ/gTPUA2kIX8d/R4jbzUOGu9Xvh2bHw72eVx6a1q+kLQz72gYaIsm
-	eMs8fNdDEDjCxzu5hLS9Li8pY7dKT4vkLoDuwBjC5szUxINdlWxu0BjrwH5Ix+7AoNY5
-	sBUQ==
-Received: by 10.60.27.161 with SMTP id u1mr16193596oeg.27.1352759711983;
-	Mon, 12 Nov 2012 14:35:11 -0800 (PST)
+	bh=q21FrFfjIM8fQ68znPTO11DPBEtRHVkIHK1Isswa2jQ=;
+	b=jfeEvJ2qjx22xzxoWI2GNwi51y19VEvfhB2/cpJjZivU/OiScNsPuM9T3V+3s5ntVG
+	TFNjMC+ivXhhj56hQ5sgorX7xkxg3/6CTSscX9T+vhMs9QHZYFDOGrUYoDMSTKSblZQN
+	PConI/kyC7Lb7+zXZGuEeJUPPvWH2FR1ebuRgpAchz3E3ik8wdoOhq1JScSdVCNHlMG7
+	QiCTfBdjYGZdoWYCmlazOdNJsd8+AxNpfxm1a7ter5EMb+vvcQ8xlR7x+hCi5NKTSwkb
+	iScAOlxzUxg2ZMVUIzepbuH6VwyN8n9kRlhjk+xAujN2/3oMdjM5Mcwxa6Q5G2nfcGtb
+	m0XQ==
+Received: by 10.182.172.74 with SMTP id ba10mr16516707obc.83.1352760059889;
+	Mon, 12 Nov 2012 14:40:59 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b20sm8270855obu.4.2012.11.12.14.35.10
+	by mx.google.com with ESMTPS id d7sm4394896oee.2.2012.11.12.14.40.59
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 12 Nov 2012 14:35:11 -0800 (PST)
+	Mon, 12 Nov 2012 14:40:59 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Mon, 12 Nov 2012 16:35:07 -0600
-Message-Id: <1352759707-5369-1-git-send-email-fcooper@ti.com>
+Date: Mon, 12 Nov 2012 16:40:52 -0600
+Message-Id: <1352760055-6119-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] qt4-embedded-gles: Correct linux.conf
+Subject: [PATCH 1/4] quick-playground: Port quick-playground from Arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,73 +41,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2012 22:35:12 -0000
+X-List-Received-Date: Mon, 12 Nov 2012 22:41:00 -0000
 
-* Remove ${STAGING_INCDIR} and ${STAGING_LIBDIR} from linux.conf. These
-  variables were improperly set in the first place and caused build issues
-  when building quick-playground.
+* Port Qt application qml-playground from Arago.
+* Renaming the recipe from qml-playground to quick-playground.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-qt/qt4/qt4-embedded-gles/linux.conf    |   23 +++++++++++--------
- .../recipes-qt/qt4/qt4-embedded-gles_4.8.0.bb      |    2 +-
- 2 files changed, 14 insertions(+), 11 deletions(-)
+ .../recipes-qt/qt-apps/quick-playground_1.0.bb     |   36 ++++++++++++++++++++
+ 1 files changed, 36 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
 
-diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
-index 7a96715..b26b7ea 100644
---- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
-+++ b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
-@@ -11,16 +11,19 @@ QMAKE_INCDIR_X11      =
- QMAKE_LIBDIR_X11      =
- QMAKE_INCDIR_QT       = $(OE_QMAKE_INCDIR_QT)
- QMAKE_LIBDIR_QT       = $(OE_QMAKE_LIBDIR_QT)
--QMAKE_INCDIR_OPENGL   = ${STAGING_INCDIR}/GLES
--QMAKE_LIBDIR_OPENGL   = ${STAGING_LIBDIR}
--QMAKE_INCDIR_OPENGL_ES1 = ${STAGING_INCDIR}/GLES
--QMAKE_LIBDIR_OPENGL_ES1 = ${STAGING_LIBDIR}
--QMAKE_INCDIR_OPENGL_ES2 = ${STAGING_INCDIR}/GLES2
--QMAKE_LIBDIR_OPENGL_ES2 = ${STAGING_LIBDIR}
--QMAKE_INCDIR_EGL      = ${STAGING_INCDIR}/GLES2
--QMAKE_LIBDIR_EGL      = ${STAGING_LIBDIR}
-+QMAKE_INCDIR_OPENGL   =
-+QMAKE_LIBDIR_OPENGL   =
-+QMAKE_INCDIR_OPENGL_ES1 = $$QMAKE_INCDIR_OPENGL
-+QMAKE_LIBDIR_OPENGL_ES1 = $$QMAKE_LIBDIR_OPENGL
-+QMAKE_INCDIR_OPENGL_ES2 = $$QMAKE_INCDIR_OPENGL
-+QMAKE_LIBDIR_OPENGL_ES2 = $$QMAKE_LIBDIR_OPENGL
-+QMAKE_INCDIR_EGL      =
-+QMAKE_LIBDIR_EGL      =
-+QMAKE_INCDIR_OPENVG   =
-+QMAKE_LIBDIR_OPENVG   =
- 
--QMAKE_LIBS            = -Wl,-rpath-link,SEDME/lib -lglib-2.0
+diff --git a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+new file mode 100644
+index 0000000..ccbde4a
+--- /dev/null
++++ b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+@@ -0,0 +1,36 @@
++DESCRIPTION = "Qt Quick Playground"
++HOMEPAGE = "http://arago-project.org/git/projects/?p=qt4-demos.git;a=summary"
++SECTION = "multimedia"
++LICENSE = "Nokia"
++LIC_FILES_CHKSUM = "file://Licence.txt;md5=7cc88160b55ec5db6c6c5bb8e3238c0b"
 +
-+QMAKE_LIBS            =
- QMAKE_LIBS_DYNLOAD    = -ldl
- QMAKE_LIBS_X11        = $(OE_QMAKE_LIBS_X11)
- QMAKE_LIBS_X11SM      = $(OE_QMAKE_LIBS_X11SM)
-@@ -40,7 +43,7 @@ QMAKE_QDBUSCPP2XML    = $(OE_QMAKE_QDBUSCPP2XML)
- QMAKE_QDBUSXML2CPP    = $(OE_QMAKE_QDBUSXML2CPP)
- 
- QMAKE_AR              = $(OE_QMAKE_AR) cqs
--QMAKE_OBJCOPY         = ${OBJCOPY}
-+QMAKE_OBJCOPY         = objcopy
- QMAKE_RANLIB          =
- 
- QMAKE_TAR             = tar -cf
-diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.0.bb b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.0.bb
-index c26cc2c..be8f12f 100644
---- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.0.bb
-+++ b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.0.bb
-@@ -1,7 +1,7 @@
- require ${COREBASE}/meta/recipes-qt/qt4/qt-${PV}.inc
- require ${COREBASE}/meta/recipes-qt/qt4/qt4-embedded.inc
- 
--PR = "${INC_PR}.0"
-+PR = "${INC_PR}.1"
- 
- FILESEXTRAPATHS_append := "${THISDIR}/${PN}:${COREBASE}/meta/recipes-qt/qt4/qt-4.8.0:${COREBASE}/meta/recipes-qt/qt4/files:"
- 
++require recipes-core/matrix/matrix-gui-paths.inc
++
++INC_PR = "r0"
++
++BRANCH = "master"
++SRCREV = "49bb5b7e1df2f61fc361b7d83a6ec838ffc5381c"
++
++SRC_URI = "git://arago-project.org/git/projects/qt4-demos.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git/qml_playground"
++
++inherit qt4e
++
++# use the make targets already created in the Makefile.build files
++do_install() {
++    make -f Makefile.build DESTDIR=${D} install_common
++}
++
++RDEPENDS  += "matrix-gui-apps-images matrix-gui-submenus-qt4"
++
++PACKAGES += "matrix-gui-apps-quick-playground"
++
++# Add the matrix directory to the FILES
++FILES_${PN} = "${MATRIX_APP_DIR}/qml_playground/qtquickplayground \
++               /usr/bin/runQMLplay.sh"
++
++# Add the .debug directory to the dbg package
++FILES_${PN}-dbg += "${MATRIX_APP_DIR}/qml_playground/.debug"
++
++FILES_matrix-gui-apps-quick-playground = "${MATRIX_APP_DIR}/*"
 -- 
 1.7.0.4
 
