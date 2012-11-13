@@ -1,34 +1,31 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 40BAA52988
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 546A652A6F
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Nov 2012 00:42:38 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so6297643oag.38
-	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 16:42:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=RKrK/Hl1VecGeO1RN4s+EW5om3Kl0VExy3H+J69I5wY=;
-	b=vkT0jWyoh64fSZ4Ndzgnt6MZ4GrpVuHux8N+DXe8Ys8TQRRjfblkGTW49vM0u/o8c7
-	enuKYjIA1NDo2dqwSI/qdjfY8eJZoV7F0gxKrEoq8wPJ01MAXA2Gm7tcM4uL84X4/O8P
-	KRMz36x87mQGfX99UFgX8THzX+Cm/UFo/yeMpKKaHCyxe7n8reHyRhdQoUtgmM8GP8lc
-	avI/6UoGePErVijO6+b0Lb3BZOijY7/YjyzwF2HJKKoVx2959ZRlwONpVW31X+vYP2Tn
-	NmAFeb7LZF40BFBIsBuBDq5E1QzbV2IcW2QiV8SYuk/73SHGsDk3WDk3/O7NKf2sTynb
-	g8Yg==
-Received: by 10.60.169.134 with SMTP id ae6mr16097059oec.32.1352767357704;
-	Mon, 12 Nov 2012 16:42:37 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id el2sm790484obc.9.2012.11.12.16.42.36
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 12 Nov 2012 16:42:36 -0800 (PST)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Mon, 12 Nov 2012 18:42:31 -0600
-Message-Id: <1352767351-15946-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] qt-tstat:Update Thermostat sources
+	Tue, 13 Nov 2012 13:31:38 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id qADDVbUC006293
+	for <meta-arago@arago-project.org>; Tue, 13 Nov 2012 07:31:37 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qADDVbVv015218
+	for <meta-arago@arago-project.org>; Tue, 13 Nov 2012 07:31:37 -0600
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Tue, 13 Nov 2012 07:31:37 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [arago-commits] Denys Dmytriyenko :
+	external-arago-sdk-toolchain:	package up gdb from the toolchain as well
+Thread-Index: AQHNwVkL+tyJihMipEGhQNDIorIgGZfnwgdQgAABHQA=
+Date: Tue, 13 Nov 2012 13:31:37 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C31F344@DFLE09.ent.ti.com>
+References: <20121113044034.9EA3D529AE@arago-project.org> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
+MIME-Version: 1.0
+Subject: Re: [arago-commits] Denys Dmytriyenko : external-arago-sdk-toolchain:	package up gdb from the toolchain as well
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,35 +38,153 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Nov 2012 00:42:38 -0000
+X-List-Received-Date: Tue, 13 Nov 2012 13:31:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* Update to the latest Qt thermostat demo sources*
-* This update removes unnecessary debug information.
-* Removes unneeded .pro.user file.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+We need gdb with python support is required for Qt debugging via Qt Creator=
+ http://arago-project.org/pipermail/arago-commits/2012-January/001611.html.
+Gdb-cross-canadian recipe seems to include this needed support.
+
+A simple test to determine if python support has been added to gdb.
+Run gdb
+Enter python print 23.
+23 should be echoed back to the console.
+
+My build that picked up your gdb changes did not include python support for=
+ gdb.
+
+-----Original Message-----
+From: arago-commits-bounces@arago-project.org [mailto:arago-commits-bounces=
+@arago-project.org] On Behalf Of Arago Project git
+Sent: Monday, November 12, 2012 10:41 PM
+To: arago-commits@arago-project.org
+Subject: [arago-commits] Denys Dmytriyenko : external-arago-sdk-toolchain: =
+package up gdb from the toolchain as well
+
+Module: meta-arago
+Branch: master
+Commit: 78bec05ff04e6e98def765e61a7a00c35c635938
+URL:    http://arago-project.org/git/meta-arago.git?a=3Dcommit;h=3D78bec05f=
+f04e6e98def765e61a7a00c35c635938
+
+Author: Denys Dmytriyenko <denys@ti.com>
+Date:   Mon Nov 12 23:35:52 2012 -0500
+
+external-arago-sdk-toolchain: package up gdb from the toolchain as well
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+
 ---
- .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-index d44eb58..143d0a2 100644
---- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-+++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-@@ -10,10 +10,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=93a105adb99011afa5baee932b560714 \
- 
- require recipes-core/matrix/matrix-gui-paths.inc
- 
--PR = "r0"
-+PR = "r1"
- 
- BRANCH ?= "master"
--SRCREV = "2f461242d469871538e6cd05e887457674347e8f"
-+SRCREV = "429c802ea04c41f7b29efb89642828091fb83f9b"
- 
- SRC_URI = "git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git"
- 
--- 
-1.7.0.4
+ .../meta/external-arago-sdk-toolchain.bb           |   25 ++++++++++++++++=
++++-
+ 1 files changed, 24 insertions(+), 1 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-core/meta/external-arago-sdk-toolcha=
+in.bb b/meta-arago-extras/recipes-core/meta/external-arago-sdk-toolchain.bb
+index 4b16bc1..abd1caf 100644
+--- a/meta-arago-extras/recipes-core/meta/external-arago-sdk-toolchain.bb
++++ b/meta-arago-extras/recipes-core/meta/external-arago-sdk-toolchain.b
++++ b
+@@ -2,7 +2,7 @@ inherit cross-canadian
+=20
+ require external-arago-toolchain.inc
+=20
+-PR =3D "r2"
++PR =3D "r3"
+=20
+ INHIBIT_PACKAGE_STRIP =3D "1"
+ INHIBIT_DEFAULT_DEPS =3D "1"
+@@ -16,15 +16,18 @@ LIC_FILES_CHKSUM =3D "\  "
+=20
+ INSANE_SKIP_gcc-cross-canadian-arm =3D "dev-so"
++INSANE_SKIP_gdb-cross-canadian-arm =3D "dev-so"
+ INSANE_SKIP_binutils-cross-canadian-arm =3D "dev-so"
+=20
+ PROVIDES =3D "\
+ 	gcc-cross-canadian-arm \
++	gdb-cross-canadian-arm \
+ 	binutils-cross-canadian-arm \
+ "
+=20
+ PACKAGES =3D "\
+ 	gcc-cross-canadian-arm \
++	gdb-cross-canadian-arm \
+ 	binutils-cross-canadian-arm \
+ "
+=20
+@@ -32,6 +35,7 @@ PACKAGES =3D "\
+ bindir =3D "${exec_prefix}/bin/"
+ libdir =3D "${exec_prefix}/lib/"
+ libexecdir =3D "${exec_prefix}/libexec/"
++datadir =3D "${exec_prefix}/share/"
+=20
+ gcclibdir =3D "${libdir}/gcc"
+=20
+@@ -55,6 +59,14 @@ FILES_gcc-cross-canadian-arm =3D "\
+ 	${libexecdir}/* \
+ "
+=20
++FILES_gdb-cross-canadian-arm =3D "\
++	${bindir}/${TARGET_PREFIX}gdb \
++	${bindir}/${TARGET_PREFIX}gdbtui \
++	${datadir}/gdb/* \
++	${datadir}/info/* \
++	${datadir}/man/man1/${TARGET_PREFIX}* \ "
++
+ FILES_binutils-cross-canadian-arm =3D "\
+ 	${prefix}/${ARAGO_TARGET_SYS}/bin/ld \
+ 	${prefix}/${ARAGO_TARGET_SYS}/bin/addr2line \ @@ -91,14 +103,17 @@ FILES_=
+binutils-cross-canadian-arm =3D "\  "
+=20
+ DESCRIPTION_gcc-cross-canadian-arm =3D "The GNU cc and gcc C compilers"
++DESCRIPTION_gdb-cross-canadian-arm =3D "gdb - GNU debugger"
+ DESCRIPTION_binutils-cross-canadian-arm =3D "A GNU collection of binary ut=
+ilities"
+=20
+ LICENSE =3D "${ARG_LIC_LIBC}"
+ LICENSE_gcc-cross-canadian-arm =3D "${ARG_LIC_GCC}"
++LICENSE_gdb-cross-canadian-arm =3D "${ARG_LIC_GDB}"
+ LICENSE_binutils-cross-canadian-arm =3D "${ARG_LIC_BFD}"
+=20
+ PKGV =3D "${ARG_VER_MAIN}"
+ PKGV_gcc-cross-canadian-arm =3D "${ARG_VER_GCC}"
++PKGV_gdb-cross-canadian-arm =3D "${ARG_VER_GDB}"
+ PKGV_binutils-cross-canadian-arm =3D "${ARG_VER_BFD}"
+=20
+ do_install() {
+@@ -109,6 +124,9 @@ do_install() {
+ 	install -d ${D}${libdir}/ldscripts
+ 	install -d ${D}${includedir}
+ 	install -d ${D}${libexecdir}
++	install -d ${D}${datadir}/gdb
++	install -d ${D}${datadir}/info
++	install -d ${D}${datadir}/man/man1
+ 	install -d ${D}${gcclibdir}/${ARAGO_TARGET_SYS}/${ARG_VER_GCC}/include
+ 	install -d ${D}${prefix}/i686-linux
+=20
+@@ -118,6 +136,11 @@ do_install() {
+ 	cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}{gcov,gccbug,gcc,g++,cpp} ${D=
+}${bindir}
+ 	cp -a ${TOOLCHAIN_PATH}/libexec/* ${D}${libexecdir}
+=20
++	cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}{gdb,gdbtui} ${D}${bindir}
++	cp -a ${TOOLCHAIN_PATH}/share/gdb/* ${D}${datadir}/gdb/
++	cp -a ${TOOLCHAIN_PATH}/share/info/* ${D}${datadir}/info/
++	cp -a ${TOOLCHAIN_PATH}/share/man/man1/${TARGET_PREFIX}*
++${D}${datadir}/man/man1/
++
+ 	cp -a ${TOOLCHAIN_PATH}/${ARAGO_TARGET_SYS}/bin/{ld,addr2line,objcopy,rea=
+delf,strip,nm,ranlib,gprof,as,c++filt,ar,strings,objdump,size} ${D}${prefix=
+}/${ARAGO_TARGET_SYS}/bin
+ 	cp -a ${TOOLCHAIN_PATH}/include/*.h ${D}${includedir}
+ 	cp -a ${TOOLCHAIN_PATH}/lib/ldscripts/* ${D}${libdir}/ldscripts
+
+_______________________________________________
+arago-commits mailing list
+arago-commits@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/arago-commits
 
