@@ -1,32 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 529335296D
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id C9B1E52988
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 23:49:22 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qACNnLwd032401;
-	Mon, 12 Nov 2012 17:49:21 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qACNnLiL010733;
-	Mon, 12 Nov 2012 17:49:21 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 12 Nov 2012 17:49:21 -0600
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id qACNnLTx023180;
-	Mon, 12 Nov 2012 17:49:21 -0600
-Date: Mon, 12 Nov 2012 18:49:21 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20121112234920.GF11458@edge>
-References: <1352759598-5183-1-git-send-email-fcooper@ti.com>
-	<20121112232029.GB8900@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C31EA02@DFLE09.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C31EA02@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] meta-toolchain-arago: de-bashify
+	Tue, 13 Nov 2012 00:08:26 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so6274430oag.38
+	for <meta-arago@arago-project.org>;
+	Mon, 12 Nov 2012 16:08:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=4QujQ21PJjjICePDPs+wnASv/7HyfhYVx8KYvYyhKUY=;
+	b=oS4nqI4QbGfLc0vJTnNVNi72+jrMZd3OdSLQNgUvoIOJjL7UWeCU3qF6N6STaakeoq
+	h20doC56g58wUw0FegnJBh4/OD7q55400rLeYhdTfOsSx13CX/C5ibHD0TD3A5al+uAn
+	hDWE+1gUL/SRUghPoecWdvPLjoNkD7yEUKiZqQvlToRNwSvoLG7INahWKRCCF9yY8+ql
+	N9UvouvQDpI3/xNNe4q8TYg80lG0S5it9QDUtTe+vKb3n2EJssw7S6TBn+nxEaevr54x
+	TvcwiZ0oVmyC41ErFboigMRnkanBgh4Q4ISH1dgIDXKkonYkoco99LFUr/nl5glJCryu
+	Qz1A==
+Received: by 10.60.2.65 with SMTP id 1mr15549127oes.19.1352765306003;
+	Mon, 12 Nov 2012 16:08:26 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id d7sm4561959oee.2.2012.11.12.16.08.24
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 12 Nov 2012 16:08:25 -0800 (PST)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Mon, 12 Nov 2012 18:08:19 -0600
+Message-Id: <1352765299-14678-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] usbutils: avoid dependency on bash
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,96 +41,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2012 23:49:22 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 13 Nov 2012 00:08:27 -0000
 
-On Mon, Nov 12, 2012 at 11:40:09PM +0000, Cooper Jr., Franklin wrote:
-> 
-> 
-> -----Original Message-----
-> From: Denys Dmytriyenko [mailto:denis@denix.org] 
-> Sent: Monday, November 12, 2012 5:20 PM
-> To: Franklin S. Cooper Jr
-> Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-> Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: de-bashify
-> 
-> On Mon, Nov 12, 2012 at 04:33:18PM -0600, Franklin S. Cooper Jr wrote:
-> > * Replacing "echo -e" with "printf".
-> > * This mimics a previous de-bashify patch applied to this same recipe.
-> > 
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> 
-> How is it different from this:
-> http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=7f47dbad47a44c8d16c12139260a00b80d603e71
-> 
-> I'd suggest you update your tree to the latest code base...
-> 
-> Franklin:
-> I see what happened. 
-> http://arago-project.org/pipermail/meta-arago/2012-November/000483.html you 
-> made a comment about pulling in this environment variables into 
-> meta-toolchain-arago and I made that change. You ended up doing the same 
-> thing that my patch 
-> http://arago-project.org/pipermail/meta-arago/2012-November/000520.html also 
-> did. Which this patch builds on top of.
+* Mimic the oe-core master patch "usbutils: avoid dependency on bash"
+  651b223c5fc93c7504e304e954b9ae4640ed47c6.
+* This patch removes the unnecessary runtime dependency on bash.
 
-I see, yes, I merged those vars into the base recipe and replaced echo with 
-printf. Wondering why it didn't give you a conflict, since you had to rebase 
-your work...
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../usb-devices-avoid-dependency-on-bash.patch     |   30 ++++++++++++++++++++
+ .../recipes-bsp/usbutils/usbutils_0.91.bbappend    |    9 ++++++
+ 2 files changed, 39 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch
+ create mode 100644 meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend
 
-> > ---
-> >  .../recipes-core/meta/meta-toolchain-arago.bb      |   20 ++++++++++----------
-> >  1 files changed, 10 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > index 09996d6..3d3fb0d 100644
-> > --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > @@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
-> >  
-> >  require recipes-core/meta/meta-toolchain.bb
-> >  
-> > -PR = "r7"
-> > +PR = "r8"
-> >  
-> >  SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
-> >  
-> > @@ -54,15 +54,15 @@ toolchain_create_sdk_env_script () {
-> >  	echo 'export OECORE_ACLOCAL_OPTS="-I $SDK_PATH/usr/share/aclocal"' >> $script
-> >  	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
-> >  	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
-> > -    echo -e 'export CPP="\x24{TARGET_PREFIX}gcc -E"' >> $script
-> > -    echo -e 'export NM=\x24{TARGET_PREFIX}nm' >> $script
-> > -    echo -e 'export RANLIB=\x24{TARGET_PREFIX}ranlib' >> $script
-> > -    echo -e 'export OBJCOPY=\x24{TARGET_PREFIX}objcopy' >> $script
-> > -    echo -e 'export STRIP=\x24{TARGET_PREFIX}strip' >> $script
-> > -    echo -e 'export AS=\x24{TARGET_PREFIX}as' >> $script
-> > -    echo -e 'export AR=\x24{TARGET_PREFIX}ar' >> $script
-> > -    echo -e 'export OBJDUMP=\x24{TARGET_PREFIX}objdump' >> $script
-> > -    echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
-> > +	printf 'export CPP="\x24{TARGET_PREFIX}gcc -E"\n' >> $script
-> > +	printf 'export NM=\x24{TARGET_PREFIX}nm\n' >> $script
-> > +	printf 'export RANLIB=\x24{TARGET_PREFIX}ranlib\n' >> $script
-> > +	printf 'export OBJCOPY=\x24{TARGET_PREFIX}objcopy\n' >> $script
-> > +	printf 'export STRIP=\x24{TARGET_PREFIX}strip\n' >> $script
-> > +	printf 'export AS=\x24{TARGET_PREFIX}as\n' >> $script
-> > +	printf 'export AR=\x24{TARGET_PREFIX}ar\n' >> $script
-> > +	printf 'export OBJDUMP=\x24{TARGET_PREFIX}objdump\n' >> $script
-> > +	echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
-> >  }
-> >  
-> >  populate_sdk_ipk_append () {
-> > -- 
-> > 1.7.0.4
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch b/meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch
+new file mode 100644
+index 0000000..a6b241f
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch
+@@ -0,0 +1,30 @@
++From 333d5fbbc03481f1aa222bd68c2609db168ae3e0 Mon Sep 17 00:00:00 2001
++From: Paul Eggleton <paul.eggleton@linux.intel.com>
++Date: Thu, 26 Jul 2012 10:37:32 +0100
++Subject: [PATCH] usb-devices: avoid dependency on bash
++
++By virtue of having #!/bin/bash this script declared that it requires
++bash, however manual examination, checkbashisms and tests with dash
++and busybox show that it doesn't contain any bashisms, so change the
++header to avoid the dependency.
++
++Upstream-Status: Pending
++
++Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
++---
++ usb-devices |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/usb-devices b/usb-devices
++index b2052e2..14a5358 100755
++--- a/usb-devices
+++++ b/usb-devices
++@@ -1,4 +1,4 @@
++-#!/bin/bash
+++#!/bin/sh
++ 
++ # Copyright: 2009 Greg Kroah-Hartman <greg@kroah.com>
++ #            2009 Randy Dunlap <rdunlap@xenotime.net>
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend b/meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend
+new file mode 100644
+index 0000000..0de1ebf
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend
+@@ -0,0 +1,9 @@
++PR_append = "-arago0"
++
++# look for files in this layer first
++FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
++
++# Remove bash from the list of runtime dependencies
++RDEPENDS_${PN} = "${PN}-ids"
++
++SRC_URI += "file://usb-devices-avoid-dependency-on-bash.patch"
+-- 
+1.7.0.4
+
 
