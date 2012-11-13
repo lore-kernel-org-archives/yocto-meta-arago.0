@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id C9B1E52988
+	by arago-project.org (Postfix) with ESMTPS id 40BAA52988
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Nov 2012 00:08:26 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so6274430oag.38
+	Tue, 13 Nov 2012 00:42:38 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so6297643oag.38
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Nov 2012 16:08:26 -0800 (PST)
+	Mon, 12 Nov 2012 16:42:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=4QujQ21PJjjICePDPs+wnASv/7HyfhYVx8KYvYyhKUY=;
-	b=oS4nqI4QbGfLc0vJTnNVNi72+jrMZd3OdSLQNgUvoIOJjL7UWeCU3qF6N6STaakeoq
-	h20doC56g58wUw0FegnJBh4/OD7q55400rLeYhdTfOsSx13CX/C5ibHD0TD3A5al+uAn
-	hDWE+1gUL/SRUghPoecWdvPLjoNkD7yEUKiZqQvlToRNwSvoLG7INahWKRCCF9yY8+ql
-	N9UvouvQDpI3/xNNe4q8TYg80lG0S5it9QDUtTe+vKb3n2EJssw7S6TBn+nxEaevr54x
-	TvcwiZ0oVmyC41ErFboigMRnkanBgh4Q4ISH1dgIDXKkonYkoco99LFUr/nl5glJCryu
-	Qz1A==
-Received: by 10.60.2.65 with SMTP id 1mr15549127oes.19.1352765306003;
-	Mon, 12 Nov 2012 16:08:26 -0800 (PST)
+	bh=RKrK/Hl1VecGeO1RN4s+EW5om3Kl0VExy3H+J69I5wY=;
+	b=vkT0jWyoh64fSZ4Ndzgnt6MZ4GrpVuHux8N+DXe8Ys8TQRRjfblkGTW49vM0u/o8c7
+	enuKYjIA1NDo2dqwSI/qdjfY8eJZoV7F0gxKrEoq8wPJ01MAXA2Gm7tcM4uL84X4/O8P
+	KRMz36x87mQGfX99UFgX8THzX+Cm/UFo/yeMpKKaHCyxe7n8reHyRhdQoUtgmM8GP8lc
+	avI/6UoGePErVijO6+b0Lb3BZOijY7/YjyzwF2HJKKoVx2959ZRlwONpVW31X+vYP2Tn
+	NmAFeb7LZF40BFBIsBuBDq5E1QzbV2IcW2QiV8SYuk/73SHGsDk3WDk3/O7NKf2sTynb
+	g8Yg==
+Received: by 10.60.169.134 with SMTP id ae6mr16097059oec.32.1352767357704;
+	Mon, 12 Nov 2012 16:42:37 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id d7sm4561959oee.2.2012.11.12.16.08.24
+	by mx.google.com with ESMTPS id el2sm790484obc.9.2012.11.12.16.42.36
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 12 Nov 2012 16:08:25 -0800 (PST)
+	Mon, 12 Nov 2012 16:42:36 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Mon, 12 Nov 2012 18:08:19 -0600
-Message-Id: <1352765299-14678-1-git-send-email-fcooper@ti.com>
+Date: Mon, 12 Nov 2012 18:42:31 -0600
+Message-Id: <1352767351-15946-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] usbutils: avoid dependency on bash
+Subject: [PATCH] qt-tstat:Update Thermostat sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,71 +41,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Nov 2012 00:08:27 -0000
+X-List-Received-Date: Tue, 13 Nov 2012 00:42:38 -0000
 
-* Mimic the oe-core master patch "usbutils: avoid dependency on bash"
-  651b223c5fc93c7504e304e954b9ae4640ed47c6.
-* This patch removes the unnecessary runtime dependency on bash.
+* Update to the latest Qt thermostat demo sources*
+* This update removes unnecessary debug information.
+* Removes unneeded .pro.user file.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../usb-devices-avoid-dependency-on-bash.patch     |   30 ++++++++++++++++++++
- .../recipes-bsp/usbutils/usbutils_0.91.bbappend    |    9 ++++++
- 2 files changed, 39 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch
- create mode 100644 meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend
+ .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch b/meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch
-new file mode 100644
-index 0000000..a6b241f
---- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/usbutils/usbutils-0.91/usb-devices-avoid-dependency-on-bash.patch
-@@ -0,0 +1,30 @@
-+From 333d5fbbc03481f1aa222bd68c2609db168ae3e0 Mon Sep 17 00:00:00 2001
-+From: Paul Eggleton <paul.eggleton@linux.intel.com>
-+Date: Thu, 26 Jul 2012 10:37:32 +0100
-+Subject: [PATCH] usb-devices: avoid dependency on bash
-+
-+By virtue of having #!/bin/bash this script declared that it requires
-+bash, however manual examination, checkbashisms and tests with dash
-+and busybox show that it doesn't contain any bashisms, so change the
-+header to avoid the dependency.
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
-+---
-+ usb-devices |    2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/usb-devices b/usb-devices
-+index b2052e2..14a5358 100755
-+--- a/usb-devices
-++++ b/usb-devices
-+@@ -1,4 +1,4 @@
-+-#!/bin/bash
-++#!/bin/sh
-+ 
-+ # Copyright: 2009 Greg Kroah-Hartman <greg@kroah.com>
-+ #            2009 Randy Dunlap <rdunlap@xenotime.net>
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend b/meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend
-new file mode 100644
-index 0000000..0de1ebf
---- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/usbutils/usbutils_0.91.bbappend
-@@ -0,0 +1,9 @@
-+PR_append = "-arago0"
-+
-+# look for files in this layer first
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-+
-+# Remove bash from the list of runtime dependencies
-+RDEPENDS_${PN} = "${PN}-ids"
-+
-+SRC_URI += "file://usb-devices-avoid-dependency-on-bash.patch"
+diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+index d44eb58..143d0a2 100644
+--- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
++++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+@@ -10,10 +10,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=93a105adb99011afa5baee932b560714 \
+ 
+ require recipes-core/matrix/matrix-gui-paths.inc
+ 
+-PR = "r0"
++PR = "r1"
+ 
+ BRANCH ?= "master"
+-SRCREV = "2f461242d469871538e6cd05e887457674347e8f"
++SRCREV = "429c802ea04c41f7b29efb89642828091fb83f9b"
+ 
+ SRC_URI = "git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git"
+ 
 -- 
 1.7.0.4
 
