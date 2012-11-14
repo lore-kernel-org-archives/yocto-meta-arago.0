@@ -1,31 +1,31 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 4269D52A6F
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 60EFC52AB3
 	for <meta-arago@arago-project.org>;
-	Wed, 14 Nov 2012 23:11:26 +0000 (UTC)
+	Wed, 14 Nov 2012 23:29:18 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAENBP0i025768;
-	Wed, 14 Nov 2012 17:11:25 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAENBPmm027644;
-	Wed, 14 Nov 2012 17:11:25 -0600
-Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Wed, 14 Nov 2012 17:11:25 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAENTHYl030089;
+	Wed, 14 Nov 2012 17:29:17 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAENTHTX008625;
+	Wed, 14 Nov 2012 17:29:17 -0600
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Wed, 14 Nov 2012 17:29:17 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, Denys Dmytriyenko <denis@denix.org>
 Thread-Topic: [meta-arago] [PATCH] meta-toolchain-arago: special case for
 	gdb to be built as part of canadian-cross-sdk
-Thread-Index: AQHNwhs2QuM086pw50GQbqDW0wXzn5fpGRWA//+eIBSAAWBogP//z5eQgABqRoD//6TRYA==
-Date: Wed, 14 Nov 2012 23:11:24 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101592AA945@DLEE12.ent.ti.com>
+Thread-Index: AQHNwhs2E9jPkooPlkKc6XrIBZpM5ZfpGRWAgAACtACAAPvUgIAANxAAgAACzYCAAAmgAP//n93g
+Date: Wed, 14 Nov 2012 23:29:16 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C3208F4@DFLE09.ent.ti.com>
 References: <1352865012-11447-1-git-send-email-denys@ti.com>
-	<20121114035851.GE13096@edge>
-	<05B212D4-8433-4995-88CF-34CF07576A0D@ti.com>
+	<20121114035851.GE13096@edge>	<05B212D4-8433-4995-88CF-34CF07576A0D@ti.com>
 	<20121114190950.GA31599@denix.org>
 	<7D46E86EC0A8354091174257B2FED101592AA782@DLEE12.ent.ti.com>
 	<20121114223657.GB31599@denix.org>
-In-Reply-To: <20121114223657.GB31599@denix.org>
+	<7D46E86EC0A8354091174257B2FED101592AA945@DLEE12.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED101592AA945@DLEE12.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -45,32 +45,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Nov 2012 23:11:26 -0000
+X-List-Received-Date: Wed, 14 Nov 2012 23:29:19 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I tried debugging the Thermostat demo and a simple helloworld.....
+
+Everything works fine :)
+
+Thanks Denys
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Maupin, Chase
+Sent: Wednesday, November 14, 2012 5:11 PM
+To: Denys Dmytriyenko
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: special case for gd=
+b to be built as part of canadian-cross-sdk
 
 > -----Original Message-----
 > From: Denys Dmytriyenko [mailto:denis@denix.org]
 > Sent: Wednesday, November 14, 2012 4:37 PM
 > To: Maupin, Chase
 > Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: special
-> case for gdb to be built as part of canadian-cross-sdk
+> Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: special case=20
+> for gdb to be built as part of canadian-cross-sdk
 >=20
 > On Wed, Nov 14, 2012 at 10:26:56PM +0000, Maupin, Chase wrote:
 > > I was able to execute the arm-arago-linux-gnueabi-gdb and run
 > >
 > > python print 23
 >=20
-> Yeah, that part I was able to verify myself... :) I was rather
-> interested in
-> Qt Creator results.
+> Yeah, that part I was able to verify myself... :) I was rather=20
+> interested in Qt Creator results.
 >=20
 >=20
 > > I did have to source environment-setup for the wrapper script
-> to work.  As a though, could we do something like the following
-> in these wrapper scripts?
+> to work.  As a though, could we do something like the following in=20
+> these wrapper scripts?
 > >
 > > if [ -n "$BASH_SOURCE" ]
 > > then
@@ -78,15 +92,14 @@ Content-Transfer-Encoding: quoted-printable
 > > fi
 > >
 > > I know this may not work for all shells, but like environment-
-> setup itself, in the case that it does work then user's don't get
-> bitten not having it sourced.  Also doesn't hurt them if the
+> setup itself, in the case that it does work then user's don't get=20
+> bitten not having it sourced.  Also doesn't hurt them if the=20
 > environment-setup is already sourced.  Thoughts?
 >=20
 > Nope, some things in the environment-setup are not reentrant...
 > Like appending
-> or prepending to PATH and other vars - they will be growing every
-> time you
-> source the script, duplicating entries.
+> or prepending to PATH and other vars - they will be growing every time=20
+> you source the script, duplicating entries.
 
 As per our discussion on IRC, if placed in the stub script this effect is t=
 emporary during script execution and is gone when the stub script finishes =
@@ -170,7 +183,7 @@ running.
 > > > > > +bindir_pn-gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} =3D
 > > > "${exec_prefix}/bin"
 > > > > > +PREFERRED_PROVIDER_gdb-cross-canadian-
-> > > ${TRANSLATED_TARGET_ARCH} =3D "gdb-cross-canadian-
+> > > ${TRANSLATED_TARGET_ARCH} =3D "gdb-cross-canadian-=20
 > > > ${TRANSLATED_TARGET_ARCH}"
 > > > > > +
 > > > > >  GCCVERSION ?=3D "4.5%"
@@ -212,7 +225,7 @@ running.
 > > > > >                printf
 > > >
 > "#!/bin/sh\nLD_LIBRARY_PATH=3D\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH
-> > > \x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real
+> > > \x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real=20
 > > > \x24\x2a\n" > $i
 > > > > >                chmod +x $i
 > > > > >        done
@@ -225,7 +238,7 @@ running.
 > > >
 > "#!/bin/sh\nLD_LIBRARY_PATH=3D\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH
 > > > \x24SDK_PATH/lib/ld-linux.so.2
-> > > \x24SDK_PATH/bin/${ARAGO_TARGET_SYS}-gdb.real \x24\x2a\n" >
+> > > \x24SDK_PATH/bin/${ARAGO_TARGET_SYS}-gdb.real \x24\x2a\n" >=20
 > > > ${ARAGO_TARGET_SYS}-gdb
 > > > > > +     chmod +x ${ARAGO_TARGET_SYS}-gdb
 > > > > >  }
@@ -249,4 +262,8 @@ running.
 > > meta-arago@arago-project.org
 > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > >
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
