@@ -1,29 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 799B1529EF
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 9BEF152A0A
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Nov 2012 23:39:44 +0000 (UTC)
+	Thu, 15 Nov 2012 23:41:15 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAFNdh8S032150;
-	Thu, 15 Nov 2012 17:39:43 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAFNfFtR031384;
+	Thu, 15 Nov 2012 17:41:15 -0600
 Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAFNdhbP024193;
-	Thu, 15 Nov 2012 17:39:43 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAFNfFiM025543;
+	Thu, 15 Nov 2012 17:41:15 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
 	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Thu, 15 Nov 2012 17:39:43 -0600
+	14.01.0323.003; Thu, 15 Nov 2012 17:41:14 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>, "Franklin S. Cooper Jr"
 	<fcooperjr27@gmail.com>
 Thread-Topic: [meta-arago] [PATCH 3/3] task-arago-qte-toolchain-target: Add
 	additional packages
-Thread-Index: AQHNw4iWC+vd+/dr8UyVK7HVRS3VgJfr8AIA//+czaA=
-Date: Thu, 15 Nov 2012 23:39:43 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C321AE8@DFLE09.ent.ti.com>
+Thread-Index: AQHNw4iWC+vd+/dr8UyVK7HVRS3VgJfr8AIA//+czaCAAAE3MA==
+Date: Thu, 15 Nov 2012 23:41:14 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C321AF8@DFLE09.ent.ti.com>
 References: <1353021956-18687-1-git-send-email-fcooper@ti.com>
 	<1353021956-18687-3-git-send-email-fcooper@ti.com>
 	<20121115233049.GK10887@edge>
-In-Reply-To: <20121115233049.GK10887@edge>
+	<8F29D6B095ED194EA1980491A5E029710C321AE8@DFLE09.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C321AE8@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -43,7 +44,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2012 23:39:44 -0000
+X-List-Received-Date: Thu, 15 Nov 2012 23:41:15 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -51,7 +52,18 @@ Content-Transfer-Encoding: quoted-printable
 
 
 -----Original Message-----
-From: Dmytriyenko, Denys=20
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Cooper Jr., Franklin
+Sent: Thursday, November 15, 2012 5:40 PM
+To: Dmytriyenko, Denys; Franklin S. Cooper Jr
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH 3/3] task-arago-qte-toolchain-target: Add =
+additional packages
+
+
+
+-----Original Message-----
+From: Dmytriyenko, Denys
 Sent: Thursday, November 15, 2012 5:31 PM
 To: Franklin S. Cooper Jr
 Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
@@ -69,13 +81,13 @@ On Thu, Nov 15, 2012 at 05:25:56PM -0600, Franklin S. Cooper Jr wrote:
 --
 >  1 files changed, 14 insertions(+), 2 deletions(-)
 >=20
-> diff --git=20
+> diff --git
 > a/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target
-> .bb=20
+> .bb
 > b/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target
 > .bb
 > index d919af2..2635c63 100644
-> ---=20
+> ---
 > a/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target
 > .bb
 > +++ b/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-ta
@@ -120,11 +132,16 @@ And the qt4-embedded package doesn't exist. Why it doesn't complaining I am=
  not sure but the content of the qt4-embedded-dev package is not being incl=
 uded in linux-devkit
 
+Update:
+Sorry I meant for this case qt4-embedded-gles-dev is not being included in =
+linux-devkit which is why I am explicitly adding it. I just did it incorrec=
+tly
+
 
 >          task-core-standalone-sdk-target \
 >          qt4-embedded-mkspecs \
->          libqt-embeddedmultimedia4-dev \
-> @@ -30,4 +38,8 @@ RDEPENDS_${PN} +=3D " \
+>          libqt-embeddedmultimedia4-dev \ @@ -30,4 +38,8 @@=20
+> RDEPENDS_${PN} +=3D " \
 >          libqt-embeddedwebkit4-dev \
 >          libqt-embeddedxml4-dev \
 >          libsqlite3-dev \
@@ -132,14 +149,17 @@ uded in linux-devkit
 > +        libqt-embeddedxmlpatterns4-dev \
 > +        libqt-embeddedmultimedia4-dev \
 > +        libqt-embeddeddeclarative4-dev \
-> +        ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles','${=
-QT_SGX_SUPPORT}', '', d)} \
-> +"
-> --=20
+> +        ${@base_conditional('ARAGO_QT_PROVIDER',=20
+> +'qt4-embedded-gles','${QT_SGX_SUPPORT}', '', d)} \ "
+> --
 > 1.7.0.4
 >=20
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
