@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id A84F252988
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 0CC0552988
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Nov 2012 23:26:04 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2087232oag.38
+	Thu, 15 Nov 2012 23:26:05 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id eq6so2082777obc.38
 	for <meta-arago@arago-project.org>;
 	Thu, 15 Nov 2012 15:26:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=Gi63hpadIKWXYczdt7MYggp+hdodkJMYrtuh53R3JDk=;
-	b=Y7ColBXfWUk7SiTT7/ldCufx9x+Y2FF8aOi6tBJYoydZ9MgiksiUjvpYsv2osEfZti
-	TPveLTR3eTVdUAPeUhTiWC/WWGL2yYF4eOU7Z8p1V7CbX/or2czTVKJxK2K+pu7I81Su
-	NOjdhDwt/KWuHcBbpl6lj+/UmSZfOglPQVHNFIvPG9I7bEknQzDTSsFIKF8PTxQ7GHxU
-	HJJ7ozau3yuOKNS77zQgwpuHDdaDGPgJOfItV7V60kch272YfEL+YKydh0+vEir4h23l
-	Bpfphnj5zuW1p6IPnty6TCRuC4BH2jzHbBj1dxZM+UQp+S3pQmMmoXkl0b9piEX0cjyq
-	PdIg==
-Received: by 10.60.4.227 with SMTP id n3mr2303598oen.136.1353021964092;
+	bh=9r7u3DF0cJNO0kSW+p2VoIRXkcS8Uw/jXuRGLWmjWuw=;
+	b=j2WnG8xKhnzXbgvw94RSLzInSlkVRqfnPhSfVv5FC4zXN7kjBFeCm1jWcj7UXsOrc/
+	ipwj7pFnerBajp63VS0bPHjpOGdcvI9q0kZu082cmJSG8liibU0+FmfL3zEWHsbEggea
+	TU3d6+67ZxPbyJtZuCtH+x7BtkJpkAfEU37W9Rucdd/ilQB+mSbi087JGUHhffLHUHRS
+	LT+3S8DVuu/H65dw06tagWOmTdBkQ785EEwoY/bKBToMKWFzaRZrCHw7dbQsBkc9RMQT
+	eod5GWhC11LJs0eJZNgQf89lo7OKPpLhNBHCZpeTOuHAerIP3J0DbjJwFR3raYlV59lP
+	QOIA==
+Received: by 10.60.10.201 with SMTP id k9mr2433115oeb.105.1353021964877;
 	Thu, 15 Nov 2012 15:26:04 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m8sm13533403oeb.3.2012.11.15.15.26.03
+	by mx.google.com with ESMTPS id m8sm13533403oeb.3.2012.11.15.15.26.04
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 15 Nov 2012 15:26:03 -0800 (PST)
+	Thu, 15 Nov 2012 15:26:04 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 15 Nov 2012 17:25:55 -0600
-Message-Id: <1353021956-18687-2-git-send-email-fcooper@ti.com>
+Date: Thu, 15 Nov 2012 17:25:56 -0600
+Message-Id: <1353021956-18687-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1353021956-18687-1-git-send-email-fcooper@ti.com>
 References: <1353021956-18687-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/3] task-arago-qte: Add additional packages
+Subject: [PATCH 3/3] task-arago-qte-toolchain-target: Add additional packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,7 +43,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2012 23:26:04 -0000
+X-List-Received-Date: Thu, 15 Nov 2012 23:26:05 -0000
 
 * Adding additional packages that were automatically installed with Qt in
   classic Arago but not being done now.
@@ -51,42 +51,45 @@ X-List-Received-Date: Thu, 15 Nov 2012 23:26:04 -0000
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/tasks/task-arago-qte.bb           |   14 ++++++++++++--
- 1 files changed, 12 insertions(+), 2 deletions(-)
+ .../tasks/task-arago-qte-toolchain-target.bb       |   16 ++++++++++++++--
+ 1 files changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-index 420a061..e2acea5 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-qte.bb
-@@ -1,10 +1,17 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
+diff --git a/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb
+index d919af2..2635c63 100644
+--- a/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb
++++ b/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb
+@@ -2,12 +2,20 @@ DESCRIPTION = "Target packages for Qt Embedded SDK"
  LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r0"
-+PR = "r1"
+ ALLOW_EMPTY = "1"
  
- inherit task
+-PR = "r2"
++PR = "r3"
  
+ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+ 
++
 +QT_SGX_SUPPORT = "\
-+    qt4-embedded-plugin-gfxdriver-gfxpvregl \
-+    qt4-embedded-gles \
-+    libqt-embeddedopengl4 \
-+    libqt-embeddedpvrqwswsegl4 \
++    qt4-embedded-gles-dev \
++    libqt-embeddedopengl4-dev \
++    libqt-embeddedpvrqwswsegl4-dev \
 +"
 +
- RDEPENDS_${PN} = "\
-     qt4-embedded \
-     qt4-embedded-plugin-mousedriver-tslib \
-@@ -13,5 +20,8 @@ RDEPENDS_${PN} = "\
-     qt4-embedded-plugin-imageformat-gif \
-     qt4-embedded-plugin-imageformat-jpeg \
-     qt4-embedded-qml-plugins \
--    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'qt4-embedded-plugin-gfxdriver-gfxpvregl', '', d)} \
-+    libqt-embeddedmultimedia4 \
-+    libqt-embeddeddeclarative4 \
-+    libqt-embeddedxmlpatterns4 \
-+    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', '${QT_SGX_SUPPORT}', '', d)} \
- "
+ RDEPENDS_${PN} += " \
++        qt4-embedded-dev \
+         task-core-standalone-sdk-target \
+         qt4-embedded-mkspecs \
+         libqt-embeddedmultimedia4-dev \
+@@ -30,4 +38,8 @@ RDEPENDS_${PN} += " \
+         libqt-embeddedwebkit4-dev \
+         libqt-embeddedxml4-dev \
+         libsqlite3-dev \
+-        "
++        libqt-embeddedxmlpatterns4-dev \
++        libqt-embeddedmultimedia4-dev \
++        libqt-embeddeddeclarative4-dev \
++        ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles','${QT_SGX_SUPPORT}', '', d)} \
++"
 -- 
 1.7.0.4
 
