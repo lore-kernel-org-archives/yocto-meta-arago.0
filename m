@@ -1,31 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 60EFC52AB3
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id A6BE45298E
 	for <meta-arago@arago-project.org>;
-	Wed, 14 Nov 2012 23:29:18 +0000 (UTC)
+	Thu, 15 Nov 2012 00:49:47 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAENTHYl030089;
-	Wed, 14 Nov 2012 17:29:17 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAF0nisA016806;
+	Wed, 14 Nov 2012 18:49:44 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAENTHTX008625;
-	Wed, 14 Nov 2012 17:29:17 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAF0ni2P013655;
+	Wed, 14 Nov 2012 18:49:44 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
 	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Wed, 14 Nov 2012 17:29:17 -0600
+	14.01.0323.003; Wed, 14 Nov 2012 18:49:44 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Maupin, Chase" <chase.maupin@ti.com>, Denys Dmytriyenko <denis@denix.org>
 Thread-Topic: [meta-arago] [PATCH] meta-toolchain-arago: special case for
 	gdb to be built as part of canadian-cross-sdk
-Thread-Index: AQHNwhs2E9jPkooPlkKc6XrIBZpM5ZfpGRWAgAACtACAAPvUgIAANxAAgAACzYCAAAmgAP//n93g
-Date: Wed, 14 Nov 2012 23:29:16 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C3208F4@DFLE09.ent.ti.com>
+Thread-Index: AQHNwhs2E9jPkooPlkKc6XrIBZpM5ZfpGRWAgAACtACAAPvUgIAANxAAgAACzYCAAAmgAP//n93ggAAWvoA=
+Date: Thu, 15 Nov 2012 00:49:43 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C320A1A@DFLE09.ent.ti.com>
 References: <1352865012-11447-1-git-send-email-denys@ti.com>
 	<20121114035851.GE13096@edge>	<05B212D4-8433-4995-88CF-34CF07576A0D@ti.com>
 	<20121114190950.GA31599@denix.org>
 	<7D46E86EC0A8354091174257B2FED101592AA782@DLEE12.ent.ti.com>
 	<20121114223657.GB31599@denix.org>
-	<7D46E86EC0A8354091174257B2FED101592AA945@DLEE12.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED101592AA945@DLEE12.ent.ti.com>
+	<7D46E86EC0A8354091174257B2FED101592AA945@DLEE12.ent.ti.com> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -45,10 +44,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Nov 2012 23:29:19 -0000
+X-List-Received-Date: Thu, 15 Nov 2012 00:49:51 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Denys,
+
+Do you want to  commit your patch or are their tweaks you want to make firs=
+t?
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Wednesday, November 14, 2012 5:29 PM
+To: Maupin, Chase; Denys Dmytriyenko
+Cc: meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH] meta-toolchain-arago: special case for gd=
+b to be built as part of canadian-cross-sdk
 
 I tried debugging the Thermostat demo and a simple helloworld.....
 
