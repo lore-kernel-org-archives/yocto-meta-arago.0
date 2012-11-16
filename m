@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id D2E9352A6F
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id EA5AF52A6F
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Nov 2012 04:31:40 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2251875oag.38
+	Fri, 16 Nov 2012 04:31:41 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id eq6so2249832obc.38
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Nov 2012 20:31:40 -0800 (PST)
+	Thu, 15 Nov 2012 20:31:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=7Sn5YVfJKmXeVKHicxer/Y518r6ZX6NHwMTYsdoifJY=;
-	b=Nb5tFLRm/6JDPKpJgclmjKkQPsaVYsY+Ny4zawBcELX7oe9woushJFdpgKbgUzQXdq
-	O+eHDw/tEPxbXdld26ylc3sTBjigD2XpJeyybtfihwDtkTGl5vD3RV94v3lSywz+xZbj
-	Ru6arRXa+EDMEd/1lcQlqIa21eAuPZxdxT1TKz0Yy+pGXY8pE3p8zUK+ITU+YuIn9SuJ
-	YejHf+xA+cRkgz75+ZT9JIU85nO8qxAyhV3Kpmi+loqy7aWnO5WZ5tJxDrjWUDhG+gox
-	oeMzXmvugyHY0xrNR4HJGiH2Qs/NbcVajF1pLWrkYjSssqWt45zmC42w9FuLMcdUBV3U
-	+OTQ==
-Received: by 10.182.69.50 with SMTP id b18mr2828481obu.75.1353040300568;
-	Thu, 15 Nov 2012 20:31:40 -0800 (PST)
+	bh=tWjkaWAQLCF/1KDMIwZ1oIkeAbQjcipAjmao+7SuQQc=;
+	b=EDgf3L9hYvxPLnEi/Nft19wSQJfonSTB8E/TkscKxs0wuAT3CkFlNye8jzIApMoizj
+	oVPaf6n2K1vbDrS7knPgfd1Qa6X3NR5gfbzO9BJPuf9hztg+rcUQSRd8oAQ1/y8o1fQF
+	MQCgx7nuKBVvGTpcZW6EIGgKMuo6G4NBJ5JedtGDAwqvPV0ZbT4t9z7Ib3D5tIaIAlXi
+	OuBRiQuK94+67NRwRLgxODatHpSaxLHA2vc4iI3A7xl3ToY3qpW9XqigQcAIyBME43P/
+	+WWhtRTJ2b69h4L3cL/okfZ6/73Z+gMrqmO1wIWxBVE971yru8OEmeLPaHRD6SRbrE8S
+	n8MQ==
+Received: by 10.182.12.40 with SMTP id v8mr2873137obb.12.1353040301702;
+	Thu, 15 Nov 2012 20:31:41 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m8sm481759oeb.3.2012.11.15.20.31.39
+	by mx.google.com with ESMTPS id m8sm481759oeb.3.2012.11.15.20.31.40
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 15 Nov 2012 20:31:40 -0800 (PST)
+	Thu, 15 Nov 2012 20:31:41 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 15 Nov 2012 22:31:28 -0600
-Message-Id: <1353040290-26030-3-git-send-email-fcooper@ti.com>
+Date: Thu, 15 Nov 2012 22:31:29 -0600
+Message-Id: <1353040290-26030-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1353040290-26030-1-git-send-email-fcooper@ti.com>
 References: <1353040290-26030-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/5] gst-plugins-bad: Disable any feature based on mpeg2 or mp3
+Subject: [PATCH 4/5] arago.conf: Remove commercial license whitelisting
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,33 +43,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2012 04:31:41 -0000
+X-List-Received-Date: Fri, 16 Nov 2012 04:31:42 -0000
+
+* Remove whitelisting for recipes with a commercial licence flag due to
+  commercial licensing restrictions.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    8 +++++++-
- 1 files changed, 7 insertions(+), 1 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf |    9 ---------
+ 1 files changed, 0 insertions(+), 9 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-index 8b1e588..8ae8050 100644
---- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-arago2"
-+PR_append = "-arago3"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 8674158..3e37969 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -83,12 +83,3 @@ POLKITAUTH = ""
  
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-@@ -16,3 +16,9 @@ SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.pat
- # Add faad has a dependency to insure gst-plugins-bad-faad is built.
- DEPENDS += "faad2"
- RDEPENDS_${PN}-faad += "libfaad"
-+
-+# Disable features that have potential commercial licensing restrictions
-+EXTRA_OECONF += "\
-+    --disable-mpeg2enc \
-+    --disable-acm \
-+"
+ # Enable generation of source packages for SDKs
+ require arago-source-ipk.conf
+-
+-# Whitelist several recipes that have commercial licenses
+-# Need to verify with legal that the following recipes are ok to distribute
+-# with the SDK
+-LICENSE_FLAGS_WHITELIST = "\
+-    commercial_gst-plugins-ugly \
+-    commercial_mpeg2dec \
+-    commercial_lame \
+-"
 -- 
 1.7.0.4
 
