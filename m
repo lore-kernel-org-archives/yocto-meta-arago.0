@@ -1,36 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
 Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
 	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 2222952A0A
+	by arago-project.org (Postfix) with ESMTPS id 71BCF52A6F
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Nov 2012 23:57:13 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so2105502oag.38
+	Fri, 16 Nov 2012 04:31:39 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so2251875oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Nov 2012 15:57:12 -0800 (PST)
+	Thu, 15 Nov 2012 20:31:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=GoEPpivjgLM9p4qtGxixwXhZYo6UR00rAL4jbnw7+uw=;
-	b=xXpt4aqtDPtoEHYQtJWz9KaURd/RnpT9yyPZ7eP+gXsD8Uo/1LMEHz+AndWaXDkM8+
-	hYwx0pcMd8XXKgw6D5B7yt4WlfnEe0gILGCYmHGHPmIJm1IRY1QCmBzyzmXiDjEZnRlz
-	UzFTvDJMBSYM+HXqe+FRMoYk/F2QnzBrZ+VP7Kk+oI9tfgoXStkCMD9s3KScgqvAKDv8
-	HNbq09CbuNErUX1v1ReScN3YEUaRQRpGEYUvpq2UpMPj33n67jerjyxPPh+oEMivRhRr
-	u/Ny9taip2SMp1Q0u+n3gtr5+xin/NvrBQdqiyZKcOqrH216+KbMBD/urr+h15R90XID
-	q+2w==
-Received: by 10.182.127.102 with SMTP id nf6mr2542531obb.14.1353023832713;
-	Thu, 15 Nov 2012 15:57:12 -0800 (PST)
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=6ffH/5FfadnI8M6D54iQjU43UWtwA/tqVYrnYHIefmw=;
+	b=B5ILkUZOznXeUmesbwp3Y1Ni89Fi3XyOggX3x/HZM8zr/0ypa5LqWL2sICF2KaCp+W
+	oluTcXhAV7qA3HAEwA9J/li6QreRan3fVd6zDlQV+w5A+2azYpzCnXpLgu1VyJEEaW8u
+	8qfV4ZYo7Su2hX1W2Er/2ZxyQ33dP6U89CwTjh8LkJU3jwjMDhKGNqfjXJG9CGp4Q5V4
+	nvgAf6pylmLyeF3l+5/8f+yCCUGFfXSbrbsISiLYuAlx1DJsJT4yIdk8MhvppGefWeus
+	/w3pAVEI4kxCyEm1TzsS/xcU7SDtDgfPBNwWBF4aOGzfVeUvlvYObLjtxzVadQNCfhxN
+	BInQ==
+Received: by 10.182.31.50 with SMTP id x18mr2810570obh.56.1353040298622;
+	Thu, 15 Nov 2012 20:31:38 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id hz6sm17313073obb.1.2012.11.15.15.57.11
+	by mx.google.com with ESMTPS id m8sm481759oeb.3.2012.11.15.20.31.36
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 15 Nov 2012 15:57:12 -0800 (PST)
+	Thu, 15 Nov 2012 20:31:37 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 15 Nov 2012 17:57:06 -0600
-Message-Id: <1353023826-19449-2-git-send-email-fcooper@ti.com>
+Date: Thu, 15 Nov 2012 22:31:26 -0600
+Message-Id: <1353040290-26030-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1353023826-19449-1-git-send-email-fcooper@ti.com>
-References: <1353023826-19449-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/3] task-arago-qte-toolchain-target: Add additional packages
+Subject: [PATCH 1/5] task-arago-gst: Remove gst-plugins-ugly
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,50 +41,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2012 23:57:13 -0000
+X-List-Received-Date: Fri, 16 Nov 2012 04:31:39 -0000
 
-* Adding additional packages that were automatically installed with Qt in
-  classic Arago but not being done now.
-* This insures the packages installed in the old SDK matches the new one.
+* Remove gst-plugins-ugly due to commercial license restrictions
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../tasks/task-arago-qte-toolchain-target.bb       |   14 ++++++++++++--
- 1 files changed, 12 insertions(+), 2 deletions(-)
+ .../tasks/task-arago-gst-sdk-target.bb             |    3 +--
+ .../recipes-core/tasks/task-arago-gst.bb           |    6 ++----
+ 2 files changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb
-index d919af2..7547e0f 100644
---- a/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb
-+++ b/meta-arago-extras/recipes-core/tasks/task-arago-qte-toolchain-target.bb
-@@ -2,11 +2,17 @@ DESCRIPTION = "Target packages for Qt Embedded SDK"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
+index 06b7184..3a737b1 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to build and install header and libs in sdk"
  LICENSE = "MIT"
- ALLOW_EMPTY = "1"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r1"
++PR = "r2"
  
--PR = "r2"
-+PR = "r3"
+ inherit task
  
- LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+@@ -10,5 +10,4 @@ RDEPENDS_${PN} = "\
+     gst-plugins-base-dev \
+     gst-plugins-good-dev \
+     gst-plugins-bad-dev \
+-    gst-plugins-ugly-dev \
+ "
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+index b1b8f0b..4ff5494 100644
+--- a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r1"
++PR = "r2"
  
-+
-+QT_SGX_SUPPORT = "\
-+    libqt-embeddedopengl4-dev \
-+    libqt-embeddedpvrqwswsegl4-dev \
+ inherit task
+ 
+@@ -10,12 +10,10 @@ GSTREAMER = " \
+     gst-plugins-base \
+     gst-plugins-good \
+     gst-plugins-bad \
+-    gst-plugins-ugly \
+     gst-plugins-base-meta \
+     gst-plugins-good-meta \
+     gst-plugins-bad-meta \
+-    gst-plugins-ugly-meta \
+-    "
 +"
-+
- RDEPENDS_${PN} += " \
-         task-core-standalone-sdk-target \
-         qt4-embedded-mkspecs \
-@@ -30,4 +36,8 @@ RDEPENDS_${PN} += " \
-         libqt-embeddedwebkit4-dev \
-         libqt-embeddedxml4-dev \
-         libsqlite3-dev \
--        "
-+        libqt-embeddedxmlpatterns4-dev \
-+        libqt-embeddedmultimedia4-dev \
-+        libqt-embeddeddeclarative4-dev \
-+        ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles','${QT_SGX_SUPPORT}', '', d)} \
-+"
+ 
+ RDEPENDS_${PN} = "\
+     ${GSTREAMER} \
 -- 
 1.7.0.4
 
