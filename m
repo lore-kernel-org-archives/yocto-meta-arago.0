@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 2347252A6F
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id D2E9352A6F
 	for <meta-arago@arago-project.org>;
 	Fri, 16 Nov 2012 04:31:40 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id eq6so2249832obc.38
+Received: by mail-oa0-f51.google.com with SMTP id n12so2251875oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Nov 2012 20:31:39 -0800 (PST)
+	Thu, 15 Nov 2012 20:31:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=KB5SWC9SvDFgKrVa33aKR5m/xkNJjzDOn1Dhg12o5Pw=;
-	b=V7/O0Dq4l6tTb3mOO/mEd/KnLg/3104LnsA+XTv1Fj7eqZwUv/ICfPHe1qO/V/50KU
-	k20ZpjKPvTN6fwIWSX+imZDb4MHoAZzjRBGpJ2FGcl9j9zqXBJ0nGsbXbaOIyvGPp7tu
-	PF4HIL+/pkElblj0DcD5CLavETyKZ7SiP4bk7CuwcAtFXqzO7Y7+xO1GkysVtJ/WV9RD
-	+mMwqM5WKZCnvSm2KpGs+ARNgdtkzKYcmua35holqO7dnMLdPKLu7fPkzJh9fufmRkCk
-	fI/I96HTb0F8EurT/GQQeVN1me0kU5WpBral3OaT3M+9GgoUFQy/D+VvX7EHXfWRk3E0
-	ZgxA==
-Received: by 10.182.42.6 with SMTP id j6mr2855859obl.93.1353040299489;
-	Thu, 15 Nov 2012 20:31:39 -0800 (PST)
+	bh=7Sn5YVfJKmXeVKHicxer/Y518r6ZX6NHwMTYsdoifJY=;
+	b=Nb5tFLRm/6JDPKpJgclmjKkQPsaVYsY+Ny4zawBcELX7oe9woushJFdpgKbgUzQXdq
+	O+eHDw/tEPxbXdld26ylc3sTBjigD2XpJeyybtfihwDtkTGl5vD3RV94v3lSywz+xZbj
+	Ru6arRXa+EDMEd/1lcQlqIa21eAuPZxdxT1TKz0Yy+pGXY8pE3p8zUK+ITU+YuIn9SuJ
+	YejHf+xA+cRkgz75+ZT9JIU85nO8qxAyhV3Kpmi+loqy7aWnO5WZ5tJxDrjWUDhG+gox
+	oeMzXmvugyHY0xrNR4HJGiH2Qs/NbcVajF1pLWrkYjSssqWt45zmC42w9FuLMcdUBV3U
+	+OTQ==
+Received: by 10.182.69.50 with SMTP id b18mr2828481obu.75.1353040300568;
+	Thu, 15 Nov 2012 20:31:40 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m8sm481759oeb.3.2012.11.15.20.31.38
+	by mx.google.com with ESMTPS id m8sm481759oeb.3.2012.11.15.20.31.39
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 15 Nov 2012 20:31:39 -0800 (PST)
+	Thu, 15 Nov 2012 20:31:40 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 15 Nov 2012 22:31:27 -0600
-Message-Id: <1353040290-26030-2-git-send-email-fcooper@ti.com>
+Date: Thu, 15 Nov 2012 22:31:28 -0600
+Message-Id: <1353040290-26030-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1353040290-26030-1-git-send-email-fcooper@ti.com>
 References: <1353040290-26030-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/5] libav: Disable any mp3 or mpeg2 feature
+Subject: [PATCH 3/5] gst-plugins-bad: Disable any feature based on mpeg2 or mp3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,46 +43,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2012 04:31:40 -0000
-
-* Disable any feature based on mpeg2 or mp3
+X-List-Received-Date: Fri, 16 Nov 2012 04:31:41 -0000
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-multimedia/libav/libav_0.7.4.bbappend  |   25 ++++++++++++++++++++
- 1 files changed, 25 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
+ .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    8 +++++++-
+ 1 files changed, 7 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
-new file mode 100644
-index 0000000..cd431bc
---- /dev/null
-+++ b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
-@@ -0,0 +1,25 @@
-+PR_append = "-arago0"
+diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+index 8b1e588..8ae8050 100644
+--- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
++++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = "-arago2"
++PR_append = "-arago3"
+ 
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+@@ -16,3 +16,9 @@ SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.pat
+ # Add faad has a dependency to insure gst-plugins-bad-faad is built.
+ DEPENDS += "faad2"
+ RDEPENDS_${PN}-faad += "libfaad"
 +
 +# Disable features that have potential commercial licensing restrictions
 +EXTRA_OECONF += "\
-+    --disable-encoder=libmp3lame \
-+    --disable-decoder=mp3 \
-+    --disable-decoder=mp3adu \
-+    --disable-decoder=mp3adufloat \
-+    --disable-decoder=mp3float \
-+    --disable-decoder=mp3on4 \
-+    --disable-decoder=mp3on4float \
-+    --disable-muxer=mp3 \
-+    --disable-demuxer=mp3 \
-+    --disable-bsf=mp3_header_decompress \
-+    --disable-bsf=mp3_header_compress   \
-+                                 \
-+    --disable-encoder=mpeg2video \
-+    --disable-decoder=mpeg2video \
-+    --disable-hwaccel=mpeg2_vaapi\
-+    --disable-hwaccel=mpeg2_dxva2\
-+    --disable-muxer=mpeg2dvd \
-+    --disable-muxer=mpeg2svcd \
-+    --disable-muxer=mpeg2video \
-+    --disable-muxer=mpeg2vob \
++    --disable-mpeg2enc \
++    --disable-acm \
 +"
 -- 
 1.7.0.4
