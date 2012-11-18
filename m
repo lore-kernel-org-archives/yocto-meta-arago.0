@@ -1,32 +1,34 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 8589D52A61
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id BB849529EF
 	for <meta-arago@arago-project.org>;
-	Sat, 17 Nov 2012 18:38:22 +0000 (UTC)
+	Sun, 18 Nov 2012 00:05:02 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAHIcLxV011506;
-	Sat, 17 Nov 2012 12:38:21 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAI051lD014011;
+	Sat, 17 Nov 2012 18:05:01 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAHIcL3C009147;
-	Sat, 17 Nov 2012 12:38:21 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAI050UY020117;
+	Sat, 17 Nov 2012 18:05:01 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
 	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Sat, 17 Nov 2012 12:38:21 -0600
+	14.01.0323.003; Sat, 17 Nov 2012 18:05:01 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
 	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] meta-toolchain-arago: Substitute dirname statement
-Thread-Index: AQHNxPGeqR/vMWIeuEKx+Ce1dCfadpfuWYxQ
-Date: Sat, 17 Nov 2012 18:38:20 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C3232F3@DFLE09.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH] meta-toolchain-arago: Substitute dirname
+	statement
+Thread-Index: AQHNxPK6Hh5frKhaQ0qPgI/c95ucJZfusuUg
+Date: Sun, 18 Nov 2012 00:05:00 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C323E10@DFLE09.ent.ti.com>
 References: <1353177014-1258-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1353177014-1258-1-git-send-email-fcooper@ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C3232F3@DFLE09.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C3232F3@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH] meta-toolchain-arago: Substitute dirname statement
+Subject: Re: [PATCH] meta-toolchain-arago: Substitute dirname	statement
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,10 +41,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Nov 2012 18:38:22 -0000
+X-List-Received-Date: Sun, 18 Nov 2012 00:05:03 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+. $dirname../environment-setup
+
+Is the only part that is a potential problem. If there is a space in the di=
+rectory path then the sourcing statement stops at the first space.
+Ex=20
+dirname=3D"/home/franklin/tes sdk/linux-devkit/"
+
+what ends up being executed is:
+. "/home/franklin/tes"
+
+Putting quotes around $dirname../environment-setup also did not make a diff=
+erence.
+
+Any suggestions?
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Cooper Jr., Franklin
+Sent: Saturday, November 17, 2012 12:38 PM
+To: Franklin S. Cooper Jr; meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: Substitute dirname =
+statement
 
 For now just looking for comments while I do final testing.
 
@@ -50,13 +75,12 @@ FYI the statements I am implementing are:
 # getting the filename from the entire file path. Similar to basename.
 filename=3D`echo ${BASH_SOURCE##*/}`
 # Looking at the entire file path replace $filename with "" but only replac=
-e the last occurrence of $filename
-dirname=3D${BASH_SOURCE/%$filename/}
+e the last occurrence of $filename dirname=3D${BASH_SOURCE/%$filename/}
 . $dirname../environment-setup
 
 
 -----Original Message-----
-From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]=20
+From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]
 Sent: Saturday, November 17, 2012 12:30 PM
 To: meta-arago@arago-project.org
 Cc: Cooper Jr., Franklin
@@ -127,4 +151,8 @@ ATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" >> $i
 --
 1.7.0.4
 
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
