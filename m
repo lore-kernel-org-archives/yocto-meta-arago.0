@@ -1,34 +1,28 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 8093852A67
+Return-Path: <chase.maupin@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 7541652A2F
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Nov 2012 02:50:48 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id n12so5172471oag.38
+	Tue, 20 Nov 2012 20:27:19 +0000 (UTC)
+Received: from dbdp20.itg.ti.com ([172.24.170.38])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAKKRGcc005251
+	for <meta-arago@arago-project.org>; Tue, 20 Nov 2012 14:27:17 -0600
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAKKRF7i026973
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Nov 2012 18:50:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=ezPMeyfhvnfKmc1nGZUjOIAhhsmbV99lmARbdKK0o3w=;
-	b=ASb8Xydbx24R1rwdgPRPHI8GswtZS4CPxeKWCp3mwImpyDBlNyxqimqMsuWU3AlW+9
-	hj1dPpCLw3PkecHwgtqhmgPWFzRhIIQvaWiRdjFXloVlWxwWMZ3WCRfWpqOp2+GVAqtc
-	Cj+8pTmv7VYvZaFMk/hodlxYIuFVgmf9qq9lToHgBGVlJiQsEWjRsjOC75S9RPMRbbqH
-	gqU96eOPwrZrJY5si9smOP/9FouA5D+sRSpR0Rge6chIRxhcg6nj4ktHcXdgcAXGVowP
-	PcYRiZk31yrcq2Uf+QBjqKiyW7dUa3Tpnnjot5BaoKAXHmS9+mslMgFJTnxTUrONGcx+
-	TYpQ==
-Received: by 10.182.156.99 with SMTP id wd3mr12360138obb.15.1353379847397;
-	Mon, 19 Nov 2012 18:50:47 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m6sm9221572oem.10.2012.11.19.18.50.45
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 19 Nov 2012 18:50:46 -0800 (PST)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
-To: meta-arago@arago-project.org
-Date: Mon, 19 Nov 2012 20:50:42 -0600
-Message-Id: <1353379842-15721-1-git-send-email-fcooper@ti.com>
+	Wed, 21 Nov 2012 01:57:16 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 21 Nov 2012 01:57:15 +0530
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAKKRCsT031236;
+	Wed, 21 Nov 2012 01:57:14 +0530
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 20 Nov 2012 14:27:10 -0600
+Message-ID: <1353443230-8826-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/5 v2] libav: Disable any mp3 or mpeg2 feature
+MIME-Version: 1.0
+Subject: [PATCH] ti-tisdk-setup: Pull latest sources for create-sdcard fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,54 +35,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Nov 2012 02:50:49 -0000
+X-List-Received-Date: Tue, 20 Nov 2012 20:27:20 -0000
+Content-Type: text/plain
 
-* Disable any feature based on mpeg2 or mp3
+* Pull the latest sources to pickup a change in create-sdcard.sh
+  to allow properly creating the rootfs in the case where there
+  is both a .ubi and tar.gz file system in the SDK.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
-Version 2 changes:
-Add space between the end of the below statements and the backslash
---disable-hwaccel=mpeg2_vaapi
---disable-hwaccel=mpeg2_dxva2
-Without the space these statements were considered to be one giant statement
-which caused configure to ignore it.
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
- .../recipes-multimedia/libav/libav_0.7.4.bbappend  |   25 ++++++++++++++++++++
- 1 files changed, 25 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
-
-diff --git a/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
-new file mode 100644
-index 0000000..525b546
---- /dev/null
-+++ b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
-@@ -0,0 +1,25 @@
-+PR_append = "-arago0"
-+
-+# Disable features that have potential commercial licensing restrictions
-+EXTRA_OECONF += "\
-+    --disable-encoder=libmp3lame \
-+    --disable-decoder=mp3 \
-+    --disable-decoder=mp3adu \
-+    --disable-decoder=mp3adufloat \
-+    --disable-decoder=mp3float \
-+    --disable-decoder=mp3on4 \
-+    --disable-decoder=mp3on4float \
-+    --disable-muxer=mp3 \
-+    --disable-demuxer=mp3 \
-+    --disable-bsf=mp3_header_decompress \
-+    --disable-bsf=mp3_header_compress   \
-+                                 \
-+    --disable-encoder=mpeg2video \
-+    --disable-decoder=mpeg2video \
-+    --disable-hwaccel=mpeg2_vaapi \
-+    --disable-hwaccel=mpeg2_dxva2 \
-+    --disable-muxer=mpeg2dvd \
-+    --disable-muxer=mpeg2svcd \
-+    --disable-muxer=mpeg2video \
-+    --disable-muxer=mpeg2vob \
-+"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 4e63986..92dceee 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -4,10 +4,10 @@ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c
+ 
+ COMPATIBLE_MACHINE = "am37x-evm|am3517-evm|beagleboard|ti33x|am180x-evm"
+ 
+-PR = "r2"
++PR = "r3"
+ 
+ BRANCH ?= "master"
+-SRCREV = "49b4f5b891a4bb96990924ce6431e0c01f9f25d4"
++SRCREV = "9f013588bdeaaa5b24a0610d05cb8bb1e18e5e9c"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
 -- 
 1.7.0.4
 
