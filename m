@@ -1,34 +1,34 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BB849529EF
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 8093852A67
 	for <meta-arago@arago-project.org>;
-	Sun, 18 Nov 2012 00:05:02 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAI051lD014011;
-	Sat, 17 Nov 2012 18:05:01 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAI050UY020117;
-	Sat, 17 Nov 2012 18:05:01 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Sat, 17 Nov 2012 18:05:01 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] meta-toolchain-arago: Substitute dirname
-	statement
-Thread-Index: AQHNxPK6Hh5frKhaQ0qPgI/c95ucJZfusuUg
-Date: Sun, 18 Nov 2012 00:05:00 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C323E10@DFLE09.ent.ti.com>
-References: <1353177014-1258-1-git-send-email-fcooper@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C3232F3@DFLE09.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C3232F3@DFLE09.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
-MIME-Version: 1.0
-Subject: Re: [PATCH] meta-toolchain-arago: Substitute dirname	statement
+	Tue, 20 Nov 2012 02:50:48 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so5172471oag.38
+	for <meta-arago@arago-project.org>;
+	Mon, 19 Nov 2012 18:50:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=ezPMeyfhvnfKmc1nGZUjOIAhhsmbV99lmARbdKK0o3w=;
+	b=ASb8Xydbx24R1rwdgPRPHI8GswtZS4CPxeKWCp3mwImpyDBlNyxqimqMsuWU3AlW+9
+	hj1dPpCLw3PkecHwgtqhmgPWFzRhIIQvaWiRdjFXloVlWxwWMZ3WCRfWpqOp2+GVAqtc
+	Cj+8pTmv7VYvZaFMk/hodlxYIuFVgmf9qq9lToHgBGVlJiQsEWjRsjOC75S9RPMRbbqH
+	gqU96eOPwrZrJY5si9smOP/9FouA5D+sRSpR0Rge6chIRxhcg6nj4ktHcXdgcAXGVowP
+	PcYRiZk31yrcq2Uf+QBjqKiyW7dUa3Tpnnjot5BaoKAXHmS9+mslMgFJTnxTUrONGcx+
+	TYpQ==
+Received: by 10.182.156.99 with SMTP id wd3mr12360138obb.15.1353379847397;
+	Mon, 19 Nov 2012 18:50:47 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id m6sm9221572oem.10.2012.11.19.18.50.45
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 19 Nov 2012 18:50:46 -0800 (PST)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Mon, 19 Nov 2012 20:50:42 -0600
+Message-Id: <1353379842-15721-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 2/5 v2] libav: Disable any mp3 or mpeg2 feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,118 +41,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Nov 2012 00:05:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 20 Nov 2012 02:50:49 -0000
 
-. $dirname../environment-setup
-
-Is the only part that is a potential problem. If there is a space in the di=
-rectory path then the sourcing statement stops at the first space.
-Ex=20
-dirname=3D"/home/franklin/tes sdk/linux-devkit/"
-
-what ends up being executed is:
-. "/home/franklin/tes"
-
-Putting quotes around $dirname../environment-setup also did not make a diff=
-erence.
-
-Any suggestions?
-
------Original Message-----
-From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
--project.org] On Behalf Of Cooper Jr., Franklin
-Sent: Saturday, November 17, 2012 12:38 PM
-To: Franklin S. Cooper Jr; meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: Substitute dirname =
-statement
-
-For now just looking for comments while I do final testing.
-
-FYI the statements I am implementing are:
-# getting the filename from the entire file path. Similar to basename.
-filename=3D`echo ${BASH_SOURCE##*/}`
-# Looking at the entire file path replace $filename with "" but only replac=
-e the last occurrence of $filename dirname=3D${BASH_SOURCE/%$filename/}
-. $dirname../environment-setup
-
-
------Original Message-----
-From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]
-Sent: Saturday, November 17, 2012 12:30 PM
-To: meta-arago@arago-project.org
-Cc: Cooper Jr., Franklin
-Subject: [PATCH] meta-toolchain-arago: Substitute dirname statement
-
-* On 32bit systems, the dirname statement sometimes return an empty string.
-* Replace dirname with several statements that provide the same result.
+* Disable any feature based on mpeg2 or mp3
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/meta/meta-toolchain-arago.bb      |   14 +++++++++++---
- 1 files changed, 11 insertions(+), 3 deletions(-)
+Version 2 changes:
+Add space between the end of the below statements and the backslash
+--disable-hwaccel=mpeg2_vaapi
+--disable-hwaccel=mpeg2_dxva2
+Without the space these statements were considered to be one giant statement
+which caused configure to ignore it.
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/=
-meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index c24fb7e..590aa9c 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -4,7 +4,7 @@ TOOLCHAIN_OUTPUTNAME ?=3D "${SDK_NAME}-${ARMPKGARCH}-${TARG=
-ET_OS}-sdk-${SDK_ARCH}"
-=20
- require recipes-core/meta/meta-toolchain.bb
-=20
--PR =3D "r9"
-+PR =3D "r10"
-=20
- SDKTARGETSYSROOT =3D "${SDKPATH}/${ARAGO_TARGET_SYS}"
-=20
-@@ -61,7 +61,11 @@ toolchain_create_sdk_env_script () {  create_gdb_stub ()=
- {
- 	# Special case for gdb, that is built as part of canadian-cross-sdk
- 	mv ${ARAGO_TARGET_SYS}-gdb ${ARAGO_TARGET_SYS}-gdb.real
--	printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n\t. \x60dirna=
-me \x24BASH_SOURCE\x60/../environment-setup\nfi\n" > ${ARAGO_TARGET_SYS}-gd=
-b
-+	printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n" > ${ARAGO_T=
-ARGET_SYS}-gdb
-+	printf "\tfilename\x3D\x60echo \x24\x7BBASH_SOURCE\x23\x23\x2A\x2F\x7D\x6=
-0\n" >> ${ARAGO_TARGET_SYS}-gdb
-+	printf "\tdirname\x3D\x24\x7BBASH_SOURCE\x2F\x25\x24filename\x2F\x7D\n" >=
-> ${ARAGO_TARGET_SYS}-gdb
-+	printf "\t\x2E \x24dirname\x2E\x2E\x2Fenvironment-setup\n" >> ${ARAGO_TAR=
-GET_SYS}-gdb
-+	printf "fi\n" >> ${ARAGO_TARGET_SYS}-gdb
- 	printf "LD_LIBRARY_PATH=3D\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH \x24SDK_PA=
-TH/lib/ld-linux.so.2 \x24SDK_PATH/bin/${ARAGO_TARGET_SYS}-gdb.real \x24\x2a=
-\n" >> ${ARAGO_TARGET_SYS}-gdb
- 	chmod +x ${ARAGO_TARGET_SYS}-gdb
- }
-@@ -71,7 +75,11 @@ populate_sdk_ipk_append () {
- 	binfiles=3D`find ! -name "${ARAGO_TARGET_SYS}-*" -type f -perm +111 -exec=
- file {} \;|grep -v ":.*ASCII.*text"|cut -d":" -f1|cut -c3-`
- 	for i in $binfiles; do
- 		mv $i $i.real
--		printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n\t. \x60dirn=
-ame \x24BASH_SOURCE\x60/../environment-setup\nfi\n" > $i
-+		printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n" > $i
-+		printf "\tfilename\x3D\x60echo \x24\x7BBASH_SOURCE\x23\x23\x2A\x2F\x7D\x=
-60\n" >> $i
-+		printf "\tdirname\x3D\x24\x7BBASH_SOURCE\x2F\x25\x24filename\x2F\x7D\n" =
->> $i
-+		printf "\t\x2E \x24dirname\x2E\x2E\x2Fenvironment-setup\n" >> $i
-+		printf "fi\n" >> $i
- 		printf "LD_LIBRARY_PATH=3D\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH \x24SDK_P=
-ATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" >> $i
- 		chmod +x $i
- 	done
---
+ .../recipes-multimedia/libav/libav_0.7.4.bbappend  |   25 ++++++++++++++++++++
+ 1 files changed, 25 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
+
+diff --git a/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
+new file mode 100644
+index 0000000..525b546
+--- /dev/null
++++ b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
+@@ -0,0 +1,25 @@
++PR_append = "-arago0"
++
++# Disable features that have potential commercial licensing restrictions
++EXTRA_OECONF += "\
++    --disable-encoder=libmp3lame \
++    --disable-decoder=mp3 \
++    --disable-decoder=mp3adu \
++    --disable-decoder=mp3adufloat \
++    --disable-decoder=mp3float \
++    --disable-decoder=mp3on4 \
++    --disable-decoder=mp3on4float \
++    --disable-muxer=mp3 \
++    --disable-demuxer=mp3 \
++    --disable-bsf=mp3_header_decompress \
++    --disable-bsf=mp3_header_compress   \
++                                 \
++    --disable-encoder=mpeg2video \
++    --disable-decoder=mpeg2video \
++    --disable-hwaccel=mpeg2_vaapi \
++    --disable-hwaccel=mpeg2_dxva2 \
++    --disable-muxer=mpeg2dvd \
++    --disable-muxer=mpeg2svcd \
++    --disable-muxer=mpeg2video \
++    --disable-muxer=mpeg2vob \
++"
+-- 
 1.7.0.4
 
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
