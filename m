@@ -1,30 +1,28 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 5560752A93
+	by arago-project.org (Postfix) with ESMTPS id 0EA6952AA9
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Nov 2012 14:55:24 +0000 (UTC)
+	Wed, 28 Nov 2012 20:23:20 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAREtLeV018095
-	for <meta-arago@arago-project.org>; Tue, 27 Nov 2012 08:55:22 -0600
-Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAREtLds012586
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qASKNH78017836
+	for <meta-arago@arago-project.org>; Wed, 28 Nov 2012 14:23:18 -0600
+Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id qASKNGUg018945
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Nov 2012 20:25:21 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
-	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Tue, 27 Nov 2012 20:25:21 +0530
+	Thu, 29 Nov 2012 01:53:17 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
+	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
+	Thu, 29 Nov 2012 01:53:16 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAREsqoP026073;
-	Tue, 27 Nov 2012 20:25:20 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id qASKNDMP029746;
+	Thu, 29 Nov 2012 01:53:15 +0530
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 27 Nov 2012 08:54:49 -0600
-Message-ID: <1354028089-4919-4-git-send-email-Chase.Maupin@ti.com>
+Date: Wed, 28 Nov 2012 14:23:10 -0600
+Message-ID: <1354134190-20883-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1354028089-4919-1-git-send-email-Chase.Maupin@ti.com>
-References: <1354028089-4919-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 4/4] matrix-gui-apps-git: update to latest commit
+Subject: [PATCH] ti-crypto-examples: update to latest sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +35,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 14:55:25 -0000
+X-List-Received-Date: Wed, 28 Nov 2012 20:23:20 -0000
 Content-Type: text/plain
 
-* Update to the latest commit ID which changes the cryptography
-  demos to use the C example programs instead of the openssl
-  scripts.
+* Update to the latest sources which use a different method to
+  access the HW accelerators.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+ .../ti-crypto-examples/ti-crypto-examples_git.bb   |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 63e73f2..060abca 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+index a35524f..f6d49a8 100644
+--- a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
++++ b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+@@ -4,10 +4,10 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5"
+ SECTION = "console"
  
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "df5b70b2f7cd97148855fe4d0508789c710bcc4e"
-+SRCREV = "e739979100810a09a2157682e9000e40e99edbc3"
- BRANCH = "master"
--INC_PR = "r6"
-+INC_PR = "r7"
+-PR = "r0"
++PR = "r1"
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+ BRANCH ?= "master"
+-SRCREV = "d3cc223206367a02097c7ad4e997cf2bef975277"
++SRCREV = "7d7092f14005da15f556ef52cad73fb7fd038d7a"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/crypto-example-apps.git;protocol=git;branch=${BRANCH}"
+ 
 -- 
 1.7.0.4
 
