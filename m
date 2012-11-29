@@ -1,28 +1,34 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 0EA6952AA9
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id E475E529A1
 	for <meta-arago@arago-project.org>;
-	Wed, 28 Nov 2012 20:23:20 +0000 (UTC)
-Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qASKNH78017836
-	for <meta-arago@arago-project.org>; Wed, 28 Nov 2012 14:23:18 -0600
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id qASKNGUg018945
+	Thu, 29 Nov 2012 01:00:33 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so13246859oag.38
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Nov 2012 01:53:17 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 29 Nov 2012 01:53:16 +0530
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id qASKNDMP029746;
-	Thu, 29 Nov 2012 01:53:15 +0530
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 28 Nov 2012 14:23:10 -0600
-Message-ID: <1354134190-20883-1-git-send-email-Chase.Maupin@ti.com>
+	Wed, 28 Nov 2012 17:00:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=GObT6FAKPZa6Q603/WGwmxlTffuuKUXxDhkt5PVWJhQ=;
+	b=tWxiPY3YaUsLv15bV1f7TZwd3mt+34uuwVuXOT/8qkvNT+jnCjWgnAcqRP1SLMhIe/
+	WVIkb+0S7e6J/YOTdw6lO5tPXUEdpJAswLN+ncE5vJjurFcDmxlMKYdYxhX1jwoDY68t
+	AmUHgQtAH8xJ0SbmfjqQxONDjgNLcIjweIdp4R08HHiG4BDWgW0O+roC+gTt3uMGqiLF
+	v6q6iKfWKfQZCYAiD3GjQOW/XLgkFW7WCGh1xxwdBp+nS3zPXpsFn6C8Ajny1L1MO+3t
+	p3TT7D5Ot/tNr5vdQuGfzrpYfPWBokJDYbEBoMxsTx7WB9GGAeSvJyAQ31vbARvuI/wD
+	HUWQ==
+Received: by 10.60.10.230 with SMTP id l6mr263004oeb.94.1354150832940;
+	Wed, 28 Nov 2012 17:00:32 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id w14sm150599obd.5.2012.11.28.17.00.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 28 Nov 2012 17:00:32 -0800 (PST)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Wed, 28 Nov 2012 19:00:25 -0600
+Message-Id: <1354150825-4279-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Subject: [PATCH] ti-crypto-examples: update to latest sources
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] task-arago-standaline-sdk-target: Fix PREFERRED_PROVIDER
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,34 +41,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2012 20:23:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 29 Nov 2012 01:00:34 -0000
 
-* Update to the latest sources which use a different method to
-  access the HW accelerators.
+* A PREFERRED_PROVIDER is set for jpeg. The jpeg provider depends on the ARM
+  architecture.
+* Therefore, the jpeg development library to use should also depend on which
+  PREFERRED_PROVIDER has been set.
+* This change fixes the "Multiple .bb files are due to be built which each
+  provide jpeg" due to the proper development package not being chosen.
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-crypto-examples/ti-crypto-examples_git.bb   |    4 ++--
+ .../tasks/task-arago-standalone-sdk-target.bb      |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
-index a35524f..f6d49a8 100644
---- a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
-+++ b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
-@@ -4,10 +4,10 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5"
- SECTION = "console"
- 
--PR = "r0"
-+PR = "r1"
- 
- BRANCH ?= "master"
--SRCREV = "d3cc223206367a02097c7ad4e997cf2bef975277"
-+SRCREV = "7d7092f14005da15f556ef52cad73fb7fd038d7a"
- 
- SRC_URI = "git://arago-project.org/git/projects/crypto-example-apps.git;protocol=git;branch=${BRANCH}"
- 
+diff --git a/meta-arago-extras/recipes-core/tasks/task-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/tasks/task-arago-standalone-sdk-target.bb
+index 29b129d..cfce86e 100644
+--- a/meta-arago-extras/recipes-core/tasks/task-arago-standalone-sdk-target.bb
++++ b/meta-arago-extras/recipes-core/tasks/task-arago-standalone-sdk-target.bb
+@@ -1,5 +1,5 @@
+ DESCRIPTION = "Target packages for the standalone SDK"
+-PR = "r1"
++PR = "r2"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+@@ -21,7 +21,7 @@ RDEPENDS_${PN} = "\
+     curl-dev \
+     i2c-tools-dev \
+     freetype-dev \
+-    jpeg-dev \
++    ${@base_conditional('PREFERRED_PROVIDER_jpeg', 'libjpeg-turbo', 'libjpeg-turbo-dev', 'jpeg-dev', d)}  \
+     lzo-dev \
+     libopkg-dev \
+     libpng-dev \
 -- 
 1.7.0.4
 
