@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by arago-project.org (Postfix) with ESMTPS id 930E3529A9
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 2D8635298B
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Nov 2012 18:13:27 +0000 (UTC)
-Received: by mail-ob0-f179.google.com with SMTP id x4so651144obh.38
+	Tue,  4 Dec 2012 06:49:05 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so3372590oag.38
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Nov 2012 10:13:26 -0800 (PST)
+	Mon, 03 Dec 2012 22:49:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=/tBsd6nwf5SM9k1z3ocsnP0hDNmMluStdCDma91bnsI=;
-	b=DMXKPaxM520/Fvm2k8OT0CJrqAPXqnnNXp6UBSFxSuajlgeJ7wANgx1sFy+TRr7m5p
-	v/43khVbiS2Vya8Pdml+TB5L2TCrosODfVckem90Zdgiyb2hJoqg7+Azlk0QXH3tS4+H
-	knMRt5A0p2i0QpVkOvrvLmR4spClAPA1iM4ZPB9KVp69wUCpem2ViCgMm1DlxexPPu4D
-	UmDtrwAqsAtR3iasvYrqq3IBdvsR1sqPbcvchPLM0xXV9PEciI22SzwzFQhoIMz/cfeW
-	CcuMOIn8rIJbKZ1pAJv7WeOXQHL2Nk99dQOyB2Gw+SGLP8mE+tk0/TkditWOT95SmKLi
-	7+sA==
-Received: by 10.60.32.50 with SMTP id f18mr1763845oei.8.1354299206325;
-	Fri, 30 Nov 2012 10:13:26 -0800 (PST)
+	bh=8vI8NgxLM8IFbqDm7bnlUT0mcs4z+QZQFthhHv6l6Do=;
+	b=jSihLXJlc4glESd363rGeNKaY8hcGVEJjsBAGG95kWRVxG6CsRDm3uobZJXPPmiIU+
+	unpt+y69lmjMXMHBbfyjqdAjJ55KN+fkrbZzxrRNbHaJSNksZ33icYVIWFHZSmCEzWPt
+	Ud2vyF2jyl2O7WFnjpi90vannq/VrNeqAhQcM8PSBbWQtj2m0stZFQxqtYkiFqACT4Ra
+	PQ1+e8JLuKYGRGu4+pn3yfjnXgrr+NmJhV1IW1r3GZlfvSlVzfdt6Eu0PsEKqCr0iUBL
+	VOSViYe/zkxK0mwTgwDGB7+DdPCjwSXIEVt8mJc1MfIvE5ZqBX0hXlLsVI81Wh//q53Q
+	4xUg==
+Received: by 10.182.88.3 with SMTP id bc3mr6242631obb.8.1354603741678;
+	Mon, 03 Dec 2012 22:49:01 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m3sm5554985obm.21.2012.11.30.10.13.24
+	by mx.google.com with ESMTPS id h13sm291623obp.2.2012.12.03.22.49.00
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 30 Nov 2012 10:13:25 -0800 (PST)
+	Mon, 03 Dec 2012 22:49:01 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri, 30 Nov 2012 12:13:20 -0600
-Message-Id: <1354299200-19504-1-git-send-email-fcooper@ti.com>
+Date: Tue,  4 Dec 2012 00:48:54 -0600
+Message-Id: <1354603735-14377-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Cc: Michael Tadyshak <mtadyshak@ti.com>
-Subject: [PATCH] pinmux-utility: Pull in Pin Mux Utility v2.4.1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [for-comment][PATCH 1/2] sourceipk.bbclass: Add sdk_tweaks function
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,46 +41,116 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 18:13:28 -0000
+X-List-Received-Date: Tue, 04 Dec 2012 06:49:05 -0000
 
-From: Michael Tadyshak <mtadyshak@ti.com>
+* Add sdk_tweaks function.
+* This function does the following:
+    - Correct the remote url from oe's download directory to original git
+      repository specified in the SRC_URI.
+    - Create a branch since oe does a checkout via SRCREV/commit id. This
+      caused the repo to not be in any branch.
+    - Commit any patches applied on top of the git repository
 
-* Update to AM335x design spreadsheet v0.89
-* Move MII Rx link signals to MISC category separate from IO Sets
-* Remove note about McASP voltage restraints
-* Remove PRU_PRUSS1 IO Sets
-
-Signed-off-by: Michael Tadyshak <mtadyshak@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- ...tility_2.3.1.0.bb => pinmux-utility_2.4.1.0.bb} |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
- rename meta-arago-extras/recipes-devtools/pinmux-utility/{pinmux-utility_2.3.1.0.bb => pinmux-utility_2.4.1.0.bb} (76%)
+ meta-arago-distro/classes/sourceipk.bbclass |   70 +++++++++++++++++++++++++++
+ 1 files changed, 70 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
-similarity index 76%
-rename from meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
-rename to meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
-index 6cd5b0c..c34f9fd 100644
---- a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
-+++ b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
-@@ -5,14 +5,14 @@ COMPATIBLE_MACHINE = "am335x-evm|am37x-evm|am3517-evm|beagleboard"
+diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
+index 09d6eb8..0b5cbdd 100644
+--- a/meta-arago-distro/classes/sourceipk.bbclass
++++ b/meta-arago-distro/classes/sourceipk.bbclass
+@@ -56,6 +56,12 @@ SRCIPK_SECTION ?= "${SECTION}"
+ # Default SRCIPK_INCLUDE_EXTRAFILES is to include the extra files
+ SRCIPK_INCLUDE_EXTRAFILES ?= "1"
  
- PR = "r0"
++# Commit any changes to the git repository due to patches and create a new
++# SDK branch
++CREATE_SDK_BRANCH ?= "1"
++SDK_BRANCH_NAME ?= "sdk_05.06.00.00"
++SDK_BRANCH_COMMIT_MESSAGE = "Commit all patches added on top of the git repository"
++
+ # Create a README file that describes the contents of the source ipk
+ sourceipk_create_readme() {
+     readme="$1/README.${PN}-src"
+@@ -71,6 +77,68 @@ sourceipk_create_readme() {
+     echo "      the \"patches\" directory" >> $readme
+ }
  
--SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxUtility_v2_03_01_00.zip;name=base;subdir=${P}"
-+SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/850/5562/PinMuxUtility_v2_04_01_00.zip;name=base;subdir=${P}"
- 
- # Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
- # from the License Agreement screen when installing this application.
- SRC_URI += "file://LICENSE"
- 
--SRC_URI[base.md5sum] = "31f28b06f72c042e5400fc53b4a29c0e"
--SRC_URI[base.sha256sum] = "2b0de3592c5f4b803a207d092dba227d10e1af65e0d4f06e1d8d23f317a452f9"
-+SRC_URI[base.md5sum] = "f65ec03bbbb9e14126ac8ce2795acede"
-+SRC_URI[base.sha256sum] = "a95fe1b436419bf97bfdcc0b7ce95e497558ad81190d95dc0869ef9fc794094c"
- 
- S = "${WORKDIR}/${P}"
- 
++# Switch the remote repository pointed to by git from the oe's download
++# directory to the original git repository specified by the SRC_URI
++sdk_tweaks() {
++
++    source_location=$1
++    save_location=$PWD
++
++    cd $source_location
++
++    if [ -d ".git" ]
++    then
++        # Grab the location of the tracked repository
++        orig_location=`git remote -v | grep fetch | cut -c8- | rev | cut -c9- | rev`
++
++        # Check if the location of the tracked repository is on the host
++        # filesystem
++        if [ -d $orig_location ]
++        then
++            cd ${orig_location}
++            orig_url=`git remote -v | grep fetch | cut -c8- | rev | cut -c9- | rev`
++
++            cd $source_location
++            git remote set-url origin ${orig_url}
++        fi
++
++        if [ ${CREATE_SDK_BRANCH} != "0" ]
++        then
++            current_branch=`git branch | grep \* | cut -b 1-2 --complement`
++
++            if [ "$current_branch" != "${SDK_BRANCH_NAME}" ]
++            then
++                # Create SDK specific branch
++                git checkout -b ${SDK_BRANCH_NAME} > /dev/null 2>&1
++            fi
++
++            # Commit any changes to the git repository due to patches
++
++            # Check to see if the work directory is clean or dirty
++            if [ -n "$(git status --porcelain)" ]
++            then
++                git add -A
++
++                if [ "$current_branch" = "${SDK_BRANCH_NAME}" ]
++                then
++                    # Amend the commit if this function was ran more than once
++                    git commit --amend -m "${SDK_BRANCH_COMMIT_MESSAGE}"  > /dev/null 2>&1
++                else
++                    git commit -m "${SDK_BRANCH_COMMIT_MESSAGE}"  > /dev/null 2>&1
++                fi
++            fi
++        fi
++    fi
++
++    cd $save_location
++}
++
++do_change_origin() {
++   sdk_tweaks "${S}"
++}
++
++EXPORT_FUNCTIONS do_change_origin
++
+ # Create the source ipk file.  The ipk is manually created here instead
+ # of using the normal ipk system because some recipes will over write
+ # the PACKAGES variable.  Thus if this class added a -src package
+@@ -79,6 +147,8 @@ sourceipk_create_readme() {
+ sourceipk_do_create_srcipk() {
+     if [ ${CREATE_SRCIPK} != "0" ]
+     then
++
++        do_change_origin
+         tmp_dir="${WORKDIR}/sourceipk-tmp"
+         srcipk_dir="${WORKDIR}/sourceipk-data"
+         mkdir -p $tmp_dir/CONTROL
 -- 
 1.7.0.4
 
