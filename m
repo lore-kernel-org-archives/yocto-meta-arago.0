@@ -1,33 +1,35 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 261F852A2B
+Return-Path: <ceh@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id A2D68529E1
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Dec 2012 07:06:38 +0000 (UTC)
+	Wed,  5 Dec 2012 19:54:29 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qB476bof024278;
-	Tue, 4 Dec 2012 01:06:37 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qB476bGu016286;
-	Tue, 4 Dec 2012 01:06:37 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Tue, 4 Dec 2012 01:06:37 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [for-comment][PATCH 1/2] sourceipk.bbclass: Add sdk_tweaks
-	function
-Thread-Index: AQHN0etysQEacVssAEqrBRMrLVXZ5ZgIM1eQ
-Date: Tue, 4 Dec 2012 07:06:36 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C33EF4B@DFLE09.ent.ti.com>
-References: <1354603735-14377-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1354603735-14377-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id qB5JsTb1015203
+	for <meta-arago@arago-project.org>; Wed, 5 Dec 2012 13:54:29 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qB5JsTiT026424
+	for <meta-arago@arago-project.org>; Wed, 5 Dec 2012 13:54:29 -0600
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 5 Dec 2012 13:54:28 -0600
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])	by dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	qB5JsSJp007119	for <meta-arago@arago-project.org>;
+	Wed, 5 Dec 2012 13:54:28 -0600
+Received: from dta0850405-ubuntu1 (dta0850405-ubuntu1.am.dhcp.ti.com
+	[158.218.103.14])	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7)
+	with ESMTP id qB5JsSw03235	for <meta-arago@arago-project.org>;
+	Wed, 5 Dec 2012 13:54:28 -0600 (CST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])	by dta0850405-ubuntu1
+	(Postfix) with ESMTP id 255CD110604A	for <meta-arago@arago-project.org>;
+	Wed, 5 Dec 2012 14:54:28 -0500 (EST)
+Message-ID: <50BFA673.6040800@ti.com>
+Date: Wed, 5 Dec 2012 14:54:27 -0500
+From: Carlos Hernandez <ceh@ti.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Subject: Re: [for-comment][PATCH 1/2] sourceipk.bbclass: Add sdk_tweaks function
+To: <meta-arago@arago-project.org>
+Subject: [PATCH] Define arago-test-image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,156 +42,130 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2012 07:06:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 05 Dec 2012 19:54:30 -0000
+X-Groupsio-MsgNum: 646
+Content-Type: multipart/mixed; boundary="------------050304040809050604040208"
 
- Any comments on this patch will be greatly appreciated. The function/git b=
-ranch names are terrible. I plan on thinking of better names but if you hav=
-e any suggestions I would appreciate that also.
+--------------050304040809050604040208
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-The three big issues that this patch is trying to solve are:
-1. The git repository being tracked by default points to oe's download dire=
-ctory. This results in the git repository being unusable when used on a dif=
-ferent computer since the path is no longer valid.
-2. The git repository is checked out to ( no branch) since bitbake uses the=
- commit id to checkout out the repository.
-3. The biggest benefit of preserving the git repository is the fact that we=
- can now keep track of user's changes to the source files for repositories =
-such as u-boot and linux. However, several of these repositories have patch=
-es applied on top      of them which results in a dirty work directory befo=
-re a user even begins to make changes.
+This filesystem image includes test appplications used by
+Linux validation team.
 
-> -----Original Message-----
-> From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]
-> Sent: Tuesday, December 04, 2012 12:49 AM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [for-comment][PATCH 1/2] sourceipk.bbclass: Add sdk_tweaks funct=
-ion
->=20
-> * Add sdk_tweaks function.
-> * This function does the following:
->     - Correct the remote url from oe's download directory to original git
->       repository specified in the SRC_URI.
->     - Create a branch since oe does a checkout via SRCREV/commit id. This
->       caused the repo to not be in any branch.
->     - Commit any patches applied on top of the git repository
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  meta-arago-distro/classes/sourceipk.bbclass |   70
-> +++++++++++++++++++++++++++
->  1 files changed, 70 insertions(+), 0 deletions(-)
->=20
-> diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-
-> distro/classes/sourceipk.bbclass
-> index 09d6eb8..0b5cbdd 100644
-> --- a/meta-arago-distro/classes/sourceipk.bbclass
-> +++ b/meta-arago-distro/classes/sourceipk.bbclass
-> @@ -56,6 +56,12 @@ SRCIPK_SECTION ?=3D "${SECTION}"
->  # Default SRCIPK_INCLUDE_EXTRAFILES is to include the extra files
-> SRCIPK_INCLUDE_EXTRAFILES ?=3D "1"
->=20
-> +# Commit any changes to the git repository due to patches and create a
-> +new # SDK branch CREATE_SDK_BRANCH ?=3D "1"
-> +SDK_BRANCH_NAME ?=3D "sdk_05.06.00.00"
-> +SDK_BRANCH_COMMIT_MESSAGE =3D "Commit all patches added on top of the
-> git repository"
-> +
->  # Create a README file that describes the contents of the source ipk
->  sourceipk_create_readme() {
->      readme=3D"$1/README.${PN}-src"
-> @@ -71,6 +77,68 @@ sourceipk_create_readme() {
->      echo "      the \"patches\" directory" >> $readme
->  }
->=20
-> +# Switch the remote repository pointed to by git from the oe's download
-> +# directory to the original git repository specified by the SRC_URI
-> +sdk_tweaks() {
-> +
-> +    source_location=3D$1
-> +    save_location=3D$PWD
-> +
-> +    cd $source_location
-> +
-> +    if [ -d ".git" ]
-> +    then
-> +        # Grab the location of the tracked repository
-> +        orig_location=3D`git remote -v | grep fetch | cut -c8- | rev |
-> + cut -c9- | rev`
-> +
-> +        # Check if the location of the tracked repository is on the host
-> +        # filesystem
-> +        if [ -d $orig_location ]
-> +        then
-> +            cd ${orig_location}
-> +            orig_url=3D`git remote -v | grep fetch | cut -c8- | rev | cu=
-t
-> + -c9- | rev`
-> +
-> +            cd $source_location
-> +            git remote set-url origin ${orig_url}
-> +        fi
-> +
-> +        if [ ${CREATE_SDK_BRANCH} !=3D "0" ]
-> +        then
-> +            current_branch=3D`git branch | grep \* | cut -b 1-2
-> + --complement`
-> +
-> +            if [ "$current_branch" !=3D "${SDK_BRANCH_NAME}" ]
-> +            then
-> +                # Create SDK specific branch
-> +                git checkout -b ${SDK_BRANCH_NAME} > /dev/null 2>&1
-> +            fi
-> +
-> +            # Commit any changes to the git repository due to patches
-> +
-> +            # Check to see if the work directory is clean or dirty
-> +            if [ -n "$(git status --porcelain)" ]
-> +            then
-> +                git add -A
-> +
-> +                if [ "$current_branch" =3D "${SDK_BRANCH_NAME}" ]
-> +                then
-> +                    # Amend the commit if this function was ran more tha=
-n once
-> +                    git commit --amend -m "${SDK_BRANCH_COMMIT_MESSAGE}"=
-  >
-> /dev/null 2>&1
-> +                else
-> +                    git commit -m "${SDK_BRANCH_COMMIT_MESSAGE}"  >
-> /dev/null 2>&1
-> +                fi
-> +            fi
-> +        fi
-> +    fi
-> +
-> +    cd $save_location
-> +}
-> +
-> +do_change_origin() {
-> +   sdk_tweaks "${S}"
-> +}
-> +
-> +EXPORT_FUNCTIONS do_change_origin
-> +
->  # Create the source ipk file.  The ipk is manually created here instead =
- # of
-> using the normal ipk system because some recipes will over write  # the
-> PACKAGES variable.  Thus if this class added a -src package @@ -79,6 +147=
-,8
-> @@ sourceipk_create_readme() {
->  sourceipk_do_create_srcipk() {
->      if [ ${CREATE_SRCIPK} !=3D "0" ]
->      then
-> +
-> +        do_change_origin
->          tmp_dir=3D"${WORKDIR}/sourceipk-tmp"
->          srcipk_dir=3D"${WORKDIR}/sourceipk-data"
->          mkdir -p $tmp_dir/CONTROL
-> --
-> 1.7.0.4
+Please consider it for meta-arago project. Thanks,
+Carlos
 
 
+
+
+
+--------------050304040809050604040208
+Content-Type: text/x-patch; name="0001-Define-arago-test-image.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="0001-Define-arago-test-image.patch"
+
+From 3b2e5e76100574e64bfb6d90035e2fa88236fc67 Mon Sep 17 00:00:00 2001
+From: Carlos Hernandez <ceh@ti.com>
+Date: Tue, 4 Dec 2012 15:31:40 -0500
+Subject: [PATCH 01/12] Define arago-test-image
+
+This filesystem image includes test appplications used by
+Linux validation team
+
+Signed-off-by: Carlos Hernandez <ceh@ti.com>
+---
+ .../recipes-core/images/arago-test-image.bb        |   21 ++++++++
+ .../recipes-core/tasks/task-arago-test-addons.bb   |   49 ++++++++++++++++++++
+ 2 files changed, 70 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-core/images/arago-test-image.bb
+ create mode 100644 meta-arago-distro/recipes-core/tasks/task-arago-test-addons.bb
+
+diff --git a/meta-arago-distro/recipes-core/images/arago-test-image.bb b/meta-arago-distro/recipes-core/images/arago-test-image.bb
+new file mode 100644
+index 0000000..9cf07f9
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/arago-test-image.bb
+@@ -0,0 +1,21 @@
++# Arago System Test image
++# gives you test applications
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++
++require arago-image.inc
++
++COMPATIBLE_MACHINE = "omap3|dm365|omapl138|ti813x|ti814x|ti816x|omap4|ti33x"
++
++IMAGE_INSTALL += "\
++    task-arago-base \
++    task-arago-console \
++    task-arago-base-tisdk \
++    task-arago-tisdk-connectivity \
++    task-arago-tisdk-crypto \
++    task-arago-tisdk-multimedia \
++    task-arago-test \
++    task-arago-test-addons \
++    "
++
++export IMAGE_BASENAME = "arago-test-image"
+diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-test-addons.bb b/meta-arago-distro/recipes-core/tasks/task-arago-test-addons.bb
+new file mode 100644
+index 0000000..08d80f1
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/tasks/task-arago-test-addons.bb
+@@ -0,0 +1,49 @@
++DESCRIPTION = "Task to install additional utilities/demos for test image"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++PR = "r0"
++
++ALLOW_EMPTY = "1"
++
++inherit task
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++
++TEST_ADDONS = " \
++    dt \
++    gdbserver \
++    oprofile \
++    nbench-byte \
++    trace-cmd \
++    bridge-utils \
++    "
++
++TEST_ADDONS_TI = " \
++    "
++
++# Add am-benchmarks for supported devices.
++TEST_ADDONS_TI_append_omapl138 = " arm-benchmarks"
++TEST_ADDONS_TI_append_omap3 = " arm-benchmarks"
++TEST_ADDONS_TI_append_ti33x = " arm-benchmarks"
++TEST_ADDONS_TI_append_ti811x = " arm-benchmarks"
++TEST_ADDONS_TI_append_ti813x = " arm-benchmarks"
++TEST_ADDONS_TI_append_ti814x = " arm-benchmarks"
++TEST_ADDONS_TI_append_ti816x = " arm-benchmarks"
++TEST_ADDONS_TI_append_dm365 = " arm-benchmarks"
++
++# Add PRU examples for am180x-evm devices
++TEST_ADDONS_TI_append_am180x-evm = " ti-pru-sw-examples"
++
++CRYPTO_SUPPORT_TSU = "\
++    openssl \
++    wpa-supplicant \
++    dropbear \
++    openssh-sftp-server \
++    openssl-misc \
++    "
++
++RDEPENDS_${PN} = "\
++    ${TEST_ADDONS} \
++    ${TEST_ADDONS_TI} \
++    ${CRYPTO_SUPPORT_TSU} \
++    "
+-- 
+1.7.0.4
+
+
+--------------050304040809050604040208--
