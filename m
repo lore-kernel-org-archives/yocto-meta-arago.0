@@ -1,32 +1,34 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 1A168529AA
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-gg0-f174.google.com (mail-gg0-f174.google.com
+	[209.85.161.174])
+	by arago-project.org (Postfix) with ESMTPS id 80CF2529AA
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jan 2013 20:13:07 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r03KD6OP011536;
-	Thu, 3 Jan 2013 14:13:06 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r03KD6fu017503;
-	Thu, 3 Jan 2013 14:13:06 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Thu, 3 Jan 2013 14:13:06 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] matrix-gui-apps: Add audio capture demo
-Thread-Index: AQHNwSXXVXCW1GHpqUKFL6gZiTJ465g4WwdQ
-Date: Thu, 3 Jan 2013 20:13:05 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C35991A@DFLE09.ent.ti.com>
-References: <1352759648-5276-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1352759648-5276-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH] matrix-gui-apps: Add audio capture demo
+	Thu,  3 Jan 2013 20:17:49 +0000 (UTC)
+Received: by mail-gg0-f174.google.com with SMTP id k2so2464509ggd.33
+	for <meta-arago@arago-project.org>;
+	Thu, 03 Jan 2013 12:17:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=2zofRYn5EbLiXE6Pmp9EBYc0fYX+FFQgVku9ZwvTmCA=;
+	b=P4dAmWflASWaAQLH5iE+RlGf28sqYi45CXXtPYmnNHVCLawyrzHcaUQFDAjZfkhJMj
+	tgSwCvJq83Xyk5p3aZ9OVj7IQM1Tz4mgZdNxpAdR2rK8IxqrCheovmt3o8YZX4ug33Lh
+	b4dIv2aD6Zh1M+e7UCdqnauDGKn+A/2GbLhQahTlIOt41h0GVojxf4sIhki9i+H4JG0g
+	IkL2LoK2RjUgPOnrZ1jrpaKGdmA5im/sbTOytl1QFsei/ZJOQzKNzpunIbGKn+EUqW0Q
+	NpzmxZl2tTA9DR6A0qmL4Ofh7VfWJreH+5z21u83c3Mc79SfdAWBoUEsQrTU28jOEZNH
+	7lNg==
+X-Received: by 10.101.41.8 with SMTP id t8mr15014788anj.35.1357244269001;
+	Thu, 03 Jan 2013 12:17:49 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id a9sm38275442anb.6.2013.01.03.12.17.46
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 Jan 2013 12:17:47 -0800 (PST)
+From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+To: meta-arago@arago-project.org
+Date: Thu,  3 Jan 2013 14:17:38 -0600
+Message-Id: <1357244261-22829-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/4] m4-native: Remove remote-gets.patch from meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,50 +41,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 20:13:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 03 Jan 2013 20:17:49 -0000
 
-ping
+* Patch "gettext,m4,augeas,gnutls: Account for removal of gets in eglibc 2.16"
+  in oe-core denzil adds the remove-gets.patch to the SRC_URI of m4-1.4.16.inc.
+* Therefore, there is no need to include the patch or bbappends in meta-arago.
 
-> -----Original Message-----
-> From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]
-> Sent: Monday, November 12, 2012 4:34 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [PATCH] matrix-gui-apps: Add audio capture demo
->=20
-> * Update to the latest Matrix v2 apps commit.
-> * This updated commit brings in a new audio capture demo.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.in=
-c
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> index ddbc7a7..63e73f2 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM =3D
-> "LICENSE;md5=3D6e0ae7214f6c74c149cb25f373057fa9"
->  LIC_FILES_CHKSUM :=3D "file://../${LICENSE_CHECKSUM}"
->=20
->  SRC_URI =3D "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-
-> apps.git;protocol=3Dgit;branch=3D${BRANCH}"
-> -SRCREV =3D "6a0c9776adfef03463535de6c7059d8525a336aa"
-> +SRCREV =3D "df5b70b2f7cd97148855fe4d0508789c710bcc4e"
->  BRANCH =3D "master"
-> -INC_PR =3D "r5"
-> +INC_PR =3D "r6"
->=20
->  # Pull in the base package for installing matrix applications  require m=
-atrix-
-> gui-apps.inc
-> --
-> 1.7.0.4
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../m4/m4-native/remove-gets.patch                 |   21 --------------------
+ .../recipes-devtools/m4/m4-native_1.4.16.bbappend  |    5 ----
+ 2 files changed, 0 insertions(+), 26 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-devtools/m4/m4-native/remove-gets.patch
+ delete mode 100644 meta-arago-distro/recipes-devtools/m4/m4-native_1.4.16.bbappend
+
+diff --git a/meta-arago-distro/recipes-devtools/m4/m4-native/remove-gets.patch b/meta-arago-distro/recipes-devtools/m4/m4-native/remove-gets.patch
+deleted file mode 100644
+index 9c396d9..0000000
+--- a/meta-arago-distro/recipes-devtools/m4/m4-native/remove-gets.patch
++++ /dev/null
+@@ -1,21 +0,0 @@
+-eglibc has remove gets starting 2.16
+-therefore check for its being there before 
+-undefining it.
+-
+-Upstream-Status: Pending
+-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+-Index: m4-1.4.16/lib/stdio.in.h
+-===================================================================
+---- m4-1.4.16.orig/lib/stdio.in.h	2011-03-01 08:39:29.000000000 -0800
+-+++ m4-1.4.16/lib/stdio.in.h	2012-07-03 08:32:08.145935928 -0700
+-@@ -161,8 +161,10 @@
+- /* It is very rare that the developer ever has full control of stdin,
+-    so any use of gets warrants an unconditional warning.  Assume it is
+-    always declared, since it is required by C89.  */
+-+#if defined gets
+- #undef gets
+- _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
+-+#endif
+- 
+- #if @GNULIB_FOPEN@
+- # if @REPLACE_FOPEN@
+diff --git a/meta-arago-distro/recipes-devtools/m4/m4-native_1.4.16.bbappend b/meta-arago-distro/recipes-devtools/m4/m4-native_1.4.16.bbappend
+deleted file mode 100644
+index f44c927..0000000
+--- a/meta-arago-distro/recipes-devtools/m4/m4-native_1.4.16.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-PR_append = "-arago0"
+-
+-SRC_URI += "file://remove-gets.patch"
+-- 
+1.7.0.4
 
 
