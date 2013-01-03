@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-yh0-f41.google.com (mail-yh0-f41.google.com
-	[209.85.213.41])
-	by arago-project.org (Postfix) with ESMTPS id B396852A61
+Received: from mail-gh0-f173.google.com (mail-gh0-f173.google.com
+	[209.85.160.173])
+	by arago-project.org (Postfix) with ESMTPS id C81B452A6C
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jan 2013 20:17:51 +0000 (UTC)
-Received: by mail-yh0-f41.google.com with SMTP id b12so956519yha.28
+	Thu,  3 Jan 2013 20:17:53 +0000 (UTC)
+Received: by mail-gh0-f173.google.com with SMTP id 16so1873884ghy.4
 	for <meta-arago@arago-project.org>;
-	Thu, 03 Jan 2013 12:17:51 -0800 (PST)
+	Thu, 03 Jan 2013 12:17:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=zM4zcKlg9MS7T095/Ppr4ogfkEqklkxekhfL1eOffeI=;
-	b=CULbIFxO47ZgQP1IGlMrEXEGotgqR3AX/qqr9uskE8HTUKUG66+3FOoOUAgoW4y41O
-	tPCjH3eee5vGASb5UVHN0waRpKpn10UfYVPEpmBm5+ZBrUujW+40/C9jnO10S6BvCVBM
-	gOJh5p+8pNjnuNc2P9amKEWMGYhLSx+sQi1ufii2URjd+vTjW9L2xcvMGR/WQzFaD7Yy
-	OdQJQHNoAf7JK+NIdyqvAVNpOUYWLSjkfdkBr+BAfIqRGd456MaoI2lGBuvbtKJn54JJ
-	di6mtBJUk1i0NlOq1CFp1nKuqHmpLkYTVxJuH7Ta/9wHWiCF4tN/KHIbz/4+2pgf3nql
-	3obw==
-X-Received: by 10.236.141.132 with SMTP id g4mr51083324yhj.24.1357244271415;
-	Thu, 03 Jan 2013 12:17:51 -0800 (PST)
+	:references; bh=JF6jguylYWPXQ+cRf3m9rA2mPXTHjGw12dh3YYmqR0s=;
+	b=xNTVMshQlDiGrpH0qbRjdSj7nu+hEK+sMhTfBsw5/gaC6ge4CJ0Bd6MWUVIB7qCfPd
+	xCYNH8os1N8NvcPbGuriFeOUjBFl6Jd6RWRlNJucQKJ+NtKxZ4JUGr0dwIf43PwBCfrK
+	XdRURrTS1G1gz4QKSw6zDHMcmrSIsUKfxghur1rAAil0FCEs57jiF411kawYu7ofHaAd
+	IBy7KckFy406p4qC78vi0ZxqZz+rus5UOwdm++XD5zVGIaumuaht9APmJT7ktvlByjd/
+	RrQ/IiaGPxjvqYCd3uh3P5ZxVDINHaH//SMFbCPofIoPEw3tLJVXmWIdGN/XZ5x8UZLN
+	5EWg==
+X-Received: by 10.236.127.38 with SMTP id c26mr52471130yhi.109.1357244273516; 
+	Thu, 03 Jan 2013 12:17:53 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id a9sm38275442anb.6.2013.01.03.12.17.49
+	by mx.google.com with ESMTPS id a9sm38275442anb.6.2013.01.03.12.17.51
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 Jan 2013 12:17:50 -0800 (PST)
+	Thu, 03 Jan 2013 12:17:52 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  3 Jan 2013 14:17:39 -0600
-Message-Id: <1357244261-22829-2-git-send-email-fcooper@ti.com>
+Date: Thu,  3 Jan 2013 14:17:40 -0600
+Message-Id: <1357244261-22829-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1357244261-22829-1-git-send-email-fcooper@ti.com>
 References: <1357244261-22829-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/4] gettext: Remove remote-gets.patch from meta-arago
+Subject: [PATCH 3/4] psplash_git: Remove patch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,93 +43,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 20:17:51 -0000
+X-List-Received-Date: Thu, 03 Jan 2013 20:17:54 -0000
 
-* Patch "gettext,m4,augeas,gnutls: Account for removal of gets in eglibc 2.16"
-  in oe-core denzil adds the remove-gets.patch to the SRC_URI of m4-1.4.16.inc.
-* Therefore, there is no need to include the patch or bbappends in meta-arago.
+* Oe-core denzil is sticking with an older psplash commit.
+* The patch psplash_fix_bad_arg_segfault.patch is not needed in meta-arago
+  since we are using a newer psplash commit that includes this patch.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/gettext/gettext/remove_gets.patch |   58 --------------------
- .../recipes-core/gettext/gettext_0.18.1.1.bbappend |    5 --
- 2 files changed, 0 insertions(+), 63 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/gettext/gettext/remove_gets.patch
- delete mode 100644 meta-arago-distro/recipes-core/gettext/gettext_0.18.1.1.bbappend
+ .../recipes-core/psplash/psplash_git.bbappend      |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/gettext/gettext/remove_gets.patch b/meta-arago-distro/recipes-core/gettext/gettext/remove_gets.patch
-deleted file mode 100644
-index 3d3c400..0000000
---- a/meta-arago-distro/recipes-core/gettext/gettext/remove_gets.patch
-+++ /dev/null
-@@ -1,58 +0,0 @@
--eglibc 2.16 has removed gets so we need to check for it
--being there before using it.
--
--
--From glibc stdio.h
--
--The function has been officially removed in ISO C11.  This opportunity
--   is used to also remove it from the GNU feature list.  It is now only
--   available when explicitly using an old ISO C, Unix, or POSIX standard.
--
--Signed-off-by: Khem Raj <raj.khem@gmail.com>
--
--Upstream-Status: Pending
--Index: gettext-0.18.1.1/gettext-runtime/gnulib-lib/stdio.in.h
--===================================================================
----- gettext-0.18.1.1.orig/gettext-runtime/gnulib-lib/stdio.in.h	2010-05-17 12:56:12.000000000 -0700
--+++ gettext-0.18.1.1/gettext-runtime/gnulib-lib/stdio.in.h	2012-07-02 22:42:21.292223316 -0700
--@@ -140,8 +140,10 @@
-- /* It is very rare that the developer ever has full control of stdin,
--    so any use of gets warrants an unconditional warning.  Assume it is
--    always declared, since it is required by C89.  */
--+#if defined gets
-- #undef gets
-- _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
--+#endif
-- 
-- #if @GNULIB_FOPEN@
-- # if @REPLACE_FOPEN@
--Index: gettext-0.18.1.1/gettext-tools/gnulib-lib/stdio.in.h
--===================================================================
----- gettext-0.18.1.1.orig/gettext-tools/gnulib-lib/stdio.in.h	2010-05-24 02:42:46.000000000 -0700
--+++ gettext-0.18.1.1/gettext-tools/gnulib-lib/stdio.in.h	2012-07-02 23:02:33.476281979 -0700
--@@ -140,8 +140,10 @@
-- /* It is very rare that the developer ever has full control of stdin,
--    so any use of gets warrants an unconditional warning.  Assume it is
--    always declared, since it is required by C89.  */
--+#if defined gets
-- #undef gets
-- _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
--+#endif
-- 
-- #if @GNULIB_FOPEN@
-- # if @REPLACE_FOPEN@
--Index: gettext-0.18.1.1/gettext-tools/libgettextpo/stdio.in.h
--===================================================================
----- gettext-0.18.1.1.orig/gettext-tools/libgettextpo/stdio.in.h	2010-05-17 12:58:03.000000000 -0700
--+++ gettext-0.18.1.1/gettext-tools/libgettextpo/stdio.in.h	2012-07-02 23:01:57.440280253 -0700
--@@ -140,8 +140,10 @@
-- /* It is very rare that the developer ever has full control of stdin,
--    so any use of gets warrants an unconditional warning.  Assume it is
--    always declared, since it is required by C89.  */
--+#if defined gets
-- #undef gets
-- _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
--+#endif
-- 
-- #if @GNULIB_FOPEN@
-- # if @REPLACE_FOPEN@
-diff --git a/meta-arago-distro/recipes-core/gettext/gettext_0.18.1.1.bbappend b/meta-arago-distro/recipes-core/gettext/gettext_0.18.1.1.bbappend
-deleted file mode 100644
-index 5daed97..0000000
---- a/meta-arago-distro/recipes-core/gettext/gettext_0.18.1.1.bbappend
-+++ /dev/null
-@@ -1,5 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--PR_append = "-arago0"
--
--SRC_URI_append_virtclass-native += "file://remove_gets.patch"
+diff --git a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
+index aaa6167..d354a93 100644
+--- a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
++++ b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago2"
++PR_append = "-arago3"
+ 
+ # Update which portion of the psplash.h file to use as a checksum. This tweak
+ # has already been done in oe-core master
+@@ -10,6 +10,10 @@ LIC_FILES_CHKSUM = "file://psplash.h;beginline=1;endline=16;md5=840fb2356b10a85b
+ # Updating to latest version of psplash. This is the version used in oe-core master
+ SRCREV = "de9979aefbc56af59b4d236a4b63dd19dcdcfb53"
+ 
++# Remove backported patch from oe-core denzil since the SRCREV we are using
++# includes this patch.
++SRC_URI := "${@oe_filter_out('file://psplash_fix_bad_arg_segfault.patch','${SRC_URI}', d)}"
++
+ SRC_URI += "file://psplash-18bpp.patch                      \
+             file://0003-Updated-configurability.patch.patch \
+             file://psplash-poky-img.h                       \
 -- 
 1.7.0.4
 
