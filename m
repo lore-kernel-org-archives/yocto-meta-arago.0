@@ -1,27 +1,32 @@
-Return-Path: <denis@denix.org>
-Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
-	[206.46.173.1])
-	by arago-project.org (Postfix) with ESMTP id A201652094
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B429652974
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Dec 2012 21:10:08 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.12])
-	by vms173001.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MEU0020A2SBKZU1@vms173001.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 10 Dec 2012 15:09:58 -0600 (CST)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 6A541200BD; Mon,
-	10 Dec 2012 16:09:46 -0500 (EST)
-Date: Mon, 10 Dec 2012 16:09:46 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-id: <20121210210946.GD4591@denix.org>
-References: <50C648A7.4050601@ti.com> <20121210204535.GB4591@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C3463AF@DFLE09.ent.ti.com>
-MIME-version: 1.0
-In-reply-to: <8F29D6B095ED194EA1980491A5E029710C3463AF@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: meta-arago master 469a8425 seems broken
+	Thu,  3 Jan 2013 20:06:34 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r03K6YNi014199;
+	Thu, 3 Jan 2013 14:06:34 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r03K6Ytd011055;
+	Thu, 3 Jan 2013 14:06:34 -0600
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Thu, 3 Jan 2013 14:06:33 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [PATCH] busybox: Enable telnetd
+Thread-Index: AQHNvIVjK1oZYVLjdkKjcAfh2kYU+pg4YnQQ
+Date: Thu, 3 Jan 2013 20:06:32 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C3598E4@DFLE09.ent.ti.com>
+References: <1352250925-12259-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1352250925-12259-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Subject: Re: [PATCH] busybox: Enable telnetd
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,89 +39,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2012 21:10:08 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 03 Jan 2013 20:06:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 10, 2012 at 09:03:56PM +0000, Cooper Jr., Franklin wrote:
-> I had to lock down oe-core and meta-oe  because of this same issue.
-> 
-> Here are the commits I am using for the Sitara SDK which was before all the recent changes.
-> Meta-openembedded : e77646bc2cf905fd671fc5c19ab6fd17f9b94b3f
-> Oe-core: c15fae372cf75403facc28cf76f973b1279425dd
+ping
 
-Franklin,
+> -----Original Message-----
+> From: Franklin S. Cooper Jr [mailto:fcooperjr27@gmail.com]
+> Sent: Tuesday, November 06, 2012 7:15 PM
+> To: meta-arago@arago-project.org
+> Cc: Cooper Jr., Franklin
+> Subject: [PATCH] busybox: Enable telnetd
+>=20
+> * Enable telnetd to allow someone to connect to the target device via tel=
+net
+>=20
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-core/busybox/busybox/defconfig         |    4 ++--
+>  .../recipes-core/busybox/busybox_1.19.4.bbappend   |    2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/m=
+eta-
+> arago-distro/recipes-core/busybox/busybox/defconfig
+> index 31fbec2..f681eb7 100644
+> --- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+> +++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+> @@ -810,8 +810,8 @@ CONFIG_TCPSVD=3Dy
+>  CONFIG_TELNET=3Dy
+>  # CONFIG_FEATURE_TELNET_TTYPE is not set
+> CONFIG_FEATURE_TELNET_AUTOLOGIN=3Dy -# CONFIG_TELNETD is not set -#
+> CONFIG_FEATURE_TELNETD_STANDALONE is not set
+> +CONFIG_TELNETD=3Dy
+> +CONFIG_FEATURE_TELNETD_STANDALONE=3Dy
+>  # CONFIG_FEATURE_TELNETD_INETD_WAIT is not set  CONFIG_TFTP=3Dy
+> CONFIG_TFTPD=3Dy diff --git a/meta-arago-distro/recipes-
+> core/busybox/busybox_1.19.4.bbappend b/meta-arago-distro/recipes-
+> core/busybox/busybox_1.19.4.bbappend
+> index 35b1243..b2d2540 100644
+> --- a/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
+> +++ b/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
+> @@ -1,7 +1,7 @@
+>  # look for files in this layer first
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PR_append =3D "-arago3"
+> +PR_append =3D "-arago4"
+>=20
+>  SRC_URI +=3D " \
+>  	file://inetd \
+> --
+> 1.7.0.4
 
-While I do understand your reasoning behind such a move (especially with 
-crypto software changing versions/revisions and the need to get the 
-clearance), shipping the older version may expose customers to security risks, 
-since 1.0.0j patches a known vulnerability issue:
-http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-2333
-
-Denys
-
-
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> > Sent: Monday, December 10, 2012 2:46 PM
-> > To: Hernandez, Carlos
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] meta-arago master 469a8425 seems broken
-> > 
-> > On Mon, Dec 10, 2012 at 03:40:07PM -0500, Carlos Hernandez wrote:
-> > > jenkins@jenkins1:/home/a0850405/oe/build$ MACHINE=am335x-evm
-> > bitbake
-> > > virtual/bootloader -c clean Parsing recipes: 100%
-> > >
-> > |################################################################
-> > #####
-> > > |###############|
-> > > Time: 00:00:15
-> > > Parsing of 1353 .bb files complete (0 cached, 1353 parsed). 1719
-> > > targets, 131 skipped, 8 masked, 0 errors.
-> > > ERROR: No recipes available for:
-> > >
-> > > /home/a0850405/oe/sources/meta-arago/meta-arago-distro/recipes-connect
-> > > ivity/openssl/openssl_1.0.0i.bbappend
-> > 
-> > Carlos,
-> > 
-> > meta-arago master currently still only works with denzil. So, openssl-1.0.0i is
-> > present in denzil of oe-core, while master of oe-core has newer openssl-1.0.0j.
-> > 
-> > --
-> > Denys
-> > 
-> > 
-> > > ERROR: Command execution failed: Exited with 1
-> > >
-> > > Summary: There were 2 ERROR messages shown, returning a non-zero exit
-> > code.
-> > >
-> > >
-> > > jenkins@jenkins1:/home/a0850405/oe/sources/meta-arago$ git log
-> > > commit 469a8425e702969a5be18dae0184980bd4d031b4
-> > > Author: Denys Dmytriyenko <denys@ti.com>
-> > > Date:   Thu Dec 6 10:44:26 2012 -0500
-> > >
-> > >     arago.conf: bump the version
-> > >
-> > >     Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > >
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
