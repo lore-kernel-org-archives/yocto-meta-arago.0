@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-gh0-f173.google.com (mail-gh0-f173.google.com
-	[209.85.160.173])
-	by arago-project.org (Postfix) with ESMTPS id C81B452A6C
+Received: from mail-gg0-f174.google.com (mail-gg0-f174.google.com
+	[209.85.161.174])
+	by arago-project.org (Postfix) with ESMTPS id 8B81B52A62
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jan 2013 20:17:53 +0000 (UTC)
-Received: by mail-gh0-f173.google.com with SMTP id 16so1873884ghy.4
+	Thu,  3 Jan 2013 20:17:55 +0000 (UTC)
+Received: by mail-gg0-f174.google.com with SMTP id k2so2453903ggd.19
 	for <meta-arago@arago-project.org>;
-	Thu, 03 Jan 2013 12:17:53 -0800 (PST)
+	Thu, 03 Jan 2013 12:17:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=JF6jguylYWPXQ+cRf3m9rA2mPXTHjGw12dh3YYmqR0s=;
-	b=xNTVMshQlDiGrpH0qbRjdSj7nu+hEK+sMhTfBsw5/gaC6ge4CJ0Bd6MWUVIB7qCfPd
-	xCYNH8os1N8NvcPbGuriFeOUjBFl6Jd6RWRlNJucQKJ+NtKxZ4JUGr0dwIf43PwBCfrK
-	XdRURrTS1G1gz4QKSw6zDHMcmrSIsUKfxghur1rAAil0FCEs57jiF411kawYu7ofHaAd
-	IBy7KckFy406p4qC78vi0ZxqZz+rus5UOwdm++XD5zVGIaumuaht9APmJT7ktvlByjd/
-	RrQ/IiaGPxjvqYCd3uh3P5ZxVDINHaH//SMFbCPofIoPEw3tLJVXmWIdGN/XZ5x8UZLN
-	5EWg==
-X-Received: by 10.236.127.38 with SMTP id c26mr52471130yhi.109.1357244273516; 
-	Thu, 03 Jan 2013 12:17:53 -0800 (PST)
+	:references; bh=Yd8PoTePcYPTVJ0ICjs2xxCVH0mOpe929DtnBGKuWiY=;
+	b=HpIY78H/7HT+H6mKF0IObRtv6gsKu3aoNvvk/HzY/cjG9Pt/7UKHrL3GQ5eouBhfkh
+	lNffSsiqASrwpa+8O7iV0tQZ7o4FuKL8QVED14wzBCp3/LEcgIMj4Ga2N1kyKkTl+vz4
+	4O1wCzV1GA57YaGDZo9Jw4T9bM68bVKiTt79oifbS4cVV5WauxODH5X/tIjMXUCe5Yg0
+	HF/rIFZm2XqQyC79JgKFDKNPPZhu2f+8AzEA1NJjgiXPTKLCNT3mB6hXTZr0oYX5TGgy
+	R0zIhjWCApoTOAlFZ0zAjS7ZvSVHFrmb2qvC/FE7zkGJtOv0Kxt0QhF1jifyBzy0y6/L
+	IVkg==
+X-Received: by 10.236.91.173 with SMTP id h33mr52021500yhf.120.1357244275263; 
+	Thu, 03 Jan 2013 12:17:55 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id a9sm38275442anb.6.2013.01.03.12.17.51
+	by mx.google.com with ESMTPS id a9sm38275442anb.6.2013.01.03.12.17.53
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 Jan 2013 12:17:52 -0800 (PST)
+	Thu, 03 Jan 2013 12:17:54 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu,  3 Jan 2013 14:17:40 -0600
-Message-Id: <1357244261-22829-3-git-send-email-fcooper@ti.com>
+Date: Thu,  3 Jan 2013 14:17:41 -0600
+Message-Id: <1357244261-22829-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1357244261-22829-1-git-send-email-fcooper@ti.com>
 References: <1357244261-22829-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/4] psplash_git: Remove patch
+Subject: [PATCH 4/4] arago.conf: Set PREFERRED_PROVIDER for udev
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,41 +43,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 20:17:54 -0000
+X-List-Received-Date: Thu, 03 Jan 2013 20:17:55 -0000
 
-* Oe-core denzil is sticking with an older psplash commit.
-* The patch psplash_fix_bad_arg_segfault.patch is not needed in meta-arago
-  since we are using a newer psplash commit that includes this patch.
+* The patch "systemd: update to v189" in meta-oe denzil updates the recipe
+  systemd_git.bb to now provide "udev"
+* Need to set the PREFERRED_PROVIDER to make sure the "correct" udev is being
+  used.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/psplash/psplash_git.bbappend      |    6 +++++-
- 1 files changed, 5 insertions(+), 1 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
-index aaa6167..d354a93 100644
---- a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
-+++ b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
-@@ -1,7 +1,7 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 1e44e6c..1a59188 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -60,6 +60,7 @@ PREFERRED_VERSION_u-boot_am335x-evm = "2012.10-psp05.06.00.00"
  
--PR_append = "-arago2"
-+PR_append = "-arago3"
+ # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
+ PREFERRED_VERSION_udev = "164"
++PREFERRED_PROVIDER_udev = "udev"
  
- # Update which portion of the psplash.h file to use as a checksum. This tweak
- # has already been done in oe-core master
-@@ -10,6 +10,10 @@ LIC_FILES_CHKSUM = "file://psplash.h;beginline=1;endline=16;md5=840fb2356b10a85b
- # Updating to latest version of psplash. This is the version used in oe-core master
- SRCREV = "de9979aefbc56af59b4d236a4b63dd19dcdcfb53"
- 
-+# Remove backported patch from oe-core denzil since the SRCREV we are using
-+# includes this patch.
-+SRC_URI := "${@oe_filter_out('file://psplash_fix_bad_arg_segfault.patch','${SRC_URI}', d)}"
-+
- SRC_URI += "file://psplash-18bpp.patch                      \
-             file://0003-Updated-configurability.patch.patch \
-             file://psplash-poky-img.h                       \
+ # Set the PREFERRED_PROVIDER for jpeg functionality based on the MACHINE
+ # architecture.  For armv7a devices libjpeg-turbo should be used to take
 -- 
 1.7.0.4
 
