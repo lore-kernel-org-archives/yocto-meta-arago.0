@@ -1,39 +1,32 @@
-Return-Path: <paul.kovitz@welchallyn.com>
-Received: from na3sys009aog115.obsmtp.com (na3sys009aog115.obsmtp.com
-	[74.125.149.238])
-	by arago-project.org (Postfix) with ESMTPS id 53AFC52974
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 29EB4529F2
 	for <meta-arago@arago-project.org>;
-	Sat,  5 Jan 2013 00:19:23 +0000 (UTC)
-Received: from mail-pa0-f70.google.com ([209.85.220.70]) (using TLSv1) by
-	na3sys009aob115.postini.com ([74.125.148.12]) with SMTP
-	ID DSNKUOdxie1dHas5+gef1gq0g9nGCx8aSJTZ@postini.com;
-	Fri, 04 Jan 2013 16:19:23 PST
-Received: by mail-pa0-f70.google.com with SMTP id hz11so17459340pad.5
-	for <meta-arago@arago-project.org>;
-	Fri, 04 Jan 2013 16:19:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:from:date:message-id:subject:to
-	:content-type:x-gm-message-state;
-	bh=3/x/FfScS5e5yLzdN68jT63nLBZcxoYf7ADUJbBCJo0=;
-	b=f1+XPYs/1ociJTvwJGz/GYlF0TMqVW/jfxphMd/SIWfZxCE9sHJY+rHcaXxiOmsau9
-	EKoLLlhDnkWRENWvrkIcr15Cr3AFqQIqmpJWl4tokugyefQq+Rzx0RJFbNZPS7elaUFb
-	+VmmWrwA7eSGPIgKsIdQft1xdtgGPIpjIqGlsEIqgyzVudINkPj9r+gE2J6Twt/XoRKk
-	FwQNgJsm81gTBLZia9381pcpo08UDdIY6Z2wUX0j4yzj+BqDUJd6coaqTm+khmTYGS/s
-	S7ajD09qs7LAdODmDHQW4QgQ305ZlK0hiUiqt9YuJpAeJnrT4JV8bH7OlVJOSVErCyiM
-	rWag==
-X-Received: by 10.68.192.97 with SMTP id hf1mr166071763pbc.106.1357345161275; 
-	Fri, 04 Jan 2013 16:19:21 -0800 (PST)
-Received: by 10.68.192.97 with SMTP id hf1mr166071742pbc.106.1357345161113;
-	Fri, 04 Jan 2013 16:19:21 -0800 (PST)
+	Mon,  7 Jan 2013 17:12:46 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r07HCeEA026392;
+	Mon, 7 Jan 2013 11:12:40 -0600
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r07HCeL9029988;
+	Mon, 7 Jan 2013 11:12:40 -0600
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
+	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
+	14.01.0323.003; Mon, 7 Jan 2013 11:12:40 -0600
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: Paul Kovitz <paul.kovitz@welchallyn.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] 805 warning messages when I build 05.06.00.00?
+Thread-Index: AQHN6tpTfSbjSmS4dUyIT4BXQZTrzpg+HJEg
+Date: Mon, 7 Jan 2013 17:12:39 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101593475C5@DLEE12.ent.ti.com>
+References: <CA+edY+R9ONv039-fdmdqB7v+POf_ig=ea5-Zhh0=u1s8DPUecw@mail.gmail.com>
+In-Reply-To: <CA+edY+R9ONv039-fdmdqB7v+POf_ig=ea5-Zhh0=u1s8DPUecw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Received: by 10.68.155.73 with HTTP; Fri, 4 Jan 2013 16:18:40 -0800 (PST)
-From: Paul Kovitz <paul.kovitz@welchallyn.com>
-Date: Fri, 4 Jan 2013 16:18:40 -0800
-Message-ID: <CA+edY+R9ONv039-fdmdqB7v+POf_ig=ea5-Zhh0=u1s8DPUecw@mail.gmail.com>
-To: meta-arago@arago-project.org
-X-Gm-Message-State: ALoCoQlCO7Awwb/9itPIgFLLRLVgV0YApGzuQTfmtAVlhdVJze2rvv4ckFzma61SQx5PIvg7eXD2X3qp7xra9cNu284+LhM/uELBtP9uxACSJNaugGc+XcJrOPWj+jGTp4bFNgo/aG7EfeoUJ3kv8FxPdIG5fRtdmotg48ieNfBarTRFomJzbaU=
-Subject: 805 warning messages when I build 05.06.00.00?
+Subject: Re: 805 warning messages when I build 05.06.00.00?
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,108 +39,361 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Jan 2013 00:19:24 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff1c8b82a6fae04d27f8c24
+X-List-Received-Date: Mon, 07 Jan 2013 17:12:55 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7D46E86EC0A8354091174257B2FED101593475C5DLEE12entticom_"
 
---e89a8ff1c8b82a6fae04d27f8c24
-Content-Type: text/plain; charset=ISO-8859-1
+--_000_7D46E86EC0A8354091174257B2FED101593475C5DLEE12entticom_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Greetings. I am new to this list and relatively new to oe, so if this kind
+
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Paul Kovitz
+Sent: Friday, January 04, 2013 6:19 PM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] 805 warning messages when I build 05.06.00.00?
+
+Greetings. I am new to this list and relatively new to oe, so if this kind =
 of post does not belong here, please tell me.
 
 I did a build today of the 05.06.00.00 release using this toolchain:
-http://software-dl.ti.com/sdoemb/sdoemb_public_sw/arago_toolchain/2011_09/exports/arago-2011.09-armv7a-linux-gnueabi-sdk.tar.bz2
+http://software-dl.ti.com/sdoemb/sdoemb_public_sw/arago_toolchain/2011_09/e=
+xports/arago-2011.09-armv7a-linux-gnueabi-sdk.tar.bz2
 
-There seem to be several classes of warnings. I have questions about all of
-them. Sorry if these were covered under a previous thread. I only went back
-in the archives a few months and didn't see it.
+There seem to be several classes of warnings. I have questions about all of=
+ them. Sorry if these were covered under a previous thread. I only went bac=
+k in the archives a few months and didn't see it.
 
-   - Failed to fetch from some URL. I assume source was successfully gotten
-   from a mirror, so I can ignore this. True?
-   - File {path} from {some package} was already stripped, this will
-   prevent future debugging! Is this a consequence of using a prebuilt
-   toolchain? Are these compile options that I can change if I need to?
-   - For recipe {some recipe name}, the following files/directories were
-   installed but not shipped in any package: followed by a list of files. I
-   assume this is harmless, but it adds to the build time. Is that correct?
-   - QA Issue: No GNU_HASH in the elf binary: {some path} What does this
-   mean? Is the code compliant with the appropriate license?
-   - QA Issue: non -staticdev package contains static .a library What does
-   this mean?
-   - QA Issue: {some package: some path} links to something under
-   exec_prefix followed by QA Issue: ldd reports: followed by a number of
-   symbolic links. What does this mean?
-   - TI installer requires 32bit glibc libraries for proper operation. What
-   does this mean? Is my build machine Linux environment not set up properly?
-   - {package name} No generic license file exists for: {License Name} in
-   any provider. Is this a consequence of some automatic license detection
-   software failing, or something more serious (we don't know how this code is
-   licensed)?
-   - QA Issue: {name}: Found a reference to /usr/ {some path} followed
-   by WARNING: QA Issue: Shell scripts in base_bindir and base_sbindir should
-   not reference anything in exec_prefix What does this mean?
-   - QA Issue: package {name} contains bad RPATH {path} in file {path 2}
-   What does this mean?
+  *   Failed to fetch from some URL. I assume source was successfully gotte=
+n from a mirror, so I can ignore this. True?
+Yes.  Usually this means it didn=92t find the file in one of the mirrors an=
+d will keep falling back until it does.
 
-Are these all benign issues? Do any warrant me posting my cooker.log.x
-file? If so, what are the rules for doing that on this list?
+  *   File {path} from {some package} was already stripped, this will preve=
+nt future debugging! Is this a consequence of using a prebuilt toolchain? A=
+re these compile options that I can change if I need to?
+Usually that is what causes this.  Just means that there were no symbols th=
+at could be split into a dbg package
+
+  *   For recipe {some recipe name}, the following files/directories were i=
+nstalled but not shipped in any package: followed by a list of files. I ass=
+ume this is harmless, but it adds to the build time. Is that correct?
+Depends if you want that file.  I means that the do_install step put someth=
+ing into the ${D} directory but that the FILES variable for the packages do=
+esn=92t include it so it doesn=92t get packaged.  Shouldn=92t increase buil=
+d time really, but is a hint to you in case there was a file there that you=
+ =93need=94
+
+  *   QA Issue: No GNU_HASH in the elf binary: {some path} What does this m=
+ean? Is the code compliant with the appropriate license?
+I think this means that the code was build without the GNU_HASH flag.  Mayb=
+e an inclusion of a pre-built binary.
+
+  *   QA Issue: non -staticdev package contains static .a library What does=
+ this mean?
+It means that there is a .a file in a =96dev package which expects .so file=
+s be default is my understanding.  Not the end of the world.
+
+  *   QA Issue: {some package: some path} links to something under exec_pre=
+fix followed by QA Issue: ldd reports: followed by a number of symbolic lin=
+ks. What does this mean?
+Note sure without the message.
+
+  *   TI installer requires 32bit glibc libraries for proper operation. Wha=
+t does this mean? Is my build machine Linux environment not set up properly=
+?
+Where did this come from?  If you are running on a 64bit system you usually=
+ need ia32-libs package installed for 32bit compatibility.
+
+  *   {package name} No generic license file exists for: {License Name} in =
+any provider. Is this a consequence of some automatic license detection sof=
+tware failing, or something more serious (we don't know how this code is li=
+censed)?
+What recipe.  You need to have the license file declared in the recipe as w=
+ell as the checksum.  This is to ensure the proper licensing of the package=
+.
+
+  *   QA Issue: {name}: Found a reference to /usr/ {some path} followed by =
+WARNING: QA Issue: Shell scripts in base_bindir and base_sbindir should not=
+ reference anything in exec_prefix What does this mean?
+Not 100% here without looking at the script.  I=92m guessing that they don=
+=92t want the script to use a hard coded /usr/bin, etc value but I could be=
+ wrong here.
+
+  *   QA Issue: package {name} contains bad RPATH {path} in file {path 2} W=
+hat does this mean?
+Not 100% on this.  Usually means that it may be trying to look in the wrong=
+ place for a file.  What package throws this?
+Are these all benign issues? Do any warrant me posting my cooker.log.x file=
+? If so, what are the rules for doing that on this list?
+
+Log files per error would be easiest.
 
 --Paul
 
---e89a8ff1c8b82a6fae04d27f8c24
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7D46E86EC0A8354091174257B2FED101593475C5DLEE12entticom_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Greetings. I am new to this list and relatively new to oe, so if this kind =
-of post does not belong here, please tell me.<div><br></div><div>I did a bu=
-ild today of the 05.06.00.00 release using this toolchain:<div><a href=3D"h=
-ttp://software-dl.ti.com/sdoemb/sdoemb_public_sw/arago_toolchain/2011_09/ex=
-ports/arago-2011.09-armv7a-linux-gnueabi-sdk.tar.bz2">http://software-dl.ti=
-.com/sdoemb/sdoemb_public_sw/arago_toolchain/2011_09/exports/arago-2011.09-=
-armv7a-linux-gnueabi-sdk.tar.bz2</a><br>
-
-<div><br></div><div>There seem to be several classes of warnings. I have qu=
-estions about all of them. Sorry if these were covered under a previous thr=
-ead. I only went back in the archives a few months and didn&#39;t see it.=
-=A0<br>
-
-</div><div><ul><li>Failed to fetch from some URL. I assume source was succe=
-ssfully gotten from a mirror, so I can ignore this. True?<br></li><li>File =
-{path}=A0from {some package} was already stripped, this will prevent future=
- debugging! Is this a consequence of using a prebuilt toolchain? Are these =
-compile options that I can change if I need to?<br>
-
-</li><li>For recipe {some recipe name}, the following files/directories wer=
-e installed but not shipped in any package: followed by a list of files. I =
-assume this is harmless, but it adds to the build time. Is that correct?<br=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1505433229;
+	mso-list-template-ids:-1463493674;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-ara=
+go-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
+<b>On Behalf Of </b>Paul Kovitz<br>
+<b>Sent:</b> Friday, January 04, 2013 6:19 PM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Subject:</b> [meta-arago] 805 warning messages when I build 05.06.00.00?=
+<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Greetings. I am new to this list and relatively new =
+to oe, so if this kind of post does not belong here, please tell me.<o:p></=
+o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I did a build today of the 05.06.00.00 release using=
+ this toolchain:<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><a href=3D"http://software-dl.ti.com/sdoemb/sdoemb_p=
+ublic_sw/arago_toolchain/2011_09/exports/arago-2011.09-armv7a-linux-gnueabi=
+-sdk.tar.bz2">http://software-dl.ti.com/sdoemb/sdoemb_public_sw/arago_toolc=
+hain/2011_09/exports/arago-2011.09-armv7a-linux-gnueabi-sdk.tar.bz2</a><o:p=
+></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">There seem to be several classes of warnings. I have=
+ questions about all of them. Sorry if these were covered under a previous =
+thread. I only went back in the archives a few months and didn't see it.&nb=
+sp;<o:p></o:p></p>
+</div>
+<div>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+Failed to fetch from some URL. I assume source was successfully gotten from=
+ a mirror, so I can ignore this. True?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Yes.&nbsp; Usually this means it didn=
+=92t find the file in one of the mirrors and will keep falling back
+ until it does.<o:p></o:p></span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+File {path}&nbsp;from {some package} was already stripped, this will preven=
+t future debugging! Is this a consequence of using a prebuilt toolchain? Ar=
+e these compile options that I can change if I need to?<o:p></o:p></li></ul=
 >
-
-</li><li>QA Issue: No GNU_HASH in the elf binary: {some path} What does thi=
-s mean? Is the code compliant with the appropriate license?<br></li><li>QA =
-Issue: non -staticdev package contains static .a library What does this mea=
-n?<br>
-
-</li><li>QA Issue: {some package: some path} links to something under exec_=
-prefix followed by=A0QA Issue: ldd reports: followed by a number of symboli=
-c links. What does this mean?<br></li><li>TI installer requires 32bit glibc=
- libraries for proper operation. What does this mean? Is my build machine L=
-inux environment not set up properly?=A0<br>
-
-</li><li>{package name} No generic license file exists for: {License Name} =
-in any provider. Is this a consequence of some automatic license detection =
-software failing, or something more serious (we don&#39;t know how this cod=
-e is licensed)?<br>
-
-</li><li>QA Issue: {name}: Found a reference to /usr/ {some path} followed =
-by=A0WARNING: QA Issue: Shell scripts in base_bindir and base_sbindir shoul=
-d not reference anything in exec_prefix What does this mean?<br></li><li>
-
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Usually that is what causes this.&nbsp;=
+ Just means that there were no symbols that could be split into
+ a dbg package<o:p></o:p></span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+For recipe {some recipe name}, the following files/directories were install=
+ed but not shipped in any package: followed by a list of files. I assume th=
+is is harmless, but it adds to the build time. Is that correct?<o:p></o:p><=
+/li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Depends if you want that file.&nbsp; I =
+means that the do_install step put something into the ${D} directory
+ but that the FILES variable for the packages doesn=92t include it so it do=
+esn=92t get packaged.&nbsp; Shouldn=92t increase build time really, but is =
+a hint to you in case there was a file there that you =93need=94<o:p></o:p>=
+</span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+QA Issue: No GNU_HASH in the elf binary: {some path} What does this mean? I=
+s the code compliant with the appropriate license?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">I think this means that the code was bu=
+ild without the GNU_HASH flag.&nbsp; Maybe an inclusion of a pre-built
+ binary.<o:p></o:p></span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+QA Issue: non -staticdev package contains static .a library What does this =
+mean?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">It means that there is a .a file in a =
+=96dev package which expects .so files be default is my understanding.&nbsp=
+;
+ Not the end of the world.<o:p></o:p></span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+QA Issue: {some package: some path} links to something under exec_prefix fo=
+llowed by&nbsp;QA Issue: ldd reports: followed by a number of symbolic link=
+s. What does this mean?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Note sure without the message.<o:p></o:=
+p></span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+TI installer requires 32bit glibc libraries for proper operation. What does=
+ this mean? Is my build machine Linux environment not set up properly?&nbsp=
+;<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Where did this come from?&nbsp; If you =
+are running on a 64bit system you usually need ia32-libs package
+ installed for 32bit compatibility.<o:p></o:p></span></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+{package name} No generic license file exists for: {License Name} in any pr=
+ovider. Is this a consequence of some automatic license detection software =
+failing, or something more serious (we don't know how this code is licensed=
+)?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">What recipe.&nbsp; You need to have the=
+ license file declared in the recipe as well as the checksum.&nbsp;
+ This is to ensure the proper licensing of the package.<o:p></o:p></span></=
+p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
+QA Issue: {name}: Found a reference to /usr/ {some path} followed by&nbsp;W=
+ARNING: QA Issue: Shell scripts in base_bindir and base_sbindir should not =
+reference anything in exec_prefix What does this mean?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Not 100% here without looking at the sc=
+ript.&nbsp; I=92m guessing that they don=92t want the script to use
+ a hard coded /usr/bin, etc value but I could be wrong here.<o:p></o:p></sp=
+an></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l0 level1 lfo1">
 QA Issue: package {name} contains bad RPATH {path} in file {path 2} What do=
-es this mean?</li></ul><div><div>Are these all benign issues? Do any warran=
-t me posting my cooker.log.x file? If so, what are the rules for doing that=
- on this list?=A0</div>
+es this mean?<o:p></o:p></li></ul>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Not 100% on this.&nbsp; Usually means t=
+hat it may be trying to look in the wrong place for a file.&nbsp; What
+ package throws this?<o:p></o:p></span></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Are these all benign issues? Do any warrant me posti=
+ng my cooker.log.x file? If so, what are the rules for doing that on this l=
+ist?&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Log files per error would=
+ be easiest.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">--Paul<o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
-<div><br></div><div>--Paul</div></div>
-</div></div></div>
-
---e89a8ff1c8b82a6fae04d27f8c24--
+--_000_7D46E86EC0A8354091174257B2FED101593475C5DLEE12entticom_--
