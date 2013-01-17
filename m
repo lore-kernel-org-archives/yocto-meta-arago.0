@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
-	[209.85.219.49])
-	by arago-project.org (Postfix) with ESMTPS id 58C2852AB0
+Received: from mail-oa0-f53.google.com (mail-oa0-f53.google.com
+	[209.85.219.53])
+	by arago-project.org (Postfix) with ESMTPS id EBE4152AB0
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jan 2013 17:53:49 +0000 (UTC)
-Received: by mail-oa0-f49.google.com with SMTP id l10so2895757oag.22
+	Thu, 17 Jan 2013 17:53:50 +0000 (UTC)
+Received: by mail-oa0-f53.google.com with SMTP id j6so2948214oag.12
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jan 2013 09:53:48 -0800 (PST)
+	Thu, 17 Jan 2013 09:53:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=/5mYRt0OMqVWjp9pwctCVhQDAut3S60PoukoH7kT3HA=;
-	b=lngAoqz2HDvsC7alab56Tibz4DrlD+pXHZqWHKFzeeTbvOtPFKtrKWa3bcT6Bejc24
-	8E40gdeQ7L9e0Or2P+M8Mw1oBsInkHMXTcBWJZdUUlCE0MwSMkxGQLpJi82xi0NpBiSs
-	9fJTs/FWV00DH4i6lzKreyq+6LSsJl0tO6zG0npNFpKuuvCyhigWmY2AcAdH+VtN9NX1
-	2jQ/piq1Kut3imee13YE80D2Wkcilj9htE0bKHfiteRy3z+e6B+FbNzLJnI4F3yBvNau
-	ZtEFtPal7N+A6Wk8Y1b29mFIqcx2LvSd92UOoKmzjo45tEnVlvcecp5DjHz2tBHKRof3
-	uDfA==
-X-Received: by 10.182.78.168 with SMTP id c8mr73276obx.30.1358445228756;
-	Thu, 17 Jan 2013 09:53:48 -0800 (PST)
+	:references; bh=RKrK/Hl1VecGeO1RN4s+EW5om3Kl0VExy3H+J69I5wY=;
+	b=IkvK/zIiwQEc7LHwVuv72HtZUicvp73hjWIJyXfcpXqaO6DqPpA3miJO9sIrPycRbr
+	3Ms2J5QelN2WCU4PLM2zYDqupXaMzG9eABQq7Y9aTPdhchJp1gTZlx4ePXY/VpmyLiUK
+	SOrSAx80tTSShINBsILwvph238Vw3ctV2M7hpXy/EU/0Jgz+Eu3TfO8tEpqJbhiBxNoh
+	iRA3JGhL0NGXcUvldWRtUSZpJpmSA305uElVvAt+iJ6+bN8NIzaOitrNkzO6esvQBBuZ
+	5AOq0h7/cTMxKM8AhE4oowepRSs4ry29pCiTSOu0twe5RasRIFeLWvt7uDL1w3VqiAny
+	69yw==
+X-Received: by 10.60.25.227 with SMTP id f3mr4691039oeg.17.1358445230395;
+	Thu, 17 Jan 2013 09:53:50 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id zn9sm1503218obb.23.2013.01.17.09.53.47
+	by mx.google.com with ESMTPS id zn9sm1503218obb.23.2013.01.17.09.53.48
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 17 Jan 2013 09:53:47 -0800 (PST)
+	Thu, 17 Jan 2013 09:53:49 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 17 Jan 2013 11:53:14 -0600
-Message-Id: <1358445195-22441-11-git-send-email-fcooper@ti.com>
+Date: Thu, 17 Jan 2013 11:53:15 -0600
+Message-Id: <1358445195-22441-12-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1358445195-22441-1-git-send-email-fcooper@ti.com>
 References: <1358445195-22441-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 11/12] task-arago-tisdk-amsdk: Add screenshot
+Subject: [PATCH 12/12] qt-tstat:Update Thermostat sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,40 +43,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2013 17:53:49 -0000
+X-List-Received-Date: Thu, 17 Jan 2013 17:53:51 -0000
 
-* Add screenshot to the list of applications installed in the SDK
+* Update to the latest Qt thermostat demo sources*
+* This update removes unnecessary debug information.
+* Removes unneeded .pro.user file.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/tasks/task-arago-tisdk-amsdk.bb   |    7 ++++++-
- 1 files changed, 6 insertions(+), 1 deletions(-)
+ .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-amsdk.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-amsdk.bb
-index 1351030..d0a07a0 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-amsdk.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-amsdk.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Task to install additional packages only used in the Arago SDK"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+index d44eb58..143d0a2 100644
+--- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
++++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+@@ -10,10 +10,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=93a105adb99011afa5baee932b560714 \
+ 
+ require recipes-core/matrix/matrix-gui-paths.inc
+ 
 -PR = "r0"
 +PR = "r1"
  
- inherit task
+ BRANCH ?= "master"
+-SRCREV = "2f461242d469871538e6cd05e887457674347e8f"
++SRCREV = "429c802ea04c41f7b29efb89642828091fb83f9b"
  
-@@ -16,6 +16,11 @@ OOBE_ti33x += "\
-     parse-ip \
- "
+ SRC_URI = "git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git"
  
-+EXTRA_APPLICATIONS = "\
-+    screenshot \
-+"
-+
- RDEPENDS_${PN} = "\
-     ${OOBE} \
-+    ${EXTRA_APPLICATIONS} \
- "
 -- 
 1.7.0.4
 
