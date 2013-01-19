@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by arago-project.org (Postfix) with ESMTPS id AA2E352AB8
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by arago-project.org (Postfix) with ESMTPS id 828E952AB3
 	for <meta-arago@arago-project.org>;
-	Sat, 19 Jan 2013 21:52:32 +0000 (UTC)
-Received: by mail-oa0-f44.google.com with SMTP id n5so5011448oag.3
+	Sat, 19 Jan 2013 21:52:34 +0000 (UTC)
+Received: by mail-ob0-f179.google.com with SMTP id x4so4800912obh.38
 	for <meta-arago@arago-project.org>;
-	Sat, 19 Jan 2013 13:52:32 -0800 (PST)
+	Sat, 19 Jan 2013 13:52:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=nZLbkDJGgSUwVarrw821mm1vG42SPbX0HmqXF5ME0pY=;
-	b=jcrf/lJ5Ga+fMlFqmmu7SxocmdC7kb5YuVeCIcOIMA9epdY5dT4SKPHMG8TLCbgzM7
-	la0FxzoBfbss1wPLDG+OPh5WgXDd0yiKVs6QuKRpZ8kR3teLyxnd4WkFvUUOE1gL8yNt
-	FPPyiL4FqDQzk3hDmPOWhVHUwK9QHS/QAyFKoq5gL1rkW/FSHWw1cWToZf5MVllKLSeY
-	YU9ynhIR24AZzODdl4YvgkzRubNQChRR53WCRfg+p3cjhdtCqXZ8A5jYuTOnGoEyOihr
-	IWvvUTwSTzs/Mq2u/+8Fuc89OzIlsbbXzPD0eaTK5ucE3qWPMfI2q5c8HwJHX86fAjSu
-	x+6A==
-X-Received: by 10.60.32.73 with SMTP id g9mr10631557oei.134.1358632352165;
-	Sat, 19 Jan 2013 13:52:32 -0800 (PST)
+	:references; bh=Bi/vP5VtpBQrAcMYHe6SwFm25a1AfVdRPKbUTkKiYKg=;
+	b=gKWt9yfyCkmNfu3vaKm0T3HJ8Lm9YXfEFXh/Ww2CHVgYEFXBrNndbkNXtLLG6byb+Y
+	APoWdsWYNZV6pqeVIGkn+VJlShhRxmXLcLFZZM8QevyUBpvhduLUTKdwWQmtzjfDSgSk
+	PSrDsphnujA7bnaB6IR2guSfu3c94/hocdwMxZ1OaExZSL7oJiejHJFycPHAQkxyzJ4r
+	E3T8E2c0+uFddkA1xKDfmipEYr72lSVT7P4o08XWvSCQvHIcid7q3kZEcvtySx2sUtiJ
+	lCxaFGqlZYIjXlUr/eliYwlCFSf3C1W5AW9gSrZLiw6ajmPxRnmy/dX6UsFcTD4Objb5
+	sOYA==
+X-Received: by 10.182.212.99 with SMTP id nj3mr10294809obc.11.1358632353933;
+	Sat, 19 Jan 2013 13:52:33 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b3sm6845496obo.6.2013.01.19.13.52.30
+	by mx.google.com with ESMTPS id b3sm6845496obo.6.2013.01.19.13.52.32
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Sat, 19 Jan 2013 13:52:31 -0800 (PST)
+	Sat, 19 Jan 2013 13:52:32 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Sat, 19 Jan 2013 15:51:42 -0600
-Message-Id: <1358632316-12266-17-git-send-email-fcooper@ti.com>
+Date: Sat, 19 Jan 2013 15:51:43 -0600
+Message-Id: <1358632316-12266-18-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1358632316-12266-1-git-send-email-fcooper@ti.com>
 References: <1358632316-12266-1-git-send-email-fcooper@ti.com>
 Cc: Eyal Reizer <eyalr@ti.com>
-Subject: [PATCH 17/31] wifi-direct-demo: fix segmentation error on exit
+Subject: [PATCH 18/31] bluetooth-gui: Fix segmentation fault on exit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,39 +43,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 19 Jan 2013 21:52:32 -0000
+X-List-Received-Date: Sat, 19 Jan 2013 21:52:34 -0000
 
 From: Eyal Reizer <eyalr@ti.com>
 
-Fix a segmentation fault caused when exiting the application without
-pressing the "Enable WiFi Direct" checkbox
+Fix a segmentation fault on exit when the A2DP sink test dialog was not
+activated.
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
- .../wifi-direct-demo/wifi-direct-demo_git.bb       |    8 ++++----
- 1 files changed, 4 insertions(+), 4 deletions(-)
+ .../bluetooth-gui/bluetooth-gui.bb                 |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/wifi-direct-demo/wifi-direct-demo_git.bb b/meta-arago-extras/recipes-connectivity/wifi-direct-demo/wifi-direct-demo_git.bb
-index 96322ac..1db1043 100644
---- a/meta-arago-extras/recipes-connectivity/wifi-direct-demo/wifi-direct-demo_git.bb
-+++ b/meta-arago-extras/recipes-connectivity/wifi-direct-demo/wifi-direct-demo_git.bb
-@@ -5,12 +5,12 @@ LIC_FILES_CHKSUM = "file://src/main.cpp;md5=cf285050f56a20d116b026c9f8ded4f7"
+diff --git a/meta-arago-extras/recipes-connectivity/bluetooth-gui/bluetooth-gui.bb b/meta-arago-extras/recipes-connectivity/bluetooth-gui/bluetooth-gui.bb
+index 9f6217e..9be5ae9 100644
+--- a/meta-arago-extras/recipes-connectivity/bluetooth-gui/bluetooth-gui.bb
++++ b/meta-arago-extras/recipes-connectivity/bluetooth-gui/bluetooth-gui.bb
+@@ -5,11 +5,11 @@ LIC_FILES_CHKSUM = "file://src/main.cpp;beginline=1;endline=37;md5=83d75e9470fc1
+ COMPATIBLE_MACHINE = "(omap3evm|am37x-evm|am335x-evm|am180x-evm|am181x-evm)"
  
- COMPATIBLE_MACHINE = "(am37x-evm|am335x-evm|am180x-evm|am181x-evm)"
+ BRANCH = "master"
+-SRCREV = "d9fc6f1ab023230170672d5243cbee58d740e7fe"
++SRCREV = "046643eac13b4d6b6fd7525539ef666509df264e"
  
--PR = "r3"
-+PR = "r4"
+-PR = "r12"
++PR = "r13"
  
--BRANCH = "dbus"
--SRCREV = "0950a67d9fe9a70668a993774e65ba9d457d750c"
-+BRANCH = "master"
-+SRCREV = "9041d6052b43a38e3f06a474822f3f7382bf14a5"
- 
--SRC_URI = "git://git.profusion.mobi/users/lucas/wifi-direct-demo.git;protocol=git;branch=${BRANCH} \
-+SRC_URI = "git://www.github.com/TI-ECS/wifi-direct-demo.git;protocol=git;branch=${BRANCH} \
-            file://wifi-direct-demo.desktop"
- 
- require recipes-core/matrix/matrix-gui-paths.inc
+-SRC_URI = "git://git.profusion.mobi/users/lucas/BT_Demo.git;protocol=git;branch=${BRANCH} \
++SRC_URI = "git://www.github.com/TI-ECS/BT_Demo.git;protocol=git;branch=${BRANCH} \
+            file://bluetooth-icon.png \
+            file://desc_bluetooth.html \
+            file://bt_demo.desktop"
 -- 
 1.7.0.4
 
