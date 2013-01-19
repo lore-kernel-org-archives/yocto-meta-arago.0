@@ -1,36 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f53.google.com (mail-oa0-f53.google.com
-	[209.85.219.53])
-	by arago-project.org (Postfix) with ESMTPS id EBE4152AB0
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by arago-project.org (Postfix) with ESMTPS id E34BA52A92
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jan 2013 17:53:50 +0000 (UTC)
-Received: by mail-oa0-f53.google.com with SMTP id j6so2948214oag.12
+	Sat, 19 Jan 2013 21:52:04 +0000 (UTC)
+Received: by mail-ob0-f176.google.com with SMTP id un3so4808270obb.21
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jan 2013 09:53:50 -0800 (PST)
+	Sat, 19 Jan 2013 13:52:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=RKrK/Hl1VecGeO1RN4s+EW5om3Kl0VExy3H+J69I5wY=;
-	b=IkvK/zIiwQEc7LHwVuv72HtZUicvp73hjWIJyXfcpXqaO6DqPpA3miJO9sIrPycRbr
-	3Ms2J5QelN2WCU4PLM2zYDqupXaMzG9eABQq7Y9aTPdhchJp1gTZlx4ePXY/VpmyLiUK
-	SOrSAx80tTSShINBsILwvph238Vw3ctV2M7hpXy/EU/0Jgz+Eu3TfO8tEpqJbhiBxNoh
-	iRA3JGhL0NGXcUvldWRtUSZpJpmSA305uElVvAt+iJ6+bN8NIzaOitrNkzO6esvQBBuZ
-	5AOq0h7/cTMxKM8AhE4oowepRSs4ry29pCiTSOu0twe5RasRIFeLWvt7uDL1w3VqiAny
-	69yw==
-X-Received: by 10.60.25.227 with SMTP id f3mr4691039oeg.17.1358445230395;
-	Thu, 17 Jan 2013 09:53:50 -0800 (PST)
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=wfEQyjNs2M4Lfwt0gSksvNH8KK3CX9lORET/j3vCcys=;
+	b=L39A7n1Nwj/a2MndCVE92lWWLbBD7QJpHG7jhFMOFt0ZBCDlyT9nsIF/WcakQg6yv6
+	aT3m+wejyjcLm40s5/eAU7S7NlHwqZxugvcW11FyLAPw+hWVjgu6smQH2Lfl5nCpcREW
+	Xfn2BpIqfFu4PtkXmAPJKJBRqHdjBsYkIH+uJir9g/vGVbfUUSC4UvCvF47Z9CvZKfYs
+	gpwFpaa7UBdnuIq8Ak04MP7xvruxLQsWytEDAvKzD/wi5pgixiiOKcbsEKyN4NI+SnvL
+	1ZAgXDe4VzCXHJHMf335h3y+JhQuTxUV8KLEduprjHwtlOTppQxlXTW0K9KE6Dxq2vYc
+	Obtw==
+X-Received: by 10.182.131.3 with SMTP id oi3mr10255742obb.84.1358632324030;
+	Sat, 19 Jan 2013 13:52:04 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id zn9sm1503218obb.23.2013.01.17.09.53.48
+	by mx.google.com with ESMTPS id b3sm6845496obo.6.2013.01.19.13.52.01
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 17 Jan 2013 09:53:49 -0800 (PST)
+	Sat, 19 Jan 2013 13:52:02 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 17 Jan 2013 11:53:15 -0600
-Message-Id: <1358445195-22441-12-git-send-email-fcooper@ti.com>
+Date: Sat, 19 Jan 2013 15:51:26 -0600
+Message-Id: <1358632316-12266-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1358445195-22441-1-git-send-email-fcooper@ti.com>
-References: <1358445195-22441-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 12/12] qt-tstat:Update Thermostat sources
+Subject: [PATCH 01/31] obexd: Pull in obexd from Arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,34 +41,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2013 17:53:51 -0000
+X-List-Received-Date: Sat, 19 Jan 2013 21:52:05 -0000
 
-* Update to the latest Qt thermostat demo sources*
-* This update removes unnecessary debug information.
-* Removes unneeded .pro.user file.
+* Pull in obexd version 0.34 which was used in the Sitara SDK.
+* The software and scripts included in this SDK for the WL1271 daughter card
+  depends on older versions of various wlan and bluetooth libraries and
+  applications.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-connectivity/obex/obexd_0.34.bb        |   23 ++++++++++++++++++++
+ 1 files changed, 23 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb
 
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-index d44eb58..143d0a2 100644
---- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-+++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-@@ -10,10 +10,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=93a105adb99011afa5baee932b560714 \
- 
- require recipes-core/matrix/matrix-gui-paths.inc
- 
--PR = "r0"
-+PR = "r1"
- 
- BRANCH ?= "master"
--SRCREV = "2f461242d469871538e6cd05e887457674347e8f"
-+SRCREV = "429c802ea04c41f7b29efb89642828091fb83f9b"
- 
- SRC_URI = "git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git"
- 
+diff --git a/meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb b/meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb
+new file mode 100644
+index 0000000..8de34e9
+--- /dev/null
++++ b/meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb
+@@ -0,0 +1,23 @@
++DESCRIPTION = "OBEX Server and Client"
++DEPENDS = "openobex glib-2.0 dbus bluez4 libical"
++
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "files://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
++
++PR = "r0"
++
++SRC_URI = "http://www.kernel.org/pub/linux/bluetooth/obexd-${PV}.tar.gz \
++"
++
++SRC_URI[md5sum] = "36080a767e63e54878cd6bcfb20c4f3b"
++SRC_URI[sha256sum] = "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a"
++
++inherit autotools
++
++PACKAGES =+ "obex-client obex-plugins"
++
++FILES_${PN} += "${datadir}/dbus-1/services/${PN}.service"
++FILES_obex-client = "${libexecdir}/obex-client \
++                     ${datadir}/dbus-1/services/obex-client.service"
++# currently the plugins are empty
++FILES_obex-plugins = "${libdir}/obex/plugins"
 -- 
 1.7.0.4
 
