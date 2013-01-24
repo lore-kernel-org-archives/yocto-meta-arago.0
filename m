@@ -1,34 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
-	[209.85.219.46])
-	by arago-project.org (Postfix) with ESMTPS id EE03D529AA
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 9EE6152A57
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jan 2013 14:21:30 +0000 (UTC)
-Received: by mail-oa0-f46.google.com with SMTP id h16so9831081oag.5
+	Thu, 24 Jan 2013 14:21:32 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id n12so9898034oag.10
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jan 2013 06:21:30 -0800 (PST)
+	Thu, 24 Jan 2013 06:21:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=6ffH/5FfadnI8M6D54iQjU43UWtwA/tqVYrnYHIefmw=;
-	b=pjuOa27yY5UfLzgYS2bDTaDjYRPd9Y4RjCrIu885mVA8Bry8CEZFWJBo6BRO9eiQwq
-	YqsgYTfslJfkDCISc0iVTgbbI4Xs6VVPbkxTUVvS7yVl0CXdI3sAmcHWXxUff/sHGL2s
-	br5M4GIiNF1XNXxkNVm4aYbGOFy4EH5oH7vT+la0Lf2PMT2kxwe3q4PocyN2aK0o+ci9
-	Z5Z75JZ20rgV3fLee/LM7qJ9krtEQIAOghqzYHMCBFP6fnnPMwSCq64vf32V1yFZIn94
-	Pzq3hRRa4h3cs7fwd5Z8s9R2CxW4PkdLTzinXLgrA8QuVzV6RstHThYxOO3m1B4u7Y2m
-	WtTQ==
-X-Received: by 10.60.24.201 with SMTP id w9mr1601966oef.73.1359037290143;
-	Thu, 24 Jan 2013 06:21:30 -0800 (PST)
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
+	:references; bh=cC6N5KAG6er+J+r5R79ncvspUqUxEELw0PIj0BGwP/A=;
+	b=Q+9zFTN99t6Mjgm3tsigxAtp2pTm/vTKSlJbTGdP1SFOp4ZdBlYVRKCEtlYQpuZtst
+	by1mcr/h8rqA0iYgCdzrDR9BlkwCibtURpFJzTmVS0aoty9HqBH/xKuzxqYXVmlrPECm
+	1JMRYyUeHrNkz+B9FvKEKh2s1Pt9tyspSNSft+/kAwiQiKQTqSH0/A7+0/wCFx8Vv5cs
+	LTVdm7lloPB33//GErZnLXEidT4fZctwc/vXYqYbFX4iJEr2L93neuq3xuZmtEEkkczJ
+	XDHCd/xwj4wLmksH0QMFiBSHC5TqjQOPdoz0FCnUwIA7AyKbrjAruNB5BE3x51Lo6tMU
+	PCSA==
+X-Received: by 10.60.154.169 with SMTP id vp9mr1520124oeb.109.1359037292077;
+	Thu, 24 Jan 2013 06:21:32 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id yn8sm18069853obb.12.2013.01.24.06.21.27
+	by mx.google.com with ESMTPS id yn8sm18069853obb.12.2013.01.24.06.21.30
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 24 Jan 2013 06:21:28 -0800 (PST)
+	Thu, 24 Jan 2013 06:21:31 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 24 Jan 2013 08:21:06 -0600
-Message-Id: <1359037281-12610-1-git-send-email-fcooper@ti.com>
+Date: Thu, 24 Jan 2013 08:21:07 -0600
+Message-Id: <1359037281-12610-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1359037281-12610-1-git-send-email-fcooper@ti.com>
+References: <1359037281-12610-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 32/47] task-arago-gst: Remove gst-plugins-ugly
+Subject: [PATCH 33/47] libav: Disable any mp3 or mpeg2 related features
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,62 +43,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 14:21:31 -0000
+X-List-Received-Date: Thu, 24 Jan 2013 14:21:32 -0000
 
-* Remove gst-plugins-ugly due to commercial license restrictions
+* Disable any features based on mpeg2 or mp3
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../tasks/task-arago-gst-sdk-target.bb             |    3 +--
- .../recipes-core/tasks/task-arago-gst.bb           |    6 ++----
- 2 files changed, 3 insertions(+), 6 deletions(-)
+ .../recipes-multimedia/libav/libav_0.7.4.bbappend  |   25 ++++++++++++++++++++
+ 1 files changed, 25 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
-index 06b7184..3a737b1 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst-sdk-target.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Task to build and install header and libs in sdk"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r1"
-+PR = "r2"
- 
- inherit task
- 
-@@ -10,5 +10,4 @@ RDEPENDS_${PN} = "\
-     gst-plugins-base-dev \
-     gst-plugins-good-dev \
-     gst-plugins-bad-dev \
--    gst-plugins-ugly-dev \
- "
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
-index b1b8f0b..4ff5494 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-gst.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r1"
-+PR = "r2"
- 
- inherit task
- 
-@@ -10,12 +10,10 @@ GSTREAMER = " \
-     gst-plugins-base \
-     gst-plugins-good \
-     gst-plugins-bad \
--    gst-plugins-ugly \
-     gst-plugins-base-meta \
-     gst-plugins-good-meta \
-     gst-plugins-bad-meta \
--    gst-plugins-ugly-meta \
--    "
+diff --git a/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
+new file mode 100644
+index 0000000..525b546
+--- /dev/null
++++ b/meta-arago-distro/recipes-multimedia/libav/libav_0.7.4.bbappend
+@@ -0,0 +1,25 @@
++PR_append = "-arago0"
++
++# Disable features that have potential commercial licensing restrictions
++EXTRA_OECONF += "\
++    --disable-encoder=libmp3lame \
++    --disable-decoder=mp3 \
++    --disable-decoder=mp3adu \
++    --disable-decoder=mp3adufloat \
++    --disable-decoder=mp3float \
++    --disable-decoder=mp3on4 \
++    --disable-decoder=mp3on4float \
++    --disable-muxer=mp3 \
++    --disable-demuxer=mp3 \
++    --disable-bsf=mp3_header_decompress \
++    --disable-bsf=mp3_header_compress   \
++                                 \
++    --disable-encoder=mpeg2video \
++    --disable-decoder=mpeg2video \
++    --disable-hwaccel=mpeg2_vaapi \
++    --disable-hwaccel=mpeg2_dxva2 \
++    --disable-muxer=mpeg2dvd \
++    --disable-muxer=mpeg2svcd \
++    --disable-muxer=mpeg2video \
++    --disable-muxer=mpeg2vob \
 +"
- 
- RDEPENDS_${PN} = "\
-     ${GSTREAMER} \
 -- 
 1.7.0.4
 
