@@ -1,36 +1,33 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by arago-project.org (Postfix) with ESMTPS id 105B252AAF
+Return-Path: <paul.kovitz@welchallyn.com>
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by arago-project.org (Postfix) with ESMTPS id 0564B52A69
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jan 2013 14:21:57 +0000 (UTC)
-Received: by mail-ob0-f169.google.com with SMTP id ta14so1606737obb.28
+	Thu, 24 Jan 2013 18:08:55 +0000 (UTC)
+Received: by mail-pa0-f53.google.com with SMTP id hz1so5655170pad.40
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jan 2013 06:21:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=PjX6Mw3+7J9iSyBxQ3k4YwdpORquZPzdEy7Rh5SKKBw=;
-	b=pdd8nZJnHHz9ZZ38iTiWvF2Lrb8NUCObSUMY56IQWUJWs7ilHNzP82+0G9OGpNNqZF
-	KZLNRUjrg+27sL1oVlR25NHy3zGDzayaYcyh0l36UufApn3/MEB8p6W8IuqMqvYCMTz0
-	kXZ4HEjbPBqNQWkWAhKoOSrEgvXhCqo0N3XTWIdfiLTwgm+mLGwnYzu94SL4e8wxeyEi
-	RW0KOXO2mEzWXKZ2ZIVRtA3IlsFGkqmpY5xfsCZN8fMyOd23bTO25LMtkd9Gm7FskHmo
-	L+Huy7fMCE1WYEWTMZjbcL9QJzjhXgJakPg+fymuSjYaukXdvA1g8V+HgNVxNRAS1qSU
-	mhuw==
-X-Received: by 10.60.24.201 with SMTP id w9mr1603329oef.73.1359037316571;
-	Thu, 24 Jan 2013 06:21:56 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id yn8sm18069853obb.12.2013.01.24.06.21.54
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 24 Jan 2013 06:21:55 -0800 (PST)
-From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
+	Thu, 24 Jan 2013 10:08:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:from:date:message-id:subject:to
+	:content-type:x-gm-message-state;
+	bh=58bUFo+evOSt4KlrJVJLuZOQKXUBUxB/OBxh2TZ1GLc=;
+	b=dh3t3tOic3XG4AxO2UUj+GEuMhy0W3mAlf81YPBZ/zYP9PM95gUFjdlMEs1Sm31z6y
+	+BTuxWOF/qQ/fv94lXKPih202wyFKlSAhFdFduiNTQOD+HQaBosvxcMu5I4URrPZfOsh
+	0UUXykrdUuojatbSGBPM/ZVJ3jtimB2cBfZxRAXij/soBBQ8Aq3Oa8MtRNJsiyjQxMhC
+	YePQXLpnhr4ep70eyi28azfFaYsZn/dom3Xe04hYRNkYoYXVKo3lbtdW1vDwpFfs1jSA
+	5SRgYUmKfeyMYZRIEAoxNh4xbazWZygYtXW1UJ9Kh4nk/PkYSrKEhjrwNsUVKUx33xqa
+	wrVw==
+X-Received: by 10.68.243.33 with SMTP id wv1mr7207563pbc.143.1359050934345;
+	Thu, 24 Jan 2013 10:08:54 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.68.73.106 with HTTP; Thu, 24 Jan 2013 10:08:14 -0800 (PST)
+From: Paul Kovitz <paul.kovitz@welchallyn.com>
+Date: Thu, 24 Jan 2013 10:08:14 -0800
+Message-ID: <CA+edY+Svcn3OkAAO+U_cz8+NZBA9TxbR3f532G2nPNYQHXMm1A@mail.gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 24 Jan 2013 08:21:21 -0600
-Message-Id: <1359037281-12610-16-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1359037281-12610-1-git-send-email-fcooper@ti.com>
-References: <1359037281-12610-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 47/47] matrix-gui-apps-git.inc: Update Matrix v2 applications
+X-Gm-Message-State: ALoCoQkwmXIXEZ2X1Am5bBQP0j2qaXFXc7T1INZGLyN77gAxCaHze4d0bvN2WrxOPQmrb0fijN+Z
+Subject: newbie question: what is the best way to make sure bitbake uses bash instead of dash?
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,34 +40,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 14:21:57 -0000
+X-List-Received-Date: Thu, 24 Jan 2013 18:08:56 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e14712c60a004d40cb4a7
 
-* Update Matrix v2 Audio Capture demo.
-* Add check for soundcards
-* Don't run demo if executed on the am335x starterkit
+--047d7b2e14712c60a004d40cb4a7
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+The do_install step will fail to install the toolchain libraries unless you
+have bash as the default shell. Making the default system shell bash hurts
+boot time according to some data I have seen. Right now I used sudo
+dpkg-reconfigure dash to make the default bash. Is there a better way? If
+there is no better way, should the oe-layersetup.sh script do it for you if
+$SHELL is not /bin/bash?
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 63e73f2..31fdf42 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "df5b70b2f7cd97148855fe4d0508789c710bcc4e"
-+SRCREV = "24ed8977d232a6d706594a349549f481bd7087a4"
- BRANCH = "master"
--INC_PR = "r6"
-+INC_PR = "r7"
- 
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
 -- 
-1.7.0.4
+Paul Kovitz
 
+--047d7b2e14712c60a004d40cb4a7
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">The do_install step will fail to install the toolchain lib=
+raries unless you have bash as the default shell. Making the default system=
+ shell bash hurts boot time according to some data I have seen. Right now I=
+ used=A0sudo dpkg-reconfigure dash to make the default bash. Is there a bet=
+ter way? If there is no better way, should the oe-layersetup.sh script do i=
+t for you if $SHELL is not /bin/bash?<div>
+
+<br></div>-- <br>Paul Kovitz<div><br></div>
+</div>
+
+--047d7b2e14712c60a004d40cb4a7--
