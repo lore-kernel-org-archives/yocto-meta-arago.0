@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
-	[209.85.214.174])
-	by arago-project.org (Postfix) with ESMTPS id 5A8ED52AA7
+Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
+	[209.85.219.50])
+	by arago-project.org (Postfix) with ESMTPS id E446652A21
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jan 2013 14:21:50 +0000 (UTC)
-Received: by mail-ob0-f174.google.com with SMTP id 16so3724120obc.33
+	Thu, 24 Jan 2013 14:21:51 +0000 (UTC)
+Received: by mail-oa0-f50.google.com with SMTP id n16so9923331oag.9
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jan 2013 06:21:49 -0800 (PST)
+	Thu, 24 Jan 2013 06:21:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=KxKIrknNU0peYY5Z9G/ToRxBpcH72f0MikWC8bEYU70=;
-	b=zFBvVyX0NgEQpKxxlUAkR4aHwBa3AjZLmUSq5WERHIkYCO/RH0V58lO6HpFHjn5xGF
-	FNOSCQ6Zn/TWZvKadHRGxIrzbA9BpwJkdMoFd2l72TDe3nY+Vl321j8DPXAjKPeHcjX6
-	GTyMHsOiGmoEeaqZUHhYOh/vAzKuWN91lTfZBLCJuJ2e6cBcYcui+uHw7nZA+E1NI+NX
-	C8ZFKX7fUo/fjzrC9yt/l5vJQzEadlCBZkSBbM49nZVaYjXwC/SYoBiOdhSJBq10ZK4/
-	cu6Pc7ezGOx2jp79Ku7H9RA9EORV/jzr0bYwJT8VdkUu7lEHk2b+fQLytxfqBeKkEUvS
-	weGA==
-X-Received: by 10.60.19.133 with SMTP id f5mr1593161oee.105.1359037309781;
-	Thu, 24 Jan 2013 06:21:49 -0800 (PST)
+	:references; bh=c5dVvwXsH/pg8Na/4rqv6AHTyLt750nQNwa2RABX0b8=;
+	b=vYfzUa7xKb+7RM5GoD7t7Kdwax73xW4ThVF7rv/o43Ami7x91YOkBjHAW/2CxW1zhZ
+	20IpGP00Vz1tglggV//2dta2mwNEZ00gZ9I/4f5Zr4PLIk0rK80VSpPwkt/UdKeicCGK
+	iYjKYp7FNycACRoMxmxREkvUveb7WXLWpvDSqODLYnTnIrwWF7APYrX2L7md867bwoBb
+	D0TTzMoFoi1eJOL70LOyXpiOOagIHwCiipKsbeyDKI5LtTjZqd9XTpM2k/qBGn7yFQuw
+	EHYwvN+FzYLvVPQmaDvbmM+5jEgj0Z6KtZ/VYnnRLYaIxKB7oNX+8uePvsxb3SeecFrx
+	9K+Q==
+X-Received: by 10.182.36.8 with SMTP id m8mr1545801obj.93.1359037311448;
+	Thu, 24 Jan 2013 06:21:51 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id yn8sm18069853obb.12.2013.01.24.06.21.48
+	by mx.google.com with ESMTPS id yn8sm18069853obb.12.2013.01.24.06.21.49
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 24 Jan 2013 06:21:48 -0800 (PST)
+	Thu, 24 Jan 2013 06:21:50 -0800 (PST)
 From: "Franklin S. Cooper Jr" <fcooperjr27@gmail.com>
 To: meta-arago@arago-project.org
-Date: Thu, 24 Jan 2013 08:21:17 -0600
-Message-Id: <1359037281-12610-12-git-send-email-fcooper@ti.com>
+Date: Thu, 24 Jan 2013 08:21:18 -0600
+Message-Id: <1359037281-12610-13-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359037281-12610-1-git-send-email-fcooper@ti.com>
 References: <1359037281-12610-1-git-send-email-fcooper@ti.com>
-Cc: dgerlach <d-gerlach@ti.com>
-Subject: [PATCH 43/47] Makefile_qml-playground: Renamed to Makefile_quick-playground
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 44/47] busybox: Enable rev utility
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,117 +43,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 14:21:50 -0000
+X-List-Received-Date: Thu, 24 Jan 2013 14:21:52 -0000
 
-From: dgerlach <d-gerlach@ti.com>
+* Enabling rev utility that is used by some test scripts.
 
-ti-tisdk-makefile: Changed all references to qml-playground to quick-playground
-
-* Changed references to qml-playground to quick-playground in Makefile_quick-playground
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_qml-playground      |   24 --------------------
- .../ti-tisdk-makefile/Makefile_quick-playground    |   24 ++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    8 +++---
- 3 files changed, 28 insertions(+), 28 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qml-playground
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
+ .../recipes-core/busybox/busybox/defconfig         |    2 +-
+ .../recipes-core/busybox/busybox_1.19.4.bbappend   |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qml-playground b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qml-playground
-deleted file mode 100644
-index 4d8709a..0000000
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qml-playground
-+++ /dev/null
-@@ -1,24 +0,0 @@
--# QML Playground build targets
--qml-playground:
--	@echo =================================
--	@echo    Building QML Playground App
--	@echo =================================
--	@cd example-applications; cd `find . -name "*qml-playground*"`; make -f Makefile.build release
--
--qml-playground_clean:
--	@echo =================================
--	@echo    Cleaning QML Playground App
--	@echo =================================
--	@cd example-applications; cd `find . -name "*qml-playground*"`; make -f Makefile.build clean
--
--qml-playground_install:
--	@echo ====================================================
--	@echo   Installing QML Playground App - Release version
--	@echo ====================================================
--	@cd example-applications; cd `find . -name "*qml-playground*"`; make -f Makefile.build install
--
--qml-playground_install_debug:
--	@echo ==================================================
--	@echo   Installing QML Playground App - Debug version
--	@echo ==================================================
--	@cd example-applications; cd `find . -name "*qml-playground*"`; make -f Makefile.build install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
-new file mode 100644
-index 0000000..06cbd49
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
-@@ -0,0 +1,24 @@
-+# Quick Playground build targets
-+quick-playground:
-+	@echo =================================
-+	@echo    Building Quick Playground App
-+	@echo =================================
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build release
-+
-+quick-playground_clean:
-+	@echo =================================
-+	@echo    Cleaning Quick Playground App
-+	@echo =================================
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build clean
-+
-+quick-playground_install:
-+	@echo ====================================================
-+	@echo   Installing Quick Playground App - Release version
-+	@echo ====================================================
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build install
-+
-+quick-playground_install_debug:
-+	@echo ==================================================
-+	@echo   Installing Quick Playground App - Debug version
-+	@echo ==================================================
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index a276140..4691df4 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -25,11 +25,11 @@ SRC_URI = "\
-     file://Makefile_pru \
-     file://Makefile_ti-ocf-crypto-module \
-     file://Makefile_qt-tstat \
--    file://Makefile_qml-playground \
-+    file://Makefile_quick-playground \
-     file://Makefile_wireless \
- "
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+index f681eb7..7d3c552 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+@@ -518,7 +518,7 @@ CONFIG_DEFAULT_DEPMOD_FILE="modules.dep"
+ # Linux System Utilities
+ #
+ # CONFIG_BLOCKDEV is not set
+-# CONFIG_REV is not set
++CONFIG_REV=y
+ # CONFIG_ACPID is not set
+ # CONFIG_FEATURE_ACPID_COMPAT is not set
+ # CONFIG_BLKID is not set
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
+index b2d2540..bee6201 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_1.19.4.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--PR = "r2"
-+PR = "r3"
+-PR_append = "-arago4"
++PR_append = "-arago5"
  
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -42,7 +42,7 @@ MAKEFILES_COMMON = "linux \
- 
- # Add device specific make targets
- MAKEFILES_omap3 += "u-boot-spl \
--                    qml-playground \
-+                    quick-playground \
- "
- MAKEFILES_am37x-evm += "av-examples \
-                         ti-ocf-crypto-module \
-@@ -52,7 +52,7 @@ MAKEFILES_am3517-evm += "av-examples \
-                          ti-ocf-crypto-module \
- "
- MAKEFILES_ti33x += "u-boot-spl \
--                    qml-playground wireless \
-+                    quick-playground wireless \
- "
- MAKEFILES_am180x-evm += "pru \
-                          u-boot-legacy \
+ SRC_URI += " \
+ 	file://inetd \
 -- 
 1.7.0.4
 
