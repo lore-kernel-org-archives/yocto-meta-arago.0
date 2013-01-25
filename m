@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by arago-project.org (Postfix) with ESMTPS id 2DA3B529AA
+Received: from mail-oa0-f53.google.com (mail-oa0-f53.google.com
+	[209.85.219.53])
+	by arago-project.org (Postfix) with ESMTPS id 577DB52A69
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:58:05 +0000 (UTC)
-Received: by mail-ob0-f181.google.com with SMTP id wc18so1045553obb.12
+	Fri, 25 Jan 2013 21:58:07 +0000 (UTC)
+Received: by mail-oa0-f53.google.com with SMTP id l20so1047079oag.26
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:58:04 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=fLb6i/CK42bcO640dSXKkHWd1OyBnhgat8BcQ27M3HM=;
-	b=IlFV/AiVQDOB0DPZI+PW01ZbGZ4QZDgLHLOz1MlJfvq5YyXIN196uYSltRMZ83I5lE
-	NETDsn2EtsYV+K5sxnQIDGrYkkWyDm7yHE2RIQmLHSbOhSTEQ4EpOzE2wPqW1B38H0w5
-	t7pucV4/aPa6NIH4yaaI4dRn2k/7CDqCX77Y8h4PoCEaRt8mmh8UOiNhTmA2x1K0PLRJ
-	neYVMa7U/66Du1Iw+y+nMkV8TkgslxmE6EW4wX5IGWteMcF/gffEVt1mBGknOGQIiKIZ
-	alZ6XLNMUiZRr5tZ/7rq1Qd129vHftSOBBmwHZa3H1fS5cnu4P9GUBHOAG5E7qT8kLT9
-	3pzw==
-X-Received: by 10.182.188.101 with SMTP id fz5mr5791451obc.0.1359151084630;
-	Fri, 25 Jan 2013 13:58:04 -0800 (PST)
+	:references; bh=UlivppILWdGqYFZL4ptLtC/ppn1Tk0NcEt4P3mwe1B8=;
+	b=BY/4uvAka/+7pYbm0+bMBM/DzdX6sowTS07LQG2fM/O9G5naS6hEPVbqBPz9KnYmwj
+	VpEcfb+gH7hSQ8yHToilKsgyVUeEexG/r93enZ3NDcGhsulsi3UX3azRnM2P+aFLqti4
+	JkeS+g3ryqpuBc5YT3trmKhNrg2YaGTo3z3OUr8Cgj28kobyeRAlr5wQ1iMdHTQCPs9X
+	lUTOEP98jHcURcXo6oxDRB2EOi7RU9glhnPUkeEmN311LMSIUQ//lARqGeWGF7KIDgfc
+	2mGqxF6xGKWiBdJnYnzMeMaRb4e5IINuZmHGhs+dDdHeUwNdQVtRcEbcPccRXOXSki4W
+	3zHw==
+X-Received: by 10.182.18.133 with SMTP id w5mr5810729obd.64.1359151086746;
+	Fri, 25 Jan 2013 13:58:06 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.02
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.04
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:58:03 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:05 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:53:44 -0600
-Message-Id: <1359150851-23602-3-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:53:45 -0600
+Message-Id: <1359150851-23602-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 References: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 Cc: Eyal Reizer <eyalr@ti.com>, "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 04/31] wl12xx-firmware: update for wlan r5_sp3 release
+Subject: [PATCH 05/31] ti-compat-bluetooth: update to use a different compat zip
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,66 +43,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:58:05 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:58:08 -0000
 
 From: Eyal Reizer <eyalr@ti.com>
 
-* Update the firmware recipe for using the firmware files supplied
-  with wlan r5_sp3 release
+* Update the recipe to use a different compat-bluetooth zip file
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../wl12xx-firmware/wl12xx-firmware/Makefile       |    7 +++++++
- .../wl12xx-firmware/wl12xx-firmware_git.bb         |    9 ++++++---
- 2 files changed, 13 insertions(+), 3 deletions(-)
- create mode 100644 meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile
+ .../ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile
-new file mode 100644
-index 0000000..0bb7ab8
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile
-@@ -0,0 +1,7 @@
-+# Installs the the ti-connectiviy wlan firmware files into the root file system
-+
-+install:
-+	install -d  $(DEST_DIR)/lib/firmware/ti-connectivity
-+	cp -RpP * $(DEST_DIR)/lib/firmware/ti-connectivity/
-+	rm -f $(DEST_DIR)/lib/firmware/ti-connectivity/Makefile
-+
-diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb
-index 12df963..5d73038 100644
---- a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb
-+++ b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=ba590e1d103f891d0151609046aef9e8"
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb
+index e9fc22b..9ce50f7 100644
+--- a/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb
++++ b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb
+@@ -9,20 +9,20 @@ inherit module
+ RDEPENDS_${PN} = "ti-compat-wireless-wl12xx"
  
- PACKAGE_ARCH = "all"
+ PR = "${MACHINE_KERNEL_PR}"
+-PR_append = "a"
++PR_append = "b"
  
--PR = "r0+gitr${SRCREV}"
-+PR = "r1+gitr${SRCREV}"
+-COMPAT_BLUETOOTH_VERSION = "2012-05-22-r5-18"
++COMPAT_BLUETOOTH_VERSION = "2012-11-19-r5-sp3"
+ TAG = "${@'${COMPAT_BLUETOOTH_VERSION}'.replace('-', '')}"
+ PV = "0.${TAG}"
  
- # This recipe provides the latest firmware files for wl12xx.
- # Therefore, use the contents of this recipe instead of the contents
-@@ -12,8 +12,10 @@ PR = "r0+gitr${SRCREV}"
- RCONFLICTS_${PN} = "linux-firmware-wl12xx"
- RPROVIDES_${PN}  = "linux-firmware-wl12xx"
+-SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/865/5622/compat-bluetooth-wl12xx-2012-05-22-r5-18.tgz \
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/802/5435/ti-compat-bluetooth-2012-02-20.tar.gz \
+            file://0001-compat-bluetooth-2.6-removed-unused-BT-modules-from-.patch \
+            file://0002-Bluetooth-Fix-l2cap-conn-failures-for-ssp-devices.patch \
+            file://0001-compat-bluetooth-fixing-kernel-panic-in-l2cap.patch \
+           "
  
--SRCREV = "38e0dd7999b9087e00d1a59306a7c22fd23246cf"
--SRC_URI = "git://github.com/TI-ECS/ti-utils.git;protocol=git"
-+SRCREV = "ol_R5.SP3.05"
-+SRC_URI = "git://github.com/TI-OpenLink/ti-utils.git;protocol=git \
-+           file://Makefile \
-+          "
+-SRC_URI[md5sum] = "85118756a605ebd8f4fbff19995368a6"
+-SRC_URI[sha256sum] = "d250a6447de54f0776a12ca604bf2a2a48b022108b699de5008f48462e535393"
++SRC_URI[md5sum] = "7c231b35a2297391b5192f86ff4f10dd"
++SRC_URI[sha256sum] = "d8882da8bb37821bfd0b9334b859f64d0ce82ae5262360367a3f3fdf31c7f350"
  
- S = "${WORKDIR}/git/hw/firmware"
- 
-@@ -22,6 +24,7 @@ do_compile() {
- }
- 
- do_install() {
-+    cp ${WORKDIR}/Makefile ${S}
-     oe_runmake 'DEST_DIR=${D}' install
- }
+ S = "${WORKDIR}/compat-bluetooth/"
  
 -- 
 1.7.0.4
