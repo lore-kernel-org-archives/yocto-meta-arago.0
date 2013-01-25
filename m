@@ -1,35 +1,35 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f175.google.com (mail-ob0-f175.google.com
-	[209.85.214.175])
-	by arago-project.org (Postfix) with ESMTPS id 9600552AE2
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by arago-project.org (Postfix) with ESMTPS id 86A2052ADE
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:58:19 +0000 (UTC)
-Received: by mail-ob0-f175.google.com with SMTP id uz6so1024238obc.20
+	Fri, 25 Jan 2013 21:58:21 +0000 (UTC)
+Received: by mail-ob0-f178.google.com with SMTP id wd20so470319obb.23
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:58:19 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=fYG3SVKfOejpQXrFtOknwfjNs12A8queNLrxUgZLXjI=;
-	b=BLrreJ4P8TRZHs+bIyPwz1OC6rCDEA9B5dLYjmnKs4xMA87atFtFDnsm1ug/LRhPXp
-	9scYzH5X2dzEVW+RuTJU7kgOXL9CeiRahYdszELPlOkeDprKYUOs/1aIapRreL/yUDcz
-	AOj5PZhaISkYGbEmsIEZuS3YnXGTDziR5kyf3CrB0KUCzeMhRt6FCJSb2wvY5E9wzPq3
-	rjaBIn48+xkv+H+0i5CTmoixmmkDmT/L1rRN5KsCizPCUNNilkBWsmhQvjKoFpjF482n
-	YDaHyVFkc+9t3A1o2DmI4kH/84Co3IjxDGlS2g/PgP825S5l0Btip4XnOkh0NI/QJKTi
-	Hi7w==
-X-Received: by 10.60.31.68 with SMTP id y4mr5764899oeh.121.1359151099046;
-	Fri, 25 Jan 2013 13:58:19 -0800 (PST)
+	:references; bh=5+QQc4ihTgacoO5YTR0jvyTq1R8z8tF8AxAanvwLmHQ=;
+	b=CcG47fzJwtviNxUplOFRvvqo4KlhGgxzQO8ew49COVl22PcLddagx8uw8HmceRt3Po
+	hBmitN/oV/6WOquFw6qbzjfvFX+XtajEJLCo8dr1hGdZs52ChTjGSSHo0VqT4Uhqdi7u
+	fRO5+zu7IoRDr3gogAEq9VP2wIKw4efHJ3igFajgnCYiW6/VGNRyWXHHuv1cz3iANpvR
+	PmXfkUHVjxHJeS/jK5vmXBrxPwo4HW8ACaRzvM6JTzhUFQafdF+6WKjbY7JIDOvcRdat
+	GqfkG2aaQw3tcBkFxUcTpcPSTi8o5cmZi+MPj4EjnoRMm8rNmT+NavIniQZy6wY3OTQA
+	zBdg==
+X-Received: by 10.182.88.3 with SMTP id bc3mr5698420obb.8.1359151100865;
+	Fri, 25 Jan 2013 13:58:20 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.17
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.19
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:58:18 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:19 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:53:52 -0600
-Message-Id: <1359150851-23602-11-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:53:53 -0600
+Message-Id: <1359150851-23602-12-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 References: <1359150851-23602-1-git-send-email-fcooper@ti.com>
-Subject: [PATCH 12/31] ti-tisdk-makefile: add ti-crypto-examples targets
+Subject: [PATCH 13/31] matrix-gui-apps-git: update to latest commit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,93 +42,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:58:19 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:58:21 -0000
 
 From: Chase Maupin <Chase.Maupin@ti.com>
 
-* Add the ti-crypto-examples targets to the TI SDK Makefile
-* Add the CC variable to the list of variables exported by
-  Rules.make to make cross compiling easier.
+* Update to the latest commit ID which changes the cryptography
+  demos to use the C example programs instead of the openssl
+  scripts.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_ti-crypto-examples  |   24 ++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile/Rules.make |    4 +++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    4 ++-
- 3 files changed, 31 insertions(+), 1 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
+ .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
-new file mode 100644
-index 0000000..3588381
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
-@@ -0,0 +1,24 @@
-+# ti-crypto-examples build targets
-+ti-crypto-examples:
-+	@echo =================================
-+	@echo    Building TI Crypto Examples
-+	@echo =================================
-+	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make
-+
-+ti-crypto-examples_clean:
-+	@echo =================================
-+	@echo    Cleaning TI Crypto Examples
-+	@echo =================================
-+	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make clean
-+
-+ti-crypto-examples_install:
-+	@echo ===================================================
-+	@echo   Installing TI Crypto Examples - Release version
-+	@echo ===================================================
-+	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make install
-+
-+ti-crypto-examples_install_debug:
-+	@echo =================================================
-+	@echo   Installing TI Crypto Examples - Debug Version
-+	@echo =================================================
-+	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-index 1b0a347..296e4b5 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-@@ -20,6 +20,10 @@ export LINUX_DEVKIT_PATH=$(TI_SDK_PATH)/linux-devkit
- #Cross compiler prefix
- export CROSS_COMPILE=$(LINUX_DEVKIT_PATH)/bin/arm-arago-linux-gnueabi-
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 31fdf42..050ad2b 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
-+#Default CC value to be used when cross compiling.  This is so that the
-+#GNU Make default of "cc" is not used to point to the host compiler
-+export CC=$(CROSS_COMPILE)gcc
-+
- #Location of environment-setup file
- export ENV_SETUP=$(LINUX_DEVKIT_PATH)/environment-setup
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "24ed8977d232a6d706594a349549f481bd7087a4"
++SRCREV = "e739979100810a09a2157682e9000e40e99edbc3"
+ BRANCH = "master"
+-INC_PR = "r7"
++INC_PR = "r8"
  
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 4691df4..c6cea95 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -17,6 +17,7 @@ SRC_URI = "\
-     file://Makefile_u-boot-legacy \
-     file://Makefile_matrix-gui \
-     file://Makefile_arm-benchmarks \
-+    file://Makefile_ti-crypto-examples \
-     file://Makefile_am-sysinfo \
-     file://Makefile_av-examples \
-     file://Makefile_u-boot-spl \
-@@ -29,11 +30,12 @@ SRC_URI = "\
-     file://Makefile_wireless \
- "
- 
--PR = "r3"
-+PR = "r4"
- 
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-                     arm-benchmarks \
-+                    ti-crypto-examples \
-                     am-sysinfo \
-                     matrix-gui-browser \
-                     refresh-screen \
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.7.0.4
 
