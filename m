@@ -1,34 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A26C952A1C
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
+	[209.85.219.54])
+	by arago-project.org (Postfix) with ESMTPS id C16E5529AA
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 19:56:30 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r0PJuTiq029043;
-	Fri, 25 Jan 2013 13:56:30 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r0PJuTDJ016005;
-	Fri, 25 Jan 2013 13:56:29 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
-	Fri, 25 Jan 2013 13:56:29 -0600
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r0PJuTRl032040;
-	Fri, 25 Jan 2013 13:56:29 -0600
-Date: Fri, 25 Jan 2013 14:56:29 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20130125195628.GG10087@edge>
-References: <1359037281-12610-1-git-send-email-fcooper@ti.com>
-	<1359037281-12610-11-git-send-email-fcooper@ti.com>
-	<20130125193807.GF23977@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C37B80F@DFLE09.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C37B80F@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Gerlach,
-	Dave" <d-gerlach@ti.com>
-Subject: Re: [PATCH 42/47] Makefile_am-benchmarks: Renamed to Makefile_arm-benchmarks
+	Fri, 25 Jan 2013 21:49:22 +0000 (UTC)
+Received: by mail-oa0-f54.google.com with SMTP id n9so1037879oag.27
+	for <meta-arago@arago-project.org>;
+	Fri, 25 Jan 2013 13:49:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=iYZpIW0IYaKRRchkxedvDfeZTVEsmhc8metigcQaCZQ=;
+	b=uVAAc/UafXX0mhZvUx+9c6PndO1AB0oz+srQIR6V4MMGi9FFpN+zfH7mrLtqzzSgF7
+	iHzw5mdcLMmI7BAqwufX5wwKVDD+oAV+lsn2ByuJcvUqO8Dee0EmdLeESq88mdqdMaho
+	86Ysa446lrzB2MzjLQMt8Y4ge6G2uSuYXaaiBX066uoy7ZrDjQUnApueLnaJ4ZHIwBeh
+	1gNE8CiiCSCUv4yY8FIs2cVIpJ9xLjWZv1ONXb7V2GuNH37wZg/RJHHWeG++zYvRLbMe
+	CqWKVticTzrsPujQLF7lZvAlJsl5R1IG1WWF6xNxp/J2G2nCE+kqOZ2nUflc45erBw01
+	VF7g==
+X-Received: by 10.60.169.240 with SMTP id ah16mr5898781oec.9.1359150562007;
+	Fri, 25 Jan 2013 13:49:22 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id 9sm1567151obi.22.2013.01.25.13.49.19
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Fri, 25 Jan 2013 13:49:20 -0800 (PST)
+From: fcooperjr27@gmail.com
+To: meta-arago@arago-project.org
+Date: Fri, 25 Jan 2013 15:49:05 -0600
+Message-Id: <1359150545-23393-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: Eyal Reizer <eyalr@ti.com>
+Subject: [PATCH 01/31] obexd: increase opp push timeout
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,177 +41,85 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 19:56:30 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 25 Jan 2013 21:49:23 -0000
 
-On Fri, Jan 25, 2013 at 02:53:08PM -0500, Cooper Jr., Franklin wrote:
-> The patch came from Dave Gerlach who sent it directly to me. So the From address is correct.
+From: Eyal Reizer <eyalr@ti.com>
 
-Yeah, I mean it should have "Dave Gerlach" instead of "dgerlach"... Basically, 
-he should set his user.name in git-config properly. I'll fix it manually for 
-now.
+Add a patch which increase the opp  timeout as current timeout
+is not long enough for users to confirm file reception.
+As a result, OPP client may exit with errors on some phone types.
 
+Signed-off-by: Eyal Reizer <eyalr@ti.com>
+---
+ .../0001-obexd-make-OPP-push-timeout-longer.patch  |   44 ++++++++++++++++++++
+ .../recipes-connectivity/obexd/obexd_0.34.bbappend |    3 +-
+ 2 files changed, 46 insertions(+), 1 deletions(-)
+ create mode 100755 meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
 
-> I'll make the user.email change.
+diff --git a/meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch b/meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
+new file mode 100755
+index 0000000..626f802
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
+@@ -0,0 +1,44 @@
++From 5d6d09c2338ae62796c2a326340e81320faf3593 Mon Sep 17 00:00:00 2001
++From: Vita Preskovsky <vitap@ti.com>
++Date: Wed, 19 Sep 2012 13:05:18 +0200
++Subject: [PATCH] obexd: make OPP push timeout longer
++
++Current OPP push timeout is not long enough for user to confirm on OPP server
++to receive file. As a result, OPP client exists with error.
++
++
++Signed-off-by: Vita Preskovsky <vitap@ti.com>
++---
++ plugins/bluetooth.c |    2 +-
++ src/manager.c       |    2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/plugins/bluetooth.c b/plugins/bluetooth.c
++index 851daa2..204ccf5 100644
++--- a/plugins/bluetooth.c
+++++ b/plugins/bluetooth.c
++@@ -46,7 +46,7 @@
++ #define BT_RX_MTU 32767
++ #define BT_TX_MTU 32767
++ 
++-#define TIMEOUT 60*1000 /* Timeout for user response (miliseconds) */
+++#define TIMEOUT 180*1000 /* Timeout for user response (miliseconds) */
++ 
++ struct pending_request {
++ 	DBusPendingCall *call;
++diff --git a/src/manager.c b/src/manager.c
++index 80140b6..e64a433 100644
++--- a/src/manager.c
+++++ b/src/manager.c
++@@ -52,7 +52,7 @@
++ #define TRANSFER_INTERFACE OPENOBEX_SERVICE ".Transfer"
++ #define SESSION_INTERFACE OPENOBEX_SERVICE ".Session"
++ 
++-#define TIMEOUT 60*1000 /* Timeout for user response (miliseconds) */
+++#define TIMEOUT 180*1000 /* Timeout for user response (miliseconds) */
++ 
++ struct agent {
++ 	char *bus_name;
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend b/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend
+index d51c9da..820e00f 100644
+--- a/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend
++++ b/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend
+@@ -1,6 +1,7 @@
+-PR_append = "-arago0"
++PR_append = "-arago1"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+ 
+ SRC_URI += "file://0001-obexd-fix-UTF-conversions.patch \
++            file://0001-obexd-make-OPP-push-timeout-longer.patch \
+ "
+-- 
+1.7.0.4
 
-Thanks!
-
-
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> > Sent: Friday, January 25, 2013 1:38 PM
-> > To: Franklin S. Cooper Jr
-> > Cc: meta-arago@arago-project.org; Gerlach, Dave
-> > Subject: Re: [meta-arago] [PATCH 42/47] Makefile_am-benchmarks: Renamed
-> > to Makefile_arm-benchmarks
-> > 
-> > On Thu, Jan 24, 2013 at 08:21:16AM -0600, Franklin S. Cooper Jr wrote:
-> > > From: dgerlach <d-gerlach@ti.com>
-> > 
-> > ^^^^^ Can we get the correct From: line here?
-> > 
-> > And while we are at it, Franklin, do you want to set your own user.email in git-
-> > config with the TI email, so your From: line matches your Signed-off-by:
-> > line? Right now it defaults to gmail address, since you send your patches
-> > through it...
-> > 
-> > --
-> > Denys
-> > 
-> > 
-> > > * All references to am-benchmarks changed to arm-benchmarks for
-> > Makefile_arm-benchmarks
-> > >
-> > > ti-tisdk-makefile: Modified to use Makefile_arm-benchmarks rather than
-> > Makefile_am-benchmarks
-> > > ---
-> > >  .../ti-tisdk-makefile/Makefile_am-benchmarks       |   24 --------------------
-> > >  .../ti-tisdk-makefile/Makefile_arm-benchmarks      |   24
-> > ++++++++++++++++++++
-> > >  .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    6 ++--
-> > >  3 files changed, 27 insertions(+), 27 deletions(-)
-> > >  delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> > tisdk-makefile/Makefile_am-benchmarks
-> > >  create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> > tisdk-makefile/Makefile_arm-benchmarks
-> > >
-> > > diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile/Makefile_am-benchmarks b/meta-arago-distro/recipes-tisdk/ti-tisdk-
-> > makefile/ti-tisdk-makefile/Makefile_am-benchmarks
-> > > deleted file mode 100644
-> > > index ba0e0c6..0000000
-> > > --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile/Makefile_am-benchmarks
-> > > +++ /dev/null
-> > > @@ -1,24 +0,0 @@
-> > > -# am-benchmarks build targets
-> > > -am-benchmarks:
-> > > -	@echo =============================
-> > > -	@echo    Building AM Benchmarks
-> > > -	@echo =============================
-> > > -	@cd example-applications; cd `find . -name "*am-benchmarks*"`;
-> > make
-> > > -
-> > > -am-benchmarks_clean:
-> > > -	@echo =============================
-> > > -	@echo    Cleaning AM Benchmarks
-> > > -	@echo =============================
-> > > -	@cd example-applications; cd `find . -name "*am-benchmarks*"`;
-> > make clean
-> > > -
-> > > -am-benchmarks_install:
-> > > -	@echo ==============================================
-> > > -	@echo   Installing AM Benchmarks - Release version
-> > > -	@echo ==============================================
-> > > -	@cd example-applications; cd `find . -name "*am-benchmarks*"`;
-> > make install
-> > > -
-> > > -am-benchmarks_install_debug:
-> > > -	@echo ============================================
-> > > -	@echo   Installing AM Benchmarks - Debug Version
-> > > -	@echo ============================================
-> > > -	@cd example-applications; cd `find . -name "*am-benchmarks*"`;
-> > make install_debug
-> > > diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile/Makefile_arm-benchmarks b/meta-arago-distro/recipes-tisdk/ti-
-> > tisdk-makefile/ti-tisdk-makefile/Makefile_arm-benchmarks
-> > > new file mode 100644
-> > > index 0000000..0447ea5
-> > > --- /dev/null
-> > > +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile/Makefile_arm-benchmarks
-> > > @@ -0,0 +1,24 @@
-> > > +# arm-benchmarks build targets
-> > > +arm-benchmarks:
-> > > +	@echo =============================
-> > > +	@echo    Building ARM Benchmarks
-> > > +	@echo =============================
-> > > +	@cd example-applications; cd `find . -name "*arm-benchmarks*"`;
-> > make
-> > > +
-> > > +arm-benchmarks_clean:
-> > > +	@echo =============================
-> > > +	@echo    Cleaning ARM Benchmarks
-> > > +	@echo =============================
-> > > +	@cd example-applications; cd `find . -name "*arm-benchmarks*"`;
-> > make clean
-> > > +
-> > > +arm-benchmarks_install:
-> > > +	@echo ==============================================
-> > > +	@echo   Installing ARM Benchmarks - Release version
-> > > +	@echo ==============================================
-> > > +	@cd example-applications; cd `find . -name "*arm-benchmarks*"`;
-> > make install
-> > > +
-> > > +arm-benchmarks_install_debug:
-> > > +	@echo ============================================
-> > > +	@echo   Installing ARM Benchmarks - Debug Version
-> > > +	@echo ============================================
-> > > +	@cd example-applications; cd `find . -name "*arm-benchmarks*"`;
-> > make install_debug
-> > > diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile_1.0.bb
-> > > index 6208f21..a276140 100644
-> > > --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile_1.0.bb
-> > > +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> > makefile_1.0.bb
-> > > @@ -16,7 +16,7 @@ SRC_URI = "\
-> > >      file://Makefile_linux \
-> > >      file://Makefile_u-boot-legacy \
-> > >      file://Makefile_matrix-gui \
-> > > -    file://Makefile_am-benchmarks \
-> > > +    file://Makefile_arm-benchmarks \
-> > >      file://Makefile_am-sysinfo \
-> > >      file://Makefile_av-examples \
-> > >      file://Makefile_u-boot-spl \
-> > > @@ -29,11 +29,11 @@ SRC_URI = "\
-> > >      file://Makefile_wireless \
-> > >  "
-> > >
-> > > -PR = "r1"
-> > > +PR = "r2"
-> > >
-> > >  MAKEFILES_COMMON = "linux \
-> > >                      matrix-gui \
-> > > -                    am-benchmarks \
-> > > +                    arm-benchmarks \
-> > >                      am-sysinfo \
-> > >                      matrix-gui-browser \
-> > >                      refresh-screen \
-> > > --
-> > > 1.7.0.4
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
