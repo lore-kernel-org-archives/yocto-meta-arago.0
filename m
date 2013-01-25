@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f42.google.com (mail-oa0-f42.google.com
-	[209.85.219.42])
-	by arago-project.org (Postfix) with ESMTPS id D6D11529E1
+Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
+	[209.85.219.41])
+	by arago-project.org (Postfix) with ESMTPS id AD58A529E1
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:58:50 +0000 (UTC)
-Received: by mail-oa0-f42.google.com with SMTP id j1so1067347oag.29
+	Fri, 25 Jan 2013 21:58:52 +0000 (UTC)
+Received: by mail-oa0-f41.google.com with SMTP id j6so1066744oag.0
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:58:50 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=gi44sFAcxE0A7A6oRlRbhOWYF7jhZG8RPDqnILEiOOs=;
-	b=DYdJFtKk7kjtJXSJJWdVEC+udHqZ0fxvLONKFeKejN5xJVrvC9UM1xHREMaojHAmxA
-	jEoHUqgUlImD62RybPpE3mdghIr0Ht/Aw75zHk67FfH4BUhLMKzU3ciAbQ4kBbvBWLgx
-	KdNQcKjVHBRa2+aP17m2aaReGXX/IKzK3Phn8eTpRKob3c3qDOdB8cyfgb+stYUMX6c7
-	chhCBWzfhin0kLRXOKotuAx2UEaeat1iaBFsEmrbmrfN2svcuZf8fessl5ICVLgz7QxO
-	ZysX6V8PI8D8jry/ga+lby+8IyE+QeADSJ5DqQ11LHBGxht5kiQGI22CqXeSBP/3nnvm
-	Y9MA==
-X-Received: by 10.60.171.146 with SMTP id au18mr5555716oec.108.1359151130012; 
-	Fri, 25 Jan 2013 13:58:50 -0800 (PST)
+	:references; bh=qUaQZXbvy1R3kV5J/+GOa/MvRj/qNvxQ/MYCQde1fSU=;
+	b=vDP5lLzlDJWz0R1QrgYotwGfYh43A6m9f452j1fK302PTLMMSMZzyWSTQhRAE+WxBD
+	Zbbh4fuwN60dWmWrm7DVbYE/5k6mKblOBA1rVYy1njE9cFpibugrPikh83b8WhDixBYz
+	/Zi9/JPYaXyU424K//MiyY8jphPBXtMfK/IiTYpR6dd60OQy70CizGTnS9nIp9ql63jG
+	ptUNzZ+FH9BRdssv5jAUynNGoX/XuNiR9ssrA+sAnTpUNe6kwtyjGzaVsd8NSQGXZwbD
+	xcwEUAV5bbRsupkxvJsBklhZK6GXf8DubxfoOi41kv5dBUO9zt7BLAHCgLAdRwXAAIDs
+	t15w==
+X-Received: by 10.182.162.66 with SMTP id xy2mr5629886obb.82.1359151131911;
+	Fri, 25 Jan 2013 13:58:51 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.47
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.50
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:58:49 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:51 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:54:09 -0600
-Message-Id: <1359150851-23602-28-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:54:10 -0600
+Message-Id: <1359150851-23602-29-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 References: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 29/31] bash: Use non GPLv3 version of bash
+Subject: [PATCH 30/31] arago-image.inc: Use bash as shell instead of busybox
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,29 +43,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:58:51 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:58:52 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Select the version of bash that does not have a GPLv3 license.
+* There is a bug with ash when provided by busybox that results in certain
+  commands returning an incorrect value when called from within a script.
+
+Example:
+printf '%s' 'franklin' > /dev/null
+echo $?
+
+Executing the above statements on the command line prints 0 as expected. But
+running the same statements inside of a script prints 1.
+
+* By using bash for the shell the above issue is fixed and so are similar bugs
+  that were discovered when a redirect to /dev/null is used.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    1 +
+ .../recipes-core/images/arago-image.inc            |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 5942909..8f0906d 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -80,6 +80,7 @@ PREFERRED_VERSION_crda = "1.1.1"
- PREFERRED_VERSION_obex = "0.34"
- PREFERRED_VERSION_bluez4 = "4.98"
- PREFERRED_VERSION_bluez-hcidump = "2.2"
-+PREFERRED_VERSION_bash = "3.2.48"
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
+index 1c5c85a..b2e0762 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -15,6 +15,7 @@ ARAGO_IMAGE_EXTRA_INSTALL ?= ""
  
- # Disable polkit's systemd configuration from meta-oe
- POLKITAUTH = ""
+ IMAGE_INSTALL += " \
+ 	task-core-boot \
++	bash \
+ 	${ROOTFS_PKGMANAGE} \
+ 	${ARAGO_IMAGE_EXTRA_INSTALL} \
+ "
 -- 
 1.7.0.4
 
