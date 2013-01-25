@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f42.google.com (mail-oa0-f42.google.com
-	[209.85.219.42])
-	by arago-project.org (Postfix) with ESMTPS id 68558529AA
+Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
+	[209.85.214.182])
+	by arago-project.org (Postfix) with ESMTPS id E17F452A9C
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:58:39 +0000 (UTC)
-Received: by mail-oa0-f42.google.com with SMTP id j1so1059662oag.1
+	Fri, 25 Jan 2013 21:58:41 +0000 (UTC)
+Received: by mail-ob0-f182.google.com with SMTP id uo13so1033236obb.27
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:58:38 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=c3ryWa38+/EUQxlHCcrhNhVTDBF3OIJz1ztZ8l15yu0=;
-	b=FQVm5M2pIqGrDHSQidpAB4nG0EYAzgnyHFRiWuK4zl4GBzFYxs8RWd4wM4L+S8XmAO
-	cep6wT5k2uYTJHfBwsKvGig45TFXqaUUJMlk2GkkDREodci0DyCNCaY3D71ObMskEggY
-	oLNJaaLTMIsft0IDnbIqH0M/wZcoYYfSiBAOn6C4qFipa5qV5oGkHHRmbsRurBBj46X/
-	W22AGyhDMd25ITElJGO1ofl74/3S+ejg985nrUYQ4iI5LOGNxjNW4GGfzb0e5YKF72cD
-	j+NGpuzfyEW/ifRGyeW4mqTzNck9FYoeobQXMh1JgV7ACpSwqFzIPMSQl+5CYU1Iix2b
-	3wYw==
-X-Received: by 10.60.2.135 with SMTP id 7mr5638453oeu.127.1359151118799;
-	Fri, 25 Jan 2013 13:58:38 -0800 (PST)
+	:references; bh=/tBsd6nwf5SM9k1z3ocsnP0hDNmMluStdCDma91bnsI=;
+	b=IueIITgeZB0AEOIDPTBwsPsoP15qT6ViyUNAc4lzYI9vzD1qLmwr/Osf6aXLKAekzM
+	6JBTooFNJOjufM+HOi7ZijuhbBYA43t5Pj+HvgTeV0+xQ/VJekRoJ1AJWsJg9qVhzgz1
+	G6Csd2t4NKlGkVEjj2TrWR24cKFqF4Nw4Xw1pfMxSecz/kQ5uqfld3z8slhtJODcvni+
+	cqr7NS4eKtUAmfPdq3zd9flPSNy0hg2yOyBF6dVImm3HmDadSaUzV7KXX08IA0NFb2RY
+	sC3fQCtrez03rqTX7t3EV7IDS1FYCEl8bYHKK7vHyYq58YA87BsuBaT6Ud0Ni4seX3az
+	+ieA==
+X-Received: by 10.60.169.105 with SMTP id ad9mr5587748oec.99.1359151120977;
+	Fri, 25 Jan 2013 13:58:40 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.37
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.38
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:58:37 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:39 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:54:03 -0600
-Message-Id: <1359150851-23602-22-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:54:04 -0600
+Message-Id: <1359150851-23602-23-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 References: <1359150851-23602-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 23/31] gst-plugins-good: Remove gconf dependency
+Cc: Michael Tadyshak <mtadyshak@ti.com>
+Subject: [PATCH 24/31] pinmux-utility: Pull in Pin Mux Utility v2.4.1.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,36 +43,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:58:39 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:58:42 -0000
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+From: Michael Tadyshak <mtadyshak@ti.com>
 
-* Remove gconf dependency. Gconf was bringing in unneeded GPLv3 components.
+* Update to AM335x design spreadsheet v0.89
+* Move MII Rx link signals to MISC category separate from IO Sets
+* Remove note about McASP voltage restraints
+* Remove PRU_PRUSS1 IO Sets
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Michael Tadyshak <mtadyshak@ti.com>
 ---
- .../gstreamer/gst-plugins-good_0.10.31.bbappend    |    6 ++++--
- 1 files changed, 4 insertions(+), 2 deletions(-)
+ ...tility_2.3.1.0.bb => pinmux-utility_2.4.1.0.bb} |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+ rename meta-arago-extras/recipes-devtools/pinmux-utility/{pinmux-utility_2.3.1.0.bb => pinmux-utility_2.4.1.0.bb} (76%)
 
-diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
-index 6f2a76c..0063885 100644
---- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
-+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-arago0"
-+PR_append = "-arago1"
+diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
+similarity index 76%
+rename from meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
+rename to meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
+index 6cd5b0c..c34f9fd 100644
+--- a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.3.1.0.bb
++++ b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
+@@ -5,14 +5,14 @@ COMPATIBLE_MACHINE = "am335x-evm|am37x-evm|am3517-evm|beagleboard"
  
- # The below changes are meant to mimic the patch
- # "gst-plugins-good: disable (uninstalled) examples" commit
-@@ -8,5 +8,7 @@ PR_append = "-arago0"
- # to the denzil branch
+ PR = "r0"
  
- DEPENDS := "${@oe_filter_out('gtk+','${DEPENDS}', d)}"
-+DEPENDS := "${@oe_filter_out('gconf','${DEPENDS}', d)}"
-+DEPENDS := "${@oe_filter_out('gconf-native','${DEPENDS}', d)}"
+-SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/815/5471/PinMuxUtility_v2_03_01_00.zip;name=base;subdir=${P}"
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/850/5562/PinMuxUtility_v2_04_01_00.zip;name=base;subdir=${P}"
  
--EXTRA_OECONF += "--disable-examples"
-+EXTRA_OECONF += "--disable-examples --disable-gconftool --disable-gconf"
+ # Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
+ # from the License Agreement screen when installing this application.
+ SRC_URI += "file://LICENSE"
+ 
+-SRC_URI[base.md5sum] = "31f28b06f72c042e5400fc53b4a29c0e"
+-SRC_URI[base.sha256sum] = "2b0de3592c5f4b803a207d092dba227d10e1af65e0d4f06e1d8d23f317a452f9"
++SRC_URI[base.md5sum] = "f65ec03bbbb9e14126ac8ce2795acede"
++SRC_URI[base.sha256sum] = "a95fe1b436419bf97bfdcc0b7ce95e497558ad81190d95dc0869ef9fc794094c"
+ 
+ S = "${WORKDIR}/${P}"
+ 
 -- 
 1.7.0.4
 
