@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
-	[209.85.214.170])
-	by arago-project.org (Postfix) with ESMTPS id 3D0C652A9C
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by arago-project.org (Postfix) with ESMTPS id A54FF52AE7
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:58:47 +0000 (UTC)
-Received: by mail-ob0-f170.google.com with SMTP id wp18so1047999obc.15
+	Fri, 25 Jan 2013 21:58:48 +0000 (UTC)
+Received: by mail-ob0-f176.google.com with SMTP id v19so1033865obq.35
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:58:46 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=q+Rm2DlmgZtVN37Z9DJCw5SAslryf29OvWXLlYt4dhs=;
-	b=jamBG3DA+ALcxbrO89YOW/khsaE/Rw/DaL3nLZ+aNDsZ8vdHQwVvc6oStH534s33Ah
-	twF58odtRKblil4N0Cbi1UCUCyM+G91Mu6AMJ5PAiZ3LFa8OqnsZjbwVHeZ0d7E45BdW
-	pqnFklDIIzk2j0/rCcLzogtbXtbnjyKs4pC/OAFPi+dh0WLkNIkeRuCp+Fqwp+AOfgGk
-	MA0qxPJrDLcHot4Fi0QCvTnYuUNr5qCY85xzX8jEXL/rynRxHhposaNfddJ3ndaBkshX
-	r/70+7kdf+6M/Lb/Z/qLb9H3dXMN7MBxG0S0m1adj/czMULEDQ47PcjUuhuVChLxhnJi
-	xmYA==
-X-Received: by 10.60.21.131 with SMTP id v3mr5787780oee.32.1359151126268;
-	Fri, 25 Jan 2013 13:58:46 -0800 (PST)
+	:references; bh=pPWk+HF1YQe2nSpd4xcSWg4zI+9cdBOcUVw5aWzjJlA=;
+	b=UzrvoCMHeeO7feiCsvFbTXcaU4Va7b81A81FwXPM8TbDhs27Thb/gHsI1MAXHWkd41
+	kmquptarzS0dXDHjChsehsfTFk9DWzBIbJpKotSbECJVJMDDr9ENq2k0klPpYFSNuuOw
+	rYnZxIvyOg+JX2p5gh3Nq78aKo4FORwjO24ZRCLEGJbwmNBR9RshCJGqbem+09PGbd5P
+	l7HmxdWabdvh/2kdt2h7lN1oODD56cNv9osl+RJKBfzz4dubX4ZVjlecVAW46XA/WMVw
+	9nPMBFzi47Vq8iuX8wuKzXI1smlDCmnzS5ZnBU7Q+KO7NmYmwv8VtlAXHqTg6/AVqgPq
+	8Tzw==
+X-Received: by 10.60.6.167 with SMTP id c7mr2758103oea.100.1359151127908;
+	Fri, 25 Jan 2013 13:58:47 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.44
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.46
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:58:45 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:47 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:54:07 -0600
-Message-Id: <1359150851-23602-26-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:54:08 -0600
+Message-Id: <1359150851-23602-27-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 References: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 27/31] tisdk-image.bbclass: Update manifest text
+Subject: [PATCH 28/31] bash: Mimic patch "Make it possible to run bash 3.2.48 instead of 4.2."
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,35 +43,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:58:47 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:58:49 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Update manifest text to be clear that the SDK contains TSU exempt software.
+* Duplicating bash_3.2.48.bb recipe to mimic changes done by the patch
+  "bash: Make it possible to run bash 3.2.48 instead of 4.2." commit id
+  "e7b82cb4d107bfbfa5c939d406dd6ce6615b24e1" from oe-core master/danny.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-extended/bash/bash_3.2.48.bb           |   23 ++++++++++++++++++++
+ 1 files changed, 23 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-extended/bash/bash_3.2.48.bb
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index bbccdc4..8ef8ad8 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -195,11 +195,11 @@ Your company is responsible for confirming the applicable license terms for any
- 
- <h2><b>Export Information</b></h2>
- <p>
--ECCN for Software included in this release: 5D002
-+ECCN for Software included in this release: 5D002 License Exception TSU
- </p>
- 
- <p>
--ECCN for Technology (e.g., user documentation, specifications) included in this release: 5D002
-+ECCN for Technology (e.g., user documentation, specifications) included in this release: 5D002 License Exception TSU
- </p>
- 
- <h2><b>Manifest</b></h2>
+diff --git a/meta-arago-extras/recipes-extended/bash/bash_3.2.48.bb b/meta-arago-extras/recipes-extended/bash/bash_3.2.48.bb
+new file mode 100644
+index 0000000..7fcaf78
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/bash/bash_3.2.48.bb
+@@ -0,0 +1,23 @@
++require ${COREBASE}/meta/recipes-extended/bash/bash.inc
++
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://COPYING;md5=fd5d9bcabd8ed5a54a01ce8d183d592a"
++
++PR = "r11"
++
++SRC_URI = "${GNU_MIRROR}/bash/bash-${PV}.tar.gz;name=tarball \
++           ${GNU_MIRROR}/bash/bash-3.2-patches/bash32-049;apply=yes;striplevel=0;name=patch001 \
++           ${GNU_MIRROR}/bash/bash-3.2-patches/bash32-050;apply=yes;striplevel=0;name=patch002 \
++           ${GNU_MIRROR}/bash/bash-3.2-patches/bash32-051;apply=yes;striplevel=0;name=patch003"
++
++SRC_URI[tarball.md5sum] = "338dcf975a93640bb3eaa843ca42e3f8"
++SRC_URI[tarball.sha256sum] = "128d281bd5682ba5f6953122915da71976357d7a76490d266c9173b1d0426348"
++SRC_URI[patch001.md5sum] = "af571a2d164d5abdcae4499e94e8892c"
++SRC_URI[patch001.sha256sum] = "b1217ed94bdb95dc878fa5cabbf8a164435eb0d9da23a392198f48566ee34a2f"
++SRC_URI[patch002.md5sum] = "8443d4385d73ec835abe401d90591377"
++SRC_URI[patch002.sha256sum] = "081bb03c580ecee63ba03b40beb3caf509eca29515b2e8dd3c078503609a1642"
++SRC_URI[patch003.md5sum] = "15c6653042e9814aa87120098fc7a849"
++SRC_URI[patch003.sha256sum] = "354886097cd95b4def77028f32ee01e2e088d58a98184fede9d3ce9320e218ef"
++
++SRC_URI[md5sum] = "338dcf975a93640bb3eaa843ca42e3f8"
++SRC_URI[sha256sum] = "128d281bd5682ba5f6953122915da71976357d7a76490d266c9173b1d0426348"
 -- 
 1.7.0.4
 
