@@ -1,35 +1,35 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
-	[209.85.214.172])
-	by arago-project.org (Postfix) with ESMTPS id 0C9C5529E1
+Received: from mail-ob0-f175.google.com (mail-ob0-f175.google.com
+	[209.85.214.175])
+	by arago-project.org (Postfix) with ESMTPS id 9600552AE2
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:58:18 +0000 (UTC)
-Received: by mail-ob0-f172.google.com with SMTP id tb18so731503obb.17
+	Fri, 25 Jan 2013 21:58:19 +0000 (UTC)
+Received: by mail-ob0-f175.google.com with SMTP id uz6so1024238obc.20
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:58:17 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=id9nn0B6d3X39Fz7euWmb2xYh039ysn54D1FXai1m6Q=;
-	b=0p6EyoYAiUI2PDlV3yDYhkTssl4EQQJkU6gJn0+laMUygKj9FaHn0c9O9yq2JbFBBl
-	nqYUTQlN6jB2EKckO4wZijIyeWhKJ6kQ/tQWBdr0zr/LKDusBH2R8gbMDdQaZqTFK55q
-	y6SnhP5JLYo4xrxYLSr41RQPviTLBrbFaj4prHpJRJoCQq5QHj/yaZu3upcVHoZCkps5
-	Sqd997S4XbmjRDEiIShFZ5597KedU33Wfj/YXqlMcddzvjG2pC2Mbp9XhkZHCk2WRLzs
-	57QKhqQMiHKWez2LirjbNygibgZfdmZUru9G5zZ+lJNXZGCDACQnDNSmR/dVMPhXrGFg
-	1MxQ==
-X-Received: by 10.60.30.201 with SMTP id u9mr5860411oeh.28.1359151097465;
-	Fri, 25 Jan 2013 13:58:17 -0800 (PST)
+	:references; bh=fYG3SVKfOejpQXrFtOknwfjNs12A8queNLrxUgZLXjI=;
+	b=BLrreJ4P8TRZHs+bIyPwz1OC6rCDEA9B5dLYjmnKs4xMA87atFtFDnsm1ug/LRhPXp
+	9scYzH5X2dzEVW+RuTJU7kgOXL9CeiRahYdszELPlOkeDprKYUOs/1aIapRreL/yUDcz
+	AOj5PZhaISkYGbEmsIEZuS3YnXGTDziR5kyf3CrB0KUCzeMhRt6FCJSb2wvY5E9wzPq3
+	rjaBIn48+xkv+H+0i5CTmoixmmkDmT/L1rRN5KsCizPCUNNilkBWsmhQvjKoFpjF482n
+	YDaHyVFkc+9t3A1o2DmI4kH/84Co3IjxDGlS2g/PgP825S5l0Btip4XnOkh0NI/QJKTi
+	Hi7w==
+X-Received: by 10.60.31.68 with SMTP id y4mr5764899oeh.121.1359151099046;
+	Fri, 25 Jan 2013 13:58:19 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.15
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.58.17
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:58:16 -0800 (PST)
+	Fri, 25 Jan 2013 13:58:18 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:53:51 -0600
-Message-Id: <1359150851-23602-10-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:53:52 -0600
+Message-Id: <1359150851-23602-11-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 References: <1359150851-23602-1-git-send-email-fcooper@ti.com>
-Subject: [PATCH 11/31] crypto-tasks: Add ti-crypto-examples
+Subject: [PATCH 12/31] ti-tisdk-makefile: add ti-crypto-examples targets
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,88 +42,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:58:18 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:58:19 -0000
 
 From: Chase Maupin <Chase.Maupin@ti.com>
 
-* Add the ti-crypto-examples package to the list of crypto
-  tasks for both the host and target.
-* Add the ti-crypto-examples package to the arago-source-ipk
-  conf file to generate the sourceipk.
+* Add the ti-crypto-examples targets to the TI SDK Makefile
+* Add the CC variable to the list of variables exported by
+  Rules.make to make cross compiling easier.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../conf/distro/arago-source-ipk.conf              |    3 +++
- .../tasks/task-arago-tisdk-crypto-sdk-host.bb      |   10 ++++++----
- .../recipes-core/tasks/task-arago-tisdk-crypto.bb  |    3 ++-
- 3 files changed, 11 insertions(+), 5 deletions(-)
+ .../ti-tisdk-makefile/Makefile_ti-crypto-examples  |   24 ++++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile/Rules.make |    4 +++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    4 ++-
+ 3 files changed, 31 insertions(+), 1 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index bbc0662..d23e564 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -46,6 +46,9 @@ SRCIPK_INSTALL_DIR_pn-ti-tisdk-licenses = "docs/licenses"
- CREATE_SRCIPK_pn-matrix-gui = "1"
- SRCIPK_INSTALL_DIR_pn-matrix-gui = "example-applications/${PN}-${PV}"
- 
-+CREATE_SRCIPK_pn-ti-crypto-examples = "1"
-+SRCIPK_INSTALL_DIR_pn-ti-crypto-examples = "example-applications/${PN}-${PV}"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
+new file mode 100644
+index 0000000..3588381
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
+@@ -0,0 +1,24 @@
++# ti-crypto-examples build targets
++ti-crypto-examples:
++	@echo =================================
++	@echo    Building TI Crypto Examples
++	@echo =================================
++	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make
 +
- CREATE_SRCIPK_pn-qml-carinfo = "1"
- SRCIPK_INSTALL_DIR_pn-qml-carinfo = "example-applications/${PN}-${PV}"
++ti-crypto-examples_clean:
++	@echo =================================
++	@echo    Cleaning TI Crypto Examples
++	@echo =================================
++	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make clean
++
++ti-crypto-examples_install:
++	@echo ===================================================
++	@echo   Installing TI Crypto Examples - Release version
++	@echo ===================================================
++	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make install
++
++ti-crypto-examples_install_debug:
++	@echo =================================================
++	@echo   Installing TI Crypto Examples - Debug Version
++	@echo =================================================
++	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
+index 1b0a347..296e4b5 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
+@@ -20,6 +20,10 @@ export LINUX_DEVKIT_PATH=$(TI_SDK_PATH)/linux-devkit
+ #Cross compiler prefix
+ export CROSS_COMPILE=$(LINUX_DEVKIT_PATH)/bin/arm-arago-linux-gnueabi-
  
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto-sdk-host.bb
-index 12e3362..aca04f9 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto-sdk-host.bb
-@@ -2,20 +2,22 @@ DESCRIPTION = "Task to install crypto sources in SDK"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++#Default CC value to be used when cross compiling.  This is so that the
++#GNU Make default of "cc" is not used to point to the host compiler
++export CC=$(CROSS_COMPILE)gcc
++
+ #Location of environment-setup file
+ export ENV_SETUP=$(LINUX_DEVKIT_PATH)/environment-setup
  
--PR = "r0"
-+PR = "r1"
- 
- inherit task
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- ALLOW_EMPTY = "1"
- 
--CRYPTO_RDEPENDS = ""
-+CRYPTO_RDEPENDS = " \
-+    ti-crypto-examples-src \
-+"
- 
--CRYPTO_RDEPENDS_am37x-evm = "\
-+CRYPTO_RDEPENDS_append_am37x-evm = "\
-     ti-ocf-crypto-module-src \
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 4691df4..c6cea95 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -17,6 +17,7 @@ SRC_URI = "\
+     file://Makefile_u-boot-legacy \
+     file://Makefile_matrix-gui \
+     file://Makefile_arm-benchmarks \
++    file://Makefile_ti-crypto-examples \
+     file://Makefile_am-sysinfo \
+     file://Makefile_av-examples \
+     file://Makefile_u-boot-spl \
+@@ -29,11 +30,12 @@ SRC_URI = "\
+     file://Makefile_wireless \
  "
  
--CRYPTO_RDEPENDS_am3517-evm = "\
-+CRYPTO_RDEPENDS_append_am3517-evm = "\
-     ti-ocf-crypto-module-src \
- "
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto.bb
-index 0adfc7a..32841d1 100644
---- a/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto.bb
-+++ b/meta-arago-distro/recipes-core/tasks/task-arago-tisdk-crypto.bb
-@@ -2,7 +2,7 @@ DESCRIPTION = "Task to install crypto packages into target FS"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r3"
++PR = "r4"
  
--PR = "r0"
-+PR = "r1"
- 
- inherit task
- 
-@@ -14,6 +14,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- CRYPTO_SUPPORT = "\
-     openssl \
-     openssl-misc \
-+    ti-crypto-examples \
-     "
- 
- # Add crypto hardware support for am37x-evm
+ MAKEFILES_COMMON = "linux \
+                     matrix-gui \
+                     arm-benchmarks \
++                    ti-crypto-examples \
+                     am-sysinfo \
+                     matrix-gui-browser \
+                     refresh-screen \
 -- 
 1.7.0.4
 
