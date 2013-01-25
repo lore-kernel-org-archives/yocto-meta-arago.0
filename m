@@ -1,34 +1,34 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
-	[209.85.219.54])
-	by arago-project.org (Postfix) with ESMTPS id C16E5529AA
+Received: from mail-oa0-f43.google.com (mail-oa0-f43.google.com
+	[209.85.219.43])
+	by arago-project.org (Postfix) with ESMTPS id C0820529AA
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 21:49:22 +0000 (UTC)
-Received: by mail-oa0-f54.google.com with SMTP id n9so1037879oag.27
+	Fri, 25 Jan 2013 21:54:19 +0000 (UTC)
+Received: by mail-oa0-f43.google.com with SMTP id n1so901625oag.2
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2013 13:49:22 -0800 (PST)
+	Fri, 25 Jan 2013 13:54:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=iYZpIW0IYaKRRchkxedvDfeZTVEsmhc8metigcQaCZQ=;
-	b=uVAAc/UafXX0mhZvUx+9c6PndO1AB0oz+srQIR6V4MMGi9FFpN+zfH7mrLtqzzSgF7
-	iHzw5mdcLMmI7BAqwufX5wwKVDD+oAV+lsn2ByuJcvUqO8Dee0EmdLeESq88mdqdMaho
-	86Ysa446lrzB2MzjLQMt8Y4ge6G2uSuYXaaiBX066uoy7ZrDjQUnApueLnaJ4ZHIwBeh
-	1gNE8CiiCSCUv4yY8FIs2cVIpJ9xLjWZv1ONXb7V2GuNH37wZg/RJHHWeG++zYvRLbMe
-	CqWKVticTzrsPujQLF7lZvAlJsl5R1IG1WWF6xNxp/J2G2nCE+kqOZ2nUflc45erBw01
-	VF7g==
-X-Received: by 10.60.169.240 with SMTP id ah16mr5898781oec.9.1359150562007;
-	Fri, 25 Jan 2013 13:49:22 -0800 (PST)
+	bh=Uh+fDiNRP9auXqZ47bO4tDclsi7zuU8hH3utaE4XCSE=;
+	b=DuXqhK/Ft5yIBcyCBWcEEWTEoiyfJXmAxK3TLJM9XXV87s9g5RzJr3duJZEu3X6II5
+	7Wf1KEf5nNZgEoFGHhc0DJkI9zf0OUdHgZL+5YxpmKQMvow9PVtGDK5FaykxoLNyIZ1i
+	7+bx00sJIac1NyXm5xqycZkFBw1fIb79B7K4xCxKuTFjUNb/Hh6trb5i1nBhH8ndxZWk
+	3Z8kRZpqEBSmSxvxOt37+QWPfnWIjYTjUqIWiXdsXVDdv3zRIj0v8DPEg/4vG0stSb1C
+	5SI4CDLW5zmcl6VlNiK+W8l6QMYY5kb10+cQRUfD8xpxNaGA/FkcEIobi6XUgsa6CEzf
+	EWcg==
+X-Received: by 10.60.169.133 with SMTP id ae5mr5590795oec.74.1359150859224;
+	Fri, 25 Jan 2013 13:54:19 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id 9sm1567151obi.22.2013.01.25.13.49.19
+	by mx.google.com with ESMTPS id y4sm1625632oea.7.2013.01.25.13.54.17
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 25 Jan 2013 13:49:20 -0800 (PST)
+	Fri, 25 Jan 2013 13:54:18 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2013 15:49:05 -0600
-Message-Id: <1359150545-23393-1-git-send-email-fcooper@ti.com>
+Date: Fri, 25 Jan 2013 15:53:42 -0600
+Message-Id: <1359150851-23602-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-Cc: Eyal Reizer <eyalr@ti.com>
-Subject: [PATCH 01/31] obexd: increase opp push timeout
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 02/31] bluez4: Re-enable hidd tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,84 +41,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 21:49:23 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 21:54:20 -0000
 
-From: Eyal Reizer <eyalr@ti.com>
+From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-Add a patch which increase the opp  timeout as current timeout
-is not long enough for users to confirm file reception.
-As a result, OPP client may exit with errors on some phone types.
+* The hidd tool was previously enabled in old Arago. This tool is used by the
+  wireless team.
+* Replace the disable configuration option with an enable to insure this tool
+  is built.
 
-Signed-off-by: Eyal Reizer <eyalr@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../0001-obexd-make-OPP-push-timeout-longer.patch  |   44 ++++++++++++++++++++
- .../recipes-connectivity/obexd/obexd_0.34.bbappend |    3 +-
- 2 files changed, 46 insertions(+), 1 deletions(-)
- create mode 100755 meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
+ .../bluez/bluez4_4.98.bbappend                     |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch b/meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
-new file mode 100755
-index 0000000..626f802
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
-@@ -0,0 +1,44 @@
-+From 5d6d09c2338ae62796c2a326340e81320faf3593 Mon Sep 17 00:00:00 2001
-+From: Vita Preskovsky <vitap@ti.com>
-+Date: Wed, 19 Sep 2012 13:05:18 +0200
-+Subject: [PATCH] obexd: make OPP push timeout longer
-+
-+Current OPP push timeout is not long enough for user to confirm on OPP server
-+to receive file. As a result, OPP client exists with error.
-+
-+
-+Signed-off-by: Vita Preskovsky <vitap@ti.com>
-+---
-+ plugins/bluetooth.c |    2 +-
-+ src/manager.c       |    2 +-
-+ 2 files changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/plugins/bluetooth.c b/plugins/bluetooth.c
-+index 851daa2..204ccf5 100644
-+--- a/plugins/bluetooth.c
-++++ b/plugins/bluetooth.c
-+@@ -46,7 +46,7 @@
-+ #define BT_RX_MTU 32767
-+ #define BT_TX_MTU 32767
-+ 
-+-#define TIMEOUT 60*1000 /* Timeout for user response (miliseconds) */
-++#define TIMEOUT 180*1000 /* Timeout for user response (miliseconds) */
-+ 
-+ struct pending_request {
-+ 	DBusPendingCall *call;
-+diff --git a/src/manager.c b/src/manager.c
-+index 80140b6..e64a433 100644
-+--- a/src/manager.c
-++++ b/src/manager.c
-+@@ -52,7 +52,7 @@
-+ #define TRANSFER_INTERFACE OPENOBEX_SERVICE ".Transfer"
-+ #define SESSION_INTERFACE OPENOBEX_SERVICE ".Session"
-+ 
-+-#define TIMEOUT 60*1000 /* Timeout for user response (miliseconds) */
-++#define TIMEOUT 180*1000 /* Timeout for user response (miliseconds) */
-+ 
-+ struct agent {
-+ 	char *bus_name;
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend b/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend
-index d51c9da..820e00f 100644
---- a/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/obexd/obexd_0.34.bbappend
-@@ -1,6 +1,7 @@
+diff --git a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.98.bbappend b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.98.bbappend
+index e829d3e..d111425 100644
+--- a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.98.bbappend
++++ b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.98.bbappend
+@@ -1,4 +1,4 @@
 -PR_append = "-arago0"
 +PR_append = "-arago1"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- SRC_URI += "file://0001-obexd-fix-UTF-conversions.patch \
-+            file://0001-obexd-make-OPP-push-timeout-longer.patch \
- "
+@@ -10,6 +10,8 @@ SRC_URI += "file://bluez4-fix-synchronization-between-bluetoothd-and-dr.patch \
+ # disabling hid2hci from bluez4.
+ EXTRA_OECONF := "${@oe_filter_out('--enable-hid2hci', '${EXTRA_OECONF}', d)}"
+ 
++EXTRA_OECONF := "${@'${EXTRA_OECONF}'.replace('--disable-hidd', '--enable-hidd')}"
++
+ DEPENDS += "libsndfile1"
+ 
+ # Add test/agent for testing
 -- 
 1.7.0.4
 
