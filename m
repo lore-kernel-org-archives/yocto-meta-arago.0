@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by arago-project.org (Postfix) with ESMTPS id 51A9852A99
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by arago-project.org (Postfix) with ESMTPS id EF27252A24
 	for <meta-arago@arago-project.org>;
-	Mon, 28 Jan 2013 17:26:20 +0000 (UTC)
-Received: by mail-oa0-f48.google.com with SMTP id h2so3035879oag.21
+	Mon, 28 Jan 2013 17:26:21 +0000 (UTC)
+Received: by mail-ob0-f177.google.com with SMTP id wc18so1697745obb.22
 	for <meta-arago@arago-project.org>;
-	Mon, 28 Jan 2013 09:26:19 -0800 (PST)
+	Mon, 28 Jan 2013 09:26:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=KMVjKykClHWTq8qTFqU3GgVlhrFv8VI0YdmGvQcYuQU=;
-	b=PMwDVzJTPHd+zfvnV+A+HRsaeX92Voh5TAiMqUNtXQBBf/gkfy3STIwGvDBTqyKfPo
-	XdKYtqC2x5P0r0XHKJRq9VNVpu+cTLooYrRPAdTwVRFT7RWjgZ6YYyVxjxzYl4Suoi2L
-	1HRI3mh53abT7t49p3JKV35Dqc0Kz5IH+Tgt94pmhXC5cEghoLoMfJ3amIdwTJe8Eotu
-	j1Ga95RQnk05iXPELLBJNzWjsZJTkDB0slGvoS/2gXniQZkekE3fDOnpkwXleJr8bGfb
-	/jqywq+gOZVVAvWFTVX7+Ek9/abOGGWJ5XpxvGtS7DtVDAaOgJAAciXLSbk8HCfqz8kP
-	4w4A==
-X-Received: by 10.60.0.136 with SMTP id 8mr11709503oee.35.1359393979868;
-	Mon, 28 Jan 2013 09:26:19 -0800 (PST)
+	:references; bh=NdDZv/qgckgV26xKZ+HapNIvKpO5+bxzUJUDydhovis=;
+	b=z4i6vJ+I8E30oNE/eEuZdKeeOUgIGNUrFm61L8UexgOHCZIZ/xTOMkiVs6mw8Cmm5C
+	GjiezvCKIeCEEwpiFD3hmaRMg1yysNvGlxZ949o0MvRxP0f8TbCAbnWDna77205MGBsO
+	WF1Hn2BmGhStw/SEwk2FJzXBDGwznnU0AE6u4ZGlrK0Z0sSNy16WJkwH+5uARSBQj4/H
+	kj1tmEP5biX7/T880pA2BUWN6XjC9+jQg+r98cUPlZR+0vSdmV8Sg+pj0pf1SdhL6fzO
+	GPOrv4YBJQQLhLnQu+24xmNBU/KgivnlRtNfBgcebDgwN1imUzBiXIYK8FGlO433qYl7
+	gb1g==
+X-Received: by 10.60.1.8 with SMTP id 8mr11562507oei.42.1359393981546;
+	Mon, 28 Jan 2013 09:26:21 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m3sm8149180obm.21.2013.01.28.09.26.18
+	by mx.google.com with ESMTPS id m3sm8149180obm.21.2013.01.28.09.26.19
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 28 Jan 2013 09:26:18 -0800 (PST)
+	Mon, 28 Jan 2013 09:26:20 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 28 Jan 2013 11:25:23 -0600
-Message-Id: <1359393932-31361-23-git-send-email-fcooper@ti.com>
+Date: Mon, 28 Jan 2013 11:25:24 -0600
+Message-Id: <1359393932-31361-24-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359393932-31361-1-git-send-email-fcooper@ti.com>
 References: <1359393932-31361-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 23/32] dosfstools: Increase FAT partition size and large file support
+Subject: [PATCH 24/32] oprofile-example: Use updated PACKAGE_STRIP syntax
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,31 +43,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2013 17:26:20 -0000
+X-List-Received-Date: Mon, 28 Jan 2013 17:26:22 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Add large file and partition support.
-* Previously fat partitions were limited to 1GB.
-* Adding CFLAGS to fix the file and partition size limit.
-
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../dosfstools/dosfstools_2.11.bbappend            |    5 +++++
- 1 files changed, 5 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-devtools/dosfstools/dosfstools_2.11.bbappend
+ .../oprofile-example/oprofile-example_git.bb       |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/dosfstools/dosfstools_2.11.bbappend b/meta-arago-extras/recipes-devtools/dosfstools/dosfstools_2.11.bbappend
-new file mode 100644
-index 0000000..52a539b
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/dosfstools/dosfstools_2.11.bbappend
-@@ -0,0 +1,5 @@
-+PR_append = "-arago0"
-+
-+# Add large file support and increase allowable FAT partition size.
-+CFLAGS_append = " -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
-+CFLAGS_append_libc-uclibc = ' ${@base_contains("DISTRO_FEATURES", "largefile", "-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64", "", d)}'
+diff --git a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
+index 79278fb..681a47d 100644
+--- a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
++++ b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
+@@ -5,9 +5,9 @@ LIC_FILES_CHKSUM = "file://signal_parent.c;beginline=1;endline=37;md5=3c72149bb4
+ 
+ SECTION = "system"
+ 
+-PACKAGE_STRIP = "no"
++INHIBIT_PACKAGE_STRIP = "1"
+ 
+-PR = "r0"
++PR = "r1"
+ 
+ BRANCH ?= "master"
+ SRCREV = "875147fcaf0706f91b1bcbf9d80821de78257955"
 -- 
 1.7.0.4
 
