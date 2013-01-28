@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
-	[209.85.214.177])
-	by arago-project.org (Postfix) with ESMTPS id E204252A79
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by arago-project.org (Postfix) with ESMTPS id BF17252A85
 	for <meta-arago@arago-project.org>;
-	Mon, 28 Jan 2013 17:26:00 +0000 (UTC)
-Received: by mail-ob0-f177.google.com with SMTP id wc18so1690155obb.8
+	Mon, 28 Jan 2013 17:26:02 +0000 (UTC)
+Received: by mail-ob0-f178.google.com with SMTP id wd20so2488046obb.9
 	for <meta-arago@arago-project.org>;
-	Mon, 28 Jan 2013 09:26:00 -0800 (PST)
+	Mon, 28 Jan 2013 09:26:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=jWAy/u0A5k3WshmPTsQZxqkrMmSalKPTDjwMGmIzgEg=;
-	b=c5ctK5Wz2lvA8qtnUdnpmU1rEe88QYfieDb5aWKPzofnAmivO4iQXr5O42+wsnp4gD
-	VA8H4gQNRNjJ+TKXq+oTCP6D//Kha8C1f+8owuzc5/qCDJdlcLyqWVb4Ukacf/G1Q0/y
-	Gi2x6hM4nwPHrGGmmhO7GPRw6ZqdOmEl31lrcddAEVujToxZdKUlb7b7qqKUC9RicK1f
-	H99PytAPa322Y/Fe9Xg2RSwNR8GVndT0BZBUX3+eN2JcwE0RKxcT/BNrugTUspSSzJ8p
-	tawpmRqWOGncu61v5Q+dIEKL2z+84UujP4rtrC2biaNvu9GRxonjOce9cNkuH0XGyDX+
-	8vOQ==
-X-Received: by 10.60.31.205 with SMTP id c13mr11631560oei.135.1359393960489;
-	Mon, 28 Jan 2013 09:26:00 -0800 (PST)
+	:references; bh=hcvsw/adxSOCafuY24mubV/atxVn7a5ftan779qz98A=;
+	b=cx9yBiIin1qWftnunk14XZ2D2WOPhl2MdfpCk2r7PG1Mn3qUUcFeZboYs8DIUCrh7J
+	WkYd7JXCQZskcJjOko84v1zxV0sDiFW2xnQpLTUCTpltGkZmoUTKJJaLc/gDDm77vpoc
+	qkOcJ5zXwiet8EfJ+GRUlWbnkjgdoDaeGPiEbZDTx/+B36jtsKw53XSDye5qIsLrWbZD
+	5/tRlodpYpf4rllRMj9rj23mG7pctNetZ4/SNAFvhTb3ghCVpDGTqi1S7cnXQNznKPFn
+	oKMGuaK+VHnvcgCqyddkvrKWYrc3Qg1PUawa96j2F+RsEsDsXmKxZl4K+7JR8A28Hbuv
+	9QCg==
+X-Received: by 10.60.169.207 with SMTP id ag15mr11573067oec.120.1359393962196; 
+	Mon, 28 Jan 2013 09:26:02 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id m3sm8149180obm.21.2013.01.28.09.25.58
+	by mx.google.com with ESMTPS id m3sm8149180obm.21.2013.01.28.09.26.00
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 28 Jan 2013 09:25:59 -0800 (PST)
+	Mon, 28 Jan 2013 09:26:01 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 28 Jan 2013 11:25:12 -0600
-Message-Id: <1359393932-31361-12-git-send-email-fcooper@ti.com>
+Date: Mon, 28 Jan 2013 11:25:13 -0600
+Message-Id: <1359393932-31361-13-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1359393932-31361-1-git-send-email-fcooper@ti.com>
 References: <1359393932-31361-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 12/32] matrix-gui-apps-git: Pull in latest Matrix Apps changes
+Subject: [PATCH 13/32] matrix-gui-crypto-demos: Switch to C base crypto applications
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,33 +43,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2013 17:26:01 -0000
+X-List-Received-Date: Mon, 28 Jan 2013 17:26:03 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Pull in a change to use scripts for crypto demos.
+* Matrix crypto applications are now C based.
+* Add RDEPENDS to ti-crypto-examples since that package now provides the C
+  application.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+ .../matrix/matrix-gui-crypto-demos_2.0.bb          |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 050ad2b..3f69d35 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+index 1e7fd42..7d8f319 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+@@ -4,13 +4,13 @@ LICENSE = "CC-BY-SA"
  
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "e739979100810a09a2157682e9000e40e99edbc3"
-+SRCREV = "06b699311af0729eb327563f2e0b35570932a990"
- BRANCH = "master"
--INC_PR = "r8"
-+INC_PR = "r9"
+ require matrix-gui-apps-git.inc
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+-PR = "${INC_PR}.1"
++PR = "${INC_PR}.2"
+ 
+ inherit allarch
+ 
+ S = "${WORKDIR}/git/cryptos_apps"
+ 
+ # Make sure crypto submenu and app images has been installed. Also make sure openssl is available
+-RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl"
++RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl ti-crypto-examples"
+ 
+ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
 -- 
 1.7.0.4
 
