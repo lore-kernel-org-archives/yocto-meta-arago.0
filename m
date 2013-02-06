@@ -1,30 +1,30 @@
 Return-Path: <zhoujt@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 9F18952A1C
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id EF5F652A1C
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Feb 2013 21:15:18 +0000 (UTC)
+	Wed,  6 Feb 2013 21:15:45 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r16LFH0v008724
-	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:15:17 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r16LFHa4001599
-	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:15:17 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r16LFj30010132
+	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:15:45 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r16LFjBs001965
+	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:15:45 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Wed, 6 Feb 2013 15:15:17 -0600
+	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
+	14.01.0323.003; Wed, 6 Feb 2013 15:15:44 -0600
 From: "Zhou, Jingting" <zhoujt@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: lldpd recipe 
-Thread-Index: Ac4ErwgIELQDXc23QTSZpUsNSo2mdQ==
-Date: Wed, 6 Feb 2013 21:15:17 +0000
-Message-ID: <3C08AEEB3C731745938BC83D029FE5E3917A18@DFLE09.ent.ti.com>
+Thread-Topic: lzo recipe
+Thread-Index: Ac4ErxbwEGmwxkLfT4GyTjlraUvw8A==
+Date: Wed, 6 Feb 2013 21:15:44 +0000
+Message-ID: <3C08AEEB3C731745938BC83D029FE5E3917A22@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 11 Feb 2013 19:51:16 +0000
-Subject: lldpd recipe
+Subject: lzo recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,26 +37,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 21:15:18 -0000
-X-Groupsio-MsgNum: 846
+X-List-Received-Date: Wed, 06 Feb 2013 21:15:46 -0000
+X-Groupsio-MsgNum: 847
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_"
+	boundary="_004_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_"
 
---_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
+--_004_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_
 Content-Type: multipart/alternative;
-	boundary="_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_"
+	boundary="_000_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_"
 
---_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
+--_000_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hey all, attached is the recipe for lldpd. Please take a look. Thanks~
+Hey all, attached is the recipe for lzo. Please take a look. Thanks~
 
 Jingting Zhou
 
 
---_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
+--_000_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -116,8 +116,8 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hey all, attached is the recipe for lldpd. Please ta=
-ke a look. Thanks~<o:p></o:p></p>
+<p class=3D"MsoNormal">Hey all, attached is the recipe for lzo. Please take=
+ a look. Thanks~<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Jingting Zhou<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
@@ -125,50 +125,54 @@ ke a look. Thanks~<o:p></o:p></p>
 </body>
 </html>
 
---_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_--
+--_000_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_--
 
---_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
-Content-Type: application/octet-stream; name="0001-lldpd-recipe.patch"
-Content-Description: 0001-lldpd-recipe.patch
-Content-Disposition: attachment; filename="0001-lldpd-recipe.patch";
-	size=1974; creation-date="Wed, 06 Feb 2013 21:14:43 GMT";
-	modification-date="Wed, 06 Feb 2013 21:01:03 GMT"
+--_004_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_
+Content-Type: application/octet-stream; name="0001-lzo-recipe.patch"
+Content-Description: 0001-lzo-recipe.patch
+Content-Disposition: attachment; filename="0001-lzo-recipe.patch"; size=2213;
+	creation-date="Wed, 06 Feb 2013 21:15:26 GMT";
+	modification-date="Wed, 06 Feb 2013 21:01:57 GMT"
 Content-Transfer-Encoding: base64
 
-RnJvbSBiNDMxZmM3YmEyMWJjZTk3YzZjYTRiOTRmZTQ2Nzg2NGYzNzNmY2YzIE1vbiBTZXAgMTcg
+RnJvbSA2NzcxYmU3NDEyNDhjOWQ3MWZiODYzNjAwMWNkZWM2NTE0YzRjMDY1IE1vbiBTZXAgMTcg
 MDA6MDA6MDAgMjAwMQpGcm9tOiBKaW5ndGluZyBaaG91IDxhMDIyMTAwNEBhcmVzLXVidW50dT4K
-RGF0ZTogV2VkLCA2IEZlYiAyMDEzIDE2OjAwOjQxIC0wNTAwClN1YmplY3Q6IFtQQVRDSF0gbGxk
-cGQgcmVjaXBlCgotLS0KIC4uLi9yZWNpcGVzLWNvbm5lY3Rpdml0eS9sbGRwZC9sbGRwZF8wLjUu
-Ny5iYiAgICAgIHwgICAzOCArKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDM4
-IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDc1NSBtZXRhLWFyYWdvLWRpc3Ryby9yZWNp
-cGVzLWNvbm5lY3Rpdml0eS9sbGRwZC9sbGRwZF8wLjUuNy5iYgoKZGlmZiAtLWdpdCBhL21ldGEt
-YXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2xsZHBkL2xsZHBkXzAuNS43LmJiIGIv
-bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb25uZWN0aXZpdHkvbGxkcGQvbGxkcGRfMC41Ljcu
-YmIKbmV3IGZpbGUgbW9kZSAxMDA3NTUKaW5kZXggMDAwMDAwMC4uYjdiZWYyMgotLS0gL2Rldi9u
-dWxsCisrKyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2xsZHBkL2xs
-ZHBkXzAuNS43LmJiCkBAIC0wLDAgKzEsMzggQEAKK0RFU0NSSVBUSU9OID0gIkxMRFAgKExpbmsg
-TGF5ZXIgRGlzY292ZXJ5IFByb3RvY29sKSAoYS5rLmEgODAyLjFhYikgaXMgYW4gaW5kdXN0cnkg
-c3RhbmRhcmQgcHJvdG9jb2wgZGVzaWduZWQgdG8gc3VwcGxhbnQgcHJvcHJpZXRhcnkgTGluay1M
-YXllciBwcm90b2NvbHMgc3VjaCBhcyBFeHRyZW1lJ3MgRURQIChFeHRyZW1lIERpc2NvdmVyeSBQ
-cm90b2NvbCkgYW5kIENEUCAoQ2lzY28gRGlzY292ZXJ5IFByb3RvY29sKS4gTExEUEQgaXMgYSBs
-bGRwIGRhZW1vbiBmb3IgR05VL0xpbnV4IGFuZCBpbXBsZW1lbnRzIGJvdGggcmVjZXB0aW9uIGFu
-ZCBzZW5kaW5nIgorSE9NRVBBR0UgPSAiIgorU0VDVElPTiA9ICIiCitMSUNFTlNFID0gIiIKK0xJ
-Q19GSUxFU19DSEtTVU0gPSAiIgorI0RFUEVORFMgPSAibGliZXZlbnQiCitERVBFTkRTID0gIiIK
-KworUFIgPSAicjEiCitQViA9ICIwLjUuNyIKK0xJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL01h
-a2VmaWxlLmluO2VuZGxpbmU9MTQ7bWQ1PWQ0YWU0NmNkZDgzYzlkZWI1ODg5NzhkMzI3NWZmOGVl
-IgorU1JDX1VSSSA9ICJodHRwOi8vbWVkaWEubHVmZnkuY3gvZmlsZXMvbGxkcGQvbGxkcGQtJHtQ
-Vn0udGFyLmd6IgorU1JDX1VSSVttZDVzdW1dID0gIjNkYjNhODBmYTZhMzg0Y2Q1OWU5ZDZhNDJj
-ZTdiNjMwIgorU1JDX1VSSVtzaGEyNTZzdW1dID0gImI4YzNkYTE5ZTkxZjg0MTZhYWZiMDRlZWQ1
-N2M1NDAzODRhN2RlYTFmZjk4ZTI2YjliYjI5MDdjNzJlOWEwZTgiCisKK2luaGVyaXQgYXV0b3Rv
-b2xzCisKK1MgPSAiJHtXT1JLRElSfS9sbGRwZC0ke1BWfSIKKworIyBUaGlzIGlzIG5lZWRlZCBv
-bmx5IGZvciBjb2RlIHNvdXJjZXJ5IHRvb2xjaGFpbgorZG9fY29uZmlndXJlKCkgeworCW9lX3J1
-bmNvbmYgYWNfY3ZfY2ZsYWdzX2djY19vcHRpb25fX2ZzdGFja19wcm90ZWN0b3I9bm8KK30KKwor
-ZG9faW5zdGFsbCAoKSB7CisgICBERVNURElSPSR7RH0gb2VfcnVubWFrZSBpbnN0YWxsCit9CisK
-K3BrZ19wb3N0aW5zdCgpIHsKKyAgICAgICAgaWYgWyAieCREIiAhPSAieCIgXTsgdGhlbgorICAg
-ICAgICAgICAgICAgIGV4aXQgMQorICAgICAgICBmaQorICAgICAgICBhZGRncm91cCBfbGxkcGQK
-KyAgICAgICAgYWRkdXNlciAtLXN5c3RlbSAtLWhvbWUgL3Zhci9saWIvX2xsZHBkIC0tbm8tY3Jl
-YXRlLWhvbWUgLS1pbmdyb3VwIF9sbGRwZCAtLWRpc2FibGVkLXBhc3N3b3JkIC1zIC9iaW4vZmFs
-c2UgX2xsZHBkCisgICAgICAgIG1rZGlyIC1wICR7bG9jYWxzdGF0ZWRpcn0vc2hhcmUvZW1wdHkK
-K30KKworU0VDVElPTiA9ICJuZXQiIAotLSAKMS43LjkuNQoK
+RGF0ZTogV2VkLCA2IEZlYiAyMDEzIDE2OjAxOjM2IC0wNTAwClN1YmplY3Q6IFtQQVRDSF0gbHpv
+IHJlY2lwZQoKLS0tCiAuLi4vcmVjaXBlcy1jb25uZWN0aXZpdHkvbHpvL2x6bzJfMi4wMy5iYiAg
+ICAgICAgICB8ICAgMjMgKysrKysrKysrKysrKysrKysrKysKIC4uLi9yZWNpcGVzLWNvbm5lY3Rp
+dml0eS9sem8vbHpvXzEuMDguYmIgICAgICAgICAgIHwgICAxOSArKysrKysrKysrKysrKysrCiAy
+IGZpbGVzIGNoYW5nZWQsIDQyIGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDc1NSBtZXRh
+LWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvbm5lY3Rpdml0eS9sem8vbHpvMl8yLjAzLmJiCiBjcmVh
+dGUgbW9kZSAxMDA3NTUgbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb25uZWN0aXZpdHkvbHpv
+L2x6b18xLjA4LmJiCgpkaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb25u
+ZWN0aXZpdHkvbHpvL2x6bzJfMi4wMy5iYiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29u
+bmVjdGl2aXR5L2x6by9sem8yXzIuMDMuYmIKbmV3IGZpbGUgbW9kZSAxMDA3NTUKaW5kZXggMDAw
+MDAwMC4uZWU1NDBiMQotLS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
+ZXMtY29ubmVjdGl2aXR5L2x6by9sem8yXzIuMDMuYmIKQEAgLTAsMCArMSwyMyBAQAorREVTQ1JJ
+UFRJT04gPSAiTG9zc2xlc3MgZGF0YSBjb21wcmVzc2lvbiBsaWJyYXJ5IgorSE9NRVBBR0UgPSAi
+aHR0cDovL3d3dy5vYmVyaHVtZXIuY29tL29wZW5zb3VyY2UvbHpvLyIKK0xJQ0VOU0UgPSAiR1BM
+djIrIgorU0VDVElPTiA9ICJsaWJzIgorUFJJT1JJVFkgPSAib3B0aW9uYWwiCisKK1NSQ19VUkkg
+PSAiaHR0cDovL3d3dy5vYmVyaHVtZXIuY29tL29wZW5zb3VyY2UvbHpvL2Rvd25sb2FkL2x6by0k
+e1BWfS50YXIuZ3oiCitTUkNfVVJJW21kNXN1bV0gPSAiMGMzZDA3OGMyZThlYTVhODg5NzEwODlh
+MmYwMmE3MjYiCitTUkNfVVJJW3NoYTI1NnN1bV0gPSAiOGIxYjBkYThmNzU3YjlhYzMxOGUxYzE1
+YTBlYWM4YmRiNTZjYTkwMmEyZGQyNWJlZGEwNmMwZjI2NWYyMjU5MSIKKworUyA9ICIke1dPUktE
+SVJ9L2x6by0ke1BWfSIKKworaW5oZXJpdCBhdXRvdG9vbHMKKworRVhUUkFfT0VDT05GID0gIi0t
+ZW5hYmxlLXNoYXJlZCIKKworZG9fY29uZmlndXJlKCkgeworCWdudS1jb25maWdpemUgLS1mb3Jj
+ZQorCW9lX3J1bmNvbmYKK30KKworQkJDTEFTU0VYVEVORCA9ICJuYXRpdmUiCisKZGlmZiAtLWdp
+dCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2x6by9sem9fMS4wOC5i
+YiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2x6by9sem9fMS4wOC5i
+YgpuZXcgZmlsZSBtb2RlIDEwMDc1NQppbmRleCAwMDAwMDAwLi5lMjE4YTZjCi0tLSAvZGV2L251
+bGwKKysrIGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb25uZWN0aXZpdHkvbHpvL2x6b18x
+LjA4LmJiCkBAIC0wLDAgKzEsMTkgQEAKK0RFU0NSSVBUSU9OID0gIkxvc3NsZXNzIGRhdGEgY29t
+cHJlc3Npb24gbGlicmFyeSIKK0hPTUVQQUdFID0gImh0dHA6Ly93d3cub2Jlcmh1bWVyLmNvbS9v
+cGVuc291cmNlL2x6by8iCitMSUNFTlNFID0gIkdQTHYyIgorU0VDVElPTiA9ICJsaWJzIgorUFJJ
+T1JJVFkgPSAib3B0aW9uYWwiCitQUiA9ICJyMTUiCisKK0xJQ19GSUxFU19DSEtTVU0gPSAiZmls
+ZTovL01ha2VmaWxlLmluO2VuZGxpbmU9MTQ7bWQ1PTc2NGQyMjc1ZjQwZjFhNjcyMDU1NThkZDJh
+ZjkxNzA4IgorCitTUkNfVVJJID0gImh0dHA6Ly93d3cub2Jlcmh1bWVyLmNvbS9vcGVuc291cmNl
+L2x6by9kb3dubG9hZC9sem8tJHtQVn0udGFyLmd6IgorCitpbmhlcml0IGF1dG90b29scworCitF
+WFRSQV9PRUNPTkYgPSAiLS1lbmFibGUtc2hhcmVkIgorCitCQkNMQVNTRVhURU5EID0gIm5hdGl2
+ZSIKKworU1JDX1VSSVttZDVzdW1dID0gImFiOTRkM2RhMzY0YzdjYmQ1Yjc4ZDc2ZjE4NzViMGY2
+IgorU1JDX1VSSVtzaGEyNTZzdW1dID0gImJjZWFkNDZiMGJkODg3YzM5ODdlOTc3YTBhN2Q0YzU0
+N2IwZjcwZjkyNmQ0NWUyNTM3ODQxMzc1NjlmNTdiOWEiCi0tIAoxLjcuOS41Cgo=
 
---_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_--
+--_004_3C08AEEB3C731745938BC83D029FE5E3917A22DFLE09entticom_--
