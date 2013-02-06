@@ -1,30 +1,30 @@
 Return-Path: <zhoujt@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id EF1BF52A1C
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 9F18952A1C
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Feb 2013 21:14:22 +0000 (UTC)
+	Wed,  6 Feb 2013 21:15:18 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r16LEMrp027661
-	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:14:22 -0600
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r16LEMID032680
-	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:14:22 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r16LFH0v008724
+	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:15:17 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r16LFHa4001599
+	for <meta-arago@arago-project.org>; Wed, 6 Feb 2013 15:15:17 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Wed, 6 Feb 2013 15:14:22 -0600
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Wed, 6 Feb 2013 15:15:17 -0600
 From: "Zhou, Jingting" <zhoujt@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: lksctp-tools recipe
-Thread-Index: Ac4EruZWV/7QZ2ZuT9qr0Mb9vjwleg==
-Date: Wed, 6 Feb 2013 21:14:21 +0000
-Message-ID: <3C08AEEB3C731745938BC83D029FE5E3917A04@DFLE09.ent.ti.com>
+Thread-Topic: lldpd recipe 
+Thread-Index: Ac4ErwgIELQDXc23QTSZpUsNSo2mdQ==
+Date: Wed, 6 Feb 2013 21:15:17 +0000
+Message-ID: <3C08AEEB3C731745938BC83D029FE5E3917A18@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 11 Feb 2013 19:51:16 +0000
-Subject: lksctp-tools recipe
+Subject: lldpd recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,26 +37,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 21:14:23 -0000
-X-Groupsio-MsgNum: 845
+X-List-Received-Date: Wed, 06 Feb 2013 21:15:18 -0000
+X-Groupsio-MsgNum: 846
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_"
+	boundary="_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_"
 
---_004_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_
+--_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
 Content-Type: multipart/alternative;
-	boundary="_000_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_"
+	boundary="_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_"
 
---_000_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_
+--_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hey all, attached is the recipe for lksctp-tools. Please take a look. Thank=
-s~
+Hey all, attached is the recipe for lldpd. Please take a look. Thanks~
 
 Jingting Zhou
 
---_000_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_
+
+--_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -116,72 +116,59 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hey all, attached is the recipe for lksctp-tools. Pl=
-ease take a look. Thanks~<o:p></o:p></p>
+<p class=3D"MsoNormal">Hey all, attached is the recipe for lldpd. Please ta=
+ke a look. Thanks~<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Jingting Zhou<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 </body>
 </html>
 
---_000_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_--
+--_000_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_--
 
---_004_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_
-Content-Type: application/octet-stream;
-	name="0001-lksctp-tools-recipe.patch"
-Content-Description: 0001-lksctp-tools-recipe.patch
-Content-Disposition: attachment; filename="0001-lksctp-tools-recipe.patch";
-	size=2715; creation-date="Wed, 06 Feb 2013 21:13:30 GMT";
-	modification-date="Wed, 06 Feb 2013 21:00:03 GMT"
+--_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_
+Content-Type: application/octet-stream; name="0001-lldpd-recipe.patch"
+Content-Description: 0001-lldpd-recipe.patch
+Content-Disposition: attachment; filename="0001-lldpd-recipe.patch";
+	size=1974; creation-date="Wed, 06 Feb 2013 21:14:43 GMT";
+	modification-date="Wed, 06 Feb 2013 21:01:03 GMT"
 Content-Transfer-Encoding: base64
 
-RnJvbSBiMzZlOWU1ZGFhYWEyNDI3MGRmZmJhNTdhZTRhZjM2OTRkMGMyNWU5IE1vbiBTZXAgMTcg
+RnJvbSBiNDMxZmM3YmEyMWJjZTk3YzZjYTRiOTRmZTQ2Nzg2NGYzNzNmY2YzIE1vbiBTZXAgMTcg
 MDA6MDA6MDAgMjAwMQpGcm9tOiBKaW5ndGluZyBaaG91IDxhMDIyMTAwNEBhcmVzLXVidW50dT4K
-RGF0ZTogV2VkLCA2IEZlYiAyMDEzIDE1OjU5OjQ3IC0wNTAwClN1YmplY3Q6IFtQQVRDSF0gbGtz
-Y3RwLXRvb2xzIHJlY2lwZQoKLS0tCiAuLi4vbGtzY3RwLXRvb2xzL2xrc2N0cC10b29scy5pbmMg
-ICAgICAgICAgICAgICAgICB8ICAgNDYgKysrKysrKysrKysrKysrKysrKysKIC4uLi9sa3NjdHAt
-dG9vbHMvbGtzY3RwLXRvb2xzXzEuMC43LmJiICAgICAgICAgICAgIHwgICAgOSArKysrCiAyIGZp
-bGVzIGNoYW5nZWQsIDU1IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDc1NSBtZXRhLWFy
-YWdvLWRpc3Ryby9yZWNpcGVzLWNvbm5lY3Rpdml0eS9sa3NjdHAtdG9vbHMvbGtzY3RwLXRvb2xz
-LmluYwogY3JlYXRlIG1vZGUgMTAwNzU1IG1ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVj
-dGl2aXR5L2xrc2N0cC10b29scy9sa3NjdHAtdG9vbHNfMS4wLjcuYmIKCmRpZmYgLS1naXQgYS9t
-ZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvbm5lY3Rpdml0eS9sa3NjdHAtdG9vbHMvbGtzY3Rw
-LXRvb2xzLmluYyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2xrc2N0
-cC10b29scy9sa3NjdHAtdG9vbHMuaW5jCm5ldyBmaWxlIG1vZGUgMTAwNzU1CmluZGV4IDAwMDAw
-MDAuLjFkYjM4OWMKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVz
-LWNvbm5lY3Rpdml0eS9sa3NjdHAtdG9vbHMvbGtzY3RwLXRvb2xzLmluYwpAQCAtMCwwICsxLDQ2
-IEBACitERVNDUklQVElPTiA9ICJUaGUgTGludXggS2VybmVsIFN0cmVhbSBDb250cm9sIFRyYW5z
-bWlzc2lvbiBQcm90b2NvbCAobGtzY3RwKSBwcm9qZWN0IgorU0VDVElPTiA9ICJsaWJzIgorUFJJ
-T1JJVFkgPSAib3B0aW9uYWwiCitMSUNFTlNFID0gIkxHUEx2MiIKKworUyA9ICIke1dPUktESVJ9
-LyR7QlBOfS0ke1BWfSIKKworSU5DX1BSID0gInIyIgorCitCQkNMQVNTRVhURU5EID0gIm5hdGl2
-ZSIKKworaW5oZXJpdCBhdXRvdG9vbHMgcGtnY29uZmlnIGJpbmNvbmZpZworCitkb19pbnN0YWxs
-X2FwcGVuZF92aXJ0Y2xhc3MtbmF0aXZlKCkgeworCToKK30KKworUlJFUExBQ0VTID0gImxrc2N0
-cCIKKworTEVBRF9TT05BTUUgPSAibGlic2N0cC5zbyIKKworUEFDS0FHRVMgPSsgIiR7UE59LXdp
-dGhzY3RwICR7UE59LXV0aWxzIgorCitGSUxFU18ke1BOfSA9ICIke2xpYmV4ZWNkaXJ9LyogJHts
-aWJkaXJ9L2xpYioke1NPTElCU30gXAorICAgICAgICAgICAgJHtzeXNjb25mZGlyfSAke3NoYXJl
-ZHN0YXRlZGlyfSAke2xvY2Fsc3RhdGVkaXJ9IFwKKyAgICAgICAgICAgICR7YmFzZV9saWJkaXJ9
-Lyoke1NPTElCU30iCisKKyNGSUxFU18ke1BOfS13aXRoc2N0cCA9ICIgXAorIyAgJHtsaWJkaXJ9
-L2xrc2N0cC10b29scy9saWIqIgorCitGSUxFU18ke1BOfS1kZXYgKz0gIiBcCisgICR7ZGF0YWRp
-cn0vbGtzY3RwLXRvb2xzL2NoZWNrc2N0cC5jIFwKKyAgJHtkYXRhZGlyfS9sa3NjdHAtdG9vbHMv
-c2N0cF9zb2NrZXQuYyBcCisgICR7ZGF0YWRpcn0vbGtzY3RwLXRvb2xzL3NjdHBfYmluZC5jIFwK
-KyAgJHtkYXRhZGlyfS9sa3NjdHAtdG9vbHMvc2N0cF9kYXJuLmMgXAorICAke2RhdGFkaXJ9L2xr
-c2N0cC10b29scy9zY3RwX2xvYWRfbGlicy5jIFwKKyAgJHtkYXRhZGlyfS9sa3NjdHAtdG9vbHMv
-c2N0cF9zb2Nrb3B0LmMgXAorICAke2RhdGFkaXJ9L2xrc2N0cC10b29scy9zY3RwX3NvY2tldC5o
-IFwKKyAgJHtkYXRhZGlyfS9sa3NjdHAtdG9vbHMvc2N0cF90ZXN0LmMgXAorICAke2RhdGFkaXJ9
-L2xrc2N0cC10b29scy9zY3RwX2Rhcm4uaCIKKworRklMRVNfJHtQTn0tdXRpbHMgPSAiIFwKKyAg
-JHtiaW5kaXJ9L3NjdHBfdGVzdCBcCisgICR7YmluZGlyfS9zY3RwX2Rhcm4gXAorICAke2JpbmRp
-cn0vY2hlY2tzY3RwIFwKKyAgJHtiaW5kaXJ9L3dpdGhzY3RwIgpkaWZmIC0tZ2l0IGEvbWV0YS1h
-cmFnby1kaXN0cm8vcmVjaXBlcy1jb25uZWN0aXZpdHkvbGtzY3RwLXRvb2xzL2xrc2N0cC10b29s
-c18xLjAuNy5iYiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2xrc2N0
-cC10b29scy9sa3NjdHAtdG9vbHNfMS4wLjcuYmIKbmV3IGZpbGUgbW9kZSAxMDA3NTUKaW5kZXgg
-MDAwMDAwMC4uNzBiMzZmNQotLS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJhZ28tZGlzdHJvL3Jl
-Y2lwZXMtY29ubmVjdGl2aXR5L2xrc2N0cC10b29scy9sa3NjdHAtdG9vbHNfMS4wLjcuYmIKQEAg
-LTAsMCArMSw5IEBACityZXF1aXJlIGxrc2N0cC10b29scy5pbmMKK1BSID0gIiR7SU5DX1BSfS4w
-IgorCitTUkNfVVJJID0gIiR7U09VUkNFRk9SR0VfTUlSUk9SfS9sa3NjdHAvbGtzY3RwLXRvb2xz
-LSR7UFZ9LnRhci5neiIKKworTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vTWFrZWZpbGUuaW47
-ZW5kbGluZT0xNDttZDU9NzY0ZDIyNzVmNDBmMWE2NzIwNTU1OGRkMmFmOTE3MDgiCisKK1NSQ19V
-UklbbWQ1c3VtXSA9ICIwNDc1NjJiNDA1MzdlYjNiZTVkNWVjM2FlMGEyMTk4YiIKK1NSQ19VUklb
-c2hhMjU2c3VtXSA9ICJlOTIwZTg5ZDExMGNmZjk4NDdmMWQ4NmExZDdhMjNhMTU2YThhYmNjOWU2
-NWEzNTY1NWQ2ODdmZDA4Mzc3NTk1IgotLSAKMS43LjkuNQoK
+RGF0ZTogV2VkLCA2IEZlYiAyMDEzIDE2OjAwOjQxIC0wNTAwClN1YmplY3Q6IFtQQVRDSF0gbGxk
+cGQgcmVjaXBlCgotLS0KIC4uLi9yZWNpcGVzLWNvbm5lY3Rpdml0eS9sbGRwZC9sbGRwZF8wLjUu
+Ny5iYiAgICAgIHwgICAzOCArKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDM4
+IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDc1NSBtZXRhLWFyYWdvLWRpc3Ryby9yZWNp
+cGVzLWNvbm5lY3Rpdml0eS9sbGRwZC9sbGRwZF8wLjUuNy5iYgoKZGlmZiAtLWdpdCBhL21ldGEt
+YXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2xsZHBkL2xsZHBkXzAuNS43LmJiIGIv
+bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb25uZWN0aXZpdHkvbGxkcGQvbGxkcGRfMC41Ljcu
+YmIKbmV3IGZpbGUgbW9kZSAxMDA3NTUKaW5kZXggMDAwMDAwMC4uYjdiZWYyMgotLS0gL2Rldi9u
+dWxsCisrKyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L2xsZHBkL2xs
+ZHBkXzAuNS43LmJiCkBAIC0wLDAgKzEsMzggQEAKK0RFU0NSSVBUSU9OID0gIkxMRFAgKExpbmsg
+TGF5ZXIgRGlzY292ZXJ5IFByb3RvY29sKSAoYS5rLmEgODAyLjFhYikgaXMgYW4gaW5kdXN0cnkg
+c3RhbmRhcmQgcHJvdG9jb2wgZGVzaWduZWQgdG8gc3VwcGxhbnQgcHJvcHJpZXRhcnkgTGluay1M
+YXllciBwcm90b2NvbHMgc3VjaCBhcyBFeHRyZW1lJ3MgRURQIChFeHRyZW1lIERpc2NvdmVyeSBQ
+cm90b2NvbCkgYW5kIENEUCAoQ2lzY28gRGlzY292ZXJ5IFByb3RvY29sKS4gTExEUEQgaXMgYSBs
+bGRwIGRhZW1vbiBmb3IgR05VL0xpbnV4IGFuZCBpbXBsZW1lbnRzIGJvdGggcmVjZXB0aW9uIGFu
+ZCBzZW5kaW5nIgorSE9NRVBBR0UgPSAiIgorU0VDVElPTiA9ICIiCitMSUNFTlNFID0gIiIKK0xJ
+Q19GSUxFU19DSEtTVU0gPSAiIgorI0RFUEVORFMgPSAibGliZXZlbnQiCitERVBFTkRTID0gIiIK
+KworUFIgPSAicjEiCitQViA9ICIwLjUuNyIKK0xJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL01h
+a2VmaWxlLmluO2VuZGxpbmU9MTQ7bWQ1PWQ0YWU0NmNkZDgzYzlkZWI1ODg5NzhkMzI3NWZmOGVl
+IgorU1JDX1VSSSA9ICJodHRwOi8vbWVkaWEubHVmZnkuY3gvZmlsZXMvbGxkcGQvbGxkcGQtJHtQ
+Vn0udGFyLmd6IgorU1JDX1VSSVttZDVzdW1dID0gIjNkYjNhODBmYTZhMzg0Y2Q1OWU5ZDZhNDJj
+ZTdiNjMwIgorU1JDX1VSSVtzaGEyNTZzdW1dID0gImI4YzNkYTE5ZTkxZjg0MTZhYWZiMDRlZWQ1
+N2M1NDAzODRhN2RlYTFmZjk4ZTI2YjliYjI5MDdjNzJlOWEwZTgiCisKK2luaGVyaXQgYXV0b3Rv
+b2xzCisKK1MgPSAiJHtXT1JLRElSfS9sbGRwZC0ke1BWfSIKKworIyBUaGlzIGlzIG5lZWRlZCBv
+bmx5IGZvciBjb2RlIHNvdXJjZXJ5IHRvb2xjaGFpbgorZG9fY29uZmlndXJlKCkgeworCW9lX3J1
+bmNvbmYgYWNfY3ZfY2ZsYWdzX2djY19vcHRpb25fX2ZzdGFja19wcm90ZWN0b3I9bm8KK30KKwor
+ZG9faW5zdGFsbCAoKSB7CisgICBERVNURElSPSR7RH0gb2VfcnVubWFrZSBpbnN0YWxsCit9CisK
+K3BrZ19wb3N0aW5zdCgpIHsKKyAgICAgICAgaWYgWyAieCREIiAhPSAieCIgXTsgdGhlbgorICAg
+ICAgICAgICAgICAgIGV4aXQgMQorICAgICAgICBmaQorICAgICAgICBhZGRncm91cCBfbGxkcGQK
+KyAgICAgICAgYWRkdXNlciAtLXN5c3RlbSAtLWhvbWUgL3Zhci9saWIvX2xsZHBkIC0tbm8tY3Jl
+YXRlLWhvbWUgLS1pbmdyb3VwIF9sbGRwZCAtLWRpc2FibGVkLXBhc3N3b3JkIC1zIC9iaW4vZmFs
+c2UgX2xsZHBkCisgICAgICAgIG1rZGlyIC1wICR7bG9jYWxzdGF0ZWRpcn0vc2hhcmUvZW1wdHkK
+K30KKworU0VDVElPTiA9ICJuZXQiIAotLSAKMS43LjkuNQoK
 
---_004_3C08AEEB3C731745938BC83D029FE5E3917A04DFLE09entticom_--
+--_004_3C08AEEB3C731745938BC83D029FE5E3917A18DFLE09entticom_--
