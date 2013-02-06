@@ -1,33 +1,34 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 26C9052A4C
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 3027152A04
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Feb 2013 03:37:42 +0000 (UTC)
+	Wed,  6 Feb 2013 03:39:19 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r163beLD013670;
-	Tue, 5 Feb 2013 21:37:40 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r163dIXJ008325;
+	Tue, 5 Feb 2013 21:39:18 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r163bego022406;
-	Tue, 5 Feb 2013 21:37:40 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r163dIHq023718;
+	Tue, 5 Feb 2013 21:39:18 -0600
 Received: from DLEE09.ent.ti.com ([fe80::a026:b4ad:3e78:5ae5]) by
 	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Tue, 5 Feb 2013 21:37:40 -0600
+	14.01.0323.003; Tue, 5 Feb 2013 21:39:17 -0600
 From: "Dmytriyenko, Denys" <denys@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
 	"fcooperjr27@gmail.com" <fcooperjr27@gmail.com>
-Thread-Topic: [meta-arago] [PATCH 1/4] php: Rename bbappend to match recipe
-	in	meta-oe
-Thread-Index: AQHOBBGcE9KEFK/Xl027JtnTsoQUHJhsLn0Q
-Date: Wed, 6 Feb 2013 03:37:40 +0000
-Message-ID: <B0581B5571079145BA1CD78C126DBDE72E72ED80@DLEE09.ent.ti.com>
-References: <1360117678-4395-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1360117678-4395-1-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] [PATCH 2/4] nativesdk-qt4-tools: Use new native
+	x11	package name.
+Thread-Index: AQHOBBGuWgxo4NfjIkqMB4PNzOtf75hsLvLh
+Date: Wed, 6 Feb 2013 03:39:17 +0000
+Message-ID: <B0581B5571079145BA1CD78C126DBDE72E72EDB9@DLEE09.ent.ti.com>
+References: <1360117678-4395-1-git-send-email-fcooper@ti.com>,
+	<1360117678-4395-2-git-send-email-fcooper@ti.com>
+In-Reply-To: <1360117678-4395-2-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
 Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 1/4] php: Rename bbappend to match recipe in	meta-oe
+Subject: Re: [PATCH 2/4] nativesdk-qt4-tools: Use new native x11	package name.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,18 +41,17 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 03:37:42 -0000
+X-List-Received-Date: Wed, 06 Feb 2013 03:39:19 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_B0581B5571079145BA1CD78C126DBDE72E72ED80DLEE09entticom_"
+	boundary="_000_B0581B5571079145BA1CD78C126DBDE72E72EDB9DLEE09entticom_"
 
---_000_B0581B5571079145BA1CD78C126DBDE72E72ED80DLEE09entticom_
+--_000_B0581B5571079145BA1CD78C126DBDE72E72EDB9DLEE09entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Yeah, just had to do this earlier locally when fixing devkit... I'll push b=
-unch of patches soon to address those issues, but I'm still working on fina=
-lizing that...
+Didn't I push this already? I remember fixing this particular one few days =
+ago...
 
 
 Denys
@@ -62,49 +62,35 @@ From: fcooperjr27@gmail.com [fcooperjr27@gmail.com]
 Received: Tuesday, 05 Feb 2013, 20:28
 To: meta-arago@arago-project.org [meta-arago@arago-project.org]
 CC: Cooper Jr., Franklin [fcooper@ti.com]
-Subject: [meta-arago] [PATCH 1/4] php: Rename bbappend to match recipe in m=
-eta-oe
+Subject: [meta-arago] [PATCH 2/4] nativesdk-qt4-tools: Use new native x11 p=
+ackage name.
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
+* Nativesdk-libx11 has now been renamed to libx11-nativesdk.
+* This ensure the x11 package is filtered out which prevents parsing/build
+  errors due to x11 not being a distro feature.
+
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-devtools/php/php_5.3.19.bbappend       |    6 ++++++
- .../recipes-devtools/php/php_5.3.6.bbappend        |    6 ------
- 2 files changed, 6 insertions(+), 6 deletions(-)
- create mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.19.bbapp=
-end
- delete mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappe=
-nd
+ .../qt4/nativesdk-qt4-tools_4.8.3.bbappend         |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend b/m=
-eta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend
-new file mode 100644
-index 0000000..4c3fd39
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend
-@@ -0,0 +1,6 @@
-+# look for files in this layer first
-+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-+
-+PR_append =3D "-arago0"
-+
-+SRC_URI_append_virtclass-native =3D " file://0001-php-native-Fix-host-cont=
-amination-issue.patch"
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend b/me=
-ta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend
-deleted file mode 100644
-index 4c3fd39..0000000
---- a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend
-+++ /dev/null
-@@ -1,6 +0,0 @@
--# look for files in this layer first
--FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
--
--PR_append =3D "-arago0"
--
--SRC_URI_append_virtclass-native =3D " file://0001-php-native-Fix-host-cont=
-amination-issue.patch"
+diff --git a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bba=
+ppend b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend
+index 6296fbe..312571e 100644
+--- a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend
++++ b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend
+@@ -1,7 +1,7 @@
+-PR_append =3D "-arago2"
++PR_append =3D "-arago3"
+
+ # Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+ # For our distribution purposes we only use LGPLv2.1
+ LICENSE =3D "LGPLv2.1"
+
+-DEPENDS :=3D "${@oe_filter_out('nativesdk-libx11', '${DEPENDS}', d)}"
++DEPENDS :=3D "${@oe_filter_out('libx11-nativesdk', '${DEPENDS}', d)}"
 --
 1.7.0.4
 
@@ -113,7 +99,7 @@ meta-arago mailing list
 meta-arago@arago-project.org
 http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
---_000_B0581B5571079145BA1CD78C126DBDE72E72ED80DLEE09entticom_
+--_000_B0581B5571079145BA1CD78C126DBDE72E72EDB9DLEE09entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -129,9 +115,8 @@ ding-left: 4pt; border-left: #800000 2px solid; } --></style>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11p=
 t; color:black">
 <span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11=
-pt; color:black">Yeah, just had to do this earlier locally when fixing devk=
-it... I'll push bunch of patches soon to address those issues, but I'm stil=
-l working on finalizing that...<br>
+pt; color:black">Didn't I push this already? I remember fixing this particu=
+lar one few days ago...<br>
 <br>
 <br>
 Denys<br>
@@ -142,57 +127,45 @@ Denys<br>
 <b>Received:</b> Tuesday, 05 Feb 2013, 20:28<br>
 <b>To:</b> meta-arago@arago-project.org [meta-arago@arago-project.org]<br>
 <b>CC:</b> Cooper Jr., Franklin [fcooper@ti.com]<br>
-<b>Subject:</b> [meta-arago] [PATCH 1/4] php: Rename bbappend to match reci=
-pe in meta-oe<br>
+<b>Subject:</b> [meta-arago] [PATCH 2/4] nativesdk-qt4-tools: Use new nativ=
+e x11 package name.<br>
 <br>
 </span></span></div>
 <font size=3D"2"><span style=3D"font-size:10pt;">
 <div class=3D"PlainText">From: Franklin S. Cooper Jr &lt;fcooper@ti.com&gt;=
 <br>
 <br>
+* Nativesdk-libx11 has now been renamed to libx11-nativesdk.<br>
+* This ensure the x11 package is filtered out which prevents parsing/build<=
+br>
+&nbsp; errors due to x11 not being a distro feature.<br>
+<br>
 Signed-off-by: Franklin S. Cooper Jr &lt;fcooper@ti.com&gt;<br>
 ---<br>
-&nbsp;.../recipes-devtools/php/php_5.3.19.bbappend&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 6 &#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;.../recipes-devtools/php/php_5.3.6.bbappend&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 6 ------<br>
-&nbsp;2 files changed, 6 insertions(&#43;), 6 deletions(-)<br>
-&nbsp;create mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.19.=
-bbappend<br>
-&nbsp;delete mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.6.b=
-bappend<br>
+&nbsp;.../qt4/nativesdk-qt4-tools_4.8.3.bbappend&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 4 &#43;&#43;--<br>
+&nbsp;1 files changed, 2 insertions(&#43;), 2 deletions(-)<br>
 <br>
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend b/m=
-eta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend<br>
-new file mode 100644<br>
-index 0000000..4c3fd39<br>
---- /dev/null<br>
-&#43;&#43;&#43; b/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappen=
-d<br>
-@@ -0,0 &#43;1,6 @@<br>
-&#43;# look for files in this layer first<br>
-&#43;FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
-&#43;<br>
-&#43;PR_append =3D &quot;-arago0&quot;<br>
-&#43;<br>
-&#43;SRC_URI_append_virtclass-native =3D &quot; <a href=3D"file://0001-php-=
-native-Fix-host-contamination-issue.patch">
-file://0001-php-native-Fix-host-contamination-issue.patch</a>&quot;<br>
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend b/me=
-ta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend<br>
-deleted file mode 100644<br>
-index 4c3fd39..0000000<br>
---- a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend<br>
-&#43;&#43;&#43; /dev/null<br>
-@@ -1,6 &#43;0,0 @@<br>
--# look for files in this layer first<br>
--FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
--<br>
--PR_append =3D &quot;-arago0&quot;<br>
--<br>
--SRC_URI_append_virtclass-native =3D &quot; <a href=3D"file://0001-php-nati=
-ve-Fix-host-contamination-issue.patch">
-file://0001-php-native-Fix-host-contamination-issue.patch</a>&quot;<br>
+diff --git a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bba=
+ppend b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend=
+<br>
+index 6296fbe..312571e 100644<br>
+--- a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend<b=
+r>
+&#43;&#43;&#43; b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.=
+3.bbappend<br>
+@@ -1,7 &#43;1,7 @@<br>
+-PR_append =3D &quot;-arago2&quot;<br>
+&#43;PR_append =3D &quot;-arago3&quot;<br>
+&nbsp;<br>
+&nbsp;# Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)<br>
+&nbsp;# For our distribution purposes we only use LGPLv2.1<br>
+&nbsp;LICENSE =3D &quot;LGPLv2.1&quot;<br>
+&nbsp;<br>
+-DEPENDS :=3D &quot;${@oe_filter_out('nativesdk-libx11', '${DEPENDS}', d)}&=
+quot;<br>
+&#43;DEPENDS :=3D &quot;${@oe_filter_out('libx11-nativesdk', '${DEPENDS}', =
+d)}&quot;<br>
 -- <br>
 1.7.0.4<br>
 <br>
@@ -206,4 +179,4 @@ tp://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
 </body>
 </html>
 
---_000_B0581B5571079145BA1CD78C126DBDE72E72ED80DLEE09entticom_--
+--_000_B0581B5571079145BA1CD78C126DBDE72E72EDB9DLEE09entticom_--
