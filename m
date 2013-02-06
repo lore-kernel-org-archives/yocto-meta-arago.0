@@ -1,33 +1,29 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 3B20352A04
+Return-Path: <denis@denix.org>
+Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
+	[206.46.173.1])
+	by arago-project.org (Postfix) with ESMTP id 870F852A04
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Feb 2013 03:40:49 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r163emvI013982;
-	Tue, 5 Feb 2013 21:40:48 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r163emRD025187;
-	Tue, 5 Feb 2013 21:40:48 -0600
-Received: from DLEE09.ent.ti.com ([fe80::a026:b4ad:3e78:5ae5]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Tue, 5 Feb 2013 21:40:48 -0600
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	"fcooperjr27@gmail.com" <fcooperjr27@gmail.com>
-Thread-Topic: [meta-arago] [PATCH 1/4] php: Rename bbappend to match recipe
-	in	meta-oe
-Thread-Index: AQHOBBGcE9KEFK/Xl027JtnTsoQUHJhsL10O
-Date: Wed, 6 Feb 2013 03:40:47 +0000
-Message-ID: <B0581B5571079145BA1CD78C126DBDE72E72EDE8@DLEE09.ent.ti.com>
+	Wed,  6 Feb 2013 03:53:14 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173001.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MHS0081A5FUJ721@vms173001.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 05 Feb 2013 21:52:58 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 9F595200E2; Tue,
+	05 Feb 2013 22:52:42 -0500 (EST)
+Date: Tue, 05 Feb 2013 22:52:42 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Message-id: <20130206035242.GA1341@denix.org>
 References: <1360117678-4395-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1360117678-4395-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-MIME-Version: 1.0
-Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 1/4] php: Rename bbappend to match recipe in	meta-oe
+	<1360117678-4395-2-git-send-email-fcooper@ti.com>
+	<B0581B5571079145BA1CD78C126DBDE72E72EDB9@DLEE09.ent.ti.com>
+MIME-version: 1.0
+In-reply-to: <B0581B5571079145BA1CD78C126DBDE72E72EDB9@DLEE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
+	Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH 2/4] nativesdk-qt4-tools: Use new native x11	package name.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,168 +36,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 03:40:49 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B0581B5571079145BA1CD78C126DBDE72E72EDE8DLEE09entticom_"
+X-List-Received-Date: Wed, 06 Feb 2013 03:53:14 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
---_000_B0581B5571079145BA1CD78C126DBDE72E72EDE8DLEE09entticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Wed, Feb 06, 2013 at 03:39:17AM +0000, Dmytriyenko, Denys wrote:
+> Didn't I push this already? I remember fixing this particular one few days ago...
 
-And by the way, for rename patches, can you please use -M option for git fo=
-rmat-patch in the future? Thanks.
+Ok, sorry, I didn't notice you were changing it back...
 
+I did change it from libx11-nativesdk to nativesdk-libx11, because that's how 
+BBCLASSEXTEND=nativesdk calls its packages now. Why are you changing it back?
 
+-- 
 Denys
 
 
------Original Message-----
-From: fcooperjr27@gmail.com [fcooperjr27@gmail.com]
-Received: Tuesday, 05 Feb 2013, 20:28
-To: meta-arago@arago-project.org [meta-arago@arago-project.org]
-CC: Cooper Jr., Franklin [fcooper@ti.com]
-Subject: [meta-arago] [PATCH 1/4] php: Rename bbappend to match recipe in m=
-eta-oe
+> -----Original Message-----
+> From: fcooperjr27@gmail.com [fcooperjr27@gmail.com]
+> Received: Tuesday, 05 Feb 2013, 20:28
+> To: meta-arago@arago-project.org [meta-arago@arago-project.org]
+> CC: Cooper Jr., Franklin [fcooper@ti.com]
+> Subject: [meta-arago] [PATCH 2/4] nativesdk-qt4-tools: Use new native x11 package name.
+> 
+> From: Franklin S. Cooper Jr <fcooper@ti.com>
+> 
+> * Nativesdk-libx11 has now been renamed to libx11-nativesdk.
+> * This ensure the x11 package is filtered out which prevents parsing/build
+>   errors due to x11 not being a distro feature.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../qt4/nativesdk-qt4-tools_4.8.3.bbappend         |    4 ++--
+>  1 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend
+> index 6296fbe..312571e 100644
+> --- a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend
+> +++ b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.3.bbappend
+> @@ -1,7 +1,7 @@
+> -PR_append = "-arago2"
+> +PR_append = "-arago3"
+> 
+>  # Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+>  # For our distribution purposes we only use LGPLv2.1
+>  LICENSE = "LGPLv2.1"
+> 
+> -DEPENDS := "${@oe_filter_out('nativesdk-libx11', '${DEPENDS}', d)}"
+> +DEPENDS := "${@oe_filter_out('libx11-nativesdk', '${DEPENDS}', d)}"
+> --
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../recipes-devtools/php/php_5.3.19.bbappend       |    6 ++++++
- .../recipes-devtools/php/php_5.3.6.bbappend        |    6 ------
- 2 files changed, 6 insertions(+), 6 deletions(-)
- create mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.19.bbapp=
-end
- delete mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappe=
-nd
 
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend b/m=
-eta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend
-new file mode 100644
-index 0000000..4c3fd39
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend
-@@ -0,0 +1,6 @@
-+# look for files in this layer first
-+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-+
-+PR_append =3D "-arago0"
-+
-+SRC_URI_append_virtclass-native =3D " file://0001-php-native-Fix-host-cont=
-amination-issue.patch"
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend b/me=
-ta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend
-deleted file mode 100644
-index 4c3fd39..0000000
---- a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend
-+++ /dev/null
-@@ -1,6 +0,0 @@
--# look for files in this layer first
--FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
--
--PR_append =3D "-arago0"
--
--SRC_URI_append_virtclass-native =3D " file://0001-php-native-Fix-host-cont=
-amination-issue.patch"
---
-1.7.0.4
-
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
---_000_B0581B5571079145BA1CD78C126DBDE72E72EDE8DLEE09entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
-</head>
-<body>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11p=
-t; color:black">
-<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11=
-pt; color:black">And by the way, for rename patches, can you please use -M =
-option for git format-patch in the future? Thanks.<br>
-<br>
-<br>
-Denys<br>
-<br>
-<br>
-<span style=3D"color:black">-----Original Message----- <br>
-<b>From:</b> fcooperjr27@gmail.com [fcooperjr27@gmail.com]<br>
-<b>Received:</b> Tuesday, 05 Feb 2013, 20:28<br>
-<b>To:</b> meta-arago@arago-project.org [meta-arago@arago-project.org]<br>
-<b>CC:</b> Cooper Jr., Franklin [fcooper@ti.com]<br>
-<b>Subject:</b> [meta-arago] [PATCH 1/4] php: Rename bbappend to match reci=
-pe in meta-oe<br>
-<br>
-</span></span></div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">From: Franklin S. Cooper Jr &lt;fcooper@ti.com&gt;=
-<br>
-<br>
-Signed-off-by: Franklin S. Cooper Jr &lt;fcooper@ti.com&gt;<br>
----<br>
-&nbsp;.../recipes-devtools/php/php_5.3.19.bbappend&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 6 &#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;.../recipes-devtools/php/php_5.3.6.bbappend&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 6 ------<br>
-&nbsp;2 files changed, 6 insertions(&#43;), 6 deletions(-)<br>
-&nbsp;create mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.19.=
-bbappend<br>
-&nbsp;delete mode 100644 meta-arago-distro/recipes-devtools/php/php_5.3.6.b=
-bappend<br>
-<br>
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend b/m=
-eta-arago-distro/recipes-devtools/php/php_5.3.19.bbappend<br>
-new file mode 100644<br>
-index 0000000..4c3fd39<br>
---- /dev/null<br>
-&#43;&#43;&#43; b/meta-arago-distro/recipes-devtools/php/php_5.3.19.bbappen=
-d<br>
-@@ -0,0 &#43;1,6 @@<br>
-&#43;# look for files in this layer first<br>
-&#43;FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
-&#43;<br>
-&#43;PR_append =3D &quot;-arago0&quot;<br>
-&#43;<br>
-&#43;SRC_URI_append_virtclass-native =3D &quot; <a href=3D"file://0001-php-=
-native-Fix-host-contamination-issue.patch">
-file://0001-php-native-Fix-host-contamination-issue.patch</a>&quot;<br>
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend b/me=
-ta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend<br>
-deleted file mode 100644<br>
-index 4c3fd39..0000000<br>
---- a/meta-arago-distro/recipes-devtools/php/php_5.3.6.bbappend<br>
-&#43;&#43;&#43; /dev/null<br>
-@@ -1,6 &#43;0,0 @@<br>
--# look for files in this layer first<br>
--FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
--<br>
--PR_append =3D &quot;-arago0&quot;<br>
--<br>
--SRC_URI_append_virtclass-native =3D &quot; <a href=3D"file://0001-php-nati=
-ve-Fix-host-contamination-issue.patch">
-file://0001-php-native-Fix-host-contamination-issue.patch</a>&quot;<br>
--- <br>
-1.7.0.4<br>
-<br>
-_______________________________________________<br>
-meta-arago mailing list<br>
-meta-arago@arago-project.org<br>
-<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">ht=
-tp://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
-</div>
-</span></font>
-</body>
-</html>
-
---_000_B0581B5571079145BA1CD78C126DBDE72E72EDE8DLEE09entticom_--
