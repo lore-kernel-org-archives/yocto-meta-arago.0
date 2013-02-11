@@ -1,31 +1,26 @@
-Return-Path: <zhoujt@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id EF33652A1D
+Return-Path: <denis@denix.org>
+Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
+	[206.46.173.3])
+	by arago-project.org (Postfix) with ESMTP id E126E52A20
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 22:25:41 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1BMPeBY014864
-	for <meta-arago@arago-project.org>; Mon, 11 Feb 2013 16:25:40 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1BMPerZ012876
-	for <meta-arago@arago-project.org>; Mon, 11 Feb 2013 16:25:40 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
-	14.01.0323.003; Mon, 11 Feb 2013 16:25:40 -0600
-From: "Zhou, Jingting" <zhoujt@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] lzo recipe
-Thread-Index: Ac4ErxbwEGmwxkLfT4GyTjlraUvw8AEF2n8AAAoczwA=
-Date: Mon, 11 Feb 2013 22:25:40 +0000
-Message-ID: <3C08AEEB3C731745938BC83D029FE5E391820B@DFLE09.ent.ti.com>
+	Mon, 11 Feb 2013 22:34:45 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173003.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MI20055YUPEXUU2@vms173003.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 11 Feb 2013 16:34:27 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 11CE620077; Mon,
+	11 Feb 2013 17:34:25 -0500 (EST)
+Date: Mon, 11 Feb 2013 17:34:25 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Zhou, Jingting" <zhoujt@ti.com>
+Message-id: <20130211223425.GA29903@denix.org>
 References: <3C08AEEB3C731745938BC83D029FE5E3917A22@DFLE09.ent.ti.com>
 	<20130211201310.GD11440@edge>
-In-Reply-To: <20130211201310.GD11440@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
+	<3C08AEEB3C731745938BC83D029FE5E391820B@DFLE09.ent.ti.com>
+MIME-version: 1.0
+In-reply-to: <3C08AEEB3C731745938BC83D029FE5E391820B@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: lzo recipe
 X-BeenThere: meta-arago@arago-project.org
@@ -40,31 +35,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2013 22:25:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Feb 2013 22:34:46 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-1. I don't know where it fits.(The lzo_2.06 is in oe-core)
+On Mon, Feb 11, 2013 at 10:25:40PM +0000, Zhou, Jingting wrote:
+> 1. I don't know where it fits.(The lzo_2.06 is in oe-core)
 
-2. Now I recall why I re-added it. Vtun_2.6(I know it's a very old version,=
- released in 2003) depends on lzo_1.08. I added a vtun patch to be compatib=
-le with lzo_2.06.=20
+lzo_2.06 is in recipes-support in oe-core
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Monday, February 11, 2013 3:13 PM
-To: Zhou, Jingting
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] lzo recipe
 
-On Wed, Feb 06, 2013 at 09:15:44PM +0000, Zhou, Jingting wrote:
-> Hey all, attached is the recipe for lzo. Please take a look. Thanks~
+> 2. Now I recall why I re-added it. Vtun_2.6(I know it's a very old version, 
+> released in 2003) depends on lzo_1.08. I added a vtun patch to be compatible 
+> with lzo_2.06.
 
-1. Why did you put it in recipes-connectivity?
+Can you update it to one of the latest from 3.0.x series? The latest 3.0.3 is 
+from 2012...
 
-2. Why do you even need to re-add it? oe-core already provides lzo_2.06
-
---=20
+-- 
 Denys
+
+
+> -----Original Message-----
+> From: Dmytriyenko, Denys 
+> Sent: Monday, February 11, 2013 3:13 PM
+> To: Zhou, Jingting
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] lzo recipe
+> 
+> On Wed, Feb 06, 2013 at 09:15:44PM +0000, Zhou, Jingting wrote:
+> > Hey all, attached is the recipe for lzo. Please take a look. Thanks~
+> 
+> 1. Why did you put it in recipes-connectivity?
+> 
+> 2. Why do you even need to re-add it? oe-core already provides lzo_2.06
+> 
+> -- 
+> Denys
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
