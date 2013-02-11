@@ -1,32 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E915452A20
+Return-Path: <zhoujt@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id EF33652A1D
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 20:29:03 +0000 (UTC)
+	Mon, 11 Feb 2013 22:25:41 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1BKT3mQ021880
-	for <meta-arago@arago-project.org>; Mon, 11 Feb 2013 14:29:03 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1BKT32C015378
-	for <meta-arago@arago-project.org>; Mon, 11 Feb 2013 14:29:03 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 11 Feb 2013 14:29:02 -0600
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r1BKT3QX028711;
-	Mon, 11 Feb 2013 14:29:03 -0600
-Date: Mon, 11 Feb 2013 15:29:02 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Zhou, Jingting" <zhoujt@ti.com>
-Message-ID: <20130211202902.GG11440@edge>
-References: <3C08AEEB3C731745938BC83D029FE5E3917A77@DFLE09.ent.ti.com>
-	<20130211200804.GB11440@edge>
-	<3C08AEEB3C731745938BC83D029FE5E391813D@DFLE09.ent.ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1BMPeBY014864
+	for <meta-arago@arago-project.org>; Mon, 11 Feb 2013 16:25:40 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1BMPerZ012876
+	for <meta-arago@arago-project.org>; Mon, 11 Feb 2013 16:25:40 -0600
+Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Mon, 11 Feb 2013 16:25:40 -0600
+From: "Zhou, Jingting" <zhoujt@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] lzo recipe
+Thread-Index: Ac4ErxbwEGmwxkLfT4GyTjlraUvw8AEF2n8AAAoczwA=
+Date: Mon, 11 Feb 2013 22:25:40 +0000
+Message-ID: <3C08AEEB3C731745938BC83D029FE5E391820B@DFLE09.ent.ti.com>
+References: <3C08AEEB3C731745938BC83D029FE5E3917A22@DFLE09.ent.ti.com>
+	<20130211201310.GD11440@edge>
+In-Reply-To: <20130211201310.GD11440@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <3C08AEEB3C731745938BC83D029FE5E391813D@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: new image recipe
+Subject: Re: lzo recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,43 +40,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2013 20:29:04 -0000
+X-List-Received-Date: Mon, 11 Feb 2013 22:25:43 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 11, 2013 at 03:25:44PM -0500, Zhou, Jingting wrote:
-> 1. I'll use another name
+1. I don't know where it fits.(The lzo_2.06 is in oe-core)
 
-It's not the name. Why cannot you use the existing arago-headless-tisdk-image 
-recipe? Can you extend it instead of creating another one?
+2. Now I recall why I re-added it. Vtun_2.6(I know it's a very old version,=
+ released in 2003) depends on lzo_1.08. I added a vtun patch to be compatib=
+le with lzo_2.06.=20
 
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Monday, February 11, 2013 3:13 PM
+To: Zhou, Jingting
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] lzo recipe
 
-> 2. the white spaces are consistent in my computer......
+On Wed, Feb 06, 2013 at 09:15:44PM +0000, Zhou, Jingting wrote:
+> Hey all, attached is the recipe for lzo. Please take a look. Thanks~
 
-Some lines use spaces and some use tabs, which is inconsistent - you may want 
-to configure your text editor to show you one vs. another visually.
+1. Why did you put it in recipes-connectivity?
 
--- 
+2. Why do you even need to re-add it? oe-core already provides lzo_2.06
+
+--=20
 Denys
-
-
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Monday, February 11, 2013 3:08 PM
-> To: Zhou, Jingting
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] new image recipe
-> 
-> On Wed, Feb 06, 2013 at 09:18:15PM +0000, Zhou, Jingting wrote:
-> > Hey all, attached is the recipe for a new image 
-> > arago-headless-tisdk-keystone2-image. Please take a look. Thanks~
-> 
-> All the comments I made to your previous patch are still applicable here,
-> plus:
-> 
-> 1. Don't make tasks or images specific to a machine/SoC like that. First of 
-> all, you can avoid making it completely machine-specific and second, you may 
-> need to use overrides in the recipe itself for really specific things.
-> 
-> 2. Please make sure the whitespaces are consistent.
 
