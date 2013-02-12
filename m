@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f43.google.com (mail-oa0-f43.google.com
-	[209.85.219.43])
-	by arago-project.org (Postfix) with ESMTPS id 4122C52A25
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id C795552A1D
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 00:46:43 +0000 (UTC)
-Received: by mail-oa0-f43.google.com with SMTP id l10so6945125oag.16
+	Tue, 12 Feb 2013 00:46:44 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id h2so6931013oag.38
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 16:46:42 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=PEkWRyF6WtkuqmHELCjmLctqDIoW1eInkGGWcGdM2IA=;
-	b=Wnj4FpigBdWp+nBIvPsS6yWs4VyB5gDCS3t6JqSCvdsf2qsgeTB5KxJvPEZiHo9Xuu
-	xW2lUUUJWHZibH0dTwXY8Y2j9yoeZnl397K+9Ahea4ev/chZ8SZkiv+O+R8I070q8Lom
-	WTYEu+DPf8IaeueAnVc6ZhtDVUD9nPxemFQyLf6+cJslnC3w3JGREKTSLRrOmD5I6FKF
-	TXw62qLl+MMuETJS1CRtPohZPgB/gqvUeVeoygszUi3sQrEwCk5b0FgobTLett+Mn+58
-	VFACb+pPf5BkxI1tbQDJUCuXKZ7gOKhc93RWe2LX/1Dteq692P4oGZ/jXxznKu/bFGiP
-	dzMg==
-X-Received: by 10.182.217.10 with SMTP id ou10mr12076842obc.30.1360630002408; 
-	Mon, 11 Feb 2013 16:46:42 -0800 (PST)
+	:references; bh=S7t3r3kbfv6VdyycB5lH7/nkyuhLiHck6dblRJRSvCY=;
+	b=v7JmlHLoziflz8AEuY8ZJQyEx0X1pjwK5tO64g4m2UfG4It4T6nf+gH+c//B/NgVFC
+	NwY2FOD/NTsUDlDJ6F/sHOkhSXWjueIKsWzs7IL5wIRLavyWGqBtm013cetVcwbluwOd
+	EUhFbSxcjg/bdzzV5cwzNaWEMiWUdk6Gb5ZD9Wvq+eNLxrgmTo14avAcOQUAB0O21Vhw
+	3ZTge2+3kHjwmpQWBwtY/KmVsrBcDVm1UzxORbTXh4zsN4dHXZfpqtmYySxuZVydiCAW
+	iRKWx4VYo/74l9+M8lkC7bvvmNQbXGTbfn1izs1AzaWrfNcfnnXR7bJ2e4j0Ak5Io/4J
+	8IAg==
+X-Received: by 10.60.171.175 with SMTP id av15mr11952026oec.75.1360630004161; 
+	Mon, 11 Feb 2013 16:46:44 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.40
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.42
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 11 Feb 2013 16:46:41 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:43 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 11 Feb 2013 18:46:10 -0600
-Message-Id: <1360629979-24789-9-git-send-email-fcooper@ti.com>
+Date: Mon, 11 Feb 2013 18:46:11 -0600
+Message-Id: <1360629979-24789-10-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 09/18] tisdk-image.bbclass: Create SECONDARY_BOOTLOADER_NAME variable
+Subject: [PATCH 10/18] arago-amsdk-image: Set SECONDARY_BOOTLOADER_NAME to empty string for omapl138
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,58 +43,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 00:46:43 -0000
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:45 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Am180x-evm secondary bootloader isn't built as part of OE.
-* Tisdk-image.bbclass fails since no MLO is copied as part of the am180x-evm
-  SDK.
-* Use a user defined variable to specify the secondary bootloader and allow the
-  copy step to be skipped if secondary bootloader variable is an empty string.
+* The secondary bootloader for omapl138 devices aren't built via oe.
+* Set to an empty string so SDK image doesn't fail during the secondary
+  bootloader copy stage.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass |   18 ++++++++++++------
- 1 files changed, 12 insertions(+), 6 deletions(-)
+ .../recipes-core/images/arago-amsdk-image.bb       |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index 4434155..adc6359 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -46,6 +46,9 @@ TARGET_IMAGE_TYPES ?= "tar.bz2 tar.gz ubi"
- # the variable is in the BB_ENV_EXTRAWHITE list.
- EXTRA_TISDK_FILES ?= ""
+diff --git a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
+index 4e4345d..08b460e 100644
+--- a/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-amsdk-image.bb
+@@ -12,6 +12,8 @@ COMPATIBLE_MACHINE = "omap3|omapl138|ti33x"
+ HOST_CLEANUP_PACKAGES = ""
+ TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev libgnutls-extra26 libgnutls-openssl27 libtasn1-dev"
  
-+# Variable to specify the name of the secondary bootloader
-+SECONDARY_BOOTLOADER_NAME ?= "MLO-${MACHINE}"
++SECONDARY_BOOTLOADER_NAME_omapl138 = ""
 +
- # Manifest file location which will be created as part of the image build
- # process.
- # This manifest follows the TI manifest format requirements which is why
-@@ -552,13 +555,16 @@ do_sdk_image () {
-         return 1
-     fi
+ # List of target side images to build for the SDK
+ TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
  
--    # Copy the MLO image if it exists
--    if [ -e ${DEPLOY_DIR_IMAGE}/MLO-${MACHINE} ]
-+    if [ "${SECONDARY_BOOTLOADER_NAME}" != "" ]
-     then
--        cp ${DEPLOY_DIR_IMAGE}/MLO-${MACHINE} ${prebuilt_dir}/
--    else
--        echo "Could not find the MLO image"
--        return 1
-+        # Copy the secondary bootloader image if it exists
-+        if [ -e ${DEPLOY_DIR_IMAGE}/${SECONDARY_BOOTLOADER_NAME} ]
-+        then
-+            cp ${DEPLOY_DIR_IMAGE}/${SECONDARY_BOOTLOADER_NAME} ${prebuilt_dir}/
-+        else
-+            echo "Could not find the secondary bootloader image"
-+            return 1
-+        fi
-     fi
- 
-     # Add the EXTRA_TISDK_FILES contents if they exist
 -- 
 1.7.0.4
 
