@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by arago-project.org (Postfix) with ESMTPS id 6FB9C52A12
+Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
+	[209.85.219.45])
+	by arago-project.org (Postfix) with ESMTPS id 74BDC52A12
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 00:46:30 +0000 (UTC)
-Received: by mail-oa0-f48.google.com with SMTP id j1so6921485oag.21
+	Tue, 12 Feb 2013 00:46:32 +0000 (UTC)
+Received: by mail-oa0-f45.google.com with SMTP id o6so7025569oag.32
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 16:46:29 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=HH7s1zvl6J9xPvpqmE31f8zLBWY8bnwPpecgC2AmuVM=;
-	b=wlm4N8n6ZX03s9gg4YSAX1PWLGizXpw7KJ6rFsxlUGX/MIFCtX2AMYG9140ePATW3M
-	bu6PoWJVPmR+KfppY9zsH2q7iQU2a/xhTQymQOy5slWY/ea9hVcuygAjkTLr7uY2ByeA
-	BasYHXjNit0Jo0wAiaKNjL+Zddp0+PftLjtStTITb2x8Vd6ZkBPQg0ABggYDbmAu8T1O
-	6Xe2JAQWqE3rqrBPvSU2NJNqexArb7+p1Idls1ZCgOhj6oTKxYjXiXjKZkMm0ivSZf01
-	gynrudI2yHHMGpdPhbDG+lBD3ywjZbUmlWQ7HzNM2RTjlqXdVGkoY8M6xdXeMlJdfx82
-	MahA==
-X-Received: by 10.60.171.175 with SMTP id av15mr11951650oec.75.1360629989924; 
-	Mon, 11 Feb 2013 16:46:29 -0800 (PST)
+	:references; bh=amkHVGJ9OqnGP4diNDDvhGGkroMbJvG0oXkRe8UswA0=;
+	b=EU2rSgC3F8WLijiMNv+uMxviTZ8FSJ0A5Z86TvLFAyw50XYCmCi/dXlRZHgZj1RPxy
+	w1ZshxaUq5o1ah8wGcDaI3Wjt5qfdBkTh+IDg0QPUQFQz0Om4GvwWM3VwY8lv8vb5s3d
+	CcufBO28g21ylG+ilNLI/4sh8ggRPUzbVkQzoasfYdYjuhPBH54NEKngoJ5bHWXRbIRj
+	k54qGmqPhZ213fGy4rJ52H/LPKkkXRzODxMTFPwqB0kXtMe9cIQgRFbsDTSlHSXOJUtX
+	s72b/5Qs6w5Ouqa88kKYMlLNm5nnb+3gSfAN8IFKW8P243lNdQvYTUZwrmGRlByoZT5e
+	ek6Q==
+X-Received: by 10.182.167.70 with SMTP id zm6mr12177978obb.93.1360629991898;
+	Mon, 11 Feb 2013 16:46:31 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.27
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.29
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 11 Feb 2013 16:46:28 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:30 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 11 Feb 2013 18:46:03 -0600
-Message-Id: <1360629979-24789-2-git-send-email-fcooper@ti.com>
+Date: Mon, 11 Feb 2013 18:46:04 -0600
+Message-Id: <1360629979-24789-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 02/18] ti-tisdk-makefile: Switch from ARMPKGARCH to PLATFORM_ARCH
+Subject: [PATCH 03/18] arm-benchmarks_1.3: Tweak to allow am180x-evm to be built
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,50 +43,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 00:46:30 -0000
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:32 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Use PLATFORM_ARCH variable to allow omapl138 devices to pass armv5te which is
-  expected by other software that uses Rules.make
+* Makefile expects armv5te for ARM9 devices which was done in oe-classic.
+* In oe-core ARMPKGARCH only specifies armv5 for am180x-evm.
+* Pass in ARCH=armv5te to make for omapl138 devices
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    8 ++++++--
- 1 files changed, 6 insertions(+), 2 deletions(-)
+ .../arm-benchmarks/arm-benchmarks_1.3.bb           |   12 +++++++-----
+ 1 files changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index c6cea95..99e0484 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -30,7 +30,7 @@ SRC_URI = "\
-     file://Makefile_wireless \
- "
+diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+index 9fda6b0..b19c1ed 100644
+--- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
++++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+@@ -4,7 +4,7 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
+ SECTION = "system"
  
--PR = "r4"
-+PR = "r5"
+-PR = "r2"
++PR = "r3"
  
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -61,6 +61,10 @@ MAKEFILES_am180x-evm += "pru \
-                          wireless \
- "
+ BRANCH ?= "master"
+ SRCREV = "e9fbf7990e93d97e7471e509626969d244cca214"
+@@ -13,14 +13,16 @@ SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;br
+ 
+ S = "${WORKDIR}/git"
  
 +PLATFORM_ARCH = "${ARMPKGARCH}"
 +# Use ARCH format expected by the makefile
 +PLATFORM_ARCH_omapl138 = "armv5te"
 +
- # This step will stitch together the final Makefile based on the supported
- # make targets.
- do_install () {
-@@ -104,7 +108,7 @@ do_install () {
+ do_compile() {
+ 	export CROSS_COMPILE=${TARGET_PREFIX}
+-	export ARCH=${ARMPKGARCH}
+ 	# build the release version
+-	make release
++	make ARCH=${PLATFORM_ARCH} release
+ }
  
-     # fixup Rules.make values
-     sed -i -e "s/__PLATFORM__/${MACHINE}/" ${D}/Rules.make
--    sed -i -e "s/__ARCH__/${ARMPKGARCH}/" ${D}/Rules.make
-+    sed -i -e "s/__ARCH__/${PLATFORM_ARCH}/" ${D}/Rules.make
-     sed -i -e "s/__UBOOT_MACHINE__/${UBOOT_MACHINE}/" ${D}/Rules.make
- 
+ do_install() {
+-	export ARCH=${ARMPKGARCH}
+-	make DESTDIR=${D} install
++	make ARCH=${PLATFORM_ARCH} DESTDIR=${D} install
  }
 -- 
 1.7.0.4
