@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by arago-project.org (Postfix) with ESMTPS id 14BF452A6B
+Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
+	[209.85.219.49])
+	by arago-project.org (Postfix) with ESMTPS id E742952A55
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 00:46:47 +0000 (UTC)
-Received: by mail-oa0-f44.google.com with SMTP id h1so7005278oag.31
+	Tue, 12 Feb 2013 00:46:48 +0000 (UTC)
+Received: by mail-oa0-f49.google.com with SMTP id j6so6821976oag.8
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 16:46:46 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=A8EBXkWykXoP7JM62BGswmd7kR85ShsmPc5W4341cqg=;
-	b=oUfyIbVTg7mlXyKqpEq+hZbYEoG5UEifYt/aULnDLNUU5DJNyw69RThFVa8fCCULNl
-	JmMZX/URHXHWVGb8imRrUGyYbFvV8pJbpFPB6WuMvxVMJ8Sjby4N93LSjikWFfwP3Omd
-	jev11/U8L6YhIB8UJacWuJmhzsjVEdXGAof6gAsktQiP4dybXIZSXB+YyyT9Mw86kLLL
-	TuVh+PlB4vtc+iKSoFagBe0TWKxmBfdU8qK2rtPxsAit04kIOEg68iTJJN8ztAG7NxoO
-	swtvA7gpC0p+ijVv+PPYz39ncLJSZA9euRzMuAQQQf5Myc/POg3ItjGZlgSRsdYQp8jj
-	nfMQ==
-X-Received: by 10.60.22.198 with SMTP id g6mr12400815oef.45.1360630006389;
-	Mon, 11 Feb 2013 16:46:46 -0800 (PST)
+	:references; bh=F+rjHq9k+rDWVYYuZPgC5lxam0rrDEck5rt3jlNVXnI=;
+	b=jbEdkRkCXtJ+aE4blYgJvyqnb6OLrDT2SmJXvZg8YnoWLl69OjUlmRrAfmBXLTw6zD
+	TPxFVIZ329wzVZe9HOpsCkbPkFWbYJpUrUWpzCw4PhS2A3lWyR0XqPfo1bV00BfLkhZ0
+	lepwXxRigUXce6brtkdaZdvkW9cuVlYRB0Dm+wYNlZbPKAJ4euAlhTY519BUwuM+yt9s
+	tACyNXjARhCL/5zA1QoitGQPFF7BaBvLLvVaovl/2lCY9avbr3dk+Ms3KrwXU65vLKr9
+	mwR34F0iKIlsdWmtMIvtFwsEEm3hEd7aGf82HR7TJZw4l7bTMtuoN+J5VQpl2EVldgxm
+	sCTA==
+X-Received: by 10.182.86.196 with SMTP id r4mr11856960obz.56.1360630008364;
+	Mon, 11 Feb 2013 16:46:48 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.44
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.46
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 11 Feb 2013 16:46:44 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:47 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 11 Feb 2013 18:46:12 -0600
-Message-Id: <1360629979-24789-11-git-send-email-fcooper@ti.com>
+Date: Mon, 11 Feb 2013 18:46:13 -0600
+Message-Id: <1360629979-24789-12-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 11/18] tisdk-amsdk-sdk-host: Add flash utility to SDK
+Subject: [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use generic name for kernel sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,41 +43,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 00:46:47 -0000
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:49 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
+* Use generic name for kernel sources which will allow for any machine to be
+  used without modification.
+
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    8 ++++++--
- 1 files changed, 6 insertions(+), 2 deletions(-)
+ .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    8 +++-----
+ 1 files changed, 3 insertions(+), 5 deletions(-)
 
 diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index e216e8e..14626c8 100644
+index 14626c8..b990235 100644
 --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
 +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-@@ -1,6 +1,6 @@
+@@ -1,17 +1,15 @@
  DESCRIPTION = "Task to install additional scripts and applications into the SDK"
  LICENSE = "MIT"
--PR = "r2"
-+PR = "r3"
+-PR = "r3"
++PR = "r4"
  
  inherit packagegroup
  
-@@ -13,8 +13,12 @@ KERNEL_SRC = ""
- U-BOOT_SRC_am335x-evm = "u-boot-src"
- KERNEL_SRC_am335x-evm = "linux-am335x-src"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-+TOOLS = "pinmux-utility"
-+TOOLS_am37x-evm_append = " flash-utility"
-+TOOLS_am3517-evm_append = " flash-utility"
-+
- RDEPENDS_${PN} = "\
--    pinmux-utility \
-+    ${TOOLS} \
-     ti-tisdk-setup \
-     board-port-labs-src \
-     ti-tisdk-makefile \
+ # Choose the kernel and u-boot recipe sources to use
+-U-BOOT_SRC = ""
+-KERNEL_SRC = ""
+ 
+-U-BOOT_SRC_am335x-evm = "u-boot-src"
+-KERNEL_SRC_am335x-evm = "linux-am335x-src"
++U-BOOT_SRC  = "u-boot-src"
++KERNEL_SRC := "${PREFERRED_PROVIDER_virtual/kernel}-src"
+ 
+ TOOLS = "pinmux-utility"
+ TOOLS_am37x-evm_append = " flash-utility"
 -- 
 1.7.0.4
 
