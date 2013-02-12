@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by arago-project.org (Postfix) with ESMTPS id E48AE52A7D
+Received: from mail-oa0-f52.google.com (mail-oa0-f52.google.com
+	[209.85.219.52])
+	by arago-project.org (Postfix) with ESMTPS id A09AD52A12
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 00:46:50 +0000 (UTC)
-Received: by mail-oa0-f45.google.com with SMTP id o6so7005515oag.18
+	Tue, 12 Feb 2013 00:46:52 +0000 (UTC)
+Received: by mail-oa0-f52.google.com with SMTP id k14so6784393oag.25
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 16:46:50 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=PpyxIkSPD2H7mhZjqDGKXxO51v3ie3rPFZpHh7cJKtA=;
-	b=nmuRJv5LuZMYpdAYT75dOuSkuPqFyO78lsdrMhkMaMcQ5Wvxgw53cComZaJeqV7SnX
-	sIvA0HkTdNgV4J4EXoQBkXgnmnOckpXq4Z0xKEGpxWERj7shM3+U7S+/fXnRwKszfdG5
-	ZNsSK72Rh+SqlCWCgYNihnvA5ovwvHzIFo+Oys0ML86T9Y+oGfbcSnWMRI0KgE26gJxI
-	49Ym9MTa6f3VmxDYvRHlyJGlEM8Yo7wbUHROw1Ez1WljfNFFCtAGEpQXqJBk59O3hrLM
-	EkT9mze+qxKo2OPwkkLhKHs1575zQpGEKSXQX0X9wjYCkyLLQ+ud2FiBFsFBJ8D6l6AY
-	qWSQ==
-X-Received: by 10.60.19.36 with SMTP id b4mr12399868oee.44.1360630010292;
-	Mon, 11 Feb 2013 16:46:50 -0800 (PST)
+	:references; bh=8JfHAuTBSwseD6sS8tYUdxLYQFJSN8/VTQ6CzxTWhek=;
+	b=W0BjNYOUmCBkiwlpc5KgrR5QpUukS3Inzdl8tdfS5q/Rb+D6Xg6UJYcTQ9kJfTIUoL
+	h2mevbSQV5eY6T6vnqPodkA7VdIoDeXkdFzln/3JKCQ2YaNm4N+u3GxQN+TzgZr+NFl9
+	ExSyBDGTlPIAYuaBrcfkLwvdFAioziM9VvxxxGCNs2lMw+qNzH4vMCqjfN4gx3Rvbj9l
+	XRy3FqfovZk0qdcjv0jvJ+0pwzdnB/WaPEFLCL9c7zeFoMzcPBZsdClucBaa2D7PoPFh
+	0ojrMZTkWxcwIH1lW4BPEr2MVNGakKUpNMzIRksFYdeorHU0R0pbMepK41ll2BdpQLR4
+	lQDA==
+X-Received: by 10.60.170.232 with SMTP id ap8mr12151396oec.29.1360630012074;
+	Mon, 11 Feb 2013 16:46:52 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.48
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.50
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 11 Feb 2013 16:46:49 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:51 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 11 Feb 2013 18:46:14 -0600
-Message-Id: <1360629979-24789-13-git-send-email-fcooper@ti.com>
+Date: Mon, 11 Feb 2013 18:46:15 -0600
+Message-Id: <1360629979-24789-14-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 13/18] board-port-labs: Inherit allarch class.
+Subject: [PATCH 14/18] meta-toolchain-arago: Add cleanup_toolchain_packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,37 +43,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 00:46:51 -0000
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:52 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Inherit allarch class which sets PACKAGE_ARCHS = "all" and some other things.
-* This fixes a problem where board-port-labs was being rebuilt for every machine
+* Move cleanup_toolchain_packages from tisdk-image.bbclass and add it to
+  meta-toolchain-arago
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../board-port-labs/board-port-labs_git.bb         |    5 +++--
- 1 files changed, 3 insertions(+), 2 deletions(-)
+ .../recipes-core/meta/meta-toolchain-arago.bb      |   26 +++++++++++++++++++-
+ 1 files changed, 25 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
-index 2c75c65..87a6735 100644
---- a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
-+++ b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
-@@ -6,11 +6,12 @@ DEPENDS += "git-native"
- SRC_URI = "file://LICENSE"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=d9fb2a547cd8e6bb75c0ecf427a139a9"
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index f32da6a..b75583b 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -1,10 +1,11 @@
+ TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-sdk-host packagegroup-arago-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+ TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-standalone-sdk-target"
+ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-sdk-${SDK_ARCH}"
++TOOLCHAIN_CLEANUP_PACKAGES ?= ""
  
--PACKAGE_ARCH = "all"
-+inherit allarch
+ require recipes-core/meta/meta-toolchain.bb
+ 
+-PR = "r18"
++PR = "r19"
+ 
+ SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
+ 
+@@ -61,6 +62,9 @@ populate_sdk_ipk_append () {
+ 	for i in `find ${SDK_OUTPUT}/${SDKPATH} -name \*.la`; do
+ 		rm -f $i
+ 	done
 +
- CREATE_SRCIPK = "1"
- SRCIPK_INSTALL_DIR = "board-support/board-port-labs"
++	cleanup_toolchain_packages
++
+ 	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}"
+ }
  
--PR = "r2"
-+PR = "r3"
+@@ -81,6 +85,26 @@ fakeroot create_sdk_files() {
+ 	sed -i -e "s:##DEFAULT_INSTALL_DIR##:$escaped_sdkpath:" ${SDK_OUTPUT}/${SDKPATH}/relocate_sdk.py
+ }
  
- REPOS ?= "git://gitorious.org/sitara-board-port/sitara-board-port-linux.git \
-           git://gitorious.org/sitara-board-port/sitara-board-port-uboot.git \
++# Remove undesired packages that may be pulled into the toolchain by -dev
++# package dependencies.  This is usually GPLv3 components.
++cleanup_toolchain_packages() {
++	if [ "${TOOLCHAIN_CLEANUP_PACKAGES}" != "" ]
++	then
++		# Clean up the native side of the toolchain
++		opkg_dir="${SDK_OUTPUT}/${SDKPATH}/"
++		opkg_conf="${opkg_dir}/etc/opkg-sdk.conf"
++		opkg-cl -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
++
++		# Clean up the target side of the toolchain
++		opkg_dir="${SDK_OUTPUT}/${SDKTARGETSYSROOT}"
++		opkg_conf="${opkg_dir}/etc/opkg.conf"
++		opkg-cl -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
++
++		# Clean up empty directories from cleaned up packages
++		find ${SDK_OUTPUT} -depth -type d -empty -print0 | xargs -r0 /bin/rmdir
++	fi
++}
++
+ fakeroot tar_sdk() {
+ 	# Package it up
+ 	mkdir -p ${SDK_DEPLOY}
 -- 
 1.7.0.4
 
