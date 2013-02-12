@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by arago-project.org (Postfix) with ESMTPS id 74BDC52A12
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by arago-project.org (Postfix) with ESMTPS id 39ED352A12
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 00:46:32 +0000 (UTC)
-Received: by mail-oa0-f45.google.com with SMTP id o6so7025569oag.32
+	Tue, 12 Feb 2013 00:46:34 +0000 (UTC)
+Received: by mail-oa0-f51.google.com with SMTP id h2so6983044oag.10
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 16:46:32 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=amkHVGJ9OqnGP4diNDDvhGGkroMbJvG0oXkRe8UswA0=;
-	b=EU2rSgC3F8WLijiMNv+uMxviTZ8FSJ0A5Z86TvLFAyw50XYCmCi/dXlRZHgZj1RPxy
-	w1ZshxaUq5o1ah8wGcDaI3Wjt5qfdBkTh+IDg0QPUQFQz0Om4GvwWM3VwY8lv8vb5s3d
-	CcufBO28g21ylG+ilNLI/4sh8ggRPUzbVkQzoasfYdYjuhPBH54NEKngoJ5bHWXRbIRj
-	k54qGmqPhZ213fGy4rJ52H/LPKkkXRzODxMTFPwqB0kXtMe9cIQgRFbsDTSlHSXOJUtX
-	s72b/5Qs6w5Ouqa88kKYMlLNm5nnb+3gSfAN8IFKW8P243lNdQvYTUZwrmGRlByoZT5e
-	ek6Q==
-X-Received: by 10.182.167.70 with SMTP id zm6mr12177978obb.93.1360629991898;
-	Mon, 11 Feb 2013 16:46:31 -0800 (PST)
+	:references; bh=kmatbv7GcYhNXz6PANQutKbF4CqsMt9W5hEQdX6xbx8=;
+	b=oiMN7YQDkBfKyBVMt4YE6uCBTF/x1pZezFR0j49Ekq/LExIDyEs/bJbncGTjGhQyEm
+	Ic8LIo4jPdRRDVW00MJljnV5HG5zAjr5EqaO4QRYx5911YEJxw+aPxtBar48DFbiFspi
+	nGZ6Eb1fexknMV/SjtS+E5ofUEjO2VmDdMs+GBDBHmcA4T40Hl73JRNStnOsxhhFDBeV
+	iCZ7Go1AweSIPT17DEFznXesMDiHMEhmXcupWVjK/bj5DYujOiX6K3M5Y6g1SxrGlzhZ
+	il00ebOWI4PmUmPfSJ/NL8L5z6rbIeRqrB3X9XfNk7ERXGmvTyTH4X2ihl3PN20DfAYl
+	AkMg==
+X-Received: by 10.60.172.131 with SMTP id bc3mr12343539oec.79.1360629993681;
+	Mon, 11 Feb 2013 16:46:33 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.29
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.31
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 11 Feb 2013 16:46:30 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:32 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 11 Feb 2013 18:46:04 -0600
-Message-Id: <1360629979-24789-3-git-send-email-fcooper@ti.com>
+Date: Mon, 11 Feb 2013 18:46:05 -0600
+Message-Id: <1360629979-24789-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 03/18] arm-benchmarks_1.3: Tweak to allow am180x-evm to be built
+Subject: [PATCH 04/18] sourceipk.bbclass: Provide the ability to change the source directory
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,53 +43,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 00:46:32 -0000
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:34 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Makefile expects armv5te for ARM9 devices which was done in oe-classic.
-* In oe-core ARMPKGARCH only specifies armv5 for am180x-evm.
-* Pass in ARCH=armv5te to make for omapl138 devices
+* Allow the directory where the sources are grabbed to be changed.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../arm-benchmarks/arm-benchmarks_1.3.bb           |   12 +++++++-----
- 1 files changed, 7 insertions(+), 5 deletions(-)
+ meta-arago-distro/classes/sourceipk.bbclass |   14 ++++++++------
+ 1 files changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-index 9fda6b0..b19c1ed 100644
---- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-+++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-@@ -4,7 +4,7 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
- SECTION = "system"
+diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
+index ecc92c2..1844ff3 100644
+--- a/meta-arago-distro/classes/sourceipk.bbclass
++++ b/meta-arago-distro/classes/sourceipk.bbclass
+@@ -47,6 +47,9 @@ CREATE_SRCIPK ?= "0"
+ # Default installation prefix
+ SRCIPK_INSTALL_DIR ?= "/usr/src/${PN}-src"
  
--PR = "r2"
-+PR = "r3"
- 
- BRANCH ?= "master"
- SRCREV = "e9fbf7990e93d97e7471e509626969d244cca214"
-@@ -13,14 +13,16 @@ SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;br
- 
- S = "${WORKDIR}/git"
- 
-+PLATFORM_ARCH = "${ARMPKGARCH}"
-+# Use ARCH format expected by the makefile
-+PLATFORM_ARCH_omapl138 = "armv5te"
++# Specify the directory of the sources
++SRCIPK_SRC_DIR ?= "${S}"
 +
- do_compile() {
- 	export CROSS_COMPILE=${TARGET_PREFIX}
--	export ARCH=${ARMPKGARCH}
- 	# build the release version
--	make release
-+	make ARCH=${PLATFORM_ARCH} release
- }
+ # Default PACKAGE_ARCH for sources is "all"
+ SRCIPK_PACKAGE_ARCH ?= "all"
  
- do_install() {
--	export ARCH=${ARMPKGARCH}
--	make DESTDIR=${D} install
-+	make ARCH=${PLATFORM_ARCH} DESTDIR=${D} install
- }
+@@ -56,7 +59,6 @@ SRCIPK_SECTION ?= "${SECTION}"
+ # Default SRCIPK_INCLUDE_EXTRAFILES is to include the extra files
+ SRCIPK_INCLUDE_EXTRAFILES ?= "1"
+ 
+-
+ # Remove git repositories before packaging up the sources
+ clear_git() {
+ 
+@@ -126,11 +128,11 @@ sourceipk_do_create_srcipk() {
+ 
+         # Copy sources for packaging
+         mkdir -p $tmp_dir/${SRCIPK_INSTALL_DIR}
+-        if [ -e ${S} ]; then
+-	    if [ "${S}" = "${WORKDIR}" ]; then
+-		excludes='--exclude ./temp --exclude ./sourceipk-tmp --exclude ./sourceipk-data'
+-	    fi
+-            tar -C ${S} -cO $excludes . | tar -C $tmp_dir/${SRCIPK_INSTALL_DIR} -xpf -
++        if [ -e ${SRCIPK_SRC_DIR} ]; then
++            if [ "${SRCIPK_SRC_DIR}" = "${WORKDIR}" ]; then
++                excludes='--exclude ./temp --exclude ./sourceipk-tmp --exclude ./sourceipk-data'
++            fi
++            tar -C ${SRCIPK_SRC_DIR} -cO $excludes . | tar -C $tmp_dir/${SRCIPK_INSTALL_DIR} -xpf -
+         fi
+ 
+         if [ ${SRCIPK_INCLUDE_EXTRAFILES} != "0" ]
 -- 
 1.7.0.4
 
