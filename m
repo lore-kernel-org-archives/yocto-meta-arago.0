@@ -1,28 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
-	[206.46.173.3])
-	by arago-project.org (Postfix) with ESMTP id E126E52A20
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f42.google.com (mail-oa0-f42.google.com
+	[209.85.219.42])
+	by arago-project.org (Postfix) with ESMTPS id BA36E52A12
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 22:34:45 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.12])
-	by vms173003.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MI20055YUPEXUU2@vms173003.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 11 Feb 2013 16:34:27 -0600 (CST)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 11CE620077; Mon,
-	11 Feb 2013 17:34:25 -0500 (EST)
-Date: Mon, 11 Feb 2013 17:34:25 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Zhou, Jingting" <zhoujt@ti.com>
-Message-id: <20130211223425.GA29903@denix.org>
-References: <3C08AEEB3C731745938BC83D029FE5E3917A22@DFLE09.ent.ti.com>
-	<20130211201310.GD11440@edge>
-	<3C08AEEB3C731745938BC83D029FE5E391820B@DFLE09.ent.ti.com>
-MIME-version: 1.0
-In-reply-to: <3C08AEEB3C731745938BC83D029FE5E391820B@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: lzo recipe
+	Tue, 12 Feb 2013 00:46:28 +0000 (UTC)
+Received: by mail-oa0-f42.google.com with SMTP id i18so6995665oag.1
+	for <meta-arago@arago-project.org>;
+	Mon, 11 Feb 2013 16:46:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=mdbpzSVtHG+j4HrXJ2mpOroteCHh5qBr1GG68k7KNds=;
+	b=eUOLQ96KpgFQNQuuxAH/BMaCnGWzoSylZBXGzjX+bxlk89s86zQPOmi5Jy7iYAZJtc
+	jLxWOAJFg38pIbFJdNr0Vth+CIbFUHYoeGgjCZGREUblbUnsVWFslD4GZzvtw414wC4H
+	+mlDl6J22KGprgaRs1cyhvfh5XgSNGp9gSTNRyVj3mJc2J7F7PyxykiK2ydXlsvsANjL
+	CB6CJUTNi1rm+jPyn6t1byEEBGuAjR+B7xmrllLVBs2fAIKTP/wG7Eh0KHgdA6tf6rzp
+	3do11uMUefZrgq2A70IPWW2AdiYYpqENgAo+5UNnMpli3/Y/B9q3RszB5XhuSWQ+JJkf
+	Y6tQ==
+X-Received: by 10.60.170.232 with SMTP id ap8mr12150755oec.29.1360629987690;
+	Mon, 11 Feb 2013 16:46:27 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.24
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Mon, 11 Feb 2013 16:46:26 -0800 (PST)
+From: fcooperjr27@gmail.com
+To: meta-arago@arago-project.org
+Date: Mon, 11 Feb 2013 18:46:02 -0600
+Message-Id: <1360629979-24789-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 01/18] linux-libc-headers: Add linux-libc-headers version 2.6.37.2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,46 +41,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2013 22:34:46 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:29 -0000
 
-On Mon, Feb 11, 2013 at 10:25:40PM +0000, Zhou, Jingting wrote:
-> 1. I don't know where it fits.(The lzo_2.06 is in oe-core)
+From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-lzo_2.06 is in recipes-support in oe-core
+* Add linux-libc-headers version 2.6.37.2 which is needed by machines who use a
+  2.6.37 kernel.
 
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../linux-libc-headers_2.6.37.2.bb                 |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb
 
-> 2. Now I recall why I re-added it. Vtun_2.6(I know it's a very old version, 
-> released in 2003) depends on lzo_1.08. I added a vtun patch to be compatible 
-> with lzo_2.06.
-
-Can you update it to one of the latest from 3.0.x series? The latest 3.0.3 is 
-from 2012...
-
+diff --git a/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb b/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb
+new file mode 100644
+index 0000000..5c00af5
+--- /dev/null
++++ b/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb
+@@ -0,0 +1,10 @@
++require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
++
++FILESEXTRAPATHS_append := "${THISDIR}/${PN}:${COREBASE}/meta/recipes-kernel/linux-libc-headers/${PN}"
++
++PR = "r1"
++
++SRC_URI += " file://connector-msg-size-fix.patch"
++SRC_URI[md5sum] = "89f681bc7c917a84aa7470da6eed5101"
++SRC_URI[sha256sum] = "2920c4cd3e87fe40ebee96d28779091548867e1c36f71c1fc3d07e6d5802161f"
++
 -- 
-Denys
+1.7.0.4
 
-
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Monday, February 11, 2013 3:13 PM
-> To: Zhou, Jingting
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] lzo recipe
-> 
-> On Wed, Feb 06, 2013 at 09:15:44PM +0000, Zhou, Jingting wrote:
-> > Hey all, attached is the recipe for lzo. Please take a look. Thanks~
-> 
-> 1. Why did you put it in recipes-connectivity?
-> 
-> 2. Why do you even need to re-add it? oe-core already provides lzo_2.06
-> 
-> -- 
-> Denys
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
