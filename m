@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 39ED352A12
+Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
+	[209.85.219.49])
+	by arago-project.org (Postfix) with ESMTPS id 178AC52A6B
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 00:46:34 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id h2so6983044oag.10
+	Tue, 12 Feb 2013 00:46:36 +0000 (UTC)
+Received: by mail-oa0-f49.google.com with SMTP id j6so6851639oag.22
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Feb 2013 16:46:33 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=kmatbv7GcYhNXz6PANQutKbF4CqsMt9W5hEQdX6xbx8=;
-	b=oiMN7YQDkBfKyBVMt4YE6uCBTF/x1pZezFR0j49Ekq/LExIDyEs/bJbncGTjGhQyEm
-	Ic8LIo4jPdRRDVW00MJljnV5HG5zAjr5EqaO4QRYx5911YEJxw+aPxtBar48DFbiFspi
-	nGZ6Eb1fexknMV/SjtS+E5ofUEjO2VmDdMs+GBDBHmcA4T40Hl73JRNStnOsxhhFDBeV
-	iCZ7Go1AweSIPT17DEFznXesMDiHMEhmXcupWVjK/bj5DYujOiX6K3M5Y6g1SxrGlzhZ
-	il00ebOWI4PmUmPfSJ/NL8L5z6rbIeRqrB3X9XfNk7ERXGmvTyTH4X2ihl3PN20DfAYl
-	AkMg==
-X-Received: by 10.60.172.131 with SMTP id bc3mr12343539oec.79.1360629993681;
-	Mon, 11 Feb 2013 16:46:33 -0800 (PST)
+	:references; bh=aUKKani/FkAb9cM3POg9OJswj1q+XuZYn/3FPFH8zlM=;
+	b=bNruiOSpH3XaDvZeQ591GLyAY1A3B9rGwqNy2IWNUId0OZ0H//n3lo1j/w5JGgcWNI
+	RnN+BgTlaXTh/XKDIJrqy6dWgxqtanOWzMSH3jOQRkRL5L96fJ/x8Kc1E6r7QEofDB2o
+	65/1OcFfmLN0VHzT1AMMcoukW9OnoIjFhXti/3ri6zjsq7AANbkiJd5NSCJU6J6ghRJx
+	wy6iYInSgPEjMv6ZdGZ8n7GcAEPai9C3UQq59c1noxb6lvM3TphbyqlksXQ3kYom6+nr
+	6YW7LhEKv4eE3k8n2Nw9Wp43wszickYiCKheyUD/qyXN+QYtHpVaUoPBpJDSCLz93A+h
+	NlVw==
+X-Received: by 10.60.8.65 with SMTP id p1mr12508685oea.4.1360629995495;
+	Mon, 11 Feb 2013 16:46:35 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.31
+	by mx.google.com with ESMTPS id b6sm52434322oee.3.2013.02.11.16.46.33
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 11 Feb 2013 16:46:32 -0800 (PST)
+	Mon, 11 Feb 2013 16:46:34 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon, 11 Feb 2013 18:46:05 -0600
-Message-Id: <1360629979-24789-4-git-send-email-fcooper@ti.com>
+Date: Mon, 11 Feb 2013 18:46:06 -0600
+Message-Id: <1360629979-24789-5-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 04/18] sourceipk.bbclass: Provide the ability to change the source directory
+Subject: [PATCH 05/18] ti-crypto-examples: Add ARM9 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,56 +43,63 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 00:46:34 -0000
+X-List-Received-Date: Tue, 12 Feb 2013 00:46:36 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Allow the directory where the sources are grabbed to be changed.
+* Previously crypto examples were fixed to cortex A8
+* Git repository were updated to add ARM9 support by placing ARM9 and Cortex
+  A8 versions into separate directories.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/classes/sourceipk.bbclass |   14 ++++++++------
- 1 files changed, 8 insertions(+), 6 deletions(-)
+ .../ti-crypto-examples/ti-crypto-examples_git.bb   |   19 +++++++++++++++----
+ 1 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
-index ecc92c2..1844ff3 100644
---- a/meta-arago-distro/classes/sourceipk.bbclass
-+++ b/meta-arago-distro/classes/sourceipk.bbclass
-@@ -47,6 +47,9 @@ CREATE_SRCIPK ?= "0"
- # Default installation prefix
- SRCIPK_INSTALL_DIR ?= "/usr/src/${PN}-src"
+diff --git a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+index 43810e2..648d7dd 100644
+--- a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
++++ b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+@@ -1,24 +1,35 @@
+ DESCRIPTION = "TI Cryptography Example Applications"
+ HOMEPAGE = "http://arago-project.org/git/projects/?p=crypto-example-apps.git;a=summary"
+ LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5"
++LIC_FILES_CHKSUM = "file://armv5te/AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5 \
++                    file://armv7a/AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5"
+ SECTION = "console"
+ DEPENDS += "openssl"
  
-+# Specify the directory of the sources
-+SRCIPK_SRC_DIR ?= "${S}"
+-PR = "r2"
++PR = "r3"
+ 
+ BRANCH ?= "master"
+-SRCREV = "37aad72a4d49d0a6dbe934495e5c3bd973a72f1a"
++SRCREV = "95007ae6a4284841e624680afff8e0859f28d429"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/crypto-example-apps.git;protocol=git;branch=${BRANCH}"
+ 
+-S = "${WORKDIR}/git"
++S = "${WORKDIR}/git/"
 +
- # Default PACKAGE_ARCH for sources is "all"
- SRCIPK_PACKAGE_ARCH ?= "all"
++# This software contains two directories depending on ARM architecture
++SOURCE_DIR = "${S}/${ARMPKGARCH}"
++
++# Specify armv5te for ARM9 devices
++SOURCE_DIR_omapl138 = "${S}/armv5te"
  
-@@ -56,7 +59,6 @@ SRCIPK_SECTION ?= "${SECTION}"
- # Default SRCIPK_INCLUDE_EXTRAFILES is to include the extra files
- SRCIPK_INCLUDE_EXTRAFILES ?= "1"
+ do_compile() {
++    cd ${SOURCE_DIR}
++
+     # build the release version
+     oe_runmake release
+ }
  
--
- # Remove git repositories before packaging up the sources
- clear_git() {
- 
-@@ -126,11 +128,11 @@ sourceipk_do_create_srcipk() {
- 
-         # Copy sources for packaging
-         mkdir -p $tmp_dir/${SRCIPK_INSTALL_DIR}
--        if [ -e ${S} ]; then
--	    if [ "${S}" = "${WORKDIR}" ]; then
--		excludes='--exclude ./temp --exclude ./sourceipk-tmp --exclude ./sourceipk-data'
--	    fi
--            tar -C ${S} -cO $excludes . | tar -C $tmp_dir/${SRCIPK_INSTALL_DIR} -xpf -
-+        if [ -e ${SRCIPK_SRC_DIR} ]; then
-+            if [ "${SRCIPK_SRC_DIR}" = "${WORKDIR}" ]; then
-+                excludes='--exclude ./temp --exclude ./sourceipk-tmp --exclude ./sourceipk-data'
-+            fi
-+            tar -C ${SRCIPK_SRC_DIR} -cO $excludes . | tar -C $tmp_dir/${SRCIPK_INSTALL_DIR} -xpf -
-         fi
- 
-         if [ ${SRCIPK_INCLUDE_EXTRAFILES} != "0" ]
+ do_install() {
++    cd ${SOURCE_DIR}
++
+     oe_runmake DESTDIR=${D} install
+ }
 -- 
 1.7.0.4
 
