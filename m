@@ -1,34 +1,30 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f53.google.com (mail-oa0-f53.google.com
-	[209.85.219.53])
-	by arago-project.org (Postfix) with ESMTPS id 575A552AC9
+Return-Path: <a0756824@ares-ubuntu>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 0FD0052A55
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Feb 2013 00:06:41 +0000 (UTC)
-Received: by mail-oa0-f53.google.com with SMTP id m1so735162oag.12
-	for <meta-arago@arago-project.org>;
-	Tue, 12 Feb 2013 16:06:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=75W6ZuvSr26AOKbV5XoH6SxLt0ozV24W5NtWbHIbma8=;
-	b=hlWJhLuFz0mqZ/KqHf2N8D3B7rbOkiDkBTnaBaodumIrXtlYKCvoQALImD218HkpfP
-	HUTOAETDUDpZnCt0lXISQ3OAipTlmT/Z00wactjbvYc/7g6FvA1IAKfz3BqGFppmg5gn
-	zByNfb4GIuuRvCy6jBwz/C/j+91o6DyjnX+6AgeK3O1HJLcYJpq5+W9aBPVF1Gfry94C
-	Nw/mX0x/euW7Cntsl9yf9p83kKs7KLPjcqh6W3A8QqqlAo0Ut/beoEybn9ttWuWXdN2o
-	8iPlTtZy2g5wVh+31mlA+BZyzyyLk7pNWI/XjeLJzhizS2EyVBIaVMfxpsP+oP4LtZJP
-	Xvjw==
-X-Received: by 10.182.40.71 with SMTP id v7mr14689394obk.85.1360714000510;
-	Tue, 12 Feb 2013 16:06:40 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id rn9sm54901953obb.11.2013.02.12.16.06.38
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Tue, 12 Feb 2013 16:06:39 -0800 (PST)
-From: fcooperjr27@gmail.com
-To: meta-arago@arago-project.org
-Date: Tue, 12 Feb 2013 18:06:34 -0600
-Message-Id: <1360713994-18064-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] Workaround oe-core/scripts/bitbake bug
+	Thu, 14 Feb 2013 22:28:45 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1EMSiH7019995
+	for <meta-arago@arago-project.org>; Thu, 14 Feb 2013 16:28:44 -0600
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1EMSiAk014813
+	for <meta-arago@arago-project.org>; Thu, 14 Feb 2013 16:28:44 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Thu, 14 Feb 2013 16:28:44 -0600
+Received: from ares-ubuntu.am.dhcp.ti.com (ares-ubuntu.am.dhcp.ti.com
+	[158.218.103.17])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	r1EMSirm002756;	Thu, 14 Feb 2013 16:28:44 -0600
+Received: from a0756824 by ares-ubuntu.am.dhcp.ti.com with local (Exim 4.76)
+	(envelope-from <a0756824@ares-ubuntu>)	id 1U67IJ-0006U2-Uk;
+	Thu, 14 Feb 2013 17:28:44 -0500
+From: Sajesh Kumar Saran <sajesh@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 14 Feb 2013 17:28:40 -0500
+Message-ID: <1360880920-24652-1-git-send-email-sajesh@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH] Added ti-multiproc manager recipe for KeyStone2 devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,45 +37,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2013 00:06:41 -0000
+X-List-Received-Date: Thu, 14 Feb 2013 22:28:46 -0000
+Content-Type: text/plain
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* There is a bug in the oe-core/scripts/bitbake script that causes a
-  infinite recursive call.
-* This issue is due to the oe-core/scripts/bitbake method of temporarily
-  removing any layer's scripts directory from the system PATH variable.
-* As of right now only one instance of a layer's scripts directory is removed
-  from the path since only oe-core contained a scripts directory. This caused a
-  problem when meta-arago added a scripts directory which revealed this problem.
-* Detailed information and my proposed fix can be found here:
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=3872
-* For now rename scripts to arago-scripts to get around this problem until a
-  proper fix is committed in oe-core.
+Signed-off-by: Sajesh Kumar Saran <sajesh@ti.com>
 ---
- {scripts => arago-scripts}/relocate_sdk.py         |    0
- .../recipes-core/meta/meta-toolchain-arago.bb      |    2 +-
- 2 files changed, 1 insertions(+), 1 deletions(-)
- rename {scripts => arago-scripts}/relocate_sdk.py (100%)
+ .../multiprocmgr/ti-multiprocmgr_git.bb            |   19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/multiprocmgr/ti-multiprocmgr_git.bb
 
-diff --git a/scripts/relocate_sdk.py b/arago-scripts/relocate_sdk.py
-similarity index 100%
-rename from scripts/relocate_sdk.py
-rename to arago-scripts/relocate_sdk.py
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index b75583b..863e0ef 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -77,7 +77,7 @@ fakeroot create_sdk_files() {
- 	# Add version information
- 	toolchain_create_sdk_version ${SDK_OUTPUT}/${SDKPATH}/version-${REAL_MULTIMACH_TARGET_SYS}
- 
--	cp ${ARAGOBASE}/scripts/relocate_sdk.py ${SDK_OUTPUT}/${SDKPATH}/
-+	cp ${ARAGOBASE}/arago-scripts/relocate_sdk.py ${SDK_OUTPUT}/${SDKPATH}/
- 
- 	# Replace the ##DEFAULT_INSTALL_DIR## with the correct pattern.
- 	# Escape special characters like '+' and '.' in the SDKPATH
+diff --git a/meta-arago-distro/recipes-devtools/multiprocmgr/ti-multiprocmgr_git.bb b/meta-arago-distro/recipes-devtools/multiprocmgr/ti-multiprocmgr_git.bb
+new file mode 100644
+index 0000000..c72bc7d
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/multiprocmgr/ti-multiprocmgr_git.bb
+@@ -0,0 +1,19 @@
++DESCRIPTION = "TI Multiproc Manager for KeyStone II"
++HOMEPAGE = "http://gtgit01.gt.design.ti.com/git/?p=projects/multiprocmgr.git;a=summary"
++LICENSE = "BSD & MIT"
++LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=fce208c498eb9669223724dc9c1d8fe4"
++SECTION = "console"
++
++PR = "r2"
++
++BRANCH ?= "master"
++SRCREV = "${AUTOREV}"
++
++SRC_URI = "git://gtgit01.gt.design.ti.com/git/projects/multiprocmgr.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
++
++do_install() {
++	install -d ${D}${bindir}/
++	install -c -m 755 ${S}/mpmsrv ${D}${bindir}/mpmsrv
++}
 -- 
-1.7.0.4
+1.7.9.5
 
 
