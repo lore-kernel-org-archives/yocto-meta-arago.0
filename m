@@ -1,30 +1,26 @@
-Return-Path: <a0756824@ares-ubuntu>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 5F82252A64
+Return-Path: <denis@denix.org>
+Received: from vms173009pub.verizon.net (vms173009pub.verizon.net
+	[206.46.173.9])
+	by arago-project.org (Postfix) with ESMTP id 4B97752A5A
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Feb 2013 02:08:53 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1F28qaa018907
-	for <meta-arago@arago-project.org>; Thu, 14 Feb 2013 20:08:52 -0600
-Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1F28q9A018285
-	for <meta-arago@arago-project.org>; Thu, 14 Feb 2013 20:08:52 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
-	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 14 Feb 2013 20:08:52 -0600
-Received: from ares-ubuntu.am.dhcp.ti.com (ares-ubuntu.am.dhcp.ti.com
-	[158.218.103.17])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r1F28qnD030604;	Thu, 14 Feb 2013 20:08:52 -0600
-Received: from a0756824 by ares-ubuntu.am.dhcp.ti.com with local (Exim 4.76)
-	(envelope-from <a0756824@ares-ubuntu>)	id 1U6AjM-0006Jd-4W;
-	Thu, 14 Feb 2013 21:08:52 -0500
-From: Sajesh Kumar Saran <sajesh@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 14 Feb 2013 21:08:46 -0500
-Message-ID: <1360894127-24242-1-git-send-email-sajesh@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH] multiprocmgr: add initial version
+	Fri, 15 Feb 2013 03:18:55 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173009.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MI8000UBRUQEIS4@vms173009.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 14 Feb 2013 21:18:36 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 2F2C12008D; Thu,
+	14 Feb 2013 22:18:25 -0500 (EST)
+Date: Thu, 14 Feb 2013 22:18:25 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sajesh Kumar Saran <sajesh@ti.com>
+Message-id: <20130215031825.GD9154@denix.org>
+References: <1360894127-24242-1-git-send-email-sajesh@ti.com>
+MIME-version: 1.0
+In-reply-to: <1360894127-24242-1-git-send-email-sajesh@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] multiprocmgr: add initial version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,46 +33,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Feb 2013 02:08:53 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 15 Feb 2013 03:18:55 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-This is an initial version of commit of multiproc manager.
-It adds support to download DSP images from ARM in KeyStone II
-devices.
+On Thu, Feb 14, 2013 at 09:08:46PM -0500, Sajesh Kumar Saran wrote:
+> This is an initial version of commit of multiproc manager.
+> It adds support to download DSP images from ARM in KeyStone II
+> devices.
+> 
+> Signed-off-by: Sajesh Kumar Saran <sajesh@ti.com>
+> ---
+>  .../multiprocmgr/multiprocmgr_git.bb               |   20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb
 
-Signed-off-by: Sajesh Kumar Saran <sajesh@ti.com>
----
- .../multiprocmgr/multiprocmgr_git.bb               |   20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb
+I pushed it with one little change - moved it to meta-arago-extras/recipes-bsp
 
-diff --git a/meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb b/meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb
-new file mode 100644
-index 0000000..3f2e52c
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb
-@@ -0,0 +1,20 @@
-+DESCRIPTION = "TI Multiproc Manager for KeyStone II"
-+HOMEPAGE = "http://gtgit01.gt.design.ti.com/git/?p=projects/multiprocmgr.git;a=summary"
-+LICENSE = "BSD & MIT"
-+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=fce208c498eb9669223724dc9c1d8fe4"
-+SECTION = "console"
-+COMPATIBLE_MACHINE = "keystone"
-+
-+PR = "r1"
-+
-+BRANCH ?= "master"
-+SRCREV = "8a97fb5c2c06d5f02d30106629f27fe0ca8a4f95"
-+
-+SRC_URI = "git://gtgit01.gt.design.ti.com/git/projects/multiprocmgr.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+do_install() {
-+	install -d ${D}${bindir}/
-+	install -c -m 755 ${S}/mpmsrv ${D}${bindir}/mpmsrv
-+}
 -- 
-1.7.9.5
+Denys
 
+
+> diff --git a/meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb b/meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb
+> new file mode 100644
+> index 0000000..3f2e52c
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-devtools/multiprocmgr/multiprocmgr_git.bb
+> @@ -0,0 +1,20 @@
+> +DESCRIPTION = "TI Multiproc Manager for KeyStone II"
+> +HOMEPAGE = "http://gtgit01.gt.design.ti.com/git/?p=projects/multiprocmgr.git;a=summary"
+> +LICENSE = "BSD & MIT"
+> +LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=fce208c498eb9669223724dc9c1d8fe4"
+> +SECTION = "console"
+> +COMPATIBLE_MACHINE = "keystone"
+> +
+> +PR = "r1"
+> +
+> +BRANCH ?= "master"
+> +SRCREV = "8a97fb5c2c06d5f02d30106629f27fe0ca8a4f95"
+> +
+> +SRC_URI = "git://gtgit01.gt.design.ti.com/git/projects/multiprocmgr.git;protocol=git;branch=${BRANCH}"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_install() {
+> +	install -d ${D}${bindir}/
+> +	install -c -m 755 ${S}/mpmsrv ${D}${bindir}/mpmsrv
+> +}
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
