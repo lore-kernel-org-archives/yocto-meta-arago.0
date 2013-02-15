@@ -1,36 +1,31 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 9AC3B52A50
+	by arago-project.org (Postfix) with ESMTPS id 0EA5852A55
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Feb 2013 03:54:32 +0000 (UTC)
+	Fri, 15 Feb 2013 22:27:15 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1F3sVTl025818;
-	Thu, 14 Feb 2013 21:54:31 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1FMREaC006105;
+	Fri, 15 Feb 2013 16:27:14 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1F3sVA4022692;
-	Thu, 14 Feb 2013 21:54:31 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Thu, 14 Feb 2013 21:54:31 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "fcooperjr27@gmail.com"
-	<fcooperjr27@gmail.com>
-Thread-Topic: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use
-	generic name for kernel sources
-Thread-Index: AQHOCLpyChSZ+/34pkSJTs0O5/Umvph6r/iA//+cwfA=
-Date: Fri, 15 Feb 2013 03:54:29 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C3918EB@DFLE09.ent.ti.com>
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1FMREnj004730;
+	Fri, 15 Feb 2013 16:27:14 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
+	Fri, 15 Feb 2013 16:27:14 -0600
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r1FMREKx007906;
+	Fri, 15 Feb 2013 16:27:14 -0600
+Date: Fri, 15 Feb 2013 17:27:14 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <fcooperjr27@gmail.com>
+Message-ID: <20130215222713.GC26343@edge>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
-	<1360629979-24789-12-git-send-email-fcooper@ti.com>
-	<20130215034205.GF9154@denix.org>
-In-Reply-To: <20130215034205.GF9154@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	<1360629979-24789-17-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use generic name for kernel sources
+In-Reply-To: <1360629979-24789-17-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH 17/18] tisdk-image: Add support for new toolchain sdk structure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,91 +38,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Feb 2013 03:54:32 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 15 Feb 2013 22:27:16 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+On Mon, Feb 11, 2013 at 06:46:18PM -0600, fcooperjr27@gmail.com wrote:
+> From: Franklin S. Cooper Jr <fcooper@ti.com>
+> 
+> * Previous the toolchain sdk was delivered as a simple tar.gz file that
+>   could be extracted.
+> * Now the toolchain sdk needs to be installed via a self contained script
+>   installer that provides alot more flexibility.
+> * Need to tweak this class to reflect this change.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  meta-arago-distro/classes/tisdk-image.bbclass |   18 ++++++++++++++++++
+>  1 files changed, 18 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
+> index c2f93e2..b08f93b 100644
+> --- a/meta-arago-distro/classes/tisdk-image.bbclass
+> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
+> @@ -478,6 +478,11 @@ do_sdk_image () {
+>  
+>  	mkdir -p ${IMAGE_ROOTFS}/etc
+>  
+> +    chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}*
+> +
+> +    # Temporarily extract the toolchain sdk so we can read license information from it.
+> +    echo "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}" | ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}*
+
+Why not use -y and -d path?
+
+${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}* -y -d "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}"
 
 
+>      # Creat the base SDK image
+>  	rootfs_${IMAGE_PKGTYPE}_do_rootfs
+>  
+> @@ -562,6 +567,14 @@ do_sdk_image () {
+>      # Create the TI software manifest
+>      generate_sw_manifest
+>  
+> +    # Delete installed toolchain sdk since we need the toolchain sdk installer
+> +    # not the extracted version
+> +    rm -rf ${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}
+> +
+> +    # Copy over the toolchain sdk installer an give it a simple name which
+> +    # matches the traditional name within the SDK.
+> +    cp ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}* ${IMAGE_ROOTFS}/linux-devkit.sh
+> +
+>      # Copy the opkg.conf used by the image to allow for future updates
+>      cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
+>  
+> @@ -574,6 +587,11 @@ do_sdk_image () {
+>      ${@get_imagecmds(d)}
+>  }
+>  
+> +license_create_manifest() {
+> +    # Override license_create_manifest and do nothing
+> +    echo ""
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> Sent: Thursday, February 14, 2013 9:42 PM
-> To: fcooperjr27@gmail.com
-> Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-> Subject: Re: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use
-> generic name for kernel sources
->=20
-> On Mon, Feb 11, 2013 at 06:46:13PM -0600, fcooperjr27@gmail.com wrote:
-> > From: Franklin S. Cooper Jr <fcooper@ti.com>
-> >
-> > * Use generic name for kernel sources which will allow for any machine =
-to be
-> >   used without modification.
-> >
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    8 +++-----
-> >  1 files changed, 3 insertions(+), 5 deletions(-)
-> >
-> > diff --git
-> > a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisd
-> > k-amsdk-sdk-host.bb
-> > b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisd
-> > k-amsdk-sdk-host.bb
-> > index 14626c8..b990235 100644
-> > ---
-> > a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisd
-> > k-amsdk-sdk-host.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> > +++ tisdk-amsdk-sdk-host.bb
-> > @@ -1,17 +1,15 @@
-> >  DESCRIPTION =3D "Task to install additional scripts and applications i=
-nto the
-> SDK"
-> >  LICENSE =3D "MIT"
-> > -PR =3D "r3"
-> > +PR =3D "r4"
-> >
-> >  inherit packagegroup
-> >
-> >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> >
-> >  # Choose the kernel and u-boot recipe sources to use -U-BOOT_SRC =3D "=
-"
-> > -KERNEL_SRC =3D ""
-> >
-> > -U-BOOT_SRC_am335x-evm =3D "u-boot-src"
-> > -KERNEL_SRC_am335x-evm =3D "linux-am335x-src"
-> > +U-BOOT_SRC  =3D "u-boot-src"
-> > +KERNEL_SRC :=3D "${PREFERRED_PROVIDER_virtual/kernel}-src"
->=20
-> 1. Do you need to use :=3D assignment here?
-No. I'll fix that.
-> 2. Should we also consider using existing
-> PREFERRED_PROVIDER_virtual/bootloader
-> for u-boot sources here as well?
-PREFERRED_PROVIDER_virtual/bootloader is a big annoyance that I struggled w=
-ith. The problem is in meta-arago we define PREFERRED_PROVIDER_virtual/kern=
-el for all platforms so it works well for the kernel.
-Some platforms don't define that variable so it will fail for those platfor=
-ms. All of our platforms use u-boot as the ${PN} so it was safe to make the=
- assumption.
->=20
-> --
-> Denys
->=20
-> >  TOOLS =3D "pinmux-utility"
-> >  TOOLS_am37x-evm_append =3D " flash-utility"
-> > --
-> > 1.7.0.4
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >
+Usually you'd use colon ":" for noop command:
+
+blah() {
+	:
+}
+
+
+> +}
+> +
+>  EXPORT_FUNCTIONS do_sdk_image
+>  addtask sdk_image before do_build after do_install
+>  
+> -- 
+> 1.7.0.4
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
