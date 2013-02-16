@@ -1,31 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 0EA5852A55
+Return-Path: <paul.kovitz@welchallyn.com>
+Received: from na3sys009aog107.obsmtp.com (na3sys009aog107.obsmtp.com
+	[74.125.149.197])
+	by arago-project.org (Postfix) with ESMTPS id B3AFF52A50
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Feb 2013 22:27:15 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1FMREaC006105;
-	Fri, 15 Feb 2013 16:27:14 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1FMREnj004730;
-	Fri, 15 Feb 2013 16:27:14 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
-	Fri, 15 Feb 2013 16:27:14 -0600
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r1FMREKx007906;
-	Fri, 15 Feb 2013 16:27:14 -0600
-Date: Fri, 15 Feb 2013 17:27:14 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <fcooperjr27@gmail.com>
-Message-ID: <20130215222713.GC26343@edge>
-References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
-	<1360629979-24789-17-git-send-email-fcooper@ti.com>
+	Sat, 16 Feb 2013 00:27:00 +0000 (UTC)
+Received: from mail-la0-f72.google.com ([209.85.215.72]) (using TLSv1) by
+	na3sys009aob107.postini.com ([74.125.148.12]) with SMTP
+	ID DSNKUR7SUtQlwh9rz6jSH+QdiK0iC22FxcBk@postini.com;
+	Fri, 15 Feb 2013 16:27:00 PST
+Received: by mail-la0-f72.google.com with SMTP id gw10so4971235lab.11
+	for <meta-arago@arago-project.org>;
+	Fri, 15 Feb 2013 16:26:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:x-received:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=ctmtkJEAgQFm1DK7tG/MZpvJoZu/CwClLqda0eJREI8=;
+	b=c2bXtQVjhDsOt2PHHk/eX224d/YSEDB+zcrIrl3FPxiDTw/eg6S9ZnYypJ+9orLMfo
+	zghJHPGS0OK2LXXFwqgvMsioeLU4gkTNdBvRm7vuHcp0nxulr2R+GNiD4b2eusxdVBU9
+	NVe/YZfTEmGJELBTa4HvSsAvSQ5hXysLZ9lOd9OEyC+OVUIMHXTLn2846WpvpzfjuJVA
+	74on7yqGnCsZSr4FXFkurbuochHpLF6T2Bu2QrNPqpcPhkK8SANbdlQEwv6ASl8yJqti
+	dptQJP9zS3kem5PwkBW5jJ6E3cZgpt60UHmLgxgf0PQemI9BdAdNI+ZIVoWUH1iBsYac
+	W9EQ==
+X-Received: by 10.194.122.131 with SMTP id ls3mr7388843wjb.55.1360974417067;
+	Fri, 15 Feb 2013 16:26:57 -0800 (PST)
+X-Received: by 10.194.122.131 with SMTP id ls3mr7388834wjb.55.1360974416891;
+	Fri, 15 Feb 2013 16:26:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1360629979-24789-17-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: Re: [PATCH 17/18] tisdk-image: Add support for new toolchain sdk structure
+Received: by 10.216.104.132 with HTTP; Fri, 15 Feb 2013 16:26:16 -0800 (PST)
+In-Reply-To: <1360629979-24789-7-git-send-email-fcooper@ti.com>
+References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
+	<1360629979-24789-7-git-send-email-fcooper@ti.com>
+From: Paul Kovitz <paul.kovitz@welchallyn.com>
+Date: Fri, 15 Feb 2013 16:26:16 -0800
+Message-ID: <CA+edY+TJcTewZLGNf5WTjsZE3a+3cg0UCRBjaHPhtFQ344iM8Q@mail.gmail.com>
+To: fcooperjr27@gmail.com
+X-Gm-Message-State: ALoCoQkv1E0htMLRDqzzuUkHR6SkITKLuwkm+M0MizGDPbO6gegvxqJXrqadB76m65DaR5oZW57ZhdoMF2gj0A4+O+H53HqH8K9v9itzD5t53CY4u+PqX4tLJQ0Cr4Osxt+MvXBM+jxLPu9diT1XNjHbLY6pHUZJ7qNjbSsQNV0cmwlBnYoIhN8=
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
+	"Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH 07/18] arago.conf: Add SUPPORTS_SGX variable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,85 +51,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Feb 2013 22:27:16 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 16 Feb 2013 00:27:02 -0000
+Content-Type: multipart/alternative; boundary=089e01229032aad07704d5cc8cff
 
-On Mon, Feb 11, 2013 at 06:46:18PM -0600, fcooperjr27@gmail.com wrote:
-> From: Franklin S. Cooper Jr <fcooper@ti.com>
-> 
-> * Previous the toolchain sdk was delivered as a simple tar.gz file that
->   could be extracted.
-> * Now the toolchain sdk needs to be installed via a self contained script
->   installer that provides alot more flexibility.
-> * Need to tweak this class to reflect this change.
-> 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  meta-arago-distro/classes/tisdk-image.bbclass |   18 ++++++++++++++++++
->  1 files changed, 18 insertions(+), 0 deletions(-)
-> 
-> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-> index c2f93e2..b08f93b 100644
-> --- a/meta-arago-distro/classes/tisdk-image.bbclass
-> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
-> @@ -478,6 +478,11 @@ do_sdk_image () {
->  
->  	mkdir -p ${IMAGE_ROOTFS}/etc
->  
-> +    chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}*
-> +
-> +    # Temporarily extract the toolchain sdk so we can read license information from it.
-> +    echo "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}" | ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}*
+--089e01229032aad07704d5cc8cff
+Content-Type: text/plain; charset=ISO-8859-1
 
-Why not use -y and -d path?
+Please comment on coding SUPPORTS_SGX ?= "YES" instead of SUPPORTS_SGX =
+"YES" For example, if you want to simulate an AM3352 device on an AM335x
+eval board, you could write SUPPORTS_SGX = "NO" in local.conf. This change
+requires a base_conditional checks for SUPPORTS_SGX in
+task-arago-tisdk-matrix.bb and task-arago-tisdk-graphics-sdk-target.bb to
+avoid other dependencies on OpenGL for the AM3352. I have a similar patch
+in the code I am currently using for my own development.
 
-${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}* -y -d "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}"
+Thanks for your help.
 
+--089e01229032aad07704d5cc8cff
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
->      # Creat the base SDK image
->  	rootfs_${IMAGE_PKGTYPE}_do_rootfs
->  
-> @@ -562,6 +567,14 @@ do_sdk_image () {
->      # Create the TI software manifest
->      generate_sw_manifest
->  
-> +    # Delete installed toolchain sdk since we need the toolchain sdk installer
-> +    # not the extracted version
-> +    rm -rf ${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}
-> +
-> +    # Copy over the toolchain sdk installer an give it a simple name which
-> +    # matches the traditional name within the SDK.
-> +    cp ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk-${SDK_ARCH}* ${IMAGE_ROOTFS}/linux-devkit.sh
-> +
->      # Copy the opkg.conf used by the image to allow for future updates
->      cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
->  
-> @@ -574,6 +587,11 @@ do_sdk_image () {
->      ${@get_imagecmds(d)}
->  }
->  
-> +license_create_manifest() {
-> +    # Override license_create_manifest and do nothing
-> +    echo ""
+<div dir=3D"ltr">Please comment on coding SUPPORTS_SGX ?=3D &quot;YES&quot;=
+ instead of SUPPORTS_SGX =3D &quot;YES&quot; For example, if you want to si=
+mulate an AM3352 device on an AM335x eval board, you could write=A0SUPPORTS=
+_SGX =3D &quot;NO&quot; in local.conf. This change requires a base_conditio=
+nal checks for SUPPORTS_SGX in=A0<a href=3D"http://task-arago-tisdk-matrix.=
+bb" target=3D"_blank">task-arago-tisdk-matrix.bb</a> and=A0<a href=3D"http:=
+//task-arago-tisdk-graphics-sdk-target.bb" target=3D"_blank">task-arago-tis=
+dk-graphics-sdk-target.bb</a>=A0to avoid other dependencies on OpenGL for t=
+he AM3352. I have a similar patch in the code I am currently using for my o=
+wn development.<div>
 
-Usually you'd use colon ":" for noop command:
+<br></div><div>Thanks for your help.<br><div><div><div class=3D"gmail_extra=
+">
+<br><br><div class=3D"gmail_quote"><br></div>
+</div></div></div></div></div>
 
-blah() {
-	:
-}
-
-
-> +}
-> +
->  EXPORT_FUNCTIONS do_sdk_image
->  addtask sdk_image before do_build after do_install
->  
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+--089e01229032aad07704d5cc8cff--
