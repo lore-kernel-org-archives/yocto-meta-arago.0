@@ -1,34 +1,34 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <chase.maupin@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 984D652A1D
+	by arago-project.org (Postfix) with ESMTPS id EE5DE52A1D
 	for <meta-arago@arago-project.org>;
-	Sun, 17 Feb 2013 21:07:17 +0000 (UTC)
+	Sun, 17 Feb 2013 21:29:58 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1HL7Ftk001053;
-	Sun, 17 Feb 2013 15:07:15 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1HLTuPS001979
+	for <meta-arago@arago-project.org>; Sun, 17 Feb 2013 15:29:56 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1HL7FJH026947;
-	Sun, 17 Feb 2013 15:07:15 -0600
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1HLTuIJ012044
+	for <meta-arago@arago-project.org>; Sun, 17 Feb 2013 15:29:56 -0600
+Received: from DLEE12.ent.ti.com ([fe80::3867:617:aab3:5956]) by
 	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Sun, 17 Feb 2013 15:07:15 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
+	14.01.0323.003; Sun, 17 Feb 2013 15:29:55 -0600
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
 Thread-Topic: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use
 	generic name for kernel sources
-Thread-Index: AQHOCLpyChSZ+/34pkSJTs0O5/Umvph6r/iA//+cwfCABKMHAP//omfQ
-Date: Sun, 17 Feb 2013 21:07:14 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C393B7E@DFLE09.ent.ti.com>
+Thread-Index: AQHOCy5vy3xZwnV6SUyouIWXc5i6EZh6roeAgAQ8UQCAAAjlAP//ocKx
+Date: Sun, 17 Feb 2013 21:29:55 +0000
+Message-ID: <5B708603-AD53-4D90-A882-7A22CF03ED95@ti.com>
 References: <1360629979-24789-1-git-send-email-fcooper@ti.com>
 	<1360629979-24789-12-git-send-email-fcooper@ti.com>
 	<20130215034205.GF9154@denix.org>
 	<8F29D6B095ED194EA1980491A5E029710C3918EB@DFLE09.ent.ti.com>
-	<20130217203524.GA2174@denix.org>
-In-Reply-To: <20130217203524.GA2174@denix.org>
+	<20130217203524.GA2174@denix.org>,
+	<8F29D6B095ED194EA1980491A5E029710C393B7E@DFLE09.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C393B7E@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use generic name for kernel sources
@@ -44,116 +44,126 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Feb 2013 21:07:18 -0000
+X-List-Received-Date: Sun, 17 Feb 2013 21:30:04 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
++1
 
+Sincerely,
+Chase Maupin
+On Feb 17, 2013, at 3:07 PM, "Cooper Jr., Franklin" <fcooper@ti.com> wrote:
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Sunday, February 17, 2013 2:35 PM
-> To: Cooper Jr., Franklin
-> Cc: Dmytriyenko, Denys; fcooperjr27@gmail.com; meta-arago@arago-
-> project.org
-> Subject: Re: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use
-> generic name for kernel sources
 >=20
-> On Fri, Feb 15, 2013 at 03:54:29AM +0000, Cooper Jr., Franklin wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> > > Sent: Thursday, February 14, 2013 9:42 PM
-> > > To: fcooperjr27@gmail.com
-> > > Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-> > > Subject: Re: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host:
-> > > Use generic name for kernel sources
-> > >
-> > > On Mon, Feb 11, 2013 at 06:46:13PM -0600, fcooperjr27@gmail.com
-> wrote:
-> > > > From: Franklin S. Cooper Jr <fcooper@ti.com>
-> > > >
-> > > > * Use generic name for kernel sources which will allow for any mach=
-ine
-> to be
-> > > >   used without modification.
-> > > >
-> > > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > > > ---
-> > > >  .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    8 +++-----
-> > > >  1 files changed, 3 insertions(+), 5 deletions(-)
-> > > >
-> > > > diff --git
-> > > > a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> > > > tisd
-> > > > k-amsdk-sdk-host.bb
-> > > > b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> > > > tisd
-> > > > k-amsdk-sdk-host.bb
-> > > > index 14626c8..b990235 100644
-> > > > ---
-> > > > a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> > > > tisd
-> > > > k-amsdk-sdk-host.bb
-> > > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar
-> > > > +++ ago-
-> > > > +++ tisdk-amsdk-sdk-host.bb
-> > > > @@ -1,17 +1,15 @@
-> > > >  DESCRIPTION =3D "Task to install additional scripts and
-> > > > applications into the
-> > > SDK"
-> > > >  LICENSE =3D "MIT"
-> > > > -PR =3D "r3"
-> > > > +PR =3D "r4"
-> > > >
-> > > >  inherit packagegroup
-> > > >
-> > > >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> > > >
-> > > >  # Choose the kernel and u-boot recipe sources to use -U-BOOT_SRC =
-=3D ""
-> > > > -KERNEL_SRC =3D ""
-> > > >
-> > > > -U-BOOT_SRC_am335x-evm =3D "u-boot-src"
-> > > > -KERNEL_SRC_am335x-evm =3D "linux-am335x-src"
-> > > > +U-BOOT_SRC  =3D "u-boot-src"
-> > > > +KERNEL_SRC :=3D "${PREFERRED_PROVIDER_virtual/kernel}-src"
-> > >
-> > > 1. Do you need to use :=3D assignment here?
-> > No. I'll fix that.
-> > > 2. Should we also consider using existing
-> > > PREFERRED_PROVIDER_virtual/bootloader
-> > > for u-boot sources here as well?
-> > PREFERRED_PROVIDER_virtual/bootloader is a big annoyance that I
-> > struggled with. The problem is in meta-arago we define
-> > PREFERRED_PROVIDER_virtual/kernel for all platforms so it works well
-> > for the kernel. Some platforms don't define that variable so it will
-> > fail for those platforms. All of our platforms use u-boot as the ${PN}
-> > so it was safe to make the assumption.
 >=20
-> I thought all our platforms in meta-ti had virtual/bootloader set - which=
- ones
-> are missing?
-> On the other hand, I guess we could just drop it altogether...
-
-Machines missing virtual/bootloader being set in machine config file:
-Beagleboard <-- the one that caused me problems.
-Beaglebone
-Hawkboard
-Keystone
-Omap3-touchbook
-
-I can add virtual/bootloader to all the missing machines in meta-ti and upd=
-ate this recipe to use virtual/bootloader or we can use this recipe as is m=
-inus the :=3D change.
-
-I would vote for adding virtual/bootloader to all machines in meta-ti since=
- it will future proof this recipe a bit more if someone later decides to us=
-e a bootloader recipe whose ${PN} isn't u-boot.
+>> -----Original Message-----
+>> From: Dmytriyenko, Denys
+>> Sent: Sunday, February 17, 2013 2:35 PM
+>> To: Cooper Jr., Franklin
+>> Cc: Dmytriyenko, Denys; fcooperjr27@gmail.com; meta-arago@arago-
+>> project.org
+>> Subject: Re: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host: Use
+>> generic name for kernel sources
+>>=20
+>> On Fri, Feb 15, 2013 at 03:54:29AM +0000, Cooper Jr., Franklin wrote:
+>>>=20
+>>>=20
+>>>> -----Original Message-----
+>>>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>>>> bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
+>>>> Sent: Thursday, February 14, 2013 9:42 PM
+>>>> To: fcooperjr27@gmail.com
+>>>> Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
+>>>> Subject: Re: [meta-arago] [PATCH 12/18] arago-tisdk-amsdk-sdk-host:
+>>>> Use generic name for kernel sources
+>>>>=20
+>>>> On Mon, Feb 11, 2013 at 06:46:13PM -0600, fcooperjr27@gmail.com
+>> wrote:
+>>>>> From: Franklin S. Cooper Jr <fcooper@ti.com>
+>>>>>=20
+>>>>> * Use generic name for kernel sources which will allow for any machin=
+e
+>> to be
+>>>>>  used without modification.
+>>>>>=20
+>>>>> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>>>>> ---
+>>>>> .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    8 +++-----
+>>>>> 1 files changed, 3 insertions(+), 5 deletions(-)
+>>>>>=20
+>>>>> diff --git
+>>>>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+>>>>> tisd
+>>>>> k-amsdk-sdk-host.bb
+>>>>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+>>>>> tisd
+>>>>> k-amsdk-sdk-host.bb
+>>>>> index 14626c8..b990235 100644
+>>>>> ---
+>>>>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+>>>>> tisd
+>>>>> k-amsdk-sdk-host.bb
+>>>>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar
+>>>>> +++ ago-
+>>>>> +++ tisdk-amsdk-sdk-host.bb
+>>>>> @@ -1,17 +1,15 @@
+>>>>> DESCRIPTION =3D "Task to install additional scripts and
+>>>>> applications into the
+>>>> SDK"
+>>>>> LICENSE =3D "MIT"
+>>>>> -PR =3D "r3"
+>>>>> +PR =3D "r4"
+>>>>>=20
+>>>>> inherit packagegroup
+>>>>>=20
+>>>>> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+>>>>>=20
+>>>>> # Choose the kernel and u-boot recipe sources to use -U-BOOT_SRC =3D =
+""
+>>>>> -KERNEL_SRC =3D ""
+>>>>>=20
+>>>>> -U-BOOT_SRC_am335x-evm =3D "u-boot-src"
+>>>>> -KERNEL_SRC_am335x-evm =3D "linux-am335x-src"
+>>>>> +U-BOOT_SRC  =3D "u-boot-src"
+>>>>> +KERNEL_SRC :=3D "${PREFERRED_PROVIDER_virtual/kernel}-src"
+>>>>=20
+>>>> 1. Do you need to use :=3D assignment here?
+>>> No. I'll fix that.
+>>>> 2. Should we also consider using existing
+>>>> PREFERRED_PROVIDER_virtual/bootloader
+>>>> for u-boot sources here as well?
+>>> PREFERRED_PROVIDER_virtual/bootloader is a big annoyance that I
+>>> struggled with. The problem is in meta-arago we define
+>>> PREFERRED_PROVIDER_virtual/kernel for all platforms so it works well
+>>> for the kernel. Some platforms don't define that variable so it will
+>>> fail for those platforms. All of our platforms use u-boot as the ${PN}
+>>> so it was safe to make the assumption.
+>>=20
+>> I thought all our platforms in meta-ti had virtual/bootloader set - whic=
+h ones
+>> are missing?
+>> On the other hand, I guess we could just drop it altogether...
 >=20
-> --
-> Denys
+> Machines missing virtual/bootloader being set in machine config file:
+> Beagleboard <-- the one that caused me problems.
+> Beaglebone
+> Hawkboard
+> Keystone
+> Omap3-touchbook
+>=20
+> I can add virtual/bootloader to all the missing machines in meta-ti and u=
+pdate this recipe to use virtual/bootloader or we can use this recipe as is=
+ minus the :=3D change.
+>=20
+> I would vote for adding virtual/bootloader to all machines in meta-ti sin=
+ce it will future proof this recipe a bit more if someone later decides to =
+use a bootloader recipe whose ${PN} isn't u-boot.
+>>=20
+>> --
+>> Denys
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
