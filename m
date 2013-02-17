@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-gg0-f177.google.com (mail-gg0-f177.google.com
-	[209.85.161.177])
-	by arago-project.org (Postfix) with ESMTPS id C961B52A1D
+Received: from mail-ye0-f181.google.com (mail-ye0-f181.google.com
+	[209.85.213.181])
+	by arago-project.org (Postfix) with ESMTPS id 6C42652A5D
 	for <meta-arago@arago-project.org>;
-	Sun, 17 Feb 2013 22:53:51 +0000 (UTC)
-Received: by mail-gg0-f177.google.com with SMTP id q1so464667gge.22
+	Sun, 17 Feb 2013 22:53:53 +0000 (UTC)
+Received: by mail-ye0-f181.google.com with SMTP id m11so907759yen.26
 	for <meta-arago@arago-project.org>;
-	Sun, 17 Feb 2013 14:53:51 -0800 (PST)
+	Sun, 17 Feb 2013 14:53:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=8cdFM3EkPpjzi1j1PpStpTpvXX4j9m5c9RXaAs65xDk=;
-	b=OCBkzxlnC1ggxqSNi8vUa8rzV6DGHq8KSkS4zu/jXwy/Rf6Jity4kLV145M2y1cg1/
-	NJR1aX80RlaR4b6FFnMDU6xb85W/NEuiMbAaYqD8y3/ziraLrSteaGvEnyj0Mht9FFTI
-	GPNGT14CVTuTCQMgFwKayB55eky603dvhwu6U6S0DMBxDrOAd1VvvH4gU3OCHqCj9uIa
-	tdwcZS9E76FTEfAh1beFG79ZwJR3K8D1DwVeTMPtoq3puvmj1hs4HB74jTIOzxUZlzeF
-	z1DufDqGJl4f3W4SWcK9awJ5S5sgDSyUvGS45yaTGek33U5EO40MfZjqPafUhQeAykXL
-	8IwQ==
-X-Received: by 10.101.142.13 with SMTP id u13mr4747123ann.67.1361141631286;
-	Sun, 17 Feb 2013 14:53:51 -0800 (PST)
+	:references; bh=JfhFyER8f6vJvd+btkkxhDRL+yxjdEzkOlGE0ponmqU=;
+	b=KRXggWsZeljma8pEOrfD6O1bwgHxz01LB1eyPqwuTJeHyp8rNQeE1ppq9CLA08evEX
+	sc4tEadO9zGW2OEetsHFes+TRwkMXx+eDxaMzq6os1TSyGDt9QlEKQJO9ufAn034qBkA
+	PLw+U2h6QmSRJ97hcchvdtb9EPm0GXH/VwSQ1pY4BKujWmweaHs+jHvNQLJophWG0Gwi
+	Oz+AlVfWpvAQjzpeO28KitgH1cU8AW0l9/B5tfVsjuAxSuYjJW91KA31BfoqPivllq39
+	O2v/8TeoTjV/H+zHUY4KzQS3qftyTLsXQ3AOJo+YIvkiNOour9wQq2Du/dXpaXgUWGbO
+	EYKg==
+X-Received: by 10.236.129.72 with SMTP id g48mr16905796yhi.102.1361141633125; 
+	Sun, 17 Feb 2013 14:53:53 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id s74sm3456861yhh.5.2013.02.17.14.53.49
+	by mx.google.com with ESMTPS id s74sm3456861yhh.5.2013.02.17.14.53.51
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Sun, 17 Feb 2013 14:53:50 -0800 (PST)
+	Sun, 17 Feb 2013 14:53:52 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Sun, 17 Feb 2013 16:53:10 -0600
-Message-Id: <1361141595-1687-15-git-send-email-fcooper@ti.com>
+Date: Sun, 17 Feb 2013 16:53:11 -0600
+Message-Id: <1361141595-1687-16-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1361141595-1687-1-git-send-email-fcooper@ti.com>
 References: <1361141595-1687-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 15/20] arm-benchmarks: Update Rules.make relative path
+Subject: [PATCH 16/20] meta-toolchain-arago: Create shell stub for gdb
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,34 +43,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Feb 2013 22:53:52 -0000
+X-List-Received-Date: Sun, 17 Feb 2013 22:53:53 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Pull in the change that updates the Rule.make relative path within the
-  Makefiles.
-* Since the sources are packaged up differently the files have been moved.
----
- .../arm-benchmarks/arm-benchmarks_1.3.bb           |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+* PYTHONHOME and PYTHONPATH variable causes various problems in the
+  environment-setup file.
+* Since it is only needed by gdb resurrect the shell stub concept and place
+  those environment variables in there for gdb.
 
-diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-index 0e4ae85..af677d1 100644
---- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-+++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-@@ -4,10 +4,10 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
- SECTION = "system"
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../recipes-core/meta/meta-toolchain-arago.bb      |   22 +++++++++++++++++++-
+ 1 files changed, 21 insertions(+), 1 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index 863e0ef..e683f9a 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -5,7 +5,7 @@ TOOLCHAIN_CLEANUP_PACKAGES ?= ""
  
--PR = "r4"
-+PR = "r5"
+ require recipes-core/meta/meta-toolchain.bb
  
- BRANCH ?= "master"
--SRCREV = "f78411fbd9cb81c36c7067a74fd415ce7ce45dc4"
-+SRCREV = "9b7b4fbde8fcf796a23da2a464dbf934e550f6c9"
+-PR = "r19"
++PR = "r20"
  
- SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
+ SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
  
+@@ -57,12 +57,32 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
+ }
+ 
++create_shell_stub () {
++	i=$1
++	mv $i $i.real
++	printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n" > $i
++	printf "\tfilename\x3D\x60echo \x24\x7BBASH_SOURCE\x23\x23\x2A\x2F\x7D\x60\n" >> $i
++	printf "\tdirname\x3D\x24\x7BBASH_SOURCE\x2F\x25\x24filename\x2F\x7D\n" >> $i
++	printf "\t\x2E \x24dirname\x2E\x2E\x2Fenvironment-setup\n" >> $i
++	printf "fi\n" >> $i
++
++	if [ "$2" == "yes" ]; then
++		echo 'export PYTHONHOME=$SDK_PATH' >> $i
++		echo 'export PYTHONPATH=lib/python2.7' >> $i
++	fi
++	printf "LD_LIBRARY_PATH=\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH \x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" >> $i
++	chmod +x $i
++}
++
+ populate_sdk_ipk_append () {
+ 	# Remove broken .la files
+ 	for i in `find ${SDK_OUTPUT}/${SDKPATH} -name \*.la`; do
+ 		rm -f $i
+ 	done
+ 
++	cd ${SDK_OUTPUT}/${SDKPATH}/bin
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-arago-sdk-toolchain', '', 'create_shell_stub ${TARGET_PREFIX}gdb yes', d)}
++
+ 	cleanup_toolchain_packages
+ 
+ 	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}"
 -- 
 1.7.0.4
 
