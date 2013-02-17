@@ -1,36 +1,37 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-gh0-f182.google.com (mail-gh0-f182.google.com
-	[209.85.160.182])
-	by arago-project.org (Postfix) with ESMTPS id 29FDF52A5D
+Received: from mail-yh0-f54.google.com (mail-yh0-f54.google.com
+	[209.85.213.54])
+	by arago-project.org (Postfix) with ESMTPS id 821D752A1D
 	for <meta-arago@arago-project.org>;
-	Sun, 17 Feb 2013 22:53:57 +0000 (UTC)
-Received: by mail-gh0-f182.google.com with SMTP id z15so471672ghb.27
+	Sun, 17 Feb 2013 22:53:59 +0000 (UTC)
+Received: by mail-yh0-f54.google.com with SMTP id 29so887221yhr.13
 	for <meta-arago@arago-project.org>;
-	Sun, 17 Feb 2013 14:53:56 -0800 (PST)
+	Sun, 17 Feb 2013 14:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=l5eMwihJsuxke8lYRiVBywxH3gMSe6qon/2IvpjwMno=;
-	b=erI20CpsGlo+5g/RTU1a5Vqppylqci48FfvQXgbqXutmvXSuDuooAZw+oRkw0dzY82
-	YENCVi/ieT0dZoFLV4PjboHTE8pmy+IJj0f7E9Mu8TSDPErh5RTdZCZSGFTsVDuqSwiX
-	pYBRy3sxXLrUh6nEH8Do5DtzzPKC8sInMSr5MN8r4a8tirC//EpBiD/J+BKh3g3VHdGm
-	iI7qG+0WY0oanFNu0B3ViYKD+ql8tQdjtVPKHwti6IfdQRsPc4xIHVxTfUa6rS9IBuoH
-	38SZdJewfhTixmZu7BAI8Us2PpNseIPgkQydFN36qqzLpxwNV/u9wZUnr3k/b9nqYbWT
-	ArAQ==
-X-Received: by 10.236.57.10 with SMTP id n10mr17204542yhc.50.1361141636549;
-	Sun, 17 Feb 2013 14:53:56 -0800 (PST)
+	:references; bh=oPmk2RdxEokJc3x/rcARTY91QsnEkDazG+jKkgefZRc=;
+	b=NgdP9l2mM5sV9NxsCo3jYm6i59SVOPUqCTqdI+l5O/MXeOzOQL7J0QihYsMj/e1xyj
+	lnNRgRp5ZvqOoAFJ+d230I96a6QGyrlneWnRC78KYLHDeLXmuz4zHPbD6u3viS9jsLgz
+	rG5sYaFCokhYKyAfgpOFoIm0n/Ub9qtx5cSLOJe9g1xeELd0HDoQ7Vkv1sXbiiE3YHlI
+	UxyBB2Okm7dqfvKBHbcVZB49MgKoEMybbfiTfqBh4gNqUSJhZIWDXz4nlHiJaYIH6vLD
+	0yPm5cMnna9ktWirViQECkvx+zh055a4bK+iqzR/hbs262rK8BJtij558z6Q2G16uT0W
+	ufNQ==
+X-Received: by 10.236.134.136 with SMTP id s8mr17150974yhi.13.1361141639126;
+	Sun, 17 Feb 2013 14:53:59 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id s74sm3456861yhh.5.2013.02.17.14.53.54
+	by mx.google.com with ESMTPS id s74sm3456861yhh.5.2013.02.17.14.53.56
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Sun, 17 Feb 2013 14:53:55 -0800 (PST)
+	Sun, 17 Feb 2013 14:53:57 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Sun, 17 Feb 2013 16:53:13 -0600
-Message-Id: <1361141595-1687-18-git-send-email-fcooper@ti.com>
+Date: Sun, 17 Feb 2013 16:53:14 -0600
+Message-Id: <1361141595-1687-19-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1361141595-1687-1-git-send-email-fcooper@ti.com>
 References: <1361141595-1687-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 18/20] libav: Remove AC3 and DTS
+Cc: Michael Tadyshak <mtadyshak@ti.com>,
+	"Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 19/20] pinmux-utility: Add new Pinmux Utility
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,45 +44,91 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Feb 2013 22:53:57 -0000
+X-List-Received-Date: Sun, 17 Feb 2013 22:53:59 -0000
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+From: Michael Tadyshak <mtadyshak@ti.com>
 
-* Remove additional references to software that might have patent or license
-  issues surrounding it.
+* Add new Pinmux Utility that adds am335x silicon 2.1 support
+* Remove external license file since the zip file now contains one
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-multimedia/libav/libav_0.8.3.bbappend  |   14 +++++++++++++-
- 1 files changed, 13 insertions(+), 1 deletions(-)
+ .../pinmux-utility/pinmux-utility_2.4.1.0.bb       |   34 --------------------
+ .../pinmux-utility/pinmux-utility_2.5.2.0.bb       |   24 ++++++++++++++
+ 2 files changed, 24 insertions(+), 34 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
+ create mode 100644 meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.5.2.0.bb
 
-diff --git a/meta-arago-distro/recipes-multimedia/libav/libav_0.8.3.bbappend b/meta-arago-distro/recipes-multimedia/libav/libav_0.8.3.bbappend
-index 525b546..f33cc54 100644
---- a/meta-arago-distro/recipes-multimedia/libav/libav_0.8.3.bbappend
-+++ b/meta-arago-distro/recipes-multimedia/libav/libav_0.8.3.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-arago0"
-+PR_append = "-arago1"
- 
- # Disable features that have potential commercial licensing restrictions
- EXTRA_OECONF += "\
-@@ -22,4 +22,16 @@ EXTRA_OECONF += "\
-     --disable-muxer=mpeg2svcd \
-     --disable-muxer=mpeg2video \
-     --disable-muxer=mpeg2vob \
-+                            \
-+    --disable-encoder=ac3_fixed \
-+    --disable-encoder=ac3 \
-+    --disable-decoder=ac3 \
-+    --disable-decoder=eac3 \
-+    --disable-demuxer=ac3 \
-+    --disable-demuxer=eac3 \
-+    --disable-demuxer=dts \
-+    --disable-muxer=ac3 \
-+    --disable-muxer=eac3 \
-+    --disable-muxer=dts \
-+    --disable-parser=ac3 \
- "
+diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
+deleted file mode 100644
+index c34f9fd..0000000
+--- a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.4.1.0.bb
++++ /dev/null
+@@ -1,34 +0,0 @@
+-DESCRIPTION = "Texas Instruments Pinmux Utility"
+-LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=2b328fcf0477d688d8b85f7310f9e6b9"
+-COMPATIBLE_MACHINE = "am335x-evm|am37x-evm|am3517-evm|beagleboard"
+-
+-PR = "r0"
+-
+-SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/850/5562/PinMuxUtility_v2_04_01_00.zip;name=base;subdir=${P}"
+-
+-# Temporarily add LICENSE file here since zip files don't contain any license information. This file was grabbed
+-# from the License Agreement screen when installing this application.
+-SRC_URI += "file://LICENSE"
+-
+-SRC_URI[base.md5sum] = "f65ec03bbbb9e14126ac8ce2795acede"
+-SRC_URI[base.sha256sum] = "a95fe1b436419bf97bfdcc0b7ce95e497558ad81190d95dc0869ef9fc794094c"
+-
+-S = "${WORKDIR}/${P}"
+-
+-do_unpack_extra() {
+-    mv ${WORKDIR}/LICENSE ${WORKDIR}/${P}
+-}
+-
+-addtask unpack_extra after do_unpack before do_patch
+-
+-installdir = "host-tools/pinmux_utils/windows"
+-
+-do_install() {
+-    install -d ${D}/${installdir}
+-    install ${S}/Pin_Mux_Utility.msi ${D}/${installdir}
+-    install ${S}/setup.exe ${D}/${installdir}
+-    install ${S}/Release_Notes.txt ${D}/${installdir}
+-}
+-
+-FILES_${PN} += "${installdir}/*"
+diff --git a/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.5.2.0.bb b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.5.2.0.bb
+new file mode 100644
+index 0000000..51c6571
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/pinmux-utility/pinmux-utility_2.5.2.0.bb
+@@ -0,0 +1,24 @@
++DESCRIPTION = "Texas Instruments Pinmux Utility"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=d69a4aafe4f7b66d5f9c60d6875ebd52"
++COMPATIBLE_MACHINE = "am335x-evm|am37x-evm|am3517-evm|beagleboard"
++
++PR = "r0"
++
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1019/6393/PinMuxUtility_v2_05_02_00.zip;name=base;subdir=${P}"
++
++SRC_URI[base.md5sum] = "5a5cb5e9a5361fcb244a4b685872fe6b"
++SRC_URI[base.sha256sum] = "93b8dfd726dd614aad9c2b0bb9ffc0abbd47e1c2900c3f411be7433c6d04fd2a"
++
++S = "${WORKDIR}/${P}"
++
++installdir = "host-tools/pinmux_utils/windows"
++
++do_install() {
++    install -d ${D}/${installdir}
++    install ${S}/Pin_Mux_Utility.msi ${D}/${installdir}
++    install ${S}/setup.exe ${D}/${installdir}
++    install ${S}/Release_Notes.txt ${D}/${installdir}
++}
++
++FILES_${PN} += "${installdir}/*"
 -- 
 1.7.0.4
 
