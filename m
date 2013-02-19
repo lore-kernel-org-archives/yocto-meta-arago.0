@@ -1,33 +1,29 @@
 Return-Path: <zhoujt@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id E1A6352A1D
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D5A4E52A10
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Feb 2013 21:37:55 +0000 (UTC)
+	Tue, 19 Feb 2013 21:44:59 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1JLbtY4014189
-	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 15:37:55 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1JLixgk026427
+	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 15:44:59 -0600
 Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1JLbtXJ023967
-	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 15:37:55 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1JLixxX031471
+	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 15:44:59 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
 	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Tue, 19 Feb 2013 15:37:55 -0600
+	14.01.0323.003; Tue, 19 Feb 2013 15:44:59 -0600
 From: "Zhou, Jingting" <zhoujt@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: lksctp-tools recipe
-Thread-Index: Ac4OS7kpZ/viCwvTTEata73DQZrHoAABl0lwACXIEvA=
-Date: Tue, 19 Feb 2013 21:37:54 +0000
-Message-ID: <3C08AEEB3C731745938BC83D029FE5E391A400@DFLE09.ent.ti.com>
-References: <3C08AEEB3C731745938BC83D029FE5E391A185@DFLE09.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C3953AE@DFLE09.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C3953AE@DFLE09.ent.ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: ndisc6 recipe review
+Thread-Index: Ac4O6mNv1klEZCQMSHKn88PrEEm6Rw==
+Date: Tue, 19 Feb 2013 21:44:58 +0000
+Message-ID: <3C08AEEB3C731745938BC83D029FE5E391A418@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: lksctp-tools recipe
+Subject: ndisc6 recipe review
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,220 +36,352 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 21:37:56 -0000
+X-List-Received-Date: Tue, 19 Feb 2013 21:45:00 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_"
+	boundary="_000_3C08AEEB3C731745938BC83D029FE5E391A418DFLE09entticom_"
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_
+--_000_3C08AEEB3C731745938BC83D029FE5E391A418DFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Updated patch. Put in under meta-arago-extras, updated the license file, co=
-mbined into one bb file, removed commented out region. Thanks~
+Updated the license file and moved it to meta-arago-extras.
 
-From 7ffcde7bd875fc886b59714db42316bd536b7aab Mon Sep 17 00:00:00 2001
+From 3569ff1bc8715823e234d21da6a44249e550c2f6 Mon Sep 17 00:00:00 2001
 From: Jingting Zhou <a0221004@ares-ubuntu>
-Date: Tue, 19 Feb 2013 16:35:13 -0500
-Subject: [PATCH] added lksctp-tools recipe
+Date: Tue, 19 Feb 2013 16:42:40 -0500
+Subject: [PATCH] added ndisc6 recipe
 
 ---
-.../recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb |   52 +++++++++++++++++=
+.../recipes-bsp/ndisc6/files/acinclude.m4          |  197 +++++++++++++++++=
 +++
-1 file changed, 52 insertions(+)
-create mode 100755 meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_=
-1.0.7.bb
+.../ndisc6/files/autoconf-older-version.patch      |   14 ++
+.../recipes-bsp/ndisc6/ndisc6_0.6.7.bb             |   66 +++++++
+3 files changed, 277 insertions(+)
+create mode 100755 meta-arago-extras/recipes-bsp/ndisc6/files/acinclude.m4
+create mode 100755 meta-arago-extras/recipes-bsp/ndisc6/files/autoconf-olde=
+r-version.patch
+create mode 100755 meta-arago-extras/recipes-bsp/ndisc6/ndisc6_0.6.7.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.=
-bb b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
+diff --git a/meta-arago-extras/recipes-bsp/ndisc6/files/acinclude.m4 b/meta=
+-arago-extras/recipes-bsp/ndisc6/files/acinclude.m4
 new file mode 100755
-index 0000000..310e39a
+index 0000000..5360fff
 --- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
-@@ -0,0 +1,52 @@
-+DESCRIPTION =3D "The Linux Kernel Stream Control Transmission Protocol (lk=
-sctp) project"
-+SECTION =3D "libs"
-+PRIORITY =3D "optional"
-+LICENSE =3D "LGPLv2"
-+LIC_FILES_CHKSUM =3D "file://src/include/netinet/sctp.h;md5=3D8089fbe48b63=
-b73c8d091bee750b2ebc"
++++ b/meta-arago-extras/recipes-bsp/ndisc6/files/acinclude.m4
+@@ -0,0 +1,197 @@
++# _AC_C_STD_TRY(STANDARD, TEST-PROLOGUE, TEST-BODY, OPTION-LIST,
++#                           ACTION-IF-AVAILABLE, ACTION-IF-UNAVAILABLE)
++# --------------------------------------------------------------
++# Check whether the C compiler accepts features of STANDARD (e.g `c89', `c=
+99')
++# by trying to compile a program of TEST-PROLOGUE and TEST-BODY.  If this =
+fails,
++# try again with each compiler option in the space-separated OPTION-LIST; =
+if one
++# helps, append it to CC.  If eventually successful, run ACTION-IF-AVAILAB=
+LE,
++# else ACTION-IF-UNAVAILABLE.
++AC_DEFUN([_AC_C_STD_TRY],
++[AC_MSG_CHECKING([for $CC option to accept ISO ]m4_translit($1, [c], [C]))
++AC_CACHE_VAL(ac_cv_prog_cc_$1,
++[ac_cv_prog_cc_$1=3Dno
++ac_save_CC=3D$CC
++AC_LANG_CONFTEST([AC_LANG_PROGRAM([$2], [$3])])
++for ac_arg in '' $4
++do
++  CC=3D"$ac_save_CC $ac_arg"
++  _AC_COMPILE_IFELSE([], [ac_cv_prog_cc_$1=3D$ac_arg])
++  test "x$ac_cv_prog_cc_$1" !=3D "xno" && break
++done
++rm -f conftest.$ac_ext
++CC=3D$ac_save_CC
++])# AC_CACHE_VAL
++case "x$ac_cv_prog_cc_$1" in
++  x)
++    AC_MSG_RESULT([none needed]) ;;
++  xno)
++    AC_MSG_RESULT([unsupported]) ;;
++  *)
++    CC=3D"$CC $ac_cv_prog_cc_$1"
++    AC_MSG_RESULT([$ac_cv_prog_cc_$1]) ;;
++esac
++AS_IF([test "x$ac_cv_prog_cc_$1" !=3D xno], [$5], [$6])
++])# _AC_C_STD_TRY
 +
-+INC_PR =3D "r2"
-+PR =3D "${INC_PR}.0"
++# _AC_PROG_CC_C99 ([ACTION-IF-AVAILABLE], [ACTION-IF-UNAVAILABLE])
++# ----------------------------------------------------------------
++# If the C compiler is not in ISO C99 mode by default, try to add an
++# option to output variable CC to make it so.  This macro tries
++# various options that select ISO C99 on some system or another.  It
++# considers the compiler to be in ISO C99 mode if it handles mixed
++# code and declarations, _Bool, inline and restrict.
++AC_DEFUN([_AC_PROG_CC_C99],
++[_AC_C_STD_TRY([c99],
++[[#include <stdarg.h>
++#include <stdbool.h>
++#include <stdlib.h>
++#include <wchar.h>
++#include <stdio.h>
 +
-+SRC_URI =3D "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz"
++struct incomplete_array
++{
++  int datasize;
++  double data[];
++};
 +
-+SRC_URI[md5sum] =3D "047562b40537eb3be5d5ec3ae0a2198b"
-+SRC_URI[sha256sum] =3D "e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655=
-d687fd08377595"
++struct named_init {
++  int number;
++  const wchar_t *name;
++  double average;
++};
 +
-+S =3D "${WORKDIR}/${BPN}-${PV}"
++typedef const char *ccp;
 +
-+BBCLASSEXTEND =3D "native"
-+
-+inherit autotools pkgconfig binconfig
-+
-+do_install_append_virtclass-native() {
-+             :
++static inline int
++test_restrict(ccp restrict text)
++{
++  // See if C++-style comments work.
++  // Iterate through items via the restricted pointer.
++  // Also check for declarations in for loops.
++  for (unsigned int i =3D 0; *(text+i) !=3D '\0'; ++i)
++    continue;
++  return 0;
 +}
 +
-+RREPLACES =3D "lksctp"
++// Check varargs and va_copy work.
++static void
++test_varargs(const char *format, ...)
++{
++  va_list args;
++  va_start(args, format);
++  va_list args_copy;
++  va_copy(args_copy, args);
 +
-+LEAD_SONAME =3D "libsctp.so"
++  const char *str;
++  int number;
++  float fnumber;
 +
-+PACKAGES =3D+ "${PN}-withsctp ${PN}-utils"
++  while (*format)
++    {
++      switch (*format++)
++             {
++             case 's': // string
++               str =3D va_arg(args_copy, const char *);
++               break;
++             case 'd': // int
++               number =3D va_arg(args_copy, int);
++               break;
++             case 'f': // float
++               fnumber =3D (float) va_arg(args_copy, double);
++               break;
++             default:
++               break;
++             }
++    }
++  va_end(args_copy);
++  va_end(args);
++}
++]],
++[[
++  // Check bool and long long datatypes.
++  _Bool success =3D false;
++  long long int bignum =3D -1234567890LL;
++  unsigned long long int ubignum =3D 1234567890uLL;
 +
-+FILES_${PN} =3D "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
-+            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
-+            ${base_libdir}/*${SOLIBS}"
++  // Check restrict.
++  if (test_restrict("String literal") !=3D 0)
++    success =3D true;
++  char *restrict newvar =3D "Another string";
 +
-+FILES_${PN}-dev +=3D " \
-+  ${datadir}/lksctp-tools/checksctp.c \
-+  ${datadir}/lksctp-tools/sctp_socket.c \
-+  ${datadir}/lksctp-tools/sctp_bind.c \
-+  ${datadir}/lksctp-tools/sctp_darn.c \
-+  ${datadir}/lksctp-tools/sctp_load_libs.c \
-+  ${datadir}/lksctp-tools/sctp_sockopt.c \
-+  ${datadir}/lksctp-tools/sctp_socket.h \
-+  ${datadir}/lksctp-tools/sctp_test.c \
-+  ${datadir}/lksctp-tools/sctp_darn.h"
++  // Check varargs.
++  test_varargs("s, d' f .", "string", 65, 34.234);
 +
-+FILES_${PN}-utils =3D " \
-+  ${bindir}/sctp_test \
-+  ${bindir}/sctp_darn \
-+  ${bindir}/checksctp \
-+  ${bindir}/withsctp"
++  // Check incomplete arrays work.
++  struct incomplete_array *ia =3D
++    malloc(sizeof(struct incomplete_array) + (sizeof(double) * 10));
++  ia->datasize =3D 10;
++  for (int i =3D 0; i < ia->datasize; ++i)
++    ia->data[i] =3D (double) i * 1.234;
++
++  // Check named initialisers.
++  struct named_init ni =3D {
++    .number =3D 34,
++    .name =3D L"Test wide string",
++    .average =3D 543.34343,
++  };
++
++  ni.number =3D 58;
++
++  int dynamic_array[ni.number];
++  dynamic_array[43] =3D 543;
++
++  // work around unused variable warnings
++  return  bignum =3D=3D 0LL || ubignum =3D=3D 0uLL || newvar[0] =3D=3D 'x'=
+;
++]],
++dnl Try
++dnl GCC                             -std=3Dgnu99 (unused restrictive modes=
+: -std=3Dc99 -std=3Diso9899:1999)
++dnl AIX                               -qlanglvl=3Dextc99 (unused restricti=
+ve mode: -qlanglvl=3Dstdc99)
++dnl Intel ICC     -c99
++dnl IRIX              -c99
++dnl Solaris         (unused because it causes the compiler to assume C99 s=
+emantics for
++dnl                       library functions, and this is invalid before So=
+laris 10: -xc99)
++dnl Tru64           -c99
++dnl with extended modes being tried first.
++[[-std=3Dgnu99 -c99 -qlanglvl=3Dextc99]], [$1], [$2])[]dnl
++])# _AC_PROG_CC_C99
++
++# AC_PROG_CC_C99
++# --------------
++AC_DEFUN([AC_PROG_CC_C99],
++[ AC_REQUIRE([AC_PROG_CC])dnl
++  _AC_PROG_CC_C99
++])
++
++# AC_USE_SYSTEM_EXTENSIONS
++# ------------------------
++# Enable extensions on systems that normally disable them,
++# typically due to standards-conformance issues.
++AC_DEFUN([AC_USE_SYSTEM_EXTENSIONS],
++[
++  AC_BEFORE([$0], [AC_COMPILE_IFELSE])
++  AC_BEFORE([$0], [AC_RUN_IFELSE])
++
++  AC_REQUIRE([AC_GNU_SOURCE])
++  AC_REQUIRE([AC_AIX])
++  AC_REQUIRE([AC_MINIX])
++
++  AH_VERBATIM([__EXTENSIONS__],
++[/* Enable extensions on Solaris.  */
++#ifndef __EXTENSIONS__
++# undef __EXTENSIONS__
++#endif
++#ifndef _POSIX_PTHREAD_SEMANTICS
++# undef _POSIX_PTHREAD_SEMANTICS
++#endif])
++  AC_CACHE_CHECK([whether it is safe to define __EXTENSIONS__],
++    [ac_cv_safe_to_define___extensions__],
++    [AC_COMPILE_IFELSE(
++       [AC_LANG_PROGRAM([
++#             define __EXTENSIONS__ 1
++               AC_INCLUDES_DEFAULT])],
++       [ac_cv_safe_to_define___extensions__=3Dyes],
++       [ac_cv_safe_to_define___extensions__=3Dno])])
++  test $ac_cv_safe_to_define___extensions__ =3D yes &&
++    AC_DEFINE([__EXTENSIONS__])
++  AC_DEFINE([_POSIX_PTHREAD_SEMANTICS])
++])
+diff --git a/meta-arago-extras/recipes-bsp/ndisc6/files/autoconf-older-vers=
+ion.patch b/meta-arago-extras/recipes-bsp/ndisc6/files/autoconf-older-versi=
+on.patch
+new file mode 100755
+index 0000000..0ab0fd1
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ndisc6/files/autoconf-older-version.pat=
+ch
+@@ -0,0 +1,14 @@
++Patch the required version back to 2.59
++We'll include the missing macros via acinclude.m4
++
++--- ndisc6-0.6.7/configure.ac~  2006-08-14 16:46:06.000000000 +1000
+++++ ndisc6-0.6.7/configure.ac 2006-08-14 16:46:06.000000000 +1000
++@@ -21,7 +21,7 @@
++
++ AC_COPYRIGHT([Copyright (C) 2005-2006 Remi Denis-Courmont])
++ AC_INIT(ndisc6, 0.6.7, rdenis@simphalempin.com)
++-AC_PREREQ(2.59c)
+++AC_PREREQ(2.59)
++ INVOCATION=3D"$0 $*"
++
++ AS_MESSAGE(checking system...)
+diff --git a/meta-arago-extras/recipes-bsp/ndisc6/ndisc6_0.6.7.bb b/meta-ar=
+ago-extras/recipes-bsp/ndisc6/ndisc6_0.6.7.bb
+new file mode 100755
+index 0000000..a1dbd44
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ndisc6/ndisc6_0.6.7.bb
+@@ -0,0 +1,66 @@
++SECTION =3D "console/network"
++DESCRIPTION =3D "This package includes some useful diagnostics tools for \
++IPv6 networks, including ndisc6, rdisc6, tcptraceroute6 and traceroute6."
++SECTION =3D "console/network"
++HOMEPAGE =3D "http://www.simphalempin.com/dev/ndisc6/"
++LICENSE =3D "GPL"
++PR =3D "r1"
++
++# The tcptraceroute6 and tracert6 commands depend on rltraceroute6 to
++# perform the actual trace operation.
++RDEPENDS_${PN}-tcptraceroute6 =3D "${PN}-rltraceroute6"
++RDEPENDS_${PN}-tracert6 =3D "${PN}-rltraceroute6"
++
++LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D4325afd396febcb659c36b49533135d=
+4 "
++
++SRC_URI =3D "http://www.remlab.net/files/ndisc6/ndisc6-${PV}.tar.bz2 \
++                file://autoconf-older-version.patch \
++                file://acinclude.m4"
++
++inherit autotools
++
++# Split into seperate packages since we normal don't want them all
++# The main package is left empty and therefore not created.
++PACKAGES +=3D "${PN}-ndisc6 ${PN}-tcpspray6 ${PN}-rdisc6 \
++                  ${PN}-tcptraceroute6 ${PN}-rltraceroute6 ${PN}-tracert6"
++FILES_${PN}                                     =3D ""
++FILES_${PN}-ndisc6                      =3D "${bindir}/ndisc6"
++FILES_${PN}-tcpspray6                               =3D "${bindir}/tcpspra=
+y6"
++FILES_${PN}-rdisc6                       =3D "${bindir}/rdisc6"
++FILES_${PN}-tcptraceroute6     =3D "${bindir}/tcptraceroute6"
++FILES_${PN}-rltraceroute6        =3D "${bindir}/rltraceroute6"
++FILES_${PN}-tracert6                   =3D "${bindir}/tracert6"
++
++DESCRIPTION_${PN}-ndisc6     =3D "ICMPv6 Neighbor Discovery tool. \
++Performs IPv6 neighbor discovery in userland. Replaces arping from the \
++IPv4 world."
++DESCRIPTION_${PN}-rdisc6      =3D "ICMPv6 Router Discovery tool. \
++Queries IPv6 routers on the network for advertised prefixes. Can be used \
++to detect rogue IPv6 routers, monitor legitimate IPv6 routers."
++DESCRITPION_${PN}-tcpspray6              =3D "Performs bandwidth measureme=
+nts of TCP \
++sessions between the local system and a remote echo server in either IPv6 =
+\
++or IPv4."
 +
 +
++
++# Add some macros from the autoconf 2.60 which to let us build with
++# autoconf 2.59. This can be removed when/if we update to autoconf
++# 2.60
++#do_configure_prepend() {
++#    cp ${WORKDIR}/acinclude.m4 ${S}
++#}
++
++
++# Enable SUID bit for applications that need it
++pkg_postinst_${PN}-rltraceroute6 () {
++             chmod 4555 ${bindir}/rltraceroute6
++}
++pkg_postinst_${PN}-ndisc6 () {
++             chmod 4555 ${bindir}/ndisc6
++}
++pkg_postinst_${PN}-rdisc6 () {
++             chmod 4555 ${bindir}/rdisc6
++}
++
++SRC_URI[md5sum] =3D "77f4154d78304e87698d6da4f5f9ff86"
++SRC_URI[sha256sum] =3D "0b60f1101d49f99111232eb6034ec851a46434bf90a056fd08=
+7b4a62451ec9ed"
 --
 1.7.9.5
 
 
-From: Cooper Jr., Franklin
-Sent: Monday, February 18, 2013 10:45 PM
-To: Zhou, Jingting; meta-arago@arago-project.org
-Subject: RE: lksctp-tools recipe
-
-I would combine the .inc and .bb into one file. Most likely we will only ha=
-ve 1 version of lksctp-tools at one time so no need to separate the logic i=
-n multiple files.
-
-Also my comment about this recipe moving to meta-arago-extras applies to th=
-is recipe and the other recipes you have sent. Honestly we need to discuss =
-trying to move these recipes to meta-openembedded or oe-core. I know I have=
-n't done this as much as I should but it's a process I want to start soon s=
-ince meta-arago-extras shouldn't become bloated especially since a lot of t=
-he these recipes and other recipes in meta-arago-extras originated from oe-=
-classic.
-
-Additional comments inline.
-
-From: meta-arago-bounces@arago-project.org<mailto:meta-arago-bounces@arago-=
-project.org> [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Zho=
-u, Jingting
-Sent: Monday, February 18, 2013 8:49 PM
-To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-Subject: [meta-arago] lksctp-tools recipe
-
-From 8cf339a8ed5ef0922a4190ee707e2b0e0b94d971 Mon Sep 17 00:00:00 2001
-From: Jingting Zhou <a0221004@ares-ubuntu>
-Date: Mon, 18 Feb 2013 17:59:39 -0500
-Subject: [PATCH] added lksctp-tools recipe
-
----
-.../lksctp-tools/lksctp-tools.inc                  |   46 +++++++++++++++++=
-+++
-.../lksctp-tools/lksctp-tools_1.0.7.bb             |    9 ++++
-2 files changed, 55 insertions(+)
-create mode 100755 meta-arago-distro/recipes-connectivity/lksctp-tools/lksc=
-tp-tools.inc
-create mode 100755 meta-arago-distro/recipes-connectivity/lksctp-tools/lksc=
-tp-tools_1.0.7.bb
-
-diff --git a/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-too=
-ls.inc b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-tools.i=
-nc
-new file mode 100755
-index 0000000..1db389c
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-tools.inc
-@@ -0,0 +1,46 @@
-+DESCRIPTION =3D "The Linux Kernel Stream Control Transmission Protocol (lk=
-sctp) project"
-+SECTION =3D "libs"
-+PRIORITY =3D "optional"
-+LICENSE =3D "LGPLv2"
-+
-+S =3D "${WORKDIR}/${BPN}-${PV}"
-+
-+INC_PR =3D "r2"
-+
-+BBCLASSEXTEND =3D "native"
-+
-+inherit autotools pkgconfig binconfig
-+
-+do_install_append_virtclass-native() {
-+              :
-+}
-+
-+RREPLACES =3D "lksctp"
-+
-+LEAD_SONAME =3D "libsctp.so"
-+
-+PACKAGES =3D+ "${PN}-withsctp ${PN}-utils"
-+
-+FILES_${PN} =3D "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
-+            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
-+            ${base_libdir}/*${SOLIBS}"
-+
-+#FILES_${PN}-withsctp =3D " \
-+#  ${libdir}/lksctp-tools/lib*"
-My outlook could just be showing things weird but if this is commented out =
-why not just remove it?
-+
-+FILES_${PN}-dev +=3D " \
-+  ${datadir}/lksctp-tools/checksctp.c \
-+  ${datadir}/lksctp-tools/sctp_socket.c \
-+  ${datadir}/lksctp-tools/sctp_bind.c \
-+  ${datadir}/lksctp-tools/sctp_darn.c \
-+  ${datadir}/lksctp-tools/sctp_load_libs.c \
-+  ${datadir}/lksctp-tools/sctp_sockopt.c \
-+  ${datadir}/lksctp-tools/sctp_socket.h \
-+  ${datadir}/lksctp-tools/sctp_test.c \
-+  ${datadir}/lksctp-tools/sctp_darn.h"
-+
-+FILES_${PN}-utils =3D " \
-+  ${bindir}/sctp_test \
-+  ${bindir}/sctp_darn \
-+  ${bindir}/checksctp \
-+  ${bindir}/withsctp"
-diff --git a/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-too=
-ls_1.0.7.bb b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-to=
-ols_1.0.7.bb
-new file mode 100755
-index 0000000..70b36f5
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-tools_1.0.=
-7.bb
-@@ -0,0 +1,9 @@
-+require lksctp-tools.inc
-+PR =3D "${INC_PR}.0"
-+
-+SRC_URI =3D "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz"
-+
-+LIC_FILES_CHKSUM =3D "file://Makefile.in;endline=3D14;md5=3D764d2275f40f1a=
-67205558dd2af91708<file:///\\Makefile.in;endline=3D14;md5=3D764d2275f40f1a6=
-7205558dd2af91708>"
-+
-+SRC_URI[md5sum] =3D "047562b40537eb3be5d5ec3ae0a2198b"
-+SRC_URI[sha256sum] =3D "e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655=
-d687fd08377595"
---
-1.7.9.5
-
-
---_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_
+--_000_3C08AEEB3C731745938BC83D029FE5E391A418DFLE09entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -277,9 +405,6 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
 	{font-family:"\@SimSun";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 /* Style Definitions */
@@ -296,33 +421,12 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle19
-	{mso-style-type:personal;
+span.EmailStyle17
+	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	{mso-style-type:export-only;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -337,356 +441,509 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Updated patch. Put in under meta-arago-extras, updat=
-ed the license file, combined into one bb file, removed commented out regio=
-n. Thanks~<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">From 7ffcde7bd875fc886=
-b59714db42316bd536b7aab Mon Sep 17 00:00:00 2001<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">From: Jingting Zhou &l=
-t;a0221004@ares-ubuntu&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Date: Tue, 19 Feb 2013=
- 16:35:13 -0500<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Subject: [PATCH] added=
- lksctp-tools recipe<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">---<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">.../recipes-bsp/lksctp=
--tools/lksctp-tools_1.0.7.bb |&nbsp;&nbsp; 52 &#43;&#43;&#43;&#43;&#43;&#43=
-;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">1 file changed, 52 ins=
-ertions(&#43;)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">create mode 100755 met=
-a-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">diff --git a/meta-arag=
-o-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb b/meta-arago-extras=
-/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">new file mode 100755<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">index 0000000..310e39a=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">--- /dev/null<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&#43;&#43; b/meta=
--arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">@@ -0,0 &#43;1,52 @@<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;DESCRIPTION =3D &=
-quot;The Linux Kernel Stream Control Transmission Protocol (lksctp) project=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SECTION =3D &quot=
-;libs&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;PRIORITY =3D &quo=
-t;optional&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;LICENSE =3D &quot=
-;LGPLv2&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;LIC_FILES_CHKSUM =
-=3D &quot;file://src/include/netinet/sctp.h;md5=3D8089fbe48b63b73c8d091bee7=
-50b2ebc&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;INC_PR =3D &quot;=
-r2&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;PR =3D &quot;${IN=
-C_PR}.0&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SRC_URI =3D &quot=
-;${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz&quot;<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SRC_URI[md5sum] =
-=3D &quot;047562b40537eb3be5d5ec3ae0a2198b&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SRC_URI[sha256sum=
-] =3D &quot;e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655d687fd0837759=
-5&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;S =3D &quot;${WOR=
-KDIR}/${BPN}-${PV}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;BBCLASSEXTEND =3D=
- &quot;native&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;inherit autotools=
- pkgconfig binconfig<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;do_install_append=
-_virtclass-native() {<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;}<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;RREPLACES =3D &qu=
-ot;lksctp&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;LEAD_SONAME =3D &=
-quot;libsctp.so&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;PACKAGES =3D&#43;=
- &quot;${PN}-withsctp ${PN}-utils&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;FILES_${PN} =3D &=
-quot;${libexecdir}/* ${libdir}/lib*${SOLIBS} \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${sysconfdir} ${sharedsta=
-tedir} ${localstatedir} \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${base_libdir}/*${SOLIBS}=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;FILES_${PN}-dev &=
-#43;=3D &quot; \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/checksctp.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_socket.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_bind.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_darn.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_load_libs.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_sockopt.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_socket.h \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_test.c \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
-/lksctp-tools/sctp_darn.h&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;FILES_${PN}-utils=
- =3D &quot; \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
-sctp_test \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
-sctp_darn \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
-checksctp \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
-withsctp&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-- <o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">1.7.9.5<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Cooper J=
-r., Franklin
-<br>
-<b>Sent:</b> Monday, February 18, 2013 10:45 PM<br>
-<b>To:</b> Zhou, Jingting; meta-arago@arago-project.org<br>
-<b>Subject:</b> RE: lksctp-tools recipe<o:p></o:p></span></p>
-</div>
-</div>
+<p class=3D"MsoNormal"><span style=3D"color:#00B0F0">Updated the license fi=
+le and moved it to meta-arago-extras.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I would combine the .i=
-nc and .bb into one file. Most likely we will only have 1 version of lksctp=
--tools at one time so no need to separate the logic in multiple files.<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also my comment about =
-this recipe moving to meta-arago-extras applies to this recipe and the othe=
-r recipes you have sent. Honestly we need to discuss trying to move these r=
-ecipes to meta-openembedded or oe-core.
- I know I haven&#8217;t done this as much as I should but it&#8217;s a proc=
-ess I want to start soon since meta-arago-extras shouldn&#8217;t become blo=
-ated especially since a lot of the these recipes and other recipes in meta-=
-arago-extras originated from oe-classic.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Additional comments in=
-line.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
-<a href=3D"mailto:meta-arago-bounces@arago-project.org">meta-arago-bounces@=
-arago-project.org</a> [<a href=3D"mailto:meta-arago-bounces@arago-project.o=
-rg">mailto:meta-arago-bounces@arago-project.org</a>]
-<b>On Behalf Of </b>Zhou, Jingting<br>
-<b>Sent:</b> Monday, February 18, 2013 8:49 PM<br>
-<b>To:</b> <a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago=
--project.org</a><br>
-<b>Subject:</b> [meta-arago] lksctp-tools recipe<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">From 8cf339a8ed5ef0922a4190ee707e2b0e0b94d971 Mon Se=
+<p class=3D"MsoNormal">From 3569ff1bc8715823e234d21da6a44249e550c2f6 Mon Se=
 p 17 00:00:00 2001<o:p></o:p></p>
 <p class=3D"MsoNormal">From: Jingting Zhou &lt;a0221004@ares-ubuntu&gt;<o:p=
 ></o:p></p>
-<p class=3D"MsoNormal">Date: Mon, 18 Feb 2013 17:59:39 -0500<o:p></o:p></p>
-<p class=3D"MsoNormal">Subject: [PATCH] added lksctp-tools recipe<o:p></o:p=
-></p>
+<p class=3D"MsoNormal">Date: Tue, 19 Feb 2013 16:42:40 -0500<o:p></o:p></p>
+<p class=3D"MsoNormal">Subject: [PATCH] added ndisc6 recipe<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">---<o:p></o:p></p>
-<p class=3D"MsoNormal">.../lksctp-tools/lksctp-tools.inc&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; |&nbsp;&nbsp; 46 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
-;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">.../lksctp-tools/lksctp-tools_1.0.7.bb&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nb=
-sp; 9 &#43;&#43;&#43;&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">2 files changed, 55 insertions(&#43;)<o:p></o:p></p>
-<p class=3D"MsoNormal">create mode 100755 meta-arago-distro/recipes-connect=
-ivity/lksctp-tools/lksctp-tools.inc<o:p></o:p></p>
-<p class=3D"MsoNormal">create mode 100755 meta-arago-distro/recipes-connect=
-ivity/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">diff --git a/meta-arago-distro/recipes-connectivity/=
-lksctp-tools/lksctp-tools.inc b/meta-arago-distro/recipes-connectivity/lksc=
-tp-tools/lksctp-tools.inc<o:p></o:p></p>
-<p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
-<p class=3D"MsoNormal">index 0000000..1db389c<o:p></o:p></p>
-<p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-distro/recipes-connecti=
-vity/lksctp-tools/lksctp-tools.inc<o:p></o:p></p>
-<p class=3D"MsoNormal">@@ -0,0 &#43;1,46 @@<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;DESCRIPTION =3D &quot;The Linux Kernel Stream C=
-ontrol Transmission Protocol (lksctp) project&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SECTION =3D &quot;libs&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;PRIORITY =3D &quot;optional&quot;<o:p></o:p></p=
+<p class=3D"MsoNormal">.../recipes-bsp/ndisc6/files/acinclude.m4&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 197 &#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">.../ndisc6/files/autoconf-older-version.patch&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 14 &#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">.../recipes-bsp/ndisc6/ndisc6_0.6.7.bb&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 66=
+ &#43;&#43;&#43;&#43;&#43;&#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">3 files changed, 277 insertions(&#43;)<o:p></o:p></p=
 >
-<p class=3D"MsoNormal">&#43;LICENSE =3D &quot;LGPLv2&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;S =3D &quot;${WORKDIR}/${BPN}-${PV}&quot;<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;INC_PR =3D &quot;r2&quot;<span style=3D"color:#=
-1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;BBCLASSEXTEND =3D &quot;native&quot;<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;inherit autotools pkgconfig binconfig<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;do_install_append_virtclass-native() {<o:p></o:=
+<p class=3D"MsoNormal">create mode 100755 meta-arago-extras/recipes-bsp/ndi=
+sc6/files/acinclude.m4<o:p></o:p></p>
+<p class=3D"MsoNormal">create mode 100755 meta-arago-extras/recipes-bsp/ndi=
+sc6/files/autoconf-older-version.patch<o:p></o:p></p>
+<p class=3D"MsoNormal">create mode 100755 meta-arago-extras/recipes-bsp/ndi=
+sc6/ndisc6_0.6.7.bb<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">diff --git a/meta-arago-extras/recipes-bsp/ndisc6/fi=
+les/acinclude.m4 b/meta-arago-extras/recipes-bsp/ndisc6/files/acinclude.m4<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
+<p class=3D"MsoNormal">index 0000000..5360fff<o:p></o:p></p>
+<p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-extras/recipes-bsp/ndis=
+c6/files/acinclude.m4<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -0,0 &#43;1,197 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# _AC_C_STD_TRY(STANDARD, TEST-PROLOGUE, TEST-B=
+ODY, OPTION-LIST,<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ACTION-IF-AVAILABLE, ACTION-IF-UNAVAILA=
+BLE)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# ---------------------------------------------=
+-----------------<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# Check whether the C compiler accepts features=
+ of STANDARD (e.g `c89', `c99')<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# by trying to compile a program of TEST-PROLOG=
+UE and TEST-BODY.&nbsp; If this fails,<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# try again with each compiler option in the sp=
+ace-separated OPTION-LIST; if one<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# helps, append it to CC.&nbsp; If eventually s=
+uccessful, run ACTION-IF-AVAILABLE,<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# else ACTION-IF-UNAVAILABLE.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AC_DEFUN([_AC_C_STD_TRY],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;[AC_MSG_CHECKING([for $CC option to accept ISO =
+]m4_translit($1, [c], [C]))<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AC_CACHE_VAL(ac_cv_prog_cc_$1,<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;[ac_cv_prog_cc_$1=3Dno<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;ac_save_CC=3D$CC<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AC_LANG_CONFTEST([AC_LANG_PROGRAM([$2], [$3])])=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;for ac_arg in '' $4<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;do<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; CC=3D&quot;$ac_save_CC $ac_arg&quot;<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; _AC_COMPILE_IFELSE([], [ac_cv_prog_cc_$1=
+=3D$ac_arg])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; test &quot;x$ac_cv_prog_cc_$1&quot; !=3D=
+ &quot;xno&quot; &amp;&amp; break<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;done<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;rm -f conftest.$ac_ext<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;CC=3D$ac_save_CC<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;])# AC_CACHE_VAL<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;case &quot;x$ac_cv_prog_cc_$1&quot; in<o:p></o:=
 p></p>
-<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; x)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; AC_MSG_RESULT([none needed])=
+ ;;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; xno)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; AC_MSG_RESULT([unsupported])=
+ ;;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; *)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; CC=3D&quot;$CC $ac_cv_prog_c=
+c_$1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; AC_MSG_RESULT([$ac_cv_prog_c=
+c_$1]) ;;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;esac<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AS_IF([test &quot;x$ac_cv_prog_cc_$1&quot; !=3D=
+ xno], [$5], [$6])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;])# _AC_C_STD_TRY<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# _AC_PROG_CC_C99 ([ACTION-IF-AVAILABLE], [ACTI=
+ON-IF-UNAVAILABLE])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# ---------------------------------------------=
+-------------------<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# If the C compiler is not in ISO C99 mode by d=
+efault, try to add an<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# option to output variable CC to make it so.&n=
+bsp; This macro tries<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# various options that select ISO C99 on some s=
+ystem or another.&nbsp; It<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# considers the compiler to be in ISO C99 mode =
+if it handles mixed<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# code and declarations, _Bool, inline and rest=
+rict.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AC_DEFUN([_AC_PROG_CC_C99],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;[_AC_C_STD_TRY([c99],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;[[#include &lt;stdarg.h&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#include &lt;stdbool.h&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#include &lt;stdlib.h&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#include &lt;wchar.h&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#include &lt;stdio.h&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;struct incomplete_array<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;{<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; int datasize;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; double data[];<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;};<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;struct named_init {<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; int number;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; const wchar_t *name;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; double average;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;};<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;typedef const char *ccp;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;static inline int<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;test_restrict(ccp restrict text)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;{<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // See if C&#43;&#43;-style comments wor=
+k.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Iterate through items via the restric=
+ted pointer.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Also check for declarations in for lo=
+ops.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; for (unsigned int i =3D 0; *(text&#43;i)=
+ !=3D '\0'; &#43;&#43;i)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; continue;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; return 0;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;RREPLACES =3D &quot;lksctp&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;LEAD_SONAME =3D &quot;libsctp.so&quot;<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;PACKAGES =3D&#43; &quot;${PN}-withsctp ${PN}-ut=
-ils&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;FILES_${PN} =3D &quot;${libexecdir}/* ${libdir}=
-/lib*${SOLIBS} \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; ${sysconfdir} ${sharedstatedir} ${localstatedir} \<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; ${base_libdir}/*${SOLIBS}&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;#FILES_${PN}-withsctp =3D &quot; \<o:p></o:p></=
+<p class=3D"MsoNormal">&#43;// Check varargs and va_copy work.<o:p></o:p></=
 p>
-<p class=3D"MsoNormal">&#43;#&nbsp; ${libdir}/lksctp-tools/lib*&quot;<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">My outlook could just =
-be showing things weird but if this is commented out why not just remove it=
-?<o:p></o:p></span></p>
+<p class=3D"MsoNormal">&#43;static void<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;test_varargs(const char *format, ...)<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&#43;{<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; va_list args;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; va_start(args, format);<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; va_list args_copy;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; va_copy(args_copy, args);<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;FILES_${PN}-dev &#43;=3D &quot; \<o:p></o:p></p=
+<p class=3D"MsoNormal">&#43;&nbsp; const char *str;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; int number;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; float fnumber;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; while (*format)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; {<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (*format&=
+#43;&#43;)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; {<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; case 's': // string<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; str =3D va_arg(args_copy, const char *);<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; break;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; case 'd': // int<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; number =3D va_arg(args_copy, int);<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; break;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; case 'f': // float<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; fnumber =3D (float) va_arg(args_copy, doub=
+le);<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; break;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; default:<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; break;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; va_end(args_copy);<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; va_end(args);<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;]],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;[[<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Check bool and long long datatypes.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; _Bool success =3D false;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; long long int bignum =3D -1234567890LL;<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; unsigned long long int ubignum =3D 12345=
+67890uLL;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Check restrict.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; if (test_restrict(&quot;String literal&q=
+uot;) !=3D 0)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; success =3D true;<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&#43;&nbsp; char *restrict newvar =3D &quot;Another =
+string&quot;;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Check varargs.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; test_varargs(&quot;s, d' f .&quot;, &quo=
+t;string&quot;, 65, 34.234);<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Check incomplete arrays work.<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; struct incomplete_array *ia =3D<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; malloc(sizeof(struct incompl=
+ete_array) &#43; (sizeof(double) * 10));<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ia-&gt;datasize =3D 10;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; for (int i =3D 0; i &lt; ia-&gt;datasize=
+; &#43;&#43;i)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; ia-&gt;data[i] =3D (double) =
+i * 1.234;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // Check named initialisers.<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">&#43;&nbsp; struct named_init ni =3D {<o:p></o:p></p=
 >
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/checksctp.c \<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_socket.c \<=
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; .number =3D 34,<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&#43; &nbsp;&nbsp;&nbsp;.name =3D L&quot;Test wide s=
+tring&quot;,<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; .average =3D 543.34343,<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; };<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ni.number =3D 58;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; int dynamic_array[ni.number];<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&#43;&nbsp; dynamic_array[43] =3D 543;<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; // work around unused variable warnings<=
 o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_bind.c \<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_darn.c \<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_load_libs.c=
- \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_sockopt.c \=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_socket.h \<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_test.c \<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_darn.h&quot=
-;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; return&nbsp; bignum =3D=3D 0LL || ubignu=
+m =3D=3D 0uLL || newvar[0] =3D=3D 'x';<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;]],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl Try<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl GCC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -std=3Dgnu99 (unused =
+restrictive modes: -std=3Dc99 -std=3Diso9899:1999)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl AIX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -qlanglvl=
+=3Dextc99 (unused restrictive mode: -qlanglvl=3Dstdc99)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl Intel ICC&nbsp;&nbsp;&nbsp;&nbsp; -c99<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">&#43;dnl IRIX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -c99<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl Solaris&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; (unused because it causes the compiler to assume C99 semantics=
+ for<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; library functions, and this is invalid before Solaris 10: -xc=
+99)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl Tru64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; -c99<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;dnl with extended modes being tried first.<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">&#43;[[-std=3Dgnu99 -c99 -qlanglvl=3Dextc99]], [$1],=
+ [$2])[]dnl<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;])# _AC_PROG_CC_C99<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;FILES_${PN}-utils =3D &quot; \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/sctp_test \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/sctp_darn \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/checksctp \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/withsctp&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">diff --git a/meta-arago-distro/recipes-connectivity/=
-lksctp-tools/lksctp-tools_1.0.7.bb b/meta-arago-distro/recipes-connectivity=
-/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></p>
-<p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
-<p class=3D"MsoNormal">index 0000000..70b36f5<o:p></o:p></p>
-<p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-distro/recipes-connecti=
-vity/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></p>
-<p class=3D"MsoNormal">@@ -0,0 &#43;1,9 @@<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;require lksctp-tools.inc<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;PR =3D &quot;${INC_PR}.0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# AC_PROG_CC_C99<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# --------------<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AC_DEFUN([AC_PROG_CC_C99],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;[ AC_REQUIRE([AC_PROG_CC])dnl<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; _AC_PROG_CC_C99<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;])<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI =3D &quot;${SOURCEFORGE_MIRROR}/lksctp/=
-lksctp-tools-${PV}.tar.gz&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;LIC_FILES_CHKSUM =3D &quot;<a href=3D"file:///\=
-\Makefile.in;endline=3D14;md5=3D764d2275f40f1a67205558dd2af91708">file://Ma=
-kefile.in;endline=3D14;md5=3D764d2275f40f1a67205558dd2af91708</a>&quot;<o:p=
+<p class=3D"MsoNormal">&#43;# AC_USE_SYSTEM_EXTENSIONS<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# ------------------------<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# Enable extensions on systems that normally di=
+sable them,<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# typically due to standards-conformance issues=
+.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;AC_DEFUN([AC_USE_SYSTEM_EXTENSIONS],<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&#43;[<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_BEFORE([$0], [AC_COMPILE_IFELSE])<o:p=
 ></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_BEFORE([$0], [AC_RUN_IFELSE])<o:p></o=
+:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI[md5sum] =3D &quot;047562b40537eb3be5d5e=
-c3ae0a2198b&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI[sha256sum] =3D &quot;e920e89d110cff9847=
-f1d86a1d7a23a156a8abcc9e65a35655d687fd08377595&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_REQUIRE([AC_GNU_SOURCE])<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_REQUIRE([AC_AIX])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_REQUIRE([AC_MINIX])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AH_VERBATIM([__EXTENSIONS__],<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&#43;[/* Enable extensions on Solaris.&nbsp; */<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">&#43;#ifndef __EXTENSIONS__<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# undef __EXTENSIONS__<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#endif<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#ifndef _POSIX_PTHREAD_SEMANTICS<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# undef _POSIX_PTHREAD_SEMANTICS<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#endif])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_CACHE_CHECK([whether it is safe to de=
+fine __EXTENSIONS__],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; [ac_cv_safe_to_define___exte=
+nsions__],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; [AC_COMPILE_IFELSE(<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [AC_LANG_P=
+ROGRAM([<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; &nbsp; define __EXTENSIONS__ 1<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; AC_INCLUDES_DEFAULT])],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ac_cv_saf=
+e_to_define___extensions__=3Dyes],<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ac_cv_saf=
+e_to_define___extensions__=3Dno])])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; test $ac_cv_safe_to_define___extensions_=
+_ =3D yes &amp;&amp;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp; AC_DEFINE([__EXTENSIONS__])<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; AC_DEFINE([_POSIX_PTHREAD_SEMANTICS])<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&#43;])<o:p></o:p></p>
+<p class=3D"MsoNormal">diff --git a/meta-arago-extras/recipes-bsp/ndisc6/fi=
+les/autoconf-older-version.patch b/meta-arago-extras/recipes-bsp/ndisc6/fil=
+es/autoconf-older-version.patch<o:p></o:p></p>
+<p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
+<p class=3D"MsoNormal">index 0000000..0ab0fd1<o:p></o:p></p>
+<p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-extras/recipes-bsp/ndis=
+c6/files/autoconf-older-version.patch<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -0,0 &#43;1,14 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;Patch the required version back to 2.59<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&#43;We'll include the missing macros via acinclude.=
+m4<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;--- ndisc6-0.6.7/configure.ac~&nbsp; 2006-08-14=
+ 16:46:06.000000000 &#43;1000<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43;&#43; ndisc6-0.6.7/configure.ac 2006-=
+08-14 16:46:06.000000000 &#43;1000<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;@@ -21,7 &#43;21,7 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43; <o:p></o:p></p>
+<p class=3D"MsoNormal">&#43; AC_COPYRIGHT([Copyright (C) 2005-2006 Remi Den=
+is-Courmont])<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43; AC_INIT(ndisc6, 0.6.7, rdenis@simphalempin.com=
+)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;-AC_PREREQ(2.59c)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;AC_PREREQ(2.59)<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43; INVOCATION=3D&quot;$0 $*&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43; <o:p></o:p></p>
+<p class=3D"MsoNormal">&#43; AS_MESSAGE(checking system...)<o:p></o:p></p>
+<p class=3D"MsoNormal">diff --git a/meta-arago-extras/recipes-bsp/ndisc6/nd=
+isc6_0.6.7.bb b/meta-arago-extras/recipes-bsp/ndisc6/ndisc6_0.6.7.bb<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
+<p class=3D"MsoNormal">index 0000000..a1dbd44<o:p></o:p></p>
+<p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-extras/recipes-bsp/ndis=
+c6/ndisc6_0.6.7.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -0,0 &#43;1,66 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SECTION =3D &quot;console/network&quot;<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&#43;DESCRIPTION =3D &quot;This package includes som=
+e useful diagnostics tools for \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;IPv6 networks, including ndisc6, rdisc6, tcptra=
+ceroute6 and traceroute6.&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SECTION =3D &quot;console/network&quot;<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&#43;HOMEPAGE =3D &quot;http://www.simphalempin.com/=
+dev/ndisc6/&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;LICENSE =3D &quot;GPL&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# The tcptraceroute6 and tracert6 commands depe=
+nd on rltraceroute6 to<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# perform the actual trace operation.<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&#43;RDEPENDS_${PN}-tcptraceroute6 =3D &quot;${PN}-r=
+ltraceroute6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;RDEPENDS_${PN}-tracert6 =3D &quot;${PN}-rltrace=
+route6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=
+=3D4325afd396febcb659c36b49533135d4 &quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI =3D &quot;http://www.remlab.net/files/n=
+disc6/ndisc6-${PV}.tar.bz2 \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://autoconf-older-version.patch =
+\<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://acinclude.m4&quot;<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;inherit autotools<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# Split into seperate packages since we normal =
+don't want them all<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# The main package is left empty and therefore =
+not created.<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PACKAGES &#43;=3D &quot;${PN}-ndisc6 ${PN}-tcps=
+pray6 ${PN}-rdisc6 \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ${PN}-tcptraceroute6 ${P=
+N}-rltraceroute6 ${PN}-tracert6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-ndisc6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; =3D &quot;${bindir}/ndisc6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-tcpspray6 &nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=3D &quot;${bindir}/tcpspray6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-rdisc6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;${bindir}/rdisc6&quot;<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-tcptraceroute6&nbsp;&nbsp;&nbsp;&nb=
+sp; =3D &quot;${bindir}/tcptraceroute6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-rltraceroute6&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; =3D &quot;${bindir}/rltraceroute6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-tracert6&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; =3D &quot;${bindir}/tracert6&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;DESCRIPTION_${PN}-ndisc6&nbsp;&nbsp;&nbsp;&nbsp=
+; =3D &quot;ICMPv6 Neighbor Discovery tool. \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;Performs IPv6 neighbor discovery in userland. R=
+eplaces arping from the \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;IPv4 world.&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;DESCRIPTION_${PN}-rdisc6&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; =3D &quot;ICMPv6 Router Discovery tool. \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;Queries IPv6 routers on the network for adverti=
+sed prefixes. Can be used \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;to detect rogue IPv6 routers, monitor legitimat=
+e IPv6 routers.&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;DESCRITPION_${PN}-tcpspray6&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;Perfor=
+ms bandwidth measurements of TCP \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;sessions between the local system and a remote =
+echo server in either IPv6 \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;or IPv4.&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# Add some macros from the autoconf 2.60 which =
+to let us build with<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# autoconf 2.59. This can be removed when/if we=
+ update to autoconf<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# 2.60<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#do_configure_prepend() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#&nbsp;&nbsp;&nbsp; cp ${WORKDIR}/acinclude.m4 =
+${S}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;# Enable SUID bit for applications that need it=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;pkg_postinst_${PN}-rltraceroute6 () {<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; chmod 4555 ${bindir}/rltraceroute6<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;pkg_postinst_${PN}-ndisc6 () {<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; chmod 4555 ${bindir}/ndisc6<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;pkg_postinst_${PN}-rdisc6 () {<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; chmod 4555 ${bindir}/rdisc6<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[md5sum] =3D &quot;77f4154d78304e87698d6=
+da4f5f9ff86&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[sha256sum] =3D &quot;0b60f1101d49f99111=
+232eb6034ec851a46434bf90a056fd087b4a62451ec9ed&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">-- <o:p></o:p></p>
 <p class=3D"MsoNormal">1.7.9.5<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-</div>
 </body>
 </html>
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_--
+--_000_3C08AEEB3C731745938BC83D029FE5E391A418DFLE09entticom_--
