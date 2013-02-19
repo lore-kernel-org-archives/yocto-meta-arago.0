@@ -1,33 +1,33 @@
 Return-Path: <zhoujt@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id D027B52A10
+	by arago-project.org (Postfix) with ESMTPS id E1A6352A1D
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Feb 2013 20:55:24 +0000 (UTC)
+	Tue, 19 Feb 2013 21:37:55 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1JKtL4s021514
-	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 14:55:21 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1JLbtY4014189
+	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 15:37:55 -0600
 Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1JKtLxx010434
-	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 14:55:21 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1JLbtXJ023967
+	for <meta-arago@arago-project.org>; Tue, 19 Feb 2013 15:37:55 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
 	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Tue, 19 Feb 2013 14:55:21 -0600
+	14.01.0323.003; Tue, 19 Feb 2013 15:37:55 -0600
 From: "Zhou, Jingting" <zhoujt@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: vtun recipe review
-Thread-Index: Ac4OTAg8qENO/MmZQnmLRfSnfHYCtAAAJlMAACULiSA=
-Date: Tue, 19 Feb 2013 20:55:20 +0000
-Message-ID: <3C08AEEB3C731745938BC83D029FE5E391A3CE@DFLE09.ent.ti.com>
-References: <3C08AEEB3C731745938BC83D029FE5E391A1A4@DFLE09.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C395340@DFLE09.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C395340@DFLE09.ent.ti.com>
+Thread-Topic: lksctp-tools recipe
+Thread-Index: Ac4OS7kpZ/viCwvTTEata73DQZrHoAABl0lwACXIEvA=
+Date: Tue, 19 Feb 2013 21:37:54 +0000
+Message-ID: <3C08AEEB3C731745938BC83D029FE5E391A400@DFLE09.ent.ti.com>
+References: <3C08AEEB3C731745938BC83D029FE5E391A185@DFLE09.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C3953AE@DFLE09.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C3953AE@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: vtun recipe review
+Subject: Re: lksctp-tools recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,183 +40,220 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 20:55:32 -0000
+X-List-Received-Date: Tue, 19 Feb 2013 21:37:56 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_3C08AEEB3C731745938BC83D029FE5E391A3CEDFLE09entticom_"
+	boundary="_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_"
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A3CEDFLE09entticom_
+--_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Franklin for the detailed comments~
+Updated patch. Put in under meta-arago-extras, updated the license file, co=
+mbined into one bb file, removed commented out region. Thanks~
 
-When I tried to use
-
-EXTRA_OECONF +=3D "\
-                                     --with-lzo-headers=3D${STAGING_INCDIR}=
-/lzo \
-                                     --with-lzo-lib=3D${STAGING_LIBDIR} \
-                                     --with-ssl-headers=3D${STAGING_INCDIR}=
-/openssl \
-                                     --with-ssl-lib=3D${STAGING_LIBDIR}"
-
-do_compile_prepend(){
-                sed '102d' Makefile > Makefile.new (102nd line in Makefile:=
- $(BIN_DIR)/strip $(DESTDIR)$(SBIN_DIR)/vtund, and strip is complaining vtu=
-nd is not a linux executable file)
-                mv Makefile.new Makefile
-}
-
-I got the following error, have you seen this before? I tried to "vtun-3.0.=
-3$ grep -r AC_SEARCH_HEADERS *" but didn't see it defined anywhere. If you =
-don't have the answer either, I'll go with the old do_config.
-
-| autoreconf: configure.in: tracing
-| autoreconf: configure.in: not using Libtool
-| autoreconf: running: /home/a0221004/yocto/oe-layersetup/build/arago-tmp-e=
-xternal-linaro-toolchain/sysroots/x86_64-linux/usr/bin/autoconf --include=
-=3D/home/a0221004/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolc=
-hain/sysroots/x86_64-linux/usr/share/aclocal-1.12 --include=3D/home/a022100=
-4/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/armv7a=
--vfp-neon-oe-linux-gnueabi/vtun-3.0.3-r3/vtun-3.0.3/aclocal-copy/ --force
-| configure.in:134: error: possibly undefined macro: AC_SEARCH_HEADERS
-|       If this token and others are legitimate, please use m4_pattern_allo=
-w.
-|       See the Autoconf documentation.
-| configure.in:268: error: possibly undefined macro: AC_LINK_DRV
-| autoreconf: /home/a0221004/yocto/oe-layersetup/build/arago-tmp-external-l=
-inaro-toolchain/sysroots/x86_64-linux/usr/bin/autoconf failed with exit sta=
-tus: 1
-| ERROR: autoreconf execution failed.
-| ERROR: Function failed: do_configure (see /home/a0221004/yocto/oe-layerse=
-tup/build/arago-tmp-external-linaro-toolchain/work/armv7a-vfp-neon-oe-linux=
--gnueabi/vtun-3.0.3-r3/temp/log.do_configure.12349 for further information)
-ERROR: Task 6 (/home/a0221004/yocto/oe-layersetup/sources/meta-arago/meta-a=
-rago-distro/recipes-connectivity/vtun/vtun_3.0.3.bb, do_configure) failed w=
-ith exit code '1'
-
-From: Cooper Jr., Franklin
-Sent: Monday, February 18, 2013 10:16 PM
-To: Zhou, Jingting; meta-arago@arago-project.org
-Subject: RE: vtun recipe review
-
-
-
-From: meta-arago-bounces@arago-project.org<mailto:meta-arago-bounces@arago-=
-project.org> [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Zho=
-u, Jingting
-Sent: Monday, February 18, 2013 8:52 PM
-To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-Subject: [meta-arago] vtun recipe review
-
-From 7f175836ab1c4a02f1b35322fff7ece88abbd34e Mon Sep 17 00:00:00 2001
+From 7ffcde7bd875fc886b59714db42316bd536b7aab Mon Sep 17 00:00:00 2001
 From: Jingting Zhou <a0221004@ares-ubuntu>
-Date: Mon, 18 Feb 2013 21:26:17 -0500
-Subject: [PATCH] added vtun recipe
+Date: Tue, 19 Feb 2013 16:35:13 -0500
+Subject: [PATCH] added lksctp-tools recipe
 
 ---
-.../recipes-connectivity/vtun/vtun_3.0.3.bb        |   22 +++++++++++++++++=
+.../recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb |   52 +++++++++++++++++=
 +++
-1 file changed, 22 insertions(+)
-create mode 100755 meta-arago-distro/recipes-connectivity/vtun/vtun_3.0.3.b=
-b
+1 file changed, 52 insertions(+)
+create mode 100755 meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_=
+1.0.7.bb
 
-diff --git a/meta-arago-distro/recipes-connectivity/vtun/vtun_3.0.3.bb b/me=
-ta-arago-distro/recipes-connectivity/vtun/vtun_3.0.3.bb
+diff --git a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.=
+bb b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
 new file mode 100755
-index 0000000..8b3b1a9
+index 0000000..310e39a
 --- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/vtun/vtun_3.0.3.bb
-@@ -0,0 +1,22 @@
-+DESCRIPTION =3D "Virtual Tunnels over TCP/IP networks with traffic shaping=
-, compression and encryption."
-+HOMEPAGE =3D "http://vtun.sourceforge.net/"
-+SECTION =3D "console/network"
++++ b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
+@@ -0,0 +1,52 @@
++DESCRIPTION =3D "The Linux Kernel Stream Control Transmission Protocol (lk=
+sctp) project"
++SECTION =3D "libs"
 +PRIORITY =3D "optional"
-+LICENSE =3D "GPL"
-+DEPENDS =3D "zlib lzo"
-+PR =3D "r1"
-+LIC_FILES_CHKSUM =3D "file://Makefile.in;endline=3D14;md5=3D79e41e827b3240=
-b63ab8b5810e903742<file:///\\Makefile.in;endline=3D14;md5=3D79e41e827b3240b=
-63ab8b5810e903742>"
-
-I pretty sure I remember reading somewhere that a generic GPL license shoul=
-dn't be used. A specific license should be used instead like GPLv1, GPLv2 e=
-tc...
-Based on the license text in the Makefile it looks like GPLv2 should be the=
- license you use.
-
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation; either version 2 of the License, or
-#   (at your option) any later version.
-
-Is there any file in that package that contains this license information. U=
-sually you choose a file to do a license checksum against that the author w=
-ould most likely tweak if any license information has been changed. To me a=
- Makefile is something that can easily be overlooked in terms of updating l=
-icense information.
-
-
++LICENSE =3D "LGPLv2"
++LIC_FILES_CHKSUM =3D "file://src/include/netinet/sctp.h;md5=3D8089fbe48b63=
+b73c8d091bee750b2ebc"
 +
-+SRC_URI =3D "http://downloads.sourceforge.net/project/vtun/vtun/${PV}/vtun=
--${PV}.tar.gz<http://downloads.sourceforge.net/project/vtun/vtun/$%7bPV%7d/=
-vtun-$%7bPV%7d.tar.gz>"
++INC_PR =3D "r2"
++PR =3D "${INC_PR}.0"
 +
-+SRC_URI[md5sum] =3D "f3becf2a0270910a841060c08d1db824"
-+SRC_URI[sha256sum] =3D "69dcbe4f8c5ce7d91b4150a6309e536d03b61841169746ca57=
-88413ac7edb9cb"
++SRC_URI =3D "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz"
 +
-+inherit autotools
++SRC_URI[md5sum] =3D "047562b40537eb3be5d5ec3ae0a2198b"
++SRC_URI[sha256sum] =3D "e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655=
+d687fd08377595"
 +
-+do_configure() {
-+              oe_runconf --with-lzo-headers=3D${STAGING_INCDIR}/lzo --with=
--lzo-lib=3D${STAGING_LIBDIR} --with-ssl-headers=3D${STAGING_INCDIR}/openssl=
- --with-ssl-lib=3D${STAGING_LIBDIR}
-
-Have you seen the EXTRA_OECONF variable (http://docs.openembedded.org/userm=
-anual/usermanual.html)? This variable allows you to set extra configure opt=
-ions without having to implement them in the way you're doing it.
-So you can do something like
-
-EXTRA_OECONF +=3D "\
---with-lzo-headers=3D${STAGING_INCDIR}/lzo \
---with-lzo-lib=3D${STAGING_LIBDIR} \
---with-ssl-headers=3D${STAGING_INCDIR}/openssl \
---with-ssl-lib=3D${STAGING_LIBDIR}
-"
-
-Instead of overriding the default do_configure step.
-
-
-+              sed '102d' Makefile > Makefile.new
-+              mv Makefile.new Makefile
-What is the purpose of these lines?
-
-Also you can probably just use the seds in place option (http://joemaller.c=
-om/823/quick-note-about-seds-edit-in-place-option/). This way you wouldn't =
-need to make a backup of the file.
-Also along with my comments about the oe_runconf if you absolutely need to =
-make the changes to the Makefile you can remove this do_configure task and =
-simply create a do_compile_prepend task that includes your Makefile changes=
-.
++S =3D "${WORKDIR}/${BPN}-${PV}"
++
++BBCLASSEXTEND =3D "native"
++
++inherit autotools pkgconfig binconfig
++
++do_install_append_virtclass-native() {
++             :
 +}
++
++RREPLACES =3D "lksctp"
++
++LEAD_SONAME =3D "libsctp.so"
++
++PACKAGES =3D+ "${PN}-withsctp ${PN}-utils"
++
++FILES_${PN} =3D "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
++            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
++            ${base_libdir}/*${SOLIBS}"
++
++FILES_${PN}-dev +=3D " \
++  ${datadir}/lksctp-tools/checksctp.c \
++  ${datadir}/lksctp-tools/sctp_socket.c \
++  ${datadir}/lksctp-tools/sctp_bind.c \
++  ${datadir}/lksctp-tools/sctp_darn.c \
++  ${datadir}/lksctp-tools/sctp_load_libs.c \
++  ${datadir}/lksctp-tools/sctp_sockopt.c \
++  ${datadir}/lksctp-tools/sctp_socket.h \
++  ${datadir}/lksctp-tools/sctp_test.c \
++  ${datadir}/lksctp-tools/sctp_darn.h"
++
++FILES_${PN}-utils =3D " \
++  ${bindir}/sctp_test \
++  ${bindir}/sctp_darn \
++  ${bindir}/checksctp \
++  ${bindir}/withsctp"
++
 +
 --
 1.7.9.5
 
-In general you place a base recipe that is generic for anyone to use in met=
-a-arago-extras and if any machine/device specific patches need to be added =
-then you create a bbappend in meta-arago-distro to make that change. A perf=
-ect example is qt-embedded-gles. I created the baes recipe in meta-arago-ex=
-tras and in meta-arago-distro I appended that recipe to add tweaks specific=
- to the Arago distribution.
 
-So a lot of your recipes you submitted tonight should be moved to meta-arag=
-o-extras since they are generic.
+From: Cooper Jr., Franklin
+Sent: Monday, February 18, 2013 10:45 PM
+To: Zhou, Jingting; meta-arago@arago-project.org
+Subject: RE: lksctp-tools recipe
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A3CEDFLE09entticom_
+I would combine the .inc and .bb into one file. Most likely we will only ha=
+ve 1 version of lksctp-tools at one time so no need to separate the logic i=
+n multiple files.
+
+Also my comment about this recipe moving to meta-arago-extras applies to th=
+is recipe and the other recipes you have sent. Honestly we need to discuss =
+trying to move these recipes to meta-openembedded or oe-core. I know I have=
+n't done this as much as I should but it's a process I want to start soon s=
+ince meta-arago-extras shouldn't become bloated especially since a lot of t=
+he these recipes and other recipes in meta-arago-extras originated from oe-=
+classic.
+
+Additional comments inline.
+
+From: meta-arago-bounces@arago-project.org<mailto:meta-arago-bounces@arago-=
+project.org> [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Zho=
+u, Jingting
+Sent: Monday, February 18, 2013 8:49 PM
+To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
+Subject: [meta-arago] lksctp-tools recipe
+
+From 8cf339a8ed5ef0922a4190ee707e2b0e0b94d971 Mon Sep 17 00:00:00 2001
+From: Jingting Zhou <a0221004@ares-ubuntu>
+Date: Mon, 18 Feb 2013 17:59:39 -0500
+Subject: [PATCH] added lksctp-tools recipe
+
+---
+.../lksctp-tools/lksctp-tools.inc                  |   46 +++++++++++++++++=
++++
+.../lksctp-tools/lksctp-tools_1.0.7.bb             |    9 ++++
+2 files changed, 55 insertions(+)
+create mode 100755 meta-arago-distro/recipes-connectivity/lksctp-tools/lksc=
+tp-tools.inc
+create mode 100755 meta-arago-distro/recipes-connectivity/lksctp-tools/lksc=
+tp-tools_1.0.7.bb
+
+diff --git a/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-too=
+ls.inc b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-tools.i=
+nc
+new file mode 100755
+index 0000000..1db389c
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-tools.inc
+@@ -0,0 +1,46 @@
++DESCRIPTION =3D "The Linux Kernel Stream Control Transmission Protocol (lk=
+sctp) project"
++SECTION =3D "libs"
++PRIORITY =3D "optional"
++LICENSE =3D "LGPLv2"
++
++S =3D "${WORKDIR}/${BPN}-${PV}"
++
++INC_PR =3D "r2"
++
++BBCLASSEXTEND =3D "native"
++
++inherit autotools pkgconfig binconfig
++
++do_install_append_virtclass-native() {
++              :
++}
++
++RREPLACES =3D "lksctp"
++
++LEAD_SONAME =3D "libsctp.so"
++
++PACKAGES =3D+ "${PN}-withsctp ${PN}-utils"
++
++FILES_${PN} =3D "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
++            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
++            ${base_libdir}/*${SOLIBS}"
++
++#FILES_${PN}-withsctp =3D " \
++#  ${libdir}/lksctp-tools/lib*"
+My outlook could just be showing things weird but if this is commented out =
+why not just remove it?
++
++FILES_${PN}-dev +=3D " \
++  ${datadir}/lksctp-tools/checksctp.c \
++  ${datadir}/lksctp-tools/sctp_socket.c \
++  ${datadir}/lksctp-tools/sctp_bind.c \
++  ${datadir}/lksctp-tools/sctp_darn.c \
++  ${datadir}/lksctp-tools/sctp_load_libs.c \
++  ${datadir}/lksctp-tools/sctp_sockopt.c \
++  ${datadir}/lksctp-tools/sctp_socket.h \
++  ${datadir}/lksctp-tools/sctp_test.c \
++  ${datadir}/lksctp-tools/sctp_darn.h"
++
++FILES_${PN}-utils =3D " \
++  ${bindir}/sctp_test \
++  ${bindir}/sctp_darn \
++  ${bindir}/checksctp \
++  ${bindir}/withsctp"
+diff --git a/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-too=
+ls_1.0.7.bb b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-to=
+ols_1.0.7.bb
+new file mode 100755
+index 0000000..70b36f5
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/lksctp-tools/lksctp-tools_1.0.=
+7.bb
+@@ -0,0 +1,9 @@
++require lksctp-tools.inc
++PR =3D "${INC_PR}.0"
++
++SRC_URI =3D "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz"
++
++LIC_FILES_CHKSUM =3D "file://Makefile.in;endline=3D14;md5=3D764d2275f40f1a=
+67205558dd2af91708<file:///\\Makefile.in;endline=3D14;md5=3D764d2275f40f1a6=
+7205558dd2af91708>"
++
++SRC_URI[md5sum] =3D "047562b40537eb3be5d5ec3ae0a2198b"
++SRC_URI[sha256sum] =3D "e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655=
+d687fd08377595"
+--
+1.7.9.5
+
+
+--_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -259,13 +296,6 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
 p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	{mso-style-priority:99;
 	mso-style-link:"Balloon Text Char";
@@ -273,25 +303,20 @@ p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	margin-bottom:.0001pt;
 	font-size:8.0pt;
 	font-family:"Tahoma","sans-serif";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
 span.BalloonTextChar
 	{mso-style-name:"Balloon Text Char";
 	mso-style-priority:99;
 	mso-style-link:"Balloon Text";
 	font-family:"Tahoma","sans-serif";}
-span.EmailStyle21
+span.EmailStyle19
 	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
-span.EmailStyle22
+span.EmailStyle20
 	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
-span.EmailStyle23
+span.EmailStyle21
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
@@ -312,94 +337,165 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Thanks Franklin for the detailed comments~<o:p></o:p=
+<p class=3D"MsoNormal">Updated patch. Put in under meta-arago-extras, updat=
+ed the license file, combined into one bb file, removed commented out regio=
+n. Thanks~<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">From 7ffcde7bd875fc886=
+b59714db42316bd536b7aab Mon Sep 17 00:00:00 2001<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">From: Jingting Zhou &l=
+t;a0221004@ares-ubuntu&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Date: Tue, 19 Feb 2013=
+ 16:35:13 -0500<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Subject: [PATCH] added=
+ lksctp-tools recipe<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">---<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">.../recipes-bsp/lksctp=
+-tools/lksctp-tools_1.0.7.bb |&nbsp;&nbsp; 52 &#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">1 file changed, 52 ins=
+ertions(&#43;)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">create mode 100755 met=
+a-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">diff --git a/meta-arag=
+o-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb b/meta-arago-extras=
+/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">new file mode 100755<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">index 0000000..310e39a=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">--- /dev/null<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&#43;&#43; b/meta=
+-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">@@ -0,0 &#43;1,52 @@<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;DESCRIPTION =3D &=
+quot;The Linux Kernel Stream Control Transmission Protocol (lksctp) project=
+&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SECTION =3D &quot=
+;libs&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;PRIORITY =3D &quo=
+t;optional&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;LICENSE =3D &quot=
+;LGPLv2&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;LIC_FILES_CHKSUM =
+=3D &quot;file://src/include/netinet/sctp.h;md5=3D8089fbe48b63b73c8d091bee7=
+50b2ebc&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
 ></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When I tried to use <o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;INC_PR =3D &quot;=
+r2&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;PR =3D &quot;${IN=
+C_PR}.0&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SRC_URI =3D &quot=
+;${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz&quot;<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SRC_URI[md5sum] =
+=3D &quot;047562b40537eb3be5d5ec3ae0a2198b&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;SRC_URI[sha256sum=
+] =3D &quot;e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655d687fd0837759=
+5&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;S =3D &quot;${WOR=
+KDIR}/${BPN}-${PV}&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;BBCLASSEXTEND =3D=
+ &quot;native&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;inherit autotools=
+ pkgconfig binconfig<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;do_install_append=
+_virtclass-native() {<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;}<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;RREPLACES =3D &qu=
+ot;lksctp&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;LEAD_SONAME =3D &=
+quot;libsctp.so&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;PACKAGES =3D&#43;=
+ &quot;${PN}-withsctp ${PN}-utils&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;FILES_${PN} =3D &=
+quot;${libexecdir}/* ${libdir}/lib*${SOLIBS} \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${sysconfdir} ${sharedsta=
+tedir} ${localstatedir} \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${base_libdir}/*${SOLIBS}=
+&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;FILES_${PN}-dev &=
+#43;=3D &quot; \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/checksctp.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_socket.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_bind.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_darn.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_load_libs.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_sockopt.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_socket.h \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_test.c \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${datadir}=
+/lksctp-tools/sctp_darn.h&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;FILES_${PN}-utils=
+ =3D &quot; \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
+sctp_test \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
+sctp_darn \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
+checksctp \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;&nbsp; ${bindir}/=
+withsctp&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#43;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-- <o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">1.7.9.5<o:p></o:p></sp=
+an></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
 n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">EXTRA_OECONF &#43;=3D =
-&quot;\<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; --with-lzo-headers=3D${STAGING_INCD=
-IR}/lzo \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; --with-lzo-lib=3D${STAGING_LIBDIR} =
-\<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; --with-ssl-headers=3D${STAGING_INCD=
-IR}/openssl \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;--with-ssl-lib=3D${STAGING_LIBDIR}&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">do_compile_prepend(){<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sed '1=
-02d' Makefile &gt; Makefile.new
-</span>(102<sup>nd</sup> line in Makefile: $(BIN_DIR)/strip $(DESTDIR)$(SBI=
-N_DIR)/vtund, and strip is complaining vtund is not a linux executable file=
-)<span style=3D"color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mv Mak=
-efile.new Makefile<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">}<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">I got the following error, have you seen this before=
-? I tried to &#8220;vtun-3.0.3$ grep -r AC_SEARCH_HEADERS *&#8221; but didn=
-&#8217;t see it defined anywhere. If you don&#8217;t have the answer either=
-, I&#8217;ll go with the old do_config.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| autoreconf: configur=
-e.in: tracing<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| autoreconf: configur=
-e.in: not using Libtool<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| autoreconf: running:=
- /home/a0221004/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolcha=
-in/sysroots/x86_64-linux/usr/bin/autoconf --include=3D/home/a0221004/yocto/=
-oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/x86_64-lin=
-ux/usr/share/aclocal-1.12
- --include=3D/home/a0221004/yocto/oe-layersetup/build/arago-tmp-external-li=
-naro-toolchain/work/armv7a-vfp-neon-oe-linux-gnueabi/vtun-3.0.3-r3/vtun-3.0=
-.3/aclocal-copy/ --force<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| configure.in:134: er=
-ror: possibly undefined macro: AC_SEARCH_HEADERS<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; If this token and others are legitimate, please use m4_patt=
-ern_allow.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; See the Autoconf documentation.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| configure.in:268: er=
-ror: possibly undefined macro: AC_LINK_DRV<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| autoreconf: /home/a0=
-221004/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroo=
-ts/x86_64-linux/usr/bin/autoconf failed with exit status: 1<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| ERROR: autoreconf ex=
-ecution failed.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| ERROR: Function fail=
-ed: do_configure (see /home/a0221004/yocto/oe-layersetup/build/arago-tmp-ex=
-ternal-linaro-toolchain/work/armv7a-vfp-neon-oe-linux-gnueabi/vtun-3.0.3-r3=
-/temp/log.do_configure.12349 for further
- information)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ERROR: Task 6 (/home/a=
-0221004/yocto/oe-layersetup/sources/meta-arago/meta-arago-distro/recipes-co=
-nnectivity/vtun/vtun_3.0.3.bb, do_configure) failed with exit code '1'<o:p>=
-</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
 n></p>
 <div>
@@ -410,14 +506,30 @@ n></p>
 ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Cooper J=
 r., Franklin
 <br>
-<b>Sent:</b> Monday, February 18, 2013 10:16 PM<br>
+<b>Sent:</b> Monday, February 18, 2013 10:45 PM<br>
 <b>To:</b> Zhou, Jingting; meta-arago@arago-project.org<br>
-<b>Subject:</b> RE: vtun recipe review<o:p></o:p></span></p>
+<b>Subject:</b> RE: lksctp-tools recipe<o:p></o:p></span></p>
 </div>
 </div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I would combine the .i=
+nc and .bb into one file. Most likely we will only have 1 version of lksctp=
+-tools at one time so no need to separate the logic in multiple files.<o:p>=
+</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
 n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also my comment about =
+this recipe moving to meta-arago-extras applies to this recipe and the othe=
+r recipes you have sent. Honestly we need to discuss trying to move these r=
+ecipes to meta-openembedded or oe-core.
+ I know I haven&#8217;t done this as much as I should but it&#8217;s a proc=
+ess I want to start soon since meta-arago-extras shouldn&#8217;t become blo=
+ated especially since a lot of the these recipes and other recipes in meta-=
+arago-extras originated from oe-classic.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Additional comments in=
+line.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
 n></p>
 <div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
@@ -432,171 +544,149 @@ ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
 arago-project.org</a> [<a href=3D"mailto:meta-arago-bounces@arago-project.o=
 rg">mailto:meta-arago-bounces@arago-project.org</a>]
 <b>On Behalf Of </b>Zhou, Jingting<br>
-<b>Sent:</b> Monday, February 18, 2013 8:52 PM<br>
+<b>Sent:</b> Monday, February 18, 2013 8:49 PM<br>
 <b>To:</b> <a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago=
 -project.org</a><br>
-<b>Subject:</b> [meta-arago] vtun recipe review<o:p></o:p></span></p>
+<b>Subject:</b> [meta-arago] lksctp-tools recipe<o:p></o:p></span></p>
 </div>
 </div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">From 7f175836ab1c4a02f1b35322fff7ece88abbd34e Mon Se=
+<p class=3D"MsoNormal">From 8cf339a8ed5ef0922a4190ee707e2b0e0b94d971 Mon Se=
 p 17 00:00:00 2001<o:p></o:p></p>
 <p class=3D"MsoNormal">From: Jingting Zhou &lt;a0221004@ares-ubuntu&gt;<o:p=
 ></o:p></p>
-<p class=3D"MsoNormal">Date: Mon, 18 Feb 2013 21:26:17 -0500<o:p></o:p></p>
-<p class=3D"MsoNormal">Subject: [PATCH] added vtun recipe<o:p></o:p></p>
+<p class=3D"MsoNormal">Date: Mon, 18 Feb 2013 17:59:39 -0500<o:p></o:p></p>
+<p class=3D"MsoNormal">Subject: [PATCH] added lksctp-tools recipe<o:p></o:p=
+></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">---<o:p></o:p></p>
-<p class=3D"MsoNormal">.../recipes-connectivity/vtun/vtun_3.0.3.bb&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 22 &#43;&#43;&#43;&#43;&#43=
-;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
-;<o:p></o:p></p>
-<p class=3D"MsoNormal">1 file changed, 22 insertions(&#43;)<o:p></o:p></p>
+<p class=3D"MsoNormal">.../lksctp-tools/lksctp-tools.inc&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; |&nbsp;&nbsp; 46 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">.../lksctp-tools/lksctp-tools_1.0.7.bb&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nb=
+sp; 9 &#43;&#43;&#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">2 files changed, 55 insertions(&#43;)<o:p></o:p></p>
 <p class=3D"MsoNormal">create mode 100755 meta-arago-distro/recipes-connect=
-ivity/vtun/vtun_3.0.3.bb<o:p></o:p></p>
+ivity/lksctp-tools/lksctp-tools.inc<o:p></o:p></p>
+<p class=3D"MsoNormal">create mode 100755 meta-arago-distro/recipes-connect=
+ivity/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">diff --git a/meta-arago-distro/recipes-connectivity/=
-vtun/vtun_3.0.3.bb b/meta-arago-distro/recipes-connectivity/vtun/vtun_3.0.3=
-.bb<o:p></o:p></p>
+lksctp-tools/lksctp-tools.inc b/meta-arago-distro/recipes-connectivity/lksc=
+tp-tools/lksctp-tools.inc<o:p></o:p></p>
 <p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
-<p class=3D"MsoNormal">index 0000000..8b3b1a9<o:p></o:p></p>
+<p class=3D"MsoNormal">index 0000000..1db389c<o:p></o:p></p>
 <p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-distro/recipes-connecti=
-vity/vtun/vtun_3.0.3.bb<o:p></o:p></p>
-<p class=3D"MsoNormal">@@ -0,0 &#43;1,22 @@<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;DESCRIPTION =3D &quot;Virtual Tunnels over TCP/=
-IP networks with traffic shaping, compression and encryption.&quot;<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&#43;HOMEPAGE =3D &quot;<a href=3D"http://vtun.sourc=
-eforge.net/">http://vtun.sourceforge.net/</a>&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SECTION =3D &quot;console/network&quot;<o:p></o=
-:p></p>
+vity/lksctp-tools/lksctp-tools.inc<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -0,0 &#43;1,46 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;DESCRIPTION =3D &quot;The Linux Kernel Stream C=
+ontrol Transmission Protocol (lksctp) project&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SECTION =3D &quot;libs&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;PRIORITY =3D &quot;optional&quot;<o:p></o:p></p=
 >
-<p class=3D"MsoNormal">&#43;LICENSE =3D &quot;GPL&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;DEPENDS =3D &quot;zlib lzo&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;LIC_FILES_CHKSUM =3D &quot;<a href=3D"file:///\=
-\Makefile.in;endline=3D14;md5=3D79e41e827b3240b63ab8b5810e903742">file://Ma=
-kefile.in;endline=3D14;md5=3D79e41e827b3240b63ab8b5810e903742</a>&quot;<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I pretty sure I rememb=
-er reading somewhere that a generic GPL license shouldn&#8217;t be used. A =
-specific license should be used instead like GPLv1, GPLv2 etc&#8230;<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Based on the license t=
-ext in the Makefile it looks like GPLv2 should be the license you use.<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; This pro=
-gram is free software; you can redistribute it and/or modify<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; it under=
- the terms of the GNU General Public License as published by<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; the Free=
- Software Foundation; either version 2 of the License, or<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; (at your=
- option) any later version.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Is there any file in t=
-hat package that contains this license information. Usually you choose a fi=
-le to do a license checksum against that the author would most likely tweak=
- if any license information has been
- changed. To me a Makefile is something that can easily be overlooked in te=
-rms of updating license information.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
+<p class=3D"MsoNormal">&#43;LICENSE =3D &quot;LGPLv2&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI =3D &quot;<a href=3D"http://downloads.s=
-ourceforge.net/project/vtun/vtun/$%7bPV%7d/vtun-$%7bPV%7d.tar.gz">http://do=
-wnloads.sourceforge.net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz</a>&quot;=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI[md5sum] =3D &quot;f3becf2a0270910a84106=
-0c08d1db824&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI[sha256sum] =3D &quot;69dcbe4f8c5ce7d91b=
-4150a6309e536d03b61841169746ca5788413ac7edb9cb&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;inherit autotools<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;do_configure() {<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oe_runconf --with-lzo-headers=3D${STAGING_I=
-NCDIR}/lzo --with-lzo-lib=3D${STAGING_LIBDIR} --with-ssl-headers=3D${STAGIN=
-G_INCDIR}/openssl --with-ssl-lib=3D${STAGING_LIBDIR}<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Have you seen the EXTR=
-A_OECONF variable (<a href=3D"http://docs.openembedded.org/usermanual/userm=
-anual.html">http://docs.openembedded.org/usermanual/usermanual.html</a>)? T=
-his variable allows you to set extra configure
- options without having to implement them in the way you&#8217;re doing it.=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">So you can do somethin=
-g like<o:p></o:p></span></p>
-<pre>EXTRA_OECONF &#43;=3D &#8220;\<o:p></o:p></pre>
-<p class=3D"MsoNormal">--with-lzo-headers=3D${STAGING_INCDIR}/lzo \<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">--with-lzo-lib=3D${STAGING_LIBDIR} \<o:p></o:p></p>
-<p class=3D"MsoNormal">--with-ssl-headers=3D${STAGING_INCDIR}/openssl \<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">--with-ssl-lib=3D${STAGING_LIBDIR}<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#8220;<o:p></o:p></sp=
-an></p>
-<pre>Instead of overriding the default do_configure step.<o:p></o:p></pre>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sed '102d' Makefile &gt; Makefile.new<o:p><=
+<p class=3D"MsoNormal">&#43;S =3D &quot;${WORKDIR}/${BPN}-${PV}&quot;<o:p><=
 /o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;INC_PR =3D &quot;r2&quot;<span style=3D"color:#=
+1F497D"><o:p></o:p></span></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;BBCLASSEXTEND =3D &quot;native&quot;<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;inherit autotools pkgconfig binconfig<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;do_install_append_virtclass-native() {<o:p></o:=
+p></p>
 <p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mv Makefile.new Makefile<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">What is the purpose of=
- these lines?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also you can probably =
-just use the seds in place option (<a href=3D"http://joemaller.com/823/quic=
-k-note-about-seds-edit-in-place-option/">http://joemaller.com/823/quick-not=
-e-about-seds-edit-in-place-option/</a>).
- This way you wouldn&#8217;t need to make a backup of the file.<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also along with my com=
-ments about the oe_runconf if you absolutely need to make the changes to th=
-e Makefile you can remove this do_configure task and simply create a do_com=
-pile_prepend task that includes your
- Makefile changes.<o:p></o:p></span></p>
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;RREPLACES =3D &quot;lksctp&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;LEAD_SONAME =3D &quot;libsctp.so&quot;<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PACKAGES =3D&#43; &quot;${PN}-withsctp ${PN}-ut=
+ils&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN} =3D &quot;${libexecdir}/* ${libdir}=
+/lib*${SOLIBS} \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; ${sysconfdir} ${sharedstatedir} ${localstatedir} \<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; ${base_libdir}/*${SOLIBS}&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;#FILES_${PN}-withsctp =3D &quot; \<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&#43;#&nbsp; ${libdir}/lksctp-tools/lib*&quot;<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">My outlook could just =
+be showing things weird but if this is commented out why not just remove it=
+?<o:p></o:p></span></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-dev &#43;=3D &quot; \<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/checksctp.c \<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_socket.c \<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_bind.c \<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_darn.c \<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_load_libs.c=
+ \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_sockopt.c \=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_socket.h \<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_test.c \<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${datadir}/lksctp-tools/sctp_darn.h&quot=
+;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;FILES_${PN}-utils =3D &quot; \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/sctp_test \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/sctp_darn \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/checksctp \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp; ${bindir}/withsctp&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">diff --git a/meta-arago-distro/recipes-connectivity/=
+lksctp-tools/lksctp-tools_1.0.7.bb b/meta-arago-distro/recipes-connectivity=
+/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">new file mode 100755<o:p></o:p></p>
+<p class=3D"MsoNormal">index 0000000..70b36f5<o:p></o:p></p>
+<p class=3D"MsoNormal">--- /dev/null<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/meta-arago-distro/recipes-connecti=
+vity/lksctp-tools/lksctp-tools_1.0.7.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -0,0 &#43;1,9 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;require lksctp-tools.inc<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PR =3D &quot;${INC_PR}.0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI =3D &quot;${SOURCEFORGE_MIRROR}/lksctp/=
+lksctp-tools-${PV}.tar.gz&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;LIC_FILES_CHKSUM =3D &quot;<a href=3D"file:///\=
+\Makefile.in;endline=3D14;md5=3D764d2275f40f1a67205558dd2af91708">file://Ma=
+kefile.in;endline=3D14;md5=3D764d2275f40f1a67205558dd2af91708</a>&quot;<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[md5sum] =3D &quot;047562b40537eb3be5d5e=
+c3ae0a2198b&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[sha256sum] =3D &quot;e920e89d110cff9847=
+f1d86a1d7a23a156a8abcc9e65a35655d687fd08377595&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">-- <o:p></o:p></p>
 <p class=3D"MsoNormal">1.7.9.5<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">In general you place a=
- base recipe that is generic for anyone to use in meta-arago-extras and if =
-any machine/device specific patches need to be added then you create a bbap=
-pend in meta-arago-distro to make that
- change. A perfect example is qt-embedded-gles. I created the baes recipe i=
-n meta-arago-extras and in meta-arago-distro I appended that recipe to add =
-tweaks specific to the Arago distribution.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">So a lot of your recip=
-es you submitted tonight should be moved to meta-arago-extras since they ar=
-e generic.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 </div>
 </body>
 </html>
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A3CEDFLE09entticom_--
+--_000_3C08AEEB3C731745938BC83D029FE5E391A400DFLE09entticom_--
