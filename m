@@ -1,29 +1,32 @@
-Return-Path: <zhoujt@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id DEB0852A1D
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 626A452A10
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Feb 2013 02:51:40 +0000 (UTC)
+	Tue, 19 Feb 2013 03:16:18 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1J2peeM007151
-	for <meta-arago@arago-project.org>; Mon, 18 Feb 2013 20:51:40 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1J2pep3013396
-	for <meta-arago@arago-project.org>; Mon, 18 Feb 2013 20:51:40 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1J3GH71032700
+	for <meta-arago@arago-project.org>; Mon, 18 Feb 2013 21:16:17 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1J3GH9R005321
+	for <meta-arago@arago-project.org>; Mon, 18 Feb 2013 21:16:17 -0600
 Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DFLE73.ent.ti.com ([fe80::86e:fab6:cd95:e158%28]) with mapi id
-	14.01.0323.003; Mon, 18 Feb 2013 20:51:40 -0600
-From: "Zhou, Jingting" <zhoujt@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+	DFLE72.ent.ti.com ([fe80::5c48:b90d:af93:5822%30]) with mapi id
+	14.01.0323.003; Mon, 18 Feb 2013 21:16:17 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Zhou, Jingting" <zhoujt@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
 Thread-Topic: vtun recipe review
-Thread-Index: Ac4OTAg8qENO/MmZQnmLRfSnfHYCtA==
-Date: Tue, 19 Feb 2013 02:51:38 +0000
-Message-ID: <3C08AEEB3C731745938BC83D029FE5E391A1A4@DFLE09.ent.ti.com>
+Thread-Index: Ac4OTAg8qENO/MmZQnmLRfSnfHYCtAAAJlMA
+Date: Tue, 19 Feb 2013 03:16:17 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C395340@DFLE09.ent.ti.com>
+References: <3C08AEEB3C731745938BC83D029FE5E391A1A4@DFLE09.ent.ti.com>
+In-Reply-To: <3C08AEEB3C731745938BC83D029FE5E391A1A4@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: vtun recipe review
+Subject: Re: vtun recipe review
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,14 +39,22 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 02:51:41 -0000
+X-List-Received-Date: Tue, 19 Feb 2013 03:16:18 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_3C08AEEB3C731745938BC83D029FE5E391A1A4DFLE09entticom_"
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C395340DFLE09entticom_"
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A1A4DFLE09entticom_
+--_000_8F29D6B095ED194EA1980491A5E029710C395340DFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+
+
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Zhou, Jingting
+Sent: Monday, February 18, 2013 8:52 PM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] vtun recipe review
 
 From 7f175836ab1c4a02f1b35322fff7ece88abbd34e Mon Sep 17 00:00:00 2001
 From: Jingting Zhou <a0221004@ares-ubuntu>
@@ -73,10 +84,31 @@ index 0000000..8b3b1a9
 +DEPENDS =3D "zlib lzo"
 +PR =3D "r1"
 +LIC_FILES_CHKSUM =3D "file://Makefile.in;endline=3D14;md5=3D79e41e827b3240=
-b63ab8b5810e903742"
+b63ab8b5810e903742<file:///\\Makefile.in;endline=3D14;md5=3D79e41e827b3240b=
+63ab8b5810e903742>"
+
+I pretty sure I remember reading somewhere that a generic GPL license shoul=
+dn't be used. A specific license should be used instead like GPLv1, GPLv2 e=
+tc...
+Based on the license text in the Makefile it looks like GPLv2 should be the=
+ license you use.
+
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+
+Is there any file in that package that contains this license information. U=
+sually you choose a file to do a license checksum against that the author w=
+ould most likely tweak if any license information has been changed. To me a=
+ Makefile is something that can easily be overlooked in terms of updating l=
+icense information.
+
+
 +
 +SRC_URI =3D "http://downloads.sourceforge.net/project/vtun/vtun/${PV}/vtun=
--${PV}.tar.gz"
+-${PV}.tar.gz<http://downloads.sourceforge.net/project/vtun/vtun/$%7bPV%7d/=
+vtun-$%7bPV%7d.tar.gz>"
 +
 +SRC_URI[md5sum] =3D "f3becf2a0270910a841060c08d1db824"
 +SRC_URI[sha256sum] =3D "69dcbe4f8c5ce7d91b4150a6309e536d03b61841169746ca57=
@@ -88,15 +120,49 @@ b63ab8b5810e903742"
 +              oe_runconf --with-lzo-headers=3D${STAGING_INCDIR}/lzo --with=
 -lzo-lib=3D${STAGING_LIBDIR} --with-ssl-headers=3D${STAGING_INCDIR}/openssl=
  --with-ssl-lib=3D${STAGING_LIBDIR}
+
+Have you seen the EXTRA_OECONF variable (http://docs.openembedded.org/userm=
+anual/usermanual.html)? This variable allows you to set extra configure opt=
+ions without having to implement them in the way you're doing it.
+So you can do something like
+
+EXTRA_OECONF +=3D "\
+--with-lzo-headers=3D${STAGING_INCDIR}/lzo \
+--with-lzo-lib=3D${STAGING_LIBDIR} \
+--with-ssl-headers=3D${STAGING_INCDIR}/openssl \
+--with-ssl-lib=3D${STAGING_LIBDIR}
+"
+
+Instead of overriding the default do_configure step.
+
+
 +              sed '102d' Makefile > Makefile.new
 +              mv Makefile.new Makefile
+What is the purpose of these lines?
+
+Also you can probably just use the seds in place option (http://joemaller.c=
+om/823/quick-note-about-seds-edit-in-place-option/). This way you wouldn't =
+need to make a backup of the file.
+Also along with my comments about the oe_runconf if you absolutely need to =
+make the changes to the Makefile you can remove this do_configure task and =
+simply create a do_compile_prepend task that includes your Makefile changes=
+.
 +}
 +
 --
 1.7.9.5
 
+In general you place a base recipe that is generic for anyone to use in met=
+a-arago-extras and if any machine/device specific patches need to be added =
+then you create a bbappend in meta-arago-distro to make that change. A perf=
+ect example is qt-embedded-gles. I created the baes recipe in meta-arago-ex=
+tras and in meta-arago-distro I appended that recipe to add tweaks specific=
+ to the Arago distribution.
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A1A4DFLE09entticom_
+So a lot of your recipes you submitted tonight should be moved to meta-arag=
+o-extras since they are generic.
+
+--_000_8F29D6B095ED194EA1980491A5E029710C395340DFLE09entticom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -107,21 +173,15 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
 <style><!--
 /* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -136,12 +196,41 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -156,6 +245,26 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-ara=
+go-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
+<b>On Behalf Of </b>Zhou, Jingting<br>
+<b>Sent:</b> Monday, February 18, 2013 8:52 PM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Subject:</b> [meta-arago] vtun recipe review<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">From 7f175836ab1c4a02f1b35322fff7ece88abbd34e Mon Se=
 p 17 00:00:00 2001<o:p></o:p></p>
 <p class=3D"MsoNormal">From: Jingting Zhou &lt;a0221004@ares-ubuntu&gt;<o:p=
@@ -184,8 +293,8 @@ vity/vtun/vtun_3.0.3.bb<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;DESCRIPTION =3D &quot;Virtual Tunnels over TCP/=
 IP networks with traffic shaping, compression and encryption.&quot;<o:p></o=
 :p></p>
-<p class=3D"MsoNormal">&#43;HOMEPAGE =3D &quot;http://vtun.sourceforge.net/=
-&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;HOMEPAGE =3D &quot;<a href=3D"http://vtun.sourc=
+eforge.net/">http://vtun.sourceforge.net/</a>&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;SECTION =3D &quot;console/network&quot;<o:p></o=
 :p></p>
 <p class=3D"MsoNormal">&#43;PRIORITY =3D &quot;optional&quot;<o:p></o:p></p=
@@ -193,11 +302,49 @@ IP networks with traffic shaping, compression and encryption.&quot;<o:p></o=
 <p class=3D"MsoNormal">&#43;LICENSE =3D &quot;GPL&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;DEPENDS =3D &quot;zlib lzo&quot;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;LIC_FILES_CHKSUM =3D &quot;file://Makefile.in;e=
-ndline=3D14;md5=3D79e41e827b3240b63ab8b5810e903742&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;LIC_FILES_CHKSUM =3D &quot;<a href=3D"file:///\=
+\Makefile.in;endline=3D14;md5=3D79e41e827b3240b63ab8b5810e903742">file://Ma=
+kefile.in;endline=3D14;md5=3D79e41e827b3240b63ab8b5810e903742</a>&quot;<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I pretty sure I rememb=
+er reading somewhere that a generic GPL license shouldn&#8217;t be used. A =
+specific license should be used instead like GPLv1, GPLv2 etc&#8230;<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Based on the license t=
+ext in the Makefile it looks like GPLv2 should be the license you use.<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; This pro=
+gram is free software; you can redistribute it and/or modify<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; it under=
+ the terms of the GNU General Public License as published by<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; the Free=
+ Software Foundation; either version 2 of the License, or<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">#&nbsp;&nbsp; (at your=
+ option) any later version.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Is there any file in t=
+hat package that contains this license information. Usually you choose a fi=
+le to do a license checksum against that the author would most likely tweak=
+ if any license information has been
+ changed. To me a Makefile is something that can easily be overlooked in te=
+rms of updating license information.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">&#43;SRC_URI =3D &quot;http://downloads.sourceforge.=
-net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI =3D &quot;<a href=3D"http://downloads.s=
+ourceforge.net/project/vtun/vtun/$%7bPV%7d/vtun-$%7bPV%7d.tar.gz">http://do=
+wnloads.sourceforge.net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz</a>&quot;=
+<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;SRC_URI[md5sum] =3D &quot;f3becf2a0270910a84106=
 0c08d1db824&quot;<o:p></o:p></p>
@@ -211,18 +358,71 @@ net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz&quot;<o:p></o:p></p>
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oe_runconf --with-lzo-headers=3D${STAGING_I=
 NCDIR}/lzo --with-lzo-lib=3D${STAGING_LIBDIR} --with-ssl-headers=3D${STAGIN=
 G_INCDIR}/openssl --with-ssl-lib=3D${STAGING_LIBDIR}<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Have you seen the EXTR=
+A_OECONF variable (<a href=3D"http://docs.openembedded.org/usermanual/userm=
+anual.html">http://docs.openembedded.org/usermanual/usermanual.html</a>)? T=
+his variable allows you to set extra configure
+ options without having to implement them in the way you&#8217;re doing it.=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">So you can do somethin=
+g like<o:p></o:p></span></p>
+<pre>EXTRA_OECONF &#43;=3D &#8220;\<o:p></o:p></pre>
+<p class=3D"MsoNormal">--with-lzo-headers=3D${STAGING_INCDIR}/lzo \<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">--with-lzo-lib=3D${STAGING_LIBDIR} \<o:p></o:p></p>
+<p class=3D"MsoNormal">--with-ssl-headers=3D${STAGING_INCDIR}/openssl \<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">--with-ssl-lib=3D${STAGING_LIBDIR}<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&#8220;<o:p></o:p></sp=
+an></p>
+<pre>Instead of overriding the default do_configure step.<o:p></o:p></pre>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
 <p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sed '102d' Makefile &gt; Makefile.new<o:p><=
 /o:p></p>
 <p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mv Makefile.new Makefile<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">What is the purpose of=
+ these lines?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also you can probably =
+just use the seds in place option (<a href=3D"http://joemaller.com/823/quic=
+k-note-about-seds-edit-in-place-option/">http://joemaller.com/823/quick-not=
+e-about-seds-edit-in-place-option/</a>).
+ This way you wouldn&#8217;t need to make a backup of the file.<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also along with my com=
+ments about the oe_runconf if you absolutely need to make the changes to th=
+e Makefile you can remove this do_configure task and simply create a do_com=
+pile_prepend task that includes your
+ Makefile changes.<o:p></o:p></span></p>
 <p class=3D"MsoNormal">&#43;}<o:p></o:p></p>
 <p class=3D"MsoNormal">&#43;<o:p></o:p></p>
 <p class=3D"MsoNormal">-- <o:p></o:p></p>
 <p class=3D"MsoNormal">1.7.9.5<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">In general you place a=
+ base recipe that is generic for anyone to use in meta-arago-extras and if =
+any machine/device specific patches need to be added then you create a bbap=
+pend in meta-arago-distro to make that
+ change. A perfect example is qt-embedded-gles. I created the baes recipe i=
+n meta-arago-extras and in meta-arago-distro I appended that recipe to add =
+tweaks specific to the Arago distribution.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">So a lot of your recip=
+es you submitted tonight should be moved to meta-arago-extras since they ar=
+e generic.<o:p></o:p></span></p>
+</div>
 </div>
 </body>
 </html>
 
---_000_3C08AEEB3C731745938BC83D029FE5E391A1A4DFLE09entticom_--
+--_000_8F29D6B095ED194EA1980491A5E029710C395340DFLE09entticom_--
