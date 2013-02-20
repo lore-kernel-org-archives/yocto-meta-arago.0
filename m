@@ -1,27 +1,29 @@
 Return-Path: <ceh@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 9F90952A27
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9F95652A29
 	for <meta-arago@arago-project.org>;
 	Wed, 20 Feb 2013 22:26:06 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1KMQ0wX019554
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1KMQ0xm031936
+	for <meta-arago@arago-project.org>; Wed, 20 Feb 2013 16:26:01 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1KMQ0WY010003
 	for <meta-arago@arago-project.org>; Wed, 20 Feb 2013 16:26:00 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1KMQ0aJ009985
-	for <meta-arago@arago-project.org>; Wed, 20 Feb 2013 16:26:00 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.1.323.3;
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
 	Wed, 20 Feb 2013 16:26:00 -0600
 Received: from localhost.localdomain (gtdev04-a0850405.am.dhcp.ti.com
 	[10.218.102.32])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r1KMQ0RK022750;	Wed, 20 Feb 2013 16:26:00 -0600
+	r1KMQ0RL022750;	Wed, 20 Feb 2013 16:26:00 -0600
 From: Carlos Hernandez <ceh@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 20 Feb 2013 17:42:54 -0500
-Message-ID: <1361400177-5858-1-git-send-email-ceh@ti.com>
+Date: Wed, 20 Feb 2013 17:42:55 -0500
+Message-ID: <1361400177-5858-2-git-send-email-ceh@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1361400177-5858-1-git-send-email-ceh@ti.com>
+References: <1361400177-5858-1-git-send-email-ceh@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/4] U-boot: Include UART SPL in deploy package
+Subject: [PATCH 2/4] ltp-ddt: avoid compilation of old test code
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,77 +36,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Feb 2013 22:26:10 -0000
+X-List-Received-Date: Wed, 20 Feb 2013 22:26:23 -0000
 Content-Type: text/plain
 
-MLO can not be used to boot from UART, so include both
-MLO and uart spl in deploy package.
+Do not include ltp-ddt test apps that are not compatible with
+recent Linux kernel versions (3.7 or higher).
+Include ltp-ddt binaries directory in PATH enviroment variable.
 
 Signed-off-by: Carlos Hernandez <ceh@ti.com>
 ---
- meta-arago-distro/recipes-bsp/u-boot/spl-uart.inc  |   27 ++++++++++++++++++++
- .../u-boot/u-boot_2012.10-psp05.06.00.00.bb        |    4 ++-
- 2 files changed, 30 insertions(+), 1 deletions(-)
- create mode 100644 meta-arago-distro/recipes-bsp/u-boot/spl-uart.inc
+ .../0001-tmp-disable-fbdev-i2c-rtc-edma.patch      |   41 ++++++++++++++++++++
+ .../ltp-ddt/ltp-ddt_0.0.4.bbappend                 |   14 +++++++
+ 2 files changed, 55 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-tmp-disable-fbdev-i2c-rtc-edma.patch
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/spl-uart.inc b/meta-arago-distro/recipes-bsp/u-boot/spl-uart.inc
+diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-tmp-disable-fbdev-i2c-rtc-edma.patch b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-tmp-disable-fbdev-i2c-rtc-edma.patch
 new file mode 100644
-index 0000000..8e3c809
+index 0000000..aa0cc2d
 --- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/u-boot/spl-uart.inc
-@@ -0,0 +1,27 @@
-+# SECOND PROGRAM LOADER image meant to be loaded from UART.
-+SPL_UART_BINARY ?= ""
-+SPL_UART_IMAGE ?= "${SPL_UART_BINARY}-${MACHINE}-${PV}-${PR}"
-+SPL_UART_SYMLINK ?= "${SPL_UART_BINARY}-${MACHINE}"
++++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-tmp-disable-fbdev-i2c-rtc-edma.patch
+@@ -0,0 +1,41 @@
++From 98469baf75d71d5f91419ac1ae6087b1771c6a3c Mon Sep 17 00:00:00 2001
++From: Carlos Hernandez <ceh@ti.com>
++Date: Fri, 30 Nov 2012 10:27:02 -0500
++Subject: [PATCH] tmp disable fbdev,i2c,rtc,edma
 +
-+do_install_append () {
-+    if [ "x${SPL_UART_BINARY}" != "x" ]
-+    then
-+        install ${S}/spl/${SPL_UART_BINARY} ${D}/boot/${SPL_UART_IMAGE}
-+        ln -sf ${SPL_UART_IMAGE} ${D}/boot/${SPL_UART_BINARY}
++Signed-off-by: Carlos Hernandez <ceh@ti.com>
++---
++ Makefile               |    2 +-
++ testcases/ddt/Makefile |    4 ++++
++ 2 files changed, 5 insertions(+), 1 deletions(-)
++
++diff --git a/Makefile b/Makefile
++index 054ac6d..45471f0 100644
++--- a/Makefile
+++++ b/Makefile
++@@ -216,7 +216,7 @@ endif
++
++ ## Compile Modules
++ MODULES_TO_BUILD :=
++-PLATFORMSwEDMA   := am180x-evm|am181x-evm|am389x-evm|am387x-evm|am335x-evm|dm385-evm|dm813x-evm|da830-omapl137-evm|am170x-evm
+++PLATFORMSwEDMA   := am180x-evm|am181x-evm|am389x-evm|am387x-evm|dm385-evm|dm813x-evm|da830-omapl137-evm|am170x-evm
++
++ ifneq (,$(findstring $(PLATFORM),$(PLATFORMSwEDMA)))
++ MODULES_TO_BUILD += modules_edma
++diff --git a/testcases/ddt/Makefile b/testcases/ddt/Makefile
++index fc1f4b1..e2acf3e 100644
++--- a/testcases/ddt/Makefile
+++++ b/testcases/ddt/Makefile
++@@ -84,6 +84,10 @@ FILTER_OUT_DIRS                 += v4l2_display_davinci_test_suite
++ endif
++
++ ifeq ($(PLATFORM),am335x-evm)
+++FILTER_OUT_DIRS                 += edma_test_suite
+++FILTER_OUT_DIRS                 += rtc_test_suite
+++FILTER_OUT_DIRS                 += i2c_test_suite
+++FILTER_OUT_DIRS                 += fbdev_display_test_suite
++ FILTER_OUT_DIRS                 += v4l2_capture_test_suite
++ FILTER_OUT_DIRS                 += v4l2_display_test_suite
++ FILTER_OUT_DIRS                 += mc_test_suite
++--
++1.7.0.4
+diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+index 65a16f9..4dc8e52 100644
+--- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
++++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+@@ -1,3 +1,6 @@
++# look for files in this layer first
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
+ PR_append = "-arago0+gitr${SRCPV}"
+ 
+ # Auto rev so we pick up the latest changes
+@@ -30,3 +33,14 @@ do_make_scripts() {
+ addtask make_scripts before do_compile
+ do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
+ do_make_scripts[deptask] = "do_populate_sysroot"
++
++# Temp patch to avoid compilation issues w/ 3.7 kernel
++SRC_URI += " file://0001-tmp-disable-fbdev-i2c-rtc-edma.patch"
++
++pkg_postinst_ltp-ddt() {
++    #!/bin/sh -e
++    if [ x"$D" = "x" ]; then
++        echo "PATH=\$PATH:/opt/ltp/testcases/bin:/opt/ltp/testcases/bin/ddt"  >>  /etc/profile
++        echo "export PATH" >>  /etc/profile
 +    fi
 +}
-+
-+FILES_${PN} = "/boot ${sysconfdir}"
-+FILESPATH =. "${FILE_DIRNAME}/u-boot-git/${MACHINE}:"
-+
-+do_deploy_append () {
-+    cd ${DEPLOYDIR}
-+    if [ "x${SPL_UART_BINARY}" != "x" ]
-+    then
-+        install ${S}/spl/${SPL_UART_BINARY} ${DEPLOYDIR}/${SPL_UART_IMAGE}
-+        rm -f ${DEPLOYDIR}/${SPL_UART_BINARY} ${DEPLOYDIR}/${SPL_UART_SYMLINK}
-+        ln -sf ${SPL_UART_IMAGE} ${DEPLOYDIR}/${SPL_UART_BINARY}
-+        ln -sf ${SPL_UART_IMAGE} ${DEPLOYDIR}/${SPL_UART_SYMLINK}
-+    fi
-+}
-+
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
-index fa2183e..ec85538 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
-@@ -1,5 +1,6 @@
- # Use the version of u-boot.inc in oe-core not the meta-ti version
- require ${COREBASE}/meta/recipes-bsp/u-boot/u-boot.inc
-+require spl-uart.inc
- 
- # Reset OEMAKE. Current u-boot.inc sets -02 which breaks this version of u-boot's build.
- # This issue was fixed in oe-core master by removing the -02 statement.
-@@ -23,7 +24,7 @@ DEFAULT_PREFERENCE = "-1"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PR = "r7+gitr${SRCPV}"
-+PR = "r8+gitr${SRCPV}"
- 
- SRC_URI = "git://arago-project.org/git/projects/u-boot-am33x.git;protocol=git;branch=${BRANCH} \
- "
-@@ -38,3 +39,4 @@ UBOOT_SUFFIX = "img"
- 
- # Set the name of the SPL that will built so that it is also packaged with u-boot.
- SPL_BINARY = "MLO"
-+SPL_UART_BINARY = "u-boot-spl.bin"
 -- 
 1.7.0.4
 
