@@ -1,36 +1,30 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f42.google.com (mail-oa0-f42.google.com
-	[209.85.219.42])
-	by arago-project.org (Postfix) with ESMTPS id 7CD9952AA3
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 1052852A6B
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Feb 2013 03:33:18 +0000 (UTC)
-Received: by mail-oa0-f42.google.com with SMTP id i18so4493510oag.29
-	for <meta-arago@arago-project.org>;
-	Mon, 25 Feb 2013 19:33:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=XBl3qpTAD2DXQjxHnQqyVpiV4TtfbBF/Bw/lN3zoyoA=;
-	b=CC7AEeKVCN0Joej1keBXe+I00ZuOipk4x/qqyq5HaRHr8YU3dXpJ68OwibUgx01pUb
-	XoC8lGuSO8PRsxIdUkPjYy9qPCNljZnCr/v9aAIo8rT904caRMFv9ArcYpzmBEPsEf8+
-	+c8F7ohAUgbTvc+KZ5hNaHNALPp6T1X57/3/b1B7LD0UnyHBahCLSRxmTB7hVpJDz4oW
-	+09uzBkKGmRYJYG3qPPx2v3JH1KbTp57veIaog9ScDm2LvOwsG8gJ8qtKA+ByqOlVkiL
-	QKRZYYaQRmWyFNWclCFSUZXN5A4RHjALhUGyycWAU8QkV2rbRpXnRo3AyBLnJg/ZJ9lz
-	ghEw==
-X-Received: by 10.182.116.70 with SMTP id ju6mr9823243obb.48.1361849597967;
-	Mon, 25 Feb 2013 19:33:17 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id p2sm17587176obb.6.2013.02.25.19.33.16
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 25 Feb 2013 19:33:17 -0800 (PST)
-From: fcooperjr27@gmail.com
-To: meta-arago@arago-project.org
-Date: Mon, 25 Feb 2013 21:32:54 -0600
-Message-Id: <1361849574-7710-10-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1361849574-7710-1-git-send-email-fcooper@ti.com>
-References: <1361849574-7710-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 10/10] arago.conf: Use SDK support u-boot for am180x-evm
+	Tue, 26 Feb 2013 03:33:59 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r1Q3XxUh008894
+	for <meta-arago@arago-project.org>; Mon, 25 Feb 2013 21:33:59 -0600
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r1Q3Xx7W018683
+	for <meta-arago@arago-project.org>; Mon, 25 Feb 2013 21:33:59 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 25 Feb 2013 21:33:59 -0600
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r1Q3XwcP017166;
+	Mon, 25 Feb 2013 21:33:58 -0600
+Date: Mon, 25 Feb 2013 22:33:58 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20130226033357.GE17751@edge>
+References: <8F29D6B095ED194EA1980491A5E029710C3AE500@DFLE09.ent.ti.com>
+MIME-Version: 1.0
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C3AE500@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: Patches Resubmittion
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,28 +37,20 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Feb 2013 03:33:18 -0000
+X-List-Received-Date: Tue, 26 Feb 2013 03:34:00 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+On Tue, Feb 26, 2013 at 03:29:55AM +0000, Cooper Jr., Franklin wrote:
+> I just want to let everyone know that I am resubmitting my patches that are 
+> currently pending. Some of the comments made to my earlier patches required 
+> changes that affected a lot of the later patches which can get messy trying 
+> to cherry pick which patches need newer versions.
+> 
+> I don't want anyone to be confused. :)
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+Thanks! Keep them coming.
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 6b0879d..b7f0e2c 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -58,6 +58,7 @@ PREFERRED_VERSION_u-boot_am335x-evm = "2012.10-psp05.06.00.00"
- 
- PREFERRED_VERSION_linux-omapl138-psp_am180x-evm = "2.6.37"
- PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
-+PREFERRED_VERSION_u-boot_am180x-evm = "2010.12-psp03.21.00.04.sdk"
- 
- 
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
 -- 
-1.7.0.4
-
+Denys
 
