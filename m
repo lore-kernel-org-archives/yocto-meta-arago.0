@@ -1,26 +1,23 @@
 Return-Path: <denis@denix.org>
-Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
-	[206.46.173.3])
-	by arago-project.org (Postfix) with ESMTP id BA41652A1B
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTP id 4DA5952AA6
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Feb 2013 18:01:58 +0000 (UTC)
+	Thu, 28 Feb 2013 21:57:40 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173003.mailsrvcs.net
+	by vms173021.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MIU0053EA2226F1@vms173003.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 26 Feb 2013 12:01:31 -0600 (CST)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 3F785200BD; Tue,
-	26 Feb 2013 13:01:13 -0500 (EST)
-Date: Tue, 26 Feb 2013 13:01:13 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Zhou, Jingting" <zhoujt@ti.com>
-Message-id: <20130226180113.GI6725@denix.org>
-References: <3C08AEEB3C731745938BC83D029FE5E3921452@DFLE09.ent.ti.com>
-MIME-version: 1.0
-In-reply-to: <3C08AEEB3C731745938BC83D029FE5E3921452@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: question about packagegroup-arago-standalone-sdk-target recipe
+	2009)) with ESMTPA id <0MIY008A2ABBRV02@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 28 Feb 2013 15:57:22 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 4F26320092; Thu,
+	28 Feb 2013 16:57:11 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 28 Feb 2013 16:57:10 -0500
+Message-id: <1362088630-26716-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [PATCH] u-boot 2012.10: replace recipe with bbappend, after moving to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,46 +30,76 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Feb 2013 18:01:59 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 28 Feb 2013 21:57:44 -0000
 
-On Tue, Feb 26, 2013 at 04:59:34PM +0000, Zhou, Jingting wrote:
-> Hey all, I am trying to bitbake meta-toolchain-arago, I already removed
-> 
->    ${LIBC_DEPENDENCIES} \
-> linux-libc-headers-dev \
-> 
-> in packagegroup-arago-standalone-sdk-target recipe, but I still have the error
-> 
-> | Collected errors:
-> |  * satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-arago-standalone-sdk-target:
-> |  *    libc6 (= 2012.03-r2) *
-> |  * opkg_install_cmd: Cannot install package packagegroup-arago-standalone-sdk-target.
-> | package libtinfo5 suggests installing ncurses-terminfo
-> | ncurses-dev: unsatisfied recommendation for ncurses-libmenu-dev
-> 
-> I tried "grep -r libc6 *", but still couldn't find where this libc6 package 
-> comes from. Why do we need this?
-> 
-> When I tried removing the -dev suffix of the packages(like I used i2c-tools 
-> instead of i2c-tools-dev, I know they are different packages), the build 
-> went fine. Is this libc6 related to the -dev packages? I am really confused 
-> here. Attached are the logs. Thanks~
+From: Denys Dmytriyenko <denys@ti.com>
 
-Jingting,
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../u-boot/u-boot_2012.10-psp05.06.00.00.bb        | 40 ----------------------
+ .../recipes-bsp/u-boot/u-boot_2012.10.bbappend     |  5 +++
+ 2 files changed, 5 insertions(+), 40 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
+ create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
 
-libc6 is the main C library, we definitely need it and you cannot remove it:
-http://www.kernel.org/doc/man-pages/online/pages/man7/libc.7.html
-http://en.wikipedia.org/wiki/C_standard_library
-http://www.gnu.org/software/libc/
-
-As of your problem, there's something else going on and I need to take a close 
-look at it - it's not as simple as just remove the libc6, as you say...
-
-BTW, above works with the Arago toolchain just fine, has to do with Linaro 
-that you are using.
-
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
+deleted file mode 100644
+index fa2183e..0000000
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
++++ /dev/null
+@@ -1,40 +0,0 @@
+-# Use the version of u-boot.inc in oe-core not the meta-ti version
+-require ${COREBASE}/meta/recipes-bsp/u-boot/u-boot.inc
+-
+-# Reset OEMAKE. Current u-boot.inc sets -02 which breaks this version of u-boot's build.
+-# This issue was fixed in oe-core master by removing the -02 statement.
+-EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}"'
+-
+-DESCRIPTION = "u-boot bootloader for ARM MPU devices"
+-LICENSE = "GPLv2+"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
+-
+-COMPATIBLE_MACHINE = "ti33x|omap3"
+-
+-###################################################
+-# When this recipe is moved to meta-ti these changes should go in a bbappend in meta-arago-distro.
+-
+-# PSPREL and UVER are used by arago-source-ipk.conf
+-PSPREL = "05.06.00.00"
+-UVER = "2012.10"
+-###################################################
+-
+-DEFAULT_PREFERENCE = "-1"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-PR = "r7+gitr${SRCPV}"
+-
+-SRC_URI = "git://arago-project.org/git/projects/u-boot-am33x.git;protocol=git;branch=${BRANCH} \
+-"
+-
+-BRANCH = "amsdk-05.06.00.00"
+-
+-SRCREV = "6536bfa6b7f16bb49fdea8c72959e3ed54e77a82"
+-
+-S = "${WORKDIR}/git"
+-
+-UBOOT_SUFFIX = "img"
+-
+-# Set the name of the SPL that will built so that it is also packaged with u-boot.
+-SPL_BINARY = "MLO"
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
+new file mode 100644
+index 0000000..05c3182
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
+@@ -0,0 +1,5 @@
++PR_append = "-arago0"
++
++# PSPREL and UVER are used by arago-source-ipk.conf
++PSPREL = "05.06.00.00"
++UVER = "2012.10"
 -- 
-Denys
+1.8.1.4
+
 
