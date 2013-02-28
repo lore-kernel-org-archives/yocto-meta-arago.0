@@ -1,23 +1,23 @@
 Return-Path: <denis@denix.org>
 Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
 	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTP id 4DA5952AA6
+	by arago-project.org (Postfix) with ESMTP id 378C652AA6
 	for <meta-arago@arago-project.org>;
-	Thu, 28 Feb 2013 21:57:40 +0000 (UTC)
+	Thu, 28 Feb 2013 22:00:20 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
 	by vms173021.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MIY008A2ABBRV02@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 28 Feb 2013 15:57:22 -0600 (CST)
+	2009)) with ESMTPA id <0MIY00817AG7RV12@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 28 Feb 2013 16:00:08 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 4F26320092; Thu,
-	28 Feb 2013 16:57:11 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id 9EE7820092; Thu,
+	28 Feb 2013 17:00:07 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 28 Feb 2013 16:57:10 -0500
-Message-id: <1362088630-26716-1-git-send-email-denis@denix.org>
+Date: Thu, 28 Feb 2013 17:00:05 -0500
+Message-id: <1362088805-26864-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.1.4
-Subject: [PATCH] u-boot 2012.10: replace recipe with bbappend, after moving to meta-ti
+Subject: [PATCHv2] u-boot 2012.10: replace recipe with bbappend, after moving to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,18 +30,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Feb 2013 21:57:44 -0000
+X-List-Received-Date: Thu, 28 Feb 2013 22:00:21 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
+v2 - drop the PSP part of the version
+
+ meta-arago-distro/conf/distro/arago.conf           |  2 +-
  .../u-boot/u-boot_2012.10-psp05.06.00.00.bb        | 40 ----------------------
  .../recipes-bsp/u-boot/u-boot_2012.10.bbappend     |  5 +++
- 2 files changed, 5 insertions(+), 40 deletions(-)
+ 3 files changed, 6 insertions(+), 41 deletions(-)
  delete mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
  create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
 
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 6fa5401..1557b9d 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -54,7 +54,7 @@ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x"
+ PREFERRED_VERSION_virtual/kernel_am335x-evm = "3.2.0-psp05.06.00.00"
+ 
+ # Use the SDK supported u-boot version
+-PREFERRED_VERSION_u-boot_am335x-evm = "2012.10-psp05.06.00.00"
++PREFERRED_VERSION_u-boot_am335x-evm = "2012.10"
+ 
+ PREFERRED_VERSION_linux-omapl138-psp_am180x-evm = "2.6.37"
+ PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
 diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
 deleted file mode 100644
 index fa2183e..0000000
