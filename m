@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by arago-project.org (Postfix) with ESMTPS id F07FE52A27
+Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
+	[209.85.219.50])
+	by arago-project.org (Postfix) with ESMTPS id 2DDAA52A27
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Mar 2013 03:10:59 +0000 (UTC)
-Received: by mail-oa0-f44.google.com with SMTP id h1so4993870oag.3
+	Fri,  1 Mar 2013 03:11:02 +0000 (UTC)
+Received: by mail-oa0-f50.google.com with SMTP id l20so4943137oag.37
 	for <meta-arago@arago-project.org>;
-	Thu, 28 Feb 2013 19:10:59 -0800 (PST)
+	Thu, 28 Feb 2013 19:11:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=cWHgk27leB9r4CZ75au7gQG0vvR3EeHaD//laUsi35w=;
-	b=XP8Dy41pT+W+tsZ4HaWH6Dbs20MAYTIweDjgdmC2eCLFH4mjMd0rjF8XtOiyGS5uM/
-	PVhN2mFyOKpVn9aahlvuCfOlAI+5ppybKQZ1uHjWXgdFQkxn3Falg821K9EplVJ+1181
-	Bj0c7FteNd5bihsihn8rz47hL4WhUenJotasdV6wi8S/B94yhd+8phEgr4uMq4SMJJuj
-	WutuOZ2p0F0VWj9UE0UqBbW3y+78tLCSaQxnIm2u18LjQTctyKEbRHpb/pYb4aEnyHPp
-	6jyu9V3X7QIhDfD28dZnnEg3Al7ymLq0USnMKz0gCuVcQ2jgtO8/qY50PsCi8pNv2mtK
-	pxEw==
-X-Received: by 10.182.23.101 with SMTP id l5mr7466485obf.16.1362107459583;
-	Thu, 28 Feb 2013 19:10:59 -0800 (PST)
+	:references; bh=59QzYKwDV05eGByBRTz7tdB3lSbx94g1vqC8e+bCRbU=;
+	b=CA55pSU5OnQozLN3pK++VVs408u2POBPvZ5xXmL7vSGhgW+cRNdj6TTZf8C1GzscFX
+	O52WDq3xAiUwwetsqHOECV95ZQ1ZH/Udlp1AAMmWZ1rOxsGv6ZnjjUNWGECQPlhR8p6W
+	OnckOpr4yNeI72spRRzxdj4+JJXW0Z5vJp8WsV8+zy8lKYf8MLL6hVKQjyt6gLKCL45H
+	VfMWDfGHT3jEsC9h9GZPpd1V1uYN0uy2BBVJC7PD8n4UqjFmssuy1eALLvJ2aKrvSj2X
+	PLDHHY+ZVV7RcmM+ji6QoKVsVNn+LmGlCEhIiCeVAyYxKUQ21zjX1CFv7CyRh+0m0rio
+	FOSA==
+X-Received: by 10.182.220.10 with SMTP id ps10mr7564156obc.21.1362107461795;
+	Thu, 28 Feb 2013 19:11:01 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id i19sm15854877obf.0.2013.02.28.19.10.57
+	by mx.google.com with ESMTPS id i19sm15854877obf.0.2013.02.28.19.10.59
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 28 Feb 2013 19:10:58 -0800 (PST)
+	Thu, 28 Feb 2013 19:11:00 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Thu, 28 Feb 2013 21:10:40 -0600
-Message-Id: <1362107447-11234-2-git-send-email-fcooper@ti.com>
+Date: Thu, 28 Feb 2013 21:10:41 -0600
+Message-Id: <1362107447-11234-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1362107447-11234-1-git-send-email-fcooper@ti.com>
 References: <1362107447-11234-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/9] matrix-gui-3d-demos: Split out Graphics demos
+Cc: Jeff Lance <j-lance1@ti.com>
+Subject: [PATCH 3/9] arm-benchmarks: Move makefiles into ARCH directory
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,113 +43,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 03:11:00 -0000
+X-List-Received-Date: Fri, 01 Mar 2013 03:11:02 -0000
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+From: Jeff Lance <j-lance1@ti.com>
 
-* Create separate packages to allow each demo to be pulled in individually.
+* Moving makefile into Architecture directory making it possible to install
+  only one ARCH on a target system.
+* Update Rules.make relative path
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Jeff Lance <j-lance1@ti.com>
 ---
- .../packagegroup-arago-tisdk-matrix.bb             |   12 ++++-
- .../recipes-core/matrix/matrix-gui-3d-demos_2.0.bb |   40 ++++++++++++++++++-
- 2 files changed, 46 insertions(+), 6 deletions(-)
+ .../arm-benchmarks/arm-benchmarks_1.3.bb           |    9 ++++-----
+ 1 files changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 2093178..2e0a753 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r11"
-+PR = "r12"
+diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+index b19c1ed..23acd42 100644
+--- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
++++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+@@ -4,25 +4,24 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
+ SECTION = "system"
  
- inherit packagegroup
+-PR = "r3"
++PR = "r4"
  
-@@ -31,18 +31,24 @@ MATRIX_QT_APPS = "                  \
-     ${@base_conditional('ARAGO_QT_PROVIDER','qt4-embedded-gles','matrix-gui-apps-quick-playground','', d)} \
- "
+ BRANCH ?= "master"
+-SRCREV = "e9fbf7990e93d97e7471e509626969d244cca214"
++SRCREV = "9b7b4fbde8fcf796a23da2a464dbf934e550f6c9"
  
-+MATRIX_SGX_DEMOS = "                \
-+    matrix-3d-demo-chameleon        \
-+    matrix-3d-demo-film             \
-+    matrix-3d-demo-lantern          \
-+    matrix-3d-demo-skull            \
-+"
- MATRIX_QT_APPS_keystone = ""
+ SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
  
- MATRIX_APPS = ""
+ S = "${WORKDIR}/git"
  
- MATRIX_APPS_append_omap3 = "        \
--    ${@base_contains('MACHINE_FEATURES','sgx','matrix-gui-3d-demos','',d)} \
-+    ${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}','',d)} \
-     matrix-gui-multimedia-demos     \
- "
+ PLATFORM_ARCH = "${ARMPKGARCH}"
+-# Use ARCH format expected by the makefile
+ PLATFORM_ARCH_omapl138 = "armv5te"
  
- MATRIX_APPS_append_ti33x = "        \
-     matrix-gui-ethernet-demos       \
--    ${@base_contains('MACHINE_FEATURES','sgx','matrix-gui-3d-demos','',d)} \
-+    ${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}','',d)} \
-     matrix-gui-multimedia-demos     \
-                                     \
-     matrix-gui-clocks-275mhz        \
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-index d40e0d6..e1c3023 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-@@ -4,7 +4,7 @@ LICENSE = "CC-BY-SA"
+ do_compile() {
+ 	export CROSS_COMPILE=${TARGET_PREFIX}
+ 	# build the release version
+-	make ARCH=${PLATFORM_ARCH} release
++	oe_runmake -C ${PLATFORM_ARCH} release
+ }
  
- require matrix-gui-apps-git.inc
- 
--PR = "${INC_PR}.1"
-+PR = "${INC_PR}.2"
- 
- S = "${WORKDIR}/git/3d_apps"
- 
-@@ -15,6 +15,40 @@ S = "${WORKDIR}/git/3d_apps"
- #       to the matrix-gui-submenus-3d dependency.  So if matrix v2 moves
- #       into the same layer as libgles this may be acceptable, or perhaps
- #       we can use an RRECOMMENDS instead.
--RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-3d libgles-omap3-rawdemos"
- 
--FILES_${PN} += "${MATRIX_BASE_DIR}/*"
-+PACKAGES = "matrix-3d-demo-chameleon \
-+            matrix-3d-demo-coverflow \
-+            matrix-3d-demo-film      \
-+            matrix-3d-demo-lantern   \
-+            matrix-3d-demo-skull     \
-+            matrix-3d-demo-shaders   \
-+            matrix-3d-demo-vase      \
-+"
-+
-+3D_DEMOS_RDEPENDS = "matrix-gui-apps-images matrix-gui-submenus-3d libgles-omap3-rawdemos"
-+
-+RDEPENDS_matrix-3d-demo-chameleon = "${3D_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-3d-demo-coverflow = "${3D_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-3d-demo-film      = "${3D_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-3d-demo-lantern   = "${3D_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-3d-demo-skull     = "${3D_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-3d-demo-shaders   = "${3D_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-3d-demo-vase      = "${3D_DEMOS_RDEPENDS}"
-+
-+# Split the matrix files by 3d demos
-+FILES_matrix-3d-demo-chameleon = "${MATRIX_APP_DIR}/3d_chameleon/*"
-+FILES_matrix-3d-demo-coverflow = "${MATRIX_APP_DIR}/3d_coverflow/*"
-+FILES_matrix-3d-demo-film      = "${MATRIX_APP_DIR}/3d_film/*"
-+FILES_matrix-3d-demo-lantern   = "${MATRIX_APP_DIR}/3d_lantern/*"
-+FILES_matrix-3d-demo-skull     = "${MATRIX_APP_DIR}/3d_skull/*"
-+FILES_matrix-3d-demo-shaders   = "${MATRIX_APP_DIR}/3d_shaders/*"
-+FILES_matrix-3d-demo-vase      = "${MATRIX_APP_DIR}/3d_vase/*"
-+
-+# Split the ${bindir} files by 3d demos
-+FILES_matrix-3d-demo-chameleon += "${bindir}/runOGLES2ChameleonMan.sh"
-+FILES_matrix-3d-demo-coverflow += "${bindir}/runOGLES2Coverflow.sh"
-+FILES_matrix-3d-demo-film      += "${bindir}/runOGLESFilmTV.sh"
-+FILES_matrix-3d-demo-lantern   += "${bindir}/runOGLES2MagicLantern.sh"
-+FILES_matrix-3d-demo-skull     += "${bindir}/runOGLESEvilSkull.sh"
-+FILES_matrix-3d-demo-shaders   += "${bindir}/runOGLES2Shaders.sh"
-+FILES_matrix-3d-demo-vase      += "${bindir}/runOGLESVase.sh"
+ do_install() {
+-	make ARCH=${PLATFORM_ARCH} DESTDIR=${D} install
++	oe_runmake -C ${PLATFORM_ARCH} DESTDIR=${D} install
+ }
 -- 
 1.7.0.4
 
