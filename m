@@ -1,36 +1,27 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
-	[209.85.219.46])
-	by arago-project.org (Postfix) with ESMTPS id 6A58452AB8
+Return-Path: <denis@denix.org>
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTP id 80ED352A27
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Mar 2013 03:11:14 +0000 (UTC)
-Received: by mail-oa0-f46.google.com with SMTP id k1so4980926oag.33
-	for <meta-arago@arago-project.org>;
-	Thu, 28 Feb 2013 19:11:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=g/J9i3rZ0/6TpO0TkaWjXmawwPYrHuaLqyoxNViM0cg=;
-	b=K0bFcdQcF7PXJqGvwQjHyjOd3UHnw8+czVwim2QkQBADkT6TpXVvTzANEb2p7aYfm8
-	hcM1B0wOatDMIt3ybQtsxXciBuJiglH2xw6diYuyxt6NIQmCXq5MIEwDXnL6G/S+izGz
-	1l0Hg3wIkKVqt8x1nnD1xEM899vZt1N90j1mgqG5W6xqeHpV4sbXMnjITk5xr4tICMCH
-	9X7qOEjlI/uVXp7J3AWSiav3mIjK7PRuvg+/rRzn0MDkpAZmzxOwewIOhaU8iaIS+4Ml
-	CBiopAVfoUO1WRgX5TG9JTz6dc2GL4n4zWjRlHKQE6crHxUKgYI2B6kBZmOJaGuq5v8N
-	+tyg==
-X-Received: by 10.182.98.44 with SMTP id ef12mr7433954obb.25.1362107474009;
-	Thu, 28 Feb 2013 19:11:14 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id i19sm15854877obf.0.2013.02.28.19.11.12
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 28 Feb 2013 19:11:13 -0800 (PST)
-From: fcooperjr27@gmail.com
-To: meta-arago@arago-project.org
-Date: Thu, 28 Feb 2013 21:10:47 -0600
-Message-Id: <1362107447-11234-9-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1362107447-11234-1-git-send-email-fcooper@ti.com>
+	Fri,  1 Mar 2013 03:19:40 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173013.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MIY00F92P7PHI35@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 28 Feb 2013 21:19:17 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 8A78F200DD; Thu,
+	28 Feb 2013 22:19:00 -0500 (EST)
+Date: Thu, 28 Feb 2013 22:19:00 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: fcooperjr27@gmail.com
+Message-id: <20130301031900.GA28405@denix.org>
 References: <1362107447-11234-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 9/9] linux-am335x: "Add Remove check for GP-nly device type in RNG driver" patch
+	<1362107447-11234-5-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1362107447-11234-5-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH 5/9] meta-toolchain-arago: Create shell stub for gdb
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,74 +34,84 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 03:11:14 -0000
+X-List-Received-Date: Fri, 01 Mar 2013 03:19:40 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+On Thu, Feb 28, 2013 at 09:10:43PM -0600, fcooperjr27@gmail.com wrote:
+> From: Franklin S. Cooper Jr <fcooper@ti.com>
+> 
+> * PYTHONHOME and PYTHONPATH variable causes various problems in the
+>   environment-setup file.
+> * Since it is only needed by gdb resurrect the shell stub concept and place
+>   those environment variables in there for gdb.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- ...emove-check-for-GP-only-device-type-in-RN.patch |   29 ++++++++++++++++++++
- .../linux/linux-am335x_3.2.0-psp05.06.00.00.bb     |    3 +-
- 2 files changed, 31 insertions(+), 1 deletions(-)
- create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp05.06.00.00/0001-omap4-rng-Remove-check-for-GP-only-device-type-in-RN.patch
+I was thinking would it be any better to rely on a host Python instead of 
+bringing our own? Can we extend Python modules on the host with our own, if 
+needed, but otherwise use what host provides? Not sure about versions 
+though...
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp05.06.00.00/0001-omap4-rng-Remove-check-for-GP-only-device-type-in-RN.patch b/meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp05.06.00.00/0001-omap4-rng-Remove-check-for-GP-only-device-type-in-RN.patch
-new file mode 100644
-index 0000000..de2d841
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-am335x-3.2.0-psp05.06.00.00/0001-omap4-rng-Remove-check-for-GP-only-device-type-in-RN.patch
-@@ -0,0 +1,29 @@
-+From 13d5d52eda239b752b249b0f1b3b01b93a890b55 Mon Sep 17 00:00:00 2001
-+From: Joel A Fernandes <joelagnel@ti.com>
-+Date: Wed, 13 Feb 2013 15:37:15 -0600
-+Subject: [PATCH] omap4-rng: Remove check for GP-only device type in RNG driver
-+
-+HS devices can support RNG due to recent changes in firewall settings on L4.
-+The patch enables RNG support on HS device.
-+
-+Signed-off-by: Joel A Fernandes <joelagnel@ti.com>
-+---
-+ drivers/char/hw_random/omap4-rng.c |    2 +-
-+ 1 files changed, 1 insertions(+), 1 deletions(-)
-+
-+diff --git a/drivers/char/hw_random/omap4-rng.c b/drivers/char/hw_random/omap4-rng.c
-+index 523ec63..9c3b87a 100644
-+--- a/drivers/char/hw_random/omap4-rng.c
-++++ b/drivers/char/hw_random/omap4-rng.c
-+@@ -285,7 +285,7 @@ static struct platform_driver omap4_rng_driver = {
-+ 
-+ static int __init omap4_rng_init(void)
-+ {
-+-	if (!cpu_is_am33xx()  || omap_type() != OMAP2_DEVICE_TYPE_GP)
-++	if (!cpu_is_am33xx())
-+ 		return -ENODEV;
-+ 
-+ 	return platform_driver_register(&omap4_rng_driver);
-+-- 
-+1.7.4.1
-+
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp05.06.00.00.bb b/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp05.06.00.00.bb
-index 5e41d1b..e487f43 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp05.06.00.00.bb
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-am335x_3.2.0-psp05.06.00.00.bb
-@@ -25,7 +25,7 @@ DEPENDS += "am33x-cm3"
- KERNEL_IMAGETYPE = "uImage"
- 
- # The main PR is now using MACHINE_KERNEL_PR, for ti33x see conf/machine/include/ti33x.inc
--MACHINE_KERNEL_PR_append = "g+gitr${SRCPV}"
-+MACHINE_KERNEL_PR_append = "h+gitr${SRCPV}"
- 
- BRANCH = "v3.2-staging"
- 
-@@ -72,6 +72,7 @@ PATCHES += "file://0001-am33x-Add-memory-addresses-for-crypto-modules.patch \
-                 file://0008-crypto-omap4-aes-Don-t-use-hardcoded-base-address.patch \
-                 file://0009-ARM-AM33xx-hwmod-Convert-RNG-device-data-to-hwmod.patch \
-                 file://0010-hwrng-omap4-rng-Convert-to-use-pm_runtime-API.patch \
-+                file://0001-omap4-rng-Remove-check-for-GP-only-device-type-in-RN.patch \
-                "
- 
- # Add SmartReflex support early driver patches while working to get the driver
 -- 
-1.7.0.4
+Denys
 
+
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-core/meta/meta-toolchain-arago.bb      |   22 +++++++++++++++++++-
+>  1 files changed, 21 insertions(+), 1 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> index 863e0ef..e683f9a 100644
+> --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> @@ -5,7 +5,7 @@ TOOLCHAIN_CLEANUP_PACKAGES ?= ""
+>  
+>  require recipes-core/meta/meta-toolchain.bb
+>  
+> -PR = "r19"
+> +PR = "r20"
+>  
+>  SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
+>  
+> @@ -57,12 +57,32 @@ toolchain_create_sdk_env_script () {
+>  	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
+>  }
+>  
+> +create_shell_stub () {
+> +	i=$1
+> +	mv $i $i.real
+> +	printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n" > $i
+> +	printf "\tfilename\x3D\x60echo \x24\x7BBASH_SOURCE\x23\x23\x2A\x2F\x7D\x60\n" >> $i
+> +	printf "\tdirname\x3D\x24\x7BBASH_SOURCE\x2F\x25\x24filename\x2F\x7D\n" >> $i
+> +	printf "\t\x2E \x24dirname\x2E\x2E\x2Fenvironment-setup\n" >> $i
+> +	printf "fi\n" >> $i
+> +
+> +	if [ "$2" == "yes" ]; then
+> +		echo 'export PYTHONHOME=$SDK_PATH' >> $i
+> +		echo 'export PYTHONPATH=lib/python2.7' >> $i
+> +	fi
+> +	printf "LD_LIBRARY_PATH=\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH \x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" >> $i
+> +	chmod +x $i
+> +}
+> +
+>  populate_sdk_ipk_append () {
+>  	# Remove broken .la files
+>  	for i in `find ${SDK_OUTPUT}/${SDKPATH} -name \*.la`; do
+>  		rm -f $i
+>  	done
+>  
+> +	cd ${SDK_OUTPUT}/${SDKPATH}/bin
+> +	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-arago-sdk-toolchain', '', 'create_shell_stub ${TARGET_PREFIX}gdb yes', d)}
+> +
+>  	cleanup_toolchain_packages
+>  
+>  	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}"
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
