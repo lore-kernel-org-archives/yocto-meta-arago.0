@@ -1,23 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTP id 378C652AA6
+Return-Path: <fcooperjr27@gmail.com>
+Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
+	[209.85.219.49])
+	by arago-project.org (Postfix) with ESMTPS id 00C0E52A27
 	for <meta-arago@arago-project.org>;
-	Thu, 28 Feb 2013 22:00:20 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173021.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MIY00817AG7RV12@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 28 Feb 2013 16:00:08 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 9EE7820092; Thu,
-	28 Feb 2013 17:00:07 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
+	Fri,  1 Mar 2013 03:10:57 +0000 (UTC)
+Received: by mail-oa0-f49.google.com with SMTP id j6so4873326oag.8
+	for <meta-arago@arago-project.org>;
+	Thu, 28 Feb 2013 19:10:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=Mz2YwGZ4hyzWQb+oDLghtiT7LY6zwrNAm7kdyKHzIuY=;
+	b=m8PvIeLTSjj5jq5jh0I9uij94ACBMQDc5J1cCp5MuwWubhYGaDQb3Bm7VMlq9dYn70
+	KZ5tIj0gYUGwTqLe5lTmVBIwhhrAu3vNkDRhAGrYid7xUbxtyd/x49cpniNtR+y631if
+	dTWzxVkz174cCyGoULnTOCHzjGNwBNipfQOSHS+Ae0Gk1hSPTExdBPrfhTbSScKURopb
+	MBoAF5m16lhaxu+jT7iD2rHAvT7Km6pl+XBvfbioxsoG6JHeTJ6HO8LGxQNpLT67VkKx
+	tG5Zh6qxQeTyR5wX5aqUmGqY6A6YLWg1OmALM8GmQIZTAKsdXbxxfBSj8DHrCRNI4rEX
+	sIfQ==
+X-Received: by 10.60.170.242 with SMTP id ap18mr7175609oec.108.1362107457116; 
+	Thu, 28 Feb 2013 19:10:57 -0800 (PST)
+Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
+	by mx.google.com with ESMTPS id i19sm15854877obf.0.2013.02.28.19.10.53
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Thu, 28 Feb 2013 19:10:55 -0800 (PST)
+From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Thu, 28 Feb 2013 17:00:05 -0500
-Message-id: <1362088805-26864-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.1.4
-Subject: [PATCHv2] u-boot 2012.10: replace recipe with bbappend, after moving to meta-ti
+Date: Thu, 28 Feb 2013 21:10:39 -0600
+Message-Id: <1362107447-11234-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/9] matrix-gui-apps-git.inc: Add additional Graphics demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,92 +41,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Feb 2013 22:00:21 -0000
+X-List-Received-Date: Fri, 01 Mar 2013 03:10:59 -0000
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+* Pull in new images, .desktops and scripts for the new Graphics demos provided
+  by the Graphics minimal sdk.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-v2 - drop the PSP part of the version
+ .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
- meta-arago-distro/conf/distro/arago.conf           |  2 +-
- .../u-boot/u-boot_2012.10-psp05.06.00.00.bb        | 40 ----------------------
- .../recipes-bsp/u-boot/u-boot_2012.10.bbappend     |  5 +++
- 3 files changed, 6 insertions(+), 41 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
- create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
-
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 6fa5401..1557b9d 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -54,7 +54,7 @@ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x"
- PREFERRED_VERSION_virtual/kernel_am335x-evm = "3.2.0-psp05.06.00.00"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 823f0e7..f4d480e 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
- # Use the SDK supported u-boot version
--PREFERRED_VERSION_u-boot_am335x-evm = "2012.10-psp05.06.00.00"
-+PREFERRED_VERSION_u-boot_am335x-evm = "2012.10"
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "4a5a56fff71ff83880204eac43514f686e251de6"
++SRCREV = "6a76c32dd0764825c4f4c8259d09299e8a15ea5e"
+ BRANCH = "master"
+-INC_PR = "r10"
++INC_PR = "r11"
  
- PREFERRED_VERSION_linux-omapl138-psp_am180x-evm = "2.6.37"
- PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
-deleted file mode 100644
-index fa2183e..0000000
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10-psp05.06.00.00.bb
-+++ /dev/null
-@@ -1,40 +0,0 @@
--# Use the version of u-boot.inc in oe-core not the meta-ti version
--require ${COREBASE}/meta/recipes-bsp/u-boot/u-boot.inc
--
--# Reset OEMAKE. Current u-boot.inc sets -02 which breaks this version of u-boot's build.
--# This issue was fixed in oe-core master by removing the -02 statement.
--EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}"'
--
--DESCRIPTION = "u-boot bootloader for ARM MPU devices"
--LICENSE = "GPLv2+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
--
--COMPATIBLE_MACHINE = "ti33x|omap3"
--
--###################################################
--# When this recipe is moved to meta-ti these changes should go in a bbappend in meta-arago-distro.
--
--# PSPREL and UVER are used by arago-source-ipk.conf
--PSPREL = "05.06.00.00"
--UVER = "2012.10"
--###################################################
--
--DEFAULT_PREFERENCE = "-1"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--PR = "r7+gitr${SRCPV}"
--
--SRC_URI = "git://arago-project.org/git/projects/u-boot-am33x.git;protocol=git;branch=${BRANCH} \
--"
--
--BRANCH = "amsdk-05.06.00.00"
--
--SRCREV = "6536bfa6b7f16bb49fdea8c72959e3ed54e77a82"
--
--S = "${WORKDIR}/git"
--
--UBOOT_SUFFIX = "img"
--
--# Set the name of the SPL that will built so that it is also packaged with u-boot.
--SPL_BINARY = "MLO"
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
-new file mode 100644
-index 0000000..05c3182
---- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot_2012.10.bbappend
-@@ -0,0 +1,5 @@
-+PR_append = "-arago0"
-+
-+# PSPREL and UVER are used by arago-source-ipk.conf
-+PSPREL = "05.06.00.00"
-+UVER = "2012.10"
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
-1.8.1.4
+1.7.0.4
 
 
