@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
-	[209.85.219.50])
-	by arago-project.org (Postfix) with ESMTPS id 2611352AB7
+Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
+	[209.85.219.49])
+	by arago-project.org (Postfix) with ESMTPS id E170A52AB3
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Mar 2013 03:11:06 +0000 (UTC)
-Received: by mail-oa0-f50.google.com with SMTP id l20so4943196oag.37
+	Fri,  1 Mar 2013 03:11:07 +0000 (UTC)
+Received: by mail-oa0-f49.google.com with SMTP id j6so4873464oag.8
 	for <meta-arago@arago-project.org>;
-	Thu, 28 Feb 2013 19:11:05 -0800 (PST)
+	Thu, 28 Feb 2013 19:11:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=JfhFyER8f6vJvd+btkkxhDRL+yxjdEzkOlGE0ponmqU=;
-	b=YkeVDbOtt+nAVtl0JbgFP096ebrkie6MfeHK7FXX22uFtwbgw4RSbbqdstk9SnK7Ij
-	6HmcJGgD4PXWKmO98MUAB8nCKPiBqzFAVLl+MlQJVK/Jy/mBIHMZpStItFrQ5GjxkOdj
-	J4XSz+Jk11bpCK/gHgX9Dg5syueADonoARNjSaKf+Xj3nj+2+SzcOTJT9yKSBBXx6dGL
-	gSj4cxsmgVAkFD5LLx0exmdUUMI5/ecalwXQLj/E01b8uGNtjBfX6WtmQiTmWTH96569
-	ou8w1xiO+8qXlOdGpFw+0Ei1fv+I+61aA+rjFIADcXIzH0y6Dnr8EpCZhQ0m82Me6DnY
-	kG7A==
-X-Received: by 10.182.118.103 with SMTP id kl7mr7556417obb.13.1362107465806;
-	Thu, 28 Feb 2013 19:11:05 -0800 (PST)
+	:references; bh=8yIDw61W65tUBQ8eOCKlNLYOCYm3H+VZqxfoAY+yWYk=;
+	b=d9vyYkA6Wojd8o6LOhHg8biuVapnJVNI0735FlrNOrAGtvJnxt0e5X8jOTAZAJrStZ
+	G9MGPv1Y6Oew1QUu+w6mrM8aK0iVKiX0PbjYGj+oVEdR1yiUcMrFgduxQLFJegbc/03l
+	mURZJVl9HYgnggPhmD5euCquItxP52QcEClf43M+TgrczVeTbFddz3ZHE6R1WmxpTGgb
+	+8NFHDY/NuqX0R2h3ZbLdgEzv9juisxvQE2KYflpsar825DxH64ZPKOyaQS4LmaXw9mS
+	SgfiIAGoUdRTMZw1YuVvkTY01Vf0JoRXymw1ffvyStuAv1vdbWP7hbo5YGaOCM2FWObk
+	I1XA==
+X-Received: by 10.60.20.35 with SMTP id k3mr7313721oee.119.1362107467599;
+	Thu, 28 Feb 2013 19:11:07 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id i19sm15854877obf.0.2013.02.28.19.11.03
+	by mx.google.com with ESMTPS id i19sm15854877obf.0.2013.02.28.19.11.05
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 28 Feb 2013 19:11:04 -0800 (PST)
+	Thu, 28 Feb 2013 19:11:06 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Thu, 28 Feb 2013 21:10:43 -0600
-Message-Id: <1362107447-11234-5-git-send-email-fcooper@ti.com>
+Date: Thu, 28 Feb 2013 21:10:44 -0600
+Message-Id: <1362107447-11234-6-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1362107447-11234-1-git-send-email-fcooper@ti.com>
 References: <1362107447-11234-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 5/9] meta-toolchain-arago: Create shell stub for gdb
+Subject: [PATCH 6/9] nativesdk-packagegroup-arago-sdk-host: Fix No module named distutils
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,66 +43,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 03:11:06 -0000
+X-List-Received-Date: Fri, 01 Mar 2013 03:11:08 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* PYTHONHOME and PYTHONPATH variable causes various problems in the
-  environment-setup file.
-* Since it is only needed by gdb resurrect the shell stub concept and place
-  those environment variables in there for gdb.
+* Fix "ImportError: No module named distutils" error by adding missing package.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/meta/meta-toolchain-arago.bb      |   22 +++++++++++++++++++-
- 1 files changed, 21 insertions(+), 1 deletions(-)
+ .../nativesdk-packagegroup-arago-sdk-host.bb       |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 863e0ef..e683f9a 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -5,7 +5,7 @@ TOOLCHAIN_CLEANUP_PACKAGES ?= ""
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+index a6c89fd..1db12aa 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+@@ -1,5 +1,5 @@
+ DESCRIPTION = "Host packages for a standalone Arago SDK or external toolchain"
+-PR = "r3"
++PR = "r4"
+ LICENSE = "MIT"
  
- require recipes-core/meta/meta-toolchain.bb
- 
--PR = "r19"
-+PR = "r20"
- 
- SDKTARGETSYSROOT = "${SDKPATH}/${ARAGO_TARGET_SYS}"
- 
-@@ -57,12 +57,32 @@ toolchain_create_sdk_env_script () {
- 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
- }
- 
-+create_shell_stub () {
-+	i=$1
-+	mv $i $i.real
-+	printf "#!/bin/sh\nif [ -n \x22\x24BASH_SOURCE\x22 ]; then\n" > $i
-+	printf "\tfilename\x3D\x60echo \x24\x7BBASH_SOURCE\x23\x23\x2A\x2F\x7D\x60\n" >> $i
-+	printf "\tdirname\x3D\x24\x7BBASH_SOURCE\x2F\x25\x24filename\x2F\x7D\n" >> $i
-+	printf "\t\x2E \x24dirname\x2E\x2E\x2Fenvironment-setup\n" >> $i
-+	printf "fi\n" >> $i
-+
-+	if [ "$2" == "yes" ]; then
-+		echo 'export PYTHONHOME=$SDK_PATH' >> $i
-+		echo 'export PYTHONPATH=lib/python2.7' >> $i
-+	fi
-+	printf "LD_LIBRARY_PATH=\x24SDK_PATH/lib:\x24LD_LIBRARY_PATH \x24SDK_PATH/lib/ld-linux.so.2 \x24SDK_PATH/bin/$i.real \x24\x2a\n" >> $i
-+	chmod +x $i
-+}
-+
- populate_sdk_ipk_append () {
- 	# Remove broken .la files
- 	for i in `find ${SDK_OUTPUT}/${SDKPATH} -name \*.la`; do
- 		rm -f $i
- 	done
- 
-+	cd ${SDK_OUTPUT}/${SDKPATH}/bin
-+	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-arago-sdk-toolchain', '', 'create_shell_stub ${TARGET_PREFIX}gdb yes', d)}
-+
- 	cleanup_toolchain_packages
- 
- 	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}"
+ inherit nativesdk packagegroup
+@@ -8,4 +8,5 @@ RDEPENDS_${PN} = "\
+     nativesdk-pkgconfig \
+     nativesdk-opkg \
+     nativesdk-libtool \
++    nativesdk-python-distutils \
+     "
 -- 
 1.7.0.4
 
