@@ -1,36 +1,36 @@
 Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by arago-project.org (Postfix) with ESMTPS id D5C3452AC5
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by arago-project.org (Postfix) with ESMTPS id EE2E652ACB
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Mar 2013 20:01:48 +0000 (UTC)
-Received: by mail-oa0-f45.google.com with SMTP id o6so9840967oag.32
+	Mon,  4 Mar 2013 20:01:50 +0000 (UTC)
+Received: by mail-ob0-f178.google.com with SMTP id wd20so2102788obb.23
 	for <meta-arago@arago-project.org>;
-	Mon, 04 Mar 2013 12:01:48 -0800 (PST)
+	Mon, 04 Mar 2013 12:01:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=6S0Ch5P7/V6zW0p+tawGYV6bneXQ9102RE9Twcz2SM0=;
-	b=qYQZeBcBAVY2ZZxWGYdiWBqIdxsxNXBaeOgkrrAZA2Mcn/ZcNccvi6apfi9JChizX6
-	oSGQJMyrfgU5WSiH55Yuw8PVCq7MObL9pPTI+PgzVaulKhieTOKz9rVPslkOQ1TcjWsc
-	ohj1pghuuRKAyC1RySyyWwTV43Fb3hfGKWUdP8gZXzuaAr+4JS/XfTP+T8eD6rGCqF9m
-	tvZErxw0017G/tVsiClEPyKoFLslQfpwKx0BCGiecQG+8I7Fb/qufLyaIWY57ksjnm0P
-	TWbBZbkNlxRpMjSN6p7TWs56I0lQ3QTrjA+TQrLiT395SlibfyV6IRJURCFuk35ZKwk+
-	U9NA==
-X-Received: by 10.60.169.114 with SMTP id ad18mr17208208oec.105.1362427308419; 
-	Mon, 04 Mar 2013 12:01:48 -0800 (PST)
+	:references; bh=5FR3MN8dvlPezFSPsoLVlG+dX1DvtHiQv+xqFYd26/I=;
+	b=lkbCAJAgTOlXhSZ88IfqSKUG6TJozuQKWDMHYKRrQnZW/Gd77uDLssXIEWqSxEzMiN
+	JR6mDgh7lalKHVFSyK2c7JDzh2m7i4kNPa/QBgiz5+PWUWVG+sGXNQ2oxRCXoUynbZon
+	EKJjwUGmPMcbmrQHmGyKhu5J99aMOgi7VjORWb0NU4WErwk1e1VJUPxesG+iFK53OScX
+	raUPAwRNEKQsToFPnrC31JIEYBjdCXtxo4wEK/Uy89hjhpvPWPpKUhRFyV7NpxXPl/I3
+	n7YrDDN1Re4rh5JSsAgDmyO5NCq88aWN9j2Lgq/c03unuFDg3pw1r7i6TDoWgYyo5uAV
+	jlqA==
+X-Received: by 10.60.170.20 with SMTP id ai20mr17215159oec.33.1362427310476;
+	Mon, 04 Mar 2013 12:01:50 -0800 (PST)
 Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id j4sm31153357oea.3.2013.03.04.12.01.46
+	by mx.google.com with ESMTPS id j4sm31153357oea.3.2013.03.04.12.01.48
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 04 Mar 2013 12:01:47 -0800 (PST)
+	Mon, 04 Mar 2013 12:01:49 -0800 (PST)
 From: fcooperjr27@gmail.com
 To: meta-arago@arago-project.org
-Date: Mon,  4 Mar 2013 14:01:26 -0600
-Message-Id: <1362427289-18057-7-git-send-email-fcooper@ti.com>
+Date: Mon,  4 Mar 2013 14:01:27 -0600
+Message-Id: <1362427289-18057-8-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1362427289-18057-1-git-send-email-fcooper@ti.com>
 References: <1362427289-18057-1-git-send-email-fcooper@ti.com>
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 07/10] arago.conf: Don't pull in xloader recipe
+Subject: [PATCH 08/10] arago.conf: Enable white list gst-ffmpeg
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,31 +43,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2013 20:01:49 -0000
+X-List-Received-Date: Mon, 04 Mar 2013 20:01:51 -0000
 
 From: Franklin S. Cooper Jr <fcooper@ti.com>
 
-* Xloader recipe is no longer needed. Avoid pulling this recipe in.
+* Gst-ffmpeg is flagged as having a commercial license.
+* For an Arago SDK mp3, and dolby related libraries can't be enabled by
+  default unless special procedures are followed.
+* Since we disable these troublesome pieces of software shipping gst-ffmpeg
+  shouldn't be a problem as long as we continue to disable any software that
+  legal tells us is problematic.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
 
 diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 17bb85b..575e89a 100644
+index 575e89a..295c34c 100644
 --- a/meta-arago-distro/conf/distro/arago.conf
 +++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -72,6 +72,9 @@ PREFERRED_PROVIDER_virtual/kernel_beagleboard = "linux"
- PREFERRED_VERSION_linux_beagleboard = "3.3.7"
- PREFERRED_VERSION_u-boot_beagleboard = "2012.04.01"
- 
-+# Don't pull in xloader since we don't use it
-+EXTRA_IMAGEDEPENDS_omap3 := "${@'${EXTRA_IMAGEDEPENDS}'.replace('x-load','')}"
+@@ -110,3 +110,9 @@ require arago-source-ipk.conf
+ # do not attempt to enable features that have potential commercial
+ # licensing issues.
+ ENTERPRISE_DISTRO = "1"
 +
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
- PREFERRED_VERSION_udev = "164"
- PREFERRED_PROVIDER_udev = "udev"
++# oe-core uses external libav instead of internal libav for gst-ffmpeg. We
++# disable by default the codecs in libav that causes issues with shipping an
++# Arago based SDK. No need to prevent gst-ffmpeg from being used since we
++# disable troublesome software.
++LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg"
 -- 
 1.7.0.4
 
