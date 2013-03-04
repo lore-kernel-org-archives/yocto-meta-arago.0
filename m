@@ -1,36 +1,30 @@
-Return-Path: <fcooperjr27@gmail.com>
-Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
-	[209.85.214.173])
-	by arago-project.org (Postfix) with ESMTPS id 5C35352ACD
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 6760A52ABC
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Mar 2013 20:01:55 +0000 (UTC)
-Received: by mail-ob0-f173.google.com with SMTP id dn14so2157199obc.18
-	for <meta-arago@arago-project.org>;
-	Mon, 04 Mar 2013 12:01:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=B7XBNKLnTUp2Uc0pTonPJR1lVCscyD4IbvTjqgoU0V4=;
-	b=KLqkV/lnCp04y7bD2FTFuqTBdJIT5m/8wZNLmpyqbzXUUEu4LsIA2kKtMFYOwk1wIW
-	gcJqIxTXOhfYAwM/zs4zDllHe0L4xV6GR26mKqy1OPiQw/XZf8jaquvBMPB1bHL+wHDh
-	hOYSZufbWxCX7sJUo3vn2/UbR6QF66Qsxvg1KAbGi1r1hM6pcPDL6rvFZEhH9K9WksGJ
-	r6V8Yy+sF1k3yhA9gL9sKEY3IzPBekB4NgUMotuGWBaG1UxTwC4+AfBRIlPI/gP3n897
-	Du8x06kbCxwyKP6jgJSkmdstAjZ+kHsFE+BruEm7ditcJnANQ6u3S6ciqvRo+Zj8M0w5
-	3F4w==
-X-Received: by 10.60.171.144 with SMTP id au16mr17221096oec.56.1362427314892; 
-	Mon, 04 Mar 2013 12:01:54 -0800 (PST)
-Received: from localhost.localdomain (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id j4sm31153357oea.3.2013.03.04.12.01.52
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 04 Mar 2013 12:01:53 -0800 (PST)
-From: fcooperjr27@gmail.com
-To: meta-arago@arago-project.org
-Date: Mon,  4 Mar 2013 14:01:29 -0600
-Message-Id: <1362427289-18057-10-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1362427289-18057-1-git-send-email-fcooper@ti.com>
+	Mon,  4 Mar 2013 20:03:47 +0000 (UTC)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r24K3kd6024926;
+	Mon, 4 Mar 2013 14:03:46 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r24K3kpC009038;
+	Mon, 4 Mar 2013 14:03:46 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 4 Mar 2013 14:03:46 -0600
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r24K3jtF010973;
+	Mon, 4 Mar 2013 14:03:46 -0600
+Date: Mon, 4 Mar 2013 15:03:44 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <fcooperjr27@gmail.com>
+Message-ID: <20130304200344.GG27633@edge>
 References: <1362427289-18057-1-git-send-email-fcooper@ti.com>
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 10/10] package-group-arago-gst: Add back gst-ffmpeg
+MIME-Version: 1.0
+In-Reply-To: <1362427289-18057-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH 01/10] arago-source-ipk.conf: Adjust sourceipk for omap3 kernels
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,59 +37,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2013 20:01:55 -0000
+X-List-Received-Date: Mon, 04 Mar 2013 20:03:47 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Franklin S. Cooper Jr <fcooper@ti.com>
+On Mon, Mar 04, 2013 at 02:01:20PM -0600, fcooperjr27@gmail.com wrote:
+> From: Franklin S. Cooper Jr <fcooper@ti.com>
+> 
+> * The kernel recipe for am3517 and am37x have been renamed to reflect the recipe
+>   name already in meta-ti.
+> * Tweak the sourceipk value to address this change.
 
-* Adding back gst-ffmpeg since we disable libraries with known licensing and
-  patent issues in libav.
-* Also add gst-ffmpeg-dev packages to SDK.
+Heh, it broke for me over the weekend and I had it in my tree already. But I 
+can push your fix, no problem...
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../packagegroup-arago-gst-sdk-target.bb           |    3 ++-
- .../packagegroups/packagegroup-arago-gst.bb        |    5 ++---
- 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-index 461a238..bed3e18 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to build and install header and libs in sdk"
- LICENSE = "MIT"
--PR = "r4"
-+PR = "r5"
- 
- inherit packagegroup
- 
-@@ -9,4 +9,5 @@ RDEPENDS_${PN} = "\
-     gst-plugins-base-dev \
-     gst-plugins-good-dev \
-     gst-plugins-bad-dev \
-+    gst-ffmpeg-dev \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index e538649..82265a1 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
--PR = "r5"
-+PR = "r6"
- 
- inherit packagegroup
- 
-@@ -16,6 +16,5 @@ GSTREAMER = " \
- 
- RDEPENDS_${PN} = "\
-     ${GSTREAMER} \
-+    gst-ffmpeg \
-     "
--
--#    gst-ffmpeg
--- 
-1.7.0.4
-
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../conf/distro/arago-source-ipk.conf              |    6 +++---
+>  1 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+> index bc5ff59..88cd21d 100644
+> --- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
+> +++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+> @@ -116,9 +116,9 @@ CREATE_SRCIPK_pn-linux-omapl138-psp = "1"
+>  SRCIPK_INSTALL_DIR_pn-linux-omapl138-psp = "board-support/linux-${KVER}-psp${PSPREL}"
+>  SRCIPK_PACKAGE_ARCH_pn-linux-omapl138-psp = "${MACHINE_ARCH}"
+>  
+> -CREATE_SRCIPK_pn-linux-omap3 = "1"
+> -SRCIPK_INSTALL_DIR_pn-linux-omap3 = "board-support/linux-${KVER}-psp${PSPREL}"
+> -SRCIPK_PACKAGE_ARCH_pn-linux-omap3 = "${MACHINE_ARCH}"
+> +CREATE_SRCIPK_pn-linux-omap-psp = "1"
+> +SRCIPK_INSTALL_DIR_pn-linux-omap-psp = "board-support/linux-${KVER}-psp${PSPREL}"
+> +SRCIPK_PACKAGE_ARCH_pn-linux-omap-psp = "${MACHINE_ARCH}"
+>  
+>  CREATE_SRCIPK_pn-linux-am335x = "1"
+>  SRCIPK_INSTALL_DIR_pn-linux-am335x = "board-support/linux-${KVER}"
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
