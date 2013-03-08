@@ -1,31 +1,27 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id E361F52A24
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id BE776529BB
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Mar 2013 20:09:43 +0000 (UTC)
+	Fri,  8 Mar 2013 23:12:16 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r24K9h0J003582;
-	Mon, 4 Mar 2013 14:09:43 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r28NCFXV001401
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2013 17:12:15 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r24K9hAs016207;
-	Mon, 4 Mar 2013 14:09:43 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r28NCFck032632
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2013 17:12:15 -0600
 Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 4 Mar 2013 14:09:42 -0600
+	Fri, 8 Mar 2013 17:12:15 -0600
 Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r24K9gr9012714;
-	Mon, 4 Mar 2013 14:09:43 -0600
-Date: Mon, 4 Mar 2013 15:09:42 -0500
+	(8.13.8/8.13.8) with ESMTP id r28NCF0d012090	for
+	<meta-arago@arago-project.org>; Fri, 8 Mar 2013 17:12:15 -0600
+Date: Fri, 8 Mar 2013 18:12:14 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: <fcooperjr27@gmail.com>
-Message-ID: <20130304200942.GH27633@edge>
-References: <1362427289-18057-1-git-send-email-fcooper@ti.com>
-	<1362427289-18057-7-git-send-email-fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20130308231214.GP4117@edge>
 MIME-Version: 1.0
-In-Reply-To: <1362427289-18057-7-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: Re: [PATCH 07/10] arago.conf: Don't pull in xloader recipe
+Subject: Core TISDK 2013.03 nightly build 2013-03-08_14-43-48
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,42 +34,120 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2013 20:09:44 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 08 Mar 2013 23:12:17 -0000
+X-Groupsio-MsgNum: 984
+Content-Type: text/html; charset="us-ascii"
+Content-Disposition: attachment; filename="results.html"
 
-On Mon, Mar 04, 2013 at 02:01:26PM -0600, fcooperjr27@gmail.com wrote:
-> From: Franklin S. Cooper Jr <fcooper@ti.com>
-> 
-> * Xloader recipe is no longer needed. Avoid pulling this recipe in.
+<html>
+<head>
+<title>
+Status for 03/08/13
+</title>
+</head>
+<body>
 
-This is in my meta-ti cleanup I'm working on.
+<h2>Status for 03/08/13</h2>
 
+<h2>BUILD_ID: build-2013-03-08_14-43-48</h2>
 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  meta-arago-distro/conf/distro/arago.conf |    3 +++
->  1 files changed, 3 insertions(+), 0 deletions(-)
-> 
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> index 17bb85b..575e89a 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -72,6 +72,9 @@ PREFERRED_PROVIDER_virtual/kernel_beagleboard = "linux"
->  PREFERRED_VERSION_linux_beagleboard = "3.3.7"
->  PREFERRED_VERSION_u-boot_beagleboard = "2012.04.01"
->  
-> +# Don't pull in xloader since we don't use it
-> +EXTRA_IMAGEDEPENDS_omap3 := "${@'${EXTRA_IMAGEDEPENDS}'.replace('x-load','')}"
-> +
->  # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
->  PREFERRED_VERSION_udev = "164"
->  PREFERRED_PROVIDER_udev = "udev"
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+INSERT URL HERE
+</p>
+
+</body>
+</html>
 
