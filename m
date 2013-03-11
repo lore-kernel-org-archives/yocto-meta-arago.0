@@ -1,27 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id BE776529BB
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id DBE7D529AF
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Mar 2013 23:12:16 +0000 (UTC)
+	Mon, 11 Mar 2013 04:13:10 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r28NCFXV001401
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2013 17:12:15 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2B4DACA011672
+	for <meta-arago@arago-project.org>; Sun, 10 Mar 2013 23:13:10 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r28NCFck032632
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2013 17:12:15 -0600
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2B4DAUR000735
+	for <meta-arago@arago-project.org>; Sun, 10 Mar 2013 23:13:10 -0500
 Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 8 Mar 2013 17:12:15 -0600
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r28NCF0d012090	for
-	<meta-arago@arago-project.org>; Fri, 8 Mar 2013 17:12:15 -0600
-Date: Fri, 8 Mar 2013 18:12:14 -0500
+	Sun, 10 Mar 2013 23:13:09 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2B4D93X010826	for
+	<meta-arago@arago-project.org>; Sun, 10 Mar 2013 23:13:09 -0500
+Date: Mon, 11 Mar 2013 00:08:39 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20130308231214.GP4117@edge>
+Message-ID: <310608095.17.1362974919171.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Core TISDK 2013.03 nightly build 2013-03-08_14-43-48
+X-Jenkins-Job: core-tisdk-nightly-build
+X-Jenkins-Result: SUCCESS
+Subject: [nightlies] Core TISDK 2013.03 nightly build 2013-03-10_23-46-40
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,22 +35,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 23:12:17 -0000
-X-Groupsio-MsgNum: 984
-Content-Type: text/html; charset="us-ascii"
-Content-Disposition: attachment; filename="results.html"
+X-List-Received-Date: Mon, 11 Mar 2013 04:13:11 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_16_1723550754.1362974919168"
+
+------=_Part_16_1723550754.1362974919168
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 03/08/13
+Status for 03/11/13
 </title>
 </head>
 <body>
 
-<h2>Status for 03/08/13</h2>
+<h2>Status for 03/11/13</h2>
 
-<h2>BUILD_ID: build-2013-03-08_14-43-48</h2>
+<h2>BUILD_ID: build-2013-03-10_23-47-42</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -116,23 +120,23 @@ Status for 03/08/13
     </tr>
     <tr>
         <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am37x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>beagleboard</td>
         <td bgcolor=red>FAILED</td>
         <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>am180x-evm</td>
@@ -145,9 +149,62 @@ Status for 03/08/13
 These builds were performed using the build-oesdk.sh script at:
 </p>
 <p>
-INSERT URL HERE
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.03"<br>
+MACHINES="am335x-evm am37x-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-amsdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-amsdk-image"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/core-tisdk-nightly-build/workspace"<br>
 </p>
 
 </body>
 </html>
 
+
+------=_Part_16_1723550754.1362974919168--
