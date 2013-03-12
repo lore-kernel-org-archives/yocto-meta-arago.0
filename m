@@ -1,28 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id DBE7D529AF
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id DCE0A529AF
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Mar 2013 04:13:10 +0000 (UTC)
+	Tue, 12 Mar 2013 03:45:21 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2B4DACA011672
-	for <meta-arago@arago-project.org>; Sun, 10 Mar 2013 23:13:10 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2B4DAUR000735
-	for <meta-arago@arago-project.org>; Sun, 10 Mar 2013 23:13:10 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Sun, 10 Mar 2013 23:13:09 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2C3jLeL008455
+	for <meta-arago@arago-project.org>; Mon, 11 Mar 2013 22:45:21 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2C3jLRj008098
+	for <meta-arago@arago-project.org>; Mon, 11 Mar 2013 22:45:21 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 11 Mar 2013 22:45:20 -0500
 Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2B4D93X010826	for
-	<meta-arago@arago-project.org>; Sun, 10 Mar 2013 23:13:09 -0500
-Date: Mon, 11 Mar 2013 00:08:39 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2C3jK21018685;
+	Mon, 11 Mar 2013 22:45:20 -0500
+Date: Mon, 11 Mar 2013 23:40:48 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <310608095.17.1362974919171.JavaMail.jenkins@puget>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Message-ID: <735327113.21.1363059648592.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Jenkins-Job: core-tisdk-nightly-build
+X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightlies] Core TISDK 2013.03 nightly build 2013-03-10_23-46-40
+Subject: [nightly] Core TISDK 2013.03 build 2013-03-11_23-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,11 +35,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 04:13:11 -0000
+X-List-Received-Date: Tue, 12 Mar 2013 03:45:22 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_16_1723550754.1362974919168"
+	boundary="----=_Part_20_1059730727.1363059648589"
 
-------=_Part_16_1723550754.1362974919168
+------=_Part_20_1059730727.1363059648589
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -53,7 +53,7 @@ Status for 03/11/13
 
 <h2>Status for 03/11/13</h2>
 
-<h2>BUILD_ID: build-2013-03-10_23-47-42</h2>
+<h2>BUILD_ID: build-2013-03-11_23-02-11</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -120,8 +120,8 @@ Status for 03/11/13
     </tr>
     <tr>
         <td>am335x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>am37x-evm</td>
@@ -190,6 +190,7 @@ STAF_ROOT="/usr/local/staf"<br>
 SKIP_TEST_FAILURES="false"<br>
 PRODUCTIZE_SDK="false"<br>
 BITBAKE_COMMAND="arago-amsdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
 INSTALL_JAMMER="/home/jenkins/installjammer"<br>
 INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
 MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
@@ -198,13 +199,13 @@ WEBGEN_ROOT="/home/jenkins/webgen"<br>
 WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
 WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
 COPY_TO_WEB="true"<br>
-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"<br>
+WEB_HOST=""<br>
 CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/core-tisdk-nightly-build/workspace"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </p>
 
 </body>
 </html>
 
 
-------=_Part_16_1723550754.1362974919168--
+------=_Part_20_1059730727.1363059648589--
