@@ -1,28 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5D4EE52A1B
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 911CB52A2C
 	for <meta-arago@arago-project.org>;
-	Sat, 16 Mar 2013 03:33:20 +0000 (UTC)
+	Sun, 17 Mar 2013 03:30:35 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2G3XJYQ026424
-	for <meta-arago@arago-project.org>; Fri, 15 Mar 2013 22:33:19 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2G3XJP6022717
-	for <meta-arago@arago-project.org>; Fri, 15 Mar 2013 22:33:19 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 15 Mar 2013 22:33:18 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2H3UYVu009008
+	for <meta-arago@arago-project.org>; Sat, 16 Mar 2013 22:30:34 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2H3UYEo023643
+	for <meta-arago@arago-project.org>; Sat, 16 Mar 2013 22:30:34 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Sat, 16 Mar 2013 22:30:33 -0500
 Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2G3XIoj020228	for
-	<meta-arago@arago-project.org>; Fri, 15 Mar 2013 22:33:19 -0500
-Date: Fri, 15 Mar 2013 23:28:40 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2H3UXHF004658	for
+	<meta-arago@arago-project.org>; Sat, 16 Mar 2013 22:30:33 -0500
+Date: Sat, 16 Mar 2013 23:25:54 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <766858131.45.1363404520711.JavaMail.jenkins@puget>
+Message-ID: <1263480989.49.1363490754129.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-03-15_23-01-06
+Subject: [nightly] Core TISDK 2013.03 build 2013-03-16_23-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,25 +35,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Mar 2013 03:33:20 -0000
+X-List-Received-Date: Sun, 17 Mar 2013 03:30:35 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_44_1255289237.1363404520710"
+	boundary="----=_Part_48_1744051156.1363490754128"
 
-------=_Part_44_1255289237.1363404520710
+------=_Part_48_1744051156.1363490754128
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 03/15/13
+Status for 03/16/13
 </title>
 </head>
 <body>
 
-<h2>Status for 03/15/13</h2>
+<h2>Status for 03/16/13</h2>
 
-<h2>BUILD_ID: build-2013-03-15_23-02-10</h2>
+<h2>BUILD_ID: build-2013-03-16_23-02-08</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -125,8 +125,8 @@ Status for 03/15/13
     </tr>
     <tr>
         <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>beagleboard</td>
@@ -141,7 +141,7 @@ Status for 03/15/13
     <tr>
         <td>am180x-evm</td>
         <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
+        <td bgcolor=lime>PASSED</td>
     </tr>
 </table>
 
@@ -208,4 +208,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_44_1255289237.1363404520710--
+------=_Part_48_1744051156.1363490754128--
