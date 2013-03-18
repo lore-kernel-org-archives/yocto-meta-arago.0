@@ -1,30 +1,30 @@
 Return-Path: <eyalr@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 028AD52961
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D136752961
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Mar 2013 08:43:34 +0000 (UTC)
+	Mon, 18 Mar 2013 08:47:31 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2I8hY9V025805
-	for <meta-arago@arago-project.org>; Mon, 18 Mar 2013 03:43:34 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2I8lVrT014893
+	for <meta-arago@arago-project.org>; Mon, 18 Mar 2013 03:47:31 -0500
 Received: from DNCE70.ent.ti.com (dnce70.ent.ti.com [137.167.131.19])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2I8hXxD000616
-	for <meta-arago@arago-project.org>; Mon, 18 Mar 2013 03:43:33 -0500
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2I8lToI006050
+	for <meta-arago@arago-project.org>; Mon, 18 Mar 2013 03:47:30 -0500
 Received: from DNCE04.ent.ti.com ([fe80::1df0:dc7c:d06:77a3]) by
 	DNCE70.ent.ti.com ([fe80::70c9:b447:24a2:dddc%30]) with mapi id
-	14.01.0323.003; Mon, 18 Mar 2013 09:43:33 +0100
+	14.01.0323.003; Mon, 18 Mar 2013 09:47:29 +0100
 From: "Reizer, Eyal" <eyalr@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: wlconf: configuration utility for wilink8 wireless driver
-Thread-Index: Ac4jtKpdNteQhOQcREqYpFNodL/7Bw==
-Date: Mon, 18 Mar 2013 08:43:33 +0000
-Message-ID: <8665E2433BC68541A24DFFCA87B70F5B17C4FD39@DNCE04.ent.ti.com>
+Thread-Topic: wl18xx-firmware: install Wilink8 wlan firmware files
+Thread-Index: Ac4jtSu5fm6Qdz6hTHaIXv9ytTh9hQ==
+Date: Mon, 18 Mar 2013 08:47:29 +0000
+Message-ID: <8665E2433BC68541A24DFFCA87B70F5B17C4FD64@DNCE04.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [137.167.131.83]
 x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-Subject: wlconf: configuration utility for wilink8 wireless driver
+Subject: wl18xx-firmware: install Wilink8 wlan firmware files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,141 +37,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 08:43:35 -0000
-X-Groupsio-MsgNum: 994
+X-List-Received-Date: Mon, 18 Mar 2013 08:47:32 -0000
+X-Groupsio-MsgNum: 995
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_"
+	boundary="_002_8665E2433BC68541A24DFFCA87B70F5B17C4FD64DNCE04entticom_"
 
---_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
-Content-Type: multipart/alternative;
-	boundary="_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_"
-
---_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
+--_002_8665E2433BC68541A24DFFCA87B70F5B17C4FD64DNCE04entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-The attached patch Add a recipe for building and installing the wlconf conf=
-iguration
-utility used for TI Wilink8 family.
+The attached patch add a recipe for installing the Wilink8 wlan firmware fi=
+les into
+the target file system.
 
 Best Regards,
 Eyal Reizer
 
---_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The attached patch Add a recipe for building and ins=
-talling the wlconf configuration<o:p></o:p></p>
-<p class=3D"MsoNormal">utility used for TI Wilink8 family.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Eyal Reizer<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_--
-
---_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
+--_002_8665E2433BC68541A24DFFCA87B70F5B17C4FD64DNCE04entticom_
 Content-Type: application/octet-stream;
-	name="0001-wlconf-configuration-utility-for-wilink8-wireless-dr.patch"
-Content-Description: 0001-wlconf-configuration-utility-for-wilink8-wireless-dr.patch
+	name="0002-wl18xx-firmware-install-Wilink8-wlan-firmware-files.patch"
+Content-Description: 0002-wl18xx-firmware-install-Wilink8-wlan-firmware-files.patch
 Content-Disposition: attachment;
-	filename="0001-wlconf-configuration-utility-for-wilink8-wireless-dr.patch";
-	size=1958; creation-date="Mon, 18 Mar 2013 08:41:20 GMT";
+	filename="0002-wl18xx-firmware-install-Wilink8-wlan-firmware-files.patch";
+	size=2203; creation-date="Sun, 17 Mar 2013 15:57:13 GMT";
 	modification-date="Sun, 17 Mar 2013 15:57:13 GMT"
 Content-Transfer-Encoding: base64
 
-RnJvbSA3N2FiNGEwYzEyYWYxMzFiNWU4MTg1YTI1MWE3MzNhNWNmYTVjMDlkIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBFeWFsIFJlaXplciA8ZXlhbHJAdGkuY29tPgpEYXRlOiBNb24s
-IDE4IEZlYiAyMDEzIDAxOjEyOjE5IC0wODAwClN1YmplY3Q6IFtQQVRDSCAxLzldIHdsY29uZjog
-Y29uZmlndXJhdGlvbiB1dGlsaXR5IGZvciB3aWxpbms4IHdpcmVsZXNzCiBkcml2ZXIKCkFkZCBh
-IHJlY2lwZSBmb3IgYnVpbGRpbmcgYW5kIGluc3RhbGxpbmcgdGhlIHdsY29uZiBjb25maWd1cmF0
-aW9uCnV0aWxpdHkgZm9yIFRJIFdpbGluazggZmFtaWxpbHkgb2YgY2hpcHMuCgpTaWduZWQtb2Zm
-LWJ5OiBFeWFsIFJlaXplciA8ZXlhbHJAdGkuY29tPgotLS0KIC4uLi9yZWNpcGVzLWNvbm5lY3Rp
-dml0eS93bGNvbmYvd2xjb25mX2dpdC5iYiAgICAgIHwgICAzNiArKysrKysrKysrKysrKysrKysr
-KwogMSBmaWxlIGNoYW5nZWQsIDM2IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDY0NCBt
-ZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvbm5lY3Rpdml0eS93bGNvbmYvd2xjb25mX2dpdC5i
-YgoKZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29ubmVjdGl2aXR5L3ds
-Y29uZi93bGNvbmZfZ2l0LmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb25uZWN0aXZp
-dHkvd2xjb25mL3dsY29uZl9naXQuYmIKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAw
-MC4uMGQ4YTA1NwotLS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMt
-Y29ubmVjdGl2aXR5L3dsY29uZi93bGNvbmZfZ2l0LmJiCkBAIC0wLDAgKzEsMzYgQEAKK0RFU0NS
-SVBUSU9OID0gIkNvbmZpZ3VyYXRpb24gdXRpbGl0eSBmb3IgVEkgd2lyZWxlc3MgZHJpdmVycyIK
-K0xJQ0VOU0UgPSAiR1BMdjIiCitMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9SRUFETUU7YmVn
-aW5saW5lPTE7ZW5kbGluZT0yMTttZDU9YWRjMDVhMTkwM2QzZjEwN2Y4NWM5MDMyOGUzYTk0Mzgi
-CisKK1BSID0icjEiCitQViA9IjAuMCIKK1BSX2FwcGVuZCA9ICIrZ2l0ciR7U1JDUkVWfSIKKwor
-U1JDUkVWID0gIm9sX3I4LmE2LjAxIgorU1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29tL1RJLU9w
-ZW5MaW5rLzE4eHgtdGktdXRpbHMuZ2l0IgorCitTID0gIiR7V09SS0RJUn0vZ2l0L3dsY29uZiIK
-KworRVhUUkFfT0VNQUtFID0gIkNDPSR7VEFSR0VUX1BSRUZJWH1nY2MiCisKK2RvX2luc3RhbGwo
-KSB7CisJaW5zdGFsbCAtZCAke0R9JHtiaW5kaXJ9CisJaW5zdGFsbCAtZCAke0R9JHtiaW5kaXJ9
-L3dsY29uZi8KKwlpbnN0YWxsIC1kICR7RH0ke2JpbmRpcn0vd2xjb25mL29mZmljaWFsX2luaXMK
-KworCWluc3RhbGwgLW0gMDc1NSB3bGNvbmYgJHtEfSR7YmluZGlyfS93bGNvbmYvCisJaW5zdGFs
-bCAtbSAwNzU1IGRpY3Rpb25hcnkudHh0ICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwg
-LW0gMDc1NSBzdHJ1Y3QuYmluICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwgLW0gMDc1
-NSB3bDE4eHgtY29uZi1kZWZhdWx0LmJpbiAke0R9JHtiaW5kaXJ9L3dsY29uZi8KKwlpbnN0YWxs
-IC1tIDA3NTUgUkVBRE1FICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwgLW0gMDc1NSBl
-eGFtcGxlLmNvbmYgJHtEfSR7YmluZGlyfS93bGNvbmYvCisJaW5zdGFsbCAtbSAwNzU1IGV4YW1w
-bGUuaW5pICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwgLW0gMDc1NSAke1N9L29mZmlj
-aWFsX2luaXMvKiAke0R9JHtiaW5kaXJ9L3dsY29uZi9vZmZpY2lhbF9pbmlzCit9CisKK0ZJTEVT
-XyR7UE59ICs9ICIgXAorCSR7YmluZGlyfS93bGNvbmYgXAorCSR7YmluZGlyfS93bGNvbmYvb2Zm
-aWNpYWxfaW5pcyBcCisiCisKK0ZJTEVTXyR7UE59LWRiZyArPSAiJHtiaW5kaXJ9L3dsY29uZi8u
-ZGVidWciCi0tIAoxLjcuOS41Cgo=
+RnJvbSBkMDdjMzM3NGYwMzg3ZTgwNDQ1NDY2YmFmZGVkZGE2ZWExYzI1YTA2IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBFeWFsIFJlaXplciA8ZXlhbHJAdGkuY29tPgpEYXRlOiBTdW4s
+IDEwIE1hciAyMDEzIDA4OjUwOjM0IC0wNzAwClN1YmplY3Q6IFtQQVRDSCAyLzldIHdsMTh4eC1m
+aXJtd2FyZTogaW5zdGFsbCBXaWxpbms4IHdsYW4gZmlybXdhcmUgZmlsZXMKCkFkZCBhIHJlY2lw
+ZSBmb3IgaW5zdGFsbGluZyB0aGUgV2lsaW5rOCB3bGFuIGZpcm13YXJlIGZpbGVzIGludG8KdGhl
+IHRhcmdldCBmaWxlIHN5c3RlbS4KClNpZ25lZC1vZmYtYnk6IEV5YWwgUmVpemVyIDxleWFsckB0
+aS5jb20+Ci0tLQogLi4uL3dsMTh4eC1maXJtd2FyZS93bDE4eHgtZmlybXdhcmUvTWFrZWZpbGUg
+ICAgICAgfCAgICA3ICsrKysrCiAuLi4vd2wxOHh4LWZpcm13YXJlL3dsMTh4eC1maXJtd2FyZV9n
+aXQuYmIgICAgICAgICB8ICAgMjggKysrKysrKysrKysrKysrKysrKysKIDIgZmlsZXMgY2hhbmdl
+ZCwgMzUgaW5zZXJ0aW9ucygrKQogY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtYXJhZ28tZXh0cmFz
+L3JlY2lwZXMtYnNwL3dsMTh4eC1maXJtd2FyZS93bDE4eHgtZmlybXdhcmUvTWFrZWZpbGUKIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWJzcC93bDE4eHgtZmly
+bXdhcmUvd2wxOHh4LWZpcm13YXJlX2dpdC5iYgoKZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0
+cmFzL3JlY2lwZXMtYnNwL3dsMTh4eC1maXJtd2FyZS93bDE4eHgtZmlybXdhcmUvTWFrZWZpbGUg
+Yi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWJzcC93bDE4eHgtZmlybXdhcmUvd2wxOHh4LWZp
+cm13YXJlL01ha2VmaWxlCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLjBiYjdh
+YjgKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWJzcC93bDE4
+eHgtZmlybXdhcmUvd2wxOHh4LWZpcm13YXJlL01ha2VmaWxlCkBAIC0wLDAgKzEsNyBAQAorIyBJ
+bnN0YWxscyB0aGUgdGhlIHRpLWNvbm5lY3Rpdml5IHdsYW4gZmlybXdhcmUgZmlsZXMgaW50byB0
+aGUgcm9vdCBmaWxlIHN5c3RlbQorCitpbnN0YWxsOgorCWluc3RhbGwgLWQgICQoREVTVF9ESVIp
+L2xpYi9maXJtd2FyZS90aS1jb25uZWN0aXZpdHkKKwljcCAtUnBQICogJChERVNUX0RJUikvbGli
+L2Zpcm13YXJlL3RpLWNvbm5lY3Rpdml0eS8KKwlybSAtZiAkKERFU1RfRElSKS9saWIvZmlybXdh
+cmUvdGktY29ubmVjdGl2aXR5L01ha2VmaWxlCisKZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0
+cmFzL3JlY2lwZXMtYnNwL3dsMTh4eC1maXJtd2FyZS93bDE4eHgtZmlybXdhcmVfZ2l0LmJiIGIv
+bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1ic3Avd2wxOHh4LWZpcm13YXJlL3dsMTh4eC1maXJt
+d2FyZV9naXQuYmIKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uNDNjNDBiYgot
+LS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtYnNwL3dsMTh4eC1m
+aXJtd2FyZS93bDE4eHgtZmlybXdhcmVfZ2l0LmJiCkBAIC0wLDAgKzEsMjggQEAKK0RFU0NSSVBU
+SU9OID0gIkZpcm13YXJlIGZpbGVzIGZvciB1c2Ugd2l0aCBUSSB3bDE4eHgiCitMSUNFTlNFID0g
+IlRJLVRTUEEiCitMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9MSUNFTkNFO21kNT1iMjgxMjJm
+ZDY2NzhlODlmZDNhOGQ0YmM4MDkyMjk2OSIKKworUEFDS0FHRV9BUkNIID0gImFsbCIKKworUFIg
+PSAicjErZ2l0ciR7U1JDUkVWfSIKKworUFJPVklERVMgKz0gIndsMTJ4eC1maXJtd2FyZSIKK1JQ
+Uk9WSURFUyArPSAid2wxMnh4LWZpcm13YXJlIiAKKworU1JDUkVWID0gIm9sX3I4LmE2LjAxIgor
+U1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29tL1RJLU9wZW5MaW5rL3dsMTh4eF9mdy5naXQ7cHJv
+dG9jb2w9Z2l0IFwKKyAgICAgICAgICAgZmlsZTovL01ha2VmaWxlIFwKKyAgICAgICAgICAiCisK
+K1MgPSAiJHtXT1JLRElSfS9naXQiCisKK2RvX2NvbXBpbGUoKSB7CisgICAgOgorfQorCitkb19p
+bnN0YWxsKCkgeworICAgIGNwICR7V09SS0RJUn0vTWFrZWZpbGUgJHtTfQorICAgIG9lX3J1bm1h
+a2UgJ0RFU1RfRElSPSR7RH0nIGluc3RhbGwKK30KKworRklMRVNfJHtQTn0gPSAiL2xpYi9maXJt
+d2FyZS90aS1jb25uZWN0aXZpdHkvKiIKLS0gCjEuNy45LjUKCg==
 
---_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_--
+--_002_8665E2433BC68541A24DFFCA87B70F5B17C4FD64DNCE04entticom_--
