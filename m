@@ -1,35 +1,35 @@
 Return-Path: <eyalreizer@gmail.com>
-Received: from mail-qe0-f41.google.com (mail-qe0-f41.google.com
-	[209.85.128.41])
-	by arago-project.org (Postfix) with ESMTPS id 0DB4352A5D
+Received: from mail-qe0-f48.google.com (mail-qe0-f48.google.com
+	[209.85.128.48])
+	by arago-project.org (Postfix) with ESMTPS id 1EA4252A51
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Mar 2013 13:36:40 +0000 (UTC)
-Received: by mail-qe0-f41.google.com with SMTP id 6so3366543qeb.0
+	Mon, 18 Mar 2013 13:36:43 +0000 (UTC)
+Received: by mail-qe0-f48.google.com with SMTP id 9so3278901qea.21
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Mar 2013 06:36:39 -0700 (PDT)
+	Mon, 18 Mar 2013 06:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=FeC5GgEwZiBTMaO4IwChkCNL8dSOkBcRp8ipyFwXPM8=;
-	b=VpRpq95ox0JtFiPWWXOEm/iVoJK2sh8PbgferO4spvLg9aCzs5vZzXCyECmAAgMQ1k
-	XxVD/WIhvP3yhFoYogTsbRa0vzFFhdQYWQGL2/9Udwsbm6E6/GShWluO7SPfwgMTWhRq
-	YP63sMW1KbgxIEuiYzpfzeH7POb4ADzAq5vcZPVJ8y6hV2s/t84ZtXYut6/iZ7sawPDL
-	TF1uZgir4JL8HrIiavBqYm/4wMRgLiP9r5WqTDYb/Rof0N2X9TdyCUFRPkrsYzr8hSfh
-	RzpmTRGuhazziiLLMkVrVJ/4FI7QEkZtXhf17pdHTevPBuGfdOapwYJqGRMtJZA97MdG
-	dGUw==
-X-Received: by 10.49.127.180 with SMTP id nh20mr22740589qeb.19.1363613799874; 
-	Mon, 18 Mar 2013 06:36:39 -0700 (PDT)
+	:references; bh=9ED+82gA1oLNvhabC99DQzwLGSDNmtIVFsXJAmLJ6y0=;
+	b=Il4oRRq1h6G3UsEijBgph7dm81+CNtL3uBMm7AGEtyTqkq5ZqKtaxcpFW+mSXIUr8L
+	rYMFrvdzmTuDWIuG1j7j4kyiohkC9JeJNQ+7QerlfaWC3Z9wcNc3wYnskxbMciKtPdAR
+	pOB95cDNqGcZmvJr3iNSs9/qyDRuD+S73R7IOwdhwt0UbLDFPHhEW8TB+oZKJ4CZpfUh
+	r5vwswDODb862DJJyDscKIYs9y+vp21xqCz3dGDOYtj5Ar7hCxnrBnUH32QtrCLeAO9y
+	Cy2hEmf0tszOU0VDTGK0FaUuyR/f2TQim59iYHyYJFePEOSlnLTHOCUHZ2KnjCVOt8e+
+	OmBw==
+X-Received: by 10.49.83.162 with SMTP id r2mr22326598qey.7.1363613802680;
+	Mon, 18 Mar 2013 06:36:42 -0700 (PDT)
 Received: from user-VirtualBox.emea.dhcp.ti.com (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id ku2sm32421520qeb.4.2013.03.18.06.36.38
+	by mx.google.com with ESMTPS id ku2sm32421520qeb.4.2013.03.18.06.36.41
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 18 Mar 2013 06:36:39 -0700 (PDT)
+	Mon, 18 Mar 2013 06:36:42 -0700 (PDT)
 From: Eyal Reizer <eyalreizer@gmail.com>
 To: meta-arago@arago-project.org
-Date: Mon, 18 Mar 2013 15:35:59 +0200
-Message-Id: <1363613762-6537-7-git-send-email-eyalr@ti.com>
+Date: Mon, 18 Mar 2013 15:36:00 +0200
+Message-Id: <1363613762-6537-8-git-send-email-eyalr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1363613762-6537-1-git-send-email-eyalr@ti.com>
 References: <1363613762-6537-1-git-send-email-eyalr@ti.com>
-Subject: [PATCH 7/9] bt-firmware: update for including the wl18xx bt firmware
+Subject: [PATCH 8/9] arago conf: add rule for selecting between wilink chips
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,36 +42,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 13:36:40 -0000
+X-List-Received-Date: Mon, 18 Mar 2013 13:36:43 -0000
 
 From: Eyal Reizer <eyalr@ti.com>
 
-Update the recipe for including the wl18xx bluetooth firmware
-files from SP-2.8 into the target root file system
+Add a configuration variable for selecting between wilink6 and
+wilink8 support.
+
+Based on this variable the right version will be picked for the
+recipes which are different between wilink versions.
+
+The default is currently set to "WILINK-6" until the next SDK release
+which is going to switch to using WILINK-8.
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
- .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf |    7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-index 569c690..72bcc6c 100644
---- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-@@ -13,11 +13,11 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- RCONFLICTS_${PN} = "linux-firmware-wl12xx"
- RREPLACES_${PN}  = "linux-firmware-wl12xx"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 44141c1..4835160 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -43,6 +43,13 @@ PREFERRED_VERSION_nativesdk-qt4-tools = "4.8.3"
+ PREFERRED_VERSION_wpa-supplicant = "2.0-devel-ti"
+ PREFERRED_VERSION_hostap-daemon = "2.0-devel-ti"
  
--PR = "r0+gitr${SRCREV}"
-+PR = "r1+gitr${SRCREV}"
- 
- COMPATIBLE_MACHINE = "omap3|omapl138|da850-omapl138-evm|ti33x"
- 
--SRCREV = "db43d1f05efda9777d7ac1ac366637e29e21f77f"
-+SRCREV = "adbc27c11d5c5c8c20a93a8beca647b4a6aaa03b"
- SRC_URI = "git://github.com/TI-ECS/bt-firmware.git;protocol=git \
-            file://0001-Makefile-allow-building-within-the-OE.patch"
- 
++WILINK_VERSION = "WILINK-6"
++PREFERRED_PROVIDER_wl12xx-firmware = "${@base_contains('WILINK_VERSION','WILINK-8','wl18xx-firmware','wl12xx-firmware',d)}"
++PREFERRED_PROVIDER_ti-compat-wireless-wl12xx = "${@base_contains('WILINK_VERSION','WILINK-8','ti-compat-wireless-wl18xx','ti-compat-wireless-wl12xx',d)}"
++PREFERRED_PROVIDER_hostap-daemon = "${@base_contains('WILINK_VERSION','WILINK-8','hostap-daemon-wl18xx','hostap-daemon',d)}"
++PREFERRED_PROVIDER_wpa-supplicant = "${@base_contains('WILINK_VERSION','WILINK-8','wpa-supplicant-wl18xx','wpa-supplicant',d)}"
++PREFERRED_PROVIDER_ti-wifi-utils = "${@base_contains('WILINK_VERSION','WILINK-8','ti-wifi-utils-wl18xx','ti-wifi-utils',d)}"
++
+ # Use v4.08.00.02 of the Graphics SDK
+ PREFERRED_VERSION_omap3-sgx-modules = "4.08.00.02"
+ PREFERRED_VERSION_libgles-omap3 = "4.08.00.02"
 -- 
 1.7.9.5
 
