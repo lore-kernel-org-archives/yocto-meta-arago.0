@@ -1,28 +1,30 @@
-Return-Path: <denys@ti.com>
+Return-Path: <eyalr@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id DC72052A6D
+	by arago-project.org (Postfix) with ESMTPS id 028AD52961
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Mar 2013 03:27:23 +0000 (UTC)
+	Mon, 18 Mar 2013 08:43:34 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2I3RMl1022698
-	for <meta-arago@arago-project.org>; Sun, 17 Mar 2013 22:27:22 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2I3RMVl012468
-	for <meta-arago@arago-project.org>; Sun, 17 Mar 2013 22:27:22 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Sun, 17 Mar 2013 22:27:22 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2I3RMvP004567	for
-	<meta-arago@arago-project.org>; Sun, 17 Mar 2013 22:27:22 -0500
-Date: Sun, 17 Mar 2013 23:22:41 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1522186088.53.1363576961364.JavaMail.jenkins@puget>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2I8hY9V025805
+	for <meta-arago@arago-project.org>; Mon, 18 Mar 2013 03:43:34 -0500
+Received: from DNCE70.ent.ti.com (dnce70.ent.ti.com [137.167.131.19])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2I8hXxD000616
+	for <meta-arago@arago-project.org>; Mon, 18 Mar 2013 03:43:33 -0500
+Received: from DNCE04.ent.ti.com ([fe80::1df0:dc7c:d06:77a3]) by
+	DNCE70.ent.ti.com ([fe80::70c9:b447:24a2:dddc%30]) with mapi id
+	14.01.0323.003; Mon, 18 Mar 2013 09:43:33 +0100
+From: "Reizer, Eyal" <eyalr@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: wlconf: configuration utility for wilink8 wireless driver
+Thread-Index: Ac4jtKpdNteQhOQcREqYpFNodL/7Bw==
+Date: Mon, 18 Mar 2013 08:43:33 +0000
+Message-ID: <8665E2433BC68541A24DFFCA87B70F5B17C4FD39@DNCE04.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.167.131.83]
+x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-03-17_23-01-06
+Subject: wlconf: configuration utility for wilink8 wireless driver
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,176 +37,141 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 03:27:24 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_52_478217766.1363576961361"
+X-List-Received-Date: Mon, 18 Mar 2013 08:43:35 -0000
+X-Groupsio-MsgNum: 994
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_"
 
-------=_Part_52_478217766.1363576961361
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
+Content-Type: multipart/alternative;
+	boundary="_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_"
 
-<html>
+--_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+The attached patch Add a recipe for building and installing the wlconf conf=
+iguration
+utility used for TI Wilink8 family.
+
+Best Regards,
+Eyal Reizer
+
+--_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<title>
-Status for 03/17/13
-</title>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body>
-
-<h2>Status for 03/17/13</h2>
-
-<h2>BUILD_ID: build-2013-03-17_23-02-10</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.03"<br>
-MACHINES="am335x-evm am37x-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-amsdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-amsdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The attached patch Add a recipe for building and ins=
+talling the wlconf configuration<o:p></o:p></p>
+<p class=3D"MsoNormal">utility used for TI Wilink8 family.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Eyal Reizer<o:p></o:p></p>
+</div>
 </body>
 </html>
 
+--_000_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_--
 
-------=_Part_52_478217766.1363576961361--
+--_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_
+Content-Type: application/octet-stream;
+	name="0001-wlconf-configuration-utility-for-wilink8-wireless-dr.patch"
+Content-Description: 0001-wlconf-configuration-utility-for-wilink8-wireless-dr.patch
+Content-Disposition: attachment;
+	filename="0001-wlconf-configuration-utility-for-wilink8-wireless-dr.patch";
+	size=1958; creation-date="Mon, 18 Mar 2013 08:41:20 GMT";
+	modification-date="Sun, 17 Mar 2013 15:57:13 GMT"
+Content-Transfer-Encoding: base64
+
+RnJvbSA3N2FiNGEwYzEyYWYxMzFiNWU4MTg1YTI1MWE3MzNhNWNmYTVjMDlkIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBFeWFsIFJlaXplciA8ZXlhbHJAdGkuY29tPgpEYXRlOiBNb24s
+IDE4IEZlYiAyMDEzIDAxOjEyOjE5IC0wODAwClN1YmplY3Q6IFtQQVRDSCAxLzldIHdsY29uZjog
+Y29uZmlndXJhdGlvbiB1dGlsaXR5IGZvciB3aWxpbms4IHdpcmVsZXNzCiBkcml2ZXIKCkFkZCBh
+IHJlY2lwZSBmb3IgYnVpbGRpbmcgYW5kIGluc3RhbGxpbmcgdGhlIHdsY29uZiBjb25maWd1cmF0
+aW9uCnV0aWxpdHkgZm9yIFRJIFdpbGluazggZmFtaWxpbHkgb2YgY2hpcHMuCgpTaWduZWQtb2Zm
+LWJ5OiBFeWFsIFJlaXplciA8ZXlhbHJAdGkuY29tPgotLS0KIC4uLi9yZWNpcGVzLWNvbm5lY3Rp
+dml0eS93bGNvbmYvd2xjb25mX2dpdC5iYiAgICAgIHwgICAzNiArKysrKysrKysrKysrKysrKysr
+KwogMSBmaWxlIGNoYW5nZWQsIDM2IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDY0NCBt
+ZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvbm5lY3Rpdml0eS93bGNvbmYvd2xjb25mX2dpdC5i
+YgoKZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29ubmVjdGl2aXR5L3ds
+Y29uZi93bGNvbmZfZ2l0LmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb25uZWN0aXZp
+dHkvd2xjb25mL3dsY29uZl9naXQuYmIKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAw
+MC4uMGQ4YTA1NwotLS0gL2Rldi9udWxsCisrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMt
+Y29ubmVjdGl2aXR5L3dsY29uZi93bGNvbmZfZ2l0LmJiCkBAIC0wLDAgKzEsMzYgQEAKK0RFU0NS
+SVBUSU9OID0gIkNvbmZpZ3VyYXRpb24gdXRpbGl0eSBmb3IgVEkgd2lyZWxlc3MgZHJpdmVycyIK
+K0xJQ0VOU0UgPSAiR1BMdjIiCitMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9SRUFETUU7YmVn
+aW5saW5lPTE7ZW5kbGluZT0yMTttZDU9YWRjMDVhMTkwM2QzZjEwN2Y4NWM5MDMyOGUzYTk0Mzgi
+CisKK1BSID0icjEiCitQViA9IjAuMCIKK1BSX2FwcGVuZCA9ICIrZ2l0ciR7U1JDUkVWfSIKKwor
+U1JDUkVWID0gIm9sX3I4LmE2LjAxIgorU1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29tL1RJLU9w
+ZW5MaW5rLzE4eHgtdGktdXRpbHMuZ2l0IgorCitTID0gIiR7V09SS0RJUn0vZ2l0L3dsY29uZiIK
+KworRVhUUkFfT0VNQUtFID0gIkNDPSR7VEFSR0VUX1BSRUZJWH1nY2MiCisKK2RvX2luc3RhbGwo
+KSB7CisJaW5zdGFsbCAtZCAke0R9JHtiaW5kaXJ9CisJaW5zdGFsbCAtZCAke0R9JHtiaW5kaXJ9
+L3dsY29uZi8KKwlpbnN0YWxsIC1kICR7RH0ke2JpbmRpcn0vd2xjb25mL29mZmljaWFsX2luaXMK
+KworCWluc3RhbGwgLW0gMDc1NSB3bGNvbmYgJHtEfSR7YmluZGlyfS93bGNvbmYvCisJaW5zdGFs
+bCAtbSAwNzU1IGRpY3Rpb25hcnkudHh0ICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwg
+LW0gMDc1NSBzdHJ1Y3QuYmluICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwgLW0gMDc1
+NSB3bDE4eHgtY29uZi1kZWZhdWx0LmJpbiAke0R9JHtiaW5kaXJ9L3dsY29uZi8KKwlpbnN0YWxs
+IC1tIDA3NTUgUkVBRE1FICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwgLW0gMDc1NSBl
+eGFtcGxlLmNvbmYgJHtEfSR7YmluZGlyfS93bGNvbmYvCisJaW5zdGFsbCAtbSAwNzU1IGV4YW1w
+bGUuaW5pICR7RH0ke2JpbmRpcn0vd2xjb25mLworCWluc3RhbGwgLW0gMDc1NSAke1N9L29mZmlj
+aWFsX2luaXMvKiAke0R9JHtiaW5kaXJ9L3dsY29uZi9vZmZpY2lhbF9pbmlzCit9CisKK0ZJTEVT
+XyR7UE59ICs9ICIgXAorCSR7YmluZGlyfS93bGNvbmYgXAorCSR7YmluZGlyfS93bGNvbmYvb2Zm
+aWNpYWxfaW5pcyBcCisiCisKK0ZJTEVTXyR7UE59LWRiZyArPSAiJHtiaW5kaXJ9L3dsY29uZi8u
+ZGVidWciCi0tIAoxLjcuOS41Cgo=
+
+--_004_8665E2433BC68541A24DFFCA87B70F5B17C4FD39DNCE04entticom_--
