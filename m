@@ -1,35 +1,35 @@
 Return-Path: <eyalreizer@gmail.com>
-Received: from mail-qe0-f48.google.com (mail-qe0-f48.google.com
-	[209.85.128.48])
-	by arago-project.org (Postfix) with ESMTPS id 1EA4252A51
+Received: from mail-qa0-f44.google.com (mail-qa0-f44.google.com
+	[209.85.216.44])
+	by arago-project.org (Postfix) with ESMTPS id 0C3E852A51
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Mar 2013 13:36:43 +0000 (UTC)
-Received: by mail-qe0-f48.google.com with SMTP id 9so3278901qea.21
+	Mon, 18 Mar 2013 13:36:46 +0000 (UTC)
+Received: by mail-qa0-f44.google.com with SMTP id bv4so1672018qab.17
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Mar 2013 06:36:42 -0700 (PDT)
+	Mon, 18 Mar 2013 06:36:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=9ED+82gA1oLNvhabC99DQzwLGSDNmtIVFsXJAmLJ6y0=;
-	b=Il4oRRq1h6G3UsEijBgph7dm81+CNtL3uBMm7AGEtyTqkq5ZqKtaxcpFW+mSXIUr8L
-	rYMFrvdzmTuDWIuG1j7j4kyiohkC9JeJNQ+7QerlfaWC3Z9wcNc3wYnskxbMciKtPdAR
-	pOB95cDNqGcZmvJr3iNSs9/qyDRuD+S73R7IOwdhwt0UbLDFPHhEW8TB+oZKJ4CZpfUh
-	r5vwswDODb862DJJyDscKIYs9y+vp21xqCz3dGDOYtj5Ar7hCxnrBnUH32QtrCLeAO9y
-	Cy2hEmf0tszOU0VDTGK0FaUuyR/f2TQim59iYHyYJFePEOSlnLTHOCUHZ2KnjCVOt8e+
-	OmBw==
-X-Received: by 10.49.83.162 with SMTP id r2mr22326598qey.7.1363613802680;
-	Mon, 18 Mar 2013 06:36:42 -0700 (PDT)
+	:references; bh=jwkdR9d2oxiJCmkHls/Lc5DmWPH5VWaXUuWooTZOBNQ=;
+	b=Y2lzSTFR0R90oZ3/F0vhS3CokLXPe19YAMqqPTq5uKpZsPFND0oh1L2lHujzZaZpDY
+	7Md7RdrTUPdfkMF5O4h7sc7q23OQyd+EodMaHXmWA7N1SH7r2WbymmnRVm9bRaQKW+/c
+	b9p54hCP0kgKlVMjQq3o295u9KI8c4nRau8MNWXfkHhqfe3D6Rp6fdtb3knw1ca+fZUq
+	IWJWS8iBJTWaO4+OC+plQVINoZktz9v9jWGIfBY1KWIjiuThRJ6H13Ksso18hG6TMbgv
+	SdOW4NVgE+dedsQutBW6ZIruuU20EzERS4bqaCy4YHOOMnUsnkA/uG8ILDb71AwxXrCC
+	UPHA==
+X-Received: by 10.49.18.232 with SMTP id z8mr22792272qed.0.1363613805865;
+	Mon, 18 Mar 2013 06:36:45 -0700 (PDT)
 Received: from user-VirtualBox.emea.dhcp.ti.com (dragon.ti.com. [192.94.94.33])
-	by mx.google.com with ESMTPS id ku2sm32421520qeb.4.2013.03.18.06.36.41
+	by mx.google.com with ESMTPS id ku2sm32421520qeb.4.2013.03.18.06.36.44
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 18 Mar 2013 06:36:42 -0700 (PDT)
+	Mon, 18 Mar 2013 06:36:45 -0700 (PDT)
 From: Eyal Reizer <eyalreizer@gmail.com>
 To: meta-arago@arago-project.org
-Date: Mon, 18 Mar 2013 15:36:00 +0200
-Message-Id: <1363613762-6537-8-git-send-email-eyalr@ti.com>
+Date: Mon, 18 Mar 2013 15:36:01 +0200
+Message-Id: <1363613762-6537-9-git-send-email-eyalr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1363613762-6537-1-git-send-email-eyalr@ti.com>
 References: <1363613762-6537-1-git-send-email-eyalr@ti.com>
-Subject: [PATCH 8/9] arago conf: add rule for selecting between wilink chips
+Subject: [PATCH 9/9] connectivity packagegroup: add wlconf for wilink8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,42 +42,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 13:36:43 -0000
+X-List-Received-Date: Mon, 18 Mar 2013 13:36:46 -0000
 
 From: Eyal Reizer <eyalr@ti.com>
 
-Add a configuration variable for selecting between wilink6 and
-wilink8 support.
-
-Based on this variable the right version will be picked for the
-recipes which are different between wilink versions.
-
-The default is currently set to "WILINK-6" until the next SDK release
-which is going to switch to using WILINK-8.
+Add the wlconf configuration utility which is used for wilink8
+only.
+The package is added based on the WILINK_VERSION switch added to 
+arago.conf
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    7 +++++++
- 1 file changed, 7 insertions(+)
+ .../packagegroup-arago-tisdk-connectivity.bb       |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 44141c1..4835160 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -43,6 +43,13 @@ PREFERRED_VERSION_nativesdk-qt4-tools = "4.8.3"
- PREFERRED_VERSION_wpa-supplicant = "2.0-devel-ti"
- PREFERRED_VERSION_hostap-daemon = "2.0-devel-ti"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index d936f83..eedad5d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wlan and bluetooth packages into the target FS"
+ LICENSE = "MIT"
+-PR = "r5"
++PR = "r6"
  
-+WILINK_VERSION = "WILINK-6"
-+PREFERRED_PROVIDER_wl12xx-firmware = "${@base_contains('WILINK_VERSION','WILINK-8','wl18xx-firmware','wl12xx-firmware',d)}"
-+PREFERRED_PROVIDER_ti-compat-wireless-wl12xx = "${@base_contains('WILINK_VERSION','WILINK-8','ti-compat-wireless-wl18xx','ti-compat-wireless-wl12xx',d)}"
-+PREFERRED_PROVIDER_hostap-daemon = "${@base_contains('WILINK_VERSION','WILINK-8','hostap-daemon-wl18xx','hostap-daemon',d)}"
-+PREFERRED_PROVIDER_wpa-supplicant = "${@base_contains('WILINK_VERSION','WILINK-8','wpa-supplicant-wl18xx','wpa-supplicant',d)}"
-+PREFERRED_PROVIDER_ti-wifi-utils = "${@base_contains('WILINK_VERSION','WILINK-8','ti-wifi-utils-wl18xx','ti-wifi-utils',d)}"
-+
- # Use v4.08.00.02 of the Graphics SDK
- PREFERRED_VERSION_omap3-sgx-modules = "4.08.00.02"
- PREFERRED_VERSION_libgles-omap3 = "4.08.00.02"
+ inherit packagegroup
+ 
+@@ -28,6 +28,7 @@ WLAN_COMMON = "\
+     pulseaudio-module-bluetooth-device \
+     eventdump \
+     wpa-supplicant \
++    ${@base_contains('WILINK_VERSION','WILINK-8','wlconf','',d)} \
+ "
+ 
+ FIRMWARE_AND_DRIVERS = "\
 -- 
 1.7.9.5
 
