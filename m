@@ -1,30 +1,30 @@
 Return-Path: <eyalr@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 9C9CE52A19
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id BAFDD529AF
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Mar 2013 16:07:28 +0000 (UTC)
+	Tue, 19 Mar 2013 16:07:33 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2JG7QF0011964
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 11:07:27 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2JG7Vbb027716
+	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 11:07:32 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2JG7QCS013439
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2JG7VTE013449
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Mar 2013 21:37:26 +0530 (IST)
+	Tue, 19 Mar 2013 21:37:31 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Tue, 19 Mar 2013 21:37:26 +0530
+	Tue, 19 Mar 2013 21:37:30 +0530
 Received: from user-VirtualBox.emea.dhcp.ti.com (dbdp20.itg.ti.com
 	[172.24.170.38])	by dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r2JG6tet026686;	Tue, 19 Mar 2013 21:37:25 +0530
+	r2JG6teu026686;	Tue, 19 Mar 2013 21:37:30 +0530
 From: Eyal Reizer <eyalr@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 19 Mar 2013 18:06:36 +0200
-Message-ID: <1363709200-2854-6-git-send-email-eyalr@ti.com>
+Date: Tue, 19 Mar 2013 18:06:37 +0200
+Message-ID: <1363709200-2854-7-git-send-email-eyalr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1363709200-2854-2-git-send-email-eyalr@ti.com>
 References: <1363709200-2854-2-git-send-email-eyalr@ti.com>
 MIME-Version: 1.0
-Subject: [PATCHv2 5/9] ti-wifi-utils-wl18xx: build the calibrator tool for wilin8
+Subject: [PATCHv2 6/9] ti-compat-wireless-wl18xx: build Wilink8 drivers from TI-OpenLink
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,15 +37,16 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 16:07:28 -0000
+X-List-Received-Date: Tue, 19 Mar 2013 16:07:34 -0000
 Content-Type: text/plain
 
-Add a recipe for building and installing the calibrator tool
-used with the wilink8 family of chips.
+Add a new recipe from fetching the Wilink8 drivers from TI-Openlink
+in github by creating a compa-wireless package and build with the
+target linux kernel source.
 
 This package replace the wilink6 package which is provided by the
-ti-wifi-utils recipe. Selection between the two is done using a
-"WILINK_VERSION" switch added to arago.conf
+ti-compat-wireless-wl12xx recipe. Selection between the two is
+done using a "WILINK_VERSION" switch added to arago.conf
 
 Changes in v2:
 * Use an actual release name in the recipe name instead of _git
@@ -54,42 +55,157 @@ Changes in v2:
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
- .../ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a6.01.bb |   27 ++++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a6.01.bb
+ ...1-git-version-wl18xx-use-compat-base-tree.patch |   68 ++++++++++++++++++++
+ .../ti-compat-wireless-wl18xx_r8.a6.01.bb          |   66 +++++++++++++++++++
+ 2 files changed, 134 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx-r8.a6.01/0001-git-version-wl18xx-use-compat-base-tree.patch
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a6.01.bb
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx-r8.a6.01/0001-git-version-wl18xx-use-compat-base-tree.patch b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx-r8.a6.01/0001-git-version-wl18xx-use-compat-base-tree.patch
 new file mode 100644
-index 0000000..1ea9990
+index 0000000..624d86f
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a6.01.bb
-@@ -0,0 +1,27 @@
-+DESCRIPTION = "The calibrator and other useful utilities for TI wireless solution based on wl12xx driver"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx-r8.a6.01/0001-git-version-wl18xx-use-compat-base-tree.patch
+@@ -0,0 +1,68 @@
++From bb09bbce828112d81ae473d10a07736e73704ac4 Mon Sep 17 00:00:00 2001
++From: Eyal Reizer <eyalr@ti.com>
++Date: Sun, 10 Mar 2013 04:42:58 -0700
++Subject: [PATCH] git-version-wl18xx: use compat base tree
 +
-+DEPENDS = "libnl"
-+RDEPENDS = "ti-compat-wireless-wl12xx wl12xx-firmware"
++For compat-wireless based builds use compat_base_tree_version in  version.h
++When building with compat-wireless mechanism, the version info captured
++in version.h reflects target kernel and not the wl18xx version.
 +
-+PR ="r1+gitr${SRCREV}"
++Signed-off-by: Eyal Reizer <eyalr@ti.com>
++---
++ drivers/net/wireless/ti/wl18xx/Makefile |   12 ++++++++----
++ drivers/net/wireless/ti/wlcore/Makefile |   12 ++++++++----
++ 2 files changed, 16 insertions(+), 8 deletions(-)
 +
-+SRCREV = "ol_r8.a6.01"
-+SRC_URI = "git://github.com/TI-OpenLink/18xx-ti-utils.git \
-+"
++diff --git a/drivers/net/wireless/ti/wl18xx/Makefile b/drivers/net/wireless/ti/wl18xx/Makefile
++index 4ddb258..55cc561 100644
++--- a/drivers/net/wireless/ti/wl18xx/Makefile
+++++ b/drivers/net/wireless/ti/wl18xx/Makefile
++@@ -1,12 +1,16 @@
++ wl18xx-objs	= main.o acx.o tx.o io.o debugfs.o
++ 
++ define filechk_version.h
++-	(echo 'static const char *wl18xx_git_head = \
++-			"$(shell git describe --dirty)";')
+++         echo '#ifdef COMPAT_BASE_TREE_VERSION'; \
+++         echo 'static const char *wl18xx_git_head =  COMPAT_BASE_TREE_VERSION;'; \
+++         echo '#else'; \
+++         echo 'static const char *wl18xx_git_head = \
+++                        "$(shell git describe --dirty)";'; \
+++         echo '#endif')
++ endef
++ 
++-$(obj)/version.h: .git/HEAD .git/index .git/refs/tags
++-	@$(call filechk,version.h)
+++#$(obj)/version.h: .git/HEAD .git/index .git/refs/tags
+++#	@$(call filechk,version.h)
++ 
++ $(obj)/main.c: $(src)/version.h
++ 
++diff --git a/drivers/net/wireless/ti/wlcore/Makefile b/drivers/net/wireless/ti/wlcore/Makefile
++index 9923a1a..647489c 100644
++--- a/drivers/net/wireless/ti/wlcore/Makefile
+++++ b/drivers/net/wireless/ti/wlcore/Makefile
++@@ -3,12 +3,16 @@ wlcore-objs		= main.o cmd.o io.o event.o tx.o rx.o ps.o acx.o \
++ 
++ define filechk_version.h
++ 	(echo 'static const char *wlcore_timestamp = __TIMESTAMP__;'; \
++-	echo 'static const char *wlcore_git_head = \
++-			"$(shell git describe --dirty)";')
+++         echo '#ifdef COMPAT_BASE_TREE_VERSION'; \
+++         echo 'static const char *wl12xx_git_head =  COMPAT_BASE_TREE_VERSION;'; \
+++         echo '#else'; \
+++         echo 'static const char *wl12xx_git_head = \
+++                        "$(shell git describe --dirty)";'; \
+++         echo '#endif')
++ endef
++ 
++-$(obj)/version.h: .git/HEAD .git/index .git/refs/tags
++-	@$(call filechk,version.h)
+++#$(obj)/version.h: .git/HEAD .git/index .git/refs/tags
+++#	@$(call filechk,version.h)
++ 
++ $(obj)/main.c: $(src)/version.h
++ 
++-- 
++1.7.9.5
 +
-+PROVIDES += "ti-wifi-utils"
-+RPROVIDES += "ti-wifi-utils"
-+RREPLACES +=  "ti-wifi-utils"
-+RCONFLICTS +=  "ti-wifi-utils"
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
+new file mode 100644
+index 0000000..7549f47
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
+@@ -0,0 +1,66 @@
++# This is a TI specific version of the compat-wireless recipe using a
++# compat-wireless package created from the TI Systems Tested mac80211 releases.
 +
-+S = "${WORKDIR}/git"
++DESCRIPTION = "ti compat-wireless drivers for wl18xx"
++HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
++SECTION = "kernel/modules"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=d7810fab7487fb0aad327b76f1be7cd7"
 +
-+export CROSS_COMPILE = "${TARGET_PREFIX}"
-+CFLAGS += " -DCONFIG_LIBNL20"
++RDEPENDS_${PN} = "wireless-tools"
++
++PROVIDES += "ti-compat-wireless-wl12xx"
++RPROVIDES += "ti-compat-wireless-wl12xx"
++RREPLACES += "ti-compat-wireless-wl12xx"
++RCONFLICTS += "ti-compat-wireless-wl12xx"
++
++PV = "r8.a6.01"
++inherit module
++
++PR = "${MACHINE_KERNEL_PR}"
++PR_append = "a"
++
++SRCREV_wl18xx = "ol_r8.a6.01"
++SRCREV_compat = "ol_r8.a6.01"
++SRCREV_compat-wireless = "ol_r8.a6.01"
++
++SRCREV_FORMAT = "compat-wireless"
++
++S = "${WORKDIR}/compat-wireless"
++
++SRC_URI = "git://github.com/TI-OpenLink/compat-wireless.git;destsuffix=compat-wireless;name=compat-wireless \
++           git://github.com/TI-OpenLink/compat.git;destsuffix=compat;name=compat \
++           git://github.com/TI-OpenLink/wl18xx.git;destsuffix=wl18xx;name=wl18xx \
++           file://0001-git-version-wl18xx-use-compat-base-tree.patch;patchdir=../wl18xx \
++           file://0001-wl12xx-additional-two-members-for-wl12xx_platform_da.patch;patchdir=../wl18xx \
++          "
++
++
++EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
++
++# Prevent sourceipk clear_git function from running.
++# This preserves the git repo until driver-select is ran.
++
++clear_git() {
++    :
++}
++
++do_configure() {
++    cd ${S}
++    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh
++    ./scripts/driver-select wl18xx
++
++    # Delete the .git repository since it should no longer be needed.
++    rm -rf ${S}/.git ${S}/.gitignore
++
++    # Now generate the sourceipk with the properly configured sources
++    sourceipk_do_create_srcipk
++}
++
++do_configure_append() {
++    sed -i "s#@./scripts/update-initramfs## " Makefile
++}
 +
 +do_install() {
-+    install -d ${D}${bindir}
-+    install -m 0755 calibrator ${D}${bindir}/
++    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
 +}
 -- 
 1.7.9.5
