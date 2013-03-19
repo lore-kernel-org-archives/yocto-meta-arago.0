@@ -1,25 +1,25 @@
 Return-Path: <eyalr@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 02AD8529AF
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 74AD7529AF
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Mar 2013 16:07:09 +0000 (UTC)
+	Tue, 19 Mar 2013 16:07:21 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2JG78KJ011680
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 11:07:08 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2JG7J72016311
+	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 11:07:20 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2JG77aV013407
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2JG7IpY013429
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Mar 2013 21:37:07 +0530 (IST)
+	Tue, 19 Mar 2013 21:37:18 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Tue, 19 Mar 2013 21:37:07 +0530
+	Tue, 19 Mar 2013 21:37:18 +0530
 Received: from user-VirtualBox.emea.dhcp.ti.com (dbdp20.itg.ti.com
 	[172.24.170.38])	by dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r2JG6ter026686;	Tue, 19 Mar 2013 21:37:06 +0530
+	r2JG6tes026686;	Tue, 19 Mar 2013 21:37:17 +0530
 From: Eyal Reizer <eyalr@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 19 Mar 2013 18:06:34 +0200
-Message-ID: <1363709200-2854-4-git-send-email-eyalr@ti.com>
+Date: Tue, 19 Mar 2013 18:06:35 +0200
+Message-ID: <1363709200-2854-5-git-send-email-eyalr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1363709200-2854-2-git-send-email-eyalr@ti.com>
 References: <1363709200-2854-2-git-send-email-eyalr@ti.com>
@@ -37,7 +37,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 16:07:10 -0000
+X-List-Received-Date: Tue, 19 Mar 2013 16:07:21 -0000
 Content-Type: text/plain
 
 Add a recipe for building a ti specific 2.0-devel version for
@@ -47,14 +47,6 @@ This package replace the wilink6 package which is provided by the
 wpa-supplicant recipe.
 Selection between the two is done using a "WILINK_VERSION" switch added
 to arago.conf.
-
-Changes in v2:
-* Use an actual release name in the recipe name instead of _git
-* Add RPROVIDES, RREPLACES, RCONFLICTS as this recipe completely 
-  replace the wilink6 one.
-* Use the wpa-supplicant.inc file added lately by Franklin and 
-  therefore depends on his series of patches for selecting between 
-  different versions of wilink6 releases.
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
