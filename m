@@ -1,37 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 65ED652A51
+Return-Path: <denis@denix.org>
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTP id B02B852961
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Mar 2013 18:59:09 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2JIx8n1015244
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 13:59:08 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2JIx8eR012191
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 13:59:08 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Tue, 19 Mar 2013 13:59:08 -0500
-Received: from DFLE09.ent.ti.com ([fe80::3103:58c3:47f:860b]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Tue, 19 Mar 2013 13:59:08 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [nightly] Core TISDK 2013.03 build
-	2013-03-18_23-01-06
-Thread-Index: AQHOJMtdYOTamks0R0WECwrL+kV6X5itXSzg
-Date: Tue, 19 Mar 2013 18:59:07 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C3EAA74@DFLE09.ent.ti.com>
+	Tue, 19 Mar 2013 19:20:33 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173011.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MJX003T39PP12Z1@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 19 Mar 2013 14:20:13 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id E7E1220033; Tue,
+	19 Mar 2013 15:20:12 -0400 (EDT)
+Date: Tue, 19 Mar 2013 15:20:12 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-id: <20130319192012.GI14761@denix.org>
 References: <1186596819.57.1363666176762.JavaMail.jenkins@puget>
 	<20130319175128.GR32759@edge>
-In-Reply-To: <20130319175128.GR32759@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
-MIME-Version: 1.0
-Subject: Re: [nightly] Core TISDK 2013.03 build	2013-03-18_23-01-06
+	<8F29D6B095ED194EA1980491A5E029710C3EAA74@DFLE09.ent.ti.com>
+MIME-version: 1.0
+In-reply-to: <8F29D6B095ED194EA1980491A5E029710C3EAA74@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [nightly] Core TISDK 2013.03 build 2013-03-18_23-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,186 +35,88 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 18:59:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Mar 2013 19:20:34 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
+On Tue, Mar 19, 2013 at 06:59:07PM +0000, Cooper Jr., Franklin wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
+> > Sent: Tuesday, March 19, 2013 12:51 PM
+> > To: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [nightly] Core TISDK 2013.03 build 2013-03-18_23-
+> > 01-06
+> > 
+> > Ok, the build results are now much better!
+> > 
+> > The only broken build is for the beagleboard with the latest Graphics SDK and I
+> > believe Franklin already has a fix for that - I'll wait for a patch.
+> 
+> Beagleboard builds fine I had one kernel panic but that was a onetime 
+> runtime issue and we couldn't conclude if it was a Graphics issue or not. 
+> What was the build failure?
 
+Bunch of OMAP_DSS_UPDATE_* undefined in services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> Sent: Tuesday, March 19, 2013 12:51 PM
-> To: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [nightly] Core TISDK 2013.03 build 2013-03-18_2=
-3-
-> 01-06
->=20
-> Ok, the build results are now much better!
->=20
-> The only broken build is for the beagleboard with the latest Graphics SDK=
- and I
-> believe Franklin already has a fix for that - I'll wait for a patch.
+It's kernel 3.3.7 and linux-libc-headers 3.2 - is there anything else missing? 
+What about that fix you pointed me yesterday with failed "cp"?
 
-Beagleboard builds fine I had one kernel panic but that was a onetime runti=
-me issue and we couldn't conclude if it was a Graphics issue or not. What w=
-as the build failure?
+Here's the actual log around the failure:
 
->=20
-> And as of the run-time tests - I'm still tweaking some things and updatin=
-g
-> configuration... The console logs show that 3 out of 4 tested boards actu=
-ally
-> were able to boot, but there were some testing hick-ups. I am also switch=
-ing to
-> a different board farm, that is geographically closer to me (i.e. local),=
- so should
-> have slightly better control over this aspect.
->=20
-> Stay tuned!
->=20
-> --
-> Denys
->=20
->=20
-> On Tue, Mar 19, 2013 at 12:09:36AM -0400, Denys Dmytriyenko wrote:
-> > Status for 03/19/13
-> >
-> > BUILD_ID: build-2013-03-18_23-02-13
-> >
-> > Clean Build: false
-> >
-> > Clean Sources: false
-> >
-> > Repository Revisions
-> >
-> > +----------------------------------------------------------------------=
------------------------------
-> -------------------------+
-> > |   Repository    |                     Git URL                     |Br=
-anch|Commit|
-> Layers                  |
-> > |                 |                                                 |  =
-    |  ID  |
-> |
-> > |-----------------+-------------------------------------------------+--=
-----+------+---------------
-> ---------------------------|
-> > |bitbake          |git://git.openembedded.org/bitbake
-> |master|1.17.0|layers=3D                                   |
-> > |-----------------+-------------------------------------------------+--=
-----+------+---------------
-> ---------------------------|
-> > |meta-arago       |git://arago-project.org/git/meta-arago.git
-> |master|HEAD  |layers=3Dmeta-arago-distro:meta-arago-extras|
-> > |-----------------+-------------------------------------------------+--=
-----+------+---------------
-> ---------------------------|
-> > |meta-openembedded|git://git.openembedded.org/meta-openembedded
-> |danny |HEAD  |layers=3Dtoolchain-layer:meta-oe            |
-> > |-----------------+-------------------------------------------------+--=
-----+------+---------------
-> ---------------------------|
-> > |meta-ti          |git://arago-project.org/git/meta-ti.git          |da=
-nny |HEAD
-> |layers=3D                                   |
-> > |-----------------+-------------------------------------------------+--=
-----+------+---------------
-> ---------------------------|
-> > |meta-linaro      |git://git.linaro.org/openembedded/meta-linaro.git|da=
-nny
-> |HEAD  |layers=3D                                   |
-> > |-----------------+-------------------------------------------------+--=
-----+------+---------------
-> ---------------------------|
-> > |oe-core          |git://git.openembedded.org/openembedded-core     |da=
-nny
-> |HEAD  |layers=3Dmeta                               |
-> > +----------------------------------------------------------------------=
------------------------------
-> -------------------------+
-> >
-> > Build and Target Test Results
-> >
-> >    +-------------------------------------------+
-> >    |  Machine  |Build Result|Target Test Result|
-> >    |-----------+------------+------------------|
-> >    |am335x-evm |PASSED      |FAILED            |
-> >    |-----------+------------+------------------|
-> >    |am37x-evm  |PASSED      |FAILED            |
-> >    |-----------+------------+------------------|
-> >    |beagleboard|FAILED      |SKIPPED           |
-> >    |-----------+------------+------------------|
-> >    |am3517-evm |PASSED      |FAILED            |
-> >    |-----------+------------+------------------|
-> >    |am180x-evm |PASSED      |FAILED            |
-> >    +-------------------------------------------+
-> >
-> >    These builds were performed using the build-oesdk.sh script at:
-> >
-> >    git://arago-project.org/git/projects/tisdk-build-scripts.git
-> >
-> >    The configuration file passed to this script had the contents:
-> >
-> >    MANDATORY_INPUTS=3D"MACHINES NUM_ARM9_BUILDS
-> NUM_CORTEX_BUILDS BUILD_ID
-> >    SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT
-> FS_FILTER
-> >    SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE
-> LOG_DIR
-> >    TISDK_VERSION"
-> >    TISDK_VERSION=3D"2013.03"
-> >    MACHINES=3D"am335x-evm am37x-evm beagleboard am3517-evm am180x-
-> evm"
-> >    NUM_ARM9_BUILDS=3D"1"
-> >    NUM_CORTEX_BUILDS=3D"1"
-> >    TOOLCHAIN_ROOT_ARM9=3D"/opt/arago-2011.09/armv5te/bin/"
-> >    TOOLCHAIN_ROOT_CORTEX=3D"/opt/arago-2011.09/armv7a/bin/"
-> >    BUILD_ID=3D"`date +build-%F_%H-%M-%S`"
-> >    SCRIPTS_ROOT=3D"$PWD"
-> >    BUILD_ROOT=3D"/home/jenkins/tisdk-build"
-> >    TEST_ROOT=3D"$BUILD_ROOT/testing"
-> >    PACKAGE_ROOT=3D"$BUILD_ROOT/packaging"
-> >    DEPLOY_ROOT=3D"$BUILD_ROOT/deploy/$TISDK_VERSION"
-> >    FS_FILTER=3D"tisdk-rootfs-"
-> >    FS_IMAGE_TYPE=3D"tar.gz"
-> >    SDK_FILTER=3D"arago-amsdk-image-"
-> >    SDK_IMAGE_TYPE=3D"tar.gz"
-> >    NFS_ROOT=3D"/home/jenkins/nfs-root"
-> >    SOURCE_DIR=3D"${BUILD_ROOT}/sources"
-> >    CLEAN_BUILD=3D"false"
-> >    CLEAN_ALL=3D"false"
-> >    CONFIG_FILE=3D"${BUILD_ROOT}/configs/arago-danny-config.txt"
-> >    LOG_DIR=3D"${BUILD_ROOT}/log-files"
-> >    DL_DIR=3D"/OE/downloads"
-> >    INSTALLER_EXTRAS_ROOT=3D"/home/jenkins/extra-files/installer_content=
-"
-> >    TEST_SCRIPTS=3D"$SCRIPTS_ROOT/test-scripts"
-> >    TEST_SCRIPTS_TGT=3D"home/root/test-scripts"
-> >    TEST_LOCAL_IFACE=3D"eth1"
-> >    OPENTEST_CLI=3D"$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
-> >    RUN_BUILD_TESTS=3D"true"
-> >    STAF_ROOT=3D"/usr/local/staf"
-> >    SKIP_TEST_FAILURES=3D"false"
-> >    PRODUCTIZE_SDK=3D"false"
-> >    BITBAKE_COMMAND=3D"arago-amsdk-image"
-> >    RESULTS_CONFIG_COMMENTS=3D"false"
-> >    INSTALL_JAMMER=3D"/home/jenkins/installjammer"
-> >    INSTALLER_ROOT=3D"$BUILD_ROOT/installer"
-> >    MPI_FILE=3D"$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"
-> >    SD_CARD_CONTENT=3D"/home/jenkins/extra-files/sd_content"
-> >    WEBGEN_ROOT=3D"/home/jenkins/webgen"
-> >    WEB_EXTRAS_ROOT=3D"/home/jenkins/extra-files/web_content"
-> >    WEBGEN_MAK_ROOT=3D"$SCRIPTS_ROOT/publish-sdk-data"
-> >    COPY_TO_WEB=3D"true"
-> >    WEB_HOST=3D""
-> >    CLEAN_AFTER_COPY=3D"true"
-> >    BACKUP_RESULTS=3D"/home/jenkins/jobs/arago-core-tisdk-
-> nightly/workspace"
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+ERROR: Function failed: do_compile (see /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/temp/log.do_compile.3137 for further information)
+ERROR: Logfile of failure stored in: /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/temp/log.do_compile.3137
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 12 -e MAKEFLAGS= KERNEL_PATH=/OE/arago-tmp-external-arago-toolchain/sysroots/beagleboard/usr/src/kernel KERNEL_SRC=/OE/arago-tmp-external-arago-toolchain/sysroots/beagleboard/usr/src/kernel KERNEL_VERSION=3.3.7 CC=arm-arago-linux-gnueabi-gcc  -mno-thumb-interwork -marm LD=arm-arago-linux-gnueabi-ld   AR=arm-arago-linux-gnueabi-ar  BUILD=release TI_PLATFORM=omap3630 SUPPORT_XORG=0
+| make -C /OE/arago-tmp-external-arago-toolchain/sysroots/beagleboard/usr/src/kernel M=`pwd`
+| make[1]: Entering directory `/OE/arago-tmp-external-arago-toolchain/sysroots/beagleboard/usr/src/kernel'
+|   CC [M]  /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/bc_cat.o
+|   LD [M]  /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/bufferclass_ti.o
+|   CC [M]  /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_displayclass.o
+|   CC [M]  /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.o
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: In function 'OMAPLFBCreateSwapQueue':
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:284:29: error: 'WQ_FREEZEABLE' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:284:29: note: each undeclared identifier is reported only once for each function it appears in
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: At top level:
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:421:55: warning: 'enum omap_dss_update_mode' declared inside parameter list
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:421:55: warning: its scope is only this definition or declaration, which is probably not what you want
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:421:76: error: parameter 1 ('eMode') has incomplete type
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:421:21: warning: function declaration isn't a prototype
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: In function 'OMAPLFBValidateDSSUpdateMode':
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:425:8: error: 'OMAP_DSS_UPDATE_AUTO' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:426:8: error: 'OMAP_DSS_UPDATE_MANUAL' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:427:8: error: 'OMAP_DSS_UPDATE_DISABLED' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: At top level:
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:436:58: warning: 'enum omap_dss_update_mode' declared inside parameter list
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:436:79: error: parameter 1 ('eMode') has incomplete type
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:436:28: warning: function declaration isn't a prototype
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: In function 'OMAPLFBFromDSSUpdateMode':
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:440:8: error: 'OMAP_DSS_UPDATE_AUTO' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:442:8: error: 'OMAP_DSS_UPDATE_MANUAL' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:444:8: error: 'OMAP_DSS_UPDATE_DISABLED' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: At top level:
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:469:34: error: return type is an incomplete type
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: In function 'OMAPLFBToDSSUpdateMode':
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:474:11: error: 'OMAP_DSS_UPDATE_AUTO' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:474:4: warning: 'return' with a value, in function returning void
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:476:11: error: 'OMAP_DSS_UPDATE_MANUAL' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:476:4: warning: 'return' with a value, in function returning void
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:478:11: error: 'OMAP_DSS_UPDATE_DISABLED' undeclared (first use in this function)
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:478:4: warning: 'return' with a value, in function returning void
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:483:2: warning: 'return' with a value, in function returning void
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c: At top level:
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:421:21: warning: 'OMAPLFBValidateDSSUpdateMode' defined but not used
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:436:28: warning: 'OMAPLFBFromDSSUpdateMode' defined but not used
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:454:21: warning: 'OMAPLFBValidateUpdateMode' defined but not used
+| /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.c:469:34: warning: 'OMAPLFBToDSSUpdateMode' defined but not used
+| make[3]: *** [/OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux/omaplfb_linux.o] Error 1
+| make[2]: *** [/OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM/services4/3rdparty/dc_omapfb3_linux] Error 2
+| make[1]: *** [_module_/OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/Graphics_SDK_4_08_00_01/GFX_Linux_KM] Error 2
+| make[1]: Leaving directory `/OE/arago-tmp-external-arago-toolchain/sysroots/beagleboard/usr/src/kernel'
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (see /OE/arago-tmp-external-arago-toolchain/work/beagleboard-oe-linux-gnueabi/omap3-sgx-modules-4.08.00.01-r123a/temp/log.do_compile.3137 for further information)
 
