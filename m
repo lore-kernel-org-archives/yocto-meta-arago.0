@@ -1,31 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D1CD452A24
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 6CA21529AF
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 02:06:02 +0000 (UTC)
+	Wed, 20 Mar 2013 02:06:04 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K260RD023841
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 21:06:01 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K262RR010330
+	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 21:06:03 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K260AH023014
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K261ja023019
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 07:36:00 +0530 (IST)
+	Wed, 20 Mar 2013 07:36:01 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 20 Mar 2013 07:36:00 +0530
+	Wed, 20 Mar 2013 07:36:01 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K25epQ026167;
-	Wed, 20 Mar 2013 07:35:59 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K25epR026167;
+	Wed, 20 Mar 2013 07:36:00 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 19 Mar 2013 21:05:34 -0500
-Message-ID: <1363745138-10288-13-git-send-email-fcooper@ti.com>
+Date: Tue, 19 Mar 2013 21:05:35 -0500
+Message-ID: <1363745138-10288-14-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1363745138-10288-1-git-send-email-fcooper@ti.com>
 References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 13/17] ti-wifi-utils: Add runtime dependency on wilink-calibrate
+Subject: [PATCH 14/17] ti-wifi-utils: Pull back in old r5.00.18 recipe.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,33 +38,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Mar 2013 02:06:03 -0000
+X-List-Received-Date: Wed, 20 Mar 2013 02:06:04 -0000
 Content-Type: text/plain
 
-* Install the wilink calibrate script to insure that the wilink module is using
-  a unique MAC address.
-* By default this script only works for the wilink module that comes with
-  the am335x evms.
+* Current am180x-evm ships with a PG 2 wilink 6 module that isn't supported in
+  newer wilink 6 releases.
+* A newer PG 3 wilink 6 module is available for am180x-evm but needs to be
+  purchased separately..
+* Bring old r5.00.18 ti-wifi-utils recipe with updated recipe name
+  to add support for am180x-evm default wilink 6 module.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb       |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+ .../ti-wifi-utils/ti-wifi-utils_r5.00.18.bb        |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
-index e9f5a3c..6f46910 100644
---- a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
-@@ -3,6 +3,8 @@ require ti-wifi-utils.inc
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
- 
--PR_append ="a+gitr${SRCPV}"
-+PR_append ="b+gitr${SRCPV}"
- 
- SRCREV = "ol_R5.SP3.05"
+diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
+new file mode 100644
+index 0000000..cdb1e91
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
+@@ -0,0 +1,8 @@
++require ti-wifi-utils.inc
 +
-+RDEPENDS_${PN}_am335x-evm_append = " wilink-calibrate"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
++
++PR_append ="a+gitr${SRCPV}"
++
++SRCREV = "ol_R5.00.18"
+\ No newline at end of file
 -- 
 1.7.0.4
 
