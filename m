@@ -1,28 +1,30 @@
 Return-Path: <eyalr@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 8424A529A3
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C8E38529A3
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 09:30:34 +0000 (UTC)
+	Wed, 20 Mar 2013 09:30:40 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K9UVcl002294
-	for <meta-arago@arago-project.org>; Wed, 20 Mar 2013 04:30:32 -0500
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K9UUn5020925
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K9UcXe020450
+	for <meta-arago@arago-project.org>; Wed, 20 Mar 2013 04:30:39 -0500
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K9UbL5021083
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 15:00:31 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 20 Mar 2013 15:00:30 +0530
+	Wed, 20 Mar 2013 15:00:37 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 20 Mar 2013 15:00:37 +0530
 Received: from user-VirtualBox.emea.dhcp.ti.com (dbdp20.itg.ti.com
 	[172.24.170.38])	by dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r2K9URxH013496;	Wed, 20 Mar 2013 15:00:28 +0530
+	r2K9URxJ013496;	Wed, 20 Mar 2013 15:00:36 +0530
 From: Eyal Reizer <eyalr@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 20 Mar 2013 11:30:09 +0200
-Message-ID: <1363771816-4022-2-git-send-email-eyalr@ti.com>
+Date: Wed, 20 Mar 2013 11:30:11 +0200
+Message-ID: <1363771816-4022-4-git-send-email-eyalr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1363771816-4022-2-git-send-email-eyalr@ti.com>
+References: <1363771816-4022-2-git-send-email-eyalr@ti.com>
 MIME-Version: 1.0
-Subject: [PATCHv3 2/9] wl18xx-firmware: install Wilink8 wlan firmware files
+Subject: [PATCHv3 4/9] wpa-supplicant-wl18xx: build ti 2.0-devel version for wilink8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,81 +37,515 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Mar 2013 09:30:37 -0000
+X-List-Received-Date: Wed, 20 Mar 2013 09:30:41 -0000
 Content-Type: text/plain
 
-Add a recipe for installing the Wilink8 wlan firmware files into
-the target file system.
+Add a recipe for building a ti specific 2.0-devel version for
+Wilink8.
 
 This package replace the wilink6 package which is provided by the
-wl12xx-firmware recipe. Selection between the two is done using a
-"WILINK_VERSION" switch added to arago.conf
+wpa-supplicant recipe.
+Selection between the two is done using a "WILINK_VERSION" switch added
+to arago.conf.
 
 Changes in v2:
 * Use an actual release name in the recipe name instead of _git
 * Add RPROVIDES, RREPLACES, RCONFLICTS as this recipe completely 
   replace the wilink6 one.
+* Use the wpa-supplicant.inc file added lately by Franklin and 
+  therefore depends on his series of patches for selecting between 
+  different versions of wilink6 releases.
 
 Changes in v3:
 * Add _${PN} to all runtime variables
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
- .../wl18xx-firmware/wl18xx-firmware/Makefile       |    7 +++++
- .../wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb    |   30 ++++++++++++++++++++
- 2 files changed, 37 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
- create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
+ .../wpa-supplicant/wpa-supplicant-wl18xx/defconfig |  430 ++++++++++++++++++++
+ .../wpa-supplicant-wl18xx_r8.a6.01.bb              |   23 ++
+ .../wpa-supplicant/wpa-supplicant.inc              |    2 +-
+ 3 files changed, 454 insertions(+), 1 deletion(-)
+ create mode 100755 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig
+ create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a6.01.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
-new file mode 100644
-index 0000000..0bb7ab8
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig
+new file mode 100755
+index 0000000..b982e2a
 --- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
-@@ -0,0 +1,7 @@
-+# Installs the the ti-connectiviy wlan firmware files into the root file system
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig
+@@ -0,0 +1,430 @@
++# Example wpa_supplicant build time configuration
++#
++# This file lists the configuration options that are used when building the
++# hostapd binary. All lines starting with # are ignored. Configuration option
++# lines must be commented out complete, if they are not to be included, i.e.,
++# just setting VARIABLE=n is not disabling that variable.
++#
++# This file is included in Makefile, so variables like CFLAGS and LIBS can also
++# be modified from here. In most cases, these lines should use += in order not
++# to override previous values of the variables.
 +
-+install:
-+	install -d  $(DEST_DIR)/lib/firmware/ti-connectivity
-+	cp -RpP * $(DEST_DIR)/lib/firmware/ti-connectivity/
-+	rm -f $(DEST_DIR)/lib/firmware/ti-connectivity/Makefile
 +
-diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
++# Uncomment following two lines and fix the paths if you have installed OpenSSL
++# or GnuTLS in non-default location
++#CFLAGS += -I/usr/local/openssl/include
++#LIBS += -L/usr/local/openssl/lib
++
++# Some Red Hat versions seem to include kerberos header files from OpenSSL, but
++# the kerberos files are not in the default include path. Following line can be
++# used to fix build issues on such systems (krb5.h not found).
++#CFLAGS += -I/usr/include/kerberos
++
++# Example configuration for various cross-compilation platforms
++
++#### sveasoft (e.g., for Linksys WRT54G) ######################################
++#CC=mipsel-uclibc-gcc
++#CC=/opt/brcm/hndtools-mipsel-uclibc/bin/mipsel-uclibc-gcc
++#CFLAGS += -Os
++#CPPFLAGS += -I../src/include -I../../src/router/openssl/include
++#LIBS += -L/opt/brcm/hndtools-mipsel-uclibc-0.9.19/lib -lssl
++###############################################################################
++
++#### openwrt (e.g., for Linksys WRT54G) #######################################
++#CC=mipsel-uclibc-gcc
++#CC=/opt/brcm/hndtools-mipsel-uclibc/bin/mipsel-uclibc-gcc
++#CFLAGS += -Os
++#CPPFLAGS=-I../src/include -I../openssl-0.9.7d/include \
++#	-I../WRT54GS/release/src/include
++#LIBS = -lssl
++###############################################################################
++
++#CC=$(CROSS_COMPILE)gcc
++#CFLAGS += -DCONFIG_LIBNL20
++#CPPFLAGS += -DCONFIG_LIBNL20
++#LIBS += -L$(NFSROOT)/lib -lnl
++#LIBS_p += -L$(NFSROOT)/lib
++#LIBDIR = $(NFSROOT)/lib
++#BINDIR = $(NFSROOT)/usr/sbin
++
++CONFIG_WAPI=y
++CONFIG_LIBNL20=y
++NEED_BGSCAN=y
++CONFIG_BGSCAN_LEARN=y
++
++# Driver interface for Host AP driver
++#CONFIG_DRIVER_HOSTAP=y
++
++# Driver interface for Agere driver
++#CONFIG_DRIVER_HERMES=y
++# Change include directories to match with the local setup
++#CFLAGS += -I../../hcf -I../../include -I../../include/hcf
++#CFLAGS += -I../../include/wireless
++
++# Driver interface for madwifi driver
++# Deprecated; use CONFIG_DRIVER_WEXT=y instead.
++#CONFIG_DRIVER_MADWIFI=y
++# Set include directory to the madwifi source tree
++#CFLAGS += -I../../madwifi
++
++# Driver interface for ndiswrapper
++# Deprecated; use CONFIG_DRIVER_WEXT=y instead.
++#CONFIG_DRIVER_NDISWRAPPER=y
++
++# Driver interface for Atmel driver
++#CONFIG_DRIVER_ATMEL=y
++
++# Driver interface for old Broadcom driver
++# Please note that the newer Broadcom driver ("hybrid Linux driver") supportsBG
++# Linux wireless extensions and does not need (or even work) with the old
++# driver wrapper. Use CONFIG_DRIVER_WEXT=y with that driver.
++#CONFIG_DRIVER_BROADCOM=y
++# Example path for wlioctl.h; change to match your configuration
++#CFLAGS += -I/opt/WRT54GS/release/src/include
++
++# Driver interface for Intel ipw2100/2200 driver
++# Deprecated; use CONFIG_DRIVER_WEXT=y instead.
++#CONFIG_DRIVER_IPW=y
++
++# Driver interface for Ralink driver
++#CONFIG_DRIVER_RALINK=y
++
++# Driver interface for generic Linux wireless extensions
++CONFIG_DRIVER_WEXT=y
++
++# Driver interface for Linux drivers using the nl80211 kernel interface
++CONFIG_DRIVER_NL80211=y
++
++# Driver interface for FreeBSD net80211 layer (e.g., Atheros driver)
++#CONFIG_DRIVER_BSD=y
++#CFLAGS += -I/usr/local/include
++#LIBS += -L/usr/local/lib
++#LIBS_p += -L/usr/local/libBG
++#LIBS_c += -L/usr/local/lib
++
++# Driver interface for Windows NDIS
++#CONFIG_DRIVER_NDIS=y
++#CFLAGS += -I/usr/include/w32api/ddk
++#LIBS += -L/usr/local/lib
++# For native build using mingw
++#CONFIG_NATIVE_WINDOWS=y
++# Additional directories for cross-compilation on Linux host for mingw target
++#CFLAGS += -I/opt/mingw/mingw32/include/ddk
++#LIBS += -L/opt/mingw/mingw32/lib
++#CC=mingw32-gcc
++# By default, driver_ndis uses WinPcap for low-level operations. This can be
++# replaced with the following option which replaces WinPcap calls with NDISUIO.
++# However, this requires that WZC is disabled (net stop wzcsvc) before starting
++# wpa_supplicant.
++# CONFIG_USE_NDISUIO=y
++
++# Driver interface for development testing
++#CONFIG_DRIVER_TEST=y
++
++# Include client MLME (management frame processing) for test driver
++# This can be used to test MLME operations in hostapd with the test interface.
++# space.
++#CONFIG_CLIENT_MLME=y
++
++# Driver interface for wired Ethernet drivers
++CONFIG_DRIVER_WIRED=y
++
++# Driver interface for the Broadcom RoboSwitch family
++#CONFIG_DRIVER_ROBOSWITCH=y
++
++# Driver interface for no driver (e.g., WPS ER only)
++#CONFIG_DRIVER_NONE=y
++
++# Solaris libraries
++#LIBS += -lsocket -ldlpi -lnsl
++#LIBS_c += -lsocket
++
++# Enable IEEE 802.1X Supplicant (automatically included if any EAP method is
++# included)
++CONFIG_IEEE8021X_EAPOL=y
++
++# EAP-MD5
++CONFIG_EAP_MD5=y
++
++# EAP-MSCHAPv2
++CONFIG_EAP_MSCHAPV2=y
++
++# EAP-TLS
++CONFIG_EAP_TLS=y
++
++# EAL-PEAP
++CONFIG_EAP_PEAP=y
++
++# EAP-TTLS
++CONFIG_EAP_TTLS=y
++
++# EAP-FAST
++# Note: Default OpenSSL package does not include support for all the
++# functionality needed for EAP-FAST. If EAP-FAST is enabled with OpenSSL,
++# the OpenSSL library must be patched (openssl-0.9.8d-tls-extensions.patch)
++# to add the needed functions.
++#CONFIG_EAP_FAST=y
++
++# EAP-GTC
++CONFIG_EAP_GTC=y
++
++# EAP-OTP
++CONFIG_EAP_OTP=y
++
++# EAP-SIM (enable CONFIG_PCSC, if EAP-SIM is used)
++#CONFIG_EAP_SIM=y
++
++# EAP-PSK (experimental; this is _not_ needed for WPA-PSK)
++#CONFIG_EAP_PSK=y
++
++# EAP-PAX
++#CONFIG_EAP_PAX=y
++
++# LEAP
++CONFIG_EAP_LEAP=y
++
++# EAP-AKA (enable CONFIG_PCSC, if EAP-AKA is used)
++#CONFIG_EAP_AKA=y
++
++# EAP-AKA' (enable CONFIG_PCSC, if EAP-AKA' is used).
++# This requires CONFIG_EAP_AKA to be enabled, too.
++#CONFIG_EAP_AKA_PRIME=y
++
++# Enable USIM simulator (Milenage) for EAP-AKA
++#CONFIG_USIM_SIMULATOR=y
++
++# EAP-SAKE
++#CONFIG_EAP_SAKE=y
++
++# EAP-GPSK
++#CONFIG_EAP_GPSK=y
++# Include support for optional SHA256 cipher suite in EAP-GPSK
++#CONFIG_EAP_GPSK_SHA256=y
++
++# EAP-TNC and related Trusted Network Connect support (experimental)
++#CONFIG_EAP_TNC=y
++
++# Wi-Fi Protected Setup (WPS)
++CONFIG_WPS=y
++# Enable WSC 2.0 support
++CONFIG_WPS2=y
++
++# EAP-IKEv2
++#CONFIG_EAP_IKEV2=y
++
++# PKCS#12 (PFX) support (used to read private key and certificate file from
++# a file that usually has extension .p12 or .pfx)
++CONFIG_PKCS12=y
++
++# Smartcard support (i.e., private key on a smartcard), e.g., with openssl
++# engine.
++CONFIG_SMARTCARD=y
++
++# PC/SC interface for smartcards (USIM, GSM SIM)
++# Enable this if EAP-SIM or EAP-AKA is included
++#CONFIG_PCSC=y
++
++# Development testingBG
++#CONFIG_EAPOL_TEST=y
++
++# Select control interface backend for external programs, e.g, wpa_cli:
++# unix = UNIX domain sockets (default for Linux/*BSD)
++# udp = UDP sockets using localhost (127.0.0.1)
++# named_pipe = Windows Named Pipe (default for Windows)
++# y = use default (backwards compatibility)
++# If this option is commented out, control interface is not included in the
++# build.
++CONFIG_CTRL_IFACE=y
++
++# Include support for GNU Readline and History Libraries in wpa_cli.
++# When building a wpa_cli binary for distribution, please note that these
++# libraries are licensed under GPL and as such, BSD license may not apply for
++# the resulting binary.
++#CONFIG_READLINE=y
++
++# Remove debugging code that is printing out debug message to stdout.
++# This can be used to reduce the size of the wpa_supplicant considerably
++# if debugging code is not needed. The size reduction can be around 35%
++# (e.g., 90 kB).
++#CONFIG_NO_STDOUT_DEBUG=y
++
++# Remove WPA support, e.g., for wired-only IEEE 802.1X supplicant, to save
++# 35-50 kB in code size.
++#CONFIG_NO_WPA=y
++
++# Remove WPA2 support. This allows WPA to be used, but removes WPA2 code to
++# save about 1 kB in code size when building only WPA-Personal (no EAP support)
++# or 6 kB if building for WPA-Enterprise.
++#CONFIG_NO_WPA2=y
++
++# Remove IEEE 802.11i/WPA-Personal ASCII passphrase support
++# This option can be used to reduce code size by removing support for
++# converting ASCII passphrases into PSK. If this functionality is removed, the
++# PSK can only be configured as the 64-octet hexstring (e.g., from
++# wpa_passphrase). This saves about 0.5 kB in code size.
++#CONFIG_NO_WPA_PASSPHRASE=y
++
++# Disable scan result processing (ap_mode=1) to save code size by about 1 kB.
++# This can be used if ap_scan=1 mode is never enabled.
++#CONFIG_NO_SCAN_PROCESSING=y
++
++# Select configuration backend:
++# file = text file (e.g., wpa_supplicant.conf; note: the configuration file
++#	path is given on command line, not here; this option is just used to
++#	select the backend that allows configuration files to be used)
++# winreg = Windows registry (see win_example.reg for an example)
++CONFIG_BACKEND=file
++
++# Remove configuration write functionality (i.e., to allow the configuration
++# file to be updated based on runtime configuration changes). The runtime
++# configuration can still be changed, the changes are just not going to be
++# persistent over restarts. This option can be used to reduce code size by
++# about 3.5 kB.
++#CONFIG_NO_CONFIG_WRITE=y
++
++# Remove support for configuration blobs to reduce code size by about 1.5 kB.
++#CONFIG_NO_CONFIG_BLOBS=y
++
++# Select program entry point implementation:
++# main = UNIX/POSIX like main() function (default)
++# main_winsvc = Windows service (read parameters from registry)
++# main_none = Very basic example (development use only)
++#CONFIG_MAIN=main
++
++# Select wrapper for operatins system and C library specific functions
++# unix = UNIX/POSIX like systems (default)
++# win32 = Windows systems
++# none = Empty template
++#CONFIG_OS=unix
++
++# Select event loop implementation
++# eloop = select() loop (default)
++# eloop_win = Windows events and WaitForMultipleObject() loop
++# eloop_none = Empty template
++#CONFIG_ELOOP=eloop
++
++# Select layer 2 packet implementation
++# linux = Linux packet socket (default)
++# pcap = libpcap/libdnet/WinPcap
++# freebsd = FreeBSD libpcap
++# winpcap = WinPcap with receive thread
++# ndis = Windows NDISUIO (note: requires CONFIG_USE_NDISUIO=y)
++# none = Empty template
++#CONFIG_L2_PACKET=linux
++
++# PeerKey handshake for Station to Station Link (IEEE 802.11e DLS)
++CONFIG_PEERKEY=y
++
++# IEEE 802.11w (management frame protection)
++# This version is an experimental implementation based on IEEE 802.11w/D1.0
++# draft and is subject to change since the standard has not yet been finalized.
++# Driver support is also needed for IEEE 802.11w.
++#CONFIG_IEEE80211W=y
++
++# Select TLS implementation
++# openssl = OpenSSL (default)
++# gnutls = GnuTLS (needed for TLS/IA, see also CONFIG_GNUTLS_EXTRA)
++# internal = Internal TLSv1 implementation (experimental)
++# none = Empty template
++#CONFIG_TLS=openssl
++
++# Whether to enable TLS/IA support, which is required for EAP-TTLSv1.
++# You need CONFIG_TLS=gnutls for this to have any effect. Please note that
++# even though the core GnuTLS library is released under LGPL, this extra
++# library uses GPL and as such, the terms of GPL apply to the combination
++# of wpa_supplicant and GnuTLS if this option is enabled. BSD license may not
++# apply for distribution of the resulting binary.
++#CONFIG_GNUTLS_EXTRA=y
++
++# If CONFIG_TLS=internal is used, additional library and include paths are
++# needed for LibTomMath. Alternatively, an integrated, minimal version of
++# LibTomMath can be used. See beginning of libtommath.c for details on benefits
++# and drawbacks of this option.
++#CONFIG_INTERNAL_LIBTOMMATH=y
++#ifndef CONFIG_INTERNAL_LIBTOMMATH
++#LTM_PATH=/usr/src/libtommath-0.39
++#CFLAGS += -I$(LTM_PATH)
++#LIBS += -L$(LTM_PATH)
++#LIBS_p += -L$(LTM_PATH)
++#endif
++# At the cost of about 4 kB of additional binary size, the internal LibTomMath
++# can be configured to include faster routines for exptmod, sqr, and div to
++# speed up DH and RSA calculation considerably
++#CONFIG_INTERNAL_LIBTOMMATH_FAST=y
++
++# Include NDIS event processing through WMI into wpa_supplicant/wpasvc.
++# This is only for Windows builds and requires WMI-related header files and
++# WbemUuid.Lib from Platform SDK even when building with MinGW.
++#CONFIG_NDIS_EVENTS_INTEGRATED=y
++#PLATFORMSDKLIB="/opt/Program Files/Microsoft Platform SDK/Lib"
++
++# Add support for old DBus control interface
++# (fi.epitest.hostap.WPASupplicant)
++CONFIG_CTRL_IFACE_DBUS=y
++
++# Add support for new DBus control interface
++# (fi.w1.hostap.wpa_supplicant1)
++CONFIG_CTRL_IFACE_DBUS_NEW=y
++
++# Add introspection support for new DBus control interface
++CONFIG_CTRL_IFACE_DBUS_INTRO=y
++
++# Add support for loading EAP methods dynamically as shared libraries.
++# When this option is enabled, each EAP method can be either included
++# statically (CONFIG_EAP_<method>=y) or dynamically (CONFIG_EAP_<method>=dyn).
++# Dynamic EAP methods are build as shared objects (eap_*.so) and they need to
++# be loaded in the beginning of the wpa_supplicant configuration file
++# (see load_dynamic_eap parameter in the example file) before being used in
++# the network blocks.
++#
++# Note that some shared parts of EAP methods are included in the main program
++# and in order to be able to use dynamic EAP methods using these parts, the
++# main program must have been build with the EAP method enabled (=y or =dyn).
++# This means that EAP-TLS/PEAP/TTLS/FAST cannot be added as dynamic libraries
++# unless at least one of them was included in the main build to force inclusion
++# of the shared code. Similarly, at least one of EAP-SIM/AKA must be included
++# in the main build to be able to load these methods dynamically.
++#
++# Please also note that using dynamic libraries will increase the total binary
++# size. Thus, it may not be the best option for targets that have limited
++# amount of memory/flash.
++#CONFIG_DYNAMIC_EAP_METHODS=y
++
++# IEEE Std 802.11r-2008 (Fast BSS Transition)
++#CONFIG_IEEE80211R=y
++
++# Add support for writing debug log to a file (/tmp/wpa_supplicant-log-#.txt)
++CONFIG_DEBUG_FILE=y
++
++# Enable privilege separation (see README 'Privilege separation' for details)
++#CONFIG_PRIVSEP=y
++
++# Enable mitigation against certain attacks against TKIP by delaying Michael
++# MIC error reports by a random amount of time between 0 and 60 seconds
++#CONFIG_DELAYED_MIC_ERROR_REPORT=y
++
++# Enable tracing code for developer debugging
++# This tracks use of memory allocations and other registrations and reports
++# incorrect use with a backtrace of call (or allocation) location.
++#CONFIG_WPA_TRACE=y
++# For BSD, comment out these.
++#LIBS += -lexecinfo
++#LIBS_p += -lexecinfo
++#LIBS_c += -lexecinfo
++
++# Use libbfd to get more details for developer debugging
++# This enables use of libbfd to get more detailed symbols for the backtraces
++# generated by CONFIG_WPA_TRACE=y.
++#CONFIG_WPA_TRACE_BFD=y
++# For BSD, comment out these.
++#LIBS += -lbfd -liberty -lz
++#LIBS_p += -lbfd -liberty -lz
++#LIBS_c += -lbfd -liberty -lz
++
++# for p2p
++CONFIG_P2P=y
++CONFIG_AP=y
++
++# IEEE 802.11n (High Throughput) support
++CONFIG_IEEE80211N=y
++
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a6.01.bb
 new file mode 100644
-index 0000000..fd463cc
+index 0000000..8e17de3
 --- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
-@@ -0,0 +1,30 @@
-+DESCRIPTION = "Firmware files for use with TI wl18xx"
-+LICENSE = "TI-TSPA"
-+LIC_FILES_CHKSUM = "file://LICENCE;md5=b28122fd6678e89fd3a8d4bc80922969"
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a6.01.bb
+@@ -0,0 +1,23 @@
++# This is a TI specific version of the wpa-supplicant recipe for use with the
++# wl18xx wlan module.
 +
-+PACKAGE_ARCH = "all"
++require wpa-supplicant.inc
 +
-+PR = "r1+gitr${SRCREV}"
++LICENSE = "GPLv2 | BSD"
++LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e \
++                    file://../README;md5=5cb758942d25f6f61fd4ac388fd446fa \
++                    file://wpa_supplicant.c;beginline=1;endline=17;md5=8835156c8ab8cad6356ec7f39ebe3aba"
 +
-+PROVIDES += "wl12xx-firmware"
-+RPROVIDES_${PN} += "wl12xx-firmware" 
-+RREPLACES_${PN} += "wl12xx-firmware"
-+RCONFLICTS_${PN} += "wl12xx-firmware"
++FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
 +
 +SRCREV = "ol_r8.a6.01"
-+SRC_URI = "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=git \
-+           file://Makefile \
-+          "
++PR = "r1+gitr${SRCREV}"
 +
-+S = "${WORKDIR}/git"
++# Add ti to the PV to indicate that this is a TI modify version of wpa-supplicant.
++PV = "2.0-devel-ti"
 +
-+do_compile() {
-+    :
-+}
-+
-+do_install() {
-+    cp ${WORKDIR}/Makefile ${S}
-+    oe_runmake 'DEST_DIR=${D}' install
-+}
-+
-+FILES_${PN} = "/lib/firmware/ti-connectivity/*"
++PROVIDES += "wpa-supplicant"
++RPROVIDES_${PN}  += "wpa-supplicant" 
++RREPLACES_${PN}  += "wpa-supplicant"
++RCONFLICTS_${PN}  += "wpa-supplicant"
++RDEPENDS_${PN} += "wpa-supplicant-cli wpa-supplicant-passphrase"
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
+index ec09d9e..96289d6 100644
+--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
+@@ -13,7 +13,7 @@ RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
+ # wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
+ DEFAULT_PREFERENCE = "-1"
+ 
+-PR = "r4"
++PR = "r5"
+ 
+ SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git \
+            file://defconfig \
 -- 
 1.7.9.5
 
