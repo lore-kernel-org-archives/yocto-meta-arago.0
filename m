@@ -1,30 +1,28 @@
 Return-Path: <eyalr@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 8548152A6D
+	by arago-project.org (Postfix) with ESMTPS id 8424A529A3
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 09:30:36 +0000 (UTC)
+	Wed, 20 Mar 2013 09:30:34 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K9UY9F002298
-	for <meta-arago@arago-project.org>; Wed, 20 Mar 2013 04:30:35 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K9UVcl002294
+	for <meta-arago@arago-project.org>; Wed, 20 Mar 2013 04:30:32 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K9UYs8021002
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K9UUn5020925
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 15:00:34 +0530 (IST)
+	Wed, 20 Mar 2013 15:00:31 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 20 Mar 2013 15:00:34 +0530
+	Wed, 20 Mar 2013 15:00:30 +0530
 Received: from user-VirtualBox.emea.dhcp.ti.com (dbdp20.itg.ti.com
 	[172.24.170.38])	by dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r2K9URxI013496;	Wed, 20 Mar 2013 15:00:32 +0530
+	r2K9URxH013496;	Wed, 20 Mar 2013 15:00:28 +0530
 From: Eyal Reizer <eyalr@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 20 Mar 2013 11:30:10 +0200
-Message-ID: <1363771816-4022-3-git-send-email-eyalr@ti.com>
+Date: Wed, 20 Mar 2013 11:30:09 +0200
+Message-ID: <1363771816-4022-2-git-send-email-eyalr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1363771816-4022-2-git-send-email-eyalr@ti.com>
-References: <1363771816-4022-2-git-send-email-eyalr@ti.com>
 MIME-Version: 1.0
-Subject: [PATCHv3 3/9] hostap-daemon-wl18xx: hostap-daemon for ti wilink8 release
+Subject: [PATCHv3 2/9] wl18xx-firmware: install Wilink8 wlan firmware files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,120 +38,78 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 20 Mar 2013 09:30:37 -0000
 Content-Type: text/plain
 
-Add a new recipe for building the ti version of hostap-daemon
-2.0-devel from release r8.a6.01
+Add a recipe for installing the Wilink8 wlan firmware files into
+the target file system.
 
 This package replace the wilink6 package which is provided by the
-hostap-daemon recipe. Selection between the two is done using a
+wl12xx-firmware recipe. Selection between the two is done using a
 "WILINK_VERSION" switch added to arago.conf
 
 Changes in v2:
 * Use an actual release name in the recipe name instead of _git
 * Add RPROVIDES, RREPLACES, RCONFLICTS as this recipe completely 
   replace the wilink6 one.
-* Use the hostap.inc file added lately by Franklin and therefore
-  depends on his series of patches for selecting between 
-  different versions of wilink6 releases.
 
 Changes in v3:
 * Add _${PN} to all runtime variables
 
 Signed-off-by: Eyal Reizer <eyalr@ti.com>
 ---
- ...d-change-conf-file-for-better-oob-startup.patch |   40 ++++++++++++++++++++
- .../hostap/hostap-daemon-wl18xx_r8.a6.01.bb        |   22 +++++++++++
- .../recipes-connectivity/hostap/hostap.inc         |    2 +-
- 3 files changed, 63 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx/0001-hostapd-change-conf-file-for-better-oob-startup.patch
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a6.01.bb
+ .../wl18xx-firmware/wl18xx-firmware/Makefile       |    7 +++++
+ .../wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb    |   30 ++++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
+ create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx/0001-hostapd-change-conf-file-for-better-oob-startup.patch b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx/0001-hostapd-change-conf-file-for-better-oob-startup.patch
+diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
 new file mode 100644
-index 0000000..824d250
+index 0000000..0bb7ab8
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx/0001-hostapd-change-conf-file-for-better-oob-startup.patch
-@@ -0,0 +1,40 @@
-+From f7c1b9d4e18dc650dd0b9da97a91f27f6a4bb5b7 Mon Sep 17 00:00:00 2001
-+From: Eyal Reizer <eyalr@ti.com>
-+Date: Sun, 17 Mar 2013 07:18:55 -0700
-+Subject: [PATCH] hostapd: change conf file for better sdk out of box startup
++++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
+@@ -0,0 +1,7 @@
++# Installs the the ti-connectiviy wlan firmware files into the root file system
 +
-+Change the default channel to 6 and change the ssid to a more
-+meaningful name.
++install:
++	install -d  $(DEST_DIR)/lib/firmware/ti-connectivity
++	cp -RpP * $(DEST_DIR)/lib/firmware/ti-connectivity/
++	rm -f $(DEST_DIR)/lib/firmware/ti-connectivity/Makefile
 +
-+Upstream-status: inappropriate [SDK specific patch]
-+
-+Signed-off-by: Eyal Reizer <eyalr@ti.com>
-+---
-+ hostapd/hostapd.conf |    4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/hostapd/hostapd.conf b/hostapd/hostapd.conf
-+index f71a881..00843aa 100644
-+--- a/hostapd/hostapd.conf
-++++ b/hostapd/hostapd.conf
-+@@ -83,7 +83,7 @@ ctrl_interface_group=0
-+ ##### IEEE 802.11 related configuration #######################################
-+ 
-+ # SSID to be used in IEEE 802.11 management frames
-+-ssid=test
-++ssid=TexasInstruments_0001
-+ 
-+ # Country code (ISO/IEC 3166-1). Used to set regulatory domain.
-+ # Set as needed to indicate country in which device is operating.
-+@@ -107,7 +107,7 @@ hw_mode=g
-+ # channel will need to be configured separately with iwconfig.
-+ # When set to 0, automatic channel selection will be engaged. A channel
-+ # will be selected from the desired hw_mode.
-+-channel=1
-++channel=6
-+ 
-+ # Automatic channel selection (ACS) whitelist
-+ # (default: not set)
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a6.01.bb
+diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
 new file mode 100644
-index 0000000..9c7ef6e
+index 0000000..fd463cc
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a6.01.bb
-@@ -0,0 +1,22 @@
-+# This is a TI specific version of the hostap-daemon recipe for use with the
-+# wl18xx wlan and bluetooth module.
++++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
+@@ -0,0 +1,30 @@
++DESCRIPTION = "Firmware files for use with TI wl18xx"
++LICENSE = "TI-TSPA"
++LIC_FILES_CHKSUM = "file://LICENCE;md5=b28122fd6678e89fd3a8d4bc80922969"
 +
-+require hostap.inc
++PACKAGE_ARCH = "all"
 +
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e"
++PR = "r1+gitr${SRCREV}"
 +
-+PR_append = "a+gitr${SRCREV}"
-+
-+FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
-+
-+# Add TI to the end to make it clear that this is a TI customized version
-+# of hostap
-+PV = "2.0-devel-ti"
++PROVIDES += "wl12xx-firmware"
++RPROVIDES_${PN} += "wl12xx-firmware" 
++RREPLACES_${PN} += "wl12xx-firmware"
++RCONFLICTS_${PN} += "wl12xx-firmware"
 +
 +SRCREV = "ol_r8.a6.01"
++SRC_URI = "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=git \
++           file://Makefile \
++          "
 +
-+PROVIDES += "hostap-daemon"
-+RPROVIDES_${PN} += "hostap-daemon"
-+RREPLACES_${PN} += "hostap-daemon"
-+RCONFLICTS_${PN} += "hostap-daemon"
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-index 17d18a8..8f6488b 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-@@ -11,7 +11,7 @@ DEPENDS = "libnl openssl"
- # default
- DEFAULT_PREFERENCE = "-1"
- 
--PR = "r3"
-+PR = "r4"
- 
- inherit update-rc.d
- INITSCRIPT_NAME="hostapd"
++S = "${WORKDIR}/git"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    cp ${WORKDIR}/Makefile ${S}
++    oe_runmake 'DEST_DIR=${D}' install
++}
++
++FILES_${PN} = "/lib/firmware/ti-connectivity/*"
 -- 
 1.7.9.5
 
