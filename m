@@ -1,31 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8FDF1529AF
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D1CD452A24
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 02:06:01 +0000 (UTC)
+	Wed, 20 Mar 2013 02:06:02 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K25xbj010029
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 21:06:00 -0500
-Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K25xqt023004
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K260RD023841
+	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 21:06:01 -0500
+Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K260AH023014
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 07:35:59 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
-	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 20 Mar 2013 07:35:59 +0530
+	Wed, 20 Mar 2013 07:36:00 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
+	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 20 Mar 2013 07:36:00 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K25epP026167;
-	Wed, 20 Mar 2013 07:35:58 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K25epQ026167;
+	Wed, 20 Mar 2013 07:35:59 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 19 Mar 2013 21:05:33 -0500
-Message-ID: <1363745138-10288-12-git-send-email-fcooper@ti.com>
+Date: Tue, 19 Mar 2013 21:05:34 -0500
+Message-ID: <1363745138-10288-13-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1363745138-10288-1-git-send-email-fcooper@ti.com>
 References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 12/17] wilink-calibrate: Add Wilink calibration script
+Subject: [PATCH 13/17] ti-wifi-utils: Add runtime dependency on wilink-calibrate
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,56 +38,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Mar 2013 02:06:01 -0000
+X-List-Received-Date: Wed, 20 Mar 2013 02:06:03 -0000
 Content-Type: text/plain
 
-* Add a script that runs at startup that insures that the wilink MAC address used
-  is unique.
+* Install the wilink calibrate script to insure that the wilink module is using
+  a unique MAC address.
+* By default this script only works for the wilink module that comes with
+  the am335x evms.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-wifi-utils/wilink-calibrate/calibrate.sh    |    7 +++++++
- .../ti-wifi-utils/wilink-calibrate_1.0.bb          |   17 +++++++++++++++++
- 2 files changed, 24 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate/calibrate.sh
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate_1.0.bb
+ .../ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb       |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate/calibrate.sh b/meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate/calibrate.sh
-new file mode 100644
-index 0000000..b028435
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate/calibrate.sh
-@@ -0,0 +1,7 @@
-+#!/bin/sh
-+echo "Performing wifi calibration..."
-+rm /lib/firmware/ti-connectivity/wl1271-nvs.bin
-+rmmod wl12xx_sdio.ko
-+calibrator plt autocalibrate wlan0 /lib/modules/$(uname -r)/updates/drivers/net/wireless/wl12xx/wl12xx_sdio.ko /usr/share/ti/wifi-utils/ini_files/127x/TQS_S_2.6.ini /lib/firmware/ti-connectivity/wl1271-nvs.bin 00:00:00:00:00:00
-+modprobe wl12xx_sdio
+diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
+index e9f5a3c..6f46910 100644
+--- a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
++++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
+@@ -3,6 +3,8 @@ require ti-wifi-utils.inc
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
+ 
+-PR_append ="a+gitr${SRCPV}"
++PR_append ="b+gitr${SRCPV}"
+ 
+ SRCREV = "ol_R5.SP3.05"
 +
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate_1.0.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate_1.0.bb
-new file mode 100644
-index 0000000..d0aadfb
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate_1.0.bb
-@@ -0,0 +1,17 @@
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
-+
-+inherit update-rc.d
-+INITSCRIPT_NAME="calibrate.sh"
-+INITSCRIPT_PARAMS = "start 20 2 3 4 5 ."
-+
-+PR ="r0"
-+
-+SRC_URI = "file://calibrate.sh"
-+
-+S = "${WORKDIR}"
-+
-+do_install() {
-+    install -d ${D}${sysconfdir}/init.d
-+    install -m 0755 ${WORKDIR}/calibrate.sh ${D}${sysconfdir}/init.d
-+}
++RDEPENDS_${PN}_am335x-evm_append = " wilink-calibrate"
 -- 
 1.7.0.4
 
