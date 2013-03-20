@@ -1,31 +1,27 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 377B652961
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTP id 2C434529AF
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 02:06:08 +0000 (UTC)
-Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2K266Vb006413
-	for <meta-arago@arago-project.org>; Tue, 19 Mar 2013 21:06:07 -0500
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K265iP023060
-	for <meta-arago@arago-project.org>;
-	Wed, 20 Mar 2013 07:36:05 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Wed, 20 Mar 2013 07:36:05 +0530
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2K25epU026167;
-	Wed, 20 Mar 2013 07:36:05 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 19 Mar 2013 21:05:38 -0500
-Message-ID: <1363745138-10288-17-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1363745138-10288-1-git-send-email-fcooper@ti.com>
-References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
-MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs for Wilink 6 recipes
+	Wed, 20 Mar 2013 02:25:11 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173015.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MJX00BBTTDJ1TA0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 19 Mar 2013 21:25:10 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 0753F200DB; Tue,
+	19 Mar 2013 22:24:55 -0400 (EDT)
+Date: Tue, 19 Mar 2013 22:24:54 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-id: <20130320022454.GO14761@denix.org>
+References: <1363707935-2749-2-git-send-email-eyalr@ti.com>
+	<7D46E86EC0A8354091174257B2FED10159485C17@DLEE11.ent.ti.com>
+MIME-version: 1.0
+In-reply-to: <7D46E86EC0A8354091174257B2FED10159485C17@DLEE11.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCHv2 2/9] wl18xx-firmware: install Wilink8 wlan	firmware files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,50 +34,138 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Mar 2013 02:06:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 20 Mar 2013 02:25:11 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* Currently two versions of Wilink 6 need to be supported.
-* The latest version supports the PG 3 wilink 6 module which is the version that
-  comes with the am37x-evm and am335x-evm .
-* An older version supports the PG 2 wilink 6 module which is the version that
-  comes with the am180x-evm.
-* Specifying the PREFERRED_VERSION to match this requirement.
+On Tue, Mar 19, 2013 at 03:50:03PM +0000, Maupin, Chase wrote:
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Reizer, Eyal
+> > Sent: Tuesday, March 19, 2013 10:45 AM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCHv2 2/9] wl18xx-firmware: install
+> > Wilink8 wlan firmware files
+> > 
+> 
+> What changed in v2?  You need to add that note.
+> 
+> > Add a recipe for installing the Wilink8 wlan firmware files into
+> > the target file system.
+> > 
+> > This package replace the wilink6 package which is provided by the
+> > wl12xx-firmware recipe. Selection between the two is done using a
+> > "WILINK_VERSION" switch added to arago.conf
+> > 
+> > Signed-off-by: Eyal Reizer <eyalr@ti.com>
+> > ---
+> >  .../wl18xx-firmware/wl18xx-firmware/Makefile       |    7 +++++
+> >  .../wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb    |   30
+> > ++++++++++++++++++++
+> >  2 files changed, 37 insertions(+)
+> >  create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-
+> > firmware/wl18xx-firmware/Makefile
+> >  create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-
+> > firmware/wl18xx-firmware_r8.a6.01.bb
+> > 
+> > diff --git a/meta-arago-extras/recipes-bsp/wl18xx-
+> > firmware/wl18xx-firmware/Makefile b/meta-arago-extras/recipes-
+> > bsp/wl18xx-firmware/wl18xx-firmware/Makefile
+> > new file mode 100644
+> > index 0000000..0bb7ab8
+> > --- /dev/null
+> > +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > firmware/Makefile
+> > @@ -0,0 +1,7 @@
+> > +# Installs the the ti-connectiviy wlan firmware files into the
+> > root file system
+> > +
+> > +install:
+> > +	install -d  $(DEST_DIR)/lib/firmware/ti-connectivity
+> > +	cp -RpP * $(DEST_DIR)/lib/firmware/ti-connectivity/
+> > +	rm -f $(DEST_DIR)/lib/firmware/ti-connectivity/Makefile
+> > +
+> > diff --git a/meta-arago-extras/recipes-bsp/wl18xx-
+> > firmware/wl18xx-firmware_r8.a6.01.bb b/meta-arago-extras/recipes-
+> > bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
+> > new file mode 100644
+> > index 0000000..fd463cc
+> > --- /dev/null
+> > +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > firmware_r8.a6.01.bb
+> > @@ -0,0 +1,30 @@
+> > +DESCRIPTION = "Firmware files for use with TI wl18xx"
+> > +LICENSE = "TI-TSPA"
+> > +LIC_FILES_CHKSUM =
+> > "file://LICENCE;md5=b28122fd6678e89fd3a8d4bc80922969"
+> > +
+> > +PACKAGE_ARCH = "all"
+> > +
+> > +PR = "r1+gitr${SRCREV}"
+> > +
+> > +PROVIDES += "wl12xx-firmware"
+> > +RPROVIDES += "wl12xx-firmware"
+> > +RREPLACES += "wl12xx-firmware"
+> > +RCONFLICTS += "wl12xx-firmware"
+> 
+> This seems wrong.  You are providing wl12xx-firmware and also saying you 
+> replace and conflict with wl12xx firmware.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf |   17 +++++++++++++++++
- 1 files changed, 17 insertions(+), 0 deletions(-)
+No, that is actually the correct approach.
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 9e43ea3..44141c1 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -105,6 +105,23 @@ PREFERRED_VERSION_bluez-hcidump = "2.2"
- PREFERRED_VERSION_bash = "3.2.48"
- PREFERRED_VERSION_gettext = "0.16.1"
- 
-+# Support Wilink 6 PG 3 modules
-+PREFERRED_VERSION_ti-compat-bluetooth = "r5.sp3.05"
-+PREFERRED_VERSION_ti-compat-wireless-wl12xx = "r5.sp4.01"
-+PREFERRED_VERSION_wl12xx-firmware = "r5.sp4.01"
-+PREFERRED_VERSION_wpa-supplicant = "r5.sp4.01"
-+PREFERRED_VERSION_hostap-daemon = "r5.sp4.01"
-+PREFERRED_VERSION_ti-wifi-utils = "r5.sp3.05"
-+
-+# Support Wilink 6 PG 2 modules
-+# By default am180x-evms come with an outdated wilink 6 module
-+PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm = "r5.00.18"
-+PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm = "r5.00.18"
-+PREFERRED_VERSION_wl12xx-firmware_am180x-evm = "r5.00.18"
-+PREFERRED_VERSION_wpa-supplicant_am180x-evm = "r5.00.18"
-+PREFERRED_VERSION_hostap-daemon_am180x-evm = "r5.00.18"
-+PREFERRED_VERSION_ti-wifi-utils_am180x-evm = "r5.00.18"
-+
- # Disable polkit's systemd configuration from meta-oe
- POLKITAUTH = ""
- 
+With one exception! All runtime variables (those beginning with R) should 
+always be package-specific, i.e. use the _${PN} suffix or the actual name of 
+the package:
+
++PROVIDES += "wl12xx-firmware"
++RPROVIDES_${PN} += "wl12xx-firmware"
++RREPLACES_${PN} += "wl12xx-firmware"
++RCONFLICTS_${PN} += "wl12xx-firmware"
+
+
+> I'm thinking you should use wl-firmware as the package name and then your 
+> PREFERRED_PROVIDER settings can be updated and the PROVIDES here would be 
+> updated.
+
+I don't see the point. Currently, it would produce wl18xx-firmware package, 
+which at build time can substitute wl12xx-firmware with 
+PREFERRED_PROVIDER_wl12xx-firmware = "wl18xx-firmware" as well as prevent 
+accidental installation of both of them at the same time with those runtime R* 
+variables.
+
 -- 
-1.7.0.4
+Denys
 
+
+> > +
+> > +SRCREV = "ol_r8.a6.01"
+> > +SRC_URI = "git://github.com/TI-
+> > OpenLink/wl18xx_fw.git;protocol=git \
+> > +           file://Makefile \
+> > +          "
+> > +
+> > +S = "${WORKDIR}/git"
+> > +
+> > +do_compile() {
+> > +    :
+> > +}
+> > +
+> > +do_install() {
+> > +    cp ${WORKDIR}/Makefile ${S}
+> > +    oe_runmake 'DEST_DIR=${D}' install
+> > +}
+> > +
+> > +FILES_${PN} = "/lib/firmware/ti-connectivity/*"
+> > --
+> > 1.7.9.5
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
