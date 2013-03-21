@@ -1,33 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E7583529A3
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id E8258529A3
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Mar 2013 12:06:48 +0000 (UTC)
+	Thu, 21 Mar 2013 12:08:24 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2LC6m3n018296
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:06:48 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2LC6mPm016889
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:06:48 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2LC8OTS007033
+	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:08:24 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2LC8O8L018831
+	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:08:24 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Thu, 21 Mar 2013 07:06:47 -0500
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Thu, 21 Mar 2013 07:08:24 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 07/17] hostap-daemon: Split recipe
-Thread-Index: AQHOJRbnhu5HDA1zvUen6cFSHwFgPJiwDcMQ
-Date: Thu, 21 Mar 2013 12:06:47 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015948EAC4@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH 08/17] hostap-daemon: Pull in old r5-00-18
+	recipe
+Thread-Index: AQHOJRNzfxVCnbf8WkCIl9udnDArD5iwD2Og
+Date: Thu, 21 Mar 2013 12:08:23 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015948EB17@DLEE11.ent.ti.com>
 References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
-	<1363745138-10288-7-git-send-email-fcooper@ti.com>
-In-Reply-To: <1363745138-10288-7-git-send-email-fcooper@ti.com>
+	<1363745138-10288-8-git-send-email-fcooper@ti.com>
+In-Reply-To: <1363745138-10288-8-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 07/17] hostap-daemon: Split recipe
+Subject: Re: [PATCH 08/17] hostap-daemon: Pull in old r5-00-18	recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,10 +41,12 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 12:06:49 -0000
+X-List-Received-Date: Thu, 21 Mar 2013 12:08:25 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Acked-by: Chase Maupin <chase.maupin@ti.com>
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
@@ -51,129 +54,110 @@ Content-Transfer-Encoding: quoted-printable
 > Sent: Tuesday, March 19, 2013 9:05 PM
 > To: meta-arago@arago-project.org
 > Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH 07/17] hostap-daemon: Split recipe
+> Subject: [meta-arago] [PATCH 08/17] hostap-daemon: Pull in old
+> r5-00-18 recipe
 >=20
-> * Split recipe to allow multiple hostap-daemon recipes to share a
-> common .inc
+> * Current am180x-evm ships with a PG 2 wilink 6 module that isn't
+> supported in
+>   newer wilink 6 releases.
+> * A newer PG 3 wilink 6 module is available for am180x-evm but
+> needs to be
+>   purchased separately..
+> * Bring old r5.00.18 hostap-daemon recipe with updated recipe
+> name
+>   to add support for am180x-evm default wilink 6 module.
 >=20
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  ...d-change-conf-file-for-better-oob-startup.patch |    0
->  .../hostap/hostap-daemon_git.bb                    |   61 ------
-> --------------
->  .../hostap/hostap-daemon_r5.sp4.01.bb              |   11 ++++
->  .../recipes-connectivity/hostap/hostap.inc         |   54
-> +++++++++++++++++
->  4 files changed, 65 insertions(+), 61 deletions(-)
->  rename meta-arago-extras/recipes-connectivity/hostap/{hostap-
-> daemon =3D> hostap-daemon-r5.sp4.01}/0001-hostapd-change-conf-file-
-> for-better-oob-startup.patch (100%)
->  delete mode 100644 meta-arago-extras/recipes-
-> connectivity/hostap/hostap-daemon_git.bb
+>  ...d-change-conf-file-for-better-oob-startup.patch |   49
+> ++++++++++++++++++++
+>  .../hostap/hostap-daemon_r5.00.18.bb               |   11 ++++
+>  2 files changed, 60 insertions(+), 0 deletions(-)
 >  create mode 100644 meta-arago-extras/recipes-
-> connectivity/hostap/hostap-daemon_r5.sp4.01.bb
+> connectivity/hostap/hostap-daemon-r5.00.18/0001-hostapd-change-
+> conf-file-for-better-oob-startup.patch
 >  create mode 100644 meta-arago-extras/recipes-
-> connectivity/hostap/hostap.inc
+> connectivity/hostap/hostap-daemon_r5.00.18.bb
 >=20
 > diff --git a/meta-arago-extras/recipes-
-> connectivity/hostap/hostap-daemon/0001-hostapd-change-conf-file-
-> for-better-oob-startup.patch b/meta-arago-extras/recipes-
-> connectivity/hostap/hostap-daemon-r5.sp4.01/0001-hostapd-change-
-> conf-file-for-better-oob-startup.patch
-> similarity index 100%
-> rename from meta-arago-extras/recipes-connectivity/hostap/hostap-
-> daemon/0001-hostapd-change-conf-file-for-better-oob-startup.patch
-> rename to meta-arago-extras/recipes-connectivity/hostap/hostap-
-> daemon-r5.sp4.01/0001-hostapd-change-conf-file-for-better-oob-
-> startup.patch
-> diff --git a/meta-arago-extras/recipes-
-> connectivity/hostap/hostap-daemon_git.bb b/meta-arago-
-> extras/recipes-connectivity/hostap/hostap-daemon_git.bb
-> deleted file mode 100644
-> index 424d55d..0000000
-> --- a/meta-arago-extras/recipes-connectivity/hostap/hostap-
-> daemon_git.bb
-> +++ /dev/null
-> @@ -1,61 +0,0 @@
-> -# This is a TI specific version of the hostap-daemon recipe for
-> use with the
-> -# wl12xx wlan and bluetooth module.
-> -
-> -HOMEPAGE =3D "http://hostap.epitest.fi"
-> -DESCRIPTION =3D "User space daemon for extended IEEE 802.11
-> management"
-> -SECTION =3D "kernel/userland"
-> -LICENSE =3D "GPLv2"
-> -LIC_FILES_CHKSUM =3D
-> "file://../COPYING;md5=3Dab87f20cd7e8c0d0a6539b34d3791d0e"
-> -
-> -DEPENDS =3D "libnl openssl"
-> -
-> -# Since this is a TI customized version of hostap-daemon do not
-> make this the
-> -# default
-> -DEFAULT_PREFERENCE =3D "-1"
-> -
-> -inherit update-rc.d
-> -INITSCRIPT_NAME=3D"hostapd"
-> -
-> -CONFFILES_${PN} +=3D "${sysconfdir}/hostapd.conf"
-> -
-> -# Add TI to the end to make it clear that this is a TI
-> customized version
-> -# of hostap
-> -PV =3D "2.0-devel-ti"
-> -
-> -PR =3D "r2+gitr${SRCPV}"
-> -
-> -SRCREV =3D "ol_R5.SP4.01"
-> -
-> -SRC_URI =3D "git://github.com/TI-OpenLink/hostap.git;protocol=3Dgit
-> \
-> -	file://0001-hostapd-change-conf-file-for-better-oob-
-> startup.patch;patchdir=3D.. \
-> -	file://defconfig \
-> -	file://init"
-> -
-> -S =3D "${WORKDIR}/git/hostapd"
-> -
-> -do_configure() {
-> -	install -m 0644 ${WORKDIR}/defconfig ${S}/.config
-> -	echo "CFLAGS +=3D -I${STAGING_INCDIR}" >> .config
-> -	echo "LIBS +=3D -L${STAGING_LIBDIR}" >> .config
-> -}
-> -
-> -do_compile() {
-> -	make
-> -}
-> -
-> -do_install() {
-> -	install -d ${D}${sbindir} ${D}${sysconfdir}/init.d
-> -	install -m 0644 ${S}/hostapd.conf ${D}${sysconfdir}
-> -	install -m 0755 ${S}/hostapd ${D}${sbindir}
-> -	install -m 0755 ${S}/hostapd_cli ${D}${sbindir}
-> -	install -m 755 ${WORKDIR}/init
-> ${D}${sysconfdir}/init.d/hostapd
-> -}
-> -
-> -# The default hostapd.conf file that is fetched from upstream is
-> using
-> -# "a" band which is not supported by the 1271 chip.
-> -# modify it to use "g" band and default channel 6 and change the
-> ssid from
-> -# "test" to a more meaningful name.
-> -
-> -updatercd_postinst () {
-> -:
-> -}
-> diff --git a/meta-arago-extras/recipes-
-> connectivity/hostap/hostap-daemon_r5.sp4.01.bb b/meta-arago-
-> extras/recipes-connectivity/hostap/hostap-daemon_r5.sp4.01.bb
+> connectivity/hostap/hostap-daemon-r5.00.18/0001-hostapd-change-
+> conf-file-for-better-oob-startup.patch b/meta-arago-
+> extras/recipes-connectivity/hostap/hostap-daemon-r5.00.18/0001-
+> hostapd-change-conf-file-for-better-oob-startup.patch
 > new file mode 100644
-> index 0000000..a84c333
+> index 0000000..fa68357
 > --- /dev/null
 > +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-
-> daemon_r5.sp4.01.bb
+> daemon-r5.00.18/0001-hostapd-change-conf-file-for-better-oob-
+> startup.patch
+> @@ -0,0 +1,49 @@
+> +From 4c5fe9901219956fb754306a2093e78fb460bbdd Mon Sep 17
+> 00:00:00 2001
+> +From: Eyal Reizer <eyalr@ti.com>
+> +Date: Thu, 23 Jun 2011 10:13:44 +0300
+> +Subject: [PATCH] hostapd: change conf file for better sdk out of
+> box startup
+> +
+> +The default hostapd.conf file that is fetched from upstream is
+> using
+> +a band which is not supported by the 1271 chip.
+> +I am using this amend.inc in order to modify it to use g band
+> and default
+> +channel 6 and change the ssid to a more meaningful name.
+> +
+> +Upstream-status: inappropriate [SDK specific patch]
+> +
+> +Signed-off-by: Eyal Reizer <eyalr@ti.com>
+> +---
+> + hostapd/hostapd.conf |    6 +++---
+> + 1 files changed, 3 insertions(+), 3 deletions(-)
+> +
+> +diff --git a/hostapd/hostapd.conf b/hostapd/hostapd.conf
+> +index 6d7263a..bb27beb 100644
+> +--- a/hostapd/hostapd.conf
+> ++++ b/hostapd/hostapd.conf
+> +@@ -83,7 +83,7 @@ ctrl_interface_group=3D0
+> + ##### IEEE 802.11 related configuration
+> #######################################
+> +
+> + # SSID to be used in IEEE 802.11 management frames
+> +-ssid=3Dtest
+> ++ssid=3DTexasInstruments_0001
+> +
+> + # Country code (ISO/IEC 3166-1). Used to set regulatory domain.
+> + # Set as needed to indicate country in which device is
+> operating.
+> +@@ -99,14 +99,14 @@ ssid=3Dtest
+> +
+> + # Operation mode (a =3D IEEE 802.11a, b =3D IEEE 802.11b, g =3D IEEE
+> 802.11g,
+> + # Default: IEEE 802.11b
+> +-hw_mode=3Da
+> ++hw_mode=3Dg
+> +
+> + # Channel number (IEEE 802.11)
+> + # (default: 0, i.e., not set)
+> + # Please note that some drivers (e.g., madwifi) do not use this
+> value from
+> + # hostapd and the channel will need to be configuration
+> separately with
+> + # iwconfig.
+> +-channel=3D60
+> ++channel=3D6
+> +
+> + # Beacon interval in kus (1.024 ms) (default: 100; range
+> 15..65535)
+> + beacon_int=3D100
+> +--
+> +1.7.0.4
+> diff --git a/meta-arago-extras/recipes-
+> connectivity/hostap/hostap-daemon_r5.00.18.bb b/meta-arago-
+> extras/recipes-connectivity/hostap/hostap-daemon_r5.00.18.bb
+> new file mode 100644
+> index 0000000..aa6f5bb
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> daemon_r5.00.18.bb
 > @@ -0,0 +1,11 @@
 > +# This is a TI specific version of the hostap-daemon recipe for
 > use with the
@@ -183,91 +167,11 @@ Content-Transfer-Encoding: quoted-printable
 > +
 > +LICENSE =3D "GPLv2"
 > +LIC_FILES_CHKSUM =3D
-> "file://../COPYING;md5=3Dab87f20cd7e8c0d0a6539b34d3791d0e"
+> "file://../COPYING;md5=3Dc54ce9345727175ff66d17b67ff51f58"
 > +
 > +PR_append =3D "a+gitr${SRCPV}"
 > +
-> +SRCREV =3D "ol_R5.SP4.01"
-> diff --git a/meta-arago-extras/recipes-
-> connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-
-> connectivity/hostap/hostap.inc
-> new file mode 100644
-> index 0000000..17d18a8
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-> @@ -0,0 +1,54 @@
-> +# This is a TI specific version of the hostap-daemon recipe for
-> use with the
-> +# wl12xx wlan and bluetooth module.
-> +
-> +HOMEPAGE =3D "http://hostap.epitest.fi"
-> +DESCRIPTION =3D "User space daemon for extended IEEE 802.11
-> management"
-> +SECTION =3D "kernel/userland"
-> +
-> +DEPENDS =3D "libnl openssl"
-> +
-> +# Since this is a TI customized version of hostap-daemon do not
-> make this the
-> +# default
-> +DEFAULT_PREFERENCE =3D "-1"
-
-This may raise an old discussion, but is the purpose of this to make sure t=
-hat this recipe is not used by default even for people using Arago?  I'm as=
-suming you want to make this available for people using custom distros, whi=
-ch is why this is not in the meta-arago-distro layer?
-
-Just checking if this is where you want to put the recipe and if you think =
-the .inc file should set this DEFAULT_PREFERENCE because it will be common =
-for all TI versions.
-
-> +
-> +PR =3D "r3"
-> +
-> +inherit update-rc.d
-> +INITSCRIPT_NAME=3D"hostapd"
-> +
-> +CONFFILES_${PN} +=3D "${sysconfdir}/hostapd.conf"
-> +
-> +SRC_URI =3D "git://github.com/TI-OpenLink/hostap.git;protocol=3Dgit
-> \
-> +           file://0001-hostapd-change-conf-file-for-better-oob-
-> startup.patch;patchdir=3D.. \
-> +           file://defconfig \
-> +	       file://init"
-> +
-> +S =3D "${WORKDIR}/git/hostapd"
-> +
-> +do_configure() {
-> +	install -m 0644 ${WORKDIR}/defconfig ${S}/.config
-> +	echo "CFLAGS +=3D -I${STAGING_INCDIR}" >> .config
-> +	echo "LIBS +=3D -L${STAGING_LIBDIR}" >> .config
-> +}
-> +
-> +do_compile() {
-> +	make
-> +}
-> +
-> +do_install() {
-> +	install -d ${D}${sbindir} ${D}${sysconfdir}/init.d
-> +	install -m 0644 ${S}/hostapd.conf ${D}${sysconfdir}
-> +	install -m 0755 ${S}/hostapd ${D}${sbindir}
-> +	install -m 0755 ${S}/hostapd_cli ${D}${sbindir}
-> +	install -m 755 ${WORKDIR}/init
-> ${D}${sysconfdir}/init.d/hostapd
-> +}
-> +
-> +# The default hostapd.conf file that is fetched from upstream is
-> using
-> +# "a" band which is not supported by the 1271 chip.
-> +# modify it to use "g" band and default channel 6 and change the
-> ssid from
-> +# "test" to a more meaningful name.
-> +
-> +updatercd_postinst () {
-> +:
-> +}
-> +
+> +SRCREV =3D "ol_R5.00.18"
 > --
 > 1.7.0.4
 >=20
