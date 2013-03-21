@@ -1,34 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2E33F529D7
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 20C5C529D7
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Mar 2013 12:19:29 +0000 (UTC)
+	Thu, 21 Mar 2013 12:20:29 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2LCJSb0013495
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:19:28 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2LCJSbf030810
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:19:28 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2LCKSA5019613
+	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:20:28 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2LCKSTQ032350
+	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:20:28 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Thu, 21 Mar 2013 07:19:28 -0500
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Thu, 21 Mar 2013 07:20:28 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 14/17] ti-wifi-utils: Pull back in old
-	r5.00.18	recipe.
-Thread-Index: AQHOJRVjKeyjG7pYO0WibGjMw3hxUpiwEnWw
-Date: Thu, 21 Mar 2013 12:19:27 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015948ECEE@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH 15/17] wpa-supplicant_r5.sp4.01: Rename
+	bbappend
+Thread-Index: AQHOJQ++jCG8I3g0hkaqcQMpOJVGXpiwErYw
+Date: Thu, 21 Mar 2013 12:20:27 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015948ED37@DLEE11.ent.ti.com>
 References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
-	<1363745138-10288-14-git-send-email-fcooper@ti.com>
-In-Reply-To: <1363745138-10288-14-git-send-email-fcooper@ti.com>
+	<1363745138-10288-15-git-send-email-fcooper@ti.com>
+In-Reply-To: <1363745138-10288-15-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 14/17] ti-wifi-utils: Pull back in old r5.00.18	recipe.
+Subject: Re: [PATCH 15/17] wpa-supplicant_r5.sp4.01: Rename bbappend
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,12 +41,14 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 12:19:29 -0000
+X-List-Received-Date: Thu, 21 Mar 2013 12:20:29 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+Why not combine this with the rename so it doesn't break in between these c=
+ommits?
+
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
@@ -54,46 +56,26 @@ Acked-by: Chase Maupin <chase.maupin@ti.com>
 > Sent: Tuesday, March 19, 2013 9:06 PM
 > To: meta-arago@arago-project.org
 > Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH 14/17] ti-wifi-utils: Pull back in
-> old r5.00.18 recipe.
+> Subject: [meta-arago] [PATCH 15/17] wpa-supplicant_r5.sp4.01:
+> Rename bbappend
 >=20
-> * Current am180x-evm ships with a PG 2 wilink 6 module that isn't
-> supported in
->   newer wilink 6 releases.
-> * A newer PG 3 wilink 6 module is available for am180x-evm but
-> needs to be
->   purchased separately..
-> * Bring old r5.00.18 ti-wifi-utils recipe with updated recipe
-> name
->   to add support for am180x-evm default wilink 6 module.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> * Rename bbappend to match recipe name change.
 > ---
->  .../ti-wifi-utils/ti-wifi-utils_r5.00.18.bb        |    8
-> ++++++++
->  1 files changed, 8 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-
-> utils/ti-wifi-utils_r5.00.18.bb
+>  ....bbappend =3D> wpa-supplicant_r5.sp4.01.bbappend} |    0
+>  1 files changed, 0 insertions(+), 0 deletions(-)
+>  rename meta-arago-distro/recipes-connectivity/wpa-
+> supplicant/{wpa-supplicant_git.bbappend =3D> wpa-
+> supplicant_r5.sp4.01.bbappend} (100%)
 >=20
-> diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-
-> wifi-utils_r5.00.18.bb b/meta-arago-extras/recipes-devtools/ti-
-> wifi-utils/ti-wifi-utils_r5.00.18.bb
-> new file mode 100644
-> index 0000000..cdb1e91
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-
-> utils_r5.00.18.bb
-> @@ -0,0 +1,8 @@
-> +require ti-wifi-utils.inc
-> +
-> +LICENSE =3D "BSD"
-> +LIC_FILES_CHKSUM =3D
-> "file://COPYING;md5=3D4725015cb0be7be389cf06deeae3683d"
-> +
-> +PR_append =3D"a+gitr${SRCPV}"
-> +
-> +SRCREV =3D "ol_R5.00.18"
-> \ No newline at end of file
+> diff --git a/meta-arago-distro/recipes-connectivity/wpa-
+> supplicant/wpa-supplicant_git.bbappend b/meta-arago-
+> distro/recipes-connectivity/wpa-supplicant/wpa-
+> supplicant_r5.sp4.01.bbappend
+> similarity index 100%
+> rename from meta-arago-distro/recipes-connectivity/wpa-
+> supplicant/wpa-supplicant_git.bbappend
+> rename to meta-arago-distro/recipes-connectivity/wpa-
+> supplicant/wpa-supplicant_r5.sp4.01.bbappend
 > --
 > 1.7.0.4
 >=20
