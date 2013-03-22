@@ -1,34 +1,28 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C6674529D7
+	by arago-project.org (Postfix) with ESMTPS id 7A81B52A21
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Mar 2013 12:22:31 +0000 (UTC)
+	Fri, 22 Mar 2013 05:33:59 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2LCMVEw008130
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:22:31 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2LCMVeu002138
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2013 07:22:31 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Thu, 21 Mar 2013 07:22:31 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs
-	for	Wilink 6 recipes
-Thread-Index: AQHOJRT35Hq2J+8k7EaTsH78FfmylpiwEuvQ
-Date: Thu, 21 Mar 2013 12:22:30 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015948EDAF@DLEE11.ent.ti.com>
-References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
-	<1363745138-10288-17-git-send-email-fcooper@ti.com>
-In-Reply-To: <1363745138-10288-17-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2M5XuFx031923
+	for <meta-arago@arago-project.org>; Fri, 22 Mar 2013 00:33:56 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2M5XukA008671
+	for <meta-arago@arago-project.org>; Fri, 22 Mar 2013 00:33:56 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 22 Mar 2013 00:33:56 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2M5XtMR013545	for
+	<meta-arago@arago-project.org>; Fri, 22 Mar 2013 00:33:56 -0500
+Date: Fri, 22 Mar 2013 01:29:08 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <2030779752.71.1363930148617.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs for	Wilink 6 recipes
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.03 build 2013-03-22_01-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,76 +35,178 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 12:22:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 22 Mar 2013 05:34:03 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_70_2092023148.1363930148614"
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> Sent: Tuesday, March 19, 2013 9:06 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [meta-arago] [PATCH 17/17] arago.conf: Set
-> PREFERRED_VERSIONs for Wilink 6 recipes
->=20
-> * Currently two versions of Wilink 6 need to be supported.
-> * The latest version supports the PG 3 wilink 6 module which is
-> the version that
->   comes with the am37x-evm and am335x-evm .
-> * An older version supports the PG 2 wilink 6 module which is the
-> version that
->   comes with the am180x-evm.
-> * Specifying the PREFERRED_VERSION to match this requirement.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  meta-arago-distro/conf/distro/arago.conf |   17
-> +++++++++++++++++
->  1 files changed, 17 insertions(+), 0 deletions(-)
->=20
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-
-> arago-distro/conf/distro/arago.conf
-> index 9e43ea3..44141c1 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -105,6 +105,23 @@ PREFERRED_VERSION_bluez-hcidump =3D "2.2"
->  PREFERRED_VERSION_bash =3D "3.2.48"
->  PREFERRED_VERSION_gettext =3D "0.16.1"
->=20
-> +# Support Wilink 6 PG 3 modules
-> +PREFERRED_VERSION_ti-compat-bluetooth =3D "r5.sp3.05"
-> +PREFERRED_VERSION_ti-compat-wireless-wl12xx =3D "r5.sp4.01"
-> +PREFERRED_VERSION_wl12xx-firmware =3D "r5.sp4.01"
-> +PREFERRED_VERSION_wpa-supplicant =3D "r5.sp4.01"
-> +PREFERRED_VERSION_hostap-daemon =3D "r5.sp4.01"
-> +PREFERRED_VERSION_ti-wifi-utils =3D "r5.sp3.05"
-> +
-> +# Support Wilink 6 PG 2 modules
-> +# By default am180x-evms come with an outdated wilink 6 module
-> +PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm =3D
-> "r5.00.18"
-> +PREFERRED_VERSION_wl12xx-firmware_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_wpa-supplicant_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_hostap-daemon_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_ti-wifi-utils_am180x-evm =3D "r5.00.18"
+------=_Part_70_2092023148.1363930148614
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Could you use a variable here?  I see for the PG3 modules that the versions=
- don't all match, but I'm thinking it might be nice to have only one update=
- place.  That being said I don't expect this to change going forward so I'm=
- OK if you want to leave it alone.
+<html>
+<head>
+<title>
+Status for 03/22/13
+</title>
+</head>
+<body>
 
-> +
->  # Disable polkit's systemd configuration from meta-oe
->  POLKITAUTH =3D ""
->=20
-> --
-> 1.7.0.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<h2>Status for 03/22/13</h2>
 
+<h2>BUILD_ID: build-2013-03-22_01-02-08</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.03"<br>
+MACHINES="am335x-evm am37x-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-amsdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-amsdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_70_2092023148.1363930148614--
