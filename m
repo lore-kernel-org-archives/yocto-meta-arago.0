@@ -1,28 +1,26 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C42D252A10
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTP id AF369529B9
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Mar 2013 05:31:46 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r2Q5VigZ004774
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2013 00:31:44 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2Q5Viis022211
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2013 00:31:44 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 26 Mar 2013 00:31:44 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r2Q5Vhrj027765;
-	Tue, 26 Mar 2013 00:31:44 -0500
-Date: Tue, 26 Mar 2013 01:26:50 -0400
+	Tue, 26 Mar 2013 18:45:52 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173021.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MKA00K9B6RSIAS0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 26 Mar 2013 13:45:44 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 8293E2011D; Tue,
+	26 Mar 2013 14:45:28 -0400 (EDT)
+Date: Tue, 26 Mar 2013 14:45:27 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <fcooper@ti.com>
-Message-ID: <634691565.87.1364275610557.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-03-26_01-01-06
+To: Eyal Reizer <eyalr@ti.com>
+Message-id: <20130326184527.GA22032@denix.org>
+References: <1363771816-4022-2-git-send-email-eyalr@ti.com>
+MIME-version: 1.0
+In-reply-to: <1363771816-4022-2-git-send-email-eyalr@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCHv3 2/9] wl18xx-firmware: install Wilink8 wlan firmware files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,178 +33,95 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 05:31:48 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_86_1174866594.1364275610555"
+X-List-Received-Date: Tue, 26 Mar 2013 18:45:54 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-------=_Part_86_1174866594.1364275610555
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+On Wed, Mar 20, 2013 at 11:30:09AM +0200, Eyal Reizer wrote:
+> Add a recipe for installing the Wilink8 wlan firmware files into
+> the target file system.
+> 
+> This package replace the wilink6 package which is provided by the
+> wl12xx-firmware recipe. Selection between the two is done using a
+> "WILINK_VERSION" switch added to arago.conf
 
-<html>
-<head>
-<title>
-Status for 03/26/13
-</title>
-</head>
-<body>
+I have 2 questions:
 
-<h2>Status for 03/26/13</h2>
-
-<h2>BUILD_ID: build-2013-03-26_01-02-09</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.03"<br>
-MACHINES="am335x-evm am37x-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-amsdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-amsdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+1. I seem to be missing the first patch in this series - 1/9 never made it
+2. Is this set depending on Franklin's big set of 17 patches?
 
 
-------=_Part_86_1174866594.1364275610555--
+> Changes in v2:
+> * Use an actual release name in the recipe name instead of _git
+> * Add RPROVIDES, RREPLACES, RCONFLICTS as this recipe completely 
+>   replace the wilink6 one.
+> 
+> Changes in v3:
+> * Add _${PN} to all runtime variables
+> 
+> Signed-off-by: Eyal Reizer <eyalr@ti.com>
+> ---
+>  .../wl18xx-firmware/wl18xx-firmware/Makefile       |    7 +++++
+>  .../wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb    |   30 ++++++++++++++++++++
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
+>  create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
+> 
+> diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
+> new file mode 100644
+> index 0000000..0bb7ab8
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/Makefile
+> @@ -0,0 +1,7 @@
+> +# Installs the the ti-connectiviy wlan firmware files into the root file system
+> +
+> +install:
+> +	install -d  $(DEST_DIR)/lib/firmware/ti-connectivity
+> +	cp -RpP * $(DEST_DIR)/lib/firmware/ti-connectivity/
+> +	rm -f $(DEST_DIR)/lib/firmware/ti-connectivity/Makefile
+> +
+> diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
+> new file mode 100644
+> index 0000000..fd463cc
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb
+> @@ -0,0 +1,30 @@
+> +DESCRIPTION = "Firmware files for use with TI wl18xx"
+> +LICENSE = "TI-TSPA"
+> +LIC_FILES_CHKSUM = "file://LICENCE;md5=b28122fd6678e89fd3a8d4bc80922969"
+> +
+> +PACKAGE_ARCH = "all"
+> +
+> +PR = "r1+gitr${SRCREV}"
+> +
+> +PROVIDES += "wl12xx-firmware"
+> +RPROVIDES_${PN} += "wl12xx-firmware" 
+> +RREPLACES_${PN} += "wl12xx-firmware"
+> +RCONFLICTS_${PN} += "wl12xx-firmware"
+> +
+> +SRCREV = "ol_r8.a6.01"
+> +SRC_URI = "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=git \
+> +           file://Makefile \
+> +          "
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_compile() {
+> +    :
+> +}
+> +
+> +do_install() {
+> +    cp ${WORKDIR}/Makefile ${S}
+> +    oe_runmake 'DEST_DIR=${D}' install
+> +}
+> +
+> +FILES_${PN} = "/lib/firmware/ti-connectivity/*"
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
+
