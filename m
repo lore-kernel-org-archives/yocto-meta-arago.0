@@ -1,28 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5763D52981
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id B0D225298C
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 05:46:07 +0000 (UTC)
+	Mon,  1 Apr 2013 12:35:18 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r315k6AD025213
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 00:46:06 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31CZHeB019044
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 07:35:17 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r315k6cT008203
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 00:46:06 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 1 Apr 2013 00:46:05 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r315k4UI011086	for
-	<meta-arago@arago-project.org>; Mon, 1 Apr 2013 00:46:04 -0500
-Date: Mon, 1 Apr 2013 01:41:03 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1820658474.121.1364794863419.JavaMail.jenkins@puget>
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31CZHso023500
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 07:35:17 -0500
+Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Mon, 1 Apr 2013 07:35:17 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
+	14.01.0323.003; Mon, 1 Apr 2013 07:35:17 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 09/17] wpa-supplicant: Split recipe
+Thread-Index: AQHOJQ91F1opTtn4tkuNCVWuhGQNZZiwZEGAgBD6vyA=
+Date: Mon, 1 Apr 2013 12:35:16 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C41876B@DFLE08.ent.ti.com>
+References: <1363745138-10288-1-git-send-email-fcooper@ti.com>
+	<1363745138-10288-9-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015948EB56@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015948EB56@DLEE11.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-04-01_01-01-06
+Subject: Re: [PATCH 09/17] wpa-supplicant: Split recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,183 +44,190 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 05:46:07 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_120_1013732875.1364794863419"
-
-------=_Part_120_1013732875.1364794863419
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<html>
-<head>
-<title>
-Status for 04/01/13
-</title>
-</head>
-<body>
-
-<h2>Status for 04/01/13</h2>
-
-<h2>BUILD_ID: build-2013-04-01_01-02-09</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.03"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+X-List-Received-Date: Mon, 01 Apr 2013 12:35:19 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
-------=_Part_120_1013732875.1364794863419--
+
+> -----Original Message-----
+> From: Maupin, Chase
+> Sent: Thursday, March 21, 2013 7:12 AM
+> To: Cooper Jr., Franklin; meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [PATCH 09/17] wpa-supplicant: Split recipe
+>=20
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> > Sent: Tuesday, March 19, 2013 9:05 PM
+> > To: meta-arago@arago-project.org
+> > Cc: Cooper Jr., Franklin
+> > Subject: [meta-arago] [PATCH 09/17] wpa-supplicant: Split recipe
+> >
+> > * Split recipe to allow multiple versions of wpa-supplicant to exist.
+> > * Rename recipe to match the actual version of the TI modified
+> > wpa-supplicant.
+> >
+> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > ---
+> >  .../defconfig                                      |    0
+> >  .../{wpa-supplicant_git.bb =3D> wpa-supplicant.inc}  |   15 +++++-
+> > ---------
+> >  .../wpa-supplicant/wpa-supplicant_r5.sp4.01.bb     |   13
+> > +++++++++++++
+> >  3 files changed, 18 insertions(+), 10 deletions(-)  rename
+> > meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/{wpa-supplicant =3D> wpa-supplicant-r5.sp4.01}/defconfig
+> > (100%)
+> >  rename meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/{wpa-supplicant_git.bb =3D> wpa-supplicant.inc} (91%)  creat=
+e
+> > mode 100644 meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant_r5.sp4.01.bb
+> >
+> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant/defconfig b/meta-arago-extras/recipes-
+> > connectivity/wpa-supplicant/wpa-supplicant-r5.sp4.01/defconfig
+> > similarity index 100%
+> > rename from meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant/defconfig
+> > rename to meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant-r5.sp4.01/defconfig
+> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant_git.bb b/meta-arago-extras/recipes-
+> > connectivity/wpa-supplicant/wpa-supplicant.inc
+> > similarity index 91%
+> > rename from meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant_git.bb
+> > rename to meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant.inc
+> > index 927a556..21ec6a3 100644
+> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
+> > supplicant_git.bb
+> > +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
+> > supplicant.inc
+> > @@ -5,10 +5,7 @@ DESCRIPTION =3D "A Client for Wi-Fi Protected Access
+> > (WPA)."
+> >  HOMEPAGE =3D "http://hostap.epitest.fi/wpa_supplicant/"
+> >  BUGTRACKER =3D "http://hostap.epitest.fi/bugz/"
+> >  SECTION =3D "network"
+> > -LICENSE =3D "GPLv2 | BSD"
+> > -LIC_FILES_CHKSUM =3D
+> > "file://../COPYING;md5=3Dab87f20cd7e8c0d0a6539b34d3791d0e \
+> > -
+> > file://../README;md5=3D5cb758942d25f6f61fd4ac388fd446fa \
+> > -
+> > file://wpa_supplicant.c;beginline=3D1;endline=3D17;md5=3D8835156c8ab8ca
+> > d6356ec7f39ebe3aba"
+> > +
+> >  DEPENDS =3D "gnutls dbus libnl openssl
+> > ${@base_contains("COMBINED_FEATURES", "madwifi", "madwifi-ng",
+> "",d)}"
+> >  RRECOMMENDS_${PN} =3D "wpa-supplicant-passphrase wpa-supplicant- cli"
+> >
+> > @@ -16,22 +13,19 @@ RRECOMMENDS_${PN} =3D "wpa-supplicant-
+> passphrase
+> > wpa-supplicant-cli"
+> >  # wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
+> >  DEFAULT_PREFERENCE =3D "-1"
+> >
+> > -SRCREV =3D "ol_R5.SP4.01"
+> > -PR =3D "r3+gitr${SRCPV}"
+> > -# Add ti to the PV to indicate that this is a TI modify version of
+> > wpa-supplicant.
+> > -PV =3D "2.0-devel-ti"
+> > +PR =3D "r4"
+> >
+> >  SRC_URI =3D "git://github.com/TI-OpenLink/hostap.git;protocol=3Dgit
+> > \
+> >             file://defconfig \
+> >             file://defaults-sane \
+> >             file://wpa-supplicant.sh \
+> > -           file://kill_wpa_supplicant.sh \
+> >             file://wpa_supplicant.conf \
+> >             file://wpa_supplicant.conf-sane \
+> >             file://99_wpa_supplicant \
+> >             file://wpa_supplicant.conf \
+> >             file://fi.epitest.hostap.WPASupplicant.service \
+> >             file://fi.w1.wpa_supplicant1.service \
+> > +           file://kill_wpa_supplicant.sh \
+>=20
+> Why the re-order
+Not sure why things got reordered. I ended up moving kill_wpa_supplicant to=
+ its own recipe so this issue is fixed in my updated patches.
+>=20
+> >            "
+> >
+> >  S =3D "${WORKDIR}/git/wpa_supplicant"
+> > @@ -54,7 +48,6 @@ do_install () {
+> >  	install -m 755 wpa_supplicant ${D}${sbindir}
+> >  	install -m 755 wpa_passphrase ${D}${sbindir}
+> >  	install -m 755 wpa_cli        ${D}${sbindir}
+> > -	install -m 755 ${WORKDIR}/kill_wpa_supplicant.sh
+> > ${D}${sbindir}
+> >
+> >  	install -d ${D}${docdir}/wpa_supplicant
+> >  	install -m 644 README ${WORKDIR}/wpa_supplicant.conf
+> > ${D}${docdir}/wpa_supplicant @@ -93,6 +86,8 @@ do_install () {
+> >  	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}/etc
+> >  	install -m 644
+> > ${WORKDIR}/fi.epitest.hostap.WPASupplicant.service
+> > ${D}/usr/share/dbus-1/system-services
+> >  	install -m 644 ${WORKDIR}/fi.w1.wpa_supplicant1.service
+> > ${D}/usr/share/dbus-1/system-services
+> > +
+> > +	install -m 755 ${WORKDIR}/kill_wpa_supplicant.sh
+> > ${D}${sbindir}
+>=20
+> Same question, why the re-order?
+>=20
+> >  }
+> >
+> >  pkg_postinst_wpa-supplicant () {
+> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-
+> > supplicant/wpa-supplicant_r5.sp4.01.bb b/meta-arago-
+> > extras/recipes-connectivity/wpa-supplicant/wpa-
+> > supplicant_r5.sp4.01.bb
+> > new file mode 100644
+> > index 0000000..e23f3df
+> > --- /dev/null
+> > +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
+> > supplicant_r5.sp4.01.bb
+> > @@ -0,0 +1,13 @@
+> > +# This is a TI specific version of the wpa-supplicant recipe for
+> > use with the
+> > +# wl12xx wlan and bluetooth module.
+> > +
+> > +require wpa-supplicant.inc
+> > +
+> > +LICENSE =3D "GPLv2 | BSD"
+> > +LIC_FILES_CHKSUM =3D
+> > "file://../COPYING;md5=3Dab87f20cd7e8c0d0a6539b34d3791d0e \
+> > +
+> > file://../README;md5=3D5cb758942d25f6f61fd4ac388fd446fa \
+> > +
+> > file://wpa_supplicant.c;beginline=3D1;endline=3D17;md5=3D8835156c8ab8ca
+> > d6356ec7f39ebe3aba"
+> > +
+> > +
+> > +SRCREV =3D "ol_R5.SP4.01"
+> > +PR_append =3D "-a+gitr${SRCPV}"
+>=20
+> Question about the PR append consistency with other recipes.  Same as
+> previous feedback, do you need the "-" or just append the "a"?
+>=20
+My recipes with PR_append usually includes the dash. I made the changes to =
+recipes that have MACHINE_KERNEL_PR since you mentioned that is the style u=
+sed in meta-ti. But in meta-arago usually the dash is added and in some ins=
+tances a dot is used. I am going to leave the dash as is for now but I don'=
+t mind creating patch later on that uses 1 particular append style for all =
+recipes/appends in meta-arago.=20
+> > --
+> > 1.7.0.4
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
