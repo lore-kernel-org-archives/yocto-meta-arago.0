@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 4B00452AB8
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B0D2252A39
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:55:20 +0000 (UTC)
+	Mon,  1 Apr 2013 14:55:21 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtIaU032733
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:19 -0500
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtHRt011787
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:17 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 1 Apr 2013 20:25:17 +0530
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtJbu028480
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:20 -0500
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtJi2011791
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:19 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 1 Apr 2013 20:25:19 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCk020052;
-	Mon, 1 Apr 2013 20:25:16 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCl020052;
+	Mon, 1 Apr 2013 20:25:18 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 1 Apr 2013 09:54:49 -0500
-Message-ID: <1364828095-28755-11-git-send-email-fcooper@ti.com>
+Date: Mon, 1 Apr 2013 09:54:50 -0500
+Message-ID: <1364828095-28755-12-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 11/17] wpa-supplicant: Split recipe
+Subject: [PATCH 12/17 v2] wpa-supplicant: Pull back in old r5-00-18 recipe.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,321 +37,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:55:20 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 14:55:22 -0000
 Content-Type: text/plain
 
-* Split recipe to allow multiple versions of wpa-supplicant to exist.
-* Rename recipe to match the actual version of the TI modified wpa-supplicant.
-* Update recipe's bbappend
+* Current am180x-evm ships with a PG 2 wilink 6 module that isn't supported in
+  newer wilink 6 releases.
+* A newer PG 3 wilink 6 module is available for am180x-evm but needs to be
+  purchased separately..
+* Bring old r5.00.18 wpa-supplicant recipe with updated recipe name
+  to add support for am180x-evm default wilink 6 module.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 Version 2 changes:
-Remove "-" from recipe PR_append
-Removed references to kill_wpa_supplicant
-Add LICENSE field back to common .inc
-Add rename of bbappend to this patch.
+Remove LICENSE field since it is now located in common .inc file.
 
- ....bbappend => wpa-supplicant_r5.sp4.01.bbappend} |    0
- .../defconfig                                      |    0
- .../wpa-supplicant/wpa-supplicant.inc              |  113 ++++++++++++++++++
- .../wpa-supplicant/kill_wpa_supplicant.sh          |    9 --
- .../wpa-supplicant/wpa-supplicant_git.bb           |  120 --------------------
- .../wpa-supplicant/wpa-supplicant_r5.sp4.01.bb     |   12 ++
- 6 files changed, 125 insertions(+), 129 deletions(-)
- rename meta-arago-distro/recipes-connectivity/wpa-supplicant/{wpa-supplicant_git.bbappend => wpa-supplicant_r5.sp4.01.bbappend} (100%)
- rename meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant => wpa-supplicant-r5.sp4.01}/defconfig (100%)
- create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
- delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/kill_wpa_supplicant.sh
- delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_git.bb
- create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb
+ ...ant-dbus-AP-Add-support-for-WPS-Internal-.patch |  134 ++++++++++++++++++++
+ .../defconfig                                      |    4 -
+ .../wpa-supplicant/wpa-supplicant_r5.00.18.bb      |   13 ++
+ 3 files changed, 147 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/0001-wpa_supplicant-dbus-AP-Add-support-for-WPS-Internal-.patch
+ copy meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-r5.sp4.01 => wpa-supplicant-r5.00.18}/defconfig (99%)
+ create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.00.18.bb
 
-diff --git a/meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_git.bbappend b/meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_git.bbappend
-rename to meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bbappend
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defconfig b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.sp4.01/defconfig
-similarity index 100%
-rename from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defconfig
-rename to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.sp4.01/defconfig
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/0001-wpa_supplicant-dbus-AP-Add-support-for-WPS-Internal-.patch b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/0001-wpa_supplicant-dbus-AP-Add-support-for-WPS-Internal-.patch
 new file mode 100644
-index 0000000..410e6e3
+index 0000000..15ec6fe
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-@@ -0,0 +1,113 @@
-+# This is a TI specific version of the wpa-supplicant recipe for use with the
-+# wl12xx wlan and bluetooth module.
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/0001-wpa_supplicant-dbus-AP-Add-support-for-WPS-Internal-.patch
+@@ -0,0 +1,134 @@
++From 19030351b95f48714007e425eaa2163d9122d788 Mon Sep 17 00:00:00 2001
++From: Gustavo Sverzut Barbieri <barbieri@profusion.mobi>
++Date: Sun, 18 Dec 2011 17:06:31 +0200
++Subject: [PATCH] wpa_supplicant/dbus AP: Add support for WPS Internal
++ Registrar
 +
-+DESCRIPTION = "A Client for Wi-Fi Protected Access (WPA)."
-+HOMEPAGE = "http://hostap.epitest.fi/wpa_supplicant/"
-+BUGTRACKER = "http://hostap.epitest.fi/bugz/"
-+SECTION = "network"
-+LICENSE = "GPLv2 | BSD"
++When in AP mode, wpa_supplicant is now enabling WPS (only Internal
++Registrar). WPS.Start() call can be used to initiate WPS negotiation
++similarly to how this is done in station mode.
 +
-+DEPENDS = "gnutls dbus libnl openssl ${@base_contains("COMBINED_FEATURES", "madwifi", "madwifi-ng", "",d)}"
-+RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
++This was done to ctrl_iface by Jouni Malinen on April 21, 2009 (commit
++3ec97afe571f159ea95213262c1c6b89965827d4)
 +
-+# To prevent users from accidently picking up this customized version of
-+# wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
-+DEFAULT_PREFERENCE = "-1"
++Upstream-Status: Submitted [http://lists.shmoo.com/pipermail/hostap/2011-December/024947.html]
 +
-+PR = "r5"
++Signed-hostap: Gustavo Sverzut Barbieri <barbieri@profusion.mobi>
++---
++ wpa_supplicant/dbus/dbus_new_handlers_wps.c |   72 +++++++++++++++++++++++++--
++ 1 file changed, 67 insertions(+), 5 deletions(-)
 +
-+SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git \
-+           file://defconfig \
-+           file://defaults-sane \
-+           file://wpa-supplicant.sh \
-+           file://wpa_supplicant.conf \
-+           file://wpa_supplicant.conf-sane \
-+           file://99_wpa_supplicant \
-+           file://wpa_supplicant.conf \
-+           file://fi.epitest.hostap.WPASupplicant.service \
-+           file://fi.w1.wpa_supplicant1.service \
-+          "
++diff --git a/wpa_supplicant/dbus/dbus_new_handlers_wps.c b/wpa_supplicant/dbus/dbus_new_handlers_wps.c
++index d8b74d0..a72cfb3 100644
++--- a/wpa_supplicant/dbus/dbus_new_handlers_wps.c
+++++ b/wpa_supplicant/dbus/dbus_new_handlers_wps.c
++@@ -19,6 +19,8 @@
++ #include "../config.h"
++ #include "../wpa_supplicant_i.h"
++ #include "../wps_supplicant.h"
+++#include "../driver_i.h"
+++#include "../ap.h"
++ #include "dbus_new_helpers.h"
++ #include "dbus_new.h"
++ #include "dbus_new_handlers.h"
++@@ -30,6 +32,7 @@ struct wps_start_params {
++	int type; /* 0 - not set, 1 - pin,      2 - pbc       */
++	u8 *bssid;
++	char *pin;
+++	u8 *p2p_dev_addr;
++ };
 +
-+S = "${WORKDIR}/git/wpa_supplicant"
 +
-+PACKAGES_prepend = "wpa-supplicant-passphrase wpa-supplicant-cli "
-+FILES_wpa-supplicant-passphrase = "/usr/sbin/wpa_passphrase"
-+FILES_wpa-supplicant-cli = "/usr/sbin/wpa_cli"
-+FILES_${PN} += " /usr/share/dbus-1/system-services/*"
++@@ -148,6 +151,41 @@ static int wpas_dbus_handler_wps_pin(DBusMessage *message,
++ }
 +
-+#we introduce MY_ARCH to get 'armv5te' as arch instead of the misleading 'arm' on armv5te builds
-+MY_ARCH := "${PACKAGE_ARCH}"
-+PACKAGE_ARCH = "${@base_contains('COMBINED_FEATURES', 'madwifi', '${MACHINE_ARCH}', '${MY_ARCH}', d)}"
 +
-+do_compile () {
-+	make
-+}
+++#ifdef CONFIG_P2P
+++static int wpas_dbus_handler_wps_p2p_dev_addr(DBusMessage *message,
+++					      DBusMessageIter *entry_iter,
+++					      struct wps_start_params *params,
+++					      DBusMessage **reply)
+++{
+++	DBusMessageIter variant_iter, array_iter;
+++	int len;
+++
+++	dbus_message_iter_recurse(entry_iter, &variant_iter);
+++	if (dbus_message_iter_get_arg_type(&variant_iter) != DBUS_TYPE_ARRAY ||
+++	    dbus_message_iter_get_element_type(&variant_iter) !=
+++	    DBUS_TYPE_BYTE) {
+++		wpa_printf(MSG_DEBUG, "dbus: WPS.Start - Wrong "
+++			   "P2PDeviceAddress type, byte array required");
+++		*reply = wpas_dbus_error_invalid_args(
+++			message, "P2PDeviceAddress must be a byte array");
+++		return -1;
+++	}
+++	dbus_message_iter_recurse(&variant_iter, &array_iter);
+++	dbus_message_iter_get_fixed_array(&array_iter, &params->p2p_dev_addr,
+++					  &len);
+++	if (len != ETH_ALEN) {
+++		wpa_printf(MSG_DEBUG, "dbus: WPS.Start - Wrong "
+++			   "P2PDeviceAddress length %d", len);
+++		*reply = wpas_dbus_error_invalid_args(message,
+++						      "P2PDeviceAddress "
+++						      "has wrong length");
+++		return -1;
+++	}
+++	return 0;
+++}
+++#endif /* CONFIG_P2P */
+++
+++
++ static int wpas_dbus_handler_wps_start_entry(DBusMessage *message, char *key,
++					     DBusMessageIter *entry_iter,
++					     struct wps_start_params *params,
++@@ -165,6 +203,11 @@ static int wpas_dbus_handler_wps_start_entry(DBusMessage *message, char *key,
++	else if (os_strcmp(key, "Pin") == 0)
++		return wpas_dbus_handler_wps_pin(message, entry_iter,
++						 params, reply);
+++#ifdef CONFIG_P2P
+++	else if (os_strcmp(key, "P2PDeviceAddress") == 0)
+++		return wpas_dbus_handler_wps_p2p_dev_addr(message, entry_iter,
+++							  params, reply);
+++#endif /* CONFIG_P2P */
 +
-+do_install () {
-+	install -d ${D}${sbindir}
-+	install -m 755 wpa_supplicant ${D}${sbindir}
-+	install -m 755 wpa_passphrase ${D}${sbindir}
-+	install -m 755 wpa_cli        ${D}${sbindir}
++	wpa_printf(MSG_DEBUG, "dbus: WPS.Start - unknown key %s", key);
++	*reply = wpas_dbus_error_invalid_args(message, key);
++@@ -231,12 +274,31 @@ DBusMessage * wpas_dbus_handler_wps_start(DBusMessage *message,
++		ret = wpas_wps_start_reg(wpa_s, params.bssid, params.pin,
++					 NULL);
++	else if (params.type == 1) {
++-		ret = wpas_wps_start_pin(wpa_s, params.bssid, params.pin, 0,
++-					 DEV_PW_DEFAULT);
++-		if (ret > 0)
++-			os_snprintf(npin, sizeof(npin), "%08d", ret);
++-	} else
+++#ifdef CONFIG_AP
+++		if (wpa_s->ap_iface)
+++			ret = wpa_supplicant_ap_wps_pin(wpa_s,
+++							params.bssid,
+++							params.pin,
+++							npin, sizeof(npin));
+++		else
+++#endif /* CONFIG_AP */
+++		{
+++			ret = wpas_wps_start_pin(wpa_s, params.bssid,
+++						 params.pin, 0,
+++						 DEV_PW_DEFAULT);
+++			if (ret > 0)
+++				os_snprintf(npin, sizeof(npin), "%08d", ret);
+++		}
+++	} else {
+++#ifdef CONFIG_AP
+++		if (wpa_s->ap_iface)
+++			ret = wpa_supplicant_ap_wps_pbc(wpa_s,
+++							params.bssid,
+++							params.p2p_dev_addr);
+++		else
+++#endif /* CONFIG_AP */
++		ret = wpas_wps_start_pbc(wpa_s, params.bssid, 0);
+++	}
 +
-+	install -d ${D}${docdir}/wpa_supplicant
-+	install -m 644 README ${WORKDIR}/wpa_supplicant.conf ${D}${docdir}/wpa_supplicant
-+
-+	install -d ${D}${sysconfdir}/default
-+	install -m 600 ${WORKDIR}/defaults-sane ${D}${sysconfdir}/default/wpa
-+	install -m 600 ${WORKDIR}/wpa_supplicant.conf-sane ${D}${sysconfdir}/wpa_supplicant.conf
-+
-+	if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config || grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
-+		install -d ${D}/${sysconfdir}/dbus-1/system.d
-+		install -m 644 ${S}/dbus/dbus-wpa_supplicant.conf ${D}/${sysconfdir}/dbus-1/system.d
-+		install -d ${D}/${datadir}/dbus-1/system-services
-+		if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config; then
-+			sed -i -e s:/sbin:${sbindir}:g ${S}/dbus/fi.epitest.hostap.WPASupplicant.service
-+			install -m 644 ${S}/dbus/fi.epitest.hostap.WPASupplicant.service ${D}/${datadir}/dbus-1/system-services
-+		fi
-+		if grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
-+			sed -i -e s:/sbin:${sbindir}:g ${S}/dbus/fi.w1.wpa_supplicant1.service
-+			install -m 644 ${S}/dbus/fi.w1.wpa_supplicant1.service ${D}/${datadir}/dbus-1/system-services
-+		fi
-+	fi
-+
-+	install -d ${D}${sysconfdir}/network/if-pre-up.d/
-+	install -d ${D}${sysconfdir}/network/if-post-down.d/
-+	install -d ${D}${sysconfdir}/network/if-down.d/
-+	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}${sysconfdir}
-+	install -m 755 ${WORKDIR}/wpa-supplicant.sh ${D}${sysconfdir}/network/if-pre-up.d/wpa-supplicant
-+	cd ${D}${sysconfdir}/network/ && \
-+	ln -sf ../if-pre-up.d/wpa-supplicant if-post-down.d/wpa-supplicant
-+
-+	install -d ${D}/etc/default/volatiles
-+	install -m 0644 ${WORKDIR}/99_wpa_supplicant ${D}/etc/default/volatiles
-+
-+	install -d 2755 ${D}/usr/share/dbus-1/system-services
-+	install -d 2755 ${D}/etc
-+	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}/etc
-+	install -m 644 ${WORKDIR}/fi.epitest.hostap.WPASupplicant.service ${D}/usr/share/dbus-1/system-services
-+	install -m 644 ${WORKDIR}/fi.w1.wpa_supplicant1.service ${D}/usr/share/dbus-1/system-services
-+}
-+
-+pkg_postinst_wpa-supplicant () {
-+	# can't do this offline
-+	if [ "x$D" != "x" ]; then
-+		exit 1
-+	fi
-+
-+	DBUSPID=`pidof dbus-daemon`
-+
-+	if [ "x$DBUSPID" != "x" ]; then
-+		/etc/init.d/dbus-1 reload
-+	fi
-+}
-+
-+do_configure () {
-+	install -m 0755 ${WORKDIR}/defconfig .config
-+	echo "CFLAGS += -I${STAGING_INCDIR}" >> .config
-+	echo "LIBS += -L${STAGING_LIBDIR}" >> .config
-+	echo "LIBS_p += -L${STAGING_LIBDIR}" >> .config
-+	if [ "${@base_contains('COMBINED_FEATURES', 'madwifi', 1, 0, d)}" = "1" ]; then
-+		echo "CONFIG_DRIVER_MADWIFI=y" >> .config
-+		echo "CFLAGS += -I${STAGING_INCDIR}/madwifi-ng" >> .config
-+	fi
-+}
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/kill_wpa_supplicant.sh b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/kill_wpa_supplicant.sh
-deleted file mode 100644
-index aab6474..0000000
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/kill_wpa_supplicant.sh
-+++ /dev/null
-@@ -1,9 +0,0 @@
--#check if the wpa_suppicant is already running
--#if it does, stop it.
--StationRunning=`ps | grep -c wpa_supplicant`
--if [ $StationRunning -eq 2 ]; then
--        killall wpa_supplicant
--fi
++	if (ret < 0) {
++		wpa_printf(MSG_DEBUG, "dbus: WPS.Start wpas_wps_failed in "
++--
++1.7.10
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.sp4.01/defconfig b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/defconfig
+similarity index 99%
+copy from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.sp4.01/defconfig
+copy to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/defconfig
+index b982e2a..9b9882a 100755
+--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.sp4.01/defconfig
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-r5.00.18/defconfig
+@@ -424,7 +424,3 @@ CONFIG_DEBUG_FILE=y
+ # for p2p
+ CONFIG_P2P=y
+ CONFIG_AP=y
 -
--# start the application
--$*
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_git.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_git.bb
-deleted file mode 100644
-index 927a556..0000000
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_git.bb
-+++ /dev/null
-@@ -1,120 +0,0 @@
--# This is a TI specific version of the wpa-supplicant recipe for use with the
--# wl12xx wlan and bluetooth module.
+-# IEEE 802.11n (High Throughput) support
+-CONFIG_IEEE80211N=y
 -
--DESCRIPTION = "A Client for Wi-Fi Protected Access (WPA)."
--HOMEPAGE = "http://hostap.epitest.fi/wpa_supplicant/"
--BUGTRACKER = "http://hostap.epitest.fi/bugz/"
--SECTION = "network"
--LICENSE = "GPLv2 | BSD"
--LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e \
--                    file://../README;md5=5cb758942d25f6f61fd4ac388fd446fa \
--                    file://wpa_supplicant.c;beginline=1;endline=17;md5=8835156c8ab8cad6356ec7f39ebe3aba"
--DEPENDS = "gnutls dbus libnl openssl ${@base_contains("COMBINED_FEATURES", "madwifi", "madwifi-ng", "",d)}"
--RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
--
--# To prevent users from accidently picking up this customized version of
--# wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
--DEFAULT_PREFERENCE = "-1"
--
--SRCREV = "ol_R5.SP4.01"
--PR = "r3+gitr${SRCPV}"
--# Add ti to the PV to indicate that this is a TI modify version of wpa-supplicant.
--PV = "2.0-devel-ti"
--
--SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git \
--           file://defconfig \
--           file://defaults-sane \
--           file://wpa-supplicant.sh \
--           file://kill_wpa_supplicant.sh \
--           file://wpa_supplicant.conf \
--           file://wpa_supplicant.conf-sane \
--           file://99_wpa_supplicant \
--           file://wpa_supplicant.conf \
--           file://fi.epitest.hostap.WPASupplicant.service \
--           file://fi.w1.wpa_supplicant1.service \
--          "
--
--S = "${WORKDIR}/git/wpa_supplicant"
--
--PACKAGES_prepend = "wpa-supplicant-passphrase wpa-supplicant-cli "
--FILES_wpa-supplicant-passphrase = "/usr/sbin/wpa_passphrase"
--FILES_wpa-supplicant-cli = "/usr/sbin/wpa_cli"
--FILES_${PN} += " /usr/share/dbus-1/system-services/* /usr/sbin/kill_wpa_supplicant.sh"
--
--#we introduce MY_ARCH to get 'armv5te' as arch instead of the misleading 'arm' on armv5te builds
--MY_ARCH := "${PACKAGE_ARCH}"
--PACKAGE_ARCH = "${@base_contains('COMBINED_FEATURES', 'madwifi', '${MACHINE_ARCH}', '${MY_ARCH}', d)}"
--
--do_compile () {
--	make
--}
--
--do_install () {
--	install -d ${D}${sbindir}
--	install -m 755 wpa_supplicant ${D}${sbindir}
--	install -m 755 wpa_passphrase ${D}${sbindir}
--	install -m 755 wpa_cli        ${D}${sbindir}
--	install -m 755 ${WORKDIR}/kill_wpa_supplicant.sh ${D}${sbindir}
--
--	install -d ${D}${docdir}/wpa_supplicant
--	install -m 644 README ${WORKDIR}/wpa_supplicant.conf ${D}${docdir}/wpa_supplicant
--
--	install -d ${D}${sysconfdir}/default
--	install -m 600 ${WORKDIR}/defaults-sane ${D}${sysconfdir}/default/wpa
--	install -m 600 ${WORKDIR}/wpa_supplicant.conf-sane ${D}${sysconfdir}/wpa_supplicant.conf
--
--	if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config || grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
--		install -d ${D}/${sysconfdir}/dbus-1/system.d
--		install -m 644 ${S}/dbus/dbus-wpa_supplicant.conf ${D}/${sysconfdir}/dbus-1/system.d
--		install -d ${D}/${datadir}/dbus-1/system-services
--		if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config; then
--			sed -i -e s:/sbin:${sbindir}:g ${S}/dbus/fi.epitest.hostap.WPASupplicant.service
--			install -m 644 ${S}/dbus/fi.epitest.hostap.WPASupplicant.service ${D}/${datadir}/dbus-1/system-services
--		fi
--		if grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
--			sed -i -e s:/sbin:${sbindir}:g ${S}/dbus/fi.w1.wpa_supplicant1.service
--			install -m 644 ${S}/dbus/fi.w1.wpa_supplicant1.service ${D}/${datadir}/dbus-1/system-services
--		fi
--	fi
--
--	install -d ${D}${sysconfdir}/network/if-pre-up.d/
--	install -d ${D}${sysconfdir}/network/if-post-down.d/
--	install -d ${D}${sysconfdir}/network/if-down.d/
--	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}${sysconfdir}
--	install -m 755 ${WORKDIR}/wpa-supplicant.sh ${D}${sysconfdir}/network/if-pre-up.d/wpa-supplicant
--	cd ${D}${sysconfdir}/network/ && \
--	ln -sf ../if-pre-up.d/wpa-supplicant if-post-down.d/wpa-supplicant
--
--	install -d ${D}/etc/default/volatiles
--	install -m 0644 ${WORKDIR}/99_wpa_supplicant ${D}/etc/default/volatiles
--
--	install -d 2755 ${D}/usr/share/dbus-1/system-services
--	install -d 2755 ${D}/etc
--	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}/etc
--	install -m 644 ${WORKDIR}/fi.epitest.hostap.WPASupplicant.service ${D}/usr/share/dbus-1/system-services
--	install -m 644 ${WORKDIR}/fi.w1.wpa_supplicant1.service ${D}/usr/share/dbus-1/system-services
--}
--
--pkg_postinst_wpa-supplicant () {
--	# can't do this offline
--	if [ "x$D" != "x" ]; then
--		exit 1
--	fi
--
--	DBUSPID=`pidof dbus-daemon`
--
--	if [ "x$DBUSPID" != "x" ]; then
--		/etc/init.d/dbus-1 reload
--	fi
--}
--
--do_configure () {
--	install -m 0755 ${WORKDIR}/defconfig .config
--	echo "CFLAGS += -I${STAGING_INCDIR}" >> .config
--	echo "LIBS += -L${STAGING_LIBDIR}" >> .config
--	echo "LIBS_p += -L${STAGING_LIBDIR}" >> .config
--	if [ "${@base_contains('COMBINED_FEATURES', 'madwifi', 1, 0, d)}" = "1" ]; then
--		echo "CONFIG_DRIVER_MADWIFI=y" >> .config
--		echo "CFLAGS += -I${STAGING_INCDIR}/madwifi-ng" >> .config
--	fi
--}
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.00.18.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.00.18.bb
 new file mode 100644
-index 0000000..d1ff079
+index 0000000..295d5e2
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb
-@@ -0,0 +1,12 @@
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.00.18.bb
+@@ -0,0 +1,13 @@
 +# This is a TI specific version of the wpa-supplicant recipe for use with the
 +# wl12xx wlan and bluetooth module.
 +
 +require wpa-supplicant.inc
 +
-+LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e \
-+                    file://../README;md5=5cb758942d25f6f61fd4ac388fd446fa \
-+                    file://wpa_supplicant.c;beginline=1;endline=17;md5=8835156c8ab8cad6356ec7f39ebe3aba"
++LIC_FILES_CHKSUM = "file://../COPYING;md5=c54ce9345727175ff66d17b67ff51f58 \
++                    file://../README;md5=79cddd95f8b7539aced400f6aab996e9 \
++                    file://wpa_supplicant.c;beginline=1;endline=17;md5=009c87d612d92175fe8cd1e93137bf42"
 +
-+
-+SRCREV = "ol_R5.SP4.01"
++SRCREV = "ol_R5.00.18"
 +PR_append = "a+gitr${SRCPV}"
++
++SRC_URI += "file://0001-wpa_supplicant-dbus-AP-Add-support-for-WPS-Internal-.patch;patchdir=.. "
 -- 
 1.7.0.4
 
