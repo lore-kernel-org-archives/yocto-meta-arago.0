@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 7C5B252AB5
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 2571652A81
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:55:25 +0000 (UTC)
+	Mon,  1 Apr 2013 14:55:26 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtNZU028657
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:24 -0500
-Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtLlg011799
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:22 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
-	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 1 Apr 2013 20:25:22 +0530
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtOV6015296
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:25 -0500
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtNoe011809
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:23 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 1 Apr 2013 20:25:23 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCn020052;
-	Mon, 1 Apr 2013 20:25:21 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCo020052;
+	Mon, 1 Apr 2013 20:25:22 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 1 Apr 2013 09:54:52 -0500
-Message-ID: <1364828095-28755-14-git-send-email-fcooper@ti.com>
+Date: Mon, 1 Apr 2013 09:54:53 -0500
+Message-ID: <1364828095-28755-15-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 14/17 v2] ti-wifi-utils: Split recipe
+Subject: [PATCH 15/17 v2] ti-wifi-utils: Pull back in old r5.00.18 recipe.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,138 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:55:25 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 14:55:26 -0000
 Content-Type: text/plain
 
-* Split recipe to create a generic .inc file to allow support for multiple
-  versions of ti-wifi-utils.
-* Rename recipe to use the specific version of ti-wifi-utils.
+* Current am180x-evm ships with a PG 2 wilink 6 module that isn't supported in
+  newer wilink 6 releases.
+* A newer PG 3 wilink 6 module is available for am180x-evm but needs to be
+  purchased separately..
+* Bring old r5.00.18 ti-wifi-utils recipe with updated recipe name
+  to add support for am180x-evm default wilink 6 module.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-Version 2 changes:
-Removed SRCREV from .inc
-Changed the order of this patch within this patchset.
+Verison 2 changes:
+Reorder patch within patchset.
 
- .../ti-wifi-utils/ti-wifi-utils.inc                |   29 ++++++++++++++
- .../ti-wifi-utils/ti-wifi-utils/calibrate.sh       |    7 ---
- .../ti-wifi-utils/ti-wifi-utils_git.bb             |   40 --------------------
- .../ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb       |    9 ++++
- 4 files changed, 38 insertions(+), 47 deletions(-)
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils.inc
- delete mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils/calibrate.sh
- delete mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_git.bb
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
+ .../ti-wifi-utils/ti-wifi-utils_r5.00.18.bb        |    7 +++++++
+ 1 files changed, 7 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils.inc b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils.inc
+diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
 new file mode 100644
-index 0000000..cdb3746
+index 0000000..a375b5e
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils.inc
-@@ -0,0 +1,29 @@
-+DESCRIPTION = "The calibrator and other useful utilities for TI wireless solution based on wl12xx driver"
-+LICENSE = "BSD"
-+
-+DEPENDS = "libnl"
-+RDEPENDS_${PN} = "ti-compat-wireless-wl12xx wl12xx-firmware"
-+
-+PR ="r1"
-+
-+SRC_URI = "git://github.com/TI-OpenLink/ti-utils.git;protocol=git"
-+
-+S = "${WORKDIR}/git"
-+
-+export CROSS_COMPILE = "${TARGET_PREFIX}"
-+CFLAGS += " -DCONFIG_LIBNL20"
-+
-+do_install() {
-+	install -d ${D}${bindir}
-+	install -d ${D}${datadir}/ti/wifi-utils/ini_files/127x
-+	install -d ${D}${datadir}/ti/wifi-utils/ini_files/128x
-+
-+	install -m 0755 calibrator ${D}${bindir}/
-+	install -m 0755 ${S}/hw/ini_files/127x/* ${D}${datadir}/ti/wifi-utils/ini_files/127x
-+	install -m 0755 ${S}/hw/ini_files/128x/* ${D}${datadir}/ti/wifi-utils/ini_files/128x
-+}
-+
-+FILES_${PN} += " \
-+	${datadir}/ti/wifi-utils/ini_files/127x \
-+	${datadir}/ti/wifi-utils/ini_files/128x \
-+"
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils/calibrate.sh b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils/calibrate.sh
-deleted file mode 100644
-index b028435..0000000
---- a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils/calibrate.sh
-+++ /dev/null
-@@ -1,7 +0,0 @@
--#!/bin/sh
--echo "Performing wifi calibration..."
--rm /lib/firmware/ti-connectivity/wl1271-nvs.bin
--rmmod wl12xx_sdio.ko
--calibrator plt autocalibrate wlan0 /lib/modules/$(uname -r)/updates/drivers/net/wireless/wl12xx/wl12xx_sdio.ko /usr/share/ti/wifi-utils/ini_files/127x/TQS_S_2.6.ini /lib/firmware/ti-connectivity/wl1271-nvs.bin 00:00:00:00:00:00
--modprobe wl12xx_sdio
--
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_git.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_git.bb
-deleted file mode 100644
-index 142a720..0000000
---- a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_git.bb
-+++ /dev/null
-@@ -1,40 +0,0 @@
--DESCRIPTION = "The calibrator and other useful utilities for TI wireless solution based on wl12xx driver"
--LICENSE = "BSD"
--LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
--
--DEPENDS = "libnl"
--RDEPENDS = "ti-compat-wireless-wl12xx wl12xx-firmware"
--
--inherit update-rc.d
--INITSCRIPT_NAME="calibrate.sh"
--INITSCRIPT_PARAMS = "start 20 2 3 4 5 ."
--
--PR ="r2+gitr${SRCPV}"
--PV ="0.0"
--
--SRCREV = "ol_R5.SP3.05"
--SRC_URI = "git://github.com/TI-OpenLink/ti-utils.git;protocol=git \
--           file://calibrate.sh \
--"
--
--S = "${WORKDIR}/git"
--
--export CROSS_COMPILE = "${TARGET_PREFIX}"
--CFLAGS += " -DCONFIG_LIBNL20"
--
--do_install() {
--    install -d ${D}${bindir}
--    install -d ${D}${datadir}/ti/wifi-utils/ini_files/127x
--    install -d ${D}${datadir}/ti/wifi-utils/ini_files/128x
--    install -d ${D}${sysconfdir}/init.d
--
--    install -m 0755 calibrator ${D}${bindir}/
--    install -m 0755 ${S}/hw/ini_files/127x/* ${D}${datadir}/ti/wifi-utils/ini_files/127x
--    install -m 0755 ${S}/hw/ini_files/128x/* ${D}${datadir}/ti/wifi-utils/ini_files/128x
--    install -m 0755 ${WORKDIR}/calibrate.sh ${D}${sysconfdir}/init.d
--}
--
--FILES_${PN} += " \
--    ${datadir}/ti/wifi-utils/ini_files/127x \
--    ${datadir}/ti/wifi-utils/ini_files/128x \
--"
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
-new file mode 100644
-index 0000000..2ca13f7
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.sp3.05.bb
-@@ -0,0 +1,9 @@
++++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
+@@ -0,0 +1,7 @@
 +require ti-wifi-utils.inc
 +
 +LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
 +
-+PR_append ="b+gitr${SRCPV}"
++PR_append ="a+gitr${SRCPV}"
 +
-+SRCREV = "ol_R5.SP3.05"
-+
-+RDEPENDS_${PN}_am335x-evm_append = " wilink-calibrate"
++SRCREV = "ol_R5.00.18"
 -- 
 1.7.0.4
 
