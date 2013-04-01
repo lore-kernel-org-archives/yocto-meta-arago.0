@@ -1,28 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id BD80052A39
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0544E52A47
 	for <meta-arago@arago-project.org>;
 	Mon,  1 Apr 2013 14:55:06 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31Et37k028584
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:04 -0500
-Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31Et2c2011594
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:03 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
-	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 1 Apr 2013 20:25:02 +0530
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31Et4PS015264
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:05 -0500
+Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31Et4PK011598
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:04 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
+	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 1 Apr 2013 20:25:04 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCa020052;
-	Mon, 1 Apr 2013 20:25:01 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCb020052;
+	Mon, 1 Apr 2013 20:25:02 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 1 Apr 2013 09:54:39 -0500
-Message-ID: <1364828095-28755-1-git-send-email-fcooper@ti.com>
+Date: Mon, 1 Apr 2013 09:54:40 -0500
+Message-ID: <1364828095-28755-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1364828095-28755-1-git-send-email-fcooper@ti.com>
+References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 01/17 v2] wl12xx-firmware: Pull back in old r5.00.18 recipe.
+Subject: [PATCH 02/17 v2] wl12xx-firmware: Update recipe name.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,56 +40,27 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Mon, 01 Apr 2013 14:55:07 -0000
 Content-Type: text/plain
 
-* Current am180x-evm ships with a PG 2 wilink 6 module that isn't supported in
-  newer wilink 6 releases.
-* A newer PG 3 wilink 6 module is available for am180x-evm but needs to be
-  purchased separately..
-* Bring old r5.00.18 wl12x-firmware recipe with updated recipe name to add
-  support for am180x-evm default wilink 6 module.
+* Update recipe to have a distinct name.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 Version 2 changes:
 None. Apart of new patchset.
 
- .../wl12xx-firmware/wl12xx-firmware_r5.00.18.bb    |   28 ++++++++++++++++++++
- 1 files changed, 28 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.00.18.bb
+ .../Makefile                                       |    0
+ ...irmware_git.bb => wl12xx-firmware_r5.sp4.01.bb} |    0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename meta-arago-extras/recipes-bsp/wl12xx-firmware/{wl12xx-firmware => wl12xx-firmware-r5.sp4.01}/Makefile (100%)
+ rename meta-arago-extras/recipes-bsp/wl12xx-firmware/{wl12xx-firmware_git.bb => wl12xx-firmware_r5.sp4.01.bb} (100%)
 
-diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.00.18.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.00.18.bb
-new file mode 100644
-index 0000000..12df963
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.00.18.bb
-@@ -0,0 +1,28 @@
-+DESCRIPTION = "Firmware files for use with TI wl12xx"
-+LICENSE = "TI-TSPA"
-+LIC_FILES_CHKSUM = "file://LICENCE;md5=ba590e1d103f891d0151609046aef9e8"
-+
-+PACKAGE_ARCH = "all"
-+
-+PR = "r0+gitr${SRCREV}"
-+
-+# This recipe provides the latest firmware files for wl12xx.
-+# Therefore, use the contents of this recipe instead of the contents
-+# of linux-firmware-wl12xx.
-+RCONFLICTS_${PN} = "linux-firmware-wl12xx"
-+RPROVIDES_${PN}  = "linux-firmware-wl12xx"
-+
-+SRCREV = "38e0dd7999b9087e00d1a59306a7c22fd23246cf"
-+SRC_URI = "git://github.com/TI-ECS/ti-utils.git;protocol=git"
-+
-+S = "${WORKDIR}/git/hw/firmware"
-+
-+do_compile() {
-+    :
-+}
-+
-+do_install() {
-+    oe_runmake 'DEST_DIR=${D}' install
-+}
-+
-+FILES_${PN} = "/lib/firmware/ti-connectivity/*"
+diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/Makefile
+similarity index 100%
+rename from meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile
+rename to meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/Makefile
+diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
+similarity index 100%
+rename from meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb
+rename to meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
 -- 
 1.7.0.4
 
