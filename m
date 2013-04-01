@@ -1,23 +1,26 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8679252A39
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id CD2C452A48
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:57:39 +0000 (UTC)
+	Mon,  1 Apr 2013 14:57:48 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31Evclr000554
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:57:38 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EvcCq028329
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:57:38 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31Evm6W029993
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:57:48 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EvmGk028429
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:57:48 -0500
+Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Mon, 1 Apr 2013 09:57:47 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Mon, 1 Apr 2013 09:57:38 -0500
+	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
+	14.01.0323.003; Mon, 1 Apr 2013 09:57:48 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Thread-Topic: [PATCH 11/17] wpa-supplicant: Split recipe
-Thread-Index: AQHOLujui7CHLkDw/U2Y0VtRkSKb3pjBdJGA
-Date: Mon, 1 Apr 2013 14:57:38 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C418ADA@DFLE08.ent.ti.com>
+Thread-Index: AQHOLujui7CHLkDw/U2Y0VtRkSKb3pjBdLUQ
+Date: Mon, 1 Apr 2013 14:57:46 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C418AE5@DFLE08.ent.ti.com>
 References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 	<1364828095-28755-11-git-send-email-fcooper@ti.com>
 In-Reply-To: <1364828095-28755-11-git-send-email-fcooper@ti.com>
@@ -39,7 +42,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:57:39 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 14:57:49 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
