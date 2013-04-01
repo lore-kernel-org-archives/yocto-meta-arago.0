@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 0544E52A47
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 218BE52A39
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:55:06 +0000 (UTC)
+	Mon,  1 Apr 2013 14:55:08 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31Et4PS015264
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:05 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31Et6Xw028592
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:06 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31Et4PK011598
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:04 +0530 (IST)
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31Et5NI011621
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:05 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 1 Apr 2013 20:25:04 +0530
+	Mon, 1 Apr 2013 20:25:05 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCb020052;
-	Mon, 1 Apr 2013 20:25:02 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCc020052;
+	Mon, 1 Apr 2013 20:25:04 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 1 Apr 2013 09:54:40 -0500
-Message-ID: <1364828095-28755-2-git-send-email-fcooper@ti.com>
+Date: Mon, 1 Apr 2013 09:54:41 -0500
+Message-ID: <1364828095-28755-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 02/17 v2] wl12xx-firmware: Update recipe name.
+Subject: [PATCH 03/17 v2] ti-compat-bluetooth: Split recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,30 +37,122 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:55:07 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 14:55:08 -0000
 Content-Type: text/plain
 
-* Update recipe to have a distinct name.
+* Generate a common .inc file to allow support for multiple versions of the
+  ti-compat-bluetooth recipe.
+* Change the recipe name to reflect the specific TI compat-bluetooth release
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 Version 2 changes:
-None. Apart of new patchset.
+Removed "+" from PR.
+Removed patches from .inc and moved them to the actual recipes.
 
- .../Makefile                                       |    0
- ...irmware_git.bb => wl12xx-firmware_r5.sp4.01.bb} |    0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-extras/recipes-bsp/wl12xx-firmware/{wl12xx-firmware => wl12xx-firmware-r5.sp4.01}/Makefile (100%)
- rename meta-arago-extras/recipes-bsp/wl12xx-firmware/{wl12xx-firmware_git.bb => wl12xx-firmware_r5.sp4.01.bb} (100%)
+ .../ti-compat-bluetooth/ti-compat-bluetooth.inc    |   26 +++++++++++++
+ .../ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb |   39 --------------------
+ .../ti-compat-bluetooth_r5.sp3.05.bb               |   12 ++++++
+ 3 files changed, 38 insertions(+), 39 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth.inc
+ delete mode 100644 meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_r5.sp3.05.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/Makefile
-similarity index 100%
-rename from meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware/Makefile
-rename to meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/Makefile
-diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-similarity index 100%
-rename from meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_git.bb
-rename to meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth.inc b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth.inc
+new file mode 100644
+index 0000000..9003630
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth.inc
+@@ -0,0 +1,26 @@
++DESCRIPTION = "TI compat-bluetooth drivers"
++HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
++SECTION = "kernel/modules"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=d7810fab7487fb0aad327b76f1be7cd7"
++
++inherit module
++
++RDEPENDS_${PN} = "ti-compat-wireless-wl12xx"
++
++PR = "${MACHINE_KERNEL_PR}b"
++
++S = "${WORKDIR}/compat-bluetooth/"
++
++EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
++
++do_configure() {
++    cd ${S}
++    ./scripts/driver-select bt
++}
++
++do_install() {
++    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
++    find ${D} -name compat.ko | xargs rm
++}
++
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb
+deleted file mode 100644
+index 9ce50f7..0000000
+--- a/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_1.0.bb
++++ /dev/null
+@@ -1,39 +0,0 @@
+-DESCRIPTION = "TI compat-bluetooth drivers"
+-HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
+-SECTION = "kernel/modules"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=d7810fab7487fb0aad327b76f1be7cd7"
+-
+-inherit module
+-
+-RDEPENDS_${PN} = "ti-compat-wireless-wl12xx"
+-
+-PR = "${MACHINE_KERNEL_PR}"
+-PR_append = "b"
+-
+-COMPAT_BLUETOOTH_VERSION = "2012-11-19-r5-sp3"
+-TAG = "${@'${COMPAT_BLUETOOTH_VERSION}'.replace('-', '')}"
+-PV = "0.${TAG}"
+-
+-SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/802/5435/ti-compat-bluetooth-2012-02-20.tar.gz \
+-           file://0001-compat-bluetooth-2.6-removed-unused-BT-modules-from-.patch \
+-           file://0002-Bluetooth-Fix-l2cap-conn-failures-for-ssp-devices.patch \
+-           file://0001-compat-bluetooth-fixing-kernel-panic-in-l2cap.patch \
+-          "
+-
+-SRC_URI[md5sum] = "7c231b35a2297391b5192f86ff4f10dd"
+-SRC_URI[sha256sum] = "d8882da8bb37821bfd0b9334b859f64d0ce82ae5262360367a3f3fdf31c7f350"
+-
+-S = "${WORKDIR}/compat-bluetooth/"
+-
+-EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
+-
+-do_configure() {
+-    cd ${S}
+-    ./scripts/driver-select bt
+-}
+-
+-do_install() {
+-    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
+-    find ${D} -name compat.ko | xargs rm
+-}
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_r5.sp3.05.bb b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_r5.sp3.05.bb
+new file mode 100644
+index 0000000..f49bcb0
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-compat-bluetooth/ti-compat-bluetooth_r5.sp3.05.bb
+@@ -0,0 +1,12 @@
++require ti-compat-bluetooth.inc
++
++PR_append = "-r0"
++
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/802/5435/ti-compat-bluetooth-2012-02-20.tar.gz \
++           file://0001-compat-bluetooth-2.6-removed-unused-BT-modules-from-.patch \
++           file://0002-Bluetooth-Fix-l2cap-conn-failures-for-ssp-devices.patch \
++           file://0001-compat-bluetooth-fixing-kernel-panic-in-l2cap.patch \
++"
++
++SRC_URI[md5sum] = "7c231b35a2297391b5192f86ff4f10dd"
++SRC_URI[sha256sum] = "d8882da8bb37821bfd0b9334b859f64d0ce82ae5262360367a3f3fdf31c7f350"
 -- 
 1.7.0.4
 
