@@ -1,33 +1,27 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <chase.maupin@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 50ECE52A39
+	by arago-project.org (Postfix) with ESMTPS id 16CEE52A39
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:58:38 +0000 (UTC)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EwbtX000665
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:58:37 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EwbMF029224
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:58:37 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Mon, 1 Apr 2013 09:58:37 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs for Wilink 6
-	recipes
-Thread-Index: AQHOLuj0/n++KGiEMUWqw7ELF9B5JZjBdO4g
-Date: Mon, 1 Apr 2013 14:58:36 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C418AFF@DFLE08.ent.ti.com>
-References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
-	<1364828095-28755-17-git-send-email-fcooper@ti.com>
-In-Reply-To: <1364828095-28755-17-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Mon,  1 Apr 2013 16:25:36 +0000 (UTC)
+Received: from dbdp20.itg.ti.com ([172.24.170.38])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31GPXvZ011012
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 11:25:34 -0500
+Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31GPW9k024319
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 21:55:33 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
+	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
+	Mon, 1 Apr 2013 21:55:32 +0530
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31GPTU0024449;
+	Mon, 1 Apr 2013 21:55:31 +0530
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 1 Apr 2013 11:25:24 -0500
+Message-ID: <1364833527-8440-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: Re: [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs for Wilink 6 recipes
+Subject: [PATCH 0/3] Transition to TI staging trees
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,69 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:58:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 01 Apr 2013 16:25:36 -0000
+Content-Type: text/plain
 
-Ignore this patch. Forgot to add v2 to the header.
+All,
 
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Monday, April 01, 2013 9:55 AM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs for Wilink 6
-> recipes
->=20
-> * Currently two versions of Wilink 6 need to be supported.
-> * The latest version supports the PG 3 wilink 6 module which is the versi=
-on
-> that
->   comes with the am37x-evm and am335x-evm .
-> * An older version supports the PG 2 wilink 6 module which is the version=
- that
->   comes with the am180x-evm.
-> * Specifying the PREFERRED_VERSION to match this requirement.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
-> Version 2 changes:
-> None. Apart of new patchset.
->=20
->  meta-arago-distro/conf/distro/arago.conf |   17 +++++++++++++++++
->  1 files changed, 17 insertions(+), 0 deletions(-)
->=20
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-
-> distro/conf/distro/arago.conf
-> index 9e43ea3..44141c1 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -105,6 +105,23 @@ PREFERRED_VERSION_bluez-hcidump =3D "2.2"
->  PREFERRED_VERSION_bash =3D "3.2.48"
->  PREFERRED_VERSION_gettext =3D "0.16.1"
->=20
-> +# Support Wilink 6 PG 3 modules
-> +PREFERRED_VERSION_ti-compat-bluetooth =3D "r5.sp3.05"
-> +PREFERRED_VERSION_ti-compat-wireless-wl12xx =3D "r5.sp4.01"
-> +PREFERRED_VERSION_wl12xx-firmware =3D "r5.sp4.01"
-> +PREFERRED_VERSION_wpa-supplicant =3D "r5.sp4.01"
-> +PREFERRED_VERSION_hostap-daemon =3D "r5.sp4.01"
-> +PREFERRED_VERSION_ti-wifi-utils =3D "r5.sp3.05"
-> +
-> +# Support Wilink 6 PG 2 modules
-> +# By default am180x-evms come with an outdated wilink 6 module
-> +PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm =3D
-> "r5.00.18"
-> +PREFERRED_VERSION_wl12xx-firmware_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_wpa-supplicant_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_hostap-daemon_am180x-evm =3D "r5.00.18"
-> +PREFERRED_VERSION_ti-wifi-utils_am180x-evm =3D "r5.00.18"
-> +
->  # Disable polkit's systemd configuration from meta-oe  POLKITAUTH =3D ""
->=20
-> --
-> 1.7.0.4
+The following patches make the default kernel and bootloader the
+TI staging trees which are the integration of all outstanding
+patches currently developed and being upstreamed by TI.
+
+As part of this transition there are some components that do
+not yet support the later kernel (v3.8) in this case.  These
+patches disable those components from the SDKs until they can
+be updated to work with the latest kernel.
+
+Chase Maupin (3):
+  tisdk-connectivity: move ti-wifi-utils
+  tisdk-connectivity: remove drivers and firmware for ti33x
+  arago-prefs: make the ti staging kernel and bootloader default
+
+ .../conf/distro/include/arago-prefs.inc            |    8 +++-----
+ ...ckagegroup-arago-tisdk-connectivity-sdk-host.bb |    3 +--
+ .../packagegroup-arago-tisdk-connectivity.bb       |    5 ++---
+ 3 files changed, 6 insertions(+), 10 deletions(-)
 
 
