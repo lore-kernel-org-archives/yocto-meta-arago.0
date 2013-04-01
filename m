@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 9A84652AB6
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 43C2852A97
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:55:27 +0000 (UTC)
+	Mon,  1 Apr 2013 14:55:29 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtPcr015300
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:26 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtRrX028494
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:28 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtPZb011813
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:25 +0530 (IST)
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtQJo011817
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:26 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 1 Apr 2013 20:25:25 +0530
+	Mon, 1 Apr 2013 20:25:26 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCp020052;
-	Mon, 1 Apr 2013 20:25:24 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCq020052;
+	Mon, 1 Apr 2013 20:25:25 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 1 Apr 2013 09:54:54 -0500
-Message-ID: <1364828095-28755-16-git-send-email-fcooper@ti.com>
+Date: Mon, 1 Apr 2013 09:54:55 -0500
+Message-ID: <1364828095-28755-17-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 16/17 v2] wpa-supplicant_r5.00.18: Create bbappend
+Subject: [PATCH 17/17] arago.conf: Set PREFERRED_VERSIONs for Wilink 6 recipes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,23 +37,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:55:27 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 14:55:29 -0000
 Content-Type: text/plain
 
-* Create a bbappend to insure that any version changes to the wpa-supplicant
-  recipe will result in a new TSU exemption will be filed.
+* Currently two versions of Wilink 6 need to be supported.
+* The latest version supports the PG 3 wilink 6 module which is the version that
+  comes with the am37x-evm and am335x-evm .
+* An older version supports the PG 2 wilink 6 module which is the version that
+  comes with the am180x-evm.
+* Specifying the PREFERRED_VERSION to match this requirement.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 Version 2 changes:
-None. Apart of updated patchset.
+None. Apart of new patchset.
 
- ...1.bbappend => wpa-supplicant_r5.00.18.bbappend} |    0
- 1 files changed, 0 insertions(+), 0 deletions(-)
- copy meta-arago-distro/recipes-connectivity/wpa-supplicant/{wpa-supplicant_r5.sp4.01.bbappend => wpa-supplicant_r5.00.18.bbappend} (100%)
+ meta-arago-distro/conf/distro/arago.conf |   17 +++++++++++++++++
+ 1 files changed, 17 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bbappend b/meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.00.18.bbappend
-similarity index 100%
-copy from meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bbappend
-copy to meta-arago-distro/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.00.18.bbappend
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 9e43ea3..44141c1 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -105,6 +105,23 @@ PREFERRED_VERSION_bluez-hcidump = "2.2"
+ PREFERRED_VERSION_bash = "3.2.48"
+ PREFERRED_VERSION_gettext = "0.16.1"
+ 
++# Support Wilink 6 PG 3 modules
++PREFERRED_VERSION_ti-compat-bluetooth = "r5.sp3.05"
++PREFERRED_VERSION_ti-compat-wireless-wl12xx = "r5.sp4.01"
++PREFERRED_VERSION_wl12xx-firmware = "r5.sp4.01"
++PREFERRED_VERSION_wpa-supplicant = "r5.sp4.01"
++PREFERRED_VERSION_hostap-daemon = "r5.sp4.01"
++PREFERRED_VERSION_ti-wifi-utils = "r5.sp3.05"
++
++# Support Wilink 6 PG 2 modules
++# By default am180x-evms come with an outdated wilink 6 module
++PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm = "r5.00.18"
++PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm = "r5.00.18"
++PREFERRED_VERSION_wl12xx-firmware_am180x-evm = "r5.00.18"
++PREFERRED_VERSION_wpa-supplicant_am180x-evm = "r5.00.18"
++PREFERRED_VERSION_hostap-daemon_am180x-evm = "r5.00.18"
++PREFERRED_VERSION_ti-wifi-utils_am180x-evm = "r5.00.18"
++
+ # Disable polkit's systemd configuration from meta-oe
+ POLKITAUTH = ""
+ 
 -- 
 1.7.0.4
 
