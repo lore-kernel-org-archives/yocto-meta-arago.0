@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B9AB952AB3
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 7636252AB3
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Apr 2013 14:55:15 +0000 (UTC)
+	Mon,  1 Apr 2013 14:55:17 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtD0s028459
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:14 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r31EtFsi015283
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 09:55:16 -0500
 Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtDGk011712
-	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:13 +0530 (IST)
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EtEfX011745
+	for <meta-arago@arago-project.org>; Mon, 1 Apr 2013 20:25:14 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
 	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Mon, 1 Apr 2013 20:25:13 +0530
+	Mon, 1 Apr 2013 20:25:14 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCh020052;
-	Mon, 1 Apr 2013 20:25:11 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r31EsxCi020052;
+	Mon, 1 Apr 2013 20:25:13 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 1 Apr 2013 09:54:46 -0500
-Message-ID: <1364828095-28755-8-git-send-email-fcooper@ti.com>
+Date: Mon, 1 Apr 2013 09:54:47 -0500
+Message-ID: <1364828095-28755-9-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 References: <1364828095-28755-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 08/17 v2] hostap-daemon: Pull in old r5-00-18 recipe
+Subject: [PATCH 09/17 v2] wifi-direct-launcher: Add script used to launch wifi-direct demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,99 +37,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:55:16 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 14:55:17 -0000
 Content-Type: text/plain
 
-* Current am180x-evm ships with a PG 2 wilink 6 module that isn't supported in
-  newer wilink 6 releases.
-* A newer PG 3 wilink 6 module is available for am180x-evm but needs to be
-  purchased separately..
-* Bring old r5.00.18 hostap-daemon recipe with updated recipe name
-  to add support for am180x-evm default wilink 6 module.
+* Placing the kill_wpa_supplicant.sh script in its own recipe.
+* Future commit will delete this script from wpa-supplicant to avoid
+  duplication.
+* Other than a new name the only other difference between this script and
+  kill_wpa_supplicant.sh is that this script now also makes sure the dbus
+  executable has the correct permission.
+* Incorrect permission caused the demos to fail with a "There is no wpa
+  supplicant interface"
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 Version 2 changes:
-None. Apart of new patchset.
+Brand new patch. Apart of new patchset.
 
- ...d-change-conf-file-for-better-oob-startup.patch |   49 ++++++++++++++++++++
- .../hostap/hostap-daemon_r5.00.18.bb               |   11 ++++
- 2 files changed, 60 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-r5.00.18/0001-hostapd-change-conf-file-for-better-oob-startup.patch
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon_r5.00.18.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-r5.00.18/0001-hostapd-change-conf-file-for-better-oob-startup.patch b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-r5.00.18/0001-hostapd-change-conf-file-for-better-oob-startup.patch
+ .../wifi-direct-launcher/wifi-direct-launcher.sh   |   13 +++++++++++++
+ .../wifi-direct-launcher_1.0.bb                    |   17 +++++++++++++++++
+ 2 files changed, 30 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher/wifi-direct-launcher.sh
+ create mode 100644 meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher_1.0.bb
+
+diff --git a/meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher/wifi-direct-launcher.sh b/meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher/wifi-direct-launcher.sh
 new file mode 100644
-index 0000000..fa68357
+index 0000000..5a94d22
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-r5.00.18/0001-hostapd-change-conf-file-for-better-oob-startup.patch
-@@ -0,0 +1,49 @@
-+From 4c5fe9901219956fb754306a2093e78fb460bbdd Mon Sep 17 00:00:00 2001
-+From: Eyal Reizer <eyalr@ti.com>
-+Date: Thu, 23 Jun 2011 10:13:44 +0300
-+Subject: [PATCH] hostapd: change conf file for better sdk out of box startup
++++ b/meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher/wifi-direct-launcher.sh
+@@ -0,0 +1,13 @@
++#check if the wpa_suppicant is already running
++#if it does, stop it.
++StationRunning=`ps | grep -c wpa_supplicant`
++if [ $StationRunning -eq 2 ]; then
++        killall wpa_supplicant
++fi
 +
-+The default hostapd.conf file that is fetched from upstream is using
-+a band which is not supported by the 1271 chip.
-+I am using this amend.inc in order to modify it to use g band and default
-+channel 6 and change the ssid to a more meaningful name.
++# Correct dbus permission. Incorrect permission causes dbus (wifi direct demos)
++# dependent demos to fail. 
++chmod u+s /usr/libexec/dbus-daemon-launch-helper
 +
-+Upstream-status: inappropriate [SDK specific patch]
-+
-+Signed-off-by: Eyal Reizer <eyalr@ti.com>
-+---
-+ hostapd/hostapd.conf |    6 +++---
-+ 1 files changed, 3 insertions(+), 3 deletions(-)
-+
-+diff --git a/hostapd/hostapd.conf b/hostapd/hostapd.conf
-+index 6d7263a..bb27beb 100644
-+--- a/hostapd/hostapd.conf
-++++ b/hostapd/hostapd.conf
-+@@ -83,7 +83,7 @@ ctrl_interface_group=0
-+ ##### IEEE 802.11 related configuration #######################################
-+
-+ # SSID to be used in IEEE 802.11 management frames
-+-ssid=test
-++ssid=TexasInstruments_0001
-+
-+ # Country code (ISO/IEC 3166-1). Used to set regulatory domain.
-+ # Set as needed to indicate country in which device is operating.
-+@@ -99,14 +99,14 @@ ssid=test
-+
-+ # Operation mode (a = IEEE 802.11a, b = IEEE 802.11b, g = IEEE 802.11g,
-+ # Default: IEEE 802.11b
-+-hw_mode=a
-++hw_mode=g
-+
-+ # Channel number (IEEE 802.11)
-+ # (default: 0, i.e., not set)
-+ # Please note that some drivers (e.g., madwifi) do not use this value from
-+ # hostapd and the channel will need to be configuration separately with
-+ # iwconfig.
-+-channel=60
-++channel=6
-+
-+ # Beacon interval in kus (1.024 ms) (default: 100; range 15..65535)
-+ beacon_int=100
-+--
-+1.7.0.4
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon_r5.00.18.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon_r5.00.18.bb
++# start the application
++$*
+diff --git a/meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher_1.0.bb b/meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher_1.0.bb
 new file mode 100644
-index 0000000..aa6f5bb
+index 0000000..28f5590
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon_r5.00.18.bb
-@@ -0,0 +1,11 @@
-+# This is a TI specific version of the hostap-daemon recipe for use with the
-+# wl12xx wlan and bluetooth module.
++++ b/meta-arago-extras/recipes-connectivity/wifi-direct-launcher/wifi-direct-launcher_1.0.bb
+@@ -0,0 +1,17 @@
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
 +
-+require hostap.inc
++inherit allarch
 +
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://../COPYING;md5=c54ce9345727175ff66d17b67ff51f58"
++PR ="r0"
 +
-+PR_append = "a+gitr${SRCPV}"
++SRC_URI = "file://wifi-direct-launcher.sh"
 +
-+SRCREV = "ol_R5.00.18"
++S = "${WORKDIR}"
++
++do_install() {
++    install -d ${D}${sbindir}
++    install -m 755 ${WORKDIR}/wifi-direct-launcher.sh ${D}${sbindir}
++}
++
++FILES_${PN} = "/usr/sbin/wifi-direct-launcher.sh"
 -- 
 1.7.0.4
 
