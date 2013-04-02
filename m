@@ -1,37 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7154852981
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 43221529F0
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Apr 2013 01:14:43 +0000 (UTC)
+	Tue,  2 Apr 2013 05:50:59 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r321EgZA032408;
-	Mon, 1 Apr 2013 20:14:42 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r321Egom011036;
-	Mon, 1 Apr 2013 20:14:42 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Mon, 1 Apr 2013 20:14:41 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Mon, 1 Apr 2013 20:14:42 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 0/3] RFC: Add branding support for
-	products to	tweak preferences
-Thread-Index: AQHOLzxXtlPkOoAj+kCZp2u6KmH0jZjCH2mAgAAAsyA=
-Date: Tue, 2 Apr 2013 01:14:41 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C41944F@DFLE08.ent.ti.com>
-References: <1364863868-14687-1-git-send-email-denis@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C419438@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C419438@DFLE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r325ovBr025909
+	for <meta-arago@arago-project.org>; Tue, 2 Apr 2013 00:50:57 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r325ov7t028387
+	for <meta-arago@arago-project.org>; Tue, 2 Apr 2013 00:50:57 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 2 Apr 2013 00:50:57 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r325ovPX020725	for
+	<meta-arago@arago-project.org>; Tue, 2 Apr 2013 00:50:57 -0500
+Date: Tue, 2 Apr 2013 01:45:53 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <166370183.125.1364881553443.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/3] RFC: Add branding support for products to	tweak preferences
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.03 build 2013-04-02_01-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,71 +35,183 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2013 01:14:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 02 Apr 2013 05:51:00 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_124_1703865104.1364881553442"
 
-Lol so as soon as I sent this the patch suddenly popped up as a new email i=
-n my inbox. Ignore my comment.
+------=_Part_124_1703865104.1364881553442
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> Sent: Monday, April 01, 2013 8:13 PM
-> To: Denys Dmytriyenko; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 0/3] RFC: Add branding support for
-> products to tweak preferences
->=20
-> PATCH 2/3 missing?
->=20
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> > Sent: Monday, April 01, 2013 7:51 PM
-> > To: meta-arago@arago-project.org
-> > Subject: [meta-arago] [PATCH 0/3] RFC: Add branding support for
-> > products to tweak preferences
-> >
-> > From: Denys Dmytriyenko <denys@ti.com>
-> >
-> > * For cases when products based on Arago Core TI-SDK need to select
-> > different
-> >   providers or versions of packages. For example, AM-SDK needs to stay
-> > on the
-> >   stable kernel 3.2, while Core TI-SDK is moving to the new kernel 3.8.
-> > * Adding new branding policies requires creating a new
-> > branding-<name>.inc file
-> >   and setting ARAGO_BRAND=3D<name> in the local.conf
-> > * The default branding is "core" when ARAGO_BRAND is not set and is
-> > mostly empty
-> >   to fall back on the default Arago Core TI-SDK preferences.
-> >
-> > Denys Dmytriyenko (3):
-> >   arago.conf: add branding support to allow products to tweak
-> >     preferences
-> >   branding-amsdk: add the initial AM-SDK branding policy
-> >   arago-prefs: set default preferences to the latest TI staging kernel
-> >     and u-boot
-> >
-> >  meta-arago-distro/conf/distro/arago.conf                 | 7 +++++++
-> >  meta-arago-distro/conf/distro/include/arago-prefs.inc    | 9 +++------
-> >  meta-arago-distro/conf/distro/include/branding-amsdk.inc | 8 ++++++++
-> > meta-arago-distro/conf/distro/include/branding-core.inc  | 6 ++++++
-> >  4 files changed, 24 insertions(+), 6 deletions(-)  create mode 100644
-> > meta- arago-distro/conf/distro/include/branding-amsdk.inc
-> >  create mode 100644 meta-arago-distro/conf/distro/include/branding-
-> > core.inc
-> >
-> > --
-> > 1.8.1.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<html>
+<head>
+<title>
+Status for 04/02/13
+</title>
+</head>
+<body>
 
+<h2>Status for 04/02/13</h2>
+
+<h2>BUILD_ID: build-2013-04-02_01-02-09</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.03"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_124_1703865104.1364881553442--
