@@ -1,27 +1,27 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 8CEF852A35
+	by arago-project.org (Postfix) with ESMTPS id DAA3752A47
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Apr 2013 13:54:18 +0000 (UTC)
+	Fri,  5 Apr 2013 13:54:48 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r35DsGN7021652
-	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 08:54:17 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r35DskcW021937
+	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 08:54:47 -0500
 Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r35DsFwS002222
-	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 19:24:15 +0530 (IST)
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r35DsjQj002294
+	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 19:24:45 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
 	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
-	Fri, 5 Apr 2013 19:24:15 +0530
+	Fri, 5 Apr 2013 19:24:45 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r35DsD6A028058;
-	Fri, 5 Apr 2013 19:24:14 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r35Dshw7028111;
+	Fri, 5 Apr 2013 19:24:44 +0530
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 5 Apr 2013 08:54:12 -0500
-Message-ID: <1365170052-1026-1-git-send-email-Chase.Maupin@ti.com>
+Date: Fri, 5 Apr 2013 08:54:42 -0500
+Message-ID: <1365170082-1087-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: [PATCH] arago-core-tisdk-image: Add DTB_FILTER settings
+Subject: [PATCH] tisdk-addons: Add parted utility
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,35 +34,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 13:54:19 -0000
+X-List-Received-Date: Fri, 05 Apr 2013 13:54:49 -0000
 Content-Type: text/plain
 
-* Add the DTB_FILTER settings for the supported devices.
-* Use unknown by default so that any devices that do not have
-  DTB files will not pickup other device DTB files by accident.
+* Add the parted utility to make working with eMMC GPT partitions
+  possible from the Linux system.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../recipes-core/images/arago-core-tisdk-image.inc |    6 ++++++
- 1 files changed, 6 insertions(+), 0 deletions(-)
+ .../packagegroup-arago-tisdk-addons.bb             |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 77d260b..1ed8ff5 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -14,6 +14,12 @@ COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|omap-a15"
- HOST_CLEANUP_PACKAGES = ""
- TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev libgnutls-extra26 libgnutls-openssl27 libtasn1-dev"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 0f76f4f..5dade67 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r5"
++PR = "r6"
  
-+# Set DTB filters for each machine.  Use "unknown" by default to avoid
-+# picking up DTB files for devices with not DTB support.
-+DTB_FILTER = "unknown"
-+DTB_FILTER_ti33x = "am335x"
-+DTB_FILTER_omap5-evm = "omap5"
-+
- # List of target side images to build for the SDK
- TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
+ inherit packagegroup
  
+@@ -16,6 +16,7 @@ UTILS = " \
+     arm-benchmarks \
+     dropbear \
+     openssh-sftp-server \
++    parted \
+ "
+ 
+ # Add PRU examples for am180x-evm devices
 -- 
 1.7.0.4
 
