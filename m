@@ -1,27 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTP id F289752961
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTP id B44DE52A48
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Apr 2013 22:56:17 +0000 (UTC)
+	Fri,  5 Apr 2013 23:14:57 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173013.mailsrvcs.net
+	by vms173011.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MKT00K5W112OWH3@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 05 Apr 2013 17:56:06 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id DAD44201C2; Fri,
-	05 Apr 2013 18:55:49 -0400 (EDT)
-Date: Fri, 05 Apr 2013 18:55:49 -0400
+	2009)) with ESMTPA id <0MKT00LT81WA6050@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 05 Apr 2013 18:14:35 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 5C83F201C2; Fri,
+	05 Apr 2013 19:14:33 -0400 (EDT)
+Date: Fri, 05 Apr 2013 19:14:33 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>, meta-arago@arago-project.org
-Message-id: <20130405225549.GF31233@denix.org>
-References: <1364828207-28819-1-git-send-email-fcooper@ti.com>
-	<1364828207-28819-2-git-send-email-fcooper@ti.com>
-	<20130405184659.GD10072@edge>
+To: "Reizer, Eyal" <eyalr@ti.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Message-id: <20130405231433.GG31233@denix.org>
+References: <1363771816-4022-2-git-send-email-eyalr@ti.com>
+	<20130326184527.GA22032@denix.org>
+	<8665E2433BC68541A24DFFCA87B70F5B17C5D70E@DNCE04.ent.ti.com>
+	<20130331201326.GC31233@denix.org>
 MIME-version: 1.0
-In-reply-to: <20130405184659.GD10072@edge>
+In-reply-to: <20130331201326.GC31233@denix.org>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [PATCH 17/17 v2] arago.conf: Set PREFERRED_VERSIONs for Wilink 6 recipes
+Subject: Re: [PATCHv3 2/9] wl18xx-firmware: install Wilink8 wlan firmware files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,64 +36,158 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 22:56:18 -0000
+X-List-Received-Date: Fri, 05 Apr 2013 23:14:58 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Fri, Apr 05, 2013 at 02:47:00PM -0400, Denys Dmytriyenko wrote:
-> On Mon, Apr 01, 2013 at 09:56:47AM -0500, Franklin S. Cooper Jr wrote:
-> > * Currently two versions of Wilink 6 need to be supported.
-> > * The latest version supports the PG 3 wilink 6 module which is the version that
-> >   comes with the am37x-evm and am335x-evm .
-> > * An older version supports the PG 2 wilink 6 module which is the version that
-> >   comes with the am180x-evm.
-> > * Specifying the PREFERRED_VERSION to match this requirement.
+On Sun, Mar 31, 2013 at 04:13:26PM -0400, Denys Dmytriyenko wrote:
+> On Wed, Mar 27, 2013 at 07:53:24AM +0000, Reizer, Eyal wrote:
+> > Hi,
 > > 
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> > Version 2 changes:
-> > None. Apart of new patchset.
 > > 
-> >  meta-arago-distro/conf/distro/arago.conf |   17 +++++++++++++++++
-> >  1 files changed, 17 insertions(+), 0 deletions(-)
+> > > -----Original Message-----
+> > > From: Dmytriyenko, Denys
+> > > Sent: Tuesday, March 26, 2013 8:45 PM
+> > > To: Reizer, Eyal
+> > > Cc: meta-arago@arago-project.org
+> > > Subject: Re: [meta-arago] [PATCHv3 2/9] wl18xx-firmware: install
+> > > Wilink8 wlan firmware files
+> > > 
+> > > On Wed, Mar 20, 2013 at 11:30:09AM +0200, Eyal Reizer wrote:
+> > > > Add a recipe for installing the Wilink8 wlan firmware files into the
+> > > > target file system.
+> > > >
+> > > > This package replace the wilink6 package which is provided by the
+> > > > wl12xx-firmware recipe. Selection between the two is done using a
+> > > > "WILINK_VERSION" switch added to arago.conf
+> > > 
+> > > I have 2 questions:
+> > > 
+> > > 1. I seem to be missing the first patch in this series - 1/9 never made
 > > 
-> > diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> > index 9e43ea3..44141c1 100644
-> > --- a/meta-arago-distro/conf/distro/arago.conf
-> > +++ b/meta-arago-distro/conf/distro/arago.conf
-> > @@ -105,6 +105,23 @@ PREFERRED_VERSION_bluez-hcidump = "2.2"
-> >  PREFERRED_VERSION_bash = "3.2.48"
-> >  PREFERRED_VERSION_gettext = "0.16.1"
-> >  
-> > +# Support Wilink 6 PG 3 modules
-> > +PREFERRED_VERSION_ti-compat-bluetooth = "r5.sp3.05"
-> > +PREFERRED_VERSION_ti-compat-wireless-wl12xx = "r5.sp4.01"
-> > +PREFERRED_VERSION_wl12xx-firmware = "r5.sp4.01"
-> > +PREFERRED_VERSION_wpa-supplicant = "r5.sp4.01"
-> > +PREFERRED_VERSION_hostap-daemon = "r5.sp4.01"
-> > +PREFERRED_VERSION_ti-wifi-utils = "r5.sp3.05"
-> > +
-> > +# Support Wilink 6 PG 2 modules
-> > +# By default am180x-evms come with an outdated wilink 6 module
-> > +PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm = "r5.00.18"
-> > +PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm = "r5.00.18"
-> > +PREFERRED_VERSION_wl12xx-firmware_am180x-evm = "r5.00.18"
-> > +PREFERRED_VERSION_wpa-supplicant_am180x-evm = "r5.00.18"
-> > +PREFERRED_VERSION_hostap-daemon_am180x-evm = "r5.00.18"
-> > +PREFERRED_VERSION_ti-wifi-utils_am180x-evm = "r5.00.18"
+> > I do see patch 1/9 in the following link:
+> > http://arago-project.org/pipermail/meta-arago/2013-March/001004.html
 > 
-> Ok, I've been thinking about this versioning model for some time - it's quite 
-> ambiguous and can be a source of all kind of sorting problems. Here you set 
-> preferred versions, which is good for the build. But from a package manager 
-> it's unclear which one is preferred, moreover, if one is a clear upgrade path 
-> for the other, or not... So, basically, there will be problems in the field 
-> with this split and versioning of those packages. But I'm not sure if there's 
-> a better way to handle this exception.
+> Ah, I see it was part of v1 submission, but not the following v2 or v3 sets...
 
-And another potential problem I see is that none of those packages are marked 
-as machine-specific. In case there are other armv5te machines in the build, 
-there will be a conflict between packages...
+Eyal,
+
+Ping on this one. There was a v1 of the 1/9 patch, but not v2 or v3. Are you 
+saying you want the v1 to be pushed? Do you want to address Franklin's 
+comment here:
+http://arago-project.org/pipermail/meta-arago/2013-March/001013.html
 
 -- 
 Denys
+
+
+> > > it 2. Is this set depending on Franklin's big set of 17 patches?
+> >  
+> > > 
+> > > > Changes in v2:
+> > > > * Use an actual release name in the recipe name instead of _git
+> > > > * Add RPROVIDES, RREPLACES, RCONFLICTS as this recipe completely
+> > > >   replace the wilink6 one.
+> > > >
+> > > > Changes in v3:
+> > > > * Add _${PN} to all runtime variables
+> > > >
+> > > > Signed-off-by: Eyal Reizer <eyalr@ti.com>
+> > > > ---
+> > > >  .../wl18xx-firmware/wl18xx-firmware/Makefile       |    7 +++++
+> > > >  .../wl18xx-firmware/wl18xx-firmware_r8.a6.01.bb    |   30
+> > > ++++++++++++++++++++
+> > > >  2 files changed, 37 insertions(+)
+> > > >  create mode 100644
+> > > > meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware/Makefile
+> > > >  create mode 100644
+> > > > meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware_r8.a6.01
+> > > > .bb
+> > > >
+> > > > diff --git
+> > > > a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware/Makefi
+> > > > le
+> > > > b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware/Makefi
+> > > > le
+> > > > new file mode 100644
+> > > > index 0000000..0bb7ab8
+> > > > --- /dev/null
+> > > > +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware/Ma
+> > > > +++ kefile
+> > > > @@ -0,0 +1,7 @@
+> > > > +# Installs the the ti-connectiviy wlan firmware files into the root
+> > > > +file system
+> > > > +
+> > > > +install:
+> > > > +	install -d  $(DEST_DIR)/lib/firmware/ti-connectivity
+> > > > +	cp -RpP * $(DEST_DIR)/lib/firmware/ti-connectivity/
+> > > > +	rm -f $(DEST_DIR)/lib/firmware/ti-connectivity/Makefile
+> > > > +
+> > > > diff --git
+> > > > a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware_r8.a6.
+> > > > 01.bb
+> > > > b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware_r8.a6.
+> > > > 01.bb
+> > > > new file mode 100644
+> > > > index 0000000..fd463cc
+> > > > --- /dev/null
+> > > > +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
+> > > firmware_r8
+> > > > +++ .a6.01.bb
+> > > > @@ -0,0 +1,30 @@
+> > > > +DESCRIPTION = "Firmware files for use with TI wl18xx"
+> > > > +LICENSE = "TI-TSPA"
+> > > > +LIC_FILES_CHKSUM =
+> > > "file://LICENCE;md5=b28122fd6678e89fd3a8d4bc80922969"
+> > > > +
+> > > > +PACKAGE_ARCH = "all"
+> > > > +
+> > > > +PR = "r1+gitr${SRCREV}"
+> > > > +
+> > > > +PROVIDES += "wl12xx-firmware"
+> > > > +RPROVIDES_${PN} += "wl12xx-firmware"
+> > > > +RREPLACES_${PN} += "wl12xx-firmware"
+> > > > +RCONFLICTS_${PN} += "wl12xx-firmware"
+> > > > +
+> > > > +SRCREV = "ol_r8.a6.01"
+> > > > +SRC_URI = "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=git \
+> > > > +           file://Makefile \
+> > > > +          "
+> > > > +
+> > > > +S = "${WORKDIR}/git"
+> > > > +
+> > > > +do_compile() {
+> > > > +    :
+> > > > +}
+> > > > +
+> > > > +do_install() {
+> > > > +    cp ${WORKDIR}/Makefile ${S}
+> > > > +    oe_runmake 'DEST_DIR=${D}' install }
+> > > > +
+> > > > +FILES_${PN} = "/lib/firmware/ti-connectivity/*"
+> > > > --
+> > > > 1.7.9.5
+> > > >
+> > > > _______________________________________________
+> > > > meta-arago mailing list
+> > > > meta-arago@arago-project.org
+> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > > >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
