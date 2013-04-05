@@ -1,34 +1,31 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id EB84B52A3B
+	by arago-project.org (Postfix) with ESMTPS id 72A1652A92
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Apr 2013 18:39:40 +0000 (UTC)
+	Fri,  5 Apr 2013 18:47:01 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r35IdeTU027183
-	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 13:39:40 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r35Il0WV031561
+	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 13:47:00 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r35IdeGX013061
-	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 13:39:40 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Fri, 5 Apr 2013 13:39:40 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] arago-prefs: update graphics preferred
-	version
-Thread-Index: AQHOMiv9rW3vwvQXnki8DGz90vwV2ZjH9VnA
-Date: Fri, 5 Apr 2013 18:39:38 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101594C602F@DLEE11.ent.ti.com>
-References: <1365186645-29898-1-git-send-email-Chase.Maupin@ti.com>
-	<20130405183254.GC10072@edge>
-In-Reply-To: <20130405183254.GC10072@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r35Il0xt020740
+	for <meta-arago@arago-project.org>; Fri, 5 Apr 2013 13:47:00 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 5 Apr 2013 13:47:00 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r35Il0Tu027760;
+	Fri, 5 Apr 2013 13:47:00 -0500
+Date: Fri, 5 Apr 2013 14:47:00 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20130405184659.GD10072@edge>
+References: <1364828207-28819-1-git-send-email-fcooper@ti.com>
+	<1364828207-28819-2-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] arago-prefs: update graphics preferred version
+In-Reply-To: <1364828207-28819-2-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 17/17 v2] arago.conf: Set PREFERRED_VERSIONs for Wilink 6 recipes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,76 +38,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 18:39:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Apr 2013 18:47:01 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Patch was sent to meta-ti to add it :)
+On Mon, Apr 01, 2013 at 09:56:47AM -0500, Franklin S. Cooper Jr wrote:
+> * Currently two versions of Wilink 6 need to be supported.
+> * The latest version supports the PG 3 wilink 6 module which is the version that
+>   comes with the am37x-evm and am335x-evm .
+> * An older version supports the PG 2 wilink 6 module which is the version that
+>   comes with the am180x-evm.
+> * Specifying the PREFERRED_VERSION to match this requirement.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+> Version 2 changes:
+> None. Apart of new patchset.
+> 
+>  meta-arago-distro/conf/distro/arago.conf |   17 +++++++++++++++++
+>  1 files changed, 17 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index 9e43ea3..44141c1 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -105,6 +105,23 @@ PREFERRED_VERSION_bluez-hcidump = "2.2"
+>  PREFERRED_VERSION_bash = "3.2.48"
+>  PREFERRED_VERSION_gettext = "0.16.1"
+>  
+> +# Support Wilink 6 PG 3 modules
+> +PREFERRED_VERSION_ti-compat-bluetooth = "r5.sp3.05"
+> +PREFERRED_VERSION_ti-compat-wireless-wl12xx = "r5.sp4.01"
+> +PREFERRED_VERSION_wl12xx-firmware = "r5.sp4.01"
+> +PREFERRED_VERSION_wpa-supplicant = "r5.sp4.01"
+> +PREFERRED_VERSION_hostap-daemon = "r5.sp4.01"
+> +PREFERRED_VERSION_ti-wifi-utils = "r5.sp3.05"
+> +
+> +# Support Wilink 6 PG 2 modules
+> +# By default am180x-evms come with an outdated wilink 6 module
+> +PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm = "r5.00.18"
+> +PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm = "r5.00.18"
+> +PREFERRED_VERSION_wl12xx-firmware_am180x-evm = "r5.00.18"
+> +PREFERRED_VERSION_wpa-supplicant_am180x-evm = "r5.00.18"
+> +PREFERRED_VERSION_hostap-daemon_am180x-evm = "r5.00.18"
+> +PREFERRED_VERSION_ti-wifi-utils_am180x-evm = "r5.00.18"
 
-But I should probably not leave the old version commented out.  Still, I fi=
-gured this needs adaptation based on your "branding" patches.
+Ok, I've been thinking about this versioning model for some time - it's quite 
+ambiguous and can be a source of all kind of sorting problems. Here you set 
+preferred versions, which is good for the build. But from a package manager 
+it's unclear which one is preferred, moreover, if one is a clear upgrade path 
+for the other, or not... So, basically, there will be problems in the field 
+with this split and versioning of those packages. But I'm not sure if there's 
+a better way to handle this exception.
 
+-- 
+Denys
 
-Sincerely,
-Chase Maupin
-Integration Team Manager
-Linux Core Product Development
-e-mail: chase.maupin@ti.com
-phone: (214) 567-2950
-
-For support:
-Forums - http://community.ti.com/forums/
-Wiki - http://wiki.davincidsp.com/=20
-
-
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Friday, April 05, 2013 1:33 PM
-> To: Maupin, Chase
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] arago-prefs: update graphics
-> preferred version
->=20
-> On Fri, Apr 05, 2013 at 01:30:45PM -0500, Chase Maupin wrote:
-> > * Update the preferred version of the TI graphics components to
-> >   the version that will support the later v3.8 kernels as well.
-> >
-> > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
-> > ---
-> >  .../conf/distro/include/arago-prefs.inc            |    6
-> ++++--
-> >  1 files changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/meta-arago-distro/conf/distro/include/arago-
-> prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> > index d858a52..853844a 100644
-> > --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> > +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> > @@ -7,8 +7,10 @@ PREFERRED_VERSION_wpa-supplicant =3D "2.0-devel-
-> ti"
-> >  PREFERRED_VERSION_hostap-daemon =3D "2.0-devel-ti"
-> >
-> >  # Use v4.08.00.01 of the Graphics SDK
-> > -PREFERRED_VERSION_omap3-sgx-modules =3D "4.08.00.01"
-> > -PREFERRED_VERSION_libgles-omap3 =3D "4.08.00.01"
-> > +#PREFERRED_VERSION_omap3-sgx-modules =3D "4.08.00.01"
-> > +#PREFERRED_VERSION_libgles-omap3 =3D "4.08.00.01"
-> > +PREFERRED_VERSION_omap3-sgx-modules =3D "4.09.00.01"
-> > +PREFERRED_VERSION_libgles-omap3 =3D "4.09.00.01"
->=20
-> There is no such version neither in meta-ti nor in meta-arago :)
->=20
->=20
-> >  ARAGO_QT_PROVIDER =3D
-> "${@base_contains('MACHINE_FEATURES','sgx','qt4-embedded-
-> gles','qt4-embedded',d)}"
-> >
-> > --
-> > 1.7.0.4
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>  # Disable polkit's systemd configuration from meta-oe
+>  POLKITAUTH = ""
+>  
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
