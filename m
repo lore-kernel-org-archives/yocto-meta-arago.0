@@ -1,28 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id D8F36529F5
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 5ABE252A48
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Apr 2013 05:16:45 +0000 (UTC)
+	Tue,  9 Apr 2013 11:01:08 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r395Gi5N005041
-	for <meta-arago@arago-project.org>; Tue, 9 Apr 2013 00:16:44 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r395Ginq014148
-	for <meta-arago@arago-project.org>; Tue, 9 Apr 2013 00:16:44 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 9 Apr 2013 00:16:44 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r395GiWs011950	for
-	<meta-arago@arago-project.org>; Tue, 9 Apr 2013 00:16:44 -0500
-Date: Tue, 9 Apr 2013 01:11:29 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <588499296.153.1365484289683.JavaMail.jenkins@puget>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r39B17j0011946
+	for <meta-arago@arago-project.org>; Tue, 9 Apr 2013 06:01:07 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r39B16oW026708
+	for <meta-arago@arago-project.org>; Tue, 9 Apr 2013 06:01:07 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Tue, 9 Apr 2013 06:01:06 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>, "Rini, Tom" <trini@ti.com>
+Thread-Topic: [meta-arago] [PATCH] tisdk-addons: Add parted utility
+Thread-Index: AQHONIJaX80g3sam4UOo1Ss59HH5xpjNuejQ
+Date: Tue, 9 Apr 2013 11:01:05 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101594D1663@DLEE11.ent.ti.com>
+References: <1365170082-1087-1-git-send-email-Chase.Maupin@ti.com>
+	<20130408175540.GA15209@denix.org>
+In-Reply-To: <20130408175540.GA15209@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-04-09_01-01-06
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] tisdk-addons: Add parted utility
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,183 +40,89 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 05:16:46 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_152_433824923.1365484289682"
+X-List-Received-Date: Tue, 09 Apr 2013 11:01:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_152_433824923.1365484289682
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+I'm OK with trying that.
 
-<html>
-<head>
-<title>
-Status for 04/09/13
-</title>
-</head>
-<body>
+Tom, will that utility work for your needs?
 
-<h2>Status for 04/09/13</h2>
+Sincerely,
+Chase Maupin
+Integration Team Manager
+Linux Core Product Development
+e-mail: chase.maupin@ti.com
+phone: (214) 567-2950
 
-<h2>BUILD_ID: build-2013-04-09_01-02-12</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.03"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+For support:
+Forums - http://community.ti.com/forums/
+Wiki - http://wiki.davincidsp.com/=20
 
 
-------=_Part_152_433824923.1365484289682--
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Monday, April 08, 2013 12:56 PM
+> To: Maupin, Chase
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] tisdk-addons: Add parted
+> utility
+>=20
+> On Fri, Apr 05, 2013 at 08:54:42AM -0500, Chase Maupin wrote:
+> > * Add the parted utility to make working with eMMC GPT
+> partitions
+> >   possible from the Linux system.
+>=20
+> Since parted is GPLv3, may I suggest GPT fdisk (gdisk) instead,
+> which is
+> GPLv2? It appears there's no recipe for it yet, but it should it
+> relatively
+> easy to make, as it's quite portable:
+>=20
+> http://www.rodsbooks.com/gdisk/index.html
+>=20
+> --
+> Denys
+>=20
+>=20
+> > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> > ---
+> >  .../packagegroup-arago-tisdk-addons.bb             |    3 ++-
+> >  1 files changed, 2 insertions(+), 1 deletions(-)
+> >
+> > diff --git a/meta-arago-distro/recipes-
+> core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-
+> arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-
+> addons.bb
+> > index 0f76f4f..5dade67 100644
+> > --- a/meta-arago-distro/recipes-
+> core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> > +++ b/meta-arago-distro/recipes-
+> core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> > @@ -1,6 +1,6 @@
+> >  DESCRIPTION =3D "Task to install additional utilities/demos for
+> SDKs"
+> >  LICENSE =3D "MIT"
+> > -PR =3D "r5"
+> > +PR =3D "r6"
+> >
+> >  inherit packagegroup
+> >
+> > @@ -16,6 +16,7 @@ UTILS =3D " \
+> >      arm-benchmarks \
+> >      dropbear \
+> >      openssh-sftp-server \
+> > +    parted \
+> >  "
+> >
+> >  # Add PRU examples for am180x-evm devices
+> > --
+> > 1.7.0.4
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> >
+
