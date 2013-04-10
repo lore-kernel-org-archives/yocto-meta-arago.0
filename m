@@ -1,28 +1,28 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 21BA952979
+	by arago-project.org (Postfix) with ESMTPS id 81B0252981
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Apr 2013 20:39:30 +0000 (UTC)
+	Wed, 10 Apr 2013 07:23:48 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r39KdT98024994
-	for <meta-arago@arago-project.org>; Tue, 9 Apr 2013 15:39:29 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r39KdTdY032692
-	for <meta-arago@arago-project.org>; Tue, 9 Apr 2013 15:39:29 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 9 Apr 2013 15:39:28 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3A7NldW029193
+	for <meta-arago@arago-project.org>; Wed, 10 Apr 2013 02:23:47 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3A7NlV0014078
+	for <meta-arago@arago-project.org>; Wed, 10 Apr 2013 02:23:47 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 10 Apr 2013 02:23:46 -0500
 Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r39KdSOH012940	for
-	<meta-arago@arago-project.org>; Tue, 9 Apr 2013 15:39:28 -0500
-Date: Tue, 9 Apr 2013 16:34:12 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3A7NllG029160	for
+	<meta-arago@arago-project.org>; Wed, 10 Apr 2013 02:23:47 -0500
+Date: Wed, 10 Apr 2013 03:18:30 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1979771668.155.1365539652769.JavaMail.jenkins@puget>
+Message-ID: <1938951422.159.1365578310723.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-04-09_12-39-57
+Subject: [nightly] Core TISDK 2013.03 build 2013-04-10_01-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,26 +35,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 20:39:30 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_154_22478099.1365539652748"
+X-List-Received-Date: Wed, 10 Apr 2013 07:23:49 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_158_1775267999.1365578310722"
 
-------=_Part_154_22478099.1365539652748
+------=_Part_158_1775267999.1365578310722
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 04/09/13
+Status for 04/10/13
 </title>
 </head>
 <body>
 
-<h2>Status for 04/09/13</h2>
+<h2>Status for 04/10/13</h2>
 
-<h2>BUILD_ID: build-2013-04-09_12-41-00</h2>
+<h2>BUILD_ID: build-2013-04-10_01-02-12</h2>
 
-<h2>Clean Build: true</h2>
+<h2>Clean Build: false</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -129,7 +130,7 @@ Status for 04/09/13
     </tr>
     <tr>
         <td>omap5-evm</td>
-        <td bgcolor=red>FAILED</td>
+        <td bgcolor=lime>PASSED</td>
         <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
@@ -179,7 +180,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
+CLEAN_BUILD="false"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -213,4 +214,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_154_22478099.1365539652748--
+------=_Part_158_1775267999.1365578310722--
