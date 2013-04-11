@@ -1,34 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C279B529F5
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 3D55F52A77
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Apr 2013 22:02:25 +0000 (UTC)
+	Thu, 11 Apr 2013 05:24:07 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3AM2Pnd022613
-	for <meta-arago@arago-project.org>; Wed, 10 Apr 2013 17:02:25 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3AM2OnZ029074
-	for <meta-arago@arago-project.org>; Wed, 10 Apr 2013 17:02:25 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 10 Apr 2013 17:02:24 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r3AM2OYY024064;
-	Wed, 10 Apr 2013 17:02:24 -0500
-Date: Wed, 10 Apr 2013 18:02:24 -0400
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3B5O6tx027433
+	for <meta-arago@arago-project.org>; Thu, 11 Apr 2013 00:24:06 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3B5O6h2007468
+	for <meta-arago@arago-project.org>; Thu, 11 Apr 2013 00:24:06 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 11 Apr 2013 00:24:06 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3B5O55O030310	for
+	<meta-arago@arago-project.org>; Thu, 11 Apr 2013 00:24:05 -0500
+Date: Thu, 11 Apr 2013 01:18:47 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20130410220223.GG3078@edge>
-References: <1365007710-12866-1-git-send-email-Chase.Maupin@ti.com>
-	<20130405235701.GH31233@denix.org>
-	<8C41145C-47F2-478F-ADF3-A0229C36733A@ti.com>
-	<20130410214803.GF3078@edge>
-	<7D46E86EC0A8354091174257B2FED101594DB245@DLEE11.ent.ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <358436438.163.1365657527362.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED101594DB245@DLEE11.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] tisdk-image: add support for DTB files
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.03 build 2013-04-11_01-01-06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,99 +35,183 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 22:02:26 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 11 Apr 2013 05:24:07 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_162_784037490.1365657527361"
 
-On Wed, Apr 10, 2013 at 05:58:47PM -0400, Maupin, Chase wrote:
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Wednesday, April 10, 2013 4:48 PM
-> > To: Maupin, Chase
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH] tisdk-image: add support for
-> > DTB files
-> > 
-> > On Fri, Apr 05, 2013 at 09:37:04PM -0400, Maupin, Chase wrote:
-> > > I was thinking that in the case you do want all dtb files you
-> > could set no
-> > > filter and get them all.
-> > 
-> > You can also set filter to "*", which would result in 3 stars
-> > filter :) but
-> > still work as a shell wildcard and pick up all dtbs. Otherwise we
-> > would need
-> > to check if the filter is "unknown" to skip calling "find"
-> > uselessly...
-> 
-> Are you saying this is an issue?  Not sure if you are expecting some update 
-> from me here.
+------=_Part_162_784037490.1365657527361
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I'm just trying to avoid running find if it's not needed. Are you Ok keying it 
-off empty/unset DTB_FILTER as I suggested below? Or if not, do you want to 
-check it against "unknown" instead?
+<html>
+<head>
+<title>
+Status for 04/11/13
+</title>
+</head>
+<body>
+
+<h2>Status for 04/11/13</h2>
+
+<h2>BUILD_ID: build-2013-04-11_01-02-10</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.03"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> > > On Apr 5, 2013, at 6:57 PM, "Dmytriyenko, Denys" <denys@ti.com>
-> > wrote:
-> > >
-> > > > On Wed, Apr 03, 2013 at 11:48:30AM -0500, Chase Maupin wrote:
-> > > >> * If DTB files exist add support for copying those files
-> > into
-> > > >>  the SDK prebuilt-images directory.
-> > > >> * The files to be copied can be controlled using the
-> > DTB_FILTER
-> > > >>  variable.
-> > > >>
-> > > >> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
-> > > >> ---
-> > > >> meta-arago-distro/classes/tisdk-image.bbclass |   10
-> > ++++++++++
-> > > >> 1 files changed, 10 insertions(+), 0 deletions(-)
-> > > >>
-> > > >> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass
-> > b/meta-arago-distro/classes/tisdk-image.bbclass
-> > > >> index a1ce1ad..4e3ed52 100644
-> > > >> --- a/meta-arago-distro/classes/tisdk-image.bbclass
-> > > >> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
-> > > >> @@ -528,6 +528,16 @@ do_sdk_image () {
-> > > >>         return 1
-> > > >>     fi
-> > > >
-> > > > I was thinking of adding DTB_FILTER ?= "unknown" here, but
-> > then realized it
-> > > > would just waste few cycles trying to find something in the
-> > deploy directory,
-> > > > which we can avoid completely by testing if it set or not...
-> > > >
-> > > >
-> > > >> +    # Copy the DTB files if they exist.
-> > > >> +    # NOTE: For simplicity remove the uImage- prefix on the
-> > dtb files.  Get just the symlink
-> > > >> +    #       files for a cleaner name.  Use the DTB_FILTER
-> > variable to allow finding the
-> > > >> +    #       dtb files for only that MACHINE type
-> > > >
-> > > > Wrap the below for loop in "if [ -z "${DTB_FILTER}" ]; then"
-> > here?
-> > > >
-> > > >
-> > > >> +    for f in `find ${DEPLOY_DIR_IMAGE} -type l -name
-> > "*${DTB_FILTER}*.dtb"`
-> > > >> +    do
-> > > >> +        dtb_file=`basename $f | sed s/uImage-//`
-> > > >> +        cp $f ${prebuilt_dir}/${dtb_file}
-> > > >> +    done
-> > > >> +
-> > > >>     if [ "${SECONDARY_BOOTLOADER_NAME}" != "" ]
-> > > >>     then
-> > > >>         # Copy the secondary bootloader image if it exists
-> > > >> --
-> > > >> 1.7.0.4
-> > > >>
-> > > >> _______________________________________________
-> > > >> meta-arago mailing list
-> > > >> meta-arago@arago-project.org
-> > > >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > > >>
-
+------=_Part_162_784037490.1365657527361--
