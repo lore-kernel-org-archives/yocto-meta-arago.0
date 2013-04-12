@@ -1,28 +1,28 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id D4EF252A10
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 589DC52A10
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Apr 2013 20:59:51 +0000 (UTC)
+	Fri, 12 Apr 2013 21:00:27 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CKxn0p019987
-	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 15:59:50 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CL0PEJ026748
+	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 16:00:26 -0500
 Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKxn3M019337
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CL0O3T019522
 	for <meta-arago@arago-project.org>;
-	Sat, 13 Apr 2013 02:29:49 +0530 (IST)
+	Sat, 13 Apr 2013 02:30:25 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
 	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Sat, 13 Apr 2013 02:29:49 +0530
+	Sat, 13 Apr 2013 02:30:24 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKxlso016545;
-	Sat, 13 Apr 2013 02:29:48 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CL0MZH016623;
+	Sat, 13 Apr 2013 02:30:23 +0530
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 12 Apr 2013 15:59:45 -0500
-Message-ID: <1365800385-26222-1-git-send-email-Chase.Maupin@ti.com>
+Date: Fri, 12 Apr 2013 16:00:21 -0500
+Message-ID: <1365800421-26500-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: [PATCH 1/1] ti-tisdk-setup: Update to latest source revision
+Subject: [PATCH 1/1] matrix-gui-crypto-demos: update to new apps layout
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,39 +35,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 20:59:52 -0000
+X-List-Received-Date: Fri, 12 Apr 2013 21:00:27 -0000
 Content-Type: text/plain
+
+* Updated the S directory to the new layout in the matrix GUI
+  apps repository.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    5 +++--
- 1 files changed, 3 insertions(+), 2 deletions(-)
+ .../matrix/matrix-gui-crypto-demos_2.0.bb          |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index 21c5374..8c0d36d 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+index 7d8f319..123f6e5 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+@@ -4,11 +4,11 @@ LICENSE = "CC-BY-SA"
  
--PR = "r9"
-+PR = "r11"
+ require matrix-gui-apps-git.inc
  
- BRANCH ?= "master"
--SRCREV = "e0e3916a1d128e3ee5ac76bc4fdf708f704cd6d7"
-+SRCREV = "6674b32cc9a2752f7ff9405e2afa01ce0a6b2d7f"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+-PR = "${INC_PR}.2"
++PR = "${INC_PR}.3"
  
- S = "${WORKDIR}/git/"
-@@ -17,6 +17,7 @@ UBOOT_ENV_beagleboard = "setup-uboot-env-beagleboard.sh"
- UBOOT_ENV_am3517-evm = "setup-uboot-env-am3517.sh"
- UBOOT_ENV_am180x-evm = "setup-uboot-env-am18x.sh"
- UBOOT_ENV_ti33x = "setup-uboot-env-am335x.sh"
-+UBOOT_ENV_omap5-evm = "setup-uboot-env-omap5.sh"
- UBOOT_ENV = "setup-uboot-unknown.sh"
+ inherit allarch
  
- do_install () {
+-S = "${WORKDIR}/git/cryptos_apps"
++S = "${WORKDIR}/git/cryptos_apps_scripts"
+ 
+ # Make sure crypto submenu and app images has been installed. Also make sure openssl is available
+ RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl ti-crypto-examples"
 -- 
 1.7.0.4
 
