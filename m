@@ -1,30 +1,28 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C5592529C8
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id D4EF252A10
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Apr 2013 20:59:10 +0000 (UTC)
+	Fri, 12 Apr 2013 20:59:51 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CKx8ID026561
-	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 15:59:09 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CKxn0p019987
+	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 15:59:50 -0500
 Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKx8NP019268
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKxn3M019337
 	for <meta-arago@arago-project.org>;
-	Sat, 13 Apr 2013 02:29:08 +0530 (IST)
+	Sat, 13 Apr 2013 02:29:49 +0530 (IST)
 Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
 	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Sat, 13 Apr 2013 02:29:08 +0530
+	Sat, 13 Apr 2013 02:29:49 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKx5aZ016501;
-	Sat, 13 Apr 2013 02:29:07 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKxlso016545;
+	Sat, 13 Apr 2013 02:29:48 +0530
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 12 Apr 2013 15:59:03 -0500
-Message-ID: <1365800343-25933-2-git-send-email-Chase.Maupin@ti.com>
+Date: Fri, 12 Apr 2013 15:59:45 -0500
+Message-ID: <1365800385-26222-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1365800343-25933-1-git-send-email-Chase.Maupin@ti.com>
-References: <1365800343-25933-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/2] tisdk-matrix: add multimedia demos for omap-a15 devices
+Subject: [PATCH 1/1] ti-tisdk-setup: Update to latest source revision
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,40 +35,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 20:59:11 -0000
+X-List-Received-Date: Fri, 12 Apr 2013 20:59:52 -0000
 Content-Type: text/plain
-
-* Since the AV files have been added to the file system we can
-  now add the multimedia demos to matrix.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../packagegroup-arago-tisdk-matrix.bb             |    6 +++++-
- 1 files changed, 5 insertions(+), 1 deletions(-)
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 2e0a753..348f48e 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r12"
-+PR = "r13"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 21c5374..8c0d36d 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
- inherit packagegroup
+-PR = "r9"
++PR = "r11"
  
-@@ -65,6 +65,10 @@ MATRIX_APPS_append_ti33x = "        \
-     matrix-gui-wifi-battleship-demo \
- "
+ BRANCH ?= "master"
+-SRCREV = "e0e3916a1d128e3ee5ac76bc4fdf708f704cd6d7"
++SRCREV = "6674b32cc9a2752f7ff9405e2afa01ce0a6b2d7f"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
  
-+MATRIX_APPS_append_omap-a15 = "     \
-+    matrix-gui-multimedia-demos     \
-+"
-+
- MATRIX_APPS_append_beagleboard = "  \
-     matrix-gui-display-control      \
- "
+ S = "${WORKDIR}/git/"
+@@ -17,6 +17,7 @@ UBOOT_ENV_beagleboard = "setup-uboot-env-beagleboard.sh"
+ UBOOT_ENV_am3517-evm = "setup-uboot-env-am3517.sh"
+ UBOOT_ENV_am180x-evm = "setup-uboot-env-am18x.sh"
+ UBOOT_ENV_ti33x = "setup-uboot-env-am335x.sh"
++UBOOT_ENV_omap5-evm = "setup-uboot-env-omap5.sh"
+ UBOOT_ENV = "setup-uboot-unknown.sh"
+ 
+ do_install () {
 -- 
 1.7.0.4
 
