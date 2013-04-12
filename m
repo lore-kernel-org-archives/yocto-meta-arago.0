@@ -1,28 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 51BF6529F5
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 4FE5152981
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Apr 2013 05:48:52 +0000 (UTC)
+	Fri, 12 Apr 2013 19:44:54 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3C5moP7001373
-	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 00:48:50 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CJiqq3019881
+	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 14:44:52 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3C5mogl030289
-	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 00:48:50 -0500
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CJiqI3021523
+	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 14:44:52 -0500
 Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 12 Apr 2013 00:48:50 -0500
+	Fri, 12 Apr 2013 14:44:52 -0500
 Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3C5moE7025940	for
-	<meta-arago@arago-project.org>; Fri, 12 Apr 2013 00:48:50 -0500
-Date: Fri, 12 Apr 2013 01:43:31 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CJiqel016704	for
+	<meta-arago@arago-project.org>; Fri, 12 Apr 2013 14:44:52 -0500
+Date: Fri, 12 Apr 2013 15:39:31 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1835130823.169.1365745411053.JavaMail.jenkins@puget>
+Message-ID: <1223510874.1.1365795571938.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.03 build 2013-04-12_01-01-06
+Subject: [nightly] Core TISDK 2013.04 build 2013-04-12_11-58-13
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,11 +35,10 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 05:48:53 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_168_309448030.1365745411051"
+X-List-Received-Date: Fri, 12 Apr 2013 19:44:56 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_0_1364345882.1365795571771"
 
-------=_Part_168_309448030.1365745411051
+------=_Part_0_1364345882.1365795571771
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -53,9 +52,9 @@ Status for 04/12/13
 
 <h2>Status for 04/12/13</h2>
 
-<h2>BUILD_ID: build-2013-04-12_01-02-12</h2>
+<h2>BUILD_ID: build-2013-04-12_11-59-17</h2>
 
-<h2>Clean Build: false</h2>
+<h2>Clean Build: true</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -125,8 +124,8 @@ Status for 04/12/13
     </tr>
     <tr>
         <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
         <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>omap5-evm</td>
@@ -135,13 +134,13 @@ Status for 04/12/13
     </tr>
     <tr>
         <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
         <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
         <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am180x-evm</td>
@@ -162,7 +161,7 @@ The configuration file passed to this script had the contents:
 </p>
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.03"<br>
+TISDK_VERSION="2013.04"<br>
 MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
@@ -180,7 +179,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
+CLEAN_BUILD="true"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -214,4 +213,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_168_309448030.1365745411051--
+------=_Part_0_1364345882.1365795571771--
