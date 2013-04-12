@@ -1,28 +1,28 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 062A5529A3
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id A64AA52981
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Apr 2013 20:46:23 +0000 (UTC)
+	Fri, 12 Apr 2013 20:46:58 +0000 (UTC)
 Received: from dbdp20.itg.ti.com ([172.24.170.38])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CKkLjA020276
-	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 15:46:22 -0500
-Received: from DBDE70.ent.ti.com (localhost [127.0.0.1])
-	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKkJog017768
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3CKkuqD009797
+	for <meta-arago@arago-project.org>; Fri, 12 Apr 2013 15:46:57 -0500
+Received: from DBDE71.ent.ti.com (localhost [127.0.0.1])
+	by dbdp20.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKku3p017825
 	for <meta-arago@arago-project.org>;
-	Sat, 13 Apr 2013 02:16:20 +0530 (IST)
-Received: from dbdp32.itg.ti.com (172.24.170.251) by dbde70.ent.ti.com
-	(172.24.170.148) with Microsoft SMTP Server id 14.1.323.3;
-	Sat, 13 Apr 2013 02:16:19 +0530
+	Sat, 13 Apr 2013 02:16:56 +0530 (IST)
+Received: from dbdp32.itg.ti.com (172.24.170.251) by DBDE71.ent.ti.com
+	(172.24.170.149) with Microsoft SMTP Server id 14.1.323.3;
+	Sat, 13 Apr 2013 02:16:56 +0530
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKkGvU015719;
-	Sat, 13 Apr 2013 02:16:18 +0530
+	dbdp32.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3CKksme015745;
+	Sat, 13 Apr 2013 02:16:55 +0530
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 12 Apr 2013 15:46:13 -0500
-Message-ID: <1365799574-23621-1-git-send-email-Chase.Maupin@ti.com>
+Date: Fri, 12 Apr 2013 15:46:53 -0500
+Message-ID: <1365799613-23917-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: [PATCH 1/2] tisdk-connectivity: move ti-wifi-utils
+Subject: [PATCH 1/1] tisdk-image: add support for DTB files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,39 +35,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 20:46:24 -0000
+X-List-Received-Date: Fri, 12 Apr 2013 20:46:58 -0000
 Content-Type: text/plain
 
-* Move the ti-wifi-utils into the drivers and firmware section
-  because these utilities depend on the drivers and firmware being
-  in place.  Having them in the common section would break builds
-  where those packages were not available.
+* If DTB files exist add support for copying those files into
+  the SDK prebuilt-images directory.
+* The files to be copied can be controlled using the DTB_FILTER
+  variable.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../packagegroup-arago-tisdk-connectivity.bb       |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ meta-arago-distro/classes/tisdk-image.bbclass |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index d936f83..d3b1f46 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -10,7 +10,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- # These are the packages that all platforms use for WLAN support
- WLAN_COMMON = "\
-     hostap-daemon \
--    ti-wifi-utils \
-     wireless-tools \
-     htop \
-     netperf \
-@@ -31,6 +30,7 @@ WLAN_COMMON = "\
- "
+diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
+index a1ce1ad..4e3ed52 100644
+--- a/meta-arago-distro/classes/tisdk-image.bbclass
++++ b/meta-arago-distro/classes/tisdk-image.bbclass
+@@ -528,6 +528,16 @@ do_sdk_image () {
+         return 1
+     fi
  
- FIRMWARE_AND_DRIVERS = "\
-+    ti-wifi-utils \
-     ti-compat-wireless-wl12xx \
-     ti-compat-bluetooth \
-     bt-firmware \
++    # Copy the DTB files if they exist.
++    # NOTE: For simplicity remove the uImage- prefix on the dtb files.  Get just the symlink
++    #       files for a cleaner name.  Use the DTB_FILTER variable to allow finding the
++    #       dtb files for only that MACHINE type
++    for f in `find ${DEPLOY_DIR_IMAGE} -type l -name "*${DTB_FILTER}*.dtb"`
++    do
++        dtb_file=`basename $f | sed s/uImage-//`
++        cp $f ${prebuilt_dir}/${dtb_file}
++    done
++
+     if [ "${SECONDARY_BOOTLOADER_NAME}" != "" ]
+     then
+         # Copy the secondary bootloader image if it exists
 -- 
 1.7.0.4
 
