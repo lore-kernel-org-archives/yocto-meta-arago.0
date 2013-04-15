@@ -1,29 +1,29 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 4617F52A85
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 0EDE252A91
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Apr 2013 20:03:22 +0000 (UTC)
+	Mon, 15 Apr 2013 20:03:25 +0000 (UTC)
 Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3FK3Lr1006218
-	for <meta-arago@arago-project.org>; Mon, 15 Apr 2013 15:03:21 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3FK3L0g032397
-	for <meta-arago@arago-project.org>; Mon, 15 Apr 2013 15:03:21 -0500
-Received: from dlelxv23.itg.ti.com (172.17.1.198) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 15 Apr 2013 15:03:21 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3FK3OHZ029839
+	for <meta-arago@arago-project.org>; Mon, 15 Apr 2013 15:03:24 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3FK3OYV032433
+	for <meta-arago@arago-project.org>; Mon, 15 Apr 2013 15:03:24 -0500
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 15 Apr 2013 15:03:23 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3FK3FGa010527;
-	Mon, 15 Apr 2013 15:03:19 -0500
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3FK3FGb010527;
+	Mon, 15 Apr 2013 15:03:22 -0500
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 15 Apr 2013 15:03:12 -0500
-Message-ID: <1366056193-22892-2-git-send-email-Chase.Maupin@ti.com>
+Date: Mon, 15 Apr 2013 15:03:13 -0500
+Message-ID: <1366056193-22892-3-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1366056193-22892-1-git-send-email-Chase.Maupin@ti.com>
 References: <1366056193-22892-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/3] linux-ti-staging: overlay LOCALVERSION fix
+Subject: [PATCH 3/3] u-boot-ti-staging: overlay LOCALVERSION fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,39 +36,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 20:03:22 -0000
+X-List-Received-Date: Mon, 15 Apr 2013 20:03:25 -0000
 Content-Type: text/plain
 
-* Overlay the LOCALVERSION fix until it can be picked up in the
-  oe-core danny branch
+* overlay the U-Boot LOCALVERSION fix until it can be merged
+  into the oe-core danny branch.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../linux/linux-ti-staging_3.8.bbappend            |   12 +++++++++++-
+ .../u-boot/u-boot-ti-staging_2013.01.01.bbappend   |   12 +++++++++++-
  1 files changed, 11 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
-index 39f0d75..11f0d73 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
-@@ -1,4 +1,4 @@
--MACHINE_KERNEL_PR_append = "-arago4"
-+MACHINE_KERNEL_PR_append = "-arago5"
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
+index 47a2971..a68fc97 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
+@@ -1,5 +1,15 @@
+-PR_append = "-arago2"
++PR_append = "-arago3"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+ SRCREV = "${AUTOREV}"
  
-@@ -29,3 +29,13 @@ pkg_postrm_kernel-devicetree () {
-         update-alternatives --remove ${DTS_BASE_NAME}.dtb devicetree-${DTB_SYMLINK_NAME}.dtb ${KERNEL_PRIORITY} || true
-     done
- }
+ UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
 +
-+# The below lines are overlayed until the LOCALVERSION change is merged into
-+# the oe-core danny branch.
-+kernel_do_configure_prepend() {
++# the lines below can be removed once the U-Boot LOCALVERSION patches are
++# merged into the oe-core danny branch
++do_compile_prepend() {
 +    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
 +    then
-+        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
-+        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
++        echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
++        echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
 +    fi
 +}
 -- 
