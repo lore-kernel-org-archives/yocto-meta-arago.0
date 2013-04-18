@@ -1,30 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5B3B052981
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 4700A52A57
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Apr 2013 20:27:12 +0000 (UTC)
+	Thu, 18 Apr 2013 21:02:56 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3IKRAVq030667
-	for <meta-arago@arago-project.org>; Thu, 18 Apr 2013 15:27:10 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3IKRAue005628
-	for <meta-arago@arago-project.org>; Thu, 18 Apr 2013 15:27:10 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 18 Apr 2013 15:27:10 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r3IKRAm8027401;
-	Thu, 18 Apr 2013 15:27:10 -0500
-Date: Thu, 18 Apr 2013 16:27:09 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Reizer, Eyal" <eyalr@ti.com>
-Message-ID: <20130418202709.GV1518@edge>
-References: <8665E2433BC68541A24DFFCA87B70F5B17C6FFB3@DNCE04.ent.ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3IL2qCG011095
+	for <meta-arago@arago-project.org>; Thu, 18 Apr 2013 16:02:52 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3IL2qes016762
+	for <meta-arago@arago-project.org>; Thu, 18 Apr 2013 16:02:52 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Thu, 18 Apr 2013 16:02:52 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] am33x-cm3: remove the SRC_URI setting
+Thread-Index: AQHOPG0BZZfCWviOAUiguOQmhpfDqpjcd0WQ
+Date: Thu, 18 Apr 2013 21:02:51 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101594FE1D3@DLEE11.ent.ti.com>
+References: <1366306781-17062-1-git-send-email-Chase.Maupin@ti.com>
+	<20130418194310.GC21029@denix.org>
+In-Reply-To: <20130418194310.GC21029@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <8665E2433BC68541A24DFFCA87B70F5B17C6FFB3@DNCE04.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v2 1/9] wlconf: configuration utility for wilink8 wireless driver
+Subject: Re: [PATCH] am33x-cm3: remove the SRC_URI setting
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,93 +40,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Apr 2013 20:27:13 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 18 Apr 2013 21:03:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Eyal,
+Yes.  I'll make a patch to sync meta-ti tomorrow.
 
-Thanks for the v2 of the patch.
+Sincerely,
+Chase Maupin
+Integration Team Manager
+Linux Core Product Development
+e-mail: chase.maupin@ti.com
+phone: (214) 567-2950
 
-
-On Thu, Apr 18, 2013 at 07:10:36AM +0000, Reizer, Eyal wrote:
-> Add a recipe for building and installing the wlconf configuration utility
-> for TI Wilink8 familily of chips.
-
-If you don't want the patch revision changelog to appear in the commit 
-description, please add it after the --- mark.
-
-
-> Changes in v2:
-> * Rename to use an actual release name instead of _git
-> * Line indentation fixes
-> 
-> Signed-off-by: Eyal Reizer <eyalr@ti.com<mailto:eyalr@ti.com>>
-> ---
->  .../recipes-connectivity/wlconf/wlconf_r8.a6.01.bb<http://wlconf_r8.a6.01.bb> |   37 ++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a6.01.bb<http://wlconf_r8.a6.01.bb>
-> 
-> diff --git a/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a6.01.bb<http://wlconf_r8.a6.01.bb> b/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a6.01.bb<http://wlconf_r8.a6.01.bb>
-> new file mode 100644
-> index 0000000..ec10d23
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a6.01.bb<http://wlconf_r8.a6.01.bb>
-> @@ -0,0 +1,37 @@
-> +DESCRIPTION = "Configuration utility for TI wireless drivers"
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=adc05a1903d3f107f85c90328e3a9438<file:///\\README;beginline=1;endline=21;md5=adc05a1903d3f107f85c90328e3a9438>"
-> +
-> +PR ="r1"
-> +PV ="0.0"
-
-Here you overwrite the recipe version (0.0) from the one set by the filename 
-(r8.a6.01) - you probably want to drop PV assignment here.
-
-BTW, I already mentioned the dangers of mixing alpha-numeric characters in the 
-version number, which can potentially cause the wrong sorting of the versions. 
-I guess in this case there's not much we can do, but something to keep in mind 
-when coming up with future fersion numbers...
+For support:
+Forums - http://community.ti.com/forums/
+Wiki - http://wiki.davincidsp.com/=20
 
 
-> +PR_append = "+gitr${SRCREV}"
-> +
-> +SRCREV = "ol_r8.a6.01"
-> +SRC_URI = "git://github.com/TI-OpenLink/18xx-ti-utils.git<http://github.com/TI-OpenLink/18xx-ti-utils.git>"
-> +
-> +S = "${WORKDIR}/git/wlconf"
-> +
-> +EXTRA_OEMAKE = "CC=${TARGET_PREFIX}gcc"
-> +
-> +do_install() {
-> +       install -d ${D}${bindir}
-> +       install -d ${D}${bindir}/wlconf/
-> +       install -d ${D}${bindir}/wlconf/official_inis
-> +
-> +       install -m 0755 wlconf ${D}${bindir}/wlconf/
-> +       install -m 0755 dictionary.txt ${D}${bindir}/wlconf/
-> +       install -m 0755 struct.bin ${D}${bindir}/wlconf/
-> +       install -m 0755 wl18xx-conf-default.bin ${D}${bindir}/wlconf/
-> +       install -m 0755 README ${D}${bindir}/wlconf/
-> +       install -m 0755 example.conf ${D}${bindir}/wlconf/
-> +       install -m 0755 example.ini ${D}${bindir}/wlconf/
-> +       install -m 0755 ${S}/official_inis/*
-> +                       ${D}${bindir}/wlconf/official_inis/
-> +}
-> +
-> +FILES_${PN} += " \
-> +       ${bindir}/wlconf \
-> +       ${bindir}/wlconf/official_inis \
-> +"
-> +
-> +FILES_${PN}-dbg += "${bindir}/wlconf/.debug"
-> --
-> 1.7.9.5
-> 
-
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Thursday, April 18, 2013 2:43 PM
+> To: Maupin, Chase
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] am33x-cm3: remove the SRC_URI
+> setting
+>=20
+> On Thu, Apr 18, 2013 at 12:39:41PM -0500, Chase Maupin wrote:
+> > * The base recipe SRC_URI has been updated so remove the
+> setting
+> >   that overwrites this.  This was preventing picking up the
+> >   init script required to load the firmware
+> >
+> > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> > ---
+> >  .../recipes-bsp/am335x-cm3/am33x-cm3_git.bbappend  |    4 +---
+> >  1 files changed, 1 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/meta-arago-distro/recipes-bsp/am335x-cm3/am33x-
+> cm3_git.bbappend b/meta-arago-distro/recipes-bsp/am335x-
+> cm3/am33x-cm3_git.bbappend
+> > index 61547e3..826f250 100644
+> > --- a/meta-arago-distro/recipes-bsp/am335x-cm3/am33x-
+> cm3_git.bbappend
+> > +++ b/meta-arago-distro/recipes-bsp/am335x-cm3/am33x-
+> cm3_git.bbappend
+> > @@ -1,4 +1,4 @@
+> > -PR_append =3D "-arago0"
+> > +PR_append =3D "-arago1"
+> >
+> >  PV =3D "05.06.00.00"
+> >
+> > @@ -6,5 +6,3 @@ BRANCH =3D "master"
+> >
+> >  #This SRCREV corresponds to tag AM335xPSP_04.06.00.09-rc
+> >  SRCREV =3D "7c6075f28d9fdd633175cdbd8dc287613ce92e5d"
+>=20
+> Not a part of your patch, but can we sync up on the commit ID or
+> release
+> version? meta-ti uses once commit ID and sets PV as 04.06.00.07
+> and meta-arago
+> changes it to 04.06.00.09-rc.
+> Can we update those - git has tags for 04.06.00.08 and
+> 04.06.00.10-rc1 besides
+> the other two mentioned.
+>=20
+> > -
+> > -SRC_URI =3D "git://arago-project.org/git/projects/am33x-
+> cm3.git;protocol=3Dgit;branch=3D${BRANCH}"
+> > --
+> > 1.7.0.4
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> >
 
