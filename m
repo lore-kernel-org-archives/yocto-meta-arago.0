@@ -1,37 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B076C52981
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id E46BF52A50
 	for <meta-arago@arago-project.org>;
-	Fri, 19 Apr 2013 16:10:40 +0000 (UTC)
+	Sat, 20 Apr 2013 03:01:07 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3JGAd0o025766
-	for <meta-arago@arago-project.org>; Fri, 19 Apr 2013 11:10:39 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3JGAdOU028458
-	for <meta-arago@arago-project.org>; Fri, 19 Apr 2013 11:10:39 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Fri, 19 Apr 2013 11:10:39 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
-	14.01.0323.003; Fri, 19 Apr 2013 11:10:39 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] am33x-cm3: remove the SRC_URI setting
-Thread-Index: AQHOPFu7CzJ7JZ4Ab0GCBHOjC5l1QJjctQMAgAEOToD///NVkA==
-Date: Fri, 19 Apr 2013 16:10:38 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C42A726@DFLE08.ent.ti.com>
-References: <1366306781-17062-1-git-send-email-Chase.Maupin@ti.com>
-	<20130418194310.GC21029@denix.org>
-	<7D46E86EC0A8354091174257B2FED101594FFCBD@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED101594FFCBD@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3K316e9032518
+	for <meta-arago@arago-project.org>; Fri, 19 Apr 2013 22:01:06 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3K316wx012521
+	for <meta-arago@arago-project.org>; Fri, 19 Apr 2013 22:01:06 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 19 Apr 2013 22:01:06 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3K316ZA015963	for
+	<meta-arago@arago-project.org>; Fri, 19 Apr 2013 22:01:06 -0500
+Date: Fri, 19 Apr 2013 22:55:34 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <2127451533.29.1366426534637.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] am33x-cm3: remove the SRC_URI setting
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.04 build 2013-04-19_17-05-52
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,95 +35,183 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 16:10:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 20 Apr 2013 03:01:08 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_28_1216016055.1366426534632"
+
+------=_Part_28_1216016055.1366426534632
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 04/19/13
+</title>
+</head>
+<body>
+
+<h2>Status for 04/19/13</h2>
+
+<h2>BUILD_ID: build-2013-04-19_17-06-54</h2>
+
+<h2>Clean Build: true</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.04"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Maupin, Chase
-> Sent: Friday, April 19, 2013 6:51 AM
-> To: Dmytriyenko, Denys
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] am33x-cm3: remove the SRC_URI setting
->=20
-> Looking at this further I see that the current bbappend is to line up wit=
-h the
-> 05.06.00.00 version of the kernel, which has not been pushed to meta-ti.
->=20
-> My assumption is that we are only wanting to keep one version of linux-
-> am335x kernel at a time.  So for this I would like Franklin's input:
->=20
-> 1. Does he have a new version of the kernel for 05.07.00.00 pending?
-Yes
-> 2. Can we update the version in meta-ti along with the corresponding
-> firmware recipe and remove these from meta-arago?
-I plan on submitting patches soon that moves kernel and u-boot recipes from=
- meta-arago to meta-ti. These recipes will replace the u-boot and kernel us=
-ed in SDK 05.06.
-
->=20
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Thursday, April 18, 2013 2:43 PM
-> > To: Maupin, Chase
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH] am33x-cm3: remove the SRC_URI
-> > setting
-> >
-> > On Thu, Apr 18, 2013 at 12:39:41PM -0500, Chase Maupin wrote:
-> > > * The base recipe SRC_URI has been updated so remove the
-> > setting
-> > >   that overwrites this.  This was preventing picking up the
-> > >   init script required to load the firmware
-> > >
-> > > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
-> > > ---
-> > >  .../recipes-bsp/am335x-cm3/am33x-cm3_git.bbappend  |    4 +---
-> > >  1 files changed, 1 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/meta-arago-distro/recipes-bsp/am335x-cm3/am33x-
-> > cm3_git.bbappend b/meta-arago-distro/recipes-bsp/am335x-
-> > cm3/am33x-cm3_git.bbappend
-> > > index 61547e3..826f250 100644
-> > > --- a/meta-arago-distro/recipes-bsp/am335x-cm3/am33x-
-> > cm3_git.bbappend
-> > > +++ b/meta-arago-distro/recipes-bsp/am335x-cm3/am33x-
-> > cm3_git.bbappend
-> > > @@ -1,4 +1,4 @@
-> > > -PR_append =3D "-arago0"
-> > > +PR_append =3D "-arago1"
-> > >
-> > >  PV =3D "05.06.00.00"
-> > >
-> > > @@ -6,5 +6,3 @@ BRANCH =3D "master"
-> > >
-> > >  #This SRCREV corresponds to tag AM335xPSP_04.06.00.09-rc  SRCREV =3D
-> > > "7c6075f28d9fdd633175cdbd8dc287613ce92e5d"
-> >
-> > Not a part of your patch, but can we sync up on the commit ID or
-> > release version? meta-ti uses once commit ID and sets PV as
-> > 04.06.00.07 and meta-arago changes it to 04.06.00.09-rc.
-> > Can we update those - git has tags for 04.06.00.08 and
-> > 04.06.00.10-rc1 besides
-> > the other two mentioned.
-> >
-> > > -
-> > > -SRC_URI =3D "git://arago-project.org/git/projects/am33x-
-> > cm3.git;protocol=3Dgit;branch=3D${BRANCH}"
-> > > --
-> > > 1.7.0.4
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_28_1216016055.1366426534632--
