@@ -1,28 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id E463E529E8
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 677C352A3E
 	for <meta-arago@arago-project.org>;
-	Mon, 22 Apr 2013 05:58:40 +0000 (UTC)
+	Mon, 22 Apr 2013 17:27:20 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3M5wd1x008960
-	for <meta-arago@arago-project.org>; Mon, 22 Apr 2013 00:58:40 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3M5wdIr002512
-	for <meta-arago@arago-project.org>; Mon, 22 Apr 2013 00:58:39 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 22 Apr 2013 00:58:39 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3M5wcUH017106	for
-	<meta-arago@arago-project.org>; Mon, 22 Apr 2013 00:58:38 -0500
-Date: Mon, 22 Apr 2013 01:53:04 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3MHRJ1h010785
+	for <meta-arago@arago-project.org>; Mon, 22 Apr 2013 12:27:19 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3MHRJQV030121
+	for <meta-arago@arago-project.org>; Mon, 22 Apr 2013 12:27:19 -0500
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 22 Apr 2013 12:27:18 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3MHRGHA016775;
+	Mon, 22 Apr 2013 12:27:17 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <522388965.39.1366609984830.JavaMail.jenkins@puget>
+Date: Mon, 22 Apr 2013 12:27:10 -0500
+Message-ID: <1366651633-27986-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.04 build 2013-04-22_01-01-44
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/4] recipes: Fix append += syntax
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,183 +35,108 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 05:58:41 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_38_2139465019.1366609984827"
+X-List-Received-Date: Mon, 22 Apr 2013 17:27:21 -0000
+Content-Type: text/plain
 
-------=_Part_38_2139465019.1366609984827
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+* For these recipes I used the incorrect += or append syntax.
+* Correct the syntax to insure the proper logic.
 
-<html>
-<head>
-<title>
-Status for 04/22/13
-</title>
-</head>
-<body>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    6 ++--
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |   38 ++++++++++---------
+ 2 files changed, 23 insertions(+), 21 deletions(-)
 
-<h2>Status for 04/22/13</h2>
-
-<h2>BUILD_ID: build-2013-04-22_01-02-48</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.04"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+index d8846f3..7c237d0 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional scripts and applications into the SDK"
+ LICENSE = "MIT"
+-PR = "r7"
++PR = "r8"
+ 
+ inherit packagegroup
+ 
+@@ -13,8 +13,8 @@ KERNEL_SRC = "${PREFERRED_PROVIDER_virtual/kernel}-src"
+ 
+ TOOLS = "pinmux-utility"
+ TOOLS_omap-a15 = ""
+-TOOLS_am37x-evm_append = " flash-utility"
+-TOOLS_am3517-evm_append = " flash-utility"
++TOOLS_append_am37x-evm = " flash-utility"
++TOOLS_append_am3517-evm = " flash-utility"
+ 
+ README = ""
+ README_omap-a15 = "tisdk-readme"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index da2003f..49963f6 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -32,7 +32,7 @@ SRC_URI = "\
+     file://Makefile_omapconf \
+ "
+ 
+-PR = "r9"
++PR = "r10"
+ 
+ MAKEFILES_COMMON = "linux \
+                     matrix-gui \
+@@ -43,33 +43,35 @@ MAKEFILES_COMMON = "linux \
+                     refresh-screen \
+                     qt-tstat \
+ "
++MAKEFILES = ""
+ 
+ # This example application should not be used when using non-SGX
+ QUICK_PLAYGROUND = "${@base_conditional('ARAGO_QT_PROVIDER','qt4-embedded-gles','quick-playground','', d)}"
+ 
+ # Add device specific make targets
+-MAKEFILES_omap3 += "u-boot-spl \
+-                    ${QUICK_PLAYGROUND} \
++
++MAKEFILES_append_omap3 = " u-boot-spl \
++                           ${QUICK_PLAYGROUND} \
+ "
+-MAKEFILES_am37x-evm += "av-examples \
+-                        ti-ocf-crypto-module \
+-                        wireless \
++MAKEFILES_append_am37x-evm = " av-examples \
++                               ti-ocf-crypto-module \
++                               wireless \
+ "
+-MAKEFILES_am3517-evm += "av-examples \
+-                         ti-ocf-crypto-module \
++MAKEFILES_append_am3517-evm = " av-examples \
++                                ti-ocf-crypto-module \
+ "
+-MAKEFILES_ti33x += "u-boot-spl \
+-                    ${QUICK_PLAYGROUND} \
+-                    wireless \
++MAKEFILES_append_ti33x = " u-boot-spl \
++                           ${QUICK_PLAYGROUND} \                    
++                           wireless \
+ "
+-MAKEFILES_omap-a15 += "u-boot-spl \
+-                    ${QUICK_PLAYGROUND} \
+-                    omapconf \
+-                    linux-dtbs \
++MAKEFILES_append_omap-a15 = " u-boot-spl \
++                              ${QUICK_PLAYGROUND} \
++                              omapconf \
++                              linux-dtbs \
+ "
+-MAKEFILES_am180x-evm += "pru \
+-                         u-boot-legacy \
+-                         wireless \
++MAKEFILES_append_am180x-evm = " pru \
++                                u-boot-legacy \
++                                wireless \
+ "
+ 
+ PLATFORM_ARCH = "${ARMPKGARCH}"
+-- 
+1.7.0.4
 
 
-------=_Part_38_2139465019.1366609984827--
