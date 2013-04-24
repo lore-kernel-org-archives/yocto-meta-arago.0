@@ -1,32 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2B7C05298C
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 0317C5298C
 	for <meta-arago@arago-project.org>;
-	Wed, 24 Apr 2013 19:16:36 +0000 (UTC)
+	Wed, 24 Apr 2013 19:21:14 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3OJGYgd009784
-	for <meta-arago@arago-project.org>; Wed, 24 Apr 2013 14:16:34 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3OJGYqL026037
-	for <meta-arago@arago-project.org>; Wed, 24 Apr 2013 14:16:34 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Wed, 24 Apr 2013 14:16:34 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Zhang, Hao" <hzhang@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] matrix-lighttpd-config: add static cgi
-	and	.out support in Matrix PHP
-Thread-Index: AQHOQRmm2v4/ekKE60WHst7aJ2e8gZjlvKug
-Date: Wed, 24 Apr 2013 19:16:34 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C4328F5@DFLE08.ent.ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3OJLEd2031787
+	for <meta-arago@arago-project.org>; Wed, 24 Apr 2013 14:21:14 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3OJLE8D031904
+	for <meta-arago@arago-project.org>; Wed, 24 Apr 2013 14:21:14 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 24 Apr 2013 14:21:13 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r3OJLD6m015989;
+	Wed, 24 Apr 2013 14:21:13 -0500
+Date: Wed, 24 Apr 2013 15:21:13 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20130424192113.GP12173@edge>
 References: <1366828154-17755-1-git-send-email-hzhang@ti.com>
-In-Reply-To: <1366828154-17755-1-git-send-email-hzhang@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	<8F29D6B095ED194EA1980491A5E029710C4328F5@DFLE08.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C4328F5@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] matrix-lighttpd-config: add static cgi and	.out support in Matrix PHP
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -40,69 +38,76 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2013 19:16:37 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 24 Apr 2013 19:21:15 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-cgi.assign                 =3D ( ".php"  =3D> "/usr/bin/php-cgi", ".cgi" =
-=3D> "/bin/sh",  ".o" =3D> "" )
+I would understand .cgi, but what is it with .o? Are those object files? What 
+do you want to do with them?
 
-Can you give an example of the .cgi and .o file that requires this change?
+And I guess a better description of the change in the patch wouldn't hurt 
+either.
+
+-- 
+Denys
 
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Zhang, Hao
-> Sent: Wednesday, April 24, 2013 1:29 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] matrix-lighttpd-config: add static cgi and =
-.out
-> support in Matrix PHP
->=20
-> From: Hao Zhang <hzhang@ti.com>
->=20
-> ---
->  .../matrix-lighttpd-config/lighttpd.conf.matrix    |    4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-
-> config/lighttpd.conf.matrix b/meta-arago-extras/recipes-
-> core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
-> index 82a9fb8..2dce736 100755
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-
-> config/lighttpd.conf.matrix
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/light
-> +++ tpd.conf.matrix
-> @@ -137,7 +137,7 @@ $HTTP["url"] =3D~ "\.pdf$" {  # which extensions shou=
-ld
-> not be handle via static-file transfer  #  # .php, .pl, .fcgi are most of=
-ten
-> handled by mod_fastcgi or mod_cgi -static-file.exclude-extensions =3D ( "=
-.php",
-> ".pl", ".fcgi" )
-> +static-file.exclude-extensions =3D ( ".php", ".pl", ".fcgi", ".cgi", ".o=
-"
-> +)
->=20
->  ######### Options that are good to be but not neccesary to be changed
-> #######
->=20
-> @@ -225,7 +225,7 @@ compress.filetype          =3D ("text/plain",
-> "text/html","text/javascript","text/
->  #                            )
->=20
->  #### CGI module
-> -cgi.assign                 =3D ( ".php"  =3D> "/usr/bin/php-cgi")
-> +cgi.assign                 =3D ( ".php"  =3D> "/usr/bin/php-cgi", ".cgi"=
- =3D>	"/bin/sh",
-> ".o" =3D> "" )
->  #cgi.assign                 =3D ( ".pl"  =3D> "/usr/bin/perl",
->  #                               ".cgi" =3D> "/usr/bin/perl" )
->  #
-> --
-> 1.7.9.5
->=20
+On Wed, Apr 24, 2013 at 07:16:34PM +0000, Cooper Jr., Franklin wrote:
+> cgi.assign                 = ( ".php"  => "/usr/bin/php-cgi", ".cgi" => "/bin/sh",  ".o" => "" )
+> 
+> Can you give an example of the .cgi and .o file that requires this change?
+> 
+> 
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Zhang, Hao
+> > Sent: Wednesday, April 24, 2013 1:29 PM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCH] matrix-lighttpd-config: add static cgi and .out
+> > support in Matrix PHP
+> > 
+> > From: Hao Zhang <hzhang@ti.com>
+> > 
+> > ---
+> >  .../matrix-lighttpd-config/lighttpd.conf.matrix    |    4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-
+> > config/lighttpd.conf.matrix b/meta-arago-extras/recipes-
+> > core/matrix/matrix-lighttpd-config/lighttpd.conf.matrix
+> > index 82a9fb8..2dce736 100755
+> > --- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-
+> > config/lighttpd.conf.matrix
+> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config/light
+> > +++ tpd.conf.matrix
+> > @@ -137,7 +137,7 @@ $HTTP["url"] =~ "\.pdf$" {  # which extensions should
+> > not be handle via static-file transfer  #  # .php, .pl, .fcgi are most often
+> > handled by mod_fastcgi or mod_cgi -static-file.exclude-extensions = ( ".php",
+> > ".pl", ".fcgi" )
+> > +static-file.exclude-extensions = ( ".php", ".pl", ".fcgi", ".cgi", ".o"
+> > +)
+> > 
+> >  ######### Options that are good to be but not neccesary to be changed
+> > #######
+> > 
+> > @@ -225,7 +225,7 @@ compress.filetype          = ("text/plain",
+> > "text/html","text/javascript","text/
+> >  #                            )
+> > 
+> >  #### CGI module
+> > -cgi.assign                 = ( ".php"  => "/usr/bin/php-cgi")
+> > +cgi.assign                 = ( ".php"  => "/usr/bin/php-cgi", ".cgi" =>	"/bin/sh",
+> > ".o" => "" )
+> >  #cgi.assign                 = ( ".pl"  => "/usr/bin/perl",
+> >  #                               ".cgi" => "/usr/bin/perl" )
+> >  #
+> > --
+> > 1.7.9.5
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
