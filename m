@@ -1,28 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A7A6B52A6C
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id A24BC52A77
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Apr 2013 05:26:46 +0000 (UTC)
+	Thu, 25 Apr 2013 23:34:37 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3P5QjV9016856
-	for <meta-arago@arago-project.org>; Thu, 25 Apr 2013 00:26:45 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3P5QjaA016346
-	for <meta-arago@arago-project.org>; Thu, 25 Apr 2013 00:26:45 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 25 Apr 2013 00:26:45 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3PNYaOB023163
+	for <meta-arago@arago-project.org>; Thu, 25 Apr 2013 18:34:36 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3PNYaUI012369
+	for <meta-arago@arago-project.org>; Thu, 25 Apr 2013 18:34:36 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 25 Apr 2013 18:34:36 -0500
 Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3P5Qj4T016845	for
-	<meta-arago@arago-project.org>; Thu, 25 Apr 2013 00:26:45 -0500
-Date: Thu, 25 Apr 2013 01:21:05 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3PNYaVH028140	for
+	<meta-arago@arago-project.org>; Thu, 25 Apr 2013 18:34:36 -0500
+Date: Thu, 25 Apr 2013 19:28:55 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1225768067.51.1366867265783.JavaMail.jenkins@puget>
+Message-ID: <1208189893.53.1366932535809.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.04 build 2013-04-25_01-01-44
+Subject: [nightly] Core TISDK 2013.04 build 2013-04-25_16-46-49
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,11 +35,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 05:26:47 -0000
+X-List-Received-Date: Thu, 25 Apr 2013 23:34:37 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_50_1366862518.1366867265782"
+	boundary="----=_Part_52_1185040253.1366932535781"
 
-------=_Part_50_1366862518.1366867265782
+------=_Part_52_1185040253.1366932535781
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -53,9 +53,9 @@ Status for 04/25/13
 
 <h2>Status for 04/25/13</h2>
 
-<h2>BUILD_ID: build-2013-04-25_01-02-49</h2>
+<h2>BUILD_ID: build-2013-04-25_16-47-54</h2>
 
-<h2>Clean Build: false</h2>
+<h2>Clean Build: true</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -120,8 +120,8 @@ Status for 04/25/13
     </tr>
     <tr>
         <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
         <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am37x-evm</td>
@@ -180,7 +180,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
+CLEAN_BUILD="true"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -214,4 +214,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_50_1366862518.1366867265782--
+------=_Part_52_1185040253.1366932535781--
