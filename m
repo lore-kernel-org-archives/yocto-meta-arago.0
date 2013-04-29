@@ -1,30 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E11AB52972
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 2989952972
 	for <meta-arago@arago-project.org>;
-	Mon, 29 Apr 2013 13:15:26 +0000 (UTC)
+	Mon, 29 Apr 2013 18:14:03 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3TDFPtc008266
-	for <meta-arago@arago-project.org>; Mon, 29 Apr 2013 08:15:25 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3TDFPvU011471
-	for <meta-arago@arago-project.org>; Mon, 29 Apr 2013 08:15:25 -0500
-Received: from dlelxv23.itg.ti.com (172.17.1.198) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 29 Apr 2013 08:15:25 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3TDFHJR031838;
-	Mon, 29 Apr 2013 08:15:24 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 29 Apr 2013 08:15:14 -0500
-Message-ID: <1367241314-16498-3-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1367241314-16498-1-git-send-email-fcooper@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3TIE2bo021722
+	for <meta-arago@arago-project.org>; Mon, 29 Apr 2013 13:14:02 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3TIE1YU018006
+	for <meta-arago@arago-project.org>; Mon, 29 Apr 2013 13:14:01 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 29 Apr 2013 13:14:01 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r3TIE1JB012542;
+	Mon, 29 Apr 2013 13:14:01 -0500
+Date: Mon, 29 Apr 2013 14:14:01 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20130429181400.GF27211@edge>
 References: <1367241314-16498-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/3] meta-arago conf files: Use updated recipes/recipes names
+In-Reply-To: <1367241314-16498-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 1/3] ltp-ddt-legacy-1.0: Add ltp-ddt recipe that supports 3.2 or older kernels
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,61 +37,117 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2013 13:15:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 29 Apr 2013 18:14:03 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Recipes have been moved to meta-ti and are using the updated naming scheme.
-* Mimic the name changes.
-* Use latest version of the Graphics SDK
+On Mon, Apr 29, 2013 at 08:15:12AM -0500, Franklin S. Cooper Jr wrote:
+> * Ltp-ddt master is now targeting 3.8+ kernels.
+> * This recipe points to the v3.2 branch meant for legacy kernels.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../conf/distro/include/arago-prefs.inc            |    6 ++++++
+>  .../conf/distro/include/branding-amsdk.inc         |    1 +
+>  ..._0.0.4.bbappend => ltp-ddt-legacy_1.0.bbappend} |    4 ----
+>  .../recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb |   14 ++++++++++++++
+>  4 files changed, 21 insertions(+), 4 deletions(-)
+>  copy meta-arago-distro/recipes-devtools/ltp-ddt/{ltp-ddt_0.0.4.bbappend => ltp-ddt-legacy_1.0.bbappend} (90%)
+>  create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
+> 
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> index 6b8bdb4..c3807e9 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -1,3 +1,6 @@
+> +# Use the latest version of ltp-ddt for kernel versions 3.8+
+> +PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
+> +
+>  PREFERRED_PROVIDER_virtual/gettext = "gettext"
+>  
+>  ARAGO_QT_PROVIDER = "${@base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d)}"
+> @@ -19,6 +22,7 @@ PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
+>  PREFERRED_VERSION_linux-libc-headers_am180x-evm = "2.6.33"
+>  PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
+>  PREFERRED_VERSION_linux-omapl138-psp = "2.6.37"
+> +PREFERRED_PROVIDER_ltp-ddt_am180x = "ltp-ddt-legacy"
+>  PREFERRED_PROVIDER_virtual/bootloader_am180x-evm = "u-boot-am180x"
+>  PREFERRED_PROVIDER_u-boot_am180x-evm = "u-boot-am180x"
+>  PREFERRED_VERSION_u-boot-am180x = "2010.12"
+> @@ -26,6 +30,7 @@ PREFERRED_VERSION_u-boot-am180x = "2010.12"
+>  PREFERRED_VERSION_linux-libc-headers_am37x-evm = "2.6.33"
+>  PREFERRED_PROVIDER_virtual/kernel_am37x-evm = "linux-omap-psp"
+>  PREFERRED_VERSION_linux-omap-psp = "2.6.37"
+> +PREFERRED_PROVIDER_ltp-ddt_am37x-evm = "ltp-ddt-legacy"
+>  PREFERRED_PROVIDER_virtual/bootloader_am37x-evm = "u-boot-am37x"
+>  PREFERRED_PROVIDER_u-boot_am37x-evm = "u-boot-am37x"
+>  PREFERRED_VERSION_u-boot-am37x_am37x-evm = "2012.04.01"
+> @@ -35,6 +40,7 @@ PREFERRED_PROVIDER_virtual/kernel_am3517-evm = "linux-omap-psp"
+>  PREFERRED_VERSION_linux-omap-psp_am3517-evm = "2.6.37"
+>  PREFERRED_PROVIDER_virtual/bootloader_am3517-evm = "u-boot-am3517"
+>  PREFERRED_PROVIDER_u-boot_am3517-evm = "u-boot-am3517"
+> +PREFERRED_PROVIDER_ltp-ddt_am3517-evm = "ltp-ddt-legacy"
+>  
+>  PREFERRED_PROVIDER_virtual/kernel_beagleboard = "linux"
+>  PREFERRED_VERSION_linux_beagleboard = "3.3.7"
+> diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+> index 9f64cd4..dc3f448 100644
+> --- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+> +++ b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+> @@ -3,6 +3,7 @@
+>  # Use the SDK supported kernel and kernel version
+>  PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x"
+>  PREFERRED_VERSION_linux-am335x = "3.2.0-psp05.06.00.00"
+> +PREFERRED_PROVIDER_ltp-ddt_am335x-evm = "ltp-ddt-legacy"
+>  PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-am33x"
+>  PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-am33x"
+>  PREFERRED_VERSION_u-boot-am33x = "2012.10"
+> diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
+> similarity index 90%
+> copy from meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+> copy to meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
+> index f8c99d8..65a16f9 100644
+> --- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+> +++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
+> @@ -3,10 +3,6 @@ PR_append = "-arago0+gitr${SRCPV}"
+>  # Auto rev so we pick up the latest changes
+>  SRCREV = "${AUTOREV}"
+>  
+> -# Use special branch for platforms with older <=3.2 kernel
+> -BRANCH_am37x-evm = "v3.2"
+> -BRANCH_am180x-evm = "v3.2"
+> -
+>  do_compile_kmodules() {
+>          unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
+>          oe_runmake modules
+> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
+> new file mode 100644
+> index 0000000..2ef4455
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
+> @@ -0,0 +1,14 @@
+> +# The master branch is now 3.2+ kernels.
+> +# This recipe is meant to use the v3.2 that supports 3.2 and older kernels.
+> +
+> +require recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bb
+> +
+> +PROVIDES += "ltp-ddt"
+> +RPROVIDES += "ltp-ddt"
+> +RREPLACES += "ltp-ddt"
+> +RCONFLICTS += "ltp-ddt"
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../conf/distro/arago-source-ipk.conf              |    6 +++---
- .../conf/distro/include/branding-amsdk.inc         |   12 ++++++------
- 2 files changed, 9 insertions(+), 9 deletions(-)
+R* variables must have package specifier, e.g. RPROVIDES_${PN} etc.
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index f9bb5b7..912ec36 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -147,9 +147,9 @@ CREATE_SRCIPK_pn-linux-omap-psp = "1"
- SRCIPK_INSTALL_DIR_pn-linux-omap-psp = "board-support/linux-${KVER}-psp${PSPREL}"
- SRCIPK_PACKAGE_ARCH_pn-linux-omap-psp = "${MACHINE_ARCH}"
- 
--CREATE_SRCIPK_pn-linux-am335x = "1"
--SRCIPK_INSTALL_DIR_pn-linux-am335x = "board-support/linux-${KVER}"
--SRCIPK_PACKAGE_ARCH_pn-linux-am335x = "${MACHINE_ARCH}"
-+CREATE_SRCIPK_pn-linux-am335x-psp = "1"
-+SRCIPK_INSTALL_DIR_pn-linux-am335x-psp = "board-support/linux-${KVER}"
-+SRCIPK_PACKAGE_ARCH_pn-linux-am335x-psp = "${MACHINE_ARCH}"
- 
- CREATE_SRCIPK_pn-linux-omap = "1"
- SRCIPK_INSTALL_DIR_pn-linux-omap = "board-support/linux-${PV}-${PR}"
-diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-index dc3f448..7c25ae5 100644
---- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-@@ -1,13 +1,13 @@
- # AM-SDK branding configuration
- 
- # Use the SDK supported kernel and kernel version
--PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x"
--PREFERRED_VERSION_linux-am335x = "3.2.0-psp05.06.00.00"
-+PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x-psp"
-+PREFERRED_VERSION_linux-am335x-psp = "3.2"
- PREFERRED_PROVIDER_ltp-ddt_am335x-evm = "ltp-ddt-legacy"
- PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-am33x"
- PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-am33x"
--PREFERRED_VERSION_u-boot-am33x = "2012.10"
-+PREFERRED_VERSION_u-boot-am335x-evm = "2013.01.01"
- 
--# Use v4.08.00.02 of the Graphics SDK
--PREFERRED_VERSION_omap3-sgx-modules = "4.08.00.02"
--PREFERRED_VERSION_libgles-omap3 = "4.08.00.02"
-+# Use v4.09.00.01 of the Graphics SDK
-+PREFERRED_VERSION_omap3-sgx-modules = "4.09.00.01"
-+PREFERRED_VERSION_libgles-omap3 = "4.09.00.01"
--- 
-1.7.0.4
-
+> +
+> +PR := "${PR}.0"
+> +
+> +SRCREV = "1973c7e79f2ad1b595d5d1687db828f3f3998387"
+> +BRANCH = "v3.2"
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
