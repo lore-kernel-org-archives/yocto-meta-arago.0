@@ -1,30 +1,36 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2989952972
+Return-Path: <eyalr@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 3CE72529A3
 	for <meta-arago@arago-project.org>;
-	Mon, 29 Apr 2013 18:14:03 +0000 (UTC)
+	Tue, 30 Apr 2013 06:14:29 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3TIE2bo021722
-	for <meta-arago@arago-project.org>; Mon, 29 Apr 2013 13:14:02 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3TIE1YU018006
-	for <meta-arago@arago-project.org>; Mon, 29 Apr 2013 13:14:01 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 29 Apr 2013 13:14:01 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r3TIE1JB012542;
-	Mon, 29 Apr 2013 13:14:01 -0500
-Date: Mon, 29 Apr 2013 14:14:01 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20130429181400.GF27211@edge>
-References: <1367241314-16498-1-git-send-email-fcooper@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3U6ERoD023294
+	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 01:14:28 -0500
+Received: from DNCE70.ent.ti.com (dnce70.ent.ti.com [137.167.131.19])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3U6ER9O030357
+	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 01:14:27 -0500
+Received: from DNCE04.ent.ti.com ([fe80::1df0:dc7c:d06:77a3]) by
+	DNCE70.ent.ti.com ([fe80::70c9:b447:24a2:dddc%30]) with mapi id
+	14.01.0323.003; Tue, 30 Apr 2013 08:14:27 +0200
+From: "Reizer, Eyal" <eyalr@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH v3 1/9] wlconf: configuration utility for
+	wilink8 wireless driver
+Thread-Index: AQHOPllFKSFZij3IpEiKATxOZMLFXJjjhIPggACQr4CAAOI6wIAJXyIg
+Date: Tue, 30 Apr 2013 06:14:26 +0000
+Message-ID: <8665E2433BC68541A24DFFCA87B70F5B17C7B2A7@DNCE04.ent.ti.com>
+References: <1366524535-13207-1-git-send-email-eyalr@ti.com>
+	<8665E2433BC68541A24DFFCA87B70F5B17C74011@DNCE04.ent.ti.com>
+	<20130423193529.GG11449@edge> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.167.131.83]
+x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-In-Reply-To: <1367241314-16498-1-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/3] ltp-ddt-legacy-1.0: Add ltp-ddt recipe that supports 3.2 or older kernels
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Zarmi,
+	Ilan" <ilanz@ti.com>, "Sasover, Inon" <inon@ti.com>
+Subject: Re: [PATCH v3 1/9] wlconf: configuration utility for wilink8 wireless driver
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,117 +43,140 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2013 18:14:03 -0000
+X-List-Received-Date: Tue, 30 Apr 2013 06:14:34 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 29, 2013 at 08:15:12AM -0500, Franklin S. Cooper Jr wrote:
-> * Ltp-ddt master is now targeting 3.8+ kernels.
-> * This recipe points to the v3.2 branch meant for legacy kernels.
-> 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../conf/distro/include/arago-prefs.inc            |    6 ++++++
->  .../conf/distro/include/branding-amsdk.inc         |    1 +
->  ..._0.0.4.bbappend => ltp-ddt-legacy_1.0.bbappend} |    4 ----
->  .../recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb |   14 ++++++++++++++
->  4 files changed, 21 insertions(+), 4 deletions(-)
->  copy meta-arago-distro/recipes-devtools/ltp-ddt/{ltp-ddt_0.0.4.bbappend => ltp-ddt-legacy_1.0.bbappend} (90%)
->  create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> index 6b8bdb4..c3807e9 100644
-> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> @@ -1,3 +1,6 @@
-> +# Use the latest version of ltp-ddt for kernel versions 3.8+
-> +PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
-> +
->  PREFERRED_PROVIDER_virtual/gettext = "gettext"
->  
->  ARAGO_QT_PROVIDER = "${@base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d)}"
-> @@ -19,6 +22,7 @@ PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
->  PREFERRED_VERSION_linux-libc-headers_am180x-evm = "2.6.33"
->  PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
->  PREFERRED_VERSION_linux-omapl138-psp = "2.6.37"
-> +PREFERRED_PROVIDER_ltp-ddt_am180x = "ltp-ddt-legacy"
->  PREFERRED_PROVIDER_virtual/bootloader_am180x-evm = "u-boot-am180x"
->  PREFERRED_PROVIDER_u-boot_am180x-evm = "u-boot-am180x"
->  PREFERRED_VERSION_u-boot-am180x = "2010.12"
-> @@ -26,6 +30,7 @@ PREFERRED_VERSION_u-boot-am180x = "2010.12"
->  PREFERRED_VERSION_linux-libc-headers_am37x-evm = "2.6.33"
->  PREFERRED_PROVIDER_virtual/kernel_am37x-evm = "linux-omap-psp"
->  PREFERRED_VERSION_linux-omap-psp = "2.6.37"
-> +PREFERRED_PROVIDER_ltp-ddt_am37x-evm = "ltp-ddt-legacy"
->  PREFERRED_PROVIDER_virtual/bootloader_am37x-evm = "u-boot-am37x"
->  PREFERRED_PROVIDER_u-boot_am37x-evm = "u-boot-am37x"
->  PREFERRED_VERSION_u-boot-am37x_am37x-evm = "2012.04.01"
-> @@ -35,6 +40,7 @@ PREFERRED_PROVIDER_virtual/kernel_am3517-evm = "linux-omap-psp"
->  PREFERRED_VERSION_linux-omap-psp_am3517-evm = "2.6.37"
->  PREFERRED_PROVIDER_virtual/bootloader_am3517-evm = "u-boot-am3517"
->  PREFERRED_PROVIDER_u-boot_am3517-evm = "u-boot-am3517"
-> +PREFERRED_PROVIDER_ltp-ddt_am3517-evm = "ltp-ddt-legacy"
->  
->  PREFERRED_PROVIDER_virtual/kernel_beagleboard = "linux"
->  PREFERRED_VERSION_linux_beagleboard = "3.3.7"
-> diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-> index 9f64cd4..dc3f448 100644
-> --- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-> +++ b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-> @@ -3,6 +3,7 @@
->  # Use the SDK supported kernel and kernel version
->  PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x"
->  PREFERRED_VERSION_linux-am335x = "3.2.0-psp05.06.00.00"
-> +PREFERRED_PROVIDER_ltp-ddt_am335x-evm = "ltp-ddt-legacy"
->  PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-am33x"
->  PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-am33x"
->  PREFERRED_VERSION_u-boot-am33x = "2012.10"
-> diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
-> similarity index 90%
-> copy from meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-> copy to meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
-> index f8c99d8..65a16f9 100644
-> --- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-> +++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
-> @@ -3,10 +3,6 @@ PR_append = "-arago0+gitr${SRCPV}"
->  # Auto rev so we pick up the latest changes
->  SRCREV = "${AUTOREV}"
->  
-> -# Use special branch for platforms with older <=3.2 kernel
-> -BRANCH_am37x-evm = "v3.2"
-> -BRANCH_am180x-evm = "v3.2"
-> -
->  do_compile_kmodules() {
->          unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
->          oe_runmake modules
-> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
-> new file mode 100644
-> index 0000000..2ef4455
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
-> @@ -0,0 +1,14 @@
-> +# The master branch is now 3.2+ kernels.
-> +# This recipe is meant to use the v3.2 that supports 3.2 and older kernels.
-> +
-> +require recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bb
-> +
-> +PROVIDES += "ltp-ddt"
-> +RPROVIDES += "ltp-ddt"
-> +RREPLACES += "ltp-ddt"
-> +RCONFLICTS += "ltp-ddt"
+Hi Denys,
 
-R* variables must have package specifier, e.g. RPROVIDES_${PN} etc.
+Ping again on this set of wilink8 recipes.
 
-> +
-> +PR := "${PR}.0"
-> +
-> +SRCREV = "1973c7e79f2ad1b595d5d1687db828f3f3998387"
-> +BRANCH = "v3.2"
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Best Regards,
+Eyal Reizer
+
+> -----Original Message-----
+> From: Reizer, Eyal
+> Sent: Wednesday, April 24, 2013 10:06 AM
+> To: Dmytriyenko, Denys
+> Cc: meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [PATCH v3 1/9] wlconf: configuration utility
+> for wilink8 wireless driver
+>=20
+> Denys,
+>=20
+> Thanks for the update.
+> Please let me know in case you need my help.
+>=20
+> Best Regards,
+> Eyal
+>=20
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Tuesday, April 23, 2013 10:35 PM
+> > To: Reizer, Eyal
+> > Cc: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [PATCH v3 1/9] wlconf: configuration
+> utility
+> > for wilink8 wireless driver
+> >
+> > Eyal,
+> >
+> > Not yet - it failed to apply wpa-supplicant patch when I tried
+> > yesterday. I may need to massage the patches, once I have time...
+> >
+> > --
+> > Denys
+> >
+> >
+> > On Tue, Apr 23, 2013 at 08:58:33AM +0000, Reizer, Eyal wrote:
+> > > Ping on this set of wilink8 related patches.
+> > >
+> > > Regards,
+> > > Eyal
+> > >
+> > > > -----Original Message-----
+> > > > From: Reizer, Eyal
+> > > > Sent: Sunday, April 21, 2013 9:09 AM
+> > > > To: meta-arago@arago-project.org
+> > > > Cc: Reizer, Eyal
+> > > > Subject: [PATCH v3 1/9] wlconf: configuration utility for wilink8
+> > > > wireless driver
+> > > >
+> > > > Add a recipe for building and installing the wlconf configuration
+> > > > utility for TI Wilink8 family of chips.
+> > > >
+> > > > Signed-off-by: Eyal Reizer <eyalr@ti.com>
+> > > > ---
+> > > > Changes in v2:
+> > > > * Rename to use an actual release name instead of _git
+> > > > * Line indentation fixes
+> > > > Changes in v3:
+> > > > * Drop the PV assignment
+> > > >
+> > > >  .../recipes-connectivity/wlconf/wlconf_r8.a6.01.bb |   36
+> > > > ++++++++++++++++++++
+> > > >  1 file changed, 36 insertions(+)
+> > > >  create mode 100644 meta-arago-extras/recipes-
+> > > > connectivity/wlconf/wlconf_r8.a6.01.bb
+> > > >
+> > > > diff --git a/meta-arago-extras/recipes-
+> > > > connectivity/wlconf/wlconf_r8.a6.01.bb
+> > > > b/meta-arago-extras/recipes-
+> > > > connectivity/wlconf/wlconf_r8.a6.01.bb
+> > > > new file mode 100644
+> > > > index 0000000..ade2e84
+> > > > --- /dev/null
+> > > > +++ b/meta-arago-extras/recipes-
+> > connectivity/wlconf/wlconf_r8.a6.01.bb
+> > > > @@ -0,0 +1,36 @@
+> > > > +DESCRIPTION =3D "Configuration utility for TI wireless drivers"
+> > > > +LICENSE =3D "GPLv2"
+> > > > +LIC_FILES_CHKSUM =3D
+> > > >
+> >
+> "file://README;beginline=3D1;endline=3D21;md5=3Dadc05a1903d3f107f85c90328=
+e3a
+> > 9
+> > > > 438"
+> > > > +
+> > > > +PR =3D"r1"
+> > > > +PR_append =3D "+gitr${SRCREV}"
+> > > > +
+> > > > +SRCREV =3D "ol_r8.a6.01"
+> > > > +SRC_URI =3D "git://github.com/TI-OpenLink/18xx-ti-utils.git"
+> > > > +
+> > > > +S =3D "${WORKDIR}/git/wlconf"
+> > > > +
+> > > > +EXTRA_OEMAKE =3D "CC=3D${TARGET_PREFIX}gcc"
+> > > > +
+> > > > +do_install() {
+> > > > +	install -d ${D}${bindir}
+> > > > +	install -d ${D}${bindir}/wlconf/
+> > > > +	install -d ${D}${bindir}/wlconf/official_inis
+> > > > +
+> > > > +	install -m 0755 wlconf ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 dictionary.txt ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 struct.bin ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 wl18xx-conf-default.bin
+> ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 README ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 example.conf ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 example.ini ${D}${bindir}/wlconf/
+> > > > +	install -m 0755 ${S}/official_inis/*
+> > > > +			${D}${bindir}/wlconf/official_inis/
+> > > > +}
+> > > > +
+> > > > +FILES_${PN} +=3D " \
+> > > > +	${bindir}/wlconf \
+> > > > +	${bindir}/wlconf/official_inis \ "
+> > > > +
+> > > > +FILES_${PN}-dbg +=3D "${bindir}/wlconf/.debug"
+> > > > --
+> > > > 1.7.9.5
+> > >
+> > > _______________________________________________
+> > > meta-arago mailing list
+> > > meta-arago@arago-project.org
+> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
