@@ -1,28 +1,39 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 0BCF152A1B
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9421C52A3E
 	for <meta-arago@arago-project.org>;
-	Tue, 30 Apr 2013 06:20:00 +0000 (UTC)
+	Tue, 30 Apr 2013 12:20:26 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3U6JxQo023654
-	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 01:19:59 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3U6JxI1003111
-	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 01:19:59 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 30 Apr 2013 01:19:58 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r3U6Jwv0020282	for
-	<meta-arago@arago-project.org>; Tue, 30 Apr 2013 01:19:59 -0500
-Date: Tue, 30 Apr 2013 02:14:11 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1548253589.73.1367302451793.JavaMail.jenkins@puget>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3UCKPCw010683
+	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 07:20:25 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3UCKP6r019926
+	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 07:20:25 -0500
+Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Tue, 30 Apr 2013 07:20:25 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE74.ent.ti.com ([fe80::a0f1:125b:e7e3:7ed8%18]) with mapi id
+	14.01.0323.003; Tue, 30 Apr 2013 07:20:25 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Reizer, Eyal" <eyalr@ti.com>
+Thread-Topic: [meta-arago] [PATCH v3 1/9] wlconf: configuration utility for
+	wilink8 wireless driver
+Thread-Index: AQHOPllFKSFZij3IpEiKATxOZMLFXJjjhIPggACQr4CAAOI6wIAJXyIggABm7qQ=
+Date: Tue, 30 Apr 2013 12:20:24 +0000
+Message-ID: <E6295660-AB91-4931-8F91-7ECACB239F85@ti.com>
+References: <1366524535-13207-1-git-send-email-eyalr@ti.com>
+	<8665E2433BC68541A24DFFCA87B70F5B17C74011@DNCE04.ent.ti.com>
+	<20130423193529.GG11449@edge>
+	,<8665E2433BC68541A24DFFCA87B70F5B17C7B2A7@DNCE04.ent.ti.com>
+In-Reply-To: <8665E2433BC68541A24DFFCA87B70F5B17C7B2A7@DNCE04.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.04 build 2013-04-30_01-01-44
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Zarmi,
+	Ilan" <ilanz@ti.com>, "Sasover, Inon" <inon@ti.com>
+Subject: Re: [PATCH v3 1/9] wlconf: configuration utility for wilink8 wireless driver
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,183 +46,146 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Apr 2013 06:20:00 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_72_2071422958.1367302451792"
+X-List-Received-Date: Tue, 30 Apr 2013 12:20:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_72_2071422958.1367302451792
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Your patch set was committed April 24th.
 
-<html>
-<head>
-<title>
-Status for 04/30/13
-</title>
-</head>
-<body>
+On Apr 30, 2013, at 1:14 AM, "Reizer, Eyal" <eyalr@ti.com> wrote:
 
-<h2>Status for 04/30/13</h2>
+> Hi Denys,
+>=20
+> Ping again on this set of wilink8 recipes.
+>=20
+> Best Regards,
+> Eyal Reizer
+>=20
+>> -----Original Message-----
+>> From: Reizer, Eyal
+>> Sent: Wednesday, April 24, 2013 10:06 AM
+>> To: Dmytriyenko, Denys
+>> Cc: meta-arago@arago-project.org
+>> Subject: RE: [meta-arago] [PATCH v3 1/9] wlconf: configuration utility
+>> for wilink8 wireless driver
+>>=20
+>> Denys,
+>>=20
+>> Thanks for the update.
+>> Please let me know in case you need my help.
+>>=20
+>> Best Regards,
+>> Eyal
+>>=20
+>>> -----Original Message-----
+>>> From: Dmytriyenko, Denys
+>>> Sent: Tuesday, April 23, 2013 10:35 PM
+>>> To: Reizer, Eyal
+>>> Cc: meta-arago@arago-project.org
+>>> Subject: Re: [meta-arago] [PATCH v3 1/9] wlconf: configuration
+>> utility
+>>> for wilink8 wireless driver
+>>>=20
+>>> Eyal,
+>>>=20
+>>> Not yet - it failed to apply wpa-supplicant patch when I tried
+>>> yesterday. I may need to massage the patches, once I have time...
+>>>=20
+>>> --
+>>> Denys
+>>>=20
+>>>=20
+>>> On Tue, Apr 23, 2013 at 08:58:33AM +0000, Reizer, Eyal wrote:
+>>>> Ping on this set of wilink8 related patches.
+>>>>=20
+>>>> Regards,
+>>>> Eyal
+>>>>=20
+>>>>> -----Original Message-----
+>>>>> From: Reizer, Eyal
+>>>>> Sent: Sunday, April 21, 2013 9:09 AM
+>>>>> To: meta-arago@arago-project.org
+>>>>> Cc: Reizer, Eyal
+>>>>> Subject: [PATCH v3 1/9] wlconf: configuration utility for wilink8
+>>>>> wireless driver
+>>>>>=20
+>>>>> Add a recipe for building and installing the wlconf configuration
+>>>>> utility for TI Wilink8 family of chips.
+>>>>>=20
+>>>>> Signed-off-by: Eyal Reizer <eyalr@ti.com>
+>>>>> ---
+>>>>> Changes in v2:
+>>>>> * Rename to use an actual release name instead of _git
+>>>>> * Line indentation fixes
+>>>>> Changes in v3:
+>>>>> * Drop the PV assignment
+>>>>>=20
+>>>>> .../recipes-connectivity/wlconf/wlconf_r8.a6.01.bb |   36
+>>>>> ++++++++++++++++++++
+>>>>> 1 file changed, 36 insertions(+)
+>>>>> create mode 100644 meta-arago-extras/recipes-
+>>>>> connectivity/wlconf/wlconf_r8.a6.01.bb
+>>>>>=20
+>>>>> diff --git a/meta-arago-extras/recipes-
+>>>>> connectivity/wlconf/wlconf_r8.a6.01.bb
+>>>>> b/meta-arago-extras/recipes-
+>>>>> connectivity/wlconf/wlconf_r8.a6.01.bb
+>>>>> new file mode 100644
+>>>>> index 0000000..ade2e84
+>>>>> --- /dev/null
+>>>>> +++ b/meta-arago-extras/recipes-
+>>> connectivity/wlconf/wlconf_r8.a6.01.bb
+>>>>> @@ -0,0 +1,36 @@
+>>>>> +DESCRIPTION =3D "Configuration utility for TI wireless drivers"
+>>>>> +LICENSE =3D "GPLv2"
+>>>>> +LIC_FILES_CHKSUM =3D
+>> "file://README;beginline=3D1;endline=3D21;md5=3Dadc05a1903d3f107f85c9032=
+8e3a
+>>> 9
+>>>>> 438"
+>>>>> +
+>>>>> +PR =3D"r1"
+>>>>> +PR_append =3D "+gitr${SRCREV}"
+>>>>> +
+>>>>> +SRCREV =3D "ol_r8.a6.01"
+>>>>> +SRC_URI =3D "git://github.com/TI-OpenLink/18xx-ti-utils.git"
+>>>>> +
+>>>>> +S =3D "${WORKDIR}/git/wlconf"
+>>>>> +
+>>>>> +EXTRA_OEMAKE =3D "CC=3D${TARGET_PREFIX}gcc"
+>>>>> +
+>>>>> +do_install() {
+>>>>> +    install -d ${D}${bindir}
+>>>>> +    install -d ${D}${bindir}/wlconf/
+>>>>> +    install -d ${D}${bindir}/wlconf/official_inis
+>>>>> +
+>>>>> +    install -m 0755 wlconf ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 dictionary.txt ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 struct.bin ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 wl18xx-conf-default.bin
+>> ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 README ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 example.conf ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 example.ini ${D}${bindir}/wlconf/
+>>>>> +    install -m 0755 ${S}/official_inis/*
+>>>>> +            ${D}${bindir}/wlconf/official_inis/
+>>>>> +}
+>>>>> +
+>>>>> +FILES_${PN} +=3D " \
+>>>>> +    ${bindir}/wlconf \
+>>>>> +    ${bindir}/wlconf/official_inis \ "
+>>>>> +
+>>>>> +FILES_${PN}-dbg +=3D "${bindir}/wlconf/.debug"
+>>>>> --
+>>>>> 1.7.9.5
+>>>>=20
+>>>> _______________________________________________
+>>>> meta-arago mailing list
+>>>> meta-arago@arago-project.org
+>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-<h2>BUILD_ID: build-2013-04-30_01-02-48</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.04"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_72_2071422958.1367302451792--
