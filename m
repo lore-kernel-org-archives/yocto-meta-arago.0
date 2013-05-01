@@ -1,41 +1,26 @@
-Return-Path: <eyalr@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id E18ED529A3
+Return-Path: <denis@denix.org>
+Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
+	[206.46.173.1])
+	by arago-project.org (Postfix) with ESMTP id D576F52A3E
 	for <meta-arago@arago-project.org>;
-	Tue, 30 Apr 2013 14:02:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r3UE2EBP019554
-	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 09:02:14 -0500
-Received: from DNCE71.ent.ti.com (dnce71.ent.ti.com [137.167.131.20])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r3UE2D0k024207
-	for <meta-arago@arago-project.org>; Tue, 30 Apr 2013 09:02:13 -0500
-Received: from DNCE04.ent.ti.com ([fe80::1df0:dc7c:d06:77a3]) by
-	DNCE71.ent.ti.com ([fe80::3dd1:4b04:86e6:bfd0%29]) with mapi id
-	14.01.0323.003; Tue, 30 Apr 2013 16:02:11 +0200
-From: "Reizer, Eyal" <eyalr@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Cooper Jr., Franklin"
-	<fcooper@ti.com>
-Thread-Topic: [meta-arago] [PATCH v3 1/9] wlconf: configuration utility for
-	wilink8 wireless driver
-Thread-Index: AQHOPllFKSFZij3IpEiKATxOZMLFXJjjhIPggACQr4CAAOI6wIAJXyIggABm7qT///ehgIAAIlAQ
-Date: Tue, 30 Apr 2013 14:02:12 +0000
-Message-ID: <8665E2433BC68541A24DFFCA87B70F5B17C7BAF5@DNCE04.ent.ti.com>
-References: <1366524535-13207-1-git-send-email-eyalr@ti.com>
-	<8665E2433BC68541A24DFFCA87B70F5B17C74011@DNCE04.ent.ti.com>
-	<20130423193529.GG11449@edge>
-	<8665E2433BC68541A24DFFCA87B70F5B17C7B2A7@DNCE04.ent.ti.com>
-	<E6295660-AB91-4931-8F91-7ECACB239F85@ti.com>
-	<20130430135027.GD30148@edge>
-In-Reply-To: <20130430135027.GD30148@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.167.131.83]
-x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Zarmi,
-	Ilan" <ilanz@ti.com>, "Sasover, Inon" <inon@ti.com>
-Subject: Re: [PATCH v3 1/9] wlconf: configuration utility for wilink8 wireless driver
+	Wed,  1 May 2013 04:07:51 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173001.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MM30002PQ4ER7X4@vms173001.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 30 Apr 2013 23:07:36 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id EED34200A9; Wed,
+	01 May 2013 00:07:25 -0400 (EDT)
+Date: Wed, 01 May 2013 00:07:25 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Message-id: <20130501040725.GA5688@denix.org>
+References: <20130422210740.GB28316@denix.org>
+MIME-version: 1.0
+In-reply-to: <20130422210740.GB28316@denix.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: Merging Linaro gcc-4.7 hardfp support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,171 +33,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Apr 2013 14:02:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 01 May 2013 04:07:52 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Hi Denys,
+On Mon, Apr 22, 2013 at 05:07:40PM -0400, Denys Dmytriyenko wrote:
+> All,
+> 
+> As I have received mostly positive feedback from our teams (LCPD, AMSDK, 
+> MCSDK) about early testing of the Linaro gcc-4.7 hardfp toolchain integartion, 
+> I will be merging it into the master branch shortly. Please let me know if you 
+> have any questions or concerns. Thanks.
 
-Thanks!
+All,
 
-Regards,
-Eyal
+There's been slight delay in merging the Linaro-hardfp integration into the 
+master branch due to few concerns raised by the kernel team last week. All 
+has been resolved so far and I'll do the merge shortly, but since this may 
+affect others, here are the details:
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Tuesday, April 30, 2013 4:50 PM
-> To: Cooper Jr., Franklin
-> Cc: Reizer, Eyal; meta-arago@arago-project.org; Zarmi, Ilan; Sasover,
-> Inon
-> Subject: Re: [meta-arago] [PATCH v3 1/9] wlconf: configuration utility
-> for wilink8 wireless driver
->=20
-> Correct.
-> http://arago-project.org/git/?p=3Dmeta-
-> arago.git;a=3Dcommit;h=3D556c5accab0fdadb74b8302aa1893eab9e7097a8
->=20
-> --
-> Denys
->=20
-> On Tue, Apr 30, 2013 at 08:20:24AM -0400, Cooper Jr., Franklin wrote:
-> > Your patch set was committed April 24th.
-> >
-> > On Apr 30, 2013, at 1:14 AM, "Reizer, Eyal" <eyalr@ti.com> wrote:
-> >
-> > > Hi Denys,
-> > >
-> > > Ping again on this set of wilink8 recipes.
-> > >
-> > > Best Regards,
-> > > Eyal Reizer
-> > >
-> > >> -----Original Message-----
-> > >> From: Reizer, Eyal
-> > >> Sent: Wednesday, April 24, 2013 10:06 AM
-> > >> To: Dmytriyenko, Denys
-> > >> Cc: meta-arago@arago-project.org
-> > >> Subject: RE: [meta-arago] [PATCH v3 1/9] wlconf: configuration
-> > >> utility for wilink8 wireless driver
-> > >>
-> > >> Denys,
-> > >>
-> > >> Thanks for the update.
-> > >> Please let me know in case you need my help.
-> > >>
-> > >> Best Regards,
-> > >> Eyal
-> > >>
-> > >>> -----Original Message-----
-> > >>> From: Dmytriyenko, Denys
-> > >>> Sent: Tuesday, April 23, 2013 10:35 PM
-> > >>> To: Reizer, Eyal
-> > >>> Cc: meta-arago@arago-project.org
-> > >>> Subject: Re: [meta-arago] [PATCH v3 1/9] wlconf: configuration
-> > >> utility
-> > >>> for wilink8 wireless driver
-> > >>>
-> > >>> Eyal,
-> > >>>
-> > >>> Not yet - it failed to apply wpa-supplicant patch when I tried
-> > >>> yesterday. I may need to massage the patches, once I have time...
-> > >>>
-> > >>> --
-> > >>> Denys
-> > >>>
-> > >>>
-> > >>> On Tue, Apr 23, 2013 at 08:58:33AM +0000, Reizer, Eyal wrote:
-> > >>>> Ping on this set of wilink8 related patches.
-> > >>>>
-> > >>>> Regards,
-> > >>>> Eyal
-> > >>>>
-> > >>>>> -----Original Message-----
-> > >>>>> From: Reizer, Eyal
-> > >>>>> Sent: Sunday, April 21, 2013 9:09 AM
-> > >>>>> To: meta-arago@arago-project.org
-> > >>>>> Cc: Reizer, Eyal
-> > >>>>> Subject: [PATCH v3 1/9] wlconf: configuration utility for
-> > >>>>> wilink8 wireless driver
-> > >>>>>
-> > >>>>> Add a recipe for building and installing the wlconf
-> > >>>>> configuration utility for TI Wilink8 family of chips.
-> > >>>>>
-> > >>>>> Signed-off-by: Eyal Reizer <eyalr@ti.com>
-> > >>>>> ---
-> > >>>>> Changes in v2:
-> > >>>>> * Rename to use an actual release name instead of _git
-> > >>>>> * Line indentation fixes
-> > >>>>> Changes in v3:
-> > >>>>> * Drop the PV assignment
-> > >>>>>
-> > >>>>> .../recipes-connectivity/wlconf/wlconf_r8.a6.01.bb |   36
-> > >>>>> ++++++++++++++++++++
-> > >>>>> 1 file changed, 36 insertions(+) create mode 100644
-> > >>>>> meta-arago-extras/recipes-
-> > >>>>> connectivity/wlconf/wlconf_r8.a6.01.bb
-> > >>>>>
-> > >>>>> diff --git a/meta-arago-extras/recipes-
-> > >>>>> connectivity/wlconf/wlconf_r8.a6.01.bb
-> > >>>>> b/meta-arago-extras/recipes-
-> > >>>>> connectivity/wlconf/wlconf_r8.a6.01.bb
-> > >>>>> new file mode 100644
-> > >>>>> index 0000000..ade2e84
-> > >>>>> --- /dev/null
-> > >>>>> +++ b/meta-arago-extras/recipes-
-> > >>> connectivity/wlconf/wlconf_r8.a6.01.bb
-> > >>>>> @@ -0,0 +1,36 @@
-> > >>>>> +DESCRIPTION =3D "Configuration utility for TI wireless drivers"
-> > >>>>> +LICENSE =3D "GPLv2"
-> > >>>>> +LIC_FILES_CHKSUM =3D
-> > >>
-> "file://README;beginline=3D1;endline=3D21;md5=3Dadc05a1903d3f107f85c90328
-> > >> e3a
-> > >>> 9
-> > >>>>> 438"
-> > >>>>> +
-> > >>>>> +PR =3D"r1"
-> > >>>>> +PR_append =3D "+gitr${SRCREV}"
-> > >>>>> +
-> > >>>>> +SRCREV =3D "ol_r8.a6.01"
-> > >>>>> +SRC_URI =3D "git://github.com/TI-OpenLink/18xx-ti-utils.git"
-> > >>>>> +
-> > >>>>> +S =3D "${WORKDIR}/git/wlconf"
-> > >>>>> +
-> > >>>>> +EXTRA_OEMAKE =3D "CC=3D${TARGET_PREFIX}gcc"
-> > >>>>> +
-> > >>>>> +do_install() {
-> > >>>>> +    install -d ${D}${bindir}
-> > >>>>> +    install -d ${D}${bindir}/wlconf/
-> > >>>>> +    install -d ${D}${bindir}/wlconf/official_inis
-> > >>>>> +
-> > >>>>> +    install -m 0755 wlconf ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 dictionary.txt ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 struct.bin ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 wl18xx-conf-default.bin
-> > >> ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 README ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 example.conf ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 example.ini ${D}${bindir}/wlconf/
-> > >>>>> +    install -m 0755 ${S}/official_inis/*
-> > >>>>> +            ${D}${bindir}/wlconf/official_inis/
-> > >>>>> +}
-> > >>>>> +
-> > >>>>> +FILES_${PN} +=3D " \
-> > >>>>> +    ${bindir}/wlconf \
-> > >>>>> +    ${bindir}/wlconf/official_inis \ "
-> > >>>>> +
-> > >>>>> +FILES_${PN}-dbg +=3D "${bindir}/wlconf/.debug"
-> > >>>>> --
-> > >>>>> 1.7.9.5
-> > >>>>
-> > >>>> _______________________________________________
-> > >>>> meta-arago mailing list
-> > >>>> meta-arago@arago-project.org
-> > >>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+1. Compiling the same kernel tree with old gcc-4.5 and the new gcc-4.7 shows 
+_less_ warnings. Some of the "variable may be used uninitialized" warnings are 
+no longer reported, since gcc-4.7 is now able to remove more false positives:
+http://gcc.gnu.org/wiki/Better_Uninitialized_Warnings
+
+
+2. Building ARM kernel results in the following unusual warnings:
+
+arch/arm/boot/compressed/head.S: Assembler messages:
+arch/arm/boot/compressed/head.S:565: Warning: (null)
+arch/arm/boot/compressed/head.S:676: Warning: (null)
+arch/arm/boot/compressed/head.S:698: Warning: (null)
+
+That is due to the changes made in recent binutils, related to ARMv8, and 
+there is a patch with more details available (still pending for 3.10):
+https://patchwork.kernel.org/patch/2013211/
+
+
+3. Again, comparing to the previous builds under old toolchain, there are some 
+"section mismatch" warnings missing, when built with the new toolchain, e.g.:
+
+WARNING: vmlinux.o(.text+0x22ea4): Section mismatch in reference from the
+function omapdrm_init() to the function .init.text:omap_device_build()
+The function omapdrm_init() references
+the function __init omap_device_build().
+This is often because omapdrm_init lacks a __init
+annotation or the annotation of omap_device_build is wrong.
+
+After some investigation, a kernel patch was submitted by Tom Rini:
+https://patchwork.kernel.org/patch/2486601/
+
+
+Now, with all of the above concerns resolved I'll proceed with merging the 
+linaro-hardfp branch into the master. Please let me know if you have any 
+questions. Thanks.
+
+-- 
+Denys
 
