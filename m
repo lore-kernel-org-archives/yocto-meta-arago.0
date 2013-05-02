@@ -1,26 +1,27 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4D69352A47
+Return-Path: <zhoujt@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 0D2A452A5E
 	for <meta-arago@arago-project.org>;
-	Thu,  2 May 2013 19:54:43 +0000 (UTC)
+	Thu,  2 May 2013 21:33:57 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r42Jsgk0014990
-	for <meta-arago@arago-project.org>; Thu, 2 May 2013 14:54:42 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r42Jsg9n023042
-	for <meta-arago@arago-project.org>; Thu, 2 May 2013 14:54:42 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Thu, 2 May 2013 14:54:41 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Zhou, Jingting" <zhoujt@ti.com>, "meta-arago@arago-project.org"
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r42LXuXt004669
+	for <meta-arago@arago-project.org>; Thu, 2 May 2013 16:33:56 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r42LXuAt010071
+	for <meta-arago@arago-project.org>; Thu, 2 May 2013 16:33:56 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Thu, 2 May 2013 16:33:56 -0500
+From: "Zhou, Jingting" <zhoujt@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [meta-arago] [PATCH] added mounting debugfs recipe
-Thread-Index: AQHOR2P3HVfWcywHP0+djyDQUd6X8ZjyTkAQ
-Date: Thu, 2 May 2013 19:54:40 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015952FED9@DLEE11.ent.ti.com>
+Thread-Index: AQHOR2PzDmWYRKknqkKs9wtOMvnyxJjyos0A///G2nA=
+Date: Thu, 2 May 2013 21:33:55 +0000
+Message-ID: <3C08AEEB3C731745938BC83D029FE5E3944B9A@DFLE08.ent.ti.com>
 References: <1367519782-30902-1-git-send-email-zhoujt@ti.com>
-In-Reply-To: <1367519782-30902-1-git-send-email-zhoujt@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015952FED9@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015952FED9@DLEE11.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -39,13 +40,109 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2013 19:54:44 -0000
+X-List-Received-Date: Thu, 02 May 2013 21:33:57 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Don't want to create another email thread using git send-email. So I just c=
+opy-pasted the subsequent patch here. I can resend it using git send-email =
+if you want.=20
+
+Had a quick look at update-rc.d.bbclass. But I didn't figure out how to use=
+ it.=20
+
+From 5cd281ab3e6eed71d5a9a899911e9b4485cb39fb Mon Sep 17 00:00:00 2001
+From: Jingting Zhou <a0221004@ares-ubuntu>
+Date: Thu, 2 May 2013 17:15:23 -0400
+Subject: [PATCH] some fix on the initscript-debugfs recipe
+
+---
+ .../recipes-bsp/initscript-debugfs/files/LICENSE   |   30 ++++++++++++++++=
+++++
+ .../initscript-debugfs/initscript-debugfs.bb       |    7 +++--
+ 2 files changed, 34 insertions(+), 3 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-bsp/initscript-debugfs/files/=
+LICENSE
+
+diff --git a/meta-arago-extras/recipes-bsp/initscript-debugfs/files/LICENSE=
+ b/meta-arago-extras/recipes-bsp/initscript-debugfs/files/LICENSE
+new file mode 100644
+index 0000000..33b30bf
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/initscript-debugfs/files/LICENSE
+@@ -0,0 +1,30 @@
++ *  Copyright 2012, Texas Instruments, Inc.
++ *=20
++ *  Redistribution and use in source and binary forms, with or without=20
++ *  modification, are permitted provided that the following conditions=20
++ *  are met:
++ *
++ *    Redistributions of source code must retain the above copyright=20
++ *    notice, this list of conditions and the following disclaimer.
++ *
++ *    Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the=
+=20
++ *    documentation and/or other materials provided with the  =20
++ *    distribution.
++ *
++ *    Neither the name of Texas Instruments Incorporated nor the names of
++ *    its contributors may be used to endorse or promote products derived
++ *    from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS=20
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT=20
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
++ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT=20
++ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,=
+=20
++ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT=20
++ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT=20
++ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE=
+=20
++ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
+diff --git a/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-de=
+bugfs.bb b/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debu=
+gfs.bb
+index c9cb7d0..eaf316a 100755
+--- a/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debugfs.b=
+b
++++ b/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debugfs.b=
+b
+@@ -1,11 +1,12 @@
+ DESCRIPTION =3D "Initscripts for debugfs"
+ LICENSE =3D "BSD"
+=20
+-LIC_FILES_CHKSUM =3D "file://debugfs.sh;md5=3Decbae24c97c0fa80c5977bf22eec=
+1f32"
++LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D3c1998754d846b48ba935ea0b7ada19=
+a"
+=20
+-PR =3D"r1"
++PR =3D"r0"
+=20
+-SRC_URI =3D "file://debugfs.sh"
++SRC_URI =3D "file://debugfs.sh \
++		   file://LICENSE"
+=20
+ S =3D "${WORKDIR}"
+=20
+--=20
+1.7.9.5
+
+
+-----Original Message-----
+From: Maupin, Chase=20
+Sent: Thursday, May 02, 2013 3:55 PM
+To: Zhou, Jingting; meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH] added mounting debugfs recipe
+
 > -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
 > bounces@arago-project.org] On Behalf Of Zhou, Jingting
 > Sent: Thursday, May 02, 2013 1:36 PM
 > To: meta-arago@arago-project.org
@@ -60,13 +157,13 @@ Content-Transfer-Encoding: quoted-printable
 > ++++++++
 >  .../initscript-debugfs/initscript-debugfs.bb       |   17
 > +++++++++++++++++
->  3 files changed, 27 insertions(+), 1 deletion(-)
->  create mode 100755 meta-arago-extras/recipes-bsp/initscript-
+>  3 files changed, 27 insertions(+), 1 deletion(-)  create mode 100755=20
+> meta-arago-extras/recipes-bsp/initscript-
 > debugfs/files/debugfs.sh
 >  create mode 100755 meta-arago-extras/recipes-bsp/initscript-
 > debugfs/initscript-debugfs.bb
 >=20
-> diff --git a/meta-arago-distro/recipes-
+> diff --git a/meta-arago-distro/recipes-=20
 > core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
 > b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
 > arago-base-tisdk-server-extra.bb
@@ -98,7 +195,7 @@ adds it to the packagegroup.
 
 >  	"
 > diff --git a/meta-arago-extras/recipes-bsp/initscript-
-> debugfs/files/debugfs.sh b/meta-arago-extras/recipes-
+> debugfs/files/debugfs.sh b/meta-arago-extras/recipes-=20
 > bsp/initscript-debugfs/files/debugfs.sh
 > new file mode 100755
 > index 0000000..17e2474
@@ -115,7 +212,7 @@ adds it to the packagegroup.
 > +
 > +exit 0
 > diff --git a/meta-arago-extras/recipes-bsp/initscript-
-> debugfs/initscript-debugfs.bb b/meta-arago-extras/recipes-
+> debugfs/initscript-debugfs.bb b/meta-arago-extras/recipes-=20
 > bsp/initscript-debugfs/initscript-debugfs.bb
 > new file mode 100755
 > index 0000000..c9cb7d0
