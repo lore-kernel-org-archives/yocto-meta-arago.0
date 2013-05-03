@@ -1,36 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0B5A652981
+Return-Path: <a0221004@ares-ubuntu>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 7D21052A08
 	for <meta-arago@arago-project.org>;
-	Fri,  3 May 2013 17:26:24 +0000 (UTC)
+	Fri,  3 May 2013 18:31:10 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r43HQNsR005317
-	for <meta-arago@arago-project.org>; Fri, 3 May 2013 12:26:23 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r43HQMaZ002503
-	for <meta-arago@arago-project.org>; Fri, 3 May 2013 12:26:22 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 3 May 2013 12:26:22 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r43HQM2c013524;
-	Fri, 3 May 2013 12:26:22 -0500
-Date: Fri, 3 May 2013 13:26:22 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20130503172621.GI9213@edge>
-References: <1367519782-30902-1-git-send-email-zhoujt@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015952FED9@DLEE11.ent.ti.com>
-	<3C08AEEB3C731745938BC83D029FE5E3944B9A@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015953286B@DLEE11.ent.ti.com>
-	<3C08AEEB3C731745938BC83D029FE5E3944C4C@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED101595346E5@DLEE11.ent.ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r43IV9r7001411
+	for <meta-arago@arago-project.org>; Fri, 3 May 2013 13:31:09 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r43IV9K4015374
+	for <meta-arago@arago-project.org>; Fri, 3 May 2013 13:31:09 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 3 May 2013 13:31:09 -0500
+Received: from ares-ubuntu.am.dhcp.ti.com (ares-ubuntu.am.dhcp.ti.com
+	[158.218.103.17])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	r43IV9r9031464;	Fri, 3 May 2013 13:31:09 -0500
+Received: from a0221004 by ares-ubuntu.am.dhcp.ti.com with local (Exim 4.76)
+	(envelope-from <a0221004@ares-ubuntu>)	id 1UYKlA-0006Gb-Rx;
+	Fri, 03 May 2013 14:31:08 -0400
+From: <zhoujt@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 3 May 2013 14:31:07 -0400
+Message-ID: <1367605867-24027-1-git-send-email-zhoujt@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED101595346E5@DLEE11.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Zhou,
-	Jingting" <zhoujt@ti.com>
-Subject: Re: [PATCH] added mounting debugfs recipe
+Cc: zhoujt@ti.com
+Subject: [PATCHv3] added mounting debugfs recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,99 +38,103 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2013 17:26:24 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 03 May 2013 18:31:10 -0000
+Content-Type: text/plain
 
-On Fri, May 03, 2013 at 04:22:59PM +0000, Maupin, Chase wrote:
-> > Hey Chase, thanks for the comments. Here's the patch.
-> > 
-> > From a1684ac257292855c03e58f3fee60232ed039b81 Mon Sep 17 00:00:00
-> > 2001
-> > From: Jingting Zhou <a0221004@ares-ubuntu>
+From: Jingting Zhou <a0221004@ares-ubuntu>
 
-^^^^
+Thanks for all the comments~
+---
+ .../packagegroup-arago-base-tisdk-server-extra.bb  |    1 +
+ .../initscript-debugfs/files/debugfs.sh            |   40 ++++++++++++++++++++
+ .../initscript-debugfs/initscript-debugfs.bb       |   20 ++++++++++
+ 3 files changed, 61 insertions(+)
+ create mode 100755 meta-arago-extras/recipes-bsp/initscript-debugfs/files/debugfs.sh
+ create mode 100755 meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debugfs.bb
 
-
-> > Date: Fri, 3 May 2013 11:56:05 -0400
-> > Subject: [PATCH] using inherit update-rc.d in the initscript-
-> > debugfs recipe
-> 
-> 
-> You need to use a proper commit message here.  See 
-> http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
-
-Correct. Also make sure your From line is valid. Please configure your git 
-properly - git-config.
-
-
-> This should probably be squashed with the commit that adds the recipe
-
-Heh, and this time it's a patch over patch on top of a patch... :) Don't do 
-this, send a version 3 of the original patch.
-
-
-> > diff --git a/meta-arago-extras/recipes-bsp/initscript-
-> > debugfs/initscript-debugfs.bb b/meta-arago-extras/recipes-
-> > bsp/initscript-debugfs/initscript-debugfs.bb
-> > index eaf316a..0137214 100755
-> > --- a/meta-arago-extras/recipes-bsp/initscript-
-> > debugfs/initscript-debugfs.bb
-> > +++ b/meta-arago-extras/recipes-bsp/initscript-
-> > debugfs/initscript-debugfs.bb
-> > @@ -1,18 +1,20 @@
-> >  DESCRIPTION = "Initscripts for debugfs"
-> >  LICENSE = "BSD"
-> > 
-> > -LIC_FILES_CHKSUM =
-> > "file://LICENSE;md5=3c1998754d846b48ba935ea0b7ada19a"
-> > +LIC_FILES_CHKSUM =
-> > "file://debugfs.sh;md5=a530203f3f8bf332686f4abf1e434e21"
-> 
-> Do your checksum of only the license lines.  This prevents a script change 
-> from changing your license checksum.  Like 
-> meta-ti/recipes-connectivity/uim/uim_git.bb.  Notice the startline and end 
-> line fields.
-
-I'd suggest initscript-telnetd here again :)
-
-
-> >  PR ="r0"
-> > 
-> > -SRC_URI = "file://debugfs.sh \
-> > -		   file://LICENSE"
-> > +SRC_URI = "file://debugfs.sh"
-> > +
-> > +INITSCRIPT_NAME = "debugfs.sh"
-> > +INITSCRIPT_PARAMS = "defaults 10"
-> > +
-> > +inherit update-rc.d
-> > 
-> >  S = "${WORKDIR}"
-> > 
-> >  do_install () {
-> > -	install -d ${D}${sysconfdir}/init.d/
-> > -	install -d ${D}${sysconfdir}/rcS.d/
-> > -	install -c -m 755 ${WORKDIR}/debugfs.sh
-> > ${D}${sysconfdir}/init.d/debugfs.sh
-> > -	ln -sf ../init.d/debugfs.sh
-> > ${D}${sysconfdir}/rcS.d/S09debugfs
-> > +	install -d ${D}${sysconfdir}/init.d/
-> > +	install -c -m 755 ${WORKDIR}/debugfs.sh
-> > ${D}${sysconfdir}/init.d/debugfs.sh
-> 
-> Just a nitpick but there is no need to specify debugfs.sh in the destination 
-> path.  Also, most init scripts don't bother with the .sh extension.  BTW, 
-> using "defaults" for update-rc.d will put this script in run levels 2345.  
-> If you want it in rcS then you need to change your INITSCRIPT_PARAMS 
-> setting.  Do a man of update-rc.d to find out how that utility works.
-
-Learning on update-rc.d in general is beneficial for you and your future 
-recipes, so you may want to allocate some "training" time for that.
-
-And for now the quickest approach would be to just copy the usage from 
-initscript-telnetd - it is after all a very similar initscript...
-
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 46db7c2..3d65d17 100755
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -95,4 +95,5 @@ RDEPENDS_${PN} = "\
+     ti-netapi \
+     ti-ipc \
+     ebtables \
++    initscript-debugfs \
+ 	"
+diff --git a/meta-arago-extras/recipes-bsp/initscript-debugfs/files/debugfs.sh b/meta-arago-extras/recipes-bsp/initscript-debugfs/files/debugfs.sh
+new file mode 100755
+index 0000000..9b26279
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/initscript-debugfs/files/debugfs.sh
+@@ -0,0 +1,40 @@
++#!/bin/sh
++
++#   Copyright 2012, Texas Instruments, Inc.
++#  
++#   Redistribution and use in source and binary forms, with or without 
++#   modification, are permitted provided that the following conditions 
++#   are met:
++# 
++#     Redistributions of source code must retain the above copyright 
++#     notice, this list of conditions and the following disclaimer.
++# 
++#     Redistributions in binary form must reproduce the above copyright
++#     notice, this list of conditions and the following disclaimer in the 
++#     documentation and/or other materials provided with the   
++#     distribution.
++# 
++#     Neither the name of Texas Instruments Incorporated nor the names of
++#     its contributors may be used to endorse or promote products derived
++#     from this software without specific prior written permission.
++# 
++#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
++#   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
++#   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
++#   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
++#   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
++#   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
++#   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++#   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++#   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
++#   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
++#   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++# 
++
++
++if ! [ -e /debug ] ; then
++  mkdir -p /debug
++fi
++mount -t debugfs debugfs /debug
++
++exit 0
+diff --git a/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debugfs.bb b/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debugfs.bb
+new file mode 100755
+index 0000000..f8145ba
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/initscript-debugfs/initscript-debugfs.bb
+@@ -0,0 +1,20 @@
++DESCRIPTION = "Initscripts for debugfs"
++LICENSE = "BSD"
++
++LIC_FILES_CHKSUM = "file://debugfs.sh;startline=3;endline=32;md5=4d96701a693bf321ad2d15026a285446"
++
++PR ="r0"
++
++SRC_URI = "file://debugfs.sh"
++		   
++INITSCRIPT_NAME = "debugfs.sh"
++INITSCRIPT_PARAMS = "start 09 S ."
++
++inherit update-rc.d
++
++S = "${WORKDIR}"
++
++do_install () {
++	install -d ${D}${sysconfdir}/init.d/ 
++	install -c -m 755 ${WORKDIR}/debugfs.sh ${D}${sysconfdir}/init.d/debugfs.sh 
++}
 -- 
-Denys
+1.7.9.5
+
 
