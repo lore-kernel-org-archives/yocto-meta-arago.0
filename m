@@ -1,32 +1,28 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 771ED52A5E
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id E627E52A5E
 	for <meta-arago@arago-project.org>;
-	Fri,  3 May 2013 20:58:43 +0000 (UTC)
+	Sat,  4 May 2013 05:35:47 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r43Kwgw1032362
-	for <meta-arago@arago-project.org>; Fri, 3 May 2013 15:58:42 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r43KwgPh017936
-	for <meta-arago@arago-project.org>; Fri, 3 May 2013 15:58:42 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Fri, 3 May 2013 15:58:41 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Zhou, Jingting" <zhoujt@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCHv3] added mounting debugfs recipe
-Thread-Index: AQHOSCxkHTgfa8pDpECkTyWIKkMosZjz8T+g
-Date: Fri, 3 May 2013 20:58:40 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159535AA0@DLEE11.ent.ti.com>
-References: <1367605867-24027-1-git-send-email-zhoujt@ti.com>
-In-Reply-To: <1367605867-24027-1-git-send-email-zhoujt@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r445ZkUt004030
+	for <meta-arago@arago-project.org>; Sat, 4 May 2013 00:35:46 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r445ZkBk028112
+	for <meta-arago@arago-project.org>; Sat, 4 May 2013 00:35:46 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Sat, 4 May 2013 00:35:46 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r445ZjIW011400	for
+	<meta-arago@arago-project.org>; Sat, 4 May 2013 00:35:45 -0500
+Date: Sat, 4 May 2013 01:29:53 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <327369462.93.1367645393220.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCHv3] added mounting debugfs recipe
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.05 build 2013-05-04_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,170 +35,177 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2013 20:58:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 04 May 2013 05:35:48 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_92_729859818.1367645393219"
+
+------=_Part_92_729859818.1367645393219
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 05/04/13
+</title>
+</head>
+<body>
+
+<h2>Status for 05/04/13</h2>
+
+<h2>BUILD_ID: build-2013-05-04_01-02-50</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.05"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Zhou, Jingting
-> Sent: Friday, May 03, 2013 1:31 PM
-> To: meta-arago@arago-project.org
-> Cc: Zhou, Jingting
-> Subject: [meta-arago] [PATCHv3] added mounting debugfs recipe
->=20
-> From: Jingting Zhou <a0221004@ares-ubuntu>
-
-Need to fix your from line and the commit message
-
->=20
-> Thanks for all the comments~
-> ---
->  .../packagegroup-arago-base-tisdk-server-extra.bb  |    1 +
->  .../initscript-debugfs/files/debugfs.sh            |   40
-> ++++++++++++++++++++
->  .../initscript-debugfs/initscript-debugfs.bb       |   20
-> ++++++++++
->  3 files changed, 61 insertions(+)
->  create mode 100755 meta-arago-extras/recipes-bsp/initscript-
-> debugfs/files/debugfs.sh
->  create mode 100755 meta-arago-extras/recipes-bsp/initscript-
-> debugfs/initscript-debugfs.bb
->=20
-> diff --git a/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-base-tisdk-server-extra.bb
-> index 46db7c2..3d65d17 100755
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-base-tisdk-server-extra.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-base-tisdk-server-extra.bb
-> @@ -95,4 +95,5 @@ RDEPENDS_${PN} =3D "\
->      ti-netapi \
->      ti-ipc \
->      ebtables \
-> +    initscript-debugfs \
->  	"
-
-Please split into two patches as Denys mentioned as well.  Also you should =
-bump the PR here.
-
-> diff --git a/meta-arago-extras/recipes-bsp/initscript-
-> debugfs/files/debugfs.sh b/meta-arago-extras/recipes-
-> bsp/initscript-debugfs/files/debugfs.sh
-> new file mode 100755
-> index 0000000..9b26279
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/initscript-
-> debugfs/files/debugfs.sh
-> @@ -0,0 +1,40 @@
-> +#!/bin/sh
-> +
-> +#   Copyright 2012, Texas Instruments, Inc.
-> +#
-> +#   Redistribution and use in source and binary forms, with or
-> without
-> +#   modification, are permitted provided that the following
-> conditions
-> +#   are met:
-> +#
-> +#     Redistributions of source code must retain the above
-> copyright
-> +#     notice, this list of conditions and the following
-> disclaimer.
-> +#
-> +#     Redistributions in binary form must reproduce the above
-> copyright
-> +#     notice, this list of conditions and the following
-> disclaimer in the
-> +#     documentation and/or other materials provided with the
-> +#     distribution.
-> +#
-> +#     Neither the name of Texas Instruments Incorporated nor the
-> names of
-> +#     its contributors may be used to endorse or promote
-> products derived
-> +#     from this software without specific prior written
-> permission.
-> +#
-> +#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
-> CONTRIBUTORS
-> +#   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
-> BUT NOT
-> +#   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-> FITNESS FOR
-> +#   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-> COPYRIGHT
-> +#   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-> INCIDENTAL,
-> +#   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
-> NOT
-> +#   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-> LOSS OF USE,
-> +#   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-> AND ON ANY
-> +#   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-> OR TORT
-> +#   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
-> OF THE USE
-> +#   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
-> DAMAGE.
-> +#
-> +
-> +
-> +if ! [ -e /debug ] ; then
-> +  mkdir -p /debug
-> +fi
-> +mount -t debugfs debugfs /debug
-> +
-> +exit 0
-> diff --git a/meta-arago-extras/recipes-bsp/initscript-
-> debugfs/initscript-debugfs.bb b/meta-arago-extras/recipes-
-> bsp/initscript-debugfs/initscript-debugfs.bb
-> new file mode 100755
-> index 0000000..f8145ba
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/initscript-
-> debugfs/initscript-debugfs.bb
-> @@ -0,0 +1,20 @@
-> +DESCRIPTION =3D "Initscripts for debugfs"
-> +LICENSE =3D "BSD"
-> +
-> +LIC_FILES_CHKSUM =3D
-> "file://debugfs.sh;startline=3D3;endline=3D32;md5=3D4d96701a693bf321ad2
-> d15026a285446"
-> +
-> +PR =3D"r0"
-> +
-> +SRC_URI =3D "file://debugfs.sh"
-> +
-> +INITSCRIPT_NAME =3D "debugfs.sh"
-> +INITSCRIPT_PARAMS =3D "start 09 S ."
-> +
-> +inherit update-rc.d
-> +
-> +S =3D "${WORKDIR}"
-> +
-> +do_install () {
-> +	install -d ${D}${sysconfdir}/init.d/
-> +	install -c -m 755 ${WORKDIR}/debugfs.sh
-> ${D}${sysconfdir}/init.d/debugfs.sh
-
-Do you really want the .sh extention?
-
-Aside from these notes this is getting much better.  Thanks for working on =
-the feedback.
-
-> +}
-> --
-> 1.7.9.5
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_92_729859818.1367645393219--
