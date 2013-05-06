@@ -1,28 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 55FA852981
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id E0D5C52A2E
 	for <meta-arago@arago-project.org>;
-	Mon,  6 May 2013 21:28:35 +0000 (UTC)
+	Mon,  6 May 2013 21:28:37 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r46LSYID024399
-	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:34 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r46LSbAn031272
+	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:37 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r46LSY7P003515
-	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:34 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r46LSbMF003542
+	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:37 -0500
 Received: from dlelxv23.itg.ti.com (172.17.1.198) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 6 May 2013 16:28:34 -0500
+	Mon, 6 May 2013 16:28:36 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r46LSV9Y016143;
-	Mon, 6 May 2013 16:28:32 -0500
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r46LSV9Z016143;
+	Mon, 6 May 2013 16:28:35 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 6 May 2013 16:28:22 -0500
-Message-ID: <1367875707-8579-1-git-send-email-fcooper@ti.com>
+Date: Mon, 6 May 2013 16:28:23 -0500
+Message-ID: <1367875707-8579-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1367875707-8579-1-git-send-email-fcooper@ti.com>
+References: <1367875707-8579-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/6] ti-tisdk-makefile: Prepare for Linaro transition
+Subject: [PATCH 2/6] arm-benchmarks: Grab CFLAGS from OE or Rules.make
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,53 +37,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2013 21:28:35 -0000
+X-List-Received-Date: Mon, 06 May 2013 21:28:38 -0000
 Content-Type: text/plain
 
-* Currently some of our example applications hard code certain values such as
-  target architecture and softfp should be used.
-* This is problematic since incorrect architecture results in optimizations
-  being missed and changes in toolchains can break applications.
-* Pull in some of these variables into Rules.make which insures the correct
-  settings are used for each machine.
+* When building from OE CFLAGS will be passed in.
+* When building from within the sdk CFLAGS from Rules.make will be used.
+* This insures the optimal CFLAGS are used which corrects optimization and also
+  the correct toolchain settings (ie softfp/hardfp) are used.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Rules.make |    2 ++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    3 ++-
- 2 files changed, 4 insertions(+), 1 deletions(-)
+ .../arm-benchmarks/arm-benchmarks_1.3.bb           |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-index 2741769..a20c684 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-@@ -29,3 +29,5 @@ export ENV_SETUP=$(LINUX_DEVKIT_PATH)/environment-setup
+diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+index 23acd42..ce18860 100644
+--- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
++++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+@@ -4,10 +4,10 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
+ SECTION = "system"
  
- #The directory that points to the SDK kernel source tree
- LINUXKERNEL_INSTALL_DIR=$(TI_SDK_PATH)/board-support/__KERNEL_NAME__
-+
-+CFLAGS=__CFLAGS__
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 74a4f14..0f14341 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -32,7 +32,7 @@ SRC_URI = "\
-     file://Makefile_omapconf \
- "
+-PR = "r4"
++PR = "r5"
  
--PR = "r11"
-+PR = "r12"
+ BRANCH ?= "master"
+-SRCREV = "9b7b4fbde8fcf796a23da2a464dbf934e550f6c9"
++SRCREV = "176c8869817913967ae1a0d561535eb40ba8a527"
  
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -124,6 +124,7 @@ do_install () {
-     sed -i -e "s/__ARCH__/${PLATFORM_ARCH}/" ${D}/Rules.make
-     sed -i -e "s/__TOOLCHAIN_PREFIX__/${TOOLCHAIN_SYS}-/" ${D}/Rules.make
-     sed -i -e "s/__UBOOT_MACHINE__/${UBOOT_MACHINE}/" ${D}/Rules.make
-+    sed -i -e "s/__CFLAGS__/${TARGET_CC_ARCH}/" ${D}/Rules.make
+ SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
  
+@@ -18,6 +18,7 @@ PLATFORM_ARCH_omapl138 = "armv5te"
+ 
+ do_compile() {
+ 	export CROSS_COMPILE=${TARGET_PREFIX}
++	export CFLAGS='${TARGET_CC_ARCH}'
+ 	# build the release version
+ 	oe_runmake -C ${PLATFORM_ARCH} release
  }
- 
 -- 
 1.7.0.4
 
