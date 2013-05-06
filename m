@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id E0D5C52A2E
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 706C352995
 	for <meta-arago@arago-project.org>;
-	Mon,  6 May 2013 21:28:37 +0000 (UTC)
+	Mon,  6 May 2013 21:28:40 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r46LSbAn031272
-	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:37 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r46LSdsq024406
+	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:39 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r46LSbMF003542
-	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:37 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r46LSdWZ003557
+	for <meta-arago@arago-project.org>; Mon, 6 May 2013 16:28:39 -0500
 Received: from dlelxv23.itg.ti.com (172.17.1.198) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 6 May 2013 16:28:36 -0500
+	Mon, 6 May 2013 16:28:39 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r46LSV9Z016143;
-	Mon, 6 May 2013 16:28:35 -0500
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r46LSV9a016143;
+	Mon, 6 May 2013 16:28:38 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 6 May 2013 16:28:23 -0500
-Message-ID: <1367875707-8579-2-git-send-email-fcooper@ti.com>
+Date: Mon, 6 May 2013 16:28:24 -0500
+Message-ID: <1367875707-8579-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1367875707-8579-1-git-send-email-fcooper@ti.com>
 References: <1367875707-8579-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/6] arm-benchmarks: Grab CFLAGS from OE or Rules.make
+Subject: [PATCH 3/6] am-sysinfo: Grab CFLAGS from OE or Rules.make
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,7 +37,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2013 21:28:38 -0000
+X-List-Received-Date: Mon, 06 May 2013 21:28:40 -0000
 Content-Type: text/plain
 
 * When building from OE CFLAGS will be passed in.
@@ -47,33 +47,41 @@ Content-Type: text/plain
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../arm-benchmarks/arm-benchmarks_1.3.bb           |    5 +++--
- 1 files changed, 3 insertions(+), 2 deletions(-)
+ .../recipes-core/am-sysinfo/am-sysinfo_git.bb      |   11 +++++++----
+ 1 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-index 23acd42..ce18860 100644
---- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-+++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-@@ -4,10 +4,10 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
+diff --git a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
+index a5e0afe..153d1f0 100644
+--- a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
++++ b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
+@@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://mem_util/mem_util.c;beginline=1;endline=37;md5=8aa8e7
  SECTION = "system"
  
--PR = "r4"
-+PR = "r5"
+ PACKAGE_STRIP = "no"
+-PR = "r6"
++PR = "r7"
  
  BRANCH ?= "master"
--SRCREV = "9b7b4fbde8fcf796a23da2a464dbf934e550f6c9"
-+SRCREV = "176c8869817913967ae1a0d561535eb40ba8a527"
+-SRCREV = "86e936b0a50e450089471b53ae8c68e933c15bbd"
++SRCREV = "30c1dd8da089da41cac5686a0bebacc8950a8805"
  
- SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
+ SRC_URI = "git://gitorious.org/am_sysinfo/am_sysinfo.git;protocol=git;branch=${BRANCH}"
  
-@@ -18,6 +18,7 @@ PLATFORM_ARCH_omapl138 = "armv5te"
+@@ -17,10 +17,13 @@ S = "${WORKDIR}/git"
+ 
  
  do_compile() {
- 	export CROSS_COMPILE=${TARGET_PREFIX}
+-	${CC} ${CFLAGS} ${LDFLAGS} -o mem_util/mem_util mem_util/mem_util.c
++	export CROSS_COMPILE=${TARGET_PREFIX}
 +	export CFLAGS='${TARGET_CC_ARCH}'
- 	# build the release version
- 	oe_runmake -C ${PLATFORM_ARCH} release
++	# build the release version
++	oe_runmake release
+ }
+ 
+ do_install() {
+ 	install -d ${D}/${bindir}
+-	install -m 0755 ${S}/mem_util/mem_util ${D}/${bindir}
++	install -m 0755 ${S}/mem_util/Release/mem_util ${D}/${bindir}
  }
 -- 
 1.7.0.4
