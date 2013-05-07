@@ -1,36 +1,28 @@
-Return-Path: <denys@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 3EF3552A67
+	by arago-project.org (Postfix) with ESMTPS id 45C5C52981
 	for <meta-arago@arago-project.org>;
-	Tue,  7 May 2013 03:08:06 +0000 (UTC)
+	Tue,  7 May 2013 04:39:42 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r473859k028461
-	for <meta-arago@arago-project.org>; Mon, 6 May 2013 22:08:05 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r47385cp017271
-	for <meta-arago@arago-project.org>; Mon, 6 May 2013 22:08:05 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 6 May 2013 22:08:04 -0500
-Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
-	(8.13.8/8.13.8) with ESMTP id r47384uN011814;
-	Mon, 6 May 2013 22:08:04 -0500
-Date: Mon, 6 May 2013 23:08:03 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20130507030803.GA32479@edge>
-References: <1367875806-8694-1-git-send-email-fcooper@ti.com>
-	<20130506213151.GB10607@edge>
-	<8F29D6B095ED194EA1980491A5E029710C44AC4E@DFLE08.ent.ti.com>
-	<20130506223056.GE10607@edge>
-	<8F29D6B095ED194EA1980491A5E029710C44AF05@DFLE08.ent.ti.com>
-	<20130506230542.GH10607@edge>
-	<8F29D6B095ED194EA1980491A5E029710C44B03D@DFLE08.ent.ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r474ddJb015978
+	for <meta-arago@arago-project.org>; Mon, 6 May 2013 23:39:39 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r474dchY012326
+	for <meta-arago@arago-project.org>; Mon, 6 May 2013 23:39:39 -0500
+Received: from dlelxv24.itg.ti.com (172.17.1.199) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 6 May 2013 23:39:38 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlelxv24.itg.ti.com (8.13.8/8.13.8) with ESMTP id r474dZk1032011;
+	Mon, 6 May 2013 23:39:37 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 6 May 2013 23:39:33 -0500
+Message-ID: <1367901573-3289-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C44B03D@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] arago.conf: Correct TOOLCHAIN_BRAND for ARM9 SOCs
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH v2] arago.conf: Choose the proper toolchain by default depending on SOC_FAMILY
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,69 +35,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 03:08:07 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 07 May 2013 04:39:50 -0000
+Content-Type: text/plain
 
-On Mon, May 06, 2013 at 08:07:19PM -0400, Cooper Jr., Franklin wrote:
-> > > > > > > diff --git a/meta-arago-distro/conf/distro/arago.conf
-> > > > > > > b/meta-arago-distro/conf/distro/arago.conf
-> > > > > > > index 3954360..048c480 100644
-> > > > > > > --- a/meta-arago-distro/conf/distro/arago.conf
-> > > > > > > +++ b/meta-arago-distro/conf/distro/arago.conf
-> > > > > > > @@ -21,7 +21,9 @@ DISTRO_FEATURES = "alsa argp bluetooth ext2
-> > > > > > > irda largefile pcmcia usbgadget usbh
-> > > > > > >
-> > > > > > >  # Toolchain should be selected by setting TOOLCHAIN_BRAND in
-> > > > > > > local.conf  # Set some sane defaults, in case someone forgets
-> > > > > > > to set them in local.conf -TOOLCHAIN_BRAND ?= "linaro"
-> > > > > > > +# ARM9 is not supported by the Linaro toolchain so default
-> > > > > > > +back to the Arago # toolchain for ARM9 based SOCs.
-> > > > > > > +TOOLCHAIN_BRAND ?=
-> > > > > > "${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}"
-> > > > > >
-> > > > > > I don't feel this belongs in the arago.conf - as the comment
-> > > > > > above says, this is supposed to be set in the local.conf
-> > > > > > anyways, here it just offers a default fall back...
-> > > > >
-> > > > > I don't see what harm is done by tweaking the variable to insure
-> > > > > an optimal and safe default fall back is provided for all
-> > > > > platforms we support. This patch changes nothing except fixes a broken
-> > use case.
-> > > >
-> > > > Overhead - it calls that Python function every time you evaluate
-> > > > TOOLCHAIN_BRAND variable...
-> > > >
-> > > > I might be more lenient with something like this though:
-> > > >
-> > > > TC_SANEDEFAULT := "${@...}"
-> > > > TOOLCHAIN_BRAND ?= "${TC_SANEDEFAULT}"
-> > > >
-> > > > Although, that would no longer work in local.conf, only arago.conf...
-> > >
-> > > If you have no objection with me putting my suggested change to
-> > > TOOLCHAIN_BRAND in oe-layersetup local.conf.sample then I am fine with
-> > > dropping this patch.
-> > 
-> > Either way is fine. You didn't like to split it in 2 lines like above?
-> 
-> I did like your suggestion but I was confused by the statement "Although, 
-> that would no longer work in local.conf, only arago.conf...". 
-> TOOLCHAIN_BRAND could still be overridden in local.conf but TC_SANEDEFAULT 
-> couldn't. Is that really a problem since originally the expectation was that 
-> someone should be overriding TOOLCHAIN_BRAND anyway?
+* Linaro toolchain does not support ARM9 architecture.
+* The Arago toolchain should be used if an ARM9 based SOC_FAMILY is being built.
+* Introduce a new variable TC_SANE_DEFAULT that determines which toolchain to
+  use depending on the machine's SOC_FAMILY.
 
-Correct - I meant setting TC_SANEDEFAULT like that (immediate assignment with 
-Python code) won't work in local.conf. Which is fine, as TOOLCHAIN_BRAND can 
-be overriden from local.conf anyway.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Changes compared to v1:
+Use seperate variable TC_SANE_DEFAULT suggested by Denys.
+This seperate variable avoids any Python overhead since the value is evaluated
+only once.
+This still allows the TOOLCHAIN_BRAND to be overridden in the local.conf file.
 
+ meta-arago-distro/conf/distro/arago.conf |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
 
-> If your fine with the below then I'll send a v2
-> TC_SANEDEFAULT := "${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}"
-> TOOLCHAIN_BRAND ?= "${TC_SANEDEFAULT}"
-
-Yes, please.
-
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 3954360..33adc01 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -19,9 +19,13 @@ NO32LIBS = "0"
+ # Set our distro features, don't forget all the standard libc ones
+ DISTRO_FEATURES = "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g ipv4 ipv6 pulseaudio ${DISTRO_FEATURES_LIBC}"
+ 
++# ARM9 is not supported by the Linaro toolchain so default back to the Arago
++# toolchain for ARM9 based SOCs.
++TC_SANE_DEFAULT := "${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}"
++
+ # Toolchain should be selected by setting TOOLCHAIN_BRAND in local.conf
+ # Set some sane defaults, in case someone forgets to set them in local.conf
+-TOOLCHAIN_BRAND ?= "linaro"
++TOOLCHAIN_BRAND ?= "${TC_SANE_DEFAULT}"
+ TOOLCHAIN_TYPE ?= "external"
+ 
+ require conf/distro/include/toolchain-${TOOLCHAIN_TYPE}-${TOOLCHAIN_BRAND}.inc
 -- 
-Denys
+1.7.0.4
+
 
