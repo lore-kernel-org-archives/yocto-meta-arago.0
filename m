@@ -1,34 +1,32 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 6D92F5298C
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 8DB755298C
 	for <meta-arago@arago-project.org>;
-	Wed,  8 May 2013 14:13:22 +0000 (UTC)
+	Wed,  8 May 2013 14:14:13 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r48EDLeo012842
-	for <meta-arago@arago-project.org>; Wed, 8 May 2013 09:13:21 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r48EECOC026921
+	for <meta-arago@arago-project.org>; Wed, 8 May 2013 09:14:12 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r48EDL5S018716
-	for <meta-arago@arago-project.org>; Wed, 8 May 2013 09:13:21 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Wed, 8 May 2013 09:13:21 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] meta-toolchain-arago: Allow relocate
-	script to hard code SDK_PATH value
-Thread-Index: AQHOS+6YIXwHuWd05EyzTdFPsB4RpJj7pGEA//+sxaA=
-Date: Wed, 8 May 2013 14:13:19 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C44E18B@DFLE08.ent.ti.com>
-References: <1368019131-13375-1-git-send-email-fcooper@ti.com>
-	<20130508135910.GA13151@edge>
-In-Reply-To: <20130508135910.GA13151@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r48EECtF019620
+	for <meta-arago@arago-project.org>; Wed, 8 May 2013 09:14:12 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 8 May 2013 09:14:12 -0500
+Received: from localhost ([158.218.102.158])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r48EECef019686;
+	Wed, 8 May 2013 09:14:12 -0500
+Date: Wed, 8 May 2013 10:14:12 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-ID: <20130508141411.GC13151@edge>
+References: <1367875170-8518-1-git-send-email-zhoujt@ti.com>
+	<7D46E86EC0A8354091174257B2FED10159546E35@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] meta-toolchain-arago: Allow relocate script to hard code SDK_PATH value
+In-Reply-To: <7D46E86EC0A8354091174257B2FED10159546E35@DLEE11.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Zhou,
+	Jingting" <zhoujt@ti.com>
+Subject: Re: [PATCH 1/2] initscript-debugfs recipe: needed by ti-multiprocmgr, system printf messages coming from debugfs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,136 +39,178 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 14:13:26 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 08 May 2013 14:14:13 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+On Wed, May 08, 2013 at 01:04:09PM +0000, Maupin, Chase wrote:
+> > Subject: [meta-arago] [PATCH 1/2] initscript-debugfs recipe:
+> > needed by ti-multiprocmgr, system printf messages coming from
+> > debugfs
+> > 
+> > From: Jingting Zhou <a0221004@ares-ubuntu>
+> 
+> So close you are almost there.  A couple of points.
+
+Ah, words of encouragement - good idea :) Few more comments:
+
+
+> 1. You need to fix your e-mail.  You should use your ti.com address.  This 
+> is the e-mail setting in your u-boot config.
+
+1. To quickly set your email in git configuration, use this line:
+
+git config --global user.email zhoujt@ti.com
+
+To check current config, git config -l
+But getting more familiar with git in general is a good idea - use a 
+presentation or training material.
+
+
+> 2. The commit message should be something like:
+> 
+> Recipe: brief description of change
+> 
+> * Detail 1 about change and why
+> * Detail 2 about change and why
+> 
+> Signed-off-by: your name <your email>
+
+2. What Chase explained for the commit message is good and will start you up, 
+but it's just a very brief version of the Commit Message Guidelines here:
+http://openembedded.org/wiki/Commit_Patch_Message_Guidelines
+
+
+> If you have your e-mail configured then you can have your signed-off-by 
+> automatically added to your commit message by using -s when commiting.  I'll 
+> send you a git presentation that has some info on setting these.
+
+-- 
+Denys
 
 
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, May 08, 2013 8:59 AM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago: Allow relocate sc=
-ript
-> to hard code SDK_PATH value
->=20
-> Franklin,
->=20
-> Well, I think I already used up all my weekly quota for reviewing patches
-> yesterday... :) But, Ok.
->=20
->=20
-> > * SDK_PATH was previously dynamically determined by using BASHISMS
-> when
-> >   environment-setup was sourced.
->=20
-> But there was still a known good fallback for when not run under bash.
->=20
->=20
-> > * Relocate_sdk.py is required to be ran and the script knows the locati=
-on of
-> the
-> >   toolchain SDK.
-> > * By having the relocate_sdk script set SDK_PATH we remove the need for
-> >   bashisms from environment-setup.
->=20
-> It is already doing that, no need to change it.
->=20
->=20
-> > diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.b=
-b
-> b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > index 699ada7..7f70c42 100644
-> > --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-> > @@ -7,7 +7,7 @@ TOOLCHAIN_CLEANUP_PACKAGES ?=3D ""
-> >
-> >  require recipes-core/meta/meta-toolchain.bb
-> >
-> > -PR =3D "r23"
-> > +PR =3D "r24"
-> >
-> >  # This function creates an environment-setup-script for use in a deplo=
-yable
-> SDK
-> >  toolchain_create_sdk_env_script () {
-> > @@ -15,17 +15,7 @@ toolchain_create_sdk_env_script () {
-> >  	script=3D${SDK_OUTPUT}/${SDKPATH}/environment-setup
-> >  	rm -f $script
-> >  	touch $script
-> > -	echo 'SDK_PATH=3D"${SDKPATH}"' >> $script
-> > -	echo 'if [ -z "$ZSH_NAME" ] && [ "x$0" =3D "x./environment-setup" ];
-> then' >> $script
-> > -	echo '    echo "Error: This script needs to be sourced. Please run as=
- \".
-> ./environment-setup\""' >> $script
-> > -	echo '    exit 1' >> $script
->=20
-> This portion above may stay - it's a nice safeguard. And there's nothing
-> bashisms about it.
-
-Your right. I must of gotten delete happy :).
->=20
->=20
-> > -	echo 'else' >> $script
-> > -	echo '    if [ -n "$BASH_SOURCE" ]; then' >> $script
-> > -	echo '        SDK_PATH=3D"`dirname $BASH_SOURCE`"' >> $script
-> > -	echo '    fi' >> $script
->=20
-> I can see potentially removing this portion, since devkit is not relocata=
-ble
-> on its own w/o re-installing it in a different location. BTW, this is the=
- only
-> bash-related piece of code here, it just uses bash-specific env variable.=
- If
-> not run under bash, it will safely skip it, so it's not really a bashism.
-True but the SDK_PATH would not be the correct value.
-Current value of SDK_PATH:
-SDK_PATH=3D/tmp/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..../yyy=
-yyyyyyyyyyyyyyyyyyyyyyyyyyyyy...../
-
-So although no error will be shown the remaining code and variables will be=
- using the incorrect SDK_PATH which results in a lot of issues.
->=20
->=20
-> > -	echo '    SDK_PATH=3D`readlink -f "$SDK_PATH"`' >> $script
-> > -	echo '    export SDK_PATH' >> $script
-> > -	echo 'fi' >> $script
->=20
-> And this portion is another nice safeguard - in case you install it in a
-> location that is a symlink.
-That makes sense. This can stay also.
->=20
->=20
-> > +	echo 'export SDK_PATH=3D"${SDKPATH}"' >> $script
-> >  	echo 'export SDK_SYS=3D${SDK_SYS}' >> $script
-> >  	echo 'export TARGET_SYS=3D${REAL_MULTIMACH_TARGET_SYS}' >>
-> $script
-> >  	echo 'export TOOLCHAIN_SYS=3D${TOOLCHAIN_SYS}' >> $script
-> > @@ -234,6 +224,9 @@ for env_setup_script in `ls
-> $target_sdk_dir/environment-setup*`; do
-> >  	$SUDO_EXEC sed -e "s:$TMPSDKPATH:$target_sdk_dir:g" -i
-> $env_setup_script
-> >  done
-> >
-> > +# Correct SDK_PATH since the exact installation path is now known
-> > +$SUDO_EXEC sed -i -e "s|export SDK_PATH\=3D.*|export
-> SDK_PATH=3D$target_sdk_dir|g" $target_sdk_dir/environment-setup*
->=20
-> Why do you need this line? It's already happening anyway.
-The only way we get the proper value for SDK_PATH is if the following is ex=
-ecuted.
-       SDK_PATH=3D"`dirname $BASH_SOURCE`"' >> $script
-
-Since I want to remove that logic the above is required. Although the sed s=
-tatement would change slightly since "SDK_PATH=3D" will need to be modified=
- instead of "export SDK_PATH=3D" since I won't be removing a lot of the saf=
-e guard logic.
-
->=20
-> --
-> Denys
+> > ---
+> >  .../initscript-debugfs/files/debugfs.sh            |   40
+> > ++++++++++++++++++++
+> >  .../initscript-debugfs/initscript-debugfs.bb       |   20
+> > ++++++++++
+> >  2 files changed, 60 insertions(+)
+> >  create mode 100755 meta-arago-extras/recipes-bsp/initscript-
+> > debugfs/files/debugfs.sh
+> >  create mode 100755 meta-arago-extras/recipes-bsp/initscript-
+> > debugfs/initscript-debugfs.bb
+> > 
+> > diff --git a/meta-arago-extras/recipes-bsp/initscript-
+> > debugfs/files/debugfs.sh b/meta-arago-extras/recipes-
+> > bsp/initscript-debugfs/files/debugfs.sh
+> > new file mode 100755
+> > index 0000000..9b26279
+> > --- /dev/null
+> > +++ b/meta-arago-extras/recipes-bsp/initscript-
+> > debugfs/files/debugfs.sh
+> > @@ -0,0 +1,40 @@
+> > +#!/bin/sh
+> > +
+> > +#   Copyright 2012, Texas Instruments, Inc.
+> > +#
+> > +#   Redistribution and use in source and binary forms, with or
+> > without
+> > +#   modification, are permitted provided that the following
+> > conditions
+> > +#   are met:
+> > +#
+> > +#     Redistributions of source code must retain the above
+> > copyright
+> > +#     notice, this list of conditions and the following
+> > disclaimer.
+> > +#
+> > +#     Redistributions in binary form must reproduce the above
+> > copyright
+> > +#     notice, this list of conditions and the following
+> > disclaimer in the
+> > +#     documentation and/or other materials provided with the
+> > +#     distribution.
+> > +#
+> > +#     Neither the name of Texas Instruments Incorporated nor the
+> > names of
+> > +#     its contributors may be used to endorse or promote
+> > products derived
+> > +#     from this software without specific prior written
+> > permission.
+> > +#
+> > +#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+> > CONTRIBUTORS
+> > +#   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+> > BUT NOT
+> > +#   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+> > FITNESS FOR
+> > +#   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+> > COPYRIGHT
+> > +#   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+> > INCIDENTAL,
+> > +#   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+> > NOT
+> > +#   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+> > LOSS OF USE,
+> > +#   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+> > AND ON ANY
+> > +#   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+> > OR TORT
+> > +#   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+> > OF THE USE
+> > +#   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+> > DAMAGE.
+> > +#
+> > +
+> > +
+> > +if ! [ -e /debug ] ; then
+> > +  mkdir -p /debug
+> > +fi
+> > +mount -t debugfs debugfs /debug
+> > +
+> > +exit 0
+> > diff --git a/meta-arago-extras/recipes-bsp/initscript-
+> > debugfs/initscript-debugfs.bb b/meta-arago-extras/recipes-
+> > bsp/initscript-debugfs/initscript-debugfs.bb
+> > new file mode 100755
+> > index 0000000..f8145ba
+> > --- /dev/null
+> > +++ b/meta-arago-extras/recipes-bsp/initscript-
+> > debugfs/initscript-debugfs.bb
+> > @@ -0,0 +1,20 @@
+> > +DESCRIPTION = "Initscripts for debugfs"
+> > +LICENSE = "BSD"
+> > +
+> > +LIC_FILES_CHKSUM =
+> > "file://debugfs.sh;startline=3;endline=32;md5=4d96701a693bf321ad2
+> > d15026a285446"
+> > +
+> > +PR ="r0"
+> > +
+> > +SRC_URI = "file://debugfs.sh"
+> > +
+> > +INITSCRIPT_NAME = "debugfs.sh"
+> > +INITSCRIPT_PARAMS = "start 09 S ."
+> > +
+> > +inherit update-rc.d
+> > +
+> > +S = "${WORKDIR}"
+> > +
+> > +do_install () {
+> > +	install -d ${D}${sysconfdir}/init.d/
+> > +	install -c -m 755 ${WORKDIR}/debugfs.sh
+> > ${D}${sysconfdir}/init.d/debugfs.sh
+> > +}
+> > --
+> > 1.7.9.5
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
