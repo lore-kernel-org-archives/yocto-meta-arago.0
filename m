@@ -1,28 +1,30 @@
-Return-Path: <denys@ti.com>
+Return-Path: <a0756824@ares-ubuntu>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id E11CB529C9
+	by arago-project.org (Postfix) with ESMTPS id 86C85529A8
 	for <meta-arago@arago-project.org>;
-	Tue,  7 May 2013 05:36:44 +0000 (UTC)
+	Wed,  8 May 2013 00:02:26 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r475aeoY031416
-	for <meta-arago@arago-project.org>; Tue, 7 May 2013 00:36:40 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r475aelr003207
-	for <meta-arago@arago-project.org>; Tue, 7 May 2013 00:36:40 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 7 May 2013 00:36:39 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r475aecj026854	for
-	<meta-arago@arago-project.org>; Tue, 7 May 2013 00:36:40 -0500
-Date: Tue, 7 May 2013 01:30:42 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r4802PiI002725
+	for <meta-arago@arago-project.org>; Tue, 7 May 2013 19:02:25 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r4802PRZ013301
+	for <meta-arago@arago-project.org>; Tue, 7 May 2013 19:02:25 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 7 May 2013 19:02:25 -0500
+Received: from ares-ubuntu.am.dhcp.ti.com (ares-ubuntu.am.dhcp.ti.com
+	[158.218.103.17])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	r4802PE1008594;	Tue, 7 May 2013 19:02:25 -0500
+Received: from a0756824 by ares-ubuntu.am.dhcp.ti.com with local (Exim 4.76)
+	(envelope-from <a0756824@ares-ubuntu>)	id 1UZrpx-00039V-84;
+	Tue, 07 May 2013 20:02:25 -0400
+From: Sajesh Kumar Saran <sajesh@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1473004775.107.1367904642274.JavaMail.jenkins@puget>
+Date: Tue, 7 May 2013 20:02:22 -0400
+Message-ID: <1367971342-12085-1-git-send-email-sajesh@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.05 build 2013-05-07_01-01-44
+Subject: [PATCH] multiprocmgr: recipe update for external git and mpm changes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,178 +37,95 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 05:36:51 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_106_1931506861.1367904642272"
+X-List-Received-Date: Wed, 08 May 2013 00:02:26 -0000
+Content-Type: text/plain
 
-------=_Part_106_1931506861.1367904642272
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+the recipe is renamed to ti-multiprocmgr and updated to support
+mpm daemon and kernel dependancies.
 
-<html>
-<head>
-<title>
-Status for 05/07/13
-</title>
-</head>
-<body>
+Signed-off-by: Sajesh Kumar Saran <sajesh@ti.com>
+---
+ .../recipes-bsp/multiprocmgr/multiprocmgr_git.bb   |   20 ----------
+ .../ti-multiprocmgr/ti-multiprocmgr_git.bb         |   42 ++++++++++++++++++++
+ 2 files changed, 42 insertions(+), 20 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-bsp/multiprocmgr/multiprocmgr_git.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-multiprocmgr/ti-multiprocmgr_git.bb
 
-<h2>Status for 05/07/13</h2>
-
-<h2>BUILD_ID: build-2013-05-07_01-02-51</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.05"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-extras/recipes-bsp/multiprocmgr/multiprocmgr_git.bb b/meta-arago-extras/recipes-bsp/multiprocmgr/multiprocmgr_git.bb
+deleted file mode 100644
+index 3f2e52c..0000000
+--- a/meta-arago-extras/recipes-bsp/multiprocmgr/multiprocmgr_git.bb
++++ /dev/null
+@@ -1,20 +0,0 @@
+-DESCRIPTION = "TI Multiproc Manager for KeyStone II"
+-HOMEPAGE = "http://gtgit01.gt.design.ti.com/git/?p=projects/multiprocmgr.git;a=summary"
+-LICENSE = "BSD & MIT"
+-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=fce208c498eb9669223724dc9c1d8fe4"
+-SECTION = "console"
+-COMPATIBLE_MACHINE = "keystone"
+-
+-PR = "r1"
+-
+-BRANCH ?= "master"
+-SRCREV = "8a97fb5c2c06d5f02d30106629f27fe0ca8a4f95"
+-
+-SRC_URI = "git://gtgit01.gt.design.ti.com/git/projects/multiprocmgr.git;protocol=git;branch=${BRANCH}"
+-
+-S = "${WORKDIR}/git"
+-
+-do_install() {
+-	install -d ${D}${bindir}/
+-	install -c -m 755 ${S}/mpmsrv ${D}${bindir}/mpmsrv
+-}
+diff --git a/meta-arago-extras/recipes-bsp/ti-multiprocmgr/ti-multiprocmgr_git.bb b/meta-arago-extras/recipes-bsp/ti-multiprocmgr/ti-multiprocmgr_git.bb
+new file mode 100644
+index 0000000..951dc3c
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-multiprocmgr/ti-multiprocmgr_git.bb
+@@ -0,0 +1,42 @@
++DESCRIPTION = "TI Multiproc Manager for KeyStone II"
++HOMEPAGE = "http://git.ti.com/cgit/cgit.cgi/keystone-linux/multi-proc-manager.git"
++LICENSE = "BSD & MIT"
++LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=fce208c498eb9669223724dc9c1d8fe4"
++SECTION = "console"
++COMPATIBLE_MACHINE = "keystone"
++
++DEPENDS = "libdaemon virtual/kernel"
++RDEPENDS = "syslog-ng"
++
++PR = "r6"
++
++BRANCH ?= "master"
++SRCREV = "${AUTOREV}"
++
++SRC_URI = "git://git.ti.com/keystone-linux/multi-proc-manager.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
++
++CC += "-I${STAGING_KERNEL_DIR}/include"
++
++INITSCRIPT_NAME = "mpmsrv-daemon.sh"
++INITSCRIPT_PARAMS = "defaults 10"
++
++inherit update-rc.d
++
++do_install() {
++	install -d ${D}${bindir}/
++	install -c -m 755 ${S}/bin/mpmsrv ${D}${bindir}/mpmsrv
++	install -c -m 755 ${S}/bin/mpmcl ${D}${bindir}/mpmcl
++
++	install -d ${D}${sysconfdir}/init.d/
++	install -c -m 755 ${S}/mpmsrv-daemon.sh ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
++	install -d ${D}${sysconfdir}/mpm/
++	install -c -m 755 ${S}/mpm_config.json ${D}${sysconfdir}/mpm/mpm_config.json
++
++	install -d ${D}${includedir}/
++	install -c -m 755 ${S}/include/* ${D}${includedir}/
++
++	install -d ${D}${libdir}/
++	install -c -m 755 ${S}/lib/* ${D}${libdir}/
++}
+-- 
+1.7.9.5
 
 
-------=_Part_106_1931506861.1367904642272--
