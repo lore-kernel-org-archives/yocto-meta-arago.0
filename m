@@ -1,32 +1,33 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <sam.nelson@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7731952A7D
+	by arago-project.org (Postfix) with ESMTPS id C4EBB52972
 	for <meta-arago@arago-project.org>;
-	Fri, 10 May 2013 13:26:25 +0000 (UTC)
+	Fri, 10 May 2013 13:43:46 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r4ADQOtH012330
-	for <meta-arago@arago-project.org>; Fri, 10 May 2013 08:26:24 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r4ADQOFF017259
-	for <meta-arago@arago-project.org>; Fri, 10 May 2013 08:26:24 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r4ADhkLs022596
+	for <meta-arago@arago-project.org>; Fri, 10 May 2013 08:43:46 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r4ADhkDG006515
+	for <meta-arago@arago-project.org>; Fri, 10 May 2013 08:43:46 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Fri, 10 May 2013 08:26:24 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Nelson, Sam" <sam.nelson@ti.com>, "meta-arago@arago-project.org"
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Fri, 10 May 2013 08:43:45 -0500
+From: "Nelson, Sam" <sam.nelson@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] Add recipe for test images
-Thread-Index: AQHOTWyCRdGv2PBKEUu8sa6L1yKpiJj+aObA
-Date: Fri, 10 May 2013 13:26:23 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159554B95@DLEE11.ent.ti.com>
-References: <1368182845-8507-1-git-send-email-sam.nelson@ti.com>
-In-Reply-To: <1368182845-8507-1-git-send-email-sam.nelson@ti.com>
+Thread-Topic: [meta-arago] [PATCH 1/3] Add pciutils to the console package
+Thread-Index: AQHOTWumEMUqFIl6HUSMaOgEgbLUL5j+vLGA//+umwA=
+Date: Fri, 10 May 2013 13:43:44 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F4905491D894@DLEE11.ent.ti.com>
+References: <1368182794-8463-1-git-send-email-sam.nelson@ti.com>
+	<7D46E86EC0A8354091174257B2FED10159554B57@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED10159554B57@DLEE11.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [PATCH] Add recipe for test images
+Subject: Re: [PATCH 1/3] Add pciutils to the console package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,45 +40,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2013 13:26:26 -0000
+X-List-Received-Date: Fri, 10 May 2013 13:43:47 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Thanks for the response.
+Pciutils provides very basic utilities for pci, when you have pci interface=
+ supported in the platform. ( I guess this is common).  There was customer =
+request to have it in a minimal file system.
+
+If it does not belong in here. Please suggest any alternate recipes where t=
+his will naturally belong.
+
+There is only 1 patch, I wanted to send.  The other patches are not relevan=
+t, please ignore.
+
+With regards,
+sam
+
+
+-----Original Message-----
+From: Maupin, Chase=20
+Sent: Friday, May 10, 2013 9:26 AM
+To: Nelson, Sam; meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH 1/3] Add pciutils to the console package
+
 >-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
 >bounces@arago-project.org] On Behalf Of Nelson, Sam
 >Sent: Friday, May 10, 2013 5:47 AM
 >To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH] Add recipe for test images
+>Subject: [meta-arago] [PATCH 1/3] Add pciutils to the console package
+
+Why are you adding this to the console package?  That is supposed to be a s=
+mall package so what is the use case for adding this here instead of somewh=
+ere else?
+
+Also, I didn't see patches 2 and 3 of this set.  Did I miss them?
+
 >
-
-You patch description is wrong and there is no reason given.  You are not a=
-dding a recipe but modifying an existing one.
-
 >Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 >---
-> .../recipes-core/images/arago-test-image.bb        |    2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
+> .../packagegroups/packagegroup-arago-console.bb    |    1 +
+> 1 file changed, 1 insertion(+)
 >
->diff --git a/meta-arago-distro/recipes-core/images/arago-test-
->image.bb b/meta-arago-distro/recipes-core/images/arago-test-
->image.bb
->index f220127..ff4cd26 100644
->--- a/meta-arago-distro/recipes-core/images/arago-test-image.bb
->+++ b/meta-arago-distro/recipes-core/images/arago-test-image.bb
->@@ -3,7 +3,7 @@
->
-> require arago-image.inc
->
->-COMPATIBLE_MACHINE =3D "omap3|omapl138|ti33x|keystone-evm"
->+COMPATIBLE_MACHINE =3D "(?!arago)"
+>diff --git a/meta-arago-distro/recipes-=20
+>core/packagegroups/packagegroup-arago-console.bb b/meta-arago-=20
+>distro/recipes-core/packagegroups/packagegroup-arago-console.bb
+>index 5a80064..930049a 100755
+>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+>arago-console.bb
+>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+>arago-console.bb
+>@@ -25,6 +25,7 @@ ARAGO_UTILS =3D "\
+>     i2c-tools \
+>     iproute2 \
+>     strace \
+>+    pciutils \
 
-What is the reason driving this change?
+You would need to bump the PR
 
+>     "
 >
-> # The size of the uncompressed ramdisk is 32MB
-> ROOTFS_SIZE =3D "32768"
+> ARAGO_SDK_PREREQ =3D "\
 >--
 >1.7.9.5
 >
