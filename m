@@ -1,26 +1,28 @@
-Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id D820D52A5D
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 75DAE52A5D
 	for <meta-arago@arago-project.org>;
-	Wed, 15 May 2013 03:53:43 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MMT00MT4MTGFNF0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 14 May 2013 22:53:41 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id B3B8520087; Tue,
-	14 May 2013 23:53:40 -0400 (EDT)
-Date: Tue, 14 May 2013 23:53:40 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Nelson, Sam" <sam.nelson@ti.com>
-Message-id: <20130515035340.GA5021@denix.org>
-References: <4F9216F96E5DF9428610502835A9F4905491F83E@DLEE11.ent.ti.com>
-MIME-version: 1.0
-In-reply-to: <4F9216F96E5DF9428610502835A9F4905491F83E@DLEE11.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv3] arago-console: Adding pciutils package
+	Wed, 15 May 2013 03:54:37 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r4F3sah5005351
+	for <meta-arago@arago-project.org>; Tue, 14 May 2013 22:54:36 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r4F3saUg014387
+	for <meta-arago@arago-project.org>; Tue, 14 May 2013 22:54:36 -0500
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 14 May 2013 22:54:36 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r4F3sXkO004084;
+	Tue, 14 May 2013 22:54:35 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 14 May 2013 22:54:21 -0500
+Message-ID: <1368590069-6700-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+MIME-Version: 1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/9] packagegroup-arago-tisdk-*: Add back removed packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,65 +35,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2013 03:53:44 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Wed, 15 May 2013 03:54:37 -0000
+Content-Type: text/plain
 
-So, it only looked perfect, but there were still some issues and I had to 
-massage the patch in, only because I already promised I'll take it...
+* For am335x some packages won't build when a 3.8+ kernel is used.
+* Therefore, some packages were removed to avoid any issues when a 3.8 kernel
+  is being built.
+* Since a 3.2 kernel is also supported add back these packages when the
+  ARAGO_BRAND is set to amsdk which indicates that a 3.2 kernel will be
+  used.
+* Also only include certain packages when a 3.8+ kernel is being used.
 
-1. You should submit patches against the mainline meta-arago, not against your 
-forked and work-in-progress personal tree. I.e. your PR was at r5 already, 
-while the one in meta-arago is at r4, and you appear to have removed ltrace 
-from the list of ARAGO_UTILS.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ ...ckagegroup-arago-tisdk-connectivity-sdk-host.bb |    3 ++-
+ .../packagegroup-arago-tisdk-connectivity.bb       |    3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-2. The recipe in your tree has 755 permissions, which is wrong and happens 
-when you edit files mounted from Windows. I see it quite a lot in your team 
-and you should probably stop doing it...
-
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
+index 1ca6ddd..398d6d6 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wlan and bluetooth sources into the SDK"
+ LICENSE = "MIT"
+-PR = "r4"
++PR = "r5"
+ 
+ inherit packagegroup
+ 
+@@ -17,6 +17,7 @@ CONNECTIVITY_RDEPENDS = ""
+ 
+ CONNECTIVITY_RDEPENDS_am37x-evm = "${FIRMWARE_AND_DRIVERS_SRC}"
+ CONNECTIVITY_RDEPENDS_am180x-evm = "${FIRMWARE_AND_DRIVERS_SRC}"
++CONNECTIVITY_RDEPENDS_ti33x = "${@base_contains('ARAGO_BRAND','amsdk','${FIRMWARE_AND_DRIVERS_SRC}','',d)}"
+ 
+ RDEPENDS_${PN} = "\
+     ${CONNECTIVITY_RDEPENDS} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index c69569f..b257ba4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wlan and bluetooth packages into the target FS"
+ LICENSE = "MIT"
+-PR = "r7"
++PR = "r8"
+ 
+ inherit packagegroup
+ 
+@@ -80,6 +80,7 @@ CONNECTIVITY_RDEPENDS_ti33x = "\
+     ${WLAN_COMMON} \
+     ${BLUETOOTH_STACK} \
+     ${DEMO_APPS} \
++    ${@base_contains('ARAGO_BRAND','amsdk','${FIRMWARE_AND_DRIVERS}','',d)} \
+ "
+ 
+ RDEPENDS_${PN} = "\
 -- 
-Denys
+1.7.0.4
 
-
-On Tue, May 14, 2013 at 10:52:06PM +0000, Nelson, Sam wrote:
->    pciutils provides very basic utilities for
->    querying the devices on the pci bus, when pci
->    interface is supported in the platform and
->    useful to be part of the console package
-> 
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-console.bb    |    5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-> index 5a80064..537f050 100755
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-> @@ -1,6 +1,8 @@
->  DESCRIPTION = "Extended task to get more basic and console apps"
->  LICENSE = "MIT"
-> -PR = "r5"
-> +PR = "r6"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
->  inherit packagegroup
->  
-> @@ -25,6 +27,7 @@ ARAGO_UTILS = "\
->      i2c-tools \
->      iproute2 \
->      strace \
-> +    ${@base_contains('MACHINE_FEATURES', 'pci', 'pciutils', '',d)} \
->      "
->  
->  ARAGO_SDK_PREREQ = "\
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
