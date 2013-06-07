@@ -1,28 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id CD4E552A7C
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id AEBA652AAD
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Jun 2013 20:26:06 +0000 (UTC)
+	Fri,  7 Jun 2013 20:26:09 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r57KQ6Rg003007
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 15:26:06 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r57KQ6jb004007
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 15:26:06 -0500
-Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 7 Jun 2013 15:26:06 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r57KQ96I024154
+	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 15:26:09 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r57KQ85u004089
+	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 15:26:09 -0500
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 7 Jun 2013 15:26:08 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r57KQ2sk025009;
-	Fri, 7 Jun 2013 15:26:04 -0500
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r57KQ2sl025009;
+	Fri, 7 Jun 2013 15:26:07 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 7 Jun 2013 15:32:54 -0500
-Message-ID: <1370637177-13018-1-git-send-email-fcooper@ti.com>
+Date: Fri, 7 Jun 2013 15:32:55 -0500
+Message-ID: <1370637177-13018-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1370637177-13018-1-git-send-email-fcooper@ti.com>
+References: <1370637177-13018-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/4] matrix-gui: Add commit that pulls in HTML Matrix application support
+Subject: [PATCH 2/4] matrix-gui-apps-git: Use new HTML based Clock Frequency demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,36 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2013 20:26:07 -0000
+X-List-Received-Date: Fri, 07 Jun 2013 20:26:10 -0000
 Content-Type: text/plain
+
+* The various set clock frequency demos have now been replaced by a single HTML
+  clock frequency demo.
+* This demo dynamically determines supported frequencies and allows the user to
+  select the frequency they want to set.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 ++--
+ .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index f9fe85e..54359e5 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 9158681..a6004c8 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
- SECTION = "multimedia"
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "2f938391c53826d261f41e8a177413793194499e"
++SRCREV = "c3ffe73dbbc911742ef87217a060cac1d119c531"
+ BRANCH = "master"
+-INC_PR = "r13"
++INC_PR = "r14"
  
--PR = "r12"
-+PR = "r13"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- inherit update-rc.d
- 
- BRANCH ?= "master"
--SRCREV = "57574e157aee2d4781e6aa04199c7e3bca9ad62c"
-+SRCREV = "25311718417147bd87aaa25d758cde9a5bffa0a8"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
-            file://init \
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.7.0.4
 
