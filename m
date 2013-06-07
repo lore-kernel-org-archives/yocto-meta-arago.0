@@ -1,31 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 9E10A52979
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id CD4E552A7C
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Jun 2013 18:49:14 +0000 (UTC)
+	Fri,  7 Jun 2013 20:26:06 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r57InD6w016614
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 13:49:13 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r57InDJH025691
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 13:49:13 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 7 Jun 2013 13:49:13 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r57InDtA027779;
-	Fri, 7 Jun 2013 13:49:13 -0500
-Date: Fri, 7 Jun 2013 14:49:12 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20130607184912.GE15158@edge>
-References: <1370555268-22244-1-git-send-email-fcooper@ti.com>
-	<1370555268-22244-3-git-send-email-fcooper@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r57KQ6Rg003007
+	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 15:26:06 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r57KQ6jb004007
+	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 15:26:06 -0500
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 7 Jun 2013 15:26:06 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r57KQ2sk025009;
+	Fri, 7 Jun 2013 15:26:04 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 7 Jun 2013 15:32:54 -0500
+Message-ID: <1370637177-13018-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-In-Reply-To: <1370555268-22244-3-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 3/3] wl12xx-firmware: Update to Wilink 6 version of wl1271-nvs.bin
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/4] matrix-gui: Add commit that pulls in HTML Matrix application support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,79 +35,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2013 18:49:15 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 07 Jun 2013 20:26:07 -0000
+Content-Type: text/plain
 
-On Thu, Jun 06, 2013 at 04:47:48PM -0500, Franklin S. Cooper Jr wrote:
-> * The version of the wl1271-nvs.bin included in the current repository was meant
->   for Wilink 7 not Wilink 6.
-> * This caused firmware errors which caused Wilink 6 not to work on any boards
->   that don't rerun a calibration script.
-> * Use the Wilink 6 version of the nvs file to use a version supported by Wilink
->   6 so by default wireless will work.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-Any chance to get this resolved in the upstream TI-OpenLink repository, 
-instead of dumping a binary here in the metadata?
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+index f9fe85e..54359e5 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
+ 
+ SECTION = "multimedia"
+ 
+-PR = "r12"
++PR = "r13"
+ 
+ INITSCRIPT_NAME = "matrix-gui-2.0"
+ INITSCRIPT_PARAMS = "defaults 97"
+@@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit update-rc.d
+ 
+ BRANCH ?= "master"
+-SRCREV = "57574e157aee2d4781e6aa04199c7e3bca9ad62c"
++SRCREV = "25311718417147bd87aaa25d758cde9a5bffa0a8"
+ 
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
+            file://init \
+-- 
+1.7.0.4
 
-
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../wl1271-nvs.bin-wilink6                         |  Bin 0 -> 912 bytes
->  .../wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb   |    7 ++++++-
->  2 files changed, 6 insertions(+), 1 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6
-> 
-> diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6 b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..bb6ff93e585cbc92e1270a3a01779d0614616441
-> GIT binary patch
-> literal 912
-> zcmZR~4PgKR#zHU!VnP7pOvbNJCKJPte=uQe^tV53Y#dx%Jp6*9;?i;|3|b5Z4CV}W
-> z3@!|Q4517$4Dk$!46zIm*tCv{0Yl)=-+%xA1ET;4n3$M|2ofe?Y>HMf1I=IpnZ(2j
-> zl4oRO;AD{y;9&Uv{`q~70KYvdp8-uCq=w<mHwGSwAAcA)1U~#=;1U6gQAU(AHZaJ_
-> qE2*h#O35p!s;Z00$|<O*2H*jpU|?bp6%`c}73GuDrOf&vrW*iCk}^R6
-> 
-> literal 0
-> HcmV?d00001
-> 
-> diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-> index 2232e1c..96b15e0 100644
-> --- a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-> +++ b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-> @@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=ba590e1d103f891d0151609046aef9e8"
->  
->  PACKAGE_ARCH = "all"
->  
-> -PR = "r3+gitr${SRCPV}"
-> +PR = "r4+gitr${SRCPV}"
->  
->  # This recipe provides the latest firmware files for wl12xx.
->  # Therefore, use the contents of this recipe instead of the contents
-> @@ -16,6 +16,7 @@ RPROVIDES_${PN}  = "linux-firmware-wl12xx"
->  SRCREV = "c8d6b8e6ddf81091e1b1c99ebfb6751cc62b2c63"
->  SRC_URI = "git://github.com/TI-OpenLink/ti-utils.git;protocol=git \
->             file://Makefile \
-> +           file://wl1271-nvs.bin-wilink6 \
->            "
->  
->  S = "${WORKDIR}/git/hw/firmware"
-> @@ -26,6 +27,10 @@ do_compile() {
->  
->  do_install() {
->      cp ${WORKDIR}/Makefile ${S}
-> +    # Remove Wilink 7 version
-> +    rm ${S}/wl1271-nvs.bin
-> +    # Copy and use Wilink 6 version
-> +    cp ${WORKDIR}/wl1271-nvs.bin-wilink6 ${S}/wl1271-nvs.bin
->      oe_runmake 'DEST_DIR=${D}' install
->  }
->  
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
