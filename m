@@ -1,28 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 3F2EC5299C
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9E10A52979
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Jun 2013 05:52:37 +0000 (UTC)
+	Fri,  7 Jun 2013 18:49:14 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r575qaNF012152
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 00:52:36 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r575qanx003367
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 00:52:36 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 7 Jun 2013 00:52:36 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r575qaja018003;
-	Fri, 7 Jun 2013 00:52:36 -0500
-Date: Fri, 7 Jun 2013 01:45:50 -0400
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r57InD6w016614
+	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 13:49:13 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r57InDJH025691
+	for <meta-arago@arago-project.org>; Fri, 7 Jun 2013 13:49:13 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 7 Jun 2013 13:49:13 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r57InDtA027779;
+	Fri, 7 Jun 2013 13:49:13 -0500
+Date: Fri, 7 Jun 2013 14:49:12 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <fcooper@ti.com>
-Message-ID: <1520275205.215.1370583950233.JavaMail.jenkins@puget>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20130607184912.GE15158@edge>
+References: <1370555268-22244-1-git-send-email-fcooper@ti.com>
+	<1370555268-22244-3-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.05 build 2013-06-07_01-01-44
+In-Reply-To: <1370555268-22244-3-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 3/3] wl12xx-firmware: Update to Wilink 6 version of wl1271-nvs.bin
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,184 +38,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2013 05:52:38 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_214_409613913.1370583950190"
+X-List-Received-Date: Fri, 07 Jun 2013 18:49:15 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-------=_Part_214_409613913.1370583950190
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 06, 2013 at 04:47:48PM -0500, Franklin S. Cooper Jr wrote:
+> * The version of the wl1271-nvs.bin included in the current repository was meant
+>   for Wilink 7 not Wilink 6.
+> * This caused firmware errors which caused Wilink 6 not to work on any boards
+>   that don't rerun a calibration script.
+> * Use the Wilink 6 version of the nvs file to use a version supported by Wilink
+>   6 so by default wireless will work.
 
-<html>
-<head>
-<title>
-Status for 06/07/13
-</title>
-</head>
-<body>
-
-<h2>Status for 06/07/13</h2>
-
-<h2>BUILD_ID: build-2013-06-07_01-02-50</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.05"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+Any chance to get this resolved in the upstream TI-OpenLink repository, 
+instead of dumping a binary here in the metadata?
 
 
-------=_Part_214_409613913.1370583950190--
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../wl1271-nvs.bin-wilink6                         |  Bin 0 -> 912 bytes
+>  .../wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb   |    7 ++++++-
+>  2 files changed, 6 insertions(+), 1 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6
+> 
+> diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6 b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..bb6ff93e585cbc92e1270a3a01779d0614616441
+> GIT binary patch
+> literal 912
+> zcmZR~4PgKR#zHU!VnP7pOvbNJCKJPte=uQe^tV53Y#dx%Jp6*9;?i;|3|b5Z4CV}W
+> z3@!|Q4517$4Dk$!46zIm*tCv{0Yl)=-+%xA1ET;4n3$M|2ofe?Y>HMf1I=IpnZ(2j
+> zl4oRO;AD{y;9&Uv{`q~70KYvdp8-uCq=w<mHwGSwAAcA)1U~#=;1U6gQAU(AHZaJ_
+> qE2*h#O35p!s;Z00$|<O*2H*jpU|?bp6%`c}73GuDrOf&vrW*iCk}^R6
+> 
+> literal 0
+> HcmV?d00001
+> 
+> diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
+> index 2232e1c..96b15e0 100644
+> --- a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
+> +++ b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
+> @@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=ba590e1d103f891d0151609046aef9e8"
+>  
+>  PACKAGE_ARCH = "all"
+>  
+> -PR = "r3+gitr${SRCPV}"
+> +PR = "r4+gitr${SRCPV}"
+>  
+>  # This recipe provides the latest firmware files for wl12xx.
+>  # Therefore, use the contents of this recipe instead of the contents
+> @@ -16,6 +16,7 @@ RPROVIDES_${PN}  = "linux-firmware-wl12xx"
+>  SRCREV = "c8d6b8e6ddf81091e1b1c99ebfb6751cc62b2c63"
+>  SRC_URI = "git://github.com/TI-OpenLink/ti-utils.git;protocol=git \
+>             file://Makefile \
+> +           file://wl1271-nvs.bin-wilink6 \
+>            "
+>  
+>  S = "${WORKDIR}/git/hw/firmware"
+> @@ -26,6 +27,10 @@ do_compile() {
+>  
+>  do_install() {
+>      cp ${WORKDIR}/Makefile ${S}
+> +    # Remove Wilink 7 version
+> +    rm ${S}/wl1271-nvs.bin
+> +    # Copy and use Wilink 6 version
+> +    cp ${WORKDIR}/wl1271-nvs.bin-wilink6 ${S}/wl1271-nvs.bin
+>      oe_runmake 'DEST_DIR=${D}' install
+>  }
+>  
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
