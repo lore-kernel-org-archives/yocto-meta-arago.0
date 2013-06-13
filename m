@@ -1,32 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D0FF752A62
+Return-Path: <paul.kovitz@welchallyn.com>
+Received: from na3sys009aog124.obsmtp.com (na3sys009aog124.obsmtp.com
+	[74.125.149.151])
+	by arago-project.org (Postfix) with ESMTPS id 13AC152A79
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Jun 2013 17:50:45 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5DHoiCD011228
-	for <meta-arago@arago-project.org>; Thu, 13 Jun 2013 12:50:44 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5DHoiE5008596
-	for <meta-arago@arago-project.org>; Thu, 13 Jun 2013 12:50:44 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 13 Jun 2013 12:50:44 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5DHoirO001308;
-	Thu, 13 Jun 2013 12:50:44 -0500
-Date: Thu, 13 Jun 2013 13:50:44 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20130613175043.GT3741@edge>
-References: <1370555268-22244-1-git-send-email-fcooper@ti.com>
-	<1370555268-22244-3-git-send-email-fcooper@ti.com>
-	<20130607184912.GE15158@edge>
+	Thu, 13 Jun 2013 18:36:52 +0000 (UTC)
+Received: from mail-pd0-f170.google.com ([209.85.192.170]) (using TLSv1) by
+	na3sys009aob124.postini.com ([74.125.148.12]) with SMTP
+	ID DSNKUboRQyMrXYaQq1SqM5HFaVqCmfTVTaJJ@postini.com;
+	Thu, 13 Jun 2013 11:36:52 PDT
+Received: by mail-pd0-f170.google.com with SMTP id x11so5836100pdj.1
+	for <meta-arago@arago-project.org>;
+	Thu, 13 Jun 2013 11:36:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=h1ETXhLe/j/3Ak6EHJiIw9VRxbx9KxhVwAkofRZ6BmA=;
+	b=V1uMXfLLsCOf4Y7W6ZXtkjxuyDQ8ohTVtMKYTTrPnAJ1ecwkDfW91ljvjtNpsTWQWe
+	Bz3QOAWgzSG6qaBWp/OQIogxXBsDD0l+cZG9pLTU6l8tlpjQppQykzt8hyDkU32GjNTZ
+	cyUAo3s3bshQrAuAITMEXa8N/fjZHqXyBylcbPWTVbu24zLAUuBFxRkOYvddoKR3wZye
+	1UPYSEqAYuD7FFSLzTtsmAwck+Yar39JNIemJzP1bQaXhtju7jmPB1OdzZbIfyJHtsh6
+	dQ6M3JNUZ92t9Q9b0qcSHySugg/Co5RT8xL9JWAj83JoYl/0OXzxj+lFb6ElqZgyHbx5
+	c4Ow==
+X-Received: by 10.68.251.234 with SMTP id zn10mr2014143pbc.188.1371148610403; 
+	Thu, 13 Jun 2013 11:36:50 -0700 (PDT)
+X-Received: by 10.68.251.234 with SMTP id zn10mr2014137pbc.188.1371148610291; 
+	Thu, 13 Jun 2013 11:36:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20130607184912.GE15158@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 3/3] wl12xx-firmware: Update to Wilink 6 version of wl1271-nvs.bin
+Received: by 10.68.47.8 with HTTP; Thu, 13 Jun 2013 11:36:10 -0700 (PDT)
+In-Reply-To: <20130613165457.GS3741@edge>
+References: <20130613165457.GS3741@edge>
+From: Paul Kovitz <paul.kovitz@welchallyn.com>
+Date: Thu, 13 Jun 2013 11:36:10 -0700
+Message-ID: <CA+edY+RB9HN0JsPJecU1MNO1-5biRUNFqiEW82_q+ztJDtXe7A@mail.gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+X-Gm-Message-State: ALoCoQmGXU9hQFIOMQJvNdkIjsB/kfF/q0WEbCB58JsfXOlYd0wE/3ikAyRbGf002orekeUrd9gCkAGcTCXdP0/VeDXZShcIsMlKYD2M9QhvA+sm+g7Ui0X2CQyOFI3TCAQ0avHKzJcq/Cf67kf2GDWyO7NMWS/OkSh8Cdkd1gN2gJjS7Aj0E+w=
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: Updated Core TI-SDK setup and build instructions
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,86 +49,95 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2013 17:50:46 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 13 Jun 2013 18:36:52 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e0969d9e03e04df0d69f8
 
-ping
+--047d7b2e0969d9e03e04df0d69f8
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, Jun 07, 2013 at 02:49:12PM -0400, Denys Dmytriyenko wrote:
-> On Thu, Jun 06, 2013 at 04:47:48PM -0500, Franklin S. Cooper Jr wrote:
-> > * The version of the wl1271-nvs.bin included in the current repository was meant
-> >   for Wilink 7 not Wilink 6.
-> > * This caused firmware errors which caused Wilink 6 not to work on any boards
-> >   that don't rerun a calibration script.
-> > * Use the Wilink 6 version of the nvs file to use a version supported by Wilink
-> >   6 so by default wireless will work.
-> 
-> Any chance to get this resolved in the upstream TI-OpenLink repository, 
-> instead of dumping a binary here in the metadata?
-> 
-> 
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../wl1271-nvs.bin-wilink6                         |  Bin 0 -> 912 bytes
-> >  .../wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb   |    7 ++++++-
-> >  2 files changed, 6 insertions(+), 1 deletions(-)
-> >  create mode 100644 meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6
-> > 
-> > diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6 b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware-r5.sp4.01/wl1271-nvs.bin-wilink6
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..bb6ff93e585cbc92e1270a3a01779d0614616441
-> > GIT binary patch
-> > literal 912
-> > zcmZR~4PgKR#zHU!VnP7pOvbNJCKJPte=uQe^tV53Y#dx%Jp6*9;?i;|3|b5Z4CV}W
-> > z3@!|Q4517$4Dk$!46zIm*tCv{0Yl)=-+%xA1ET;4n3$M|2ofe?Y>HMf1I=IpnZ(2j
-> > zl4oRO;AD{y;9&Uv{`q~70KYvdp8-uCq=w<mHwGSwAAcA)1U~#=;1U6gQAU(AHZaJ_
-> > qE2*h#O35p!s;Z00$|<O*2H*jpU|?bp6%`c}73GuDrOf&vrW*iCk}^R6
-> > 
-> > literal 0
-> > HcmV?d00001
-> > 
-> > diff --git a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-> > index 2232e1c..96b15e0 100644
-> > --- a/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-> > +++ b/meta-arago-extras/recipes-bsp/wl12xx-firmware/wl12xx-firmware_r5.sp4.01.bb
-> > @@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=ba590e1d103f891d0151609046aef9e8"
-> >  
-> >  PACKAGE_ARCH = "all"
-> >  
-> > -PR = "r3+gitr${SRCPV}"
-> > +PR = "r4+gitr${SRCPV}"
-> >  
-> >  # This recipe provides the latest firmware files for wl12xx.
-> >  # Therefore, use the contents of this recipe instead of the contents
-> > @@ -16,6 +16,7 @@ RPROVIDES_${PN}  = "linux-firmware-wl12xx"
-> >  SRCREV = "c8d6b8e6ddf81091e1b1c99ebfb6751cc62b2c63"
-> >  SRC_URI = "git://github.com/TI-OpenLink/ti-utils.git;protocol=git \
-> >             file://Makefile \
-> > +           file://wl1271-nvs.bin-wilink6 \
-> >            "
-> >  
-> >  S = "${WORKDIR}/git/hw/firmware"
-> > @@ -26,6 +27,10 @@ do_compile() {
-> >  
-> >  do_install() {
-> >      cp ${WORKDIR}/Makefile ${S}
-> > +    # Remove Wilink 7 version
-> > +    rm ${S}/wl1271-nvs.bin
-> > +    # Copy and use Wilink 6 version
-> > +    cp ${WORKDIR}/wl1271-nvs.bin-wilink6 ${S}/wl1271-nvs.bin
-> >      oe_runmake 'DEST_DIR=${D}' install
-> >  }
-> >  
-> > -- 
-> > 1.7.0.4
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Hi Denys.
+
+Overall, the wiki looks clear. I have some questions.
+
+The wiki does not address the SDK releases. I want to reproduce exactly
+amsdk-05.07.00.00. Do I use the arago 2011.09 toolchain or the linaro
+toolchain? Also, if I want to reproduce the amsdk-05.07.00.00 release when
+some recipes always get the latest from a git repo or a svn repo, is there
+a list of SRCREV overrides somewhere that I can put in my local.conf so I
+can be sure I build with the version that was tested and released rather
+than the latest version in the repo?
+
+Thanks.
+
+
+On Thu, Jun 13, 2013 at 9:54 AM, Denys Dmytriyenko <denys@ti.com> wrote:
+
+> All,
+>
+> Here are the updated instructions on how to setup your build environment
+> for
+> the Yocto Project and OpenEmbedded in order to build our Core TI-SDK images
+> out of "meta-ti" TI BSP layer and "meta-arago" Arago Project distribution:
+>
+> http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
+>
+> Please let me know of any comments, questions or feedback. Thanks.
+>
+> --
+> Denys
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
 
+--047d7b2e0969d9e03e04df0d69f8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Denys.=A0<div><br></div><div>Overall, the wiki looks cl=
+ear. I have some questions.</div><div><br></div><div>The wiki does not addr=
+ess the SDK releases. I want to reproduce exactly amsdk-05.07.00.00. Do I u=
+se the arago 2011.09 toolchain or the linaro toolchain? Also, if I want to =
+reproduce the amsdk-05.07.00.00 release when some recipes always get the la=
+test from a git repo or a svn repo, is there a list of SRCREV overrides som=
+ewhere that I can put in my local.conf so I can be sure I build with the ve=
+rsion that was tested and released rather than the latest version in the re=
+po?</div>
+
+
+<div><br></div><div>Thanks.</div><div class=3D"gmail_extra"><br><br><div cl=
+ass=3D"gmail_quote">On Thu, Jun 13, 2013 at 9:54 AM, Denys Dmytriyenko <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:denys@ti.com" target=3D"_blank">denys@t=
+i.com</a>&gt;</span> wrote:<br>
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">All,<br>
+<br>
+Here are the updated instructions on how to setup your build environment fo=
+r<br>
+the Yocto Project and OpenEmbedded in order to build our Core TI-SDK images=
+<br>
+out of &quot;meta-ti&quot; TI BSP layer and &quot;meta-arago&quot; Arago Pr=
+oject distribution:<br>
+<br>
+<a href=3D"http://arago-project.org/wiki/index.php/Setting_Up_Build_Environ=
+ment" target=3D"_blank">http://arago-project.org/wiki/index.php/Setting_Up_=
+Build_Environment</a><br>
+<br>
+Please let me know of any comments, questions or feedback. Thanks.<br>
+<span><font color=3D"#888888"><br>
+--<br>
+Denys<br>
+_______________________________________________<br>
+meta-arago mailing list<br>
+<a href=3D"mailto:meta-arago@arago-project.org" target=3D"_blank">meta-arag=
+o@arago-project.org</a><br>
+<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago" ta=
+rget=3D"_blank">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arag=
+o</a><br>
+</font></span></blockquote></div><br><br>
+</div></div>
+
+--047d7b2e0969d9e03e04df0d69f8--
