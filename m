@@ -1,28 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 19B5C529B4
+Return-Path: <paul.kovitz@welchallyn.com>
+Received: from na3sys009aog102.obsmtp.com (na3sys009aog102.obsmtp.com
+	[74.125.149.69])
+	by arago-project.org (Postfix) with ESMTPS id D75D952A65
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Jun 2013 05:45:53 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5E5jp5a001771
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2013 00:45:51 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5E5jpsk020578
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2013 00:45:51 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 14 Jun 2013 00:45:51 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5E5jp5g019061	for
-	<meta-arago@arago-project.org>; Fri, 14 Jun 2013 00:45:51 -0500
-Date: Fri, 14 Jun 2013 01:38:53 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1506419722.245.1371188334256.JavaMail.jenkins@puget>
+	Fri, 14 Jun 2013 16:28:03 +0000 (UTC)
+Received: from mail-pd0-f179.google.com ([209.85.192.179]) (using TLSv1) by
+	na3sys009aob102.postini.com ([74.125.148.12]) with SMTP
+	ID DSNKUbtEkcNyq9ne2UkaAd4P8ZUwxfoImugR@postini.com;
+	Fri, 14 Jun 2013 09:28:03 PDT
+Received: by mail-pd0-f179.google.com with SMTP id q10so728057pdj.24
+	for <meta-arago@arago-project.org>;
+	Fri, 14 Jun 2013 09:28:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=TmjPCl0PHtm4BR5KytFJXMGSk4MjjXJvJO7sASfEvPg=;
+	b=ETMN0oMrE4OOx1/Su6U6XJnpLs4PKtmuz3wBgNJJ7xu0Fy6vVTDypcFNRd7m0j5Nj1
+	7fW5CHW2AAq8Rs7bUCFzsDTiajhnr7/uzELqTQp77aSYlgIr/KH/lR6uGkLtZ6bI5imm
+	ecyG49HyCBI3KG/aV5XNBx2Lk/7+7Pr+YS6RgDkIAEIkXQbiUr7BKDJILc68NIFLNslU
+	9N2r71CIPMEE0xXWqVqAGktOSfof/+y25pAyDT4/vY84qL3K5DFRz3jSggs3Ue5SkJuM
+	5QF9BRs/ElRHahHqLOiKVAq/mqxf6OQnsg08FuSvhJvd9tMm0k4xKYUHEbg2xMXeZpue
+	YboA==
+X-Received: by 10.68.252.227 with SMTP id zv3mr3370643pbc.14.1371227281183;
+	Fri, 14 Jun 2013 09:28:01 -0700 (PDT)
+X-Received: by 10.68.252.227 with SMTP id zv3mr3370625pbc.14.1371227280981;
+	Fri, 14 Jun 2013 09:28:00 -0700 (PDT)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.05 build 2013-06-14_01-01-44
+Received: by 10.68.47.8 with HTTP; Fri, 14 Jun 2013 09:27:18 -0700 (PDT)
+In-Reply-To: <20130613190647.GW3741@edge>
+References: <20130613165457.GS3741@edge>
+	<CA+edY+RB9HN0JsPJecU1MNO1-5biRUNFqiEW82_q+ztJDtXe7A@mail.gmail.com>
+	<20130613190647.GW3741@edge>
+From: Paul Kovitz <paul.kovitz@welchallyn.com>
+Date: Fri, 14 Jun 2013 09:27:18 -0700
+Message-ID: <CA+edY+S1cuYX1c7XJU5K13mRUXcNu+XcL7KsEPFOTSCKA7kn0g@mail.gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+X-Gm-Message-State: ALoCoQnnVx8DNfBWhjYh4g5/3OEckaNs1VQcomWNWJvs9NjPqwaQtGBx+nX3hQOYZYQuK5GmoFmomPALnFlD3795/ZJLKzY1UTrJiBgdR1n55y5kxnnUjamIMOmnf63JB0O+zS5hjCrVfTaqIy7rBosW97JGoXX8uUaR4icllfLt4ehBHFLemP8=
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: Updated Core TI-SDK setup and build instructions
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,189 +51,90 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 05:45:54 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_244_1119421973.1371188334090"
+X-List-Received-Date: Fri, 14 Jun 2013 16:28:09 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e0a57fd54dd04df1fba6f
 
-------=_Part_244_1119421973.1371188334090
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--047d7b2e0a57fd54dd04df1fba6f
+Content-Type: text/plain; charset=ISO-8859-1
 
-<html>
-<head>
-<title>
-Status for 06/14/13
-</title>
-</head>
-<body>
+I see the metadata file revisions are locked down. Still I have questions.
 
-<h2>Status for 06/14/13</h2>
+I ran the oe-layertool-setup.sh script but still there are recipes, the
+ltp-ddt .bbappend files in
+sources/meta-arago/meta-arago-distro/recipes-devtools/ltp-ddt, that have
+SRCREV = "{AUTOREV}".
 
-<h2>BUILD_ID: build-2013-06-14_01-02-50</h2>
+I expected the automatically generated local.conf to contain something like
+SRCREV_pn-ltp-ddt = "70e324b8352e817485cc5e6865341c1a40118f78" (or some
+such SHA1) so I know I build the same ltp-ddt that was used to generate the
+SDK.
 
-<h2>Clean Build: false</h2>
+Did I miss a step? Is there a configuration file somewhere else I did not
+find? To get the sources for the bitbake metadata, I ran
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+git clone git://arago-project.org/git/projects/oe-layersetup.git amsdk
+cd amsdk
+/oe-layertool-setup.sh -f configs/amsdk/amsdk-05.07.00.00-config.txt
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
+Also, in meta-arago-extras/recipes-connectivity/wpa-supplicant/
+wpa-supplicant_r5.00.18.bb,
+meta-arago-extras/recipes-connectivity/wpa-supplicant/
+wpa-supplicant_r5.sp4.01.bb,
+meta-arago-extras/recipes-bsp/ti-compat-wireless/
+ti-compat-wireless-wl12xx_r5.sp4.01.bb and
+meta-arago-extras/recipes-connectivity/hostap/hostap-daemon_r5.00.18.bbthere
+are SRCREV = "git tag" instead of a SHA1. This makes it harder to
+make a local source mirror. Would it be possible in the future releases to
+use the SHA1 and have a comment explaining the tag?
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+Thanks for your help.
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.05"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
+--047d7b2e0a57fd54dd04df1fba6f
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-</body>
-</html>
+<div dir=3D"ltr"><div style><span style=3D"color:rgb(80,0,80)">I see the me=
+tadata file revisions are locked down.=A0</span><font color=3D"#500050">Sti=
+ll I have questions.=A0</font></div><div><font color=3D"#500050"><br></font=
+></div><div>
 
+<font color=3D"#500050">I ran the oe-layertool-setup.sh script but still th=
+ere are recipes, the ltp-ddt .bbappend files in sources/meta-arago/meta-ara=
+go-distro/recipes-devtools/ltp-ddt, that have SRCREV =3D &quot;{AUTOREV}&qu=
+ot;.</font></div>
 
-------=_Part_244_1119421973.1371188334090--
+<div><font color=3D"#500050"><br></font></div><div><font color=3D"#500050">=
+I expected the automatically generated local.conf to contain something like=
+ SRCREV_pn-ltp-ddt =3D &quot;70e324b8352e817485cc5e6865341c1a40118f78&quot;=
+ (or some such SHA1) so I know I build the same ltp-ddt that was used to ge=
+nerate the SDK.</font></div>
+
+<div><font color=3D"#500050"><br></font></div><div><font color=3D"#500050">=
+Did I miss a step? Is there a configuration file somewhere else I did not f=
+ind? To get the sources for the bitbake metadata, I ran</font></div><div><f=
+ont color=3D"#500050"><br>
+
+</font></div><div><font color=3D"#500050">git clone git://<a href=3D"http:/=
+/arago-project.org/git/projects/oe-layersetup.git">arago-project.org/git/pr=
+ojects/oe-layersetup.git</a> amsdk</font></div><div><font color=3D"#500050"=
+>cd amsdk</font></div>
+
+<div><font color=3D"#500050">/oe-layertool-setup.sh -f configs/amsdk/amsdk-=
+05.07.00.00-config.txt</font></div><div><font color=3D"#500050"><br></font>=
+</div><div><font color=3D"#500050">Also, in meta-arago-extras/recipes-conne=
+ctivity/wpa-supplicant/<a href=3D"http://wpa-supplicant_r5.00.18.bb">wpa-su=
+pplicant_r5.00.18.bb</a>, meta-arago-extras/recipes-connectivity/wpa-suppli=
+cant/<a href=3D"http://wpa-supplicant_r5.sp4.01.bb">wpa-supplicant_r5.sp4.0=
+1.bb</a>, meta-arago-extras/recipes-bsp/ti-compat-wireless/<a href=3D"http:=
+//ti-compat-wireless-wl12xx_r5.sp4.01.bb">ti-compat-wireless-wl12xx_r5.sp4.=
+01.bb</a> and meta-arago-extras/recipes-connectivity/hostap/<a href=3D"http=
+://hostap-daemon_r5.00.18.bb">hostap-daemon_r5.00.18.bb</a> there are SRCRE=
+V =3D &quot;git tag&quot; instead of a SHA1. This makes it harder to make a=
+ local source mirror. Would it be possible in the future releases to use th=
+e SHA1 and have a comment explaining the tag?</font></div>
+
+<div><font color=3D"#500050"><br></font></div><div style><font color=3D"#50=
+0050">Thanks for your help.</font></div><div class=3D"gmail_extra">
+</div></div>
+
+--047d7b2e0a57fd54dd04df1fba6f--
