@@ -1,28 +1,28 @@
 Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 6E8E152983
+	by arago-project.org (Postfix) with ESMTPS id 690F552995
 	for <meta-arago@arago-project.org>;
-	Mon, 24 Jun 2013 22:40:29 +0000 (UTC)
+	Tue, 25 Jun 2013 00:35:29 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5OMeSXe004743
-	for <meta-arago@arago-project.org>; Mon, 24 Jun 2013 17:40:28 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5OMeS93011809
-	for <meta-arago@arago-project.org>; Mon, 24 Jun 2013 17:40:28 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 24 Jun 2013 17:40:28 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5P0ZSf6013308
+	for <meta-arago@arago-project.org>; Mon, 24 Jun 2013 19:35:28 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5P0ZS2N002595
+	for <meta-arago@arago-project.org>; Mon, 24 Jun 2013 19:35:28 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 24 Jun 2013 19:35:28 -0500
 Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5OMeSFW009819	for
-	<meta-arago@arago-project.org>; Mon, 24 Jun 2013 17:40:28 -0500
-Date: Mon, 24 Jun 2013 18:33:15 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5P0ZSLn015611	for
+	<meta-arago@arago-project.org>; Mon, 24 Jun 2013 19:35:28 -0500
+Date: Mon, 24 Jun 2013 20:28:14 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <2116820318.289.1372113195027.JavaMail.jenkins@puget>
+Message-ID: <1101167946.291.1372120094661.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.06 build 2013-06-24_17-33-22
+Subject: [nightly] Core TISDK 2013.06 build 2013-06-24_20-12-34
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,11 +35,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 22:40:29 -0000
+X-List-Received-Date: Tue, 25 Jun 2013 00:35:29 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_288_1845681598.1372113195025"
+	boundary="----=_Part_290_139082726.1372120094660"
 
-------=_Part_288_1845681598.1372113195025
+------=_Part_290_139082726.1372120094660
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -53,7 +53,7 @@ Status for 06/24/13
 
 <h2>Status for 06/24/13</h2>
 
-<h2>BUILD_ID: build-2013-06-24_17-34-22</h2>
+<h2>BUILD_ID: build-2013-06-24_20-13-34</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -123,36 +123,6 @@ Status for 06/24/13
         <td bgcolor=lime>PASSED</td>
         <td bgcolor=red>FAILED</td>
     </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
 </table>
 
 <p>
@@ -168,7 +138,7 @@ The configuration file passed to this script had the contents:
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
 TISDK_VERSION="2013.06"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+MACHINES="am335x-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
@@ -220,4 +190,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_288_1845681598.1372113195025--
+------=_Part_290_139082726.1372120094660--
