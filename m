@@ -1,33 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 9CF5652A38
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 7389152990
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Jun 2013 13:56:46 +0000 (UTC)
+	Wed, 26 Jun 2013 15:11:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5QDukat003712
-	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 08:56:46 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5QDujN4013449
-	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 08:56:46 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 26 Jun 2013 08:56:45 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5QDujKL014816;
-	Wed, 26 Jun 2013 08:56:45 -0500
-Date: Wed, 26 Jun 2013 09:56:45 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20130626135645.GG27031@edge>
-References: <1372244597-11600-1-git-send-email-heroor@ti.com>
-	<1372244597-11600-2-git-send-email-heroor@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159617417@DLEE11.ent.ti.com>
-	<20130626134808.GD27031@edge>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5QFBvIv016996
+	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 10:11:57 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5QFBvj3014816
+	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 10:11:57 -0500
+Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 26 Jun 2013 10:11:57 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5QFBsFf032671;
+	Wed, 26 Jun 2013 10:11:55 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 26 Jun 2013 10:24:54 -0500
+Message-ID: <1372260299-3134-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-In-Reply-To: <20130626134808.GD27031@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] meta-arago-distro: recipes-kernel - Overlay Arago info
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/6] av-examples: Pull in updated commit to fix the CCS project file.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,91 +35,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 13:56:46 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 26 Jun 2013 15:11:58 -0000
+Content-Type: text/plain
 
-On Wed, Jun 26, 2013 at 09:48:08AM -0400, Denys Dmytriyenko wrote:
-> On Wed, Jun 26, 2013 at 12:53:51PM +0000, Maupin, Chase wrote:
-> > >-----Original Message-----
-> > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > >bounces@arago-project.org] On Behalf Of Heroor, Siddharth
-> > >Sent: Wednesday, June 26, 2013 6:03 AM
-> > >To: meta-arago@arago-project.org
-> > >Subject: [meta-arago] [PATCH 1/2] meta-arago-distro: recipes-
-> > >kernel - Overlay Arago info
-> > >
-> > >* Based of linux-ti-staging_3.8.bbappend
+* The CCS project file now contains symbols that the SDK installer will replace
+  with correct values when the SDK is installed.
+* This makes it easier to manage changes in the toolchain sdk structure.
 
-Now, reading this comment also makes me think that it could be the case of 
-mis-understanding how bbappend works...
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../av-examples/av-examples_1.0.bb                 |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
-The name of bbappend should match the name of the recipe that is being 
-altered. You cannot have a linux-ti-glsdk.bbappend trying to amend 
-linux-ti-staging.bb and you would have to provide your own linux-ti-glsdk.bb 
-recipe.
+diff --git a/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb b/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb
+index dec17a8..e797aa5 100644
+--- a/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb
+@@ -4,7 +4,7 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM := "file://COPYING;md5=80ea1ff5788f65d5c5b3206d50d4bc6c"
+ SECTION = "system"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ DEPENDS = "virtual/kernel"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -12,7 +12,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ COMPATIBLE_MACHINE = "(omap3)"
+ 
+ BRANCH ?= "master"
+-SRCREV = "87469a47bf91d681f15f0a2eb368fe695b21508c"
++SRCREV = "b67b11011a8a54a7598eed383f3a106c32b47c6d"
+ 
+ SRC_URI = "git://gitorious.org/av_examples/av_examples.git;protocol=git;branch=${BRANCH}"
+ 
+@@ -22,6 +22,7 @@ S = "${WORKDIR}/git"
+ INSANE_SKIP_${PN} = "True"
+ 
+ do_compile() {
++
+ 	touch debug
+ 	export CROSS_COMPILE=${TARGET_PREFIX}
+ 	export CFLAGS='${TARGET_CC_ARCH}'
+-- 
+1.7.0.4
 
-
-> > >Signed-off-by: Siddharth Heroor <heroor@ti.com>
-> > >cc: Mrinmayee Hingolikar <mrinmayee@ti.com>
-> > >---
-> > > .../linux/linux-ti-glsdk_3.8.bbappend              |   17
-> > >+++++++++++++++++
-> > > 1 files changed, 17 insertions(+), 0 deletions(-)
-> > > create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-
-> > >ti-glsdk_3.8.bbappend
-> > >
-> > >diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> > >glsdk_3.8.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-
-> > >ti-glsdk_3.8.bbappend
-> > >new file mode 100644
-> > >index 0000000..b20c63a
-> > >--- /dev/null
-> > >+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> > >glsdk_3.8.bbappend
-> > >@@ -0,0 +1,17 @@
-> > >+MACHINE_KERNEL_PR_append = "-arago6"
-> > 
-> > Maybe I'm missing something, but I didn't remember seeing the patch that 
-> > added linux-ti-glsdk recipe to be appended in the first place.
-> 
-> Correct, a dangling bbappend will break the build.
-> 
-> 
-> > Also, why start with arago6?
-> > 
-> > >+
-> > >+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-> > >+
-> > >+require copy-defconfig.inc
-> > >+
-> > >+KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV',
-> > >True).partition('+')[2][0:7]}"
-> > >+
-> > >+# The below lines are overlayed until the LOCALVERSION change is
-> > >merged into
-> > >+# the oe-core danny branch. Update: not coming to danny, keep
-> > >until dylan.
-> > >+kernel_do_configure_prepend() {
-> > >+    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
-> > >+    then
-> > >+        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
-> > >+        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
-> > >+    fi
-> > >+}
-> > >--
-> > >1.7.0.4
-> > >
-> > >_______________________________________________
-> > >meta-arago mailing list
-> > >meta-arago@arago-project.org
-> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
