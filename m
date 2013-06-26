@@ -1,29 +1,37 @@
-Return-Path: <a0875592@swubn01>
+Return-Path: <chase.maupin@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id EBC6952AAF
+	by arago-project.org (Postfix) with ESMTPS id 4545F52992
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Jun 2013 11:06:32 +0000 (UTC)
+	Wed, 26 Jun 2013 12:53:54 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5QB6WkA023059
-	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 06:06:32 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5QB6W2f031669
-	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 06:06:32 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 26 Jun 2013 06:06:31 -0500
-Received: from swubn01 (swubn01.india.ti.com [172.24.162.214])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5QB6VCT009195;
-	Wed, 26 Jun 2013 06:06:31 -0500
-Received: from a0875592 by swubn01 with local (Exim 4.71)	(envelope-from
-	<a0875592@swubn01>)	id 1UrnYU-00035Y-RC; Wed, 26 Jun 2013 16:36:30 +0530
-From: Siddharth Heroor <heroor@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 26 Jun 2013 16:36:29 +0530
-Message-ID: <1372244789-11835-1-git-send-email-heroor@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5QCrrXe000933
+	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 07:53:53 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5QCrr03032726
+	for <meta-arago@arago-project.org>; Wed, 26 Jun 2013 07:53:53 -0500
+Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Wed, 26 Jun 2013 07:53:52 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE74.ent.ti.com ([2002:9daa:aa08::9daa:aa08]) with mapi id
+	14.02.0342.003; Wed, 26 Jun 2013 07:53:52 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Heroor, Siddharth" <heroor@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 1/2] meta-arago-distro: recipes-kernel -
+	Overlay Arago info
+Thread-Index: AQHOclzLDGTThl/0ZkOxrD3xClEj7ZlH82PQ
+Date: Wed, 26 Jun 2013 12:53:51 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159617417@DLEE11.ent.ti.com>
+References: <1372244597-11600-1-git-send-email-heroor@ti.com>
+	<1372244597-11600-2-git-send-email-heroor@ti.com>
+In-Reply-To: <1372244597-11600-2-git-send-email-heroor@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: [PATCH oe-layersetup] configs: Update glsdk 6.01.00 to point to GLSDK staging trees
+Subject: Re: [PATCH 1/2] meta-arago-distro: recipes-kernel -	Overlay Arago info
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,32 +44,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 11:06:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 26 Jun 2013 12:53:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Siddharth Heroor <heroor@ti.com>
-cc: Mrinmayee Hingolikar <mrinmayee@ti.com>
----
- configs/glsdk/glsdk-06.01.00-config.txt |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Heroor, Siddharth
+>Sent: Wednesday, June 26, 2013 6:03 AM
+>To: meta-arago@arago-project.org
+>Subject: [meta-arago] [PATCH 1/2] meta-arago-distro: recipes-
+>kernel - Overlay Arago info
+>
+>* Based of linux-ti-staging_3.8.bbappend
+>
+>Signed-off-by: Siddharth Heroor <heroor@ti.com>
+>cc: Mrinmayee Hingolikar <mrinmayee@ti.com>
+>---
+> .../linux/linux-ti-glsdk_3.8.bbappend              |   17
+>+++++++++++++++++
+> 1 files changed, 17 insertions(+), 0 deletions(-)
+> create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-
+>ti-glsdk_3.8.bbappend
+>
+>diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-
+>glsdk_3.8.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-
+>ti-glsdk_3.8.bbappend
+>new file mode 100644
+>index 0000000..b20c63a
+>--- /dev/null
+>+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-
+>glsdk_3.8.bbappend
+>@@ -0,0 +1,17 @@
+>+MACHINE_KERNEL_PR_append =3D "-arago6"
 
-diff --git a/configs/glsdk/glsdk-06.01.00-config.txt b/configs/glsdk/glsdk-06.01.00-config.txt
-index 6159262..a4ada4c 100644
---- a/configs/glsdk/glsdk-06.01.00-config.txt
-+++ b/configs/glsdk/glsdk-06.01.00-config.txt
-@@ -2,9 +2,9 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
--meta-arago,git://arago-project.org/git/meta-arago.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-extras
-+meta-arago,git://git.ti.com/glsdk/meta-arago.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-extras
- meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers=toolchain-layer:meta-oe
--meta-ti,git://arago-project.org/git/meta-ti.git,danny,ti2013.04.02,layers=
-+meta-ti,git://git.ti.com/glsdk/meta-ti.git,danny,ti2013.04.02,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
- oe-core,git://git.openembedded.org/openembedded-core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
--- 
-1.7.0.4
+Maybe I'm missing something, but I didn't remember seeing the patch that ad=
+ded linux-ti-glsdk recipe to be appended in the first place.
 
+Also, why start with arago6?
+
+>+
+>+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${P}:"
+>+
+>+require copy-defconfig.inc
+>+
+>+KERNEL_LOCALVERSION =3D "-g${@d.getVar('SRCPV',
+>True).partition('+')[2][0:7]}"
+>+
+>+# The below lines are overlayed until the LOCALVERSION change is
+>merged into
+>+# the oe-core danny branch. Update: not coming to danny, keep
+>until dylan.
+>+kernel_do_configure_prepend() {
+>+    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
+>+    then
+>+        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
+>+        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
+>+    fi
+>+}
+>--
+>1.7.0.4
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
