@@ -1,31 +1,31 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id A66C752A61
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 01527529B0
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Jun 2013 13:38:03 +0000 (UTC)
+	Thu, 27 Jun 2013 14:26:12 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5RDc26o028379
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 08:38:02 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5RDc14O011080
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 08:38:02 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Thu, 27 Jun 2013 08:38:01 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
-Thread-Topic: [meta-arago] Help needed- error locating kernel headers
-Thread-Index: AQHOczuLHtqIqGqPa0aYVdwxzKFLfw==
-Date: Thu, 27 Jun 2013 13:38:01 +0000
-Message-ID: <E699D2B3-05F9-45CA-A348-0EB1CB92287D@ti.com>
-References: <CF956B779D819D41BBC043B7082161D543CF0A@DBDE04.ent.ti.com>
-In-Reply-To: <CF956B779D819D41BBC043B7082161D543CF0A@DBDE04.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5REQC4Z001542
+	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 09:26:12 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5REQBrq005692
+	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 09:26:12 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 27 Jun 2013 09:26:11 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5REQBL1005300;
+	Thu, 27 Jun 2013 09:26:11 -0500
+Date: Thu, 27 Jun 2013 10:26:10 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-ID: <20130627142610.GL28379@edge>
+References: <1372308234-6315-1-git-send-email-heroor@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015961B784@DLEE11.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015961B784@DLEE11.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: Help needed- error locating kernel headers
+Subject: Re: [PATCHv2 oe-layersetup] configs: Update glsdk 6.01.00	to point to GLSDK staging trees
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,139 +38,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 13:38:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E699D2B305F945CAA3480EB1CB92287Dticom_"
-
---_000_E699D2B305F945CAA3480EB1CB92287Dticom_
+X-List-Received-Date: Thu, 27 Jun 2013 14:26:13 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Does your recipe already "inherit module"?
+Any particular reason for hosting those trees on git.ti.com instead of 
+arago-project.org? When we were finalizing the policies for git.ti.com, the 
+agreement was to keep all the Arago-related repos on arago-project.org...
 
 
-On Jun 27, 2013, at 8:29 AM, "Hingolikar, Mrinmayee" <mrinmayee@ti.com<mail=
-to:mrinmayee@ti.com>> wrote:
+On Thu, Jun 27, 2013 at 12:05:40PM +0000, Maupin, Chase wrote:
+> Acked-by: Chase Maupin <chase.maupin@ti.com>
+> 
+> Thanks for changing the name.
+> 
+> >-----Original Message-----
+> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >bounces@arago-project.org] On Behalf Of Heroor, Siddharth
+> >Sent: Wednesday, June 26, 2013 11:44 PM
+> >To: meta-arago@arago-project.org
+> >Subject: [meta-arago] [PATCHv2 oe-layersetup] configs: Update
+> >glsdk 6.01.00 to point to GLSDK staging trees
+> >
+> >* Follow the AMSDK model of having staging trees to tag releases.
+> >* GLSDK meta-ti staging tree is hosted at
+> >  git://git.ti.com/glsdk/meta-ti-glsdk.git
+> >* GLSDK meta-arago staging tree is hosted at
+> >  git://git.ti.com/glsdk/meta-arago-glsdk.git
+> >
+> >Signed-off-by: Siddharth Heroor <heroor@ti.com>
+> >cc: Mrinmayee Hingolikar <mrinmayee@ti.com>
+> >---
+> > configs/glsdk/glsdk-06.01.00-config.txt |    4 ++--
+> > 1 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> >diff --git a/configs/glsdk/glsdk-06.01.00-config.txt
+> >b/configs/glsdk/glsdk-06.01.00-config.txt
+> >index 6159262..47915ad 100644
+> >--- a/configs/glsdk/glsdk-06.01.00-config.txt
+> >+++ b/configs/glsdk/glsdk-06.01.00-config.txt
+> >@@ -2,9 +2,9 @@
+> > # repo name,repo uri,repo branch,repo
+> >commit[,layers=layer1:layer2...:layern]
+> >
+> > bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
+> >-meta-arago,git://arago-project.org/git/meta-
+> >arago.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-
+> >extras
+> >+meta-arago,git://git.ti.com/glsdk/meta-arago-
+> >glsdk.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-
+> >extras
+> > meta-openembedded,git://git.openembedded.org/meta-
+> >openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers
+> >=toolchain-layer:meta-oe
+> >-meta-ti,git://arago-project.org/git/meta-
+> >ti.git,danny,ti2013.04.02,layers=
+> >+meta-ti,git://git.ti.com/glsdk/meta-ti-
+> >glsdk.git,danny,ti2013.04.02,layers=
+> > meta-linaro,git://git.linaro.org/openembedded/meta-
+> >linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
+> > oe-core,git://git.openembedded.org/openembedded-
+> >core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
+> > OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> >--
+> >1.7.0.4
+> >
+> >_______________________________________________
+> >meta-arago mailing list
+> >meta-arago@arago-project.org
+> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-Hi all,
-
-I am trying to create a recipe for a firmware that includes some of the ker=
-nel header files.
-I have these headers present in the sysroots directory, but still the build=
- fails saying unable to locate these header files.
-
-In the asocfw.inc file I have :
-EXTRA_OECONF +=3D "$(STAGING_KERNEL_DIR)"
-
-Any suggestions? I have attached the error log for more details.
-
-Regards,
-Mrinmayee
-
-<do_compile.log>
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
---_000_E699D2B305F945CAA3480EB1CB92287Dticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body dir=3D"auto">
-<div>Does your recipe already &quot;inherit module&quot;?</div>
-<div><br>
-</div>
-<div><br>
-On Jun 27, 2013, at 8:29 AM, &quot;Hingolikar, Mrinmayee&quot; &lt;<a href=
-=3D"mailto:mrinmayee@ti.com">mrinmayee@ti.com</a>&gt; wrote:<br>
-<br>
-</div>
-<blockquote type=3D"cite">
-<div>
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to create a recipe for a firmware that i=
-ncludes some of the kernel header files.
-<o:p></o:p></p>
-<p class=3D"MsoNormal">I have these headers present in the sysroots directo=
-ry, but still the build fails saying unable to locate these header files.<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">In the asocfw.inc file I have :<o:p></o:p></p>
-<p class=3D"MsoNormal">EXTRA_OECONF &#43;=3D &quot;$(STAGING_KERNEL_DIR)&qu=
-ot; <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any suggestions? I have attached the error log for m=
-ore details. &nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Mrinmayee<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</blockquote>
-<blockquote type=3D"cite">
-<div>&lt;do_compile.log&gt;</div>
-</blockquote>
-<blockquote type=3D"cite">
-<div><span>_______________________________________________</span><br>
-<span>meta-arago mailing list</span><br>
-<span><a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-proj=
-ect.org</a></span><br>
-<span><a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-ara=
-go">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a></span>=
-<br>
-</div>
-</blockquote>
-</body>
-</html>
-
---_000_E699D2B305F945CAA3480EB1CB92287Dticom_--
