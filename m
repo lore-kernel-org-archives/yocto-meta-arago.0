@@ -1,31 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 01527529B0
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 24EE7529B0
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Jun 2013 14:26:12 +0000 (UTC)
+	Thu, 27 Jun 2013 14:33:05 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5REQC4Z001542
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 09:26:12 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5REX4LZ008109
+	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 09:33:04 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5REQBrq005692
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 09:26:12 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5REX3qv015230
+	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 09:33:04 -0500
 Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 27 Jun 2013 09:26:11 -0500
+	Thu, 27 Jun 2013 09:33:03 -0500
 Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5REQBL1005300;
-	Thu, 27 Jun 2013 09:26:11 -0500
-Date: Thu, 27 Jun 2013 10:26:10 -0400
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5REX3fF007861;
+	Thu, 27 Jun 2013 09:33:03 -0500
+Date: Thu, 27 Jun 2013 10:33:03 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20130627142610.GL28379@edge>
-References: <1372308234-6315-1-git-send-email-heroor@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015961B784@DLEE11.ent.ti.com>
+To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
+Message-ID: <20130627143302.GM28379@edge>
+References: <CF956B779D819D41BBC043B7082161D543CF0A@DBDE04.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015961B784@DLEE11.ent.ti.com>
+In-Reply-To: <CF956B779D819D41BBC043B7082161D543CF0A@DBDE04.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv2 oe-layersetup] configs: Update glsdk 6.01.00	to point to GLSDK staging trees
+Subject: Re: Help needed- error locating kernel headers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,77 +37,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 14:26:13 -0000
+X-List-Received-Date: Thu, 27 Jun 2013 14:33:05 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Any particular reason for hosting those trees on git.ti.com instead of 
-arago-project.org? When we were finalizing the policies for git.ti.com, the 
-agreement was to keep all the Arago-related repos on arago-project.org...
+On Thu, Jun 27, 2013 at 01:28:46PM +0000, Hingolikar, Mrinmayee wrote:
+> Hi all,
+> 
+> I am trying to create a recipe for a firmware that includes some of the 
+> kernel header files.
+> I have these headers present in the sysroots directory, but still the build 
+> fails saying unable to locate these header files.
+> 
+> In the asocfw.inc file I have :
+> EXTRA_OECONF += "$(STAGING_KERNEL_DIR)"
+
+EXTRA_OECONF is a variable that is passed to ./configure script. You are just 
+adding a directory to that variable. Are you sure it will work if you do:
+
+./configure /some/path/here
 
 
-On Thu, Jun 27, 2013 at 12:05:40PM +0000, Maupin, Chase wrote:
-> Acked-by: Chase Maupin <chase.maupin@ti.com>
+In most cases you want EXTRA_OEMAKE = "KDIR=${STAGING_KERNEL_DIR}"
+
+And you'd definitely want to inherit module
+
+BTW, those are curly brackets, not parentheses...
+
+
+> Any suggestions? I have attached the error log for more details.
 > 
-> Thanks for changing the name.
+> Regards,
+> Mrinmayee
 > 
-> >-----Original Message-----
-> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >bounces@arago-project.org] On Behalf Of Heroor, Siddharth
-> >Sent: Wednesday, June 26, 2013 11:44 PM
-> >To: meta-arago@arago-project.org
-> >Subject: [meta-arago] [PATCHv2 oe-layersetup] configs: Update
-> >glsdk 6.01.00 to point to GLSDK staging trees
-> >
-> >* Follow the AMSDK model of having staging trees to tag releases.
-> >* GLSDK meta-ti staging tree is hosted at
-> >  git://git.ti.com/glsdk/meta-ti-glsdk.git
-> >* GLSDK meta-arago staging tree is hosted at
-> >  git://git.ti.com/glsdk/meta-arago-glsdk.git
-> >
-> >Signed-off-by: Siddharth Heroor <heroor@ti.com>
-> >cc: Mrinmayee Hingolikar <mrinmayee@ti.com>
-> >---
-> > configs/glsdk/glsdk-06.01.00-config.txt |    4 ++--
-> > 1 files changed, 2 insertions(+), 2 deletions(-)
-> >
-> >diff --git a/configs/glsdk/glsdk-06.01.00-config.txt
-> >b/configs/glsdk/glsdk-06.01.00-config.txt
-> >index 6159262..47915ad 100644
-> >--- a/configs/glsdk/glsdk-06.01.00-config.txt
-> >+++ b/configs/glsdk/glsdk-06.01.00-config.txt
-> >@@ -2,9 +2,9 @@
-> > # repo name,repo uri,repo branch,repo
-> >commit[,layers=layer1:layer2...:layern]
-> >
-> > bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
-> >-meta-arago,git://arago-project.org/git/meta-
-> >arago.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-
-> >extras
-> >+meta-arago,git://git.ti.com/glsdk/meta-arago-
-> >glsdk.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-
-> >extras
-> > meta-openembedded,git://git.openembedded.org/meta-
-> >openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers
-> >=toolchain-layer:meta-oe
-> >-meta-ti,git://arago-project.org/git/meta-
-> >ti.git,danny,ti2013.04.02,layers=
-> >+meta-ti,git://git.ti.com/glsdk/meta-ti-
-> >glsdk.git,danny,ti2013.04.02,layers=
-> > meta-linaro,git://git.linaro.org/openembedded/meta-
-> >linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
-> > oe-core,git://git.openembedded.org/openembedded-
-> >core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
-> > OECORELAYERCONF=./sample-files/bblayers.conf.sample
-> >--
-> >1.7.0.4
-> >
-> >_______________________________________________
-> >meta-arago mailing list
-> >meta-arago@arago-project.org
-> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
 
