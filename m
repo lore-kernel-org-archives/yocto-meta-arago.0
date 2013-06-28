@@ -1,32 +1,28 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 4FA7B52990
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 255C4529B0
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Jun 2013 15:56:52 +0000 (UTC)
+	Fri, 28 Jun 2013 06:11:48 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5RFupoP024483
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 10:56:51 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5RFuoXX031162
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2013 10:56:51 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Thu, 27 Jun 2013 10:56:50 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE74.ent.ti.com ([2002:9daa:aa08::9daa:aa08]) with mapi id
-	14.02.0342.003; Thu, 27 Jun 2013 10:56:50 -0500
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: Help needed: (Resend) Failures with nbench
-Thread-Index: Ac5zTqAGsmq7yumvSn+DwGPrXCkirw==
-Date: Thu, 27 Jun 2013 15:56:50 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49054936128@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5S6BlAs023614
+	for <meta-arago@arago-project.org>; Fri, 28 Jun 2013 01:11:47 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5S6BlJ1020138
+	for <meta-arago@arago-project.org>; Fri, 28 Jun 2013 01:11:47 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 28 Jun 2013 01:11:47 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r5S6BktV006361	for
+	<meta-arago@arago-project.org>; Fri, 28 Jun 2013 01:11:47 -0500
+Date: Fri, 28 Jun 2013 02:04:28 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <921109689.315.1372399468294.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Help needed: (Resend) Failures with nbench
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-06-28_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,276 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 15:56:52 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4F9216F96E5DF9428610502835A9F49054936128DLEE11entticom_"
+X-List-Received-Date: Fri, 28 Jun 2013 06:11:48 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_314_855623943.1372399468293"
 
---_000_4F9216F96E5DF9428610502835A9F49054936128DLEE11entticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_314_855623943.1372399468293
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello all,
-We are encountering the following error very often in our nightly builds. O=
-ther times it works fine.
-The reason seems to be due to the make process trying to compile before the=
- touch pointer.h succeeds.
-See highlighted text in red.
-Not sure if this is because of the -j 4.
-Anybody else have seen this issue.  Appreciate your comments and help in re=
-solving this issue.
-
-With regards,
-Sam
-
-NOTE: recipe nbench-byte-2.2.3-r0: task do_compile: Started
-ERROR: Function failed: do_compile (see /home/gtbldadm/yocto/mcsdk-3_00_00_=
-11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolchain/work/armv7=
-ahf-vfp-neon-oe-linux-gnueabi/nbench-byte-2.2.3-r0/temp/log.do_compile.2834=
-6 for further information)
-ERROR: Logfile of failure stored in: /home/gtbldadm/yocto/mcsdk-3_00_00_11/=
-oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolchain/work/armv7ahf=
--vfp-neon-oe-linux-gnueabi/nbench-byte-2.2.3-r0/temp/log.do_compile.28346
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| NOTE: make -j 4 -e MAKEFLAGS=3D
-| touch pointer.h ;
-| arm-linux-gnueabihf-gcc  -march=3Darmv7-a    -marm -mthumb-interwork -mfl=
-oat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15  -isystem/opt/linaro-2013.0=
-3/arm-linux-gnueabihf/include  -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 =
--pipe -g -feliminate-unused-debug-types  -L/opt/linaro-2013.03/arm-linux-gn=
-ueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl=
-,-O1 -Wl,--hash-style=3Dgnu --sysroot=3D/home/gtbldadm/yocto/mcsdk-3_00_00_=
-11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolchain/sysroots/k=
-eystone-evm  -DLINUX  -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/inclu=
-de  -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused=
--debug-types\
-|              -c misc.c
-| ./sysinfo.sh arm-linux-gnueabihf-gcc  -march=3Darmv7-a    -marm -mthumb-i=
-nterwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15  -isystem/opt/=
-linaro-2013.03/arm-linux-gnueabihf/include  -fstack-protector -D_FORTIFY_SO=
-URCE=3D1 -O2 -pipe -g -feliminate-unused-debug-types  -L/opt/linaro-2013.03=
-/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gnue=
-abihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu --sysroot=3D/home/gtbldadm/yocto/m=
-csdk-3_00_00_11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolcha=
-in/sysroots/keystone-evm  -DLINUX  -isystem/opt/linaro-2013.03/arm-linux-gn=
-ueabihf/include  -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feli=
-minate-unused-debug-types
-| ./sysinfo.sh arm-linux-gnueabihf-gcc  -march=3Darmv7-a    -marm -mthumb-i=
-nterwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15  -isystem/opt/=
-linaro-2013.03/arm-linux-gnueabihf/include  -fstack-protector -D_FORTIFY_SO=
-URCE=3D1 -O2 -pipe -g -feliminate-unused-debug-types  -L/opt/linaro-2013.03=
-/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gnue=
-abihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu --sysroot=3D/home/gtbldadm/yocto/m=
-csdk-3_00_00_11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolcha=
-in/sysroots/keystone-evm  -DLINUX  -isystem/opt/linaro-2013.03/arm-linux-gn=
-ueabihf/include  -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feli=
-minate-unused-debug-types
-| In file included from misc.h:36:0,
-|                  from misc.c:23:
-| nmglobal.h:29:21: fatal error: pointer.h: No such file or directory
-| compilation terminated.
-| make: *** [misc.o] Error 1
-| make: *** Waiting for unfinished jobs....
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (see /home/gtbldadm/yocto/mcsdk-3_00_0=
-0_11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolchain/work/arm=
-v7ahf-vfp-neon-oe-linux-gnueabi/nbench-byte-2.2.3-r0/temp/log.do_compile.28=
-346 for further information)
-NOTE: recipe nbench-byte-2.2.3-r0: task do_compile: Failed
-ERROR: Task 2812 (/home/gtbldadm/yocto/mcsdk-3_00_00_11/oe-layersetup-mcsdk=
-/sources/meta-openembedded/meta-oe/recipes-benchmark/nbench-byte/nbench-byt=
-e_2.2.3.bb, do_compile) failed with exit code '1'
-WARNING: QA Issue: syslog-ng: Files/directories were installed but not ship=
-ped
-
-
---_000_4F9216F96E5DF9428610502835A9F49054936128DLEE11entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<title>
+Status for 06/28/13
+</title>
 </head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello all,<o:p></o:p></p>
-<p class=3D"MsoNormal">We are encountering the following error very often i=
-n our nightly builds. Other times it works fine.<o:p></o:p></p>
-<p class=3D"MsoNormal">The reason seems to be due to the make process tryin=
-g to compile before the touch pointer.h succeeds.
-<o:p></o:p></p>
-<p class=3D"MsoNormal">See highlighted text in red.<o:p></o:p></p>
-<p class=3D"MsoNormal">Not sure if this is because of the &#8211;j 4. <o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">Anybody else have seen this issue.&nbsp; Appreciate =
-your comments and help in resolving this issue.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">With regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Sam<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">NOTE: recipe nbench-byte-2.2.3-r0: task do_compile: Starte=
-d<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ERROR: Function failed: do_compile (see /home/gtbldadm/yoc=
-to/mcsdk-3_00_00_11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-too=
-lchain/work/armv7ahf-vfp-neon-oe-linux-gnueabi/nbench-byte-2.2.3-r0/temp/lo=
-g.do_compile.28346
- for further information)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ERROR: Logfile of failure stored in: /home/gtbldadm/yocto/=
-mcsdk-3_00_00_11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-toolch=
-ain/work/armv7ahf-vfp-neon-oe-linux-gnueabi/nbench-byte-2.2.3-r0/temp/log.d=
-o_compile.28346<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Log data follows:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| DEBUG: Executing shell function do_compile<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| NOTE: make -j 4 -e MAKEFLAGS=3D<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:red">| touch pointer.h ;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| arm-linux-gnueabihf-gcc&nbsp; -march=3Darmv7-a&nbsp;&nbs=
-p;&nbsp; -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dc=
-ortex-a15&nbsp; -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbs=
-p; -fstack-protector
- -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused-debug-types&nbsp; -L=
-/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-201=
-3.03/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu --sysroot=3D/ho=
-me/gtbldadm/yocto/mcsdk-3_00_00_11/oe-layersetup-mcsdk/build/arago-tmp-exte=
-rnal-linaro-toolchain/sysroots/keystone-evm&nbsp;
- -DLINUX&nbsp; -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp=
-; -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused-d=
-ebug-types\<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; -c misc.c<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| ./sysinfo.sh arm-linux-gnueabihf-gcc&nbsp; -march=3Darmv=
-7-a&nbsp;&nbsp;&nbsp; -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dne=
-on -mtune=3Dcortex-a15&nbsp; -isystem/opt/linaro-2013.03/arm-linux-gnueabih=
-f/include&nbsp;
- -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused-de=
-bug-types&nbsp; -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-li=
-nk,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dg=
-nu --sysroot=3D/home/gtbldadm/yocto/mcsdk-3_00_00_11/oe-layersetup-mcsdk/bu=
-ild/arago-tmp-external-linaro-toolchain/sysroots/keystone-evm&nbsp;
- -DLINUX&nbsp; -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp=
-; -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused-d=
-ebug-types<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| ./sysinfo.sh arm-linux-gnueabihf-gcc&nbsp; -march=3Darmv=
-7-a&nbsp;&nbsp;&nbsp; -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dne=
-on -mtune=3Dcortex-a15&nbsp; -isystem/opt/linaro-2013.03/arm-linux-gnueabih=
-f/include&nbsp;
- -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused-de=
-bug-types&nbsp; -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-li=
-nk,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dg=
-nu --sysroot=3D/home/gtbldadm/yocto/mcsdk-3_00_00_11/oe-layersetup-mcsdk/bu=
-ild/arago-tmp-external-linaro-toolchain/sysroots/keystone-evm&nbsp;
- -DLINUX&nbsp; -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp=
-; -fstack-protector -D_FORTIFY_SOURCE=3D1 -O2 -pipe -g -feliminate-unused-d=
-ebug-types<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| In file included from misc.h:36:0,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from misc.c:23:<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:red">| nmglobal.h:29:21: fatal error: pointer.h: No s=
-uch file or directory<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| compilation terminated.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| make: *** [misc.o] Error 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| make: *** Waiting for unfinished jobs....<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| ERROR: oe_runmake failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| ERROR: Function failed: do_compile (see /home/gtbldadm/y=
-octo/mcsdk-3_00_00_11/oe-layersetup-mcsdk/build/arago-tmp-external-linaro-t=
-oolchain/work/armv7ahf-vfp-neon-oe-linux-gnueabi/nbench-byte-2.2.3-r0/temp/=
-log.do_compile.28346
- for further information)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">NOTE: recipe nbench-byte-2.2.3-r0: task do_compile: Failed=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ERROR: Task 2812 (/home/gtbldadm/yocto/mcsdk-3_00_00_11/oe=
--layersetup-mcsdk/sources/meta-openembedded/meta-oe/recipes-benchmark/nbenc=
-h-byte/nbench-byte_2.2.3.bb, do_compile) failed
- with exit code '1'<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">WARNING: QA Issue: syslog-ng: Files/directories were insta=
-lled but not shipped<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
+<body>
+
+<h2>Status for 06/28/13</h2>
+
+<h2>BUILD_ID: build-2013-06-28_01-02-45</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
 </body>
 </html>
 
---_000_4F9216F96E5DF9428610502835A9F49054936128DLEE11entticom_--
+
+------=_Part_314_855623943.1372399468293--
