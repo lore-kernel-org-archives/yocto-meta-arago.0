@@ -1,27 +1,32 @@
-Return-Path: <heroor@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id F38FE529EA
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 9C37C529F7
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Jul 2013 15:48:17 +0000 (UTC)
+	Mon,  1 Jul 2013 15:53:30 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61FmHpm007038
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:48:17 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61FmH6I013115
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:48:17 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 1 Jul 2013 10:48:16 -0500
-Received: from ti.com (swubn01.india.ti.com [172.24.162.214])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with SMTP id r61FmFf3018703;
-	Mon, 1 Jul 2013 10:48:16 -0500
-Date: Mon, 1 Jul 2013 21:18:14 +0530
-From: Siddharth Heroor <heroor@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20130701154814.GA1802@ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61FrTNM010803
+	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:53:29 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61FrTX9020420
+	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:53:29 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Mon, 1 Jul 2013 10:53:29 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Heroor, Siddharth" <heroor@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] branding-glsdk: update perferences
+Thread-Index: AQHOdnGyOuI+rU1jdk6TnrR/rLzQ9ZlP+Ufg
+Date: Mon, 1 Jul 2013 15:53:28 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015962BFBC@DLEE11.ent.ti.com>
+References: <20130701154259.GA1207@ti.com>
+In-Reply-To: <20130701154259.GA1207@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [PATCH 2/2] images: Add new arago-glsdk-console-image
+Subject: Re: [PATCH] branding-glsdk: update perferences
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,40 +39,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 15:48:18 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 01 Jul 2013 15:53:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Siddharth Heroor <heroor@ti.com>
-Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
----
- .../images/arago-glsdk-console-image.bb            |   16 ++++++++++++++++
- 1 files changed, 16 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb
+Acked-by: Chase Maupin <chase.maupin@ti.com>
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb b/meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb
-new file mode 100644
-index 0000000..8ce905c
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb
-@@ -0,0 +1,16 @@
-+# GLSDK console image
-+# gives you an image with basic media libraries
-+
-+require arago-image.inc
-+
-+COMPATIBLE_MACHINE = "(?!omap-a15)"
-+
-+# The size of the uncompressed ramdisk is 32MB
-+ROOTFS_SIZE = "32768"
-+
-+IMAGE_INSTALL += "\
-+    packagegroup-arago-base \
-+    packagegroup-arago-console \
-+    packagegroup-arago-glsdk-console \
-+    "
-+export IMAGE_BASENAME = "arago-glsdk-console-image"
--- 
-1.7.0.4
 
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Heroor, Siddharth
+>Sent: Monday, July 01, 2013 10:43 AM
+>To: meta-arago@arago-project.org
+>Subject: [meta-arago] [PATCH] branding-glsdk: update perferences
+>
+>* Set Preferred Provider for Bootloader to use the GLSDK
+>  U-Boot Staging tree.
+>* Set Preferred Provider for libgbm to use the GLSDK libgbm
+>  and set corresponding version to 9.0.0.
+>
+>Signed-off-by: Siddharth Heroor <heroor@ti.com>
+>---
+> .../conf/distro/include/branding-glsdk.inc         |    3 +++
+> 1 files changed, 3 insertions(+), 0 deletions(-)
+>
+>diff --git a/meta-arago-distro/conf/distro/include/branding-
+>glsdk.inc b/meta-arago-distro/conf/distro/include/branding-
+>glsdk.inc
+>index d1c30f3..2111d81 100644
+>--- a/meta-arago-distro/conf/distro/include/branding-glsdk.inc
+>+++ b/meta-arago-distro/conf/distro/include/branding-glsdk.inc
+>@@ -2,3 +2,6 @@
+>
+> # Use the SDK supported kernel and kernel version
+> PREFERRED_PROVIDER_virtual/kernel =3D "linux-ti-glsdk"
+>+PREFERRED_PROVIDER_virtual/bootloader =3D "u-boot-glsdk-staging"
+>+PREFERRED_PROVIDER_libgbm =3D "libgbm-glsdk"
+>+PREFERRED_VERSION_libgbm =3D "9.0.0"
+>--
+>1.7.0.4
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
