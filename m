@@ -1,35 +1,30 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 90DA2529F7
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 9A9EB529F7
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Jul 2013 15:54:25 +0000 (UTC)
+	Mon,  1 Jul 2013 15:55:47 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61FsO5V013031
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:54:24 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61FsOSY021811
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:54:24 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Mon, 1 Jul 2013 10:54:24 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE74.ent.ti.com ([2002:9daa:aa08::9daa:aa08]) with mapi id
-	14.02.0342.003; Mon, 1 Jul 2013 10:54:24 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] KMSCube: Add Demo 3D graphics application
-Thread-Index: AQHOdnH/5TCIGRTxr0y2WnJR/2gfMJlP+Yfw
-Date: Mon, 1 Jul 2013 15:54:23 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015962C011@DLEE11.ent.ti.com>
-References: <20130701154513.GA1540@ti.com>
-In-Reply-To: <20130701154513.GA1540@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61FtlMg011134
+	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:55:47 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61Ftkpp024350
+	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 10:55:47 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 1 Jul 2013 10:55:46 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r61Ftk4D029046;
+	Mon, 1 Jul 2013 10:55:46 -0500
+Date: Mon, 1 Jul 2013 11:55:46 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Siddharth Heroor <heroor@ti.com>
+Message-ID: <20130701155546.GB4588@edge>
+References: <20130701154259.GA1207@ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH] KMSCube: Add Demo 3D graphics application
+In-Reply-To: <20130701154259.GA1207@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] branding-glsdk: update perferences
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,74 +37,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 15:54:25 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 01 Jul 2013 15:55:47 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+On Mon, Jul 01, 2013 at 09:12:59PM +0530, Siddharth Heroor wrote:
+> * Set Preferred Provider for Bootloader to use the GLSDK
+>   U-Boot Staging tree.
+> * Set Preferred Provider for libgbm to use the GLSDK libgbm
+>   and set corresponding version to 9.0.0.
+> 
+> Signed-off-by: Siddharth Heroor <heroor@ti.com>
+> ---
+>  .../conf/distro/include/branding-glsdk.inc         |    3 +++
+>  1 files changed, 3 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-arago-distro/conf/distro/include/branding-glsdk.inc b/meta-arago-distro/conf/distro/include/branding-glsdk.inc
+> index d1c30f3..2111d81 100644
+> --- a/meta-arago-distro/conf/distro/include/branding-glsdk.inc
+> +++ b/meta-arago-distro/conf/distro/include/branding-glsdk.inc
+> @@ -2,3 +2,6 @@
+>  
+>  # Use the SDK supported kernel and kernel version
+>  PREFERRED_PROVIDER_virtual/kernel = "linux-ti-glsdk"
+> +PREFERRED_PROVIDER_virtual/bootloader = "u-boot-glsdk-staging"
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Hingolikar, Mrinmayee
->Sent: Monday, July 01, 2013 10:45 AM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH] KMSCube: Add Demo 3D graphics
->application
->
->* Showcases 3D graphics on SGX using kms and gbm
->
->Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
->Signed-off-by: Siddharth Heroor <heroor@ti.com>
->---
-> .../recipes-graphics/kmscube/kmscube.inc           |    8
->++++++++
-> .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |    7 +++++++
-> 2 files changed, 15 insertions(+), 0 deletions(-)
-> create mode 100644 meta-arago-extras/recipes-
->graphics/kmscube/kmscube.inc
-> create mode 100644 meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb
->
->diff --git a/meta-arago-extras/recipes-
->graphics/kmscube/kmscube.inc b/meta-arago-extras/recipes-
->graphics/kmscube/kmscube.inc
->new file mode 100644
->index 0000000..10a5b16
->--- /dev/null
->+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube.inc
->@@ -0,0 +1,8 @@
->+SUMMARY =3D "Demo application to showcase 3D graphics on SGX using
->kms and gbm"
->+HOMEPAGE =3D "http://git.ti.com"
->+LICENSE =3D "BSD"
->+LIC_FILES_CHKSUM =3D
->"file://kmscube.c;beginline=3D1;endline=3D23;md5=3D8b309d4ee67b7315ff738
->1270dd631fb"
->+
->+COMPATIBLE_MACHINE =3D "omap-a15"
->+
->+inherit autotools pkgconfig
->diff --git a/meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb
->new file mode 100644
->index 0000000..af1c50b
->--- /dev/null
->+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
->@@ -0,0 +1,7 @@
->+require kmscube.inc
->+
->+SRC_URI =3D "git://git.ti.com/glsdk/kmscube.git;protocol=3Dgit"
->+
->+S =3D "${WORKDIR}/git"
->+
->+SRCREV =3D "5a03757c0aa52eff44fb0d8ac0529f8cc18b1da0"
->--
->1.7.0.4
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+You'd also need to set PREFERRED_PROVIDER_u-boot for cases when u-boot is 
+requested directly by name - see machine configs in meta-ti.
+
+
+> +PREFERRED_PROVIDER_libgbm = "libgbm-glsdk"
+> +PREFERRED_VERSION_libgbm = "9.0.0"
+
+Since libgbm is still under review, it may delay accepting this patch as 
+well...
+
+
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
