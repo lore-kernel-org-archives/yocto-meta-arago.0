@@ -1,35 +1,30 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D391052A4D
+	by arago-project.org (Postfix) with ESMTPS id EC17D52A4D
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Jul 2013 16:00:49 +0000 (UTC)
+	Mon,  1 Jul 2013 16:00:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61G0n76011762
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 11:00:49 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61G0nAQ032657
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 11:00:49 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Mon, 1 Jul 2013 11:00:48 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE74.ent.ti.com ([2002:9daa:aa08::9daa:aa08]) with mapi id
-	14.02.0342.003; Mon, 1 Jul 2013 11:00:48 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Heroor, Siddharth" <heroor@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 0/2] Add arago-glsdk-console-image
-Thread-Index: AQHOdnJVRXXmRiV3rUqwXy76fuFKDJlP+q1g
-Date: Mon, 1 Jul 2013 16:00:47 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015962C0F4@DLEE11.ent.ti.com>
-References: <20130701154737.GA1753@ti.com>
-In-Reply-To: <20130701154737.GA1753@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61G0wf4011787
+	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 11:00:58 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61G0w59000365
+	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 11:00:58 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 1 Jul 2013 11:00:57 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r61G0vKW017541;
+	Mon, 1 Jul 2013 11:00:58 -0500
+Date: Mon, 1 Jul 2013 12:00:57 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Siddharth Heroor <heroor@ti.com>
+Message-ID: <20130701160057.GD4588@edge>
+References: <20130701154814.GA1802@ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/2] Add arago-glsdk-console-image
+In-Reply-To: <20130701154814.GA1802@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 2/2] images: Add new arago-glsdk-console-image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,42 +37,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 16:00:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 01 Jul 2013 16:00:59 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Heroor, Siddharth
->Sent: Monday, July 01, 2013 10:48 AM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH 0/2] Add arago-glsdk-console-image
->
->* Create a packagegroup and corresponding filesystem image.
->
->Siddharth Heroor (2):
->  packagegroups: Add new packagegroup for glsdk console
->  images: Add new arago-glsdk-console-image
->
-> .../images/arago-glsdk-console-image.bb            |   16
->+++++++++
-> .../packagegroup-arago-glsdk-console.bb            |   35
->++++++++++++++++++++
+On Mon, Jul 01, 2013 at 09:18:14PM +0530, Siddharth Heroor wrote:
+> Signed-off-by: Siddharth Heroor <heroor@ti.com>
+> Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
+> ---
+>  .../images/arago-glsdk-console-image.bb            |   16 ++++++++++++++++
+>  1 files changed, 16 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb
+> 
+> diff --git a/meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb b/meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb
+> new file mode 100644
+> index 0000000..8ce905c
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/images/arago-glsdk-console-image.bb
+> @@ -0,0 +1,16 @@
+> +# GLSDK console image
+> +# gives you an image with basic media libraries
 
-Why not base this from the arago-base-tisdk-image?  The main difference is =
-that this would add things in the packagegroup-arago-base-tisdk group as we=
-ll, but that also has many useful features as well as the "arago-gpl-notice=
-" package which the OSRB requires for shipping anything GPLv3.
+Why???
 
-> 2 files changed, 51 insertions(+), 0 deletions(-)
-> create mode 100644 meta-arago-distro/recipes-core/images/arago-
->glsdk-console-image.bb
-> create mode 100644 meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-glsdk-console.bb
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+> +require arago-image.inc
+> +
+> +COMPATIBLE_MACHINE = "(?!omap-a15)"
+
+I thought GLSDK was mainly OMAP5 and here you say it's NOT compatible with 
+omap-a15?
+
+
+> +
+> +# The size of the uncompressed ramdisk is 32MB
+> +ROOTFS_SIZE = "32768"
+> +
+> +IMAGE_INSTALL += "\
+> +    packagegroup-arago-base \
+> +    packagegroup-arago-console \
+> +    packagegroup-arago-glsdk-console \
+
+Again, no changes from the original image - no need to create a new one.
+
+
+> +export IMAGE_BASENAME = "arago-glsdk-console-image"
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
