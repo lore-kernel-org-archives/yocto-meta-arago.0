@@ -1,30 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id A17065298D
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTP id B847952990
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Jul 2013 16:09:14 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r61G9D4R003268
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 11:09:13 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r61G9D7n010931
-	for <meta-arago@arago-project.org>; Mon, 1 Jul 2013 11:09:13 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 1 Jul 2013 11:09:13 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r61G9D8b007579;
-	Mon, 1 Jul 2013 11:09:13 -0500
-Date: Mon, 1 Jul 2013 12:09:13 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Siddharth Heroor <heroor@ti.com>
-Message-ID: <20130701160912.GF4588@edge>
-References: <20130701154756.GA1772@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <20130701154756.GA1772@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/2] packagegroups: Add new packagegroup for glsdk console
+	Mon,  1 Jul 2013 16:30:55 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173015.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MP9001K3N6O4UC0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 01 Jul 2013 11:30:40 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 6474A200E2; Mon,
+	01 Jul 2013 12:30:24 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 01 Jul 2013 12:30:11 -0400
+Message-id: <1372696212-29133-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.2.1
+Subject: [PATCH 1/2] arago-test: define system test packagegroup and image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,77 +30,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 16:09:14 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 01 Jul 2013 16:30:56 -0000
 
-On Mon, Jul 01, 2013 at 09:17:57PM +0530, Siddharth Heroor wrote:
-> * GLSDK supports a virtual console using KMS and GBM. This
->   packagegroup builds on top of the arago-console packagegroup.
-> * For OMAP5, we append ABE firmware.
-> * KMSCube is used as demonstration application
+From: Carlos Hernandez <ceh@ti.com>
 
-So, what machines do you have in GLSDK? I thought those were all omap-a15 ones 
-(omap5-evm and dra7xx-evm).
+Signed-off-by: Carlos Hernandez <ceh@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/images/arago-test-image.bb         | 21 +++++++++++++++++++++
+ .../packagegroups/packagegroup-arago-test-addons.bb | 20 ++++++++++++++++++++
+ 2 files changed, 41 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-core/images/arago-test-image.bb
+ create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
 
-Can we just make those as machine-overrides in original packagegroup and image 
-recipes instead of creating new ones? Is there a use-case to have both 
-versions of console packagegroup/image - one with KMS/GBM and one w/o?
+diff --git a/meta-arago-distro/recipes-core/images/arago-test-image.bb b/meta-arago-distro/recipes-core/images/arago-test-image.bb
+new file mode 100644
+index 0000000..49e5a8d
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/arago-test-image.bb
+@@ -0,0 +1,21 @@
++# Arago System Test image
++# gives you test applications
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++
++require arago-image.inc
++
++COMPATIBLE_MACHINE = "omap3|dm365|omapl138|ti813x|ti814x|ti816x|omap4|ti33x"
++
++IMAGE_INSTALL += "\
++    packagegroup-arago-base \
++    packagegroup-arago-console \
++    packagegroup-arago-base-tisdk \
++    packagegroup-arago-tisdk-crypto \
++    packagegroup-arago-tisdk-multimedia \
++    packagegroup-arago-tisdk-addons \
++    packagegroup-arago-test \
++    packagegroup-arago-test-addons \
++    "
++
++export IMAGE_BASENAME = "arago-test-image"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+new file mode 100644
+index 0000000..3f44133
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+@@ -0,0 +1,20 @@
++DESCRIPTION = "Task to install additional utilities/demos for test image"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++PR = "r0"
++
++ALLOW_EMPTY = "1"
++
++inherit packagegroup
++
++TEST_ADDONS = " \
++    bridge-utils \
++    "
++
++TEST_ADDONS_TI = " \
++    "
++
++RDEPENDS_${PN} = "\
++    ${TEST_ADDONS} \
++    ${TEST_ADDONS_TI} \
++    "
+-- 
+1.8.2.1
 
-
-> Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
-> Signed-off-by: Siddharth Heroor <heroor@ti.com>
-> ---
->  .../packagegroup-arago-glsdk-console.bb            |   35 ++++++++++++++++++++
->  1 files changed, 35 insertions(+), 0 deletions(-)
->  create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-glsdk-console.bb
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-glsdk-console.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-glsdk-console.bb
-> new file mode 100644
-> index 0000000..da16db7
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-glsdk-console.bb
-> @@ -0,0 +1,35 @@
-> +DESCRIPTION = "Extended task to get more basic and console apps in GLSDK"
-> +LICENSE = "MIT"
-> +PR = "r1"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +inherit packagegroup
-> +
-> +ARAGO_GLSDK_CONSOLE = "\
-> +    libdrm \
-> +    libdrm-kms \
-> +    libgbm-glsdk \
-> +    cairo \
-> +    pixman \
-> +    expat \
-> +    omap5-sgx-ddk-um-linux \
-> +    omapdrm-pvr \
-> +    "
-> +
-> +ARAGO_GLSDK_CONSOLE_append_omap5-evm = "\
-> +    abefw \
-> +    "
-> +
-> +ARAGO_GLSDK_CONSOLE_DEMOS = "\
-> +    kmscube \
-> +    "
-> +
-> +RDEPENDS_${PN} = "\
-> +    ${ARAGO_GLSDK_CONSOLE} \
-> +    ${ARAGO_GLSDK_CONSOLE_DEMOS} \
-> +    "
-> +
-> +RRECOMMENDS_${PN} = "\
-> +    kernel-modules \
-> +    "
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
