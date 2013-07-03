@@ -1,35 +1,27 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 1728A52979
+Return-Path: <heroor@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id ABDF9529F7
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Jul 2013 18:46:15 +0000 (UTC)
+	Wed,  3 Jul 2013 05:31:24 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r62IkEAP008846
-	for <meta-arago@arago-project.org>; Tue, 2 Jul 2013 13:46:14 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r62IkEdW029103
-	for <meta-arago@arago-project.org>; Tue, 2 Jul 2013 13:46:14 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Tue, 2 Jul 2013 13:46:14 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [master & danny][PATCH 6/6]
-	packagegroup-arago-tisdk-addons: Only include parted utility	for
-	omap-a15
-Thread-Index: AQHOd0YCTGcwkEmpFUKV4rK0JtdSrZlRukjA
-Date: Tue, 2 Jul 2013 18:46:13 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101596305D9@DLEE11.ent.ti.com>
-References: <1372785354-1920-1-git-send-email-fcooper@ti.com>
-	<1372785354-1920-6-git-send-email-fcooper@ti.com>
-In-Reply-To: <1372785354-1920-6-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r635VIvj024964
+	for <meta-arago@arago-project.org>; Wed, 3 Jul 2013 00:31:18 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r635VIX5010526
+	for <meta-arago@arago-project.org>; Wed, 3 Jul 2013 00:31:18 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 3 Jul 2013 00:31:18 -0500
+Received: from ti.com (swubn01.india.ti.com [172.24.162.214])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with SMTP id r635VGQN007511;
+	Wed, 3 Jul 2013 00:31:17 -0500
+Date: Wed, 3 Jul 2013 11:01:16 +0530
+From: Siddharth Heroor <heroor@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20130703053116.GA8021@ti.com>
 MIME-Version: 1.0
-Subject: Re: [master & danny][PATCH 6/6]	packagegroup-arago-tisdk-addons: Only include parted utility	for omap-a15
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [PATCH oe-layersetup] configs: Lock down the GLSDK release 6.01.00.01
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,69 +34,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2013 18:46:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 03 Jul 2013 05:31:25 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+Signed-off-by: Siddharth Heroor <heroor@ti.com>
+---
+ configs/glsdk/glsdk-06.01.00-config.txt |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
->Sent: Tuesday, July 02, 2013 12:16 PM
->To: meta-arago@arago-project.org
->Cc: Cooper Jr., Franklin
->Subject: [meta-arago] [master & danny][PATCH 6/6] packagegroup-
->arago-tisdk-addons: Only include parted utility for omap-a15
->
->* As of right now only omap-a15 can utilize a tool like parted.
->* Only pull in parted for omap-a15.
->
->Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
->---
-> .../packagegroup-arago-tisdk-addons.bb             |    4 ++--
-> 1 files changed, 2 insertions(+), 2 deletions(-)
->
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-
->arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-
->addons.bb
->index 9efcb73..4537de1 100644
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-addons.bb
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-addons.bb
->@@ -1,6 +1,6 @@
-> DESCRIPTION =3D "Task to install additional utilities/demos for
->SDKs"
-> LICENSE =3D "MIT"
->-PR =3D "r8"
->+PR =3D "r9"
->
-> inherit packagegroup
->
->@@ -16,7 +16,6 @@ UTILS =3D " \
->     arm-benchmarks \
->     dropbear \
->     openssh-sftp-server \
->-    parted \
-> "
->
-> # Add PRU examples for am180x-evm devices
->@@ -24,6 +23,7 @@ UTILS_append_am180x-evm =3D " ti-pru-sw-examples"
->
-> UTILS_append_omap3 =3D " canutils"
-> UTILS_append_ti33x =3D " canutils"
->+UTILS_append_omap-a15 =3D "parted"
->
-> RDEPENDS_${PN} =3D "\
->     ${UTILS} \
->--
->1.7.0.4
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/configs/glsdk/glsdk-06.01.00-config.txt b/configs/glsdk/glsdk-06.01.00-config.txt
+index 149a8ae..5708106 100644
+--- a/configs/glsdk/glsdk-06.01.00-config.txt
++++ b/configs/glsdk/glsdk-06.01.00-config.txt
+@@ -2,9 +2,9 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
+-meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,master,ti2013.04.02,layers=meta-arago-distro:meta-arago-extras
++meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_01_00_01,layers=meta-arago-distro:meta-arago-extras
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers=toolchain-layer:meta-oe
+-meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,ti2013.04.02,layers=
++meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_01_00_01,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
+ oe-core,git://git.openembedded.org/openembedded-core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-- 
+1.7.0.4
+
 
