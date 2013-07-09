@@ -1,29 +1,29 @@
-Return-Path: <firat.kasmis@steinbeis-stg.de>
-Received: from smtprelay01.ispgateway.de (smtprelay01.ispgateway.de
-	[80.67.31.39])
-	by arago-project.org (Postfix) with ESMTPS id 3B9AC52AAD
+Return-Path: <a0132163@swubn01>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9BCA052AB1
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Jul 2013 08:58:27 +0000 (UTC)
-Received: from [10.128.0.3] (helo=exchange.df.eu)
-	by smtprelay01.ispgateway.de with esmtps (TLSv1:RC4-MD5:128)
-	(Exim 4.68) (envelope-from <firat.kasmis@steinbeis-stg.de>)
-	id 1UwTkf-0003eh-K5
-	for meta-arago@arago-project.org; Tue, 09 Jul 2013 10:58:25 +0200
-Received: from ECCR11PUBLIC.exchange.local ([10.128.2.94]) by
-	efe03.exchange.local ([10.128.0.3]) with mapi;
-	Tue, 9 Jul 2013 10:58:25 +0200
-From: Firat Kasmis <firat.kasmis@steinbeis-stg.de>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Date: Tue, 9 Jul 2013 10:58:50 +0200
-Thread-Topic: Building am180x-evm
-Thread-Index: Ac58gGugjsqCWaEDSlawSKScdfhEDg==
-Message-ID: <766D943268E37941B447D0C68B4D7048115BE280CA@ECCR11PUBLIC.exchange.local>
-Accept-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: de-DE
+	Tue,  9 Jul 2013 10:58:57 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r69AwuUb028337
+	for <meta-arago@arago-project.org>; Tue, 9 Jul 2013 05:58:56 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r69Awu5a007566
+	for <meta-arago@arago-project.org>; Tue, 9 Jul 2013 05:58:56 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 9 Jul 2013 05:58:55 -0500
+Received: from swubn01 (swubn01.india.ti.com [172.24.162.214])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r69Awt6S000772;
+	Tue, 9 Jul 2013 05:58:55 -0500
+Received: from a0132163 by swubn01 with local (Exim 4.71)	(envelope-from
+	<a0132163@swubn01>)	id 1UwVdH-0001dy-0E; Tue, 09 Jul 2013 16:28:55 +0530
+From: Mrinmayee Hingolikar <mrinmayee@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 9 Jul 2013 16:28:52 +0530
+Message-ID: <1373367532-6282-1-git-send-email-mrinmayee@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: Building am180x-evm
+Subject: [PATCHv3] KMSCube: Add Demo 3D graphics application
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,46 +36,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jul 2013 08:58:27 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 09 Jul 2013 10:58:58 -0000
+Content-Type: text/plain
 
-Hi,
+* Showcases 3D graphics on SGX using kms and gbm
 
-I just saw that http://arago-project.org/wiki/index.php/Setting_Up_Build_En=
-vironment has been changed, so I tried building a file system and kernel fo=
-r da850-omapl138-evm board like before following the new instructions.
+v2:
 
-Unfortunately this board is not available in meta-ti/conf/machine/ anymore.=
- Since am180x-evm is the same, I tried:
+* Added DEPENDS for libdrm, libgbm and omap-sgx userspace
+* INSANE_SKIP to avoid package dependencies
 
-> MACHINE=3Dam180x-evm bitbake virtual/kernel
-ERROR: No valid toolchain in PATH
+v3:
 
-Linaro is of course in my path. So after a bit of googling I tried:
+* Remove inc file as we have a version only .bb file. This
+  fixes the review comment received with v1.
 
-> export TOOLCHAIN_BRAND=3Dlinaro
-> MACHINE=3Dam180x-evm bitbake virtual/kernel
-Error, the PACKAGE_ARCHS variable does not contain TUNE_PKGARCH (armv5).Too=
-lchain tunings invalid:
-Tuning 'cortexa8thf-neon' has no defined features, and cannot be used.
+Signed-off-by: Siddharth Heroor <heroor@ti.com>
+Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
+---
+ .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |   18 ++++++++++++++++++
+ 1 files changed, 18 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
 
-I could solve the first one by doing in tune-arm926ejs.inc:
-
-+TUNE_FEATURES =3D "${TUNE_FEATURES_tune-armv5te} arm926ejs"
--TUNE_FEATURES_tune-arm926ejs =3D "${TUNE_FEATURES_tune-armv5te} arm926ejs"
-
-+PACKAGE_EXTRA_ARCHS =3D "${PACKAGE_EXTRA_ARCHS_tune-armv5te}"
--PACKAGE_EXTRA_ARCHS_tune-arm926ejs =3D "${PACKAGE_EXTRA_ARCHS_tune-armv5te=
-}"
-
-But the second one with 'cortexa8thf-neon' still exists but I don't know wh=
-ere it is exactly been set. toolchain-linaro/gcc.inc is using this as DEFAU=
-LTUNE . Shouldn't this be arm926ejs for my machine?
-
-Regards,
-Firat
-
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+new file mode 100644
+index 0000000..e18e398
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+@@ -0,0 +1,18 @@
++SUMMARY = "Demo application to showcase 3D graphics on SGX using kms and gbm"
++HOMEPAGE = "http://git.ti.com"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=8b309d4ee67b7315ff7381270dd631fb"
++
++DEPENDS = "libdrm libgbm-glsdk omap5-sgx-ddk-um-linux"
++
++COMPATIBLE_MACHINE = "omap-a15"
++
++inherit autotools pkgconfig
++
++SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
++
++S = "${WORKDIR}/git"
++
++SRCREV = "5a03757c0aa52eff44fb0d8ac0529f8cc18b1da0"
++
++INSANE_SKIP_kmscube += "dev-deps"
+-- 
+1.7.0.4
 
 
