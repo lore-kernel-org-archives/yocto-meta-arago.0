@@ -1,27 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id CC1F052A55
+Return-Path: <sam.nelson@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 5F79652AAD
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Jul 2013 15:05:24 +0000 (UTC)
+	Tue,  9 Jul 2013 15:30:36 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r69F5OTT011848
-	for <meta-arago@arago-project.org>; Tue, 9 Jul 2013 10:05:24 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r69F5NRY025492
-	for <meta-arago@arago-project.org>; Tue, 9 Jul 2013 10:05:24 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 9 Jul 2013 10:05:23 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r69F5NVK011220	for
-	<meta-arago@arago-project.org>; Tue, 9 Jul 2013 10:05:23 -0500
-Date: Tue, 9 Jul 2013 11:05:23 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20130709150523.GB14185@edge>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r69FUZDt029447
+	for <meta-arago@arago-project.org>; Tue, 9 Jul 2013 10:30:35 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r69FUZjH000658
+	for <meta-arago@arago-project.org>; Tue, 9 Jul 2013 10:30:35 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Tue, 9 Jul 2013 10:30:35 -0500
+From: "Nelson, Sam" <sam.nelson@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: Help needed: Devkit header files not upto date with kernel
+	headers
+Thread-Index: Ac58uM2PpIbXIOSeQbWrqZRCbpOZMQ==
+Date: Tue, 9 Jul 2013 15:30:35 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F49054937C49@DLEE11.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: Building am180x-evm
+Cc: "Karicheri, Muralidharan" <m-karicheri2@ti.com>, "Shilimkar,
+	Santosh" <santosh.shilimkar@ti.com>
+Subject: Help needed: Devkit header files not upto date with kernel headers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,87 +39,179 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jul 2013 15:05:25 -0000
+X-List-Received-Date: Tue, 09 Jul 2013 15:30:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4F9216F96E5DF9428610502835A9F49054937C49DLEE11entticom_"
+
+--_000_4F9216F96E5DF9428610502835A9F49054937C49DLEE11entticom_
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-FYI.
+Hello all,
+The header files under sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi does not=
+ match the same file from the kernel tree.
+For example
+Comparing the following 2 files, they are different.
+sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/linux/ethtool.h
+and
+sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/src/kernel/include/uapi/lin=
+ux/ethtool.h
 
-Date: Tue, 9 Jul 2013 11:03:28 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Firat Kasmis <firat.kasmis@steinbeis-stg.de>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [meta-arago] Building am180x-evm
+Looking into some details, the /usr/include/linux/ethtool.h, seems to come =
+from the libc package.
 
-On Tue, Jul 09, 2013 at 05:00:22PM +0200, Firat Kasmis wrote:
-> Thanks. It works now. Where do I get the information that am180x is not 
-> compatible with Linaro toolchain?
+Any ideas on what can be wrong in the recipes will be helpful.  Is there an=
+y way to update the user space header files to match the kernel header file=
+s?
 
-am180x is ARM9 (armv5te) and pre-built Linaro toolchain doesn't come with 
-armv5te runtime libraries, only Cortex*. We'll be updating the Wiki page to 
-have this mentioned.
-
-
-> Changes I made:
-> 1. Install arago-2011.09-armv5te-linux-gnueabi-sdk from 
-> http://software-dl.ti.com/sdoemb/sdoemb_public_sw/arago_toolchain/2011_09/index_FDS.html
-> 2. Add it to PATH
-> 3. export TOOLCHAIN_BRAND=arago
-
-That is correct. Thanks.
-
--- 
-Denys
+With regards,
+Sam
 
 
-> Von: Dmytriyenko, Denys [mailto:denys@ti.com]
-> Gesendet: Dienstag, 9. Juli 2013 14:39
-> An: meta-arago@arago-project.org; Firat Kasmis
-> Betreff: RE: [meta-arago] Building am180x-evm
-> 
-> am180x cannot be built with Linaro toolchain - it has still to be built with Arago toolchain.
-> 
-> 
-> Denys
-> 
-> 
-> -----Original Message-----
-> From: Firat Kasmis [firat.kasmis@steinbeis-stg.de]
-> Received: Tuesday, 09 Jul 2013, 4:58
-> To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org> [meta-arago@arago-project.org]
-> Subject: [meta-arago] Building am180x-evm
-> Hi,
-> 
-> I just saw that http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment has been changed, so I tried building a file system and kernel for da850-omapl138-evm board like before following the new instructions.
-> 
-> Unfortunately this board is not available in meta-ti/conf/machine/ anymore. Since am180x-evm is the same, I tried:
-> 
-> > MACHINE=am180x-evm bitbake virtual/kernel
-> ERROR: No valid toolchain in PATH
-> 
-> Linaro is of course in my path. So after a bit of googling I tried:
-> 
-> > export TOOLCHAIN_BRAND=linaro
-> > MACHINE=am180x-evm bitbake virtual/kernel
-> Error, the PACKAGE_ARCHS variable does not contain TUNE_PKGARCH (armv5).Toolchain tunings invalid:
-> Tuning 'cortexa8thf-neon' has no defined features, and cannot be used.
-> 
-> I could solve the first one by doing in tune-arm926ejs.inc:
-> 
-> +TUNE_FEATURES = "${TUNE_FEATURES_tune-armv5te} arm926ejs"
-> -TUNE_FEATURES_tune-arm926ejs = "${TUNE_FEATURES_tune-armv5te} arm926ejs"
-> 
-> +PACKAGE_EXTRA_ARCHS = "${PACKAGE_EXTRA_ARCHS_tune-armv5te}"
-> -PACKAGE_EXTRA_ARCHS_tune-arm926ejs = "${PACKAGE_EXTRA_ARCHS_tune-armv5te}"
-> 
-> But the second one with 'cortexa8thf-neon' still exists but I don't know where it is exactly been set. toolchain-linaro/gcc.inc is using this as DEFAULTUNE . Shouldn't this be arm926ejs for my machine?
-> 
-> Regards,
-> Firat
-> 
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
+--_000_4F9216F96E5DF9428610502835A9F49054937C49DLEE11entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:293948637;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-12052212 67698711 67698713 67698715 67698703 676987=
+13 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello all,<o:p></o:p></p>
+<p class=3D"MsoNormal">The header files under sysroots/armv7ahf-vfp-neon-oe=
+-linux-gnueabi does not match the same file from the kernel tree.<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">For example<o:p></o:p></p>
+<p class=3D"MsoNormal">Comparing the following 2 files, they are different.=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/incl=
+ude/linux/ethtool.h<o:p></o:p></p>
+<p class=3D"MsoNormal">and<o:p></o:p></p>
+<p class=3D"MsoNormal">sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/src/=
+kernel/include/uapi/linux/ethtool.h<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Looking into some details, the /usr/include/linux/et=
+htool.h, seems to come from the libc package.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any ideas on what can be wrong in the recipes will b=
+e helpful.&nbsp; Is there any way to update the user space header files to =
+match the kernel header files?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Sam<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_4F9216F96E5DF9428610502835A9F49054937C49DLEE11entticom_--
