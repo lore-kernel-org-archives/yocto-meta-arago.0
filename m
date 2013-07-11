@@ -1,36 +1,28 @@
-Return-Path: <heroor@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 324E252983
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 139DC52983
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Jul 2013 04:22:45 +0000 (UTC)
+	Thu, 11 Jul 2013 06:30:37 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6B4Mi1H030665
-	for <meta-arago@arago-project.org>; Wed, 10 Jul 2013 23:22:44 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6B4Mi6R021087
-	for <meta-arago@arago-project.org>; Wed, 10 Jul 2013 23:22:44 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 10 Jul 2013 23:22:44 -0500
-Received: from [172.24.81.136] (h81-136.vpn.ti.com [172.24.81.136])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6B4MfEe025542;
-	Wed, 10 Jul 2013 23:22:42 -0500
-Message-ID: <51DE3311.10604@ti.com>
-Date: Thu, 11 Jul 2013 09:52:41 +0530
-From: Siddharth Heroor <heroor@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6B6Uaxn022971
+	for <meta-arago@arago-project.org>; Thu, 11 Jul 2013 01:30:36 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6B6Ua5L005390
+	for <meta-arago@arago-project.org>; Thu, 11 Jul 2013 01:30:36 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 11 Jul 2013 01:30:35 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6B6UZgP004501	for
+	<meta-arago@arago-project.org>; Thu, 11 Jul 2013 01:30:35 -0500
+Date: Thu, 11 Jul 2013 02:22:56 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1315245165.367.1373523776625.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <8EAE6244CE843044A42356038645C8551573366C@DFLE12.ent.ti.com>
-	<8EAE6244CE843044A42356038645C85515733685@DFLE12.ent.ti.com>
-	<20130710163214.GA16407@edge> <51DE1710.1090305@ti.com>
-	<20130711025732.GA26533@denix.org> <51DE27D3.6090505@ti.com>
-	<20130711041101.GC18647@edge>
-In-Reply-To: <20130711041101.GC18647@edge>
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Senicic,
-	Djordje" <d-senicic1@ti.com>
-Subject: Re: Compiling gcc for A15 in Yocto
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-07-11_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,101 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jul 2013 04:22:45 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Thu, 11 Jul 2013 06:30:38 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_366_1286754065.1373523776624"
+
+------=_Part_366_1286754065.1373523776624
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 7/11/2013 9:41 AM, Denys Dmytriyenko wrote:
-> On Thu, Jul 11, 2013 at 09:04:43AM +0530, Siddharth Heroor wrote:
->> On 7/11/2013 8:27 AM, Denys Dmytriyenko wrote:
->>> On Thu, Jul 11, 2013 at 07:53:12AM +0530, Siddharth Heroor wrote:
->>>> On 7/10/2013 10:02 PM, Denys Dmytriyenko wrote:
->>>>> On Wed, Jul 10, 2013 at 03:52:47PM +0000, Saran, Sajesh Kumar wrote:
->>>>>> I am not clear in last e-mail.
->>>>>>
->>>>>> We are trying to compile gcc for ARM in an X86 Ubuntu machine.
->>>>>
->>>>> Sajesh,
->>>>>
->>>>> If you use recent recipes in Yocto to build gcc from sources, it doesn't use 
->>>>> any git or svn repositories any more, but downloads a release tarball. I've 
->>>>> done it before and there's an easy way to enable it in Arago - just set 
->>>>> TOOLCHAIN_TYPE=internal
->>>>>
->>>>
->>>> Slightly related question. Is it possible to get tools-sdk as a
->>>> IMAGE_FEATURE? I haven't been able to do that successfully. We use the
->>>> Linaro 4.7 as an external toolchain, but having tools-sdk with
->>>> gcc-linaro-4.7 as the compiler running on the target is very useful.
->>>
->>> Linaro toolchain is a cross-compiler and we use pre-built binaries that are to 
->>> be run on x86 to generate code for ARM. It won't be possible to run it on the 
->>> target (ARM). You'd need to compile the toolchain from sources for ARM. That 
->>> is what Sajesh and Djordje were asking for - to be able to build gcc for the 
->>> target from sources...
->>
->> I was looking at meta-linaro/recipes-devtools/gcc. The gcc-linaro*
->> recipes should allow building the compiler from source with SRC_URI set
->> to something like
->> https://launchpad.net/gcc-linaro/4.7/4.7-${RELEASE}/+download/gcc-${PV}-${RELEASE}.tar.bz2.
->>
->>
->> I want to use the prebuilt cross-compiler to generate an image which has
->> gcc-linaro-4.7 and corresponding tools-sdk features (i.e autotools,
->> pkgconfig etc..). That means it downloads the linaro toolchain source
->> and builds it to run _on the target_.
-> 
-> Correct, that's exactly what I was trying to say :)
-> 
-> 
->> Right now, bitbake -s | grep gcc gives
->>
->> gcc                                       :4.5-r49+svnr184907
->> gcc-cross                                 :4.5-r49+svnr184907
->> gcc-cross-canadian-arm                    :4.5-r49+svnr184907
->> gcc-cross-initial                         :4.5-r49+svnr184907
->> gcc-cross-intermediate                    :4.5-r49+svnr184907
->> gcc-crosssdk                              :4.5-r49+svnr184907
->>      :4.7.2-r13
->> gcc-crosssdk-initial                      :4.5-r49+svnr184907
->>      :4.7.2-r13
->> gcc-crosssdk-intermediate                 :4.5-r49+svnr184907
->> gcc-runtime                               :4.5-r49+svnr184907
->> gccmakedep                                         1:1.0.2-r3
->> libgcc                                    :4.5-r49+svnr184907
->> nativesdk-gcc-runtime                     :4.5-r49+svnr184907
->>      :4.7.2-r13
->> nativesdk-libgcc                          :4.5-r49+svnr184907
->>      :4.7.2-r13
->>
->> I'm wondering what's the way to override these values (not touching
->> TOOLCHAIN_EXTERNAL) to allow gcc-linaro-4.7 to be picked up. The
->> prebuilt toolchain would then build gcc-linaro-4.7 and then add it to
->> the image.
-> 
-> First of all, if you are seeing all 4.5 versions selected by default, you are 
-> probably using Arago as a cross toolchain - check your TOOLCHAIN_BRAND.
-> 
-> Second, to use Linaro gcc compiled from sources, you need to set bunch of 
-> PREFERRED_VERSION variables, easily done like this:
-> 
-> GCCVERSION = "linaro-4.7%"
+<html>
+<head>
+<title>
+Status for 07/11/13
+</title>
+</head>
+<body>
 
-Cool. I'll try that.
+<h2>Status for 07/11/13</h2>
 
-> 
-> 
->> The rationale is that Cortex A15 devices (like OMAP5/DRA7xx and
->> Keystone2) are pretty fast. For an individual linux developer, having a
->> toolchain on the image, makes it trivial to develop software - by
->> eliminating cross-compiling.
-> 
-> Understood and that's what Keystone guys are doing already.
-> 
+<h2>BUILD_ID: build-2013-07-11_01-02-44</h2>
 
-Looks like we think alike already ;-)
+<h2>Clean Build: false</h2>
 
---
-Sid
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_366_1286754065.1373523776624--
