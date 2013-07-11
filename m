@@ -1,28 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 44DAE52A6A
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 865D452A6A
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Jul 2013 20:05:29 +0000 (UTC)
+	Thu, 11 Jul 2013 20:05:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6BK5SYU008485
-	for <meta-arago@arago-project.org>; Thu, 11 Jul 2013 15:05:28 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6BK5SYT023296
-	for <meta-arago@arago-project.org>; Thu, 11 Jul 2013 15:05:28 -0500
-Received: from dlelxv24.itg.ti.com (172.17.1.199) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 11 Jul 2013 15:05:28 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6BK5UIi008011
+	for <meta-arago@arago-project.org>; Thu, 11 Jul 2013 15:05:30 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6BK5UwZ023348
+	for <meta-arago@arago-project.org>; Thu, 11 Jul 2013 15:05:30 -0500
+Received: from dlelxv24.itg.ti.com (172.17.1.199) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 11 Jul 2013 15:05:30 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv24.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6BK5O0I012445;
-	Thu, 11 Jul 2013 15:05:26 -0500
+	dlelxv24.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6BK5O0J012445;
+	Thu, 11 Jul 2013 15:05:29 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 11 Jul 2013 15:23:26 -0500
-Message-ID: <1373574210-4398-1-git-send-email-fcooper@ti.com>
+Date: Thu, 11 Jul 2013 15:23:27 -0500
+Message-ID: <1373574210-4398-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1373574210-4398-1-git-send-email-fcooper@ti.com>
+References: <1373574210-4398-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [master & danny][PATCH 1/5] ti-tisdk-setup: Add Beaglebone Black support
+Subject: [master & danny][PATCH 2/5] matrix-gui-apps-git: Update crypto .desktop to correct description page path
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,31 +37,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jul 2013 20:05:29 -0000
+X-List-Received-Date: Thu, 11 Jul 2013 20:05:31 -0000
 Content-Type: text/plain
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
+ .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index f5b9060..280e58c 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index a6004c8..8e8d6e8 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
--PR = "r13"
-+PR = "r14"
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "c3ffe73dbbc911742ef87217a060cac1d119c531"
++SRCREV = "51fcfea807159c36298c886ed95e48dd12e491a3"
+ BRANCH = "master"
+-INC_PR = "r14"
++INC_PR = "r15"
  
- BRANCH ?= "master"
--SRCREV = "49833f742ec151108e7f8a75eab99d5e4433f7eb"
-+SRCREV = "5d2d712607d5bba1d15f199bb7b185d963a23d1e"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.7.0.4
 
