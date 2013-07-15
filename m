@@ -1,28 +1,39 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 65C7952090
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by arago-project.org (Postfix) with ESMTPS id E3A395299C
 	for <meta-arago@arago-project.org>;
-	Sun, 14 Jul 2013 06:03:12 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6E63BDC010471
-	for <meta-arago@arago-project.org>; Sun, 14 Jul 2013 01:03:11 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6E63Bs6026966
-	for <meta-arago@arago-project.org>; Sun, 14 Jul 2013 01:03:11 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Sun, 14 Jul 2013 01:03:11 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6E63BMj029982	for
-	<meta-arago@arago-project.org>; Sun, 14 Jul 2013 01:03:11 -0500
-Date: Sun, 14 Jul 2013 01:55:27 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <760294879.379.1373781327450.JavaMail.jenkins@puget>
+	Mon, 15 Jul 2013 05:21:28 +0000 (UTC)
+Received: by mail-pb0-f48.google.com with SMTP id ma3so10765554pbc.7
+	for <meta-arago@arago-project.org>;
+	Sun, 14 Jul 2013 22:21:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=wXzBzi6DnXnlWHo4EgD8FSTZzzoMmtQPlWUvkSbB/EA=;
+	b=zfafw9eyitCS3DJ+qbpNbJp+w5Chtp6XxeF+r8hc/b3IYh7Oz9bX8XQk8Ap1Cm15/3
+	Dm5wP6tw4vmqX+tH+WaYy2pSviHxBD63JK67ob3TgAaO6ezkoCxRaYfSf64jdpPJ7NN7
+	tLzrChfVJuDd61kMAHRBKEziMOIa+Pq2VqF2IRai5hLBKc9xl1QqLy6cuzpybVdwNHWL
+	N3UOeMInq3vv3C6Slniy/NZTv8DPWmu/iLcwczhO78sgc1QYaEFbZ9IoYks1l1ST03Xa
+	Rl4AkEMVncHpLRJnuX9LvzGZKKavnfYG995pBxsiR8wPf6w4SzEt2pRXTz+vulNjV920
+	VFZw==
+X-Received: by 10.68.176.132 with SMTP id ci4mr19114077pbc.7.1373865687078;
+	Sun, 14 Jul 2013 22:21:27 -0700 (PDT)
+Received: from [0.0.0.0] ([210.48.94.225]) by mx.google.com with ESMTPSA id
+	at1sm58736239pbc.10.2013.07.14.22.21.24
+	for <meta-arago@arago-project.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sun, 14 Jul 2013 22:21:26 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <51E386CF.9030704@gna.org>
+Date: Mon, 15 Jul 2013 17:21:19 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.06 build 2013-07-14_01-01-44
+To: meta-arago@arago-project.org
+Subject: [arago/yocto-1.3] crda and python-m2crypto
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,189 +46,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Jul 2013 06:03:12 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_378_875546989.1373781327448"
-
-------=_Part_378_875546989.1373781327448
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Mon, 15 Jul 2013 05:21:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html>
-<head>
-<title>
-Status for 07/14/13
-</title>
-</head>
-<body>
+Hi,
 
-<h2>Status for 07/14/13</h2>
+While building an image with arago-stable/yocto-1.3, I encountered an error:
+DEBUG: Executing shell function do_compile
+NOTE: make -j 8 MAKEFLAGS= all_noverify
+   GEN  keys-gcrypt.c
+   CC   crda.o
+   CC   intersect.o
+   Trusted pubkeys: pubkeys/linville.key.pub.pem
+   CC   print-regdom.o
+   CC   regdbdump.o
+ERROR: Failed to import the "M2Crypto" module: No module named M2Crypto
+Please install the "M2Crypto" Python module.
+On Debian GNU/Linux the package is called "python-m2crypto".
+make: *** [keys-gcrypt.c] Error 1
+make: *** Waiting for unfinished jobs....
+ERROR: oe_runmake failed
+ERROR: Function failed: do_compile (see 
+/home/christiaga/projects/yocto/arago/build/arago-tmp-external-linaro-toolchain/work\
+/armv7ahf-vfp-neon-oe-linux-gnueabi/crda-1.1.1-r0/temp/log.do_compile.15753 
+for further information)
 
-<h2>BUILD_ID: build-2013-07-14_01-02-45</h2>
+Basically crda doesn't build because it needs python-m2crypto, i've 
+installed it via apt-get and everything was fine then.
+This is not documented in [1], [2] nor in [3].
 
-<h2>Clean Build: false</h2>
+After digging a bit I found that the CRDA recipe comes from 
+arago-distro-extras, but it can be found in 
+meta-openembedded/meta-networking (on master, not on danny branch) as 
+well. Looking at [4], it seems this version would have this dependency 
+built by bitbake (python-m2crypto-native), again python-m2crypto-native 
+is available only on master, not on danny.
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+Do you want me to open a bug report somewhere?
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-</table>
+Regards,
+Chris
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+[1] 
+http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-project-qs.html
+[2] 
+http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment#Host_tools
+[3] http://www.openembedded.org/wiki/Getting_started
+[4]
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.06"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_378_875546989.1373781327448--
