@@ -1,34 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id F05B152A07
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 476A952A07
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jul 2013 13:01:12 +0000 (UTC)
+	Tue, 16 Jul 2013 13:01:30 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GD1Ca5011211
-	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:01:12 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GD1CNJ010125
-	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:01:12 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GD1T1M015922
+	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:01:29 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GD1TBZ010715
+	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:01:29 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Tue, 16 Jul 2013 08:01:12 -0500
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Tue, 16 Jul 2013 08:01:29 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [master & danny][PATCH 3/5] board-port-labs: Pull
-	in	updated board-port-labs for SDK 6.0
-Thread-Index: AQHOfnIEm/ZGG+iK4UWpLvqvVwuEBJlnTCug
-Date: Tue, 16 Jul 2013 13:01:11 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015965776D@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [master & danny][PATCH 4/5] matrix-gui-apps-git:
+	Pull	in updated clock demo
+Thread-Index: AQHOfnIGuHxN2QDqxkaZrjRQ5Znw2plnTEBQ
+Date: Tue, 16 Jul 2013 13:01:29 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159657781@DLEE11.ent.ti.com>
 References: <1373574210-4398-1-git-send-email-fcooper@ti.com>
-	<1373574210-4398-3-git-send-email-fcooper@ti.com>
-In-Reply-To: <1373574210-4398-3-git-send-email-fcooper@ti.com>
+	<1373574210-4398-4-git-send-email-fcooper@ti.com>
+In-Reply-To: <1373574210-4398-4-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [master & danny][PATCH 3/5] board-port-labs: Pull in	updated board-port-labs for SDK 6.0
+Subject: Re: [master & danny][PATCH 4/5] matrix-gui-apps-git: Pull	in updated clock demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 13:01:13 -0000
+X-List-Received-Date: Tue, 16 Jul 2013 13:01:30 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
@@ -54,33 +54,38 @@ Acked-by: Chase Maupin <chase.maupin@ti.com>
 >Sent: Thursday, July 11, 2013 3:23 PM
 >To: meta-arago@arago-project.org
 >Cc: Cooper Jr., Franklin
->Subject: [meta-arago] [master & danny][PATCH 3/5] board-port-labs:
->Pull in updated board-port-labs for SDK 6.0
+>Subject: [meta-arago] [master & danny][PATCH 4/5] matrix-gui-apps-
+>git: Pull in updated clock demo
+>
+>* Update output of demo to prevent unnecessary vertical scrolling
 >
 >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 >---
-> .../board-port-labs/board-port-labs_git.bb         |    2 +-
-> 1 files changed, 1 insertions(+), 1 deletions(-)
+> .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+> 1 files changed, 2 insertions(+), 2 deletions(-)
 >
->diff --git a/meta-arago-distro/recipes-tisdk/board-port-
->labs/board-port-labs_git.bb b/meta-arago-distro/recipes-
->tisdk/board-port-labs/board-port-labs_git.bb
->index 82a4fd7..b7f7d29 100644
->--- a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-
->labs_git.bb
->+++ b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-
->labs_git.bb
->@@ -11,7 +11,7 @@ inherit allarch
-> CREATE_SRCIPK =3D "1"
-> SRCIPK_INSTALL_DIR =3D "board-support/board-port-labs"
+>diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-
+>apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-
+>apps-git.inc
+>index 8e8d6e8..0c639e9 100644
+>--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-
+>git.inc
+>+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-
+>git.inc
+>@@ -4,9 +4,9 @@ LICENSE_CHECKSUM =3D
+>"LICENSE;md5=3D6e0ae7214f6c74c149cb25f373057fa9"
+> LIC_FILES_CHKSUM :=3D "file://../${LICENSE_CHECKSUM}"
 >
->-PR =3D "r4"
->+PR =3D "r5"
+> SRC_URI =3D "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-
+>apps.git;protocol=3Dgit;branch=3D${BRANCH}"
+>-SRCREV =3D "51fcfea807159c36298c886ed95e48dd12e491a3"
+>+SRCREV =3D "e55b22aff35107d384c13322aa9f9cd637f543ca"
+> BRANCH =3D "master"
+>-INC_PR =3D "r15"
+>+INC_PR =3D "r16"
 >
-> REPOS ?=3D "git://gitorious.org/sitara-board-port/sitara-board-
->port-linux.git \
->           git://gitorious.org/sitara-board-port/sitara-board-
->port-uboot.git \
+> # Pull in the base package for installing matrix applications
+> require matrix-gui-apps.inc
 >--
 >1.7.0.4
 >
