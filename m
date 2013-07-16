@@ -1,36 +1,28 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id ACF44529EA
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id C114452A07
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jul 2013 13:44:51 +0000 (UTC)
+	Tue, 16 Jul 2013 16:37:37 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GDipwu015272
-	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:44:51 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GDioZA000957
-	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:44:51 -0500
-Received: from DLEE74.ent.ti.com (157.170.170.8) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Tue, 16 Jul 2013 08:44:50 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE74.ent.ti.com ([2002:9daa:aa08::9daa:aa08]) with mapi id
-	14.02.0342.003; Tue, 16 Jul 2013 08:44:50 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
-Thread-Topic: [meta-arago] [PATCHv3] KMSCube: Add Demo 3D graphics application
-Thread-Index: AQHOfrujvxMdzVa2t0GbxQgSVWI7cZlnV6NA
-Date: Tue, 16 Jul 2013 13:44:49 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159657A20@DLEE11.ent.ti.com>
-References: <1373367532-6282-1-git-send-email-mrinmayee@ti.com>
-	<51DBF092.9080109@ti.com> <51DF8B90.9030009@ti.com>
-In-Reply-To: <51DF8B90.9030009@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GGbXCb009692
+	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 11:37:33 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GGbXFL013488
+	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 11:37:33 -0500
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Tue, 16 Jul 2013 11:37:33 -0500
+From: "Dmytriyenko, Denys" <denys@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: Vacation
+Thread-Index: Ac6CQsVJetEMUU1QSlywMoQTQ7US6A==
+Date: Tue, 16 Jul 2013 16:37:33 +0000
+Message-ID: <B0581B5571079145BA1CD78C126DBDE72E8370F8@DLEE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv3] KMSCube: Add Demo 3D graphics application
+Subject: Vacation
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,90 +35,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 13:44:51 -0000
+X-List-Received-Date: Tue, 16 Jul 2013 16:37:44 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_B0581B5571079145BA1CD78C126DBDE72E8370F8DLEE08entticom_"
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Hingolikar, Mrinmayee
->Sent: Thursday, July 11, 2013 11:53 PM
->To: Hingolikar, Mrinmayee
->Cc: meta-arago@arago-project.org
->Subject: Re: [meta-arago] [PATCHv3] KMSCube: Add Demo 3D graphics
->application
->
->Any comments on this patch?
+--_000_B0581B5571079145BA1CD78C126DBDE72E8370F8DLEE08entticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This patch seems OK, but has dependencies on other patches that have un-add=
-ressed comments.
+QlRXLCBJJ20gb24gdmFjYXRpb24gdGhpcyB3ZWVrIC0gcGF0Y2hlcyB3aWxsIGJlIHF1ZXVlZCB1
+bnRpbCBuZXh0IHdlZWsuDQoNCg0KRGVueXMNCg==
 
->
->On 7/9/2013 4:44 PM, Mrinmayee Hingolikar wrote:
->> Kindly ignore the v2 patch. I had missed a few comments.
->>
->> On 7/9/2013 4:28 PM, Mrinmayee Hingolikar wrote:
->>> * Showcases 3D graphics on SGX using kms and gbm
->>>
->>> v2:
->>>
->>> * Added DEPENDS for libdrm, libgbm and omap-sgx userspace
->>> * INSANE_SKIP to avoid package dependencies
->>>
->>> v3:
->>>
->>> * Remove inc file as we have a version only .bb file. This
->>>   fixes the review comment received with v1.
->>>
->>> Signed-off-by: Siddharth Heroor <heroor@ti.com>
->>> Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
->>> ---
->>>  .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |   18
->++++++++++++++++++
->>>  1 files changed, 18 insertions(+), 0 deletions(-)
->>>  create mode 100644 meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb
->>>
->>> diff --git a/meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb
->>> new file mode 100644
->>> index 0000000..e18e398
->>> --- /dev/null
->>> +++ b/meta-arago-extras/recipes-
->graphics/kmscube/kmscube_1.0.0.bb
->>> @@ -0,0 +1,18 @@
->>> +SUMMARY =3D "Demo application to showcase 3D graphics on SGX
->using kms and gbm"
->>> +HOMEPAGE =3D "http://git.ti.com"
->>> +LICENSE =3D "BSD"
->>> +LIC_FILES_CHKSUM =3D
->"file://kmscube.c;beginline=3D1;endline=3D23;md5=3D8b309d4ee67b7315ff738
->1270dd631fb"
->>> +
->>> +DEPENDS =3D "libdrm libgbm-glsdk omap5-sgx-ddk-um-linux"
->>> +
->>> +COMPATIBLE_MACHINE =3D "omap-a15"
->>> +
->>> +inherit autotools pkgconfig
->>> +
->>> +SRC_URI =3D "git://git.ti.com/glsdk/kmscube.git;protocol=3Dgit"
->>> +
->>> +S =3D "${WORKDIR}/git"
->>> +
->>> +SRCREV =3D "5a03757c0aa52eff44fb0d8ac0529f8cc18b1da0"
->>> +
->>> +INSANE_SKIP_kmscube +=3D "dev-deps"
->>
->
->
->--
->Regards,
->Mrinmayee
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+--_000_B0581B5571079145BA1CD78C126DBDE72E8370F8DLEE08entticom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <B7CDA4A7740FEC4BB89DE4521C25F43A@owa.mail.ti.com>
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJmb250LWZh
+bWlseTpDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMXB0
+O2NvbG9yOmJsYWNrIj4NCkJUVywgSSdtIG9uIHZhY2F0aW9uIHRoaXMgd2VlayAtIHBhdGNoZXMg
+d2lsbCBiZSBxdWV1ZWQgdW50aWwgbmV4dCB3ZWVrLjxicj4NCjxicj4NCjxicj4NCkRlbnlzPGJy
+Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+
+--_000_B0581B5571079145BA1CD78C126DBDE72E8370F8DLEE08entticom_--
