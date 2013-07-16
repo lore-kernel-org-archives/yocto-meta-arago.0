@@ -1,34 +1,33 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B583B52A07
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D7A2552A07
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jul 2013 13:03:02 +0000 (UTC)
+	Tue, 16 Jul 2013 13:08:26 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GD32T8023283
-	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:03:02 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GD8QHm012042;
+	Tue, 16 Jul 2013 08:08:26 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GD31l3012744
-	for <meta-arago@arago-project.org>; Tue, 16 Jul 2013 08:03:02 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GD8PAi019508;
+	Tue, 16 Jul 2013 08:08:25 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
 	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Tue, 16 Jul 2013 08:03:01 -0500
+	14.02.0342.003; Tue, 16 Jul 2013 08:08:25 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+To: Christian Gagneraud <chgans@gna.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [master & danny][PATCH 5/5]
-	packagegroup-arago-tisdk-matrix: Clock app doesnt work on	older boards.
-Thread-Index: AQHOfnIH5w8bQUyI5Eis84Xxji+9mJlnTIdg
-Date: Tue, 16 Jul 2013 13:03:00 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101596577C0@DLEE11.ent.ti.com>
-References: <1373574210-4398-1-git-send-email-fcooper@ti.com>
-	<1373574210-4398-5-git-send-email-fcooper@ti.com>
-In-Reply-To: <1373574210-4398-5-git-send-email-fcooper@ti.com>
+Thread-Topic: [meta-arago] ofono broken with arago-danny-config (was Re:
+	qt4-embedded-gles broken with arago-danny-config)
+Thread-Index: AQHOfpWLgDRG4VBUjkOcJ0PwaZFlz5lnTWvA
+Date: Tue, 16 Jul 2013 13:08:24 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101596577EC@DLEE11.ent.ti.com>
+References: <51DF4A26.6070407@gna.org> <51DF4BA2.7080408@gna.org>
+In-Reply-To: <51DF4BA2.7080408@gna.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [master & danny][PATCH 5/5]	packagegroup-arago-tisdk-matrix: Clock app doesnt work on	older boards.
+Subject: Re: ofono broken with arago-danny-config (was Re: qt4-embedded-gles broken with arago-danny-config)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,74 +40,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 13:03:02 -0000
+X-List-Received-Date: Tue, 16 Jul 2013 13:08:27 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
 >-----Original Message-----
 >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
->Sent: Thursday, July 11, 2013 3:24 PM
+>bounces@arago-project.org] On Behalf Of Christian Gagneraud
+>Sent: Thursday, July 11, 2013 7:20 PM
 >To: meta-arago@arago-project.org
->Cc: Cooper Jr., Franklin
->Subject: [meta-arago] [master & danny][PATCH 5/5] packagegroup-
->arago-tisdk-matrix: Clock app doesnt work on older boards.
+>Subject: [meta-arago] ofono broken with arago-danny-config (was
+>Re: qt4-embedded-gles broken with arago-danny-config)
 >
->* Don't install by default since some older boards don't support
->the Clock demo.
+>Fixing the mail subject. Sorry about that.
+>
+>Chris
+>
+>On 12/07/13 12:13, Christian Gagneraud wrote:
+>> Hi there,
+>>
+>> I've just updated my build env today because connman wouldn't
+>compile
+>> due to unmet dependencies on ofono (needed bluez >=3D4.99, had
+>4.98),
+>> and now it is solved, good!
+>> Note: I updated my existing build env using "./oe-layertool-
+>setup.sh
+>> -f configs/arago-danny-config.txt"
+>>
+>> But now qt4-embedded-gles is broken:
+>> christiaga@krys-red:~/projects/yocto/arago/build$ bitbake
+>connman
+>> ERROR: Unable to parse
+>> /home/christiaga/projects/yocto/arago/sources/meta-arago/meta-
+>arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.4.bb
+>> Traceback (most recent call last):
+>> [...]
+>> OSError: [Errno 2] No such file or directory:
+>> '/home/christiaga/projects/yocto/arago/sources/oe-
+>core/meta/recipes-qt/qt4/qt4-4.8.4.inc'
+>>
+>> it seems that qt4-embedded-gles has been bumped to 4.8.4, but
+>oe-core
+>> is still at Qt 4.8.3.
+>>
+>> Then I realised, that I should as well update my arago build env
+>using
+>> git pull, and re-run ./oe-layertool-setup.sh, which I did, and
+>now I'm
+>> back on ofono/bluez unmet dependency...
+>>
+>> I tried to clean bluez4, connman and ofono and bitbake connman
+>again,
+>> but i get the same error while configuring ofono:
+>> [...]
+>> Requested 'bluez >=3D 4.99' but version of BlueZ is 4.98
+>> | configure:13104: error: Bluetooth library >=3D 4.99 is required
+>> [...]
+>>
 
-How do the older boards change their cpufreq settings?
+I think your issue is that the wireless connectivity team has set a preferr=
+ed version for bluez4 to 4.98 in meta-arago-distro/conf/distro/include/arag=
+o-prefs.inc.  They have some patches they append on top of bluez4 but have =
+not updated to a later version.
 
->
->Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
->---
-> .../packagegroup-arago-tisdk-matrix.bb             |    5 +++--
-> 1 files changed, 3 insertions(+), 2 deletions(-)
->
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-
->arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-
->matrix.bb
->index f52eb4a..287baf9 100644
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-matrix.bb
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-matrix.bb
->@@ -1,6 +1,6 @@
-> DESCRIPTION =3D "Task to include Matrix v2"
-> LICENSE =3D "MIT"
->-PR =3D "r19"
->+PR =3D "r20"
->
-> inherit packagegroup
->
->@@ -23,7 +23,6 @@ MATRIX_COMMON_APPS =3D "              \
->     matrix-gui-settings-demos       \
->     matrix-gui-usb-demos            \
->     matrix-gui-submenus-ethernet    \
->-    matrix-gui-clocks               \
-> "
->
-> MATRIX_QT_APPS =3D "                  \
->@@ -61,6 +60,7 @@ MATRIX_APPS_append_ti33x =3D "        \
->                                     \
->     matrix-gui-generic-pm           \
->     matrix-gui-pm-demos-suspend     \
->+    matrix-gui-clocks               \
->                                     \
->     matrix-gui-wifi-demos           \
->     matrix-gui-bluetooth-demos      \
->@@ -97,6 +97,7 @@ MATRIX_APPS_append_am37x-evm =3D "    \
->     matrix-gui-camera-loopback      \
->     matrix-gui-v4l2-demos           \
->     matrix-gui-display-control      \
->+    matrix-gui-clocks               \
->                                     \
->     matrix-gui-wifi-demos           \
->     matrix-gui-bluetooth-demos      \
->--
->1.7.0.4
+Let's see if they have feedback here.  If you are not using the TI wireless=
+ stack I would say just unset the PREFERRED_VERSION setting so you can pull=
+ the latest bluez4 package.
+
+>>
+>> Am I missing something or is Arago temporary broken in that
+>respect?
+>>
+>> Thx,
+>> Chris
 >
 >_______________________________________________
 >meta-arago mailing list
