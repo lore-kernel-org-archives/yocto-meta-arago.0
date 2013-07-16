@@ -1,35 +1,43 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 2EF3D52A91
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by arago-project.org (Postfix) with ESMTPS id 5166552A07
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jul 2013 17:55:36 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6GHtZgD019972;
-	Tue, 16 Jul 2013 12:55:35 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6GHtZHM015558;
-	Tue, 16 Jul 2013 12:55:35 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Tue, 16 Jul 2013 12:55:35 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "chgans@gna.org" <chgans@gna.org>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] ofono broken with arago-danny-config (was Re:
-	qt4-embedded-gles broken with arago-danny-config)
-Thread-Index: AQHOfpWLgDRG4VBUjkOcJ0PwaZFlz5lnTWvAgACOxwD//8F+4A==
-Date: Tue, 16 Jul 2013 17:55:34 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159658F23@DLEE11.ent.ti.com>
-References: <51DF4A26.6070407@gna.org> <51DF4BA2.7080408@gna.org>,
-	<7D46E86EC0A8354091174257B2FED101596577EC@DLEE11.ent.ti.com>
-	<B0581B5571079145BA1CD78C126DBDE72E837104@DLEE08.ent.ti.com>
-In-Reply-To: <B0581B5571079145BA1CD78C126DBDE72E837104@DLEE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Tue, 16 Jul 2013 21:28:22 +0000 (UTC)
+Received: by mail-pa0-f48.google.com with SMTP id kp12so1205814pab.35
+	for <meta-arago@arago-project.org>;
+	Tue, 16 Jul 2013 14:28:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=lp7x/zre6D/X1eqQ6ibmfHercX1fRt3QWrbHzOOo/Z0=;
+	b=DmGI+MhSw17OUssO/fzaQvzx4owGTf6aqOenUrw33D12MxUaLA8W4SvVSny5HFvV24
+	LUKpB5jT0RpX5JdJ6BtwIh1KYr7j57fFM/NKHzMMMkHwbsq0frTnhyYTevTV4vfW72kP
+	uVfzJZHZEMe2cbE7oiZ4qDDNhQBK1ZCzWgSrFC9Di7vKChFuLIxesDAOv9HdX0YThFic
+	9nETTHxzOQQ4qjENkFPzJXar6jSUUHjKSaxwoecyCTxglNzHFVm1m0Sd89LhWJDfDZDp
+	lKhV3Zf4K5Gxq9D2l8Nq2YbwWIx2pZjQHau/IqlJGVX6w4haEiWscmvf4RAPDRisU/2C
+	IXHA==
+X-Received: by 10.66.166.232 with SMTP id zj8mr4540438pab.139.1374010101221;
+	Tue, 16 Jul 2013 14:28:21 -0700 (PDT)
+Received: from [0.0.0.0] ([210.48.94.225])
+	by mx.google.com with ESMTPSA id 4sm3761080pbw.32.2013.07.16.14.28.18
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 16 Jul 2013 14:28:20 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <51E5BAF0.10206@gna.org>
+Date: Wed, 17 Jul 2013 09:28:16 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-Subject: Re: ofono broken with arago-danny-config (was Re: qt4-embedded-gles broken with arago-danny-config)
+To: "Maupin, Chase" <chase.maupin@ti.com>
+References: <51E386CF.9030704@gna.org>
+	<7D46E86EC0A8354091174257B2FED101596576BD@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED101596576BD@DLEE11.ent.ti.com>
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [arago/yocto-1.3] crda and python-m2crypto
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,329 +50,96 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 17:55:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7D46E86EC0A8354091174257B2FED10159658F23DLEE11entticom_"
+X-List-Received-Date: Tue, 16 Jul 2013 21:28:22 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_7D46E86EC0A8354091174257B2FED10159658F23DLEE11entticom_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-From: Dmytriyenko, Denys
-Sent: Tuesday, July 16, 2013 11:38 AM
-To: chgans@gna.org; meta-arago@arago-project.org; Maupin, Chase
-Subject: RE: [meta-arago] ofono broken with arago-danny-config (was Re: qt4=
--embedded-gles broken with arago-danny-config)
-
-Seems like using wrong branches - mixing Dylan with Danny.
-Good point.  The master of arago which works with Dylan has a bluez4 versio=
-n for 4.101 which should be enough.  The Danny branch has 4.98 pinned.
-
-
-
-Denys
-
-
------Original Message-----
-From: Maupin, Chase [chase.maupin@ti.com]
-Received: Tuesday, 16 Jul 2013, 9:08
-To: Christian Gagneraud [chgans@gna.org]; meta-arago@arago-project.org<mail=
-to:meta-arago@arago-project.org> [meta-arago@arago-project.org]
-Subject: Re: [meta-arago] ofono broken with arago-danny-config (was Re: qt4=
--embedded-gles broken with arago-danny-config)
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org<mailto:meta-arago-bounces@arago=
--project.org> [mailto:meta-arago-
->bounces@arago-project.org<mailto:bounces@arago-project.org>] On Behalf Of =
-Christian Gagneraud
->Sent: Thursday, July 11, 2013 7:20 PM
->To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
->Subject: [meta-arago] ofono broken with arago-danny-config (was
->Re: qt4-embedded-gles broken with arago-danny-config)
+On 17/07/13 00:58, Maupin, Chase wrote:
+>> -----Original Message-----
+>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>> bounces@arago-project.org] On Behalf Of Christian Gagneraud
+>> Sent: Monday, July 15, 2013 12:21 AM
+>> To: meta-arago@arago-project.org
+>> Subject: [meta-arago] [arago/yocto-1.3] crda and python-m2crypto
+>>
+>> Hi,
+>>
+>> While building an image with arago-stable/yocto-1.3, I encountered
+>> an error:
+>> DEBUG: Executing shell function do_compile
+>> NOTE: make -j 8 MAKEFLAGS= all_noverify
+>>    GEN  keys-gcrypt.c
+>>    CC   crda.o
+>>    CC   intersect.o
+>>    Trusted pubkeys: pubkeys/linville.key.pub.pem
+>>    CC   print-regdom.o
+>>    CC   regdbdump.o
+>> ERROR: Failed to import the "M2Crypto" module: No module named
+>> M2Crypto
+>> Please install the "M2Crypto" Python module.
+>> On Debian GNU/Linux the package is called "python-m2crypto".
+>> make: *** [keys-gcrypt.c] Error 1
+>> make: *** Waiting for unfinished jobs....
+>> ERROR: oe_runmake failed
+>> ERROR: Function failed: do_compile (see
+>> /home/christiaga/projects/yocto/arago/build/arago-tmp-external-
+>> linaro-toolchain/work\
+>> /armv7ahf-vfp-neon-oe-linux-gnueabi/crda-1.1.1-
+>> r0/temp/log.do_compile.15753
+>> for further information)
+>>
+>> Basically crda doesn't build because it needs python-m2crypto,
+>> i've
+>> installed it via apt-get and everything was fine then.
+>> This is not documented in [1], [2] nor in [3].
+>>
+>> After digging a bit I found that the CRDA recipe comes from
+>> arago-distro-extras, but it can be found in
+>> meta-openembedded/meta-networking (on master, not on danny branch)
+>> as
+>> well. Looking at [4], it seems this version would have this
+>> dependency
+>> built by bitbake (python-m2crypto-native), again python-m2crypto-
+>> native
+>> is available only on master, not on danny.
 >
->Fixing the mail subject. Sorry about that.
->
->Chris
->
->On 12/07/13 12:13, Christian Gagneraud wrote:
->> Hi there,
->>
->> I've just updated my build env today because connman wouldn't
->compile
->> due to unmet dependencies on ofono (needed bluez >=3D4.99, had
->4.98),
->> and now it is solved, good!
->> Note: I updated my existing build env using "./oe-layertool-
->setup.sh
->> -f configs/arago-danny-config.txt"
->>
->> But now qt4-embedded-gles is broken:
->> christiaga@krys-red:~/projects/yocto/arago/build$ bitbake
->connman
->> ERROR: Unable to parse
->> /home/christiaga/projects/yocto/arago/sources/meta-arago/meta-
->arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.4.bb
->> Traceback (most recent call last):
->> [...]
->> OSError: [Errno 2] No such file or directory:
->> '/home/christiaga/projects/yocto/arago/sources/oe-
->core/meta/recipes-qt/qt4/qt4-4.8.4.inc'
->>
->> it seems that qt4-embedded-gles has been bumped to 4.8.4, but
->oe-core
->> is still at Qt 4.8.3.
->>
->> Then I realised, that I should as well update my arago build env
->using
->> git pull, and re-run ./oe-layertool-setup.sh, which I did, and
->now I'm
->> back on ofono/bluez unmet dependency...
->>
->> I tried to clean bluez4, connman and ofono and bitbake connman
->again,
->> but i get the same error while configuring ofono:
->> [...]
->> Requested 'bluez >=3D 4.99' but version of BlueZ is 4.98
->> | configure:13104: error: Bluetooth library >=3D 4.99 is required
->> [...]
->>
+> In the meta-arago danny branch there is a python-m2crypto recipe
+> that extends native. So can you add the DEPENDS on
+> python-m2crypto-native to the crda recipe with danny and have this
+> work? Is that the solution you  are mentioning?
 
-I think your issue is that the wireless connectivity team has set a preferr=
-ed version for bluez4 to 4.98 in meta-arago-distro/conf/distro/include/arag=
-o-prefs.inc.  They have some patches they append on top of bluez4 but have =
-not updated to a later version.
+You are right, and actually crda (from meta-arago) already depends on 
+python-m2crypto-native.
+Anyway, it doesn't seem to be enough as my build failed, and I had to 
+install my distro version of python-m2crypto to fix this (unless it got 
+fixed as a side effect of re-running bitbake).
 
-Let's see if they have feedback here.  If you are not using the TI wireless=
- stack I would say just unset the PREFERRED_VERSION setting so you can pull=
- the latest bluez4 package.
+I might clean and rebuild everything, I thought I could update the 
+layers without rebuilding everything from scratch, in theory it should 
+work, but in practice I'm not sure it does, as I had a couple of issues 
+(after my last update) that doesn't make sense to others (BlueZ version 
+issue, Qt  and now crda).
+
+Thanks,
+Chris
 
 >>
->> Am I missing something or is Arago temporary broken in that
->respect?
+>> Do you want me to open a bug report somewhere?
 >>
->> Thx,
+>> Regards,
 >> Chris
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>>
+>> [1]
+>> http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-
+>> project-qs.html
+>> [2]
+>> http://arago-
+>> project.org/wiki/index.php/Setting_Up_Build_Environment#Host_tools
+>> [3] http://www.openembedded.org/wiki/Getting_started
+>> [4]
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
---_000_7D46E86EC0A8354091174257B2FED10159658F23DLEE11entticom_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.emailquote, li.emailquote, div.emailquote
-	{mso-style-name:emailquote;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:1.0pt;
-	border:none;
-	padding:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Dmytriye=
-nko, Denys
-<br>
-<b>Sent:</b> Tuesday, July 16, 2013 11:38 AM<br>
-<b>To:</b> chgans@gna.org; meta-arago@arago-project.org; Maupin, Chase<br>
-<b>Subject:</b> RE: [meta-arago] ofono broken with arago-danny-config (was =
-Re: qt4-embedded-gles broken with arago-danny-config)<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:bla=
-ck">Seems like using wrong branches - mixing Dylan with Danny.</span><span =
-style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&=
-quot;;color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F=
-497D">Good point.&nbsp; The master of arago which works with Dylan has a bl=
-uez4 version for 4.101 which should be enough.&nbsp; The Danny branch
- has 4.98 pinned.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:bla=
-ck"><br>
-<br>
-<br>
-Denys<br>
-<br>
-<br>
------Original Message----- <br>
-<b>From:</b> Maupin, Chase [chase.maupin@ti.com]<br>
-<b>Received:</b> Tuesday, 16 Jul 2013, 9:08<br>
-<b>To:</b> Christian Gagneraud [chgans@gna.org]; <a href=3D"mailto:meta-ara=
-go@arago-project.org">
-meta-arago@arago-project.org</a> [meta-arago@arago-project.org]<br>
-<b>Subject:</b> Re: [meta-arago] ofono broken with arago-danny-config (was =
-Re: qt4-embedded-gles broken with arago-danny-config)<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">&gt;-----Original M=
-essage-----<br>
-&gt;From: <a href=3D"mailto:meta-arago-bounces@arago-project.org">meta-arag=
-o-bounces@arago-project.org</a> [mailto:meta-arago-<br>
-&gt;<a href=3D"mailto:bounces@arago-project.org">bounces@arago-project.org<=
-/a>] On Behalf Of Christian Gagneraud<br>
-&gt;Sent: Thursday, July 11, 2013 7:20 PM<br>
-&gt;To: <a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-pr=
-oject.org</a><br>
-&gt;Subject: [meta-arago] ofono broken with arago-danny-config (was<br>
-&gt;Re: qt4-embedded-gles broken with arago-danny-config)<br>
-&gt;<br>
-&gt;Fixing the mail subject. Sorry about that.<br>
-&gt;<br>
-&gt;Chris<br>
-&gt;<br>
-&gt;On 12/07/13 12:13, Christian Gagneraud wrote:<br>
-&gt;&gt; Hi there,<br>
-&gt;&gt;<br>
-&gt;&gt; I've just updated my build env today because connman wouldn't<br>
-&gt;compile<br>
-&gt;&gt; due to unmet dependencies on ofono (needed bluez &gt;=3D4.99, had<=
-br>
-&gt;4.98),<br>
-&gt;&gt; and now it is solved, good!<br>
-&gt;&gt; Note: I updated my existing build env using &quot;./oe-layertool-<=
-br>
-&gt;setup.sh<br>
-&gt;&gt; -f configs/arago-danny-config.txt&quot;<br>
-&gt;&gt;<br>
-&gt;&gt; But now qt4-embedded-gles is broken:<br>
-&gt;&gt; christiaga@krys-red:~/projects/yocto/arago/build$ bitbake<br>
-&gt;connman<br>
-&gt;&gt; ERROR: Unable to parse<br>
-&gt;&gt; /home/christiaga/projects/yocto/arago/sources/meta-arago/meta-<br>
-&gt;arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.4.bb<br>
-&gt;&gt; Traceback (most recent call last):<br>
-&gt;&gt; [...]<br>
-&gt;&gt; OSError: [Errno 2] No such file or directory:<br>
-&gt;&gt; '/home/christiaga/projects/yocto/arago/sources/oe-<br>
-&gt;core/meta/recipes-qt/qt4/qt4-4.8.4.inc'<br>
-&gt;&gt;<br>
-&gt;&gt; it seems that qt4-embedded-gles has been bumped to 4.8.4, but<br>
-&gt;oe-core<br>
-&gt;&gt; is still at Qt 4.8.3.<br>
-&gt;&gt;<br>
-&gt;&gt; Then I realised, that I should as well update my arago build env<b=
-r>
-&gt;using<br>
-&gt;&gt; git pull, and re-run ./oe-layertool-setup.sh, which I did, and<br>
-&gt;now I'm<br>
-&gt;&gt; back on ofono/bluez unmet dependency...<br>
-&gt;&gt;<br>
-&gt;&gt; I tried to clean bluez4, connman and ofono and bitbake connman<br>
-&gt;again,<br>
-&gt;&gt; but i get the same error while configuring ofono:<br>
-&gt;&gt; [...]<br>
-&gt;&gt; Requested 'bluez &gt;=3D 4.99' but version of BlueZ is 4.98<br>
-&gt;&gt; | configure:13104: error: Bluetooth library &gt;=3D 4.99 is requir=
-ed<br>
-&gt;&gt; [...]<br>
-&gt;&gt;<br>
-<br>
-I think your issue is that the wireless connectivity team has set a preferr=
-ed version for bluez4 to 4.98 in meta-arago-distro/conf/distro/include/arag=
-o-prefs.inc.&nbsp; They have some patches they append on top of bluez4 but =
-have not updated to a later version.<br>
-<br>
-Let's see if they have feedback here.&nbsp; If you are not using the TI wir=
-eless stack I would say just unset the PREFERRED_VERSION setting so you can=
- pull the latest bluez4 package.<br>
-<br>
-&gt;&gt;<br>
-&gt;&gt; Am I missing something or is Arago temporary broken in that<br>
-&gt;respect?<br>
-&gt;&gt;<br>
-&gt;&gt; Thx,<br>
-&gt;&gt; Chris<br>
-&gt;<br>
-&gt;_______________________________________________<br>
-&gt;meta-arago mailing list<br>
-&gt;<a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-projec=
-t.org</a><br>
-&gt;<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago=
-">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
-_______________________________________________<br>
-meta-arago mailing list<br>
-<a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-project.or=
-g</a><br>
-<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">ht=
-tp://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><o:p></o:p></=
-span></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_7D46E86EC0A8354091174257B2FED10159658F23DLEE11entticom_--
