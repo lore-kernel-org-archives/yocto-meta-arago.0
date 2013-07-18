@@ -1,33 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 1EEF052A91
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 06B5C52A69
 	for <meta-arago@arago-project.org>;
-	Wed, 17 Jul 2013 21:28:42 +0000 (UTC)
+	Thu, 18 Jul 2013 06:02:21 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6HLSehF029134;
-	Wed, 17 Jul 2013 16:28:40 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6HLSeRW008595;
-	Wed, 17 Jul 2013 16:28:40 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Wed, 17 Jul 2013 16:28:40 -0500
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "chgans@gna.org" <chgans@gna.org>
-Thread-Topic: [meta-arago] [arago/yocto-1.3] crda and python-m2crypto
-Thread-Index: AQHOgRsutUEyp3+PgkSy1EYBSUAAd5lnmfcAgACOaACAAT6geA==
-Date: Wed, 17 Jul 2013 21:28:40 +0000
-Message-ID: <B0581B5571079145BA1CD78C126DBDE72E8378B6@DLEE08.ent.ti.com>
-References: <51E386CF.9030704@gna.org>
-	<7D46E86EC0A8354091174257B2FED101596576BD@DLEE11.ent.ti.com>,
-	<51E5BAF0.10206@gna.org>
-In-Reply-To: <51E5BAF0.10206@gna.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6I62KJB028482
+	for <meta-arago@arago-project.org>; Thu, 18 Jul 2013 01:02:20 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6I62KK5030889
+	for <meta-arago@arago-project.org>; Thu, 18 Jul 2013 01:02:20 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 18 Jul 2013 01:02:20 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6I62KYD020816	for
+	<meta-arago@arago-project.org>; Thu, 18 Jul 2013 01:02:20 -0500
+Date: Thu, 18 Jul 2013 01:54:30 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <130112707.395.1374126870548.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [arago/yocto-1.3] crda and python-m2crypto
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-07-18_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,267 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2013 21:28:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B0581B5571079145BA1CD78C126DBDE72E8378B6DLEE08entticom_"
+X-List-Received-Date: Thu, 18 Jul 2013 06:02:22 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_394_1002132704.1374126870534"
 
---_000_B0581B5571079145BA1CD78C126DBDE72E8378B6DLEE08entticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-BTW, m2crypto seems to be broken in meta-arago, if I remember correctly, as=
- I had to install my host package too...
-
-
-Denys
-
-
------Original Message-----
-From: Christian Gagneraud [chgans@gna.org]
-Received: Tuesday, 16 Jul 2013, 17:28
-To: Maupin, Chase [chase.maupin@ti.com]
-CC: meta-arago@arago-project.org [meta-arago@arago-project.org]
-Subject: Re: [meta-arago] [arago/yocto-1.3] crda and python-m2crypto
-
-On 17/07/13 00:58, Maupin, Chase wrote:
->> -----Original Message-----
->> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->> bounces@arago-project.org] On Behalf Of Christian Gagneraud
->> Sent: Monday, July 15, 2013 12:21 AM
->> To: meta-arago@arago-project.org
->> Subject: [meta-arago] [arago/yocto-1.3] crda and python-m2crypto
->>
->> Hi,
->>
->> While building an image with arago-stable/yocto-1.3, I encountered
->> an error:
->> DEBUG: Executing shell function do_compile
->> NOTE: make -j 8 MAKEFLAGS=3D all_noverify
->>    GEN  keys-gcrypt.c
->>    CC   crda.o
->>    CC   intersect.o
->>    Trusted pubkeys: pubkeys/linville.key.pub.pem
->>    CC   print-regdom.o
->>    CC   regdbdump.o
->> ERROR: Failed to import the "M2Crypto" module: No module named
->> M2Crypto
->> Please install the "M2Crypto" Python module.
->> On Debian GNU/Linux the package is called "python-m2crypto".
->> make: *** [keys-gcrypt.c] Error 1
->> make: *** Waiting for unfinished jobs....
->> ERROR: oe_runmake failed
->> ERROR: Function failed: do_compile (see
->> /home/christiaga/projects/yocto/arago/build/arago-tmp-external-
->> linaro-toolchain/work\
->> /armv7ahf-vfp-neon-oe-linux-gnueabi/crda-1.1.1-
->> r0/temp/log.do_compile.15753
->> for further information)
->>
->> Basically crda doesn't build because it needs python-m2crypto,
->> i've
->> installed it via apt-get and everything was fine then.
->> This is not documented in [1], [2] nor in [3].
->>
->> After digging a bit I found that the CRDA recipe comes from
->> arago-distro-extras, but it can be found in
->> meta-openembedded/meta-networking (on master, not on danny branch)
->> as
->> well. Looking at [4], it seems this version would have this
->> dependency
->> built by bitbake (python-m2crypto-native), again python-m2crypto-
->> native
->> is available only on master, not on danny.
->
-> In the meta-arago danny branch there is a python-m2crypto recipe
-> that extends native. So can you add the DEPENDS on
-> python-m2crypto-native to the crda recipe with danny and have this
-> work? Is that the solution you  are mentioning?
-
-You are right, and actually crda (from meta-arago) already depends on
-python-m2crypto-native.
-Anyway, it doesn't seem to be enough as my build failed, and I had to
-install my distro version of python-m2crypto to fix this (unless it got
-fixed as a side effect of re-running bitbake).
-
-I might clean and rebuild everything, I thought I could update the
-layers without rebuilding everything from scratch, in theory it should
-work, but in practice I'm not sure it does, as I had a couple of issues
-(after my last update) that doesn't make sense to others (BlueZ version
-issue, Qt  and now crda).
-
-Thanks,
-Chris
-
->>
->> Do you want me to open a bug report somewhere?
->>
->> Regards,
->> Chris
->>
->> [1]
->> http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-
->> project-qs.html
->> [2]
->> http://arago-
->> project.org/wiki/index.php/Setting_Up_Build_Environment#Host_tools
->> [3] http://www.openembedded.org/wiki/Getting_started
->> [4]
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
---_000_B0581B5571079145BA1CD78C126DBDE72E8378B6DLEE08entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_394_1002132704.1374126870534
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+<title>
+Status for 07/18/13
+</title>
 </head>
 <body>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11p=
-t; color:black">
-<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11=
-pt; color:black">BTW, m2crypto seems to be broken in meta-arago, if I remem=
-ber correctly, as I had to install my host package too...<br>
-<br>
-<br>
-Denys<br>
-<br>
-<br>
-<span style=3D"color:black">-----Original Message----- <br>
-<b>From:</b> Christian Gagneraud [chgans@gna.org]<br>
-<b>Received:</b> Tuesday, 16 Jul 2013, 17:28<br>
-<b>To:</b> Maupin, Chase [chase.maupin@ti.com]<br>
-<b>CC:</b> meta-arago@arago-project.org [meta-arago@arago-project.org]<br>
-<b>Subject:</b> Re: [meta-arago] [arago/yocto-1.3] crda and python-m2crypto=
-<br>
-<br>
-</span></span></div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">On 17/07/13 00:58, Maupin, Chase wrote:<br>
-&gt;&gt; -----Original Message-----<br>
-&gt;&gt; From: meta-arago-bounces@arago-project.org [<a href=3D""></a>mailt=
-o:meta-arago-<br>
-&gt;&gt; bounces@arago-project.org] On Behalf Of Christian Gagneraud<br>
-&gt;&gt; Sent: Monday, July 15, 2013 12:21 AM<br>
-&gt;&gt; To: meta-arago@arago-project.org<br>
-&gt;&gt; Subject: [meta-arago] [arago/yocto-1.3] crda and python-m2crypto<b=
-r>
-&gt;&gt;<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; While building an image with arago-stable/yocto-1.3, I encountered=
-<br>
-&gt;&gt; an error:<br>
-&gt;&gt; DEBUG: Executing shell function do_compile<br>
-&gt;&gt; NOTE: make -j 8 MAKEFLAGS=3D all_noverify<br>
-&gt;&gt;&nbsp;&nbsp;&nbsp; GEN&nbsp; keys-gcrypt.c<br>
-&gt;&gt;&nbsp;&nbsp;&nbsp; CC&nbsp;&nbsp; crda.o<br>
-&gt;&gt;&nbsp;&nbsp;&nbsp; CC&nbsp;&nbsp; intersect.o<br>
-&gt;&gt;&nbsp;&nbsp;&nbsp; Trusted pubkeys: pubkeys/linville.key.pub.pem<br=
->
-&gt;&gt;&nbsp;&nbsp;&nbsp; CC&nbsp;&nbsp; print-regdom.o<br>
-&gt;&gt;&nbsp;&nbsp;&nbsp; CC&nbsp;&nbsp; regdbdump.o<br>
-&gt;&gt; ERROR: Failed to import the &quot;M2Crypto&quot; module: No module=
- named<br>
-&gt;&gt; M2Crypto<br>
-&gt;&gt; Please install the &quot;M2Crypto&quot; Python module.<br>
-&gt;&gt; On Debian GNU/Linux the package is called &quot;python-m2crypto&qu=
-ot;.<br>
-&gt;&gt; make: *** [keys-gcrypt.c] Error 1<br>
-&gt;&gt; make: *** Waiting for unfinished jobs....<br>
-&gt;&gt; ERROR: oe_runmake failed<br>
-&gt;&gt; ERROR: Function failed: do_compile (see<br>
-&gt;&gt; /home/christiaga/projects/yocto/arago/build/arago-tmp-external-<br=
->
-&gt;&gt; linaro-toolchain/work\<br>
-&gt;&gt; /armv7ahf-vfp-neon-oe-linux-gnueabi/crda-1.1.1-<br>
-&gt;&gt; r0/temp/log.do_compile.15753<br>
-&gt;&gt; for further information)<br>
-&gt;&gt;<br>
-&gt;&gt; Basically crda doesn't build because it needs python-m2crypto,<br>
-&gt;&gt; i've<br>
-&gt;&gt; installed it via apt-get and everything was fine then.<br>
-&gt;&gt; This is not documented in [1], [2] nor in [3].<br>
-&gt;&gt;<br>
-&gt;&gt; After digging a bit I found that the CRDA recipe comes from<br>
-&gt;&gt; arago-distro-extras, but it can be found in<br>
-&gt;&gt; meta-openembedded/meta-networking (on master, not on danny branch)=
-<br>
-&gt;&gt; as<br>
-&gt;&gt; well. Looking at [4], it seems this version would have this<br>
-&gt;&gt; dependency<br>
-&gt;&gt; built by bitbake (python-m2crypto-native), again python-m2crypto-<=
-br>
-&gt;&gt; native<br>
-&gt;&gt; is available only on master, not on danny.<br>
-&gt;<br>
-&gt; In the meta-arago danny branch there is a python-m2crypto recipe<br>
-&gt; that extends native. So can you add the DEPENDS on<br>
-&gt; python-m2crypto-native to the crda recipe with danny and have this<br>
-&gt; work? Is that the solution you&nbsp; are mentioning?<br>
-<br>
-You are right, and actually crda (from meta-arago) already depends on <br>
-python-m2crypto-native.<br>
-Anyway, it doesn't seem to be enough as my build failed, and I had to <br>
-install my distro version of python-m2crypto to fix this (unless it got <br=
->
-fixed as a side effect of re-running bitbake).<br>
-<br>
-I might clean and rebuild everything, I thought I could update the <br>
-layers without rebuilding everything from scratch, in theory it should <br>
-work, but in practice I'm not sure it does, as I had a couple of issues <br=
->
-(after my last update) that doesn't make sense to others (BlueZ version <br=
->
-issue, Qt&nbsp; and now crda).<br>
-<br>
-Thanks,<br>
-Chris<br>
-<br>
-&gt;&gt;<br>
-&gt;&gt; Do you want me to open a bug report somewhere?<br>
-&gt;&gt;<br>
-&gt;&gt; Regards,<br>
-&gt;&gt; Chris<br>
-&gt;&gt;<br>
-&gt;&gt; [1]<br>
-&gt;&gt; <a href=3D"http://www.yoctoproject.org/docs/1.1/yocto-project-qs/y=
-octo-">http://www.yoctoproject.org/docs/1.1/yocto-project-qs/yocto-</a><br>
-&gt;&gt; project-qs.html<br>
-&gt;&gt; [2]<br>
-&gt;&gt; <a href=3D"http://arago-">http://arago-</a><br>
-&gt;&gt; project.org/wiki/index.php/Setting_Up_Build_Environment#Host_tools=
-<br>
-&gt;&gt; [3] <a href=3D"http://www.openembedded.org/wiki/Getting_started">h=
-ttp://www.openembedded.org/wiki/Getting_started</a><br>
-&gt;&gt; [4]<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; meta-arago mailing list<br>
-&gt;&gt; meta-arago@arago-project.org<br>
-&gt;&gt; <a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-=
-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
-<br>
-_______________________________________________<br>
-meta-arago mailing list<br>
-meta-arago@arago-project.org<br>
-<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">ht=
-tp://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
-</div>
-</span></font>
+
+<h2>Status for 07/18/13</h2>
+
+<h2>BUILD_ID: build-2013-07-18_01-02-45</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
 </body>
 </html>
 
---_000_B0581B5571079145BA1CD78C126DBDE72E8378B6DLEE08entticom_--
+
+------=_Part_394_1002132704.1374126870534--
