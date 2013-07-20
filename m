@@ -1,33 +1,28 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 8CB3A529A0
+	by arago-project.org (Postfix) with ESMTPS id 5E966529C9
 	for <meta-arago@arago-project.org>;
-	Fri, 19 Jul 2013 14:21:13 +0000 (UTC)
+	Sat, 20 Jul 2013 06:03:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6JEL9V7023666
-	for <meta-arago@arago-project.org>; Fri, 19 Jul 2013 09:21:09 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6JEL9wg025283
-	for <meta-arago@arago-project.org>; Fri, 19 Jul 2013 09:21:09 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Fri, 19 Jul 2013 09:21:09 -0500
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>, "Maupin, Chase" <chase.maupin@ti.com>
-Thread-Topic: [meta-arago] [PATCH-oe-layersetup 1/2] sample-files: Added
-	conf.sample file for GLSDK.
-Thread-Index: AQHOe8e+oM8kHwI0tUWgk+X2MHiQpZlrk++AgABihYCAAChpvA==
-Date: Fri, 19 Jul 2013 14:21:09 +0000
-Message-ID: <B0581B5571079145BA1CD78C126DBDE72E838878@DLEE08.ent.ti.com>
-References: <CF956B779D819D41BBC043B7082161D544074C@DBDE04.ent.ti.com>,
-	<7D46E86EC0A8354091174257B2FED10159663682@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED10159663682@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6K63Uef028891
+	for <meta-arago@arago-project.org>; Sat, 20 Jul 2013 01:03:30 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6K63ULZ027639
+	for <meta-arago@arago-project.org>; Sat, 20 Jul 2013 01:03:30 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Sat, 20 Jul 2013 01:03:30 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6K63Uas016719	for
+	<meta-arago@arago-project.org>; Sat, 20 Jul 2013 01:03:30 -0500
+Date: Sat, 20 Jul 2013 01:55:37 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1273578731.403.1374299737174.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH-oe-layersetup 1/2] sample-files: Added conf.sample file for GLSDK.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-07-20_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,201 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 14:21:14 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B0581B5571079145BA1CD78C126DBDE72E838878DLEE08entticom_"
+X-List-Received-Date: Sat, 20 Jul 2013 06:03:31 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_402_1293651337.1374299737172"
 
---_000_B0581B5571079145BA1CD78C126DBDE72E838878DLEE08entticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-AMSDK has it's own local-amsdk.conf.sample file and uses it successfully. G=
-LSDK should have copied theirs from AMSDK and change the branding, instead =
-of copying from linaro one...
-
-
-Denys
-
-
------Original Message-----
-From: Maupin, Chase [chase.maupin@ti.com]
-Received: Friday, 19 Jul 2013, 7:58
-To: Hingolikar, Mrinmayee [mrinmayee@ti.com]; meta-arago@arago-project.org =
-[meta-arago@arago-project.org]
-Subject: Re: [meta-arago] [PATCH-oe-layersetup 1/2] sample-files: Added con=
-f.sample file for GLSDK.
-
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Hingolikar, Mrinmayee
->Sent: Friday, July 19, 2013 1:04 AM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH-oe-layersetup 1/2] sample-files:
->Added conf.sample file for GLSDK.
->
->
-> * The local-glsdk.conf.sample files conrains the GLSDK branding.
->   It will be used to generate local.conf by oe-layertool-setup.sh
->
->Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
->---
-> ...-linaro.conf.sample =3D> local-glsdk.conf.sample} |    4 +++-
-> 1 files changed, 3 insertions(+), 1 deletions(-)  copy sample-
->files/{local-arago-linaro.conf.sample =3D> local-glsdk.conf.sample}
->(99%)
->
->diff --git a/sample-files/local-arago-linaro.conf.sample b/sample-
->files/local-glsdk.conf.sample
->similarity index 99%
->copy from sample-files/local-arago-linaro.conf.sample
->copy to sample-files/local-glsdk.conf.sample
->index 24d14dc..a9abea2 100644
->--- a/sample-files/local-arago-linaro.conf.sample
->+++ b/sample-files/local-glsdk.conf.sample
->@@ -146,7 +146,6 @@ PARALLEL_MAKE =3D "-j 1"
-> # be appropriate for example
->
-> DISTRO   =3D "arago"
->-TOOLCHAIN_BRAND =3D "linaro"
-
-Why are you removing this?
-
->
-> # Set terminal types by default it expects gnome-terminal  # but
->we chose xterm @@ -158,3 +157,6 @@ BB_GENERATE_MIRROR_TARBALLS =3D
->"0"
->
-> # Uncomment this to remove work directory after packaging to save
->disk space  #INHERIT +=3D "rm_work"
->+
->+# Use GLSDK branding
->+ARAGO_BRAND =3D "glsdk"
-
-I'm curious why the AMSDK doesn't use this and can use the base config file=
-.  I would suggest checking with them so you two can be aligned and consist=
-ent between SDKs.
-
->--
->1.7.0.4
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
---_000_B0581B5571079145BA1CD78C126DBDE72E838878DLEE08entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_402_1293651337.1374299737172
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+<title>
+Status for 07/20/13
+</title>
 </head>
 <body>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11p=
-t; color:black">
-<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:11=
-pt; color:black">AMSDK has it's own local-amsdk.conf.sample file and uses i=
-t successfully. GLSDK should have copied theirs from AMSDK and change the b=
-randing, instead of copying from linaro
- one...<br>
-<br>
-<br>
-Denys<br>
-<br>
-<br>
-<span style=3D"color:black">-----Original Message----- <br>
-<b>From:</b> Maupin, Chase [chase.maupin@ti.com]<br>
-<b>Received:</b> Friday, 19 Jul 2013, 7:58<br>
-<b>To:</b> Hingolikar, Mrinmayee [mrinmayee@ti.com]; meta-arago@arago-proje=
-ct.org [meta-arago@arago-project.org]<br>
-<b>Subject:</b> Re: [meta-arago] [PATCH-oe-layersetup 1/2] sample-files: Ad=
-ded conf.sample file for GLSDK.<br>
-<br>
-</span></span></div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">&gt;-----Original Message-----<br>
-&gt;From: meta-arago-bounces@arago-project.org [<a href=3D""></a>mailto:met=
-a-arago-<br>
-&gt;bounces@arago-project.org] On Behalf Of Hingolikar, Mrinmayee<br>
-&gt;Sent: Friday, July 19, 2013 1:04 AM<br>
-&gt;To: meta-arago@arago-project.org<br>
-&gt;Subject: [meta-arago] [PATCH-oe-layersetup 1/2] sample-files:<br>
-&gt;Added conf.sample file for GLSDK.<br>
-&gt;<br>
-&gt;<br>
-&gt; * The local-glsdk.conf.sample files conrains the GLSDK branding.<br>
-&gt;&nbsp;&nbsp; It will be used to generate local.conf by oe-layertool-set=
-up.sh<br>
-&gt;<br>
-&gt;Signed-off-by: Mrinmayee Hingolikar &lt;mrinmayee@ti.com&gt;<br>
-&gt;---<br>
-&gt; ...-linaro.conf.sample =3D&gt; local-glsdk.conf.sample} |&nbsp;&nbsp;&=
-nbsp; 4 &#43;&#43;&#43;-<br>
-&gt; 1 files changed, 3 insertions(&#43;), 1 deletions(-)&nbsp; copy sample=
--<br>
-&gt;files/{local-arago-linaro.conf.sample =3D&gt; local-glsdk.conf.sample}<=
-br>
-&gt;(99%)<br>
-&gt;<br>
-&gt;diff --git a/sample-files/local-arago-linaro.conf.sample b/sample-<br>
-&gt;files/local-glsdk.conf.sample<br>
-&gt;similarity index 99%<br>
-&gt;copy from sample-files/local-arago-linaro.conf.sample<br>
-&gt;copy to sample-files/local-glsdk.conf.sample<br>
-&gt;index 24d14dc..a9abea2 100644<br>
-&gt;--- a/sample-files/local-arago-linaro.conf.sample<br>
-&gt;&#43;&#43;&#43; b/sample-files/local-glsdk.conf.sample<br>
-&gt;@@ -146,7 &#43;146,6 @@ PARALLEL_MAKE =3D &quot;-j 1&quot;<br>
-&gt; # be appropriate for example<br>
-&gt;<br>
-&gt; DISTRO&nbsp;&nbsp; =3D &quot;arago&quot;<br>
-&gt;-TOOLCHAIN_BRAND =3D &quot;linaro&quot;<br>
-<br>
-Why are you removing this?<br>
-<br>
-&gt;<br>
-&gt; # Set terminal types by default it expects gnome-terminal&nbsp; # but<=
-br>
-&gt;we chose xterm @@ -158,3 &#43;157,6 @@ BB_GENERATE_MIRROR_TARBALLS =3D<=
-br>
-&gt;&quot;0&quot;<br>
-&gt;<br>
-&gt; # Uncomment this to remove work directory after packaging to save<br>
-&gt;disk space&nbsp; #INHERIT &#43;=3D &quot;rm_work&quot;<br>
-&gt;&#43;<br>
-&gt;&#43;# Use GLSDK branding<br>
-&gt;&#43;ARAGO_BRAND =3D &quot;glsdk&quot;<br>
-<br>
-I'm curious why the AMSDK doesn't use this and can use the base config file=
-.&nbsp; I would suggest checking with them so you two can be aligned and co=
-nsistent between SDKs.<br>
-<br>
-&gt;--<br>
-&gt;1.7.0.4<br>
-&gt;<br>
-&gt;_______________________________________________<br>
-&gt;meta-arago mailing list<br>
-&gt;meta-arago@arago-project.org<br>
-&gt;<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago=
-">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
-_______________________________________________<br>
-meta-arago mailing list<br>
-meta-arago@arago-project.org<br>
-<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">ht=
-tp://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
-</div>
-</span></font>
+
+<h2>Status for 07/20/13</h2>
+
+<h2>BUILD_ID: build-2013-07-20_01-02-44</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
 </body>
 </html>
 
---_000_B0581B5571079145BA1CD78C126DBDE72E838878DLEE08entticom_--
+
+------=_Part_402_1293651337.1374299737172--
