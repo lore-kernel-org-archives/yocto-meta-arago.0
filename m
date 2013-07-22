@@ -1,32 +1,28 @@
-Return-Path: <heroor@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 58828529C9
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 2AF3852972
 	for <meta-arago@arago-project.org>;
-	Mon, 22 Jul 2013 04:13:41 +0000 (UTC)
+	Mon, 22 Jul 2013 06:05:05 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6M4DdHe013227
-	for <meta-arago@arago-project.org>; Sun, 21 Jul 2013 23:13:39 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6M4Ddjv010077
-	for <meta-arago@arago-project.org>; Sun, 21 Jul 2013 23:13:39 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Sun, 21 Jul 2013 23:13:39 -0500
-Received: from [172.24.158.133] (a0875592lt01.apr.dhcp.ti.com
-	[172.24.158.133])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r6M4Da8k032382;	Sun, 21 Jul 2013 23:13:37 -0500
-Message-ID: <51ECB170.300@ti.com>
-Date: Mon, 22 Jul 2013 09:43:36 +0530
-From: Siddharth Heroor <heroor@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6M654SV022064
+	for <meta-arago@arago-project.org>; Mon, 22 Jul 2013 01:05:04 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6M653iE007664
+	for <meta-arago@arago-project.org>; Mon, 22 Jul 2013 01:05:03 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 22 Jul 2013 01:05:03 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6M6532d020968	for
+	<meta-arago@arago-project.org>; Mon, 22 Jul 2013 01:05:03 -0500
+Date: Mon, 22 Jul 2013 01:57:07 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <539020805.411.1374472627458.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-References: <CF956B779D819D41BBC043B7082161D543FB18@DBDE04.ent.ti.com>
-	<F4FA69BF-19EF-4E05-BF7E-27D51BBD6B38@ti.com>
-In-Reply-To: <F4FA69BF-19EF-4E05-BF7E-27D51BBD6B38@ti.com>
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv2] abefw: Firmware for OMAP5 ABE
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-07-22_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,94 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2013 04:13:42 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Mon, 22 Jul 2013 06:05:05 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_410_1066043618.1374472627456"
+
+------=_Part_410_1066043618.1374472627456
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 7/12/2013 6:41 PM, Cooper Jr., Franklin wrote:
-> 
-> 
-> On Jul 12, 2013, at 1:43 AM, "Hingolikar, Mrinmayee" <mrinmayee@ti.com> wrote:
-> 
->>
->> * The OMAP5 Audio Backend requires a 'firmware' to enable
->>  sound. This recipe installs a prebuilt firmware. This
->>  part is a hack, as in the current form, the firmware
->>  cannot be cross-compiled. There is a plan to fix this
->>  and hopefully, this recipe is short-lived. Once the code
->>  is fixed, we should have new recipes that build the firmware
->>  and clean up this recipe.
->>
->> v2:
->> * Merged contents from abefw.inc and removed abefw.inc based
->>  on review.
->>
->> Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
->> Signed-off-by: Siddharth Heroor <heroor@ti.com>
->> ---
->> recipes-bsp/abefw/abefw_1.0.14.bb |   20 ++++++++++++++++++++
->> 1 files changed, 20 insertions(+), 0 deletions(-)  create mode 100644 recipes-bsp/abefw/abefw_1.0.14.bb
->>
->> diff --git a/recipes-bsp/abefw/abefw_1.0.14.bb b/recipes-bsp/abefw/abefw_1.0.14.bb
->> new file mode 100644
->> index 0000000..8db71e4
->> --- /dev/null
->> +++ b/recipes-bsp/abefw/abefw_1.0.14.bb
->> @@ -0,0 +1,20 @@
->> +SUMMARY = "Firmware for OMAP5 ABE"
->> +HOMEPAGE = "http://git.ti.com"
->> +LICENSE = "BSD/GPLv2"
-> I'm assuming this means BSD or GPLv2.
-> 
-> The proper syntax is
-> LICENSE = "BSD | GPLv2"
-> 
-> 
->> +LIC_FILES_CHKSUM = "file://COPYING;md5=923db086ed9463ab3215b24d87e05ec5"
->> +
->> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> I don't see any machine based overrides or appends in this recipe. This isn't needed. 
-> 
->> +COMPATIBLE_MACHINE = "omap5-evm"
-> I'm just curious if the dra7xx or any other possible future boards will be using this firmware/recipe. If so any harm in making this generic and specifying omap-a15?
+<html>
+<head>
+<title>
+Status for 07/22/13
+</title>
+</head>
+<body>
 
-This is an IP *specific* to OMAP4/5. On OMAP5, the ABE (Audio Backend)
-is present to allow for low power audio playback. Refer TRM
-(http://www.ti.com/lit/ug/swpu249w/swpu249w.pdf) section 13. - Audio
-Subsystem.
+<h2>Status for 07/22/13</h2>
 
-On DRA7xx ABE isn't present. Instead we have multiple McASPs (upto 8)
-for which no firmware is required. McASP has its own sound driver (which
-should be common to other devices).
+<h2>BUILD_ID: build-2013-07-22_01-02-45</h2>
 
-By setting COMPATIBILITY and PACKAGE_ARCH to be limited to omap5, we
-make it obvious that the IP is OMAP5 specific and not generic for all
-omap-a15 devices.
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
->> +
->> +SRC_URI = "git://git.ti.com/glsdk/abefw-omap4plus.git;protocol=git"
->> +
->> +S = "${WORKDIR}/git"
->> +
->> +SRCREV = "ceccc0332264e39bdc51e54f80ea7256a3886c58"
->> +
->> +do_install() {
->> +        mkdir -p ${D}/lib/firmware
->> +        cp ${S}/firmware/omap4_abe_new ${D}/lib/firmware/ }
->> +
->> +FILES_${PN} += "/lib/firmware/omap4_abe_new"
->> --
->> 1.7.0.4
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-
-
+------=_Part_410_1066043618.1374472627456--
