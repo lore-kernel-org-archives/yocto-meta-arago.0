@@ -1,41 +1,30 @@
-Return-Path: <chgans@googlemail.com>
-Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
-	[209.85.192.171])
-	by arago-project.org (Postfix) with ESMTPS id DBB4952979
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 995DD52A56
 	for <meta-arago@arago-project.org>;
-	Tue, 23 Jul 2013 04:44:01 +0000 (UTC)
-Received: by mail-pd0-f171.google.com with SMTP id y14so7614115pdi.16
-	for <meta-arago@arago-project.org>;
-	Mon, 22 Jul 2013 21:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=Qdiv0o7rlYL839PCfgmk216i6AFSf0wrjZpvxwkQbHo=;
-	b=ByvHnCsbdmS83pF1NdN3kkh/NOTNy+GQHZc/xDJ7NsiLECQaTcCMp0rL1Ws7pYcmig
-	npbdURrbv+OArG3gV06ZLFLRezjgUIR0u9PQGfXcXZ/blZY29pEkG+YTXJuYH83JBZ1G
-	q2DboyKfKNzHdrr1QDSerJr+enbmFBZ2+mNnk+aSc1ySsXjWn/u9cbQM1cBUDGhvl49x
-	ytzqEDJ8HFDpF9gJA7ZNjcM3WlLcDpf7SpVBRxQXmMftuyrhmvdq6zYSo4/L9FZ8ibty
-	U/X7Yy+7ziGPYXZ6mvD8i+Nab6FKtaigSyrBvq3aL61tERV0RdSJA75UIFTgCDvhkzwP
-	r2XQ==
-X-Received: by 10.66.25.232 with SMTP id f8mr25374725pag.25.1374554640664;
-	Mon, 22 Jul 2013 21:44:00 -0700 (PDT)
-Received: from [0.0.0.0] ([210.48.94.225])
-	by mx.google.com with ESMTPSA id w8sm6978033paj.4.2013.07.22.21.43.57
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 22 Jul 2013 21:43:59 -0700 (PDT)
-Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <51EE0A0A.3020902@gna.org>
-Date: Tue, 23 Jul 2013 16:43:54 +1200
-From: Christian Gagneraud <chgans@gna.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
-MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
+	Tue, 23 Jul 2013 06:02:47 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6N62kGg024062;
+	Tue, 23 Jul 2013 01:02:46 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6N62k0o028888;
+	Tue, 23 Jul 2013 01:02:46 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 23 Jul 2013 01:02:45 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6N62j7e030518;
+	Tue, 23 Jul 2013 01:02:45 -0500
+Date: Tue, 23 Jul 2013 02:02:45 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Christian Gagneraud <chgans@gna.org>
+Message-ID: <20130723060244.GA31158@edge>
 References: <1331708251.407.1374386154381.JavaMail.jenkins@puget>
 	<51EDE9D0.2000003@gna.org> <20130723031524.GA30573@edge>
-In-Reply-To: <20130723031524.GA30573@edge>
+	<51EE0A0A.3020902@gna.org>
+MIME-Version: 1.0
+In-Reply-To: <51EE0A0A.3020902@gna.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
 Subject: Re: [nightly] Core TISDK 2013.06 build 2013-07-21_01-01-44
 X-BeenThere: meta-arago@arago-project.org
@@ -50,76 +39,92 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2013 04:44:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 23 Jul 2013 06:02:48 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-On 23/07/13 15:15, Denys Dmytriyenko wrote:
-> Christian,
->
-> On Tue, Jul 23, 2013 at 02:26:24PM +1200, Christian Gagneraud wrote:
->> Hi there,
->>
->> I have been looking at these test/build reports recently, is there a
->> more detail report available somewhere?
->
-> Yes, but detailed reports are not yet published externally - it's on my
-> "to do" list.
+On Tue, Jul 23, 2013 at 04:43:54PM +1200, Christian Gagneraud wrote:
+> On 23/07/13 15:15, Denys Dmytriyenko wrote:
+> >Christian,
+> >
+> >On Tue, Jul 23, 2013 at 02:26:24PM +1200, Christian Gagneraud wrote:
+> >>Hi there,
+> >>
+> >>I have been looking at these test/build reports recently, is there a
+> >>more detail report available somewhere?
+> >
+> >Yes, but detailed reports are not yet published externally - it's on my
+> >"to do" list.
+> 
+> Good to hear, thanks! I have no strong needs for this, i was just
+> curious about the am335x-evm test failures.
+> 
+> >
+> >
+> >>As a user of a am335x-evm and a BeagleBoard Black, I would like to
+> >>know more about test failure for the EVM.
+> >
+> >There are some issues with the boot sequence of an automated test - looks
+> >like it's trying to load a wrong kernel image, I'll look into it later.
+> >Otherwise, the latest Dylan build works and boots fine for me on am335x-evm
+> >when loaded manually on SD card.
+> >
+> >
+> >>As well, I'm considering moving from Arago/Danny (kernel 3.2) to
+> >>Arago/Dylan (kernel 3.8?). I would like to know if there are any
+> >>plan to use Dylan for the next stable Arago.
+> >
+> >Actually, Arago/Danny has been using kernel 3.8 for quite some time now - we
+> >already had couple internal releases with it. You would need to specifically
+> >request AM-SDK branding to get 3.2 kernel, as the default is 3.8 in Danny and
+> >in Dylan. The only change Dylan brings is to update the underlying Yocto
+> >framework with all the user-space apps to the latest versions.
+> 
+> Yes, that's right, Arago/Danny already use kernel 3.8. My mistake!
+> To be more precise, my question was related to QA stuff. For now,
+> build and test automation are still done with Arago/Danny, any plan
+> to switch to or add Arago/Dylan config?
 
-Good to hear, thanks! I have no strong needs for this, i was just 
-curious about the am335x-evm test failures.
-
->
->
->> As a user of a am335x-evm and a BeagleBoard Black, I would like to
->> know more about test failure for the EVM.
->
-> There are some issues with the boot sequence of an automated test - looks
-> like it's trying to load a wrong kernel image, I'll look into it later.
-> Otherwise, the latest Dylan build works and boots fine for me on am335x-evm
-> when loaded manually on SD card.
->
->
->> As well, I'm considering moving from Arago/Danny (kernel 3.2) to
->> Arago/Dylan (kernel 3.8?). I would like to know if there are any
->> plan to use Dylan for the next stable Arago.
->
-> Actually, Arago/Danny has been using kernel 3.8 for quite some time now - we
-> already had couple internal releases with it. You would need to specifically
-> request AM-SDK branding to get 3.2 kernel, as the default is 3.8 in Danny and
-> in Dylan. The only change Dylan brings is to update the underlying Yocto
-> framework with all the user-space apps to the latest versions.
-
-Yes, that's right, Arago/Danny already use kernel 3.8. My mistake!
-To be more precise, my question was related to QA stuff. For now, build 
-and test automation are still done with Arago/Danny, any plan to switch 
-to or add Arago/Dylan config?
-
-On the side, any plan to add beaglebone and/or beaglebone-black to the 
-list of machines used by your continuous integration systems?
-
->
->
->> Also, do you think it is conceivable to hope for a working Qt5 with
->> TI OpenGL stuff?
->
-> It's in the plans. Prabu was able to get it built after some massaging, but
-> there are still few issues. Also, we would need to make sure the fallback
-> mechanism works for legacy devices w/o GLES, since Qt5 requires it...
-
-Interesting! What I found so far:
-  - https://github.com/prabindh/qt-configs
-  - http://e2e.ti.com/search/default.aspx#q=qt5&g=29&sc=forum
-  - and of course https://github.com/meta-qt5/meta-qt5, which depends on 
-oe master :(
-
-What I would like to achieve by the next months is to provide an 
-{arago|angstrom|poxy}-danny-qt5 SDK and custom rootfs to the dev guys. 
-Will see how it goes!
-
-Regards,
-Chris
+Yes, indeed - that's the next step. I still need to finish the devkit portion 
+of our SDK, but otherwise everything seems to be getting ready to switch the 
+nightly builds and tests to using Dylan.
 
 
+> On the side, any plan to add beaglebone and/or beaglebone-black to
+> the list of machines used by your continuous integration systems?
 
+Starting with kernel 3.8, the only difference between AM335 EVM, EVM-SK and 
+Beaglebone is in the devtree. When we build for am335x-evm, we copy all the 
+DTBs, so the same images can be used on SK or Beaglebone. No need to build for 
+those separately!
+
+From a run-time testing perspective, those are obviously different tests on 
+actual boards - I would need to check the board farm for proper setup. BTW, 
+current nightly tests are sent to our internal board farm, which is shared. I 
+am working on setting up my own personal board farm - I do have all the 
+boards, I just need to whip our automation software in shape, which is not an 
+easy task...
+
+
+> >>Also, do you think it is conceivable to hope for a working Qt5 with
+> >>TI OpenGL stuff?
+> >
+> >It's in the plans. Prabu was able to get it built after some massaging, but
+> >there are still few issues. Also, we would need to make sure the fallback
+> >mechanism works for legacy devices w/o GLES, since Qt5 requires it...
+> 
+> Interesting! What I found so far:
+>  - https://github.com/prabindh/qt-configs
+>  - http://e2e.ti.com/search/default.aspx#q=qt5&g=29&sc=forum
+>  - and of course https://github.com/meta-qt5/meta-qt5, which depends
+> on oe master :(
+> 
+> What I would like to achieve by the next months is to provide an
+> {arago|angstrom|poxy}-danny-qt5 SDK and custom rootfs to the dev
+> guys. Will see how it goes!
+
+Let us know how it goes. And patches are welcome, as usual!
+
+-- 
+Denys
 
