@@ -1,29 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7F816529C9
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by arago-project.org (Postfix) with ESMTPS id DBB4952979
 	for <meta-arago@arago-project.org>;
-	Tue, 23 Jul 2013 03:15:26 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6N3FPM6026629;
-	Mon, 22 Jul 2013 22:15:25 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6N3FPbT029081;
-	Mon, 22 Jul 2013 22:15:25 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 22 Jul 2013 22:15:25 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6N3FODL031605;
-	Mon, 22 Jul 2013 22:15:25 -0500
-Date: Mon, 22 Jul 2013 23:15:24 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Christian Gagneraud <chgans@gna.org>
-Message-ID: <20130723031524.GA30573@edge>
-References: <1331708251.407.1374386154381.JavaMail.jenkins@puget>
-	<51EDE9D0.2000003@gna.org>
+	Tue, 23 Jul 2013 04:44:01 +0000 (UTC)
+Received: by mail-pd0-f171.google.com with SMTP id y14so7614115pdi.16
+	for <meta-arago@arago-project.org>;
+	Mon, 22 Jul 2013 21:44:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=Qdiv0o7rlYL839PCfgmk216i6AFSf0wrjZpvxwkQbHo=;
+	b=ByvHnCsbdmS83pF1NdN3kkh/NOTNy+GQHZc/xDJ7NsiLECQaTcCMp0rL1Ws7pYcmig
+	npbdURrbv+OArG3gV06ZLFLRezjgUIR0u9PQGfXcXZ/blZY29pEkG+YTXJuYH83JBZ1G
+	q2DboyKfKNzHdrr1QDSerJr+enbmFBZ2+mNnk+aSc1ySsXjWn/u9cbQM1cBUDGhvl49x
+	ytzqEDJ8HFDpF9gJA7ZNjcM3WlLcDpf7SpVBRxQXmMftuyrhmvdq6zYSo4/L9FZ8ibty
+	U/X7Yy+7ziGPYXZ6mvD8i+Nab6FKtaigSyrBvq3aL61tERV0RdSJA75UIFTgCDvhkzwP
+	r2XQ==
+X-Received: by 10.66.25.232 with SMTP id f8mr25374725pag.25.1374554640664;
+	Mon, 22 Jul 2013 21:44:00 -0700 (PDT)
+Received: from [0.0.0.0] ([210.48.94.225])
+	by mx.google.com with ESMTPSA id w8sm6978033paj.4.2013.07.22.21.43.57
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 22 Jul 2013 21:43:59 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <51EE0A0A.3020902@gna.org>
+Date: Tue, 23 Jul 2013 16:43:54 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-In-Reply-To: <51EDE9D0.2000003@gna.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1331708251.407.1374386154381.JavaMail.jenkins@puget>
+	<51EDE9D0.2000003@gna.org> <20130723031524.GA30573@edge>
+In-Reply-To: <20130723031524.GA30573@edge>
 Cc: meta-arago@arago-project.org
 Subject: Re: [nightly] Core TISDK 2013.06 build 2013-07-21_01-01-44
 X-BeenThere: meta-arago@arago-project.org
@@ -38,163 +50,76 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2013 03:15:26 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 23 Jul 2013 04:44:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Christian,
+On 23/07/13 15:15, Denys Dmytriyenko wrote:
+> Christian,
+>
+> On Tue, Jul 23, 2013 at 02:26:24PM +1200, Christian Gagneraud wrote:
+>> Hi there,
+>>
+>> I have been looking at these test/build reports recently, is there a
+>> more detail report available somewhere?
+>
+> Yes, but detailed reports are not yet published externally - it's on my
+> "to do" list.
 
-On Tue, Jul 23, 2013 at 02:26:24PM +1200, Christian Gagneraud wrote:
-> Hi there,
-> 
-> I have been looking at these test/build reports recently, is there a
-> more detail report available somewhere?
+Good to hear, thanks! I have no strong needs for this, i was just 
+curious about the am335x-evm test failures.
 
-Yes, but detailed reports are not yet published externally - it's on my 
-"to do" list.
+>
+>
+>> As a user of a am335x-evm and a BeagleBoard Black, I would like to
+>> know more about test failure for the EVM.
+>
+> There are some issues with the boot sequence of an automated test - looks
+> like it's trying to load a wrong kernel image, I'll look into it later.
+> Otherwise, the latest Dylan build works and boots fine for me on am335x-evm
+> when loaded manually on SD card.
+>
+>
+>> As well, I'm considering moving from Arago/Danny (kernel 3.2) to
+>> Arago/Dylan (kernel 3.8?). I would like to know if there are any
+>> plan to use Dylan for the next stable Arago.
+>
+> Actually, Arago/Danny has been using kernel 3.8 for quite some time now - we
+> already had couple internal releases with it. You would need to specifically
+> request AM-SDK branding to get 3.2 kernel, as the default is 3.8 in Danny and
+> in Dylan. The only change Dylan brings is to update the underlying Yocto
+> framework with all the user-space apps to the latest versions.
+
+Yes, that's right, Arago/Danny already use kernel 3.8. My mistake!
+To be more precise, my question was related to QA stuff. For now, build 
+and test automation are still done with Arago/Danny, any plan to switch 
+to or add Arago/Dylan config?
+
+On the side, any plan to add beaglebone and/or beaglebone-black to the 
+list of machines used by your continuous integration systems?
+
+>
+>
+>> Also, do you think it is conceivable to hope for a working Qt5 with
+>> TI OpenGL stuff?
+>
+> It's in the plans. Prabu was able to get it built after some massaging, but
+> there are still few issues. Also, we would need to make sure the fallback
+> mechanism works for legacy devices w/o GLES, since Qt5 requires it...
+
+Interesting! What I found so far:
+  - https://github.com/prabindh/qt-configs
+  - http://e2e.ti.com/search/default.aspx#q=qt5&g=29&sc=forum
+  - and of course https://github.com/meta-qt5/meta-qt5, which depends on 
+oe master :(
+
+What I would like to achieve by the next months is to provide an 
+{arago|angstrom|poxy}-danny-qt5 SDK and custom rootfs to the dev guys. 
+Will see how it goes!
+
+Regards,
+Chris
 
 
-> As a user of a am335x-evm and a BeagleBoard Black, I would like to
-> know more about test failure for the EVM.
 
-There are some issues with the boot sequence of an automated test - looks 
-like it's trying to load a wrong kernel image, I'll look into it later. 
-Otherwise, the latest Dylan build works and boots fine for me on am335x-evm 
-when loaded manually on SD card.
-
-
-> As well, I'm considering moving from Arago/Danny (kernel 3.2) to
-> Arago/Dylan (kernel 3.8?). I would like to know if there are any
-> plan to use Dylan for the next stable Arago.
-
-Actually, Arago/Danny has been using kernel 3.8 for quite some time now - we 
-already had couple internal releases with it. You would need to specifically 
-request AM-SDK branding to get 3.2 kernel, as the default is 3.8 in Danny and 
-in Dylan. The only change Dylan brings is to update the underlying Yocto 
-framework with all the user-space apps to the latest versions.
-
-
-> Also, do you think it is conceivable to hope for a working Qt5 with
-> TI OpenGL stuff?
-
-It's in the plans. Prabu was able to get it built after some massaging, but 
-there are still few issues. Also, we would need to make sure the fallback 
-mechanism works for legacy devices w/o GLES, since Qt5 requires it...
-
--- 
-Denys
-
-
-> On 21/07/13 17:55, Denys Dmytriyenko wrote:
-> >Status for 07/21/13
-> >
-> >
-> >    Status for 07/21/13
-> >
-> >
-> >    BUILD_ID: build-2013-07-21_01-02-45
-> >
-> >
-> >    Clean Build: false
-> >
-> >
-> >    Clean Sources: false
-> >
-> >
-> >    _Repository Revisions_
-> >
-> >Repository 	Git URL 	Branch 	Commit ID 	Layers
-> >bitbake 	git://git.openembedded.org/bitbake 	master 	1.17.0 	layers=
-> >meta-arago 	git://arago-project.org/git/meta-arago.git 	danny
-> >	HEAD layers=meta-arago-distro:meta-arago-extras
-> >meta-openembedded 	git://git.openembedded.org/meta-openembedded
-> >danny 	HEAD 	layers=toolchain-layer:meta-oe
-> >meta-ti 	git://arago-project.org/git/meta-ti.git 	danny 	HEAD 	layers=
-> >meta-linaro 	git://git.linaro.org/openembedded/meta-linaro.git
-> >danny 	HEAD 	layers=
-> >oe-core 	git://git.openembedded.org/openembedded-core 	danny 	HEAD
-> >layers=meta
-> >
-> >
-> >    _Build and Target Test Results_
-> >
-> >Machine 	Build Result 	Target Test Result
-> >am335x-evm 	PASSED 	FAILED
-> >am37x-evm 	PASSED 	PASSED
-> >omap5-evm 	FAILED 	SKIPPED
-> >dra7xx-evm 	FAILED 	SKIPPED
-> >beagleboard 	PASSED 	PASSED
-> >am3517-evm 	PASSED 	PASSED
-> >am180x-evm 	PASSED 	FAILED
-> >
-> >These builds were performed using the build-oesdk.sh script at:
-> >
-> >git://arago-project.org/git/projects/tisdk-build-scripts.git
-> >
-> >The configuration file passed to this script had the contents:
-> >
-> >MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS
-> >BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT
-> >DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE
-> >NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-> >TISDK_VERSION="2013.06"
-> >MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard
-> >am3517-evm am180x-evm"
-> >NUM_ARM9_BUILDS="1"
-> >NUM_CORTEX_BUILDS="1"
-> >TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
-> >TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
-> >BUILD_ID="`date +build-%F_%H-%M-%S`"
-> >SCRIPTS_ROOT="$PWD"
-> >BUILD_ROOT="/home/jenkins/tisdk-build"
-> >TEST_ROOT="$BUILD_ROOT/testing"
-> >PACKAGE_ROOT="$BUILD_ROOT/packaging"
-> >DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
-> >FS_FILTER="tisdk-rootfs-"
-> >FS_IMAGE_TYPE="tar.gz"
-> >SDK_FILTER="arago-core-tisdk-image-"
-> >SDK_IMAGE_TYPE="tar.gz"
-> >NFS_ROOT="/home/jenkins/nfs-root"
-> >SOURCE_DIR="${BUILD_ROOT}/sources"
-> >CLEAN_BUILD="false"
-> >CLEAN_ALL="false"
-> >CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"
-> >LOG_DIR="${BUILD_ROOT}/log-files"
-> >DL_DIR="/OE/downloads"
-> >INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
-> >TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
-> >TEST_SCRIPTS_TGT="home/root/test-scripts"
-> >TEST_LOCAL_IFACE="eth1"
-> >OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
-> >OPENTEST_TEE_IP="10.218.102.142"
-> >RUN_BUILD_TESTS="true"
-> >STAF_ROOT="/usr/local/staf"
-> >SKIP_TEST_FAILURES="false"
-> >PRODUCTIZE_SDK="false"
-> >BITBAKE_COMMAND="arago-core-tisdk-image"
-> >RESULTS_CONFIG_COMMENTS="false"
-> >INSTALL_JAMMER="/home/jenkins/installjammer"
-> >INSTALLER_ROOT="$BUILD_ROOT/installer"
-> >MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"
-> >SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
-> >PACKAGE_BOOT_UIMAGE="false"
-> >WEBGEN_ROOT="/home/jenkins/webgen"
-> >WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
-> >WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"
-> >COPY_TO_WEB="true"
-> >WEB_HOST=""
-> >CLEAN_AFTER_COPY="true"
-> >BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"
-> >
-> >
-> >
-> >_______________________________________________
-> >meta-arago mailing list
-> >meta-arago@arago-project.org
-> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
