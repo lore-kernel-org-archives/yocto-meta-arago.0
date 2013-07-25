@@ -1,29 +1,34 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B375052972
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 8576052A19
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Jul 2013 16:45:56 +0000 (UTC)
+	Thu, 25 Jul 2013 19:36:44 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6PGjugW005759
-	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 11:45:56 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6PGjuvD015160
-	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 11:45:56 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Thu, 25 Jul 2013 11:45:56 -0500
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: Help needed: Issues wtih applications using shared library
-Thread-Index: Ac6JVc4wz0VWQ8XMQnG48BGqqOYNEw==
-Date: Thu, 25 Jul 2013 16:45:55 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F4905493CA66@DLEE11.ent.ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6PJaeIq025198
+	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 14:36:40 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6PJaeAA009698
+	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 14:36:40 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Thu, 25 Jul 2013 14:36:39 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [master & danny][PATCH 1/5] ti-tisdk-setup: Add
+	Beaglebone Black support
+Thread-Index: AQHOgiRY/MGr5OEqCkGea1YyJgiY6Zl12D1A
+Date: Thu, 25 Jul 2013 19:36:39 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C50AF30@DFLE08.ent.ti.com>
+References: <1373574210-4398-1-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED10159657702@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED10159657702@DLEE11.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Help needed: Issues wtih applications using shared library
+Subject: Re: [master & danny][PATCH 1/5] ti-tisdk-setup: Add	Beaglebone Black support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,104 +41,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 16:45:56 -0000
+X-List-Received-Date: Thu, 25 Jul 2013 19:36:50 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4F9216F96E5DF9428610502835A9F4905493CA66DLEE11entticom_"
-
---_000_4F9216F96E5DF9428610502835A9F4905493CA66DLEE11entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
-We are running into issues with application running shared application look=
-ing for the *.so file.
-The file system only has the *.so.1, *.so.1.0 files. ( with the major and m=
-inor versions).
+Ping on this patchset.
 
-netfpproxy.out -p /usr/lib/netfp_proxy/plugins/netfpproxy_plugin.so -d 10 -=
-v
-netfpproxy.out: error while loading shared libraries: libnl-xfrm.so: cannot=
- open shared object file: No such file o
-r directory
+> -----Original Message-----
+> From: Maupin, Chase
+> Sent: Tuesday, July 16, 2013 8:00 AM
+> To: Cooper Jr., Franklin; meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [master & danny][PATCH 1/5] ti-tisdk-setup: Add
+> Beaglebone Black support
+>=20
+> Acked-by: Chase Maupin <chase.maupin@ti.com>
+>=20
+>=20
+> >-----Original Message-----
+> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> >Sent: Thursday, July 11, 2013 3:23 PM
+> >To: meta-arago@arago-project.org
+> >Cc: Cooper Jr., Franklin
+> >Subject: [meta-arago] [master & danny][PATCH 1/5] ti-tisdk-setup:
+> >Add Beaglebone Black support
+> >
+> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> >---
+> > .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
+> > 1 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> >diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-
+> >tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-
+> >setup/ti-tisdk-setup.bb
+> >index f5b9060..280e58c 100644
+> >--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-
+> >setup.bb
+> >+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-
+> >setup.bb
+> >@@ -2,10 +2,10 @@ DESCRIPTION =3D "Package containing scripts to setup
+> >the development host and targ  LICENSE =3D "BSD"
+> > LIC_FILES_CHKSUM =3D
+> >"file://setup.sh;beginline=3D3;endline=3D31;md5=3Dfc4b04a33df6d892c9f4d4
+> >a9d92b945e"
+> >
+> >-PR =3D "r13"
+> >+PR =3D "r14"
+> >
+> > BRANCH ?=3D "master"
+> >-SRCREV =3D "49833f742ec151108e7f8a75eab99d5e4433f7eb"
+> >+SRCREV =3D "5d2d712607d5bba1d15f199bb7b185d963a23d1e"
+> > SRC_URI =3D "git://arago-project.org/git/projects/tisdk-setup-
+> >scripts.git;protocol=3Dgit;branch=3D${BRANCH}"
+> >
+> > S =3D "${WORKDIR}/git/"
+> >--
+> >1.7.0.4
+> >
+> >_______________________________________________
+> >meta-arago mailing list
+> >meta-arago@arago-project.org
+> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-I am pretty new to this. Any ideas on what may be wrong here is appreciated=
-?
-With regards,
-Sam
-
---_000_4F9216F96E5DF9428610502835A9F4905493CA66DLEE11entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
-<p class=3D"MsoNormal">We are running into issues with application running =
-shared application looking for the *.so file.<o:p></o:p></p>
-<p class=3D"MsoNormal">The file system only has the *.so.1, *.so.1.0 files.=
- ( with the major and minor versions).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">netfpproxy.out -p /usr/lib/netfp_proxy/plugins/netfp=
-proxy_plugin.so -d 10 -v<o:p></o:p></p>
-<p class=3D"MsoNormal">netfpproxy.out: error while loading shared libraries=
-: libnl-xfrm.so: cannot open shared object file: No such file o<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">r directory<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am pretty new to this. Any ideas on what may be wr=
-ong here is appreciated?<o:p></o:p></p>
-<p class=3D"MsoNormal">With regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Sam<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_4F9216F96E5DF9428610502835A9F4905493CA66DLEE11entticom_--
