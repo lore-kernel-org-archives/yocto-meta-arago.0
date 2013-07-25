@@ -1,33 +1,35 @@
-Return-Path: <sajesh@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 3A46F529D3
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id F2367529D3
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Jul 2013 20:30:10 +0000 (UTC)
+	Thu, 25 Jul 2013 20:30:43 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6PKU8Bc008844
-	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 15:30:08 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6PKUhvX010940
+	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 15:30:43 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6PKU8UV008358
-	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 15:30:08 -0500
-Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6PKUhYe009249
+	for <meta-arago@arago-project.org>; Thu, 25 Jul 2013 15:30:43 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
 	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Thu, 25 Jul 2013 15:30:08 -0500
-From: "Saran, Sajesh Kumar" <sajesh@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] compiling a native (x86) application using Yocto
-Thread-Index: Ac6ImMQDGnryB0yHRnSnNiDIqcHy8wBBieKAAApUnMA=
-Date: Thu, 25 Jul 2013 20:30:07 +0000
-Message-ID: <8EAE6244CE843044A42356038645C8551573D779@DFLE12.ent.ti.com>
-References: <8EAE6244CE843044A42356038645C8551573CB16@DFLE12.ent.ti.com>
-	<20130725202449.GD2222@edge>
-In-Reply-To: <20130725202449.GD2222@edge>
+	14.02.0342.003; Thu, 25 Jul 2013 15:30:43 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [master & danny][PATCH 5/5]
+	packagegroup-arago-tisdk-matrix: Clock app doesnt work on	older boards.
+Thread-Index: AQHOgiTNSJb05lkM2kaHT8JQ6nbhEpl14+gg
+Date: Thu, 25 Jul 2013 20:30:42 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C50B1F3@DFLE08.ent.ti.com>
+References: <1373574210-4398-1-git-send-email-fcooper@ti.com>
+	<1373574210-4398-5-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED101596577C0@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED101596577C0@DLEE11.ent.ti.com>
 Accept-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: compiling a native (x86) application using Yocto
+Subject: Re: [master & danny][PATCH 5/5]	packagegroup-arago-tisdk-matrix: Clock app doesnt work on	older boards.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,62 +42,96 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 20:30:12 -0000
-X-Groupsio-MsgNum: 1698
+X-List-Received-Date: Thu, 25 Jul 2013 20:30:44 -0000
 Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_002_8EAE6244CE843044A42356038645C8551573D779DFLE12entticom_"
-
---_002_8EAE6244CE843044A42356038645C8551573D779DFLE12entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Recipe is attached with the mail.
 
-Regards,
-Sajesh
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Thursday, July 25, 2013 4:25 PM
-To: Saran, Sajesh Kumar
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] compiling a native (x86) application using Yocto
-
-On Wed, Jul 24, 2013 at 06:26:48PM +0000, Saran, Sajesh Kumar wrote:
-> Hi,
+> -----Original Message-----
+> From: Maupin, Chase
+> Sent: Tuesday, July 16, 2013 8:03 AM
+> To: Cooper Jr., Franklin; meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [master & danny][PATCH 5/5] packagegroup-arago-
+> tisdk-matrix: Clock app doesnt work on older boards.
 >=20
-> I am trying to compile a native tool/application using Yocto.
+> >-----Original Message-----
+> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> >Sent: Thursday, July 11, 2013 3:24 PM
+> >To: meta-arago@arago-project.org
+> >Cc: Cooper Jr., Franklin
+> >Subject: [meta-arago] [master & danny][PATCH 5/5] packagegroup-
+> >arago-tisdk-matrix: Clock app doesnt work on older boards.
+> >
+> >* Don't install by default since some older boards don't support the
+> >Clock demo.
 >=20
-> I have added BBCLASSEXTEND =3D "native" to the recipe. The compilation=20
-> goes thru fine. But, in do_package_qa it is running a strip command=20
-> using arm-linux-gnueabihf-strip, which is failing because the=20
-> application is compiled using gcc. Do I have to anything else to fix of t=
-his issue?
+> How do the older boards change their cpufreq settings?
+I missed this comment.=20
 
-Strange, that should be enough... Care to share the recipe?
+I do not believe we currently support changing the cpufreq setting on those=
+ devices. When I looked at the "supported" frequencies returned by the kern=
+el on non am335 and am37 boards I get cpu frequencies that didn't make any =
+sense. When I tried those frequencies anyway the frequency didn't bother ch=
+anging. Double checking old sdks we only included the ability to change fre=
+quencies on am335 and am37x.
 
---
-Denys
 
---_002_8EAE6244CE843044A42356038645C8551573D779DFLE12entticom_
-Content-Type: application/octet-stream; name="ti-dspcoreparse-native_git.bb"
-Content-Description: ti-dspcoreparse-native_git.bb
-Content-Disposition: attachment; filename="ti-dspcoreparse-native_git.bb";
-	size=626; creation-date="Thu, 25 Jul 2013 20:29:36 GMT";
-	modification-date="Wed, 24 Jul 2013 18:15:33 GMT"
-Content-Transfer-Encoding: base64
+>=20
+> >
+> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> >---
+> > .../packagegroup-arago-tisdk-matrix.bb             |    5 +++--
+> > 1 files changed, 3 insertions(+), 2 deletions(-)
+> >
+> >diff --git a/meta-arago-distro/recipes-
+> >core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-
+> >arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-
+> >matrix.bb
+> >index f52eb4a..287baf9 100644
+> >--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> >arago-tisdk-matrix.bb
+> >+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> >arago-tisdk-matrix.bb
+> >@@ -1,6 +1,6 @@
+> > DESCRIPTION =3D "Task to include Matrix v2"
+> > LICENSE =3D "MIT"
+> >-PR =3D "r19"
+> >+PR =3D "r20"
+> >
+> > inherit packagegroup
+> >
+> >@@ -23,7 +23,6 @@ MATRIX_COMMON_APPS =3D "              \
+> >     matrix-gui-settings-demos       \
+> >     matrix-gui-usb-demos            \
+> >     matrix-gui-submenus-ethernet    \
+> >-    matrix-gui-clocks               \
+> > "
+> >
+> > MATRIX_QT_APPS =3D "                  \
+> >@@ -61,6 +60,7 @@ MATRIX_APPS_append_ti33x =3D "        \
+> >                                     \
+> >     matrix-gui-generic-pm           \
+> >     matrix-gui-pm-demos-suspend     \
+> >+    matrix-gui-clocks               \
+> >                                     \
+> >     matrix-gui-wifi-demos           \
+> >     matrix-gui-bluetooth-demos      \
+> >@@ -97,6 +97,7 @@ MATRIX_APPS_append_am37x-evm =3D "    \
+> >     matrix-gui-camera-loopback      \
+> >     matrix-gui-v4l2-demos           \
+> >     matrix-gui-display-control      \
+> >+    matrix-gui-clocks               \
+> >                                     \
+> >     matrix-gui-wifi-demos           \
+> >     matrix-gui-bluetooth-demos      \
+> >--
+> >1.7.0.4
+> >
+> >_______________________________________________
+> >meta-arago mailing list
+> >meta-arago@arago-project.org
+> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-REVTQ1JJUFRJT04gPSAiRFNQIGNvcmVkdW1wIHBhcnNlIHV0aWxpdHkiCkxJQ0VOU0UgPSAiQlNE
-IgojIENPTVBBVElCTEVfTUFDSElORSA9ICJrZXlzdG9uZS1ldm0iCkxJQ19GSUxFU19DSEtTVU0g
-PSAiZmlsZTovL01ha2VmaWxlO2JlZ2lubGluZT0xO2VuZGxpbmU9MzE7bWQ1PTY3MDEwNjFjYzQz
-ZDQyYWMyMmE5N2FjYzA3NGNmODIwIgoKUFIgPSAicjYiCklOU0FORV9TS0lQXyR7UE59ID0gIlRy
-dWUiCkJSQU5DSD0ibWFzdGVyIgpTUkNfVVJJID0gImdpdDovL2FyYWdvLXByb2plY3Qub3JnL2dp
-dC9wcm9qZWN0cy9tY3Nkay1hcHBzLmdpdDtwcm90b2NvbD1naXQ7YnJhbmNoPSR7QlJBTkNIfSIK
-UyA9ICIke1dPUktESVJ9L2dpdC9kc3Bjb3JlcGFyc2UiClNSQ1JFViA9ICJERVYuTUNTREstMDMu
-MDAuMDEuMTIiCgpkb19pbnN0YWxsICgpIHsKIyAgICAgICAgaW5zdGFsbCBERVNURElSPSR7RH0g
-U0JJTkRJUj0ke3NiaW5kaXJ9IE1BTkRJUj0ke21hbmRpcn0gSU5DTFVERURJUj0ke2luY2x1ZGVk
-aXJ9CglpbnN0YWxsIC1kICR7RH0ke3NiaW5kaXJ9LwoJaW5zdGFsbCAtYyAtbSA3NTUgJHtTfS9k
-c3Bjb3JlcGFyc2UgJHtEfSR7c2JpbmRpcn0vCn0KCkJCQ0xBU1NFWFRFTkQgPSAibmF0aXZlIgo=
-
---_002_8EAE6244CE843044A42356038645C8551573D779DFLE12entticom_--
