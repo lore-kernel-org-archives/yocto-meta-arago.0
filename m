@@ -1,28 +1,32 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 3B77A52A49
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 364CE52A38
 	for <meta-arago@arago-project.org>;
-	Wed, 31 Jul 2013 06:33:53 +0000 (UTC)
+	Wed, 31 Jul 2013 22:21:59 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6V6XqWA007672
-	for <meta-arago@arago-project.org>; Wed, 31 Jul 2013 01:33:52 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r6VMLw1R002668
+	for <meta-arago@arago-project.org>; Wed, 31 Jul 2013 17:21:58 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6V6XqLl029159
-	for <meta-arago@arago-project.org>; Wed, 31 Jul 2013 01:33:52 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r6VMLwGS003342
+	for <meta-arago@arago-project.org>; Wed, 31 Jul 2013 17:21:58 -0500
 Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 31 Jul 2013 01:33:51 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6V6Xpuu024890	for
-	<meta-arago@arago-project.org>; Wed, 31 Jul 2013 01:33:51 -0500
-Date: Wed, 31 Jul 2013 02:25:41 -0400
+	Wed, 31 Jul 2013 17:21:57 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r6VMLvjQ004652;
+	Wed, 31 Jul 2013 17:21:57 -0500
+Date: Wed, 31 Jul 2013 18:21:56 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1006491369.451.1375251941509.JavaMail.jenkins@puget>
+To: "Saran, Sajesh Kumar" <sajesh@ti.com>
+Message-ID: <20130731222156.GB13691@edge>
+References: <8EAE6244CE843044A42356038645C8551573CB16@DFLE12.ent.ti.com>
+	<20130725202449.GD2222@edge>
+	<8EAE6244CE843044A42356038645C8551573D779@DFLE12.ent.ti.com>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.06 build 2013-07-31_01-01-44
+In-Reply-To: <8EAE6244CE843044A42356038645C8551573D779@DFLE12.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: compiling a native (x86) application using Yocto
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,189 +39,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 06:33:53 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_450_128599693.1375251941496"
+X-List-Received-Date: Wed, 31 Jul 2013 22:22:00 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-------=_Part_450_128599693.1375251941496
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Sajesh,
 
-<html>
-<head>
-<title>
-Status for 07/31/13
-</title>
-</head>
-<body>
+It appears your Makefile directly calls native gcc to produce x86 binary.
 
-<h2>Status for 07/31/13</h2>
+Now, BBCLASSEXTEND allows you to "extend" a regular target recipe that 
+produces an ARM binary to also produce a native x86 binary. Naming your recipe 
+as something-native.bb doesn't change the procedure.
 
-<h2>BUILD_ID: build-2013-07-31_01-02-45</h2>
+So, it first builds and strips an ARM binary and then would have done the same 
+for x86 binary. But since you set GCC=gcc in your Makefile, it chokes on the 
+ARM-stripping step.
 
-<h2>Clean Build: false</h2>
+Now, if you only want a native recipe, instead of BBCLASSEXTEND, you should 
+just do "inherit native" and that class would short-circuit all the target 
+build and strip tasks.
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.06"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+-- 
+Denys
 
 
-------=_Part_450_128599693.1375251941496--
+On Thu, Jul 25, 2013 at 04:30:07PM -0400, Saran, Sajesh Kumar wrote:
+> Recipe is attached with the mail.
+> 
+> Regards,
+> Sajesh
+> 
+> -----Original Message-----
+> From: Dmytriyenko, Denys 
+> Sent: Thursday, July 25, 2013 4:25 PM
+> To: Saran, Sajesh Kumar
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] compiling a native (x86) application using Yocto
+> 
+> On Wed, Jul 24, 2013 at 06:26:48PM +0000, Saran, Sajesh Kumar wrote:
+> > Hi,
+> > 
+> > I am trying to compile a native tool/application using Yocto.
+> > 
+> > I have added BBCLASSEXTEND = "native" to the recipe. The compilation 
+> > goes thru fine. But, in do_package_qa it is running a strip command 
+> > using arm-linux-gnueabihf-strip, which is failing because the 
+> > application is compiled using gcc. Do I have to anything else to fix of this issue?
+> 
+> Strange, that should be enough... Care to share the recipe?
+> 
+> --
+> Denys
+
+
+
