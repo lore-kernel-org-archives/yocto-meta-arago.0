@@ -1,30 +1,34 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 9E3A852A38
+Return-Path: <gleym-meta-arago@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by arago-project.org (Postfix) with ESMTPS id C666252998
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Aug 2013 00:07:28 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7107Soj001023
-	for <meta-arago@arago-project.org>; Wed, 31 Jul 2013 19:07:28 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7107Rvc010275
-	for <meta-arago@arago-project.org>; Wed, 31 Jul 2013 19:07:27 -0500
-Received: from dlelxv23.itg.ti.com (172.17.1.198) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 31 Jul 2013 19:07:27 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlelxv23.itg.ti.com (8.13.8/8.13.8) with ESMTP id r71079RD032028;
-	Wed, 31 Jul 2013 19:07:26 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 31 Jul 2013 19:31:52 -0500
-Message-ID: <1375317112-1690-7-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1375317112-1690-1-git-send-email-fcooper@ti.com>
-References: <1375317112-1690-1-git-send-email-fcooper@ti.com>
-MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [master & danny][PATCH 7/7] meta-toolchain-arago: Add in linux-libc-headers version to variable
+	Thu,  1 Aug 2013 05:40:04 +0000 (UTC)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gleym-meta-arago@m.gmane.org>) id 1V4lcI-0004NS-M6
+	for meta-arago@arago-project.org; Thu, 01 Aug 2013 07:40:02 +0200
+Received: from http-v.fe.bosch.de ([194.39.218.10])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <meta-arago@arago-project.org>; Thu, 01 Aug 2013 07:40:02 +0200
+Received: from sivaprasad.pala by http-v.fe.bosch.de with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <meta-arago@arago-project.org>; Thu, 01 Aug 2013 07:40:02 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: meta-arago@arago-project.org
+From: siva <sivaprasad.pala@in.bosch.com>
+Date: Thu, 1 Aug 2013 05:33:47 +0000 (UTC)
+Message-ID: <loom.20130801T071150-638@post.gmane.org>
+References: <1366828154-17755-1-git-send-email-hzhang@ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C4328F5@DFLE08.ent.ti.com>
+	<ECA334CFBA16F74DB2C66A2F1181F4D63C2B1F41@DLEE09.ent.ti.com>
+	<20130424194115.GR12173@edge>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 194.39.218.10 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
+	rv:22.0) Gecko/20100101 Firefox/22.0)
+Subject: error while building yocto for am335x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +41,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2013 00:07:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 01 Aug 2013 05:40:05 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-* The path specified by REAL_MULTIMACH_TARGET_SYS did not take into
-  consideration the separation of directories due to different
-  linux-libc-headers version.
-* By adjusting REAL_MULTIMACH_TARGET_SYS the environment-setup file points to
-  the correct location.
+hello all,
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/meta/meta-toolchain-arago.bb      |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
+I followed steps mentioned in below wiki. 
+http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index ff49426..a8da4dc 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -7,7 +7,10 @@ TOOLCHAIN_CLEANUP_PACKAGES ?= ""
+I am wandering why the build is going to fail.
+I tried in many ways to resolve it.(changing the definition of variable etc.)
+
+Please find the below log.
+
+Thanks,
+Siva.
  
- require recipes-core/meta/meta-toolchain.bb
- 
--PR = "r26"
-+# Add in linux-libc-headers version so that is taken into consideration
-+REAL_MULTIMACH_TARGET_SYS = "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}${TARGET_VENDOR}-${TARGET_OS}"
-+
-+PR = "r27"
- 
- # This function creates an environment-setup-script for use in a deployable SDK
- toolchain_create_sdk_env_script () {
--- 
-1.7.0.4
+
+xxxxx@xxxxx:~/tisdk/build$ MACHINE=am335x-evm bitbake core-image-minimal
+Pseudo is not present but is required, building this first before the main build
+Loading cache: 100%
+|##############################################################################
+######################################################|
+ETA:  00:00:00
+Loaded 72 entries from dependency cache.
+NOTE: Error during finalise of/home/xxxxx/tisdk/sources/meta-arago/
+meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb--:--
+
+ERROR: ExpansionError during parsing/home/xxxxx/tisdk/sources/meta-arago/
+meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb:
+
+Failure expanding variable S: ExpansionError: Failure expanding variable
+SRCPV, expression was ${@bb.fetch2.get_srcrev(d)} which triggered exception
+FetchError: Fetcher failure: Fetch command failed with exit code 128, output:
+fatal: unable to connect to arago-project.org:
+arago-project.org: Name or service not known
+
+
+ERROR: Command execution failed: Exited with 1
+
+Summary: There were 2 ERROR messages shown, 
+returning a non-zero exit code.
+xxxxx@xxxxx:~/tisdk/build$
 
 
