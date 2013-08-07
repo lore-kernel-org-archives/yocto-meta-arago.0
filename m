@@ -1,33 +1,28 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 1912F52A14
+	by arago-project.org (Postfix) with ESMTPS id E1ABA52A19
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Aug 2013 05:30:14 +0000 (UTC)
+	Wed,  7 Aug 2013 06:33:20 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r775UAuV004541
-	for <meta-arago@arago-project.org>; Wed, 7 Aug 2013 00:30:10 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r775U9H4013870
-	for <meta-arago@arago-project.org>; Wed, 7 Aug 2013 00:30:10 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Wed, 7 Aug 2013 00:30:09 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v2] ti-tisdk-install: Move SDK
-	installation	script
-Thread-Index: AQHOktus0bWDqTcv+Ey+FohmNwGiyJmJOHTw
-Date: Wed, 7 Aug 2013 05:30:08 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101596963C9@DLEE11.ent.ti.com>
-References: <1375819133-1835-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1375819133-1835-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r776XJDC010892
+	for <meta-arago@arago-project.org>; Wed, 7 Aug 2013 01:33:19 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r776XJqK024342
+	for <meta-arago@arago-project.org>; Wed, 7 Aug 2013 01:33:19 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 7 Aug 2013 01:33:19 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r776XJ7M013722	for
+	<meta-arago@arago-project.org>; Wed, 7 Aug 2013 01:33:19 -0500
+Date: Wed, 7 Aug 2013 02:24:58 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <70985738.475.1375856698226.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ti-tisdk-install: Move SDK installation	script
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-08-07_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,196 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Aug 2013 05:30:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 07 Aug 2013 06:33:21 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_474_1782823247.1375856698226"
 
-Any issue with putting the license text in the shell script header?
+------=_Part_474_1782823247.1375856698226
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 08/07/13
+</title>
+</head>
+<body>
+
+<h2>Status for 08/07/13</h2>
+
+<h2>BUILD_ID: build-2013-08-07_01-02-45</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
->Sent: Wednesday, August 07, 2013 1:29 AM
->To: meta-arago@arago-project.org
->Cc: Cooper Jr., Franklin
->Subject: [meta-arago] [PATCH v2] ti-tisdk-install: Move SDK
->installation script
->
->Several steps are required before an SDK image is ready to be
->used.
->1. Extract toolchain sdk (linuxdevkit.sh)
->2. Update Rules.make variables.
->3. Update CCS project information
->
->The script that sdk-install.sh is based on was previously packaged
->and ran by
->the SDK installed (based on InstallJammer).
->
->By moving the logic outside of the installer. OE users can now
->create
->a fully functioning SDK without any outside dependencies by simply
->running
->sdk-install located in the root of the SDK image.
->
->Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
->---
->Version 2 changes:
->Remove debug mode (set -x)
->Remove license since script is simple
->
-> .../ti-tisdk-install/sdk-install.sh                |   85
->++++++++++++++++++++
-> .../ti-tisdk-install/ti-tisdk-install_1.0.bb       |   15 ++++
-> 2 files changed, 100 insertions(+), 0 deletions(-)
-> create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-
->install/ti-tisdk-install/sdk-install.sh
-> create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-
->install/ti-tisdk-install_1.0.bb
->
->diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-
->tisdk-install/sdk-install.sh b/meta-arago-distro/recipes-tisdk/ti-
->tisdk-install/ti-tisdk-install/sdk-install.sh
->new file mode 100644
->index 0000000..a7cd1a7
->--- /dev/null
->+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-
->install/sdk-install.sh
->@@ -0,0 +1,85 @@
->+
->+#!/bin/sh
->+
->+# Process command line...
->+while [ $# -gt 0 ]; do
->+  case $1 in
->+    --install_dir)
->+      shift;
->+      install_dir=3D$1;
->+      ;;
->+     *)
->+      shift;
->+      ;;
->+  esac
->+done
->+
->+if [ "x$install_dir" =3D "x" ]; then
->+    # Verify that the script is being called within untar SDK
->directory
->+    if [ ! -d "$PWD/board-support" -a ! -f "$PWD/Rules.make" ];
->then
->+        echo "Script must be called within untarred sdk
->directory"
->+        exit 1
->+    else
->+        install_dir=3D"$PWD"
->+    fi
->+fi
->+
->+# Get full path to SDK directory
->+cd "$install_dir"
->+install_dir=3D"$PWD"
->+cd -
->+
->+if [ ! -d $install_dir ]; then
->+	echo "Installation directory does not exist"
->+	exit 1
->+fi
->+
->+# Remove any .svn directories that were packaged by the
->sourceipks
->+rm -rf `find $install_dir -name ".svn"`
->+
->+
->+# Update Rules.make variables
->+
->+sed -i -e s=3D__SDK__INSTALL_DIR__=3D$install_dir=3D
->$install_dir/Rules.make
->+
->+# Find the linux directory name
->+linux=3D`find $install_dir/board-support -maxdepth 1 -name
->"linux*"`
->+linux=3D`basename $linux`
->+sed -i -e s=3D__KERNEL_NAME__=3D$linux=3D $install_dir/Rules.make
->+cd -
->+
->+
->+# Install toolchain sdk
->+$install_dir/linux-devkit.sh -y -d $install_dir/linux-devkit
->+
->+# Remove toolchain sdk
->+rm $install_dir/linux-devkit.sh
->+
->+
->+# Update example applications CCS project files
->+
->+# Grab some essential variables from environment-setup
->+TARGET_SYS=3D`sed -n 's/^export TARGET_SYS=3D//p' $install_dir/linux-
->devkit/environment-setup`
->+TOOLCHAIN_SYS=3D`sed -n 's/^export TOOLCHAIN_SYS=3D//p'
->$install_dir/linux-devkit/environment-setup`
->+SDK_SYS=3D`sed -n 's/^export SDK_SYS=3D//p' $install_dir/linux-
->devkit/environment-setup`
->+
->+# Grab toolchain's GCC version
->+GCC_VERSION=3D`ls $install_dir/linux-
->devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/`
->+
->+TOOLCHAIN_TARGET_INCLUDE_DIR=3D"linux-
->devkit/sysroots/$TARGET_SYS/usr/include"
->+TOOLCHAIN_INCLUDE_DIR=3D"linux-
->devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/$GCC_VERSION/i
->nclude"
->+
->+# Update CCS project files using important paths to headers
->+
->+find $install_dir/example-applications -type f -exec sed -i
->"s|<TOOLCHAIN_TARGET_INCLUDE_DIR>|$TOOLCHAIN_TARGET_INCLUDE_DIR|g"
->{} \;
->+find $install_dir/example-applications -type f -exec sed -i
->"s|<TOOLCHAIN_INCLUDE_DIR>|$TOOLCHAIN_INCLUDE_DIR|g" {} \;
->+
->+
->+if [ -f "$install_dir/sdk-install.sh" ]; then
->+	# File is only able to run once so delete it from the SDK
->+	rm "$install_dir/sdk-install.sh"
->+fi
->+
->+echo "Installation completed!"
->+exit 0
->+
->diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-
->tisdk-install_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-
->install/ti-tisdk-install_1.0.bb
->new file mode 100644
->index 0000000..1c96ae5
->--- /dev/null
->+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-
->install_1.0.bb
->@@ -0,0 +1,15 @@
->+DESCRIPTION =3D "Contains script to properly extract and update
->various files"
->+LICENSE =3D "MIT"
->+LIC_FILES_CHKSUM =3D
->"file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b4
->de20420"
->+
->+SRC_URI =3D "file://sdk-install.sh"
->+
->+PR =3D "r0"
->+
->+do_install () {
->+    install -d ${D}/
->+    install  ${WORKDIR}/sdk-install.sh ${D}/sdk-install.sh
->+
->+}
->+
->+FILES_${PN} =3D "/*"
->--
->1.7.0.4
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_474_1782823247.1375856698226--
