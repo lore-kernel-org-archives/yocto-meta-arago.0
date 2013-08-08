@@ -1,39 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 277D552A5E
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 22B5152A5E
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Aug 2013 16:57:48 +0000 (UTC)
+	Thu,  8 Aug 2013 06:05:37 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r77GvlVb013718;
-	Wed, 7 Aug 2013 11:57:47 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r77Gvgfk030933;
-	Wed, 7 Aug 2013 11:57:46 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 7 Aug 2013 11:57:20 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r77GvKj9014209;
-	Wed, 7 Aug 2013 11:57:20 -0500
-Date: Wed, 7 Aug 2013 12:57:20 -0400
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7865Y6Y024737
+	for <meta-arago@arago-project.org>; Thu, 8 Aug 2013 01:05:34 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7865Ytj027231
+	for <meta-arago@arago-project.org>; Thu, 8 Aug 2013 01:05:34 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 8 Aug 2013 01:05:34 -0500
+Received: from puget.gt.design.ti.com ([158.218.102.159])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r7865YQj001019	for
+	<meta-arago@arago-project.org>; Thu, 8 Aug 2013 01:05:34 -0500
+Date: Thu, 8 Aug 2013 01:57:11 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Sivaprasad Pala (RBEI/EAA1)" <Sivaprasad.Pala@in.bosch.com>
-Message-ID: <20130807165719.GC23226@edge>
-References: <7D46E86EC0A8354091174257B2FED10159696AFE@DLEE11.ent.ti.com>
-	<F2E05BCE6D875B4AAC726FD84CBB8F13222682D1B6@SGPMBX02.APAC.bosch.com>
-	<7D46E86EC0A8354091174257B2FED10159696B85@DLEE11.ent.ti.com>
-	<F2E05BCE6D875B4AAC726FD84CBB8F13222682D1C1@SGPMBX02.APAC.bosch.com>
-	<7D46E86EC0A8354091174257B2FED10159696C3F@DLEE11.ent.ti.com>
-	<F2E05BCE6D875B4AAC726FD84CBB8F13222682D1CE@SGPMBX02.APAC.bosch.com>
-	<7D46E86EC0A8354091174257B2FED10159696CEE@DLEE11.ent.ti.com>
-	<F2E05BCE6D875B4AAC726FD84CBB8F13222682D1DA@SGPMBX02.APAC.bosch.com>
-	<20130807142428.GA23226@edge>
-	<F2E05BCE6D875B4AAC726FD84CBB8F13222682D243@SGPMBX02.APAC.bosch.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <2015435346.479.1375941431670.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <F2E05BCE6D875B4AAC726FD84CBB8F13222682D243@SGPMBX02.APAC.bosch.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: error while building yocto for am335x
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.06 build 2013-08-08_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,1006 +35,189 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Aug 2013 16:57:48 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 08 Aug 2013 06:05:41 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_478_734304544.1375941431669"
 
-Well, you could try different options using netcat, socat or corkscrew - some 
-of them are listed in the 2 links I sent.
+------=_Part_478_734304544.1375941431669
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-OR, you could talk to your IT department and ask them what type of proxy 
-server is being used and what is the recommended way to connect to the outside 
-world. In this case the type of the proxy is the most important part - the 
-most common is HTTP/HTTPS proxy that accepts CONNECT commands, but there can 
-be variations, like required authentication, or it could be SOCKS4 or SOCK5 
-proxies, which are completely different. And based on what your IT tells you, 
-you need to configure your setup.
+<html>
+<head>
+<title>
+Status for 08/08/13
+</title>
+</head>
+<body>
 
--- 
-Denys
+<h2>Status for 08/08/13</h2>
 
+<h2>BUILD_ID: build-2013-08-08_01-02-45</h2>
 
-On Thu, Aug 08, 2013 at 12:31:04AM +0800, Sivaprasad Pala (RBEI/EAA1) wrote:
-> Hi,
-> 
-> I followed the link given by you.
-> Script git-proxy kept in /usr/local/bin/ which is attached.
-> Exported variable GIT_PROXY_COMMAND like : "export GIT_PROXY_COMMAND=/usr/local/bin/git-proxy"
-> Installed "ncat" (natcat utility) as the git-proxy script expects.
-> 
-> 1) Then I tried to clone ti-utils form github.
-> It started gitting. I can able to see ti-utils and ti-utils/.git directories in pwd.
-> But it is not coming out from it. Please find the Log 1.
-> 
-> 2) Tried to execute MACHINE=am335x-evm bitbake hello-world.
-> It continuously showing 1% .Please find the Log 2.
-> 
-> 
-> 
-> Log 1 :
-> "xxx@xxx-desktop:~/tmp/https$ git clone git://github.com/TI-OpenLink/ti-utils.git
-> Initialized empty Git repository in /home/xxx/tmp/https/ti-utils/.git/
-> 
-> "
-> 
-> Log 2 :
-> "xxx@xxx-desktop:~/build_system/try/tisdk/build$ MACHINE=am335x-evm bitbake hello-world
-> Pseudo is not present but is required, building this first before the main build
-> Loading cache: 100% |########################################################################################################################################################################################################| ETA:  00:00:00
-> Loaded 52 entries from dependency cache.
-> Parsing recipes:   1% |###                                                                                                                                                                                                   | ETA:  00:03:09
-> 
-> 
-> "
-> 
-> 
-> -----Original Message-----
-> From: Denys Dmytriyenko [mailto:denys@ti.com]
-> Sent: Wednesday, August 07, 2013 7:54 PM
-> To: Sivaprasad Pala (RBEI/EAA1)
-> Cc: Maupin, Chase; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] error while building yocto for am335x
-> 
-> Sorry to interrupt this long conversation, but all it requires is to properly
-> configure your proxy settings:
-> 
-> http://arago-project.org/wiki/index.php/Proxy_Settings
-> https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
-> There are other resources as well...
-> 
-> Please stop messing the recipes up - you'll have even more problems.
-> 
-> --
-> Denys
-> 
-> 
-> On Wed, Aug 07, 2013 at 08:53:49PM +0800, Sivaprasad Pala (RBEI/EAA1) wrote:
-> > I didn’t did any changes in any other layers.
-> >
-> > Please find the attached recipes.
-> >
-> > Thanks.
-> >
-> >
-> > From: Maupin, Chase [mailto:chase.maupin@ti.com]
-> > Sent: Wednesday, August 07, 2013 6:13 PM
-> > To: Sivaprasad Pala (RBEI/EAA1); Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > Can you send the recipe?  Have you made any other modifications in any other layers?  This error looks like an issue with the SRC_URI setting (like commenting out the line but leaving a trailing \) and an AUTOREV issue, but the recipe as I am aware of it is not an AUTOREV recipe.
-> >
-> > Sincerely,
-> > Chase Maupin
-> > Integration Team Manager
-> > Linux Core Product Development
-> > e-mail: chase.maupin@ti.com<mailto:chase.maupin@ti.com>
-> > phone: (214) 567-2950
-> >
-> > For support:
-> > Forums - http://community.ti.com/forums/
-> > Wiki - http://wiki.davincidsp.com/
-> >
-> > From: Sivaprasad Pala (RBEI/EAA1) [mailto:Sivaprasad.Pala@in.bosch.com]
-> > Sent: Wednesday, August 07, 2013 6:04 PM
-> > To: Maupin, Chase; Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > Hi,
-> >
-> >
-> > I have changed the .inc file. I am getting the same log except “fatal: Unable to look up github.com (port 9418) (Name or service not known)”
-> >
-> >
-> >
-> > I tried with adding “import bb.fetch2” line in “sources/bitbake/bin/bitbake-layers” also.
-> >
-> > But I am getting the same error.
-> >
-> > Thanks.
-> >
-> > Log:
-> > xxx@xxx-desktop:~/build_system/try/tisdk/build$ MACHINE=am335x-evm bitbake hello-world
-> > Pseudo is not present but is required, building this first before the main build
-> > Loading cache: 100% |########################################################################################################################################################################################################| ETA:  00:00:00
-> > Loaded 48 entries from dependency cache.
-> > ERROR: Error executing a python function in <code>:                                                                                                                                                                          | ETA:  --:--:--
-> > ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)}<mailto:$%7b@bb.fetch2.get_srcrev(d)%7d> which triggered exception FetchError: Fetcher failure: SRCREV was used yet no valid SCM was found in SRC_URI
-> >
-> > ERROR: The stack trace of python calls that resulted in this exception/failure was:
-> > ERROR:   File "<code>", line 2, in <module>
-> > ERROR:
-> > ERROR:   File "__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass", line 203, in __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> > ERROR:     var = self.d.getVar(key, True)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> > ERROR:     var = self.d.getVar(key, True)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> > ERROR:     var = self.d.getVar(key, True)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 147, in expandWithRefs
-> > ERROR:     raise ExpansionError(varname, s, exc)
-> > ERROR:
-> > ERROR: The code that was being executed was:
-> > ERROR:      0001:__anon_125__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_staging_bbclass(d)
-> > ERROR:  *** 0002:__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass(d)
-> > ERROR:      0003:__anon_172__home_xxx_build_system_try_tisdk_sources_meta_arago_meta_arago_distro_classes_sourceipk_bbclass(d)
-> > ERROR:      0004:__anon_218__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_bbclass(d)
-> > ERROR:      0005:__anon_471__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_ipk_bbclass(d)
-> > ERROR:      0006:__anon_822__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_insane_bbclass(d)
-> > ERROR: [From file: '<code>', lineno: 2, function: <module>]
-> > ERROR:      0199:    #
-> > ERROR:      0200:    override = d.getVar('SRC_URI_OVERRIDES_PACKAGE_ARCH', True)
-> > ERROR:      0201:    if override != '0':
-> > ERROR:      0202:        paths = []
-> > ERROR:  *** 0203:        fpaths = (d.getVar('FILESPATH', True) or '').split(':')
-> > ERROR:      0204:        machine = d.getVar('MACHINE', True)
-> > ERROR:      0205:        for p in fpaths:
-> > ERROR:      0206:            if os.path.basename(p) == machine and os.path.isdir(p):
-> > ERROR:      0207:                paths.append(p)
-> > ERROR: [From file: '__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass', lineno: 203, function: __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass]
-> > ERROR: Failed to parse recipe: /home/xxx/build_system/try/tisdk/sources/meta-arago/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
-> > ERROR: Error executing a python function in <code>:
-> > ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)}<mailto:$%7b@bb.fetch2.get_srcrev(d)%7d> which triggered exception FetchError: Fetcher failure: SRCREV was used yet no valid SCM was found in SRC_URI
-> >
-> > ERROR: The stack trace of python calls that resulted in this exception/failure was:
-> > ERROR:   File "<code>", line 2, in <module>
-> > ERROR:
-> > ERROR:   File "__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass", line 203, in __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> > ERROR:     var = self.d.getVar(key, True)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> > ERROR:     var = self.d.getVar(key, True)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> > ERROR:     var = self.d.getVar(key, True)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> > ERROR:     return self.expand(value, var)
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> > ERROR:
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 147, in expandWithRefs
-> > ERROR:     raise ExpansionError(varname, s, exc)
-> > ERROR:
-> > ERROR: The code that was being executed was:
-> > ERROR:      0001:__anon_125__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_staging_bbclass(d)
-> > ERROR:  *** 0002:__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass(d)
-> > ERROR:      0003:__anon_172__home_xxx_build_system_try_tisdk_sources_meta_arago_meta_arago_distro_classes_sourceipk_bbclass(d)
-> > ERROR:      0004:__anon_218__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_bbclass(d)
-> > ERROR:      0005:__anon_471__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_ipk_bbclass(d)
-> > ERROR:      0006:__anon_822__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_insane_bbclass(d)
-> > ERROR: [From file: '<code>', lineno: 2, function: <module>]
-> > ERROR:      0199:    #
-> > ERROR:      0200:    override = d.getVar('SRC_URI_OVERRIDES_PACKAGE_ARCH', True)
-> > ERROR:      0201:    if override != '0':
-> > ERROR:      0202:        paths = []
-> > ERROR:  *** 0203:        fpaths = (d.getVar('FILESPATH', True) or '').split(':')
-> > ERROR:      0204:        machine = d.getVar('MACHINE', True)
-> > ERROR:      0205:        for p in fpaths:
-> > ERROR:      0206:            if os.path.basename(p) == machine and os.path.isdir(p):
-> > ERROR:      0207:                paths.append(p)
-> > ERROR: [From file: '__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass', lineno: 203, function: __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass]
-> > ERROR: Command execution failed: Exited with 1
-> >
-> > Summary: There were 140 ERROR messages shown, returning a non-zero exit code.
-> >
-> > From: Maupin, Chase [mailto:chase.maupin@ti.com]
-> > Sent: Wednesday, August 07, 2013 5:53 PM
-> > To: Sivaprasad Pala (RBEI/EAA1); Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > OK.  So it seems that maybe your IT has blocked the git protocol?  I’ve heard of companies doing that.
-> >
-> > One thing you could try if the git URL I sent you doesn’t work is changing the protocol=git entry in the meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils.inc file to “http” instead of “git”.
-> >
-> > You may need to bump the PR or clean the recipe work directory to make sure this change takes effect.
-> >
-> > Sincerely,
-> > Chase Maupin
-> > Integration Team Manager
-> > Linux Core Product Development
-> > e-mail: chase.maupin@ti.com<mailto:chase.maupin@ti.com>
-> > phone: (214) 567-2950
-> >
-> > For support:
-> > Forums - http://community.ti.com/forums/
-> > Wiki - http://wiki.davincidsp.com/
-> >
-> > From: Sivaprasad Pala (RBEI/EAA1) [mailto:Sivaprasad.Pala@in.bosch.com]
-> > Sent: Wednesday, August 07, 2013 5:50 PM
-> > To: Maupin, Chase; Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > Hi,
-> >
-> > Not able to clone.
-> >
-> > Log please…
-> >
-> > xxx@xxx-desktop:~/tmp/https$ git clone  git://github.com/TI-OpenLink/ti-utils
-> > Initialized empty Git repository in /home/xxx/tmp/https/ti-utils/.git/
-> > fatal: Unable to look up github.com (port 9418) (Name or service not known)
-> > xxx@xxx-desktop:~/tmp/https$
-> >
-> > From: Maupin, Chase [mailto:chase.maupin@ti.com]
-> > Sent: Wednesday, August 07, 2013 5:47 PM
-> > To: Sivaprasad Pala (RBEI/EAA1); Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > So the clone you did was using the http protocol.  Can you try it using the git protocol of git://
-> >
-> >
-> > From: Sivaprasad Pala (RBEI/EAA1) [mailto:Sivaprasad.Pala@in.bosch.com]
-> > Sent: Wednesday, August 07, 2013 5:45 PM
-> > To: Maupin, Chase; Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > Hello Maupin,
-> >
-> > I can able to clone manually in my machine.
-> >
-> > Please find the log below.
-> >
-> > Thanks,
-> > Siva
-> >
-> > xxx@xxx-desktop:~/tmp/https$ git clone  https://github.com/TI-OpenLink/ti-utils
-> > Initialized empty Git repository in /home/xxx/tmp/https/ti-utils/.git/
-> > remote: Counting objects: 2080, done.
-> > remote: Compressing objects: 100% (615/615), done.
-> > remote: Total 2080 (delta 1490), reused 2032 (delta 1444)
-> > Receiving objects: 100% (2080/2080), 17.83 MiB | 102 KiB/s, done.
-> > Resolving deltas: 100% (1490/1490), done.
-> > xxx@xxx-desktop:~/tmp/https$ ls
-> > hello-world  ti-utils
-> > xxx@xxx-desktop:~/tmp/https$ cd ti-utils/
-> > xxx@xxx-desktop:~/tmp/https/ti-utils$ ls
-> > Android.mk  asi  calibrator.c  calibrator.h  COPYING  hw  ini.c  ini.h  Makefile  misc_cmds.c  nl80211.h  nvs.c  nvs.h  plt.c  plt.h  README  scripts  uim_rfkill  wl18xx_plt.c  wl18xx_plt.h  wlconf  wl_logproxy.c
-> > xxx@xxx-desktop:~/tmp/https/ti-utils$
-> >
-> > From: Maupin, Chase [mailto:chase.maupin@ti.com]
-> > Sent: Wednesday, August 07, 2013 5:33 PM
-> > To: Sivaprasad Pala (RBEI/EAA1); Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > I would try cloning the ti-wifi-utils just to make sure your git setup is correct.  Where is not important right now.
-> >
-> >
-> > From: Sivaprasad Pala (RBEI/EAA1) [mailto:Sivaprasad.Pala@in.bosch.com]
-> > Sent: Wednesday, August 07, 2013 5:12 PM
-> > To: Maupin, Chase; Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> >
-> > What all repositories should I clone manually and in which location I should clone…
-> >
-> > Thanks,
-> > From: Maupin, Chase [mailto:chase.maupin@ti.com]
-> > Sent: Wednesday, August 07, 2013 2:59 PM
-> > To: Sivaprasad Pala (RBEI/EAA1); Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > It seems you were unable to lookup github.com?  can you clone the repository manually?
-> >
-> >
-> > From: Sivaprasad Pala (RBEI/EAA1) [mailto:Sivaprasad.Pala@in.bosch.com]
-> > Sent: Wednesday, August 07, 2013 1:36 PM
-> > To: Dmytriyenko, Denys; Maupin, Chase
-> > Cc: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> >
-> > Hi all,
-> >
-> >
-> >
-> > Now I am following sitara training<http://processors.wiki.ti.com/index.php/Sitara_Linux_Training:_Getting_Started_with_Openembedded> process to build yocto for am335x sk-evm.
-> >
-> >
-> >
-> > I am getting the python related errors I guess.
-> >
-> >
-> >
-> > Please find the below log.
-> >
-> >
-> >
-> > @Denys & Maupin: Thanks for the reply for both of you.
-> >
-> >
-> >
-> >
-> >
-> > Thanks and Regards,
-> >
-> > Siva.
-> >
-> >
-> >
-> >
-> >
-> > Loading cache: 100% |########################################################################################################################################################################################################| ETA:  00:00:00
-> >
-> > Loaded 48 entries from dependency cache.
-> >
-> > ERROR: Error executing a python function in <code>:                                                                                                                                                                          | ETA:  --:--:--
-> >
-> > ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)}<mailto:$%7b@bb.fetch2.get_srcrev(d)%7d> which triggered exception FetchError: Fetcher failure: Fetch command failed with exit code 128, output:
-> >
-> > fatal: Unable to look up github.com (port 9418) (Name or service not known)
-> >
-> >
-> >
-> >
-> >
-> > ERROR: The stack trace of python calls that resulted in this exception/failure was:
-> >
-> > ERROR:   File "<code>", line 2, in <module>
-> >
-> > ERROR:
-> >
-> > ERROR:   File "__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass", line 203, in __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> >
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> >
-> > ERROR:     var = self.d.getVar(key, True)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> >
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> >
-> > ERROR:     var = self.d.getVar(key, True)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> >
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> >
-> > ERROR:     var = self.d.getVar(key, True)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 147, in expandWithRefs
-> >
-> > ERROR:     raise ExpansionError(varname, s, exc)
-> >
-> > ERROR:
-> >
-> > ERROR: The code that was being executed was:
-> >
-> > ERROR:      0001:__anon_125__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_staging_bbclass(d)
-> >
-> > ERROR:  *** 0002:__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass(d)
-> >
-> > ERROR:      0003:__anon_172__home_xxx_build_system_try_tisdk_sources_meta_arago_meta_arago_distro_classes_sourceipk_bbclass(d)
-> >
-> > ERROR:      0004:__anon_218__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_bbclass(d)
-> >
-> > ERROR:      0005:__anon_471__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_ipk_bbclass(d)
-> >
-> > ERROR:      0006:__anon_822__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_insane_bbclass(d)
-> >
-> > ERROR: [From file: '<code>', lineno: 2, function: <module>]
-> >
-> > ERROR:      0199:    #
-> >
-> > ERROR:      0200:    override = d.getVar('SRC_URI_OVERRIDES_PACKAGE_ARCH', True)
-> >
-> > ERROR:      0201:    if override != '0':
-> >
-> > ERROR:      0202:        paths = []
-> >
-> > ERROR:  *** 0203:        fpaths = (d.getVar('FILESPATH', True) or '').split(':')
-> >
-> > ERROR:      0204:        machine = d.getVar('MACHINE', True)
-> >
-> > ERROR:      0205:        for p in fpaths:
-> >
-> > ERROR:      0206:            if os.path.basename(p) == machine and os.path.isdir(p):
-> >
-> > ERROR:      0207:                paths.append(p)
-> >
-> > ERROR: [From file: '__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass', lineno: 203, function: __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass]
-> >
-> > ERROR: Failed to parse recipe: /home/xxx/build_system/try/tisdk/sources/meta-arago/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils_r5.00.18.bb
-> >
-> > ERROR: Error executing a python function in <code>:
-> >
-> > ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)}<mailto:$%7b@bb.fetch2.get_srcrev(d)%7d> which triggered exception FetchError: Fetcher failure: Fetch command failed with exit code 128, output:
-> >
-> > fatal: Unable to look up github.com (port 9418) (Name or service not known)
-> >
-> >
-> >
-> >
-> >
-> > ERROR: The stack trace of python calls that resulted in this exception/failure was:
-> >
-> > ERROR:   File "<code>", line 2, in <module>
-> >
-> > ERROR:
-> >
-> > ERROR:   File "__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass", line 203, in __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> >
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> >
-> > ERROR:     var = self.d.getVar(key, True)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> >
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> >
-> > ERROR:     var = self.d.getVar(key, True)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 140, in expandWithRefs
-> >
-> > ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 61, in var_sub
-> >
-> > ERROR:     var = self.d.getVar(key, True)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 293, in getVar
-> >
-> > ERROR:     return self.expand(value, var)
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 157, in expand
-> >
-> > ERROR:     return self.expandWithRefs(s, varname).value
-> >
-> > ERROR:
-> >
-> > ERROR:   File "/home/xxx/build_system/try/tisdk/sources/bitbake/lib/bb/data_smart.py", line 147, in expandWithRefs
-> >
-> > ERROR:     raise ExpansionError(varname, s, exc)
-> >
-> > ERROR:
-> >
-> > ERROR: The code that was being executed was:
-> >
-> > ERROR:      0001:__anon_125__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_staging_bbclass(d)
-> >
-> > ERROR:  *** 0002:__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass(d)
-> >
-> > ERROR:      0003:__anon_172__home_xxx_build_system_try_tisdk_sources_meta_arago_meta_arago_distro_classes_sourceipk_bbclass(d)
-> >
-> > ERROR:      0004:__anon_218__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_bbclass(d)
-> >
-> > ERROR:      0005:__anon_471__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_package_ipk_bbclass(d)
-> >
-> > ERROR:      0006:__anon_822__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_insane_bbclass(d)
-> >
-> > ERROR: [From file: '<code>', lineno: 2, function: <module>]
-> >
-> > ERROR:      0199:    #
-> >
-> > ERROR:      0200:    override = d.getVar('SRC_URI_OVERRIDES_PACKAGE_ARCH', True)
-> >
-> > ERROR:      0201:    if override != '0':
-> >
-> > ERROR:      0202:        paths = []
-> >
-> > ERROR:  *** 0203:        fpaths = (d.getVar('FILESPATH', True) or '').split(':')
-> >
-> > ERROR:      0204:        machine = d.getVar('MACHINE', True)
-> >
-> > ERROR:      0205:        for p in fpaths:
-> >
-> > ERROR:      0206:            if os.path.basename(p) == machine and os.path.isdir(p):
-> >
-> > ERROR:      0207:                paths.append(p)
-> >
-> > ERROR: [From file: '__anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass', lineno: 203, function: __anon_567__home_xxx_build_system_try_tisdk_sources_oe_core_meta_classes_base_bbclass]
-> >
-> > ERROR: Command execution failed: Exited with 1
-> >
-> >
-> >
-> > Summary: There were 140 ERROR messages shown, returning a non-zero exit code.
-> >
-> > xxx@xxx-desktop:~/build_system/try/tisdk/build$
-> >
-> >
-> >
-> >
-> >
-> >
-> >
-> > -----Original Message-----
-> > From: Denys Dmytriyenko [mailto:denys@ti.com]
-> > Sent: Thursday, August 01, 2013 7:48 PM
-> > To: Maupin, Chase
-> > Cc: Sivaprasad Pala (RBEI/EAA1); meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> > Subject: Re: [meta-arago] error while building yocto for am335x
-> >
-> >
-> >
-> > On Thu, Aug 01, 2013 at 08:57:00AM +0000, Maupin, Chase wrote:
-> >
-> > > >-----Original Message-----
-> >
-> > > >From: Sivaprasad Pala (RBEI/EAA1)
-> >
-> > > >[mailto:Sivaprasad.Pala@in.bosch.com]
-> >
-> > > >Sent: Thursday, August 01, 2013 2:17 PM
-> >
-> > > >To: Maupin, Chase; meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> >
-> > > >Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > > >
-> >
-> > > >Hi,
-> >
-> > > >
-> >
-> > > >latest commit id I took from site and replaced SRCREV with latest
-> >
-> > > >one.
-> >
-> > > >Even I am getting the error "Failure expanding variable S:"
-> >
-> > > >And "SRCPV, expression was ${@bb.fetch2.get_srcrev(d)}<mailto:$%7b@bb.fetch2.get_srcrev(d)%7d>"
-> >
-> > >
-> >
-> > > Did you replace the SRCREV in the bbappend file at
-> >
-> > > ./meta-arago/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-> >
-> >
-> >
-> > BTW, in the original email the error was at ltp-ddt-legacy. But in general,
-> >
-> > all AUTOREVs should be replaced, if there are problems with git access. You'll
-> >
-> > still get issues downloading from git, but at least it will parse.
-> >
-> >
-> >
-> >
-> >
-> > > >And,
-> >
-> > > >
-> >
-> > > >I am trying to setup "git proxy settings".
-> >
-> > > >Under corporate firewall I am unable to use command "git clone
-> >
-> > > >git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-
-> >
-> > > >2.6.git"
-> >
-> > > >What configurations should I need to do for using
-> >
-> > > >"git://git.kernel.org"
-> >
-> > >
-> >
-> > > First you need to create a proxy command file:
-> >
-> > > vi ~/git-proxy.sh
-> >
-> > >     #!/bin/bash
-> >
-> > >     exec env corkscrew <your proxy host> <your proxy port> $*
-> >
-> > > chmod +x ~/git-proxy.sh
-> >
-> > > Then set git to use this proxy script
-> >
-> > >     git config --global core.gitproxy “~/git-proxy.sh”
-> >
-> >
-> >
-> > Or export GITPROXYCOMMAND=~/git-proxy.sh
-> >
-> >
-> >
-> >
-> >
-> > > You need to get the proxy host and port from your IT department.
-> >
-> > >
-> >
-> > > >
-> >
-> > > >Thanks for the reply.
-> >
-> > > >
-> >
-> > > >Regards,
-> >
-> > > >Siva.
-> >
-> > > >
-> >
-> > > >
-> >
-> > > >-----Original Message-----
-> >
-> > > >From: Maupin, Chase [mailto:chase.maupin@ti.com]
-> >
-> > > >Sent: Thursday, August 01, 2013 1:39 PM
-> >
-> > > >To: Sivaprasad Pala (RBEI/EAA1); meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> >
-> > > >Subject: RE: [meta-arago] error while building yocto for am335x
-> >
-> > > >
-> >
-> > > >Ltp-ddt is an autorev recipe which means that it must read the
-> >
-> > > >current latest commit id in order to parse.  This looks like you
-> >
-> > > >are having an issue with git reaching the repository. Can you
-> >
-> > > >check your git proxy settings?
-> >
-> > > >
-> >
-> > > >>-----Original Message-----
-> >
-> > > >>From: meta-arago-bounces@arago-project.org<mailto:meta-arago-bounces@arago-project.org> [mailto:meta-arago-
-> >
-> > > >>bounces@arago-project.org<mailto:bounces@arago-project.org>] On Behalf Of siva
-> >
-> > > >>Sent: Thursday, August 01, 2013 11:04 AM
-> >
-> > > >>To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> >
-> > > >>Subject: [meta-arago] error while building yocto for am335x
-> >
-> > > >>
-> >
-> > > >>hello all,
-> >
-> > > >>
-> >
-> > > >>I followed steps mentioned in below wiki.
-> >
-> > > >>http://arago-
-> >
-> > > >>project.org/wiki/index.php/Setting_Up_Build_Environment
-> >
-> > > >>
-> >
-> > > >>I am wandering why the build is going to fail.
-> >
-> > > >>I tried in many ways to resolve it.(changing the definition of
-> >
-> > > >>variable etc.)
-> >
-> > > >>
-> >
-> > > >>Please find the below log.
-> >
-> > > >>
-> >
-> > > >>Thanks,
-> >
-> > > >>Siva.
-> >
-> > > >>
-> >
-> > > >>
-> >
-> > > >>xxxxx@xxxxx:~/tisdk/build$ MACHINE=am335x-evm bitbake core-image-
-> >
-> > > >>minimal
-> >
-> > > >>Pseudo is not present but is required, building this first before
-> >
-> > > >>the main build
-> >
-> > > >>Loading cache: 100%
-> >
-> > > >>|################################################################
-> >
-> > > >#
-> >
-> > > >>#############
-> >
-> > > >>######################################################|
-> >
-> > > >>ETA:  00:00:00
-> >
-> > > >>Loaded 72 entries from dependency cache.
-> >
-> > > >>NOTE: Error during finalise of/home/xxxxx/tisdk/sources/meta-
-> >
-> > > >>arago/
-> >
-> > > >>meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb-
-> >
-> > > >-
-> >
-> > > >>:--
-> >
-> > > >>
-> >
-> > > >>ERROR: ExpansionError during
-> >
-> > > >>parsing/home/xxxxx/tisdk/sources/meta-arago/
-> >
-> > > >>meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb:
-> >
-> > > >>
-> >
-> > > >>Failure expanding variable S: ExpansionError: Failure expanding
-> >
-> > > >>variable
-> >
-> > > >>SRCPV, expression was ${@bb.fetch2.get_srcrev(d)}<mailto:$%7b@bb.fetch2.get_srcrev(d)%7d> which triggered
-> >
-> > > >>exception
-> >
-> > > >>FetchError: Fetcher failure: Fetch command failed with exit code
-> >
-> > > >>128, output:
-> >
-> > > >>fatal: unable to connect to arago-project.org:
-> >
-> > > >>arago-project.org: Name or service not known
-> >
-> > > >>
-> >
-> > > >>
-> >
-> > > >>ERROR: Command execution failed: Exited with 1
-> >
-> > > >>
-> >
-> > > >>Summary: There were 2 ERROR messages shown,
-> >
-> > > >>returning a non-zero exit code.
-> >
-> > > >>xxxxx@xxxxx:~/tisdk/build$
-> >
-> > > >>
-> >
-> > > >>_______________________________________________
-> >
-> > > >>meta-arago mailing list
-> >
-> > > >>meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> >
-> > > >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >
-> > > _______________________________________________
-> >
-> > > meta-arago mailing list
-> >
-> > > meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> >
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-> 
-> 
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.06"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
+------=_Part_478_734304544.1375941431669--
