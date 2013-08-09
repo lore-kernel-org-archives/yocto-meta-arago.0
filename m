@@ -1,30 +1,31 @@
-Return-Path: <kiran.bobbu@gmail.com>
-Received: from mail-oa0-f68.google.com (mail-oa0-f68.google.com
-	[209.85.219.68])
-	by arago-project.org (Postfix) with ESMTPS id 3051D529DC
+Return-Path: <a0850405@a0850405-off1>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id BE08B52A5C
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Aug 2013 10:45:59 +0000 (UTC)
-Received: by mail-oa0-f68.google.com with SMTP id j6so2021197oag.11
-	for <meta-arago@arago-project.org>;
-	Fri, 09 Aug 2013 03:45:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=E1VWBz56bIYgXTo1qLNEMUsbHQEEt3jobA/Q93m5mqU=;
-	b=0SytLEw0WoJklr+dZwGsqyuS+zhX2i6nA1y17shcuS6pjb7wfojO803TlkzA/owJYK
-	DMZ4sUKj5Jnv37EvqEyTa1z9P9/3LWK4iCOmJDhHZ6X/AFUWh95KN+nrnMEY9jpaGyMP
-	1pl6k9HfN3wDXC95/gr9MMrPZkb525pwJTIoNcQoOriAliiu6Wp2q8Mdde+5JfLtFcxq
-	uiqZ1H7h6cc9RRAPIXkx1QlNAx+vw47KKnW6dwaMEgZ0knWS5CuSDCPe1pIlnR1yVtTD
-	PZOV+W0QDwpVeubGbakSWG3aif30cTUZq8+XoVTOMadBQf+T2kLdLY0bj8PXXB3IebNS
-	fIhg==
+	Fri,  9 Aug 2013 14:25:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r79EPnbb019021
+	for <meta-arago@arago-project.org>; Fri, 9 Aug 2013 09:25:49 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r79EPn0i023542
+	for <meta-arago@arago-project.org>; Fri, 9 Aug 2013 09:25:49 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 9 Aug 2013 09:25:48 -0500
+Received: from a0850405-off1 (a0850405-off1.am.dhcp.ti.com [158.218.103.10])
+	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r79EPndf032144;
+	Fri, 9 Aug 2013 09:25:49 -0500
+Received: from a0850405 by a0850405-off1 with local (Exim 4.76)	(envelope-from
+	<a0850405@a0850405-off1>)	id 1V7ndU-0008JU-JS;
+	Fri, 09 Aug 2013 10:25:48 -0400
+From: Carlos Hernandez <ceh@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 9 Aug 2013 10:25:36 -0400
+Message-ID: <1376058336-31921-1-git-send-email-ceh@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Received: by 10.182.237.50 with SMTP id uz18mr13048obc.37.1376045158412;
-	Fri, 09 Aug 2013 03:45:58 -0700 (PDT)
-Received: by 10.182.14.42 with HTTP; Fri, 9 Aug 2013 03:45:58 -0700 (PDT)
-Date: Fri, 9 Aug 2013 16:15:58 +0530
-Message-ID: <CAO7jpqfv_WvnpmEcbH5rZQ3qOGp2SW1Vq4=z=xpHVZuBDBhg=w@mail.gmail.com>
-From: kiran bobbu <kiran.bobbu@gmail.com>
-To: meta-arago@arago-project.org
-Subject: whats the bitbake target to build X11 for omap5 evm
+Cc: Yan Liu <yan-liu@ti.com>
+Subject: [PATCH] busybox: Enable timeout command
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +38,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2013 10:45:59 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff2511cdcb89c04e3817a76
+X-List-Received-Date: Fri, 09 Aug 2013 14:25:51 -0000
+Content-Type: text/plain
 
---e89a8ff2511cdcb89c04e3817a76
-Content-Type: text/plain; charset=ISO-8859-1
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Carlos Hernandez <ceh@ti.com>
+---
+ .../recipes-core/busybox/busybox/defconfig         |    2 +-
+ .../recipes-core/busybox/busybox_1.20.2.bbappend   |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Hi,
-I want to build x11 as a part of arago distribution  .but its failing with
-error
-ERROR: Nothing PROVIDES 'xf86-video-omap_git'
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+index 16ebdf0..5961447 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+@@ -705,7 +705,7 @@ CONFIG_STRINGS=y
+ # CONFIG_TASKSET is not set
+ # CONFIG_FEATURE_TASKSET_FANCY is not set
+ CONFIG_TIME=y
+-# CONFIG_TIMEOUT is not set
++CONFIG_TIMEOUT=y
+ # CONFIG_TTYSIZE is not set
+ # CONFIG_VOLNAME is not set
+ # CONFIG_WALL is not set
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
+index 4cf7821..8edb493 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago7"
++PR_append = "-arago8"
+ 
+ SRC_URI += " \
+ 	file://inetd \
+-- 
+1.7.9.5
 
 
-build command used:
-MACHINE=omap5-evm bitbake xf86-video-omap_git
-
-
-How to resolve this.
-
--Kiran
-
---e89a8ff2511cdcb89c04e3817a76
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><br clear=3D"all"><br></div>Hi,<br></div>I =
-want to build x11 as a part of arago distribution=A0 .but its failing with =
-error <br>ERROR: Nothing PROVIDES &#39;xf86-video-omap_git&#39;<br><br><br>=
-build command used:<br>
-MACHINE=3Domap5-evm bitbake xf86-video-omap_git<br><br><br></div>How to res=
-olve this.<br><div><div><div><br>-Kiran<br>
-</div></div></div></div>
-
---e89a8ff2511cdcb89c04e3817a76--
