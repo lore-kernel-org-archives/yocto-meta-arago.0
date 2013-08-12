@@ -1,28 +1,25 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 2A3A0529CA
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 36276529DE
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Aug 2013 14:57:30 +0000 (UTC)
+	Mon, 12 Aug 2013 16:27:19 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7CEvRN1030064
-	for <meta-arago@arago-project.org>; Mon, 12 Aug 2013 09:57:27 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7CEvQOZ006514;
-	Mon, 12 Aug 2013 09:57:26 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7CGRIVJ010861
+	for <meta-arago@arago-project.org>; Mon, 12 Aug 2013 11:27:18 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7CGRHEK004285;
+	Mon, 12 Aug 2013 11:27:17 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Mon, 12 Aug 2013 09:57:26 -0500
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Mon, 12 Aug 2013 11:27:17 -0500
 From: "Nelson, Sam" <sam.nelson@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>
 Thread-Topic: help needed: Top nightly failure
-Thread-Index: Ac6PaQWKy78HI/DYT4asbnLR1JblhgFZkRkAAKcjMsA=
-Importance: high
-X-Priority: 1
-Date: Mon, 12 Aug 2013 14:57:25 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F4905494E508@DLEE11.ent.ti.com>
+Thread-Index: Ac6PaQWKy78HI/DYT4asbnLR1JblhgFZkRkAAKcjMsAAAxtF4A==
+Date: Mon, 12 Aug 2013 16:27:16 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F4905494E574@DLEE11.ent.ti.com>
 References: <4F9216F96E5DF9428610502835A9F4905493EC54@DLEE11.ent.ti.com>
-	<20130809020846.GF25015@edge>
-In-Reply-To: <20130809020846.GF25015@edge>
+	<20130809020846.GF25015@edge> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -44,10 +41,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Aug 2013 14:57:37 -0000
+X-List-Received-Date: Mon, 12 Aug 2013 16:27:20 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Also  yocto builds using git://arago-project.org/git/projects/linux-tci6614=
+.git also failing for the past 3 days.
+
+Looks like there is no issue in cloning the repos. But only the yocto fetch=
+ operation is failing.
+
+From the logs there is no information about what is the actual command , wh=
+ich failed.
+With regards,
+Sam
+-----Original Message-----
+From: Nelson, Sam=20
+Sent: Monday, August 12, 2013 10:57 AM
+To: Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org; Sivarajan, Raj; ares-team@list.ti.com - R=
+aj Sivarajan's Team (May contain non-TIers)
+Subject: RE: help needed: Top nightly failure
+Importance: High
 
 Hello Denys,
 Now starting Thursday, our builds are failing now consistently.
