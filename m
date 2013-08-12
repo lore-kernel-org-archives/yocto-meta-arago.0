@@ -1,28 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 01B8652AAE
+Return-Path: <sam.nelson@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 2A3A0529CA
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Aug 2013 06:30:46 +0000 (UTC)
+	Mon, 12 Aug 2013 14:57:30 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7C6UjCP015260
-	for <meta-arago@arago-project.org>; Mon, 12 Aug 2013 01:30:46 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7CEvRN1030064
+	for <meta-arago@arago-project.org>; Mon, 12 Aug 2013 09:57:27 -0500
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7C6UjSS016128
-	for <meta-arago@arago-project.org>; Mon, 12 Aug 2013 01:30:45 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 12 Aug 2013 01:30:45 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r7C6UjPa018056	for
-	<meta-arago@arago-project.org>; Mon, 12 Aug 2013 01:30:45 -0500
-Date: Mon, 12 Aug 2013 02:22:16 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <849786684.497.1376288536473.JavaMail.jenkins@puget>
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7CEvQOZ006514;
+	Mon, 12 Aug 2013 09:57:26 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Mon, 12 Aug 2013 09:57:26 -0500
+From: "Nelson, Sam" <sam.nelson@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: help needed: Top nightly failure
+Thread-Index: Ac6PaQWKy78HI/DYT4asbnLR1JblhgFZkRkAAKcjMsA=
+Importance: high
+X-Priority: 1
+Date: Mon, 12 Aug 2013 14:57:25 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F4905494E508@DLEE11.ent.ti.com>
+References: <4F9216F96E5DF9428610502835A9F4905493EC54@DLEE11.ent.ti.com>
+	<20130809020846.GF25015@edge>
+In-Reply-To: <20130809020846.GF25015@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.06 build 2013-08-12_01-01-44
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
+	"ares-team@list.ti.com - Raj
+	Sivarajan's Team \(May contain non-TIers\)" <ares-team@list.ti.com>
+Subject: Re: help needed: Top nightly failure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,189 +44,109 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Aug 2013 06:30:47 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_496_1758720456.1376288536459"
+X-List-Received-Date: Mon, 12 Aug 2013 14:57:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_496_1758720456.1376288536459
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Hello Denys,
+Now starting Thursday, our builds are failing now consistently.
+Did something change in the repos?=20
+WARNING: Failed to fetch URL git://arago-project.org/git/projects/linux-key=
+stone.git;protocol=3Dgit;branch=3Dcurrent/master, attempting MIRRORS if ava=
+ilable
+ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
+Cloning into bare repository '/home/a0862859/yocto/oe-layersetup-mcsdk/down=
+loads/git2/arago-project.org.git.projects.linux-keystone.git'...
 
-<html>
-<head>
-<title>
-Status for 08/12/13
-</title>
-</head>
-<body>
+fatal: The remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
 
-<h2>Status for 08/12/13</h2>
+ERROR: Function failed: Fetcher failure for URL: 'git://arago-project.org/g=
+it/projects/linux-keystone.git;protocol=3Dgit;branch=3Dcurrent/master'. Una=
+ble to fetch URL from any source.
+ERROR: Logfile of failure stored in: /home/a0862859/yocto/oe-layersetup-mcs=
+dk/build/arago-tmp-external-linaro-toolchain/work/keystone_evm-oe-linux-gnu=
+eabi/linux-keystone-3.8.4-r6a/temp/log.do_fetch.31058
+ERROR: Task 684 (/home/a0862859/yocto/oe-layersetup-mcsdk/sources/meta-ti/r=
+ecipes-kernel/linux/linux-keystone_3.8.4.bb, do_fetch) failed with exit cod=
+e '1'
+NOTE: Tasks Summary: Attempted 3212 tasks of which 3211 didn't need to be r=
+erun and 1 failed.
+No currently running tasks (351 of 3340)
 
-<h2>BUILD_ID: build-2013-08-12_01-02-45</h2>
+With regards,
+Sam
 
-<h2>Clean Build: false</h2>
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Thursday, August 08, 2013 10:09 PM
+To: Nelson, Sam
+Cc: meta-arago@arago-project.org; Sivarajan, Raj
+Subject: Re: help needed: Top nightly failure
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+Sam,
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-</table>
+Please use a mirror and/or previously cloned repos from downloads/ director=
+y - cloning the entire tree every night is not recommended and is rather ab=
+usive.
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+Also, I've repacked the linux-keystone repository so it is now smaller - pl=
+ease let me know if you still see the problem.
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.06"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+--
+Denys
 
 
-------=_Part_496_1758720456.1376288536459--
+On Fri, Aug 02, 2013 at 06:20:08AM -0400, Nelson, Sam wrote:
+>    Hello All
+>=20
+>    =20
+>=20
+>    We are encountering a lot of nightly failures with fetch failure like =
+the
+>    following from the arago-project git.  The error happens randomly and
+>    unpredictably.
+>=20
+>    Is this something to do with git servers going down/offline?
+>=20
+>    Any ideas in tracking this type of issue will be appreciated.
+>=20
+>    =20
+>=20
+>    With regards,
+>=20
+>    Sam
+>=20
+>    =20
+>=20
+>    ERROR: Fetcher failure: Fetch command failed with exit code 128, outpu=
+t:
+>=20
+>    Cloning into bare repository
+>    '/home/gtbldadm/yocto/mcsdk-3_00_01_12/oe-layersetup-mcsdk/downloads/g=
+it2/arago-project.org.git.projects.linux-keystone.git'...
+>=20
+>    =20
+>=20
+>    fatal: The remote end hung up unexpectedly
+>=20
+>    fatal: early EOF
+>=20
+>    fatal: index-pack failed
+>=20
+>    =20
+>=20
+>    ERROR: Function failed: Fetcher failure for URL:
+>    'git://arago-project.org/git/projects/linux-keystone.git;protocol=3Dgi=
+t;branch=3Djuly-2013b/master'.
+>    Unable to fetch URL from any source.
+>=20
+>    ERROR: Logfile of failure stored in:
+>    /home/gtbldadm/yocto/mcsdk-3_00_01_12/oe-layersetup-mcsdk/build/arago-=
+tmp-external-linaro-toolchain/work/keystone_evm-oe-linux-gnueabi/linux-keys=
+tone-3.8.4-r6a/temp/log.do_fetch.14929
+>=20
+>    =20
+
