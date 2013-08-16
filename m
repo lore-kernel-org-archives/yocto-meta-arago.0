@@ -1,38 +1,39 @@
 Return-Path: <chgans@googlemail.com>
-Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
-	[209.85.220.43])
-	by arago-project.org (Postfix) with ESMTPS id CBB57529A0
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by arago-project.org (Postfix) with ESMTPS id 03494529A0
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Aug 2013 02:29:27 +0000 (UTC)
-Received: by mail-pa0-f43.google.com with SMTP id hz10so1344317pad.16
+	Fri, 16 Aug 2013 02:33:03 +0000 (UTC)
+Received: by mail-pa0-f54.google.com with SMTP id kx10so1349757pab.27
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Aug 2013 19:29:26 -0700 (PDT)
+	Thu, 15 Aug 2013 19:33:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20120113;
 	h=sender:message-id:date:from:user-agent:mime-version:to:subject
 	:content-type:content-transfer-encoding;
-	bh=v/tWzSDJ+oT/bPuQLaG6/RG4cAmj1OKJKx17bow9HOQ=;
-	b=GllqBffFk4tnYMpu3ocjCNSQFSA1Td2lGaw76du0PQhaawNBUJktU73JuluUwR0wdG
-	xXyY6NJ0nw9ssmA5DdLXxtzoYZJeGVJRCppDD4Lan2Ihbk/A5jYY68tVP91BfeUdm90G
-	Q106CZVVwY/k3Pd4un1QXaKkJkYPMft+kk9E/xuMK9Id7HcduAFPqn/q6W4c+UEDvZTM
-	OQnPP011s9QemPE1hUDNmp4OnFpo/kGeEMjsEjhr0YjMlkFYBSmS0XUEn8YwY3LQuKUX
-	lCAEUu7MS8m1FSQHm9m4Uc1Bailty2gQui4mgNzgJ9AUIhdYIsTB1QuzyLWfoD/Fh7K7
-	NkqA==
-X-Received: by 10.68.2.69 with SMTP id 5mr18738500pbs.124.1376620166252;
-	Thu, 15 Aug 2013 19:29:26 -0700 (PDT)
+	bh=8gZpNBWWlK4JQ0D/dbWCirVQJmvLVF13EelYYyHoOqQ=;
+	b=L97/8ArGwNYcHyGWINq4p1m6xwE5j3MvJ7UyhvnRgOokCy9O8yj2TpJGr6tI4fj1pJ
+	SRqCnVch4fzi+0cr6tD/JvOf9N+5/qTDLLKYuvUarsCWfXWjPSgdBA9vh91CAaS7zy8V
+	MhluaB3GzXJdCqVWiXCg9GBj+VOl2WTwuuOzRqjkt84PSTIsrLFES7EsdKfGtTTHEJVV
+	ulNufnObgBXEF4UUNFy3+ePBT6Hb3nAIcIimCsZg9m/c5sPx7kTGBA6ooH4DjO4Q1Y6e
+	cOWqiLTCW7KtLnAbqjFeaEX/cnhxv3MYwhQskiDCEUa1Lkm1lm1blKtO2z3SIpaMa41D
+	cjwQ==
+X-Received: by 10.68.113.99 with SMTP id ix3mr2594pbb.180.1376620382902;
+	Thu, 15 Aug 2013 19:33:02 -0700 (PDT)
 Received: from [0.0.0.0] ([210.48.94.225])
-	by mx.google.com with ESMTPSA id yo2sm115171pab.8.1969.12.31.16.00.00
+	by mx.google.com with ESMTPSA id sp4sm2712102pbc.45.2013.08.15.19.33.00
+	for <meta-arago@arago-project.org>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 15 Aug 2013 19:29:25 -0700 (PDT)
+	Thu, 15 Aug 2013 19:33:02 -0700 (PDT)
 Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <520D8E81.8080501@gna.org>
-Date: Fri, 16 Aug 2013 14:29:21 +1200
+Message-ID: <520D8F5A.4000904@gna.org>
+Date: Fri, 16 Aug 2013 14:32:58 +1200
 From: Christian Gagneraud <chgans@gna.org>
 User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
 To: meta-arago@arago-project.org
-Subject: meta-toolchain-arago-tisdk failed to build
+Subject: u-boot-ti-staging failed to compile
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,59 +46,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Aug 2013 02:29:28 -0000
+X-List-Received-Date: Fri, 16 Aug 2013 02:33:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Hi there,
 
-I was trying to build meta-toolchain-arago-tisdk, but it failed because 
-"nothing provides packagegroup-arago-cross-canadian-arm", I couldn't 
-find this recipe anywhere in meta-arago.
+I've started a brand new build today using arago-dylan-config.txt, I got 
+a build failure with u-boot-ti-staging, the whole log is on pastebin [1].
+In short, I got:
+make[2]: *** No rule to make target `include/config_cmd_defaults', 
+needed by `spl/arch/arm/cpu/armv7/cache_v7.o'.  Stop.
 
-Maybe I should modify configs/arago-dylan-config.txt to use a known good 
-tag for meta-arago? Are the tags tested somehow (at least built)?
+Path have been stripped down for readability.
 
-Here is the log:
+$ find sources/meta-{arago,ti} -name '*boot-ti-*'
+sources/meta-arago/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
+sources/meta-ti/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bb
+sources/meta-ti/recipes-bsp/u-boot/u-boot-ti.inc
 
-Build Configuration:
-BB_VERSION        = "1.18.0"
-BUILD_SYS         = "i686-linux"
-NATIVELSBSTRING   = "Ubuntu-13.04"
-TARGET_SYS        = "arm-oe-linux-gnueabi"
-MACHINE           = "am335x-evm"
-DISTRO            = "arago"
-DISTRO_VERSION    = "2013.07"
-TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa8"
-TARGET_FPU        = "vfp-neon"
-meta-arago-distro
-meta-arago-extras = "master:25f815a91093952db8d7232315fcae85a628e2a3"
-toolchain-layer
-meta-networking
-meta-oe           = "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
-meta-ti           = "dylan:cc1a67b39d8a958f86f30dae5e955b2347745063"
-meta-linaro-toolchain = "dylan:7ab5e76aac4344e1a228b620f469e868e7914f2f"
-meta              = "dylan:acf46cb2eb03c2ed3aadd7858044ba2837a83292"
-
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing RPROVIDES 'packagegroup-arago-cross-canadian-arm'
-NOTE: Runtime target 'packagegroup-arago-cross-canadian-arm' is 
-unbuildable, removing...
-Missing or unbuildable dependency chain was: 
-['packagegroup-arago-cross-canadian-arm']
-ERROR: Required build target 'meta-toolchain-arago-tisdk' has no 
-buildable providers.
-Missing or unbuildable dependency chain was: 
-['meta-toolchain-arago-tisdk', 'packagegroup-arago-cross-canadian-arm'] 
-
-
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
-
-Any hint appreciated.
+Any thoughts one this one?
 
 Regards,
 Chris
 
-
+[1] http://pastebin.com/HGX8i5Uk
 
