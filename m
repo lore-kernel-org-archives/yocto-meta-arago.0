@@ -1,31 +1,38 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id DDF4952A62
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by arago-project.org (Postfix) with ESMTPS id CBB57529A0
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Aug 2013 19:02:05 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7FJ24jS029330;
-	Thu, 15 Aug 2013 14:02:04 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7FJ24GQ003004;
-	Thu, 15 Aug 2013 14:02:04 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 15 Aug 2013 14:02:04 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r7FJ24m9011905;
-	Thu, 15 Aug 2013 14:02:04 -0500
-Date: Thu, 15 Aug 2013 15:02:03 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: kiran bobbu <kiran.bobbu@gmail.com>
-Message-ID: <20130815190203.GD2190@edge>
-References: <CAO7jpqfv_WvnpmEcbH5rZQ3qOGp2SW1Vq4=z=xpHVZuBDBhg=w@mail.gmail.com>
-	<CAO7jpqc3W5yVopHS6AFaB3qVq=JsLXoecQryuhKDXkGutExHQg@mail.gmail.com>
+	Fri, 16 Aug 2013 02:29:27 +0000 (UTC)
+Received: by mail-pa0-f43.google.com with SMTP id hz10so1344317pad.16
+	for <meta-arago@arago-project.org>;
+	Thu, 15 Aug 2013 19:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=v/tWzSDJ+oT/bPuQLaG6/RG4cAmj1OKJKx17bow9HOQ=;
+	b=GllqBffFk4tnYMpu3ocjCNSQFSA1Td2lGaw76du0PQhaawNBUJktU73JuluUwR0wdG
+	xXyY6NJ0nw9ssmA5DdLXxtzoYZJeGVJRCppDD4Lan2Ihbk/A5jYY68tVP91BfeUdm90G
+	Q106CZVVwY/k3Pd4un1QXaKkJkYPMft+kk9E/xuMK9Id7HcduAFPqn/q6W4c+UEDvZTM
+	OQnPP011s9QemPE1hUDNmp4OnFpo/kGeEMjsEjhr0YjMlkFYBSmS0XUEn8YwY3LQuKUX
+	lCAEUu7MS8m1FSQHm9m4Uc1Bailty2gQui4mgNzgJ9AUIhdYIsTB1QuzyLWfoD/Fh7K7
+	NkqA==
+X-Received: by 10.68.2.69 with SMTP id 5mr18738500pbs.124.1376620166252;
+	Thu, 15 Aug 2013 19:29:26 -0700 (PDT)
+Received: from [0.0.0.0] ([210.48.94.225])
+	by mx.google.com with ESMTPSA id yo2sm115171pab.8.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 15 Aug 2013 19:29:25 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <520D8E81.8080501@gna.org>
+Date: Fri, 16 Aug 2013 14:29:21 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-In-Reply-To: <CAO7jpqc3W5yVopHS6AFaB3qVq=JsLXoecQryuhKDXkGutExHQg@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: whats the bitbake target to build X11 for omap5 evm
+To: meta-arago@arago-project.org
+Subject: meta-toolchain-arago-tisdk failed to build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,19 +45,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 19:02:06 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 16 Aug 2013 02:29:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 12, 2013 at 10:51:47PM +0530, kiran bobbu wrote:
-> hi,
-> 
-> I am unable to find libpvrPVR2D_DRIWSEGL.so for OMAP5 evm  .
-> i found them only for OMAP4 .
-> Can someone point to right place to get these for OMAP5?
+Hi there,
 
-The SGX driver for OMAP5 is not there yet.
+I was trying to build meta-toolchain-arago-tisdk, but it failed because 
+"nothing provides packagegroup-arago-cross-canadian-arm", I couldn't 
+find this recipe anywhere in meta-arago.
 
--- 
-Denys
+Maybe I should modify configs/arago-dylan-config.txt to use a known good 
+tag for meta-arago? Are the tags tested somehow (at least built)?
+
+Here is the log:
+
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "i686-linux"
+NATIVELSBSTRING   = "Ubuntu-13.04"
+TARGET_SYS        = "arm-oe-linux-gnueabi"
+MACHINE           = "am335x-evm"
+DISTRO            = "arago"
+DISTRO_VERSION    = "2013.07"
+TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa8"
+TARGET_FPU        = "vfp-neon"
+meta-arago-distro
+meta-arago-extras = "master:25f815a91093952db8d7232315fcae85a628e2a3"
+toolchain-layer
+meta-networking
+meta-oe           = "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
+meta-ti           = "dylan:cc1a67b39d8a958f86f30dae5e955b2347745063"
+meta-linaro-toolchain = "dylan:7ab5e76aac4344e1a228b620f469e868e7914f2f"
+meta              = "dylan:acf46cb2eb03c2ed3aadd7858044ba2837a83292"
+
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'packagegroup-arago-cross-canadian-arm'
+NOTE: Runtime target 'packagegroup-arago-cross-canadian-arm' is 
+unbuildable, removing...
+Missing or unbuildable dependency chain was: 
+['packagegroup-arago-cross-canadian-arm']
+ERROR: Required build target 'meta-toolchain-arago-tisdk' has no 
+buildable providers.
+Missing or unbuildable dependency chain was: 
+['meta-toolchain-arago-tisdk', 'packagegroup-arago-cross-canadian-arm'] 
+
+
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+
+Any hint appreciated.
+
+Regards,
+Chris
+
+
 
