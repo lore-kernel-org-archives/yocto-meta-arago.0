@@ -1,28 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B2954529A0
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 6FDA1529E7
 	for <meta-arago@arago-project.org>;
-	Sat, 17 Aug 2013 06:22:26 +0000 (UTC)
+	Sat, 17 Aug 2013 14:55:33 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7H6MPqS024419
-	for <meta-arago@arago-project.org>; Sat, 17 Aug 2013 01:22:25 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7HEtWCI006599;
+	Sat, 17 Aug 2013 09:55:32 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7H6MPD3000726
-	for <meta-arago@arago-project.org>; Sat, 17 Aug 2013 01:22:25 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7HEtWbY028896;
+	Sat, 17 Aug 2013 09:55:32 -0500
 Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Sat, 17 Aug 2013 01:22:25 -0500
-Received: from puget.gt.design.ti.com ([158.218.102.159])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r7H6MPbm009210	for
-	<meta-arago@arago-project.org>; Sat, 17 Aug 2013 01:22:25 -0500
-Date: Sat, 17 Aug 2013 02:13:48 -0400
+	Sat, 17 Aug 2013 09:55:32 -0500
+Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
+	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r7HEtWZ9019737;
+	Sat, 17 Aug 2013 09:55:32 -0500
+Date: Sat, 17 Aug 2013 10:55:31 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1276382324.517.1376720028665.JavaMail.jenkins@puget>
+To: Christian Gagneraud <chgans@gna.org>
+Message-ID: <20130817145531.GC4931@edge>
+References: <520D8E81.8080501@gna.org>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.06 build 2013-08-17_01-01-44
+In-Reply-To: <520D8E81.8080501@gna.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: meta-toolchain-arago-tisdk failed to build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,189 +37,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Aug 2013 06:22:27 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_516_1572452558.1376720028664"
+X-List-Received-Date: Sat, 17 Aug 2013 14:55:33 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-------=_Part_516_1572452558.1376720028664
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Yes, toolchain/SDK in dylan requires few fixes that I was testing last week - 
+I'll be pushing those soon.
 
-<html>
-<head>
-<title>
-Status for 08/17/13
-</title>
-</head>
-<body>
-
-<h2>Status for 08/17/13</h2>
-
-<h2>BUILD_ID: build-2013-08-17_01-02-45</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.06"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_JAMMER="/home/jenkins/installjammer"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-WEB_HOST=""<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+-- 
+Denys
 
 
-------=_Part_516_1572452558.1376720028664--
+On Fri, Aug 16, 2013 at 02:29:21PM +1200, Christian Gagneraud wrote:
+> Hi there,
+> 
+> I was trying to build meta-toolchain-arago-tisdk, but it failed
+> because "nothing provides packagegroup-arago-cross-canadian-arm", I
+> couldn't find this recipe anywhere in meta-arago.
+> 
+> Maybe I should modify configs/arago-dylan-config.txt to use a known
+> good tag for meta-arago? Are the tags tested somehow (at least
+> built)?
+> 
+> Here is the log:
+> 
+> Build Configuration:
+> BB_VERSION        = "1.18.0"
+> BUILD_SYS         = "i686-linux"
+> NATIVELSBSTRING   = "Ubuntu-13.04"
+> TARGET_SYS        = "arm-oe-linux-gnueabi"
+> MACHINE           = "am335x-evm"
+> DISTRO            = "arago"
+> DISTRO_VERSION    = "2013.07"
+> TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa8"
+> TARGET_FPU        = "vfp-neon"
+> meta-arago-distro
+> meta-arago-extras = "master:25f815a91093952db8d7232315fcae85a628e2a3"
+> toolchain-layer
+> meta-networking
+> meta-oe           = "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
+> meta-ti           = "dylan:cc1a67b39d8a958f86f30dae5e955b2347745063"
+> meta-linaro-toolchain = "dylan:7ab5e76aac4344e1a228b620f469e868e7914f2f"
+> meta              = "dylan:acf46cb2eb03c2ed3aadd7858044ba2837a83292"
+> 
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing RPROVIDES 'packagegroup-arago-cross-canadian-arm'
+> NOTE: Runtime target 'packagegroup-arago-cross-canadian-arm' is
+> unbuildable, removing...
+> Missing or unbuildable dependency chain was:
+> ['packagegroup-arago-cross-canadian-arm']
+> ERROR: Required build target 'meta-toolchain-arago-tisdk' has no
+> buildable providers.
+> Missing or unbuildable dependency chain was:
+> ['meta-toolchain-arago-tisdk',
+> 'packagegroup-arago-cross-canadian-arm']
+> 
+> 
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+> 
+> 
+> Any hint appreciated.
+> 
+> Regards,
+> Chris
+> 
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
