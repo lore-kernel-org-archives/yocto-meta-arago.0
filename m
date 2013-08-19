@@ -1,27 +1,26 @@
 Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTP id C76C052A24
+Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
+	[206.46.173.1])
+	by arago-project.org (Postfix) with ESMTP id 299CD5299C
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Aug 2013 17:38:21 +0000 (UTC)
+	Mon, 19 Aug 2013 17:41:48 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173013.mailsrvcs.net
+	by vms173001.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MRS00M43GZ6ZXM2@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 19 Aug 2013 12:37:55 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 71B5C20091; Mon,
-	19 Aug 2013 13:37:53 -0400 (EDT)
-Date: Mon, 19 Aug 2013 13:37:53 -0400
+	2009)) with ESMTPA id <0MRS00HQ1H5NPHK2@vms173001.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 19 Aug 2013 12:41:47 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 3493420091; Mon,
+	19 Aug 2013 13:41:47 -0400 (EDT)
+Date: Mon, 19 Aug 2013 13:41:47 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Christian Gagneraud <chgans@gna.org>
-Message-id: <20130819173753.GC32524@denix.org>
-References: <520D8F5A.4000904@gna.org> <20130817150001.GD4931@edge>
-	<52117D55.8010502@gna.org>
+To: Mrinmayee Hingolikar <mrinmayee@ti.com>
+Message-id: <20130819174147.GD32524@denix.org>
+References: <1376891490-10099-1-git-send-email-mrinmayee@ti.com>
 MIME-version: 1.0
-In-reply-to: <52117D55.8010502@gna.org>
+In-reply-to: <1376891490-10099-1-git-send-email-mrinmayee@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: u-boot-ti-staging failed to compile
+Subject: Re: [PATCHv2 0/2] Enable oe-layertool-setup.sh to use GLSDK branding
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,33 +33,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2013 17:38:21 -0000
+X-List-Received-Date: Mon, 19 Aug 2013 17:41:48 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Mon, Aug 19, 2013 at 02:05:09PM +1200, Christian Gagneraud wrote:
-> On 18/08/13 03:00, Denys Dmytriyenko wrote:
-> >On Fri, Aug 16, 2013 at 02:32:58PM +1200, Christian Gagneraud wrote:
-> >>Hi there,
-> >>
-> >>I've started a brand new build today using arago-dylan-config.txt, I
-> >>got a build failure with u-boot-ti-staging, the whole log is on
-> >>pastebin [1].
-> >>In short, I got:
-> >>make[2]: *** No rule to make target `include/config_cmd_defaults',
-> >>needed by `spl/arch/arm/cpu/armv7/cache_v7.o'.  Stop.
-> >
-> >Hmm, I haven't seen that one before. I'm building dylan for am335x-evm and it
-> >includes u-boot-ti-staging that has no issues. What toolchain do you use?
-> >
-> 
-> Hi Denys,
-> 
-> I didn't change anything, so I am still using
-> linaro/arm-linux-gnueabihf/4.7-2013.03/, do I need a newer version?
+Overall, both patches look fine. There are some small nit picks, but I won't 
+hold the patches because of those...
 
-No, that is the right one. Can you build that u-boot from sources manually?
 
--- 
-Denys
+On Mon, Aug 19, 2013 at 11:21:28AM +0530, Mrinmayee Hingolikar wrote:
+> v1:
+> 
+>  * In order to use GLSDK branding, a variable ARAGO_BRAND needs to be set
+>   in local.conf.
+>  * This patch set adds a conf.sample file for GLDK that contains the
+>   ARAGO_BRAND set to GLSDK branding, and edits the OECORELOCALCONF
+>   variable in GLSDK config to pick up the GLSDK conf.sample.
+>  * The oe-layertool-setup.sh would generate local.conf from the GLSDK conf.sample.
+> 
+> v2:
+>  
+>  * Copied conf.sample from AMSDK's conf.sample instead of copying from 
+>    local-arago-linaro.conf.sample.
+> 
+> Mrinmayee Hingolikar (2):
+>   configs : Override OECORELOCALCONF to use the glsdk.conf.sample
+>   sample-files: Added conf.sample file for GLSDK
+> 
+>  configs/glsdk/glsdk-06.01.00-config.txt |    2 +-
+>  sample-files/local-glsdk.conf.sample    |  162 +++++++++++++++++++++++++++++++
+>  2 files changed, 163 insertions(+), 1 deletion(-)
+>  create mode 100644 sample-files/local-glsdk.conf.sample
+> 
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
