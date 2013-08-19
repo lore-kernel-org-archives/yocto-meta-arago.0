@@ -1,41 +1,30 @@
-Return-Path: <chgans@googlemail.com>
-Received: from mail-pb0-f43.google.com (mail-pb0-f43.google.com
-	[209.85.160.43])
-	by arago-project.org (Postfix) with ESMTPS id 89A055296F
+Return-Path: <a013216@uda0217541>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id B3020529D0
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Aug 2013 02:05:20 +0000 (UTC)
-Received: by mail-pb0-f43.google.com with SMTP id md4so4365656pbc.2
-	for <meta-arago@arago-project.org>;
-	Sun, 18 Aug 2013 19:05:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=ZmlQYunsYRdl2joZBCGXEUCecnRLkinR7rasDs3ndoY=;
-	b=C+fwWHGX4PIwqx3sIHf/YbtmHuYbVq/lpEEHzJjFBbTlXKUkxiC+m6PyzNMFWz6WbO
-	iiHddiz5Ff+mWMW+79yzzwBc2QCJi0kMg0FsGgnQc+7qkWvzS60Kv2En7XvQgKdVOUQa
-	plUmbdbdHc/szQoVW8gfNm8ILSVzjbofqS6g3x4LWvvcA+tTTEVDXMXlC+4r9jTrc0kH
-	W4yjs0CY8iedQPavdLnoWG1JqGwqdOs9ml/JtSw6ec6xdfhG8MQN56Ef+uo9bKLA/QwP
-	DXs4SLLT49K1ws3yfAsuX/oxRCyXfogve5KD8ghSEcgwZV2CyH6Djh1cGJnNbVBtinsn
-	fuZQ==
-X-Received: by 10.66.149.73 with SMTP id ty9mr10576359pab.36.1376877919053;
-	Sun, 18 Aug 2013 19:05:19 -0700 (PDT)
-Received: from [0.0.0.0] ([210.48.94.225])
-	by mx.google.com with ESMTPSA id wr9sm11827477pbc.7.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 18 Aug 2013 19:05:18 -0700 (PDT)
-Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <52117D55.8010502@gna.org>
-Date: Mon, 19 Aug 2013 14:05:09 +1200
-From: Christian Gagneraud <chgans@gna.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+	Mon, 19 Aug 2013 05:51:39 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7J5pc1v012298
+	for <meta-arago@arago-project.org>; Mon, 19 Aug 2013 00:51:38 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7J5pckh024592
+	for <meta-arago@arago-project.org>; Mon, 19 Aug 2013 00:51:38 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 19 Aug 2013 00:51:38 -0500
+Received: from udx0201389 ([172.24.190.133])	by dlelxv22.itg.ti.com
+	(8.13.8/8.13.8) with ESMTP id r7J5pbQl016186;
+	Mon, 19 Aug 2013 00:51:38 -0500
+Received: from a013216 by udx0201389 with local (Exim 4.76)	(envelope-from
+	<a013216@uda0217541>)	id 1VBINN-0002dU-CL;
+	Mon, 19 Aug 2013 11:21:37 +0530
+From: Mrinmayee Hingolikar <mrinmayee@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 19 Aug 2013 11:21:28 +0530
+Message-ID: <1376891490-10099-1-git-send-email-mrinmayee@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <520D8F5A.4000904@gna.org> <20130817150001.GD4931@edge>
-In-Reply-To: <20130817150001.GD4931@edge>
-Cc: meta-arago@arago-project.org
-Subject: Re: u-boot-ti-staging failed to compile
+Subject: [PATCHv2 0/2] Enable oe-layertool-setup.sh to use GLSDK branding
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,31 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2013 02:05:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Aug 2013 05:51:40 -0000
+Content-Type: text/plain
 
-On 18/08/13 03:00, Denys Dmytriyenko wrote:
-> On Fri, Aug 16, 2013 at 02:32:58PM +1200, Christian Gagneraud wrote:
->> Hi there,
->>
->> I've started a brand new build today using arago-dylan-config.txt, I
->> got a build failure with u-boot-ti-staging, the whole log is on
->> pastebin [1].
->> In short, I got:
->> make[2]: *** No rule to make target `include/config_cmd_defaults',
->> needed by `spl/arch/arm/cpu/armv7/cache_v7.o'.  Stop.
->
-> Hmm, I haven't seen that one before. I'm building dylan for am335x-evm and it
-> includes u-boot-ti-staging that has no issues. What toolchain do you use?
->
+v1:
 
-Hi Denys,
+ * In order to use GLSDK branding, a variable ARAGO_BRAND needs to be set
+  in local.conf.
+ * This patch set adds a conf.sample file for GLDK that contains the
+  ARAGO_BRAND set to GLSDK branding, and edits the OECORELOCALCONF
+  variable in GLSDK config to pick up the GLSDK conf.sample.
+ * The oe-layertool-setup.sh would generate local.conf from the GLSDK conf.sample.
 
-I didn't change anything, so I am still using 
-linaro/arm-linux-gnueabihf/4.7-2013.03/, do I need a newer version?
+v2:
+ 
+ * Copied conf.sample from AMSDK's conf.sample instead of copying from 
+   local-arago-linaro.conf.sample.
 
-Regards,
-Chris
+Mrinmayee Hingolikar (2):
+  configs : Override OECORELOCALCONF to use the glsdk.conf.sample
+  sample-files: Added conf.sample file for GLSDK
+
+ configs/glsdk/glsdk-06.01.00-config.txt |    2 +-
+ sample-files/local-glsdk.conf.sample    |  162 +++++++++++++++++++++++++++++++
+ 2 files changed, 163 insertions(+), 1 deletion(-)
+ create mode 100644 sample-files/local-glsdk.conf.sample
+
+-- 
+1.7.9.5
 
 
