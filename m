@@ -1,27 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
-	[206.46.173.1])
-	by arago-project.org (Postfix) with ESMTP id E375E52A24
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTP id 983095299B
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Aug 2013 21:37:50 +0000 (UTC)
+	Mon, 19 Aug 2013 21:42:13 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173001.mailsrvcs.net
+	by vms173007.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MRS00B5GS2WOSV0@vms173001.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 19 Aug 2013 16:37:50 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id C0FD3200D3; Mon,
-	19 Aug 2013 17:37:44 -0400 (EDT)
-Date: Mon, 19 Aug 2013 17:37:44 -0400
+	2009)) with ESMTPA id <0MRS009UZS9JIZX0@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 19 Aug 2013 16:41:54 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id A20C0200D3; Mon,
+	19 Aug 2013 17:41:43 -0400 (EDT)
+Date: Mon, 19 Aug 2013 17:41:43 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-id: <20130819213744.GG32524@denix.org>
+Message-id: <20130819214143.GH32524@denix.org>
 References: <1375317112-1690-1-git-send-email-fcooper@ti.com>
-	<1375317112-1690-3-git-send-email-fcooper@ti.com>
+	<1375317112-1690-6-git-send-email-fcooper@ti.com>
 MIME-version: 1.0
-In-reply-to: <1375317112-1690-3-git-send-email-fcooper@ti.com>
+In-reply-to: <1375317112-1690-6-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [master & danny][PATCH 3/7] branding-amsdk: Set linux-libc-headers to 3.2
+Subject: Re: [master & danny][PATCH 6/7] toolchain-external-linaro: Use separate linux-libc-headers provider
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +34,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2013 21:37:51 -0000
+X-List-Received-Date: Mon, 19 Aug 2013 21:42:14 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Wed, Jul 31, 2013 at 07:31:48PM -0500, Franklin S. Cooper Jr wrote:
-> * Insure the proper linux-libc-header is used for 3.2 linux kernel
+On Wed, Jul 31, 2013 at 07:31:51PM -0500, Franklin S. Cooper Jr wrote:
+> * Do not use linux-libc-headers from the toolchain which is fixed to a specific
+>   version of linux-libc-headers.
 
-BTW, while it will work in danny, dylan no longer provides 3.2 version of 
-linux-libc-headers. Patches 3 and 4 assume there is still one available. May 
-need to bring it back to meta-arago...
+Unfortunately, this won't work, as external-linaro-toolchain recipe does not 
+allow replacing it's headers with the ones provided by linux-libc-headers. I 
+had that implemented in Arago toolchain and Code Sourcery previously. I can 
+patch Linaro recipe to have this capability, but it's not there yet, just 
+letting you know. It may result in a conflict of headers the way it is now - 
+I'm testing it...
 
 
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  .../conf/distro/include/branding-amsdk.inc         |    2 ++
->  1 files changed, 2 insertions(+), 0 deletions(-)
+>  .../conf/distro/include/toolchain-linaro.inc       |    4 ++++
+>  1 files changed, 4 insertions(+), 0 deletions(-)
 > 
-> diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-> index 8fdf93d..d8ae307 100644
-> --- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-> +++ b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
-> @@ -3,6 +3,8 @@
->  # Use the SDK supported kernel and kernel version
->  PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-am335x-psp"
->  PREFERRED_VERSION_linux-am335x-psp = "3.2"
-> +PREFERRED_VERSION_linux-libc-headers_am335x-evm = "3.2"
+> diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+> index 5713da2..9751725 100644
+> --- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+> +++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+> @@ -36,3 +36,7 @@ PREFERRED_VERSION_binutils-crosssdk ?= "${SDKBINUVERSION}"
+>  PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+>  PREFERRED_VERSION_nativesdk-eglibc ?= "${SDKEGLIBCVERSION}"
+>  PREFERRED_VERSION_nativesdk-eglibc-initial ?= "${SDKEGLIBCVERSION}"
 > +
->  PREFERRED_PROVIDER_ltp-ddt_am335x-evm = "ltp-ddt-legacy"
->  PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-am33x"
->  PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-am33x"
+> +PREFERRED_PROVIDER_linux-libc-headers = "linux-libc-headers"
+> +PREFERRED_PROVIDER_linux-libc-headers-dev = "linux-libc-headers"
+> +PREFERRED_PROVIDER_virtual/linux-libc-headers = "linux-libc-headers"
 > -- 
 > 1.7.0.4
 > 
