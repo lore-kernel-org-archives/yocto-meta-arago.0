@@ -1,27 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id 983095299B
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 1D920529D0
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Aug 2013 21:42:13 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MRS009UZS9JIZX0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 19 Aug 2013 16:41:54 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id A20C0200D3; Mon,
-	19 Aug 2013 17:41:43 -0400 (EDT)
-Date: Mon, 19 Aug 2013 17:41:43 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-id: <20130819214143.GH32524@denix.org>
-References: <1375317112-1690-1-git-send-email-fcooper@ti.com>
-	<1375317112-1690-6-git-send-email-fcooper@ti.com>
-MIME-version: 1.0
-In-reply-to: <1375317112-1690-6-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [master & danny][PATCH 6/7] toolchain-external-linaro: Use separate linux-libc-headers provider
+	Tue, 20 Aug 2013 02:30:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7K2UMK9024852
+	for <meta-arago@arago-project.org>; Mon, 19 Aug 2013 21:30:22 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7K2UM5i028106
+	for <meta-arago@arago-project.org>; Mon, 19 Aug 2013 21:30:22 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Mon, 19 Aug 2013 21:30:21 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [master & danny][PATCH 1/7] linux-libc-headers:
+	Add linux-libc-headers version 2.6.33
+Thread-Index: AQHOjksTMZ6NklZMBUWHD07FPNQsDpmdf3yA///+XL8=
+Date: Tue, 20 Aug 2013 02:30:20 +0000
+Message-ID: <FC0CCC2B-AE0D-4AA7-B553-3379ED7A62F0@ti.com>
+References: <1375317112-1690-1-git-send-email-fcooper@ti.com>,
+	<20130819213613.GF32524@denix.org>
+In-Reply-To: <20130819213613.GF32524@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [master & danny][PATCH 1/7] linux-libc-headers: Add linux-libc-headers version 2.6.33
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,45 +40,63 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2013 21:42:14 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
-
-On Wed, Jul 31, 2013 at 07:31:51PM -0500, Franklin S. Cooper Jr wrote:
-> * Do not use linux-libc-headers from the toolchain which is fixed to a specific
->   version of linux-libc-headers.
-
-Unfortunately, this won't work, as external-linaro-toolchain recipe does not 
-allow replacing it's headers with the ones provided by linux-libc-headers. I 
-had that implemented in Arago toolchain and Code Sourcery previously. I can 
-patch Linaro recipe to have this capability, but it's not there yet, just 
-letting you know. It may result in a conflict of headers the way it is now - 
-I'm testing it...
+X-List-Received-Date: Tue, 20 Aug 2013 02:30:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../conf/distro/include/toolchain-linaro.inc       |    4 ++++
->  1 files changed, 4 insertions(+), 0 deletions(-)
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-> index 5713da2..9751725 100644
-> --- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-> +++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-> @@ -36,3 +36,7 @@ PREFERRED_VERSION_binutils-crosssdk ?= "${SDKBINUVERSION}"
->  PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
->  PREFERRED_VERSION_nativesdk-eglibc ?= "${SDKEGLIBCVERSION}"
->  PREFERRED_VERSION_nativesdk-eglibc-initial ?= "${SDKEGLIBCVERSION}"
-> +
-> +PREFERRED_PROVIDER_linux-libc-headers = "linux-libc-headers"
-> +PREFERRED_PROVIDER_linux-libc-headers-dev = "linux-libc-headers"
-> +PREFERRED_PROVIDER_virtual/linux-libc-headers = "linux-libc-headers"
-> -- 
-> 1.7.0.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+
+On Aug 19, 2013, at 4:36 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
+
+> On Wed, Jul 31, 2013 at 07:31:46PM -0500, Franklin S. Cooper Jr wrote:
+>> * This is the version that was originally being using in arago/oe-classi=
+c based
+>>  SDK.
+>=20
+> Why do we need 2.6.33? All our old kernels are at least 2.6.37 now and th=
+ere=20
+> is corresponding linux-libc-headers available...
+It's been awhile but I believe am18x still didn't like the 2.6.37 headers f=
+or some crazy reason.
+
+
+>=20
+>=20
+>> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>> ---
+>> .../linux-libc-headers_2.6.33.bb                   |   10 ++++++++++
+>> 1 files changed, 10 insertions(+), 0 deletions(-)
+>> create mode 100644 meta-arago-extras/recipes-kernel/linux-libc-headers/l=
+inux-libc-headers_2.6.33.bb
+>>=20
+>> diff --git a/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-l=
+ibc-headers_2.6.33.bb b/meta-arago-extras/recipes-kernel/linux-libc-headers=
+/linux-libc-headers_2.6.33.bb
+>> new file mode 100644
+>> index 0000000..eb8cb19
+>> --- /dev/null
+>> +++ b/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-hea=
+ders_2.6.33.bb
+>> @@ -0,0 +1,10 @@
+>> +require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+>> +
+>> +FILESEXTRAPATHS_append :=3D "${THISDIR}/${PN}:${COREBASE}/meta/recipes-=
+kernel/linux-libc-headers/${PN}"
+>> +
+>> +PR =3D "r0"
+>> +
+>> +SRC_URI +=3D " file://connector-msg-size-fix.patch"
+>> +SRC_URI[md5sum] =3D "c3883760b18d50e8d78819c54d579b00"
+>> +SRC_URI[sha256sum] =3D "63e237de3b3c4c46a21833b9ce7e20574548d52dabbd1a8=
+bf376041e4455d5c6"
+>> +
+>> --=20
+>> 1.7.0.4
+>>=20
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>>=20
 
