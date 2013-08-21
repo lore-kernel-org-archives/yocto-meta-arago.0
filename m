@@ -1,29 +1,31 @@
-Return-Path: <mrinmayee@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 8D0AE5299B
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 99EBA52A61
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Aug 2013 11:10:28 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7LBAQrx025047
-	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 06:10:26 -0500
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LBANRA029616
-	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 06:10:25 -0500
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE72.ent.ti.com ([fe80::bd56:32bf:87fd:2763%27]) with mapi id
-	14.02.0342.003; Wed, 21 Aug 2013 19:10:23 +0800
-From: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: opkg-cl for manifest creation
-Thread-Index: Ac6eXwcHG5RLqKeARQam3Y0PoC5b1A==
-Date: Wed, 21 Aug 2013 11:10:22 +0000
-Message-ID: <CF956B779D819D41BBC043B7082161D5444C0B@DBDE04.ent.ti.com>
+	Wed, 21 Aug 2013 12:48:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7LCmLGm018140
+	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 07:48:21 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LCmLcQ017357
+	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 07:48:21 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Wed, 21 Aug 2013 07:48:20 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
+Thread-Topic: [meta-arago] opkg-cl for manifest creation
+Thread-Index: AQHOnmy2RYb1OB6e90a8KO/fJMuoeQ==
+Date: Wed, 21 Aug 2013 12:48:19 +0000
+Message-ID: <4D91A5AA-3AF5-4ADE-ABC3-E9173655520B@ti.com>
+References: <CF956B779D819D41BBC043B7082161D5444C0B@DBDE04.ent.ti.com>
+In-Reply-To: <CF956B779D819D41BBC043B7082161D5444C0B@DBDE04.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
 MIME-Version: 1.0
-Subject: opkg-cl for manifest creation
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: opkg-cl for manifest creation
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,21 +38,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 11:10:29 -0000
+X-List-Received-Date: Wed, 21 Aug 2013 12:48:24 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CF956B779D819D41BBC043B7082161D5444C0BDBDE04entticom_"
+	boundary="_000_4D91A5AA3AF54ADEABC3E9173655520Bticom_"
 
---_000_CF956B779D819D41BBC043B7082161D5444C0BDBDE04entticom_
-Content-Type: text/plain; charset="us-ascii"
+--_000_4D91A5AA3AF54ADEABC3E9173655520Bticom_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Any reason why you can't use the tisdk-image class in meta-arago-distro. Th=
+is class will create the entire manifest for you.
+
+You can look at arago-amsdk-image for an example.
+
+On Aug 21, 2013, at 6:10 AM, "Hingolikar, Mrinmayee" <mrinmayee@ti.com<mail=
+to:mrinmayee@ti.com>> wrote:
 
 Hi,
 
 I am trying to create software manifest for the arago-glsdk filesystem usin=
 g the create-manifest from arago-utils.
-On the host when I run the opkg-cl list-installed, it doesn't print any pac=
-kages. I have built and installed opkg on the host from
+On the host when I run the opkg-cl list-installed, it doesn=92t print any p=
+ackages. I have built and installed opkg on the host from
 https://code.google.com/p/opkg/downloads/detail?name=3Dopkg-0.2.0-rc1.tar.g=
 z&can=3D2&q=3D.
 
@@ -60,18 +70,33 @@ Any help?
 Regards,
 Mrinmayee
 
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
---_000_CF956B779D819D41BBC043B7082161D5444C0BDBDE04entticom_
-Content-Type: text/html; charset="us-ascii"
+--_000_4D91A5AA3AF54ADEABC3E9173655520Bticom_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body dir=3D"auto">
+<div>Any reason why you can't use the tisdk-image class in meta-arago-distr=
+o. This class will create the entire manifest for you.</div>
+<div><br>
+</div>
+<div>You can look at arago-amsdk-image for an example.</div>
+<div><br>
+On Aug 21, 2013, at 6:10 AM, &quot;Hingolikar, Mrinmayee&quot; &lt;<a href=
+=3D"mailto:mrinmayee@ti.com">mrinmayee@ti.com</a>&gt; wrote:<br>
+<br>
+</div>
+<blockquote type=3D"cite">
+<div>
 <meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -112,8 +137,6 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
@@ -121,8 +144,8 @@ div.WordSection1
 o-glsdk filesystem using the create-manifest from arago-utils.<o:p></o:p></=
 p>
 <p class=3D"MsoNormal">On the host when I run the opkg-cl list-installed, i=
-t doesn&#8217;t print any packages. I have built and installed opkg on the =
-host from
+t doesn=92t print any packages. I have built and installed opkg on the host=
+ from
 <o:p></o:p></p>
 <p class=3D"MsoNormal"><a href=3D"https://code.google.com/p/opkg/downloads/=
 detail?name=3Dopkg-0.2.0-rc1.tar.gz&amp;can=3D2&amp;q=3D">https://code.goog=
@@ -137,7 +160,19 @@ manifest on the host.<o:p></o:p></p>
 <p class=3D"MsoNormal">Mrinmayee<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
+</div>
+</blockquote>
+<blockquote type=3D"cite">
+<div><span>_______________________________________________</span><br>
+<span>meta-arago mailing list</span><br>
+<span><a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-proj=
+ect.org</a></span><br>
+<span><a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-ara=
+go">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a></span>=
+<br>
+</div>
+</blockquote>
 </body>
 </html>
 
---_000_CF956B779D819D41BBC043B7082161D5444C0BDBDE04entticom_--
+--_000_4D91A5AA3AF54ADEABC3E9173655520Bticom_--
