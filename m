@@ -1,32 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 7FD1E52A81
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id A482952A79
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Aug 2013 14:04:23 +0000 (UTC)
+	Wed, 21 Aug 2013 20:34:26 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7LE4JdD026381;
-	Wed, 21 Aug 2013 09:04:19 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LE4JvY022289;
-	Wed, 21 Aug 2013 09:04:19 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 21 Aug 2013 09:04:19 -0500
-Received: from localhost (gtudedge.gt.design.ti.com [158.218.102.158])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r7LE4JMu011891;
-	Wed, 21 Aug 2013 09:04:19 -0500
-Date: Wed, 21 Aug 2013 10:04:19 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Brad Litterell <bradl@taser.com>
-Message-ID: <20130821140419.GB24491@edge>
-References: <5681790B-56AE-40FB-8B03-1127F3107B0E@taser.com>
-	<20130820222406.GI8481@edge>
-	<B792B041-567C-426A-AD0E-AD6C90F3FB85@taser.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7LKYQJ6022221
+	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 15:34:26 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LKYQ3p023014
+	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 15:34:26 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 21 Aug 2013 15:34:25 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LKYMfT014949;
+	Wed, 21 Aug 2013 15:34:24 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 21 Aug 2013 16:05:58 -0500
+Message-ID: <1377119158-30932-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-In-Reply-To: <B792B041-567C-426A-AD0E-AD6C90F3FB85@taser.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: How to run Arago in QEMU?
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH v3] ti-tisdk-install: Move SDK installation script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,85 +35,166 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 14:04:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Aug 2013 20:34:27 -0000
+Content-Type: text/plain
 
-On Tue, Aug 20, 2013 at 11:18:05PM +0000, Brad Litterell wrote:
-> Hi Denys,
-> 
-> Thanks for reply, but I'm afraid I have another question: I am using the 
-> Linaro toolchain recommended here: 
-> http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
-> 
-> Do I correctly understand the A8 optimizations are coming from that 
-> toolchain?
+Several steps are required before an SDK image is ready to be used.
+1. Extract toolchain sdk (linuxdevkit.sh)
+2. Update Rules.make variables.
+3. Update CCS project information
 
-Well, toolchain makes the optimizations, but it is configurable.
+The script that sdk-install.sh is based on was previously packaged and ran by
+the SDK installed (based on InstallJammer).
 
+By moving the logic outside of the installer. OE users can now create
+a fully functioning SDK without any outside dependencies by simply running
+sdk-install located in the root of the SDK image.
 
-> If those optimizations are not supported under QEMU, should I be using a 
-> different toolchain for the emulator?
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Version 3 changes:
+Included MIT license in script.
 
-No, you should just disable them. The file I pointed you to, check DEFAULTTUNE
+Version 2 changes:
+Remove debug mode (set -x)
+Remove license since script is simple
 
+ .../ti-tisdk-install/sdk-install.sh                |  102 ++++++++++++++++++++
+ .../ti-tisdk-install/ti-tisdk-install_1.0.bb       |   15 +++
+ 2 files changed, 117 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb
+
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh
+new file mode 100644
+index 0000000..b19b65f
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh
+@@ -0,0 +1,102 @@
++#!/bin/sh
++
++# Permission is hereby granted, free of charge, to any person obtaining a copy
++# of this software and associated documentation files (the "Software"), to deal
++# in the Software without restriction, including without limitation the rights
++# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++# copies of the Software, and to permit persons to whom the Software is
++# furnished to do so, subject to the following conditions:
++#
++# The above copyright notice and this permission notice shall be included in
++# all copies or substantial portions of the Software.
++#
++# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
++# THE SOFTWARE.
++
++# Process command line...
++while [ $# -gt 0 ]; do
++  case $1 in
++    --install_dir)
++      shift;
++      install_dir=$1;
++      ;;
++     *)
++      shift;
++      ;;
++  esac
++done
++
++if [ "x$install_dir" = "x" ]; then
++    # Verify that the script is being called within untar SDK directory
++    if [ ! -d "$PWD/board-support" -a ! -f "$PWD/Rules.make" ]; then
++        echo "Script must be called within untarred sdk directory"
++        exit 1
++    else
++        install_dir="$PWD"
++    fi
++fi
++
++# Get full path to SDK directory
++cd "$install_dir"
++install_dir="$PWD"
++cd -
++
++if [ ! -d $install_dir ]; then
++	echo "Installation directory does not exist"
++	exit 1
++fi
++
++# Remove any .svn directories that were packaged by the sourceipks
++rm -rf `find $install_dir -name ".svn"`
++
++
++# Update Rules.make variables
++
++sed -i -e s=__SDK__INSTALL_DIR__=$install_dir= $install_dir/Rules.make 
++
++# Find the linux directory name
++linux=`find $install_dir/board-support -maxdepth 1 -name "linux*"`
++linux=`basename $linux`
++sed -i -e s=__KERNEL_NAME__=$linux= $install_dir/Rules.make
++cd -
++
++
++# Install toolchain sdk
++$install_dir/linux-devkit.sh -y -d $install_dir/linux-devkit
++
++# Remove toolchain sdk
++rm $install_dir/linux-devkit.sh
++
++
++# Update example applications CCS project files
++
++# Grab some essential variables from environment-setup
++TARGET_SYS=`sed -n 's/^export TARGET_SYS=//p' $install_dir/linux-devkit/environment-setup`
++TOOLCHAIN_SYS=`sed -n 's/^export TOOLCHAIN_SYS=//p' $install_dir/linux-devkit/environment-setup`
++SDK_SYS=`sed -n 's/^export SDK_SYS=//p' $install_dir/linux-devkit/environment-setup`
++
++# Grab toolchain's GCC version
++GCC_VERSION=`ls $install_dir/linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/`
++
++TOOLCHAIN_TARGET_INCLUDE_DIR="linux-devkit/sysroots/$TARGET_SYS/usr/include"
++TOOLCHAIN_INCLUDE_DIR="linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/$GCC_VERSION/include"
++
++# Update CCS project files using important paths to headers
++
++find $install_dir/example-applications -type f -exec sed -i "s|<TOOLCHAIN_TARGET_INCLUDE_DIR>|$TOOLCHAIN_TARGET_INCLUDE_DIR|g" {} \;
++find $install_dir/example-applications -type f -exec sed -i "s|<TOOLCHAIN_INCLUDE_DIR>|$TOOLCHAIN_INCLUDE_DIR|g" {} \;
++
++
++if [ -f "$install_dir/sdk-install.sh" ]; then
++	# File is only able to run once so delete it from the SDK
++	rm "$install_dir/sdk-install.sh"
++fi
++
++echo "Installation completed!"
++exit 0
++
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb
+new file mode 100644
+index 0000000..bf8060c
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb
+@@ -0,0 +1,15 @@
++DESCRIPTION = "Contains script to properly extract and update various files"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://../sdk-install.sh;beginline=3;endline=19;md5=ba3aaf42626984584c94c6abe9dafc06"
++
++SRC_URI = "file://sdk-install.sh"
++
++PR = "r0"
++
++do_install () {
++    install -d ${D}/
++    install  ${WORKDIR}/sdk-install.sh ${D}/sdk-install.sh
++
++}
++
++FILES_${PN} = "/*"
 -- 
-Denys
+1.7.0.4
 
-
-> On Aug 20, 2013, at 3:24 PM, Denys Dmytriyenko <denys@ti.com<mailto:denys@ti.com>> wrote:
-> 
-> On Tue, Aug 20, 2013 at 10:14:32PM +0000, Brad Litterell wrote:
-> HI,
-> 
-> I downloaded the Arago system and successfully built an image for
-> am335x-evm, but I want to create an image I can run in QEMU.
-> 
-> When I change my local.conf file from:
-> 
-> 
-> MACHINE = "am335x-evm"
-> 
-> 
-> to
-> 
-> 
-> MACHINE="qemuarm"
-> 
-> I believe you should be able to run it under quemu w/o changing the MACHINE...
-> 
-> 
-> I receive this error:
-> 
-> ERROR:  OE-core's config sanity checker detected a potential misconfiguration.
->    Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).
->    Following is the list of potential problems / advisories:
-> 
->    Error, the PACKAGE_ARCHS (all any noarch ${PACKAGE_EXTRA_ARCHS_tune-cortexa8thf-neon} qemuarm) variable does not contain TUNE_PKGARCH (armv5).Toolchain tunings invalid:
-> Tuning 'cortexa8thf-neon' has no defined features, and cannot be used.
-> 
-> You are trying to build using Cortex-A8 specific optimizations, while
-> "qemuarm" machine does not support them. Those optimizations are being set in
-> conf/distro/include/toolchain-linaro.inc
-> 
-> --
-> Denys
-> 
-> 
-> ERROR: Execution of event handler 'check_sanity_eventhandler' failed
-> 
-> I don't understand how the tunings work, so I'm completely stumped about how to run my image in QEMU.
-> 
-> Are there any instructions for building & running Arago under QEMU?
-> 
-> Thanks,
-> Brad
-> 
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-> 
 
