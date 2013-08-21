@@ -1,28 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0848152A61
+Return-Path: <nick.gart@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by arago-project.org (Postfix) with ESMTPS id D2C6F52A61
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Aug 2013 21:23:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7LLNAWE018511
-	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 16:23:10 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LLNAEN018809
-	for <meta-arago@arago-project.org>; Wed, 21 Aug 2013 16:23:10 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 21 Aug 2013 16:23:10 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7LLN7va015696;
-	Wed, 21 Aug 2013 16:23:08 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 21 Aug 2013 16:54:44 -0500
-Message-ID: <1377122084-1745-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+	Wed, 21 Aug 2013 21:36:44 +0000 (UTC)
+Received: by mail-ob0-f176.google.com with SMTP id uz19so1915200obc.35
+	for <meta-arago@arago-project.org>;
+	Wed, 21 Aug 2013 14:36:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Dov7GcdgBknqjldJV1ADHxw1VrHsQ4Hg/QKlndkxIMs=;
+	b=go1Oh05J93xmjh6RVwmfKRlFgyoc2HN6g/AsQZRvd6iLAeccajZmGFe4wUCLm1nVva
+	Vd6aYwdN/3xHk23IiSnWLAo0nD+RP4wmbpO2RTwvFL/nHwQN9IHMmsaLCpfHdzS4H5/7
+	I/b+7a5CR+fuuOKTESCyVwK0lR7CUM7+hRUPh+k7j7n5+gg85BFSm/YsNHliwEjLrbCb
+	yOqRQKgL5YG/eTtU8U6mVIM/5Fz2qUAOAJuYWZgOR4G+h9accdg8e0ScoClRUl1WiDLi
+	I4fzzGZsuMOsO9FU/nOydtp6XuUGMdi9Uk+qWiisfsq8mUvooWMyRlugaFIyozcBT113
+	T54w==
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH v4] ti-tisdk-install: Move SDK installation script
+X-Received: by 10.182.129.233 with SMTP id nz9mr10596887obb.8.1377121004204;
+	Wed, 21 Aug 2013 14:36:44 -0700 (PDT)
+Received: by 10.60.39.99 with HTTP; Wed, 21 Aug 2013 14:36:44 -0700 (PDT)
+Date: Wed, 21 Aug 2013 14:36:44 -0700
+Message-ID: <CADBzu5AZA8NRjTeQGvFDurHEDOx=gaSL90FgYM0-0tf1kdDAmQ@mail.gmail.com>
+From: Nick Gart <nick.gart@gmail.com>
+To: meta-arago@arago-project.org
+Subject: flashing arago onto beaglebone black emmc
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,169 +37,147 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 21:23:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 21 Aug 2013 21:36:45 -0000
+Content-Type: multipart/alternative; boundary=089e0149d28a44b9ac04e47bf81f
 
-Several steps are required before an SDK image is ready to be used.
-1. Extract toolchain sdk (linuxdevkit.sh)
-2. Update Rules.make variables.
-3. Update CCS project information
+--089e0149d28a44b9ac04e47bf81f
+Content-Type: text/plain; charset=ISO-8859-1
 
-The script that sdk-install.sh is based on was previously packaged and ran by
-the SDK installed (based on InstallJammer).
+Sorry, I am not sure if my first e-mail went through since I wasn't
+subscribed to the list, please ignore if this is a duplicate.
 
-By moving the logic outside of the installer. OE users can now create
-a fully functioning SDK without any outside dependencies by simply running
-sdk-install located in the root of the SDK image.
-
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 4 changes:
-Includes correct license checksum that wasn't comitted when patch was created..
-
-Version 3 changes:
-Included MIT license in script.
-
-Version 2 changes:
-Remove debug mode (set -x)
-Remove license since script is simple
-
- .../ti-tisdk-install/sdk-install.sh                |  102 ++++++++++++++++++++
- .../ti-tisdk-install/ti-tisdk-install_1.0.bb       |   15 +++
- 2 files changed, 117 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh
-new file mode 100644
-index 0000000..b19b65f
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install/sdk-install.sh
-@@ -0,0 +1,102 @@
-+#!/bin/sh
-+
-+# Permission is hereby granted, free of charge, to any person obtaining a copy
-+# of this software and associated documentation files (the "Software"), to deal
-+# in the Software without restriction, including without limitation the rights
-+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-+# copies of the Software, and to permit persons to whom the Software is
-+# furnished to do so, subject to the following conditions:
-+#
-+# The above copyright notice and this permission notice shall be included in
-+# all copies or substantial portions of the Software.
-+#
-+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-+# THE SOFTWARE.
-+
-+# Process command line...
-+while [ $# -gt 0 ]; do
-+  case $1 in
-+    --install_dir)
-+      shift;
-+      install_dir=$1;
-+      ;;
-+     *)
-+      shift;
-+      ;;
-+  esac
-+done
-+
-+if [ "x$install_dir" = "x" ]; then
-+    # Verify that the script is being called within untar SDK directory
-+    if [ ! -d "$PWD/board-support" -a ! -f "$PWD/Rules.make" ]; then
-+        echo "Script must be called within untarred sdk directory"
-+        exit 1
-+    else
-+        install_dir="$PWD"
-+    fi
-+fi
-+
-+# Get full path to SDK directory
-+cd "$install_dir"
-+install_dir="$PWD"
-+cd -
-+
-+if [ ! -d $install_dir ]; then
-+	echo "Installation directory does not exist"
-+	exit 1
-+fi
-+
-+# Remove any .svn directories that were packaged by the sourceipks
-+rm -rf `find $install_dir -name ".svn"`
-+
-+
-+# Update Rules.make variables
-+
-+sed -i -e s=__SDK__INSTALL_DIR__=$install_dir= $install_dir/Rules.make 
-+
-+# Find the linux directory name
-+linux=`find $install_dir/board-support -maxdepth 1 -name "linux*"`
-+linux=`basename $linux`
-+sed -i -e s=__KERNEL_NAME__=$linux= $install_dir/Rules.make
-+cd -
-+
-+
-+# Install toolchain sdk
-+$install_dir/linux-devkit.sh -y -d $install_dir/linux-devkit
-+
-+# Remove toolchain sdk
-+rm $install_dir/linux-devkit.sh
-+
-+
-+# Update example applications CCS project files
-+
-+# Grab some essential variables from environment-setup
-+TARGET_SYS=`sed -n 's/^export TARGET_SYS=//p' $install_dir/linux-devkit/environment-setup`
-+TOOLCHAIN_SYS=`sed -n 's/^export TOOLCHAIN_SYS=//p' $install_dir/linux-devkit/environment-setup`
-+SDK_SYS=`sed -n 's/^export SDK_SYS=//p' $install_dir/linux-devkit/environment-setup`
-+
-+# Grab toolchain's GCC version
-+GCC_VERSION=`ls $install_dir/linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/`
-+
-+TOOLCHAIN_TARGET_INCLUDE_DIR="linux-devkit/sysroots/$TARGET_SYS/usr/include"
-+TOOLCHAIN_INCLUDE_DIR="linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/$GCC_VERSION/include"
-+
-+# Update CCS project files using important paths to headers
-+
-+find $install_dir/example-applications -type f -exec sed -i "s|<TOOLCHAIN_TARGET_INCLUDE_DIR>|$TOOLCHAIN_TARGET_INCLUDE_DIR|g" {} \;
-+find $install_dir/example-applications -type f -exec sed -i "s|<TOOLCHAIN_INCLUDE_DIR>|$TOOLCHAIN_INCLUDE_DIR|g" {} \;
-+
-+
-+if [ -f "$install_dir/sdk-install.sh" ]; then
-+	# File is only able to run once so delete it from the SDK
-+	rm "$install_dir/sdk-install.sh"
-+fi
-+
-+echo "Installation completed!"
-+exit 0
-+
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb
-new file mode 100644
-index 0000000..26a6966
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-install/ti-tisdk-install_1.0.bb
-@@ -0,0 +1,15 @@
-+DESCRIPTION = "Contains script to properly extract and update various files"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://../sdk-install.sh;beginline=3;endline=19;md5=4b89903784b8d154cd8b631388da4f0d"
-+
-+SRC_URI = "file://sdk-install.sh"
-+
-+PR = "r0"
-+
-+do_install () {
-+    install -d ${D}/
-+    install  ${WORKDIR}/sdk-install.sh ${D}/sdk-install.sh
-+
-+}
-+
-+FILES_${PN} = "/*"
--- 
-1.7.0.4
+I'm trying to flash ti-sdk-am335x-evm-06.00.00.00 to the eMMC of a beagle
+bone black.
+I believe I'm successfully partitioning and flashing it, using angstrom's
+emmc flashing script(
+https://raw.github.com/beagleboard/meta-beagleboard/master/contrib/bone-flash-tool/emmc.sh)
+but upon boot I get the following output:
 
 
+U-Boot SPL 2013.01.01 (Aug 20 2013 - 17:14:40)
+musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+HB-ISO Rx, HB-ISO Tx, SoftConn)
+musb-hdrc: MHDRC RTL version 2.0
+musb-hdrc: setup fifo_mode 4
+musb-hdrc: 28/31 max ep, 16384/16384 memory
+USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+HB-ISO Rx, HB-ISO Tx, SoftConn)
+musb-hdrc: MHDRC RTL version 2.0
+musb-hdrc: setup fifo_mode 4
+musb-hdrc: 28/31 max ep, 16384/16384 memory
+USB Host mode controller at 47401800 using PIO, IRQ 0
+OMAP SD/MMC: 0
+mmc_send_cmd : timeout: No status update
+reading u-boot.img
+reading u-boot.img
+
+
+U-Boot 2013.01.01 (Aug 20 2013 - 17:14:40)
+
+I2C:   ready
+DRAM:  512 MiB
+WARNING: Caches not enabled
+NAND:  No NAND device found!!!
+0 MiB
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+*** Warning - readenv() failed, using default environment
+
+musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+HB-ISO Rx, HB-ISO Tx, SoftConn)
+musb-hdrc: MHDRC RTL version 2.0
+musb-hdrc: setup fifo_mode 4
+musb-hdrc: 28/31 max ep, 16384/16384 memory
+USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+HB-ISO Rx, HB-ISO Tx, SoftConn)
+musb-hdrc: MHDRC RTL version 2.0
+musb-hdrc: setup fifo_mode 4
+musb-hdrc: 28/31 max ep, 16384/16384 memory
+USB Host mode controller at 47401800 using PIO, IRQ 0
+Net:   <ethaddr> not set. Validating first E-fuse MAC
+cpsw, usb_ether
+Hit any key to stop autoboot:  1 ... 0
+mmc_send_cmd : timeout: No status update
+Card did not respond to voltage select!
+mmc0(part 0) is current device
+mmc_send_cmd : timeout: No status update
+Card did not respond to voltage select!
+Booting from nand ...
+
+no devices available
+Wrong Image Format for bootm command
+ERROR: can't get kernel image!
+U-Boot#
+
+
+
+Any ideas on how to proceed?
+
+--089e0149d28a44b9ac04e47bf81f
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br>Sorry, I am not sure if my first e-mail went through s=
+ince I wasn&#39;t subscribed to the list, please ignore if this is a duplic=
+ate.<div><br></div><div><span style=3D"font-family:arial,sans-serif;font-si=
+ze:12.727272033691406px">I&#39;m trying to flash=A0ti-sdk-am335x-evm-06.00.=
+</span><span style=3D"font-family:arial,sans-serif;font-size:12.72727203369=
+1406px">00.00 to the eMMC of a beagle bone black.</span><div style=3D"font-=
+family:arial,sans-serif;font-size:12.727272033691406px">
+I believe I&#39;m successfully partitioning and flashing it, using angstrom=
+&#39;s emmc flashing script(<a href=3D"https://raw.github.com/beagleboard/m=
+eta-beagleboard/master/contrib/bone-flash-tool/emmc.sh" target=3D"_blank">h=
+ttps://raw.github.com/beagleboard/meta-beagleboard/master/contrib/bone-flas=
+h-tool/emmc.sh</a>) but upon boot I get the following output:</div>
+<div style=3D"font-family:arial,sans-serif;font-size:12.727272033691406px">=
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:12.727272033=
+691406px"><br></div><div style=3D"font-family:arial,sans-serif;font-size:12=
+.727272033691406px">
+<div>U-Boot SPL 2013.01.01 (Aug 20 2013 - 17:14:40)</div><div>musb-hdrc: Co=
+nfigData=3D0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split, HB-ISO Rx, HB=
+-ISO Tx, SoftConn)</div><div>musb-hdrc: MHDRC RTL version 2.0=A0</div><div>
+musb-hdrc: setup fifo_mode 4</div><div>musb-hdrc: 28/31 max ep, 16384/16384=
+ memory</div><div>USB Peripheral mode controller at 47401000 using PIO, IRQ=
+ 0</div><div>musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, bulk combine,=
+ bulk split, HB-ISO Rx, HB-ISO Tx, SoftConn)</div>
+<div>musb-hdrc: MHDRC RTL version 2.0=A0</div><div>musb-hdrc: setup fifo_mo=
+de 4</div><div>musb-hdrc: 28/31 max ep, 16384/16384 memory</div><div>USB Ho=
+st mode controller at 47401800 using PIO, IRQ 0</div><div>OMAP SD/MMC: 0</d=
+iv>
+<div>mmc_send_cmd : timeout: No status update</div><div>reading u-boot.img<=
+/div><div>reading u-boot.img</div><div><br></div><div><br></div><div>U-Boot=
+ 2013.01.01 (Aug 20 2013 - 17:14:40)</div><div><br></div><div>I2C: =A0 read=
+y</div>
+<div>DRAM: =A0512 MiB</div><div>WARNING: Caches not enabled</div><div>NAND:=
+ =A0No NAND device found!!!</div><div>0 MiB</div><div>MMC: =A0 OMAP SD/MMC:=
+ 0, OMAP SD/MMC: 1</div><div>*** Warning - readenv() failed, using default =
+environment</div>
+<div><br></div><div>musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, bulk c=
+ombine, bulk split, HB-ISO Rx, HB-ISO Tx, SoftConn)</div><div>musb-hdrc: MH=
+DRC RTL version 2.0=A0</div><div>musb-hdrc: setup fifo_mode 4</div><div>mus=
+b-hdrc: 28/31 max ep, 16384/16384 memory</div>
+<div>USB Peripheral mode controller at 47401000 using PIO, IRQ 0</div><div>=
+musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split, =
+HB-ISO Rx, HB-ISO Tx, SoftConn)</div><div>musb-hdrc: MHDRC RTL version 2.0=
+=A0</div>
+<div>musb-hdrc: setup fifo_mode 4</div><div>musb-hdrc: 28/31 max ep, 16384/=
+16384 memory</div><div>USB Host mode controller at 47401800 using PIO, IRQ =
+0</div><div>Net: =A0 &lt;ethaddr&gt; not set. Validating first E-fuse MAC</=
+div>
+<div>cpsw, usb_ether</div><div>Hit any key to stop autoboot: =A01 ... 0=A0<=
+/div><div>mmc_send_cmd : timeout: No status update</div><div>Card did not r=
+espond to voltage select!</div><div>mmc0(part 0) is current device</div><di=
+v>
+mmc_send_cmd : timeout: No status update</div><div>Card did not respond to =
+voltage select!</div><div>Booting from nand ...</div><div><br></div><div>no=
+ devices available</div><div>Wrong Image Format for bootm command</div>
+<div>ERROR: can&#39;t get kernel image!</div><div>U-Boot#=A0</div></div><di=
+v style=3D"font-family:arial,sans-serif;font-size:12.727272033691406px"><br=
+></div><div style=3D"font-family:arial,sans-serif;font-size:12.727272033691=
+406px">
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:12.727272033=
+691406px"><br></div><div style=3D"font-family:arial,sans-serif;font-size:12=
+.727272033691406px">Any ideas on how to proceed?</div></div></div>
+
+--089e0149d28a44b9ac04e47bf81f--
