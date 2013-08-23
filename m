@@ -1,40 +1,29 @@
-Return-Path: <chgans@googlemail.com>
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by arago-project.org (Postfix) with ESMTPS id CBD9F529E8
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id EAF49529DE
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Aug 2013 00:58:47 +0000 (UTC)
-Received: by mail-pa0-f54.google.com with SMTP id kx10so2823058pab.41
-	for <meta-arago@arago-project.org>;
-	Thu, 22 Aug 2013 17:58:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=Aw0EKS23SvOyX0cEg+qsbspXEZqNgbNIhg3YyghJYSw=;
-	b=JFnEAiaHY9wNLsaLcUof0g9mH5GL2L+BDr2Nm92rapu0/5/AGuS2ysUSRRItwx0tpV
-	L5xyBEkflj/ecwPlScwDCHFqEvMAhxlmVwQ3z7kLthOEKgRf5648aV/Bi1TIZwzxL7Ih
-	oZIGOfgvhVNycNCf/ggVlhgn9K3hCdd313c9IKJm/zt+aRAXzBARscvHmu5CWmnjhcyB
-	8jiSfTA78ZwEKAxmUpP5i/KKqGmSROiNQlyAolo3HI47WwEpSuYf0X8ris96kkKq9Y83
-	LqRawJqO3G2XQwUvU0I4Pju+n9lLEKYXef79O+R19ddVyJ6y6EmYkCQPj0r5525QPgcP
-	JYdA==
-X-Received: by 10.68.96.130 with SMTP id ds2mr5143800pbb.99.1377219526504;
-	Thu, 22 Aug 2013 17:58:46 -0700 (PDT)
-Received: from [0.0.0.0] ([210.48.94.225]) by mx.google.com with ESMTPSA id
-	tz3sm13503345pbc.20.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 22 Aug 2013 17:58:45 -0700 (PDT)
-Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <5216B3C1.30705@gna.org>
-Date: Fri, 23 Aug 2013 12:58:41 +1200
-From: Christian Gagneraud <chgans@gna.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+	Fri, 23 Aug 2013 05:56:17 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7N5uGWq026063
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2013 00:56:16 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7N5uGUk009878
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2013 00:56:16 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 23 Aug 2013 00:56:16 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r7N5uGn3023170	for <meta-arago@arago-project.org>;
+	Fri, 23 Aug 2013 00:56:16 -0500
+Date: Fri, 23 Aug 2013 01:47:30 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1661706036.543.1377236850467.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-To: meta-arago@arago-project.org
-References: <CADBzu5AZA8NRjTeQGvFDurHEDOx=gaSL90FgYM0-0tf1kdDAmQ@mail.gmail.com>
-In-Reply-To: <CADBzu5AZA8NRjTeQGvFDurHEDOx=gaSL90FgYM0-0tf1kdDAmQ@mail.gmail.com>
-Subject: Re: flashing arago onto beaglebone black emmc
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.08 build 2013-08-23_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,137 +36,190 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2013 00:58:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 23 Aug 2013 05:56:19 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_542_1292013379.1377236850467"
+
+------=_Part_542_1292013379.1377236850467
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 22/08/13 09:36, Nick Gart wrote:
->
-> Sorry, I am not sure if my first e-mail went through since I wasn't
-> subscribed to the list, please ignore if this is a duplicate.
->
-> I'm trying to flash ti-sdk-am335x-evm-06.00.00.00 to the eMMC of a
-> beagle bone black.
-> I believe I'm successfully partitioning and flashing it, using
-> angstrom's emmc flashing
-> script(https://raw.github.com/beagleboard/meta-beagleboard/master/contrib/bone-flash-tool/emmc.sh)
+<html>
+<head>
+<title>
+Status for 08/23/13
+</title>
+</head>
+<body>
 
-Are you running this script from an external SD/MMC card? I assume so, 
-Do you have a log? Did you run this script unmodified?
+<h2>Status for 08/23/13</h2>
+
+<h2>BUILD_ID: build-2013-08-23_01-02-51</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.08"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> but upon boot I get the following output:
->
->
-> U-Boot SPL 2013.01.01 (Aug 20 2013 - 17:14:40)
-
-It seems the processor was able to load MLO, which in turn loads u-boot 
-SPL, but where from? Is your external MMC still in at that stage?
-If not, then at least up to there, stuff have been loaded from your eMMC 
-VFAT boot partition.
-
-> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
-> HB-ISO Rx, HB-ISO Tx, SoftConn)
-> musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
-> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
-> HB-ISO Rx, HB-ISO Tx, SoftConn)
-> musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Host mode controller at 47401800 using PIO, IRQ 0
-> OMAP SD/MMC: 0
-
-One (e)MMC instance for u-boot SPL (while "full" u-boot sees 2, see 
-below)...
-
-> mmc_send_cmd : timeout: No status update
-
-I'm not sure if it's the beginning of your problems, but it seems u-boot 
-SPL is having some trouble with (e)MMC ...
-
-> reading u-boot.img
-> reading u-boot.img
->
->
-> U-Boot 2013.01.01 (Aug 20 2013 - 17:14:40)
-
-... but anyway, u-boot SPL was able to load and run a "full" u-boot, 
-again, is it from eMMC? If so, this is looking good.
-
->
-> I2C:   ready
-> DRAM:  512 MiB
-> WARNING: Caches not enabled
-> NAND:  No NAND device found!!!
-> 0 MiB
-> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
-
-2 (e)MMC instances for "full" u-boot (u-boot SPL had only one), looks 
-good to me so far.
-
-> *** Warning - readenv() failed, using default environment
-
-If you don't have a uEnv.txt on your boot partition, then this message 
-can be ignored, if you have one, it means that u-boot couldn't read it
-
->
-> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
-> HB-ISO Rx, HB-ISO Tx, SoftConn)
-> musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
-> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
-> HB-ISO Rx, HB-ISO Tx, SoftConn)
-> musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Host mode controller at 47401800 using PIO, IRQ 0
-> Net:   <ethaddr> not set. Validating first E-fuse MAC
-> cpsw, usb_ether
-> Hit any key to stop autoboot:  1 ... 0
-> mmc_send_cmd : timeout: No status update
-> Card did not respond to voltage select!
-> mmc0(part 0) is current device
-> mmc_send_cmd : timeout: No status update
-> Card did not respond to voltage select!
-
-The eMMC isn't detected, or maybe it's your empty external MMC slot, or 
-both, can't tell, I'm not familiar with this :(
-
-> Booting from nand ...
-
-And the BB black doesn't have NAND!
-
->
-> no devices available
-> Wrong Image Format for bootm command
-> ERROR: can't get kernel image!
-> U-Boot#
-
-Game over!
-
->
-> Any ideas on how to proceed?
-
-Did you have a look at u-boot and u-boot SPL source code, especially the 
-(e)MMC stuff?
-
-My half-a-cent.
-Chris
-
-PS: Can you send plain text email please? See 
-http://catb.org/~esr/faqs/smart-questions.html#formats
-
->
->
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->
-
-
+------=_Part_542_1292013379.1377236850467--
