@@ -1,30 +1,40 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id A4D6952A9D
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by arago-project.org (Postfix) with ESMTPS id CBD9F529E8
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Aug 2013 21:38:48 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7MLcm09001542
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2013 16:38:48 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7MLcl4s028226
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2013 16:38:47 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 22 Aug 2013 16:38:47 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7MLca8g016403;
-	Thu, 22 Aug 2013 16:38:46 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 22 Aug 2013 17:10:33 -0500
-Message-ID: <1377209433-10830-4-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1377209433-10830-1-git-send-email-fcooper@ti.com>
-References: <1377209433-10830-1-git-send-email-fcooper@ti.com>
+	Fri, 23 Aug 2013 00:58:47 +0000 (UTC)
+Received: by mail-pa0-f54.google.com with SMTP id kx10so2823058pab.41
+	for <meta-arago@arago-project.org>;
+	Thu, 22 Aug 2013 17:58:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=Aw0EKS23SvOyX0cEg+qsbspXEZqNgbNIhg3YyghJYSw=;
+	b=JFnEAiaHY9wNLsaLcUof0g9mH5GL2L+BDr2Nm92rapu0/5/AGuS2ysUSRRItwx0tpV
+	L5xyBEkflj/ecwPlScwDCHFqEvMAhxlmVwQ3z7kLthOEKgRf5648aV/Bi1TIZwzxL7Ih
+	oZIGOfgvhVNycNCf/ggVlhgn9K3hCdd313c9IKJm/zt+aRAXzBARscvHmu5CWmnjhcyB
+	8jiSfTA78ZwEKAxmUpP5i/KKqGmSROiNQlyAolo3HI47WwEpSuYf0X8ris96kkKq9Y83
+	LqRawJqO3G2XQwUvU0I4Pju+n9lLEKYXef79O+R19ddVyJ6y6EmYkCQPj0r5525QPgcP
+	JYdA==
+X-Received: by 10.68.96.130 with SMTP id ds2mr5143800pbb.99.1377219526504;
+	Thu, 22 Aug 2013 17:58:46 -0700 (PDT)
+Received: from [0.0.0.0] ([210.48.94.225]) by mx.google.com with ESMTPSA id
+	tz3sm13503345pbc.20.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 22 Aug 2013 17:58:45 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <5216B3C1.30705@gna.org>
+Date: Fri, 23 Aug 2013 12:58:41 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 4/4] packagegroup-arago-tisdk-amsdk-sdk-host: Use new board-port-labs recipe
+To: meta-arago@arago-project.org
+References: <CADBzu5AZA8NRjTeQGvFDurHEDOx=gaSL90FgYM0-0tf1kdDAmQ@mail.gmail.com>
+In-Reply-To: <CADBzu5AZA8NRjTeQGvFDurHEDOx=gaSL90FgYM0-0tf1kdDAmQ@mail.gmail.com>
+Subject: Re: flashing arago onto beaglebone black emmc
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,104 +47,137 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2013 21:38:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 23 Aug 2013 00:58:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-* Switch from using the old board-port-labs recipe to the new recipes.
-* Delete old recipe.
+On 22/08/13 09:36, Nick Gart wrote:
+>
+> Sorry, I am not sure if my first e-mail went through since I wasn't
+> subscribed to the list, please ignore if this is a duplicate.
+>
+> I'm trying to flash ti-sdk-am335x-evm-06.00.00.00 to the eMMC of a
+> beagle bone black.
+> I believe I'm successfully partitioning and flashing it, using
+> angstrom's emmc flashing
+> script(https://raw.github.com/beagleboard/meta-beagleboard/master/contrib/bone-flash-tool/emmc.sh)
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    5 ++-
- .../board-port-labs/board-port-labs/LICENSE        |   16 ----------
- .../board-port-labs/board-port-labs_git.bb         |   32 --------------------
- 3 files changed, 3 insertions(+), 50 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs/LICENSE
- delete mode 100644 meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
+Are you running this script from an external SD/MMC card? I assume so, 
+Do you have a log? Did you run this script unmodified?
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index 70f767d..94d8288 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional scripts and applications into the SDK"
- LICENSE = "MIT"
--PR = "r11"
-+PR = "r12"
- 
- inherit packagegroup
- 
-@@ -24,7 +24,8 @@ RDEPENDS_${PN} = "\
-     ${TOOLS} \
-     ti-tisdk-setup \
-     ${EXTRA_FILES} \
--    board-port-labs-src \
-+    board-port-labs-u-boot-src \
-+    board-port-labs-linux-src \
-     ti-tisdk-makefile \
-     ${U-BOOT_SRC} \
-     ${KERNEL_SRC} \
-diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs/LICENSE b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs/LICENSE
-deleted file mode 100644
-index 738cb23..0000000
---- a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs/LICENSE
-+++ /dev/null
-@@ -1,16 +0,0 @@
--The trees found within this directory are git trees for the Linux
--kernel and u-boot.  These trees are based on the AM335x part and
--are meant to serve as a reference for general tasks involved in a board
--port.  These trees go along with the training available at:
--
--http://processors.wiki.ti.com/index.php/Sitara_Linux_Training
--
--Inside of each directory is a full git repository.  These repositories
--have tags that make isolating the changes for each functionality easier.
--You can view the tag using the "git tag" command and use "gitk --all"
--to better view the git tree contents.
--
--The individual trees are licensed under the same license as the Linux
--kernel and u-boot sources which is the GPLv2 license. A copy of license
--for the kernel and u-boot can be found in a file called COPYING within
--each of the respective git repositories.
-diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
-deleted file mode 100644
-index b7f7d29..0000000
---- a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs_git.bb
-+++ /dev/null
-@@ -1,32 +0,0 @@
--DESCRIPTION = "Git repositories containing sample board port code"
--HOMEPAGE = "https://gitorious.org/sitara-board-port"
--LICENSE = "GPLv2"
--DEPENDS += "git-native"
--
--SRC_URI = "file://LICENSE"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=d9fb2a547cd8e6bb75c0ecf427a139a9"
--
--inherit allarch
--
--CREATE_SRCIPK = "1"
--SRCIPK_INSTALL_DIR = "board-support/board-port-labs"
--
--PR = "r5"
--
--REPOS ?= "git://gitorious.org/sitara-board-port/sitara-board-port-linux.git \
--          git://gitorious.org/sitara-board-port/sitara-board-port-uboot.git \
--         "
--
--S = "${WORKDIR}"
--
--# Checkout the REPOS before the do_patch task so that it will be done prior
--# to the srcipk being made.
--do_repos_checkout() {
--    cd ${S}
--    for r in ${REPOS}
--    do
--        git clone $r
--    done
--}
--
--addtask repos_checkout after do_fetch before do_patch
--- 
-1.7.0.4
+
+> but upon boot I get the following output:
+>
+>
+> U-Boot SPL 2013.01.01 (Aug 20 2013 - 17:14:40)
+
+It seems the processor was able to load MLO, which in turn loads u-boot 
+SPL, but where from? Is your external MMC still in at that stage?
+If not, then at least up to there, stuff have been loaded from your eMMC 
+VFAT boot partition.
+
+> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+> HB-ISO Rx, HB-ISO Tx, SoftConn)
+> musb-hdrc: MHDRC RTL version 2.0
+> musb-hdrc: setup fifo_mode 4
+> musb-hdrc: 28/31 max ep, 16384/16384 memory
+> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+> HB-ISO Rx, HB-ISO Tx, SoftConn)
+> musb-hdrc: MHDRC RTL version 2.0
+> musb-hdrc: setup fifo_mode 4
+> musb-hdrc: 28/31 max ep, 16384/16384 memory
+> USB Host mode controller at 47401800 using PIO, IRQ 0
+> OMAP SD/MMC: 0
+
+One (e)MMC instance for u-boot SPL (while "full" u-boot sees 2, see 
+below)...
+
+> mmc_send_cmd : timeout: No status update
+
+I'm not sure if it's the beginning of your problems, but it seems u-boot 
+SPL is having some trouble with (e)MMC ...
+
+> reading u-boot.img
+> reading u-boot.img
+>
+>
+> U-Boot 2013.01.01 (Aug 20 2013 - 17:14:40)
+
+... but anyway, u-boot SPL was able to load and run a "full" u-boot, 
+again, is it from eMMC? If so, this is looking good.
+
+>
+> I2C:   ready
+> DRAM:  512 MiB
+> WARNING: Caches not enabled
+> NAND:  No NAND device found!!!
+> 0 MiB
+> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+
+2 (e)MMC instances for "full" u-boot (u-boot SPL had only one), looks 
+good to me so far.
+
+> *** Warning - readenv() failed, using default environment
+
+If you don't have a uEnv.txt on your boot partition, then this message 
+can be ignored, if you have one, it means that u-boot couldn't read it
+
+>
+> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+> HB-ISO Rx, HB-ISO Tx, SoftConn)
+> musb-hdrc: MHDRC RTL version 2.0
+> musb-hdrc: setup fifo_mode 4
+> musb-hdrc: 28/31 max ep, 16384/16384 memory
+> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
+> HB-ISO Rx, HB-ISO Tx, SoftConn)
+> musb-hdrc: MHDRC RTL version 2.0
+> musb-hdrc: setup fifo_mode 4
+> musb-hdrc: 28/31 max ep, 16384/16384 memory
+> USB Host mode controller at 47401800 using PIO, IRQ 0
+> Net:   <ethaddr> not set. Validating first E-fuse MAC
+> cpsw, usb_ether
+> Hit any key to stop autoboot:  1 ... 0
+> mmc_send_cmd : timeout: No status update
+> Card did not respond to voltage select!
+> mmc0(part 0) is current device
+> mmc_send_cmd : timeout: No status update
+> Card did not respond to voltage select!
+
+The eMMC isn't detected, or maybe it's your empty external MMC slot, or 
+both, can't tell, I'm not familiar with this :(
+
+> Booting from nand ...
+
+And the BB black doesn't have NAND!
+
+>
+> no devices available
+> Wrong Image Format for bootm command
+> ERROR: can't get kernel image!
+> U-Boot#
+
+Game over!
+
+>
+> Any ideas on how to proceed?
+
+Did you have a look at u-boot and u-boot SPL source code, especially the 
+(e)MMC stuff?
+
+My half-a-cent.
+Chris
+
+PS: Can you send plain text email please? See 
+http://catb.org/~esr/faqs/smart-questions.html#formats
+
+>
+>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
 
 
