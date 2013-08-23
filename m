@@ -1,25 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
-	[206.46.173.11])
-	by arago-project.org (Postfix) with ESMTP id 88AD052A19
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 2F8FC52A19
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Aug 2013 20:17:07 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173011.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MS000MER303J7V0@vms173011.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 23 Aug 2013 15:16:52 -0500 (CDT)
-Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 3AB5B200E2; Fri,
-	23 Aug 2013 16:16:51 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 23 Aug 2013 16:16:40 -0400
-Message-id: <1377289002-20230-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-In-reply-to: <1377289002-20230-1-git-send-email-denis@denix.org>
+	Fri, 23 Aug 2013 20:17:46 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7NKHi8t017426
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2013 15:17:44 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7NKHigd010879
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2013 15:17:44 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 23 Aug 2013 15:17:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7NKHiMM027648	for
+	<meta-arago@arago-project.org>; Fri, 23 Aug 2013 15:17:44 -0500
+Date: Fri, 23 Aug 2013 16:17:43 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20130823201743.GC27308@edge>
 References: <1377289002-20230-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/4] toolchain-linaro.inc: set default tunes for am437x-evm
+MIME-Version: 1.0
+In-Reply-To: <1377289002-20230-1-git-send-email-denis@denix.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: Re: [PATCH 1/4] arago-prefs: set default preferences for am437x-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,28 +36,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2013 20:17:07 -0000
+X-List-Received-Date: Fri, 23 Aug 2013 20:17:48 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Fri, Aug 23, 2013 at 04:16:39PM -0400, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@ti.com>
+> 
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+>  meta-arago-distro/conf/distro/include/arago-prefs.inc | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> index b125957..49268c4 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -9,6 +9,7 @@ PREFERRED_PROVIDER_qt4-embedded = "${ARAGO_QT_PROVIDER}"
+>  PREFERRED_VERSION_qt4-embedded = "4.8.4"
+>  PREFERRED_VERSION_qt4-native = "4.8.4"
+>  PREFERRED_VERSION_nativesdk-qt4-tools = "4.8.4"
+> +PREFERRED_VERSION_linux-libc-headers = "3.8"
+>  
+>  # Use v4.09.00.01 of the Graphics SDK
+>  PREFERRED_VERSION_omap3-sgx-modules = "4.09.00.01"
+> @@ -23,6 +24,12 @@ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-ti-staging"
+>  PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
+>  PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
+>  
+> +PREFERRED_VERSION_linux-libc-headers_am437x-evm = "3.8"
+> +PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "linux-ti-staging"
+> +PREFERRED_PROVIDER_virtual/bootloader_am437x-evm = "u-boot-ti-staging"
+> +PREFERRED_PROVIDER_u-boot_am437x-evm = "u-boot-ti-staging"
+> +PREFERRED_VERSION_u-boot-ti-staging_am437x-evm = "2013.09+2013.10-rc1"
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 1 +
- 1 file changed, 1 insertion(+)
+Yeah, this version would need to change for v2 in meta-ti...
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index 45bc715..1ab13ee 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -7,6 +7,7 @@ DEFAULTTUNE = "cortexa8thf-neon"
- DEFAULTTUNE_omap-a15 = "cortexa15thf-neon"
- DEFAULTTUNE_keystone = "cortexa15thf-neon"
- DEFAULTTUNE_omap4 = "cortexa9thf-neon"
-+DEFAULTTUNE_ti43x = "cortexa9thf-neon"
- 
- PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate = "external-linaro-toolchain"
- 
--- 
-1.8.3.2
 
+>  PREFERRED_VERSION_linux-libc-headers_am180x-evm = "2.6.37.2"
+>  PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
+>  PREFERRED_VERSION_linux-omapl138-psp = "2.6.37"
+> -- 
+> 1.8.3.2
+> 
 
