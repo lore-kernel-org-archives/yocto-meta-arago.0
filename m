@@ -1,35 +1,25 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7212752A5F
+Return-Path: <denis@denix.org>
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTP id 492C7529E8
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Aug 2013 20:37:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7NKb9oc019046
-	for <meta-arago@arago-project.org>; Fri, 23 Aug 2013 15:37:09 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7NKb9A1003111
-	for <meta-arago@arago-project.org>; Fri, 23 Aug 2013 15:37:09 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 23 Aug 2013 15:37:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7NKb9vB023719;
-	Fri, 23 Aug 2013 15:37:09 -0500
-Date: Fri, 23 Aug 2013 16:37:09 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20130823203708.GH27308@edge>
-References: <1377289002-20230-1-git-send-email-denis@denix.org>
-	<1377289002-20230-3-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED101596DF291@DLEE11.ent.ti.com>
-	<20130823202634.GD27308@edge>
-	<7D46E86EC0A8354091174257B2FED101596DF417@DLEE11.ent.ti.com>
-	<20130823203605.GG27308@edge>
-MIME-Version: 1.0
-In-Reply-To: <20130823203605.GG27308@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 3/4] linux-ti-staging: enable LOCALVERSION and	AUTOREV
+	Fri, 23 Aug 2013 21:03:46 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173007.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MS0006UK569EV80@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 23 Aug 2013 16:03:45 -0500 (CDT)
+Received: from elrond.denix (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 1E6492009D; Fri,
+	23 Aug 2013 17:03:45 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 23 Aug 2013 17:03:38 -0400
+Message-id: <1377291818-28047-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+In-reply-to: <1377291818-28047-1-git-send-email-denis@denix.org>
+References: <1377291818-28047-1-git-send-email-denis@denix.org>
+Subject: [PATCHv2 4/4] u-boot-ti-staging: enable LOCALVERSION and AUTOREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,101 +32,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2013 20:37:10 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 23 Aug 2013 21:03:46 -0000
 
-On Fri, Aug 23, 2013 at 04:36:05PM -0400, Denys Dmytriyenko wrote:
-> On Fri, Aug 23, 2013 at 04:30:38PM -0400, Maupin, Chase wrote:
-> > 
-> > >-----Original Message-----
-> > >From: Dmytriyenko, Denys
-> > >Sent: Friday, August 23, 2013 3:27 PM
-> > >To: Maupin, Chase
-> > >Cc: Denys Dmytriyenko; meta-arago@arago-project.org
-> > >Subject: Re: [meta-arago] [PATCH 3/4] linux-ti-staging: enable
-> > >LOCALVERSION and AUTOREV
-> > >
-> > >On Fri, Aug 23, 2013 at 08:24:19PM +0000, Maupin, Chase wrote:
-> > >> >-----Original Message-----
-> > >> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > >> >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> > >> >Sent: Friday, August 23, 2013 3:17 PM
-> > >> >To: meta-arago@arago-project.org
-> > >> >Subject: [meta-arago] [PATCH 3/4] linux-ti-staging: enable
-> > >> >LOCALVERSION and AUTOREV
-> > >> >
-> > >> >From: Denys Dmytriyenko <denys@ti.com>
-> > >> >
-> > >> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > >> >---
-> > >> > .../linux/linux-ti-staging_git.bbappend               | 19
-> > >> >+++++++++++++++++++
-> > >> > 1 file changed, 19 insertions(+)
-> > >> > create mode 100644 meta-arago-distro/recipes-
-> > >kernel/linux/linux-
-> > >> >ti-staging_git.bbappend
-> > >> >
-> > >> >diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> > >> >staging_git.bbappend b/meta-arago-distro/recipes-
-> > >> >kernel/linux/linux-ti-staging_git.bbappend
-> > >> >new file mode 100644
-> > >> >index 0000000..a0a777c
-> > >> >--- /dev/null
-> > >> >+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> > >> >staging_git.bbappend
-> > >> >@@ -0,0 +1,19 @@
-> > >> >+MACHINE_KERNEL_PR_append = "-arago0"
-> > >> >+
-> > >> >+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-> > >> >+
-> > >> >+require copy-defconfig.inc
-> > >> >+
-> > >> >+SRCREV = "${AUTOREV}"
-> > >> >+
-> > >> >+KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV',
-> > >> >True).partition('+')[2][0:7]}"
-> > >> >+
-> > >> >+# The below lines are overlayed until the LOCALVERSION change
-> > >is
-> > >> >merged into
-> > >> >+# the oe-core danny branch. Update: not coming to danny, keep
-> > >> >until dylan.
-> > >>
-> > >> Dylan is here.  Still needed?
-> > >
-> > >Right, update: still not in dylan, RP didn't like it...
-> > 
-> > I remember that note now.  But it was about for 1.4 release. Is he willing 
-> > to take that update for the next release after dylan?  Or was there 
-> > something else he was concerned about?
-> 
-> We can try re-submitting it again. But last time we wasn't happy touching 
-> .scmversion file...
+From: Denys Dmytriyenko <denys@ti.com>
 
-Sorry, "last time _he_ wasn't happy".
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+v2 - removed the comment about upstreaming LOCALVERSION, may not happen
 
+ .../recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend       | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend
 
-> > >> >+kernel_do_configure_prepend() {
-> > >> >+    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
-> > >> >+    then
-> > >> >+        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
-> > >> >+        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
-> > >> >+    fi
-> > >> >+}
-> > >> >--
-> > >> >1.8.3.2
-> > >> >
-> > >> >_______________________________________________
-> > >> >meta-arago mailing list
-> > >> >meta-arago@arago-project.org
-> > >> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >> _______________________________________________
-> > >> meta-arago mailing list
-> > >> meta-arago@arago-project.org
-> > >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend
+new file mode 100644
+index 0000000..8174bc7
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend
+@@ -0,0 +1,13 @@
++PR_append = "-arago0"
++
++SRCREV = "${AUTOREV}"
++
++UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
++
++do_compile_prepend() {
++    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
++    then
++        echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
++        echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
++    fi
++}
+-- 
+1.8.3.2
+
 
