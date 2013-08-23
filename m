@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTP id B99F552A19
+Received: from vms173005pub.verizon.net (vms173005pub.verizon.net
+	[206.46.173.5])
+	by arago-project.org (Postfix) with ESMTP id B612252A19
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Aug 2013 20:16:59 +0000 (UTC)
+	Fri, 23 Aug 2013 20:17:06 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173013.mailsrvcs.net
+	by vms173005.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MS000AWA305CPO2@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 23 Aug 2013 15:16:59 -0500 (CDT)
+	2009)) with ESMTPA id <0MS000FV1307QI70@vms173005.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 23 Aug 2013 15:16:55 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 8BC15200E2; Fri,
-	23 Aug 2013 16:16:53 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id DBD7A20011; Fri,
+	23 Aug 2013 16:16:54 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 23 Aug 2013 16:16:41 -0400
-Message-id: <1377289002-20230-3-git-send-email-denis@denix.org>
+Date: Fri, 23 Aug 2013 16:16:42 -0400
+Message-id: <1377289002-20230-4-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1377289002-20230-1-git-send-email-denis@denix.org>
 References: <1377289002-20230-1-git-send-email-denis@denix.org>
-Subject: [PATCH 3/4] linux-ti-staging: enable LOCALVERSION and AUTOREV
+Subject: [PATCH 4/4] u-boot-ti-staging: enable LOCALVERSION and AUTOREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,39 +32,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2013 20:17:00 -0000
+X-List-Received-Date: Fri, 23 Aug 2013 20:17:07 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../linux/linux-ti-staging_git.bbappend               | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_git.bbappend
+ .../recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend     | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_git.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_git.bbappend
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend
 new file mode 100644
-index 0000000..a0a777c
+index 0000000..754d625
 --- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_git.bbappend
-@@ -0,0 +1,19 @@
-+MACHINE_KERNEL_PR_append = "-arago0"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-+
-+require copy-defconfig.inc
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_git.bbappend
+@@ -0,0 +1,15 @@
++PR_append = "-arago0"
 +
 +SRCREV = "${AUTOREV}"
 +
-+KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
++UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
 +
-+# The below lines are overlayed until the LOCALVERSION change is merged into
-+# the oe-core danny branch. Update: not coming to danny, keep until dylan.
-+kernel_do_configure_prepend() {
++# the lines below can be removed once the U-Boot LOCALVERSION patches are merged
++# into the oe-core danny branch. Update: not coming to danny, wait for dylan.
++do_compile_prepend() {
 +    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
 +    then
-+        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
-+        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
++        echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
++        echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
 +    fi
 +}
 -- 
