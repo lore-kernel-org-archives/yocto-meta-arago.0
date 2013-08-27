@@ -1,39 +1,29 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2A5C252090
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id BE4CE529A8
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Aug 2013 18:56:15 +0000 (UTC)
+	Tue, 27 Aug 2013 05:59:43 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7QIuED9021651
-	for <meta-arago@arago-project.org>; Mon, 26 Aug 2013 13:56:14 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7QIuEEi011158
-	for <meta-arago@arago-project.org>; Mon, 26 Aug 2013 13:56:14 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Mon, 26 Aug 2013 13:56:14 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "Dmytriyenko, Denys"
-	<denys@ti.com>
-Thread-Topic: [meta-arago] [PATCHv2 3/4] linux-ti-staging: enable
-	LOCALVERSION	and AUTOREV
-Thread-Index: AQHOoERNyVGqYPsC8kOE6zc7+d2x8pmjSKeQgABWWwD//7ZVQIAElH+A///hktCAAA+JMA==
-Date: Mon, 26 Aug 2013 18:56:13 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101596E8D38@DLEE11.ent.ti.com>
-References: <1377291818-28047-1-git-send-email-denis@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C52B698@DFLE08.ent.ti.com>
-	<20130823211516.GI27308@edge>
-	<8F29D6B095ED194EA1980491A5E029710C52B79D@DFLE08.ent.ti.com>
-	<20130826144807.GA20807@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C52CC93@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C52CC93@DFLE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7R5xdfL000901
+	for <meta-arago@arago-project.org>; Tue, 27 Aug 2013 00:59:39 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7R5xcu9001462
+	for <meta-arago@arago-project.org>; Tue, 27 Aug 2013 00:59:38 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 27 Aug 2013 00:59:38 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r7R5xcDD005555	for <meta-arago@arago-project.org>;
+	Tue, 27 Aug 2013 00:59:38 -0500
+Date: Tue, 27 Aug 2013 01:50:46 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <969889199.561.1377582646343.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv2 3/4] linux-ti-staging: enable LOCALVERSION	and AUTOREV
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.08 build 2013-08-27_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,187 +36,190 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 18:56:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 27 Aug 2013 05:59:48 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_560_1246101649.1377582646342"
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
->Sent: Monday, August 26, 2013 1:04 PM
->To: Dmytriyenko, Denys
->Cc: meta-arago@arago-project.org
->Subject: Re: [meta-arago] [PATCHv2 3/4] linux-ti-staging: enable
->LOCALVERSION and AUTOREV
->
->
->
->> -----Original Message-----
->> From: Dmytriyenko, Denys
->> Sent: Monday, August 26, 2013 9:48 AM
->> To: Cooper Jr., Franklin
->> Cc: meta-arago@arago-project.org
->> Subject: Re: [meta-arago] [PATCHv2 3/4] linux-ti-staging: enable
->LOCALVERSION
->> and AUTOREV
->>
->> On Fri, Aug 23, 2013 at 09:54:44PM +0000, Cooper Jr., Franklin
->wrote:
->> >
->> >
->> > > -----Original Message-----
->> > > From: Dmytriyenko, Denys
->> > > Sent: Friday, August 23, 2013 4:15 PM
->> > > To: Cooper Jr., Franklin
->> > > Cc: Denys Dmytriyenko; meta-arago@arago-project.org
->> > > Subject: Re: [meta-arago] [PATCHv2 3/4] linux-ti-staging:
->enable
->> > > LOCALVERSION and AUTOREV
->> > >
->> > > On Fri, Aug 23, 2013 at 09:08:06PM +0000, Cooper Jr.,
->Franklin wrote:
->> > > >
->> > > >
->> > > > > -----Original Message-----
->> > > > > From: meta-arago-bounces@arago-project.org [mailto:meta-
->arago-
->> > > > > bounces@arago-project.org] On Behalf Of Denys
->Dmytriyenko
->> > > > > Sent: Friday, August 23, 2013 4:04 PM
->> > > > > To: meta-arago@arago-project.org
->> > > > > Subject: [meta-arago] [PATCHv2 3/4] linux-ti-staging:
->enable
->> > > > > LOCALVERSION and AUTOREV
->> > > > >
->> > > > > From: Denys Dmytriyenko <denys@ti.com>
->> > > > >
->> > > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> > > > > ---
->> > > > > v2 - removed the comment about upstreaming LOCALVERSION,
->may not
->> > > > > happen
->> > > > >
->> > > > >  .../recipes-kernel/linux/linux-ti-staging_git.bbappend
->| 17
->> > > > > +++++++++++++++++
->> > > > >  1 file changed, 17 insertions(+)  create mode 100644
->> > > > > meta-arago-distro/recipes-kernel/linux/linux-ti-
->> > > > > staging_git.bbappend
->> > > > >
->> > > > > diff --git
->> > > > > a/meta-arago-distro/recipes-kernel/linux/linux-ti-
->staging_git.bb
->> > > > > appe
->> > > > > nd
->> > > > > b/meta-arago-distro/recipes-kernel/linux/linux-ti-
->staging_git.bb
->> > > > > appe
->> > > > > nd
->> > > > > new file mode 100644
->> > > > > index 0000000..f99482c
->> > > > > --- /dev/null
->> > > > > +++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-
->staging_gi
->> > > > > +++ t.bb
->> > > > > +++ append
->> > > > > @@ -0,0 +1,17 @@
->> > > > > +MACHINE_KERNEL_PR_append =3D "-arago0"
->> > > > > +
->> > > > > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${P}:"
->> > > > > +
->> > > > > +require copy-defconfig.inc
->> > >
->> > > > [Franklin] Are we really planning on have different
->defconfigs for
->> > > > each machine? I thought with DT all machines will share
->the same
->> defconfig.
->> > >
->> > > Yes, linux-ti-staging uses a blank defconfig that points to
->> omap2plus_defconfig.
->> > >
->> > > But copy-defconfig just saves the current config for SDK use
->- they
->> > > will be the same for machines using this recipe. But still,
->there
->> > > are currently only 2 OMAP machines supported by this kernel
->and will
->> > > be 2 Sitara machines with this patchset. If/when we switch
->remaining
->> > > SDK machines to use the latest kernel, we can revisit this
->matter, I guess.
->> > [Franklin]
->> > I guess my point was that copy-defconfig.inc renames the
->.config to
->> > tisdk_${MACHINE}_defconfig. Can we set CONFIG_NAME to
->> "omap2plus_defconfig"
->> > since we should stick with that defconfig name for all
->machines?
->>
->> And what I was trying to say before, is that "all machines" is
->currently only 2 out
->> of several and even then, omap2plus_defconfig in the kernel may
->not match
->> exactly the one produced by the SDK - there may be some mangling
->involved to
->> adjust some config options to sane defaults (although we no
->longer include
->> linux.inc with that code), plus we run "make oldconfig" on it,
->which checks
->> dependecies between config options and may change some os them.
->In other
->> words: omap2plus_defconfig !=3D .config which we package in the
->SDK. It is like
->> the difference between pristine sources and sources that were
->patched and
->> configured...
->[Franklin]  I was hoping we would get rid of all the tweaks to the
->defconfig so that omap2plus_defconfig =3D=3D .config . This would mean
->we push all modifications we needed to mainline. Similar to my
->response to Chase if that isn't the plan then I have no issue with
->the approach.
+------=_Part_560_1246101649.1377582646342
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-It's not about just pushing everything to mainline. You may decide to enabl=
-e/disable features for your SDK and want to have different configs for a de=
-vice.  Currently we only use one ut I don't see the harm in having a copy t=
-hat is consistent so that everyone knows what we built with in case you do =
-need any tweaks.
+<html>
+<head>
+<title>
+Status for 08/27/13
+</title>
+</head>
+<body>
 
->>
->> --
->> Denys
->>
->>
->> > > > > +SRCREV =3D "${AUTOREV}"
->> > > > > +
->> > > > > +KERNEL_LOCALVERSION =3D "-g${@d.getVar('SRCPV',
->> > > > > True).partition('+')[2][0:7]}"
->> > > > > +
->> > > > > +kernel_do_configure_prepend() {
->> > > > > +    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion
->]
->> > > > > +    then
->> > > > > +        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
->> > > > > +        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
->> > > > > +    fi
->> > > > > +}
->> > > > > --
->> > > > > 1.8.3.2
->> > > > >
->> > > > > _______________________________________________
->> > > > > meta-arago mailing list
->> > > > > meta-arago@arago-project.org
->> > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-
->arago
->> > > > _______________________________________________
->> > > > meta-arago mailing list
->> > > > meta-arago@arago-project.org
->> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-
->arago
->> >
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<h2>Status for 08/27/13</h2>
 
+<h2>BUILD_ID: build-2013-08-27_01-02-53</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>1.17.0</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>danny</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.08"<br>
+MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_JAMMER="/home/jenkins/installjammer"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+MPI_FILE="$SCRIPTS_ROOT/mpi-files/ti-sdk-base.mpi"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+WEB_HOST=""<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_560_1246101649.1377582646342--
