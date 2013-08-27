@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 4D68F52090
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 04F2A52090
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Aug 2013 19:18:05 +0000 (UTC)
+	Tue, 27 Aug 2013 19:18:07 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7RJI4UQ023800
-	for <meta-arago@arago-project.org>; Tue, 27 Aug 2013 14:18:04 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7RJI4O1022943
-	for <meta-arago@arago-project.org>; Tue, 27 Aug 2013 14:18:04 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 27 Aug 2013 14:18:04 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7RJI7dU007923
+	for <meta-arago@arago-project.org>; Tue, 27 Aug 2013 14:18:07 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7RJI7AK022993
+	for <meta-arago@arago-project.org>; Tue, 27 Aug 2013 14:18:07 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 27 Aug 2013 14:18:06 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7RJHxoq028646;
-	Tue, 27 Aug 2013 14:18:03 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7RJHxor028646;
+	Tue, 27 Aug 2013 14:18:05 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 27 Aug 2013 14:51:28 -0500
-Message-ID: <1377633092-29917-2-git-send-email-fcooper@ti.com>
+Date: Tue, 27 Aug 2013 14:51:29 -0500
+Message-ID: <1377633092-29917-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1377633092-29917-1-git-send-email-fcooper@ti.com>
 References: <1377633092-29917-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/6 v2] sourceipk: Add ability to preserve Git repository
+Subject: [PATCH 3/6 v2] board-port-labs-linux: Create new recipe using new sourceipk.bbclass feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,85 +37,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Aug 2013 19:18:05 -0000
+X-List-Received-Date: Tue, 27 Aug 2013 19:18:08 -0000
 Content-Type: text/plain
 
-* When a git repository is unpacked the repository located in the WORKDIR is
-  cloned from the git repository located in the downloads directory.
-* Various references and settings are set within the repo which makes it
-  impossible for the git repository packaged by sourceipk to be useable on any
-  computer other than the original computer that the sourceipk was created in.
-* This patch allows the git repository to be preserved and fixed up to become
-  a fully functional portable git repository.
+* Do to the inability to keep the git repository intact the board port labs
+  recipe manually ran git clone which took a long time every time the recipe was
+  built.
+* Using the new SRCIPK_PRESERVED_GIT feature in sourceipk.bbclass the recipes can
+  now be treated like any other recipe and allow OE to handle the cloning and
+  unpacking.
+* This will significantly shorten the amount of time required to rebuild this
+  recipe.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-Version 2 changes:
-Fix commit message typo and add comment removal to this patch.
+Changes Version 2:
+Split recipe into its own patch.
+Also use the kernel's license.
 
- meta-arago-distro/classes/sourceipk.bbclass |   35 +++++++++++++++++++++++----
- 1 files changed, 30 insertions(+), 5 deletions(-)
+ .../board-port-labs/board-port-labs-linux_git.bb   |   35 ++++++++++++++++++++
+ 1 files changed, 35 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb
 
-diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
-index 1844ff3..1ea0577 100644
---- a/meta-arago-distro/classes/sourceipk.bbclass
-+++ b/meta-arago-distro/classes/sourceipk.bbclass
-@@ -59,17 +59,42 @@ SRCIPK_SECTION ?= "${SECTION}"
- # Default SRCIPK_INCLUDE_EXTRAFILES is to include the extra files
- SRCIPK_INCLUDE_EXTRAFILES ?= "1"
- 
--# Remove git repositories before packaging up the sources
--clear_git() {
-+SRCIPK_PRESERVE_GIT ?= "false"
+diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb
+new file mode 100644
+index 0000000..711e3a8
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb
+@@ -0,0 +1,35 @@
++DESCRIPTION = "Git repositories containing sample board port code"
++HOMEPAGE = "https://gitorious.org/sitara-board-port"
 +
-+adjust_git() {
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 +
-+    orig_dir="$PWD"
- 
-     cd ${S}
- 
-     if [ -d ".git" ]
-     then
--        rm -rf .git
++inherit allarch
 +
-+        # Grab path to cloned local repository
-+        old=`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   | cut -c 7- | tr -d ' '`
++CREATE_SRCIPK = "1"
++SRCIPK_INSTALL_DIR = "board-support/board-port-labs/sitara-board-port-linux"
++SRCIPK_PRESERVE_GIT = "true"
 +
-+        if [ -d $old -a "${SRCIPK_PRESERVE_GIT}" = "true" ]
-+        then
-+            cd $old
++PR = "r0"
 +
-+            # Grab actual url used to create the repository
-+            orig=`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   | cut -c 7- | tr -d ' '`
++BRANCH = "master"
++SRC_URI = "git://gitorious.org/sitara-board-port/sitara-board-port-linux.git;protocol=git;branch=${BRANCH}"
 +
-+            cd -
++SRCREV = "${AUTOREV}"
 +
-+            git remote set-url origin $orig $old
++S = "${WORKDIR}/git"
 +
-+            # Repackage the repository so its a proper clone of the original (remote) git repository
-+            git repack -a -d
-+            rm .git/objects/info/alternates
++adjust_git_prepend() {
 +
-+        else
-+            rm -rf .git
-+        fi
++    # Checkout a specific branch instead of a commit that is used by default
++    git checkout ${BRANCH}
++}
 +
-     fi
- 
--    cd -
-+    cd $orig_dir
- 
- }
- 
-@@ -97,7 +122,7 @@ sourceipk_do_create_srcipk() {
-     if [ ${CREATE_SRCIPK} != "0" ]
-     then
- 
--        clear_git
-+        adjust_git
- 
-         tmp_dir="${WORKDIR}/sourceipk-tmp"
-         srcipk_dir="${WORKDIR}/sourceipk-data"
++do_configure() {
++    :
++}
++
++do_compile() {
++    :
++}
++
 -- 
 1.7.0.4
 
