@@ -1,33 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id DE5D352A7D
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9E9DC52A81
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Aug 2013 15:03:46 +0000 (UTC)
+	Fri, 30 Aug 2013 15:05:03 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7UF3jjs015979
-	for <meta-arago@arago-project.org>; Fri, 30 Aug 2013 10:03:45 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7UF3jNk022825
-	for <meta-arago@arago-project.org>; Fri, 30 Aug 2013 10:03:45 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7UF53AP023178
+	for <meta-arago@arago-project.org>; Fri, 30 Aug 2013 10:05:03 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7UF52Ll024758
+	for <meta-arago@arago-project.org>; Fri, 30 Aug 2013 10:05:02 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Fri, 30 Aug 2013 10:03:45 -0500
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Fri, 30 Aug 2013 10:05:02 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 1/6 v2] gst-plugins-bad: Use new
-	PACKAGECONFIG	feature
-Thread-Index: AQHOo1o+jWOhK64FK0OBmkPNVJjgvZmt24sw
-Date: Fri, 30 Aug 2013 15:03:45 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101596F8113@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH 2/6 v2] sourceipk: Add ability to preserve
+	Git	repository
+Thread-Index: AQHOo1o/wNMWkc9rtEm9cpmm26ZA+5mt3dCw
+Date: Fri, 30 Aug 2013 15:05:02 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101596F8144@DLEE11.ent.ti.com>
 References: <1377633092-29917-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1377633092-29917-1-git-send-email-fcooper@ti.com>
+	<1377633092-29917-2-git-send-email-fcooper@ti.com>
+In-Reply-To: <1377633092-29917-2-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/6 v2] gst-plugins-bad: Use new PACKAGECONFIG	feature
+Subject: Re: [PATCH 2/6 v2] sourceipk: Add ability to preserve Git	repository
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,10 +41,13 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2013 15:03:47 -0000
+X-List-Received-Date: Fri, 30 Aug 2013 15:05:03 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Acked-by: Chase Maupin <chase.maupin@ti.com>
+
 
 >-----Original Message-----
 >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
@@ -51,79 +55,96 @@ Content-Transfer-Encoding: quoted-printable
 >Sent: Tuesday, August 27, 2013 2:51 PM
 >To: meta-arago@arago-project.org
 >Cc: Cooper Jr., Franklin
->Subject: [meta-arago] [PATCH 1/6 v2] gst-plugins-bad: Use new
->PACKAGECONFIG feature
+>Subject: [meta-arago] [PATCH 2/6 v2] sourceipk: Add ability to
+>preserve Git repository
 >
->* Recent patch in oe-core allows certain features to be enabled or
->disabled
->  based on the PACKAGECONFIG variable.
->* Use this variable which will obsolete alot of the code in this
->bbappend while
->  achieving the same result.
+>* When a git repository is unpacked the repository located in the
+>WORKDIR is
+>  cloned from the git repository located in the downloads
+>directory.
+>* Various references and settings are set within the repo which
+>makes it
+>  impossible for the git repository packaged by sourceipk to be
+>useable on any
+>  computer other than the original computer that the sourceipk was
+>created in.
+>* This patch allows the git repository to be preserved and fixed
+>up to become
+>  a fully functional portable git repository.
 >
 >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 >---
 >Version 2 changes:
->Update patch tailored to recent change to base recipe in oe-core.
+>Fix commit message typo and add comment removal to this patch.
 >
+> meta-arago-distro/classes/sourceipk.bbclass |   35
+>+++++++++++++++++++++++----
+> 1 files changed, 30 insertions(+), 5 deletions(-)
 >
-> .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |   14 ++-----
->-------
-> 1 files changed, 2 insertions(+), 12 deletions(-)
+>diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-
+>arago-distro/classes/sourceipk.bbclass
+>index 1844ff3..1ea0577 100644
+>--- a/meta-arago-distro/classes/sourceipk.bbclass
+>+++ b/meta-arago-distro/classes/sourceipk.bbclass
+>@@ -59,17 +59,42 @@ SRCIPK_SECTION ?=3D "${SECTION}"
+> # Default SRCIPK_INCLUDE_EXTRAFILES is to include the extra files
+> SRCIPK_INCLUDE_EXTRAFILES ?=3D "1"
 >
->diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-
->plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-
->multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
->index 8ae8050..8cee785 100644
->--- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-
->bad_0.10.23.bbappend
->+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-
->bad_0.10.23.bbappend
->@@ -1,21 +1,11 @@
->-PR_append =3D "-arago3"
->+PR_append =3D "-arago4"
+>-# Remove git repositories before packaging up the sources
+>-clear_git() {
+>+SRCIPK_PRESERVE_GIT ?=3D "false"
+>+
+>+adjust_git() {
+>+
+>+    orig_dir=3D"$PWD"
 >
-> # look for files in this layer first
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>     cd ${S}
 >
->-# Disable rsvg which caused gtk+ to be pulled in
->-DEPENDS :=3D "${@oe_filter_out('librsvg','${DEPENDS}', d)}"
->-EXTRA_OECONF +=3D "--disable-rsvg"
->-
->-# Remove the restriction of which plugins are built. Previously
->fbdevsink
->-# was not built which is needed by the gstreamer demos included
->in the SDK.
->-EXTRA_OECONF :=3D "${@oe_filter_out('--with-
->plugins=3Dmusicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECON
->F}', d)}"
-
-I'm assuming that these are removed because of the COMMERCIAL filter settin=
-g (I don't remember the full variable off the top of my head)
-
-Should this be called out in the commit message?
-
->-
-> SRC_URI +=3D "file://0001-gstfbdevsink-Fix-depth-value-for-
->GST_VIDEO_CAPS_RGB_.patch"
+>     if [ -d ".git" ]
+>     then
+>-        rm -rf .git
+>+
+>+        # Grab path to cloned local repository
+>+        old=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   |
+>cut -c 7- | tr -d ' '`
+>+
+>+        if [ -d $old -a "${SRCIPK_PRESERVE_GIT}" =3D "true" ]
+>+        then
+>+            cd $old
+>+
+>+            # Grab actual url used to create the repository
+>+            orig=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f
+>1   | cut -c 7- | tr -d ' '`
+>+
+>+            cd -
+>+
+>+            git remote set-url origin $orig $old
+>+
+>+            # Repackage the repository so its a proper clone of
+>the original (remote) git repository
+>+            git repack -a -d
+>+            rm .git/objects/info/alternates
+>+
+>+        else
+>+            rm -rf .git
+>+        fi
+>+
+>     fi
 >
->-# Add faad has a dependency to insure gst-plugins-bad-faad is
->built.
->-DEPENDS +=3D "faad2"
->-RDEPENDS_${PN}-faad +=3D "libfaad"
->+PACKAGECONFIG =3D "bzip curl faad"
-
-I have some question here.  You changed the DEPENDS to faad instead of faad=
-2.  I see in base.bbclass the DEPENDS magic based on PACKAGECONFIG, but the=
- RDEPENDS setting there didn't look like it would add libfaad.  Maybe I am =
-just not reading it right but did you check that?
-
-Also, why add curl and bzip too?  If needed should that be a separate patch=
- or at least updated in the commit message?
+>-    cd -
+>+    cd $orig_dir
 >
-> # Disable features that have potential commercial licensing
->restrictions
-> EXTRA_OECONF +=3D "\
+> }
+>
+>@@ -97,7 +122,7 @@ sourceipk_do_create_srcipk() {
+>     if [ ${CREATE_SRCIPK} !=3D "0" ]
+>     then
+>
+>-        clear_git
+>+        adjust_git
+>
+>         tmp_dir=3D"${WORKDIR}/sourceipk-tmp"
+>         srcipk_dir=3D"${WORKDIR}/sourceipk-data"
 >--
 >1.7.0.4
 >
