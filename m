@@ -1,33 +1,32 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7F2D4529D0
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6104A529FE
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Sep 2013 15:17:48 +0000 (UTC)
+	Tue,  3 Sep 2013 17:31:27 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r83FHld8009316;
-	Tue, 3 Sep 2013 10:17:47 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r83FHltp025083;
-	Tue, 3 Sep 2013 10:17:47 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Tue, 3 Sep 2013 10:17:47 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] remove-net-rules: _remove is a new
-	keyword now, sanitize the function name
-Thread-Index: AQHOqCRiiX7K8B5dcUiIIAqe01+ha5m0ISvQ
-Date: Tue, 3 Sep 2013 15:17:47 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101597011FD@DLEE11.ent.ti.com>
-References: <1378157707-15689-1-git-send-email-denis@denix.org>
-In-Reply-To: <1378157707-15689-1-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r83HVQbO014547
+	for <meta-arago@arago-project.org>; Tue, 3 Sep 2013 12:31:26 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r83HVQq1023662
+	for <meta-arago@arago-project.org>; Tue, 3 Sep 2013 12:31:26 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 3 Sep 2013 12:31:26 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r83HVQHw021201;
+	Tue, 3 Sep 2013 12:31:26 -0500
+Date: Tue, 3 Sep 2013 13:31:25 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20130903173125.GE22235@edge>
+References: <1377633092-29917-1-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED101596F8113@DLEE11.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C53FD63@DFLE08.ent.ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH] remove-net-rules: _remove is a new keyword now, sanitize the function name
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C53FD63@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 1/6 v2] gst-plugins-bad: Use new PACKAGECONFIG	feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,66 +39,146 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 15:17:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Sep 2013 17:31:27 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+On Fri, Aug 30, 2013 at 03:44:26PM +0000, Cooper Jr., Franklin wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Maupin, Chase
+> > Sent: Friday, August 30, 2013 10:04 AM
+> > To: Cooper Jr., Franklin; meta-arago@arago-project.org
+> > Subject: RE: [meta-arago] [PATCH 1/6 v2] gst-plugins-bad: Use new
+> > PACKAGECONFIG feature
+> > 
+> > >-----Original Message-----
+> > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> > >Sent: Tuesday, August 27, 2013 2:51 PM
+> > >To: meta-arago@arago-project.org
+> > >Cc: Cooper Jr., Franklin
+> > >Subject: [meta-arago] [PATCH 1/6 v2] gst-plugins-bad: Use new
+> > >PACKAGECONFIG feature
+> > >
+> > >* Recent patch in oe-core allows certain features to be enabled or
+> > >disabled
+> > >  based on the PACKAGECONFIG variable.
+> > >* Use this variable which will obsolete alot of the code in this
+> > >bbappend while
+> > >  achieving the same result.
+> > >
+> > >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > >---
+> > >Version 2 changes:
+> > >Update patch tailored to recent change to base recipe in oe-core.
+> > >
+> > >
+> > > .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |   14 ++-----
+> > >-------
+> > > 1 files changed, 2 insertions(+), 12 deletions(-)
+> > >
+> > >diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-
+> > >plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-
+> > >multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+> > >index 8ae8050..8cee785 100644
+> > >--- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-
+> > >bad_0.10.23.bbappend
+> > >+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-
+> > >bad_0.10.23.bbappend
+> > >@@ -1,21 +1,11 @@
+> > >-PR_append = "-arago3"
+> > >+PR_append = "-arago4"
+> > >
+> > > # look for files in this layer first
+> > > FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> > >
+> > >-# Disable rsvg which caused gtk+ to be pulled in -DEPENDS :=
+> > >"${@oe_filter_out('librsvg','${DEPENDS}', d)}"
+> > >-EXTRA_OECONF += "--disable-rsvg"
+> > >-
+> > >-# Remove the restriction of which plugins are built. Previously
+> > >fbdevsink -# was not built which is needed by the gstreamer demos
+> > >included in the SDK.
+> > >-EXTRA_OECONF := "${@oe_filter_out('--with-
+> > >plugins=musicbrainz,wavpack,ivorbis,mpegvideoparse','${EXTRA_OECON
+> > >F}', d)}"
+> > 
+> > I'm assuming that these are removed because of the COMMERCIAL filter setting
+> > (I don't remember the full variable off the top of my head)
+> > 
+> > Should this be called out in the commit message?
 
-Sincerely,
-Chase Maupin
-Integration Team Manager
-Linux Core Product Development
-e-mail: chase.maupin@ti.com
-phone: (214) 567-2950
+> [Franklin] So this oe_filter_out wasn't due to COMMERCIAL filter it was due 
+> to with-plugins will only build plugins in the list. So by filtering out 
+> that string gst-plugins-bad will attempt to build all plugins. Further down 
+> in the recipe you can see where certain plugins are explicitly removed 
+> because of license reasoning. There is even a comment about it addressing 
+> that.
 
-For support:
-Forums - http://community.ti.com/forums/
-Wiki - http://wiki.davincidsp.com/=20
+> > 
+> > >-
+> > > SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-
+> > >GST_VIDEO_CAPS_RGB_.patch"
+> > >
+> > >-# Add faad has a dependency to insure gst-plugins-bad-faad is built.
+> > >-DEPENDS += "faad2"
+> > >-RDEPENDS_${PN}-faad += "libfaad"
+> > >+PACKAGECONFIG = "bzip curl faad"
+> > 
+> > I have some question here.  You changed the DEPENDS to faad instead of faad2.
+> > I see in base.bbclass the DEPENDS magic based on PACKAGECONFIG, but the
+> > RDEPENDS setting there didn't look like it would add libfaad.  Maybe I am just
+> > not reading it right but did you check that?
+> [Franklin] Ah your right.
+> 
+> Comment from base.bbclass
+> PACKAGECONFIG[foo] = "--enable-foo,--disable-foo,foo_depends,foo_runtime_depends"
+> 
+> Snippet from gst-plugins-bad
+> PACKAGECONFIG[faad] = "--enable-faad,--disable-faad,faad2"
+> 
+> So I probably need to change the override the above line with
+> PACKAGECONFIG[faad] = "--enable-faad,--disable-faad,faad2,libfaad"
+> 
+> Let me double check this.
+
+That is the correct use of PACKAGECONFIG, although handling shlib dependencies 
+is usually done automatically. In other words, if you have DEPENDS on faad 
+already and it installs libfaad that this package uses, it will figure out 
+RDEPENDS automatically...
 
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->Sent: Monday, September 02, 2013 4:35 PM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH] remove-net-rules: _remove is a new
->keyword now, sanitize the function name
->
->From: Denys Dmytriyenko <denys@ti.com>
->
->Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->---
-> meta-arago-distro/classes/remove-net-rules.bbclass | 5 ++---
-> 1 file changed, 2 insertions(+), 3 deletions(-)
->
->diff --git a/meta-arago-distro/classes/remove-net-rules.bbclass
->b/meta-arago-distro/classes/remove-net-rules.bbclass
->index fcad9c7..2764f7b 100644
->--- a/meta-arago-distro/classes/remove-net-rules.bbclass
->+++ b/meta-arago-distro/classes/remove-net-rules.bbclass
->@@ -4,12 +4,11 @@
-> # will allow moving SD cards between EVMs and similar boards such
->as
-> # beaglebone and the EVM.
->
->-ROOTFS_POSTPROCESS_COMMAND +=3D "rootfs_remove_net_rules;"
->+ROOTFS_POSTPROCESS_COMMAND +=3D "rootfs_rm_net_rules;"
->
->-rootfs_remove_net_rules () {
->+rootfs_rm_net_rules () {
->     if [ -e ${IMAGE_ROOTFS}/lib/udev/write_net_rules ]
->     then
->         rm ${IMAGE_ROOTFS}/lib/udev/write_net_rules
->     fi
-> }
->-
->--
->1.8.3.2
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > Also, why add curl and bzip too?  If needed should that be a separate patch or at
+> > least updated in the commit message?
+
+> [Franklin] In the base recipe PACKAGECONFIG is set to "bzip curl". Since I 
+> am adding faad I needed to override that variable but I didn't want to lose 
+> the default. Probably a better approach is
+
+> PACKAGECONFIG = "${PACKAGECONFIG} faad"
+> Although I don't know what ??= means so I will have to see if that works.
+
+It is just a "lazy" variant of a regular ?= conditional assignment, i.e. it 
+just wait until the end of the parsing to decide upon it:
+
+http://docs.openembedded.org/bitbake/html/ch02.html#id398548
+
+
+> > >
+> > > # Disable features that have potential commercial licensing
+> > >restrictions
+> > > EXTRA_OECONF += "\
+> > >--
+> > >1.7.0.4
+> > >
+> > >_______________________________________________
+> > >meta-arago mailing list
+> > >meta-arago@arago-project.org
+> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
