@@ -1,31 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id DC1FB529A2
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 1CCD152090
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Sep 2013 17:31:20 +0000 (UTC)
+	Thu,  5 Sep 2013 18:11:42 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r85HVJIS025032
-	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 12:31:19 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85HVJAa003313
-	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 12:31:19 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 5 Sep 2013 12:31:19 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r85IBfxn030934
+	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 13:11:41 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85IBfbr022171
+	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 13:11:41 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 5 Sep 2013 13:11:40 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85HVJmI008532;
-	Thu, 5 Sep 2013 12:31:19 -0500
-Date: Thu, 5 Sep 2013 13:31:18 -0400
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85IBed3017572;
+	Thu, 5 Sep 2013 13:11:40 -0500
+Date: Thu, 5 Sep 2013 14:11:40 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Mrinmayee Hingolikar <mrinmayee@ti.com>
-Message-ID: <20130905173118.GA27300@edge>
-References: <1378391192-24393-1-git-send-email-mrinmayee@ti.com>
-	<52289D18.5040202@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20130905181140.GG27300@edge>
+References: <1378397315-14333-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <52289D18.5040202@ti.com>
+In-Reply-To: <1378397315-14333-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] configs: Lock down the GLSDK release 6.02.00.02
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 3/6 v3] board-port-labs-linux: Create new recipe using new sourceipk.bbclass feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,59 +37,87 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 17:31:21 -0000
+X-List-Received-Date: Thu, 05 Sep 2013 18:11:42 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Can you please send the patch inline? Thanks.
-
-
-On Thu, Sep 05, 2013 at 08:32:48PM +0530, Mrinmayee Hingolikar wrote:
+On Thu, Sep 05, 2013 at 11:08:34AM -0500, Franklin S. Cooper Jr wrote:
+> * Do to the inability to keep the git repository intact the board port labs
+>   recipe manually ran git clone which took a long time every time the recipe was
+>   built.
+> * Using the new SRCIPK_PRESERVED_GIT feature in sourceipk.bbclass the recipes can
+>   now be treated like any other recipe and allow OE to handle the cloning and
+>   unpacking.
+> * This will significantly shorten the amount of time required to rebuild this
+>   recipe.
 > 
-> 	
-> 
-> 	
-> 
-> 	
-> 
-> 	
-> 
-> 
-> 
-> Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  ....02.00-config.txt => glsdk-06.02.02-config.txt} |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
->  copy configs/glsdk/{glsdk-06.02.00-config.txt => glsdk-06.02.02-config.txt} (89%)
+> Version 3 changes:
+> Use a specific commit instead of using AUTOREV
 > 
-> diff --git a/configs/glsdk/glsdk-06.02.00-config.txt b/configs/glsdk/glsdk-06.02.02-config.txt
-> similarity index 89%
-> copy from configs/glsdk/glsdk-06.02.00-config.txt
-> copy to configs/glsdk/glsdk-06.02.02-config.txt
-> index 969bf55..edb85fc 100644
-> --- a/configs/glsdk/glsdk-06.02.00-config.txt
-> +++ b/configs/glsdk/glsdk-06.02.02-config.txt
-> @@ -2,9 +2,9 @@
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
->  bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
-> -meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_00_01,layers=meta-arago-distro:meta-arago-extras
-> +meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_00_02,layers=meta-arago-distro:meta-arago-extras
->  meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers=toolchain-layer:meta-oe
-> -meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_00_01,layers=
-> +meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_00_02,layers=
->  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
->  oe-core,git://git.openembedded.org/openembedded-core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> Version 2 changes:
+> Split recipe into its own patch.
+> Also use the kernel's license.
+> 
+>  .../board-port-labs/board-port-labs-linux_git.bb   |   35 ++++++++++++++++++++
+>  1 files changed, 35 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb
+> 
+> diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb
+> new file mode 100644
+> index 0000000..4ed1adf
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-linux_git.bb
+> @@ -0,0 +1,35 @@
+> +DESCRIPTION = "Git repositories containing sample board port code"
+> +HOMEPAGE = "https://gitorious.org/sitara-board-port"
+> +
+> +LICENSE = "GPLv2"
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+> +
+> +inherit allarch
+> +
+> +CREATE_SRCIPK = "1"
+> +SRCIPK_INSTALL_DIR = "board-support/board-port-labs/sitara-board-port-linux"
+> +SRCIPK_PRESERVE_GIT = "true"
+> +
+> +PR = "r0"
+> +
+> +BRANCH = "master"
+> +SRC_URI = "git://gitorious.org/sitara-board-port/sitara-board-port-linux.git;protocol=git;branch=${BRANCH}"
+> +
+> +SRCREV = "30df33e7134ab507a339b89a864256cabfbddea1"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +adjust_git_prepend() {
+> +
+> +    # Checkout a specific branch instead of a commit that is used by default
+> +    git checkout ${BRANCH}
+
+So, you are still doing AUTOREV, even though you no longer explicitly name it 
+that way... :)
+
+I was thinking if you agree to lock to a specific SRVREV, we don't need that 
+whole adjust_git_prepend() part with branch checkout. Comments?
+
+
+> +}
+> +
+> +do_configure() {
+> +    :
+> +}
+> +
+> +do_compile() {
+> +    :
+> +}
+> +
 > -- 
 > 1.7.0.4
 > 
-> 
-> 
-
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
 
