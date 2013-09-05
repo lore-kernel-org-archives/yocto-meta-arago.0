@@ -1,28 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 33E8A5299B
+Return-Path: <mrinmayee@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 6084E529A2
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Sep 2013 07:09:40 +0000 (UTC)
+	Thu,  5 Sep 2013 15:02:51 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8579dT0017403
-	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 02:09:39 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r85F2onR008732
+	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 10:02:50 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8579dsl018755
-	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 02:09:39 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85F2o0k027601
+	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 10:02:50 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 5 Sep 2013 02:09:38 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r8579c9Q017209;	Thu, 5 Sep 2013 02:09:38 -0500
-Date: Thu, 5 Sep 2013 03:00:31 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <fcooper@ti.com>
-Message-ID: <206534161.601.1378364431694.JavaMail.jenkins@puget>
+	Thu, 5 Sep 2013 10:02:50 -0500
+Received: from [172.24.157.63] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85F2mMT026665	for
+	<meta-arago@arago-project.org>; Thu, 5 Sep 2013 10:02:49 -0500
+Message-ID: <52289D18.5040202@ti.com>
+Date: Thu, 5 Sep 2013 20:32:48 +0530
+From: Mrinmayee Hingolikar <mrinmayee@ti.com>
+Organization: Texas Instruments
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.08 build 2013-09-05_01-01-44
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+References: <1378391192-24393-1-git-send-email-mrinmayee@ti.com>
+In-Reply-To: <1378391192-24393-1-git-send-email-mrinmayee@ti.com>
+X-Forwarded-Message-Id: <1378391192-24393-1-git-send-email-mrinmayee@ti.com>
+Subject: [PATCH] configs: Lock down the GLSDK release 6.02.00.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,191 +39,131 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 07:09:40 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_600_1623857698.1378364431692"
+X-List-Received-Date: Thu, 05 Sep 2013 15:02:54 -0000
+Content-Type: multipart/alternative;
+	boundary="------------080201010000010002000001"
 
-------=_Part_600_1623857698.1378364431692
-Content-Type: text/html; charset="UTF-8"
+--------------080201010000010002000001
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+
+
+	
+
+	
+
+	
+
+	
+
+
+
+Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
+---
+ ....02.00-config.txt => glsdk-06.02.02-config.txt} |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+ copy configs/glsdk/{glsdk-06.02.00-config.txt => glsdk-06.02.02-config.txt} (89%)
+
+diff --git a/configs/glsdk/glsdk-06.02.00-config.txt b/configs/glsdk/glsdk-06.02.02-config.txt
+similarity index 89%
+copy from configs/glsdk/glsdk-06.02.00-config.txt
+copy to configs/glsdk/glsdk-06.02.02-config.txt
+index 969bf55..edb85fc 100644
+--- a/configs/glsdk/glsdk-06.02.00-config.txt
++++ b/configs/glsdk/glsdk-06.02.02-config.txt
+@@ -2,9 +2,9 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
+-meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_00_01,layers=meta-arago-distro:meta-arago-extras
++meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_00_02,layers=meta-arago-distro:meta-arago-extras
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers=toolchain-layer:meta-oe
+-meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_00_01,layers=
++meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_00_02,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
+ oe-core,git://git.openembedded.org/openembedded-core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-- 
+1.7.0.4
+
+
+
+
+--------------080201010000010002000001
+Content-Type: text/html; charset="ISO-8859-1"
 Content-Transfer-Encoding: 7bit
 
 <html>
-<head>
-<title>
-Status for 09/05/13
-</title>
-</head>
-<body>
+  <head>
 
-<h2>Status for 09/05/13</h2>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-forward-container">
+      <table class="moz-email-headers-table" border="0" cellpadding="0"
+        cellspacing="0">
+        <tbody>
+          <tr>
+            <th nowrap="nowrap" valign="BASELINE" align="RIGHT"><br>
+            </th>
+            <td><br>
+            </td>
+          </tr>
+          <tr>
+            <th nowrap="nowrap" valign="BASELINE" align="RIGHT"><br>
+            </th>
+            <td><br>
+            </td>
+          </tr>
+          <tr>
+            <th nowrap="nowrap" valign="BASELINE" align="RIGHT"><br>
+            </th>
+            <td><br>
+            </td>
+          </tr>
+          <tr>
+            <th nowrap="nowrap" valign="BASELINE" align="RIGHT"><br>
+            </th>
+            <td><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <pre>Signed-off-by: Mrinmayee Hingolikar <a class="moz-txt-link-rfc2396E" href="mailto:mrinmayee@ti.com">&lt;mrinmayee@ti.com&gt;</a>
+---
+ ....02.00-config.txt =&gt; glsdk-06.02.02-config.txt} |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+ copy configs/glsdk/{glsdk-06.02.00-config.txt =&gt; glsdk-06.02.02-config.txt} (89%)
 
-<h2>BUILD_ID: build-2013-09-05_01-02-53</h2>
+diff --git a/configs/glsdk/glsdk-06.02.00-config.txt b/configs/glsdk/glsdk-06.02.02-config.txt
+similarity index 89%
+copy from configs/glsdk/glsdk-06.02.00-config.txt
+copy to configs/glsdk/glsdk-06.02.02-config.txt
+index 969bf55..edb85fc 100644
+--- a/configs/glsdk/glsdk-06.02.00-config.txt
++++ b/configs/glsdk/glsdk-06.02.02-config.txt
+@@ -2,9 +2,9 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
+-meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_00_01,layers=meta-arago-distro:meta-arago-extras
++meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_00_02,layers=meta-arago-distro:meta-arago-extras
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers=toolchain-layer:meta-oe
+-meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_00_01,layers=
++meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_00_02,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
+ oe-core,git://git.openembedded.org/openembedded-core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-- 
+1.7.0.4
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>1.17.0</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>danny</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.08"<br>
-MACHINES="am335x-evm am37x-evm omap5-evm dra7xx-evm beagleboard am3517-evm am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
+</pre>
+      <br>
+    </div>
+    <br>
+  </body>
 </html>
 
-
-------=_Part_600_1623857698.1378364431692--
+--------------080201010000010002000001--
