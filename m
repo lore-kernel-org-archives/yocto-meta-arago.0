@@ -1,30 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B5072529CA
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 5B4A05299B
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Sep 2013 15:32:13 +0000 (UTC)
+	Thu,  5 Sep 2013 16:09:51 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r85FWCCn001345
-	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 10:32:13 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r85G9oS7016876
+	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 11:09:50 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85FWCMk005061
-	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 10:32:12 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85G9oDZ023982
+	for <meta-arago@arago-project.org>; Thu, 5 Sep 2013 11:09:50 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 5 Sep 2013 10:32:12 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r85FW7bY011625;
-	Thu, 5 Sep 2013 10:32:11 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+	Thu, 5 Sep 2013 11:09:50 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r85G9nSg031318	for <meta-arago@arago-project.org>;
+	Thu, 5 Sep 2013 11:09:49 -0500
+Date: Thu, 5 Sep 2013 12:00:42 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 5 Sep 2013 11:08:35 -0500
-Message-ID: <1378397315-14333-2-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1378397315-14333-1-git-send-email-fcooper@ti.com>
-References: <1378397315-14333-1-git-send-email-fcooper@ti.com>
+Message-ID: <50561177.607.1378396842711.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 4/6 v3] board-port-labs-u-boot: Create new recipe using new sourceipk.bbclass feature
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.09 build 2013-09-05_11-30-24
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,74 +36,161 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 15:32:13 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 05 Sep 2013 16:09:52 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_606_256443758.1378396842711"
 
-* Do to the inability to keep the git repository intact the board port labs
-  recipe manually ran git clone which took a long time every time the recipe was
-  built.
-* Using the new SRCIPK_PRESERVED_GIT feature in sourceipk.bbclass the recipes
-* can
-  now be treated like any other recipe and allow OE to handle the cloning and
-  unpacking.
-* This will significantly shorten the amount of time required to rebuild this
-  recipe.
+------=_Part_606_256443758.1378396842711
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 3 changes:
-Use a specific commit instead of using AUTOREV
+<html>
+<head>
+<title>
+Status for 09/05/13
+</title>
+</head>
+<body>
 
-Version 2 changes:
-Place recipe in its own patch.
-Use U-boot's license.
+<h2>Status for 09/05/13</h2>
 
- .../board-port-labs/board-port-labs-u-boot_git.bb  |   35 ++++++++++++++++++++
- 1 files changed, 35 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-u-boot_git.bb
+<h2>BUILD_ID: build-2013-09-05_11-31-25</h2>
 
-diff --git a/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-u-boot_git.bb b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-u-boot_git.bb
-new file mode 100644
-index 0000000..5e68d30
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/board-port-labs/board-port-labs-u-boot_git.bb
-@@ -0,0 +1,35 @@
-+DESCRIPTION = "Git repositories containing sample board port code"
-+HOMEPAGE = "https://gitorious.org/sitara-board-port"
-+
-+LICENSE = "GPLv2+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
-+
-+inherit allarch
-+
-+CREATE_SRCIPK = "1"
-+SRCIPK_INSTALL_DIR = "board-support/board-port-labs/sitara-board-port-u-boot"
-+SRCIPK_PRESERVE_GIT = "true"
-+
-+PR = "r0"
-+
-+BRANCH = "master"
-+SRC_URI = "git://gitorious.org/sitara-board-port/sitara-board-port-uboot.git;protocol=git;branch=${BRANCH}"
-+
-+SRCREV = "43a81af5ccddc67f9ed5f11664e5478f59574102"
-+
-+S = "${WORKDIR}/git"
-+
-+adjust_git_prepend() {
-+
-+    # Checkout a specific branch instead of a commit that is used by default
-+    git checkout ${BRANCH}
-+}
-+
-+do_configure() {
-+    :
-+}
-+
-+do_compile() {
-+    :
-+}
-+
--- 
-1.7.0.4
+<h2>Clean Build: true</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>257c4ba3a2f52ca70125876ba35e2b296e6edba9</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.09"<br>
+MACHINES="am335x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_606_256443758.1378396842711--
