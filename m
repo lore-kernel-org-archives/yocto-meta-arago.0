@@ -1,30 +1,31 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C14735299B
+	by arago-project.org (Postfix) with ESMTPS id 266A652A8F
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Sep 2013 16:51:55 +0000 (UTC)
+	Mon,  9 Sep 2013 18:22:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r89GpsJB025022
-	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 11:51:54 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89GpsGX011183
-	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 11:51:54 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 9 Sep 2013 11:51:54 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89GpkXW013894;
-	Mon, 9 Sep 2013 11:51:53 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 9 Sep 2013 12:29:31 -0500
-Message-ID: <1378747771-6201-3-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1378747771-6201-1-git-send-email-fcooper@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r89IMUqV001476
+	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 13:22:30 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89IMU4k003157
+	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 13:22:30 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 9 Sep 2013 13:22:30 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89IMUsj017096;
+	Mon, 9 Sep 2013 13:22:30 -0500
+Date: Mon, 9 Sep 2013 14:22:29 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20130909182229.GB2503@edge>
 References: <1378747771-6201-1-git-send-email-fcooper@ti.com>
+	<1378747771-6201-2-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/3] arago-image.inc: Make sure all filesystems include kernel image
+In-Reply-To: <1378747771-6201-2-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 2/3] kernel.bbclass: Pull in tweaks from oe-core patch to local copy
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,32 +38,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2013 16:51:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 09 Sep 2013 18:22:31 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Switch from danny to dylan causes file systems to no longer include
-  kernel-image package.
-* This package is very important for newer versions of U-boot that expects the
-  kernel to be read from the filesystem.
+On Mon, Sep 09, 2013 at 12:29:30PM -0500, Franklin S. Cooper Jr wrote:
+> The below patch has been submitted to oe-core. Modify local copy of
+> kernel.bbclass to mimic this patch until patch is upstreamed.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/images/arago-image.inc            |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+Have you addressed the latest comments for the upstream patch:
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
-index 7cab56a..66a2cc5 100644
---- a/meta-arago-distro/recipes-core/images/arago-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-image.inc
-@@ -16,6 +16,7 @@ VIRTUAL-RUNTIME_login_manager = "tinylogin shadow"
- ARAGO_IMAGE_EXTRA_INSTALL ?= ""
- 
- IMAGE_INSTALL += " \
-+	kernel-image \
- 	packagegroup-core-boot \
- 	bash \
- 	${ARAGO_IMAGE_EXTRA_INSTALL} \
--- 
-1.7.0.4
+http://thread.gmane.org/gmane.comp.handhelds.openembedded.core/41748/focus=41752
 
+I would prefer to avoid overlaying a complete class locally just for this 
+simple fix. Having a smaller bbappend with do_install_append() seems like a 
+less intrusive change... Comments?
+
+
+> kernel.bbclass: Create symbolic link to add ${KERNEL_IMAGETYPE} to boot package
+> * By default for some platforms U-boot assumes the kernel image is located in
+>   the boot directory of the root filesystem.
+> * The kernel.bbclass already includes the kernel image in the /boot directory
+>   but adds a version number to the file name.
+> * Create a symbolic link that names the kernel image in the exact way that
+>   U-boot expects.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  meta-arago-distro/classes/kernel.bbclass |    1 +
+>  1 files changed, 1 insertions(+), 0 deletions(-)
+> 
+> diff --git a/meta-arago-distro/classes/kernel.bbclass b/meta-arago-distro/classes/kernel.bbclass
+> index 3320747..1211911 100644
+> --- a/meta-arago-distro/classes/kernel.bbclass
+> +++ b/meta-arago-distro/classes/kernel.bbclass
+> @@ -109,6 +109,7 @@ kernel_do_install() {
+>  	install -d ${D}/${KERNEL_IMAGEDEST}
+>  	install -d ${D}/boot
+>  	install -m 0644 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
+> +	ln      -sf ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION} ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}
+>  	install -m 0644 System.map ${D}/boot/System.map-${KERNEL_VERSION}
+>  	install -m 0644 .config ${D}/boot/config-${KERNEL_VERSION}
+>  	install -m 0644 vmlinux ${D}/boot/vmlinux-${KERNEL_VERSION}
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
