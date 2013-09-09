@@ -1,28 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 46F185298F
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 4577F5298F
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Sep 2013 16:51:50 +0000 (UTC)
+	Mon,  9 Sep 2013 16:51:53 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r89Gpoik004446
-	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 11:51:50 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89GpoDH011128
-	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 11:51:50 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 9 Sep 2013 11:51:49 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r89Gpq6q025019
+	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 11:51:52 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89GpqU6011158
+	for <meta-arago@arago-project.org>; Mon, 9 Sep 2013 11:51:52 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 9 Sep 2013 11:51:52 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89GpkXU013894;
-	Mon, 9 Sep 2013 11:51:48 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r89GpkXV013894;
+	Mon, 9 Sep 2013 11:51:50 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 9 Sep 2013 12:29:29 -0500
-Message-ID: <1378747771-6201-1-git-send-email-fcooper@ti.com>
+Date: Mon, 9 Sep 2013 12:29:30 -0500
+Message-ID: <1378747771-6201-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1378747771-6201-1-git-send-email-fcooper@ti.com>
+References: <1378747771-6201-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/3] kernel.bbclass: Pull in kernel.bbclass from oe-core dylan
+Subject: [PATCH 2/3] kernel.bbclass: Pull in tweaks from oe-core patch to local copy
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,420 +37,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2013 16:51:52 -0000
+X-List-Received-Date: Mon, 09 Sep 2013 16:51:53 -0000
 Content-Type: text/plain
 
-* Pull in kernel.bbclass from oe-core dylan to allow patching of the local
-  version of kernel.bbclass until upstream patch is accepted and pulled into
-  oe-core dylan.
+The below patch has been submitted to oe-core. Modify local copy of
+kernel.bbclass to mimic this patch until patch is upstreamed.
+
+kernel.bbclass: Create symbolic link to add ${KERNEL_IMAGETYPE} to boot package
+* By default for some platforms U-boot assumes the kernel image is located in
+  the boot directory of the root filesystem.
+* The kernel.bbclass already includes the kernel image in the /boot directory
+  but adds a version number to the file name.
+* Create a symbolic link that names the kernel image in the exact way that
+  U-boot expects.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/classes/kernel.bbclass |  395 ++++++++++++++++++++++++++++++
- 1 files changed, 395 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/classes/kernel.bbclass
+ meta-arago-distro/classes/kernel.bbclass |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
 diff --git a/meta-arago-distro/classes/kernel.bbclass b/meta-arago-distro/classes/kernel.bbclass
-new file mode 100644
-index 0000000..3320747
---- /dev/null
+index 3320747..1211911 100644
+--- a/meta-arago-distro/classes/kernel.bbclass
 +++ b/meta-arago-distro/classes/kernel.bbclass
-@@ -0,0 +1,395 @@
-+inherit linux-kernel-base module_strip kernel-module-split
-+
-+PROVIDES += "virtual/kernel"
-+DEPENDS += "virtual/${TARGET_PREFIX}gcc kmod-native depmodwrapper-cross"
-+
-+# we include gcc above, we dont need virtual/libc
-+INHIBIT_DEFAULT_DEPS = "1"
-+
-+KERNEL_IMAGETYPE ?= "zImage"
-+INITRAMFS_IMAGE ?= ""
-+INITRAMFS_TASK ?= ""
-+
-+python __anonymous () {
-+    kerneltype = d.getVar('KERNEL_IMAGETYPE', True) or ''
-+    if kerneltype == 'uImage':
-+        depends = d.getVar("DEPENDS", True)
-+        depends = "%s u-boot-mkimage-native" % depends
-+        d.setVar("DEPENDS", depends)
-+
-+    image = d.getVar('INITRAMFS_IMAGE', True)
-+    if image:
-+        d.setVar('INITRAMFS_TASK', '${INITRAMFS_IMAGE}:do_rootfs')
-+}
-+
-+inherit kernel-arch deploy
-+
-+PACKAGES_DYNAMIC += "^kernel-module-.*"
-+PACKAGES_DYNAMIC += "^kernel-image-.*"
-+PACKAGES_DYNAMIC += "^kernel-firmware-.*"
-+
-+export OS = "${TARGET_OS}"
-+export CROSS_COMPILE = "${TARGET_PREFIX}"
-+
-+KERNEL_PRIORITY ?= "${@int(d.getVar('PV',1).split('-')[0].split('+')[0].split('.')[0]) * 10000 + \
-+                       int(d.getVar('PV',1).split('-')[0].split('+')[0].split('.')[1]) * 100 + \
-+                       int(d.getVar('PV',1).split('-')[0].split('+')[0].split('.')[-1])}"
-+
-+KERNEL_RELEASE ?= "${KERNEL_VERSION}"
-+
-+# Where built kernel lies in the kernel tree
-+KERNEL_OUTPUT ?= "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
-+KERNEL_IMAGEDEST = "boot"
-+
-+#
-+# configuration
-+#
-+export CMDLINE_CONSOLE = "console=${@d.getVar("KERNEL_CONSOLE",1) or "ttyS0"}"
-+
-+KERNEL_VERSION = "${@get_kernelversion('${B}')}"
-+
-+KERNEL_LOCALVERSION ?= ""
-+
-+# kernels are generally machine specific
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+# U-Boot support
-+UBOOT_ENTRYPOINT ?= "20008000"
-+UBOOT_LOADADDRESS ?= "${UBOOT_ENTRYPOINT}"
-+
-+# Some Linux kenrel configurations need additional parameters on the command line
-+KERNEL_EXTRA_ARGS ?= ""
-+
-+# For the kernel, we don't want the '-e MAKEFLAGS=' in EXTRA_OEMAKE.
-+# We don't want to override kernel Makefile variables from the environment
-+EXTRA_OEMAKE = ""
-+
-+KERNEL_ALT_IMAGETYPE ??= ""
-+
-+# Define where the kernel headers are installed on the target as well as where
-+# they are staged.
-+KERNEL_SRC_PATH = "/usr/src/kernel"
-+
-+KERNEL_IMAGETYPE_FOR_MAKE = "${@(lambda s: s[:-3] if s[-3:] == ".gz" else s)(d.getVar('KERNEL_IMAGETYPE', True))}"
-+
-+kernel_do_compile() {
-+	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS MACHINE
-+	oe_runmake ${KERNEL_IMAGETYPE_FOR_MAKE} ${KERNEL_ALT_IMAGETYPE} CC="${KERNEL_CC}" LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS}
-+	if test "${KERNEL_IMAGETYPE_FOR_MAKE}.gz" = "${KERNEL_IMAGETYPE}"; then
-+		gzip -9c < "${KERNEL_IMAGETYPE_FOR_MAKE}" > "${KERNEL_OUTPUT}"
-+	fi
-+}
-+
-+do_compile_kernelmodules() {
-+	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS MACHINE
-+	if (grep -q -i -e '^CONFIG_MODULES=y$' .config); then
-+		oe_runmake ${PARALLEL_MAKE} modules CC="${KERNEL_CC}" LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS}
-+	else
-+		bbnote "no modules to compile"
-+	fi
-+}
-+addtask compile_kernelmodules after do_compile before do_strip
-+
-+kernel_do_install() {
-+	#
-+	# First install the modules
-+	#
-+	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS MACHINE
-+	if (grep -q -i -e '^CONFIG_MODULES=y$' .config); then
-+		oe_runmake DEPMOD=echo INSTALL_MOD_PATH="${D}" modules_install
-+		rm "${D}/lib/modules/${KERNEL_VERSION}/build"
-+		rm "${D}/lib/modules/${KERNEL_VERSION}/source"
-+	else
-+		bbnote "no modules to install"
-+	fi
-+
-+	#
-+	# Install various kernel output (zImage, map file, config, module support files)
-+	#
-+	install -d ${D}/${KERNEL_IMAGEDEST}
-+	install -d ${D}/boot
-+	install -m 0644 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
-+	install -m 0644 System.map ${D}/boot/System.map-${KERNEL_VERSION}
-+	install -m 0644 .config ${D}/boot/config-${KERNEL_VERSION}
-+	install -m 0644 vmlinux ${D}/boot/vmlinux-${KERNEL_VERSION}
-+	[ -e Module.symvers ] && install -m 0644 Module.symvers ${D}/boot/Module.symvers-${KERNEL_VERSION}
-+	install -d ${D}${sysconfdir}/modules-load.d
-+	install -d ${D}${sysconfdir}/modprobe.d
-+
-+	#
-+	# Support for external module building - create a minimal copy of the
-+	# kernel source tree.
-+	#
-+	kerneldir=${D}${KERNEL_SRC_PATH}
-+	install -d $kerneldir
-+
-+	#
-+	# Store the kernel version in sysroots for module-base.bbclass
-+	#
-+
-+	echo "${KERNEL_VERSION}" > $kerneldir/kernel-abiversion
-+
-+	#
-+	# Store kernel image name to allow use during image generation
-+	#
-+
-+	echo "${KERNEL_IMAGE_BASE_NAME}" >$kerneldir/kernel-image-name
-+
-+	#
-+	# Copy the entire source tree. In case an external build directory is
-+	# used, copy the build directory over first, then copy over the source
-+	# dir. This ensures the original Makefiles are used and not the
-+	# redirecting Makefiles in the build directory.
-+	#
-+	# work and sysroots can be on different partitions, so we can't rely on
-+	# hardlinking, unfortunately.
-+	#
-+	find . -depth -not -name "*.cmd" -not -name "*.o" -not -path "./.*" -print0 | cpio --null -pdu $kerneldir
-+	cp .config $kerneldir
-+	if [ "${S}" != "${B}" ]; then
-+		pwd="$PWD"
-+		cd "${S}"
-+		find . -depth -not -path "./.*" -print0 | cpio --null -pdu $kerneldir
-+		cd "$pwd"
-+	fi
-+	install -m 0644 ${KERNEL_OUTPUT} $kerneldir/${KERNEL_IMAGETYPE}
-+	install -m 0644 System.map $kerneldir/System.map-${KERNEL_VERSION}
-+
-+	#
-+	# Clean and remove files not needed for building modules.
-+	# Some distributions go through a lot more trouble to strip out
-+	# unecessary headers, for now, we just prune the obvious bits.
-+	#
-+	# We don't want to leave host-arch binaries in /sysroots, so
-+	# we clean the scripts dir while leaving the generated config
-+	# and include files.
-+	#
-+	oe_runmake -C $kerneldir CC="${KERNEL_CC}" LD="${KERNEL_LD}" clean
-+	make -C $kerneldir _mrproper_scripts
-+	find $kerneldir -path $kerneldir/lib -prune -o -path $kerneldir/tools -prune -o -path $kerneldir/scripts -prune -o -name "*.[csS]" -exec rm '{}' \;
-+	find $kerneldir/Documentation -name "*.txt" -exec rm '{}' \;
-+
-+	# As of Linux kernel version 3.0.1, the clean target removes
-+	# arch/powerpc/lib/crtsavres.o which is present in
-+	# KBUILD_LDFLAGS_MODULE, making it required to build external modules.
-+	if [ ${ARCH} = "powerpc" ]; then
-+		cp arch/powerpc/lib/crtsavres.o $kerneldir/arch/powerpc/lib/crtsavres.o
-+	fi
-+
-+	# Necessary for building modules like compat-wireless.
-+	if [ -f include/generated/bounds.h ]; then
-+		cp include/generated/bounds.h $kerneldir/include/generated/bounds.h
-+	fi
-+	if [ -d arch/${ARCH}/include/generated ]; then
-+		mkdir -p $kerneldir/arch/${ARCH}/include/generated/
-+		cp -fR arch/${ARCH}/include/generated/* $kerneldir/arch/${ARCH}/include/generated/
-+	fi
-+
-+	# Remove the following binaries which cause strip or arch QA errors
-+	# during do_package for cross-compiled platforms
-+	bin_files="arch/powerpc/boot/addnote arch/powerpc/boot/hack-coff \
-+	           arch/powerpc/boot/mktree scripts/kconfig/zconf.tab.o \
-+		   scripts/kconfig/conf.o scripts/kconfig/kxgettext.o"
-+	for entry in $bin_files; do
-+		rm -f $kerneldir/$entry
-+	done
-+
-+	# kernels <2.6.30 don't have $kerneldir/tools directory so we check if it exists before calling sed
-+	if [ -f $kerneldir/tools/perf/Makefile ]; then
-+		# Fix SLANG_INC for slang.h
-+		sed -i 's#-I/usr/include/slang#-I=/usr/include/slang#g' $kerneldir/tools/perf/Makefile
-+	fi
-+}
-+do_install[prefuncs] += "package_get_auto_pr"
-+
-+sysroot_stage_all_append() {
-+	sysroot_stage_dir ${D}${KERNEL_SRC_PATH} ${SYSROOT_DESTDIR}${KERNEL_SRC_PATH}
-+}
-+
-+kernel_do_configure() {
-+	# fixes extra + in /lib/modules/2.6.37+
-+	# $ scripts/setlocalversion . => +
-+	# $ make kernelversion => 2.6.37
-+	# $ make kernelrelease => 2.6.37+
-+	touch ${B}/.scmversion ${S}/.scmversion
-+
-+	# Copy defconfig to .config if .config does not exist. This allows
-+	# recipes to manage the .config themselves in do_configure_prepend().
-+	if [ -f "${WORKDIR}/defconfig" ] && [ ! -f "${B}/.config" ]; then
-+		cp "${WORKDIR}/defconfig" "${B}/.config"
-+	fi
-+	yes '' | oe_runmake oldconfig
-+
-+	if [ ! -z "${INITRAMFS_IMAGE}" ]; then
-+		for img in cpio.gz cpio.lzo cpio.lzma cpio.xz; do
-+		if [ -e "${DEPLOY_DIR_IMAGE}/${INITRAMFS_IMAGE}-${MACHINE}.$img" ]; then
-+			cp "${DEPLOY_DIR_IMAGE}/${INITRAMFS_IMAGE}-${MACHINE}.$img" initramfs.$img
-+		fi
-+		done
-+	fi
-+}
-+
-+do_configure[depends] += "${INITRAMFS_TASK}"
-+
-+do_savedefconfig() {
-+	oe_runmake savedefconfig
-+}
-+do_savedefconfig[nostamp] = "1"
-+addtask savedefconfig after do_configure
-+
-+pkg_postinst_kernel-base () {
-+	update-alternatives --install /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ${KERNEL_IMAGETYPE} ${KERNEL_IMAGETYPE}-${KERNEL_VERSION} ${KERNEL_PRIORITY} || true
-+}
-+
-+pkg_postrm_kernel-base () {
-+	update-alternatives --remove ${KERNEL_IMAGETYPE} ${KERNEL_IMAGETYPE}-${KERNEL_VERSION} || true
-+}
-+
-+inherit cml1
-+
-+EXPORT_FUNCTIONS do_compile do_install do_configure
-+
-+# kernel-base becomes kernel-${KERNEL_VERSION}
-+# kernel-image becomes kernel-image-${KERNEL_VERISON}
-+PACKAGES = "kernel kernel-base kernel-vmlinux kernel-image kernel-dev kernel-modules"
-+FILES_${PN} = ""
-+FILES_kernel-base = "/lib/modules/${KERNEL_VERSION}/modules.order /lib/modules/${KERNEL_VERSION}/modules.builtin"
-+FILES_kernel-image = "/boot/${KERNEL_IMAGETYPE}*"
-+FILES_kernel-dev = "/boot/System.map* /boot/Module.symvers* /boot/config* ${KERNEL_SRC_PATH}"
-+FILES_kernel-vmlinux = "/boot/vmlinux*"
-+FILES_kernel-modules = ""
-+RDEPENDS_kernel = "kernel-base"
-+# Allow machines to override this dependency if kernel image files are 
-+# not wanted in images as standard
-+RDEPENDS_kernel-base ?= "kernel-image"
-+PKG_kernel-image = "kernel-image-${@legitimize_package_name('${KERNEL_VERSION}')}"
-+PKG_kernel-base = "kernel-${@legitimize_package_name('${KERNEL_VERSION}')}"
-+RPROVIDES_kernel-base += "kernel-${KERNEL_VERSION}"
-+ALLOW_EMPTY_kernel = "1"
-+ALLOW_EMPTY_kernel-base = "1"
-+ALLOW_EMPTY_kernel-image = "1"
-+ALLOW_EMPTY_kernel-modules = "1"
-+DESCRIPTION_kernel-modules = "Kernel modules meta package"
-+
-+pkg_postinst_kernel-image () {
-+if [ ! -e "$D/lib/modules/${KERNEL_VERSION}" ]; then
-+	mkdir -p $D/lib/modules/${KERNEL_VERSION}
-+fi
-+if [ -n "$D" ]; then
-+	depmodwrapper -a -b $D ${KERNEL_VERSION}
-+else
-+	depmod -a ${KERNEL_VERSION}
-+fi
-+}
-+
-+PACKAGESPLITFUNCS_prepend = "split_kernel_packages "
-+
-+python split_kernel_packages () {
-+    do_split_packages(d, root='/lib/firmware', file_regex='^(.*)\.bin$', output_pattern='kernel-firmware-%s', description='Firmware for %s', recursive=True, extra_depends='')
-+    do_split_packages(d, root='/lib/firmware', file_regex='^(.*)\.fw$', output_pattern='kernel-firmware-%s', description='Firmware for %s', recursive=True, extra_depends='')
-+    do_split_packages(d, root='/lib/firmware', file_regex='^(.*)\.cis$', output_pattern='kernel-firmware-%s', description='Firmware for %s', recursive=True, extra_depends='')
-+}
-+
-+do_strip() {
-+	if [ -n "${KERNEL_IMAGE_STRIP_EXTRA_SECTIONS}" ]; then
-+		if [[ "${KERNEL_IMAGETYPE}" != "vmlinux" ]]; then
-+			bbwarn "image type will not be stripped (not supported): ${KERNEL_IMAGETYPE}"
-+			return
-+		fi
-+
-+		cd ${B}
-+		headers=`"$CROSS_COMPILE"readelf -S ${KERNEL_OUTPUT} | \
-+			  grep "^ \{1,\}\[[0-9 ]\{1,\}\] [^ ]" | \
-+			  sed "s/^ \{1,\}\[[0-9 ]\{1,\}\] //" | \
-+			  gawk '{print $1}'`
-+
-+		for str in ${KERNEL_IMAGE_STRIP_EXTRA_SECTIONS}; do {
-+			if [[ "$headers" != *"$str"* ]]; then
-+				bbwarn "Section not found: $str";
-+			fi
-+
-+			"$CROSS_COMPILE"strip -s -R $str ${KERNEL_OUTPUT}
-+		}; done
-+
-+		bbnote "KERNEL_IMAGE_STRIP_EXTRA_SECTIONS is set, stripping sections:" \
-+			"${KERNEL_IMAGE_STRIP_EXTRA_SECTIONS}"
-+	fi;
-+}
-+do_strip[dirs] = "${B}"
-+
-+addtask do_strip before do_sizecheck after do_kernel_link_vmlinux
-+
-+# Support checking the kernel size since some kernels need to reside in partitions
-+# with a fixed length or there is a limit in transferring the kernel to memory
-+do_sizecheck() {
-+	if [ ! -z "${KERNEL_IMAGE_MAXSIZE}" ]; then
-+		cd ${B}
-+		size=`ls -lL ${KERNEL_OUTPUT} | awk '{ print $5}'`
-+		if [ $size -ge ${KERNEL_IMAGE_MAXSIZE} ]; then
-+			die "This kernel (size=$size > ${KERNEL_IMAGE_MAXSIZE}) is too big for your device. Please reduce the size of the kernel by making more of it modular."
-+		fi
-+	fi
-+}
-+do_sizecheck[dirs] = "${B}"
-+
-+addtask sizecheck before do_install after do_strip
-+
-+KERNEL_IMAGE_BASE_NAME ?= "${KERNEL_IMAGETYPE}-${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"
-+# Don't include the DATETIME variable in the sstate package signatures
-+KERNEL_IMAGE_BASE_NAME[vardepsexclude] = "DATETIME"
-+KERNEL_IMAGE_SYMLINK_NAME ?= "${KERNEL_IMAGETYPE}-${MACHINE}"
-+MODULE_IMAGE_BASE_NAME ?= "modules-${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"
-+MODULE_IMAGE_BASE_NAME[vardepsexclude] = "DATETIME"
-+MODULE_TARBALL_BASE_NAME ?= "${MODULE_IMAGE_BASE_NAME}.tgz"
-+# Don't include the DATETIME variable in the sstate package signatures
-+MODULE_TARBALL_SYMLINK_NAME ?= "modules-${MACHINE}.tgz"
-+MODULE_TARBALL_DEPLOY ?= "1"
-+
-+do_uboot_mkimage() {
-+	if test "x${KERNEL_IMAGETYPE}" = "xuImage" ; then 
-+		if test "x${KEEPUIMAGE}" != "xyes" ; then
-+			ENTRYPOINT=${UBOOT_ENTRYPOINT}
-+			if test -n "${UBOOT_ENTRYSYMBOL}"; then
-+				ENTRYPOINT=`${HOST_PREFIX}nm ${S}/vmlinux | \
-+					awk '$3=="${UBOOT_ENTRYSYMBOL}" {print $1}'`
-+			fi
-+			if test -e arch/${ARCH}/boot/compressed/vmlinux ; then
-+				${OBJCOPY} -O binary -R .note -R .comment -S arch/${ARCH}/boot/compressed/vmlinux linux.bin
-+				uboot-mkimage -A ${UBOOT_ARCH} -O linux -T kernel -C none -a ${UBOOT_LOADADDRESS} -e $ENTRYPOINT -n "${DISTRO_NAME}/${PV}/${MACHINE}" -d linux.bin arch/${ARCH}/boot/uImage
-+				rm -f linux.bin
-+			else
-+				${OBJCOPY} -O binary -R .note -R .comment -S vmlinux linux.bin
-+				rm -f linux.bin.gz
-+				gzip -9 linux.bin
-+				uboot-mkimage -A ${UBOOT_ARCH} -O linux -T kernel -C gzip -a ${UBOOT_LOADADDRESS} -e $ENTRYPOINT -n "${DISTRO_NAME}/${PV}/${MACHINE}" -d linux.bin.gz arch/${ARCH}/boot/uImage
-+				rm -f linux.bin.gz
-+			fi
-+		fi
-+	fi
-+}
-+
-+addtask uboot_mkimage before do_install after do_compile
-+
-+kernel_do_deploy() {
-+	install -m 0644 ${KERNEL_OUTPUT} ${DEPLOYDIR}/${KERNEL_IMAGE_BASE_NAME}.bin
-+	if [ ${MODULE_TARBALL_DEPLOY} = "1" ] && (grep -q -i -e '^CONFIG_MODULES=y$' .config); then
-+		mkdir -p ${D}/lib
-+		tar -cvzf ${DEPLOYDIR}/${MODULE_TARBALL_BASE_NAME} -C ${D} lib
-+		ln -sf ${MODULE_TARBALL_BASE_NAME}.bin ${MODULE_TARBALL_SYMLINK_NAME}
-+	fi
-+
-+	cd ${DEPLOYDIR}
-+	rm -f ${KERNEL_IMAGE_SYMLINK_NAME}.bin
-+	ln -sf ${KERNEL_IMAGE_BASE_NAME}.bin ${KERNEL_IMAGE_SYMLINK_NAME}.bin
-+	ln -sf ${KERNEL_IMAGE_BASE_NAME}.bin ${KERNEL_IMAGETYPE}
-+
-+	cp ${COREBASE}/meta/files/deploydir_readme.txt ${DEPLOYDIR}/README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt
-+	cd -
-+}
-+do_deploy[dirs] = "${DEPLOYDIR} ${B}"
-+do_deploy[prefuncs] += "package_get_auto_pr"
-+
-+addtask deploy before do_build after do_install
-+
-+EXPORT_FUNCTIONS do_deploy
-+
+@@ -109,6 +109,7 @@ kernel_do_install() {
+ 	install -d ${D}/${KERNEL_IMAGEDEST}
+ 	install -d ${D}/boot
+ 	install -m 0644 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
++	ln      -sf ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION} ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}
+ 	install -m 0644 System.map ${D}/boot/System.map-${KERNEL_VERSION}
+ 	install -m 0644 .config ${D}/boot/config-${KERNEL_VERSION}
+ 	install -m 0644 vmlinux ${D}/boot/vmlinux-${KERNEL_VERSION}
 -- 
 1.7.0.4
 
