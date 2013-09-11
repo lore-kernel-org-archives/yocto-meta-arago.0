@@ -1,23 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTP id 5883552A19
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 39CEC529A2
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Sep 2013 17:26:48 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173013.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MSZ00FPL1S8XNN1@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 11 Sep 2013 12:26:33 -0500 (CDT)
-Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 762DA2008D; Wed,
-	11 Sep 2013 13:26:32 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 11 Sep 2013 13:26:31 -0400
-Message-id: <1378920391-20044-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] packagegroup-*connectivity*: disable ti-compat-{wireless, bluetooth} for now due to breakage
+	Wed, 11 Sep 2013 21:13:03 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8BLD2hr031069
+	for <meta-arago@arago-project.org>; Wed, 11 Sep 2013 16:13:02 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8BLD2m5016126
+	for <meta-arago@arago-project.org>; Wed, 11 Sep 2013 16:13:02 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Wed, 11 Sep 2013 16:13:02 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] arago-qt4: undo RRECOMMENDS for
+	eglibc-gconv-utf-16
+Thread-Index: AQHOrpeeg4Ndxem0Vk+arNo0GVu6ZJnBF7IA///yhGE=
+Date: Wed, 11 Sep 2013 21:13:01 +0000
+Message-ID: <B1A7D92B-0718-4262-A267-EF216902C823@ti.com>
+References: <1378866929-16570-1-git-send-email-denis@denix.org>,
+	<20130911170117.GH8614@edge>
+In-Reply-To: <20130911170117.GH8614@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] arago-qt4: undo RRECOMMENDS for	eglibc-gconv-utf-16
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,67 +40,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Sep 2013 17:26:48 -0000
+X-List-Received-Date: Wed, 11 Sep 2013 21:13:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Denys Dmytriyenko <denys@ti.com>
+Is there a plan to fix this for the external arago toolchain?
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../packagegroup-arago-tisdk-connectivity-sdk-host.bb             | 8 +++++---
- .../packagegroups/packagegroup-arago-tisdk-connectivity.bb        | 8 +++++---
- 2 files changed, 10 insertions(+), 6 deletions(-)
+On Sep 11, 2013, at 7:01 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
-index 398d6d6..8d4d081 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
-@@ -1,14 +1,16 @@
- DESCRIPTION = "Task to install wlan and bluetooth sources into the SDK"
- LICENSE = "MIT"
--PR = "r5"
-+PR = "r6"
- 
- inherit packagegroup
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-+# Further breaks to resolve
-+#    ti-compat-wireless-wl12xx-src
-+#    ti-compat-bluetooth-src
-+
- FIRMWARE_AND_DRIVERS_SRC = "\
--    ti-compat-wireless-wl12xx-src \
--    ti-compat-bluetooth-src \
-     bt-firmware-src \
-     bt-enable-src \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index 61fe6cf..0aa019d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install wlan and bluetooth packages into the target FS"
- LICENSE = "MIT"
--PR = "r16"
-+PR = "r17"
- 
- inherit packagegroup
- 
-@@ -37,9 +37,11 @@ WLAN_COMMON = "\
- # netperf has non-standard license, needs verifying
- #    netperf
- 
-+# Further breaks to resolve
-+#    ti-compat-wireless-wl12xx
-+#    ti-compat-bluetooth
-+
- FIRMWARE_AND_DRIVERS = "\
--    ti-compat-wireless-wl12xx \
--    ti-compat-bluetooth \
-     bt-firmware \
-     bt-enable \
-     wl12xx-firmware \
--- 
-1.8.3.2
-
+> If there are no objections, I'd like to push this one in - it currently b=
+reaks=20
+> builds with the external arago toolchain (am180x only now). But in genera=
+l, it=20
+> pulls in entire eglibc into the build to get that specific locale/gconv m=
+odule.
+>=20
+> --=20
+> Denys
+>=20
+> On Tue, Sep 10, 2013 at 10:35:29PM -0400, Denys Dmytriyenko wrote:
+>> From: Denys Dmytriyenko <denys@ti.com>
+>>=20
+>> Commit 995502d19cce43430c3f4dce80ce6ef5feee7421 in or-core adds RRECOMME=
+NDS
+>> for eglibc-gconv-utf-16 to resolve Qt's warning related to i18n and l10n=
+.
+>> Current external toolchains in use by meta-arago do not provide gconv mo=
+dules.
+>> While it is possible to fix for Linaro, as it is shipped with gconv modu=
+les,
+>> Arago toolchain had no gconv modules distributed, unfortunately.
+>>=20
+>> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>> ---
+>> meta-arago-distro/recipes-qt/qt4/arago-qt4.inc | 6 +++++-
+>> 1 file changed, 5 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc b/meta-arago=
+-distro/recipes-qt/qt4/arago-qt4.inc
+>> index 0291555..715092e 100644
+>> --- a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+>> +++ b/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+>> @@ -1,11 +1,15 @@
+>> # Common file for patches or tweaks that are needed by qt4-embedded and
+>> # qt4-embedded-gles
+>>=20
+>> -PR :=3D "${PR}-arago4"
+>> +PR :=3D "${PR}-arago5"
+>>=20
+>> # look for files in this layer first
+>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+>>=20
+>> +python __anonymous () {
+>> +    d.setVar("RRECOMMENDS_libqt-embeddedcore4", "")
+>> +}
+>> +
+>> # Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+>> # For our distribution purposes we only use LGPLv2.1
+>> LICENSE =3D "LGPLv2.1"
+>> --=20
+>> 1.8.3.2
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
