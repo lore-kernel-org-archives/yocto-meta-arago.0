@@ -1,32 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 01223529D3
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 93696529A7
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Sep 2013 21:20:00 +0000 (UTC)
+	Tue, 17 Sep 2013 22:30:31 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8HLJxk8008690
-	for <meta-arago@arago-project.org>; Tue, 17 Sep 2013 16:20:00 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8HLJxHr009826
-	for <meta-arago@arago-project.org>; Tue, 17 Sep 2013 16:19:59 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Tue, 17 Sep 2013 16:19:58 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [for comments][PATCH] packagegroup-arago-base: Create new
-	tisdk package
-Thread-Index: AQHOs+cla6vPx4tpmECl70UoinAPJJnKZoXA
-Date: Tue, 17 Sep 2013 21:19:59 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C553C53@DFLE08.ent.ti.com>
-References: <1379453285-14892-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1379453285-14892-1-git-send-email-fcooper@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8HMUU1i023084
+	for <meta-arago@arago-project.org>; Tue, 17 Sep 2013 17:30:30 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8HMUU9F005543
+	for <meta-arago@arago-project.org>; Tue, 17 Sep 2013 17:30:30 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Tue, 17 Sep 2013 17:30:30 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename base
+	file	system image
+Thread-Index: AQHOs9RYbYw2lIu++ki1pvSn43bTPZnKgyCA
+Date: Tue, 17 Sep 2013 22:30:30 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101597332E5@DLEE11.ent.ti.com>
+References: <1379445202-31364-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1379445202-31364-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [for comments][PATCH] packagegroup-arago-base: Create new tisdk package
+Subject: Re: [PATCH 1/2] tisdk-rootfs-base-image: Rename base file	system image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,144 +40,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2013 21:20:01 -0000
+X-List-Received-Date: Tue, 17 Sep 2013 22:30:32 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-So I want to make some changes but would like everyone's feedback.
+You will need to update the setup script as well right?  Because I think th=
+is would also match the expression used to find the rootfs used for the NFS=
+ setup
 
-Overall the problem I want to solve is simple.
-The Sitara SDK (scripts, example applications, etc..) will be updated for 3=
-.12+ Linux kernel. This will result in older platforms am18x, am37x, am335x=
- (3.2 kernel) and am3517 being unable to utilize these changes and some thi=
-ngs will end up being broken. Realistically outside of individuals who want=
- to recreate a TI SDK this is not a big deal. However, no filesystem image =
-that includes gstreamer, qt, openssl, wilink, sgx exist without SDK specifi=
-c packages. What I want to do is create a new image that wouldn't include S=
-DK specific packages therefore providing a full fledge filesystem (supports=
- qt, gstreamer, wilink, etc..) that is independent of the sdk and will cont=
-inue to work for older platforms .
-
-Other than the obvious required changes I want to update some of the curren=
-t packagegroups. The below patch is an example of some of the changes I wan=
-t to make.
-
-Consolidate some packagegroups:
-	Ex. Merge packagegroup-arago-gst with packagegroup-arago-tisdk-multimedia.
-For packagegroup's that include SDK specific packages I want to create a ne=
-w package ${PN}-tisdk that will include these SDK specific packages
-Due to the above change the majority of packagegroup recipes will drop "tis=
-dk" from the recipe name.
-	Ex packagegroup-arago-tisdk-multimedia.bb will be renamed to packagegroup-=
-arago-multimedia.bb.
-	     packagegroup-arago-multimedia.bb will then include a new package ${PN=
-}-tisdk.=20
-	   =20
-This will allow the new non SDK specific image to include packagegroup-arag=
-o-multimedia but the SDK specific image (i.e. tisdk-rootfs-image) would inc=
-lude packagegroup-arago-multimedia-tisdk
-
-The other approach I could take is to create a bunch more packagegroups but=
- I think our current number of 28 is already good enough. :)
-
-Any questions or concerns?
-
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Tuesday, September 17, 2013 4:28 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [for comments][PATCH] packagegroup-arago-base: Create new tisdk
-> package
->=20
-> * Consolidate packagegroups by creating a new package that will contain
-> packages
->   specific to the tisdk.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-base-tisdk.bb |   20 --------------=
-------
->  .../packagegroups/packagegroup-arago-base.bb       |   18
-> +++++++++++++++++-
->  2 files changed, 17 insertions(+), 21 deletions(-)  delete mode 100644 m=
-eta-
-> arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
->=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-base-tisdk.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-base-tisdk.bb
-> deleted file mode 100644
-> index 16b5df1..0000000
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> base-tisdk.bb
-> +++ /dev/null
-> @@ -1,20 +0,0 @@
-> -DESCRIPTION =3D "Additional packages beyond console packages shared by T=
-I
-> SDKs"
-> -LICENSE =3D "MIT"
-> -PR =3D "r13"
-> -
-> -inherit packagegroup
-> -
-> -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> -
-> -RDEPENDS_${PN} =3D "\
-> -    dbus \
-> -    expat \
-> -    glib-2.0 \
-> -    libxml2 \
-> -    libpcre \
-> -    iptables \
-> -    iperf \
-> -    psplash \
-> -    arago-gpl-notice \
-> -    nfs-utils-client \
-> -    "
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-base.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-base.bb
-> index fd9cd15..02242c7 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> base.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ba
-> +++ se.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION =3D "Basic task to get a device booting"
->  LICENSE =3D "MIT"
-> -PR =3D "r3"
-> +PR =3D "r4"
->=20
->  inherit packagegroup
->=20
-> @@ -23,9 +23,25 @@ ARAGO_EXTRA =3D "\
->      tcpdump \
->      "
->=20
-> +PACKAGES +=3D "${PN}-tisdk"
-> +
->  # minimal set of packages - needed to boot  RDEPENDS_${PN} =3D "\
->      ${ARAGO_ALSA_BASE} \
->      ${ARAGO_BASE} \
->      ${ARAGO_EXTRA} \
->      "
-> +
-> +RDEPENDS_${PN}-tisdk =3D "\
-> +    ${PN} \
-> +    dbus \
-> +    expat \
-> +    glib-2.0 \
-> +    libxml2 \
-> +    libpcre \
-> +    iptables \
-> +    iperf \
-> +    psplash \
-> +    arago-gpl-notice \
-> +    nfs-utils-client \
-> +    "
-> --
-> 1.7.0.4
-
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+>Sent: Tuesday, September 17, 2013 3:13 PM
+>To: meta-arago@arago-project.org
+>Cc: Cooper Jr., Franklin
+>Subject: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename
+>base file system image
+>
+>* People are frequently confused by the difference in naming
+>between the minimal
+>  file system and the larger file system.
+>* Rename the minimal file system to mimic the naming convention of
+>the larger
+>  file system.
+>
+>Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>---
+> ...e-tisdk-image.bb =3D> tisdk-rootfs-base-image.bb} |    2 +-
+> 1 files changed, 1 insertions(+), 1 deletions(-)
+> rename meta-arago-distro/recipes-core/images/{arago-base-tisdk-
+>image.bb =3D> tisdk-rootfs-base-image.bb} (87%)
+>
+>diff --git a/meta-arago-distro/recipes-core/images/arago-base-
+>tisdk-image.bb b/meta-arago-distro/recipes-core/images/tisdk-
+>rootfs-base-image.bb
+>similarity index 87%
+>rename from meta-arago-distro/recipes-core/images/arago-base-
+>tisdk-image.bb
+>rename to meta-arago-distro/recipes-core/images/tisdk-rootfs-base-
+>image.bb
+>index 2c0e217..a3a9123 100644
+>--- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-
+>image.bb
+>+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-base-
+>image.bb
+>@@ -12,4 +12,4 @@ IMAGE_INSTALL +=3D "\
+>     packagegroup-arago-base-tisdk \
+>     "
+>
+>-export IMAGE_BASENAME =3D "arago-base-tisdk-image"
+>+export IMAGE_BASENAME =3D "tisdk-rootfs-base-image"
+>--
+>1.7.0.4
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
