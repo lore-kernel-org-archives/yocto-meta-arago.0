@@ -1,33 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 3567D52990
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id B52B852990
 	for <meta-arago@arago-project.org>;
-	Thu, 19 Sep 2013 00:13:09 +0000 (UTC)
+	Thu, 19 Sep 2013 07:14:35 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8J0D8R9008042
-	for <meta-arago@arago-project.org>; Wed, 18 Sep 2013 19:13:08 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8J0D8nj007634
-	for <meta-arago@arago-project.org>; Wed, 18 Sep 2013 19:13:08 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 18 Sep 2013 19:13:07 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8J0D7Qp000638;
-	Wed, 18 Sep 2013 19:13:07 -0500
-Date: Wed, 18 Sep 2013 20:13:07 -0400
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8J7EYxw003329
+	for <meta-arago@arago-project.org>; Thu, 19 Sep 2013 02:14:34 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8J7EYhR032203
+	for <meta-arago@arago-project.org>; Thu, 19 Sep 2013 02:14:34 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 19 Sep 2013 02:14:34 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r8J7EYYh005849	for <meta-arago@arago-project.org>;
+	Thu, 19 Sep 2013 02:14:34 -0500
+Date: Thu, 19 Sep 2013 03:05:06 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20130919001306.GC27021@edge>
-References: <1379453285-14892-1-git-send-email-fcooper@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C553C53@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED10159735181@DLEE11.ent.ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1677975003.685.1379574306103.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED10159735181@DLEE11.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
-	Franklin" <fcooper@ti.com>
-Subject: Re: [for comments][PATCH] packagegroup-arago-base: Create new tisdk package
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.09 build 2013-09-19_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,216 +36,196 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 00:13:10 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 19 Sep 2013 07:14:36 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_684_1292780986.1379574306102"
 
-Yes, that is the correct understanding - I see it exactly the same. BTW, there 
-is the RDEPENDS there for the -tisdk packagegroup to depend on the base 
-package:
+------=_Part_684_1292780986.1379574306102
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> +RDEPENDS_${PN}-tisdk = "\
-> +    ${PN} \
-> +    dbus \
+<html>
+<head>
+<title>
+Status for 09/19/13
+</title>
+</head>
+<body>
 
-But I'd have to agree that while this method of overloading the packagegroup 
-is technically correct and maybe innovative, I'm not sure it is the most 
-obvious one. On the other hand, that is somewhat similar to how the core base 
-packagegroup in oe-core (and Classic OE before) is structured and provides all 
-the base-acpi, base-alsa, base-bluetooth, base-pci etc. sub-packages depending 
-on DISTRO_FEATURES defined...
+<h2>Status for 09/19/13</h2>
 
-Either way, we would still have blah-toolchain-host and blah-toolchain-target 
-packagegroups separate from the main "blah" one. So, I'm on the fence about 
-which way to go with the packagegroups - one provides less files with slightly 
-more convoluted syntax, while the other is simple and srtaigtforward, but then 
-you may get lost in the number of files... Do you have anything else to 
-convince me one way or another? :)
+<h2>BUILD_ID: build-2013-09-19_01-02-52</h2>
 
--- 
-Denys
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.09"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-On Wed, Sep 18, 2013 at 03:14:52PM +0000, Maupin, Chase wrote:
-> So if I understand you what you want to do is make one package group with 
-> multiple output packages rather than have for example two package groups 
-> where one includes the other?
-> 
-> One thing I see that might be difficult here is that if I look for what 
-> builds the packagegroup-arago-multimedia-tisdk package I would need to know 
-> that it is inside the packagegroup-arago-multimedia group.
-> 
-> I assume you will also have to set the RDEPENDS inside the package group too 
-> for the new packages to make sure they pull in the base package.
-> 
-> If the overall goal is to allow people to build a file system without SDK 
-> specifics I think having packagegroups that build on top of each other is a 
-> cleaner way than overloading the packagegroup recipes.  However, maybe I'm 
-> misunderstanding here.
-> 
-> >-----Original Message-----
-> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> >Sent: Tuesday, September 17, 2013 5:20 PM
-> >To: meta-arago@arago-project.org
-> >Subject: Re: [meta-arago] [for comments][PATCH] packagegroup-
-> >arago-base: Create new tisdk package
-> >
-> >So I want to make some changes but would like everyone's feedback.
-> >
-> >Overall the problem I want to solve is simple.
-> >The Sitara SDK (scripts, example applications, etc..) will be
-> >updated for 3.12+ Linux kernel. This will result in older
-> >platforms am18x, am37x, am335x (3.2 kernel) and am3517 being
-> >unable to utilize these changes and some things will end up being
-> >broken. Realistically outside of individuals who want to recreate
-> >a TI SDK this is not a big deal. However, no filesystem image that
-> >includes gstreamer, qt, openssl, wilink, sgx exist without SDK
-> >specific packages. What I want to do is create a new image that
-> >wouldn't include SDK specific packages therefore providing a full
-> >fledge filesystem (supports qt, gstreamer, wilink, etc..) that is
-> >independent of the sdk and will continue to work for older
-> >platforms .
-> >
-> >Other than the obvious required changes I want to update some of
-> >the current packagegroups. The below patch is an example of some
-> >of the changes I want to make.
-> >
-> >Consolidate some packagegroups:
-> >	Ex. Merge packagegroup-arago-gst with packagegroup-arago-
-> >tisdk-multimedia.
-> >For packagegroup's that include SDK specific packages I want to
-> >create a new package ${PN}-tisdk that will include these SDK
-> >specific packages
-> >Due to the above change the majority of packagegroup recipes will
-> >drop "tisdk" from the recipe name.
-> >	Ex packagegroup-arago-tisdk-multimedia.bb will be renamed to
-> >packagegroup-arago-multimedia.bb.
-> >	     packagegroup-arago-multimedia.bb will then include a
-> >new package ${PN}-tisdk.
-> >
-> >This will allow the new non SDK specific image to include
-> >packagegroup-arago-multimedia but the SDK specific image (i.e.
-> >tisdk-rootfs-image) would include packagegroup-arago-multimedia-
-> >tisdk
-> >
-> >The other approach I could take is to create a bunch more
-> >packagegroups but I think our current number of 28 is already good
-> >enough. :)
-> >
-> >Any questions or concerns?
-> >
-> >> -----Original Message-----
-> >> From: Cooper Jr., Franklin
-> >> Sent: Tuesday, September 17, 2013 4:28 PM
-> >> To: meta-arago@arago-project.org
-> >> Cc: Cooper Jr., Franklin
-> >> Subject: [for comments][PATCH] packagegroup-arago-base: Create
-> >new tisdk
-> >> package
-> >>
-> >> * Consolidate packagegroups by creating a new package that will
-> >contain
-> >> packages
-> >>   specific to the tisdk.
-> >>
-> >> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> >> ---
-> >>  .../packagegroups/packagegroup-arago-base-tisdk.bb |   20 -----
-> >---------------
-> >>  .../packagegroups/packagegroup-arago-base.bb       |   18
-> >> +++++++++++++++++-
-> >>  2 files changed, 17 insertions(+), 21 deletions(-)  delete mode
-> >100644 meta-
-> >> arago-distro/recipes-core/packagegroups/packagegroup-arago-base-
-> >tisdk.bb
-> >>
-> >> diff --git a/meta-arago-distro/recipes-
-> >core/packagegroups/packagegroup-
-> >> arago-base-tisdk.bb b/meta-arago-distro/recipes-
-> >> core/packagegroups/packagegroup-arago-base-tisdk.bb
-> >> deleted file mode 100644
-> >> index 16b5df1..0000000
-> >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> >arago-
-> >> base-tisdk.bb
-> >> +++ /dev/null
-> >> @@ -1,20 +0,0 @@
-> >> -DESCRIPTION = "Additional packages beyond console packages
-> >shared by TI
-> >> SDKs"
-> >> -LICENSE = "MIT"
-> >> -PR = "r13"
-> >> -
-> >> -inherit packagegroup
-> >> -
-> >> -PACKAGE_ARCH = "${MACHINE_ARCH}"
-> >> -
-> >> -RDEPENDS_${PN} = "\
-> >> -    dbus \
-> >> -    expat \
-> >> -    glib-2.0 \
-> >> -    libxml2 \
-> >> -    libpcre \
-> >> -    iptables \
-> >> -    iperf \
-> >> -    psplash \
-> >> -    arago-gpl-notice \
-> >> -    nfs-utils-client \
-> >> -    "
-> >> diff --git a/meta-arago-distro/recipes-
-> >core/packagegroups/packagegroup-
-> >> arago-base.bb b/meta-arago-distro/recipes-
-> >> core/packagegroups/packagegroup-arago-base.bb
-> >> index fd9cd15..02242c7 100644
-> >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> >arago-
-> >> base.bb
-> >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> >arago-ba
-> >> +++ se.bb
-> >> @@ -1,6 +1,6 @@
-> >>  DESCRIPTION = "Basic task to get a device booting"
-> >>  LICENSE = "MIT"
-> >> -PR = "r3"
-> >> +PR = "r4"
-> >>
-> >>  inherit packagegroup
-> >>
-> >> @@ -23,9 +23,25 @@ ARAGO_EXTRA = "\
-> >>      tcpdump \
-> >>      "
-> >>
-> >> +PACKAGES += "${PN}-tisdk"
-> >> +
-> >>  # minimal set of packages - needed to boot  RDEPENDS_${PN} = "\
-> >>      ${ARAGO_ALSA_BASE} \
-> >>      ${ARAGO_BASE} \
-> >>      ${ARAGO_EXTRA} \
-> >>      "
-> >> +
-> >> +RDEPENDS_${PN}-tisdk = "\
-> >> +    ${PN} \
-> >> +    dbus \
-> >> +    expat \
-> >> +    glib-2.0 \
-> >> +    libxml2 \
-> >> +    libpcre \
-> >> +    iptables \
-> >> +    iperf \
-> >> +    psplash \
-> >> +    arago-gpl-notice \
-> >> +    nfs-utils-client \
-> >> +    "
-> >> --
-> >> 1.7.0.4
-> >
-> >_______________________________________________
-> >meta-arago mailing list
-> >meta-arago@arago-project.org
-> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_684_1292780986.1379574306102--
