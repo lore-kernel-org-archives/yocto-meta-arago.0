@@ -1,23 +1,23 @@
 Return-Path: <denis@denix.org>
-Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
-	[206.46.173.3])
-	by arago-project.org (Postfix) with ESMTP id 242F5529A2
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTP id 83F4952A87
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Sep 2013 19:00:20 +0000 (UTC)
+	Fri, 20 Sep 2013 19:18:38 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173003.mailsrvcs.net
+	by vms173007.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MTF005VOU3WL0D1@vms173003.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 20 Sep 2013 13:59:57 -0500 (CDT)
+	2009)) with ESMTPA id <0MTF001UQUY8V3P3@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 20 Sep 2013 14:18:18 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 79A2B20120; Fri,
-	20 Sep 2013 14:59:56 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 344F520120; Fri,
+	20 Sep 2013 15:18:08 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Sep 2013 14:59:55 -0400
-Message-id: <1379703595-1330-1-git-send-email-denis@denix.org>
+Date: Fri, 20 Sep 2013 15:18:07 -0400
+Message-id: <1379704687-12873-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] sourceipk: do not dereference symlinks when packaging data to avoid breakage
+Subject: [PATCH] packagegroup-arago-test: re-enable ltp-ddt for am437x now
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,28 +30,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 19:00:20 -0000
+X-List-Received-Date: Fri, 20 Sep 2013 19:18:38 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/sourceipk.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-test.bb             | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
-index 1ea0577..777cb4f 100644
---- a/meta-arago-distro/classes/sourceipk.bbclass
-+++ b/meta-arago-distro/classes/sourceipk.bbclass
-@@ -167,7 +167,7 @@ sourceipk_do_create_srcipk() {
-         fi
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index 6b60424..c915fbd 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Extended task to get System Test specific apps"
+ LICENSE = "MIT"
+-PR = "r7"
++PR = "r8"
  
-         #Write the data tarball
--        tar -C $tmp_dir --owner=0 --group=0 -chzf $srcipk_dir/data.tar.gz .
-+        tar -C $tmp_dir --owner=0 --group=0 -czf $srcipk_dir/data.tar.gz .
+ inherit packagegroup
  
-         # Create the debian-binary file
-         echo "2.0" > $srcipk_dir/debian-binary
+@@ -22,8 +22,6 @@ ARAGO_TI_TEST = "\
+     ltp-ddt \
+     "
+ 
+-ARAGO_TI_TEST_ti43x = ""
+-
+ ARAGO_TI_TEST_append_omap-a15 = " \
+     omapconf \
+     libdrm-tests \
 -- 
 1.8.3.2
 
