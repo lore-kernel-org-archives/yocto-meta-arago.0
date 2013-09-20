@@ -1,23 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id 83F4952A87
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id BF3A752A88
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Sep 2013 19:18:38 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MTF001UQUY8V3P3@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 20 Sep 2013 14:18:18 -0500 (CDT)
-Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 344F520120; Fri,
-	20 Sep 2013 15:18:08 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 20 Sep 2013 15:18:07 -0400
-Message-id: <1379704687-12873-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] packagegroup-arago-test: re-enable ltp-ddt for am437x now
+	Fri, 20 Sep 2013 19:28:23 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8KJSNZ6014916;
+	Fri, 20 Sep 2013 14:28:23 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8KJSMxA032031;
+	Fri, 20 Sep 2013 14:28:23 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Fri, 20 Sep 2013 14:28:22 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] sourceipk: do not dereference symlinks
+	when packaging data to avoid breakage
+Thread-Index: AQHOtjOrr8PUTT3Ks02uWWO/clsscJnPAqGA
+Date: Fri, 20 Sep 2013 19:28:22 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C558148@DFLE08.ent.ti.com>
+References: <1379703595-1330-1-git-send-email-denis@denix.org>
+In-Reply-To: <1379703595-1330-1-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
+MIME-Version: 1.0
+Subject: Re: [PATCH] sourceipk: do not dereference symlinks when packaging data to avoid breakage
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,37 +40,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 19:18:38 -0000
+X-List-Received-Date: Fri, 20 Sep 2013 19:28:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Denys Dmytriyenko <denys@ti.com>
+Tested and it worked for me.=20
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-test.bb             | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 6b60424..c915fbd 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r7"
-+PR = "r8"
- 
- inherit packagegroup
- 
-@@ -22,8 +22,6 @@ ARAGO_TI_TEST = "\
-     ltp-ddt \
-     "
- 
--ARAGO_TI_TEST_ti43x = ""
--
- ARAGO_TI_TEST_append_omap-a15 = " \
-     omapconf \
-     libdrm-tests \
--- 
-1.8.3.2
-
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> Sent: Friday, September 20, 2013 2:00 PM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCH] sourceipk: do not dereference symlinks when
+> packaging data to avoid breakage
+>=20
+> From: Denys Dmytriyenko <denys@ti.com>
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+>  meta-arago-distro/classes/sourceipk.bbclass | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-
+> distro/classes/sourceipk.bbclass
+> index 1ea0577..777cb4f 100644
+> --- a/meta-arago-distro/classes/sourceipk.bbclass
+> +++ b/meta-arago-distro/classes/sourceipk.bbclass
+> @@ -167,7 +167,7 @@ sourceipk_do_create_srcipk() {
+>          fi
+>=20
+>          #Write the data tarball
+> -        tar -C $tmp_dir --owner=3D0 --group=3D0 -chzf $srcipk_dir/data.t=
+ar.gz .
+> +        tar -C $tmp_dir --owner=3D0 --group=3D0 -czf $srcipk_dir/data.ta=
+r.gz .
+>=20
+>          # Create the debian-binary file
+>          echo "2.0" > $srcipk_dir/debian-binary
+> --
+> 1.8.3.2
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
