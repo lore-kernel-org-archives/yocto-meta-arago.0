@@ -1,29 +1,40 @@
-Return-Path: <denys@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5CEBF5296F
+	by arago-project.org (Postfix) with ESMTPS id 3E0B7529A0
 	for <meta-arago@arago-project.org>;
-	Mon, 23 Sep 2013 06:47:52 +0000 (UTC)
+	Mon, 23 Sep 2013 14:53:59 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8N6lplh015743
-	for <meta-arago@arago-project.org>; Mon, 23 Sep 2013 01:47:51 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8NErv7t006294
+	for <meta-arago@arago-project.org>; Mon, 23 Sep 2013 09:53:57 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8N6lpOs032208
-	for <meta-arago@arago-project.org>; Mon, 23 Sep 2013 01:47:51 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 23 Sep 2013 01:47:51 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r8N6los7031049	for <meta-arago@arago-project.org>;
-	Mon, 23 Sep 2013 01:47:50 -0500
-Date: Mon, 23 Sep 2013 02:38:16 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <206082965.701.1379918296205.JavaMail.jenkins@puget>
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8NErsKJ016947
+	for <meta-arago@arago-project.org>; Mon, 23 Sep 2013 09:53:57 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Mon, 23 Sep 2013 09:53:55 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename base
+	file	system image
+Thread-Index: AQHOs99tTHafF954906JGDI6H9a4fpnKWBrwgAUDzgD//61HsIAAYCaA//+wLGCAAF9XAIAD+B3Q
+Date: Mon, 23 Sep 2013 14:53:54 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C55A51B@DFLE08.ent.ti.com>
+References: <1379445202-31364-1-git-send-email-fcooper@ti.com>
+	<B0581B5571079145BA1CD78C126DBDE72E8A07BE@DLEE08.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C553A50@DFLE08.ent.ti.com>
+	<20130920193051.GB30673@edge>
+	<8F29D6B095ED194EA1980491A5E029710C55817B@DFLE08.ent.ti.com>
+	<20130920201855.GD30673@edge>
+	<8F29D6B095ED194EA1980491A5E029710C558370@DFLE08.ent.ti.com>
+	<20130920211425.GF30673@edge>
+In-Reply-To: <20130920211425.GF30673@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.09 build 2013-09-23_01-01-44
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 1/2] tisdk-rootfs-base-image: Rename base file	system image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,196 +47,197 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 06:47:53 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_700_1218584972.1379918296204"
-
-------=_Part_700_1218584972.1379918296204
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<html>
-<head>
-<title>
-Status for 09/23/13
-</title>
-</head>
-<body>
-
-<h2>Status for 09/23/13</h2>
-
-<h2>BUILD_ID: build-2013-09-23_01-02-52</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.09"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+X-List-Received-Date: Mon, 23 Sep 2013 14:54:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
-------=_Part_700_1218584972.1379918296204--
+
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Friday, September 20, 2013 4:14 PM
+> To: Cooper Jr., Franklin
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename bas=
+e
+> file system image
+>=20
+> On Fri, Sep 20, 2013 at 04:55:07PM -0400, Cooper Jr., Franklin wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Dmytriyenko, Denys
+> > > Sent: Friday, September 20, 2013 3:19 PM
+> > > To: Cooper Jr., Franklin
+> > > Cc: meta-arago@arago-project.org
+> > > Subject: Re: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image:
+> > > Rename base file system image
+> > >
+> > > On Fri, Sep 20, 2013 at 03:38:06PM -0400, Cooper Jr., Franklin wrote:
+> > > >
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Dmytriyenko, Denys
+> > > > > Sent: Friday, September 20, 2013 2:31 PM
+> > > > > To: Cooper Jr., Franklin
+> > > > > Cc: meta-arago@arago-project.org
+> > > > > Subject: Re: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image:
+> > > > > Rename base file system image
+> > > > >
+> > > > > On Tue, Sep 17, 2013 at 04:05:10PM -0400, Cooper Jr., Franklin wr=
+ote:
+> > > > > >
+> > > > > >
+> > > > > > > -----Original Message-----
+> > > > > > > From: Dmytriyenko, Denys
+> > > > > > > Sent: Tuesday, September 17, 2013 2:52 PM
+> > > > > > > To: Cooper Jr., Franklin; meta-arago@arago-project.org
+> > > > > > > Subject: RE: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image=
+:
+> > > > > > > Rename base file system image
+> > > > > > >
+> > > > > > > What was the initial reason to start naming rootfs images
+> > > > > > > with
+> > > > > > > tisdk-rootfs- prefix? I remember it was something forced by
+> > > > > > > the SDK
+> > > setup...
+> > > > > > [Franklin]
+> > > > > > This was before my time so I am not sure what the original reas=
+oning
+> was.
+> > > > > >
+> > > > > > I do assume there might be instances where some script
+> > > > > > somewhere will need to be updated if it refers to the full imag=
+e as
+> "tisdk-rootfs*"
+> > > > >
+> > > > > So, I located the change I was talking about:
+> > > > > http://arago-project.org/git/?p=3Dmeta-
+> > > > >
+> arago.git;a=3Dcommitdiff;h=3D91f2be34e301deebbc75c54bbad6a5a27e25bf2
+> > > > > c
+> > > > >
+> > > > > The "tisdk-image class had issues" is a rather vague
+> > > > > description, so I'm not sure or don't remember what was the
+> > > > > problem that you had to rename the original arago-tisdk-image int=
+o
+> tisdk-rootfs-image...
+> > > > >
+> > >
+> > > > [Franklin] Ah I remember. The TARGET_IMAGES variable is used in
+> > > > two ways in that class. 1 to add a build dependency and 2 to
+> > > > reference the image tarball. So the assumption was that the
+> > > > recipe/package name was the same as the IMAGE_BASENAME. So the
+> > > > recipe and IMAGE_BASENAME
+> > > must
+> > > > match. Otherwise the image would be built but the class wouldn't
+> > > > know what tarball to look for.
+> > >
+> > > Ah, OK, this is not exactly what I was looking for. Tracing even
+> > > further back shows that you added the recipe to have IMAGE_BASENAME =
+=3D
+> "tisdk-rootfs":
+> > >
+> > > http://arago-project.org/git/?p=3Dmeta-
+> > > arago.git;a=3Dcommitdiff;h=3Df27b1f34aee2c2cbee25a0fb5b21cdb04f16ec4a
+> > >
+> > > Do you remember the reason for that? This image recipe was in
+> > > Classic arago, but there it had the basename matching the recipe
+> > > name. Wondering why the change?
+>=20
+> > [Franklin] I think I was simply trying to match the filesystem tarball
+> > with the name used in previous sdks. I am assuming that the SDK
+> > backend script that built the sdk renamed those filesystem files.
+> > Looking at Sitara AMSDK
+> > 05.05.01 (last oe-classic based sdk) the two filesystem tarballs were
+> > named base-rootfs-am335x-evm.tar.gz and
+> > tisdk-rootfs-am335x-evm.tar.gz. During that time I was focused on just
+> > getting the filesystem working and wanted it to look like the output
+> > from previous sdks. I don't think I had any other reason.
+>=20
+> Thanks! Just wanted to check if there was some sort of requirement for th=
+at
+> name change. If there is not, then we can look for a better names for ful=
+l image
+> as well as base image.
+>=20
+> Should we look into unifying the names for other image recipes? Is
+> tisdk-rootfs- the best base we can think of?
+[Franklin] I think it's important to separate the "arago" images from the "=
+sdk" images. I am currently ok with the naming convention we use for our cu=
+rrent images minus the one I created this patch for :). But I'm open to sug=
+gestions.
+>=20
+> --
+> Denys
+>=20
+>=20
+> > > > > > > -----Original Message-----
+> > > > > > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago=
+-
+> > > > > > > bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> > > > > > > Sent: Tuesday, September 17, 2013 3:13 PM
+> > > > > > > To: meta-arago@arago-project.org
+> > > > > > > Cc: Cooper Jr., Franklin
+> > > > > > > Subject: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Re=
+name
+> > > base
+> > > > > file
+> > > > > > > system image
+> > > > > > >
+> > > > > > > * People are frequently confused by the difference in naming
+> between
+> > > the
+> > > > > > > minimal
+> > > > > > >   file system and the larger file system.
+> > > > > > > * Rename the minimal file system to mimic the naming conventi=
+on of
+> the
+> > > > > larger
+> > > > > > >   file system.
+> > > > > > >
+> > > > > > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > > > > > > ---
+> > > > > > >  ...e-tisdk-image.bb =3D> tisdk-rootfs-base-image.bb} |    2 =
++-
+> > > > > > >  1 files changed, 1 insertions(+), 1 deletions(-)  rename met=
+a-arago-
+> > > > > > > distro/recipes-core/images/{arago-base-tisdk-image.bb =3D> ti=
+sdk-
+> rootfs-
+> > > > > base-
+> > > > > > > image.bb} (87%)
+> > > > > > >
+> > > > > > > diff --git a/meta-arago-distro/recipes-core/images/arago-base=
+-tisdk-
+> > > > > image.bb
+> > > > > > > b/meta-arago-distro/recipes-core/images/tisdk-rootfs-base-
+> image.bb
+> > > > > > > similarity index 87%
+> > > > > > > rename from meta-arago-distro/recipes-core/images/arago-base-
+> tisdk-
+> > > > > > > image.bb
+> > > > > > > rename to meta-arago-distro/recipes-core/images/tisdk-rootfs-=
+base-
+> > > > > image.bb
+> > > > > > > index 2c0e217..a3a9123 100644
+> > > > > > > --- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-
+> image.bb
+> > > > > > > +++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-base=
+-
+> > > image.bb
+> > > > > > > @@ -12,4 +12,4 @@ IMAGE_INSTALL +=3D "\
+> > > > > > >      packagegroup-arago-base-tisdk \
+> > > > > > >      "
+> > > > > > >
+> > > > > > > -export IMAGE_BASENAME =3D "arago-base-tisdk-image"
+> > > > > > > +export IMAGE_BASENAME =3D "tisdk-rootfs-base-image"
+> > > > > > > --
+> > > > > > > 1.7.0.4
+> > > > > > >
+> > > > > > > _______________________________________________
+> > > > > > > meta-arago mailing list
+> > > > > > > meta-arago@arago-project.org
+> > > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
