@@ -1,42 +1,32 @@
 Return-Path: <fcooper@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B8D1952998
+	by arago-project.org (Postfix) with ESMTPS id 24D5552998
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Sep 2013 20:09:54 +0000 (UTC)
+	Tue, 24 Sep 2013 20:10:49 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8OK9rxk030998
-	for <meta-arago@arago-project.org>; Tue, 24 Sep 2013 15:09:53 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8OK9rVq006192
-	for <meta-arago@arago-project.org>; Tue, 24 Sep 2013 15:09:53 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8OKAmIq031119
+	for <meta-arago@arago-project.org>; Tue, 24 Sep 2013 15:10:48 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8OKAm38007530
+	for <meta-arago@arago-project.org>; Tue, 24 Sep 2013 15:10:48 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Tue, 24 Sep 2013 15:09:53 -0500
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Tue, 24 Sep 2013 15:10:48 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename base
-	file	system image
-Thread-Index: AQHOs99tTHafF954906JGDI6H9a4fpnKWBrwgAUDzgD//61HsIAAYCaA//+wLGCAAF9XAIAD+B3QgABf+ACAAdpHAP//rPoA
-Date: Tue, 24 Sep 2013 20:09:52 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C55CEE7@DFLE08.ent.ti.com>
-References: <1379445202-31364-1-git-send-email-fcooper@ti.com>
-	<B0581B5571079145BA1CD78C126DBDE72E8A07BE@DLEE08.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C553A50@DFLE08.ent.ti.com>
-	<20130920193051.GB30673@edge>
-	<8F29D6B095ED194EA1980491A5E029710C55817B@DFLE08.ent.ti.com>
-	<20130920201855.GD30673@edge>
-	<8F29D6B095ED194EA1980491A5E029710C558370@DFLE08.ent.ti.com>
-	<20130920211425.GF30673@edge>
-	<8F29D6B095ED194EA1980491A5E029710C55A51B@DFLE08.ent.ti.com>
-	<20130923153444.GD3456@edge> <20130924195214.GD5945@edge>
-In-Reply-To: <20130924195214.GD5945@edge>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCHv2] oe-layertool-setup.sh: properly set DL_DIR
+Thread-Index: AQHOuWG4M/kbvSx1ikSC3FWzdsCOt5nVUYAQ
+Date: Tue, 24 Sep 2013 20:10:47 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C55CF17@DFLE08.ent.ti.com>
+References: <1380055815-19631-1-git-send-email-Chase.Maupin@ti.com>
+In-Reply-To: <1380055815-19631-1-git-send-email-Chase.Maupin@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] tisdk-rootfs-base-image: Rename base file	system image
+Subject: Re: [PATCHv2] oe-layertool-setup.sh: properly set DL_DIR
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,148 +39,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 20:09:55 -0000
+X-List-Received-Date: Tue, 24 Sep 2013 20:10:49 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
 > -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Tuesday, September 24, 2013 2:52 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename bas=
-e
-> file system image
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Maupin, Chase
+> Sent: Tuesday, September 24, 2013 3:50 PM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCHv2] oe-layertool-setup.sh: properly set DL_DI=
+R
 >=20
-> On Mon, Sep 23, 2013 at 11:34:44AM -0400, Denys Dmytriyenko wrote:
-> > On Mon, Sep 23, 2013 at 10:53:54AM -0400, Cooper Jr., Franklin wrote:
-> > > > > > > > > > What was the initial reason to start naming rootfs
-> > > > > > > > > > images with
-> > > > > > > > > > tisdk-rootfs- prefix? I remember it was something
-> > > > > > > > > > forced by the SDK
-> > > > > > setup...
-> > > > > > > > > [Franklin]
-> > > > > > > > > This was before my time so I am not sure what the
-> > > > > > > > > original reasoning
-> > > > was.
-> > > > > > > > >
-> > > > > > > > > I do assume there might be instances where some script
-> > > > > > > > > somewhere will need to be updated if it refers to the
-> > > > > > > > > full image as
-> > > > "tisdk-rootfs*"
-> > > > > > > >
-> > > > > > > > So, I located the change I was talking about:
-> > > > > > > > http://arago-project.org/git/?p=3Dmeta-
-> > > > > > > >
-> > > >
-> arago.git;a=3Dcommitdiff;h=3D91f2be34e301deebbc75c54bbad6a5a27e25bf2
-> > > > > > > > c
-> > > > > > > >
-> > > > > > > > The "tisdk-image class had issues" is a rather vague
-> > > > > > > > description, so I'm not sure or don't remember what was
-> > > > > > > > the problem that you had to rename the original
-> > > > > > > > arago-tisdk-image into
-> > > > tisdk-rootfs-image...
-> > > > > > > >
-> > > > > >
-> > > > > > > [Franklin] Ah I remember. The TARGET_IMAGES variable is used
-> > > > > > > in two ways in that class. 1 to add a build dependency and 2
-> > > > > > > to reference the image tarball. So the assumption was that
-> > > > > > > the recipe/package name was the same as the IMAGE_BASENAME.
-> > > > > > > So the recipe and IMAGE_BASENAME
-> > > > > > must
-> > > > > > > match. Otherwise the image would be built but the class
-> > > > > > > wouldn't know what tarball to look for.
-> > > > > >
-> > > > > > Ah, OK, this is not exactly what I was looking for. Tracing
-> > > > > > even further back shows that you added the recipe to have
-> > > > > > IMAGE_BASENAME =3D
-> > > > "tisdk-rootfs":
-> > > > > >
-> > > > > > http://arago-project.org/git/?p=3Dmeta-
-> > > > > > arago.git;a=3Dcommitdiff;h=3Df27b1f34aee2c2cbee25a0fb5b21cdb04f=
-16e
-> > > > > > c4a
-> > > > > >
-> > > > > > Do you remember the reason for that? This image recipe was in
-> > > > > > Classic arago, but there it had the basename matching the
-> > > > > > recipe name. Wondering why the change?
-> > > >
-> > > > > [Franklin] I think I was simply trying to match the filesystem
-> > > > > tarball with the name used in previous sdks. I am assuming that
-> > > > > the SDK backend script that built the sdk renamed those filesyste=
-m files.
-> > > > > Looking at Sitara AMSDK
-> > > > > 05.05.01 (last oe-classic based sdk) the two filesystem tarballs
-> > > > > were named base-rootfs-am335x-evm.tar.gz and
-> > > > > tisdk-rootfs-am335x-evm.tar.gz. During that time I was focused
-> > > > > on just getting the filesystem working and wanted it to look
-> > > > > like the output from previous sdks. I don't think I had any other=
- reason.
-> > > >
-> > > > Thanks! Just wanted to check if there was some sort of requirement
-> > > > for that name change. If there is not, then we can look for a
-> > > > better names for full image as well as base image.
-> > > >
-> > > > Should we look into unifying the names for other image recipes? Is
-> > > > tisdk-rootfs- the best base we can think of?
-> >
-> > > [Franklin] I think it's important to separate the "arago" images
-> > > from the "sdk" images. I am currently ok with the naming convention
-> > > we use for our current images minus the one I created this patch for
-> > > :). But I'm open to suggestions.
-> >
-> > I'm not really sure what do you mean by separating arago from sdk.
-> > Arago distro is becoming the SDK, the Core TISDK one, to be exact.
-> > Other SDK products can build on top with slight variations.
-> >
-> > We can place more generic packagegroups and images into
-> > meta-arago-extras and keep TISDK specific ones in meta-arago-distro.
-> >
-> > As of the naming convention - I'm not exactly married to the arago-
-> > prefix for the image recipes, it was just a historic tradition -
-> > arago-base-image, arago-console-image, etc. I'm Ok with tisdk- prefix,
-> > but "rootfs" part always felt slightly artificial to me, as it was
-> > forced from outside and in OE images are images and there's no need to =
-call
-> them rootfs.
-> >
-> > Anyway, what I'm trying to say is that now is the perfect time to
-> > align on the naming convention for our images and we don't need to
-> > stick to any of the existing names...
+> * This script took a parameter using -d to set the DL_DIR but
+>   ignored that setting.  Now if that is set make it the DL_DIR
+>   value in conf/local.conf
+> * When running this script to get updates changes that were made
+>   to DL_DIR were lost because local.conf was copied over.  Now
+>   the script will use the old DL_DIR setting.
 >=20
-> Franklin,
+> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 >=20
-> Can you think of a unified naming for all the images, including base and =
-full
-> tisdk, as well as less common console and test images, that is scalable e=
-nough. As
-> I'm thinking going back to arago-base-image and arago-tisdk-image vs.
-> simplifying it to tisdk-base-image and tisdk-full-image. Plus it has to w=
-ork with
-> your other packagegroup restructure proposal... :)
-[Franklin]=20
-
-How about the following:
-
-tisdk-rootfs-base-image -> arago-full-image ( me new proposed image)
-
-tisdk-rootfs-image -> arago-full-sdk-image
-arago-base-tisdk-image -> arago-base-sdk-image
-arago-core-tisdk-image -> arago-core-sdk-image
-Tisdk-server-rootfs-image -> arago-server-sdk-image
-
-Since our images are in meta-arago-distro which is dependent on meta-ti I t=
-hink we could drop the "ti" from the image name to make it simpler.
-Based on the above logic I would probably change our packagegroups from usi=
-ng tisdk and simply call it sdk.=20
-But if anyone has an issue I am ok with keeping tisdk in the packagegroups =
-and images name.
-
+> ---
+> * Updated in version 2
+>     * Removed sh -x setting which was accidentally left over
+>     * Fixed typo in commit message
+> ---
+>  oe-layertool-setup.sh |   17 ++++++++++++++++-
+>  1 files changed, 16 insertions(+), 1 deletions(-)
+>=20
+> diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh index
+> 55cd174..72e36a2 100755
+> --- a/oe-layertool-setup.sh
+> +++ b/oe-layertool-setup.sh
+> @@ -732,6 +732,22 @@ EOM
+>      threads=3D`cat /proc/cpuinfo | grep -c processor`
+>      sed -i "s/^PARALLEL_MAKE.*/PARALLEL_MAKE =3D \"-j ${threads}\"/"
+> $confdir/local.conf
+>      sed -i "s/^BB_NUMBER_THREADS.*/BB_NUMBER_THREADS =3D
+> \"${threads}\"/" $confdir/local.conf
+> +
+> +    # Find if old DL_DIR was set
+> +    if [ -e $confdir/local.conf.bak ]
+> +    then
+> +        old_dldir=3D`cat $confdir/local.conf.bak | grep -e "^DL_DIR =3D"=
+ | sed
+> 's|DL_DIR =3D ||' | sed 's/"//g'`
+> +    else
+> +        old_dldir=3D"$dldir"
+> +    fi
+> +
+> +    # If command line option was not set use the old dldir
+> +    if [ "x$dldir" =3D=3D "x" ]
+> +    then
+> +        dldir=3D$old_dldir
+> +    fi
+> +
+> +    sed -i "s|^DL_DIR.*|DL_DIR =3D \"${dldir}\"|" $confdir/local.conf
+>  }
+>=20
+>=20
+> @@ -838,7 +854,6 @@ cd -
+>  sourcedir=3D"$oebase/sources"
+>  builddir=3D"$oebase/build"
+>  confdir=3D"$builddir/conf"
+> -dldir=3D"$oebase/downloads"
+>=20
+>  check_input
 >=20
 > --
-> Denys
+> 1.7.0.4
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
