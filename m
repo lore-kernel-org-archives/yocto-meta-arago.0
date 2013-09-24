@@ -1,30 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C1EDA52099
+Return-Path: <denis@denix.org>
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTP id 69ED8529A8
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Sep 2013 01:55:31 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8O1tVls004049;
-	Mon, 23 Sep 2013 20:55:31 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8O1tUu7021515;
-	Mon, 23 Sep 2013 20:55:31 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 23 Sep 2013 20:55:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8O1tUkb018056;
-	Mon, 23 Sep 2013 20:55:30 -0500
-Date: Mon, 23 Sep 2013 21:55:29 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Brad Litterell <brad@evidence.com>
-Message-ID: <20130924015529.GF4390@edge>
-References: <E51394554A503C4E852F9BEE46B03E8DF02E5B@TI-ODIN.tasernet.com>
-MIME-Version: 1.0
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8DF02E5B@TI-ODIN.tasernet.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: Building Arago without a external toolchain?
+	Tue, 24 Sep 2013 05:46:29 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173007.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MTM00HFK8110JP3@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 24 Sep 2013 00:46:28 -0500 (CDT)
+Received: from elrond.denix (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 1875B20011; Tue,
+	24 Sep 2013 01:46:13 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 24 Sep 2013 01:46:09 -0400
+Message-id: <1380001570-25248-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH 1/2] gadget-init: replace RDEPENDS with RRECOMMENDS for recommended modules
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +30,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 01:55:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 24 Sep 2013 05:46:30 -0000
 
-On Tue, Sep 24, 2013 at 01:28:02AM +0000, Brad Litterell wrote:
-> Is it possible to build an arago system and get a toolchain build as well, 
-> instead of an external toolchain?
-> 
-> If I don't have an external toolchain, I receive ERROR: No valid toolchain 
-> in PATH.
-> 
-> I'd like to do this because that latest version of Yocto works without the 
-> external toolchain and the system runs cleanly in qemu, but I'm having 
-> trouble getting a build that runs under qemu with the linaro toolchain.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Brad,
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-As easy as:
-
-TOOLCHAIN_TYPE=internal bitbake blah
-
-Or set it in your local.conf or arago.conf...
-
+diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
+index 34885c7..477f16a 100644
+--- a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
++++ b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3
+ COMPATIBLE_MACHINE = "ti33x"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ SRC_URI = "file://init"
+ 
+@@ -21,4 +21,4 @@ do_install() {
+ }
+ 
+ FILES_${PN} = "${sysconfdir} ${bindir}"
+-RDEPENDS_${PN} += "kernel-module-g-ether kernel-module-g-mass-storage"
++RRECOMMENDS_${PN} += "kernel-module-g-ether kernel-module-g-mass-storage"
 -- 
-Denys
+1.8.3.2
+
 
