@@ -1,32 +1,49 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 4EA82529A0
+Return-Path: <brad@evidence.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by arago-project.org (Postfix) with ESMTP id 4C4E852099
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Sep 2013 00:56:46 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8O0ujQZ029302
-	for <meta-arago@arago-project.org>; Mon, 23 Sep 2013 19:56:45 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8O0uj7H010356
-	for <meta-arago@arago-project.org>; Mon, 23 Sep 2013 19:56:45 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 23 Sep 2013 19:56:45 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8O0ujGk018029;
-	Mon, 23 Sep 2013 19:56:45 -0500
-Date: Mon, 23 Sep 2013 20:56:44 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20130924005644.GC4390@edge>
-References: <1379985594-25515-1-git-send-email-fcooper@ti.com>
-	<20130924004143.GA4390@edge>
-	<8F29D6B095ED194EA1980491A5E029710C55B6D5@DFLE08.ent.ti.com>
+	Tue, 24 Sep 2013 01:28:05 +0000 (UTC)
+X-ASG-Debug-ID: 1379986084-0499bf106495b50001-NloGV9
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id jj0bZj9cAzCruUlo for <meta-arago@arago-project.org>;
+	Mon, 23 Sep 2013 18:28:04 -0700 (MST)
+X-Barracuda-Envelope-From: brad@evidence.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Mon, 23 Sep 2013 18:28:04 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Mon, 23 Sep 2013 18:28:03 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <brad@evidence.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: Building Arago without a external toolchain?
+X-ASG-Orig-Subj: Building Arago without a external toolchain?
+Thread-Index: Ac64xU+XVrkgEIVQQNWp7NBRRafdSQ==
+Date: Tue, 24 Sep 2013 01:28:02 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8DF02E5B@TI-ODIN.tasernet.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C55B6D5@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] sourceipk.bbclass: Dereference sym links located in patches directory
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1379986084
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.140870
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Building Arago without a external toolchain?
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,87 +56,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 00:56:46 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 24 Sep 2013 01:28:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_E51394554A503C4E852F9BEE46B03E8DF02E5BTIODINtasernetcom_"
 
-On Mon, Sep 23, 2013 at 08:49:10PM -0400, Cooper Jr., Franklin wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Monday, September 23, 2013 7:42 PM
-> > To: Cooper Jr., Franklin
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH] sourceipk.bbclass: Dereference sym links
-> > located in patches directory
-> > 
-> > Heh, just sent out my updated patch and noticed you had one as well... And
-> > they are so similar! I'm just wondering why you spent time on it, when I said I'll
-> > fix it?
+--_000_E51394554A503C4E852F9BEE46B03E8DF02E5BTIODINtasernetcom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> [Franklin] Lol yeah. Must of overlooked the part where you said you were 
-> going to fix it and I needed it for my SDK build I want to start tomorrow 
-> morning.
+Is it possible to build an arago system and get a toolchain build as well, =
+instead of an external toolchain?
 
-Ah, I didn't know you needed it sooner - I was working on it and testing it 
-in-between my main work today on meta-qt5 and switching other platforms to 
-3.12 kernel. That's why it took me a while to get it out...
+If I don't have an external toolchain, I receive ERROR: No valid toolchain =
+in PATH.
 
+I'd like to do this because that latest version of Yocto works without the =
+external toolchain and the system runs cleanly in qemu, but I'm having trou=
+ble getting a build that runs under qemu with the linaro toolchain.
 
-> > On Mon, Sep 23, 2013 at 08:19:54PM -0500, Franklin S. Cooper Jr wrote:
-> > > * Latest kernel sources included symbolic links that were broken and caused
-> > the
-> > >   tar command to fail.
-> > > * In certain circumstances broken symbolic links are valid and should be
-> > >   packaged up.
-> > > * However, any patch located in the "patches" directory should be
-> > dereference
-> > > * since the original file is located in the recipe's WORKDIR.
-> > > * Therefore, the sym link will be broken when accessed on a different
-> > computer.
-> > > * By using the dereference option with the cp command the patches directory
-> > can
-> > >   be dereferenced.
-> > >
-> > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > > ---
-> > >  meta-arago-distro/classes/sourceipk.bbclass |   12 +++++++++++-
-> > >  1 files changed, 11 insertions(+), 1 deletions(-)
-> > >
-> > > diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-
-> > distro/classes/sourceipk.bbclass
-> > > index 1ea0577..3086670 100644
-> > > --- a/meta-arago-distro/classes/sourceipk.bbclass
-> > > +++ b/meta-arago-distro/classes/sourceipk.bbclass
-> > > @@ -166,8 +166,18 @@ sourceipk_do_create_srcipk() {
-> > >              cp ${FILE} $tmp_dir/${SRCIPK_INSTALL_DIR}/
-> > >          fi
-> > >
-> > > +        # Dereference symbolic links to patches that are stored in patches
-> > directory
-> > > +        if [ -d "$tmp_dir/${SRCIPK_INSTALL_DIR}/patches" ]
-> > > +        then
-> > > +
-> > > +            mv $tmp_dir/${SRCIPK_INSTALL_DIR}/patches
-> > $tmp_dir/${SRCIPK_INSTALL_DIR}/patches_bak
-> > > +            cp -rL $tmp_dir/${SRCIPK_INSTALL_DIR}/patches_bak
-> > $tmp_dir/${SRCIPK_INSTALL_DIR}/patches
-> > > +            rm -rf $tmp_dir/${SRCIPK_INSTALL_DIR}/patches_bak
-> > > +        fi
-> > > +
-> > > +
-> > >          #Write the data tarball
-> > > -        tar -C $tmp_dir --owner=0 --group=0 -chzf $srcipk_dir/data.tar.gz .
-> > > +        tar -C $tmp_dir --owner=0 --group=0 -czf $srcipk_dir/data.tar.gz .
-> > >
-> > >          # Create the debian-binary file
-> > >          echo "2.0" > $srcipk_dir/debian-binary
-> > > --
-> > > 1.7.0.4
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Thanks,
+Brad
 
+--_000_E51394554A503C4E852F9BEE46B03E8DF02E5BTIODINtasernetcom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Is it possible to build an arago system and get a toolchain build as=
+ well, instead of an external toolchain? &nbsp;
+<div><br>
+</div>
+<div>If I don't have an external toolchain, I receive&nbsp;ERROR: No valid =
+toolchain in PATH.</div>
+<div><br>
+</div>
+<div>I'd like to do this because that latest version of Yocto works without=
+ the external toolchain and the system runs cleanly in qemu, but I'm having=
+ trouble getting a build that runs under qemu with the linaro toolchain.</d=
+iv>
+<div><br>
+</div>
+<div>Thanks,<br>
+Brad</div>
+</div>
+</body>
+</html>
+
+--_000_E51394554A503C4E852F9BEE46B03E8DF02E5BTIODINtasernetcom_--
