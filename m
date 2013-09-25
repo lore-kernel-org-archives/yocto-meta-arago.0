@@ -1,30 +1,26 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id DF5D052090
+Return-Path: <Sixten.Sjoestroem.Thames@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by arago-project.org (Postfix) with SMTP id 8001A5296F
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Sep 2013 17:30:31 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8QHUVK9012788
-	for <meta-arago@arago-project.org>; Thu, 26 Sep 2013 12:30:31 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8QHUVcq021587
-	for <meta-arago@arago-project.org>; Thu, 26 Sep 2013 12:30:31 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 26 Sep 2013 12:30:31 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8QHUUJ1023473;
-	Thu, 26 Sep 2013 12:30:30 -0500
-Date: Thu, 26 Sep 2013 13:30:30 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Yan Liu <yan-liu@ti.com>
-Message-ID: <20130926173030.GW14528@edge>
-References: <1380206022-9282-1-git-send-email-yan-liu@ti.com>
+	Wed, 25 Sep 2013 12:47:59 +0000 (UTC)
+Received: from SESTOEX09.enea.se ([fe80::cc12:dcdc:d521:97f8]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.02.0318.001; Wed, 25 Sep 2013 14:47:58 +0200
+From: =?iso-8859-1?Q?Sixten_Sj=F6str=F6m_Thames?=
+	<Sixten.Sjoestroem.Thames@enea.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: NO_HZ and TI MCSDK 3.8.4 kernel for Keystone 2
+Thread-Index: Ac652tmV75OC3SqSRN+dR5gKp9O5ow==
+Date: Wed, 25 Sep 2013 12:47:58 +0000
+Message-ID: <B0B361514883EA47B19C4FC8275640D125BC8137@sestoex09.enea.se>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.141.148]
 MIME-Version: 1.0
-In-Reply-To: <1380206022-9282-1-git-send-email-yan-liu@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [Meta-arago PATCH v1] busybox: Enable dd ibs obs option which turns on the conv= options
+X-Mailman-Approved-At: Thu, 26 Sep 2013 17:32:34 +0000
+Cc: "santosh.shilimkar@ti.com" <santosh.shilimkar@ti.com>
+Subject: NO_HZ and TI MCSDK 3.8.4 kernel for Keystone 2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,50 +33,101 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 17:30:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 25 Sep 2013 12:48:00 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_B0B361514883EA47B19C4FC8275640D125BC8137sestoex09enease_"
 
-Ack. Will push it later.
+--_000_B0B361514883EA47B19C4FC8275640D125BC8137sestoex09enease_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 26, 2013 at 10:33:42AM -0400, Yan Liu wrote:
-> Signed-off-by: Yan Liu <yan-liu@ti.com>
-> ---
->  meta-arago-distro/recipes-core/busybox/busybox/defconfig       | 2 +-
->  meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
-> index 5961447..7736031 100644
-> --- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
-> +++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
-> @@ -199,7 +199,7 @@ CONFIG_CUT=y
->  CONFIG_DD=y
->  CONFIG_FEATURE_DD_SIGNAL_HANDLING=y
->  # CONFIG_FEATURE_DD_THIRD_STATUS_LINE is not set
-> -# CONFIG_FEATURE_DD_IBS_OBS is not set
-> +CONFIG_FEATURE_DD_IBS_OBS=y
->  CONFIG_DF=y
->  # CONFIG_FEATURE_DF_FANCY is not set
->  CONFIG_DIRNAME=y
-> diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
-> index 8edb493..be174ef 100644
-> --- a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
-> +++ b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
-> @@ -1,7 +1,7 @@
->  # look for files in this layer first
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  
-> -PR_append = "-arago8"
-> +PR_append = "-arago9"
->  
->  SRC_URI += " \
->  	file://inetd \
-> -- 
-> 1.8.3.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Hi,
 
+I'm interested in getting the CONFIG_NO_HZ_FULL kernel configuration (http:=
+//lwn.net/Articles/549580/) to work with the MCSDK kernel for Keystone 2 (h=
+ttp://arago-project.org/git/projects/?p=3Dlinux-keystone.git).
+
+Some questions:
+Are there any plans to rebase the Keystone 2 BSP against a newer Linux kern=
+el version that supports NO_HZ_FULL (3.10 or later) in the near future?
+Are there any available patches that enable the NO_HZ_FULL configuration fo=
+r the MCSDK 3.8.4 Linux kernel?
+
+Best Regards,
+Sixten Sj=F6str=F6m Thames
+
+--_000_B0B361514883EA47B19C4FC8275640D125BC8137sestoex09enease_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m interested in getting the CONFIG_NO_HZ_FUL=
+L kernel configuration (http://lwn.net/Articles/549580/) to work with the M=
+CSDK kernel for Keystone 2 (<a href=3D"http://arago-project.org/git/project=
+s/?p=3Dlinux-keystone.git">http://arago-project.org/git/projects/?p=3Dlinux=
+-keystone.git</a>).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Some questions:<o:p></o:p></p>
+<p class=3D"MsoNormal">Are there any plans to rebase the Keystone 2 BSP aga=
+inst a newer Linux kernel version that supports NO_HZ_FULL (3.10 or later) =
+in the near future?<o:p></o:p></p>
+<p class=3D"MsoNormal">Are there any available patches that enable the NO_H=
+Z_FULL configuration for the MCSDK 3.8.4 Linux kernel?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Sixten Sj=F6str=F6m Thames<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_B0B361514883EA47B19C4FC8275640D125BC8137sestoex09enease_--
