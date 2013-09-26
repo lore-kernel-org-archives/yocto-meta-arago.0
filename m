@@ -1,32 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 80467529E2
+Return-Path: <chase.maupin@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id AF7D3529A7
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Sep 2013 17:36:28 +0000 (UTC)
+	Thu, 26 Sep 2013 19:28:45 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8QHaRRB023411;
-	Thu, 26 Sep 2013 12:36:27 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8QHaRlw028609;
-	Thu, 26 Sep 2013 12:36:27 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 26 Sep 2013 12:36:27 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8QHaQdl030044;
-	Thu, 26 Sep 2013 12:36:26 -0500
-Date: Thu, 26 Sep 2013 13:36:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Sixten =?iso-8859-1?Q?Sj=F6str=F6m?= Thames
-	<Sixten.Sjoestroem.Thames@enea.com>
-Message-ID: <20130926173626.GY14528@edge>
-References: <B0B361514883EA47B19C4FC8275640D125BC8137@sestoex09.enea.se>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8QJSia7004767
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2013 14:28:44 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8QJSiq4016063
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2013 14:28:44 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Thu, 26 Sep 2013 14:28:44 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "Dmytriyenko, Denys"
+	<denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image: Rename base
+	file	system image
+Thread-Index: AQHOs99tTHafF954906JGDI6H9a4fpnKWBrwgAUDzgD//61HsIAAYCaA//+wLGCAAF9XAIAD+B3QgABf+ACAAdpHAP//rPoAAGOKWyA=
+Date: Thu, 26 Sep 2013 19:28:43 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159753705@DLEE11.ent.ti.com>
+References: <1379445202-31364-1-git-send-email-fcooper@ti.com>
+	<B0581B5571079145BA1CD78C126DBDE72E8A07BE@DLEE08.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C553A50@DFLE08.ent.ti.com>
+	<20130920193051.GB30673@edge>
+	<8F29D6B095ED194EA1980491A5E029710C55817B@DFLE08.ent.ti.com>
+	<20130920201855.GD30673@edge>
+	<8F29D6B095ED194EA1980491A5E029710C558370@DFLE08.ent.ti.com>
+	<20130920211425.GF30673@edge>
+	<8F29D6B095ED194EA1980491A5E029710C55A51B@DFLE08.ent.ti.com>
+	<20130923153444.GD3456@edge> <20130924195214.GD5945@edge>
+	<8F29D6B095ED194EA1980491A5E029710C55CEE7@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C55CEE7@DFLE08.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-In-Reply-To: <B0B361514883EA47B19C4FC8275640D125BC8137@sestoex09.enea.se>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	"santosh.shilimkar@ti.com" <santosh.shilimkar@ti.com>
-Subject: Re: NO_HZ and TI MCSDK 3.8.4 kernel for Keystone 2
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 1/2] tisdk-rootfs-base-image: Rename base file	system image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,36 +51,220 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 17:36:28 -0000
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 26 Sep 2013 19:28:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-In general, you need to subscribe to the mailing list to be able to post to 
-it. But in this case, meta-arago is probably not the right list for you - are 
-you trying to build an Arago distribution that is based on OpenEmbedded and 
-the Yocto Project? If it's just the kernel question, then Santosh should be 
-able to help you or point you in the right direction. Thanks.
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+>Sent: Tuesday, September 24, 2013 3:10 PM
+>To: Dmytriyenko, Denys
+>Cc: meta-arago@arago-project.org
+>Subject: Re: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image:
+>Rename base file system image
+>
+>
+>
+>> -----Original Message-----
+>> From: Dmytriyenko, Denys
+>> Sent: Tuesday, September 24, 2013 2:52 PM
+>> To: Cooper Jr., Franklin
+>> Cc: meta-arago@arago-project.org
+>> Subject: Re: [meta-arago] [PATCH 1/2] tisdk-rootfs-base-image:
+>Rename base
+>> file system image
+>>
+>> On Mon, Sep 23, 2013 at 11:34:44AM -0400, Denys Dmytriyenko
+>wrote:
+>> > On Mon, Sep 23, 2013 at 10:53:54AM -0400, Cooper Jr., Franklin
+>wrote:
+>> > > > > > > > > > What was the initial reason to start naming
+>rootfs
+>> > > > > > > > > > images with
+>> > > > > > > > > > tisdk-rootfs- prefix? I remember it was
+>something
+>> > > > > > > > > > forced by the SDK
+>> > > > > > setup...
+>> > > > > > > > > [Franklin]
+>> > > > > > > > > This was before my time so I am not sure what
+>the
+>> > > > > > > > > original reasoning
+>> > > > was.
+>> > > > > > > > >
+>> > > > > > > > > I do assume there might be instances where some
+>script
+>> > > > > > > > > somewhere will need to be updated if it refers
+>to the
+>> > > > > > > > > full image as
+>> > > > "tisdk-rootfs*"
+>> > > > > > > >
+>> > > > > > > > So, I located the change I was talking about:
+>> > > > > > > > http://arago-project.org/git/?p=3Dmeta-
+>> > > > > > > >
+>> > > >
+>> arago.git;a=3Dcommitdiff;h=3D91f2be34e301deebbc75c54bbad6a5a27e25bf2
+>> > > > > > > > c
+>> > > > > > > >
+>> > > > > > > > The "tisdk-image class had issues" is a rather
+>vague
+>> > > > > > > > description, so I'm not sure or don't remember
+>what was
+>> > > > > > > > the problem that you had to rename the original
+>> > > > > > > > arago-tisdk-image into
+>> > > > tisdk-rootfs-image...
+>> > > > > > > >
+>> > > > > >
+>> > > > > > > [Franklin] Ah I remember. The TARGET_IMAGES variable
+>is used
+>> > > > > > > in two ways in that class. 1 to add a build
+>dependency and 2
+>> > > > > > > to reference the image tarball. So the assumption
+>was that
+>> > > > > > > the recipe/package name was the same as the
+>IMAGE_BASENAME.
+>> > > > > > > So the recipe and IMAGE_BASENAME
+>> > > > > > must
+>> > > > > > > match. Otherwise the image would be built but the
+>class
+>> > > > > > > wouldn't know what tarball to look for.
+>> > > > > >
+>> > > > > > Ah, OK, this is not exactly what I was looking for.
+>Tracing
+>> > > > > > even further back shows that you added the recipe to
+>have
+>> > > > > > IMAGE_BASENAME =3D
+>> > > > "tisdk-rootfs":
+>> > > > > >
+>> > > > > > http://arago-project.org/git/?p=3Dmeta-
+>> > > > > >
+>arago.git;a=3Dcommitdiff;h=3Df27b1f34aee2c2cbee25a0fb5b21cdb04f16e
+>> > > > > > c4a
+>> > > > > >
+>> > > > > > Do you remember the reason for that? This image recipe
+>was in
+>> > > > > > Classic arago, but there it had the basename matching
+>the
+>> > > > > > recipe name. Wondering why the change?
+>> > > >
+>> > > > > [Franklin] I think I was simply trying to match the
+>filesystem
+>> > > > > tarball with the name used in previous sdks. I am
+>assuming that
+>> > > > > the SDK backend script that built the sdk renamed those
+>filesystem files.
+>> > > > > Looking at Sitara AMSDK
+>> > > > > 05.05.01 (last oe-classic based sdk) the two filesystem
+>tarballs
+>> > > > > were named base-rootfs-am335x-evm.tar.gz and
+>> > > > > tisdk-rootfs-am335x-evm.tar.gz. During that time I was
+>focused
+>> > > > > on just getting the filesystem working and wanted it to
+>look
+>> > > > > like the output from previous sdks. I don't think I had
+>any other reason.
+>> > > >
+>> > > > Thanks! Just wanted to check if there was some sort of
+>requirement
+>> > > > for that name change. If there is not, then we can look
+>for a
+>> > > > better names for full image as well as base image.
+>> > > >
+>> > > > Should we look into unifying the names for other image
+>recipes? Is
+>> > > > tisdk-rootfs- the best base we can think of?
+>> >
+>> > > [Franklin] I think it's important to separate the "arago"
+>images
+>> > > from the "sdk" images. I am currently ok with the naming
+>convention
+>> > > we use for our current images minus the one I created this
+>patch for
+>> > > :). But I'm open to suggestions.
+>> >
+>> > I'm not really sure what do you mean by separating arago from
+>sdk.
+>> > Arago distro is becoming the SDK, the Core TISDK one, to be
+>exact.
+>> > Other SDK products can build on top with slight variations.
+>> >
+>> > We can place more generic packagegroups and images into
+>> > meta-arago-extras and keep TISDK specific ones in meta-arago-
+>distro.
+>> >
+>> > As of the naming convention - I'm not exactly married to the
+>arago-
+>> > prefix for the image recipes, it was just a historic tradition
+>-
+>> > arago-base-image, arago-console-image, etc. I'm Ok with tisdk-
+>prefix,
+>> > but "rootfs" part always felt slightly artificial to me, as it
+>was
+>> > forced from outside and in OE images are images and there's no
+>need to call
+>> them rootfs.
+>> >
+>> > Anyway, what I'm trying to say is that now is the perfect time
+>to
+>> > align on the naming convention for our images and we don't
+>need to
+>> > stick to any of the existing names...
+>>
+>> Franklin,
+>>
+>> Can you think of a unified naming for all the images, including
+>base and full
+>> tisdk, as well as less common console and test images, that is
+>scalable enough. As
+>> I'm thinking going back to arago-base-image and arago-tisdk-
+>image vs.
+>> simplifying it to tisdk-base-image and tisdk-full-image. Plus it
+>has to work with
+>> your other packagegroup restructure proposal... :)
+>[Franklin]
+>
+>How about the following:
+>
+>tisdk-rootfs-base-image -> arago-full-image ( me new proposed
+>image)
 
+What will this image contain?
 
-On Wed, Sep 25, 2013 at 12:47:58PM +0000, Sixten Sjöström Thames wrote:
-> Hi,
-> 
-> I'm interested in getting the CONFIG_NO_HZ_FULL kernel configuration 
-> (http://lwn.net/Articles/549580/) to work with the MCSDK kernel for Keystone 
-> 2 (http://arago-project.org/git/projects/?p=linux-keystone.git).
-> 
-> Some questions: Are there any plans to rebase the Keystone 2 BSP against a 
-> newer Linux kernel version that supports NO_HZ_FULL (3.10 or later) in the 
-> near future? Are there any available patches that enable the NO_HZ_FULL 
-> configuration for the MCSDK 3.8.4 Linux kernel?
-> 
-> Best Regards,
-> Sixten Sjöström Thames
+>
+>tisdk-rootfs-image -> arago-full-sdk-image
 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+I want to differentiate between rootfs vs. sdk images.  So maybe this one i=
+s arago-sdk-full-rootfs-image
 
+>arago-base-tisdk-image -> arago-base-sdk-image
+
+arago-sdk-base-rootfs-image
+
+>arago-core-tisdk-image -> arago-core-sdk-image
+
+Keep the same
+
+>Tisdk-server-rootfs-image -> arago-server-sdk-image
+
+arago-sdk-server-rootfs-image
+
+What do you think?
+
+>
+>Since our images are in meta-arago-distro which is dependent on
+>meta-ti I think we could drop the "ti" from the image name to make
+>it simpler.
+>Based on the above logic I would probably change our packagegroups
+>from using tisdk and simply call it sdk.
+>But if anyone has an issue I am ok with keeping tisdk in the
+>packagegroups and images name.
+>
+>>
+>> --
+>> Denys
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
