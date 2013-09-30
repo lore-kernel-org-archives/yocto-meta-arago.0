@@ -1,28 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 1B80652A6C
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 2B0CB52A6C
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2013 22:34:48 +0000 (UTC)
+	Mon, 30 Sep 2013 22:34:51 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UMYlif025845
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:47 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UMYocv001636
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:50 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYlUl007560
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:47 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYo6G007577
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:50 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 30 Sep 2013 17:34:47 -0500
+	Mon, 30 Sep 2013 17:34:50 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYhAB005788;
-	Mon, 30 Sep 2013 17:34:45 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYhAC005788;
+	Mon, 30 Sep 2013 17:34:48 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 30 Sep 2013 18:19:26 -0500
-Message-ID: <1380583168-2238-1-git-send-email-fcooper@ti.com>
+Date: Mon, 30 Sep 2013 18:19:27 -0500
+Message-ID: <1380583168-2238-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1380583168-2238-1-git-send-email-fcooper@ti.com>
+References: <1380583168-2238-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/3] packagegroup-arago-console: Add additional packages needed to partition eMMC
+Subject: [PATCH 2/3] arago-source-ipk.conf: Remove PR from u-boot-ti-staging
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,35 +37,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 22:34:48 -0000
+X-List-Received-Date: Mon, 30 Sep 2013 22:34:51 -0000
 Content-Type: text/plain
+
+* In the sources directory name the PR is unnecessary and also confusing for
+  users.
+* This also matches the look of linux-ti-staging sources directory.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../packagegroups/packagegroup-arago-console.bb    |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+ .../conf/distro/arago-source-ipk.conf              |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-index f625a28..8d65cac 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get more basic and console apps"
- LICENSE = "MIT"
--PR = "r5"
-+PR = "r6"
+diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+index a321271..ef41d94 100644
+--- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
++++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+@@ -119,7 +119,7 @@ SRCIPK_INSTALL_DIR_pn-x-load_beagleboard = "board-support/${P}"
+ SRCIPK_PACKAGE_ARCH_pn-x-load = "${MACHINE_ARCH}"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ CREATE_SRCIPK_pn-u-boot-ti-staging = "1"
+-SRCIPK_INSTALL_DIR_pn-u-boot-ti-staging = "board-support/u-boot-${PV}-${PR}"
++SRCIPK_INSTALL_DIR_pn-u-boot-ti-staging = "board-support/u-boot-${PV}"
+ SRCIPK_PACKAGE_ARCH_pn-u-boot-ti-staging = "${MACHINE_ARCH}"
+ SRCIPK_PRESERVE_GIT_pn-u-boot-ti-staging = "true"
  
-@@ -42,6 +42,8 @@ ARAGO_FSTOOLS = "\
-     e2fsprogs-tune2fs \
-     dosfstools \
-     util-linux-fdisk \
-+    util-linux-mkfs \
-+    util-linux-sfdisk \
-     "
- 
- ARAGO_UTILS = "\
 -- 
 1.7.0.4
 
