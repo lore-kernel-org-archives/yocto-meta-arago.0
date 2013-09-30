@@ -1,25 +1,25 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id D0563529EB
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 6893552099
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2013 19:53:47 +0000 (UTC)
+	Mon, 30 Sep 2013 20:40:19 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UJrlJc011189;
-	Mon, 30 Sep 2013 14:53:47 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UJrkq5017949;
-	Mon, 30 Sep 2013 14:53:46 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UKeItw024592;
+	Mon, 30 Sep 2013 15:40:18 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UKeIBY017411;
+	Mon, 30 Sep 2013 15:40:18 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Mon, 30 Sep 2013 14:53:46 -0500
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Mon, 30 Sep 2013 15:40:18 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [meta-arago] [PATCH] external-linaro-toolchain: fix "xen"
 	header conflict with linux-libc-headers
-Thread-Index: AQHOvhUJcjxOOVz/ZEiZplWklR+W5ZnesU7A
-Date: Mon, 30 Sep 2013 19:53:46 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015977149B@DLEE11.ent.ti.com>
+Thread-Index: AQHOvhUJcjxOOVz/ZEiZplWklR+W5Znevj/g
+Date: Mon, 30 Sep 2013 20:40:17 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159771A87@DLEE11.ent.ti.com>
 References: <1380570056-27153-1-git-send-email-denis@denix.org>
 In-Reply-To: <1380570056-27153-1-git-send-email-denis@denix.org>
 Accept-Language: en-US
@@ -40,12 +40,12 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 19:53:48 -0000
+X-List-Received-Date: Mon, 30 Sep 2013 20:40:19 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+Tested-by: Chase Maupin <chase.maupin@ti.com>
 
 
 >-----Original Message-----
