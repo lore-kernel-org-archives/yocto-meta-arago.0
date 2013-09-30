@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 2B0CB52A6C
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id D9B3952A98
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2013 22:34:51 +0000 (UTC)
+	Mon, 30 Sep 2013 22:34:53 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UMYocv001636
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:50 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYo6G007577
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:50 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 30 Sep 2013 17:34:50 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UMYrhj025849
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:53 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYroe007601
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 17:34:53 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 30 Sep 2013 17:34:53 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYhAC005788;
-	Mon, 30 Sep 2013 17:34:48 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UMYhAD005788;
+	Mon, 30 Sep 2013 17:34:51 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 30 Sep 2013 18:19:27 -0500
-Message-ID: <1380583168-2238-2-git-send-email-fcooper@ti.com>
+Date: Mon, 30 Sep 2013 18:19:28 -0500
+Message-ID: <1380583168-2238-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1380583168-2238-1-git-send-email-fcooper@ti.com>
 References: <1380583168-2238-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/3] arago-source-ipk.conf: Remove PR from u-boot-ti-staging
+Subject: [PATCH 3/3] meta-toolchain-arago: Remove TARGET_SYS env variable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,31 +37,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 22:34:51 -0000
+X-List-Received-Date: Mon, 30 Sep 2013 22:34:54 -0000
 Content-Type: text/plain
 
-* In the sources directory name the PR is unnecessary and also confusing for
-  users.
-* This also matches the look of linux-ti-staging sources directory.
+* Within environment-setup the TARGET_SYS variable is exported but used
+  improperly.
+* The value for --target and --host isn't the TARGET_SYS value within the
+  environment-setup file but rather the OE variable TARGET_SYS.
+* Cross compiling autotools based applications using environment-setup
+  results in host and machine not recognized "configure" errors.
+* Looking at toolchain-scripts.bbclass it looks like that variable has been
+  removed from environment-setup so mimic that change.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../conf/distro/arago-source-ipk.conf              |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ .../recipes-core/meta/meta-toolchain-arago.bb      |    7 +++----
+ 1 files changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index a321271..ef41d94 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -119,7 +119,7 @@ SRCIPK_INSTALL_DIR_pn-x-load_beagleboard = "board-support/${P}"
- SRCIPK_PACKAGE_ARCH_pn-x-load = "${MACHINE_ARCH}"
- 
- CREATE_SRCIPK_pn-u-boot-ti-staging = "1"
--SRCIPK_INSTALL_DIR_pn-u-boot-ti-staging = "board-support/u-boot-${PV}-${PR}"
-+SRCIPK_INSTALL_DIR_pn-u-boot-ti-staging = "board-support/u-boot-${PV}"
- SRCIPK_PACKAGE_ARCH_pn-u-boot-ti-staging = "${MACHINE_ARCH}"
- SRCIPK_PRESERVE_GIT_pn-u-boot-ti-staging = "true"
- 
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index a8da4dc..2ab3b8d 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -30,17 +30,16 @@ toolchain_create_sdk_env_script () {
+ 	echo '    export SDK_PATH' >> $script
+ 	echo 'fi' >> $script
+ 	echo 'export SDK_SYS=${SDK_SYS}' >> $script
+-	echo 'export TARGET_SYS=${REAL_MULTIMACH_TARGET_SYS}' >> $script
+ 	echo 'export TOOLCHAIN_SYS=${TOOLCHAIN_SYS}' >> $script
+ 	echo 'export TOOLCHAIN_PREFIX=$TOOLCHAIN_SYS-' >> $script
+ 	echo 'export SDK_PATH_NATIVE=$SDK_PATH/sysroots/$SDK_SYS' >> $script
+-	echo 'export SDK_PATH_TARGET=$SDK_PATH/sysroots/$TARGET_SYS' >> $script
++	echo 'export SDK_PATH_TARGET=$SDK_PATH/sysroots/${REAL_MULTIMACH_TARGET_SYS}' >> $script
+ 	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}:$PATH' >> $script
+ 	echo 'export CPATH=$SDK_PATH_TARGET/usr/include:$CPATH' >> $script
+ 	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH_TARGET' >> $script
+ 	echo 'export PKG_CONFIG_PATH=$SDK_PATH_TARGET${libdir}/pkgconfig' >> $script
+ 	echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
+-	echo 'export CONFIG_SITE=$SDK_PATH/site-config-$TARGET_SYS' >> $script
++	echo 'export CONFIG_SITE=$SDK_PATH/site-config-${REAL_MULTIMACH_TARGET_SYS}' >> $script
+ 	printf 'export CC=\x24{TOOLCHAIN_PREFIX}gcc\n' >> $script
+ 	printf 'export CXX=\x24{TOOLCHAIN_PREFIX}g++\n' >> $script
+ 	printf 'export GDB=\x24{TOOLCHAIN_PREFIX}gdb\n' >> $script
+@@ -52,7 +51,7 @@ toolchain_create_sdk_env_script () {
+ 	printf 'export OBJCOPY=\x24{TOOLCHAIN_PREFIX}objcopy\n' >> $script
+ 	printf 'export OBJDUMP=\x24{TOOLCHAIN_PREFIX}objdump\n' >> $script
+ 	printf 'export STRIP=\x24{TOOLCHAIN_PREFIX}strip\n' >> $script
+-	echo 'export CONFIGURE_FLAGS="--target=$TARGET_SYS --host=$TARGET_SYS --build=${SDK_ARCH}-linux --with-libtool-sysroot=$SDK_PATH_TARGET"' >> $script
++	echo 'export CONFIGURE_FLAGS="--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${SDK_ARCH}-linux --with-libtool-sysroot=$SDK_PATH_TARGET"' >> $script
+ 	echo 'export CPPFLAGS="${TARGET_CC_ARCH} --sysroot=$SDK_PATH_TARGET"' >> $script
+ 	echo 'export CFLAGS="$CPPFLAGS"' >> $script
+ 	echo 'export CXXFLAGS="$CPPFLAGS"' >> $script
 -- 
 1.7.0.4
 
