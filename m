@@ -1,33 +1,27 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 6893552099
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 79CF05296F
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2013 20:40:19 +0000 (UTC)
+	Mon, 30 Sep 2013 20:58:22 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UKeItw024592;
-	Mon, 30 Sep 2013 15:40:18 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UKeIBY017411;
-	Mon, 30 Sep 2013 15:40:18 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Mon, 30 Sep 2013 15:40:18 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] external-linaro-toolchain: fix "xen"
-	header conflict with linux-libc-headers
-Thread-Index: AQHOvhUJcjxOOVz/ZEiZplWklR+W5Znevj/g
-Date: Mon, 30 Sep 2013 20:40:17 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159771A87@DLEE11.ent.ti.com>
-References: <1380570056-27153-1-git-send-email-denis@denix.org>
-In-Reply-To: <1380570056-27153-1-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r8UKwLWL029377
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 15:58:21 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UKwLkA007379
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2013 15:58:21 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 30 Sep 2013 15:58:21 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r8UKwIik002724;
+	Mon, 30 Sep 2013 15:58:19 -0500
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 30 Sep 2013 16:43:03 -0500
+Message-ID: <1380577383-21395-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: Re: [PATCH] external-linaro-toolchain: fix "xen" header conflict with linux-libc-headers
+Subject: [PATCH] arago-prefs: Update preferred U-Boot version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,77 +34,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 20:40:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 30 Sep 2013 20:58:22 -0000
+Content-Type: text/plain
 
-Tested-by: Chase Maupin <chase.maupin@ti.com>
+* The latest version has switched to rc2 instead of rc1.  Update
+  the preferred version to avoid messages about not being able to
+  find the rc1 version.
 
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+---
+ .../conf/distro/include/arago-prefs.inc            |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->Sent: Monday, September 30, 2013 2:41 PM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH] external-linaro-toolchain: fix "xen"
->header conflict with linux-libc-headers
->
->From: Denys Dmytriyenko <denys@ti.com>
->
->Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->---
-> .../recipes-core/meta/external-linaro-toolchain.bbappend
->| 4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
->
->diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-
->toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-
->linaro-toolchain.bbappend
->index 2aac21b..34d4edd 100644
->--- a/meta-arago-extras/recipes-core/meta/external-linaro-
->toolchain.bbappend
->+++ b/meta-arago-extras/recipes-core/meta/external-linaro-
->toolchain.bbappend
->@@ -2,7 +2,7 @@ INSANE_SKIP_libstdc++-dev +=3D "staticdev"
->
-> ALLOW_EMPTY_${PN}-utils =3D "1"
->
->-PR_append =3D "-arago4"
->+PR_append =3D "-arago5"
->
-> PROVIDES :=3D "${@oe_filter_out('virtual/linux-libc-headers',
->'${PROVIDES}', d)}"
-> PROVIDES :=3D "${@oe_filter_out('linux-libc-headers',
->'${PROVIDES}', d)}"
->@@ -99,7 +99,7 @@ do_install_append() {
-> 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/include/*
->${D}/include
->
-> 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers',
->'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/asm*;
->rm -rf ${D}${includedir}/drm; rm -rf ${D}${includedir}/linux; rm -
->rf ${D}${includedir}/mtd; rm -rf ${D}${includedir}/rdma; rm -rf
->${D}${includedir}/sound; rm -rf ${D}${includedir}/video', d)}
->-	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers',
->'external-linaro-toolchain', '', 'rm -rf
->${D}${includedir}/scsi/.install; rm -rf
->${D}${includedir}/scsi/scsi_netlink*; rm -rf
->${D}${includedir}/scsi/scsi_bsg*', d)}
->+	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers',
->'external-linaro-toolchain', '', 'rm -rf
->${D}${includedir}/scsi/.install; rm -rf
->${D}${includedir}/scsi/scsi_netlink*; rm -rf
->${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/xen',
->d)}
->
-> 	rm -rf ${D}/lib/libgfortran*
-> 	rm -rf ${D}/lib/ldscripts
->--
->1.8.3.2
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 70f02b9..5ac21ed 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -32,7 +32,7 @@ PREFERRED_VERSION_linux-libc-headers_am437x-evm = "3.8"
+ PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "linux-ti-staging"
+ PREFERRED_PROVIDER_virtual/bootloader_am437x-evm = "u-boot-ti-staging"
+ PREFERRED_PROVIDER_u-boot_am437x-evm = "u-boot-ti-staging"
+-PREFERRED_VERSION_u-boot-ti-staging_am437x-evm = "2013.07+2013.10-rc1"
++PREFERRED_VERSION_u-boot-ti-staging_am437x-evm = "2013.07+2013.10-rc2"
+ 
+ PREFERRED_VERSION_linux-libc-headers_am180x-evm = "2.6.37.2"
+ PREFERRED_PROVIDER_virtual/kernel_am180x-evm = "linux-omapl138-psp"
+-- 
+1.7.0.4
+
 
