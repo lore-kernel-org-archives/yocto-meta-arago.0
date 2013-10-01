@@ -1,29 +1,33 @@
-Return-Path: <denys@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id CA90952099
+	by arago-project.org (Postfix) with ESMTPS id 72AC852990
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Oct 2013 13:15:45 +0000 (UTC)
+	Tue,  1 Oct 2013 13:20:26 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91DFir2025179
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 08:15:44 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91DKPuE025718;
+	Tue, 1 Oct 2013 08:20:25 -0500
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91DFiV6024140
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 08:15:44 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 1 Oct 2013 08:15:44 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r91DFiIv016911	for <meta-arago@arago-project.org>;
-	Tue, 1 Oct 2013 08:15:44 -0500
-Date: Tue, 1 Oct 2013 09:05:56 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <649982124.743.1380632756537.JavaMail.jenkins@puget>
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91DKPoQ032281;
+	Tue, 1 Oct 2013 08:20:25 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Tue, 1 Oct 2013 08:20:25 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Thread-Topic: [meta-arago] [PATCH 07/13] webkit-examples: enable building
+	and packaging of examples
+Thread-Index: AQHOvnWB/OmjafKCbE6X4PmFPGJhQZnf1Q5V
+Date: Tue, 1 Oct 2013 13:20:24 +0000
+Message-ID: <A7B97C37-84E1-4888-A8B4-6C7BE36F1D70@ti.com>
+References: <1380611472-23600-1-git-send-email-denis@denix.org>,
+	<1380611472-23600-8-git-send-email-denis@denix.org>
+In-Reply-To: <1380611472-23600-8-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.10 build 2013-10-01_01-01-44
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 07/13] webkit-examples: enable building and packaging of examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,252 +40,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 13:15:46 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_742_53575631.1380632756522"
+X-List-Received-Date: Tue, 01 Oct 2013 13:20:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_742_53575631.1380632756522
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Ack
 
-<html>
-<head>
-<title>
-Status for 10/01/13
-</title>
-</head>
-<body>
+> On Oct 1, 2013, at 2:11 AM, "Denys Dmytriyenko" <denis@denix.org> wrote:
+>=20
+> From: Denys Dmytriyenko <denys@ti.com>
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+> .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch        | 9 ++++=
++++++
+> .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend              | 5 ++++=
++
+> 2 files changed, 14 insertions(+)
+> create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/exa=
+mples-build.patch
+> create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1=
+.0.bbappend
+>=20
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-=
+build.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-b=
+uild.patch
+> new file mode 100644
+> index 0000000..d7dc6ae
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.p=
+atch
+> @@ -0,0 +1,9 @@
+> +diff -uNr qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.=
+pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro
+> +--- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro   =
+ 2013-07-02 03:10:27.000000000 -0400
+> ++++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro    2013=
+-09-29 21:31:10.761137146 -0400
+> +@@ -2,4 +2,4 @@
+> +=20
+> + load(qt_parts)
+> +=20
+> +-SUBDIRS +=3D doc
+> ++SUBDIRS +=3D doc examples
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bba=
+ppend b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+> new file mode 100644
+> index 0000000..7e41331
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+> @@ -0,0 +1,5 @@
+> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> +
+> +SRC_URI +=3D "file://examples-build.patch"
+> +
+> +PR_append =3D "-arago0"
+> --=20
+> 1.8.3.2
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-<h2>Status for 10/01/13</h2>
-
-<h2>BUILD_ID: build-2013-10-01_01-02-45</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-<h2><u>SDK Build Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Installer Build</th>
-        <th>SD Card Build</th>
-        <th>Web Build</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=yellow>SKIPPED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=yellow>SKIPPED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-        <td bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.10"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="true"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_742_53575631.1380632756522--
