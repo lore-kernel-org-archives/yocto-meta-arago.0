@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
-	[206.46.173.11])
-	by arago-project.org (Postfix) with ESMTP id 3842852A9F
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTP id 3EBB652AAD
 	for <meta-arago@arago-project.org>;
 	Tue,  1 Oct 2013 07:11:41 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173011.mailsrvcs.net
+	by vms173007.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MTZ007VQAMSXB20@vms173011.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:31 -0500 (CDT)
+	2009)) with ESMTPA id <0MTZ00CMDAN6PNN0@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:30 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 951C820179; Tue,
-	01 Oct 2013 03:11:15 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id A169C271BF; Tue,
+	01 Oct 2013 03:11:18 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 01 Oct 2013 03:11:00 -0400
-Message-id: <1380611472-23600-2-git-send-email-denis@denix.org>
+Date: Tue, 01 Oct 2013 03:11:06 -0400
+Message-id: <1380611472-23600-8-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1380611472-23600-1-git-send-email-denis@denix.org>
 References: <1380611472-23600-1-git-send-email-denis@denix.org>
-Subject: [PATCH 01/13] arago-dylan-config: add meta-qt5/master and dependency on meta-ruby from meta-oe
+Subject: [PATCH 07/13] webkit-examples: enable building and packaging of examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,23 +38,38 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/arago-dylan-config.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch        | 9 +++++++++
+ .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend              | 5 +++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
 
-diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-config.txt
-index 59055bd..f5fb666 100644
---- a/configs/arago-dylan-config.txt
-+++ b/configs/arago-dylan-config.txt
-@@ -3,7 +3,8 @@
- 
- bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
- meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
--meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,HEAD,layers=toolchain-layer:meta-networking:meta-oe
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
- meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,HEAD,layers=meta-linaro-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,dylan,HEAD,layers=meta
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+new file mode 100644
+index 0000000..d7dc6ae
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+@@ -0,0 +1,9 @@
++diff -uNr qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro
++--- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro	2013-07-02 03:10:27.000000000 -0400
+++++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro	2013-09-29 21:31:10.761137146 -0400
++@@ -2,4 +2,4 @@
++ 
++ load(qt_parts)
++ 
++-SUBDIRS += doc
+++SUBDIRS += doc examples
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+new file mode 100644
+index 0000000..7e41331
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+@@ -0,0 +1,5 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI += "file://examples-build.patch"
++
++PR_append = "-arago0"
 -- 
 1.8.3.2
 
