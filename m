@@ -1,35 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 310C8529A7
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0D41452099
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Oct 2013 16:37:29 +0000 (UTC)
+	Tue,  1 Oct 2013 17:18:00 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91GbSIk018488
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 11:37:28 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91HI0gh027828
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 12:18:00 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91GbSsR022542
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 11:37:28 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Tue, 1 Oct 2013 11:37:27 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 01/13] arago-dylan-config: add
-	meta-qt5/master and dependency on meta-ruby from meta-oe
-Thread-Index: AQHOvnWBShLkMy95nUS6nlnqnbQ0jpnf2j5lgABUwAD//90etg==
-Date: Tue, 1 Oct 2013 16:37:27 +0000
-Message-ID: <689B1B73-DBF8-4F1B-960F-E630DCBF8F3F@ti.com>
-References: <1380611472-23600-1-git-send-email-denis@denix.org>
-	<1380611472-23600-2-git-send-email-denis@denix.org>
-	<4A108B9F-2318-433C-AD91-09D666643367@ti.com>,
-	<20131001134218.GH26572@edge>
-In-Reply-To: <20131001134218.GH26572@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91HHxR4015102
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 12:17:59 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 1 Oct 2013 12:17:59 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r91HHx69028057	for <meta-arago@arago-project.org>;
+	Tue, 1 Oct 2013 12:17:59 -0500
+Date: Tue, 1 Oct 2013 13:08:11 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1540145822.745.1380647291816.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 01/13] arago-dylan-config: add meta-qt5/master and dependency on meta-ruby from meta-oe
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-10-01_11-14-08
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,67 +36,176 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 16:37:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Oct 2013 17:18:01 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_744_318757920.1380647291797"
+
+------=_Part_744_318757920.1380647291797
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 10/01/13
+</title>
+</head>
+<body>
+
+<h2>Status for 10/01/13</h2>
+
+<h2>BUILD_ID: build-2013-10-01_11-15-08</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+<h2><u>SDK Build Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Installer Build</th>
+        <th>SD Card Build</th>
+        <th>Web Build</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="true"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-> On Oct 1, 2013, at 8:42 AM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
->=20
->> On Tue, Oct 01, 2013 at 01:38:57PM +0000, Cooper Jr., Franklin wrote:
->> Ack. I'm hoping ruby doesn't need to be installed on the fs for Qt to ru=
-n.
->=20
-> I believe the only dependency is ruby-native needed somewhere during the=
-=20
-> build. At least I don't see it in the image or even there are not target=
-=20
-> packages produced.
-Awesome thanks for checking.
->=20
->=20
->>> On Oct 1, 2013, at 2:11 AM, "Denys Dmytriyenko" <denis@denix.org> wrote=
-:
->>>=20
->>> From: Denys Dmytriyenko <denys@ti.com>
->>>=20
->>> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->>> ---
->>> configs/arago-dylan-config.txt | 3 ++-
->>> 1 file changed, 2 insertions(+), 1 deletion(-)
->>>=20
->>> diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-confi=
-g.txt
->>> index 59055bd..f5fb666 100644
->>> --- a/configs/arago-dylan-config.txt
->>> +++ b/configs/arago-dylan-config.txt
->>> @@ -3,7 +3,8 @@
->>>=20
->>> bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87=
-379bf629066f6662458,layers=3D
->>> meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layer=
-s=3Dmeta-arago-distro:meta-arago-extras
->>> -meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,H=
-EAD,layers=3Dtoolchain-layer:meta-networking:meta-oe
->>> +meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=3D
->>> +meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,H=
-EAD,layers=3Dtoolchain-layer:meta-networking:meta-ruby:meta-oe
->>> meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=3D
->>> meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,HEA=
-D,layers=3Dmeta-linaro-toolchain
->>> oe-core,git://git.openembedded.org/openembedded-core,dylan,HEAD,layers=
-=3Dmeta
->>> --=20
->>> 1.8.3.2
->>>=20
->>> _______________________________________________
->>> meta-arago mailing list
->>> meta-arago@arago-project.org
->>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_744_318757920.1380647291797--
