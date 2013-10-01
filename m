@@ -1,33 +1,31 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 0F45B529A7
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id DC4D552990
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Oct 2013 13:49:34 +0000 (UTC)
+	Tue,  1 Oct 2013 14:37:15 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91DnXcx020159;
-	Tue, 1 Oct 2013 08:49:33 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91EbEoL009296
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 09:37:14 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91DnXGd007647;
-	Tue, 1 Oct 2013 08:49:33 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Tue, 1 Oct 2013 08:49:33 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Thread-Topic: [meta-arago] [PATCH 08/13] qt5.bbclass: add new class similar
-	to existing qt4e for configuring recipes
-Thread-Index: AQHOvnWCoG7G6MO5XUKxlQWRJwgc5pnf3TIB
-Date: Tue, 1 Oct 2013 13:49:32 +0000
-Message-ID: <E925881D-2346-486D-AB56-43FC597F0D66@ti.com>
-References: <1380611472-23600-1-git-send-email-denis@denix.org>,
-	<1380611472-23600-9-git-send-email-denis@denix.org>
-In-Reply-To: <1380611472-23600-9-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91EbEH9014187
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 09:37:14 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 1 Oct 2013 09:37:14 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91EbEmI016452;
+	Tue, 1 Oct 2013 09:37:14 -0500
+Date: Tue, 1 Oct 2013 10:37:13 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-ID: <20131001143713.GL26572@edge>
+References: <1380611545-23840-1-git-send-email-denis@denix.org>
+	<7D46E86EC0A8354091174257B2FED10159775E69@DLEE11.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <7D46E86EC0A8354091174257B2FED10159775E69@DLEE11.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 08/13] qt5.bbclass: add new class similar to existing qt4e for configuring recipes
+Subject: Re: [PATCH 1/3] run-opentest: handle kernel images in zImage in addition to uImage format
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,56 +38,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 13:49:34 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 01 Oct 2013 14:37:17 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Ack. Similar comment about up streaming this but I'm assuming like your pre=
-vious respond that you plan on doing so.
+On Tue, Oct 01, 2013 at 01:41:56PM +0000, Maupin, Chase wrote:
+> 
+> >-----Original Message-----
+> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> >Sent: Tuesday, October 01, 2013 2:12 AM
+> >To: meta-arago@arago-project.org
+> >Subject: [meta-arago] [PATCH 1/3] run-opentest: handle kernel
+> >images in zImage in addition to uImage format
+> >
+> >From: Denys Dmytriyenko <denys@ti.com>
+> >
+> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> >---
+> > lib/run-opentest |    4 ++--
+> > 1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> >diff --git a/lib/run-opentest b/lib/run-opentest
+> >index d3a04f3..7372e75 100644
+> >--- a/lib/run-opentest
+> >+++ b/lib/run-opentest
+> >@@ -170,9 +170,9 @@ run_target_side_test() {
+> >         return 1
+> >     fi
+> >
+> >-    if [ -f $test_dir/temp/board-support/prebuilt-images/uImage-
+> >$m.bin ]
+> >+    if [ -f $test_dir/temp/board-support/prebuilt-
+> >images/[uz]Image-$m.bin ]
+> >     then
+> >-        kernel=$test_dir/temp/board-support/prebuilt-
+> >images/uImage-$m.bin
+> >+        kernel=$test_dir/temp/board-support/prebuilt-
+> >images/[uz]Image-$m.bin
+> 
+> Does the opentest call resolve the [uz] or use it as a literal value?
 
-> On Oct 1, 2013, at 2:11 AM, "Denys Dmytriyenko" <denis@denix.org> wrote:
->=20
-> From: Denys Dmytriyenko <denys@ti.com>
->=20
-> The base class to set everything for recipes to build against Qt5
->=20
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
-> meta-arago-distro/classes/qt5.bbclass | 20 ++++++++++++++++++++
-> 1 file changed, 20 insertions(+)
-> create mode 100644 meta-arago-distro/classes/qt5.bbclass
->=20
-> diff --git a/meta-arago-distro/classes/qt5.bbclass b/meta-arago-distro/cl=
-asses/qt5.bbclass
-> new file mode 100644
-> index 0000000..8669ea4
-> --- /dev/null
-> +++ b/meta-arago-distro/classes/qt5.bbclass
-> @@ -0,0 +1,20 @@
-> +# Class to mimic the old qt4e to prep recipe for use with Qt5 libraries
-> +
-> +QT5EDEPENDS ?=3D "qtbase "
-> +DEPENDS_prepend =3D "${QT5EDEPENDS}"
-> +
-> +inherit qmake5
-> +
-> +# we don't want conflicts with qt4
-> +OE_QMAKE_PATH_HEADERS =3D "${OE_QMAKE_PATH_QT_HEADERS}"
-> +OE_QMAKE_PATH_ARCHDATA =3D "${OE_QMAKE_PATH_QT_ARCHDATA}"
-> +OE_QMAKE_PATH_DATA =3D "${OE_QMAKE_PATH_QT_DATA}"
-> +OE_QMAKE_PATH_BINS =3D "${OE_QMAKE_PATH_QT_BINS}"
-> +OE_QMAKE_PATH_TRANSLATIONS =3D "${OE_QMAKE_PATH_QT_TRANSLATIONS}"
-> +OE_QMAKE_PATH_DOCS =3D "${OE_QMAKE_PATH_QT_DOCS}"
-> +OE_QMAKE_PATH_SETTINGS =3D "${OE_QMAKE_PATH_QT_SETTINGS}"
-> +OE_QMAKE_PATH_EXAMPLES =3D "${OE_QMAKE_PATH_QT_EXAMPLES}"
-> +OE_QMAKE_PATH_TESTS =3D "${OE_QMAKE_PATH_QT_TESTS}"
-> +
-> +# Qt uses atomic instructions not supported in thumb mode
-> +ARM_INSTRUCTION_SET =3D "arm"
-> --=20
-> 1.8.3.2
->=20
+Yes, I believe it gets resolved before it reaches opentest app.
+
+
+> >         if [ "$odtb" ]
+> >         then
+> >             dtb="~dtb=$test_dir/temp/board-support/prebuilt-
+> >images/$odtb"
+> >--
+> >1.7.9.5
+> >
+> >_______________________________________________
+> >meta-arago mailing list
+> >meta-arago@arago-project.org
+> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
