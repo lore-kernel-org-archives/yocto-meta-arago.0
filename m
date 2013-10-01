@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id 287D7529A7
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTP id 3842852A9F
 	for <meta-arago@arago-project.org>;
 	Tue,  1 Oct 2013 07:11:41 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
+	by vms173011.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MTZ00CE2AMZBFN0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:30 -0500 (CDT)
+	2009)) with ESMTPA id <0MTZ007VQAMSXB20@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:31 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 95E09273B9; Tue,
-	01 Oct 2013 03:11:19 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 951C820179; Tue,
+	01 Oct 2013 03:11:15 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 01 Oct 2013 03:11:08 -0400
-Message-id: <1380611472-23600-10-git-send-email-denis@denix.org>
+Date: Tue, 01 Oct 2013 03:11:00 -0400
+Message-id: <1380611472-23600-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1380611472-23600-1-git-send-email-denis@denix.org>
 References: <1380611472-23600-1-git-send-email-denis@denix.org>
-Subject: [PATCH 09/13] qt-provider.bbclass: class to allow seamless switching between Qt4 and Qt5
+Subject: [PATCH 01/13] arago-dylan-config: add meta-qt5/master and dependency on meta-ruby from meta-oe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,41 +36,25 @@ X-List-Received-Date: Tue, 01 Oct 2013 07:11:42 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Recipes that need to compile against either Qt4 or Qt5 should inherit this class
-instead of "inherit qt4e" or "inherit qt5" directly. Setting global QT_PROVIDER
-to either "qt4e" or "qt5" will configure those recipes automatically.
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/qt-provider.bbclass | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 meta-arago-distro/classes/qt-provider.bbclass
+ configs/arago-dylan-config.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/classes/qt-provider.bbclass b/meta-arago-distro/classes/qt-provider.bbclass
-new file mode 100644
-index 0000000..444c76a
---- /dev/null
-+++ b/meta-arago-distro/classes/qt-provider.bbclass
-@@ -0,0 +1,19 @@
-+# Class to handle switching between Qt4 and Qt5
-+# Usage:
-+# 1. Set QT_PROVIDER in distro config to either "qt4e" or "qt5"
-+#    It defaults to "qt4e" when not set
-+#    Hasn't been tested with "qt4x11" but should theoretically work
-+# 2. Update recipes to inherit qt-provider instead of qt4e directly
-+# 3. May need to use below QT_DEPENDS_* and QT_RDEPENDS_* variables
-+#    instead of the actual Qt-version specific values
-+
-+QT_PROVIDER ?= "qt4e"
-+
-+inherit ${QT_PROVIDER}
-+
-+# Build-time dependencies
-+QT_DEPENDS_BASE = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase', 'qt4-embedded', d)}"
-+QT_DEPENDS_WEBKIT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtwebkit', '', d)}"
-+
-+# Run-time dependencies
-+QT_RDEPENDS_FONTS = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase-fonts', 'qt4-embedded-fonts', d)}"
+diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-config.txt
+index 59055bd..f5fb666 100644
+--- a/configs/arago-dylan-config.txt
++++ b/configs/arago-dylan-config.txt
+@@ -3,7 +3,8 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,HEAD,layers=toolchain-layer:meta-networking:meta-oe
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
+ meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,HEAD,layers=meta-linaro-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,dylan,HEAD,layers=meta
 -- 
 1.8.3.2
 
