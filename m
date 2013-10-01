@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id 3EBB652AAD
+Received: from vms173005pub.verizon.net (vms173005pub.verizon.net
+	[206.46.173.5])
+	by arago-project.org (Postfix) with ESMTP id 4144052AAF
 	for <meta-arago@arago-project.org>;
 	Tue,  1 Oct 2013 07:11:41 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
+	by vms173005.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MTZ00CMDAN6PNN0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:30 -0500 (CDT)
+	2009)) with ESMTPA id <0MTZ005GGAMTN8I0@vms173005.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:22 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id A169C271BF; Tue,
-	01 Oct 2013 03:11:18 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 4500326E6E; Tue,
+	01 Oct 2013 03:11:17 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 01 Oct 2013 03:11:06 -0400
-Message-id: <1380611472-23600-8-git-send-email-denis@denix.org>
+Date: Tue, 01 Oct 2013 03:11:03 -0400
+Message-id: <1380611472-23600-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1380611472-23600-1-git-send-email-denis@denix.org>
 References: <1380611472-23600-1-git-send-email-denis@denix.org>
-Subject: [PATCH 07/13] webkit-examples: enable building and packaging of examples
+Subject: [PATCH 04/13] icu: disable LDFLAGSICUDT that prevents loading libicudata.so
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,40 +36,52 @@ X-List-Received-Date: Tue, 01 Oct 2013 07:11:42 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+It seems there is a problem loading libicudata.so library (on ARM?) when it's
+built with default -nodefaultlibs and -nostdlib LDFLAGS, disable them.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch        | 9 +++++++++
- .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend              | 5 +++++
- 2 files changed, 14 insertions(+)
- create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+ .../recipes-support/icu/icu-51.2/disable-ldflagsicudt.patch  | 12 ++++++++++++
+ meta-arago-distro/recipes-support/icu/icu_51.2.bb            |  3 ++-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-support/icu/icu-51.2/disable-ldflagsicudt.patch
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+diff --git a/meta-arago-distro/recipes-support/icu/icu-51.2/disable-ldflagsicudt.patch b/meta-arago-distro/recipes-support/icu/icu-51.2/disable-ldflagsicudt.patch
 new file mode 100644
-index 0000000..d7dc6ae
+index 0000000..b26d388
 --- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
-@@ -0,0 +1,9 @@
-+diff -uNr qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro
-+--- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro	2013-07-02 03:10:27.000000000 -0400
-++++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro	2013-09-29 21:31:10.761137146 -0400
-+@@ -2,4 +2,4 @@
++++ b/meta-arago-distro/recipes-support/icu/icu-51.2/disable-ldflagsicudt.patch
+@@ -0,0 +1,12 @@
++diff -uNr icu-orig/config/mh-linux icu/config/mh-linux
++--- icu-orig/config/mh-linux	2013-05-23 16:02:40.000000000 -0400
+++++ icu/config/mh-linux	2013-09-30 00:19:13.772269345 -0400
++@@ -21,7 +21,7 @@
++ LD_RPATH_PRE = -Wl,-rpath,
 + 
-+ load(qt_parts)
++ ## These are the library specific LDFLAGS
++-LDFLAGSICUDT=-nodefaultlibs -nostdlib
+++#LDFLAGSICUDT=-nodefaultlibs -nostdlib
 + 
-+-SUBDIRS += doc
-++SUBDIRS += doc examples
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
-new file mode 100644
-index 0000000..7e41331
---- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
-@@ -0,0 +1,5 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI += "file://examples-build.patch"
-+
-+PR_append = "-arago0"
++ ## Compiler switch to embed a library name
++ # The initial tab in the next line is to prevent icu-config from reading it.
+diff --git a/meta-arago-distro/recipes-support/icu/icu_51.2.bb b/meta-arago-distro/recipes-support/icu/icu_51.2.bb
+index 1278d22..9a6fd70 100644
+--- a/meta-arago-distro/recipes-support/icu/icu_51.2.bb
++++ b/meta-arago-distro/recipes-support/icu/icu_51.2.bb
+@@ -2,11 +2,12 @@ require icu.inc
+ 
+ LIC_FILES_CHKSUM = "file://../license.html;md5=443a74288a72fad9069a74e7637192c1"
+ 
+-PR = "r0"
++PR = "r1"
+ 
+ BASE_SRC_URI = "http://download.icu-project.org/files/icu4c/${PV}/icu4c-51_2-src.tgz"
+ SRC_URI = "${BASE_SRC_URI} \
+            file://icu-pkgdata-large-cmd.patch \
++           file://disable-ldflagsicudt.patch \
+           "
+ 
+ SRC_URI[md5sum] = "072e501b87065f3a0ca888f1b5165709"
 -- 
 1.8.3.2
 
