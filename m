@@ -1,32 +1,35 @@
-Return-Path: <denys@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7FDDF5297F
+	by arago-project.org (Postfix) with ESMTPS id 310C8529A7
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Oct 2013 14:49:31 +0000 (UTC)
+	Tue,  1 Oct 2013 16:37:29 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91EnU86017879
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 09:49:30 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91EnUvc031388
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 09:49:30 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 1 Oct 2013 09:49:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91EnUrw017048;
-	Tue, 1 Oct 2013 09:49:30 -0500
-Date: Tue, 1 Oct 2013 10:49:29 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20131001144929.GM26572@edge>
-References: <1380611545-23840-1-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED10159775E69@DLEE11.ent.ti.com>
-	<20131001143713.GL26572@edge>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91GbSIk018488
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 11:37:28 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91GbSsR022542
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 11:37:28 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Tue, 1 Oct 2013 11:37:27 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 01/13] arago-dylan-config: add
+	meta-qt5/master and dependency on meta-ruby from meta-oe
+Thread-Index: AQHOvnWBShLkMy95nUS6nlnqnbQ0jpnf2j5lgABUwAD//90etg==
+Date: Tue, 1 Oct 2013 16:37:27 +0000
+Message-ID: <689B1B73-DBF8-4F1B-960F-E630DCBF8F3F@ti.com>
+References: <1380611472-23600-1-git-send-email-denis@denix.org>
+	<1380611472-23600-2-git-send-email-denis@denix.org>
+	<4A108B9F-2318-433C-AD91-09D666643367@ti.com>,
+	<20131001134218.GH26572@edge>
+In-Reply-To: <20131001134218.GH26572@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-In-Reply-To: <20131001143713.GL26572@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/3] run-opentest: handle kernel images in zImage in addition to uImage format
+Subject: Re: [PATCH 01/13] arago-dylan-config: add meta-qt5/master and dependency on meta-ruby from meta-oe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,70 +42,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 14:49:31 -0000
+X-List-Received-Date: Tue, 01 Oct 2013 16:37:29 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-
-On Tue, Oct 01, 2013 at 10:37:13AM -0400, Denys Dmytriyenko wrote:
-> On Tue, Oct 01, 2013 at 01:41:56PM +0000, Maupin, Chase wrote:
-> > 
-> > >-----Original Message-----
-> > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> > >Sent: Tuesday, October 01, 2013 2:12 AM
-> > >To: meta-arago@arago-project.org
-> > >Subject: [meta-arago] [PATCH 1/3] run-opentest: handle kernel
-> > >images in zImage in addition to uImage format
-> > >
-> > >From: Denys Dmytriyenko <denys@ti.com>
-> > >
-> > >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > >---
-> > > lib/run-opentest |    4 ++--
-> > > 1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > >diff --git a/lib/run-opentest b/lib/run-opentest
-> > >index d3a04f3..7372e75 100644
-> > >--- a/lib/run-opentest
-> > >+++ b/lib/run-opentest
-> > >@@ -170,9 +170,9 @@ run_target_side_test() {
-> > >         return 1
-> > >     fi
-> > >
-> > >-    if [ -f $test_dir/temp/board-support/prebuilt-images/uImage-
-> > >$m.bin ]
-> > >+    if [ -f $test_dir/temp/board-support/prebuilt-
-> > >images/[uz]Image-$m.bin ]
-> > >     then
-> > >-        kernel=$test_dir/temp/board-support/prebuilt-
-> > >images/uImage-$m.bin
-> > >+        kernel=$test_dir/temp/board-support/prebuilt-
-> > >images/[uz]Image-$m.bin
-> > 
-> > Does the opentest call resolve the [uz] or use it as a literal value?
-> 
-> Yes, I believe it gets resolved before it reaches opentest app.
-
-Or maybe not! :) Looks like I got fooled by pre-loaded images on SD card...
+Content-Transfer-Encoding: quoted-printable
 
 
-> > >         if [ "$odtb" ]
-> > >         then
-> > >             dtb="~dtb=$test_dir/temp/board-support/prebuilt-
-> > >images/$odtb"
-> > >--
-> > >1.7.9.5
-> > >
-> > >_______________________________________________
-> > >meta-arago mailing list
-> > >meta-arago@arago-project.org
-> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+> On Oct 1, 2013, at 8:42 AM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
+>=20
+>> On Tue, Oct 01, 2013 at 01:38:57PM +0000, Cooper Jr., Franklin wrote:
+>> Ack. I'm hoping ruby doesn't need to be installed on the fs for Qt to ru=
+n.
+>=20
+> I believe the only dependency is ruby-native needed somewhere during the=
+=20
+> build. At least I don't see it in the image or even there are not target=
+=20
+> packages produced.
+Awesome thanks for checking.
+>=20
+>=20
+>>> On Oct 1, 2013, at 2:11 AM, "Denys Dmytriyenko" <denis@denix.org> wrote=
+:
+>>>=20
+>>> From: Denys Dmytriyenko <denys@ti.com>
+>>>=20
+>>> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>>> ---
+>>> configs/arago-dylan-config.txt | 3 ++-
+>>> 1 file changed, 2 insertions(+), 1 deletion(-)
+>>>=20
+>>> diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-confi=
+g.txt
+>>> index 59055bd..f5fb666 100644
+>>> --- a/configs/arago-dylan-config.txt
+>>> +++ b/configs/arago-dylan-config.txt
+>>> @@ -3,7 +3,8 @@
+>>>=20
+>>> bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87=
+379bf629066f6662458,layers=3D
+>>> meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layer=
+s=3Dmeta-arago-distro:meta-arago-extras
+>>> -meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,H=
+EAD,layers=3Dtoolchain-layer:meta-networking:meta-oe
+>>> +meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=3D
+>>> +meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,H=
+EAD,layers=3Dtoolchain-layer:meta-networking:meta-ruby:meta-oe
+>>> meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=3D
+>>> meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,HEA=
+D,layers=3Dmeta-linaro-toolchain
+>>> oe-core,git://git.openembedded.org/openembedded-core,dylan,HEAD,layers=
+=3Dmeta
+>>> --=20
+>>> 1.8.3.2
+>>>=20
+>>> _______________________________________________
+>>> meta-arago mailing list
+>>> meta-arago@arago-project.org
+>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
