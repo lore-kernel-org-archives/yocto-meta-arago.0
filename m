@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id 6991652AB3
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTP id 5F1A752099
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Oct 2013 07:11:41 +0000 (UTC)
+	Tue,  1 Oct 2013 07:11:43 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
+	by vms173021.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MTZ00CMDAN6PNN0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:30 -0500 (CDT)
+	2009)) with ESMTPA id <0MTZ008AFAN6K820@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 01 Oct 2013 02:11:32 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 05086273BC; Tue,
-	01 Oct 2013 03:11:21 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 23ADD273B8; Tue,
+	01 Oct 2013 03:11:19 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 01 Oct 2013 03:11:11 -0400
-Message-id: <1380611472-23600-13-git-send-email-denis@denix.org>
+Date: Tue, 01 Oct 2013 03:11:07 -0400
+Message-id: <1380611472-23600-9-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1380611472-23600-1-git-send-email-denis@denix.org>
 References: <1380611472-23600-1-git-send-email-denis@denix.org>
-Subject: [PATCH 12/13] matrix-gui-browser: update recipe to be Qt4 and Qt5 compatible
+Subject: [PATCH 08/13] qt5.bbclass: add new class similar to existing qt4e for configuring recipes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,86 +36,40 @@ X-List-Received-Date: Tue, 01 Oct 2013 07:11:43 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Uses qt-provider class to build against either Qt4 or Qt5 depending on global
-distro variable QT_PROVIDER.
+The base class to set everything for recipes to build against Qt5
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../matrix/matrix-gui-browser/qt5-gui-widgets-move.patch     | 12 ++++++++++++
- .../recipes-core/matrix/matrix-gui-browser/qt5-webkit.patch  | 12 ++++++++++++
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb            | 12 ++++++++----
- 3 files changed, 32 insertions(+), 4 deletions(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-gui-widgets-move.patch
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-webkit.patch
+ meta-arago-distro/classes/qt5.bbclass | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 meta-arago-distro/classes/qt5.bbclass
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-gui-widgets-move.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-gui-widgets-move.patch
+diff --git a/meta-arago-distro/classes/qt5.bbclass b/meta-arago-distro/classes/qt5.bbclass
 new file mode 100644
-index 0000000..e725004
+index 0000000..8669ea4
 --- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-gui-widgets-move.patch
-@@ -0,0 +1,12 @@
-+diff -uNr git-orig/main.cpp git/main.cpp
-+--- git-orig/main.cpp	2013-09-29 20:06:36.000000000 -0400
-++++ git/main.cpp	2013-09-29 20:11:52.762449142 -0400
-+@@ -36,7 +36,7 @@
-+  *
-+ */
-+ 
-+-#include <QtGui>
-++#include <QtWidgets>
-+ #include <QWebView>
-+ #include <QGraphicsWebView>
-+ #include <iostream> 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-webkit.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-webkit.patch
-new file mode 100644
-index 0000000..abbbcc8
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-webkit.patch
-@@ -0,0 +1,12 @@
-+diff -uNr git-orig/matrix_browser.pro git/matrix_browser.pro
-+--- git-orig/matrix_browser.pro	2013-09-29 18:43:16.000000000 -0400
-++++ git/matrix_browser.pro	2013-09-29 19:00:24.182913775 -0400
-+@@ -6,7 +6,7 @@
-+ TARGET = matrix_browser
-+ DEPENDPATH += .
-+ INCLUDEPATH += .
-+-QT       +=   webkit
-++QT       +=   webkitwidgets
-+ # Input
-+ SOURCES += main.cpp
-+ 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 0e508a0..329b65a 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -4,19 +4,23 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://main.cpp;beginline=9;endline=37;md5=884b90f5bf0d711fe32c4f04b5276496"
- SECTION = "multimedia"
- 
-+inherit qt-provider
++++ b/meta-arago-distro/classes/qt5.bbclass
+@@ -0,0 +1,20 @@
++# Class to mimic the old qt4e to prep recipe for use with Qt5 libraries
 +
- # Make sure that QT font libraries have been installed
--RDEPENDS_${PN} += "qt4-embedded-fonts"
-+RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
++QT5EDEPENDS ?= "qtbase "
++DEPENDS_prepend = "${QT5EDEPENDS}"
 +
-+DEPENDS += "${QT_DEPENDS_WEBKIT}"
- 
--PR = "r2"
-+PR = "r3"
- 
- SRCREV = "db2e6b10e5a14358b6120a4a28de2f9d591bc55c"
- BRANCH ?= "master"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
- 
--S = "${WORKDIR}/git"
-+SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', 'file://qt5-webkit.patch file://qt5-gui-widgets-move.patch', '', d)}"
- 
--inherit qt4e
-+S = "${WORKDIR}/git"
- 
- do_install() {
- 	install -d ${D}/${bindir}
++inherit qmake5
++
++# we don't want conflicts with qt4
++OE_QMAKE_PATH_HEADERS = "${OE_QMAKE_PATH_QT_HEADERS}"
++OE_QMAKE_PATH_ARCHDATA = "${OE_QMAKE_PATH_QT_ARCHDATA}"
++OE_QMAKE_PATH_DATA = "${OE_QMAKE_PATH_QT_DATA}"
++OE_QMAKE_PATH_BINS = "${OE_QMAKE_PATH_QT_BINS}"
++OE_QMAKE_PATH_TRANSLATIONS = "${OE_QMAKE_PATH_QT_TRANSLATIONS}"
++OE_QMAKE_PATH_DOCS = "${OE_QMAKE_PATH_QT_DOCS}"
++OE_QMAKE_PATH_SETTINGS = "${OE_QMAKE_PATH_QT_SETTINGS}"
++OE_QMAKE_PATH_EXAMPLES = "${OE_QMAKE_PATH_QT_EXAMPLES}"
++OE_QMAKE_PATH_TESTS = "${OE_QMAKE_PATH_QT_TESTS}"
++
++# Qt uses atomic instructions not supported in thumb mode
++ARM_INSTRUCTION_SET = "arm"
 -- 
 1.8.3.2
 
