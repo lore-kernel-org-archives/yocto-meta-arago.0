@@ -1,36 +1,29 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id CF9A352A79
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 740085296F
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Oct 2013 14:59:19 +0000 (UTC)
+	Wed,  2 Oct 2013 19:58:04 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r92ExIBs014598;
-	Wed, 2 Oct 2013 09:59:18 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r92ExIf0024683;
-	Wed, 2 Oct 2013 09:59:18 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Wed, 2 Oct 2013 09:59:18 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 07/13] webkit-examples: enable building
-	and packaging of examples
-Thread-Index: AQHOvnWBB/ZoZ6yqZkid7/iWb7fhCJnhYPxQgABfxID//8IcYA==
-Date: Wed, 2 Oct 2013 14:59:17 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015977B721@DLEE11.ent.ti.com>
-References: <1380611472-23600-1-git-send-email-denis@denix.org>
-	<1380611472-23600-8-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED1015977A5D7@DLEE11.ent.ti.com>
-	<20131002134015.GD31698@edge>
-In-Reply-To: <20131002134015.GD31698@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r92Jw3Di027451
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2013 14:58:03 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r92Jw3Ox020524
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2013 14:58:03 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 2 Oct 2013 14:58:03 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r92Jw2hR010480	for <meta-arago@arago-project.org>;
+	Wed, 2 Oct 2013 14:58:03 -0500
+Date: Wed, 2 Oct 2013 15:48:13 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1968182209.751.1380743293346.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 07/13] webkit-examples: enable building and packaging of examples
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-10-02_15-38-52
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,110 +36,176 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2013 14:59:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 Oct 2013 19:58:05 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_750_1516145752.1380743293331"
+
+------=_Part_750_1516145752.1380743293331
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 10/02/13
+</title>
+</head>
+<body>
+
+<h2>Status for 10/02/13</h2>
+
+<h2>BUILD_ID: build-2013-10-02_15-39-53</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=red>FAILED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+<h2><u>SDK Build Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Installer Build</th>
+        <th>SD Card Build</th>
+        <th>Web Build</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=yellow>SKIPPED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+        <td bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="true"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
->-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Wednesday, October 02, 2013 8:40 AM
->To: Maupin, Chase
->Cc: Denys Dmytriyenko; meta-arago@arago-project.org
->Subject: Re: [meta-arago] [PATCH 07/13] webkit-examples: enable
->building and packaging of examples
->
->On Wed, Oct 02, 2013 at 12:57:56PM +0000, Maupin, Chase wrote:
->> Some more explanation would be helpful here.  What is in the
->examples that
->> you need to build and package?
->
->There are examples in the examples :) Seriously though, those are
->just basic
->qtwebkit examples - standard ones Qt comes with. The point is
->there's a recipe
->for them, but it doesn't build or package them, so pretty much
->useless,
->besides the sources. We don't really need them, I was just testing
->and
->experimenting with them.
-
-OK. I was curious if there was some specific example in there we were tryin=
-g to get.  I=92m all for enabling more examples :)
-
->
->
->> >-----Original Message-----
->> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->> >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->> >Sent: Tuesday, October 01, 2013 2:11 AM
->> >To: meta-arago@arago-project.org
->> >Subject: [meta-arago] [PATCH 07/13] webkit-examples: enable
->> >building and packaging of examples
->> >
->> >From: Denys Dmytriyenko <denys@ti.com>
->> >
->> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> >---
->> > .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch
->> >| 9 +++++++++
->> > .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
->> >| 5 +++++
->> > 2 files changed, 14 insertions(+)
->> > create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-
->> >examples/examples-build.patch
->> > create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-
->> >examples_5.1.0.bbappend
->> >
->> >diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->> >examples/examples-build.patch b/meta-arago-distro/recipes-
->> >qt/qt5/qtwebkit-examples/examples-build.patch
->> >new file mode 100644
->> >index 0000000..d7dc6ae
->> >--- /dev/null
->> >+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->examples/examples-
->> >build.patch
->> >@@ -0,0 +1,9 @@
->> >+diff -uNr qtwebkit-examples-opensource-src-5.1.0-
->orig/qtwebkit-
->> >examples.pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-
->> >examples.pro
->> >+--- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-
->> >examples.pro	2013-07-02 03:10:27.000000000 -0400
->> >++++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-
->examples.pro
->> >	2013-09-29 21:31:10.761137146 -0400
->> >+@@ -2,4 +2,4 @@
->> >+
->> >+ load(qt_parts)
->> >+
->> >+-SUBDIRS +=3D doc
->> >++SUBDIRS +=3D doc examples
->> >diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->> >examples_5.1.0.bbappend b/meta-arago-distro/recipes-
->> >qt/qt5/qtwebkit-examples_5.1.0.bbappend
->> >new file mode 100644
->> >index 0000000..7e41331
->> >--- /dev/null
->> >+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->> >examples_5.1.0.bbappend
->> >@@ -0,0 +1,5 @@
->> >+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->> >+
->> >+SRC_URI +=3D "file://examples-build.patch"
->> >+
->> >+PR_append =3D "-arago0"
->> >--
->> >1.8.3.2
->> >
->> >_______________________________________________
->> >meta-arago mailing list
->> >meta-arago@arago-project.org
->> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_750_1516145752.1380743293331--
