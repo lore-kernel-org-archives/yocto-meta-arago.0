@@ -1,35 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B777E5296F
+	by arago-project.org (Postfix) with ESMTPS id 980E45296F
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Oct 2013 19:30:26 +0000 (UTC)
+	Wed,  2 Oct 2013 12:52:58 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r91JUPAS022401
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 14:30:25 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r92CqvaI014107;
+	Wed, 2 Oct 2013 07:52:57 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r91JUPfw010001
-	for <meta-arago@arago-project.org>; Tue, 1 Oct 2013 14:30:25 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r92Cqvkt011699;
+	Wed, 2 Oct 2013 07:52:57 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
 	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Tue, 1 Oct 2013 14:30:25 -0500
+	14.02.0342.003; Wed, 2 Oct 2013 07:52:57 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/3] run-opentest: handle kernel images in
-	zImage in addition to uImage format
-Thread-Index: AQHOvnWaYKf19IOoDESa1wl9AtLcfpnf2trwgAATGeOAAE5REA==
-Date: Tue, 1 Oct 2013 19:30:24 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101597779DF@DLEE11.ent.ti.com>
-References: <1380611545-23840-1-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED10159775E69@DLEE11.ent.ti.com>
-	<20131001143713.GL26572@edge> <20131001144929.GM26572@edge>
-In-Reply-To: <20131001144929.GM26572@edge>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 01/13] arago-dylan-config: add
+	meta-qt5/master and dependency on meta-ruby from meta-oe
+Thread-Index: AQHOvnWBoGgYcp4cLEmbhF83239hm5nhX3bg
+Date: Wed, 2 Oct 2013 12:52:56 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015977A49C@DLEE11.ent.ti.com>
+References: <1380611472-23600-1-git-send-email-denis@denix.org>
+	<1380611472-23600-2-git-send-email-denis@denix.org>
+In-Reply-To: <1380611472-23600-2-git-send-email-denis@denix.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/3] run-opentest: handle kernel images in zImage in addition to uImage format
+Subject: Re: [PATCH 01/13] arago-dylan-config: add meta-qt5/master and dependency on meta-ruby from meta-oe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,87 +41,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 19:30:27 -0000
+X-List-Received-Date: Wed, 02 Oct 2013 12:52:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
+Acked-by: Chase Maupin <chase.maupin@ti.com>
+
+
 >-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Tuesday, October 01, 2013 9:49 AM
->To: Maupin, Chase
->Cc: meta-arago@arago-project.org
->Subject: Re: [meta-arago] [PATCH 1/3] run-opentest: handle kernel
->images in zImage in addition to uImage format
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+>Sent: Tuesday, October 01, 2013 2:11 AM
+>To: meta-arago@arago-project.org
+>Subject: [meta-arago] [PATCH 01/13] arago-dylan-config: add meta-
+>qt5/master and dependency on meta-ruby from meta-oe
 >
->On Tue, Oct 01, 2013 at 10:37:13AM -0400, Denys Dmytriyenko wrote:
->> On Tue, Oct 01, 2013 at 01:41:56PM +0000, Maupin, Chase wrote:
->> >
->> > >-----Original Message-----
->> > >From: meta-arago-bounces@arago-project.org [mailto:meta-
->arago-
->> > >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->> > >Sent: Tuesday, October 01, 2013 2:12 AM
->> > >To: meta-arago@arago-project.org
->> > >Subject: [meta-arago] [PATCH 1/3] run-opentest: handle kernel
->> > >images in zImage in addition to uImage format
->> > >
->> > >From: Denys Dmytriyenko <denys@ti.com>
->> > >
->> > >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> > >---
->> > > lib/run-opentest |    4 ++--
->> > > 1 file changed, 2 insertions(+), 2 deletions(-)
->> > >
->> > >diff --git a/lib/run-opentest b/lib/run-opentest
->> > >index d3a04f3..7372e75 100644
->> > >--- a/lib/run-opentest
->> > >+++ b/lib/run-opentest
->> > >@@ -170,9 +170,9 @@ run_target_side_test() {
->> > >         return 1
->> > >     fi
->> > >
->> > >-    if [ -f $test_dir/temp/board-support/prebuilt-
->images/uImage-
->> > >$m.bin ]
->> > >+    if [ -f $test_dir/temp/board-support/prebuilt-
->> > >images/[uz]Image-$m.bin ]
->> > >     then
->> > >-        kernel=3D$test_dir/temp/board-support/prebuilt-
->> > >images/uImage-$m.bin
->> > >+        kernel=3D$test_dir/temp/board-support/prebuilt-
->> > >images/[uz]Image-$m.bin
->> >
->> > Does the opentest call resolve the [uz] or use it as a literal
->value?
->>
->> Yes, I believe it gets resolved before it reaches opentest app.
+>From: Denys Dmytriyenko <denys@ti.com>
 >
->Or maybe not! :) Looks like I got fooled by pre-loaded images on
->SD card...
-
-Yeah.  My testing showed the "if" statement worked but the assignment to th=
-e kernel variable didn't look right :)
-
+>Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>---
+> configs/arago-dylan-config.txt | 3 ++-
+> 1 file changed, 2 insertions(+), 1 deletion(-)
+>
+>diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-
+>config.txt
+>index 59055bd..f5fb666 100644
+>--- a/configs/arago-dylan-config.txt
+>+++ b/configs/arago-dylan-config.txt
+>@@ -3,7 +3,8 @@
 >
 >
->> > >         if [ "$odtb" ]
->> > >         then
->> > >             dtb=3D"~dtb=3D$test_dir/temp/board-support/prebuilt-
->> > >images/$odtb"
->> > >--
->> > >1.7.9.5
->> > >
->> > >_______________________________________________
->> > >meta-arago mailing list
->> > >meta-arago@arago-project.org
->> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> > _______________________________________________
->> > meta-arago mailing list
->> > meta-arago@arago-project.org
->> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912f
+>f3b87379bf629066f6662458,layers=3D
+> meta-arago,git://arago-project.org/git/meta-
+>arago.git,master,HEAD,layers=3Dmeta-arago-distro:meta-arago-extras
+>-meta-openembedded,git://git.openembedded.org/meta-
+>openembedded,dylan,HEAD,layers=3Dtoolchain-layer:meta-
+>networking:meta-oe
+>+meta-qt5,git://github.com/meta-qt5/meta-
+>qt5.git,master,HEAD,layers=3D
+>+meta-openembedded,git://git.openembedded.org/meta-
+>openembedded,dylan,HEAD,layers=3Dtoolchain-layer:meta-
+>networking:meta-ruby:meta-oe
+> meta-ti,git://arago-project.org/git/meta-
+>ti.git,dylan,HEAD,layers=3D
+> meta-linaro,git://git.linaro.org/openembedded/meta-
+>linaro.git,dylan,HEAD,layers=3Dmeta-linaro-toolchain
+> oe-core,git://git.openembedded.org/openembedded-
+>core,dylan,HEAD,layers=3Dmeta
+>--
+>1.8.3.2
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
