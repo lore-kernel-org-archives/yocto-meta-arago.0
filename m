@@ -1,34 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 38E3B5296F
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 7EB145296F
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Oct 2013 12:57:57 +0000 (UTC)
+	Wed,  2 Oct 2013 12:58:49 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r92CvuFT016989;
-	Wed, 2 Oct 2013 07:57:56 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r92Cvuvj018389;
-	Wed, 2 Oct 2013 07:57:56 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r92CwmS1001790;
+	Wed, 2 Oct 2013 07:58:48 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r92Cwm2S019438;
+	Wed, 2 Oct 2013 07:58:48 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Wed, 2 Oct 2013 07:57:56 -0500
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Wed, 2 Oct 2013 07:58:48 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 07/13] webkit-examples: enable building
-	and packaging of examples
-Thread-Index: AQHOvnWBB/ZoZ6yqZkid7/iWb7fhCJnhYPxQ
-Date: Wed, 2 Oct 2013 12:57:56 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015977A5D7@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH 08/13] qt5.bbclass: add new class similar
+	to existing qt4e for configuring recipes
+Thread-Index: AQHOvnWCL8p45WWMpUuUwAIgn/LIApnhYURA
+Date: Wed, 2 Oct 2013 12:58:48 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015977A604@DLEE11.ent.ti.com>
 References: <1380611472-23600-1-git-send-email-denis@denix.org>
-	<1380611472-23600-8-git-send-email-denis@denix.org>
-In-Reply-To: <1380611472-23600-8-git-send-email-denis@denix.org>
+	<1380611472-23600-9-git-send-email-denis@denix.org>
+In-Reply-To: <1380611472-23600-9-git-send-email-denis@denix.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 07/13] webkit-examples: enable building and packaging of examples
+Subject: Re: [PATCH 08/13] qt5.bbclass: add new class similar to existing qt4e for configuring recipes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,74 +41,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2013 12:57:57 -0000
+X-List-Received-Date: Wed, 02 Oct 2013 12:58:50 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Some more explanation would be helpful here.  What is in the examples that =
-you need to build and package?
+Acked-by: Chase Maupin <chase.maupin@ti.com>
 
-
+Echo of Franklin's upstreaming comment.
 
 >-----Original Message-----
 >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
 >Sent: Tuesday, October 01, 2013 2:11 AM
 >To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH 07/13] webkit-examples: enable
->building and packaging of examples
+>Subject: [meta-arago] [PATCH 08/13] qt5.bbclass: add new class
+>similar to existing qt4e for configuring recipes
 >
 >From: Denys Dmytriyenko <denys@ti.com>
 >
+>The base class to set everything for recipes to build against Qt5
+>
 >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 >---
-> .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch
->| 9 +++++++++
-> .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
->| 5 +++++
-> 2 files changed, 14 insertions(+)
-> create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-
->examples/examples-build.patch
-> create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-
->examples_5.1.0.bbappend
+> meta-arago-distro/classes/qt5.bbclass | 20 ++++++++++++++++++++
+> 1 file changed, 20 insertions(+)
+> create mode 100644 meta-arago-distro/classes/qt5.bbclass
 >
->diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->examples/examples-build.patch b/meta-arago-distro/recipes-
->qt/qt5/qtwebkit-examples/examples-build.patch
+>diff --git a/meta-arago-distro/classes/qt5.bbclass b/meta-arago-
+>distro/classes/qt5.bbclass
 >new file mode 100644
->index 0000000..d7dc6ae
+>index 0000000..8669ea4
 >--- /dev/null
->+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-
->build.patch
->@@ -0,0 +1,9 @@
->+diff -uNr qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-
->examples.pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-
->examples.pro
->+--- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-
->examples.pro	2013-07-02 03:10:27.000000000 -0400
->++++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro
->	2013-09-29 21:31:10.761137146 -0400
->+@@ -2,4 +2,4 @@
+>+++ b/meta-arago-distro/classes/qt5.bbclass
+>@@ -0,0 +1,20 @@
+>+# Class to mimic the old qt4e to prep recipe for use with Qt5
+>libraries
 >+
->+ load(qt_parts)
+>+QT5EDEPENDS ?=3D "qtbase "
+>+DEPENDS_prepend =3D "${QT5EDEPENDS}"
 >+
->+-SUBDIRS +=3D doc
->++SUBDIRS +=3D doc examples
->diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->examples_5.1.0.bbappend b/meta-arago-distro/recipes-
->qt/qt5/qtwebkit-examples_5.1.0.bbappend
->new file mode 100644
->index 0000000..7e41331
->--- /dev/null
->+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-
->examples_5.1.0.bbappend
->@@ -0,0 +1,5 @@
->+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>+inherit qmake5
 >+
->+SRC_URI +=3D "file://examples-build.patch"
+>+# we don't want conflicts with qt4
+>+OE_QMAKE_PATH_HEADERS =3D "${OE_QMAKE_PATH_QT_HEADERS}"
+>+OE_QMAKE_PATH_ARCHDATA =3D "${OE_QMAKE_PATH_QT_ARCHDATA}"
+>+OE_QMAKE_PATH_DATA =3D "${OE_QMAKE_PATH_QT_DATA}"
+>+OE_QMAKE_PATH_BINS =3D "${OE_QMAKE_PATH_QT_BINS}"
+>+OE_QMAKE_PATH_TRANSLATIONS =3D "${OE_QMAKE_PATH_QT_TRANSLATIONS}"
+>+OE_QMAKE_PATH_DOCS =3D "${OE_QMAKE_PATH_QT_DOCS}"
+>+OE_QMAKE_PATH_SETTINGS =3D "${OE_QMAKE_PATH_QT_SETTINGS}"
+>+OE_QMAKE_PATH_EXAMPLES =3D "${OE_QMAKE_PATH_QT_EXAMPLES}"
+>+OE_QMAKE_PATH_TESTS =3D "${OE_QMAKE_PATH_QT_TESTS}"
 >+
->+PR_append =3D "-arago0"
+>+# Qt uses atomic instructions not supported in thumb mode
+>+ARM_INSTRUCTION_SET =3D "arm"
 >--
 >1.8.3.2
 >
