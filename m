@@ -1,28 +1,29 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 8450C5296F
+	by arago-project.org (Postfix) with ESMTPS id A771F52AB4
 	for <meta-arago@arago-project.org>;
-	Sat,  5 Oct 2013 00:50:03 +0000 (UTC)
+	Sat,  5 Oct 2013 06:01:27 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r950o2Tx008999
-	for <meta-arago@arago-project.org>; Fri, 4 Oct 2013 19:50:03 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9561QmD028141
+	for <meta-arago@arago-project.org>; Sat, 5 Oct 2013 01:01:26 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r950o2Tw007532
-	for <meta-arago@arago-project.org>; Fri, 4 Oct 2013 19:50:02 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9561QEX020483
+	for <meta-arago@arago-project.org>; Sat, 5 Oct 2013 01:01:26 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 4 Oct 2013 19:50:02 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r950nxQm024790;
-	Fri, 4 Oct 2013 19:50:00 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+	Sat, 5 Oct 2013 01:01:26 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r9561Q1W007902	for <meta-arago@arago-project.org>;
+	Sat, 5 Oct 2013 01:01:26 -0500
+Date: Sat, 5 Oct 2013 01:51:32 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 4 Oct 2013 20:36:06 -0500
-Message-ID: <1380936966-1698-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+Message-ID: <890703600.767.1380952292885.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] Allow support for uImage and Zimage
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-10-04_18-28-43
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,78 +36,253 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Oct 2013 00:50:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 05 Oct 2013 06:01:28 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_766_545261107.1380952292872"
 
-* There is a possibility some SDKs will use uImage while others will use zImage.
-* Support both choices.
+------=_Part_766_545261107.1380952292872
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- lib/oesdk/bitbake-test-sdk-image |    2 +-
- lib/oesdk/package-sdks           |   11 ++++++-----
- lib/run-opentest                 |    4 ++--
- 3 files changed, 9 insertions(+), 8 deletions(-)
+<html>
+<head>
+<title>
+Status for 10/04/13
+</title>
+</head>
+<body>
 
-diff --git a/lib/oesdk/bitbake-test-sdk-image b/lib/oesdk/bitbake-test-sdk-image
-index 9122d89..7baa106 100644
---- a/lib/oesdk/bitbake-test-sdk-image
-+++ b/lib/oesdk/bitbake-test-sdk-image
-@@ -174,7 +174,7 @@ extract_sdk_image() {
-         cp $sdk_path/$filesys $test_dir/temp/filesystem
- 
-         # Find the kernel image
--        kernel=`find ./$sdk_path -name "uImage-$m.bin" | xargs basename`
-+        kernel=`find ./$sdk_path -name "[uz]Image-$m.bin" | xargs basename`
-         # This is a critical failure and will not be able to be skipped
-         if [ -z "$kernel" ]
-         then
-diff --git a/lib/oesdk/package-sdks b/lib/oesdk/package-sdks
-index 8f4e5e2..df0ec07 100644
---- a/lib/oesdk/package-sdks
-+++ b/lib/oesdk/package-sdks
-@@ -48,18 +48,19 @@ create_sd_card_content() {
-         rm u-boot-spl.bin-$m
-     fi
- 
--    # For some devices the uImage  and dtb files are read from the /boot
--    # directory of the rootfs.  In this case do not package the uImage
-+    # For some devices the uImage/zImage  and dtb files are read from the /boot
-+    # directory of the rootfs.  In this case do not package the uImage/zImage
-     # and device tree files into the boot partition as it will cause
-     # confusion.
-     if [ "$PACKAGE_BOOT_KERNEL_FILES" = "true" ]
-     then
--        if [ -e uImage-$m.bin ]
-+        if [ -e uImage-$m.bin -o -e zImage-$m.bin ]
-         then
--            mv uImage-$m.bin uImage
-+            kernel_image=`ls | grep [uz]Image-$m.bin | grep -o [uz]Image`
-+            mv [uz]Image-$m.bin $kernel_name
-         fi
-     else
--        rm -f uImage*
-+        rm -f [uz]Image*
-         rm -f *.dtb
-     fi
- 
-diff --git a/lib/run-opentest b/lib/run-opentest
-index d3a04f3..b08f962 100644
---- a/lib/run-opentest
-+++ b/lib/run-opentest
-@@ -170,9 +170,9 @@ run_target_side_test() {
-         return 1
-     fi
- 
--    if [ -f $test_dir/temp/board-support/prebuilt-images/uImage-$m.bin ]
-+    if [ -f $test_dir/temp/board-support/prebuilt-images/uImage-$m.bin -o -f $test_dir/temp/board-support/prebuilt-images/zImage-$m.bin ]
-     then
--        kernel=$test_dir/temp/board-support/prebuilt-images/uImage-$m.bin
-+        kernel=$test_dir/temp/board-support/prebuilt-images/[uz]Image-$m.bin
-         if [ "$odtb" ]
-         then
-             dtb="~dtb=$test_dir/temp/board-support/prebuilt-images/$odtb"
--- 
-1.7.0.4
+<h2>Status for 10/04/13</h2>
+
+<h2>BUILD_ID: build-2013-10-04_18-29-48</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+<h2><u>SDK Build Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Installer Build</th>
+        <th>SD Card Build</th>
+        <th>Web Build</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=lime>PASSED</td>
+        <td bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="true"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_UIMAGE="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_766_545261107.1380952292872--
