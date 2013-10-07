@@ -1,29 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 755E95299E
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id 57404529AF
 	for <meta-arago@arago-project.org>;
-	Sun,  6 Oct 2013 13:21:13 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r96DLCRC023497
-	for <meta-arago@arago-project.org>; Sun, 6 Oct 2013 08:21:12 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r96DLCje011686
-	for <meta-arago@arago-project.org>; Sun, 6 Oct 2013 08:21:12 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Sun, 6 Oct 2013 08:21:12 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r96DLBs6022035	for <meta-arago@arago-project.org>;
-	Sun, 6 Oct 2013 08:21:11 -0500
-Date: Sun, 6 Oct 2013 09:11:16 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1144881610.773.1381065076426.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.10 build 2013-10-06_01-01-44
+	Mon,  7 Oct 2013 19:00:57 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MUB00ALMBH0P2D0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 07 Oct 2013 14:00:41 -0500 (CDT)
+Received: from elrond.denix (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 3287620011; Mon,
+	07 Oct 2013 15:00:36 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 07 Oct 2013 15:00:15 -0400
+Message-id: <1381172427-18302-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCHv2 00/12] Add Qt5 support and update matrix-browser to use either Qt4 or Qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,253 +30,88 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 Oct 2013 13:21:13 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_772_1561967334.1381065076411"
+X-List-Received-Date: Mon, 07 Oct 2013 19:00:57 -0000
 
-------=_Part_772_1561967334.1381065076411
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 10/06/13
-</title>
-</head>
-<body>
+This patchset adds Qt5 integration with easy switching between Qt4 and Qt5,
+as well as updates matrix-gui-browser to be built against one or another
+version of Qt. Additional apps will be updated soon to build with Qt4/Qt5 and
+utilize provided classes.
 
-<h2>Status for 10/06/13</h2>
+It is version 2 of the patchset with one patch that set Qt5 as default dropped
+completely and patches #2, 3, 6, 12 addressing comments from the first set -
+they are marked with [PATCHv2] prefix.
 
-<h2>BUILD_ID: build-2013-10-06_01-02-55</h2>
+The goal is to get the base integration of Qt5 into meta-arago/master ASAP to
+enable further development and updating recipes and packagegroups to use Qt5.
 
-<h2>Clean Build: false</h2>
+Denys Dmytriyenko (11):
+  matrix-gui-browser: replace ${S} with ${B} in do_install()
+  icu: overlay the latest version from oe-core/master
+  icu: disable LDFLAGSICUDT that prevents loading libicudata.so
+  qtbase: configure and patch Qt5 qtbase for use with SGX in Arago
+  qtwebkit: add WebGL on eglfs patches
+  webkit-examples: enable building and packaging of examples
+  qt5.bbclass: add new class similar to existing qt4e for configuring
+    recipes
+  qt-provider.bbclass: class to allow seamless switching between Qt4 and
+    Qt5
+  arago-prefs: load up Qt5 preferred versions
+  matrix-gui-browser: update recipe to be Qt4 and Qt5 compatible
+  arago-qt5-test-image: add test minimal image for testing Qt5 migration
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+ meta-arago-distro/classes/qt-provider.bbclass      |  19 ++
+ meta-arago-distro/classes/qt5.bbclass              |  20 ++
+ .../conf/distro/include/arago-prefs.inc            |   3 +
+ .../recipes-core/images/arago-qt5-test-image.bb    |  16 ++
+ .../qt5/qtbase/0001-qeglfswindow.cpp.patch         |  56 +++++
+ .../qt5/qtbase/0002-qeglfswindow.cpp.patch         |  34 +++
+ .../recipes-qt/qt5/qtbase_5.1.0.bbappend           |  10 +
+ .../qt5/qtwebkit-examples/examples-build.patch     |   9 +
+ .../qt5/qtwebkit-examples_5.1.0.bbappend           |   5 +
+ .../qt5/qtwebkit/GraphicsContext3DQt.cpp.patch     |  26 ++
+ .../qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch   | 270 +++++++++++++++++++++
+ .../qt5/qtwebkit/GraphicsSurfaceToken.h.patch      |  33 +++
+ .../recipes-qt/qt5/qtwebkit/OpenGLShims.cpp.patch  |  24 ++
+ .../recipes-qt/qt5/qtwebkit/Target.pri.patch       |  24 ++
+ .../recipes-qt/qt5/qtwebkit/WebCore.pri.patch      |  25 ++
+ .../recipes-qt/qt5/qtwebkit/features.prf.patch     |  20 ++
+ .../qt5/qtwebkit/qttestbrowser.cpp.patch           |  24 ++
+ .../recipes-qt/qt5/qtwebkit_5.1.0.bbappend         |  14 ++
+ .../icu/icu-51.2/disable-ldflagsicudt.patch        |  12 +
+ .../icu/icu-51.2/icu-pkgdata-large-cmd.patch       |  29 +++
+ meta-arago-distro/recipes-support/icu/icu.inc      |  55 +++++
+ meta-arago-distro/recipes-support/icu/icu_51.2.bb  |  14 ++
+ .../matrix-gui-browser/qt5-gui-widgets-move.patch  |  12 +
+ .../matrix/matrix-gui-browser/qt5-webkit.patch     |  12 +
+ .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |  14 +-
+ 26 files changed, 777 insertions(+), 7 deletions(-)
+ create mode 100644 meta-arago-distro/classes/qt-provider.bbclass
+ create mode 100644 meta-arago-distro/classes/qt5.bbclass
+ create mode 100644 meta-arago-distro/recipes-core/images/arago-qt5-test-image.bb
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-qeglfswindow.cpp.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0002-qeglfswindow.cpp.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/OpenGLShims.cpp.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/Target.pri.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/features.prf.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit_5.1.0.bbappend
+ create mode 100644 meta-arago-distro/recipes-support/icu/icu-51.2/disable-ldflagsicudt.patch
+ create mode 100644 meta-arago-distro/recipes-support/icu/icu-51.2/icu-pkgdata-large-cmd.patch
+ create mode 100644 meta-arago-distro/recipes-support/icu/icu.inc
+ create mode 100644 meta-arago-distro/recipes-support/icu/icu_51.2.bb
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-gui-widgets-move.patch
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser/qt5-webkit.patch
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-</table>
-<h2><u>SDK Build Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Installer Build</th>
-        <th>SD Card Build</th>
-        <th>Web Build</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=red>FAILED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=lime>PASSED</td>
-        <td bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.10"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="true"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_UIMAGE="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+-- 
+1.8.3.2
 
 
-------=_Part_772_1561967334.1381065076411--
