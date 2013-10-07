@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
-	[206.46.173.11])
-	by arago-project.org (Postfix) with ESMTP id 01801529D3
+Received: from vms173005pub.verizon.net (vms173005pub.verizon.net
+	[206.46.173.5])
+	by arago-project.org (Postfix) with ESMTP id F23B6529AF
 	for <meta-arago@arago-project.org>;
 	Mon,  7 Oct 2013 19:01:03 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173011.mailsrvcs.net
+	by vms173005.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MUB005PXBH1W0P1@vms173011.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 07 Oct 2013 14:00:47 -0500 (CDT)
+	2009)) with ESMTPA id <0MUB00CCKBH2I6J0@vms173005.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 07 Oct 2013 14:00:40 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 2961420179; Mon,
-	07 Oct 2013 15:00:37 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id CA5B1201BB; Mon,
+	07 Oct 2013 15:00:39 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 07 Oct 2013 15:00:17 -0400
-Message-id: <1381172427-18302-3-git-send-email-denis@denix.org>
+Date: Mon, 07 Oct 2013 15:00:22 -0400
+Message-id: <1381172427-18302-8-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1381172427-18302-1-git-send-email-denis@denix.org>
 References: <1381172427-18302-1-git-send-email-denis@denix.org>
-Subject: [PATCHv2 02/12] matrix-gui-browser: replace ${S} with ${B} in do_install()
+Subject: [PATCH 07/12] webkit-examples: enable building and packaging of examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,38 +36,40 @@ X-List-Received-Date: Mon, 07 Oct 2013 19:01:04 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Replace ${S}ource with ${B}uild directory when installing the binary.
-Normally B == S when the build output is in the same directory where sources
-are, but it's better to use B for when build output is in a different location.
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Acked-by: Chase Maupin <chase.maupin@ti.com>
 ---
-v2 - typo in the description fixed
+ .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch        | 9 +++++++++
+ .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend              | 5 +++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
 
- meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index ecb97c2..0e508a0 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -7,7 +7,7 @@ SECTION = "multimedia"
- # Make sure that QT font libraries have been installed
- RDEPENDS_${PN} += "qt4-embedded-fonts"
- 
--PR = "r1"
-+PR = "r2"
- 
- SRCREV = "db2e6b10e5a14358b6120a4a28de2f9d591bc55c"
- BRANCH ?= "master"
-@@ -20,5 +20,5 @@ inherit qt4e
- 
- do_install() {
- 	install -d ${D}/${bindir}
--	install -m 0755 ${S}/matrix_browser ${D}/${bindir}
-+	install -m 0755 ${B}/matrix_browser ${D}/${bindir}
- }
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+new file mode 100644
+index 0000000..d7dc6ae
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+@@ -0,0 +1,9 @@
++diff -uNr qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro
++--- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro	2013-07-02 03:10:27.000000000 -0400
+++++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro	2013-09-29 21:31:10.761137146 -0400
++@@ -2,4 +2,4 @@
++ 
++ load(qt_parts)
++ 
++-SUBDIRS += doc
+++SUBDIRS += doc examples
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+new file mode 100644
+index 0000000..7e41331
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+@@ -0,0 +1,5 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI += "file://examples-build.patch"
++
++PR_append = "-arago0"
 -- 
 1.8.3.2
 
