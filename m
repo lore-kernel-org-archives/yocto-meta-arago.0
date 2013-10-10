@@ -1,35 +1,37 @@
 Return-Path: <localcontrol@dntsab06real.emea.dhcp.ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2AF4652A81
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 84D5852A81
 	for <meta-arago@arago-project.org>;
 	Wed,  9 Oct 2013 23:58:59 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r99NwwBc027435
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r99Nww0K000675
 	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:58:58 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r99Nwwas016234
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r99NwwBD016239
 	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:58:58 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
 	Wed, 9 Oct 2013 18:58:58 -0500
 Received: from dntsab06real.emea.dhcp.ti.com (dntsab06real.emea.dhcp.ti.com
-	[137.167.84.131])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r99NwvDX028275	for <meta-arago@arago-project.org>;
-	Wed, 9 Oct 2013 18:58:57 -0500
+	[137.167.84.131])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r99Nwwnu001382	for <meta-arago@arago-project.org>;
+	Wed, 9 Oct 2013 18:58:58 -0500
 Received: from dntsab06real.emea.dhcp.ti.com (localhost [127.0.0.1])	by
 	dntsab06real.emea.dhcp.ti.com (8.14.4/8.14.4/Debian-2ubuntu2) with
-	ESMTP id r9A0veVn013663	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 01:57:40 +0100
+	ESMTP id r9A0vfKm013667	for <meta-arago@arago-project.org>;
+	Thu, 10 Oct 2013 01:57:41 +0100
 Received: (from localcontrol@localhost)	by dntsab06real.emea.dhcp.ti.com
-	(8.14.4/8.14.4/Submit) id r9A0veVI013662	for
-	meta-arago@arago-project.org; Thu, 10 Oct 2013 01:57:40 +0100
+	(8.14.4/8.14.4/Submit) id r9A0vf8T013666	for
+	meta-arago@arago-project.org; Thu, 10 Oct 2013 01:57:41 +0100
 From: Roger Monk <r-monk@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 10 Oct 2013 01:57:27 +0100
-Message-ID: <1381366658-13630-1-git-send-email-r-monk@ti.com>
+Date: Thu, 10 Oct 2013 01:57:28 +0100
+Message-ID: <1381366658-13630-2-git-send-email-r-monk@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1381366658-13630-1-git-send-email-r-monk@ti.com>
+References: <1381366658-13630-1-git-send-email-r-monk@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 00/11] meta-arago-extras - Add wilink8 r8.a7.02
+Subject: [PATCH 01/11] ti-connectivity/ti-compat-wireless-wl18xx: Add Wilink8 r8.a7.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,65 +47,94 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 09 Oct 2013 23:58:59 -0000
 Content-Type: text/plain
 
-This patchset adds recipes for Wilink8 version r8.a7.02.
+   * Add v r8.a7.02 engineering release
+   * This release supports the omap-a15 devices (omap5-evm/dra7-evm) with ES 2.1 WL8
+   * OMAP5432 UEVMs with the following SKU contain ES2.1 Wilink8 TDK 18xx module
+      * OMAP5432x-xx-x1-xx
 
-Whilst this version is suitable for all platforms using wilink8, it is initially enabled for omap-a15 only targets, using k3.8 based kernels, as used by GLSDK for omap5-uevm and dra7xx-evm.
-
-This patchset adds the following :-
-
-   * compat-wireless drivers (for k3.8) kernel
-   * wlan firmware (including workaround fixes required in some systems)
-   * wlan utils/configuration tools
-   * latest wpa-supplicant and hostapd updates, including WIFI_DISPLAY
-   * bluetooth firmware (updated for all targets)
-   * user-space wilink8 serial port shared-transport daemon (UIM)
-
-Roger Monk (11):
-  ti-connectivity/ti-compat-wireless-wl18xx: Add Wilink8 r8.a7.02
-  ti-connectivity/wl18xx-firmware: Add Wilink8 r8.a7.02
-  ti-connectivity/wl18xx-firmware: Apply Workaround PD Recovery Fix
-  ti-connectivity/wpa-supplicant-wl18xx: Add Wilink8 r8.a7.02
-  ti-connectivity/wpa-supplicant-wl18xx: Ensure version'd patch applied
-    first
-  ti-connectivity/hostap-daemon-wl18xx: Add Wilink8 r8.a7.02
-  ti-connectivity/hostap-daemon-wl18xx: Ensure version'd patch applied
-    first
-  ti-connectivity/wlconf: Add Wilink8 r8.a7.02
-  ti-connectivity/ti-wifi-utils-wl18xx: Add Wilink8 r8.a7.02
-  ti-connectivity/bt-firmware: Update to latest BT Firmware + allow
-    more targets
-  ti-connectivity/uim: Add Usermode Init Mgr for TI Wilink Shared
-    Transport
-
- ...-Remove-platform-check-and-install-defaul.patch |   41 ++
- .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |   10 +-
- .../ti-compat-wireless-wl18xx_r8.a7.02.bb          |   71 +++
- .../wl18xx-firmware/wl18xx-firmware_r8.a7.02.bb    |   33 ++
- ...d-change-conf-file-for-better-oob-startup.patch |   43 ++
- .../hostap/hostap-daemon-wl18xx_r8.a7.02.bb        |   25 +
- ...mand-line-args-for-passing-sysfs-node-pat.patch |  135 ++++++
- .../recipes-connectivity/uim/files/uim-sysfs       |   34 ++
- .../recipes-connectivity/uim/uim_git.bb            |   28 ++
- .../recipes-connectivity/wlconf/wlconf_r8.a7.02.bb |   39 ++
- ...0001-revert-android-patches-to-enable-wfd.patch |   44 ++
- .../wpa-supplicant-wl18xx-r8.a7.02/defconfig       |  508 ++++++++++++++++++++
- .../wpa-supplicant-wl18xx_r8.a7.02.bb              |   29 ++
- .../ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb |   30 ++
- 14 files changed, 1066 insertions(+), 4 deletions(-)
- create mode 100644 meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
+Signed-off-by: Roger Monk <r-monk@ti.com>
+---
+ .../ti-compat-wireless-wl18xx_r8.a7.02.bb          |   71 ++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
  create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a7.02.bb
- create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a7.02.bb
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx-r8.a7.02/0001-hostapd-change-conf-file-for-better-oob-startup.patch
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a7.02.bb
- create mode 100644 meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
- create mode 100755 meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
- create mode 100644 meta-arago-extras/recipes-connectivity/uim/uim_git.bb
- create mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a7.02.bb
- create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx-r8.a7.02/0001-revert-android-patches-to-enable-wfd.patch
- create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx-r8.a7.02/defconfig
- create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a7.02.bb
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb
 
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a7.02.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a7.02.bb
+new file mode 100644
+index 0000000..295dd9c
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a7.02.bb
+@@ -0,0 +1,71 @@
++# This is a TI specific version of the compat-wireless recipe using a
++# compat-wireless package created from the TI Systems Tested mac80211 releases.
++
++DESCRIPTION = "ti compat-wireless drivers for wl18xx"
++HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
++SECTION = "kernel/modules"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
++
++RDEPENDS_${PN} = "wireless-tools"
++
++PROVIDES += "ti-compat-wireless-wl12xx"
++RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
++RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
++RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
++
++COMPATIBLE_MACHINE = "(omap-a15)"
++
++PV = "r8.a7.02"
++inherit module
++
++PR = "${MACHINE_KERNEL_PR}"
++PR_append = "a"
++
++# Tags: ol_r8.a7.02
++SRCREV_wl18xx = "e611d18893fbd66f6c303e111955d8a732fd0c34"
++SRCREV_compat = "595b13b80f9b922d9e3a1c6e7b75c38b471b2b44"
++SRCREV_compat-wireless = "40d5abd0fe6c89a2afd993f633924e716453a09e"
++
++SRCREV_FORMAT = "compat-wireless"
++
++S = "${WORKDIR}/compat-wireless"
++
++SRC_URI = "git://github.com/TI-OpenLink/compat-wireless.git;destsuffix=compat-wireless;name=compat-wireless \
++           git://github.com/TI-OpenLink/compat.git;destsuffix=compat;name=compat \
++           git://github.com/TI-OpenLink/wl18xx.git;destsuffix=wl18xx;name=wl18xx \
++"
++
++EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
++
++# Prevent sourceipk adjust_git function from running.
++# This preserves the git repo until driver-select is ran.
++
++adjust_git() {
++    :
++}
++
++do_configure() {
++    cd ${S}
++    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh network
++    ./scripts/driver-select wl18xx
++
++    # Delete the .git repository since it should no longer be needed.
++    #rm -rf ${S}/.git ${S}/.gitignore
++
++    # Now generate the sourceipk with the properly configured sources
++    sourceipk_do_create_srcipk
++}
++
++do_configure_append() {
++    sed -i "s#@./scripts/update-initramfs## " Makefile
++}
++
++do_install() {
++    # Remove hardcoded references to host depmod
++    sed -i "s#@/sbin/depmod -a## " Makefile
++    sed -i "s#@/sbin/depmod -ae## " Makefile
++
++    # Install modules
++    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
++}
 -- 
 1.7.9.5
 
