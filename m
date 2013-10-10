@@ -1,35 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 37F0F529A8
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id BD0FC52090
 	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 00:26:15 +0000 (UTC)
+	Thu, 10 Oct 2013 08:21:51 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9A0QESk003076
-	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 19:26:14 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9A0QEt9016513
-	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 19:26:14 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Wed, 9 Oct 2013 19:26:14 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Monk, Roger" <r-monk@ti.com>
-Thread-Topic: [meta-arago] [PATCH 2/2]
-	ti-connectivity/compat_wl18xx_r8.a6.01:	Update SRC_URI
-Thread-Index: AQHOxUtUsw14VMzrlUSEU42BIog47pntDmu6gABV3oD//6/HxQ==
-Date: Thu, 10 Oct 2013 00:26:13 +0000
-Message-ID: <CD9918F5-2D98-41BB-B88F-2F714F0B75B1@ti.com>
-References: <1381366559-13586-1-git-send-email-r-monk@ti.com>,
-	<1381366559-13586-3-git-send-email-r-monk@ti.com>
-	<6B10753E-A555-4D14-B1B4-055F564D1D26@ti.com>,
-	<4C82F39BABFE6A429733A300DEBF52240BFF85F9@DNCE05.ent.ti.com>
-In-Reply-To: <4C82F39BABFE6A429733A300DEBF52240BFF85F9@DNCE05.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9A8LoOB003672
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 03:21:50 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9A8Lokg011408
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 03:21:50 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 10 Oct 2013 03:21:50 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r9A8LotQ005557;	Thu, 10 Oct 2013 03:21:50 -0500
+Date: Thu, 10 Oct 2013 04:11:49 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>, <fcooper@ti.com>
+Message-ID: <2098808409.791.1381392709082.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/2] ti-connectivity/compat_wl18xx_r8.a6.01:	Update SRC_URI
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-10-10_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,74 +35,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Oct 2013 00:26:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 10 Oct 2013 08:21:52 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_790_1089084564.1381392709058"
+
+------=_Part_790_1089084564.1381392709058
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 10/10/13
+</title>
+</head>
+<body>
+
+<h2>Status for 10/10/13</h2>
+
+<h2>BUILD_ID: build-2013-10-10_01-02-54</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-> On Oct 9, 2013, at 7:13 PM, "Monk, Roger" <r-monk@ti.com> wrote:
->=20
->> On Thu, Oct 10, 2013 at 01:06:01, Cooper Jr., Franklin wrote:
->> Subject: Re: [meta-arago] [PATCH 2/2] ti-
->> connectivity/compat_wl18xx_r8.a6.01: Update SRC_URI
->>=20
->> The Wilink 8 recipes were initially created for AM335x on a 3.2 kernel.
->>=20
->> Based on your other patch set is this updated tag supported on=20
->> omap-a15 only or 3.8+ kernels only?
->=20
-> The original commit hash for this version is no longer present (presumabl=
-y due to a rebase), so this patch simply updates the commit to match the ne=
-w commit id for the same tag (r8.a6.01) to make this recipe buildable again=
-.
->=20
-> This recipe will likely need to be replaced shortly with newer r8.a6.xx r=
-elease anyway for AM335x, but I wanted to get the WILINK8 recipes buildable=
- first.
-Ok makes sense.
->=20
->>=20
->>=20
->>> On Oct 9, 2013, at 6:57 PM, "Monk, Roger" <r-monk@ti.com> wrote:
->>>=20
->>>  * SRC_URI tag has changed (rebased?)
->>>  * Update SRC_URI to match r8.a6.01 tag
->>>=20
->>> Signed-off-by: Roger Monk <r-monk@ti.com>
->>> ---
->>> .../ti-compat-wireless-wl18xx_r8.a6.01.bb          |    2 +-
->>> 1 file changed, 1 insertion(+), 1 deletion(-)
->>>=20
->>> diff --git=20
->>> a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-
->> wireless-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/ti-compat-
->> wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
->>> index 273c721..a69b7d6 100644
->>> ---=20
->>> a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireles
->>> s-
->> wl18xx_r8.a6.01.bb
->>> +++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wir
->>> +++ eless-
->> wl18xx_r8.a6.01.bb
->>> @@ -21,7 +21,7 @@ PR =3D "${MACHINE_KERNEL_PR}"
->>> PR_append =3D "c"
->>>=20
->>> # Tags: ol_r8.a6.01
->>> -SRCREV_wl18xx =3D "1c0f45f0e8aec0823175f7ac977908888c424aa1"
->>> +SRCREV_wl18xx =3D "f076cdad1988daf207ad560db2fe96caaa7c596e"
->>> SRCREV_compat =3D "c37c46c4ab5085ba50f650d15854404983b8d09b"
->>> SRCREV_compat-wireless =3D "3ec9ecca2cb07584e115ba53117f0084fc8faa25"
->>>=20
->>> --
->>> 1.7.9.5
->>>=20
->>> _______________________________________________
->>> meta-arago mailing list
->>> meta-arago@arago-project.org
->>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->=20
->=20
-
+------=_Part_790_1089084564.1381392709058--
