@@ -1,37 +1,37 @@
 Return-Path: <localcontrol@dntsab06real.emea.dhcp.ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 1A79452A81
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 871B852A81
 	for <meta-arago@arago-project.org>;
 	Wed,  9 Oct 2013 23:59:04 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r99Nx3J8000694
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r99Nx3Wt003137
 	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:59:03 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r99Nx3Xl016464
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r99Nx3DI016490
 	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:59:03 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
 	Wed, 9 Oct 2013 18:59:03 -0500
 Received: from dntsab06real.emea.dhcp.ti.com (dntsab06real.emea.dhcp.ti.com
-	[137.167.84.131])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r99Nx27A028359	for <meta-arago@arago-project.org>;
-	Wed, 9 Oct 2013 18:59:02 -0500
+	[137.167.84.131])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r99Nx2au001470	for <meta-arago@arago-project.org>;
+	Wed, 9 Oct 2013 18:59:03 -0500
 Received: from dntsab06real.emea.dhcp.ti.com (localhost [127.0.0.1])	by
 	dntsab06real.emea.dhcp.ti.com (8.14.4/8.14.4/Debian-2ubuntu2) with
-	ESMTP id r9A0vjPx013699	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 01:57:45 +0100
+	ESMTP id r9A0vk5E013703	for <meta-arago@arago-project.org>;
+	Thu, 10 Oct 2013 01:57:46 +0100
 Received: (from localcontrol@localhost)	by dntsab06real.emea.dhcp.ti.com
-	(8.14.4/8.14.4/Submit) id r9A0vjXM013698	for
-	meta-arago@arago-project.org; Thu, 10 Oct 2013 01:57:45 +0100
+	(8.14.4/8.14.4/Submit) id r9A0vkK0013702	for
+	meta-arago@arago-project.org; Thu, 10 Oct 2013 01:57:46 +0100
 From: Roger Monk <r-monk@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 10 Oct 2013 01:57:36 +0100
-Message-ID: <1381366658-13630-10-git-send-email-r-monk@ti.com>
+Date: Thu, 10 Oct 2013 01:57:37 +0100
+Message-ID: <1381366658-13630-11-git-send-email-r-monk@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1381366658-13630-1-git-send-email-r-monk@ti.com>
 References: <1381366658-13630-1-git-send-email-r-monk@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 09/11] ti-connectivity/ti-wifi-utils-wl18xx: Add Wilink8 r8.a7.02
+Subject: [PATCH 10/11] ti-connectivity/bt-firmware: Update to latest BT Firmware + allow more targets
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,53 +47,87 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 09 Oct 2013 23:59:04 -0000
 Content-Type: text/plain
 
-   * Add v r8.a7.02 engineering release wifi utilities for wilink8
-   * This release supports the omap-a15 devices (omap5-evm/dra7-evm) with ES 2.1 WL8
-   * OMAP5432 UEVMs with the following SKU contain ES2.1 Wilink8 TDK 18xx module
-      * OMAP5432x-xx-x1-xx
+       * Add latest BT firmware
+       * Add patch to enable unspecifified platforms to pick up default firmware
 
 Signed-off-by: Roger Monk <r-monk@ti.com>
 ---
- .../ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb |   30 ++++++++++++++++++++
- 1 file changed, 30 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb
+ ...-Remove-platform-check-and-install-defaul.patch |   41 ++++++++++++++++++++
+ .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |   10 +++--
+ 2 files changed, 47 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
 
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb
+diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
 new file mode 100644
-index 0000000..fab2ee1
+index 0000000..4ad457e
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb
-@@ -0,0 +1,30 @@
-+DESCRIPTION = "The calibrator and other useful utilities for TI wireless solution based on wl12xx driver"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
++++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
+@@ -0,0 +1,41 @@
++From 40bb43c136ec8001d35f6077e5de5f8ac72f4da0 Mon Sep 17 00:00:00 2001
++From: Roger Monk <r-monk@ti.com>
++Date: Thu, 3 Oct 2013 02:59:54 +0100
++Subject: [PATCH] bt-firmware:  Remove platform check and install default
++ firmware
 +
-+COMPATIBLE_MACHINE = "(omap-a15)"
++   * For undefined plaforms, install default firmware
++   * Remove configuration of 'unknown' so that install picks
++     firmware from root directory (default)
 +
-+DEPENDS = "libnl"
-+RDEPENDS_${PN} = "ti-compat-wireless-wl12xx wl12xx-firmware"
++Signed-off-by: Roger Monk <r-monk@ti.com>
++---
++ Makefile |    6 +++---
++ 1 file changed, 3 insertions(+), 3 deletions(-)
 +
-+PR ="r1+gitr${SRCPV}"
++diff --git a/Makefile b/Makefile
++index bd94881..ca8280a 100644
++--- a/Makefile
+++++ b/Makefile
++@@ -5,8 +5,8 @@
++ # If KERNEL_DIR is not set then use the default in Rules.make
++ DEST_DIR ?= ${DESTDIR}
++ 
++-PLATFORM ?= "unknown"
++-MACHINE_NAME ?= "unknown"
+++#PLATFORM ?= "unknown"
+++#MACHINE_NAME ?= "unknown"
++ 
++ ifeq ($(PLATFORM), am335x-evm)
++     MACHINE_NAME := am335x
++@@ -23,6 +23,6 @@ endif
++ 
++ install:
++ 	install -d $(DEST_DIR)${BASE_LIB_DIR}/firmware
++-	cp -f ./${MACHINE_NAME}/* $(DEST_DIR)${BASE_LIB_DIR}/firmware
+++	cp -f ./${MACHINE_NAME}/*.bts $(DEST_DIR)${BASE_LIB_DIR}/firmware
++ 
++ 
++-- 
++1.7.9.5
 +
-+# Tag: ol_r8.a7.02
-+SRCREV = "badbb7ecb70971857e4863c792a40e91f4f0a985"
-+SRC_URI = "git://github.com/TI-OpenLink/18xx-ti-utils.git \
+diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
+index 2b320da..3a0191e 100644
+--- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
++++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
+@@ -13,13 +13,15 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ RCONFLICTS_${PN} = "linux-firmware-wl12xx"
+ RREPLACES_${PN}  = "linux-firmware-wl12xx"
+ 
+-PR = "r2+gitr${SRCPV}"
++PR = "r3+gitr${SRCPV}"
+ 
+-COMPATIBLE_MACHINE = "omap3|omapl138|da850-omapl138-evm|ti33x"
++COMPATIBLE_MACHINE = "omap3|omapl138|da850-omapl138-evm|ti3x|omap-a15"
+ 
+-SRCREV = "adbc27c11d5c5c8c20a93a8beca647b4a6aaa03b"
++SRCREV = "3a020e30a0e28e6b7b7cdd2a8fb37b29e1e58040"
+ SRC_URI = "git://github.com/TI-ECS/bt-firmware.git;protocol=git \
+-           file://0001-Makefile-allow-building-within-the-OE.patch"
++           file://0001-Makefile-allow-building-within-the-OE.patch \
++           file://0001-bt-firmware-Remove-platform-check-and-install-defaul.patch \
 +"
-+
-+PROVIDES += "ti-wifi-utils"
-+RPROVIDES_${PN} += "ti-wifi-utils"
-+RREPLACES_${PN} +=  "ti-wifi-utils"
-+RCONFLICTS_${PN} +=  "ti-wifi-utils"
-+
-+S = "${WORKDIR}/git"
-+
-+export CROSS_COMPILE = "${TARGET_PREFIX}"
-+CFLAGS += " -DCONFIG_LIBNL20"
-+
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -m 0755 calibrator ${D}${bindir}/
-+}
+ 
+ PLATFORM = "unknown"
+ PLATFORM_ti33x = "am335x-evm"
 -- 
 1.7.9.5
 
