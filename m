@@ -1,24 +1,24 @@
 Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A277E52A77
+	by arago-project.org (Postfix) with ESMTPS id 3302C52998
 	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 17:04:39 +0000 (UTC)
+	Thu, 10 Oct 2013 18:37:41 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9AH4c9Z015597
-	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 12:04:38 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9AIbeFx024376
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 13:37:40 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AH4cAV025184
-	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 12:04:38 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AIbdka022121
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 13:37:40 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 10 Oct 2013 12:04:38 -0500
+	Thu, 10 Oct 2013 13:37:39 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AH4cX4028257;
-	Thu, 10 Oct 2013 12:04:38 -0500
-Date: Thu, 10 Oct 2013 13:04:38 -0400
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AIbdnO030911;
+	Thu, 10 Oct 2013 13:37:39 -0500
+Date: Thu, 10 Oct 2013 14:37:38 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20131010170438.GC16395@edge>
+Message-ID: <20131010183738.GE16395@edge>
 References: <1380936966-1698-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 In-Reply-To: <1380936966-1698-1-git-send-email-fcooper@ti.com>
@@ -37,14 +37,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Oct 2013 17:04:39 -0000
+X-List-Received-Date: Thu, 10 Oct 2013 18:37:41 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
 On Fri, Oct 04, 2013 at 08:36:06PM -0500, Franklin S. Cooper Jr wrote:
 > * There is a possibility some SDKs will use uImage while others will use zImage.
 > * Support both choices.
-> 
+
+And by the way, as Chase just noticed, run-opentest part has been already 
+patched before, please rebase your tree with the mainline:
+
+http://arago-project.org/git/projects/?p=tisdk-build-scripts.git;a=commitdiff;h=f9441104cae4c5ff44ad2583539d089a9910a1b3
+
+
+
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
 >  lib/oesdk/bitbake-test-sdk-image |    2 +-
@@ -83,23 +90,10 @@ On Fri, Oct 04, 2013 at 08:36:06PM -0500, Franklin S. Cooper Jr wrote:
 >      then
 > -        if [ -e uImage-$m.bin ]
 > +        if [ -e uImage-$m.bin -o -e zImage-$m.bin ]
-
-This is fine, but [ -e [uz]Image-$m.bin ] should also work...
-
-
 >          then
 > -            mv uImage-$m.bin uImage
 > +            kernel_image=`ls | grep [uz]Image-$m.bin | grep -o [uz]Image`
-
-Bash is capable of expanding regular expressions, so "ls [uz]Image-$m.bin" 
-should be fine.
-
-
 > +            mv [uz]Image-$m.bin $kernel_name
-
-Hmm, here you set kernel_image variable and then use $kernel_name instead.
-
-
 >          fi
 >      else
 > -        rm -f uImage*
@@ -117,20 +111,9 @@ Hmm, here you set kernel_image variable and then use $kernel_name instead.
 >  
 > -    if [ -f $test_dir/temp/board-support/prebuilt-images/uImage-$m.bin ]
 > +    if [ -f $test_dir/temp/board-support/prebuilt-images/uImage-$m.bin -o -f $test_dir/temp/board-support/prebuilt-images/zImage-$m.bin ]
-
-Same comment as above, you can pass regexp [uz]Image to [ ] test
-
-
 >      then
 > -        kernel=$test_dir/temp/board-support/prebuilt-images/uImage-$m.bin
 > +        kernel=$test_dir/temp/board-support/prebuilt-images/[uz]Image-$m.bin
-
-As we found out, assigning regexp to a variable doesn't always get it 
-expanded, so you may end up with [uz]Image literal in your $kernel variable - 
-make sure it's being used as is later on, or you may not get the epected 
-resukts...
-
-
 >          if [ "$odtb" ]
 >          then
 >              dtb="~dtb=$test_dir/temp/board-support/prebuilt-images/$odtb"
