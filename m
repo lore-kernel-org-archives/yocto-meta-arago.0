@@ -1,34 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D4B26529B0
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 6B38C529B0
 	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 15:45:24 +0000 (UTC)
+	Thu, 10 Oct 2013 15:46:15 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9AFjN1F012600
-	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:45:24 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9AFkETi003034
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:46:14 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AFjNS5006895
-	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:45:23 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AFkESi008231
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:46:14 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
 	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Thu, 10 Oct 2013 10:45:23 -0500
+	14.02.0342.003; Thu, 10 Oct 2013 10:46:14 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Monk, Roger" <r-monk@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCHv2 10/11] ti-connectivity/bt-firmware:
-	Update to	latest BT Firmware + allow more targets
-Thread-Index: AQHOxcn2eJ2BndcU80SojoQm6NjQcJnuE3Yg
-Date: Thu, 10 Oct 2013 15:45:23 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015979BEB0@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCHv2 11/11] ti-connectivity/uim: Add Usermode
+	Init	Mgr for TI Wilink Shared Transport
+Thread-Index: AQHOxcn4+zbNfRcTn0iGkOZNNstHwJnuE/vA
+Date: Thu, 10 Oct 2013 15:46:13 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015979BF18@DLEE11.ent.ti.com>
 References: <1381420942-16810-1-git-send-email-r-monk@ti.com>
-	<1381420942-16810-11-git-send-email-r-monk@ti.com>
-In-Reply-To: <1381420942-16810-11-git-send-email-r-monk@ti.com>
+	<1381420942-16810-12-git-send-email-r-monk@ti.com>
+In-Reply-To: <1381420942-16810-12-git-send-email-r-monk@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCHv2 10/11] ti-connectivity/bt-firmware: Update to	latest BT Firmware + allow more targets
+Subject: Re: [PATCHv2 11/11] ti-connectivity/uim: Add Usermode Init	Mgr for TI Wilink Shared Transport
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,125 +41,283 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Oct 2013 15:45:25 -0000
+X-List-Received-Date: Thu, 10 Oct 2013 15:46:15 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
-
-General question, since you were adding recipes for omap-a15 does there nee=
-d to be a setting of PLATFORM for those devices or is the default "unknown"=
- OK?
-
-Acked-by: Chase Maupin <chase.maupin@ti.com>
 
 >-----Original Message-----
 >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 >bounces@arago-project.org] On Behalf Of Monk, Roger
 >Sent: Thursday, October 10, 2013 11:02 AM
 >To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCHv2 10/11] ti-connectivity/bt-firmware:
->Update to latest BT Firmware + allow more targets
+>Subject: [meta-arago] [PATCHv2 11/11] ti-connectivity/uim: Add
+>Usermode Init Mgr for TI Wilink Shared Transport
 >
->       * Add latest BT firmware
->       * Add patch to enable unspecifified platforms to pick up
->default firmware
+>   * New recipe pulling latest git version
+>   * Patched to allow sysfs node to be passed via command line
+>argument
+>   * UIM Daemon plumbed to rcS.S03
 >
 >Signed-off-by: Roger Monk <r-monk@ti.com>
 >---
-> ...-Remove-platform-check-and-install-defaul.patch |   41
+> ...mand-line-args-for-passing-sysfs-node-pat.patch |  135
 >++++++++++++++++++++
-> .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |   10 +++--
-> 2 files changed, 47 insertions(+), 4 deletions(-)
-> create mode 100644 meta-arago-extras/recipes-bsp/bt-firmware/bt-
->firmware/0001-bt-firmware-Remove-platform-check-and-install-
->defaul.patch
+> .../recipes-connectivity/uim/files/uim-sysfs       |   34 +++++
+> .../recipes-connectivity/uim/uim_git.bb            |   28 ++++
+> 3 files changed, 197 insertions(+)
+> create mode 100644 meta-arago-extras/recipes-
+>connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-
+>sysfs-node-pat.patch
+> create mode 100755 meta-arago-extras/recipes-
+>connectivity/uim/files/uim-sysfs
+> create mode 100644 meta-arago-extras/recipes-
+>connectivity/uim/uim_git.bb
 >
->diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-
->firmware/0001-bt-firmware-Remove-platform-check-and-install-
->defaul.patch b/meta-arago-extras/recipes-bsp/bt-firmware/bt-
->firmware/0001-bt-firmware-Remove-platform-check-and-install-
->defaul.patch
+>diff --git a/meta-arago-extras/recipes-
+>connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-
+>sysfs-node-pat.patch b/meta-arago-extras/recipes-
+>connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-
+>sysfs-node-pat.patch
 >new file mode 100644
->index 0000000..4ad457e
+>index 0000000..ad6f95f
 >--- /dev/null
->+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-
->bt-firmware-Remove-platform-check-and-install-defaul.patch
->@@ -0,0 +1,41 @@
->+From 40bb43c136ec8001d35f6077e5de5f8ac72f4da0 Mon Sep 17 00:00:00
+>+++ b/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-
+>Add-command-line-args-for-passing-sysfs-node-pat.patch
+>@@ -0,0 +1,135 @@
+>+From 0df5f6766722a844162e96777980feee146a3c86 Mon Sep 17 00:00:00
 >2001
 >+From: Roger Monk <r-monk@ti.com>
->+Date: Thu, 3 Oct 2013 02:59:54 +0100
->+Subject: [PATCH] bt-firmware:  Remove platform check and install
->default
->+ firmware
+>+Date: Tue, 1 Oct 2013 17:17:25 +0100
+>+Subject: [PATCH] uim:  Add command line args for passing sysfs
+>node path
 >+
->+   * For undefined plaforms, install default firmware
->+   * Remove configuration of 'unknown' so that install picks
->+     firmware from root directory (default)
+>+   * pass -f <sysfs path> and/or -b <bd address>
+>+   * re-mapped DEFINEs to strings
+>+      * minimal code changes for minimal instrusion
+>+      * could be rewritten for cleaner implementation in the
+>future
+>+   * default path (no args) remains the same
+>+   * users passing bd address via uim <addr> will need to add -b
 >+
 >+Signed-off-by: Roger Monk <r-monk@ti.com>
 >+---
->+ Makefile |    6 +++---
->+ 1 file changed, 3 insertions(+), 3 deletions(-)
+>+ uim.c |   61
+>+++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+>+ uim.h |   10 +++++-----
+>+ 2 files changed, 58 insertions(+), 13 deletions(-)
 >+
->+diff --git a/Makefile b/Makefile
->+index bd94881..ca8280a 100644
->+--- a/Makefile
->++++ b/Makefile
->+@@ -5,8 +5,8 @@
->+ # If KERNEL_DIR is not set then use the default in Rules.make
->+ DEST_DIR ?=3D ${DESTDIR}
+>+diff --git a/uim.c b/uim.c
+>+index 3775dda..4dfdbd7 100644
+>+--- a/uim.c
+>++++ b/uim.c
+>+@@ -38,6 +38,11 @@ static int exiting;
+>+ static int line_discipline;
+>+ static int dev_fd;
 >+
->+-PLATFORM ?=3D "unknown"
->+-MACHINE_NAME ?=3D "unknown"
->++#PLATFORM ?=3D "unknown"
->++#MACHINE_NAME ?=3D "unknown"
+>++static char install_sysfs_entry[48];
+>++static char dev_name_sysfs[48];
+>++static char baud_rate_sysfs[48];
+>++static char flow_cntrl_sysfs[48];
+>++
+>+ /* BD address as string and a pointer to array of hex bytes */
+>+ char uim_bd_address[BD_ADDR_LEN];
+>+ bdaddr_t *bd_addr;
+>+@@ -455,9 +460,17 @@ bdaddr_t *strtoba(const char *str)
+>+         return (bdaddr_t *) ba;
+>+ }
 >+
->+ ifeq ($(PLATFORM), am335x-evm)
->+     MACHINE_NAME :=3D am335x
->+@@ -23,6 +23,6 @@ endif
+>++void usage(void)
+>++{
+>++	UIM_ERR("Invalid arguments");
+>++	UIM_ERR("Usage: uim [ -f <path-to-sysfs-kim> ] [ -b <bd
+>address XX:XX:XX:XX:XX:XX> ]");
+>++}
+>++
 >+
->+ install:
->+ 	install -d $(DEST_DIR)${BASE_LIB_DIR}/firmware
->+-	cp -f ./${MACHINE_NAME}/*
->$(DEST_DIR)${BASE_LIB_DIR}/firmware
->++	cp -f ./${MACHINE_NAME}/*.bts
->$(DEST_DIR)${BASE_LIB_DIR}/firmware
+>/*****************************************************************
+>************/
+>+ int main(int argc, char *argv[])
+>+ {
+>++	int opt;
+>++	char *arg_kim_path =3D NULL, *arg_bd_addr =3D NULL, *temp_path =3D
+>KIM_SYSFS_BASE;
+>+ 	int st_fd, err;
+>+ 	unsigned char install;
+>+ 	struct pollfd 	p;
+>+@@ -466,18 +479,50 @@ int main(int argc, char *argv[])
+>+ 	err =3D 0;
 >+
+>+ 	/* Parse the user input */
+>+-	if ((argc > 2)) {
+>+-		UIM_ERR("Invalid arguements");
+>+-		UIM_ERR("Usage: uim <bd address>");
+>+-		return -1;
+>++	while ((opt =3D getopt (argc, argv, "f:b:")) !=3D -1) {
+>++		switch (opt) {
+>++			case 'f':
+>++				arg_kim_path =3D optarg;
+>++				break;
+>++			case 'b':
+>++				arg_bd_addr =3D optarg;
+>++				break;
+>++			default:
+>++				usage();
+>++				return -1;
+>++		}
+>++	}
+>++
+>++	if (arg_kim_path !=3D NULL) {
+>++		temp_path =3D arg_kim_path;
+>++		if( strlen(temp_path) > (sizeof(install_sysfs_entry)-
+>10) ) {
+>++			UIM_ERR("Path to sysfs node too long");
+>++			return -1;
+>++		}
+>+ 	}
+>+-	if (argc =3D=3D 2) {
+>+-		if (strlen(argv[2]) !=3D BD_ADDR_LEN) {
+>+-			UIM_ERR("Usage: uim XX:XX:XX:XX:XX:XX");
+>++	strcpy(install_sysfs_entry, temp_path);
+>++	strcpy(dev_name_sysfs, temp_path);
+>++	strcpy(baud_rate_sysfs, temp_path);
+>++	strcpy(flow_cntrl_sysfs, temp_path);
+>++
+>++	strcat(install_sysfs_entry, "/install");
+>++	strcat(dev_name_sysfs, "/dev_name");
+>++	strcat(baud_rate_sysfs, "/baud_rate");
+>++	strcat(flow_cntrl_sysfs, "/flow_cntrl");
+>++
+>++	UIM_DBG("install =3D %s", install_sysfs_entry);
+>++	UIM_DBG("dev_name =3D %s", dev_name_sysfs);
+>++	UIM_DBG("baud_rate =3D %s", baud_rate_sysfs);
+>++	UIM_DBG("flow_cntrl =3D %s", flow_cntrl_sysfs);
+>++
+>++	if (arg_bd_addr !=3D NULL) {
+>++		if (strlen(arg_bd_addr) !=3D BD_ADDR_LEN) {
+>++			usage();
+>+ 			return -1;
+>+ 		}
+>++		UIM_DBG("Address =3D %s", arg_bd_addr);
+>+ 		/* BD address passed as string in xx:xx:xx:xx:xx:xx
+>format */
+>+-		strncpy(uim_bd_address, argv[2],
+>sizeof(uim_bd_address));
+>++		strncpy(uim_bd_address, arg_bd_addr,
+>sizeof(uim_bd_address));
+>+ 		bd_addr =3D strtoba(uim_bd_address);
+>+ 	}
 >+
+>+diff --git a/uim.h b/uim.h
+>+index a8ef699..32a8fe0 100644
+>+--- a/uim.h
+>++++ b/uim.h
+>+@@ -65,11 +65,11 @@
+>+ /* the sysfs entries with device configuration set by
+>+  * shared transport driver
+>+  */
+>+-#define INSTALL_SYSFS_ENTRY "/sys/devices/platform/kim/install"
+>+-#define DEV_NAME_SYSFS "/sys/devices/platform/kim/dev_name"
+>+-#define BAUD_RATE_SYSFS "/sys/devices/platform/kim/baud_rate"
+>+-#define FLOW_CTRL_SYSFS "/sys/devices/platform/kim/flow_cntrl"
+>+-
+>++#define KIM_SYSFS_BASE		"/sys/devices/platform/kim"
+>++#define INSTALL_SYSFS_ENTRY	install_sysfs_entry
+>++#define DEV_NAME_SYSFS		dev_name_sysfs
+>++#define BAUD_RATE_SYSFS		baud_rate_sysfs
+>++#define FLOW_CTRL_SYSFS		flow_cntrl_sysfs
+>+
+>+ #define VERBOSE
+>+ /*Debug logs*/
 >+--
 >+1.7.9.5
 >+
->diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-
->firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-
->firmware_git.bb
->index 2b320da..3a0191e 100644
->--- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
->+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
->@@ -13,13 +13,15 @@ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> RCONFLICTS_${PN} =3D "linux-firmware-wl12xx"
-> RREPLACES_${PN}  =3D "linux-firmware-wl12xx"
->
->-PR =3D "r2+gitr${SRCPV}"
->+PR =3D "r3+gitr${SRCPV}"
->
->-COMPATIBLE_MACHINE =3D "omap3|omapl138|da850-omapl138-evm|ti33x"
->+COMPATIBLE_MACHINE =3D "omap3|omapl138|da850-omapl138-
->evm|ti3x|omap-a15"
->
->-SRCREV =3D "adbc27c11d5c5c8c20a93a8beca647b4a6aaa03b"
->+SRCREV =3D "3a020e30a0e28e6b7b7cdd2a8fb37b29e1e58040"
-> SRC_URI =3D "git://github.com/TI-ECS/bt-firmware.git;protocol=3Dgit \
->-           file://0001-Makefile-allow-building-within-the-
->OE.patch"
->+           file://0001-Makefile-allow-building-within-the-
->OE.patch \
->+           file://0001-bt-firmware-Remove-platform-check-and-
->install-defaul.patch \
+>diff --git a/meta-arago-extras/recipes-connectivity/uim/files/uim-
+>sysfs b/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
+>new file mode 100755
+>index 0000000..44b95c6
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
+>@@ -0,0 +1,34 @@
+>+#! /bin/sh
+>+
+>+NODE=3D`cd /sys; find . | grep kim | grep install`
+>+if [ $NODE ]
+>+then
+>+    echo UIM SYSFS Node Found at /sys/$NODE
+>+else
+>+    echo UIM SYSFS Node Not Found
+>+    exit 0
+>+fi
+>+
+>+uim=3D"/usr/bin/uim"
+>+uim_args=3D"-f `dirname /sys/$NODE`"
+>+
+>+test -x "$uim" || exit 0
+>+
+>+case "$1" in
+>+  start)
+>+    echo -n "Starting uim-sysfs daemon"
+>+    start-stop-daemon --start --quiet --pidfile /var/run/uim.pid
+>--make-pidfile --exec $uim -- $uim_args &
+>+    echo "."
+>+    ;;
+>+  stop)
+>+    echo -n "Stopping uim-sysfs daemon"
+>+    start-stop-daemon --stop --quiet --pidfile /var/run/uim.pid
+>+    echo "."
+>+    ;;
+>+  *)
+>+    echo "Usage: /etc/init.d/uim-sysfs.sh {start|stop}"
+>+    exit 1
+>+esac
+>+
+>+exit 0
+>+
+>diff --git a/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
+>b/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
+>new file mode 100644
+>index 0000000..7f3203f
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
+>@@ -0,0 +1,28 @@
+>+DESCRIPTION =3D "Shared Transport Line Discipline User Mode
+>initialisation Manager Daemon"
+>+LICENSE =3D "GPLv2"
+>+LIC_FILES_CHKSUM =3D
+>"file://uim.c;beginline=3D1;endline=3D18;md5=3D9f0bbfbc10c67689e81a523e2
+>976c31e"
+>+
+>+COMPATIBLE_MACHINE =3D "(omap-a15)"
+>+
+>+PR =3D"r1"
+>+PR_append =3D "+gitr${SRCPV}"
+
+Why not combine these lines?
+
+>+
+>+SRCREV =3D "c73894456df5def97111cb33d2106b684b8b7959"
+>+SRC_URI =3D "git://gitorious.org/uim/uim.git \
+>+           file://0001-uim-Add-command-line-args-for-passing-
+>sysfs-node-pat.patch \
+>+           file://uim-sysfs \
 >+"
->
-> PLATFORM =3D "unknown"
-> PLATFORM_ti33x =3D "am335x-evm"
+>+
+>+S =3D "${WORKDIR}/git"
+>+
+>+EXTRA_OEMAKE =3D "CC=3D${TARGET_PREFIX}gcc"
+>+
+>+do_install() {
+>+        install -d ${D}${bindir}
+>+        install -m 0755 uim ${D}${bindir}
+>+        install -d ${D}${sysconfdir}/init.d
+>+        install -m 0755 ${WORKDIR}/uim-sysfs
+>${D}${sysconfdir}/init.d
+>+        install -d ${D}${sysconfdir}/rcS.d
+>+        ln -sf  ../init.d/uim-sysfs
+>${D}${sysconfdir}/rcS.d/S03uim-sysfs
+>+}
+>+
 >--
 >1.7.9.5
 >
