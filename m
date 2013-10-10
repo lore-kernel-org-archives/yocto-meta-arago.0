@@ -1,35 +1,37 @@
 Return-Path: <localcontrol@dntsab06real.emea.dhcp.ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 4835152A8E
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 4595E52A81
 	for <meta-arago@arago-project.org>;
 	Wed,  9 Oct 2013 23:57:26 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r99NvOHO003002
-	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:57:24 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r99NvPN6026340
+	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:57:25 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r99NvOjt014608
-	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:57:24 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r99NvPfV014635
+	for <meta-arago@arago-project.org>; Wed, 9 Oct 2013 18:57:25 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 9 Oct 2013 18:57:24 -0500
+	Wed, 9 Oct 2013 18:57:25 -0500
 Received: from dntsab06real.emea.dhcp.ti.com (dntsab06real.emea.dhcp.ti.com
-	[137.167.84.131])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	r99NvNet000879	for <meta-arago@arago-project.org>;
-	Wed, 9 Oct 2013 18:57:23 -0500
+	[137.167.84.131])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r99NvOUB012068	for <meta-arago@arago-project.org>;
+	Wed, 9 Oct 2013 18:57:24 -0500
 Received: from dntsab06real.emea.dhcp.ti.com (localhost [127.0.0.1])	by
 	dntsab06real.emea.dhcp.ti.com (8.14.4/8.14.4/Debian-2ubuntu2) with
-	ESMTP id r9A0u6Wt013618	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 01:56:06 +0100
+	ESMTP id r9A0u7Jc013626	for <meta-arago@arago-project.org>;
+	Thu, 10 Oct 2013 01:56:07 +0100
 Received: (from localcontrol@localhost)	by dntsab06real.emea.dhcp.ti.com
-	(8.14.4/8.14.4/Submit) id r9A0u6k8013617	for
-	meta-arago@arago-project.org; Thu, 10 Oct 2013 01:56:06 +0100
+	(8.14.4/8.14.4/Submit) id r9A0u7Bw013625	for
+	meta-arago@arago-project.org; Thu, 10 Oct 2013 01:56:07 +0100
 From: Roger Monk <r-monk@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 10 Oct 2013 01:55:57 +0100
-Message-ID: <1381366559-13586-1-git-send-email-r-monk@ti.com>
+Date: Thu, 10 Oct 2013 01:55:59 +0100
+Message-ID: <1381366559-13586-3-git-send-email-r-monk@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1381366559-13586-1-git-send-email-r-monk@ti.com>
+References: <1381366559-13586-1-git-send-email-r-monk@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 0/2] meta-arago-extras - Fix-up wilink8 r8.a6.01
+Subject: [PATCH 2/2] ti-connectivity/compat_wl18xx_r8.a6.01: Update SRC_URI
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,19 +47,27 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 09 Oct 2013 23:57:27 -0000
 Content-Type: text/plain
 
-These patches fixup broken wilink8 recipes for release r8.a6.01.
-This version is old and soon to be replaced, but fix-up rebased
-commit-id and recipe parse issues first.
+   * SRC_URI tag has changed (rebased?)
+   * Update SRC_URI to match r8.a6.01 tag
 
-Roger Monk (2):
-  ti-connectivity/wlconf_r8.a6.01: Fix missing line continuation in
-    install method
-  ti-connectivity/compat_wl18xx_r8.a6.01: Update SRC_URI
-
+Signed-off-by: Roger Monk <r-monk@ti.com>
+---
  .../ti-compat-wireless-wl18xx_r8.a6.01.bb          |    2 +-
- .../recipes-connectivity/wlconf/wlconf_r8.a6.01.bb |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
+index 273c721..a69b7d6 100644
+--- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
+@@ -21,7 +21,7 @@ PR = "${MACHINE_KERNEL_PR}"
+ PR_append = "c"
+ 
+ # Tags: ol_r8.a6.01
+-SRCREV_wl18xx = "1c0f45f0e8aec0823175f7ac977908888c424aa1"
++SRCREV_wl18xx = "f076cdad1988daf207ad560db2fe96caaa7c596e"
+ SRCREV_compat = "c37c46c4ab5085ba50f650d15854404983b8d09b"
+ SRCREV_compat-wireless = "3ec9ecca2cb07584e115ba53117f0084fc8faa25"
+ 
 -- 
 1.7.9.5
 
