@@ -1,34 +1,34 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BFAFF529B0
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 41851529B0
 	for <meta-arago@arago-project.org>;
-	Thu, 10 Oct 2013 15:43:13 +0000 (UTC)
+	Thu, 10 Oct 2013 15:43:31 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9AFhDOC002693
-	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:43:13 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AFhDUY003635
-	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:43:13 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9AFhUiJ012355
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:43:30 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9AFhUVn003980
+	for <meta-arago@arago-project.org>; Thu, 10 Oct 2013 10:43:30 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Thu, 10 Oct 2013 10:43:13 -0500
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Thu, 10 Oct 2013 10:43:30 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Monk, Roger" <r-monk@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCHv2 08/11] ti-connectivity/wlconf: Add
-	Wilink8	r8.a7.02
-Thread-Index: AQHOxcnwljIOFsGPd0Kpt404iGM0E5nuEzjg
-Date: Thu, 10 Oct 2013 15:43:12 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015979BDE1@DLEE11.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCHv2 09/11]
+	ti-connectivity/ti-wifi-utils-wl18xx:	Add Wilink8 r8.a7.02
+Thread-Index: AQHOxcoERcQPLAxJfEazrw6ldP0/o5nuE1XA
+Date: Thu, 10 Oct 2013 15:43:29 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015979BE1E@DLEE11.ent.ti.com>
 References: <1381420942-16810-1-git-send-email-r-monk@ti.com>
-	<1381420942-16810-9-git-send-email-r-monk@ti.com>
-In-Reply-To: <1381420942-16810-9-git-send-email-r-monk@ti.com>
+	<1381420942-16810-10-git-send-email-r-monk@ti.com>
+In-Reply-To: <1381420942-16810-10-git-send-email-r-monk@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCHv2 08/11] ti-connectivity/wlconf: Add Wilink8	r8.a7.02
+Subject: Re: [PATCHv2 09/11] ti-connectivity/ti-wifi-utils-wl18xx:	Add Wilink8 r8.a7.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Oct 2013 15:43:13 -0000
+X-List-Received-Date: Thu, 10 Oct 2013 15:43:31 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
@@ -53,11 +53,10 @@ Acked-by: Chase Maupin <chase.maupin@ti.com>
 >bounces@arago-project.org] On Behalf Of Monk, Roger
 >Sent: Thursday, October 10, 2013 11:02 AM
 >To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCHv2 08/11] ti-connectivity/wlconf: Add
->Wilink8 r8.a7.02
+>Subject: [meta-arago] [PATCHv2 09/11] ti-connectivity/ti-wifi-
+>utils-wl18xx: Add Wilink8 r8.a7.02
 >
->   * Add v r8.a7.02 engineering release configuration utility for
->wilink8
+>   * Add v r8.a7.02 engineering release wifi utilities for wilink8
 >   * This release supports the omap-a15 devices (omap5-evm/dra7-
 >evm) with ES 2.1 WL8
 >   * OMAP5432 UEVMs with the following SKU contain ES2.1 Wilink8
@@ -66,46 +65,47 @@ Acked-by: Chase Maupin <chase.maupin@ti.com>
 >
 >Signed-off-by: Roger Monk <r-monk@ti.com>
 >---
-> .../{wlconf_r8.a6.01.bb =3D> wlconf_r8.a7.02.bb}     |    8 +++++--
+> ...8.a6.01.bb =3D> ti-wifi-utils-wl18xx_r8.a7.02.bb} |    8 +++++--
 >-
 > 1 file changed, 5 insertions(+), 3 deletions(-)
-> copy meta-arago-extras/recipes-
->connectivity/wlconf/{wlconf_r8.a6.01.bb =3D> wlconf_r8.a7.02.bb}
->(89%)
+> copy meta-arago-extras/recipes-devtools/ti-wifi-utils/{ti-wifi-
+>utils-wl18xx_r8.a6.01.bb =3D> ti-wifi-utils-wl18xx_r8.a7.02.bb}
+>(83%)
 >
->diff --git a/meta-arago-extras/recipes-
->connectivity/wlconf/wlconf_r8.a6.01.bb b/meta-arago-
->extras/recipes-connectivity/wlconf/wlconf_r8.a7.02.bb
->similarity index 89%
->copy from meta-arago-extras/recipes-
->connectivity/wlconf/wlconf_r8.a6.01.bb
->copy to meta-arago-extras/recipes-
->connectivity/wlconf/wlconf_r8.a7.02.bb
->index 8076350..214d05b 100644
->--- a/meta-arago-extras/recipes-
->connectivity/wlconf/wlconf_r8.a6.01.bb
->+++ b/meta-arago-extras/recipes-
->connectivity/wlconf/wlconf_r8.a7.02.bb
->@@ -2,11 +2,13 @@ DESCRIPTION =3D "Configuration utility for TI
->wireless drivers"
-> LICENSE =3D "GPLv2"
+>diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-
+>wifi-utils-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-
+>devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a7.02.bb
+>similarity index 83%
+>copy from meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-
+>wifi-utils-wl18xx_r8.a6.01.bb
+>copy to meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-
+>utils-wl18xx_r8.a7.02.bb
+>index eab94fa..fab2ee1 100644
+>--- a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-
+>utils-wl18xx_r8.a6.01.bb
+>+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-
+>utils-wl18xx_r8.a7.02.bb
+>@@ -2,13 +2,15 @@ DESCRIPTION =3D "The calibrator and other useful
+>utilities for TI wireless solutio
+> LICENSE =3D "BSD"
 > LIC_FILES_CHKSUM =3D
->"file://README;beginline=3D1;endline=3D21;md5=3Dadc05a1903d3f107f85c9032
->8e3a9438"
+>"file://COPYING;md5=3D4725015cb0be7be389cf06deeae3683d"
 >
->-PR =3D"r2"
 >+COMPATIBLE_MACHINE =3D "(omap-a15)"
 >+
->+PR =3D"r1"
-> PR_append =3D "+gitr${SRCPV}"
+> DEPENDS =3D "libnl"
+> RDEPENDS_${PN} =3D "ti-compat-wireless-wl12xx wl12xx-firmware"
+>
+>-PR =3D"r3+gitr${SRCPV}"
+>+PR =3D"r1+gitr${SRCPV}"
 >
 >-# Tag: ol_r8.a6.01
 >-SRCREV =3D "214dfbdf97cc390b0020c4ea9331a1cf82240a64"
 >+# Tag: ol_r8.a7.02
 >+SRCREV =3D "badbb7ecb70971857e4863c792a40e91f4f0a985"
-> SRC_URI =3D "git://github.com/TI-OpenLink/18xx-ti-utils.git"
+> SRC_URI =3D "git://github.com/TI-OpenLink/18xx-ti-utils.git \
+> "
 >
-> S =3D "${WORKDIR}/git/wlconf"
 >--
 >1.7.9.5
 >
