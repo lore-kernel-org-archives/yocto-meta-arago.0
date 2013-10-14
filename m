@@ -1,25 +1,23 @@
 Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTP id EDA1B52AB0
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTP id 56CBC52972
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Oct 2013 00:35:55 +0000 (UTC)
+	Mon, 14 Oct 2013 06:12:09 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173007.mailsrvcs.net
+	by vms173015.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MUM00J09UZ7J5D0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Sun, 13 Oct 2013 19:35:32 -0500 (CDT)
+	2009)) with ESMTPA id <0MUN00HJWAK8U0B0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 14 Oct 2013 01:12:08 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id EF87E21C1D; Sun,
-	13 Oct 2013 20:35:30 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 34CF620087; Mon,
+	14 Oct 2013 02:12:08 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sun, 13 Oct 2013 20:35:23 -0400
-Message-id: <1381710923-22471-10-git-send-email-denis@denix.org>
+Date: Mon, 14 Oct 2013 02:12:05 -0400
+Message-id: <1381731127-17880-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-In-reply-to: <1381710923-22471-1-git-send-email-denis@denix.org>
-References: <1381710923-22471-1-git-send-email-denis@denix.org>
-Subject: [PATCH 9/9] README: update dependency information for dylan base
+Subject: [PATCH 1/3] qtwebkit-examples: fix pushed upstream, remove locally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,92 +30,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 00:35:56 -0000
+X-List-Received-Date: Mon, 14 Oct 2013 06:12:09 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/README | 17 +++++++++++------
- meta-arago-extras/README | 17 +++++++++++------
- 2 files changed, 22 insertions(+), 12 deletions(-)
+ .../recipes-qt/qt5/qtwebkit-examples/examples-build.patch        | 9 ---------
+ .../recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend              | 5 -----
+ 2 files changed, 14 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index f966cea..c7f505e 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -1,22 +1,27 @@
- meta-arago-distro provides Arago distribution configuration for TI SDK products
- 
--This layer works with the latest Yocto Project release (currently 1.3) and tracks
--the stable/maintenance branches (currently "danny") of the corresponding layers:
-+This layer works with the latest Yocto Project release (currently 1.4) and tracks
-+the stable/maintenance branches (currently "dylan") of the corresponding layers:
- 
- URI: git://git.openembedded.org/openembedded-core
--branch: danny
-+branch: dylan
- revision: HEAD
- layers: meta
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: danny
-+branch: dylan
- revision: HEAD
--layers: meta-oe, toolchain-layer
-+layers: meta-oe, toolchain-layer, meta-networking
- 
- URI: git://arago-project.org/git/meta-ti
--branch: danny
-+branch: dylan
- revision: HEAD
- 
-+URI: git://git.linaro.org/openembedded/meta-linaro
-+branch: dylan
-+revision: HEAD
-+layers: meta-linaro-toolchain
-+
- Send pull requests to meta-arago@arago-project.org
- 
- Layer maintainers: Chase Maupin <chase.maupin@ti.com>
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index 52eaed4..3ec39da 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -1,22 +1,27 @@
- meta-arago-extras provides additional TI SDK applications that are distro-agnostic
- 
--This layer works with the latest Yocto Project release (currently 1.3) and tracks
--the stable/maintenance branches (currently "danny") of the corresponding layers:
-+This layer works with the latest Yocto Project release (currently 1.4) and tracks
-+the stable/maintenance branches (currently "dylan") of the corresponding layers:
- 
- URI: git://git.openembedded.org/openembedded-core
--branch: danny
-+branch: dylan
- revision: HEAD
- layers: meta
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: danny
-+branch: dylan
- revision: HEAD
--layers: meta-oe, toolchain-layers
-+layers: meta-oe, toolchain-layers, meta-networking
- 
- URI: git://arago-project.org/git/meta-ti
--branch: danny
-+branch: dylan
- revision: HEAD
- 
-+URI: git://git.linaro.org/openembedded/meta-linaro
-+branch: dylan
-+revision: HEAD
-+layers: meta-linaro-toolchain
-+
- Send pull requests to meta-arago@arago-project.org
- 
- Layer maintainers: Chase Maupin <chase.maupin@ti.com>
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
+deleted file mode 100644
+index d7dc6ae..0000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples/examples-build.patch
++++ /dev/null
+@@ -1,9 +0,0 @@
+-diff -uNr qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro
+---- qtwebkit-examples-opensource-src-5.1.0-orig/qtwebkit-examples.pro	2013-07-02 03:10:27.000000000 -0400
+-+++ qtwebkit-examples-opensource-src-5.1.0/qtwebkit-examples.pro	2013-09-29 21:31:10.761137146 -0400
+-@@ -2,4 +2,4 @@
+- 
+- load(qt_parts)
+- 
+--SUBDIRS += doc
+-+SUBDIRS += doc examples
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
+deleted file mode 100644
+index 7e41331..0000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit-examples_5.1.0.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-SRC_URI += "file://examples-build.patch"
+-
+-PR_append = "-arago0"
 -- 
 1.8.3.2
 
