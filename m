@@ -1,29 +1,29 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 865505299B
+	by arago-project.org (Postfix) with ESMTPS id 980435299B
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Oct 2013 19:40:09 +0000 (UTC)
+	Mon, 14 Oct 2013 19:40:13 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EJe8Il019320
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:40:08 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJe8HQ020739
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:40:08 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 14 Oct 2013 14:40:08 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EJeCXQ019327
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:40:12 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJeBtB020821
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:40:11 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 14 Oct 2013 14:40:11 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJe33k012256;
-	Mon, 14 Oct 2013 14:40:07 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJe33l012256;
+	Mon, 14 Oct 2013 14:40:09 -0500
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 14 Oct 2013 15:29:22 -0500
-Message-ID: <1381782564-11190-2-git-send-email-Chase.Maupin@ti.com>
+Date: Mon, 14 Oct 2013 15:29:23 -0500
+Message-ID: <1381782564-11190-3-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1381782564-11190-1-git-send-email-Chase.Maupin@ti.com>
 References: <1381782564-11190-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCHv2 2/4] ti-tisdk-makefile: Add AM437x support
+Subject: [PATCH 3/4] matrix-gui-apps-git: Update for AM437x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,42 +36,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 19:40:09 -0000
+X-List-Received-Date: Mon, 14 Oct 2013 19:40:13 -0000
 Content-Type: text/plain
+
+* Pull in the latest script changes to get support for AM437x
+  multimedia example applications.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
-* Updated in version 2:
-    * Added the ti-crypto-examples Makefile targets
+ .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
----
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    6 +++++-
- 1 files changed, 5 insertions(+), 1 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index e0aea9a..263492d 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -33,7 +33,7 @@ SRC_URI = "\
-     file://Makefile_oprofile-example \
- "
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 0c639e9..c622faa 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
--PR = "r13"
-+PR = "r14"
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "e55b22aff35107d384c13322aa9f9cd637f543ca"
++SRCREV = "dfd328c9e34aa3c01f39d76f8ae584d8bc8aacc1"
+ BRANCH = "master"
+-INC_PR = "r16"
++INC_PR = "r17"
  
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -66,6 +66,10 @@ MAKEFILES_append_ti33x = " u-boot-spl \
-                            wireless \
-                            ti-crypto-examples \
- "
-+MAKEFILES_append_ti43x = " u-boot-spl \
-+                           ${QUICK_PLAYGROUND} \
-+                           ti-crypto-examples \
-+"
- MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               ${QUICK_PLAYGROUND} \
-                               omapconf \
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.7.0.4
 
