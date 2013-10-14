@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
 	[206.46.173.1])
-	by arago-project.org (Postfix) with ESMTP id 5B0F052A7A
+	by arago-project.org (Postfix) with ESMTP id 8A8E752A7E
 	for <meta-arago@arago-project.org>;
 	Mon, 14 Oct 2013 00:35:33 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
 	by vms173001.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MUM0048ZUZ61490@vms173001.mailsrvcs.net> for
-	meta-arago@arago-project.org; Sun, 13 Oct 2013 19:35:31 -0500 (CDT)
+	2009)) with ESMTPA id <0MUM0041OUZ7EZ70@vms173001.mailsrvcs.net> for
+	meta-arago@arago-project.org; Sun, 13 Oct 2013 19:35:32 -0500 (CDT)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id B85DA20101; Sun,
+	by gandalf.denix.org (Postfix) with ESMTP id CF58221413; Sun,
 	13 Oct 2013 20:35:30 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sun, 13 Oct 2013 20:35:15 -0400
-Message-id: <1381710923-22471-2-git-send-email-denis@denix.org>
+Date: Sun, 13 Oct 2013 20:35:19 -0400
+Message-id: <1381710923-22471-6-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 In-reply-to: <1381710923-22471-1-git-send-email-denis@denix.org>
 References: <1381710923-22471-1-git-send-email-denis@denix.org>
-Subject: [PATCH 1/9] ti-crypto-examples: remove empty no longer used bbappend
+Subject: [PATCH 5/9] gst-ffmpeg: move to gstreamer directory to match upstream location
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,17 +38,14 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/ti-crypto-examples/ti-crypto-examples_git.bbappend      | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 meta-arago-distro/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bbappend
+ .../{gst-ffmpeg => gstreamer}/gst-ffmpeg_0.10.13.bbappend                 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename meta-arago-distro/recipes-multimedia/{gst-ffmpeg => gstreamer}/gst-ffmpeg_0.10.13.bbappend (100%)
 
-diff --git a/meta-arago-distro/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bbappend b/meta-arago-distro/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bbappend
-deleted file mode 100644
-index 25c53dd..0000000
---- a/meta-arago-distro/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--PR_append = "-arago1"
+diff --git a/meta-arago-distro/recipes-multimedia/gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-ffmpeg_0.10.13.bbappend
+similarity index 100%
+rename from meta-arago-distro/recipes-multimedia/gst-ffmpeg/gst-ffmpeg_0.10.13.bbappend
+rename to meta-arago-distro/recipes-multimedia/gstreamer/gst-ffmpeg_0.10.13.bbappend
 -- 
 1.8.3.2
 
