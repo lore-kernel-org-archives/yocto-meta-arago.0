@@ -1,27 +1,32 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C44AA5299B
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 442455299D
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Oct 2013 19:42:50 +0000 (UTC)
+	Mon, 14 Oct 2013 19:57:09 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EJgomX019563
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:42:50 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJgogE023937
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:42:50 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 14 Oct 2013 14:42:49 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJgko9001453;
-	Mon, 14 Oct 2013 14:42:48 -0500
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 14 Oct 2013 15:32:08 -0500
-Message-ID: <1381782728-11639-1-git-send-email-Chase.Maupin@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EJv8EX031358
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:57:08 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJv881009391
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:57:08 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Mon, 14 Oct 2013 14:57:08 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [PATCH 1/3] arago-core-tisdk-image: Add AM437x DTB filter
+Thread-Index: AQHOyRCVjV9hX4K/fUO5pLvP38Df6Jn0nOZg
+Date: Mon, 14 Oct 2013 19:57:07 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101597AE9FC@DLEE11.ent.ti.com>
+References: <1381780588-15865-1-git-send-email-Chase.Maupin@ti.com>
+In-Reply-To: <1381780588-15865-1-git-send-email-Chase.Maupin@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: [PATCH] udev: fix touchscreen detection rule
+Subject: Re: [PATCH 1/3] arago-core-tisdk-image: Add AM437x DTB filter
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,68 +39,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 19:42:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 14 Oct 2013 19:57:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-* Fix the rule to detect the touchscreen and create the
-  /dev/input/touchscreen0 device node.
-* This has already been submitted upstream and can be removed
-  when meta-arago switches to Dora
-* The patch has already been submitted to oe-core at:
-    http://article.gmane.org/gmane.comp.handhelds.openembedded.core/43958
+This patch set is deprecated by the next patch set which adds a fourth patc=
+h.
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
----
- .../recipes-core/udev/udev/local.rules             |   23 ++++++++++++++++++++
- .../recipes-core/udev/udev_182.bbappend            |    8 +++++++
- 2 files changed, 31 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/udev/udev/local.rules
- create mode 100644 meta-arago-distro/recipes-core/udev/udev_182.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules b/meta-arago-distro/recipes-core/udev/udev/local.rules
-new file mode 100644
-index 0000000..d0cbf91
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/udev/udev/local.rules
-@@ -0,0 +1,23 @@
-+# There are a number of modifiers that are allowed to be used in some
-+# of the different fields. They provide the following subsitutions:
-+#
-+# %n the "kernel number" of the device.
-+#    For example, 'sda3' has a "kernel number" of '3'
-+# %e the smallest number for that name which does not matches an existing node
-+# %k the kernel name for the device
-+# %M the kernel major number for the device
-+# %m the kernel minor number for the device
-+# %b the bus id for the device
-+# %c the string returned by the PROGRAM
-+# %s{filename} the content of a sysfs attribute
-+# %% the '%' char itself
-+#
-+
-+# Try and modprobe for drivers for new hardware
-+ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN+="/sbin/modprobe $env{MODALIAS}"
-+
-+# Create a symlink to any touchscreen input device
-+# Trigger based on input type, that the evbit (-e) has EV_SYN and EV_ABS,
-+# has an EV_ABS value (-a) which is used for touchscreen type devices.
-+SUBSYSTEM=="input", KERNEL=="event[0-9]*", ATTRS{modalias}=="input:*-e0*,3,*a0,1,*", SYMLINK+="input/touchscreen0"
-+
-diff --git a/meta-arago-distro/recipes-core/udev/udev_182.bbappend b/meta-arago-distro/recipes-core/udev/udev_182.bbappend
-new file mode 100644
-index 0000000..27bf4da
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/udev/udev_182.bbappend
-@@ -0,0 +1,8 @@
-+# This fixes an issue with touchscreens not being detected with the default
-+# local.rules.  This can be removed when this change is picked up and
-+# meta-arago switches to Dora
-+
-+# look for files in this layer first
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+PR_append = "-arago0"
--- 
-1.7.0.4
+>-----Original Message-----
+>From: Maupin, Chase
+>Sent: Monday, October 14, 2013 2:56 PM
+>To: meta-arago@arago-project.org
+>Cc: Maupin, Chase
+>Subject: [PATCH 1/3] arago-core-tisdk-image: Add AM437x DTB filter
+>
+>* Add the DTB_FILTER setting for am437x-evm devices
+>
+>Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+>---
+> .../recipes-core/images/arago-core-tisdk-image.inc |    1 +
+> 1 files changed, 1 insertions(+), 0 deletions(-)
+>
+>diff --git a/meta-arago-distro/recipes-core/images/arago-core-
+>tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-
+>core-tisdk-image.inc
+>index 1d00117..368fa47 100644
+>--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-
+>image.inc
+>+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-
+>image.inc
+>@@ -20,6 +20,7 @@ DTB_FILTER =3D "unknown"
+> DTB_FILTER_ti33x =3D "am335x"
+> DTB_FILTER_omap5-evm =3D "omap5"
+> DTB_FILTER_dra7xx-evm =3D "dra7"
+>+DTB_FILTER_ti43x =3D "am43x"
+>
+> # List of target side images to build for the SDK
+> TARGET_IMAGES =3D "arago-base-tisdk-image tisdk-rootfs-image"
+>--
+>1.7.0.4
 
 
