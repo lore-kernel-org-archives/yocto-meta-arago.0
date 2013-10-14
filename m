@@ -1,32 +1,33 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 442455299D
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 5BDEB5299B
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Oct 2013 19:57:09 +0000 (UTC)
+	Mon, 14 Oct 2013 20:51:16 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EJv8EX031358
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:57:08 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EJv881009391
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 14:57:08 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Mon, 14 Oct 2013 14:57:08 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EKpFb0025875
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 15:51:15 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EKpFmn017577
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2013 15:51:15 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Mon, 14 Oct 2013 15:51:15 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [PATCH 1/3] arago-core-tisdk-image: Add AM437x DTB filter
-Thread-Index: AQHOyRCVjV9hX4K/fUO5pLvP38Df6Jn0nOZg
-Date: Mon, 14 Oct 2013 19:57:07 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED101597AE9FC@DLEE11.ent.ti.com>
-References: <1381780588-15865-1-git-send-email-Chase.Maupin@ti.com>
-In-Reply-To: <1381780588-15865-1-git-send-email-Chase.Maupin@ti.com>
+Thread-Topic: [meta-arago] [PATCH 4/4] packagegroup crypto: Add AM437x support
+Thread-Index: AQHOyRU5U4ff1KKZN0qCiokYUpr5N5n0rATg
+Date: Mon, 14 Oct 2013 20:51:14 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C576203@DFLE08.ent.ti.com>
+References: <1381782564-11190-1-git-send-email-Chase.Maupin@ti.com>
+	<1381782564-11190-4-git-send-email-Chase.Maupin@ti.com>
+In-Reply-To: <1381782564-11190-4-git-send-email-Chase.Maupin@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/3] arago-core-tisdk-image: Add AM437x DTB filter
+Subject: Re: [PATCH 4/4] packagegroup crypto: Add AM437x support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,46 +40,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 19:57:09 -0000
+X-List-Received-Date: Mon, 14 Oct 2013 20:51:16 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-This patch set is deprecated by the next patch set which adds a fourth patc=
-h.
+Thanks!
 
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
->-----Original Message-----
->From: Maupin, Chase
->Sent: Monday, October 14, 2013 2:56 PM
->To: meta-arago@arago-project.org
->Cc: Maupin, Chase
->Subject: [PATCH 1/3] arago-core-tisdk-image: Add AM437x DTB filter
->
->* Add the DTB_FILTER setting for am437x-evm devices
->
->Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
->---
-> .../recipes-core/images/arago-core-tisdk-image.inc |    1 +
-> 1 files changed, 1 insertions(+), 0 deletions(-)
->
->diff --git a/meta-arago-distro/recipes-core/images/arago-core-
->tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-
->core-tisdk-image.inc
->index 1d00117..368fa47 100644
->--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-
->image.inc
->+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-
->image.inc
->@@ -20,6 +20,7 @@ DTB_FILTER =3D "unknown"
-> DTB_FILTER_ti33x =3D "am335x"
-> DTB_FILTER_omap5-evm =3D "omap5"
-> DTB_FILTER_dra7xx-evm =3D "dra7"
->+DTB_FILTER_ti43x =3D "am43x"
->
-> # List of target side images to build for the SDK
-> TARGET_IMAGES =3D "arago-base-tisdk-image tisdk-rootfs-image"
->--
->1.7.0.4
-
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Maupin, Chase
+> Sent: Monday, October 14, 2013 3:29 PM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCH 4/4] packagegroup crypto: Add AM437x support
+>=20
+> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> ---
+>  .../packagegroup-arago-tisdk-crypto-sdk-host.bb    |    3 ++-
+>  .../packagegroup-arago-tisdk-crypto.bb             |    3 ++-
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-
+> core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+> index 90a4dd9..f86accf 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> tisdk-crypto-sdk-host.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
+> +++ sdk-crypto-sdk-host.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION =3D "Task to install crypto sources in SDK"
+>  LICENSE =3D "MIT"
+> -PR =3D "r4"
+> +PR =3D "r5"
+>=20
+>  inherit packagegroup
+>=20
+> @@ -9,6 +9,7 @@ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+>  CRYPTO_RDEPENDS =3D ""
+>=20
+>  CRYPTO_RDEPENDS_append_ti33x =3D " ti-crypto-examples-src"
+> +CRYPTO_RDEPENDS_append_ti43x =3D " ti-crypto-examples-src"
+>=20
+>  CRYPTO_RDEPENDS_append_am37x-evm =3D "\
+>      ti-ocf-crypto-module-src \
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> arago-tisdk-crypto.bb b/meta-arago-distro/recipes-
+> core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+> index c1e7054..d781ddd 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> tisdk-crypto.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
+> +++ sdk-crypto.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION =3D "Task to install crypto packages into target FS"
+>  LICENSE =3D "MIT"
+> -PR =3D "r4"
+> +PR =3D "r5"
+>=20
+>  inherit packagegroup
+>=20
+> @@ -15,6 +15,7 @@ CRYPTO_SUPPORT =3D "\
+>      "
+>=20
+>  CRYPTO_SUPPORT_append_ti33x =3D " ti-crypto-examples"
+> +CRYPTO_SUPPORT_append_ti43x =3D " ti-crypto-examples"
+>=20
+>  # Add crypto hardware support for am37x-evm  # NOTE: this package depend=
+s
+> on a kernel patch which also has a TSU
+> --
+> 1.7.0.4
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
