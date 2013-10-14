@@ -1,33 +1,23 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 40992529BD
+Return-Path: <denis@denix.org>
+Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
+	[206.46.173.3])
+	by arago-project.org (Postfix) with ESMTP id 66D5C529E3
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Oct 2013 14:32:40 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9EEWdfK018454;
-	Mon, 14 Oct 2013 09:32:39 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9EEWd7O006935;
-	Mon, 14 Oct 2013 09:32:39 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Mon, 14 Oct 2013 09:32:39 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 3/3] qtbase: update bbappend to 5.1.1
-Thread-Index: AQHOyKRf5uVnX0Eiw06zokFCq+ob0Jn0Qwng
-Date: Mon, 14 Oct 2013 14:32:38 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C5755B6@DFLE08.ent.ti.com>
-References: <1381731127-17880-1-git-send-email-denis@denix.org>
-	<1381731127-17880-3-git-send-email-denis@denix.org>
-In-Reply-To: <1381731127-17880-3-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH 3/3] qtbase: update bbappend to 5.1.1
+	Mon, 14 Oct 2013 15:07:50 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173003.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MUN00JEOZCMZH40@vms173003.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 14 Oct 2013 10:07:50 -0500 (CDT)
+Received: from elrond.denix (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 4B9372004B; Mon,
+	14 Oct 2013 11:07:34 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 14 Oct 2013 11:07:33 -0400
+Message-id: <1381763253-21323-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCHv2 3/3] qtbase: update bbappend to 5.1.1, explicitly enable linuxfb
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,54 +30,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 14:32:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 14 Oct 2013 15:07:50 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-qt/qt5/{qtbase_5.1.0.bbappend => qtbase_5.1.1.bbappend}     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename meta-arago-distro/recipes-qt/qt5/{qtbase_5.1.0.bbappend => qtbase_5.1.1.bbappend} (80%)
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> Sent: Monday, October 14, 2013 1:12 AM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH 3/3] qtbase: update bbappend to 5.1.1
->=20
-> From: Denys Dmytriyenko <denys@ti.com>
->=20
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  .../recipes-qt/qt5/{qtbase_5.1.0.bbappend =3D> qtbase_5.1.1.bbappend}   =
-  | 2
-> +-
->  1 file changed, 1 insertion(+), 1 deletion(-)  rename meta-arago-distro/=
-recipes-
-> qt/qt5/{qtbase_5.1.0.bbappend =3D> qtbase_5.1.1.bbappend} (80%)
->=20
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend b/met=
-a-
-> arago-distro/recipes-qt/qt5/qtbase_5.1.1.bbappend
-> similarity index 80%
-> rename from meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend
-> rename to meta-arago-distro/recipes-qt/qt5/qtbase_5.1.1.bbappend
-> index 8ae7706..eaf1433 100644
-> --- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend
-> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.1.bbappend
-> @@ -1,6 +1,6 @@
->  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->=20
-> -PACKAGECONFIG_GL =3D "gles2 icu"
-> +PACKAGECONFIG_GL =3D "gles2 icu linuxfb"
-[Franklin] Can you add to the commit message explaining this change?
->=20
->  SRC_URI +=3D " \
->  	file://0001-qeglfswindow.cpp.patch \
-> --
-> 1.8.3.2
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.1.bbappend
+similarity index 80%
+rename from meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend
+rename to meta-arago-distro/recipes-qt/qt5/qtbase_5.1.1.bbappend
+index 8ae7706..eaf1433 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.0.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.1.1.bbappend
+@@ -1,6 +1,6 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PACKAGECONFIG_GL = "gles2 icu"
++PACKAGECONFIG_GL = "gles2 icu linuxfb"
+ 
+ SRC_URI += " \
+ 	file://0001-qeglfswindow.cpp.patch \
+-- 
+1.8.3.2
+
 
