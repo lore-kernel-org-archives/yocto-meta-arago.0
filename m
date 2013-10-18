@@ -1,37 +1,32 @@
-Return-Path: <r-monk@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id BB14352A1B
+	by arago-project.org (Postfix) with ESMTPS id 0BA4152A93
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Oct 2013 13:47:04 +0000 (UTC)
+	Fri, 18 Oct 2013 15:21:57 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9IDl3Kv026847
-	for <meta-arago@arago-project.org>; Fri, 18 Oct 2013 08:47:03 -0500
-Received: from DNCE70.ent.ti.com (dnce70.ent.ti.com [137.167.131.19])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9IDl2ZI021929
-	for <meta-arago@arago-project.org>; Fri, 18 Oct 2013 08:47:03 -0500
-Received: from DNCE05.ent.ti.com ([fe80::5dc0:6ff5:718e:785a]) by
-	DNCE70.ent.ti.com ([fe80::78db:4901:78e8:69bb%20]) with mapi id
-	14.02.0342.003; Fri, 18 Oct 2013 15:47:02 +0200
-From: "Monk, Roger" <r-monk@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Maupin, Chase" <chase.maupin@ti.com>
-Thread-Topic: [meta-arago] [PATCHv2 04/11]
-	ti-connectivity/wpa-supplicant-wl18xx:	Add Wilink8 r8.a7.02
-Thread-Index: AQHOxcnyMpLSqDj+W0Sp/nboUFp0Mpnt6LsAgAt70ACAAR9zoA==
-Date: Fri, 18 Oct 2013 13:47:01 +0000
-Message-ID: <4C82F39BABFE6A429733A300DEBF52240C013FA3@DNCE05.ent.ti.com>
-References: <1381420942-16810-1-git-send-email-r-monk@ti.com>
-	<1381420942-16810-5-git-send-email-r-monk@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015979BA46@DLEE11.ent.ti.com>
-	<20131017223255.GI30989@edge>
-In-Reply-To: <20131017223255.GI30989@edge>
-Accept-Language: en-GB, en-US
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9IFLtVN003852
+	for <meta-arago@arago-project.org>; Fri, 18 Oct 2013 10:21:55 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9IFLtI5024238
+	for <meta-arago@arago-project.org>; Fri, 18 Oct 2013 10:21:55 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Fri, 18 Oct 2013 10:21:55 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: Help on packaging
+Thread-Index: Ac7L4eBEE/aECHhbQBeFw8AgiIu94gALr5hw
+Date: Fri, 18 Oct 2013 15:21:55 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C57BA8D@DFLE08.ent.ti.com>
+References: <CF956B779D819D41BBC043B7082161D545A2D3@DBDE04.ent.ti.com>
+In-Reply-To: <CF956B779D819D41BBC043B7082161D545A2D3@DBDE04.ent.ti.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [137.167.131.83]
-x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCHv2 04/11] ti-connectivity/wpa-supplicant-wl18xx:	Add Wilink8 r8.a7.02
+Subject: Re: Help on packaging
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,518 +39,346 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 13:47:06 -0000
+X-List-Received-Date: Fri, 18 Oct 2013 15:21:59 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8F29D6B095ED194EA1980491A5E029710C57BA8DDFLE08entticom_"
+
+--_000_8F29D6B095ED194EA1980491A5E029710C57BA8DDFLE08entticom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 17, 2013 at 23:32:56, Dmytriyenko, Denys wrote:
-> Subject: Re: [meta-arago] [PATCHv2 04/11]=20
-> ti-connectivity/wpa-supplicant-
-> wl18xx: Add Wilink8 r8.a7.02
->=20
-> Ping.
+So first I will definitely recommend looking at the Openembedded manual. I =
+have that document bookmarked, printed out, on my ipad and kindle.
 
-Thanks.  Based on the good feedback from Franklin/Chase, I'll rework the in=
-cludes a bit and resubmit. =20
+http://docs.openembedded.org/usermanual/usermanual.html
 
->=20
->=20
-> On Thu, Oct 10, 2013 at 03:10:56PM +0000, Maupin, Chase wrote:
-> >
-> >
-> > >-----Original Message-----
-> > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
-> > >bounces@arago-project.org] On Behalf Of Monk, Roger
-> > >Sent: Thursday, October 10, 2013 11:02 AM
-> > >To: meta-arago@arago-project.org
-> > >Subject: [meta-arago] [PATCHv2 04/11] ti-connectivity/wpa-
-> > >supplicant-wl18xx: Add Wilink8 r8.a7.02
-> > >
-> > >   * Add v r8.a7.02 engineering release wpa supplicant
-> > >   * This release supports the omap-a15 devices (omap5-evm/dra7-
-> > >evm) with ES 2.1 WL8
-> > >      * OMAP5432 UEVMs with the following SKU contain ES2.1
-> > >Wilink8 TDK 18xx module
-> > >      * OMAP5432x-xx-x1-xx
-> > >   * Bump PR
-> > >   * Replace defconfig with original wpa-supplicant defconfig
-> > >   * Add back SDK specific defconfig changes
-> > >   * Enable WFD (WiFi Display)
-> > >   * Revert some android patches which prevent WFD
-> > >
-> > >Signed-off-by: Roger Monk <r-monk@ti.com>
-> > >---
-> > > ...0001-revert-android-patches-to-enable-wfd.patch |   44 ++++++
-> > > .../defconfig                                      |  150
-> > >+++++++++++++++-----
-> > > ....a6.01.bb =3D> wpa-supplicant-wl18xx_r8.a7.02.bb} |   11 +-
-> > > 3 files changed, 166 insertions(+), 39 deletions(-)  create mode
-> > >100644 meta-arago-extras/recipes-connectivity/wpa-
-> > >supplicant/wpa-supplicant-wl18xx-r8.a7.02/0001-revert-android-
-> > >patches-to-enable-wfd.patch
-> > > copy meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-
-> > >supplicant-r5.sp4.01 =3D> wpa-supplicant-wl18xx-r8.a7.02}/defconfig
-> > >(74%)
-> > > mode change 100755 =3D> 100644
-> > > copy meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-
-> > >supplicant-wl18xx_r8.a6.01.bb =3D> wpa-supplicant-=20
-> > >wl18xx_r8.a7.02.bb}
-> > >(78%)
-> > >
-> > >diff --git a/meta-arago-extras/recipes-connectivity/wpa-
-> > >supplicant/wpa-supplicant-wl18xx-r8.a7.02/0001-revert-android-
-> > >patches-to-enable-wfd.patch b/meta-arago-extras/recipes-
-> > >connectivity/wpa-supplicant/wpa-supplicant-wl18xx-r8.a7.02/0001-
-> > >revert-android-patches-to-enable-wfd.patch
-> > >new file mode 100644
-> > >index 0000000..29528b4
-> > >--- /dev/null
-> > >+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-wl18xx-r8.a7.02/0001-revert-android-patches-to-enable-
-> > >wfd.patch
-> > >@@ -0,0 +1,44 @@
-> > >+
-> > >+diff -rupN a/src/common/wpa_ctrl.c b/src/common/wpa_ctrl.c
-> > >+--- a/src/common/wpa_ctrl.c	2013-09-02 16:46:22.708023057 +0100
-> > >++++ b/src/common/wpa_ctrl.c	2013-08-30 10:22:19.811255355 +0100
-> > >+@@ -164,6 +164,10 @@ try_again:
-> > >+ 		return NULL;
-> > >+ 	}
-> > >+
-> > >++#if 0
-> > >++//IH this code is introduced in recent supplicant that appears
-> > >to make RMD app calls to wpa_ctrl_recv() fail and
-> > >++// the supplicant fails to write to the same socket!!!
-> > >++// Temp fix to remove it, probably solution will be in app set
-> > >up/usage??
-> > >+ 	/*
-> > >+ 	 * Make socket non-blocking so that we don't hang forever if
-> > >+ 	 * target dies unexpectedly.
-> > >+@@ -176,7 +180,7 @@ try_again:
-> > >+ 			/* Not fatal, continue on.*/
-> > >+ 		}
-> > >+ 	}
-> > >+-
-> > >++#endif
-> > >+ 	return ctrl;
-> > >+ }
-> > >+
-> > >+diff -rupN a/wpa_supplicant/wpa_supplicant.c
-> > >b/wpa_supplicant/wpa_supplicant.c
-> > >+--- a/wpa_supplicant/wpa_supplicant.c	2013-09-04
-> > >16:57:26.000000000 +0100
-> > >++++ b/wpa_supplicant/wpa_supplicant.c	2013-09-04
-> > >17:02:02.256720695 +0100
-> > >+@@ -3025,13 +3025,15 @@ next_driver:
-> > >+ 	}
-> > >+
-> > >+ #ifdef CONFIG_P2P
-> > >++ #ifdef ANDROID
-> > >+ 	if (os_strncmp(iface->ifname, "wlan0", 4) =3D=3D 0) {
-> > >+ 		wpa_printf(MSG_DEBUG, "Disable P2P on wlan0");
-> > >+ 		wpa_s->conf->p2p_disabled =3D 1;
-> > >+ 	}
-> > >+
-> > >+ 	if (os_strncmp(iface->ifname, "p2p0", 4) =3D=3D 0)
-> > >+-		if (wpas_p2p_init(wpa_s->global, wpa_s) < 0) {
-> > >++#endif
-> > >++	    if (wpas_p2p_init(wpa_s->global, wpa_s) < 0) {
-> > >+ 			wpa_msg(wpa_s, MSG_ERROR, "Failed to init P2P");
-> > >+ 			return -1;
-> > >+ 		}
-> > >diff --git a/meta-arago-extras/recipes-connectivity/wpa-
-> > >supplicant/wpa-supplicant-r5.sp4.01/defconfig b/meta-arago-
-> > >extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx-
-> > >r8.a7.02/defconfig
-> > >old mode 100755
-> > >new mode 100644
-> > >similarity index 74%
-> > >copy from meta-arago-extras/recipes-connectivity/wpa-
-> > >supplicant/wpa-supplicant-r5.sp4.01/defconfig
-> > >copy to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-wl18xx-r8.a7.02/defconfig
-> > >index b982e2a..80d2f63
-> > >--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-r5.sp4.01/defconfig
-> > >+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-wl18xx-r8.a7.02/defconfig
-> > >@@ -39,18 +39,6 @@
-> > > #LIBS =3D -lssl
-> > >
-> >
-> >###############################################################
-> ###
-> > >#############
-> > >
-> > >-#CC=3D$(CROSS_COMPILE)gcc
-> > >-#CFLAGS +=3D -DCONFIG_LIBNL20
-> > >-#CPPFLAGS +=3D -DCONFIG_LIBNL20
-> > >-#LIBS +=3D -L$(NFSROOT)/lib -lnl
-> > >-#LIBS_p +=3D -L$(NFSROOT)/lib
-> > >-#LIBDIR =3D $(NFSROOT)/lib
-> > >-#BINDIR =3D $(NFSROOT)/usr/sbin
-> > >-
-> > >-CONFIG_WAPI=3Dy
-> > >-CONFIG_LIBNL20=3Dy
-> > >-NEED_BGSCAN=3Dy
-> > >-CONFIG_BGSCAN_LEARN=3Dy
-> > >
-> > > # Driver interface for Host AP driver  #CONFIG_DRIVER_HOSTAP=3Dy @@
-> > >-75,7 +63,7 @@ CONFIG_BGSCAN_LEARN=3Dy  #CONFIG_DRIVER_ATMEL=3Dy
-> > >
-> > > # Driver interface for old Broadcom driver -# Please note that the=20
-> > >newer Broadcom driver ("hybrid Linux
-> > >driver") supportsBG
-> > >+# Please note that the newer Broadcom driver ("hybrid Linux
-> > >driver") supports
-> > > # Linux wireless extensions and does not need (or even work) with=20
-> > >the old  # driver wrapper. Use CONFIG_DRIVER_WEXT=3Dy with that driver=
-.
-> > > #CONFIG_DRIVER_BROADCOM=3Dy
-> > >@@ -90,16 +78,22 @@ CONFIG_BGSCAN_LEARN=3Dy
-> #CONFIG_DRIVER_RALINK=3Dy
-> > >
-> > > # Driver interface for generic Linux wireless extensions
-> > >+# Note: WEXT is deprecated in the current Linux kernel version
-> > >and no new
-> > >+# functionality is added to it. nl80211-based interface is the
-> > >new
-> > >+# replacement for WEXT and its use allows wpa_supplicant to
-> > >properly control
-> > >+# the driver to improve existing functionality like roaming and
-> > >to support new
-> > >+# functionality.
-> > > CONFIG_DRIVER_WEXT=3Dy
-> > >
-> > > # Driver interface for Linux drivers using the nl80211 kernel=20
-> > >interface  CONFIG_DRIVER_NL80211=3Dy
-> > >+CONFIG_LIBNL20=3Dy
-> > >
-> > > # Driver interface for FreeBSD net80211 layer (e.g., Atheros
-> > >driver)
-> > > #CONFIG_DRIVER_BSD=3Dy
-> > > #CFLAGS +=3D -I/usr/local/include
-> > > #LIBS +=3D -L/usr/local/lib
-> > >-#LIBS_p +=3D -L/usr/local/libBG
-> > >+#LIBS_p +=3D -L/usr/local/lib
-> > > #LIBS_c +=3D -L/usr/local/lib
-> > >
-> > > # Driver interface for Windows NDIS @@ -121,11 +115,6 @@=20
-> > >CONFIG_DRIVER_NL80211=3Dy  # Driver interface
-> for
-> > >development testing  #CONFIG_DRIVER_TEST=3Dy
-> > >
-> > >-# Include client MLME (management frame processing) for test=20
-> > >driver -# This can be used to test MLME operations in hostapd with=20
-> > >the test interface.
-> > >-# space.
-> > >-#CONFIG_CLIENT_MLME=3Dy
-> > >-
-> > > # Driver interface for wired Ethernet drivers =20
-> > >CONFIG_DRIVER_WIRED=3Dy
-> > >
-> > >@@ -177,6 +166,9 @@ CONFIG_EAP_OTP=3Dy  # EAP-PSK (experimental; this=
-=20
-> > >is _not_ needed for WPA-PSK) #CONFIG_EAP_PSK=3Dy
-> > >
-> > >+# EAP-pwd (secure authentication using only a password)=20
-> > >+#CONFIG_EAP_PWD=3Dy
-> > >+
-> > > # EAP-PAX
-> > > #CONFIG_EAP_PAX=3Dy
-> > >
-> > >@@ -208,6 +200,11 @@ CONFIG_EAP_LEAP=3Dy  CONFIG_WPS=3Dy  # Enable
-> WSC
-> > >2.0 support  CONFIG_WPS2=3Dy
-> > >+# Enable WPS external registrar functionality #CONFIG_WPS_ER=3Dy #=20
-> > >+Disable credentials for an open network by default when acting
-> > >as a WPS
-> > >+# registrar.
-> > >+#CONFIG_WPS_REG_DISABLE_OPEN=3Dy
-> > >
-> > > # EAP-IKEv2
-> > > #CONFIG_EAP_IKEV2=3Dy
-> > >@@ -224,7 +221,10 @@ CONFIG_SMARTCARD=3Dy  # Enable this if EAP-SIM
-> or
-> > >EAP-AKA is included  #CONFIG_PCSC=3Dy
-> > >
-> > >-# Development testingBG
-> > >+# Support HT overrides (disable HT/HT40, mask MCS rates, etc.)=20
-> > >+#CONFIG_HT_OVERRIDES=3Dy
-> > >+
-> > >+# Development testing
-> > > #CONFIG_EAPOL_TEST=3Dy
-> > >
-> > > # Select control interface backend for external programs, e.g,
-> > >wpa_cli:
-> > >@@ -242,6 +242,10 @@ CONFIG_CTRL_IFACE=3Dy  # the resulting binary.
-> > > #CONFIG_READLINE=3Dy
-> > >
-> > >+# Include internal line edit mode in wpa_cli. This can be used as
-> > >a replacement
-> > >+# for GNU Readline to provide limited command line editing and
-> > >history support.
-> > >+#CONFIG_WPA_CLI_EDIT=3Dy
-> > >+
-> > > # Remove debugging code that is printing out debug message to=20
-> > >stdout.
-> > > # This can be used to reduce the size of the wpa_supplicant=20
-> > >considerably  # if debugging code is not needed. The size reduction=20
-> > >can be around 35% @@ -295,13 +299,16 @@ CONFIG_BACKEND=3Dfile  # unix
-> =3D
-> > >UNIX/POSIX like systems (default)  # win32 =3D Windows systems  #=20
-> > >none =3D Empty template -#CONFIG_OS=3Dunix
-> > >+CONFIG_OS=3Dunix
-> > >
-> > > # Select event loop implementation  # eloop =3D select() loop=20
-> > >(default)  # eloop_win =3D Windows events and WaitForMultipleObject()=
-=20
-> > >loop  # eloop_none =3D Empty template -#CONFIG_ELOOP=3Deloop
-> > >+CONFIG_ELOOP=3Deloop
-> > >+
-> > >+# Should we use poll instead of select? Select is used by
-> > >default.
-> > >+#CONFIG_ELOOP_POLL=3Dy
-> > >
-> > > # Select layer 2 packet implementation  # linux =3D Linux packet=20
-> > >socket (default) @@ -310,7 +317,7 @@ CONFIG_BACKEND=3Dfile  # winpcap=
-=20
-> > >=3D WinPcap with receive thread  # ndis =3D Windows NDISUIO (note:=20
-> > >requires
-> > >CONFIG_USE_NDISUIO=3Dy)  # none =3D Empty template=20
-> > >-#CONFIG_L2_PACKET=3Dlinux
-> > >+CONFIG_L2_PACKET=3Dlinux
-> > >
-> > > # PeerKey handshake for Station to Station Link (IEEE 802.11e
-> > >DLS)
-> > > CONFIG_PEERKEY=3Dy
-> > >@@ -323,18 +330,24 @@ CONFIG_PEERKEY=3Dy
-> > >
-> > > # Select TLS implementation
-> > > # openssl =3D OpenSSL (default)
-> > >-# gnutls =3D GnuTLS (needed for TLS/IA, see also
-> > >CONFIG_GNUTLS_EXTRA)
-> > >+# gnutls =3D GnuTLS
-> > > # internal =3D Internal TLSv1 implementation (experimental) # none =
-=3D=20
-> > > Empty template #CONFIG_TLS=3Dopenssl
-> > >
-> > >-# Whether to enable TLS/IA support, which is required for EAP-=20
-> > >TTLSv1.
-> > >-# You need CONFIG_TLS=3Dgnutls for this to have any effect. Please=20
-> > >note that -# even though the core GnuTLS library is released under=20
-> > >LGPL, this extra -# library uses GPL and as such, the terms of GPL=20
-> > >apply to the combination -# of wpa_supplicant and GnuTLS if this=20
-> > >option is enabled. BSD license may not -# apply for distribution of=20
-> > >the resulting binary.
-> > >-#CONFIG_GNUTLS_EXTRA=3Dy
-> > >+# TLS-based EAP methods require at least TLS v1.0. Newer version
-> > >of TLS (v1.1)
-> > >+# can be enabled to get a stronger construction of messages when
-> > >block ciphers
-> > >+# are used. It should be noted that some existing TLS v1.0 -based=20
-> > >+# implementation may not be compatible with TLS v1.1 message
-> > >(ClientHello is
-> > >+# sent prior to negotiating which version will be used)=20
-> > >+#CONFIG_TLSV11=3Dy
-> > >+
-> > >+# TLS-based EAP methods require at least TLS v1.0. Newer version
-> > >of TLS (v1.2)
-> > >+# can be enabled to enable use of stronger crypto algorithms. It
-> > >should be
-> > >+# noted that some existing TLS v1.0 -based implementation may not
-> > >be compatible
-> > >+# with TLS v1.2 message (ClientHello is sent prior to negotiating
-> > >which version
-> > >+# will be used)
-> > >+#CONFIG_TLSV12=3Dy
-> > >
-> > > # If CONFIG_TLS=3Dinternal is used, additional library and include=20
-> > >paths are  # needed for LibTomMath. Alternatively, an integrated,=20
-> > >minimal version of @@ -396,6 +409,21 @@=20
-> > >CONFIG_CTRL_IFACE_DBUS_INTRO=3Dy  # Add support for writing debug log=
-=20
-> > >to a file
-> > >(/tmp/wpa_supplicant-log-#.txt)
-> > > CONFIG_DEBUG_FILE=3Dy
-> > >
-> > >+# Send debug messages to syslog instead of stdout=20
-> > >+#CONFIG_DEBUG_SYSLOG=3Dy # Set syslog facility for debug messages=20
-> > >+#CONFIG_DEBUG_SYSLOG_FACILITY=3DLOG_DAEMON
-> > >+
-> > >+# Add support for sending all debug messages (regardless of debug
-> > >verbosity)
-> > >+# to the Linux kernel tracing facility. This helps debug the
-> > >entire stack by
-> > >+# making it easy to record everything happening from the driver
-> > >up into the
-> > >+# same file, e.g., using trace-cmd.
-> > >+#CONFIG_DEBUG_LINUX_TRACING=3Dy
-> > >+
-> > >+# Add support for writing debug log to Android logcat instead of
-> > >standard
-> > >+# output
-> > >+#CONFIG_ANDROID_LOG=3Dy
-> > >+
-> > > # Enable privilege separation (see README 'Privilege separation'
-> > >for details)
-> > > #CONFIG_PRIVSEP=3Dy
-> > >
-> > >@@ -407,7 +435,7 @@ CONFIG_DEBUG_FILE=3Dy  # This tracks use of
-> memory
-> > >allocations and other registrations and reports  # incorrect use=20
-> > >with a backtrace of call (or allocation) location.
-> > > #CONFIG_WPA_TRACE=3Dy
-> > >-# For BSD, comment out these.
-> > >+# For BSD, uncomment these.
-> > > #LIBS +=3D -lexecinfo
-> > > #LIBS_p +=3D -lexecinfo
-> > > #LIBS_c +=3D -lexecinfo
-> > >@@ -416,15 +444,65 @@ CONFIG_DEBUG_FILE=3Dy  # This enables use of=20
-> > >libbfd to get more detailed symbols for the backtraces  # generated=20
-> > >by CONFIG_WPA_TRACE=3Dy.
-> > > #CONFIG_WPA_TRACE_BFD=3Dy
-> > >-# For BSD, comment out these.
-> > >+# For BSD, uncomment these.
-> > > #LIBS +=3D -lbfd -liberty -lz
-> > > #LIBS_p +=3D -lbfd -liberty -lz
-> > > #LIBS_c +=3D -lbfd -liberty -lz
-> > >
-> > >-# for p2p
-> > >+# wpa_supplicant depends on strong random number generation being
-> > >available
-> > >+# from the operating system. os_get_random() function is used to
-> > >fetch random
-> > >+# data when needed, e.g., for key generation. On Linux and BSD
-> > >systems, this
-> > >+# works by reading /dev/urandom. It should be noted that the OS
-> > >entropy pool
-> > >+# needs to be properly initialized before wpa_supplicant is
-> > >started. This is
-> > >+# important especially on embedded devices that do not have a
-> > >hardware random
-> > >+# number generator and may by default start up with minimal
-> > >entropy available
-> > >+# for random number generation.
-> > >+#
-> > >+# As a safety net, wpa_supplicant is by default trying to
-> > >internally collect
-> > >+# additional entropy for generating random data to mix in with
-> > >the data fetched
-> > >+# from the OS. This by itself is not considered to be very
-> > >strong, but it may
-> > >+# help in cases where the system pool is not initialized
-> > >properly. However, it
-> > >+# is very strongly recommended that the system pool is
-> > >initialized with enough
-> > >+# entropy either by using hardware assisted random number
-> > >generator or by
-> > >+# storing state over device reboots.
-> > >+#
-> > >+# wpa_supplicant can be configured to maintain its own entropy
-> > >store over
-> > >+# restarts to enhance random number generation. This is not
-> > >perfect, but it is
-> > >+# much more secure than using the same sequence of random numbers
-> > >after every
-> > >+# reboot. This can be enabled with -e<entropy file> command line
-> > >option. The
-> > >+# specified file needs to be readable and writable by
-> > >wpa_supplicant.
-> > >+#
-> > >+# If the os_get_random() is known to provide strong random data
-> > >(e.g., on
-> > >+# Linux/BSD, the board in question is known to have reliable
-> > >source of random
-> > >+# data from /dev/urandom), the internal wpa_supplicant random
-> > >pool can be
-> > >+# disabled. This will save some in binary size and CPU use.
-> > >However, this
-> > >+# should only be considered for builds that are known to be used
-> > >on devices
-> > >+# that meet the requirements described above.
-> > >+#CONFIG_NO_RANDOM_POOL=3Dy
-> > >+
-> > >+# IEEE 802.11n (High Throughput) support (mainly for AP mode)=20
-> > >+CONFIG_IEEE80211N=3Dy
-> > >+
-> > >+# Interworking (IEEE 802.11u)
-> > >+# This can be used to enable functionality to improve
-> > >interworking with
-> > >+# external networks (GAS/ANQP to learn more about the networks
-> > >and network
-> > >+# selection based on available credentials).
-> > >+#CONFIG_INTERWORKING=3Dy
-> > >+
-> > >+# Hotspot 2.0
-> > >+#CONFIG_HS20=3Dy
-> > >+
-> > >+# Disable roaming in wpa_supplicant #CONFIG_NO_ROAMING=3Dy
-> > >+
-> > >+# Enable P2P
-> > > CONFIG_P2P=3Dy
-> > > CONFIG_AP=3Dy
-> > >
-> > >-# IEEE 802.11n (High Throughput) support -CONFIG_IEEE80211N=3Dy
-> > >+# bgscan
-> > >+NEED_BGSCAN=3Dy
-> > >+CONFIG_BGSCAN_LEARN=3Dy
-> > >+CONFIG_BGSCAN_SIMPLE=3Dy
-> > >
-> > >+# Enable WIFI Display
-> > >+CONFIG_WIFI_DISPLAY=3Dy
-> > >\ No newline at end of file
-> > >diff --git a/meta-arago-extras/recipes-connectivity/wpa-
-> > >supplicant/wpa-supplicant-wl18xx_r8.a6.01.bb b/meta-arago-
-> > >extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-
-> > >wl18xx_r8.a7.02.bb
-> > >similarity index 78%
-> > >copy from meta-arago-extras/recipes-connectivity/wpa-
-> > >supplicant/wpa-supplicant-wl18xx_r8.a6.01.bb
-> > >copy to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-wl18xx_r8.a7.02.bb
-> > >index f6c4f70..0ea9ff5 100644
-> > >--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-wl18xx_r8.a6.01.bb
-> > >+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > >supplicant-wl18xx_r8.a7.02.bb
-> > >@@ -10,9 +10,14 @@ LIC_FILES_CHKSUM =3D=20
-> > >"file://../COPYING;md5=3Dab87f20cd7e8c0d0a6539b34d3791d0e \
-> > >
-> > > FILESEXTRAPATHS_append :=3D "${THISDIR}/wpa-supplicant:"
-> > >
-> > >-# Tag: ol_r8.a6.01
-> > >-SRCREV =3D "7190ff7dbd43243290b626068ded0d61c5019050"
-> > >-PR =3D "r2+gitr${SRCPV}"
-> > >+COMPATIBLE_MACHINE =3D "(omap-a15)"
-> > >+
-> > >+# Tag: ol_r8.a7.02
-> > >+SRCREV =3D "4dda294a5186f3efb437ae0898a6df71655843ef"
-> > >+PR =3D "r4+gitr${SRCPV}"
-> >
-> > Why not reset the PR?  Is there no corresponding PV bump for this relea=
-se?
-> >
-> > >+
-> > >+SRC_URI +=3D "file://0001-revert-android-patches-to-enable-
-> > >wfd.patch;patchdir=3D.. \
-> > >+"
-> > >
-> > > # Add ti to the PV to indicate that this is a TI modify version of=20
-> > >wpa-supplicant.
-> > > PV =3D "2.0-devel-ti"
-> > >--
-> > >1.7.9.5
-> > >
-> > >_______________________________________________
-> > >meta-arago mailing list
-> > >meta-arago@arago-project.org
-> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Hingolikar, Mrinmayee
+Sent: Friday, October 18, 2013 4:10 AM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] Help on packaging
+
+Hi all,
+
+Is there any detailed documentation about the packaging in the yocto build =
+system?
+I would like to know more about the packaging specifically to answer:
+
+1.       How to do a quick check as what files will go in the filesystem: i=
+n the image directory or the sysroot-destdir?
+
+
+[Franklin]
+image
+The image directory (or destination directory) is where the software needs =
+to be installed into in order to be packaged. This directory is referred to=
+ as D in recipes. So instead of installing binaries into /usr/bin and libra=
+ries into /usr/lib for example you would need to install into ${D}/usr/bin =
+and ${D}/usr/lib instead. When installed on the target the ${D} will be not=
+ be included so they'll end up in the correct place. You definitely don't w=
+ant files on your host system being replaced by cross-compiled binaries for=
+ your target!
+sysroots
+Contains the staging area, which is used to store natively compiled tools a=
+nd and libraries and headers for the target that are required for building =
+other software.
+
+So the above is saying that the image directory is where the do_install ste=
+p copies all the files that will end up being packaged. Sysroots is where a=
+ll the critical headers and libraries that other software can point to grab=
+ any external files it may need to build itself.
+So to answer your original question of what is going into your filesystem. =
+What goes into your file system are specific packages. If you look at the p=
+ackage-split directory you will see all the different packages that are ava=
+ilable to go into your filesystem. Looking at a single recipe to determine =
+which specific packages will go into the filesystem is tough since it is re=
+ally dependent on the RDEPENDS RRECOMMENDS that may be set by other recipes=
+/packages.
+Take a look at the following link: http://elinux.org/Bitbake_Cheat_Sheet. B=
+itbake has a -g option that you can use to output dependency files that you=
+ can work your way through to figure out exactly what package has a depende=
+ncy on another package.
+If for some reason a certain package isn't being included by default that y=
+ou need then either can explicitly set RDEPENDS or RRECOMMENDS in an image,=
+ packagegroup or recipe to make sure your filesystem gets what you need.
 
 
 
+2.       How the do_package deals with symbolic links? (Since some of the s=
+ymbolic links were missing in the target fs)
+[Franklin] http://docs.openembedded.org/usermanual/usermanual.html#id325388
+I would check if the symbolic link is found within the packages directory. =
+If not then do_package is missing the symbolic link. What files are found i=
+n each package is determined by each package's FILES_<package name> variabl=
+e. So you want to check if the proper paths (relative to the image director=
+y) is being set properly to insure that the files you're interested in isn'=
+t missing anything.
+
+Hopefully the above helps and if you need any clarification let me know!
+
+Thanks and Regards,
+Mrinmayee
+
+
+--_000_8F29D6B095ED194EA1980491A5E029710C57BA8DDFLE08entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.term
+	{mso-style-name:term;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:507408283;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-209651944 67698703 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">So first I will defini=
+tely recommend looking at the Openembedded manual. I have that document boo=
+kmarked, printed out, on my ipad and kindle.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a href=3D"http://docs=
+.openembedded.org/usermanual/usermanual.html">http://docs.openembedded.org/=
+usermanual/usermanual.html</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-ara=
+go-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
+<b>On Behalf Of </b>Hingolikar, Mrinmayee<br>
+<b>Sent:</b> Friday, October 18, 2013 4:10 AM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Subject:</b> [meta-arago] Help on packaging<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there any detailed documentation about the packag=
+ing in the yocto build system?<o:p></o:p></p>
+<p class=3D"MsoNormal">I would like to know more about the packaging specif=
+ically to answer:<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>How to do a quick check as what files will go in th=
+e filesystem: in the image directory or the sysroot-destdir?<o:p></o:p></p>
+<p class=3D"MsoListParagraph"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><i><span style=3D"color:#1F497D">[Franklin] </spa=
+n></i></b><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman=
+&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&=
+quot;,&quot;serif&quot;">image
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto;margin-left:.5in">
+<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
+ot;serif&quot;">The image directory (or destination directory) is where the=
+ software needs to be installed into in order to be packaged. This director=
+y is referred to as
+<b>D</b> in recipes. So instead of installing binaries into <b>/usr/bin</b>=
+ and libraries into
+<b>/usr/lib</b> for example you would need to install into <b>${D}/usr/bin<=
+/b> and
+<b>${D}/usr/lib</b> instead. When installed on the target the ${D} will be =
+not be included so they'll end up in the correct place. You definitely don'=
+t want files on your host system being replaced by cross-compiled binaries =
+for your target!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;">sysroots<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto;margin-left:.5in">
+<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
+ot;serif&quot;">Contains the staging area, which is used to store natively =
+compiled tools and and libraries and headers for the target that are requir=
+ed for building other software.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&=
+quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&=
+quot;,&quot;serif&quot;">So the above is saying that the image directory is=
+ where the do_install step copies all the files that will
+ end up being packaged. Sysroots is where all the critical headers and libr=
+aries that other software can point to grab any external files it may need =
+to build itself.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&=
+quot;,&quot;serif&quot;">So to answer your original question of what is goi=
+ng into your filesystem. What goes into your file system are
+ specific packages. If you look at the package-split directory you will see=
+ all the different packages that are available to go into your filesystem. =
+Looking at a single recipe to determine which specific packages will go int=
+o the filesystem is tough since
+ it is really dependent on the RDEPENDS RRECOMMENDS that may be set by othe=
+r recipes/packages.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&=
+quot;,&quot;serif&quot;">Take a look at the following link:
+<a href=3D"http://elinux.org/Bitbake_Cheat_Sheet">http://elinux.org/Bitbake=
+_Cheat_Sheet</a>. Bitbake has a &#8211;g option that you can use to output =
+dependency files that you can work your way through to figure out exactly w=
+hat package has a dependency on another
+ package.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&=
+quot;,&quot;serif&quot;">If for some reason a certain package isn&#8217;t b=
+eing included by default that you need then either can explicitly
+ set RDEPENDS or RRECOMMENDS in an image, packagegroup or recipe to make su=
+re your filesystem gets what you need.<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:0in"><span style=3D"colo=
+r:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>How the do_package deals with symbolic links? (Sinc=
+e some of the symbolic links were missing in the target fs)<o:p></o:p></p>
+<p class=3D"MsoNormal"><b><i><span style=3D"color:#1F497D">[Franklin] <a hr=
+ef=3D"http://docs.openembedded.org/usermanual/usermanual.html#id325388">
+http://docs.openembedded.org/usermanual/usermanual.html#id325388</a><o:p></=
+o:p></span></i></b></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I would check if the s=
+ymbolic link is found within the packages directory. If not then do_package=
+ is missing the symbolic link. What files are found in each package is dete=
+rmined by each package&#8217;s FILES_&lt;package
+ name&gt; variable. So you want to check if the proper paths (relative to t=
+he image directory) is being set properly to insure that the files you&#821=
+7;re interested in isn&#8217;t missing anything. &nbsp;<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hopefully the above he=
+lps and if you need any clarification let me know!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks and Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Mrinmayee<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_8F29D6B095ED194EA1980491A5E029710C57BA8DDFLE08entticom_--
