@@ -1,37 +1,33 @@
-Return-Path: <tom.rini@gmail.com>
-Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
-	[209.85.216.45])
-	by arago-project.org (Postfix) with ESMTPS id 9246D529AF
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 10C865296F
 	for <meta-arago@arago-project.org>;
-	Tue, 22 Oct 2013 16:43:05 +0000 (UTC)
-Received: by mail-qa0-f45.google.com with SMTP id ii20so3479901qab.4
-	for <meta-arago@arago-project.org>;
-	Tue, 22 Oct 2013 09:43:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=0nR6cN9ub0SJGVSQkufvBb7ubDlsZo8uJmZbUtu4tNE=;
-	b=MSJ3ngZ7aHUj8+3s7f3dLpRJq0YnY18OwhgDTxFT/oAGa4jQZnimA8rz1EgiLi9G22
-	X9/ziKDZlYzfNk7UmquQj4ev9KnZ9iDil+iIFRlR44B/eipoCj6s5EvEu9lRLXQkEEe/
-	SIwgZj5GS3j2w28AToxLhQi+eATTOWW9JS9lQLE8v4dpYeBG3FJitl6quLPlQeouc6Eh
-	MPeYCzg5qK0N04eEg7AXaH2L/ri86dWQAX43v56qs/yWHCfU4OuR+VzmvnjOvAmly7Me
-	/Den2dOLAQ5NttLIJxdi+/H+7hLXIgu6QkScw7pmj3/NPF2f41HzjJA9di/k6YBwkuzi
-	L1dA==
-X-Received: by 10.224.138.4 with SMTP id y4mr31410191qat.65.1382460182563;
-	Tue, 22 Oct 2013 09:43:02 -0700 (PDT)
-Received: from localhost.localdomain (cpe-174-106-216-211.ec.res.rr.com.
-	[174.106.216.211])
-	by mx.google.com with ESMTPSA id x1sm51460609qai.6.2013.10.22.09.43.00
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 22 Oct 2013 09:43:01 -0700 (PDT)
-Sender: Tom Rini <tom.rini@gmail.com>
-From: Tom Rini <trini@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 22 Oct 2013 12:43:04 -0400
-Message-Id: <1382460184-12671-1-git-send-email-trini@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: "Franklin Cooper Jr." <fcooper@ti.com>
-Subject: [PATCH] udev: Re-fix touchscreen detection rule
+	Tue, 22 Oct 2013 17:44:15 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9MHiETD018934
+	for <meta-arago@arago-project.org>; Tue, 22 Oct 2013 12:44:14 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9MHiEsG000918
+	for <meta-arago@arago-project.org>; Tue, 22 Oct 2013 12:44:14 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Tue, 22 Oct 2013 12:44:14 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Rini, Tom" <trini@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [PATCH] udev: Re-fix touchscreen detection rule
+Thread-Index: AQHOz0XICYUc+kAvXkGd8NOcpd0tXZoA/euA
+Date: Tue, 22 Oct 2013 17:44:12 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101597CF9E1@DLEE11.ent.ti.com>
+References: <1382460184-12671-1-git-send-email-trini@ti.com>
+In-Reply-To: <1382460184-12671-1-git-send-email-trini@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Cc: "Cooper Jr., Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH] udev: Re-fix touchscreen detection rule
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,40 +40,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 16:43:12 -0000
+X-List-Received-Date: Tue, 22 Oct 2013 17:44:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-* Fix the rule to detect the touchscreen and create the
-  /dev/input/touchscreen0 device node more reliably.  udev knows how to
-  detect a touchscreen and sets ID_INPUT_TOUCHSCREEN for us to check
-  against.
-* This has already been submitted upstream and can be removed
-  when meta-arago switches to something that contains this fix, possibly
-  Dora.
-* The patch has already been submitted to oe-core at:
-  http://article.gmane.org/gmane.comp.handhelds.openembedded.core/44297
+Needs a PR bump but I can handle that when I push.
 
-Cc: Chase Maupin <chase.maupin@ti.com>
-Cc: Franklin Cooper Jr. <fcooper@ti.com>
-Cc: Denys Dmytriyenko <denys@ti.com>
-Signed-off-by: Tom Rini <trini@ti.com>
----
- .../recipes-core/udev/udev/local.rules             |    4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Tested-by: Chase Maupin <chase.maupin@ti.com>
 
-diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules b/meta-arago-distro/recipes-core/udev/udev/local.rules
-index d0cbf91..d0b0216 100644
---- a/meta-arago-distro/recipes-core/udev/udev/local.rules
-+++ b/meta-arago-distro/recipes-core/udev/udev/local.rules
-@@ -17,7 +17,5 @@
- ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN+="/sbin/modprobe $env{MODALIAS}"
- 
- # Create a symlink to any touchscreen input device
--# Trigger based on input type, that the evbit (-e) has EV_SYN and EV_ABS,
--# has an EV_ABS value (-a) which is used for touchscreen type devices.
--SUBSYSTEM=="input", KERNEL=="event[0-9]*", ATTRS{modalias}=="input:*-e0*,3,*a0,1,*", SYMLINK+="input/touchscreen0"
-+SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLINK+="input/touchscreen0"
- 
--- 
-1.7.9.5
+Tested on AM437x-evm
+
+>-----Original Message-----
+>From: Tom Rini [mailto:tom.rini@gmail.com] On Behalf Of Rini, Tom
+>Sent: Tuesday, October 22, 2013 11:43 AM
+>To: meta-arago@arago-project.org
+>Cc: Maupin, Chase; Cooper Jr., Franklin; Dmytriyenko, Denys
+>Subject: [PATCH] udev: Re-fix touchscreen detection rule
+>
+>* Fix the rule to detect the touchscreen and create the
+>  /dev/input/touchscreen0 device node more reliably.  udev knows
+>how to
+>  detect a touchscreen and sets ID_INPUT_TOUCHSCREEN for us to
+>check
+>  against.
+>* This has already been submitted upstream and can be removed
+>  when meta-arago switches to something that contains this fix,
+>possibly
+>  Dora.
+>* The patch has already been submitted to oe-core at:
+>
+>http://article.gmane.org/gmane.comp.handhelds.openembedded.core/44
+>297
+>
+>Cc: Chase Maupin <chase.maupin@ti.com>
+>Cc: Franklin Cooper Jr. <fcooper@ti.com>
+>Cc: Denys Dmytriyenko <denys@ti.com>
+>Signed-off-by: Tom Rini <trini@ti.com>
+>---
+> .../recipes-core/udev/udev/local.rules             |    4 +---
+> 1 file changed, 1 insertion(+), 3 deletions(-)
+>
+>diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules
+>b/meta-arago-distro/recipes-core/udev/udev/local.rules
+>index d0cbf91..d0b0216 100644
+>--- a/meta-arago-distro/recipes-core/udev/udev/local.rules
+>+++ b/meta-arago-distro/recipes-core/udev/udev/local.rules
+>@@ -17,7 +17,5 @@
+> ACTION=3D=3D"add", DEVPATH=3D=3D"/devices/*", ENV{MODALIAS}=3D=3D"?*",
+>RUN+=3D"/sbin/modprobe $env{MODALIAS}"
+>
+> # Create a symlink to any touchscreen input device
+>-# Trigger based on input type, that the evbit (-e) has EV_SYN and
+>EV_ABS,
+>-# has an EV_ABS value (-a) which is used for touchscreen type
+>devices.
+>-SUBSYSTEM=3D=3D"input", KERNEL=3D=3D"event[0-9]*",
+>ATTRS{modalias}=3D=3D"input:*-e0*,3,*a0,1,*",
+>SYMLINK+=3D"input/touchscreen0"
+>+SUBSYSTEM=3D=3D"input", KERNEL=3D=3D"event[0-9]*",
+>ENV{ID_INPUT_TOUCHSCREEN}=3D=3D"1", SYMLINK+=3D"input/touchscreen0"
+>
+>--
+>1.7.9.5
 
 
