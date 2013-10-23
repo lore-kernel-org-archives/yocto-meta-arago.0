@@ -1,27 +1,36 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 0914C5299B
+Return-Path: <tom.rini@gmail.com>
+Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
+	[209.85.216.182])
+	by arago-project.org (Postfix) with ESMTPS id B19425299B
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Oct 2013 15:43:11 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9NFhBNW018724
-	for <meta-arago@arago-project.org>; Wed, 23 Oct 2013 10:43:11 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9NFhBgq001010
-	for <meta-arago@arago-project.org>; Wed, 23 Oct 2013 10:43:11 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 23 Oct 2013 10:43:11 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9NFh8EK025496;
-	Wed, 23 Oct 2013 10:43:09 -0500
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 23 Oct 2013 11:35:23 -0500
-Message-ID: <1382546123-12950-1-git-send-email-Chase.Maupin@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-MIME-Version: 1.0
-Subject: [PATCH] ti-tisdk-setup: update setup scripts
+	Wed, 23 Oct 2013 18:26:26 +0000 (UTC)
+Received: by mail-qc0-f182.google.com with SMTP id n7so715796qcx.27
+	for <meta-arago@arago-project.org>;
+	Wed, 23 Oct 2013 11:26:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id;
+	bh=JwJsCTIq8sj38p4f3c0223ZjNYHurJPtPAe1LvbM3jI=;
+	b=M1oPLMA0rNzUvz24j/3EnLrGPJ3KT6XzsaA1aLQxdxFVhj6Bu5+pPZ+WfREm+37u+L
+	DJNh3UfOKKWqGyf3cPprjMFTWQqzbsrKGqyZAA+UBzU97EMhdoPtHVqCvKy/eLtu7K5A
+	XZEbm1dpXcPKFHMe0+rvEY0kxUHiRZgKBRwdnKLX/iwHHyB8p3n5XdpATnnL3Ql41sGO
+	xaLzwZTRqaJNOCafxUHyoTANW/XQ534YwyQeFkn0zCN4z42hWUD9+EFgDt1QuOPK/fve
+	JzUJ/K7hcBXHG+N4FaIlfTN7sItkK+7ebR0L+qe+VICE1qWVIhcXih8FpGXrUhN7vciI
+	p1Ug==
+X-Received: by 10.224.54.129 with SMTP id q1mr5797149qag.19.1382552786164;
+	Wed, 23 Oct 2013 11:26:26 -0700 (PDT)
+Received: from localhost.localdomain (cpe-174-106-216-211.ec.res.rr.com.
+	[174.106.216.211])
+	by mx.google.com with ESMTPSA id 5sm63987969qao.3.2013.10.23.11.26.24
+	for <meta-arago@arago-project.org>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 23 Oct 2013 11:26:24 -0700 (PDT)
+Sender: Tom Rini <tom.rini@gmail.com>
+From: Tom Rini <trini@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed, 23 Oct 2013 14:26:14 -0400
+Message-Id: <1382552778-29138-1-git-send-email-trini@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/3] Update SD card auto-mounting
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,35 +43,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 15:43:12 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 23 Oct 2013 18:26:27 -0000
 
-* Update the setup scripts to use zImage instead of uImage
-* Update the setup scripts to use the right U-Boot prompt
+The following short series gets SD card auto-mounting working again.  I
+don't know if we want to try and push this new method upstream or if
+it's been decided to be distro policy (I assume the latter).  This
+enables 'stat' on our busybox config which as the commit message
+explains is quite hard to replicate in just shell and avoids requiring
+coreutils and is a re-sync with openembedded-core.  This is needed since
+/etc/udev/scripts/mount.sh requires 'stat' to exist and work for
+auto-mounting of things not in /etc/fstab.  The next change adds a udev
+rule for mounting (and cleaning up) on SD card insertion (technically
+all mmcblk devices, so eMMC too, which is helpful).  Finally, we drop
+the mount-sdcard package and initscript as we don't need it anymore.
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
----
- .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
- 1 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index 280e58c..9ef3da9 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
- 
--PR = "r14"
-+PR = "r15"
- 
- BRANCH ?= "master"
--SRCREV = "5d2d712607d5bba1d15f199bb7b185d963a23d1e"
-+SRCREV = "89067bae7d1b211e7a8c42c35a8f43e0762b258b"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
 -- 
-1.7.0.4
+Tom
 
 
