@@ -1,36 +1,38 @@
 Return-Path: <tom.rini@gmail.com>
-Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
-	[209.85.216.182])
-	by arago-project.org (Postfix) with ESMTPS id B19425299B
+Received: from mail-qa0-f49.google.com (mail-qa0-f49.google.com
+	[209.85.216.49])
+	by arago-project.org (Postfix) with ESMTPS id 744235299B
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Oct 2013 18:26:26 +0000 (UTC)
-Received: by mail-qc0-f182.google.com with SMTP id n7so715796qcx.27
+	Wed, 23 Oct 2013 18:26:28 +0000 (UTC)
+Received: by mail-qa0-f49.google.com with SMTP id i13so745170qae.15
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Oct 2013 11:26:26 -0700 (PDT)
+	Wed, 23 Oct 2013 11:26:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id;
-	bh=JwJsCTIq8sj38p4f3c0223ZjNYHurJPtPAe1LvbM3jI=;
-	b=M1oPLMA0rNzUvz24j/3EnLrGPJ3KT6XzsaA1aLQxdxFVhj6Bu5+pPZ+WfREm+37u+L
-	DJNh3UfOKKWqGyf3cPprjMFTWQqzbsrKGqyZAA+UBzU97EMhdoPtHVqCvKy/eLtu7K5A
-	XZEbm1dpXcPKFHMe0+rvEY0kxUHiRZgKBRwdnKLX/iwHHyB8p3n5XdpATnnL3Ql41sGO
-	xaLzwZTRqaJNOCafxUHyoTANW/XQ534YwyQeFkn0zCN4z42hWUD9+EFgDt1QuOPK/fve
-	JzUJ/K7hcBXHG+N4FaIlfTN7sItkK+7ebR0L+qe+VICE1qWVIhcXih8FpGXrUhN7vciI
-	p1Ug==
-X-Received: by 10.224.54.129 with SMTP id q1mr5797149qag.19.1382552786164;
-	Wed, 23 Oct 2013 11:26:26 -0700 (PDT)
+	h=sender:from:to:subject:date:message-id:in-reply-to:references;
+	bh=7LRHMYTMLjnKnr6g7XvhDyeaoKrSmpERKlK6qwjM8Bw=;
+	b=Hf0/nzDzLIUFFotR9e/WEKKQnShsOINI8elQfdOYpPq6rhgXBOxxkZtrTIrR7aas0r
+	mbEoENH2P1WaXZWanZ7k9ljo1KhmO0TCG3OqxU1lngIcyFlwGSviJDgGuE4tzXPhtbMt
+	YgjOuc4G8fz/Q//x7XxMo9ojdoi7lLuRau1w+yUPTSNQcq94ciG7z/2O4IBnRt07QSPc
+	KsKckLVmowYwW6mqWDrXtqv/JRpRq93Y1i8MaCSdd/i/6VBP8BZaLpWBNek/S0uePJSQ
+	nZM2R/nxQJAd/95FF09qYflqXGD8osmCUTNepu0ngaDukSrooIM9lXv9Gh7o2p6kBgD4
+	uiAg==
+X-Received: by 10.224.11.7 with SMTP id r7mr5834549qar.91.1382552788288;
+	Wed, 23 Oct 2013 11:26:28 -0700 (PDT)
 Received: from localhost.localdomain (cpe-174-106-216-211.ec.res.rr.com.
 	[174.106.216.211])
-	by mx.google.com with ESMTPSA id 5sm63987969qao.3.2013.10.23.11.26.24
+	by mx.google.com with ESMTPSA id 5sm63987969qao.3.2013.10.23.11.26.26
 	for <meta-arago@arago-project.org>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 23 Oct 2013 11:26:24 -0700 (PDT)
+	Wed, 23 Oct 2013 11:26:27 -0700 (PDT)
 Sender: Tom Rini <tom.rini@gmail.com>
 From: Tom Rini <trini@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed, 23 Oct 2013 14:26:14 -0400
-Message-Id: <1382552778-29138-1-git-send-email-trini@ti.com>
+Date: Wed, 23 Oct 2013 14:26:15 -0400
+Message-Id: <1382552778-29138-2-git-send-email-trini@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH 0/3] Update SD card auto-mounting
+In-Reply-To: <1382552778-29138-1-git-send-email-trini@ti.com>
+References: <1382552778-29138-1-git-send-email-trini@ti.com>
+Subject: [PATCH 1/3] busybox: add /usr/bin/stat applet
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,21 +45,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 18:26:27 -0000
+X-List-Received-Date: Wed, 23 Oct 2013 18:26:28 -0000
 
-The following short series gets SD card auto-mounting working again.  I
-don't know if we want to try and push this new method upstream or if
-it's been decided to be distro policy (I assume the latter).  This
-enables 'stat' on our busybox config which as the commit message
-explains is quite hard to replicate in just shell and avoids requiring
-coreutils and is a re-sync with openembedded-core.  This is needed since
-/etc/udev/scripts/mount.sh requires 'stat' to exist and work for
-auto-mounting of things not in /etc/fstab.  The next change adds a udev
-rule for mounting (and cleaning up) on SD card insertion (technically
-all mmcblk devices, so eMMC too, which is helpful).  Finally, we drop
-the mount-sdcard package and initscript as we don't need it anymore.
+From: Andy Ross <andy.ross@windriver.com>
 
+The busybox defconfig lacks a stat tool, the functionality of which
+cannot be reproduced in a way accessible to a shell script running in
+a minimal configuration.  Enable, and modify the installation path to
+/usr/bin/stat to match the coreutils tool for proper alternatives
+handling.
+
+Signed-off-by: Andy Ross <andy.ross@windriver.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+[trini: Import ef7e123 from openembedded-core, so just a defconfig
+change]
+Signed-off-by: Tom Rini <trini@ti.com>
+---
+ .../recipes-core/busybox/busybox/defconfig         |    4 ++--
+ .../recipes-core/busybox/busybox_1.20.2.bbappend   |    2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+index adafe0b..a54c32d 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+@@ -264,8 +264,8 @@ CONFIG_SORT=y
+ CONFIG_FEATURE_SORT_BIG=y
+ # CONFIG_SPLIT is not set
+ # CONFIG_FEATURE_SPLIT_FANCY is not set
+-# CONFIG_STAT is not set
+-# CONFIG_FEATURE_STAT_FORMAT is not set
++CONFIG_STAT=y
++CONFIG_FEATURE_STAT_FORMAT=y
+ CONFIG_STTY=y
+ # CONFIG_SUM is not set
+ CONFIG_SYNC=y
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
+index be174ef..d3ff409 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago9"
++PR_append = "-arago10"
+ 
+ SRC_URI += " \
+ 	file://inetd \
 -- 
-Tom
+1.7.9.5
 
 
