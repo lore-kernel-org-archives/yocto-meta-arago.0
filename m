@@ -1,38 +1,38 @@
 Return-Path: <tom.rini@gmail.com>
-Received: from mail-qa0-f49.google.com (mail-qa0-f49.google.com
-	[209.85.216.49])
-	by arago-project.org (Postfix) with ESMTPS id 744235299B
+Received: from mail-qe0-f52.google.com (mail-qe0-f52.google.com
+	[209.85.128.52])
+	by arago-project.org (Postfix) with ESMTPS id EF0145299B
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Oct 2013 18:26:28 +0000 (UTC)
-Received: by mail-qa0-f49.google.com with SMTP id i13so745170qae.15
+	Wed, 23 Oct 2013 18:26:29 +0000 (UTC)
+Received: by mail-qe0-f52.google.com with SMTP id w7so745575qeb.11
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Oct 2013 11:26:28 -0700 (PDT)
+	Wed, 23 Oct 2013 11:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=sender:from:to:subject:date:message-id:in-reply-to:references;
-	bh=7LRHMYTMLjnKnr6g7XvhDyeaoKrSmpERKlK6qwjM8Bw=;
-	b=Hf0/nzDzLIUFFotR9e/WEKKQnShsOINI8elQfdOYpPq6rhgXBOxxkZtrTIrR7aas0r
-	mbEoENH2P1WaXZWanZ7k9ljo1KhmO0TCG3OqxU1lngIcyFlwGSviJDgGuE4tzXPhtbMt
-	YgjOuc4G8fz/Q//x7XxMo9ojdoi7lLuRau1w+yUPTSNQcq94ciG7z/2O4IBnRt07QSPc
-	KsKckLVmowYwW6mqWDrXtqv/JRpRq93Y1i8MaCSdd/i/6VBP8BZaLpWBNek/S0uePJSQ
-	nZM2R/nxQJAd/95FF09qYflqXGD8osmCUTNepu0ngaDukSrooIM9lXv9Gh7o2p6kBgD4
-	uiAg==
-X-Received: by 10.224.11.7 with SMTP id r7mr5834549qar.91.1382552788288;
-	Wed, 23 Oct 2013 11:26:28 -0700 (PDT)
+	bh=DDSHNDHHjKmWmI2WhFm4woES7wNTsy/69oGaQQC1sQw=;
+	b=MArj5Ej4ofi5t28jJJm2twd6Q5rCgU5A/6MO0QgZq/fn6Rk4kmie4HbBc5bRAe6aRS
+	1JxmUGNwgBlvHGv4JGIq4FyCvQyiSbgxFhCJTO6swStfzJfxBOuoBwef2IFtpeOSMMEO
+	va4MddByN9UoUU967FrAbF3MUDa2hfSHP/MR/8Pn+dciCCv6olrPulCdCkFDnq5I2AbL
+	+XcooojgnZLOkDw/k6Ph5Foe8MQI0065AD5zly/RkQHiw7979NlP9JheQij6bANFjc6v
+	uG6yoPDJDa9SE5cXNSQrjttbH4Y1FPZs0wsiQhNJOhLgfk0dvgtwjA3KcFrgo793MMh6
+	oQHQ==
+X-Received: by 10.49.130.132 with SMTP id oe4mr4150417qeb.86.1382552789797;
+	Wed, 23 Oct 2013 11:26:29 -0700 (PDT)
 Received: from localhost.localdomain (cpe-174-106-216-211.ec.res.rr.com.
 	[174.106.216.211])
-	by mx.google.com with ESMTPSA id 5sm63987969qao.3.2013.10.23.11.26.26
+	by mx.google.com with ESMTPSA id 5sm63987969qao.3.2013.10.23.11.26.28
 	for <meta-arago@arago-project.org>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 23 Oct 2013 11:26:27 -0700 (PDT)
+	Wed, 23 Oct 2013 11:26:28 -0700 (PDT)
 Sender: Tom Rini <tom.rini@gmail.com>
 From: Tom Rini <trini@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed, 23 Oct 2013 14:26:15 -0400
-Message-Id: <1382552778-29138-2-git-send-email-trini@ti.com>
+Date: Wed, 23 Oct 2013 14:26:16 -0400
+Message-Id: <1382552778-29138-3-git-send-email-trini@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1382552778-29138-1-git-send-email-trini@ti.com>
 References: <1382552778-29138-1-git-send-email-trini@ti.com>
-Subject: [PATCH 1/3] busybox: add /usr/bin/stat applet
+Subject: [PATCH 2/3] udev: Add rule for automount (and handle removal of) SD cards
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,54 +45,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 18:26:28 -0000
+X-List-Received-Date: Wed, 23 Oct 2013 18:26:30 -0000
 
-From: Andy Ross <andy.ross@windriver.com>
+Add rules to local.rules to call /etc/udev/scripts/mount.sh on insertion
+and removal of SD cards, to mount to /media/mmcblkXpY
 
-The busybox defconfig lacks a stat tool, the functionality of which
-cannot be reproduced in a way accessible to a shell script running in
-a minimal configuration.  Enable, and modify the installation path to
-/usr/bin/stat to match the coreutils tool for proper alternatives
-handling.
-
-Signed-off-by: Andy Ross <andy.ross@windriver.com>
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-[trini: Import ef7e123 from openembedded-core, so just a defconfig
-change]
 Signed-off-by: Tom Rini <trini@ti.com>
 ---
- .../recipes-core/busybox/busybox/defconfig         |    4 ++--
- .../recipes-core/busybox/busybox_1.20.2.bbappend   |    2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ .../recipes-core/udev/udev/local.rules             |    3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
-index adafe0b..a54c32d 100644
---- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
-+++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
-@@ -264,8 +264,8 @@ CONFIG_SORT=y
- CONFIG_FEATURE_SORT_BIG=y
- # CONFIG_SPLIT is not set
- # CONFIG_FEATURE_SPLIT_FANCY is not set
--# CONFIG_STAT is not set
--# CONFIG_FEATURE_STAT_FORMAT is not set
-+CONFIG_STAT=y
-+CONFIG_FEATURE_STAT_FORMAT=y
- CONFIG_STTY=y
- # CONFIG_SUM is not set
- CONFIG_SYNC=y
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
-index be174ef..d3ff409 100644
---- a/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
-+++ b/meta-arago-distro/recipes-core/busybox/busybox_1.20.2.bbappend
-@@ -1,7 +1,7 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules b/meta-arago-distro/recipes-core/udev/udev/local.rules
+index d0b0216..45c3a46 100644
+--- a/meta-arago-distro/recipes-core/udev/udev/local.rules
++++ b/meta-arago-distro/recipes-core/udev/udev/local.rules
+@@ -19,3 +19,6 @@ ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN+="/sbin/modprobe
+ # Create a symlink to any touchscreen input device
+ SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLINK+="input/touchscreen0"
  
--PR_append = "-arago9"
-+PR_append = "-arago10"
- 
- SRC_URI += " \
- 	file://inetd \
++# Auto-mount any SD cards
++ACTION=="add", KERNEL=="mmcblk[0-9]p[0-9]", SUBSYSTEM=="block", RUN+="/etc/udev/scripts/mount.sh"
++ACTION=="remove", KERNEL=="mmcblk[0-9]p[0-9]", SUBSYSTEM=="block", RUN+="/etc/udev/scripts/mount.sh"
 -- 
 1.7.9.5
 
