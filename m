@@ -1,27 +1,27 @@
 Return-Path: <mrinmayee@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 4139F52A69
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id CD31152A69
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Oct 2013 09:35:11 +0000 (UTC)
+	Fri, 25 Oct 2013 09:35:25 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9P9ZAnq031841
-	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 04:35:10 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9P9ZAab000893
-	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 04:35:10 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 25 Oct 2013 04:35:10 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9P9ZOP0027539
+	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 04:35:24 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9P9ZOqN002020
+	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 04:35:24 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 25 Oct 2013 04:35:24 -0500
 Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9P9Z824025848	for
-	<meta-arago@arago-project.org>; Fri, 25 Oct 2013 04:35:09 -0500
-Date: Fri, 25 Oct 2013 15:05:08 +0530
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9P9ZNGO001040	for
+	<meta-arago@arago-project.org>; Fri, 25 Oct 2013 04:35:23 -0500
+Date: Fri, 25 Oct 2013 15:05:22 +0530
 From: Mrinmayee Hingolikar <mrinmayee@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20131025093508.GA20249@ti.com>
+Message-ID: <20131025093522.GA20276@ti.com>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [PATCH 3/5] multimedia: GStreamer good plugins
+Subject: [PATCH 4/5] multimedia: GStreamer bad plugins
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,33 +34,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Oct 2013 09:35:12 -0000
+X-List-Received-Date: Fri, 25 Oct 2013 09:35:27 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
 Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
 ---
- .../gstreamer/gst-plugins-good_0.10.31.bbappend    |   20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+ .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |   25 ++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
 new file mode 100644
-index 0000000..d13cdc4
+index 0000000..67e9be8
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
-@@ -0,0 +1,20 @@
-+SRC_URI = "git://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
-+SRCREV = "733289614c50ff4e490d5a37ec4af3a540d1dfb9"
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+@@ -0,0 +1,25 @@
++SRC_URI = "git://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
 +
-+LICENSE = "LGPLv2.1"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
++SRCREV = "8997db5920f8e2b8106c2e9301be9493064795ed"
++
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
++
++DEPENDS += "omap5-sgx-ddk-um-linux libdce"
 +
 +PR = "r0"
 +
 +COMPATIBLE_MACHINE = "omap-a15"
 +
 +S = "${WORKDIR}/git"
++
++EXTRA_OECONF += " --disable-pvr"
 +
 +do_configure_prepend() {
 +	git submodule init && git submodule update
