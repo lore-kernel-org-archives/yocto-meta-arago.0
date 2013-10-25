@@ -1,27 +1,27 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4620C52972
+	by arago-project.org (Postfix) with ESMTPS id EF7D752A65
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Oct 2013 19:40:35 +0000 (UTC)
+	Fri, 25 Oct 2013 20:31:03 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9PJeYkq027657
-	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 14:40:34 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9PJeYWX029428
-	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 14:40:34 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 25 Oct 2013 14:40:34 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9PKV225031817
+	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 15:31:02 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9PKV2n8000873
+	for <meta-arago@arago-project.org>; Fri, 25 Oct 2013 15:31:02 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 25 Oct 2013 15:31:02 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9PJeVsR031458;
-	Fri, 25 Oct 2013 14:40:32 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9PKUxfM008229;
+	Fri, 25 Oct 2013 15:31:00 -0500
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 25 Oct 2013 15:33:28 -0500
-Message-ID: <1382733208-5034-1-git-send-email-Chase.Maupin@ti.com>
+Date: Fri, 25 Oct 2013 16:23:58 -0500
+Message-ID: <1382736238-15829-1-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: [PATCH] amsdk-sdk-host: Add oe-layersetup to the SDK
+Subject: [PATCH] arago-core-tisdk-image: Update DTB_FILTER to pickup GP DTB
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,37 +34,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Oct 2013 19:40:35 -0000
+X-List-Received-Date: Fri, 25 Oct 2013 20:31:05 -0000
 Content-Type: text/plain
 
-* Add the oe-layersetup to the bin directory of the SDK host
-  package.
+* The AM437x GP EVM DTB uses am437x so change the filter to use
+  am43 which will match both the GP and EPOS EVMs
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index c10e33a..4654a96 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional scripts and applications into the SDK"
- LICENSE = "MIT"
--PR = "r14"
-+PR = "r15"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index 368fa47..74c2b87 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -20,7 +20,7 @@ DTB_FILTER = "unknown"
+ DTB_FILTER_ti33x = "am335x"
+ DTB_FILTER_omap5-evm = "omap5"
+ DTB_FILTER_dra7xx-evm = "dra7"
+-DTB_FILTER_ti43x = "am43x"
++DTB_FILTER_ti43x = "am43"
  
- inherit packagegroup
- 
-@@ -28,6 +28,7 @@ RDEPENDS_${PN} = "\
-     ${EXTRA_FILES} \
-     board-port-labs-u-boot-src \
-     board-port-labs-linux-src \
-+    oe-layersetup-src \
-     ti-tisdk-makefile \
-     ${U-BOOT_SRC} \
-     ${KERNEL_SRC} \
+ # List of target side images to build for the SDK
+ TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
 -- 
 1.7.0.4
 
