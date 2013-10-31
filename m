@@ -1,30 +1,29 @@
-Return-Path: <heroor@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 607E0529E3
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 2F074529CB
 	for <meta-arago@arago-project.org>;
-	Thu, 31 Oct 2013 04:18:55 +0000 (UTC)
+	Thu, 31 Oct 2013 09:17:27 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9V4Ism5004778
-	for <meta-arago@arago-project.org>; Wed, 30 Oct 2013 23:18:54 -0500
-Received: from DLEE71.ent.ti.com ([157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9V4IspN022711
-	for <meta-arago@arago-project.org>; Wed, 30 Oct 2013 23:18:54 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 30 Oct 2013 23:18:54 -0500
-Received: from [172.24.158.58] (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9V4IqwS029062	for
-	<meta-arago@arago-project.org>; Wed, 30 Oct 2013 23:18:53 -0500
-Message-ID: <5271DA2C.8070401@ti.com>
-Date: Thu, 31 Oct 2013 09:48:52 +0530
-From: Siddharth Heroor <heroor@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
-MIME-Version: 1.0
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id r9V9HQYt016725
+	for <meta-arago@arago-project.org>; Thu, 31 Oct 2013 04:17:26 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r9V9HQYG016144
+	for <meta-arago@arago-project.org>; Thu, 31 Oct 2013 04:17:26 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 31 Oct 2013 04:17:26 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	r9V9HPW4004402	for <meta-arago@arago-project.org>;
+	Thu, 31 Oct 2013 04:17:25 -0500
+Date: Thu, 31 Oct 2013 05:06:51 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-References: <1383160055-32615-1-git-send-email-sam.nelson@ti.com>
-In-Reply-To: <1383160055-32615-1-git-send-email-sam.nelson@ti.com>
-Subject: Re: [PATCH 1/1] ti-cmem: New recipes for ti-cmem
+Message-ID: <255065328.879.1383210411488.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-10-31_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,118 +36,202 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2013 04:18:55 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 31 Oct 2013 09:17:27 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_878_63518441.1383210411454"
+
+------=_Part_878_63518441.1383210411454
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 10/31/2013 12:37 AM, Sam Nelson wrote:
-> - Recipes for ti-cmem which provides user space api for contigous memory allocaion
-> - ti-cmem_mod provides the kernel module
-> - ti-mem provides the user space library
+<html>
+<head>
+<title>
+Status for 10/31/13
+</title>
+</head>
+<body>
 
-Why do we need to create a new recipe? The ti-linuxutils in meta-ti 
-should be the provider for cmem. Shouldn't that be updated for newer 
-versions?
-Also, I would suggest that we make it machine compatible with omap-a15.
+<h2>Status for 10/31/13</h2>
 
->
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> ---
->   .../recipes-bsp/ti-cmem/ti-cmem-mod.bb             |   40 ++++++++++++++++++++
->   meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb   |   20 ++++++++++
->   meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc  |   10 +++++
->   3 files changed, 70 insertions(+)
->   create mode 100755 meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
->   create mode 100644 meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
->   create mode 100644 meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
->
-> diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
-> new file mode 100755
-> index 0000000..0839c20
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
-> @@ -0,0 +1,40 @@
-> +DESCRIPTION="The cmem component module for contiguous memory allocation from userspace "
-> +
-> +HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
-> +
-> +LICENSE = "GPLv2"
-> +
-> +include ti-cmem.inc
-> +
-> +RDEPENDS_${PN} += "kernel (=${KERNEL_VERSION})"
-> +
-> +DEPENDS += "virtual/kernel"
-> +
-> +NAME="cmem"
-> +MODULE_BUILD_DIR ="src/cmem/module"
-> +
-> +# This package builds a kernel module, use kernel PR as base and append a local
-> +PR = "${MACHINE_KERNEL_PR}"
-> +PR_append = "a"
-> +
-> +PKG_${PN} = "kernel-module-${PN}"
-> +
-> +KERNEL_VERSION = "${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +inherit module
-> +
-> +do_compile () {
-> +    cd ${S}
-> +    make -f lu.mak module_clean
-> +    make -f lu.mak module KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} TOOLCHAIN_PREFIX=${CROSS_COMPILE}
-> +}
-> +
-> +do_install () {
-> +    cd ${S}
-> +    make -f lu.mak module_install KERNEL_INSTALL_DIR="${STAGING_KERNEL_DIR}" EXEC_DIR="${D}/lib/modules/${KERNEL_VERSION}/extra" INSTALL_MOD_PATH="${D}"
-> +}
-> +
-> +PACKAGE_STRIP = "no"
-> +
-> diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
-> new file mode 100644
-> index 0000000..a106aa0
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
-> @@ -0,0 +1,20 @@
-> +DESCRIPTION="The cmem component supports contiguous memory allocation from userspace "
-> +
-> +HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
-> +
-> +LICENSE = "GPLv2"
-> +
-> +include ti-cmem.inc
-> +
-> +DEPENDS = "ti-cmem-mod"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +PR = "r1"
-> +
-> +PACKAGES =+ "${PN}-test"
-> +
-> +FILES_${PN}-test = "${bindir}/*"
-> +
-> +inherit autotools
-> +
-> diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
-> new file mode 100644
-> index 0000000..9308b2d
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
-> @@ -0,0 +1,10 @@
-> +HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
-> +
-> +LIC_FILES_CHKSUM = "file://products.mak;beginline=2;endline=30;md5=195feadf798bb4165bcb1a23ffd50dbb"
-> +
-> +COMPATIBLE_MACHINE = "keystone-evm"
-> +
-> +BRANCH ?= "master"
-> +SRCREV = "4.00.00.06"
-> +
-> +SRC_URI = "git://git.ti.com/ipc/ludev.git;protocol=git;branch=${BRANCH}"
+<h2>BUILD_ID: build-2013-10-31_01-03-04</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_878_63518441.1383210411454--
