@@ -1,34 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 9454452972
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 72EBA52972
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Nov 2013 16:43:34 +0000 (UTC)
+	Mon,  4 Nov 2013 17:06:08 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rA4GhXBk000423;
-	Mon, 4 Nov 2013 10:43:33 -0600
-Received: from DFLE73.ent.ti.com ([128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4GhXa7032483;
-	Mon, 4 Nov 2013 10:43:33 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Mon, 4 Nov 2013 10:43:33 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, Vanderpool Josh
-	<Joshua.Vanderpool@raymondcorp.com>
-Thread-Topic: [meta-arago] wpa-supplicant failure
-Thread-Index: Ac7ZeIHx2OirDY54TVWg/k9zV6EWzwANdGiAAAyIlGA=
-Date: Mon, 4 Nov 2013 16:43:32 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C591028@DFLE08.ent.ti.com>
-References: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
-	<20131104163639.GR24696@edge>
-In-Reply-To: <20131104163639.GR24696@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rA4H65Pu026475
+	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 11:06:05 -0600
+Received: from DLEE71.ent.ti.com ([157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4H65GB002615
+	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 11:06:05 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 4 Nov 2013 11:06:05 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4H64Cl006214;
+	Mon, 4 Nov 2013 11:06:04 -0600
+Date: Mon, 4 Nov 2013 12:06:04 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Siddharth Heroor <heroor@ti.com>
+Message-ID: <20131104170604.GT24696@edge>
+References: <1383160055-32615-1-git-send-email-sam.nelson@ti.com>
+	<5271DA2C.8070401@ti.com>
+	<7D46E86EC0A8354091174257B2FED101597EF49C@DLEE11.ent.ti.com>
+	<5274A42E.1020405@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <5274A42E.1020405@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: wpa-supplicant failure
+Subject: Re: [PATCH 1/1] ti-cmem: New recipes for ti-cmem
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,129 +40,196 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 16:43:35 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 04 Nov 2013 17:06:14 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Wifi/Wilink 6 doesn't currently work with a newer kernel.
+On Sat, Nov 02, 2013 at 12:35:18PM +0530, Siddharth Heroor wrote:
+> On 10/31/2013 7:11 PM, Maupin, Chase wrote:
+> >>-----Original Message-----
+> >>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >>bounces@arago-project.org] On Behalf Of Heroor, Siddharth
+> >>Sent: Wednesday, October 30, 2013 11:19 PM
+> >>To: meta-arago@arago-project.org
+> >>Subject: Re: [meta-arago] [PATCH 1/1] ti-cmem: New recipes for ti-
+> >>cmem
+> >>
+> >>On 10/31/2013 12:37 AM, Sam Nelson wrote:
+> >>>- Recipes for ti-cmem which provides user space api for
+> >>contigous memory allocaion
+> >>>- ti-cmem_mod provides the kernel module
+> >>>- ti-mem provides the user space library
+> >>Why do we need to create a new recipe? The ti-linuxutils in meta-
+> >>ti
+> >>should be the provider for cmem. Shouldn't that be updated for
+> >>newer
+> >>versions?
+> >>Also, I would suggest that we make it machine compatible with
+> >>omap-a15.
 
-Josh,
+> >I don't know that linuxutils is really the right solution.  I think it 
+> >mainly comes down to where/how is cmem being released.  So really the 
+> >question is whether the SRC_URI used below is the official cmem release 
+> >point or is the SRC_URI from linuxutils right?  We do not need multiple 
+> >versions of cmem where everyone has their own fork of the cmem code.
+> >
+> >Another point is shouldn't this be in meta-ti for at least the cmem module?
+> 
+> ludev in the SRC_URI stands for linuxutils dev.  The SRC_URI in the
+> linuxutils is a tarball release. One option is for us to drop the
+> tarball release from SRC_URI and use the git tree going forward. I'm
+> in favour of this primarily because that's where the development
+> happens and the tree is tagged.
+> 
+> On meta-arago vs. meta-ti - I agree that the recipe should be in
+> meta-ti. This patch should update linuxutils accordingly.
 
-The branding  for amsdk is really only useful if you're interested in the 3=
-.2 kernel which is the last productized kernel for am335x. I would recommen=
-d using amsdk/amsdk-06.00.00.00-config.txt when using oe-layersetup for rig=
-ht now if you're interested in using Wilink 6/8. There are a few things bro=
-ken while am335x is switching to the newer 3.12 kernel but things will be g=
-etting better of the next few months and will be the next productized kerne=
-l for am335x.
+Sid,
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> Sent: Monday, November 04, 2013 10:37 AM
-> To: Vanderpool Josh
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] wpa-supplicant failure
->=20
-> On Mon, Nov 04, 2013 at 04:11:41PM +0000, Vanderpool Josh wrote:
-> > I am using the instructions from http://arago-
-> project.org/wiki/index.php/Setting_Up_Build_Environment
-> > And using the branding-amsdk.inc with some items added from the
->=20
-> Any specific reason for branding-amsdk?
->=20
->=20
-> > arago-prefs.inc to include qt5 and the wifi items.
->=20
-> http://arago-project.org/git/?p=3Dmeta-
-> arago.git;a=3Dcommitdiff;h=3Decc685fdbb24a30a6956ddd9463a68d80304f291
->=20
-> --
-> Denys
->=20
->=20
-> > Build Configuration:
-> > BB_VERSION        =3D "1.18.0"
-> > BUILD_SYS         =3D "x86_64-linux"
-> > NATIVELSBSTRING   =3D "Ubuntu-12.04"
-> > TARGET_SYS        =3D "arm-oe-linux-gnueabi"
-> > MACHINE           =3D "am335x-evm"
-> > DISTRO            =3D "arago"
-> > DISTRO_VERSION    =3D "2013.10"
-> > TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortex=
-a8"
-> > TARGET_FPU        =3D "vfp-neon"
-> > meta-arago-distro
-> > meta-arago-extras =3D
-> "master:370c6ed8e738eb3066160f133897a14eb3af1955"
-> > meta-qt5          =3D "master:a6753fa646f714bd0a794d270bd77e951d8204ac"
-> > toolchain-layer
-> > meta-networking
-> > meta-ruby
-> > meta-oe           =3D "dylan:a108b2203a997634f87ac687e81712badaf3c546"
-> > meta-ti           =3D "dylan:7e054d1277cfe3b8d59725930cd42177cef1d9f0"
-> > meta-linaro-toolchain =3D
-> "dylan:c9f78d6eff14ada3f2bc960e81883b27a10afecc"
-> > meta              =3D "dylan:3549f5f203363302256848bb33c05c4fd4871948"
-> >
-> >
-> > Log data follows:
-> > | DEBUG: Executing shell function do_compile
-> > | ../src/drivers/driver_nl80211.c:19:31: fatal error: netlink/genl/genl=
-.h: No
-> such file or directory
-> > | compilation terminated.
-> > | make: *** [../src/drivers/driver_nl80211.o] Error 1
-> > | ERROR: Function failed: do_compile (see /home/joshua/tisdk/build/arag=
-o-
-> tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-3.2-oe-linux-
-> gnueabi/wpa-supplicant/r5.sp4.01-
-> r6b+gitrAUTOINC+7190ff7dbd43243290b626068ded0d61c5019050-
-> arago0/temp/log.do_compile.33324 for further information)
-> > ERROR: Task 1257 (/home/joshua/tisdk/sources/meta-arago/meta-arago-
-> extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb,
-> do_compile) failed with exit code '1'
-> >
-> > Josh Vanderpool
-> > Electrical Engineer
-> > Control Systems
-> > ________________________________
-> > The Raymond Corporation
-> > 20 South Canal Street
-> > Greene, New York 13778-0130
-> > Phone: 607-656-2617
-> > Fax: 607-656-4845
-> >
-> joshua.vanderpool@raymondcorp.com<mailto:joshua.vanderpool@raymondc
-> orp.com>
-> > http://www.raymondcorp.com<http://www.raymondcorp.com/>
-> >
-> >
-> >
-> > Confidentiality Notice:
-> >
-> > The preceding e-mail message (including any attachments) contains
-> information that may be confidential, protected by applicable legal privi=
-leges, or
-> constitute non-public information. It is intended to be conveyed only to =
-the
-> designated recipient(s). If you are not an intended recipient of this mes=
-sage,
-> please notify the sender by replying to this message and then delete it f=
-rom your
-> system. Use, dissemination, distribution or reproduction of this message =
-by
-> unintended recipients is
-> > not authorized and may be unlawful.
-> >
-> >
->=20
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->=20
+I agree with your suggestions as long as this component is common and being 
+reused by both MCSDK and GLSDK teams, as well as others.
+
+What I don't want to happen is to unify on a single recipe and later find out 
+that there are so many different requirements and nuances, that none of the 
+teams can use the recipe directly and need to override and customize most of 
+it to their needs...
+
+So, essentially, what I'm looking for is a confirmation from teams (at least 
+Sam and Sid/Mrinmayee, maybe others) that ipc/ludev.git is _the_ repository 
+with the latest code for the cmem/linuxutils component that is being used from 
+a common (master?) branch. Thank you.
+
+-- 
+Denys
+
+
+> >>>Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> >>>---
+> >>>   .../recipes-bsp/ti-cmem/ti-cmem-mod.bb             |   40
+> >>++++++++++++++++++++
+> >>>   meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb   |   20
+> >>++++++++++
+> >>>   meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc  |   10
+> >>+++++
+> >>>   3 files changed, 70 insertions(+)
+> >>>   create mode 100755 meta-arago-extras/recipes-bsp/ti-cmem/ti-
+> >>cmem-mod.bb
+> >>>   create mode 100644 meta-arago-extras/recipes-bsp/ti-cmem/ti-
+> >>cmem.bb
+> >>>   create mode 100644 meta-arago-extras/recipes-bsp/ti-cmem/ti-
+> >>cmem.inc
+> >>>diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-
+> >>mod.bb b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
+> >>>new file mode 100755
+> >>>index 0000000..0839c20
+> >>>--- /dev/null
+> >>>+++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
+> >>>@@ -0,0 +1,40 @@
+> >>>+DESCRIPTION="The cmem component module for contiguous memory
+> >>allocation from userspace "
+> >>>+
+> >>>
+> >>+HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
+> >>>+
+> >>>+LICENSE = "GPLv2"
+> >>>+
+> >>>+include ti-cmem.inc
+> >>>+
+> >>>+RDEPENDS_${PN} += "kernel (=${KERNEL_VERSION})"
+> >>>+
+> >>>+DEPENDS += "virtual/kernel"
+> >>>+
+> >>>+NAME="cmem"
+> >>>+MODULE_BUILD_DIR ="src/cmem/module"
+> >>>+
+> >>>+# This package builds a kernel module, use kernel PR as base
+> >>and append a local
+> >>>+PR = "${MACHINE_KERNEL_PR}"
+> >>>+PR_append = "a"
+> >>>+
+> >>>+PKG_${PN} = "kernel-module-${PN}"
+> >>>+
+> >>>+KERNEL_VERSION =
+> >>"${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
+> >>>+
+> >>>+S = "${WORKDIR}/git"
+> >>>+
+> >>>+inherit module
+> >>>+
+> >>>+do_compile () {
+> >>>+    cd ${S}
+> >>>+    make -f lu.mak module_clean
+> >>>+    make -f lu.mak module
+> >>KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR}
+> >>TOOLCHAIN_PREFIX=${CROSS_COMPILE}
+> >>>+}
+> >>>+
+> >>>+do_install () {
+> >>>+    cd ${S}
+> >>>+    make -f lu.mak module_install
+> >>KERNEL_INSTALL_DIR="${STAGING_KERNEL_DIR}"
+> >>EXEC_DIR="${D}/lib/modules/${KERNEL_VERSION}/extra"
+> >>INSTALL_MOD_PATH="${D}"
+> >>>+}
+> >>>+
+> >>>+PACKAGE_STRIP = "no"
+> >>>+
+> >>>diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
+> >>b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
+> >>>new file mode 100644
+> >>>index 0000000..a106aa0
+> >>>--- /dev/null
+> >>>+++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
+> >>>@@ -0,0 +1,20 @@
+> >>>+DESCRIPTION="The cmem component supports contiguous memory
+> >>allocation from userspace "
+> >>>+
+> >>>
+> >>+HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
+> >>>+
+> >>>+LICENSE = "GPLv2"
+> >>>+
+> >>>+include ti-cmem.inc
+> >>>+
+> >>>+DEPENDS = "ti-cmem-mod"
+> >>>+
+> >>>+S = "${WORKDIR}/git"
+> >>>+
+> >>>+PR = "r1"
+> >>>+
+> >>>+PACKAGES =+ "${PN}-test"
+> >>>+
+> >>>+FILES_${PN}-test = "${bindir}/*"
+> >>>+
+> >>>+inherit autotools
+> >>>+
+> >>>diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
+> >>b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
+> >>>new file mode 100644
+> >>>index 0000000..9308b2d
+> >>>--- /dev/null
+> >>>+++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
+> >>>@@ -0,0 +1,10 @@
+> >>>
+> >>+HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
+> >>>+
+> >>>+LIC_FILES_CHKSUM =
+> >>"file://products.mak;beginline=2;endline=30;md5=195feadf798bb4165b
+> >>cb1a23ffd50dbb"
+> >>>+
+> >>>+COMPATIBLE_MACHINE = "keystone-evm"
+> >>>+
+> >>>+BRANCH ?= "master"
+> >>>+SRCREV = "4.00.00.06"
+> >>>+
+> >>>+SRC_URI =
+> >>"git://git.ti.com/ipc/ludev.git;protocol=git;branch=${BRANCH}"
+> >>
+> >>_______________________________________________
+> >>meta-arago mailing list
+> >>meta-arago@arago-project.org
+> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
