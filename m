@@ -1,34 +1,29 @@
-Return-Path: <Joshua.Vanderpool@raymondcorp.com>
-Received: from smtp.raymondcorp.com (smtp.raymondcorp.com [24.97.209.121])
-	by arago-project.org (Postfix) with ESMTPS id C07EF52AA3
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 774E152AA3
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Nov 2013 16:29:06 +0000 (UTC)
-Received: from usnygrcas2.raymondcorp.local (nothing.attdns.com
-	[130.1.155.195] (may be forged))
-	by smtp.raymondcorp.com (8.14.3/8.14.3) with ESMTP id rA4GT6Tk010915
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 10:29:06 -0600
-Received: from USNYGRMBX4.raymondcorp.local ([169.254.4.106]) by usnygrcas2
-	([130.1.155.199]) with mapi id 14.03.0158.001;
-	Mon, 4 Nov 2013 11:29:05 -0500
-From: Vanderpool Josh <Joshua.Vanderpool@raymondcorp.com>
-To: Vanderpool Josh <Joshua.Vanderpool@raymondcorp.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: wpa-supplicant failure
-Thread-Index: Ac7ZeIHx2OirDY54TVWg/k9zV6EWzwAAm8iw
-Date: Mon, 4 Nov 2013 16:29:04 +0000
-Message-ID: <7D1F292BE8E4CC4F93079C1A7A58D5622BA01375@USNYGRMBX4.raymondcorp.local>
+	Mon,  4 Nov 2013 16:36:42 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id rA4Gaerp007664;
+	Mon, 4 Nov 2013 10:36:40 -0600
+Received: from DFLE73.ent.ti.com ([128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4GaewH022532;
+	Mon, 4 Nov 2013 10:36:40 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 4 Nov 2013 10:36:40 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4Gadj4019101;
+	Mon, 4 Nov 2013 10:36:39 -0600
+Date: Mon, 4 Nov 2013 11:36:39 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Vanderpool Josh <Joshua.Vanderpool@raymondcorp.com>
+Message-ID: <20131104163639.GR24696@edge>
 References: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
-In-Reply-To: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [130.1.155.15]
 MIME-Version: 1.0
-X-MessageScreenMessageID: 1383582546.608940.1642.1064321039
-X-MessageScreenContentScore: Score of 0 assigned to Content
-X-MessageScreenUCEScore: Score of 0 assigned to UCE
-X-MessageScreen: Analyzed by IntelliReach MessageScreen(tm)
+In-Reply-To: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: wpa-supplicant failure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -42,364 +37,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 16:29:07 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_"
-
---_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_
+X-List-Received-Date: Mon, 04 Nov 2013 16:36:43 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-I changed the PREFERRED_VERSION_libnl =3D "3.2.22" and this could not be =
-found but it  used 2.0 and 3.2.21 I guess
+On Mon, Nov 04, 2013 at 04:11:41PM +0000, Vanderpool Josh wrote:
+> I am using the instructions from http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
+> And using the branding-amsdk.inc with some items added from the 
 
-NOTE: preferred version 3.2.22 of libnl not available (for item libnl)
-NOTE: versions of libnl available: 1:2.0 1:3.2.21
-NOTE: preferred version 3.2.22 of libnl not available (for item libnl-dev=
-)
-NOTE: versions of libnl available: 1:2.0 1:3.2.21
-NOTE: preferred version 3.2.22 of libnl not available (for item libnl)
-NOTE: versions of libnl available: 1:2.0 1:3.2.21
+Any specific reason for branding-amsdk?
 
 
--Josh
+> arago-prefs.inc to include qt5 and the wifi items.
 
-From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@ara=
-go-project.org] On Behalf Of Vanderpool Josh
-Sent: Monday, November 04, 2013 11:12 AM
-To: meta-arago@arago-project.org
-Subject: [meta-arago] wpa-supplicant failure
+http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=ecc685fdbb24a30a6956ddd9463a68d80304f291
 
-I am using the instructions from http://arago-project.org/wiki/index.php/=
-Setting_Up_Build_Environment
-And using the branding-amsdk.inc with some items added from the arago-pre=
-fs.inc to include qt5 and the wifi items.
-
-Build Configuration:
-BB_VERSION        =3D "1.18.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-12.04"
-TARGET_SYS        =3D "arm-oe-linux-gnueabi"
-MACHINE           =3D "am335x-evm"
-DISTRO            =3D "arago"
-DISTRO_VERSION    =3D "2013.10"
-TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa8=
-"
-TARGET_FPU        =3D "vfp-neon"
-meta-arago-distro
-meta-arago-extras =3D "master:370c6ed8e738eb3066160f133897a14eb3af1955"
-meta-qt5          =3D "master:a6753fa646f714bd0a794d270bd77e951d8204ac"
-toolchain-layer
-meta-networking
-meta-ruby
-meta-oe           =3D "dylan:a108b2203a997634f87ac687e81712badaf3c546"
-meta-ti           =3D "dylan:7e054d1277cfe3b8d59725930cd42177cef1d9f0"
-meta-linaro-toolchain =3D "dylan:c9f78d6eff14ada3f2bc960e81883b27a10afecc=
-"
-meta              =3D "dylan:3549f5f203363302256848bb33c05c4fd4871948"
+-- 
+Denys
 
 
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| ../src/drivers/driver_nl80211.c:19:31: fatal error: netlink/genl/genl.h=
-: No such file or directory
-| compilation terminated.
-| make: *** [../src/drivers/driver_nl80211.o] Error 1
-| ERROR: Function failed: do_compile (see /home/joshua/tisdk/build/arago-=
-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-3.2-oe-linux-gnuea=
-bi/wpa-supplicant/r5.sp4.01-r6b+gitrAUTOINC+7190ff7dbd43243290b626068ded0=
-d61c5019050-arago0/temp/log.do_compile.33324 for further information)
-ERROR: Task 1257 (/home/joshua/tisdk/sources/meta-arago/meta-arago-extras=
-/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb, do_comp=
-ile) failed with exit code '1'
+> Build Configuration:
+> BB_VERSION        = "1.18.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Ubuntu-12.04"
+> TARGET_SYS        = "arm-oe-linux-gnueabi"
+> MACHINE           = "am335x-evm"
+> DISTRO            = "arago"
+> DISTRO_VERSION    = "2013.10"
+> TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa8"
+> TARGET_FPU        = "vfp-neon"
+> meta-arago-distro
+> meta-arago-extras = "master:370c6ed8e738eb3066160f133897a14eb3af1955"
+> meta-qt5          = "master:a6753fa646f714bd0a794d270bd77e951d8204ac"
+> toolchain-layer
+> meta-networking
+> meta-ruby
+> meta-oe           = "dylan:a108b2203a997634f87ac687e81712badaf3c546"
+> meta-ti           = "dylan:7e054d1277cfe3b8d59725930cd42177cef1d9f0"
+> meta-linaro-toolchain = "dylan:c9f78d6eff14ada3f2bc960e81883b27a10afecc"
+> meta              = "dylan:3549f5f203363302256848bb33c05c4fd4871948"
+> 
+> 
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | ../src/drivers/driver_nl80211.c:19:31: fatal error: netlink/genl/genl.h: No such file or directory
+> | compilation terminated.
+> | make: *** [../src/drivers/driver_nl80211.o] Error 1
+> | ERROR: Function failed: do_compile (see /home/joshua/tisdk/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-3.2-oe-linux-gnueabi/wpa-supplicant/r5.sp4.01-r6b+gitrAUTOINC+7190ff7dbd43243290b626068ded0d61c5019050-arago0/temp/log.do_compile.33324 for further information)
+> ERROR: Task 1257 (/home/joshua/tisdk/sources/meta-arago/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant_r5.sp4.01.bb, do_compile) failed with exit code '1'
+> 
+> Josh Vanderpool
+> Electrical Engineer
+> Control Systems
+> ________________________________
+> The Raymond Corporation
+> 20 South Canal Street
+> Greene, New York 13778-0130
+> Phone: 607-656-2617
+> Fax: 607-656-4845
+> joshua.vanderpool@raymondcorp.com<mailto:joshua.vanderpool@raymondcorp.com>
+> http://www.raymondcorp.com<http://www.raymondcorp.com/>
+> 
+> 
+> 
+> Confidentiality Notice:
+> 
+> The preceding e-mail message (including any attachments) contains information that may be confidential, protected by applicable legal privileges, or constitute non-public information. It is intended to be conveyed only to the designated recipient(s). If you are not an intended recipient of this message, please notify the sender by replying to this message and then delete it from your system. Use, dissemination, distribution or reproduction of this message by unintended recipients is 
+> not authorized and may be unlawful.
+> 
+> 
 
-Josh Vanderpool
-Electrical Engineer
-Control Systems
-________________________________
-The Raymond Corporation
-20 South Canal Street
-Greene, New York 13778-0130
-Phone: 607-656-2617
-Fax: 607-656-4845
-joshua.vanderpool@raymondcorp.com<mailto:joshua.vanderpool@raymondcorp.co=
-m>
-http://www.raymondcorp.com<http://www.raymondcorp.com/>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
 
-Confidentiality Notice: The preceding e-mail message (including any attac=
-hments) contains information that may be confidential, protected by appli=
-cable legal privileges, or constitute non-public information. It is inten=
-ded to be conveyed only to the designated recipient(s). If you are not an=
- intended recipient of this message, please notify the sender by replying=
- to this message and then delete it from your system. Use, dissemination,=
- distribution or reproduction of this message by unintended recipients is=
- not authorized and may be unlawful.
-
-
-Confidentiality Notice:
-
-The preceding e-mail message (including any attachments) contains informa=
-tion that may be confidential, protected by applicable legal privileges, =
-or constitute non-public information. It is intended to be conveyed only =
-to the designated recipient(s). If you are not an intended recipient of t=
-his message, please notify the sender by replying to this message and the=
-n delete it from your system. Use, dissemination, distribution or reprodu=
-ction of this message by unintended recipients is=20
-not authorized and may be unlawful.
-
-
-
---_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-mi=
-crosoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:wo=
-rd" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D=
-"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-asci=
-i">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">=
-
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-=2Eshape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I changed the PREFER=
-RED_VERSION_libnl =3D &quot;3.2.22&quot; and this could not be found but =
-it&nbsp; used 2.0 and 3.2.21 I guess<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: preferred vers=
-ion 3.2.22 of libnl not available (for item libnl)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: versions of li=
-bnl available: 1:2.0 1:3.2.21<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: preferred vers=
-ion 3.2.22 of libnl not available (for item libnl-dev)<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: versions of li=
-bnl available: 1:2.0 1:3.2.21<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: preferred vers=
-ion 3.2.22 of libnl not available (for item libnl)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: versions of li=
-bnl available: 1:2.0 1:3.2.21<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
-pan></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-Josh<o:p></o:p></sp=
-an></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
-pan></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0i=
-n 0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&qu=
-ot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"fo=
-nt-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> me=
-ta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-proje=
-ct.org]
-<b>On Behalf Of </b>Vanderpool Josh<br>
-<b>Sent:</b> Monday, November 04, 2013 11:12 AM<br>
-<b>To:</b> meta-arago@arago-project.org<br>
-<b>Subject:</b> [meta-arago] wpa-supplicant failure<o:p></o:p></span></p>=
-
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am using the instructions from <a href=3D"http:/=
-/arago-project.org/wiki/index.php/Setting_Up_Build_Environment">
-http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment</a><=
-o:p></o:p></p>
-<p class=3D"MsoNormal">And using the branding-amsdk.inc with some items a=
-dded from the arago-prefs.inc to include qt5 and the wifi items.<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Build Configuration:<o:p></o:p></p>
-<p class=3D"MsoNormal">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; =3D &quot;1.18.0&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; =3D &quot;x86_64-linux&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">NATIVELSBSTRING&nbsp;&nbsp; =3D &quot;Ubuntu-12.04=
-&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; =3D &quot;arm-oe-linux-gnueabi&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; =3D &quot;am335x-evm&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; =3D &quot;arago&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;2013.10=
-&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;ar=
-mv7a vfp thumb neon callconvention-hard cortexa8&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; =3D &quot;vfp-neon&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-arago-distro <o:p></o:p></p>
-<p class=3D"MsoNormal">meta-arago-extras =3D &quot;master:370c6ed8e738eb3=
-066160f133897a14eb3af1955&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-qt5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; =3D &quot;master:a6753fa646f714bd0a794d270bd77e951d8204ac&qu=
-ot;<o:p></o:p></p>
-<p class=3D"MsoNormal">toolchain-layer&nbsp;&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal">meta-networking&nbsp;&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal">meta-ruby&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal">meta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; =3D &quot;dylan:a108b2203a997634f87ac687e81712badaf3c54=
-6&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; =3D &quot;dylan:7e054d1277cfe3b8d59725930cd42177cef1d9f=
-0&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-linaro-toolchain =3D &quot;dylan:c9f78d6eff14=
-ada3f2bc960e81883b27a10afecc&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;dylan:3549f5f203363302256848bb=
-33c05c4fd4871948&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Log data follows:<o:p></o:p></p>
-<p class=3D"MsoNormal">| DEBUG: Executing shell function do_compile<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">| ../src/drivers/driver_nl80211.c:19:31: fatal err=
-or: netlink/genl/genl.h: No such file or directory<o:p></o:p></p>
-<p class=3D"MsoNormal">| compilation terminated.<o:p></o:p></p>
-<p class=3D"MsoNormal">| make: *** [../src/drivers/driver_nl80211.o] Erro=
-r 1<o:p></o:p></p>
-<p class=3D"MsoNormal">| ERROR: Function failed: do_compile (see /home/jo=
-shua/tisdk/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-=
-neon-3.2-oe-linux-gnueabi/wpa-supplicant/r5.sp4.01-r6b&#43;gitrAUTOINC&#4=
-3;7190ff7dbd43243290b626068ded0d61c5019050-arago0/temp/log.do_compile.333=
-24
- for further information)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Task 1257 (/home/joshua/tisdk/sources/meta-=
-arago/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplican=
-t_r5.sp4.01.bb, do_compile) failed with exit code '1'<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&qu=
-ot;Arial&quot;,&quot;sans-serif&quot;;color:navy">Josh Vanderpool<br>
-</span></b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,=
-&quot;sans-serif&quot;;color:gray">Electrical Engineer</span><b><span sty=
-le=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quo=
-t;;color:navy"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
-Arial&quot;,&quot;sans-serif&quot;;color:gray">Control Systems</span><spa=
-n style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-seri=
-f&quot;;color:#999999"><o:p></o:p></span></p>
-<div>
-<div>
-<div class=3D"MsoNormal"><span style=3D"color:navy">
-<hr size=3D"2" width=3D"300" style=3D"width:225.0pt" noshade=3D"" style=3D=
-"color:red" align=3D"left">
-</span></div>
-</div>
-</div>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&qu=
-ot;Arial&quot;,&quot;sans-serif&quot;;color:black">The Raymond Corporatio=
-n</span></b><span style=3D"color:navy"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quo=
-t;sans-serif&quot;;color:#999999">20 South Canal Street</span><br>
-<span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
-serif&quot;;color:#999999">Greene, New York 13778-0130</span><br>
-<span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
-serif&quot;;color:#999999">Phone: 607-656-2617</span><span style=3D"color=
-:navy"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"FR" style=3D"font-size:10.0pt;font-f=
-amily:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#999999">Fax: 607-65=
-6-4845</span><span lang=3D"FR" style=3D"color:navy"><br>
-</span><span lang=3D"FR" style=3D"font-size:10.0pt;font-family:&quot;Aria=
-l&quot;,&quot;sans-serif&quot;;color:navy"><a href=3D"mailto:joshua.vande=
-rpool@raymondcorp.com">joshua.vanderpool@raymondcorp.com</a></span><span =
-lang=3D"FR" style=3D"color:navy"><br>
-</span><span style=3D"color:navy"><a href=3D"http://www.raymondcorp.com/"=
-><span lang=3D"FR" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot=
-;,&quot;sans-serif&quot;">http://www.raymondcorp.com</span></a>
-</span><span lang=3D"FR"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p>Confidentiality Notice: The preceding e-mail message (including any at=
-tachments) contains information that may be confidential, protected by ap=
-plicable legal privileges, or constitute non-public information. It is in=
-tended to be conveyed only to the designated
- recipient(s). If you are not an intended recipient of this message, plea=
-se notify the sender by replying to this message and then delete it from =
-your system. Use, dissemination, distribution or reproduction of this mes=
-sage by unintended recipients is not authorized
- and may be unlawful. <o:p></o:p></p>
-</div>
-<p>
-Confidentiality Notice:
-
-The preceding e-mail message (including any attachments) contains informa=
-tion that may be confidential, protected by applicable legal privileges, =
-or constitute non-public information. It is intended to be conveyed only =
-to the designated recipient(s). If you are not an intended recipient of t=
-his message, please notify the sender by replying to this message and the=
-n delete it from your system. Use, dissemination, distribution or reprodu=
-ction of this message by unintended recipients is=20
-not authorized and may be unlawful.
-
-<p>
-
-</body>
-</html>
-
---_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_--
