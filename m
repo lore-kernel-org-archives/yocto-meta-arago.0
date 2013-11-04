@@ -1,32 +1,35 @@
 Return-Path: <Joshua.Vanderpool@raymondcorp.com>
 Received: from smtp.raymondcorp.com (smtp.raymondcorp.com [24.97.209.121])
-	by arago-project.org (Postfix) with ESMTPS id 048F5529CE
+	by arago-project.org (Postfix) with ESMTPS id C07EF52AA3
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Nov 2013 16:11:43 +0000 (UTC)
+	Mon,  4 Nov 2013 16:29:06 +0000 (UTC)
 Received: from usnygrcas2.raymondcorp.local (nothing.attdns.com
 	[130.1.155.195] (may be forged))
-	by smtp.raymondcorp.com (8.14.3/8.14.3) with ESMTP id rA4GBgP0008122
+	by smtp.raymondcorp.com (8.14.3/8.14.3) with ESMTP id rA4GT6Tk010915
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 10:11:42 -0600
+	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 10:29:06 -0600
 Received: from USNYGRMBX4.raymondcorp.local ([169.254.4.106]) by usnygrcas2
 	([130.1.155.199]) with mapi id 14.03.0158.001;
-	Mon, 4 Nov 2013 11:11:42 -0500
+	Mon, 4 Nov 2013 11:29:05 -0500
 From: Vanderpool Josh <Joshua.Vanderpool@raymondcorp.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+To: Vanderpool Josh <Joshua.Vanderpool@raymondcorp.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Thread-Topic: wpa-supplicant failure
-Thread-Index: Ac7ZeIHx2OirDY54TVWg/k9zV6EWzw==
-Date: Mon, 4 Nov 2013 16:11:41 +0000
-Message-ID: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
+Thread-Index: Ac7ZeIHx2OirDY54TVWg/k9zV6EWzwAAm8iw
+Date: Mon, 4 Nov 2013 16:29:04 +0000
+Message-ID: <7D1F292BE8E4CC4F93079C1A7A58D5622BA01375@USNYGRMBX4.raymondcorp.local>
+References: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
+In-Reply-To: <7D1F292BE8E4CC4F93079C1A7A58D5622BA0132E@USNYGRMBX4.raymondcorp.local>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [130.1.155.15]
 MIME-Version: 1.0
-X-MessageScreenMessageID: 1383581502.825263.1642.1056964615
+X-MessageScreenMessageID: 1383582546.608940.1642.1064321039
 X-MessageScreenContentScore: Score of 0 assigned to Content
 X-MessageScreenUCEScore: Score of 0 assigned to UCE
 X-MessageScreen: Analyzed by IntelliReach MessageScreen(tm)
-Subject: wpa-supplicant failure
+Subject: Re: wpa-supplicant failure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,14 +42,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 16:11:44 -0000
+X-List-Received-Date: Mon, 04 Nov 2013 16:29:07 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA0132EUSNYGRMBX4raymo_"
+	boundary="_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_"
 
---_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA0132EUSNYGRMBX4raymo_
+--_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I changed the PREFERRED_VERSION_libnl =3D "3.2.22" and this could not be =
+found but it  used 2.0 and 3.2.21 I guess
+
+NOTE: preferred version 3.2.22 of libnl not available (for item libnl)
+NOTE: versions of libnl available: 1:2.0 1:3.2.21
+NOTE: preferred version 3.2.22 of libnl not available (for item libnl-dev=
+)
+NOTE: versions of libnl available: 1:2.0 1:3.2.21
+NOTE: preferred version 3.2.22 of libnl not available (for item libnl)
+NOTE: versions of libnl available: 1:2.0 1:3.2.21
+
+
+-Josh
+
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@ara=
+go-project.org] On Behalf Of Vanderpool Josh
+Sent: Monday, November 04, 2013 11:12 AM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] wpa-supplicant failure
 
 I am using the instructions from http://arago-project.org/wiki/index.php/=
 Setting_Up_Build_Environment
@@ -105,6 +128,15 @@ m>
 http://www.raymondcorp.com<http://www.raymondcorp.com/>
 
 
+Confidentiality Notice: The preceding e-mail message (including any attac=
+hments) contains information that may be confidential, protected by appli=
+cable legal privileges, or constitute non-public information. It is inten=
+ded to be conveyed only to the designated recipient(s). If you are not an=
+ intended recipient of this message, please notify the sender by replying=
+ to this message and then delete it from your system. Use, dissemination,=
+ distribution or reproduction of this message by unintended recipients is=
+ not authorized and may be unlawful.
+
 
 Confidentiality Notice:
 
@@ -119,7 +151,7 @@ not authorized and may be unlawful.
 
 
 
---_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA0132EUSNYGRMBX4raymo_
+--_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -141,6 +173,9 @@ w\:* {behavior:url(#default#VML);}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -155,13 +190,25 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 =2EMsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -176,6 +223,50 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I changed the PREFER=
+RED_VERSION_libnl =3D &quot;3.2.22&quot; and this could not be found but =
+it&nbsp; used 2.0 and 3.2.21 I guess<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: preferred vers=
+ion 3.2.22 of libnl not available (for item libnl)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: versions of li=
+bnl available: 1:2.0 1:3.2.21<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: preferred vers=
+ion 3.2.22 of libnl not available (for item libnl-dev)<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: versions of li=
+bnl available: 1:2.0 1:3.2.21<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: preferred vers=
+ion 3.2.22 of libnl not available (for item libnl)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: versions of li=
+bnl available: 1:2.0 1:3.2.21<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
+pan></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-Josh<o:p></o:p></sp=
+an></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></s=
+pan></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0i=
+n 0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&qu=
+ot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"fo=
+nt-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> me=
+ta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-proje=
+ct.org]
+<b>On Behalf Of </b>Vanderpool Josh<br>
+<b>Sent:</b> Monday, November 04, 2013 11:12 AM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Subject:</b> [meta-arago] wpa-supplicant failure<o:p></o:p></span></p>=
+
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">I am using the instructions from <a href=3D"http:/=
 /arago-project.org/wiki/index.php/Setting_Up_Build_Environment">
 http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment</a><=
@@ -255,10 +346,12 @@ Arial&quot;,&quot;sans-serif&quot;;color:gray">Control Systems</span><spa=
 n style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-seri=
 f&quot;;color:#999999"><o:p></o:p></span></p>
 <div>
+<div>
 <div class=3D"MsoNormal"><span style=3D"color:navy">
 <hr size=3D"2" width=3D"300" style=3D"width:225.0pt" noshade=3D"" style=3D=
 "color:red" align=3D"left">
 </span></div>
+</div>
 </div>
 <p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&qu=
 ot;Arial&quot;,&quot;sans-serif&quot;;color:black">The Raymond Corporatio=
@@ -275,14 +368,22 @@ amily:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#999999">Fax: 607-65=
 6-4845</span><span lang=3D"FR" style=3D"color:navy"><br>
 </span><span lang=3D"FR" style=3D"font-size:10.0pt;font-family:&quot;Aria=
 l&quot;,&quot;sans-serif&quot;;color:navy"><a href=3D"mailto:joshua.vande=
-rpool@raymondcorp.com"><span style=3D"color:blue">joshua.vanderpool@raymo=
-ndcorp.com</span></a></span><span lang=3D"FR" style=3D"color:navy"><br>
+rpool@raymondcorp.com">joshua.vanderpool@raymondcorp.com</a></span><span =
+lang=3D"FR" style=3D"color:navy"><br>
 </span><span style=3D"color:navy"><a href=3D"http://www.raymondcorp.com/"=
 ><span lang=3D"FR" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot=
-;,&quot;sans-serif&quot;;color:blue">http://www.raymondcorp.com</span></a=
->
+;,&quot;sans-serif&quot;">http://www.raymondcorp.com</span></a>
 </span><span lang=3D"FR"><o:p></o:p></span></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p>Confidentiality Notice: The preceding e-mail message (including any at=
+tachments) contains information that may be confidential, protected by ap=
+plicable legal privileges, or constitute non-public information. It is in=
+tended to be conveyed only to the designated
+ recipient(s). If you are not an intended recipient of this message, plea=
+se notify the sender by replying to this message and then delete it from =
+your system. Use, dissemination, distribution or reproduction of this mes=
+sage by unintended recipients is not authorized
+ and may be unlawful. <o:p></o:p></p>
 </div>
 <p>
 Confidentiality Notice:
@@ -301,4 +402,4 @@ not authorized and may be unlawful.
 </body>
 </html>
 
---_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA0132EUSNYGRMBX4raymo_--
+--_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA01375USNYGRMBX4raymo_--
