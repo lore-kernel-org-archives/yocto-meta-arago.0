@@ -1,33 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 72EBA52972
+Return-Path: <denis@denix.org>
+Received: from vms173005pub.verizon.net (vms173005pub.verizon.net
+	[206.46.173.5])
+	by arago-project.org (Postfix) with ESMTP id A057A52A4C
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Nov 2013 17:06:08 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rA4H65Pu026475
-	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 11:06:05 -0600
-Received: from DLEE71.ent.ti.com ([157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4H65GB002615
-	for <meta-arago@arago-project.org>; Mon, 4 Nov 2013 11:06:05 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 4 Nov 2013 11:06:05 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rA4H64Cl006214;
-	Mon, 4 Nov 2013 11:06:04 -0600
-Date: Mon, 4 Nov 2013 12:06:04 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Siddharth Heroor <heroor@ti.com>
-Message-ID: <20131104170604.GT24696@edge>
-References: <1383160055-32615-1-git-send-email-sam.nelson@ti.com>
-	<5271DA2C.8070401@ti.com>
-	<7D46E86EC0A8354091174257B2FED101597EF49C@DLEE11.ent.ti.com>
-	<5274A42E.1020405@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <5274A42E.1020405@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/1] ti-cmem: New recipes for ti-cmem
+	Tue,  5 Nov 2013 00:36:00 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [96.231.138.104])
+	by vms173005.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MVR000LILNJ9ZW2@vms173005.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 04 Nov 2013 18:35:44 -0600 (CST)
+Received: from elrond.denix (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 74F9E2004C; Mon,
+	04 Nov 2013 19:35:43 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 04 Nov 2013 19:35:42 -0500
+Message-id: <1383611742-5343-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] linux-ti-staging: update bbappend for the final 3.12 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,198 +30,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 17:06:14 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 05 Nov 2013 00:36:00 -0000
 
-On Sat, Nov 02, 2013 at 12:35:18PM +0530, Siddharth Heroor wrote:
-> On 10/31/2013 7:11 PM, Maupin, Chase wrote:
-> >>-----Original Message-----
-> >>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >>bounces@arago-project.org] On Behalf Of Heroor, Siddharth
-> >>Sent: Wednesday, October 30, 2013 11:19 PM
-> >>To: meta-arago@arago-project.org
-> >>Subject: Re: [meta-arago] [PATCH 1/1] ti-cmem: New recipes for ti-
-> >>cmem
-> >>
-> >>On 10/31/2013 12:37 AM, Sam Nelson wrote:
-> >>>- Recipes for ti-cmem which provides user space api for
-> >>contigous memory allocaion
-> >>>- ti-cmem_mod provides the kernel module
-> >>>- ti-mem provides the user space library
-> >>Why do we need to create a new recipe? The ti-linuxutils in meta-
-> >>ti
-> >>should be the provider for cmem. Shouldn't that be updated for
-> >>newer
-> >>versions?
-> >>Also, I would suggest that we make it machine compatible with
-> >>omap-a15.
+From: Denys Dmytriyenko <denys@ti.com>
 
-> >I don't know that linuxutils is really the right solution.  I think it 
-> >mainly comes down to where/how is cmem being released.  So really the 
-> >question is whether the SRC_URI used below is the official cmem release 
-> >point or is the SRC_URI from linuxutils right?  We do not need multiple 
-> >versions of cmem where everyone has their own fork of the cmem code.
-> >
-> >Another point is shouldn't this be in meta-ti for at least the cmem module?
-> 
-> ludev in the SRC_URI stands for linuxutils dev.  The SRC_URI in the
-> linuxutils is a tarball release. One option is for us to drop the
-> tarball release from SRC_URI and use the git tree going forward. I'm
-> in favour of this primarily because that's where the development
-> happens and the tree is tagged.
-> 
-> On meta-arago vs. meta-ti - I agree that the recipe should be in
-> meta-ti. This patch should update linuxutils accordingly.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../{linux-ti-staging_git.bbappend => linux-ti-staging_3.12.bbappend}     | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename meta-arago-distro/recipes-kernel/linux/{linux-ti-staging_git.bbappend => linux-ti-staging_3.12.bbappend} (100%)
 
-Sid,
-
-I agree with your suggestions as long as this component is common and being 
-reused by both MCSDK and GLSDK teams, as well as others.
-
-What I don't want to happen is to unify on a single recipe and later find out 
-that there are so many different requirements and nuances, that none of the 
-teams can use the recipe directly and need to override and customize most of 
-it to their needs...
-
-So, essentially, what I'm looking for is a confirmation from teams (at least 
-Sam and Sid/Mrinmayee, maybe others) that ipc/ludev.git is _the_ repository 
-with the latest code for the cmem/linuxutils component that is being used from 
-a common (master?) branch. Thank you.
-
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_git.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
+similarity index 100%
+rename from meta-arago-distro/recipes-kernel/linux/linux-ti-staging_git.bbappend
+rename to meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
 -- 
-Denys
+1.8.3.2
 
-
-> >>>Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> >>>---
-> >>>   .../recipes-bsp/ti-cmem/ti-cmem-mod.bb             |   40
-> >>++++++++++++++++++++
-> >>>   meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb   |   20
-> >>++++++++++
-> >>>   meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc  |   10
-> >>+++++
-> >>>   3 files changed, 70 insertions(+)
-> >>>   create mode 100755 meta-arago-extras/recipes-bsp/ti-cmem/ti-
-> >>cmem-mod.bb
-> >>>   create mode 100644 meta-arago-extras/recipes-bsp/ti-cmem/ti-
-> >>cmem.bb
-> >>>   create mode 100644 meta-arago-extras/recipes-bsp/ti-cmem/ti-
-> >>cmem.inc
-> >>>diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-
-> >>mod.bb b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
-> >>>new file mode 100755
-> >>>index 0000000..0839c20
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem-mod.bb
-> >>>@@ -0,0 +1,40 @@
-> >>>+DESCRIPTION="The cmem component module for contiguous memory
-> >>allocation from userspace "
-> >>>+
-> >>>
-> >>+HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
-> >>>+
-> >>>+LICENSE = "GPLv2"
-> >>>+
-> >>>+include ti-cmem.inc
-> >>>+
-> >>>+RDEPENDS_${PN} += "kernel (=${KERNEL_VERSION})"
-> >>>+
-> >>>+DEPENDS += "virtual/kernel"
-> >>>+
-> >>>+NAME="cmem"
-> >>>+MODULE_BUILD_DIR ="src/cmem/module"
-> >>>+
-> >>>+# This package builds a kernel module, use kernel PR as base
-> >>and append a local
-> >>>+PR = "${MACHINE_KERNEL_PR}"
-> >>>+PR_append = "a"
-> >>>+
-> >>>+PKG_${PN} = "kernel-module-${PN}"
-> >>>+
-> >>>+KERNEL_VERSION =
-> >>"${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
-> >>>+
-> >>>+S = "${WORKDIR}/git"
-> >>>+
-> >>>+inherit module
-> >>>+
-> >>>+do_compile () {
-> >>>+    cd ${S}
-> >>>+    make -f lu.mak module_clean
-> >>>+    make -f lu.mak module
-> >>KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR}
-> >>TOOLCHAIN_PREFIX=${CROSS_COMPILE}
-> >>>+}
-> >>>+
-> >>>+do_install () {
-> >>>+    cd ${S}
-> >>>+    make -f lu.mak module_install
-> >>KERNEL_INSTALL_DIR="${STAGING_KERNEL_DIR}"
-> >>EXEC_DIR="${D}/lib/modules/${KERNEL_VERSION}/extra"
-> >>INSTALL_MOD_PATH="${D}"
-> >>>+}
-> >>>+
-> >>>+PACKAGE_STRIP = "no"
-> >>>+
-> >>>diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
-> >>b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
-> >>>new file mode 100644
-> >>>index 0000000..a106aa0
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.bb
-> >>>@@ -0,0 +1,20 @@
-> >>>+DESCRIPTION="The cmem component supports contiguous memory
-> >>allocation from userspace "
-> >>>+
-> >>>
-> >>+HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
-> >>>+
-> >>>+LICENSE = "GPLv2"
-> >>>+
-> >>>+include ti-cmem.inc
-> >>>+
-> >>>+DEPENDS = "ti-cmem-mod"
-> >>>+
-> >>>+S = "${WORKDIR}/git"
-> >>>+
-> >>>+PR = "r1"
-> >>>+
-> >>>+PACKAGES =+ "${PN}-test"
-> >>>+
-> >>>+FILES_${PN}-test = "${bindir}/*"
-> >>>+
-> >>>+inherit autotools
-> >>>+
-> >>>diff --git a/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
-> >>b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
-> >>>new file mode 100644
-> >>>index 0000000..9308b2d
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-extras/recipes-bsp/ti-cmem/ti-cmem.inc
-> >>>@@ -0,0 +1,10 @@
-> >>>
-> >>+HOMEPAGE="http://processors.wiki.ti.com/index.php/Category:CMEM"
-> >>>+
-> >>>+LIC_FILES_CHKSUM =
-> >>"file://products.mak;beginline=2;endline=30;md5=195feadf798bb4165b
-> >>cb1a23ffd50dbb"
-> >>>+
-> >>>+COMPATIBLE_MACHINE = "keystone-evm"
-> >>>+
-> >>>+BRANCH ?= "master"
-> >>>+SRCREV = "4.00.00.06"
-> >>>+
-> >>>+SRC_URI =
-> >>"git://git.ti.com/ipc/ludev.git;protocol=git;branch=${BRANCH}"
-> >>
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
