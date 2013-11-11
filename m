@@ -1,36 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 98A8652998
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTP id 1073152998
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Nov 2013 19:26:49 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rABJQn0W007910
-	for <meta-arago@arago-project.org>; Mon, 11 Nov 2013 13:26:49 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rABJQmqF028689
-	for <meta-arago@arago-project.org>; Mon, 11 Nov 2013 13:26:48 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Mon, 11 Nov 2013 13:26:48 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 4/4] arago-test: add linaro-pm-qa-utils to
-	test	packages
-Thread-Index: AQHO3vh7SZr1wTzVrU6bhsRMtI0sPpogYEFQgAAC7QCAAAUfgIAAARgA
-Date: Mon, 11 Nov 2013 19:26:47 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C59D119@DFLE08.ent.ti.com>
+	Mon, 11 Nov 2013 19:27:50 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [96.231.138.104])
+	by vms173015.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MW4006LY61GIOI0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 11 Nov 2013 13:27:26 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 3609C20092; Mon,
+	11 Nov 2013 14:27:16 -0500 (EST)
+Date: Mon, 11 Nov 2013 14:27:16 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-id: <20131111192716.GC24766@denix.org>
 References: <1384189628-21944-1-git-send-email-Chase.Maupin@ti.com>
 	<1384189628-21944-4-git-send-email-Chase.Maupin@ti.com>
 	<8F29D6B095ED194EA1980491A5E029710C59CF0B@DFLE08.ent.ti.com>
 	<7D46E86EC0A8354091174257B2FED1015980BE91@DLEE11.ent.ti.com>
 	<7D46E86EC0A8354091174257B2FED1015980BED0@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015980BED0@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
+MIME-version: 1.0
+In-reply-to: <7D46E86EC0A8354091174257B2FED1015980BED0@DLEE11.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
+	Franklin" <fcooper@ti.com>
 Subject: Re: [PATCH 4/4] arago-test: add linaro-pm-qa-utils to test	packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -44,35 +38,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2013 19:26:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Nov 2013 19:27:50 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-FYI only ltp-ddt in meta-arago picks up the latest commits via AUTOREV. The=
- base recipe in meta-oe is suck on a commit two years old....
+AFAIK, ltp-ddt in meta-oe is very old and hasn't been updated in years. I 
+doubt that particular one had any thermal features.
 
-> -----Original Message-----
-> From: Maupin, Chase
-> Sent: Monday, November 11, 2013 1:22 PM
-> To: Maupin, Chase; Cooper Jr., Franklin; meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH 4/4] arago-test: add linaro-pm-qa-utils =
-to test
-> packages
->=20
+It should be Ok to add this dependency in meta-arago in bbappend, once these 
+recipes land in meta-linaro, since we already have such dependency.
+
+-- 
+Denys
+
+
+On Mon, Nov 11, 2013 at 07:22:27PM +0000, Maupin, Chase wrote:
 > Denys,
->=20
-> I could use some advice here though.  Ltp-ddt sits in meta-openembedded s=
-o
-> even if we get the pm-utils into meta-linaro we still should not introduc=
-e this
-> dependency between layers right?
->=20
-> However, we do append ltp-ddt in meta-arago so if we introduce this
+> 
+> I could use some advice here though.  Ltp-ddt sits in meta-openembedded so 
+> even if we get the pm-utils into meta-linaro we still should not introduce 
+> this dependency between layers right?
+> 
+> However, we do append ltp-ddt in meta-arago so if we introduce this 
 > dependency there would that be an issue?
->=20
+> 
 > What do you think about how to handle this?
->=20
+> 
 > >-----Original Message-----
 > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > >bounces@arago-project.org] On Behalf Of Maupin, Chase
@@ -91,8 +82,8 @@ e this
 > >phone: (214) 567-2950
 > >
 > >For support:
-> >Forums - http://community.ti.com/forums/ Wiki -
-> >http://wiki.davincidsp.com/
+> >Forums - http://community.ti.com/forums/
+> >Wiki - http://wiki.davincidsp.com/
 > >
 > >
 > >>-----Original Message-----
@@ -102,8 +93,8 @@ e this
 > >>Subject: RE: [meta-arago] [PATCH 4/4] arago-test: add linaro-pm-
 > >>qa-utils to test packages
 > >>
-> >>The current patch is fine as is but should there be another patch that
-> >>makes ltp-ddt RDEPENDS on linaro-pm-qa-utils?
+> >>The current patch is fine as is but should there be another patch
+> >>that makes ltp-ddt RDEPENDS on linaro-pm-qa-utils?
 > >>
 > >>> -----Original Message-----
 > >>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
@@ -134,21 +125,21 @@ e this
 > >>arago-
 > >>> test.bb
 > >>> @@ -1,6 +1,6 @@
-> >>>  DESCRIPTION =3D "Extended task to get System Test specific apps"
-> >>>  LICENSE =3D "MIT"
-> >>> -PR =3D "r9"
-> >>> +PR =3D "r10"
+> >>>  DESCRIPTION = "Extended task to get System Test specific apps"
+> >>>  LICENSE = "MIT"
+> >>> -PR = "r9"
+> >>> +PR = "r10"
 > >>>
 > >>>  inherit packagegroup
 > >>>
-> >>> @@ -21,6 +21,7 @@ ARAGO_TEST =3D "\
-> >>>  ARAGO_TI_TEST =3D "\
+> >>> @@ -21,6 +21,7 @@ ARAGO_TEST = "\
+> >>>  ARAGO_TI_TEST = "\
 > >>>      ltp-ddt \
 > >>>      input-utils \
 > >>> +    linaro-pm-qa-utils \
 > >>>      "
 > >>>
-> >>>  ARAGO_TI_TEST_append_omap-a15 =3D " \
+> >>>  ARAGO_TI_TEST_append_omap-a15 = " \
 > >>> --
 > >>> 1.7.0.4
 > >>>
@@ -160,4 +151,9 @@ e this
 > >meta-arago mailing list
 > >meta-arago@arago-project.org
 > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
