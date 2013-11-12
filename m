@@ -1,23 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
 	[206.46.173.3])
-	by arago-project.org (Postfix) with ESMTP id 21713529ED
+	by arago-project.org (Postfix) with ESMTP id 2E41A52990
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Nov 2013 04:42:28 +0000 (UTC)
+	Tue, 12 Nov 2013 04:42:29 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [96.231.138.104])
 	by vms173003.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MW4009VUVQHTVH1@vms173003.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 11 Nov 2013 22:42:27 -0600 (CST)
+	2009)) with ESMTPA id <0MW400E23VQI12S0@vms173003.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 11 Nov 2013 22:42:28 -0600 (CST)
 Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 1D4DF2004B; Mon,
+	by gandalf.denix.org (Postfix) with ESMTP id F09062008E; Mon,
 	11 Nov 2013 23:42:17 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 11 Nov 2013 23:42:07 -0500
-Message-id: <1384231333-26952-1-git-send-email-denis@denix.org>
+Date: Mon, 11 Nov 2013 23:42:08 -0500
+Message-id: <1384231333-26952-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH 0/6] Add Qt5 SDK
+In-reply-to: <1384231333-26952-1-git-send-email-denis@denix.org>
+References: <1384231333-26952-1-git-send-email-denis@denix.org>
+Subject: [PATCH 1/6] qt-provider: split out setting variables into own class
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,85 +32,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Nov 2013 04:42:28 -0000
+X-List-Received-Date: Tue, 12 Nov 2013 04:42:29 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-This patchset adds necessary nativesdk tools and updates corresponding
-packagegroup and meta-toolchain recipes to enable building Qt5 SDK.
+This way only variables can be used from other places where inheriting rest of
+qt/qmake classes won't make sense.
 
-Denys Dmytriyenko (6):
-  qt-provider: split out setting variables into own class
-  nativesdk-qtbase: add nativesdk version of qtbase necessary for SDK
-    tools
-  nativesdk-qttools: add nativesdk version of qttools necessary for SDK
-    tools
-  nativesdk-packagegroup-arago-qte-toolchain-host: update to support Qt4
-    and Qt5
-  packagegroup-arago-qt5-toolchain-target: add Qt5-specific version
-  meta-toolchain-arago-qte: update to support Qt4 and Qt5 SDK
-
- meta-arago-distro/classes/qt-provider.bbclass      |  12 +-
- meta-arago-distro/classes/qt-vars.bbclass          |  16 ++
- meta-arago-distro/recipes-qt/qt5/nativesdk-qt5.inc |  12 +
- .../recipes-qt/qt5/nativesdk-qtbase.inc            | 188 +++++++++++++
- .../0001-Add-linux-oe-g-platform.patch             | 304 +++++++++++++++++++++
- .../nativesdk-qtbase/0001-Always-build-uic.patch   |  40 +++
- ...ump-path-length-from-256-to-512-character.patch |  29 ++
- ...reserve-built-qmake-and-swap-with-native-.patch |  29 ++
- ...o-allow-to-set-qt.conf-from-the-outside-u.patch |  36 +++
- .../0003-Add-external-hostbindir-option.patch      | 219 +++++++++++++++
- ..._functions-temporary-remove-isEmpty-check.patch |  51 ++++
- ...-building-a-separate-qmake-for-the-target.patch |  29 ++
- ...p-Prefix-default-LIBDIRS-and-INCDIRS-with.patch |  29 ++
- .../0008-qt_module-Fix-pkgconfig-replacement.patch |  70 +++++
- .../0009-qt_module-Fix-paths-in-.prl-files.patch   |  62 +++++
- ...on-t-export-SYSTEM_VARIABLES-to-.qmake.va.patch |  44 +++
- ....prf-Allow-to-add-extra-arguments-to-make.patch |  37 +++
- .../0013-Disable-mkv8snapshot.patch                |  47 ++++
- ...tslib-device-to-be-read-from-env-variable.patch |  35 +++
- .../0015-qtbase-allow-build-of-examples.patch      |  48 ++++
- ...ure-make-pulseaudio-a-configurable-option.patch |  36 +++
- ...configure-make-alsa-a-configurable-option.patch |  35 +++
- ...igure-make-freetype-a-configurable-option.patch |  35 +++
- ...E_PATH_EXTERNAL_HOST_BINS-to-determine-pa.patch |  84 ++++++
- .../recipes-qt/qt5/nativesdk-qtbase_5.1.1.bb       |   5 +
- .../recipes-qt/qt5/nativesdk-qttools.inc           |  32 +++
- ...w-to-build-only-lrelease-lupdate-lconvert.patch | 138 ++++++++++
- .../recipes-qt/qt5/nativesdk-qttools_5.1.1.bb      |  10 +
- .../recipes-core/meta/meta-toolchain-arago-qte.bb  |  31 ++-
- ...ivesdk-packagegroup-arago-qte-toolchain-host.bb |   4 +-
- .../packagegroup-arago-qt5-toolchain-target.bb     |  33 +++
- 31 files changed, 1756 insertions(+), 24 deletions(-)
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/classes/qt-provider.bbclass | 12 +-----------
+ meta-arago-distro/classes/qt-vars.bbclass     | 16 ++++++++++++++++
+ 2 files changed, 17 insertions(+), 11 deletions(-)
  create mode 100644 meta-arago-distro/classes/qt-vars.bbclass
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qt5.inc
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase.inc
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-Add-linux-oe-g-platform.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-Always-build-uic.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-configure-bump-path-length-from-256-to-512-character.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-configure-preserve-built-qmake-and-swap-with-native-.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0003-Add-external-hostbindir-option.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0004-qt_functions-temporary-remove-isEmpty-check.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0006-Allow-building-a-separate-qmake-for-the-target.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0007-configureapp-Prefix-default-LIBDIRS-and-INCDIRS-with.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0008-qt_module-Fix-pkgconfig-replacement.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0009-qt_module-Fix-paths-in-.prl-files.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0011-configure-don-t-export-SYSTEM_VARIABLES-to-.qmake.va.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0012-configure.prf-Allow-to-add-extra-arguments-to-make.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0013-Disable-mkv8snapshot.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0014-enables-tslib-device-to-be-read-from-env-variable.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0015-qtbase-allow-build-of-examples.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0021-configure-make-pulseaudio-a-configurable-option.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0022-configure-make-alsa-a-configurable-option.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0023-configure-make-freetype-a-configurable-option.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0024-Use-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-to-determine-pa.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase_5.1.1.bb
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qttools.inc
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qttools/0001-Allow-to-build-only-lrelease-lupdate-lconvert.patch
- create mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qttools_5.1.1.bb
- create mode 100644 meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb
 
+diff --git a/meta-arago-distro/classes/qt-provider.bbclass b/meta-arago-distro/classes/qt-provider.bbclass
+index c0f7184..a0dbdef 100644
+--- a/meta-arago-distro/classes/qt-provider.bbclass
++++ b/meta-arago-distro/classes/qt-provider.bbclass
+@@ -10,14 +10,4 @@
+ QT_PROVIDER ?= "qt4e"
+ 
+ inherit ${QT_PROVIDER}
+-
+-# Build-time dependencies - those are now separate modules in Qt5 and
+-# require separate dependencies, unlike Qt4 that provides everything
+-# in a single qt4-embedded/qt4-x11 recipe
+-QT_DEPENDS_BASE = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase', 'qt4-embedded', d)}"
+-QT_DEPENDS_WEBKIT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtwebkit', '', d)}"
+-QT_DEPENDS_SVG = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtsvg', '', d)}"
+-QT_DEPENDS_SCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtscript', '', d)}"
+-
+-# Run-time dependencies
+-QT_RDEPENDS_FONTS = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase-fonts', 'qt4-embedded-fonts', d)}"
++inherit qt-vars
+diff --git a/meta-arago-distro/classes/qt-vars.bbclass b/meta-arago-distro/classes/qt-vars.bbclass
+new file mode 100644
+index 0000000..b5efee2
+--- /dev/null
++++ b/meta-arago-distro/classes/qt-vars.bbclass
+@@ -0,0 +1,16 @@
++# Class to define many useful variables that differ between Qt4 and Qt5
++
++QT_PROVIDER ?= "qt4e"
++
++# Build-time dependencies - those are now separate modules in Qt5 and
++# require separate dependencies, unlike Qt4 that provides everything
++# in a single qt4-embedded/qt4-x11 recipe
++QT_DEPENDS_BASE = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase', 'qt4-embedded', d)}"
++QT_DEPENDS_WEBKIT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtwebkit', '', d)}"
++QT_DEPENDS_SVG = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtsvg', '', d)}"
++QT_DEPENDS_SCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtscript', '', d)}"
++
++# Run-time dependencies
++QT_RDEPENDS_FONTS = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase-fonts', 'qt4-embedded-fonts', d)}"
++QT_RDEPENDS_NATIVESDK_TOOLS = "${@base_conditional('QT_PROVIDER', 'qt5', 'nativesdk-qtbase-tools nativesdk-qttools', 'nativesdk-qt4-tools', d)}"
++QT_RDEPENDS_MKSPECS = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase-mkspecs', 'qt4-embedded-mkspecs', d)}"
 -- 
 1.8.3.2
 
