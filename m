@@ -1,28 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id A565352A7C
+Return-Path: <heroor@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 56BBF52986
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Nov 2013 06:06:00 +0000 (UTC)
+	Tue, 12 Nov 2013 06:14:17 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAC65xni023344
-	for <meta-arago@arago-project.org>; Tue, 12 Nov 2013 00:05:59 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAC6EGpU000951
+	for <meta-arago@arago-project.org>; Tue, 12 Nov 2013 00:14:16 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAC65xcZ027968
-	for <meta-arago@arago-project.org>; Tue, 12 Nov 2013 00:05:59 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAC6EGHW028399
+	for <meta-arago@arago-project.org>; Tue, 12 Nov 2013 00:14:16 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 12 Nov 2013 00:05:59 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAC65xbn017880;
-	Tue, 12 Nov 2013 00:05:59 -0600
-Date: Tue, 12 Nov 2013 01:05:58 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Reizer, Eyal" <eyalr@ti.com>
-Message-ID: <20131112060558.GB4510@edge>
-References: <8665E2433BC68541A24DFFCA87B70F5B17DA2B97@DNCE04.ent.ti.com>
+	Tue, 12 Nov 2013 00:14:16 -0600
+Received: from [172.24.159.173] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAC6EExD003320;
+	Tue, 12 Nov 2013 00:14:15 -0600
+Message-ID: <5281C736.2000708@ti.com>
+Date: Tue, 12 Nov 2013 11:44:14 +0530
+From: Siddharth Heroor <heroor@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-In-Reply-To: <8665E2433BC68541A24DFFCA87B70F5B17DA2B97@DNCE04.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+To: Denys Dmytriyenko <denys@ti.com>, "Reizer, Eyal" <eyalr@ti.com>
+References: <8665E2433BC68541A24DFFCA87B70F5B17DA2B97@DNCE04.ent.ti.com>
+	<20131112060558.GB4510@edge>
+In-Reply-To: <20131112060558.GB4510@edge>
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] wl18xx-firmware: fix p2p issues
 X-BeenThere: meta-arago@arago-project.org
@@ -37,25 +39,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Nov 2013 06:06:01 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 12 Nov 2013 06:14:17 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, Nov 10, 2013 at 01:24:53PM +0000, Reizer, Eyal wrote:
-> wifi-direct did not work with the previous firmware released for R8.2 (ol_r8.07.02)
-> update the recipe to use a fixed firmware.
-> 
-> This fix is important for the next coming glsdk release for J6/omap5
+On 11/12/2013 11:35 AM, Denys Dmytriyenko wrote:
+> On Sun, Nov 10, 2013 at 01:24:53PM +0000, Reizer, Eyal wrote:
+>> wifi-direct did not work with the previous firmware released for R8.2 (ol_r8.07.02)
+>> update the recipe to use a fixed firmware.
+>>
+>> This fix is important for the next coming glsdk release for J6/omap5
+> Eyal,
+>
+> Unfortunately, R8.2 has never been submitted to meta-arago - was is part of
+> GLSDK "forked" release?
+>
+> Sid/Mrinmayee,
+>
+> Do you have updated recipes you want to share?
+>
+AFAIK, we picked up the recipes from what were submitted to this ML by 
+Roger/Iain. I'm not aware of any other changes.
 
-Eyal,
-
-Unfortunately, R8.2 has never been submitted to meta-arago - was is part of 
-GLSDK "forked" release?
-
-Sid/Mrinmayee,
-
-Do you have updated recipes you want to share?
-
--- 
-Denys
+--
+Sid
 
