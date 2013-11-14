@@ -1,25 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
-	[206.46.173.3])
-	by arago-project.org (Postfix) with ESMTP id 907495299C
+Return-Path: <heroor@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 857E552A56
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Nov 2013 20:32:56 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [96.231.138.104])
-	by vms173003.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MW7003ALYEG8L71@vms173003.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 13 Nov 2013 14:32:41 -0600 (CST)
-Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 5DB2720092; Wed,
-	13 Nov 2013 15:32:40 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 13 Nov 2013 15:32:30 -0500
-Message-id: <1384374750-19978-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-In-reply-to: <1384231333-26952-7-git-send-email-denis@denix.org>
-References: <1384231333-26952-7-git-send-email-denis@denix.org>
-Subject: [PATCHv2 6/6] meta-toolchain-arago-qte: update to support Qt4 and Qt5 SDK
+	Thu, 14 Nov 2013 06:00:42 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAE60f1G019839
+	for <meta-arago@arago-project.org>; Thu, 14 Nov 2013 00:00:41 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAE60e5D029942
+	for <meta-arago@arago-project.org>; Thu, 14 Nov 2013 00:00:41 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 14 Nov 2013 00:00:41 -0600
+Received: from [172.24.157.152] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAE60bJ1031969;
+	Thu, 14 Nov 2013 00:00:38 -0600
+Message-ID: <52846705.3050908@ti.com>
+Date: Thu, 14 Nov 2013 11:30:37 +0530
+From: Siddharth Heroor <heroor@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
+MIME-Version: 1.0
+To: Denys Dmytriyenko <denys@ti.com>, "Maupin, Chase" <chase.maupin@ti.com>
+References: <20131025093335.GA20172@ti.com>
+	<20131025103440.GB13772@edge>	<8F29D6B095ED194EA1980491A5E029710C58765A@DFLE08.ent.ti.com>	<7D46E86EC0A8354091174257B2FED101597DC30B@DLEE11.ent.ti.com>	<20131030225728.GA24696@edge>	<CF956B779D819D41BBC043B7082161D545CFC7@DBDE04.ent.ti.com>	<7D46E86EC0A8354091174257B2FED1015980ADA9@DLEE11.ent.ti.com>
+	<20131111192507.GB24766@denix.org>
+In-Reply-To: <20131111192507.GB24766@denix.org>
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper
+	Jr., Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH 0/5] GStreamer multimedia framework and plugins recipes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,85 +41,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2013 20:32:56 -0000
+X-List-Received-Date: Thu, 14 Nov 2013 06:00:43 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Denys Dmytriyenko <denys@ti.com>
+On 11/12/2013 12:55 AM, Denys Dmytriyenko wrote:
+> Just one thing to remember - we are talking here about 0.10.x line of
+> gstreamer and plugins. With the recent release of gstreamer 1.0, upstream is
+> no longer paying any attention to the old codebase, not even accepting bug
+> fixes...
+>
+Just to add, a lot of these patches are as a result of TI working 
+closely with Collabora on OMAP4 GLP. On the question of upstream picking 
+them, it's moot because we will need to move to Gstreamer 1.2+ next year 
+anyways.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
-v2 - update qt.conf location to make qmake happy
-
- .../recipes-core/meta/meta-toolchain-arago-qte.bb  | 33 +++++++++++++---------
- 1 file changed, 20 insertions(+), 13 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-index 6fcf4b4..7ca06cc 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-@@ -1,15 +1,20 @@
- # Qt Embedded toolchain
- TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-qte-toolchain-host"
--TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-qte-toolchain-target"
-+TOOLCHAIN_TARGET_TASK ?= "${@base_conditional('QT_PROVIDER', 'qt5', 'packagegroup-arago-qt5-toolchain-target', 'packagegroup-arago-qte-toolchain-target', d)}"
- TOOLCHAIN_SUFFIX ?= "-qte-sdk"
- 
- require meta-toolchain-arago.bb
- 
--PR = "r15"
-+PR = "r16"
- 
--QT_DIR_NAME = "qtopia"
-+# There could be qt5, qt4e and qt4x11 providers, but we don't support qt4x11 for now
-+QT_DIR_NAME = "${@base_conditional('QT_PROVIDER', 'qt5', 'qt5', 'qtopia', d)}"
-+QT_BIN_PREFIX = "${@base_conditional('QT_PROVIDER', 'qt5', "${QT_DIR_NAME}/", '', d)}"
-+QT_BIN_SUFFIX = "${@base_conditional('QT_PROVIDER', 'qt5', '', '4', d)}"
-+QT_MKSPECS_LOCATION = "${@base_conditional('QT_PROVIDER', 'qt5', "${libdir}", "${datadir}", d)}"
- 
- toolchain_create_sdk_env_script_append() {
-+	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_DIR_NAME}:$PATH' >> $script
- 	echo 'export OE_QMAKE_CFLAGS="$CFLAGS"' >> $script
- 	echo 'export OE_QMAKE_CXXFLAGS="$CXXFLAGS"' >> $script
- 	echo 'export OE_QMAKE_LDFLAGS="$LDFLAGS"' >> $script
-@@ -19,20 +24,22 @@ toolchain_create_sdk_env_script_append() {
- 	echo 'export OE_QMAKE_AR=$AR' >> $script
- 	echo 'export OE_QMAKE_LIBDIR_QT=$SDK_PATH_TARGET${libdir}' >> $script
- 	echo 'export OE_QMAKE_INCDIR_QT=$SDK_PATH_TARGET${includedir}/${QT_DIR_NAME}' >> $script
--	echo 'export OE_QMAKE_MOC=$SDK_PATH_NATIVE${bindir_nativesdk}/moc4' >> $script
--	echo 'export OE_QMAKE_UIC=$SDK_PATH_NATIVE${bindir_nativesdk}/uic4' >> $script
--	echo 'export OE_QMAKE_UIC3=$SDK_PATH_NATIVE${bindir_nativesdk}/uic34' >> $script
--	echo 'export OE_QMAKE_RCC=$SDK_PATH_NATIVE${bindir_nativesdk}/rcc4' >> $script
--	echo 'export OE_QMAKE_QDBUSCPP2XML=$SDK_PATH_NATIVE${bindir_nativesdk}/qdbuscpp2xml4' >> $script
--	echo 'export OE_QMAKE_QDBUSXML2CPP=$SDK_PATH_NATIVE${bindir_nativesdk}/qdbusxml2cpp4' >> $script
--	echo 'export OE_QMAKE_QT_CONFIG=$SDK_PATH_TARGET${datadir}/${QT_DIR_NAME}/mkspecs/qconfig.pri' >> $script
-+	echo 'export OE_QMAKE_MOC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}moc${QT_BIN_SUFFIX}' >> $script
-+	echo 'export OE_QMAKE_UIC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic${QT_BIN_SUFFIX}' >> $script
-+	echo 'export OE_QMAKE_UIC3=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic3${QT_BIN_SUFFIX}' >> $script
-+	echo 'export OE_QMAKE_RCC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}rcc${QT_BIN_SUFFIX}' >> $script
-+	echo 'export OE_QMAKE_QDBUSCPP2XML=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbuscpp2xml${QT_BIN_SUFFIX}' >> $script
-+	echo 'export OE_QMAKE_QDBUSXML2CPP=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbusxml2cpp${QT_BIN_SUFFIX}' >> $script
-+	echo 'export OE_QMAKE_QT_CONFIG=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/qconfig.pri' >> $script
- 	echo 'export OE_QMAKE_STRIP="echo"' >> $script
--	echo 'export QMAKESPEC=$SDK_PATH_TARGET${datadir}/${QT_DIR_NAME}/mkspecs/linux-g++' >> $script
-+	echo 'export QMAKESPEC=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/linux-g++' >> $script
-+	echo 'export QMAKE_DEFAULT_LIBDIRS=${QT_QMAKE_LIBDIR_QT}' >> $script
-+	echo 'export QMAKE_DEFAULT_INCDIRS=${QT_QMAKE_INCDIR_QT}' >> $script
- 
- 	#Adds qt.conf file that points qmake to properly locate Qt library and header files.
- 	#This enables Qt Creator to work properly
- 
--	qt_conf="${SDK_OUTPUT}/${SDKPATHNATIVE}${bindir_nativesdk}/qt.conf"
-+	qt_conf="${SDK_OUTPUT}/${SDKPATHNATIVE}${bindir_nativesdk}/${QT_BIN_PREFIX}qt.conf"
- 	touch $qt_conf
- 	echo '[Paths]' >> $qt_conf
- 	echo 'Prefix = $(SDK_PATH_TARGET)' >> $qt_conf
-@@ -41,5 +48,5 @@ toolchain_create_sdk_env_script_append() {
- 
- 	# make a symbolic link to mkspecs for compatibility with Nokia's SDK
- 	# and QTCreator
--	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf usr/share/${QT_DIR_NAME}/mkspecs mkspecs;)
-+	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
- }
--- 
-1.8.3.2
-
+--
+Sid
 
