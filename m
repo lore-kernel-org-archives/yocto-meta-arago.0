@@ -1,39 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 5AB2152972
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 77C585299C
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Nov 2013 07:43:46 +0000 (UTC)
+	Fri, 15 Nov 2013 10:12:52 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAF7hjRJ022462
-	for <meta-arago@arago-project.org>; Fri, 15 Nov 2013 01:43:45 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAF7hj4T030994
-	for <meta-arago@arago-project.org>; Fri, 15 Nov 2013 01:43:45 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 15 Nov 2013 01:43:44 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAF7hiNc029186;
-	Fri, 15 Nov 2013 01:43:44 -0600
-Date: Fri, 15 Nov 2013 02:43:44 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAFACpR3020379
+	for <meta-arago@arago-project.org>; Fri, 15 Nov 2013 04:12:51 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAFACpsZ011324
+	for <meta-arago@arago-project.org>; Fri, 15 Nov 2013 04:12:51 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 15 Nov 2013 04:12:51 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	rAFACoL3023534	for <meta-arago@arago-project.org>;
+	Fri, 15 Nov 2013 04:12:50 -0600
+Date: Fri, 15 Nov 2013 05:01:52 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: Siddharth Heroor <heroor@ti.com>
-Message-ID: <20131115074343.GB19813@edge>
-References: <20131025093335.GA20172@ti.com> <20131025103440.GB13772@edge>
-	<8F29D6B095ED194EA1980491A5E029710C58765A@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED101597DC30B@DLEE11.ent.ti.com>
-	<20131030225728.GA24696@edge>
-	<CF956B779D819D41BBC043B7082161D545CFC7@DBDE04.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015980ADA9@DLEE11.ent.ti.com>
-	<52846899.7030100@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015981A351@DLEE11.ent.ti.com>
-	<52859B1E.5060503@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1264634256.945.1384509712919.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <52859B1E.5060503@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
-	Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 0/5] GStreamer multimedia framework and plugins recipes
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-11-15_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,301 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2013 07:43:47 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 15 Nov 2013 10:12:53 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_944_257154860.1384509712791"
 
-On Fri, Nov 15, 2013 at 09:25:10AM +0530, Siddharth Heroor wrote:
-> On 11/14/2013 7:44 PM, Maupin, Chase wrote:
-> >>-----Original Message-----
-> >>From: Heroor, Siddharth
-> >>Sent: Thursday, November 14, 2013 12:07 AM
-> >>To: Maupin, Chase; Hingolikar, Mrinmayee; Dmytriyenko, Denys
-> >>Cc: meta-arago@arago-project.org; Cooper Jr., Franklin
-> >>Subject: Re: [meta-arago] [PATCH 0/5] GStreamer multimedia
-> >>framework and plugins recipes
-> >>
-> >>On 11/11/2013 8:05 PM, Maupin, Chase wrote:
-> >>>Mrinmayee,
-> >>>
-> >>>Some things that would help would be if you could give us an
-> >>idea about the following:
-> >>>1. What are these patches adding?  Are they adding new
-> >>components?
-> >>As I mentioned these patches are a result of the GLP work on
-> >>OMAP4.
-> >>>2. If new components are being added why not create a separate
-> >>project for them so that it is easier to work on moving them along
-> >>with different releases of gstreamer?  Basically split out the
-> >>"base" gstreamer and the new elements.  This way if another group
-> >>wants to look at supporting a different gstreamer version your
-> >>changes are isolated from the gstreamer base.
-> >>
-> >>>3. For patches against gstreamer elements what is the
-> >>plan/schedule for pushing those patches up to the gstreamer
-> >>mainline to minimize what is being carried?
-> >>>This basically boils down to what is the roadmap tomorrow to
-> >>being ready to adapt to new gstreamer releases and reduce this
-> >>patchset?  What is the plan for handling migrations and is a
-> >>consolidated code base the easiest way to do this?
-> >>Interestingly, as an example, the original work on gst-wayland was
-> >>part
-> >>of a separate plugin - gst-ducati. As part of the GLP work, this
-> >>was
-> >>moved to gst-plugins-ugly. Upstream GStreamer have a proposal for
-> >>a
-> >>Wayland Sink that we will need to move to in the future. So, the
-> >>way I
-> >>see it, these are specific to current work and not a roadmap.
-> >>
-> >>The choices are either we carry the patches on glsdk staging tree
-> >>or we
-> >>host them on meta-ti as a separate recipe because I see that we
-> >>will
-> >>need to move to GStreamer 1.x in the future regardless. Either
-> >>way, we
-> >>are carrying patches that we inherited and now are getting flack
-> >>for
-> >>someone else not upstreaming them 2 years ago when we weren't even
-> >>involved. :-(
+------=_Part_944_257154860.1384509712791
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> >Not trying to give you flack.  Just trying to understand what was going on 
-> >and if there was a better way to separate this code to make it more 
-> >portable.  Knowing there is a plan to get to 1.x is a good thing and helps 
-> >us in making a recommendation on how to proceed.  I think we can work with 
-> >these recipes, but they need to be modified to not apply to all devices but 
-> >instead limit them to your device.
-> 
-> Right. Let's limit the recipes to OMAP5 and J6 but is it possible
-> for it to be built and tested in the Core SDK context? Or do you
-> recommend that we use -glsdk.bb for the recipe and give a preferred
-> provider in the branding file?
+<html>
+<head>
+<title>
+Status for 11/15/13
+</title>
+</head>
+<body>
 
-There are 2 options:
+<h2>Status for 11/15/13</h2>
 
-1. create separate -glsdk versions of the recipe (gstreamer and all plugins) 
-and then in the arago.conf point preferred provider to those recipes for omap5 
-and j6 platforms (or entire omap-a15 SOC family)
+<h2>BUILD_ID: build-2013-11-15_01-02-45</h2>
 
-2. re-use the same recipes (or rather bbappends, since we don't carry complete 
-recipes in meta-arago) and then machine-override necessary variables, like 
-SRC_URI to point to your trees, but only for specific machines. E.g. 
-SRC_URI_omap-a15 = "git://omapzoom.org..." or SRC_URI_append_omap-a15 = 
-"file://some.patch"
+<h2>Clean Build: false</h2>
 
-The first one is cleaner and easier to maintain, but also easier to diverge or 
-get stale...
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
--- 
-Denys
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> >>>>-----Original Message-----
-> >>>>From: Hingolikar, Mrinmayee
-> >>>>Sent: Monday, November 11, 2013 12:16 AM
-> >>>>To: Dmytriyenko, Denys; Maupin, Chase
-> >>>>Cc: Cooper Jr., Franklin; meta-arago@arago-project.org
-> >>>>Subject: RE: [meta-arago] [PATCH 0/5] GStreamer multimedia
-> >>>>framework and plugins recipes
-> >>>>
-> >>>>I was on a long vacation, so I apologize for the delay in
-> >>>>response.
-> >>>>Here are the no. of patches on top of standard GStreamer.
-> >>>>
-> >>>>Gstreamer - 15
-> >>>>Gstreamer base plugins - 56
-> >>>>Gstreamer good plugins - 11
-> >>>>Gstreamer bad plugins - 195
-> >>>>
-> >>>>Based on Franklin's suggestions and discussions with Sid, we
-> >>have
-> >>>>decided to create new recipes with unique identifiers, for eg.
-> >>>>gstreamer-glsdk.
-> >>>>Kindly let me know if this approach is fine with you.
-> >>>>
-> >>>>Regards,
-> >>>>Mrinmayee
-> >>>>
-> >>>>>-----Original Message-----
-> >>>>>From: Dmytriyenko, Denys
-> >>>>>Sent: Thursday, October 31, 2013 4:27 AM
-> >>>>>To: Maupin, Chase
-> >>>>>Cc: Cooper Jr., Franklin; Hingolikar, Mrinmayee; meta-
-> >>>>arago@arago-
-> >>>>>project.org
-> >>>>>Subject: Re: [meta-arago] [PATCH 0/5] GStreamer multimedia
-> >>>>framework
-> >>>>>and plugins recipes
-> >>>>>
-> >>>>>Mrinmayee,
-> >>>>>
-> >>>>>Myself, Franklin and Chase have asked you to estimate the
-> >>amount
-> >>>>and
-> >>>>>size of the patches that you have in your gstreamer trees. And
-> >>>>you
-> >>>>>still have not answered that.
-> >>>>>
-> >>>>>The reason we are asking this simple question is because the
-> >>>>changes
-> >>>>>you are making to the recipes will affect others and cannot be
-> >>>>accepted
-> >>>>>as is. You would need to use machine override VAR_omap-a15
-> >>>>instead of
-> >>>>>COMPATIBLE_MACHINE and depending on the amount and size of the
-> >>>>patches,
-> >>>>>you either simply apply them just for your machine, or change
-> >>>>the
-> >>>>>SRC_URI completely for your machine.
-> >>>>>
-> >>>>>Either way, I would like to encourage you to participate in
-> >>the
-> >>>>>discussion and not just disappear. Thank you.
-> >>>>>
-> >>>>>--
-> >>>>>Denys
-> >>>>>
-> >>>>>
-> >>>>>On Fri, Oct 25, 2013 at 12:08:48PM -0400, Maupin, Chase wrote:
-> >>>>>>>-----Original Message-----
-> >>>>>>>From: meta-arago-bounces@arago-project.org [mailto:meta-
-> >>>>arago-
-> >>>>>>>bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> >>>>>>>Sent: Friday, October 25, 2013 10:27 AM
-> >>>>>>>To: Dmytriyenko, Denys; Hingolikar, Mrinmayee
-> >>>>>>>Cc: meta-arago@arago-project.org
-> >>>>>>>Subject: Re: [meta-arago] [PATCH 0/5] GStreamer multimedia
-> >>>>>>>framework and plugins recipes
-> >>>>>>>
-> >>>>>>>All of your appends are currently blocking all of the
-> >>>>gstreamer
-> >>>>>>>plugins for all machines other than omap-a15. There is no
-> >>way
-> >>>>to
-> >>>>>>>only apply a bbappend for a specific machine and have all
-> >>>>other
-> >>>>>>>machines ignore the bbappend.
-> >>>>>>>
-> >>>>>>>Depending on your patch set on top of the standard gstreamer
-> >>>>>>>sources it probably would be better to break out the patches
-> >>>>from
-> >>>>>>>your git repo and add it to the SRC_URI for only the omap
-> >>>>machine.
-> >>>>>>This may be preferred just to help keep from getting locked
-> >>to
-> >>>>>particular
-> >>>>>>gstreamer version and make clear the changeds on top.  But
-> >>>>number of
-> >>>>>patches
-> >>>>>>is something that would weigh in here.
-> >>>>>>
-> >>>>>>>Another approach would be to create a "new "recipe called
-> >>>>omap-
-> >>>>>>><base recipe name> that "requires/includes" the base
-> >>>>gstreamer
-> >>>>>>>recipe and then you can override whatever you want. Take a
-> >>>>look at
-> >>>>>>>the qt4-embedded-gles_4.8.4.bb recipe.
-> >>>>>>>http://arago-project.org/git/?p=meta-
-> >>arago.git;a=blob;f=meta-
-> >>>>>>>arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.4.bb
-> >>>>>>>
-> >>>>>>>Or
-> >>>>>>>Create new recipes with some unique identifier to indicate
-> >>>>this
-> >>>>>>>isn't the standard gstreamer.
-> >>>>>>If not patches one of the above seems right.
-> >>>>>>
-> >>>>>>>Others may have other approaches that they recommend.
-> >>>>>>>
-> >>>>>>>>-----Original Message-----
-> >>>>>>>>From: meta-arago-bounces@arago-project.org [mailto:meta-
-> >>>>arago-
-> >>>>>>>>bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> >>>>>>>>Sent: Friday, October 25, 2013 5:35 AM
-> >>>>>>>>To: Hingolikar, Mrinmayee
-> >>>>>>>>Cc: meta-arago@arago-project.org
-> >>>>>>>>Subject: Re: [meta-arago] [PATCH 0/5] GStreamer multimedia
-> >>>>>>>framework and
-> >>>>>>>>plugins recipes
-> >>>>>>>>
-> >>>>>>>>On Fri, Oct 25, 2013 at 03:03:35PM +0530, Mrinmayee
-> >>>>Hingolikar
-> >>>>>>>wrote:
-> >>>>>>>>>This patch-set adds GStreamer framework and its plugins:
-> >>>>>>>>>base, good, bad and ugly.
-> >>>>>>>>>
-> >>>>>>>>>The development trees for all of these components are
-> >>>>>>>mainitained at
-> >>>>>>>>>git.ti.com and they are based on top of the Freedesktop
-> >>>>>>>releases.
-> >>>>>>>>Why? How large is the patchset on top of upstream?
-> >>>>>>>>
-> >>>>>>>>
-> >>>>>>>>>Mrinmayee Hingolikar (5):
-> >>>>>>>>>    multimedia: Add GStreamer multimedia framework.
-> >>>>>>>>>    multimedia: GStreamer base plugins
-> >>>>>>>>>    multimedia: GStreamer good plugins
-> >>>>>>>>>    multimedia: GStreamer bad plugins
-> >>>>>>>>>    multimedia: GStreamer ugly plugins.
-> >>>>>>>>>
-> >>>>>>>>>   .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |
-> >>>>25
-> >>>>>>>>++++++++++++++++++++
-> >>>>>>>>>   .../gstreamer/gst-plugins-base_0.10.36.bbappend    |
-> >>>>22
-> >>>>>>>>+++++++++++++++++
-> >>>>>>>>>   .../gstreamer/gst-plugins-good_0.10.31.bbappend    |
-> >>>>20
-> >>>>>>>>++++++++++++++++
-> >>>>>>>>>   .../gstreamer/gst-plugins-ugly_0.10.18.bb          |
-> >>>>23
-> >>>>>>>++++++++++++++++++
-> >>>>>>>>>   .../gstreamer/gstreamer_0.10.36.bbappend           |
-> >>>>16
-> >>>>>>>+++++++++++++
-> >>>>>>>>>   5 files changed, 106 insertions(+)
-> >>>>>>>>>   create mode 100644
-> >>>>>>>>>meta-arago-extras/recipes-multimedia/gstreamer/gst-
-> >>>>plugins-
-> >>>>>>>bad_0.10.23
-> >>>>>>>>>.bbappend  create mode 100644
-> >>>>>>>>>meta-arago-extras/recipes-multimedia/gstreamer/gst-
-> >>>>plugins-
-> >>>>>>>base_0.10.3
-> >>>>>>>>>6.bbappend  create mode 100644
-> >>>>>>>>>meta-arago-extras/recipes-multimedia/gstreamer/gst-
-> >>>>plugins-
-> >>>>>>>good_0.10.3
-> >>>>>>>>>1.bbappend  create mode 100644
-> >>>>>>>>>meta-arago-extras/recipes-multimedia/gstreamer/gst-
-> >>>>plugins-
-> >>>>>>>ugly_0.10.1
-> >>>>>>>>>8.bb  create mode 100644
-> >>>>>>>>>meta-arago-extras/recipes-
-> >>>>>>>multimedia/gstreamer/gstreamer_0.10.36.bbapp
-> >>>>>>>>>end
-> >>>>>>>>>
-> >>>>>>>>>--
-> >>>>>>>>>1.7.9.5
-> >>>>>>>>>
-> >>>>>>>>>_______________________________________________
-> >>>>>>>>>meta-arago mailing list
-> >>>>>>>>>meta-arago@arago-project.org
-> >>>>>>>>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-
-> >>>>arago
-> >>>>>>>>_______________________________________________
-> >>>>>>>>meta-arago mailing list
-> >>>>>>>>meta-arago@arago-project.org
-> >>>>>>>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-
-> >>>>arago
-> >>>>>>>_______________________________________________
-> >>>>>>>meta-arago mailing list
-> >>>>>>>meta-arago@arago-project.org
-> >>>>>>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >>>_______________________________________________
-> >>>meta-arago mailing list
-> >>>meta-arago@arago-project.org
-> >>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-
+------=_Part_944_257154860.1384509712791--
