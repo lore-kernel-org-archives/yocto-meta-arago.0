@@ -1,34 +1,32 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 202D35299D
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 2C07252972
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Nov 2013 18:46:19 +0000 (UTC)
+	Mon, 18 Nov 2013 21:20:16 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAIIkISJ006821
-	for <meta-arago@arago-project.org>; Mon, 18 Nov 2013 12:46:18 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAILKFa0025403
+	for <meta-arago@arago-project.org>; Mon, 18 Nov 2013 15:20:15 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAIIkI2p020364
-	for <meta-arago@arago-project.org>; Mon, 18 Nov 2013 12:46:18 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Mon, 18 Nov 2013 12:46:18 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] input-utils: fix fetch issue
-Thread-Index: AQHO5GyQgZ0wA1vuK0q+NdEFsqauVJorEG/ggACjpAD//5/dUA==
-Date: Mon, 18 Nov 2013 18:46:17 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159828CB8@DLEE11.ent.ti.com>
-References: <1384789460-12883-1-git-send-email-Chase.Maupin@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159827996@DLEE11.ent.ti.com>
-	<20131118182952.GG19813@edge>
-In-Reply-To: <20131118182952.GG19813@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAILKFXc007089
+	for <meta-arago@arago-project.org>; Mon, 18 Nov 2013 15:20:15 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 18 Nov 2013 15:20:15 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAILKER8029424;
+	Mon, 18 Nov 2013 15:20:15 -0600
+Date: Mon, 18 Nov 2013 16:20:14 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20131118212014.GL19813@edge>
+References: <1384711613-29582-1-git-send-email-fcooper@ti.com>
+	<20131118183244.GH19813@edge>
+	<8F29D6B095ED194EA1980491A5E029710C5A7B41@DFLE08.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C5A7B41@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] input-utils: fix fetch issue
+Subject: Re: [PATCH] meta-toolchain-arago-qte: Fix location for host Qt tools
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,103 +39,84 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Nov 2013 18:46:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Nov 2013 21:20:16 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
->-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Monday, November 18, 2013 12:30 PM
->To: Maupin, Chase
->Cc: meta-arago@arago-project.org
->Subject: Re: [meta-arago] [PATCH] input-utils: fix fetch issue
->
->On Mon, Nov 18, 2013 at 02:44:31PM +0000, Maupin, Chase wrote:
->> >-----Original Message-----
->> >From: Maupin, Chase
->> >Sent: Monday, November 18, 2013 9:44 AM
->> >To: meta-arago@arago-project.org
->> >Cc: Maupin, Chase
->> >Subject: [PATCH] input-utils: fix fetch issue
->> >
->> >* Input utils has not been fetchable since the alioth server
->> >  went down.  So instead of using git pull the 1.0 release from
->> >  the ftp server.
->> >* More information on the server issues can be found at:
->> >  http://lists.debian.org/debian-infrastructure-
->> >announce/2013/11/msg00001.html
->> >
->> >Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
->> >---
->> > .../{input-utils_git.bb =3D> input-utils_1.0.bb}     |   10
->+++++--
->> >---
->> > 1 files changed, 5 insertions(+), 5 deletions(-)
->> > rename meta-arago-extras/recipes-devtools/input-utils/{input-
->> >utils_git.bb =3D> input-utils_1.0.bb} (71%)
->> >
->> >diff --git a/meta-arago-extras/recipes-devtools/input-
->utils/input-
->> >utils_git.bb b/meta-arago-extras/recipes-devtools/input-
->> >utils/input-utils_1.0.bb
->> >similarity index 71%
->> >rename from meta-arago-extras/recipes-devtools/input-
->utils/input-
->> >utils_git.bb
->> >rename to meta-arago-extras/recipes-devtools/input-utils/input-
->> >utils_1.0.bb
->> >index 30a7454..6fbc8b6 100644
->> >--- a/meta-arago-extras/recipes-devtools/input-utils/input-
->> >utils_git.bb
->> >+++ b/meta-arago-extras/recipes-devtools/input-utils/input-
->> >utils_1.0.bb
->> >@@ -7,13 +7,13 @@ LIC_FILES_CHKSUM =3D
->> >"file://COPYING;md5=3D8ca43cbc842c2336e835926c2166c28b"
->> > PV =3D "1.0"
->> > PR =3D "r0"
->>
->> Not sure if this needs a PR bump.  Thoughts?
->
->Is this the same exact version in tar as was supposed to be
->fetched from git?
->Then no PR bump is needed. Moreover, I believe for most people it
->would be the
->first time they are able to build anyway, as recipes went in right
->when the
->debian server went down, so nobody was able to build this before.
->
+On Mon, Nov 18, 2013 at 01:41:00PM -0500, Cooper Jr., Franklin wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Monday, November 18, 2013 12:33 PM
+> > To: Cooper Jr., Franklin
+> > Cc: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago-qte: Fix location for
+> > host Qt tools
+> > 
+> > On Sun, Nov 17, 2013 at 12:06:53PM -0600, Franklin S. Cooper Jr wrote:
+> > > * By default Qt5 is looking at cortexa8hf-vfp-neon-oe-linux-gnueabi/bin
+> > instead
+> > >   of the proper location i686-arago-linux/usr/bin/qt5.
+> > > * Update qmake.conf to insure qmake looks at the proper location for host
+> > >   binaries.
+> > 
+> > What is this needed for exactly? I hadn't had any issues using qmake and
+> > command-line build with the v3 of the patches. Is it specific to QtCreator?
 
-I think so, but without the git it is a little hard to check.  But I pulled=
- the 1.0 tag before and this is the 1.0 release.
+> [Franklin] Building via command line. Some reason qmake thinks moc is 
+> located at cortexa8hf-vfp-neon-oe-linux-gnueabi/bin which resulted in a file 
+> not found error. Im not sure when moc is needed but when I tried to build 
+> the thermostat demo from src I ran into this issue.
 
->
->> >-BRANCH ?=3D "master"
->> >-SRCREV =3D "230a22bda95ea5616251b43db418f9df445651b6"
->> >-
->> >-SRC_URI =3D "git://git.debian.org/collab-maint/input-
->> >utils.git;protocol=3Dgit;branch=3D${BRANCH}"
->> >+SRC_URI =3D "http://ftp.de.debian.org/debian/pool/main/i/input-
->> >utils/input-utils_1.0.orig.tar.gz"
->> > SRC_URI_append_arm =3D " file://0001-autoconf-fix-for-cross-
->> >compilation-for-ARM.patch"
->> >
->> >-S =3D "${WORKDIR}/git"
->> >+SRC_URI[md5sum] =3D "3e58772e8647093b1de2f2c90bfb9ee8"
->> >+SRC_URI[sha256sum] =3D
->>
->>"ab6f550f01bb5fcede492ab88711d82bacee4229cf2f5dc55a349b3bff4e3b13
->"
->> >+
->> >+S =3D "${WORKDIR}/input-1.0"
->> >
->> > do_compile () {
->> >     oe_runmake
->> >--
->> >1.7.0.4
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+I'm looking into this now and playing with the idea of packaging qt.conf that 
+gets created during the nativesdk build. Although that one maybe an overkill. 
+If that doesn't work, I'll push an updated version of this patch...
+
+-- 
+Denys
+
+
+> > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > > ---
+> > >  .../recipes-core/meta/meta-toolchain-arago-qte.bb  |    8 +++++++-
+> > >  1 files changed, 7 insertions(+), 1 deletions(-)
+> > >
+> > > diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > index e3bf80f..6220578 100644
+> > > --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > @@ -5,7 +5,7 @@ TOOLCHAIN_SUFFIX ?= "-qte-sdk"
+> > >
+> > >  require meta-toolchain-arago.bb
+> > >
+> > > -PR = "r16"
+> > > +PR = "r17"
+> > >
+> > >  # There could be qt5, qt4e and qt4x11 providers, but we don't support
+> > qt4x11 for now
+> > >  QT_DIR_NAME = "${@base_conditional('QT_PROVIDER', 'qt5', 'qt5', 'qtopia',
+> > d)}"
+> > > @@ -46,6 +46,12 @@ toolchain_create_sdk_env_script_append() {
+> > >  	echo 'Libraries = $(OE_QMAKE_LIBDIR_QT)' >> $qt_conf
+> > >  	echo 'Headers = $(OE_QMAKE_INCDIR_QT)' >> $qt_conf
+> > >
+> > > +	if [ "${QT_PROVIDER}" = "qt5" ]
+> > > +	then
+> > > +		echo 'HostBinaries = ../${SDK_SYS}/usr/bin/qt5' >> $qt_conf
+> > > +	fi
+> > > +
+> > > +
+> > >  	# make a symbolic link to mkspecs for compatibility with Nokia's SDK
+> > >  	# and QTCreator
+> > >  	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf
+> > .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+> > > --
+> > > 1.7.0.4
+> > >
+> > > _______________________________________________
+> > > meta-arago mailing list
+> > > meta-arago@arago-project.org
+> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
