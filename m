@@ -1,31 +1,28 @@
-Return-Path: <008dilip@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by arago-project.org (Postfix) with ESMTPS id 4DA335299E
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 78A895299E
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Nov 2013 17:58:43 +0000 (UTC)
-Received: by mail-oa0-f51.google.com with SMTP id i7so4070541oag.10
-	for <meta-arago@arago-project.org>;
-	Tue, 19 Nov 2013 09:58:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=g4u/nlUAmZ7/LfOmoJyDlFQqyCHpmYFa6lNxNCBe14w=;
-	b=A45YkAqoIecdZcBnLOokLrq/Vff1c8wNNBaDCTQ8tuoyeu8dE6ibl6l71ZCn5QWIba
-	8wZEIqbNyZcVlSY424Ad+SMQQ0DC6iZOUDbgOmSslfLLmjxR7gnf7Ky+E0Q2aTDZ/CYQ
-	LZDLAXA90o/Q3ow2tR1KJaprAslF5uxId65eUfHycKnzNlkxlnEN/v+vtTO6uFibFpHQ
-	ZQOqLz3Eganzn1JtXEvcC8739QrEpSYaWjRnQUzv7F5wrES0+IFxWmOJg0CKEJ0ofdOu
-	NN+4vMJtrPxje4/w4pvPjXkgfPBvb0skH1eewwp7HZNwlqN0gByEznQn/Q4IX6eG34yh
-	FS1A==
+	Tue, 19 Nov 2013 18:01:03 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAJI12Zt017238
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 12:01:02 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJI11PA030030
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 12:01:02 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 19 Nov 2013 12:01:02 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJI0wlC010497;
+	Tue, 19 Nov 2013 12:01:00 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 19 Nov 2013 13:02:02 -0600
+Message-ID: <1384887728-8628-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-X-Received: by 10.182.109.230 with SMTP id hv6mr1689759obb.68.1384883922054;
-	Tue, 19 Nov 2013 09:58:42 -0800 (PST)
-Received: by 10.76.177.34 with HTTP; Tue, 19 Nov 2013 09:58:42 -0800 (PST)
-Received: by 10.76.177.34 with HTTP; Tue, 19 Nov 2013 09:58:42 -0800 (PST)
-Date: Tue, 19 Nov 2013 23:28:42 +0530
-Message-ID: <CABmxB3MGD26wRTWVw_tzfX1tHng8BXLYgvpujgrXcvQOsexRRA@mail.gmail.com>
-From: Dilip Kumar <008dilip@gmail.com>
-To: meta-arago@arago-project.org
-Subject: Ltp-ddt into Yocto project
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/7] packagegroup-arago-tisdk-amsdk-sdk-host: Remove board port git repositories
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,40 +35,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 17:58:44 -0000
-Content-Type: multipart/alternative; boundary=001a11c31b4e3ab58104eb8b6ae7
+X-List-Received-Date: Tue, 19 Nov 2013 18:01:03 -0000
+Content-Type: text/plain
 
---001a11c31b4e3ab58104eb8b6ae7
-Content-Type: text/plain; charset=ISO-8859-1
+* Unfortunately, the board port repositories are very difficult to update by our
+  SDK's code freeze date.
+* Therefore, we will be removing the board port repositories from being bundled
+  within the SDK.
 
-Hi all,
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    4 +---
+ 1 files changed, 1 insertions(+), 3 deletions(-)
 
-This is my first mail to the arago mailing list.
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+index 4654a96..89da2ff 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional scripts and applications into the SDK"
+ LICENSE = "MIT"
+-PR = "r15"
++PR = "r16"
+ 
+ inherit packagegroup
+ 
+@@ -26,8 +26,6 @@ RDEPENDS_${PN} = "\
+     ${TOOLS} \
+     ti-tisdk-setup \
+     ${EXTRA_FILES} \
+-    board-port-labs-u-boot-src \
+-    board-port-labs-linux-src \
+     oe-layersetup-src \
+     ti-tisdk-makefile \
+     ${U-BOOT_SRC} \
+-- 
+1.7.0.4
 
-I need to whether it is possible to add ltp-ddt to into the existing
-default Yocto project build, I.e in poky dylan distribution and to run in
-qemulator. If is it possible, May I know how we can add the test tool ltp-
-ddt and procedure for adding like which recipe to add or which layer to be
-added.
-I am waiting for your response.
 
-Thanks and regards
-dilip kumar b
-
---001a11c31b4e3ab58104eb8b6ae7
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Hi all,</p>
-<p dir=3D"ltr">This is my first mail to the arago mailing list.</p>
-<p dir=3D"ltr">I need to whether it is possible to add ltp-ddt to into the =
-existing default Yocto project build, I.e in poky dylan distribution and to=
- run in qemulator. If is it possible, May I know how we can add the test to=
-ol ltp- ddt and procedure for adding like which recipe to add or which laye=
-r to be added.<br>
-
-I am waiting for your response.</p>
-<p dir=3D"ltr">Thanks and regards <br>
-dilip kumar b</p>
-
---001a11c31b4e3ab58104eb8b6ae7--
