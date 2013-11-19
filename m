@@ -1,30 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 01B455299E
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 3FEF15299E
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Nov 2013 18:01:17 +0000 (UTC)
+	Tue, 19 Nov 2013 18:02:32 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAJI1HoH026488
-	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 12:01:17 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAJI2VH2017340;
+	Tue, 19 Nov 2013 12:02:31 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJI1HnG030473
-	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 12:01:17 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJI2V2r031263;
+	Tue, 19 Nov 2013 12:02:31 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 19 Nov 2013 12:01:17 -0600
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJI0wlI010497;
-	Tue, 19 Nov 2013 12:01:15 -0600
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 19 Nov 2013 13:02:08 -0600
-Message-ID: <1384887728-8628-7-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1384887728-8628-1-git-send-email-fcooper@ti.com>
-References: <1384887728-8628-1-git-send-email-fcooper@ti.com>
+	Tue, 19 Nov 2013 12:02:31 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJI2Vte005761;
+	Tue, 19 Nov 2013 12:02:31 -0600
+Date: Tue, 19 Nov 2013 13:02:30 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Dilip Kumar <008dilip@gmail.com>
+Message-ID: <20131119180230.GD27758@edge>
+References: <CABmxB3MGD26wRTWVw_tzfX1tHng8BXLYgvpujgrXcvQOsexRRA@mail.gmail.com>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 7/7] packagegroup-arago-tisdk-matrix: Add additional example application for AM43x
+In-Reply-To: <CABmxB3MGD26wRTWVw_tzfX1tHng8BXLYgvpujgrXcvQOsexRRA@mail.gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: Ltp-ddt into Yocto project
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,46 +37,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 18:01:18 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 19 Nov 2013 18:02:32 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Add additional example applications for AM43x.
+On Tue, Nov 19, 2013 at 11:28:42PM +0530, Dilip Kumar wrote:
+> Hi all,
+> 
+> This is my first mail to the arago mailing list.
+> 
+> I need to whether it is possible to add ltp-ddt to into the existing
+> default Yocto project build, I.e in poky dylan distribution and to run in
+> qemulator. If is it possible, May I know how we can add the test tool ltp-
+> ddt and procedure for adding like which recipe to add or which layer to be
+> added.
+> I am waiting for your response.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../packagegroup-arago-tisdk-matrix.bb             |    8 +++++++-
- 1 files changed, 7 insertions(+), 1 deletions(-)
+First of all, ltp-ddt is already in meta-openembedded, but unfortunately it's 
+quite old there. Since it is actively being developed, we keep an AUTOREV-ed 
+recipe in meta-arago. So, you can either update the recipe in meta-oe with the 
+recent SRCREV, or just add meta-arago-extras layer into your poky build. It 
+should not conflict with Poky distro, as Arago distro specifics are in own 
+meta-arago-distro layer.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 95054b2..c3143d3 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r22"
-+PR = "r23"
- 
- inherit packagegroup
- 
-@@ -72,10 +72,16 @@ MATRIX_APPS_append_ti33x = "        \
- #    matrix-gui-wifi-direct-demo
- 
- MATRIX_APPS_append_ti43x = "        \
-+    ${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}','',d)} \
-+                                    \
-     matrix-multimedia-demo-aac      \
-     matrix-multimedia-demo-h264dec  \
-     matrix-multimedia-demo-mpeg4aacdec \
-     matrix-multimedia-demo-mpeg4dec \
-+                                    \
-+    matrix-gui-generic-pm           \
-+    matrix-gui-pm-demos-suspend     \
-+    matrix-gui-clocks               \
- "
- 
- MATRIX_APPS_append_omap-a15 = "     \
+Second, ltp-ddt is very machine specific as it exercises machine-specifici 
+peripherals, so I doubt it will run under qemu...
+
 -- 
-1.7.0.4
-
+Denys
 
