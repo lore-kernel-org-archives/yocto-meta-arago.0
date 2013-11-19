@@ -1,34 +1,27 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id EFBEA52A76
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 749DF5299D
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Nov 2013 20:19:28 +0000 (UTC)
+	Tue, 19 Nov 2013 22:12:21 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAJKJSHA031748
-	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 14:19:28 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAJMCKj1017362
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 16:12:20 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJKJS6D028519
-	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 14:19:28 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Tue, 19 Nov 2013 14:19:28 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 7/7] packagegroup-arago-tisdk-matrix: Add
-	additional example application for AM43x
-Thread-Index: AQHO5VFc+QnZEJLQSUex/2NDcsbtIZos/lbw
-Date: Tue, 19 Nov 2013 20:19:27 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159839E33@DLEE11.ent.ti.com>
-References: <1384887728-8628-1-git-send-email-fcooper@ti.com>
-	<1384887728-8628-7-git-send-email-fcooper@ti.com>
-In-Reply-To: <1384887728-8628-7-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJMCK2w010214
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2013 16:12:20 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 19 Nov 2013 16:12:19 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAJMCGHX003040;
+	Tue, 19 Nov 2013 16:12:18 -0600
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 19 Nov 2013 17:13:30 -0600
+Message-ID: <1384902810-23952-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Subject: Re: [PATCH 7/7] packagegroup-arago-tisdk-matrix: Add	additional example application for AM43x
+Subject: [PATCH] linaro-pm-qa-utils: include scripts and cpuidle binaries
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,71 +34,91 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 20:19:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Nov 2013 22:12:22 -0000
+Content-Type: text/plain
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+* Added support to build cpuidle binaries and install all of the
+  test scripts along with the binaries so that the scripts can
+  be removed from ltp-ddt
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
->Sent: Tuesday, November 19, 2013 1:02 PM
->To: meta-arago@arago-project.org
->Cc: Cooper Jr., Franklin
->Subject: [meta-arago] [PATCH 7/7] packagegroup-arago-tisdk-matrix:
->Add additional example application for AM43x
->
->* Add additional example applications for AM43x.
->
->Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
->---
-> .../packagegroup-arago-tisdk-matrix.bb             |    8
->+++++++-
-> 1 files changed, 7 insertions(+), 1 deletions(-)
->
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-
->arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-
->matrix.bb
->index 95054b2..c3143d3 100644
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-matrix.bb
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-matrix.bb
->@@ -1,6 +1,6 @@
-> DESCRIPTION =3D "Task to include Matrix v2"
-> LICENSE =3D "MIT"
->-PR =3D "r22"
->+PR =3D "r23"
->
-> inherit packagegroup
->
->@@ -72,10 +72,16 @@ MATRIX_APPS_append_ti33x =3D "        \
-> #    matrix-gui-wifi-direct-demo
->
-> MATRIX_APPS_append_ti43x =3D "        \
->+
->${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}',''
->,d)} \
->+                                    \
->     matrix-multimedia-demo-aac      \
->     matrix-multimedia-demo-h264dec  \
->     matrix-multimedia-demo-mpeg4aacdec \
->     matrix-multimedia-demo-mpeg4dec \
->+                                    \
->+    matrix-gui-generic-pm           \
->+    matrix-gui-pm-demos-suspend     \
->+    matrix-gui-clocks               \
-> "
->
-> MATRIX_APPS_append_omap-a15 =3D "     \
->--
->1.7.0.4
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+---
+ .../linaro-pm-qa/linaro-pm-qa-utils_git.bb         |   44 ++++++++++++++++----
+ 1 files changed, 36 insertions(+), 8 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb b/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb
+index 275b6e6..dcf599f 100644
+--- a/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb
++++ b/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb
+@@ -2,31 +2,59 @@ DESCRIPTION = "Utilities from Linaro for testing Power Management"
+ HOMEPAGE = "https://wiki.linaro.org/WorkingGroups/PowerManagement/Resources/TestSuite/PmQa"
+ 
+ LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://../COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+ PV = "0.4.4"
+-PR = "r0"
++PR = "r1"
+ 
+ BRANCH ?= "master"
+ SRCREV = "fbc2762359b863dfbf4fd0bab1e8abd2a6125ed4"
+ 
+ SRC_URI = "git://git.linaro.org/tools/pm-qa.git;protocol=git;branch=${BRANCH}"
+ 
+-S = "${WORKDIR}/git/utils"
+-
+-UTILS = "cpuburn cpucycle heat_cpu nanosleep"
++S = "${WORKDIR}/git"
+ 
+ CFLAGS += "-pthread"
+ 
+ do_compile () {
+-    oe_runmake
++    # Find all the .c files in this project and build them.  Save the names
++    # of these files so we know which to install in the installation step.
++    for x in `find . -name "*.c"`
++    do
++        util=`echo ${x} | sed s/.c$//`
++        oe_runmake ${util}
++    done
+ }
+ 
+ do_install () {
+     install -d ${D}${bindir}
++    install -d ${D}${bindir}/linaro-pm-qa-include
++
++    # Install the compiled binaries
++    for x in `find . -name "*.c"`
++    do
++        util=`echo ${x} | sed s/.c$//`
++        util_basename=`basename ${util}`
++        install -m 0755 ${util} ${D}${bindir}/${util_basename}
++    done
+ 
+-    for util in ${UTILS}
++    # Install the helper scripts in the include directory
++    for script in `find . -name "*.sh" | grep include`
+     do
+-        install -m 0755 $util ${D}${bindir}/
++        script_basename=`basename ${script}`
++        install -m 0755 $script ${D}${bindir}/linaro-pm-qa-include/${script_basename}
++    done
++
++    # Install the shell scripts NOT in the include directory since those
++    # will be installed elsewhere
++    for script in `find . -name "*.sh" | grep -v include`
++    do
++        # if the script includes any helper scripts from the include
++        # directory then change the include path to the absolute path
++        # and to reflect the install location of the helper scripts.
++        sed -i -e "s#source ../include#source ${bindir}/linaro-pm-qa-include#g" ${script}
++
++        script_basename=`basename ${script}`
++        install -m 0755 $script ${D}${bindir}/${script_basename}
+     done
+ }
+-- 
+1.7.0.4
+
 
