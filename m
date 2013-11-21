@@ -1,33 +1,33 @@
 Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D9342529CE
+	by arago-project.org (Postfix) with ESMTPS id 528EF5299D
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Nov 2013 14:37:16 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rALEbF1f019459
-	for <meta-arago@arago-project.org>; Thu, 21 Nov 2013 08:37:15 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rALEbFTs005615
-	for <meta-arago@arago-project.org>; Thu, 21 Nov 2013 08:37:15 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 21 Nov 2013 08:37:15 -0600
+	Thu, 21 Nov 2013 17:47:44 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rALHlhKj008926
+	for <meta-arago@arago-project.org>; Thu, 21 Nov 2013 11:47:43 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rALHlhQC004380
+	for <meta-arago@arago-project.org>; Thu, 21 Nov 2013 11:47:43 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 21 Nov 2013 11:47:43 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rALEbFxk000530;
-	Thu, 21 Nov 2013 08:37:15 -0600
-Date: Thu, 21 Nov 2013 09:37:14 -0500
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rALHlh5x028834;
+	Thu, 21 Nov 2013 11:47:43 -0600
+Date: Thu, 21 Nov 2013 12:47:42 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20131121143714.GM29952@edge>
-References: <1384887728-8628-1-git-send-email-fcooper@ti.com>
-	<1384887728-8628-7-git-send-email-fcooper@ti.com>
-	<20131121045508.GJ29952@edge>
-	<8F29D6B095ED194EA1980491A5E029710C5BB87B@DFLE08.ent.ti.com>
+Message-ID: <20131121174742.GQ29952@edge>
+References: <1384711613-29582-1-git-send-email-fcooper@ti.com>
+	<20131118183244.GH19813@edge>
+	<8F29D6B095ED194EA1980491A5E029710C5A7B41@DFLE08.ent.ti.com>
+	<20131118212014.GL19813@edge> <20131121044356.GH29952@edge>
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C5BB87B@DFLE08.ent.ti.com>
+In-Reply-To: <20131121044356.GH29952@edge>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 7/7] packagegroup-arago-tisdk-matrix: Add additional example application for AM43x
+Subject: Re: [PATCH] meta-toolchain-arago-qte: Fix location for host Qt tools
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,94 +40,106 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2013 14:37:18 -0000
+X-List-Received-Date: Thu, 21 Nov 2013 17:47:44 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Thu, Nov 21, 2013 at 07:46:41AM -0500, Cooper Jr., Franklin wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Wednesday, November 20, 2013 10:55 PM
-> > To: Cooper Jr., Franklin
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 7/7] packagegroup-arago-tisdk-matrix: Add
-> > additional example application for AM43x
+On Wed, Nov 20, 2013 at 11:43:56PM -0500, Denys Dmytriyenko wrote:
+> On Mon, Nov 18, 2013 at 04:20:14PM -0500, Denys Dmytriyenko wrote:
+> > On Mon, Nov 18, 2013 at 01:41:00PM -0500, Cooper Jr., Franklin wrote:
+> > > 
+> > > 
+> > > > -----Original Message-----
+> > > > From: Dmytriyenko, Denys
+> > > > Sent: Monday, November 18, 2013 12:33 PM
+> > > > To: Cooper Jr., Franklin
+> > > > Cc: meta-arago@arago-project.org
+> > > > Subject: Re: [meta-arago] [PATCH] meta-toolchain-arago-qte: Fix location for
+> > > > host Qt tools
+> > > > 
+> > > > On Sun, Nov 17, 2013 at 12:06:53PM -0600, Franklin S. Cooper Jr wrote:
+> > > > > * By default Qt5 is looking at cortexa8hf-vfp-neon-oe-linux-gnueabi/bin
+> > > > instead
+> > > > >   of the proper location i686-arago-linux/usr/bin/qt5.
+> > > > > * Update qmake.conf to insure qmake looks at the proper location for host
+> > > > >   binaries.
+> > > > 
+> > > > What is this needed for exactly? I hadn't had any issues using qmake and
+> > > > command-line build with the v3 of the patches. Is it specific to QtCreator?
 > > 
-> > On Tue, Nov 19, 2013 at 01:02:08PM -0600, Franklin S. Cooper Jr wrote:
-> > > * Add additional example applications for AM43x.
-> > >
-> > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > > ---
-> > >  .../packagegroup-arago-tisdk-matrix.bb             |    8 +++++++-
-> > >  1 files changed, 7 insertions(+), 1 deletions(-)
-> > >
-> > > diff --git
-> > > a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisd
-> > > k-matrix.bb
-> > > b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisd
-> > > k-matrix.bb
-> > > index 95054b2..c3143d3 100644
-> > > ---
-> > > a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisd
-> > > k-matrix.bb
-> > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> > > +++ tisdk-matrix.bb
-> > > @@ -1,6 +1,6 @@
-> > >  DESCRIPTION = "Task to include Matrix v2"
-> > >  LICENSE = "MIT"
-> > > -PR = "r22"
-> > > +PR = "r23"
-> > >
-> > >  inherit packagegroup
-> > >
-> > > @@ -72,10 +72,16 @@ MATRIX_APPS_append_ti33x = "        \
-> > >  #    matrix-gui-wifi-direct-demo
-> > >
-> > >  MATRIX_APPS_append_ti43x = "        \
-> > > +
-> > > +
-> > ${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}','',d
-> > > + )} \
+> > > [Franklin] Building via command line. Some reason qmake thinks moc is 
+> > > located at cortexa8hf-vfp-neon-oe-linux-gnueabi/bin which resulted in a file 
+> > > not found error. Im not sure when moc is needed but when I tried to build 
+> > > the thermostat demo from src I ran into this issue.
 > > 
-> > So, I just noticed, that in patch #3 of this series, you add SGX libgles
-> > unconditionally, but here you do check for the proper MACHINE_FEATURE...
-> > 
-> > Should it be one way or another? If you update patch #3 with conditional like
-> > here, the whole series can be pushed even prior to the new SGX in meta-ti...
-
-> [Franklin] The changes in patch three simply mimics what we have always been 
-> doing right or wrong for other devices. Since the entire recipe is specific 
-> to sgx we move the conditional check to the packagegroup/image that these 
-> recipes are included in. Packagegroup-arago-toolchain-tisdk-target includes 
-> packagegroup-arago-tisdk-graphics conditional based on MACHINE_FEATURE. 
-> Likewise tisdk-rootfs-image includes packagegroup-arago-tisdk-graphics 
-> conditional based on MACHINE_FEATURE.
+> > I'm looking into this now and playing with the idea of packaging qt.conf that 
+> > gets created during the nativesdk build. Although that one maybe an overkill. 
+> > If that doesn't work, I'll push an updated version of this patch...
 > 
-> As is it should still be fine but you still want it changed I can but I 
-> should make the change for all the machines as well.
+> Sorry, took me a bit longer due to some extra testing, but it appears I can't 
+> re-use the generated qt.conf in this Canadian cross-compilation when 3 archs 
+> are involved - config file for A->B cross is different from B->C. I just sent 
+> the updated patch that sets couple host variables in qt.conf inside SDK, that 
+> should cover most of other cases.
 
-Ah, good point. If the checks are made outside in higher-level packagegroups, 
-then it's fine with me and I'll try to push the patches after verifying that...
+Franklin,
+
+Have you been able to do any tests with the updated patch I sent last night? 
+If it works for you, I'd like to push it along with the initial Qt5 SDK 
+patches to meta-arago/master.
+
+-- 
+Denys
 
 
-> > >      matrix-multimedia-demo-aac      \
-> > >      matrix-multimedia-demo-h264dec  \
-> > >      matrix-multimedia-demo-mpeg4aacdec \
-> > >      matrix-multimedia-demo-mpeg4dec \
-> > > +                                    \
-> > > +    matrix-gui-generic-pm           \
-> > > +    matrix-gui-pm-demos-suspend     \
-> > > +    matrix-gui-clocks               \
-> > >  "
-> > >
-> > >  MATRIX_APPS_append_omap-a15 = "     \
-> > > --
-> > > 1.7.0.4
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > > > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > > > > ---
+> > > > >  .../recipes-core/meta/meta-toolchain-arago-qte.bb  |    8 +++++++-
+> > > > >  1 files changed, 7 insertions(+), 1 deletions(-)
+> > > > >
+> > > > > diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > > b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > > > index e3bf80f..6220578 100644
+> > > > > --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > > > +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+> > > > > @@ -5,7 +5,7 @@ TOOLCHAIN_SUFFIX ?= "-qte-sdk"
+> > > > >
+> > > > >  require meta-toolchain-arago.bb
+> > > > >
+> > > > > -PR = "r16"
+> > > > > +PR = "r17"
+> > > > >
+> > > > >  # There could be qt5, qt4e and qt4x11 providers, but we don't support
+> > > > qt4x11 for now
+> > > > >  QT_DIR_NAME = "${@base_conditional('QT_PROVIDER', 'qt5', 'qt5', 'qtopia',
+> > > > d)}"
+> > > > > @@ -46,6 +46,12 @@ toolchain_create_sdk_env_script_append() {
+> > > > >  	echo 'Libraries = $(OE_QMAKE_LIBDIR_QT)' >> $qt_conf
+> > > > >  	echo 'Headers = $(OE_QMAKE_INCDIR_QT)' >> $qt_conf
+> > > > >
+> > > > > +	if [ "${QT_PROVIDER}" = "qt5" ]
+> > > > > +	then
+> > > > > +		echo 'HostBinaries = ../${SDK_SYS}/usr/bin/qt5' >> $qt_conf
+> > > > > +	fi
+> > > > > +
+> > > > > +
+> > > > >  	# make a symbolic link to mkspecs for compatibility with Nokia's SDK
+> > > > >  	# and QTCreator
+> > > > >  	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf
+> > > > .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+> > > > > --
+> > > > > 1.7.0.4
+> > > > >
+> > > > > _______________________________________________
+> > > > > meta-arago mailing list
+> > > > > meta-arago@arago-project.org
+> > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
