@@ -1,27 +1,29 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B22D552A65
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 12DF852A6A
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Nov 2013 18:38:07 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rALIc6Pm020325
-	for <meta-arago@arago-project.org>; Thu, 21 Nov 2013 12:38:06 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rALIc6w9029303
-	for <meta-arago@arago-project.org>; Thu, 21 Nov 2013 12:38:06 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 21 Nov 2013 12:38:06 -0600
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rALIc3YC009044;
-	Thu, 21 Nov 2013 12:38:05 -0600
-From: Chase Maupin <Chase.Maupin@ti.com>
+	Fri, 22 Nov 2013 10:03:35 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAMA3YBs020911
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2013 04:03:34 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAMA3Yax016003
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2013 04:03:34 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 22 Nov 2013 04:03:33 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	rAMA3YUY018657	for <meta-arago@arago-project.org>;
+	Fri, 22 Nov 2013 04:03:34 -0600
+Date: Fri, 22 Nov 2013 04:52:24 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 21 Nov 2013 13:39:53 -0600
-Message-ID: <1385062793-17425-1-git-send-email-Chase.Maupin@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+Message-ID: <1517376348.975.1385113945278.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] gst-plugins-bad: fix gstfbdevsink to avoid segfault
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.10 build 2013-11-22_01-01-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,97 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2013 18:38:07 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 22 Nov 2013 10:03:37 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_974_776695602.1385113945158"
 
-* On OMAP devices with omapdss if the xres doesn't match the
-  physically allocated buffer size a segmentation fault will be
-  thrown.  this patch fixes the gstfbdevsink to handle this case
-  and properly compute the bytes per pixel value.
+------=_Part_974_776695602.1385113945158
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
----
- ...ink-fixing-calculation-of-bytes-per-pixel.patch |   52 ++++++++++++++++++++
- .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |    5 +-
- 2 files changed, 55 insertions(+), 2 deletions(-)
- create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-sys-fbdevsink-fixing-calculation-of-bytes-per-pixel.patch
+<html>
+<head>
+<title>
+Status for 11/22/13
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-sys-fbdevsink-fixing-calculation-of-bytes-per-pixel.patch b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-sys-fbdevsink-fixing-calculation-of-bytes-per-pixel.patch
-new file mode 100644
-index 0000000..0b417db
---- /dev/null
-+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-sys-fbdevsink-fixing-calculation-of-bytes-per-pixel.patch
-@@ -0,0 +1,52 @@
-+From 76fc77de1d38b6a41585898e16dc259bbfbb50d3 Mon Sep 17 00:00:00 2001
-+From: Darren Etheridge <detheridge@ti.com>
-+Date: Wed, 20 Nov 2013 15:23:51 -0600
-+Subject: [PATCH] sys/fbdevsink:  fixing calculation of bytes per pixel
-+
-+Original method will only work where there xres is identical to the
-+physically allocated buffer size.  On omapdss this is unlikely to be true
-+because of the way buffers are allocated out of a much larger buffer in
-+3 dimensions - meaning there often be a stride (or pitch) for each line.
-+Changing the method of figuring out the bytes per pixel to a method that
-+should work in all circumstances.
-+
-+Signed-off-by: Darren Etheridge <detheridge@ti.com>
-+---
-+ sys/fbdev/gstfbdevsink.c | 21 ++++++++++++++++++++-
-+ 1 file changed, 20 insertions(+), 1 deletion(-)
-+
-+diff --git a/sys/fbdev/gstfbdevsink.c b/sys/fbdev/gstfbdevsink.c
-+index 7878fbf..aacef5e 100644
-+--- a/sys/fbdev/gstfbdevsink.c
-++++ b/sys/fbdev/gstfbdevsink.c
-+@@ -213,7 +213,26 @@ gst_fbdevsink_setcaps (GstBaseSink * bsink, GstCaps * vscapslist)
-+   gst_structure_get_int (structure, "height", &fbdevsink->height);
-+ 
-+   /* calculate centering and scanlengths for the video */
-+-  fbdevsink->bytespp = fbdevsink->fixinfo.line_length / fbdevsink->varinfo.xres;
-++  switch(fbdevsink->varinfo.bits_per_pixel) {
-++    case 8:
-++      fbdevsink->bytespp = 1;
-++      break;
-++    case 15:
-++    case 16:
-++      fbdevsink->bytespp = 2;
-++      break;
-++    case 24:
-++      fbdevsink->bytespp = 3;
-++      break;
-++    case 32:
-++      fbdevsink->bytespp = 4;
-++      break;
-++    default:
-++      /* other bit depths are not supported */
-++      g_warning ("unsupported bit depth: %d\n",
-++          fbdevsink->varinfo.bits_per_pixel);
-++      return FALSE;
-++  }
-+ 
-+   fbdevsink->cx = ((int) fbdevsink->varinfo.xres - fbdevsink->width) / 2;
-+   if (fbdevsink->cx < 0)
-+-- 
-+1.8.3.2
-+
-diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-index 8cee785..f40fe85 100644
---- a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-+++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
-@@ -1,9 +1,10 @@
--PR_append = "-arago4"
-+PR_append = "-arago5"
- 
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch"
-+SRC_URI += "file://0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch \
-+            file://0001-sys-fbdevsink-fixing-calculation-of-bytes-per-pixel.patch"
- 
- PACKAGECONFIG = "bzip curl faad"
- 
--- 
-1.7.0.4
+<h2>Status for 11/22/13</h2>
+
+<h2>BUILD_ID: build-2013-11-22_01-02-52</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
+        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.10"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_974_776695602.1385113945158--
