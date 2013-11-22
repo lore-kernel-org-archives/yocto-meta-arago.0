@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4B413529BF
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 15DF252A0B
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Nov 2013 14:43:25 +0000 (UTC)
+	Fri, 22 Nov 2013 14:43:28 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAMEhO2b010276
-	for <meta-arago@arago-project.org>; Fri, 22 Nov 2013 08:43:24 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAMEhOh1002307
-	for <meta-arago@arago-project.org>; Fri, 22 Nov 2013 08:43:24 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 22 Nov 2013 08:43:24 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAMEhRTP013300
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2013 08:43:27 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAMEhRLT002342
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2013 08:43:27 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 22 Nov 2013 08:43:26 -0600
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAMEhFBL030461;
-	Fri, 22 Nov 2013 08:43:22 -0600
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAMEhFBM030461;
+	Fri, 22 Nov 2013 08:43:25 -0600
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 22 Nov 2013 09:45:18 -0600
-Message-ID: <1385135121-14345-3-git-send-email-fcooper@ti.com>
+Date: Fri, 22 Nov 2013 09:45:19 -0600
+Message-ID: <1385135121-14345-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1385135121-14345-1-git-send-email-fcooper@ti.com>
 References: <1385135121-14345-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/6] branding-core: Dont remove SGX from MACHINE_FEATURES
+Subject: [PATCH 4/6] Revert "packagegroup-arago-tisdk-amsdk.bb, mount-sdcard: Remove mount-sdcard"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +37,103 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Nov 2013 14:43:25 -0000
+X-List-Received-Date: Fri, 22 Nov 2013 14:43:28 -0000
 Content-Type: text/plain
 
-* A version of the Graphics SDK has been added that supports 3.12+ kernels.
-* No need to remove sgx from the list of MACHINE_FEATURES
+This reverts commit c304ad98cf74b9781cabeabcbceeec48fdcd27df.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+udev for some reason is still not running the udev rule that auto mounts the
+specific mmc partition.
 ---
- .../conf/distro/include/branding-core.inc          |    4 ----
- 1 files changed, 0 insertions(+), 4 deletions(-)
+ .../packagegroup-arago-tisdk-amsdk.bb              |    3 +-
+ .../recipes-tisdk/mount-sdcard/mount-sdcard.bb     |   30 ++++++++++++++++++++
+ .../recipes-tisdk/mount-sdcard/mount-sdcard/init   |   20 +++++++++++++
+ 3 files changed, 52 insertions(+), 1 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard.bb
+ create mode 100644 meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard/init
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index 3850434..b1ae89b 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -4,7 +4,3 @@
- # Please avoid creating multiple versions of the same brand, if possible
- # The policy is for the "Core" brand to be the default,
- # hence this file is mostly empty and used as a template
--
--# Temporarily disable "sgx" machine feature for ti33x SOC while building
--# latest 3.12 integration kernel, until Graphics SDK catches up
--MACHINE_FEATURES_ti33x := "${@d.getVar('MACHINE_FEATURES', True).replace('sgx', '')}"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb
+index c2eb72b..254caf8 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional packages only used in the Arago SDK"
+ LICENSE = "MIT"
+-PR = "r9"
++PR = "r10"
+ 
+ inherit packagegroup
+ 
+@@ -23,6 +23,7 @@ EXTRA_APPLICATIONS = "\
+ "
+ 
+ RDEPENDS_${PN} = "\
++    mount-sdcard \
+     ${OOBE} \
+     ${EXTRA_APPLICATIONS} \
+ "
+diff --git a/meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard.bb b/meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard.bb
+new file mode 100644
+index 0000000..29ff489
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard.bb
+@@ -0,0 +1,30 @@
++# This recipe is meant to be a temporary fix until we can figure out why
++# the SD card partitions are not automounted anymore.
++
++DESCRIPTION = "Script to mount SD card partitions when available"
++
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++
++# RDEPEND on udev since we re-use the mount.sh script
++RDEPENDS_${PN} += "udev"
++
++PACKAGE_ARCH = "all"
++
++inherit update-rc.d
++
++PR = "r0"
++
++SRC_URI = "file://init"
++
++INITSCRIPT_NAME = "mount-sdcard"
++
++# Mount it early enough that other scripts can find the partitions.
++INITSCRIPT_PARAMS = "defaults 90"
++
++do_install() {
++    install -d ${D}${sysconfdir}/init.d
++    install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/mount-sdcard
++}
++
++FILES_${PN} = "${sysconfdir} ${bindir}"
+diff --git a/meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard/init b/meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard/init
+new file mode 100644
+index 0000000..61200b5
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/mount-sdcard/mount-sdcard/init
+@@ -0,0 +1,20 @@
++#!/bin/sh
++
++devices="/dev/mmcblk0p1 /dev/mmcblk0p2 /dev/mmcblk0p3"
++
++case "$1" in
++    start )
++        for d in $devices
++        do
++            DEVNAME=$d ACTION=add /etc/udev/scripts/mount.sh > /dev/null 2>&1
++        done
++    ;;
++    stop )
++        for d in $devices
++        do
++            DEVNAME=$d ACTION=remove /etc/udev/scripts/mount.sh > /dev/null 2>&1
++        done
++    ;;
++esac
++
++exit 0;
 -- 
 1.7.0.4
 
