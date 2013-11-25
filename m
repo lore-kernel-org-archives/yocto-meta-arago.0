@@ -1,30 +1,31 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B9ED352AB9
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id C14E052A01
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Nov 2013 15:51:15 +0000 (UTC)
+	Mon, 25 Nov 2013 16:19:45 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAPFpFo0016588
-	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 09:51:15 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPFpFi2010249
-	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 09:51:15 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 25 Nov 2013 09:51:14 -0600
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPFouk3009147;
-	Mon, 25 Nov 2013 09:51:13 -0600
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 25 Nov 2013 10:54:02 -0600
-Message-ID: <1385398442-24668-7-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1385398442-24668-1-git-send-email-fcooper@ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAPGJib4027488
+	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 10:19:44 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPGJi0a000321
+	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 10:19:44 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 25 Nov 2013 10:19:44 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPGJiUs016723;
+	Mon, 25 Nov 2013 10:19:44 -0600
+Date: Mon, 25 Nov 2013 11:19:43 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20131125161943.GH690@edge>
 References: <1385398442-24668-1-git-send-email-fcooper@ti.com>
+	<1385398442-24668-2-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 7/7] images: Update images to reflect packagegroup renaming
+In-Reply-To: <1385398442-24668-2-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 2/7] packagegroup-arago-qt5: Create Qt5 target package group
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,41 +38,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 15:51:16 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 25 Nov 2013 16:19:46 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
- .../recipes-core/images/tisdk-rootfs-image.bb      |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+On Mon, Nov 25, 2013 at 10:53:57AM -0600, Franklin S. Cooper Jr wrote:
+> * Create package group that by default includes essential Qt 5 plugins.
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../packagegroups/packagegroup-arago-qt5.bb        |   33 ++++++++++++++++++++
+>  1 files changed, 33 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qt5.bb
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qt5.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qt5.bb
+> new file mode 100644
+> index 0000000..57d9a6c
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qt5.bb
+> @@ -0,0 +1,33 @@
+> +DESCRIPTION = "Task to add Qt 5 embedded related packages"
+> +LICENSE = "MIT"
+> +PR = "r0"
+> +
+> +inherit packagegroup
+> +
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +QT_SGX_SUPPORT = "\
+> +    qt3d \
+> +    qt3d-qmlplugins \
+> +"
+> +
+> +RDEPENDS_${PN} = "\
+> +    qtbase \
+> +    qtbase-plugins \
+> +    qtbase-fonts \
+> +    qtbase-fonts-pfa \
+> +    qtbase-fonts-pfb \
+> +    qtbase-fonts-qpf \
+> +    qtbase-fonts-ttf-dejavu \
+> +    qtbase-fonts-ttf-vera \
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 74c2b87..30e1da5 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -33,6 +33,6 @@ IMAGE_INSTALL = "\
-     packagegroup-arago-tisdk-crypto-sdk-host \
-     packagegroup-arago-tisdk-matrix-sdk-host \
-     packagegroup-arago-tisdk-multimedia-sdk-host \
--    packagegroup-arago-tisdk-qte-sdk-host \
-+    packagegroup-arago-tisdk-qt-sdk-host \
-     packagegroup-arago-tisdk-amsdk-sdk-host \
- "
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index 1bc6a36..2c3210f 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -5,7 +5,7 @@ require arago-base-tisdk-image.bb
- IMAGE_INSTALL += "\
-     packagegroup-arago-test \
-     ${@base_contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics','',d)} \
--    packagegroup-arago-tisdk-qte \
-+    packagegroup-arago-tisdk-qt \
-     packagegroup-arago-tisdk-addons \
-     packagegroup-arago-tisdk-connectivity \
-     packagegroup-arago-tisdk-crypto \
--- 
-1.7.0.4
+Please drop the specific fonts - qtbase-fonts pulls all the individual fonts 
+already.
 
+
+> +    qtwebkit-qmlplugins \
+> +    qtwebkit \
+> +    qtdeclarative \
+> +    qtdeclarative-qmlplugins \
+> +    qtjsbackend \
+> +    qtlocation \
+> +    qtsvg \
+> +    qtsvg-plugins \
+> +    ${@base_contains('MACHINE_FEATURES','sgx','${QT_SGX_SUPPORT}','',d)} \
+> +"
+> +
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
