@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A2A6852998
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id AD39252998
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Nov 2013 15:51:08 +0000 (UTC)
+	Mon, 25 Nov 2013 15:51:10 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAPFp7Gp010915
-	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 09:51:07 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPFp7Pt025985
-	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 09:51:07 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 25 Nov 2013 09:51:07 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAPFpAdp024128
+	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 09:51:10 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPFpAjU025994
+	for <meta-arago@arago-project.org>; Mon, 25 Nov 2013 09:51:10 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 25 Nov 2013 09:51:09 -0600
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPFouk0009147;
-	Mon, 25 Nov 2013 09:51:06 -0600
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPFouk1009147;
+	Mon, 25 Nov 2013 09:51:08 -0600
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 25 Nov 2013 10:53:59 -0600
-Message-ID: <1385398442-24668-4-git-send-email-fcooper@ti.com>
+Date: Mon, 25 Nov 2013 10:54:00 -0600
+Message-ID: <1385398442-24668-5-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1385398442-24668-1-git-send-email-fcooper@ti.com>
 References: <1385398442-24668-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 4/7] packagegroup-arago-tisdk-qt-sdk-host: Make packagegroup generic
+Subject: [PATCH 5/7] packagegroup-arago-qt5-toolchain-target: Only include qt3D when using SGX
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,69 +37,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 15:51:08 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 15:51:10 -0000
 Content-Type: text/plain
-
-* Update package group so that it applies to both Qt 4 and Qt 5.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../packagegroup-arago-tisdk-qt-sdk-host.bb        |   22 ++++++++++++++++++++
- .../packagegroup-arago-tisdk-qte-sdk-host.bb       |   16 --------------
- 2 files changed, 22 insertions(+), 16 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qt-sdk-host.bb
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
+ .../packagegroup-arago-qt5-toolchain-target.bb     |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qt-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qt-sdk-host.bb
-new file mode 100644
-index 0000000..936f463
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qt-sdk-host.bb
-@@ -0,0 +1,22 @@
-+DESCRIPTION = "Task to add Qt embedded related sources into the sdk"
-+LICENSE = "MIT"
-+PR = "r0"
-+
-+inherit packagegroup
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+QT4_DEMOS_SRC = "\
-+     ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'quick-playground-src', '', d)} \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb
+index 7e0d12c..28c7e3d 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb
+@@ -1,12 +1,16 @@
+ DESCRIPTION = "Target packages for Qt5 SDK"
+ LICENSE = "MIT"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ inherit packagegroup
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
++QT_SGX_SUPPORT = "\
++    qt3d-dev \
 +"
 +
-+QT5_DEMOS_SRC = ""
-+
-+QT_DEMOS = "\
-+    qt-tstat-src \
-+    ${@base_conditional('QT_PROVIDER', 'qt5', '${QT5_DEMOS_SRC}', '${QT4_DEMOS_SRC}', d)} \
-+"
-+
-+RDEPENDS_${PN} = "\
-+    ${QT_DEMOS} \
-+"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
-deleted file mode 100644
-index 4cb85fe..0000000
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
-+++ /dev/null
-@@ -1,16 +0,0 @@
--DESCRIPTION = "Task to add Qt embedded related sources into the sdk"
--LICENSE = "MIT"
--PR = "r3"
--
--inherit packagegroup
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--QT_DEMOS = "\
--    qt-tstat-src \
--    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'quick-playground-src', '', d)} \
--"
--
--RDEPENDS_${PN} = "\
--    ${QT_DEMOS} \
--"
+ RDEPENDS_${PN} += " \
+         packagegroup-arago-standalone-sdk-target \
+         libsqlite3-dev \
+@@ -24,7 +28,7 @@ RDEPENDS_${PN} += " \
+         qtdeclarative-dev \
+         qtscript-dev \
+         qtwebkit-dev \
+-        qt3d-dev \
++        ${@base_contains('MACHINE_FEATURES','sgx','qt3d-dev','',d)} \
+         qtlocation-dev \
+         qtsensors-dev \
+         qtsvg-dev \
 -- 
 1.7.0.4
 
