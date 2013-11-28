@@ -1,31 +1,38 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 868EF5296F
+Return-Path: <ebutera@gmail.com>
+Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
+	[209.85.219.41])
+	by arago-project.org (Postfix) with ESMTPS id 056B1529E3
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Nov 2013 16:55:28 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rARGtRp5023479;
-	Wed, 27 Nov 2013 10:55:27 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rARGtQS3007639;
-	Wed, 27 Nov 2013 10:55:26 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 27 Nov 2013 10:55:26 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rARGtQKA019004;
-	Wed, 27 Nov 2013 10:55:26 -0600
-Date: Wed, 27 Nov 2013 11:55:25 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Enrico <ebutera@users.berlios.de>
-Message-ID: <20131127165525.GC690@edge>
+	Thu, 28 Nov 2013 08:20:19 +0000 (UTC)
+Received: by mail-oa0-f41.google.com with SMTP id j17so8906659oag.28
+	for <meta-arago@arago-project.org>;
+	Thu, 28 Nov 2013 00:20:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=XqZl/8Aq+J73yghS1JCHYPqIsGqereUts5jgvmwgTNU=;
+	b=PjDlVcA3Y0vQnry7jQgIPfHPZ86f3o5obezvFEb9t3kBjqUGY+W2P59EvHFJQZXwFD
+	co5bezDJbMaSfcbwDz+tUCbXAD1Y1tc+KielGj9F3zSIPDDq1jDBMQXuCO3TugNaCU/v
+	OpVTAnBroN39EEMqlnb20S1jWINEv8oeF6kXvx4U6hZnogpvVAKVNDafOC3zo57kAlyb
+	ZYbl7G1HrXKQtyUEcWOJpnIT5wscQ25FMS9roTTpb/izC8lVQ3ET571CCgPW1nlHDPe4
+	RdlNdvz+PgvjNK7up47hYq9KHTsCqhwElsQEp3iQX88xhhavxt1qnJmEty6zdi51NIXw
+	BoYg==
+MIME-Version: 1.0
+X-Received: by 10.60.58.71 with SMTP id o7mr68604oeq.51.1385626819431; Thu, 28
+	Nov 2013 00:20:19 -0800 (PST)
+Sender: ebutera@gmail.com
+Received: by 10.182.85.97 with HTTP; Thu, 28 Nov 2013 00:20:19 -0800 (PST)
+In-Reply-To: <20131127165525.GC690@edge>
 References: <1383800614-31915-1-git-send-email-sam.nelson@ti.com>
 	<7D46E86EC0A8354091174257B2FED1015983FDC3@DLEE11.ent.ti.com>
 	<20131120152449.GC29952@edge>
 	<CA+2YH7s5kRhh6t-pBgk_2XjiMOp1Jf2XxKQwLKQa2qW6VcY9sg@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CA+2YH7s5kRhh6t-pBgk_2XjiMOp1Jf2XxKQwLKQa2qW6VcY9sg@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+	<20131127165525.GC690@edge>
+Date: Thu, 28 Nov 2013 09:20:19 +0100
+X-Google-Sender-Auth: JHsuucEx1V_4Tj-8O8Qds-rNDJU
+Message-ID: <CA+2YH7u1Ufu4RJRKdCeg66F=_5upz3U5QqgsJzsi0kxSvFHJPA@mail.gmail.com>
+From: Enrico <ebutera@users.berlios.de>
+To: Denys Dmytriyenko <denys@ti.com>
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH v2] cmem: Adding New recipe for cmem
 X-BeenThere: meta-arago@arago-project.org
@@ -40,55 +47,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Nov 2013 16:55:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 28 Nov 2013 08:20:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Nov 26, 2013 at 01:56:56PM +0100, Enrico wrote:
-> On Wed, Nov 20, 2013 at 4:24 PM, Denys Dmytriyenko <denys@ti.com> wrote:
-> > On Wed, Nov 20, 2013 at 01:11:18PM +0000, Maupin, Chase wrote:
-> >> Sam,
-> >>
-> >> Were you going to post an updated set of these patches to meta-ti so you can
-> >> align with Mrinmayee? I think your approach of splitting out the packages in
-> >> linux-utils is a good one and will be cleaner going forward.  Since both of
-> >> your groups share these packages aligning between the two would be helpful.
-> >>
-> >> As a side note I assume you have other recipes that depend on the cmem
-> >> libraries that your cmem recipe provides.  Can you post one of those or
-> >> share it with Mrinmayee as an example of how you are able to point to the
-> >> right staging location for the libraries and headers for cmem in other
-> >> recipes.  I'm hoping we can start getting rid of ti-paths.inc but I'd like
-> >> to see how you were working around this.
-> >>
-> >> Denys,
-> >>
-> >> Since ti-linuxutils has other modules in it for edma, sdma, and irq but
-> >> those are only for legacy devices can we just replace the whole
-> >> ti-linuxutils with the cmem package which seems to be the main package
-> >> needed?  Or do you want to see additional recipes for the sdma, edma, and
-> >> irq moduled?
-> >
-> > I'd like to see other parts of linuxutils modularized, but that can be done on
-> > as needed basis for any of the new platforms when they require those. We can
-> > keep the old linuxutils around for a little longer, but it can only be used on
-> > the old 35x and 37x plaftorms only and there are many other components (like
-> > SGX) removing support for those old platforms already...
-> 
-> Please keep the linuxutils recipe until it can be replaced with the
-> modularized ones, it's useful for 35x and 37x dsp (gstreamer_ti).
+On Wed, Nov 27, 2013 at 5:55 PM, Denys Dmytriyenko <denys@ti.com> wrote:
+> On Tue, Nov 26, 2013 at 01:56:56PM +0100, Enrico wrote:
+>> On Wed, Nov 20, 2013 at 4:24 PM, Denys Dmytriyenko <denys@ti.com> wrote:
+>> > I'd like to see other parts of linuxutils modularized, but that can be done on
+>> > as needed basis for any of the new platforms when they require those. We can
+>> > keep the old linuxutils around for a little longer, but it can only be used on
+>> > the old 35x and 37x plaftorms only and there are many other components (like
+>> > SGX) removing support for those old platforms already...
+>>
+>> Please keep the linuxutils recipe until it can be replaced with the
+>> modularized ones, it's useful for 35x and 37x dsp (gstreamer_ti).
+>
+> Enrico,
+>
+> Thanks, I'll keep it around for now.
+>
+> Can you please clarify which kernel you use for 35x and 37x platforms? And
+> whether you use the latest versions of other components?
 
-Enrico,
+In production i'm using mainline kernel 3.2 with some custom patches
+(not related to dsp components, see my github at [1]), with unmodified
+components from meta-ti (i'm not using meta-arago).
 
-Thanks, I'll keep it around for now.
+I'm testing now with kernel 3.12, unmodified components from meta-ti,
+gcc 4.8.something (angstrom 2013.12), the components need some
+patching but it was really easy to fix them. I don't remember right
+now what were the components i needed to fix but i'm sure about cmem
+and dsplink.
 
-Can you please clarify which kernel you use for 35x and 37x platforms? And 
-whether you use the latest versions of other components?
+Right now the most important feature i'm missing is devicetree
+bindings for omap3isp.
 
-The problem with keeping old components around is that they quickly lose 
-compatibility with kernel, toolchain, udev etc. that we use these days and it 
-doesn't make much sense to carry them indefinitely w/o updating or replacing.
+> The problem with keeping old components around is that they quickly lose
+> compatibility with kernel, toolchain, udev etc. that we use these days and it
+> doesn't make much sense to carry them indefinitely w/o updating or replacing.
 
--- 
-Denys
+I think there are still many users of the omap dsp stuff. I understand
+that TI doesn't want to put resources on "old" platforms (even if they
+are still in production and not declared obsolete) but do you think it
+could be possible to have some help when those kind of problems
+happen?
+For example if i have a problem with dsplink and i'm not able to fix
+it, asking for help in meta-ti will be useful? (i'm speaking about
+someone in a TI dev team that already knows the code).
+
+Enrico
+
+[1]: https://github.com/ebutera/meta-igep/blob/master/recipes-kernel/linux/linux_3.2.bb
 
