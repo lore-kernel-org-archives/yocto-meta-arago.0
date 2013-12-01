@@ -1,29 +1,34 @@
-Return-Path: <mrinmayee@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 755FD52986
+Return-Path: <eyalreizer@gmail.com>
+Received: from mail-bk0-f53.google.com (mail-bk0-f53.google.com
+	[209.85.214.53])
+	by arago-project.org (Postfix) with ESMTPS id 4C09D529CE
 	for <meta-arago@arago-project.org>;
-	Sun,  1 Dec 2013 09:39:48 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB19dkp5030042
-	for <meta-arago@arago-project.org>; Sun, 1 Dec 2013 03:39:47 -0600
-Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB19diZU017655
-	for <meta-arago@arago-project.org>; Sun, 1 Dec 2013 15:09:45 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.02.0342.003; Sun, 1 Dec 2013 17:39:43 +0800
-From: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: Header files missing in the image
-Thread-Index: Ac7ueTAtnsgVZOSOQceiUoBlZpPTYA==
-Date: Sun, 1 Dec 2013 09:39:43 +0000
-Message-ID: <CF956B779D819D41BBC043B7082161D546DDE1@DBDE04.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
-MIME-Version: 1.0
-Subject: Header files missing in the image
+	Sun,  1 Dec 2013 12:45:56 +0000 (UTC)
+Received: by mail-bk0-f53.google.com with SMTP id na10so4859889bkb.26
+	for <meta-arago@arago-project.org>;
+	Sun, 01 Dec 2013 04:45:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=7uO/99iU/p6DMiGqxS6Y6SSqMmpXHcMZ2H9g+GClskg=;
+	b=rot670Firl722KIAWpsDeUd8vdaNNIuWHgEE6qGtZTQiPbWU+aSBc7j2hAsD6W/D7e
+	OZ20TOfPghcsS6+/olz5aKCKkK4+z0XIp7IVG94OWs9kWRcr4qEfniyMUfHvzz2AU6wM
+	a3ARXlyQlPen610pa/Svyp2IQ589U3kwcbB4GXPIEmFMVAZzacCdCkjkt8F1cOda7eOF
+	ZE7+SaAJlXi35K8cw4Wr+rhrQ1s/FUE8kMFNO9RxK8YqTO2CA0/X3pn2JOiaD39hxBL+
+	LN6jg1KXzRiLt/3qro8VwCqp8WKpY+LoVNpgQ4R1IAQ2+PyT0liRnpcK141Q5Dp27FbD
+	jrsA==
+X-Received: by 10.204.242.68 with SMTP id lh4mr43885421bkb.19.1385901954930;
+	Sun, 01 Dec 2013 04:45:54 -0800 (PST)
+Received: from localhost.localdomain (46-116-178-164.bb.netvision.net.il.
+	[46.116.178.164]) by mx.google.com with ESMTPSA id
+	no2sm70831578bkb.15.2013.12.01.04.45.52 for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sun, 01 Dec 2013 04:45:53 -0800 (PST)
+From: Eyal Reizer <eyalreizer@gmail.com>
+To: meta-arago@arago-project.org
+Date: Sun,  1 Dec 2013 14:45:45 +0200
+Message-Id: <1385901947-10316-1-git-send-email-eyalr@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 1/2] ti-compat-wireless-wl18xx: build from ol_r8.a8.08
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,96 +41,98 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Dec 2013 09:39:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CF956B779D819D41BBC043B7082161D546DDE1DBDE04entticom_"
+X-List-Received-Date: Sun, 01 Dec 2013 12:45:56 -0000
 
---_000_CF956B779D819D41BBC043B7082161D546DDE1DBDE04entticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Add a new recipe fetching the Wilink8 drivers from TI-Openlink
+based on release ol_r8.a8.08.
+This recipe is used for building with kernels older then the
+3.12 kernel where the drivers are now in-tree.
+For 3.12 and newer, this recipe is not needed.
 
-Hi all,
+Signed-off-by: Eyal Reizer <eyalr@ti.com>
+---
+ .../ti-compat-wireless-wl18xx_r8.a8.08.bb          |   71 ++++++++++++++++++++
+ 1 files changed, 71 insertions(+), 0 deletions(-)
+ create mode 100755 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb
 
-I have faced a strange issue during one of the builds. The generated GLSDK =
-image has an empty /usr/include ie no .h files at all.
-Is this due to any misconfiguration from my side?
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb
+new file mode 100755
+index 0000000..9baf628
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb
+@@ -0,0 +1,71 @@
++# This is a TI specific version of the compat-wireless recipe using a
++# compat-wireless package created from the TI Systems Tested mac80211 releases.
++
++DESCRIPTION = "ti compat-wireless drivers for wl18xx"
++HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
++SECTION = "kernel/modules"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
++
++RDEPENDS_${PN} = "wireless-tools"
++
++PROVIDES += "ti-compat-wireless-wl12xx"
++RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
++RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
++RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
++
++COMPATIBLE_MACHINE = "(omap-a15)"
++
++PV = "r8.a8.08"
++inherit module
++
++PR = "${MACHINE_KERNEL_PR}"
++PR_append = "a"
++
++# Tags: ol_r8.a8.08
++SRCREV_wl18xx = "eaa1820c02dc076e6ad9254e9cb7a3bb0c17471b"
++SRCREV_compat = "5d80865281795f962e1400a95202bbd07dd763c0"
++SRCREV_compat-wireless = "23a0d62ea1a57327709a77f08d6265ec807a909f"
++
++SRCREV_FORMAT = "compat-wireless"
++
++S = "${WORKDIR}/compat-wireless"
++
++SRC_URI = "git://github.com/TI-OpenLink/compat-wireless.git;destsuffix=compat-wireless;name=compat-wireless \
++           git://github.com/TI-OpenLink/compat.git;destsuffix=compat;name=compat \
++           git://github.com/TI-OpenLink/wl18xx.git;destsuffix=wl18xx;name=wl18xx \
++"
++
++EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
++
++# Prevent sourceipk clear_git function from running.
++# This preserves the git repo until driver-select is ran.
++
++clear_git() {
++    :
++}
++
++do_configure() {
++    cd ${S}
++    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh network
++    ./scripts/driver-select wl18xx
++
++    # Delete the .git repository since it should no longer be needed.
++    #rm -rf ${S}/.git ${S}/.gitignore
++
++    # Now generate the sourceipk with the properly configured sources
++    sourceipk_do_create_srcipk
++}
++
++do_configure_append() {
++    sed -i "s#@./scripts/update-initramfs## " Makefile
++}
++
++do_install() {
++    # Remove hardcoded references to host depmod
++    sed -i "s#@/sbin/depmod -a## " Makefile
++    sed -i "s#@/sbin/depmod -ae## " Makefile
++
++    # Install modules
++    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
++}
+-- 
+1.7.0.4
 
-Appreciate any help on this.
 
-Thanks and Regards,
-Mrinmayee
-
-
---_000_CF956B779D819D41BBC043B7082161D546DDE1DBDE04entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have faced a strange issue during one of the build=
-s. The generated GLSDK image has an empty /usr/include ie no .h files at al=
-l.<o:p></o:p></p>
-<p class=3D"MsoNormal">Is this due to any misconfiguration from my side?<o:=
-p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Appreciate any help on this.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks and Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Mrinmayee<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_CF956B779D819D41BBC043B7082161D546DDE1DBDE04entticom_--
