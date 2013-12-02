@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B71EB5299E
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 27A695299E
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Dec 2013 15:04:35 +0000 (UTC)
+	Mon,  2 Dec 2013 15:07:30 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB2F4Z2j002286
-	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:04:35 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB2F4Zcm031248
-	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:04:35 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB2F7TXY008874
+	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:07:29 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB2F7Tw5000683
+	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:07:29 -0600
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Mon, 2 Dec 2013 09:04:34 -0600
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Mon, 2 Dec 2013 09:07:29 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Machani, Yaniv" <yanivma@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 12/14] arago-tisdk-connectivity: Restored
-	connectivity modules compilation
-Thread-Index: AQHO72harDYphIu+LU+D0fqbfutghZpBAJLg
-Date: Mon, 2 Dec 2013 15:04:33 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C5C9F05@DFLE08.ent.ti.com>
-References: <1385993347-3223-1-git-send-email-yanivma@ti.com>
-In-Reply-To: <1385993347-3223-1-git-send-email-yanivma@ti.com>
+Thread-Topic: [meta-arago] [PATCH 11/14 v2] arago-prefs: update default
+	value for	am335x and am43x for WILINK-8
+Thread-Index: AQHO72hQ2nbhflnd+U6yt0NZe6EgkZpBAPjg
+Date: Mon, 2 Dec 2013 15:07:28 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C5C9F19@DFLE08.ent.ti.com>
+References: <1385993331-3176-1-git-send-email-yanivma@ti.com>
+In-Reply-To: <1385993331-3176-1-git-send-email-yanivma@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 12/14] arago-tisdk-connectivity: Restored	connectivity modules compilation
+Subject: Re: [PATCH 11/14 v2] arago-prefs: update default value for	am335x and am43x for WILINK-8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,84 +40,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Dec 2013 15:04:36 -0000
+X-List-Received-Date: Mon, 02 Dec 2013 15:07:30 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-You addressed all my comments thanks.
-Although like my other comment please mention what the differences are betw=
-een versions of a patch.
-
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
+Like in the previous patches please mention what the differences are betwee=
+n versions of a patch.
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Machani, Yaniv
 > Sent: Monday, December 02, 2013 8:09 AM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH 12/14] arago-tisdk-connectivity: Restored
-> connectivity modules compilation
+> Subject: [meta-arago] [PATCH 11/14 v2] arago-prefs: update default value =
+for
+> am335x and am43x for WILINK-8
 >=20
 > From: Yaniv Machani <yanivma@ti.com>
 >=20
-> - Modules compatibility issues with libnl were fixed.
+> - Also change the default supported WILINK version
 >=20
 > Signed-off-by: Yaniv Machani <yanivma@ti.com>
 > ---
->  .../packagegroup-arago-tisdk-connectivity.bb       |   16 ++++++--------=
---
->  1 files changed, 6 insertions(+), 10 deletions(-)
+>  .../conf/distro/include/arago-prefs.inc            |    5 ++++-
+>  1 files changed, 4 insertions(+), 1 deletions(-)
 >=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> index 0aa019d..c159b9d 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> tisdk-connectivity.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
-> +++ sdk-connectivity.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION =3D "Task to install wlan and bluetooth packages into the ta=
-rget FS"
->  LICENSE =3D "MIT"
-> -PR =3D "r17"
-> +PR =3D "r18"
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta=
+-
+> arago-distro/conf/distro/include/arago-prefs.inc
+> index 24f3785..616885e 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -92,7 +92,10 @@ PREFERRED_VERSION_bluez-hcidump =3D "2.2"
+>  PREFERRED_VERSION_bash =3D "3.2.48"
+>  PREFERRED_VERSION_gettext =3D "0.16.1"
 >=20
->  inherit packagegroup
->=20
-> @@ -23,14 +23,11 @@ WLAN_COMMON =3D "\
->      pulseaudio-module-bluetooth-device \
->      eventdump \
->      ${@base_contains('WILINK_VERSION','WILINK-8','wlconf','',d)} \
-> +    wpa-supplicant \
-> +    crda \
-> +    hostap-daemon \
-> +    ti-wifi-utils \
->  "
-> -
-> -# TI/ECS versions of wpa-supplicant/crda/hostap/wifi-utils require older=
- libnl, -
-> # which no longer exists
-> -#    wpa-supplicant
-> -#    crda
-> -#    hostap-daemon
-> -#    ti-wifi-utils
->  # No bluetooth/bluetooth.h
->  #    oppserver
->=20
-> @@ -42,8 +39,7 @@ WLAN_COMMON =3D "\
->  #    ti-compat-bluetooth
->=20
->  FIRMWARE_AND_DRIVERS =3D "\
-> -    bt-firmware \
-> -    bt-enable \
-> +    "${@base_contains('WILINK_VERSION','WILINK-6',' oppserver bt-firmwar=
-e
-> bt-enable' , '',d)}"
->      wl12xx-firmware \
->  "
->=20
+> -WILINK_VERSION =3D "WILINK-6"
+> +WILINK_VERSION =3D "WILINK-8"
+[Franklin] Don't bother changing this. The point of those SOC specific over=
+rides below is to allow other platforms to stick with wilink 6  (am18 and a=
+m37) and only use wilink 8 for platforms that need it. Right now your forci=
+ng all platforms to use wilink 8 with the above statement.
+
+> +# For AM335x & AM43x Wilink 8 is now the default version to be used
+> +WILINK_VERSION_ti33x =3D "WILINK-8"
+> +WILINK_VERSION_ti43x =3D "WILINK-8"
+>  PREFERRED_PROVIDER_wl12xx-firmware =3D
+> "${@base_contains('WILINK_VERSION','WILINK-8','wl18xx-firmware','wl12xx-
+> firmware',d)}"
+>  PREFERRED_PROVIDER_ti-compat-wireless-wl12xx =3D
+> "${@base_contains('WILINK_VERSION','WILINK-8','ti-compat-wireless-
+> wl18xx','ti-compat-wireless-wl12xx',d)}"
+>  PREFERRED_PROVIDER_hostap-daemon =3D
+> "${@base_contains('WILINK_VERSION','WILINK-8','hostap-daemon-
+> wl18xx','hostap-daemon',d)}"
 > --
 > 1.7.9
 >=20
