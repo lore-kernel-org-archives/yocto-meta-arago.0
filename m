@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E48645299E
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id B71EB5299E
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Dec 2013 15:02:20 +0000 (UTC)
+	Mon,  2 Dec 2013 15:04:35 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB2F2KMS011722
-	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:02:20 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB2F2KNU029825
-	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:02:20 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB2F4Z2j002286
+	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:04:35 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB2F4Zcm031248
+	for <meta-arago@arago-project.org>; Mon, 2 Dec 2013 09:04:35 -0600
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.02.0342.003; Mon, 2 Dec 2013 09:02:20 -0600
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Mon, 2 Dec 2013 09:04:34 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Machani, Yaniv" <yanivma@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 09/14 v2] wl18xx-firmware: update recipe
-	to	ol_r8.a8.08 version.
-Thread-Index: AQHO72hIswakrsXUzECDjc9xpfJtVJpA/93A
-Date: Mon, 2 Dec 2013 15:02:19 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C5C9EF4@DFLE08.ent.ti.com>
-References: <1385993312-3132-1-git-send-email-yanivma@ti.com>
-In-Reply-To: <1385993312-3132-1-git-send-email-yanivma@ti.com>
+Thread-Topic: [meta-arago] [PATCH 12/14] arago-tisdk-connectivity: Restored
+	connectivity modules compilation
+Thread-Index: AQHO72harDYphIu+LU+D0fqbfutghZpBAJLg
+Date: Mon, 2 Dec 2013 15:04:33 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C5C9F05@DFLE08.ent.ti.com>
+References: <1385993347-3223-1-git-send-email-yanivma@ti.com>
+In-Reply-To: <1385993347-3223-1-git-send-email-yanivma@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 09/14 v2] wl18xx-firmware: update recipe to	ol_r8.a8.08 version.
+Subject: Re: [PATCH 12/14] arago-tisdk-connectivity: Restored	connectivity modules compilation
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,71 +40,84 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Dec 2013 15:02:21 -0000
+X-List-Received-Date: Mon, 02 Dec 2013 15:04:36 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
-
+You addressed all my comments thanks.
 Although like my other comment please mention what the differences are betw=
 een versions of a patch.
 
-In this patch it looks like your simply changing the commit id for version =
-ol_r8.a8.08
-
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Machani, Yaniv
 > Sent: Monday, December 02, 2013 8:09 AM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH 09/14 v2] wl18xx-firmware: update recipe to
-> ol_r8.a8.08 version.
+> Subject: [meta-arago] [PATCH 12/14] arago-tisdk-connectivity: Restored
+> connectivity modules compilation
 >=20
 > From: Yaniv Machani <yanivma@ti.com>
 >=20
+> - Modules compatibility issues with libnl were fixed.
+>=20
 > Signed-off-by: Yaniv Machani <yanivma@ti.com>
 > ---
->  ...are_r8.a6.01.bb =3D> wl18xx-firmware_r8.a8.08.bb} |    6 +++---
->  1 files changed, 3 insertions(+), 3 deletions(-)  copy meta-arago-extras=
-/recipes-
-> bsp/wl18xx-firmware/{wl18xx-firmware_r8.a6.01.bb =3D> wl18xx-
-> firmware_r8.a8.08.bb} (86%)
+>  .../packagegroup-arago-tisdk-connectivity.bb       |   16 ++++++--------=
+--
+>  1 files changed, 6 insertions(+), 10 deletions(-)
 >=20
-> diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
-> firmware_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/wl18xx-
-> firmware/wl18xx-firmware_r8.a8.08.bb
-> similarity index 86%
-> copy from meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
-> firmware_r8.a6.01.bb
-> copy to meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
-> firmware_r8.a8.08.bb
-> index 4b3f22a..6f9c8cb 100644
-> --- a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
-> firmware_r8.a6.01.bb
-> +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a
-> +++ 8.08.bb
-> @@ -4,15 +4,15 @@ LIC_FILES_CHKSUM =3D
-> "file://LICENCE;md5=3Db28122fd6678e89fd3a8d4bc80922969"
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-
+> core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> index 0aa019d..c159b9d 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> tisdk-connectivity.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
+> +++ sdk-connectivity.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION =3D "Task to install wlan and bluetooth packages into the ta=
+rget FS"
+>  LICENSE =3D "MIT"
+> -PR =3D "r17"
+> +PR =3D "r18"
 >=20
->  PACKAGE_ARCH =3D "all"
+>  inherit packagegroup
 >=20
-> -PR =3D "r2+gitr${SRCPV}"
-> +PR =3D "r0+gitr${SRCPV}"
+> @@ -23,14 +23,11 @@ WLAN_COMMON =3D "\
+>      pulseaudio-module-bluetooth-device \
+>      eventdump \
+>      ${@base_contains('WILINK_VERSION','WILINK-8','wlconf','',d)} \
+> +    wpa-supplicant \
+> +    crda \
+> +    hostap-daemon \
+> +    ti-wifi-utils \
+>  "
+> -
+> -# TI/ECS versions of wpa-supplicant/crda/hostap/wifi-utils require older=
+ libnl, -
+> # which no longer exists
+> -#    wpa-supplicant
+> -#    crda
+> -#    hostap-daemon
+> -#    ti-wifi-utils
+>  # No bluetooth/bluetooth.h
+>  #    oppserver
 >=20
->  PROVIDES +=3D "wl12xx-firmware"
->  RPROVIDES_${PN} +=3D "wl12xx-firmware"
->  RREPLACES_${PN} +=3D "wl12xx-firmware"
->  RCONFLICTS_${PN} +=3D "wl12xx-firmware"
+> @@ -42,8 +39,7 @@ WLAN_COMMON =3D "\
+>  #    ti-compat-bluetooth
 >=20
-> -# Tag: ol_r8.a6.01
-> -SRCREV =3D "1c0f45f0e8aec0823175f7ac977908888c424aa1"
-> +# Tag: ol_r8.a8.08
-> +SRCREV =3D "8e7f455e726f2bf92c568286a5cca510d7718dc1"
->  SRC_URI =3D "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=3Dgit \
->             file://Makefile \
->            "
+>  FIRMWARE_AND_DRIVERS =3D "\
+> -    bt-firmware \
+> -    bt-enable \
+> +    "${@base_contains('WILINK_VERSION','WILINK-6',' oppserver bt-firmwar=
+e
+> bt-enable' , '',d)}"
+>      wl12xx-firmware \
+>  "
+>=20
 > --
 > 1.7.9
 >=20
