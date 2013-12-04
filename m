@@ -1,27 +1,29 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 37C4252A81
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id C167D52A81
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Dec 2013 21:31:18 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB4LVH5g032188
-	for <meta-arago@arago-project.org>; Wed, 4 Dec 2013 15:31:17 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB4LVHKu006056
-	for <meta-arago@arago-project.org>; Wed, 4 Dec 2013 15:31:17 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 4 Dec 2013 15:31:17 -0600
+	Wed,  4 Dec 2013 21:31:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB4LVKbR008883
+	for <meta-arago@arago-project.org>; Wed, 4 Dec 2013 15:31:20 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB4LVKF7013408
+	for <meta-arago@arago-project.org>; Wed, 4 Dec 2013 15:31:20 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 4 Dec 2013 15:31:19 -0600
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB4LVE0f007220;
-	Wed, 4 Dec 2013 15:31:15 -0600
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB4LVE0g007220;
+	Wed, 4 Dec 2013 15:31:18 -0600
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 4 Dec 2013 16:37:21 -0600
-Message-ID: <1386196643-11077-1-git-send-email-Chase.Maupin@ti.com>
+Date: Wed, 4 Dec 2013 16:37:22 -0600
+Message-ID: <1386196643-11077-2-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <1386196643-11077-1-git-send-email-Chase.Maupin@ti.com>
+References: <1386196643-11077-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/3] matrix-gui-tscal: Add init package to run ts_calibrate
+Subject: [PATCH 2/3] package-group-tisdk-matrix: add matrix-gui-tscal
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,101 +36,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Dec 2013 21:31:18 -0000
+X-List-Received-Date: Wed, 04 Dec 2013 21:31:21 -0000
 Content-Type: text/plain
 
-* Add a package that will run ts_calibrate if needed.  This
-  will allow separating this logic from the matrix init script
-  since it is not always needed.
+* Add the matrix-gui-tscal package for everything except dra7xx
+  which does not require calibration for its touchscreen.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-tscal/init      |   43 ++++++++++++++++++++
- .../recipes-core/matrix/matrix-gui-tscal_1.0.bb    |   25 +++++++++++
- 2 files changed, 68 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-tscal/init
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-tscal_1.0.bb
+ .../packagegroup-arago-tisdk-matrix.bb             |    9 ++++++++-
+ 1 files changed, 8 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-tscal/init b/meta-arago-extras/recipes-core/matrix/matrix-gui-tscal/init
-new file mode 100644
-index 0000000..e8d9197
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-tscal/init
-@@ -0,0 +1,43 @@
-+#!/bin/sh
-+# Copyright (C) {2013} Texas Instruments Incorporated - http://www.ti.com/
-+#
-+# This program is free software; you can redistribute it and/or
-+# modify it under the terms of the GNU General Public License as
-+# published by the Free Software Foundation version 2.
-+#
-+# This program is distributed "as is" WITHOUT ANY WARRANTY of any
-+# kind, whether express or implied; without even the implied warranty
-+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+# GNU General Public License for more details.
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index c3143d3..f6d2495 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r23"
++PR = "r24"
+ 
+ inherit packagegroup
+ 
+@@ -49,6 +49,7 @@ MATRIX_APPS_append_omap3 = "        \
+     matrix-multimedia-demo-h264dec      \
+     matrix-multimedia-demo-mpeg4aacdec   \
+     matrix-multimedia-demo-mpeg4dec     \
++    matrix-gui-tscal \
+ "
+ 
+ MATRIX_APPS_append_ti33x = "        \
+@@ -66,6 +67,7 @@ MATRIX_APPS_append_ti33x = "        \
+                                     \
+     matrix-gui-wifi-demos           \
+     matrix-gui-bluetooth-demos      \
++    matrix-gui-tscal \
+ "
+ 
+ #    matrix-gui-wifi-battleship-demo
+@@ -82,6 +84,11 @@ MATRIX_APPS_append_ti43x = "        \
+     matrix-gui-generic-pm           \
+     matrix-gui-pm-demos-suspend     \
+     matrix-gui-clocks               \
++    matrix-gui-tscal \
++"
 +
-+tsfile=/etc/pointercal
-+
-+# Check if the SD card is mounted and the first partition is
-+# vfat.  If so let's write the pointercal file there so that if
-+# someone messes up calibration they can just delete the file from
-+# any system and reboot the board.
-+
-+#TODO how can we find the SD card and not eMMC?  can we look for a "boot"
-+# LABEL?
-+mount | grep /media/mmcblk0p1 | grep vfat > /dev/null 2>&1
-+if [ "$?" = "0" ]
-+then
-+    tsfile=/media/mmcblk0p1/pointercal
-+    export TSLIB_CALIBFILE=$tsfile
-+fi
-+
-+if [ ! -f $tsfile ] ; then
-+    echo -n "Calibrating touchscreen (first time only)"
-+    ts_calibrate
-+    echo "."
-+
-+    # If we create a pointercal file and it was not in /etc/pointercal
-+    # let's copy it there as well if it does not already exist.  This is so
-+    # that running other applications that look for /etc/pointercal and
-+    # without TSLIB_CALIBFILE set will still get the right calibration.
-+    # TODO: can we just globally export TSLIB_CALIBFILE?
-+    if [ ! -f /etc/pointercal -a -f $tsfile ]
-+    then
-+        cp $tsfile /etc/pointercal
-+    fi
-+fi
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-tscal_1.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-tscal_1.0.bb
-new file mode 100644
-index 0000000..9156a6a
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-tscal_1.0.bb
-@@ -0,0 +1,25 @@
-+DESCRIPTION = "Matrix GUI TS calibration init script"
-+
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://init;beginline=2;endline=11;md5=4b2e3b15f01cf63d2cb7988afdcc6c60"
-+
-+PR = "r0"
-+
-+S = "${WORKDIR}"
-+
-+INITSCRIPT_NAME = "matrix-gui-tscal"
-+# Start this init script before the matrix gui launches
-+INITSCRIPT_PARAMS = "start 96 2 3 4 5 ."
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit update-rc.d
-+
-+SRC_URI = "file://init"
-+
-+do_install(){
-+	# Install the init script
-+	# TODO: replace init script with systemd files
-+	install -d ${D}${sysconfdir}/init.d
-+	install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/matrix-gui-tscal
-+}
++MATRIX_APPS_append_omap5-evm = "     \
++    matrix-gui-tscal \
+ "
+ 
+ MATRIX_APPS_append_omap-a15 = "     \
 -- 
 1.7.0.4
 
