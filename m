@@ -1,29 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id E6F3B5298A
+Return-Path: <eyalreizer@gmail.com>
+Received: from mail-ea0-f181.google.com (mail-ea0-f181.google.com
+	[209.85.215.181])
+	by arago-project.org (Postfix) with ESMTPS id 5E92752A78
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Dec 2013 07:58:22 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rB97wMDK009888
-	for <meta-arago@arago-project.org>; Mon, 9 Dec 2013 01:58:22 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rB97wMZh017317
-	for <meta-arago@arago-project.org>; Mon, 9 Dec 2013 01:58:22 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 9 Dec 2013 01:58:21 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	rB97wLMx004400	for <meta-arago@arago-project.org>;
-	Mon, 9 Dec 2013 01:58:22 -0600
-Date: Mon, 9 Dec 2013 02:46:46 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1460049554.1051.1386575206819.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.10 build 2013-12-09_01-01-44
+	Mon,  9 Dec 2013 13:26:43 +0000 (UTC)
+Received: by mail-ea0-f181.google.com with SMTP id m10so1574076eaj.40
+	for <meta-arago@arago-project.org>;
+	Mon, 09 Dec 2013 05:26:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=I7i/nKl/ULKPKXFuh7CkbN1MJLPyS1S4UtBB88GIWok=;
+	b=hqkH9tY5fTU4yUFnJWIyMfDTpU4r2BvfbnuaKM75vE+PvGwkf7nVtNtKejtWhl+meF
+	AS2wUROglkLaURH7/hMOLMS3NOG3R6L8p3zoVb43UP2DuyHCOO+UMfUujT1I46feZiar
+	FvvmJB3yMJxxVaT3U858ZB/kaYMxvOduchD61+b6GxpMLCLtH8g5pxUXeS/HQ2rJffhW
+	dhN9kXAhcG5djU+1nv9IVE/8ONoBWKgbEC4ssTG2bkmiO1IaHt3ZaPVZ0Wva5payFmJr
+	LXer7X1rr0sGnGCt2onszckUthvIAAtMf/IDWNrnUTk/tQFgApWhs4cn6JaEshnQ+SFH
+	8hmA==
+X-Received: by 10.14.94.130 with SMTP id n2mr3026486eef.99.1386595602024;
+	Mon, 09 Dec 2013 05:26:42 -0800 (PST)
+Received: from localhost.localdomain (46-116-178-164.bb.netvision.net.il.
+	[46.116.178.164]) by mx.google.com with ESMTPSA id
+	j46sm28750148eew.18.2013.12.09.05.26.39 for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 09 Dec 2013 05:26:40 -0800 (PST)
+From: Eyal Reizer <eyalreizer@gmail.com>
+To: meta-arago@arago-project.org
+Date: Mon,  9 Dec 2013 15:26:33 +0200
+Message-Id: <1386595593-8175-1-git-send-email-eyalr@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCHv2] ti-compat-wireless-wl18xx: build from ol_r8.a8.08
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +41,114 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Dec 2013 07:58:23 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_1050_1437662793.1386575206780"
+X-List-Received-Date: Mon, 09 Dec 2013 13:26:44 -0000
 
-------=_Part_1050_1437662793.1386575206780
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+* Add a new recipe fetching and building the Wilink8 drivers from 
+TI-Openlink based on release ol_r8.a8.08.
 
-<html>
-<head>
-<title>
-Status for 12/09/13
-</title>
-</head>
-<body>
+* This recipe is used for building with kernels older then the 3.12 kernel 
+where the drivers are now in-tree.
+For 3.12 and newer, this recipe is not needed as the wl18xx wlan drivers
+are now in-tree.
 
-<h2>Status for 12/09/13</h2>
+* Remove previous vrsion of the recipe building ol_r8.a6.01
 
-<h2>BUILD_ID: build-2013-12-09_01-02-54</h2>
+Signed-off-by: Eyal Reizer <eyalr@ti.com>
+---
+Changes from previous submission:
+Combined the 2 patches that add a new version and removed the previous
+version into one patch that does both
 
-<h2>Clean Build: false</h2>
+ ...01.bb => ti-compat-wireless-wl18xx_r8.a8.08.bb} |   34 +++++++++++---------
+ 1 files changed, 19 insertions(+), 15 deletions(-)
+ copy meta-arago-extras/recipes-bsp/ti-compat-wireless/{ti-compat-wireless-wl18xx_r8.a6.01.bb => ti-compat-wireless-wl18xx_r8.a8.08.bb} (70%)
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.10"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb
+similarity index 70%
+copy from meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
+copy to meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb
+index a69b7d6..9baf628 100644
+--- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a6.01.bb
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.08.bb
+@@ -5,7 +5,7 @@ DESCRIPTION = "ti compat-wireless drivers for wl18xx"
+ HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
+ SECTION = "kernel/modules"
+ LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=d7810fab7487fb0aad327b76f1be7cd7"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+ 
+ RDEPENDS_${PN} = "wireless-tools"
+ 
+@@ -14,16 +14,18 @@ RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
+ RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
+ RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
+ 
+-PV = "r8.a6.01"
++COMPATIBLE_MACHINE = "(omap-a15)"
++
++PV = "r8.a8.08"
+ inherit module
+ 
+ PR = "${MACHINE_KERNEL_PR}"
+-PR_append = "c"
++PR_append = "a"
+ 
+-# Tags: ol_r8.a6.01
+-SRCREV_wl18xx = "f076cdad1988daf207ad560db2fe96caaa7c596e"
+-SRCREV_compat = "c37c46c4ab5085ba50f650d15854404983b8d09b"
+-SRCREV_compat-wireless = "3ec9ecca2cb07584e115ba53117f0084fc8faa25"
++# Tags: ol_r8.a8.08
++SRCREV_wl18xx = "eaa1820c02dc076e6ad9254e9cb7a3bb0c17471b"
++SRCREV_compat = "5d80865281795f962e1400a95202bbd07dd763c0"
++SRCREV_compat-wireless = "23a0d62ea1a57327709a77f08d6265ec807a909f"
+ 
+ SRCREV_FORMAT = "compat-wireless"
+ 
+@@ -32,27 +34,24 @@ S = "${WORKDIR}/compat-wireless"
+ SRC_URI = "git://github.com/TI-OpenLink/compat-wireless.git;destsuffix=compat-wireless;name=compat-wireless \
+            git://github.com/TI-OpenLink/compat.git;destsuffix=compat;name=compat \
+            git://github.com/TI-OpenLink/wl18xx.git;destsuffix=wl18xx;name=wl18xx \
+-           file://0001-git-version-wl18xx-use-compat-base-tree.patch;patchdir=../wl18xx \
+-           file://0001-wl12xx-additional-two-members-for-wl12xx_platform_da.patch;patchdir=../wl18xx \
+-          "
+-
++"
+ 
+ EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
+ 
+-# Prevent sourceipk adjust_git function from running.
++# Prevent sourceipk clear_git function from running.
+ # This preserves the git repo until driver-select is ran.
+ 
+-adjust_git() {
++clear_git() {
+     :
+ }
+ 
+ do_configure() {
+     cd ${S}
+-    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh
++    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh network
+     ./scripts/driver-select wl18xx
+ 
+     # Delete the .git repository since it should no longer be needed.
+-    rm -rf ${S}/.git ${S}/.gitignore
++    #rm -rf ${S}/.git ${S}/.gitignore
+ 
+     # Now generate the sourceipk with the properly configured sources
+     sourceipk_do_create_srcipk
+@@ -63,5 +62,10 @@ do_configure_append() {
+ }
+ 
+ do_install() {
++    # Remove hardcoded references to host depmod
++    sed -i "s#@/sbin/depmod -a## " Makefile
++    sed -i "s#@/sbin/depmod -ae## " Makefile
++
++    # Install modules
+     oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
+ }
+-- 
+1.7.0.4
 
 
-------=_Part_1050_1437662793.1386575206780--
