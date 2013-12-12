@@ -1,23 +1,23 @@
 Return-Path: <denis@denix.org>
 Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
 	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTP id CDA1A52986
+	by arago-project.org (Postfix) with ESMTP id F1B9852986
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Dec 2013 00:14:42 +0000 (UTC)
+	Thu, 12 Dec 2013 00:14:53 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [96.231.138.104])
 	by vms173017.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MXO00JDJ3C2H580@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 11 Dec 2013 18:14:42 -0600 (CST)
+	2009)) with ESMTPA id <0MXO00F833CT9J00@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 11 Dec 2013 18:14:53 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 8DA842016B; Wed,
-	11 Dec 2013 19:14:26 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id B7B6B20329; Wed,
+	11 Dec 2013 19:14:52 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 11 Dec 2013 19:14:24 -0500
-Message-id: <1386807264-20855-1-git-send-email-denis@denix.org>
+Date: Wed, 11 Dec 2013 19:14:51 -0500
+Message-id: <1386807291-21027-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-Subject: [oe-layersetup][PATCH] coresdk-2013.12.00-config: add config for ti2013.12.00 release
+Subject: [tisdk-build-scripts][PATCH] arago-core-tisdk-2013.12.00: add build config for ti2013.12.00 release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,34 +30,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Dec 2013 00:14:43 -0000
+X-List-Received-Date: Thu, 12 Dec 2013 00:14:54 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/coresdk/coresdk-2013.12.00-config.txt | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 configs/coresdk/coresdk-2013.12.00-config.txt
+ ...go-core-tisdk-2013.10.00.txt => arago-core-tisdk-2013.12.00.txt} | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ copy configs/{arago-core-tisdk-2013.10.00.txt => arago-core-tisdk-2013.12.00.txt} (99%)
 
-diff --git a/configs/coresdk/coresdk-2013.12.00-config.txt b/configs/coresdk/coresdk-2013.12.00-config.txt
-new file mode 100644
-index 0000000..4facead
---- /dev/null
-+++ b/configs/coresdk/coresdk-2013.12.00-config.txt
-@@ -0,0 +1,12 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,ti2013.12.x,80b30bec4190790ad75bc7bbb24fa5707661dddf,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,cefaba69a785c5221463f0eb496b749d5ddf8a5a,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,44754206632dd5b0725aeb43e99e4ff9e0245dca,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,dylan,b764ba4c14d1a9ff7ff04a77de28b828880d6e8d,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dylan,32c064e567aaba18dfb07b171dde9cc43d0e6de8,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/configs/arago-core-tisdk-2013.10.00.txt b/configs/arago-core-tisdk-2013.12.00.txt
+similarity index 99%
+copy from configs/arago-core-tisdk-2013.10.00.txt
+copy to configs/arago-core-tisdk-2013.12.00.txt
+index 94e3aa3..060c301 100644
+--- a/configs/arago-core-tisdk-2013.10.00.txt
++++ b/configs/arago-core-tisdk-2013.12.00.txt
+@@ -11,7 +11,7 @@ MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_RO
+ # This variable holds the SDK version you are building.  This will be picked
+ # up in the installer name if you choose to package an installer.  You can
+ # also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.10.00"
++TISDK_VERSION="2013.12.00"
+ 
+ # This variable contains the list of machines to build an SDK for
+ MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
+@@ -116,7 +116,7 @@ CLEAN_ALL="false"
+ 
+ # This is the configuration file to use in the oe-layertool-setup.sh script
+ # to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"
++CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.12.00-config.txt"
+ 
+ # This directory will contain the log files for the various parts of the build.
+ # This includes:
+@@ -273,7 +273,7 @@ COPY_DEPLOY_TO_WEB="false"
+ # deploy contents should be placed.  This is best done if you have done a
+ # key exchange between these systems so that your SCP command will not ask
+ # for a password.
+-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
++WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+ 
+ # This variable determines whether the DEPLOY_ROOT will be cleaned after
+ # the remote copy.  The reason for this is that if the files already exist
 -- 
 1.8.3.2
 
