@@ -1,29 +1,31 @@
 Return-Path: <nageswari@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 20DED529C3
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 775CA52997
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Dec 2013 08:13:41 +0000 (UTC)
+	Tue, 17 Dec 2013 08:47:42 +0000 (UTC)
 Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rBH8Dcjb027845
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2013 02:13:39 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id rBH8ld1J023267
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2013 02:47:40 -0600
 Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id rBH8DaKe004121
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2013 13:43:37 +0530
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id rBH8lbWf009142
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2013 14:17:38 +0530
 Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
 	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.02.0342.003; Tue, 17 Dec 2013 16:13:33 +0800
+	14.02.0342.003; Tue, 17 Dec 2013 16:47:37 +0800
 From: "Srinivasan, Nageswari" <nageswari@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Thread-Topic: Build error with Crypto drivers
-Thread-Index: Ac76/6MYNAKxMiGlQlqQf4xaHovKUw==
-Date: Tue, 17 Dec 2013 08:13:33 +0000
-Message-ID: <464859D4BE03A84686BA47749242C1D03EFC7103@DBDE04.ent.ti.com>
+Thread-Index: Ac76/6MYNAKxMiGlQlqQf4xaHovKUwABOWYg
+Date: Tue, 17 Dec 2013 08:47:36 +0000
+Message-ID: <464859D4BE03A84686BA47749242C1D03EFC83B2@DBDE04.ent.ti.com>
+References: <464859D4BE03A84686BA47749242C1D03EFC7103@DBDE04.ent.ti.com>
+In-Reply-To: <464859D4BE03A84686BA47749242C1D03EFC7103@DBDE04.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [172.24.170.142]
 MIME-Version: 1.0
-Subject: Build error with Crypto drivers
+Subject: Re: Build error with Crypto drivers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,14 +38,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2013 08:13:41 -0000
+X-List-Received-Date: Tue, 17 Dec 2013 08:47:43 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_464859D4BE03A84686BA47749242C1D03EFC7103DBDE04entticom_"
+	boundary="_000_464859D4BE03A84686BA47749242C1D03EFC83B2DBDE04entticom_"
 
---_000_464859D4BE03A84686BA47749242C1D03EFC7103DBDE04entticom_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_464859D4BE03A84686BA47749242C1D03EFC83B2DBDE04entticom_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Hi,
+This is my build configuration
+
+Build Configuration:
+BB_VERSION        =3D "1.18.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Ubuntu-12.04"
+TARGET_SYS        =3D "arm-oe-linux-gnueabi"
+MACHINE           =3D "am438x-epos-evm"
+DISTRO            =3D "arago"
+DISTRO_VERSION    =3D "2013.10"
+TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa9"
+TARGET_FPU        =3D "vfp-neon"
+meta-ti-secure    =3D "master:35c99e968c173906ef78b16a61dcf89cd4f14df1"
+meta-arago-distro
+meta-arago-extras =3D "2013.12.x:4070f760f8ce0f14c36d1e581026fbd519825510"
+meta-ti           =3D "dylan-epos:7a9b8948592b2fe7a07179088ad424ff520a152c"
+meta-qt5          =3D "master:72ca958ebfb61640c614ec865196d68fba2576c2"
+toolchain-layer
+meta-networking
+meta-ruby
+meta-oe           =3D "dylan:44754206632dd5b0725aeb43e99e4ff9e0245dca"
+meta-linaro-toolchain =3D "dylan:c9f78d6eff14ada3f2bc960e81883b27a10afecc"
+meta              =3D "dylan:f79b2a6ff3e9f6bd5bfb6ae166d28569b0f1149d"
+
+regards,
+Nageswari
+
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Srinivasan, Nageswari
+Sent: Tuesday, December 17, 2013 1:44 PM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] Build error with Crypto drivers
 
 Hi,
 I am building EPOS SDK after rebasing to latest sources from Dylan branch (=
@@ -415,8 +451,8 @@ Regards,
 Nageswari
 
 
---_000_464859D4BE03A84686BA47749242C1D03EFC7103DBDE04entticom_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_464859D4BE03A84686BA47749242C1D03EFC83B2DBDE04entticom_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
@@ -424,14 +460,17 @@ osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 //www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
 <meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
 <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -447,12 +486,16 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -467,6 +510,93 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">This is my build confi=
+guration <o:p>
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Build Configuration:<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">BB_VERSION&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;1.18.0&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">BUILD_SYS&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;x86_64-linux&quot;<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NATIVELSBSTRING&nbsp;&=
+nbsp; =3D &quot;Ubuntu-12.04&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">TARGET_SYS&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arm-oe-linux-gnueabi&quot;<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">MACHINE&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;am438x-epos-evm&quo=
+t;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">DISTRO&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arago&quot;<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">DISTRO_VERSION&nbsp;&n=
+bsp;&nbsp; =3D &quot;2013.10&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">TUNE_FEATURES&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;armv7a vfp thumb neon callconvention-hard cortexa=
+9&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">TARGET_FPU&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;vfp-neon&quot;<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-ti-secure&nbsp;&n=
+bsp;&nbsp; =3D &quot;master:35c99e968c173906ef78b16a61dcf89cd4f14df1&quot;<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-arago-distro<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-arago-extras =3D =
+&quot;2013.12.x:4070f760f8ce0f14c36d1e581026fbd519825510&quot;<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-ti&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;dylan-epos:7a9b8948=
+592b2fe7a07179088ad424ff520a152c&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-qt5&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;master:72ca958ebfb61640c=
+614ec865196d68fba2576c2&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">toolchain-layer<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-networking<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-ruby<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-oe&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;dylan:44754206632dd=
+5b0725aeb43e99e4ff9e0245dca&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-linaro-toolchain =
+=3D &quot;dylan:c9f78d6eff14ada3f2bc960e81883b27a10afecc&quot;<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;dyla=
+n:f79b2a6ff3e9f6bd5bfb6ae166d28569b0f1149d&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">regards,<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Nageswari<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-ara=
+go-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
+<b>On Behalf Of </b>Srinivasan, Nageswari<br>
+<b>Sent:</b> Tuesday, December 17, 2013 1:44 PM<br>
+<b>To:</b> meta-arago@arago-project.org<br>
+<b>Subject:</b> [meta-arago] Build error with Crypto drivers<o:p></o:p></sp=
+an></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
 <p class=3D"MsoNormal">I am building EPOS SDK after rebasing to latest sour=
 ces from Dylan branch (meta-ti) and meta-arago (2013.12) and facing below i=
@@ -916,7 +1046,8 @@ ng a non-zero exit code.<o:p></o:p></p>
 <p class=3D"MsoNormal">Nageswari<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
+</div>
 </body>
 </html>
 
---_000_464859D4BE03A84686BA47749242C1D03EFC7103DBDE04entticom_--
+--_000_464859D4BE03A84686BA47749242C1D03EFC83B2DBDE04entticom_--
