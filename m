@@ -1,49 +1,29 @@
-Return-Path: <brad@evidence.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by arago-project.org (Postfix) with ESMTP id AC9BA529B5
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 3F589529F9
 	for <meta-arago@arago-project.org>;
-	Mon, 23 Dec 2013 02:20:34 +0000 (UTC)
-X-ASG-Debug-ID: 1387765232-0499bf1df41e5d0001-NloGV9
-Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
-	with ESMTP id RBTlVwy0Vs9oV1sr for <meta-arago@arago-project.org>;
-	Sun, 22 Dec 2013 19:20:32 -0700 (MST)
-X-Barracuda-Envelope-From: brad@evidence.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-Received: from TI-ODIN.tasernet.com (172.16.1.112) by email.taser.com
-	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.347.0;
-	Sun, 22 Dec 2013 19:20:32 -0700
-Received: from TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789]) by
-	TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8%20]) with mapi id
-	14.02.0347.000; Sun, 22 Dec 2013 19:20:31 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-From: Brad Litterell <brad@evidence.com>
-X-Barracuda-BWL-IP: fe80::7c49:ae21:6650:2789
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: BB_NO_NETWORK failure with arago
-X-ASG-Orig-Subj: BB_NO_NETWORK failure with arago
-Thread-Index: Ac7/hY1ku6Vs4nlyQcSO6dfw2y/QAA==
-Date: Mon, 23 Dec 2013 02:20:30 +0000
-Message-ID: <E51394554A503C4E852F9BEE46B03E8D019AE6C5@TI-THOR.tasernet.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+	Mon, 23 Dec 2013 07:59:27 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id rBN7xPkN032402
+	for <meta-arago@arago-project.org>; Mon, 23 Dec 2013 01:59:26 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rBN7xPqj004149
+	for <meta-arago@arago-project.org>; Mon, 23 Dec 2013 01:59:25 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 23 Dec 2013 01:59:25 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	rBN7xP79014295	for <meta-arago@arago-project.org>;
+	Mon, 23 Dec 2013 01:59:25 -0600
+Date: Mon, 23 Dec 2013 02:47:28 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1608000698.47.1387784848228.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Barracuda-Connect: magni.atmoss[10.10.20.112]
-X-Barracuda-Start-Time: 1387765232
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.143316
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: BB_NO_NETWORK failure with arago
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.12 build 2013-12-23_01-00-24
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,142 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Dec 2013 02:20:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E51394554A503C4E852F9BEE46B03E8D019AE6C5TITHORtasernetc_"
+X-List-Received-Date: Mon, 23 Dec 2013 07:59:28 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_46_1708039621.1387784848186"
 
---_000_E51394554A503C4E852F9BEE46B03E8D019AE6C5TITHORtasernetc_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_46_1708039621.1387784848186
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I am having trouble getting my build environment to work offline.  I follow=
-ed the instructions here:
-https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_create_my_own_sourc=
-e_download_mirror_.3F
-
-I've built my project, created the tarballs, etc.  However, it appears ther=
-e is still something I'm missing.  When I enable BB_NO_NETWORK, I get an er=
-ror here:
-
-$ bitbake base-files
-...
-Loaded 57 entries from dependency cache.
-NOTE: Error during finalise of /home/brad/etm2/sources/meta-arago/meta-arag=
-o-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
-ERROR: ExpansionError during parsing /home/brad/etm2/sources/meta-arago/met=
-a-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb: Failure expa=
-nding variable S: ExpansionError: Failure expanding variable SRCPV, express=
-ion was ${@bb.fetch2.get_srcrev(d)} which triggered exception NetworkAccess=
-: Network access disabled through BB_NO_NETWORK but access requested with c=
-ommand git ls-remote git://arago-project.org/git/projects/test-automation/l=
-tp-ddt.git master (for url None)
-ERROR: Command execution failed: Exited with 1
-
-In this case, the SRC_URI looks like this:
-
-SRCREV =3D "5fba3d42f126ce13333fb7d0412d729b753ee5a4"
-BRANCH ?=3D "master"
-SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.g=
-it;protocol=3Dgit;branch=3D${BRANCH}"
-
-So, I figured apply  the same fix as mentioned on the Wiki:
-
-SRCREV =3D "5fba3d42f126ce13333fb7d0412d729b753ee5a4"
-#BRANCH ?=3D "master"
-#SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.=
-git;protocol=3Dgit;branch=3D${BRANCH}"
-SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.g=
-it;protocol=3Dgit"
-
-But I get the same error?  And I'm not even using ltp-ddt...
-
-Is there something I'm missing in setting up BB_NO_NETWORK? Is there someth=
-ing extra required for the arago project to run with no network?
-
-Thanks,
-Brad
-
---_000_E51394554A503C4E852F9BEE46B03E8D019AE6C5TITHORtasernetc_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
+<title>
+Status for 12/23/13
+</title>
 </head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>
-<div>I am having trouble getting my build environment to work offline. &nbs=
-p;I followed the instructions here:</div>
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_cre=
-ate_my_own_source_download_mirror_.3F" target=3D"_blank">https://wiki.yocto=
-project.org/wiki/How_do_I#Q:_How_do_I_create_my_own_source_download_mirror_=
-.3F</a></div>
-<div><br>
-</div>
-<div>I've built my project, created the tarballs, etc. &nbsp;However, it ap=
-pears there is still something I'm missing. &nbsp;When I enable BB_NO_NETWO=
-RK, I get an error here:</div>
-<div><br>
-</div>
-<div>$ bitbake base-files</div>
-<div>...</div>
-<div>Loaded 57 entries from dependency cache.</div>
-<div>NOTE: Error during finalise of /home/brad/etm2/sources/meta-arago/meta=
--arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb</div>
-<div>ERROR: ExpansionError during parsing /home/brad/etm2/sources/meta-arag=
-o/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb: Failure=
- expanding variable S: ExpansionError: Failure expanding variable SRCPV, ex=
-pression was ${@bb.fetch2.get_srcrev(d)}
- which triggered exception NetworkAccess: Network access disabled through B=
-B_NO_NETWORK but access requested with command git ls-remote git://arago-pr=
-oject.org/git/projects/test-automation/ltp-ddt.git master (for url None)</d=
-iv>
-<div>ERROR: Command execution failed: Exited with 1</div>
-</div>
-<div><br>
-</div>
-<div>In this case, the SRC_URI looks like this:</div>
-<div>
-<div><br>
-</div>
-<div>SRCREV =3D &quot;5fba3d42f126ce13333fb7d0412d729b753ee5a4&quot;</div>
-<div>BRANCH ?=3D &quot;master&quot;</div>
-<div>SRC_URI =3D &quot;git://arago-project.org/git/projects/test-automation=
-/ltp-ddt.git;protocol=3Dgit;branch=3D${BRANCH}&quot;</div>
-</div>
-<div><br>
-</div>
-<div>So, I figured apply &nbsp;the same fix as mentioned on the Wiki:</div>
-<div><br>
-</div>
-<div>
-<div>SRCREV =3D &quot;5fba3d42f126ce13333fb7d0412d729b753ee5a4&quot;</div>
-<div>#BRANCH ?=3D &quot;master&quot;</div>
-<div>#SRC_URI =3D &quot;git://arago-project.org/git/projects/test-automatio=
-n/ltp-ddt.git;protocol=3Dgit;branch=3D${BRANCH}&quot;</div>
-</div>
-<div>SRC_URI =3D &quot;git://arago-project.org/git/projects/test-automation=
-/ltp-ddt.git;protocol=3Dgit&quot;</div>
-<div><br>
-</div>
-<div>But I get the same error? &nbsp;And I'm not even using ltp-ddt...</div=
->
-<div><br>
-</div>
-<div>Is there something I'm missing in setting up BB_NO_NETWORK? Is there s=
-omething extra required for the arago project to run with no network?</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div>Brad</div>
-</div>
+<body>
+
+<h2>Status for 12/23/13</h2>
+
+<h2>BUILD_ID: build-2013-12-23_01-01-37</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.12"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
 </body>
 </html>
 
---_000_E51394554A503C4E852F9BEE46B03E8D019AE6C5TITHORtasernetc_--
+
+------=_Part_46_1708039621.1387784848186--
