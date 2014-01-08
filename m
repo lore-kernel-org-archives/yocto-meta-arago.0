@@ -1,32 +1,26 @@
-Return-Path: <nageswari@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id D964E52A67
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id CFB0E52A67
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Jan 2014 05:08:03 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s08581Y9027727
-	for <meta-arago@arago-project.org>; Tue, 7 Jan 2014 23:08:02 -0600
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0857xxx019539
-	for <meta-arago@arago-project.org>; Wed, 8 Jan 2014 10:38:00 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE72.ent.ti.com ([fe80::bd56:32bf:87fd:2763%27]) with mapi id
-	14.02.0342.003; Wed, 8 Jan 2014 13:07:59 +0800
-From: "Srinivasan, Nageswari" <nageswari@ti.com>
+	Wed,  8 Jan 2014 05:08:16 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [96.231.138.104])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MZ200H43GX7MV70@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 07 Jan 2014 23:08:01 -0600 (CST)
+Received: from android-613965610fc6ed9f.denix (unknown [192.168.0.122])
+	by gandalf.denix.org (Postfix) with ESMTPA id 0EB992008E; Wed,
+	08 Jan 2014 00:07:55 -0500 (EST)
+User-Agent: K-9 Mail for Android
+In-reply-to: <CF956B779D819D41BBC043B7082161D5478BBE@DBDE04.ent.ti.com>
+References: <CF956B779D819D41BBC043B7082161D5478BBE@DBDE04.ent.ti.com>
+MIME-version: 1.0
+From: Denys Dmytriyenko <denis@denix.org>
+Date: Wed, 08 Jan 2014 00:07:51 -0500
 To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] FW: Do_rootfs failure with tools-sdk in
-	EXTRA_IMAGE_FEATURES
-Thread-Index: Ac8MLtpvB3o0HfeJRxWFbqiCDrzzOgAACMtwAAAYZDA=
-Date: Wed, 8 Jan 2014 05:07:58 +0000
-Message-ID: <464859D4BE03A84686BA47749242C1D03EFEFCFE@DBDE04.ent.ti.com>
-References: <CF956B779D819D41BBC043B7082161D5478BBE@DBDE04.ent.ti.com>
-In-Reply-To: <CF956B779D819D41BBC043B7082161D5478BBE@DBDE04.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
-MIME-Version: 1.0
+Message-id: <4233e440-1ae1-4eaa-bad9-5daeb3a77408@email.android.com>
 Cc: "R, Karthik" <karthik.ramanan@ti.com>
 Subject: Re: FW: Do_rootfs failure with tools-sdk in	EXTRA_IMAGE_FEATURES
 X-BeenThere: meta-arago@arago-project.org
@@ -41,266 +35,133 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 05:08:04 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_464859D4BE03A84686BA47749242C1D03EFEFCFEDBDE04entticom_"
+X-List-Received-Date: Wed, 08 Jan 2014 05:08:17 -0000
+Content-type: multipart/alternative;
+	boundary=----9LPH3FJAJR10KXSV0L9ROOEMF06N87
+Content-transfer-encoding: 8bit
 
---_000_464859D4BE03A84686BA47749242C1D03EFEFCFEDBDE04entticom_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+------9LPH3FJAJR10KXSV0L9ROOEMF06N87
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=UTF-8
 
-Mrinmayee,
+"Hingolikar, Mrinmayee" <mrinmayee@ti.com> wrote:
+>
+>Hi all,
+>
+>I am trying to add development tools in the filesystem. After adding
+>tools-sdk in EXTRA_IMAGE_FEATURES, the build failed in the rootfs task.
+>Snapshot of the log:
+>Collected errors:
+>* satisfy_dependencies_for: Cannot satisfy the following dependencies
+>for packagegroup-core-sdk:
+>*      ldd *
+>* opkg_install_cmd: Cannot install package packagegroup-core-sdk.
+>
+>Ldd package provided by eglibc is not getting built.
+>
+>Similar errors was seen when I built arago-console-image with the
+>arago-dylan-config.
+>Is this a known issue and any pointers to resolve it?
+>
+>Regards,
+>Mrinmayee
+>
+>
+>
+>------------------------------------------------------------------------
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-I am also facing similar issues while building for EPOS SDK.
+We don't build eglibc, as we use a prebuilt one from the Linaro toolchain and it does not provide ldd. Where did you get tools-sdk from?
 
-Installing packagegroup-arago-tisdk-amsdk-sdk-host (1.0-r17) to root...
-| Downloading file:/db/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago=
--tmp-external-linaro-toolchain/deploy/ipk/am438x_epos_evm/packagegroup-arag=
-o-tisdk-amsdk-sdk-host_1.0-r17_am438x_epos_evm.ipk.
-| Installing packagegroup-arago-tisdk-epossdk-sdk-host (1.0-r1) to root...
-| Downloading file:/db/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago=
--tmp-external-linaro-toolchain/deploy/ipk/am438x_epos_evm/packagegroup-arag=
-o-tisdk-epossdk-sdk-host_1.0-r1_am438x_epos_evm.ipk.
-| Collected errors:
-|  * satisfy_dependencies_for: Cannot satisfy the following dependencies fo=
-r packagegroup-arago-tisdk-addons-sdk-host:
-|  *    arm-benchmarks-src *    am-sysinfo-src *        ti-linux-secure-exa=
-mples-src *  oprofile-example-src *
-|  * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-addo=
-ns-sdk-host.
-|  * satisfy_dependencies_for: Cannot satisfy the following dependencies fo=
-r packagegroup-arago-tisdk-matrix-sdk-host:
-|  *    matrix-gui-src *
-|  * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-matr=
-ix-sdk-host.
-|  * satisfy_dependencies_for: Cannot satisfy the following dependencies fo=
-r packagegroup-arago-tisdk-amsdk-sdk-host:
-|  *    u-boot-am43xx-src *     linux-am43xx-src *      oe-layersetup-src *
-|  * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-amsd=
-k-sdk-host.
-|  * satisfy_dependencies_for: Cannot satisfy the following dependencies fo=
-r packagegroup-arago-tisdk-epossdk-sdk-host:
-|  *    starterware-src *       examples-src *  ppa-am438x-epos-evm-src *
-|  * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-epos=
-sdk-sdk-host.
+-- 
+Denys
 
-Regards,
-Nageswari
+------9LPH3FJAJR10KXSV0L9ROOEMF06N87
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-
-From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
--project.org] On Behalf Of Hingolikar, Mrinmayee
-Sent: Wednesday, January 08, 2014 10:34 AM
-To: meta-arago@arago-project.org
-Cc: R, Karthik
-Subject: [meta-arago] FW: Do_rootfs failure with tools-sdk in EXTRA_IMAGE_F=
-EATURES
-
-
-Hi all,
-
-I am trying to add development tools in the filesystem. After adding tools-=
-sdk in EXTRA_IMAGE_FEATURES, the build failed in the rootfs task. Snapshot =
-of the log:
-Collected errors:
-* satisfy_dependencies_for: Cannot satisfy the following dependencies for p=
-ackagegroup-core-sdk:
-*      ldd *
-* opkg_install_cmd: Cannot install package packagegroup-core-sdk.
-
-Ldd package provided by eglibc is not getting built.
-
-Similar errors was seen when I built arago-console-image with the arago-dyl=
-an-config.
-Is this a known issue and any pointers to resolve it?
-
-Regards,
-Mrinmayee
-
-
---_000_464859D4BE03A84686BA47749242C1D03EFEFCFEDBDE04entticom_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
+<html v="urn:schemas-microsoft-com:vml" o="urn:schemas-microsoft-com:office:office" w="urn:schemas-microsoft-com:office:word" m="http://schemas.microsoft.com/office/2004/12/omml"><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii" /><meta name="Generator" content="Microsoft Word 12 (filtered medium)" /><style><!--
 /* Font Definitions */
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ {font-family:"Cambria Math";
+ panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ {font-family:Calibri;
+ panose-1:2 15 5 2 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
+ {margin:0in;
+ margin-bottom:.0001pt;
+ font-size:11.0pt;
+ font-family:"Calibri","sans-serif";}
 a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
+ {mso-style-priority:99;
+ color:blue;
+ text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
+ {mso-style-priority:99;
+ color:purple;
+ text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
+ {mso-style-type:personal;
+ font-family:"Calibri","sans-serif";
+ color:windowtext;}
 span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
+ {mso-style-type:personal-reply;
+ font-family:"Calibri","sans-serif";
+ color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
+ {mso-style-type:export-only;
+ font-size:10.0pt;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
+ {size:8.5in 11.0in;
+ margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Mrinmayee,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I am also facing simil=
-ar issues while building for EPOS SDK.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Installing packagegrou=
-p-arago-tisdk-amsdk-sdk-host (1.0-r17) to root...<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Downloading file:/db=
-/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago-tmp-external-linaro-t=
-oolchain/deploy/ipk/am438x_epos_evm/packagegroup-arago-tisdk-amsdk-sdk-host=
-_1.0-r17_am438x_epos_evm.ipk.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Installing packagegr=
-oup-arago-tisdk-epossdk-sdk-host (1.0-r1) to root...<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Downloading file:/db=
-/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago-tmp-external-linaro-t=
-oolchain/deploy/ipk/am438x_epos_evm/packagegroup-arago-tisdk-epossdk-sdk-ho=
-st_1.0-r1_am438x_epos_evm.ipk.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Collected errors:<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * satisfy_depe=
-ndencies_for: Cannot satisfy the following dependencies for packagegroup-ar=
-ago-tisdk-addons-sdk-host:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; *&nbsp;&nbsp;&=
-nbsp; arm-benchmarks-src *&nbsp;&nbsp;&nbsp; am-sysinfo-src *&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; ti-linux-secure-examples-src *&nbsp; oprofile-=
-example-src *<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * opkg_install=
-_cmd: Cannot install package packagegroup-arago-tisdk-addons-sdk-host.<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * satisfy_depe=
-ndencies_for: Cannot satisfy the following dependencies for packagegroup-ar=
-ago-tisdk-matrix-sdk-host:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; *&nbsp;&nbsp;&=
-nbsp; matrix-gui-src *<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * opkg_install=
-_cmd: Cannot install package packagegroup-arago-tisdk-matrix-sdk-host.<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * satisfy_depe=
-ndencies_for: Cannot satisfy the following dependencies for packagegroup-ar=
-ago-tisdk-amsdk-sdk-host:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; *&nbsp;&nbsp;&=
-nbsp; u-boot-am43xx-src *&nbsp;&nbsp;&nbsp;&nbsp; linux-am43xx-src *&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; oe-layersetup-src *<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * opkg_install=
-_cmd: Cannot install package packagegroup-arago-tisdk-amsdk-sdk-host.<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * satisfy_depe=
-ndencies_for: Cannot satisfy the following dependencies for packagegroup-ar=
-ago-tisdk-epossdk-sdk-host:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; *&nbsp;&nbsp;&=
-nbsp; starterware-src *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; examples-src *&=
-nbsp; ppa-am438x-epos-evm-src *<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">|&nbsp; * opkg_install=
-_cmd: Cannot install package packagegroup-arago-tisdk-epossdk-sdk-host.<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Regards,<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Nageswari<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-ara=
-go-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
-<b>On Behalf Of </b>Hingolikar, Mrinmayee<br>
-<b>Sent:</b> Wednesday, January 08, 2014 10:34 AM<br>
-<b>To:</b> meta-arago@arago-project.org<br>
-<b>Cc:</b> R, Karthik<br>
-<b>Subject:</b> [meta-arago] FW: Do_rootfs failure with tools-sdk in EXTRA_=
-IMAGE_FEATURES<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to add development tools in the filesyst=
-em. After adding tools-sdk in EXTRA_IMAGE_FEATURES, the build failed in the=
- rootfs task. Snapshot of the log:<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">Collected errors:<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">* satisfy_dependencies_for=
-: Cannot satisfy the following dependencies for packagegroup-core-sdk:<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">*&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; ldd *<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">* opkg_install_cmd: Cannot=
- install package packagegroup-core-sdk.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red"><o:p>&nbsp;</o:p></span></=
-p>
-<p class=3D"MsoNormal">Ldd package provided by eglibc is not getting built.=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Similar errors was seen when I built arago-console-i=
-mage with the
-<b>arago-dylan-config.<o:p></o:p></b></p>
-<p class=3D"MsoNormal">Is this a known issue and any pointers to resolve it=
-?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Mrinmayee<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</body>
-</html>
+ {page:WordSection1;}
+--></style></head><body lang="EN-US" link="blue" vlink="purple"><div class="gmail_quote">&quot;Hingolikar, Mrinmayee&quot; &lt;mrinmayee@ti.com&gt; wrote:<blockquote class="gmail_quote" style="margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
 
---_000_464859D4BE03A84686BA47749242C1D03EFEFCFEDBDE04entticom_--
+
+
+
+<!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+
+
+<div class="WordSection1">
+<p class="MsoNormal"></p><p>&nbsp;</p>
+<p class="MsoNormal">Hi all,</p><p></p>
+<p class="MsoNormal"></p><p>&nbsp;</p>
+<p class="MsoNormal">I am trying to add development tools in the filesystem. After adding tools-sdk in EXTRA_IMAGE_FEATURES, the build failed in the rootfs task. Snapshot of the log:</p><p></p>
+<p class="MsoNormal"><span style="color:red">Collected errors:<p></p></span></p>
+<p class="MsoNormal"><span style="color:red">* satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-core-sdk:<p></p></span></p>
+<p class="MsoNormal"><span style="color:red">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ldd *<p></p></span></p>
+<p class="MsoNormal"><span style="color:red">* opkg_install_cmd: Cannot install package packagegroup-core-sdk.<p></p></span></p>
+<p class="MsoNormal"><span style="color:red"><p>&nbsp;</p></span></p>
+<p class="MsoNormal">Ldd package provided by eglibc is not getting built.</p><p></p>
+<p class="MsoNormal"></p><p>&nbsp;</p>
+<p class="MsoNormal">Similar errors was seen when I built arago-console-image with the
+<b>arago-dylan-config.</b></p><p><b></b></p>
+<p class="MsoNormal">Is this a known issue and any pointers to resolve it?</p><p></p>
+<p class="MsoNormal"></p><p>&nbsp;</p>
+<p class="MsoNormal">Regards,</p><p></p>
+<p class="MsoNormal">Mrinmayee</p><p></p>
+<p class="MsoNormal"></p><p>&nbsp;</p>
+</div>
+
+
+<p style="margin-top: 2.5em; margin-bottom: 1em; border-bottom: 1px solid #000"></p><pre class="k9mail"><hr /><br />meta-arago mailing list<br />meta-arago@arago-project.org<br /><a href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br /></pre></blockquote></div><br clear="all">We don&#39;t build eglibc, as we use a prebuilt one from the Linaro toolchain and it does not provide ldd. Where did you get tools-sdk from?<br>
+<br>
+-- <br>
+Denys</body></html>
+
+------9LPH3FJAJR10KXSV0L9ROOEMF06N87--
