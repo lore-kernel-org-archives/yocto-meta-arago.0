@@ -1,30 +1,35 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTP id 9280252972
+Return-Path: <mrinmayee@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 836C15298F
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Jan 2014 05:13:16 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [96.231.138.104])
-	by vms173017.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MZ200IUNH55AQW0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 07 Jan 2014 23:12:57 -0600 (CST)
-Received: from android-613965610fc6ed9f.denix (unknown [192.168.0.122])
-	by gandalf.denix.org (Postfix) with ESMTPA id D506E2008E; Wed,
-	08 Jan 2014 00:12:40 -0500 (EST)
-User-Agent: K-9 Mail for Android
-In-reply-to: <464859D4BE03A84686BA47749242C1D03EFEFCFE@DBDE04.ent.ti.com>
-References: <CF956B779D819D41BBC043B7082161D5478BBE@DBDE04.ent.ti.com>
-	<464859D4BE03A84686BA47749242C1D03EFEFCFE@DBDE04.ent.ti.com>
-MIME-version: 1.0
-From: Denys Dmytriyenko <denis@denix.org>
-Date: Wed, 08 Jan 2014 00:12:30 -0500
-To: "Srinivasan, Nageswari" <nageswari@ti.com>,
-	"Hingolikar, Mrinmayee" <mrinmayee@ti.com>, "meta-arago@arago-project.org"
+	Wed,  8 Jan 2014 05:24:03 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s085O1Iw004331;
+	Tue, 7 Jan 2014 23:24:02 -0600
+Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s085NwGt021469;
+	Wed, 8 Jan 2014 10:53:59 +0530
+Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
+	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
+	14.02.0342.003; Wed, 8 Jan 2014 13:23:58 +0800
+From: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Message-id: <b8e21671-f167-430e-b985-23d234edc525@email.android.com>
+Thread-Topic: [meta-arago] FW: Do_rootfs failure with tools-sdk in
+	EXTRA_IMAGE_FEATURES
+Thread-Index: AQHPDC+eWFiyB1QSYEOaEa/dBlxUZZp6SsSw
+Date: Wed, 8 Jan 2014 05:23:58 +0000
+Message-ID: <CF956B779D819D41BBC043B7082161D5478BEB@DBDE04.ent.ti.com>
+References: <CF956B779D819D41BBC043B7082161D5478BBE@DBDE04.ent.ti.com>
+	<4233e440-1ae1-4eaa-bad9-5daeb3a77408@email.android.com>
+In-Reply-To: <4233e440-1ae1-4eaa-bad9-5daeb3a77408@email.android.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.24.170.142]
+MIME-Version: 1.0
 Cc: "R, Karthik" <karthik.ramanan@ti.com>
-Subject: Re: FW: Do_rootfs failure with tools-sdk	in	EXTRA_IMAGE_FEATURES
+Subject: Re: FW: Do_rootfs failure with tools-sdk in	EXTRA_IMAGE_FEATURES
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,226 +42,153 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 05:13:17 -0000
-Content-type: multipart/alternative;
-	boundary=----5T2IS1ITC4SHUTVRBE96PBVW26GNSP
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Wed, 08 Jan 2014 05:24:03 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CF956B779D819D41BBC043B7082161D5478BEBDBDE04entticom_"
 
-------5T2IS1ITC4SHUTVRBE96PBVW26GNSP
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain;
- charset=UTF-8
+--_000_CF956B779D819D41BBC043B7082161D5478BEBDBDE04entticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-"Srinivasan, Nageswari" <nageswari@ti.com> wrote:
->Mrinmayee,
->
->I am also facing similar issues while building for EPOS SDK.
->
->Installing packagegroup-arago-tisdk-amsdk-sdk-host (1.0-r17) to root...
->| Downloading
->file:/db/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolchain/deploy/ipk/am438x_epos_evm/packagegroup-arago-tisdk-amsdk-sdk-host_1.0-r17_am438x_epos_evm.ipk.
->| Installing packagegroup-arago-tisdk-epossdk-sdk-host (1.0-r1) to
->root...
->| Downloading
->file:/db/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolchain/deploy/ipk/am438x_epos_evm/packagegroup-arago-tisdk-epossdk-sdk-host_1.0-r1_am438x_epos_evm.ipk.
->| Collected errors:
->|  * satisfy_dependencies_for: Cannot satisfy the following
->dependencies for packagegroup-arago-tisdk-addons-sdk-host:
->|  *    arm-benchmarks-src *    am-sysinfo-src *       
->ti-linux-secure-examples-src *  oprofile-example-src *
->|  * opkg_install_cmd: Cannot install package
->packagegroup-arago-tisdk-addons-sdk-host.
->|  * satisfy_dependencies_for: Cannot satisfy the following
->dependencies for packagegroup-arago-tisdk-matrix-sdk-host:
->|  *    matrix-gui-src *
->|  * opkg_install_cmd: Cannot install package
->packagegroup-arago-tisdk-matrix-sdk-host.
->|  * satisfy_dependencies_for: Cannot satisfy the following
->dependencies for packagegroup-arago-tisdk-amsdk-sdk-host:
->|  *    u-boot-am43xx-src *     linux-am43xx-src *     
->oe-layersetup-src *
->|  * opkg_install_cmd: Cannot install package
->packagegroup-arago-tisdk-amsdk-sdk-host.
->|  * satisfy_dependencies_for: Cannot satisfy the following
->dependencies for packagegroup-arago-tisdk-epossdk-sdk-host:
->|  *    starterware-src *       examples-src *  ppa-am438x-epos-evm-src
->*
->|  * opkg_install_cmd: Cannot install package
->packagegroup-arago-tisdk-epossdk-sdk-host.
->
->Regards,
->Nageswari
->
->
->From: meta-arago-bounces@arago-project.org
->[mailto:meta-arago-bounces@arago-project.org] On Behalf Of Hingolikar,
->Mrinmayee
->Sent: Wednesday, January 08, 2014 10:34 AM
->To: meta-arago@arago-project.org
->Cc: R, Karthik
->Subject: [meta-arago] FW: Do_rootfs failure with tools-sdk in
->EXTRA_IMAGE_FEATURES
->
->
->Hi all,
->
->I am trying to add development tools in the filesystem. After adding
->tools-sdk in EXTRA_IMAGE_FEATURES, the build failed in the rootfs task.
->Snapshot of the log:
->Collected errors:
->* satisfy_dependencies_for: Cannot satisfy the following dependencies
->for packagegroup-core-sdk:
->*      ldd *
->* opkg_install_cmd: Cannot install package packagegroup-core-sdk.
->
->Ldd package provided by eglibc is not getting built.
->
->Similar errors was seen when I built arago-console-image with the
->arago-dylan-config.
->Is this a known issue and any pointers to resolve it?
->
->Regards,
->Mrinmayee
->
->
->
->------------------------------------------------------------------------
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+SSBoYXZlIGFkZGVkIHRvb2xzLXNkayBpbiBFWFRSQV9JTUFHRV9GRUFUVVJFUyBpbiBhcmFnby5j
+b25mLiBBY2MgdG8gdGhlIGRvY3VtZW50YXRpb24sIGFkZGluZyB0aGlzIGZlYXR1cmUgc2hvdWxk
+IGdlbmVyYXRlIGFuIGltYWdlIHdpdGggZGV2ZWxvcG1lbnQgdG9vbHMuDQpJcyB0aGVyZSBhbnkg
+YWx0ZXJuYXRlIHdheSB0byBkbyB0aGlzPw0KDQpGcm9tOiBEZW55cyBEbXl0cml5ZW5rbyBbbWFp
+bHRvOmRlbmlzQGRlbml4Lm9yZ10NClNlbnQ6IFdlZG5lc2RheSwgSmFudWFyeSAwOCwgMjAxNCAx
+MDozOCBBTQ0KVG86IEhpbmdvbGlrYXIsIE1yaW5tYXllZTsgbWV0YS1hcmFnb0BhcmFnby1wcm9q
+ZWN0Lm9yZw0KQ2M6IFIsIEthcnRoaWsNClN1YmplY3Q6IFJlOiBbbWV0YS1hcmFnb10gRlc6IERv
+X3Jvb3RmcyBmYWlsdXJlIHdpdGggdG9vbHMtc2RrIGluIEVYVFJBX0lNQUdFX0ZFQVRVUkVTDQoN
+CiJIaW5nb2xpa2FyLCBNcmlubWF5ZWUiIDxtcmlubWF5ZWVAdGkuY29tPG1haWx0bzptcmlubWF5
+ZWVAdGkuY29tPj4gd3JvdGU6DQoNCg0KSGkgYWxsLA0KDQoNCkkgYW0gdHJ5aW5nIHRvIGFkZCBk
+ZXZlbG9wbWVudCB0b29scyBpbiB0aGUgZmlsZXN5c3RlbS4gQWZ0ZXIgYWRkaW5nIHRvb2xzLXNk
+ayBpbiBFWFRSQV9JTUFHRV9GRUFUVVJFUywgdGhlIGJ1aWxkIGZhaWxlZCBpbiB0aGUgcm9vdGZz
+IHRhc2suIFNuYXBzaG90IG9mIHRoZSBsb2c6DQpDb2xsZWN0ZWQgZXJyb3JzOg0KKiBzYXRpc2Z5
+X2RlcGVuZGVuY2llc19mb3I6IENhbm5vdCBzYXRpc2Z5IHRoZSBmb2xsb3dpbmcgZGVwZW5kZW5j
+aWVzIGZvciBwYWNrYWdlZ3JvdXAtY29yZS1zZGs6DQoqICAgICAgbGRkICoNCiogb3BrZ19pbnN0
+YWxsX2NtZDogQ2Fubm90IGluc3RhbGwgcGFja2FnZSBwYWNrYWdlZ3JvdXAtY29yZS1zZGsuDQoN
+Cg0KTGRkIHBhY2thZ2UgcHJvdmlkZWQgYnkgZWdsaWJjIGlzIG5vdCBnZXR0aW5nIGJ1aWx0Lg0K
+DQoNClNpbWlsYXIgZXJyb3JzIHdhcyBzZWVuIHdoZW4gSSBidWlsdCBhcmFnby1jb25zb2xlLWlt
+YWdlIHdpdGggdGhlIGFyYWdvLWR5bGFuLWNvbmZpZy4NCklzIHRoaXMgYSBrbm93biBpc3N1ZSBh
+bmQgYW55IHBvaW50ZXJzIHRvIHJlc29sdmUgaXQ/DQoNCg0KUmVnYXJkcywNCk1yaW5tYXllZQ0K
+DQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KbWV0YS1hcmFnbyBtYWls
+aW5nIGxpc3QNCm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc8bWFpbHRvOm1ldGEtYXJhZ29A
+YXJhZ28tcHJvamVjdC5vcmc+DQpodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dpLWJpbi9tYWls
+bWFuL2xpc3RpbmZvL21ldGEtYXJhZ28NCg0KV2UgZG9uJ3QgYnVpbGQgZWdsaWJjLCBhcyB3ZSB1
+c2UgYSBwcmVidWlsdCBvbmUgZnJvbSB0aGUgTGluYXJvIHRvb2xjaGFpbiBhbmQgaXQgZG9lcyBu
+b3QgcHJvdmlkZSBsZGQuIFdoZXJlIGRpZCB5b3UgZ2V0IHRvb2xzLXNkayBmcm9tPw0KDQotLQ0K
+RGVueXMNCg==
 
-It fails in the same place, but for a completely different reason - you are trying to install host-side packages into a target rootfs...
+--_000_CF956B779D819D41BBC043B7082161D5478BEBDBDE04entticom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
--- 
-Denys
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
+ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
+YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
+I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
+W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
+DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
+MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
+MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6VGFob21hOw0K
+CXBhbm9zZS0xOjIgMTEgNiA0IDMgNSA0IDQgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1p
+bHk6Q29uc29sYXM7DQoJcGFub3NlLTE6MiAxMSA2IDkgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUg
+RGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwN
+Cgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBw
+dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCmE6bGluaywgc3Bhbi5N
+c29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4
+dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9s
+bG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRl
+Y29yYXRpb246dW5kZXJsaW5lO30NCnANCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9u
+dC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsInNlcmlmIjt9DQpwcmUNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCglt
+YXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0
+eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsN
+Cgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBl
+OnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
+IzFGNDk3RDt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJI
+VE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0
+eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseTpDb25zb2xhczt9DQpz
+cGFuLkVtYWlsU3R5bGUyMg0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250
+LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
+dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5r
+PSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5JIGhhdmUgYWRkZWQgdG9vbHMtc2RrIGlu
+IEVYVFJBX0lNQUdFX0ZFQVRVUkVTIGluIGFyYWdvLmNvbmYuIEFjYyB0byB0aGUgZG9jdW1lbnRh
+dGlvbiwgYWRkaW5nIHRoaXMgZmVhdHVyZSBzaG91bGQgZ2VuZXJhdGUgYW4gaW1hZ2Ugd2l0aCBk
+ZXZlbG9wbWVudCB0b29scy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+SXMgdGhlcmUgYW55IGFsdGVybmF0ZSB3
+YXkgdG8gZG8gdGhpcz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtw
+YWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9u
+ZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBp
+biI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
+dDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gRGVueXMgRG15dHJp
+eWVua28gW21haWx0bzpkZW5pc0BkZW5peC5vcmddDQo8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVz
+ZGF5LCBKYW51YXJ5IDA4LCAyMDE0IDEwOjM4IEFNPGJyPg0KPGI+VG86PC9iPiBIaW5nb2xpa2Fy
+LCBNcmlubWF5ZWU7IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc8YnI+DQo8Yj5DYzo8L2I+
+IFIsIEthcnRoaWs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFttZXRhLWFyYWdvXSBGVzogRG9f
+cm9vdGZzIGZhaWx1cmUgd2l0aCB0b29scy1zZGsgaW4gRVhUUkFfSU1BR0VfRkVBVFVSRVM8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFu
+JnF1b3Q7LCZxdW90O3NlcmlmJnF1b3Q7Ij4mcXVvdDtIaW5nb2xpa2FyLCBNcmlubWF5ZWUmcXVv
+dDsgJmx0OzxhIGhyZWY9Im1haWx0bzptcmlubWF5ZWVAdGkuY29tIj5tcmlubWF5ZWVAdGkuY29t
+PC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHA+Jm5ic3A7PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBhbGwsPG86cD48L286cD48L3A+DQo8cD4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYW0gdHJ5aW5nIHRv
+IGFkZCBkZXZlbG9wbWVudCB0b29scyBpbiB0aGUgZmlsZXN5c3RlbS4gQWZ0ZXIgYWRkaW5nIHRv
+b2xzLXNkayBpbiBFWFRSQV9JTUFHRV9GRUFUVVJFUywgdGhlIGJ1aWxkIGZhaWxlZCBpbiB0aGUg
+cm9vdGZzIHRhc2suIFNuYXBzaG90IG9mIHRoZSBsb2c6PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6cmVkIj5Db2xsZWN0ZWQgZXJyb3JzOjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJj
+b2xvcjpyZWQiPiogc2F0aXNmeV9kZXBlbmRlbmNpZXNfZm9yOiBDYW5ub3Qgc2F0aXNmeSB0aGUg
+Zm9sbG93aW5nIGRlcGVuZGVuY2llcyBmb3IgcGFja2FnZWdyb3VwLWNvcmUtc2RrOjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjpy
+ZWQiPiombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgbGRkICo8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6cmVkIj4qIG9w
+a2dfaW5zdGFsbF9jbWQ6IENhbm5vdCBpbnN0YWxsIHBhY2thZ2UgcGFja2FnZWdyb3VwLWNvcmUt
+c2RrLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpyZWQiPiZu
+YnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkxkZCBwYWNr
+YWdlIHByb3ZpZGVkIGJ5IGVnbGliYyBpcyBub3QgZ2V0dGluZyBidWlsdC48bzpwPjwvbzpwPjwv
+cD4NCjxwPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U2ltaWxh
+ciBlcnJvcnMgd2FzIHNlZW4gd2hlbiBJIGJ1aWx0IGFyYWdvLWNvbnNvbGUtaW1hZ2Ugd2l0aCB0
+aGUNCjxiPmFyYWdvLWR5bGFuLWNvbmZpZy48L2I+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj5JcyB0aGlzIGEga25vd24gaXNzdWUgYW5kIGFueSBwb2ludGVycyB0byByZXNv
+bHZlIGl0PzxvOnA+PC9vOnA+PC9wPg0KPHA+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+TXJpbm1heWVlPG86cD48L286cD48L3A+DQo8cD4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxw
+cmUgc3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj48aHIgc2l6ZT0iMyIgd2lkdGg9IjEwMCUiIGFs
+aWduPSJjZW50ZXIiPjwvcHJlPg0KPHByZT48YnI+bWV0YS1hcmFnbyBtYWlsaW5nIGxpc3Q8YnI+
+PGEgaHJlZj0ibWFpbHRvOm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmciPm1ldGEtYXJhZ29A
+YXJhZ28tcHJvamVjdC5vcmc8L2E+PGJyPjxhIGhyZWY9Imh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9y
+Zy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbyI+aHR0cDovL2FyYWdvLXByb2pl
+Y3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdvPC9hPjxvOnA+PC9vOnA+
+PC9wcmU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OywmcXVvdDtz
+ZXJpZiZxdW90OyI+PGJyIGNsZWFyPSJhbGwiPg0KV2UgZG9uJ3QgYnVpbGQgZWdsaWJjLCBhcyB3
+ZSB1c2UgYSBwcmVidWlsdCBvbmUgZnJvbSB0aGUgTGluYXJvIHRvb2xjaGFpbiBhbmQgaXQgZG9l
+cyBub3QgcHJvdmlkZSBsZGQuIFdoZXJlIGRpZCB5b3UgZ2V0IHRvb2xzLXNkayBmcm9tPzxicj4N
+Cjxicj4NCi0tIDxicj4NCkRlbnlzPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-------5T2IS1ITC4SHUTVRBE96PBVW26GNSP
-Content-Type: text/html;
- charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html v="urn:schemas-microsoft-com:vml" o="urn:schemas-microsoft-com:office:office" w="urn:schemas-microsoft-com:office:word" m="http://schemas.microsoft.com/office/2004/12/omml"><head><meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" /><meta name="Generator" content="Microsoft Word 14 (filtered medium)" /><style><!--
-/* Font Definitions */
-@font-face
- {font-family:Calibri;
- panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
- {font-family:Tahoma;
- panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
- {margin:0in;
- margin-bottom:.0001pt;
- font-size:11.0pt;
- font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
- {mso-style-priority:99;
- color:blue;
- text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
- {mso-style-priority:99;
- color:purple;
- text-decoration:underline;}
-span.EmailStyle17
- {mso-style-type:personal;
- font-family:"Calibri","sans-serif";
- color:windowtext;}
-span.EmailStyle18
- {mso-style-type:personal;
- font-family:"Calibri","sans-serif";
- color:#1F497D;}
-span.EmailStyle19
- {mso-style-type:personal-reply;
- font-family:"Calibri","sans-serif";
- color:#1F497D;}
-.MsoChpDefault
- {mso-style-type:export-only;
- font-size:10.0pt;}
-@page WordSection1
- {size:8.5in 11.0in;
- margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
- {page:WordSection1;}
---></style></head><body lang="EN-US" link="blue" vlink="purple"><div class="gmail_quote">&quot;Srinivasan, Nageswari&quot; &lt;nageswari@ti.com&gt; wrote:<blockquote class="gmail_quote" style="margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
-
-
-
-
-<!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-
-
-<div class="WordSection1">
-<p class="MsoNormal"><span style="color:#1F497D">Mrinmayee,<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D"><p>&nbsp;</p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">I am also facing similar issues while building for EPOS SDK.
-<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D"><p>&nbsp;</p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">Installing packagegroup-arago-tisdk-amsdk-sdk-host (1.0-r17) to root...<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">| Downloading file:/db/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolchain/deploy/ipk/am438x_epos_evm/packagegroup-arago-tisdk-amsdk-sdk-host_1.0-r17_am438x_epos_evm.ipk.<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">| Installing packagegroup-arago-tisdk-epossdk-sdk-host (1.0-r1) to root...<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">| Downloading file:/db/swcoe_epos2/a0393278/yocto/oe-layersetup/build/arago-tmp-external-linaro-toolchain/deploy/ipk/am438x_epos_evm/packagegroup-arago-tisdk-epossdk-sdk-host_1.0-r1_am438x_epos_evm.ipk.<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">| Collected errors:<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-arago-tisdk-addons-sdk-host:<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; *&nbsp;&nbsp;&nbsp; arm-benchmarks-src *&nbsp;&nbsp;&nbsp; am-sysinfo-src *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ti-linux-secure-examples-src *&nbsp; oprofile-example-src *<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-addons-sdk-host.<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-arago-tisdk-matrix-sdk-host:<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; *&nbsp;&nbsp;&nbsp; matrix-gui-src *<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-matrix-sdk-host.<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-arago-tisdk-amsdk-sdk-host:<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; *&nbsp;&nbsp;&nbsp; u-boot-am43xx-src *&nbsp;&nbsp;&nbsp;&nbsp; linux-am43xx-src *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oe-layersetup-src *<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-amsdk-sdk-host.<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-arago-tisdk-epossdk-sdk-host:<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; *&nbsp;&nbsp;&nbsp; starterware-src *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; examples-src *&nbsp; ppa-am438x-epos-evm-src *<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">|&nbsp; * opkg_install_cmd: Cannot install package packagegroup-arago-tisdk-epossdk-sdk-host.<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D"><p>&nbsp;</p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">Regards,<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D">Nageswari<p></p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D"><p>&nbsp;</p></span></p>
-<p class="MsoNormal"><span style="color:#1F497D"><p>&nbsp;</p></span></p>
-<div style="border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in 4.0pt">
-<div>
-<div style="border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in">
-<p class="MsoNormal"><b><span style="font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style="font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org]
-<b>On Behalf Of </b>Hingolikar, Mrinmayee<br />
-<b>Sent:</b> Wednesday, January 08, 2014 10:34 AM<br />
-<b>To:</b> meta-arago@arago-project.org<br />
-<b>Cc:</b> R, Karthik<br />
-<b>Subject:</b> [meta-arago] FW: Do_rootfs failure with tools-sdk in EXTRA_IMAGE_FEATURES<p></p></span></p>
-</div>
-</div>
-<p class="MsoNormal"></p><p>&nbsp;</p>
-<p class="MsoNormal"></p><p>&nbsp;</p>
-<p class="MsoNormal">Hi all,</p><p></p>
-<p class="MsoNormal"></p><p>&nbsp;</p>
-<p class="MsoNormal">I am trying to add development tools in the filesystem. After adding tools-sdk in EXTRA_IMAGE_FEATURES, the build failed in the rootfs task. Snapshot of the log:</p><p></p>
-<p class="MsoNormal"><span style="color:red">Collected errors:<p></p></span></p>
-<p class="MsoNormal"><span style="color:red">* satisfy_dependencies_for: Cannot satisfy the following dependencies for packagegroup-core-sdk:<p></p></span></p>
-<p class="MsoNormal"><span style="color:red">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ldd *<p></p></span></p>
-<p class="MsoNormal"><span style="color:red">* opkg_install_cmd: Cannot install package packagegroup-core-sdk.<p></p></span></p>
-<p class="MsoNormal"><span style="color:red"><p>&nbsp;</p></span></p>
-<p class="MsoNormal">Ldd package provided by eglibc is not getting built.</p><p></p>
-<p class="MsoNormal"></p><p>&nbsp;</p>
-<p class="MsoNormal">Similar errors was seen when I built arago-console-image with the
-<b>arago-dylan-config.</b></p><p><b></b></p>
-<p class="MsoNormal">Is this a known issue and any pointers to resolve it?</p><p></p>
-<p class="MsoNormal"></p><p>&nbsp;</p>
-<p class="MsoNormal">Regards,</p><p></p>
-<p class="MsoNormal">Mrinmayee</p><p></p>
-<p class="MsoNormal"></p><p>&nbsp;</p>
-</div>
-</div>
-
-
-<p style="margin-top: 2.5em; margin-bottom: 1em; border-bottom: 1px solid #000"></p><pre class="k9mail"><hr /><br />meta-arago mailing list<br />meta-arago@arago-project.org<br /><a href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br /></pre></blockquote></div><br clear="all">It fails in the same place, but for a completely different reason - you are trying to install host-side packages into a target rootfs...<br>
-<br>
--- <br>
-Denys</body></html>
-
-------5T2IS1ITC4SHUTVRBE96PBVW26GNSP--
+--_000_CF956B779D819D41BBC043B7082161D5478BEBDBDE04entticom_--
