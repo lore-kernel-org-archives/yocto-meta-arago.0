@@ -1,33 +1,29 @@
-Return-Path: <mrinmayee@ti.com>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 360AB52986
+	by arago-project.org (Postfix) with ESMTPS id 53A525208E
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Jan 2014 05:36:27 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0A5aO09006467;
-	Thu, 9 Jan 2014 23:36:25 -0600
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0A5aM6g022330;
-	Fri, 10 Jan 2014 11:06:23 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE72.ent.ti.com ([fe80::bd56:32bf:87fd:2763%27]) with mapi id
-	14.02.0342.003; Fri, 10 Jan 2014 13:36:22 +0800
-From: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] Openssl build failure
-Thread-Index: Ac8COfvK5lQ+DQayTaeAR2Ix/TewyAJNsnBQAGhOZlD//+TGAP/+fWtw
-Date: Fri, 10 Jan 2014 05:36:21 +0000
-Message-ID: <CF956B779D819D41BBC043B7082161D5479175@DBDE04.ent.ti.com>
-References: <CF956B779D819D41BBC043B7082161D5478FAA@DBDE04.ent.ti.com>
-	<206773bd-5a0c-4f4f-92a5-bc56453ed733@email.android.com>
-In-Reply-To: <206773bd-5a0c-4f4f-92a5-bc56453ed733@email.android.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
+	Fri, 10 Jan 2014 07:30:35 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0A7UYjS031564
+	for <meta-arago@arago-project.org>; Fri, 10 Jan 2014 01:30:34 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0A7UYdY023259
+	for <meta-arago@arago-project.org>; Fri, 10 Jan 2014 01:30:34 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 10 Jan 2014 01:30:34 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s0A7UYs4024320	for <meta-arago@arago-project.org>;
+	Fri, 10 Jan 2014 01:30:34 -0600
+Date: Fri, 10 Jan 2014 02:18:09 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1037628774.119.1389338289239.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: Openssl build failure
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.12 build 2014-01-10_01-00-24
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,205 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jan 2014 05:36:28 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CF956B779D819D41BBC043B7082161D5479175DBDE04entticom_"
+X-List-Received-Date: Fri, 10 Jan 2014 07:30:35 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_118_736162963.1389338289183"
 
---_000_CF956B779D819D41BBC043B7082161D5479175DBDE04entticom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+------=_Part_118_736162963.1389338289183
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SGkgRGVueXMsDQpJIGFtIG5vdCBtaXNzaW5nIHRoaXMgcGF0Y2guIFlvdSBjYW4gdmVyaWZ5IHJl
-ZmVyIGl0IGhlcmU6DQpodHRwOi8vYXJhZ29wcm9qZWN0Lm9yZy9naXQvcHJvamVjdHMvP3A9bWV0
-YS1hcmFnby1nbHNkay5naXQ7YT1ibG9iO2Y9bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb25u
-ZWN0aXZpdHkvb3BlbnNzbC9vcGVuc3NsXzEuMC4xZS5iYmFwcGVuZDtoPTQxNTQyMjVhMGE4NmM1
-Yjg4NzlmYTFjNjlkZTM3ZGUwZDEyY2E0ODk7aGI9bWFzdGVyDQoNClJlZ2FyZHMsDQpNcmlubWF5
-ZWUNCg0KRnJvbTogRGVueXMgRG15dHJpeWVua28gW21haWx0bzpkZW5pc0BkZW5peC5vcmddDQpT
-ZW50OiBUaHVyc2RheSwgSmFudWFyeSAwOSwgMjAxNCA4OjAxIFBNDQpUbzogSGluZ29saWthciwg
-TXJpbm1heWVlOyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW21l
-dGEtYXJhZ29dIE9wZW5zc2wgYnVpbGQgZmFpbHVyZQ0KDQoiSGluZ29saWthciwgTXJpbm1heWVl
-IiA8bXJpbm1heWVlQHRpLmNvbTxtYWlsdG86bXJpbm1heWVlQHRpLmNvbT4+IHdyb3RlOg0KDQoN
-CkhpIGFsbCwNCg0KDQpJIGFtIGZhY2luZyBhIG9wZW5zc2wgYnVpbGQgZmFpbHVyZSBvbiBzb21l
-IG9mIHRoZSA2NC1iaXQgbWFjaGluZXMgLiBJbiB0aGUgcmVjaXBlIHRoZSBkZXBlbmRlbmN5IOKA
-nG9jZi1saW51eCDigJ0gaXMgcmVwbGFjZWQgYnkgbnVsbCBmb3IgZHJhN3h4LWV2bS4NCkhvd2V2
-ZXIsIG9uIGNlcnRhaW4gbWFjaGluZXMsIGl0IGFkZHMgYSBkZXBlbmRlbmN5IG9jZi1saW51eC1u
-YXRpdmUgdGhhdCBjb25mbGljdHMgd2l0aCBjcnlwdG9kZXYsIHJlc3VsdGluZyBpbiB0aGVzZSBl
-cnJvcnM6DQoNCg0KV0FSTklORzogVGhlIHJlY2lwZSBvY2YtbGludXggaXMgdHJ5aW5nIHRvIGlu
-c3RhbGwgZmlsZXMgaW50byBhIHNoYXJlZCBhcmVhIHdoZW4gdGhvc2UgZmlsZXMgYWxyZWFkeSBl
-eGlzdC4gVGhvc2UgZmlsZXMgYW5kIHRoZWlyIG1hbmlmZXN0IGxvY2F0aW9uIGFyZToNCiAgIC9o
-b21lL3gwMTYxNjQ0L2dsc2RrL3RpLWdsc2RrX2RyYTd4eC1ldm1fNl8wM18wMF8wMS95b2N0by1s
-YXllcnMvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vc3lzcm9vdHMv
-ZHJhN3h4LWV2bS91c3IvaW5jbHVkZS9jcnlwdG8vY3J5cHRvZGV2LmgNCiAgIE1hdGNoZWQgaW4g
-bWFuaWZlc3QtZHJhN3h4LWV2bS1jcnlwdG9kZXYNClBsZWFzZSB2ZXJpZnkgd2hpY2ggcGFja2Fn
-ZSBzaG91bGQgcHJvdmlkZSB0aGUgYWJvdmUgZmlsZXMuDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVk
-OiBkb19jb21waWxlIChzZWUgL2hvbWUveDAxNjE2NDQvZ2xzZGsvdGktZ2xzZGtfZHJhN3h4LWV2
-bV82XzAzXzAwXzAxL3lvY3RvLWxheWVycy9idWlsZC9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJv
-LXRvb2xjaGFpbi93b3JrL2RyYTd4eF9ldm0tb2UtbGludXgtZ251ZWFiaS9vcGVuc3NsLzEuMC4x
-ZS1yMTUuMC1hcmFnbzgvdGVtcC9sb2cuZG9fY29tcGlsZS4yOTYyMCBmb3IgZnVydGhlciBpbmZv
-cm1hdGlvbikNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS94MDE2
-MTY0NC9nbHNkay90aS1nbHNka19kcmE3eHgtZXZtXzZfMDNfMDBfMDEveW9jdG8tbGF5ZXJzL2J1
-aWxkL2FyYWdvLXRtcC1leHRlcm5hbC1saW5hcm8tdG9vbGNoYWluL3dvcmsvZHJhN3h4X2V2bS1v
-ZS1saW51eC1nbnVlYWJpL29wZW5zc2wvMS4wLjFlLXIxNS4wLWFyYWdvOC90ZW1wL2xvZy5kb19j
-b21waWxlLjI5NjIwDQoNCg0KDQoNClRvIGNpcmN1bXZlbnQgdGhlc2UsIEkgaGF2ZSBhZGRlZCB0
-aGUgZm9sbG93aW5nIGxpbmUgaW4gLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWtlcm5lbC9jcnlwdG9k
-ZXYvY3J5cHRvZGV2XzEuNi5iYjoNClJSRVBMQUNFU18ke1BOfV9hcHBlbmRfZHJhN3h4LWV2bSA9
-ICJvY2YtbGludXgiDQoNCg0KSXMgdGhpcyB0aGUgY29ycmVjdCBhcHByb2FjaD8NCg0KDQpSZWdh
-cmRzLA0KTXJpbm1heWVlDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-DQptZXRhLWFyYWdvIG1haWxpbmcgbGlzdA0KbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZzxt
-YWlsdG86bWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZz4NCmh0dHA6Ly9hcmFnby1wcm9qZWN0
-Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbw0KDQpBcmUgeW91IG1pc3Np
-bmcgdGhpcyBmaXggZnJvbSBsYXN0IG1vbnRoOg0KDQpodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcv
-Z2l0Lz9wPW1ldGEtYXJhZ28uZ2l0O2E9Y29tbWl0ZGlmZjtoPTk0YjZjMGViN2E0ZWFjMjcwMTFh
-ZjYyMzgxZmRjYjI2M2UzZGZiZDcNCg0KLS0NCkRlbnlzDQo=
+<html>
+<head>
+<title>
+Status for 01/10/14
+</title>
+</head>
+<body>
 
---_000_CF956B779D819D41BBC043B7082161D5479175DBDE04entticom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+<h2>Status for 01/10/14</h2>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
-ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
-YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
-I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
-W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
-MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6VGFob21hOw0K
-CXBhbm9zZS0xOjIgMTEgNiA0IDMgNSA0IDQgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1p
-bHk6Q29uc29sYXM7DQoJcGFub3NlLTE6MiAxMSA2IDkgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUg
-RGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwN
-Cgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBw
-dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCmE6bGluaywgc3Bhbi5N
-c29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4
-dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9s
-bG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRl
-Y29yYXRpb246dW5kZXJsaW5lO30NCnANCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0
-b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9u
-dC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsInNlcmlmIjt9DQpwcmUNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCglt
-YXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0
-eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsN
-Cgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBl
-OnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
-IzFGNDk3RDt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0K
-c3Bhbi5IVE1MUHJlZm9ybWF0dGVkQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBQcmVmb3Jt
-YXR0ZWQgQ2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJI
-VE1MIFByZWZvcm1hdHRlZCI7DQoJZm9udC1mYW1pbHk6Q29uc29sYXM7fQ0Kc3Bhbi5FbWFpbFN0
-eWxlMjMNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJ
-e21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2Ug
-V29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAx
-LjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0t
-Pjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0
-PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUg
-bXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4
-dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4N
-CjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4N
-CjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iY29sb3I6IzFGNDk3RCI+SGkgRGVueXMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0
-OTdEIj5JIGFtIG5vdCBtaXNzaW5nIHRoaXMgcGF0Y2guIFlvdSBjYW4gdmVyaWZ5IHJlZmVyIGl0
-IGhlcmU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGEgaHJl
-Zj0iaHR0cDovL2FyYWdvcHJvamVjdC5vcmcvZ2l0L3Byb2plY3RzLz9wPW1ldGEtYXJhZ28tZ2xz
-ZGsuZ2l0O2E9YmxvYjtmPW1ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29ubmVjdGl2aXR5L29w
-ZW5zc2wvb3BlbnNzbF8xLjAuMWUuYmJhcHBlbmQ7aD00MTU0MjI1YTBhODZjNWI4ODc5ZmExYzY5
-ZGUzN2RlMGQxMmNhNDg5O2hiPW1hc3RlciI+aHR0cDovL2FyYWdvcHJvamVjdC5vcmcvZ2l0L3By
-b2plY3RzLz9wPW1ldGEtYXJhZ28tZ2xzZGsuZ2l0O2E9YmxvYjtmPW1ldGEtYXJhZ28tZGlzdHJv
-L3JlY2lwZXMtY29ubmVjdGl2aXR5L29wZW5zc2wvb3BlbnNzbF8xLjAuMWUuYmJhcHBlbmQ7aD00
-MTU0MjI1YTBhODZjNWI4ODc5ZmExYzY5ZGUzN2RlMGQxMmNhNDg5O2hiPW1hc3RlcjwvYT48bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+UmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPk1yaW5tYXllZTxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj48bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
-bmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0
-Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0
-REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhv
-bWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7Ij4gRGVueXMgRG15dHJpeWVua28gW21haWx0bzpkZW5pc0BkZW5p
-eC5vcmddDQo8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIEphbnVhcnkgMDksIDIwMTQgODow
-MSBQTTxicj4NCjxiPlRvOjwvYj4gSGluZ29saWthciwgTXJpbm1heWVlOyBtZXRhLWFyYWdvQGFy
-YWdvLXByb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbbWV0YS1hcmFnb10gT3Bl
-bnNzbCBidWlsZCBmYWlsdXJlPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OywmcXVvdDtzZXJpZiZxdW90OyI+JnF1b3Q7SGlu
-Z29saWthciwgTXJpbm1heWVlJnF1b3Q7ICZsdDs8YSBocmVmPSJtYWlsdG86bXJpbm1heWVlQHRp
-LmNvbSI+bXJpbm1heWVlQHRpLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgYWxs
-LDxvOnA+PC9vOnA+PC9wPg0KPHA+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5JIGFtIGZhY2luZyBhIG9wZW5zc2wgYnVpbGQgZmFpbHVyZSBvbiBzb21lIG9mIHRo
-ZSA2NC1iaXQgbWFjaGluZXMgLiBJbiB0aGUgcmVjaXBlIHRoZSBkZXBlbmRlbmN5IOKAnG9jZi1s
-aW51eCDigJ0gaXMgcmVwbGFjZWQgYnkgbnVsbCBmb3IgZHJhN3h4LWV2bS48bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhvd2V2ZXIsIG9uIGNlcnRhaW4gbWFjaGluZXMsIGl0
-IGFkZHMgYSBkZXBlbmRlbmN5IG9jZi1saW51eC1uYXRpdmUgdGhhdCBjb25mbGljdHMgd2l0aCBj
-cnlwdG9kZXYsIHJlc3VsdGluZyBpbiB0aGVzZSBlcnJvcnM6PG86cD48L286cD48L3A+DQo8cD4m
-bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjx1PjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6OC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7Y29s
-b3I6cmVkIj5XQVJOSU5HOiBUaGUgcmVjaXBlIG9jZi1saW51eCBpcyB0cnlpbmcgdG8gaW5zdGFs
-bCBmaWxlcyBpbnRvIGEgc2hhcmVkIGFyZWEgd2hlbiB0aG9zZSBmaWxlcyBhbHJlYWR5IGV4aXN0
-LiBUaG9zZSBmaWxlcyBhbmQgdGhlaXIgbWFuaWZlc3QgbG9jYXRpb24gYXJlOjxvOnA+PC9vOnA+
-PC9zcGFuPjwvdT48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48dT48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOnJl
-ZCI+Jm5ic3A7Jm5ic3A7IC9ob21lL3gwMTYxNjQ0L2dsc2RrL3RpLWdsc2RrX2RyYTd4eC1ldm1f
-Nl8wM18wMF8wMS95b2N0by1sYXllcnMvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10
-b29sY2hhaW4vc3lzcm9vdHMvZHJhN3h4LWV2bS91c3IvaW5jbHVkZS9jcnlwdG8vY3J5cHRvZGV2
-Lmg8bzpwPjwvbzpwPjwvc3Bhbj48L3U+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHU+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZTo4LjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZx
-dW90Oztjb2xvcjpyZWQiPiZuYnNwOyZuYnNwOyBNYXRjaGVkIGluIG1hbmlmZXN0LWRyYTd4eC1l
-dm0tY3J5cHRvZGV2PG86cD48L286cD48L3NwYW4+PC91PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmll
-ciBOZXcmcXVvdDs7Y29sb3I6cmVkIj5QbGVhc2UgdmVyaWZ5IHdoaWNoIHBhY2thZ2Ugc2hvdWxk
-IHByb3ZpZGUgdGhlIGFib3ZlIGZpbGVzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q291cmllciBOZXcmcXVvdDs7Y29sb3I6cmVkIj5FUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBk
-b19jb21waWxlIChzZWUgL2hvbWUveDAxNjE2NDQvZ2xzZGsvdGktZ2xzZGtfZHJhN3h4LWV2bV82
-XzAzXzAwXzAxL3lvY3RvLWxheWVycy9idWlsZC9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRv
-b2xjaGFpbi93b3JrL2RyYTd4eF9ldm0tb2UtbGludXgtZ251ZWFiaS9vcGVuc3NsLzEuMC4xZS1y
-MTUuMC1hcmFnbzgvdGVtcC9sb2cuZG9fY29tcGlsZS4yOTYyMA0KIGZvciBmdXJ0aGVyIGluZm9y
-bWF0aW9uKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVv
-dDs7Y29sb3I6cmVkIj5FUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUv
-eDAxNjE2NDQvZ2xzZGsvdGktZ2xzZGtfZHJhN3h4LWV2bV82XzAzXzAwXzAxL3lvY3RvLWxheWVy
-cy9idWlsZC9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi93b3JrL2RyYTd4eF9l
-dm0tb2UtbGludXgtZ251ZWFiaS9vcGVuc3NsLzEuMC4xZS1yMTUuMC1hcmFnbzgvdGVtcC9sb2cu
-ZG9fY29tcGlsZS4yOTYyMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwPiZuYnNwOzxvOnA+PC9v
-OnA+PC9wPg0KPHA+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5U
-byBjaXJjdW12ZW50IHRoZXNlLCBJIGhhdmUgYWRkZWQgdGhlIGZvbGxvd2luZyBsaW5lIGluIC1h
-cmFnby1leHRyYXMvcmVjaXBlcy1rZXJuZWwvY3J5cHRvZGV2L2NyeXB0b2Rldl8xLjYuYmI6PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5SUkVQTEFDRVNfJHtQTn1fYXBw
-ZW5kX2RyYTd4eC1ldm0gPSAmcXVvdDtvY2YtbGludXgmcXVvdDs8L2I+PG86cD48L286cD48L3A+
-DQo8cD48Yj4mbmJzcDs8L2I+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
-cyB0aGlzIHRoZSBjb3JyZWN0IGFwcHJvYWNoPzxvOnA+PC9vOnA+PC9wPg0KPHA+Jm5ic3A7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TXJpbm1heWVlPG86cD48L286cD48L3A+DQo8cD4mbmJz
-cDs8bzpwPjwvbzpwPjwvcD4NCjxwcmUgc3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj48aHIgc2l6
-ZT0iMyIgd2lkdGg9IjEwMCUiIGFsaWduPSJjZW50ZXIiPjwvcHJlPg0KPHByZT48YnI+bWV0YS1h
-cmFnbyBtYWlsaW5nIGxpc3Q8YnI+PGEgaHJlZj0ibWFpbHRvOm1ldGEtYXJhZ29AYXJhZ28tcHJv
-amVjdC5vcmciPm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc8L2E+PGJyPjxhIGhyZWY9Imh0
-dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFn
-byI+aHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRh
-LWFyYWdvPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5l
-dyBSb21hbiZxdW90OywmcXVvdDtzZXJpZiZxdW90OyI+PGJyIGNsZWFyPSJhbGwiPg0KQXJlIHlv
-dSBtaXNzaW5nIHRoaXMgZml4IGZyb20gbGFzdCBtb250aDo8YnI+DQo8YnI+DQo8YSBocmVmPSJo
-dHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvZ2l0Lz9wPW1ldGEtYXJhZ28uZ2l0O2E9Y29tbWl0ZGlm
-ZjtoPTk0YjZjMGViN2E0ZWFjMjcwMTFhZjYyMzgxZmRjYjI2M2UzZGZiZDciPmh0dHA6Ly9hcmFn
-by1wcm9qZWN0Lm9yZy9naXQvP3A9bWV0YS1hcmFnby5naXQ7YT1jb21taXRkaWZmO2g9OTRiNmMw
-ZWI3YTRlYWMyNzAxMWFmNjIzODFmZGNiMjYzZTNkZmJkNzwvYT48YnI+DQo8YnI+DQotLSA8YnI+
-DQpEZW55czxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8
-L2h0bWw+DQo=
+<h2>BUILD_ID: build-2014-01-10_01-01-36</h2>
 
---_000_CF956B779D819D41BBC043B7082161D5479175DBDE04entticom_--
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.12"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_118_736162963.1389338289183--
