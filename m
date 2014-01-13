@@ -1,23 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 31A7352986
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 76A1A529AD
 	for <meta-arago@arago-project.org>;
-	Mon, 13 Jan 2014 21:50:30 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.18.138.84])
-	by vms173025.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MZD00MOO0N8DZ00@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 13 Jan 2014 15:50:06 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 1FEE220088; Mon,
-	13 Jan 2014 16:49:56 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 13 Jan 2014 16:49:54 -0500
-Message-id: <1389649794-6757-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] branding-bleeding: create special brand for experimenting
+	Mon, 13 Jan 2014 22:15:04 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0DMF3CN018871
+	for <meta-arago@arago-project.org>; Mon, 13 Jan 2014 16:15:03 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0DMF31p016632
+	for <meta-arago@arago-project.org>; Mon, 13 Jan 2014 16:15:03 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 13 Jan 2014 16:15:02 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0DMExVR029026;
+	Mon, 13 Jan 2014 16:15:01 -0600
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 13 Jan 2014 17:35:21 -0600
+Message-ID: <1389656121-31458-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+MIME-Version: 1.0
+Subject: [PATCH] packagegroup-arago-test: Add vpe-vpdma package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,26 +34,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jan 2014 21:50:30 -0000
+X-List-Received-Date: Mon, 13 Jan 2014 22:15:04 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* This includes the VPE test program into the file system
 
-Useful for testing unreleased components that are not yet accessible outside.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-bleeding.inc | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 meta-arago-distro/conf/distro/include/branding-bleeding.inc
+ .../packagegroups/packagegroup-arago-test.bb       |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-new file mode 100644
-index 0000000..67f9f22
---- /dev/null
-+++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-@@ -0,0 +1 @@
-+# Special "bleeding" branding for experimenting and testing unreleased components
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index b6f2896..b7fa806 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Extended task to get System Test specific apps"
+ LICENSE = "MIT"
+-PR = "r11"
++PR = "r12"
+ 
+ inherit packagegroup
+ 
+@@ -30,6 +30,10 @@ ARAGO_TI_TEST_append_omap-a15 = " \
+     libdrm-tests \
+     "
+ 
++ARAGO_TI_TEST_append_dra7xx-evm = " \
++    vpe-vpdma \
++    "
++
+ RDEPENDS_${PN} = "\
+     ${ARAGO_TEST} \
+     ${ARAGO_TI_TEST} \
 -- 
-1.8.3.2
+1.7.0.4
 
 
