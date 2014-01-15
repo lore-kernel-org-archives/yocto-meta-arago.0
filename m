@@ -1,29 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id D964552A4A
+Return-Path: <Joshua.Vanderpool@raymondcorp.com>
+Received: from smtp.raymondcorp.com (smtp.raymondcorp.com [24.97.209.121])
+	by arago-project.org (Postfix) with ESMTPS id E1C0052998
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Jan 2014 09:26:42 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0F9Qf10027555
-	for <meta-arago@arago-project.org>; Wed, 15 Jan 2014 03:26:41 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0F9QfxQ019762
-	for <meta-arago@arago-project.org>; Wed, 15 Jan 2014 03:26:41 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 15 Jan 2014 03:26:41 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s0F9Qe2B028370	for <meta-arago@arago-project.org>;
-	Wed, 15 Jan 2014 03:26:41 -0600
-Date: Wed, 15 Jan 2014 04:14:07 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1031266820.139.1389777247963.JavaMail.jenkins@puget>
+	Wed, 15 Jan 2014 16:20:22 +0000 (UTC)
+Received: from usnygrcas1.raymondcorp.local (nothing.attdns.com
+	[130.1.155.194] (may be forged))
+	by smtp.raymondcorp.com (8.14.3/8.14.3) with ESMTP id s0FGKHvG010389
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 15 Jan 2014 10:20:22 -0600
+Received: from USNYGRMBX4.raymondcorp.local ([169.254.4.152]) by usnygrcas1
+	([130.1.155.198]) with mapi id 14.03.0158.001; Wed, 15 Jan 2014 11:20:18
+	-0500
+From: Vanderpool Josh <Joshua.Vanderpool@raymondcorp.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: Building the tisdk image fails to fetch php
+Thread-Index: Ac8SDa017oWE3k2GRTKSnkTrc1gMQg==
+Date: Wed, 15 Jan 2014 16:20:17 +0000
+Message-ID: <7D1F292BE8E4CC4F93079C1A7A58D5622BA33E9E@USNYGRMBX4.raymondcorp.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.150.131]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-01-15_01-00-24
+X-MessageScreenMessageID: 1389802822.245525.1642.728252463
+X-MessageScreenContentScore: Score of 0 assigned to Content
+X-MessageScreenUCEScore: Score of 0 assigned to UCE
+X-MessageScreen: Analyzed by IntelliReach MessageScreen(tm)
+Subject: Building the tisdk image fails to fetch php
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +39,95 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jan 2014 09:26:43 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_138_306461418.1389777247872"
+X-List-Received-Date: Wed, 15 Jan 2014 16:20:24 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA33E9EUSNYGRMBX4raymo_"
 
-------=_Part_138_306461418.1389777247872
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA33E9EUSNYGRMBX4raymo_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+This is in the meta-openembeded layer but might be fixed in the master...=
+
+I use the git://arago-project.org/git/projects/oe-layersetup.git to get r=
+elease configs.
+
+Anyway the SRC_URI is invalid for php-5.5.14 as they move them
+from: http://www.php.net/distributions/php-${PV}.tar.bz2
+to: http://museum.php.net/php5/php-${PV}.tar.bz2
+
+I just changed the php.inc at /tisdk/sources/meta-openembedded/meta-oe/re=
+cipes-devtools/php/php.inc
+
+I am just learning about layers i assume there is something i could have =
+done in my local.conf but have not discovered yet...
+
+Just wanted it to be noted in case others run into the issue.
+
+-Josh
+
+
+Confidentiality Notice:
+
+The preceding e-mail message (including any attachments) contains informa=
+tion that may be confidential, protected by applicable legal privileges, =
+or constitute non-public information. It is intended to be conveyed only =
+to the designated recipient(s). If you are not an intended recipient of t=
+his message, please notify the sender by replying to this message and the=
+n delete it from your system. Use, dissemination, distribution or reprodu=
+ction of this message by unintended recipients is=20
+not authorized and may be unlawful.
+
+
+
+--_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA33E9EUSNYGRMBX4raymo_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<title>
-Status for 01/15/14
-</title>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-asci=
+i">
 </head>
-<body>
+<body bgcolor=3D"#FFFFFF" text=3D"#000000">
+This is in the meta-openembeded layer but might be fixed in the master...=
+<br>
+I use the git://arago-project.org/git/projects/oe-layersetup.git to get r=
+elease configs.<br>
+<br>
+Anyway the SRC_URI is invalid for php-5.5.14 as they move them <br>
+from: <a class=3D"moz-txt-link-freetext" href=3D"http://www.php.net/distr=
+ibutions/php-$">
+http://www.php.net/distributions/php-$</a>{PV}.tar.bz2&nbsp; <br>
+to: <a class=3D"moz-txt-link-freetext" href=3D"http://museum.php.net/php5=
+/php-$">http://museum.php.net/php5/php-$</a>{PV}.tar.bz2
+<br>
+<br>
+I just changed the php.inc at /tisdk/sources/meta-openembedded/meta-oe/re=
+cipes-devtools/php/php.inc<br>
+<br>
+I am just learning about layers i assume there is something i could have =
+done in my local.conf but have not discovered yet...<br>
+<br>
+Just wanted it to be noted in case others run into the issue.<br>
+<br>
+-Josh<br>
+<p>
+Confidentiality Notice:
 
-<h2>Status for 01/15/14</h2>
-
-<h2>BUILD_ID: build-2014-01-15_01-01-37</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
+The preceding e-mail message (including any attachments) contains informa=
+tion that may be confidential, protected by applicable legal privileges, =
+or constitute non-public information. It is intended to be conveyed only =
+to the designated recipient(s). If you are not an intended recipient of t=
+his message, please notify the sender by replying to this message and the=
+n delete it from your system. Use, dissemination, distribution or reprodu=
+ction of this message by unintended recipients is=20
+not authorized and may be unlawful.
 
 <p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
 
 </body>
 </html>
 
-
-------=_Part_138_306461418.1389777247872--
+--_000_7D1F292BE8E4CC4F93079C1A7A58D5622BA33E9EUSNYGRMBX4raymo_--
