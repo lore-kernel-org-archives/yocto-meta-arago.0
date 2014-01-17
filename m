@@ -1,28 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 0534852A4A
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id C7CA6529A9
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Jan 2014 09:06:02 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0G962OI002808
-	for <meta-arago@arago-project.org>; Thu, 16 Jan 2014 03:06:02 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0G9622C010461
-	for <meta-arago@arago-project.org>; Thu, 16 Jan 2014 03:06:02 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 16 Jan 2014 03:06:01 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s0G961Mm007114;	Thu, 16 Jan 2014 03:06:01 -0600
-Date: Thu, 16 Jan 2014 03:53:27 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <1138666676.143.1389862407419.JavaMail.jenkins@puget>
+	Thu, 16 Jan 2014 23:57:45 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0GNvixB028446
+	for <meta-arago@arago-project.org>; Thu, 16 Jan 2014 17:57:44 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0GNviMf003965
+	for <meta-arago@arago-project.org>; Thu, 16 Jan 2014 17:57:44 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 16 Jan 2014 17:57:44 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0GNvfd3003746;
+	Thu, 16 Jan 2014 17:57:42 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 16 Jan 2014 19:19:06 -0600
+Message-ID: <1389921550-8122-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-01-16_01-00-24
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/5] Remove Wilink 6 references from packagegroups and other recipes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,203 +35,308 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jan 2014 09:06:03 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_142_2029142819.1389862407407"
+X-List-Received-Date: Thu, 16 Jan 2014 23:57:46 -0000
+Content-Type: text/plain
 
-------=_Part_142_2029142819.1389862407407
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+* Wilink 6 will no longer be supported in future SDKs.
+* Remove references to Wilink 6 from various packagegroups and other recipes and
+  use Wilink 8 packages by default.
+---
+ .../conf/distro/arago-source-ipk.conf              |    7 +++-
+ .../conf/distro/include/arago-prefs.inc            |   21 +----------
+ ...ckagegroup-arago-tisdk-connectivity-sdk-host.bb |    8 ++---
+ ...agegroup-arago-tisdk-connectivity-sdk-target.bb |   17 +--------
+ .../packagegroup-arago-tisdk-connectivity.bb       |   36 ++++---------------
+ .../packagegroup-arago-tisdk-matrix.bb             |   14 +-------
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    5 +--
+ 7 files changed, 23 insertions(+), 85 deletions(-)
 
-<html>
-<head>
-<title>
-Status for 01/16/14
-</title>
-</head>
-<body>
+diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+index ef41d94..9b78258 100644
+--- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
++++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+@@ -94,12 +94,15 @@ SRCIPK_INSTALL_DIR_pn-bt-enable = "board-support/extra-drivers/${PN}-${PV}"
+ CREATE_SRCIPK_pn-bt-firmware = "1"
+ SRCIPK_INSTALL_DIR_pn-bt-firmware = "board-support/extra-drivers/${PN}-${PV}"
+ 
+-CREATE_SRCIPK_pn-ti-compat-wireless-wl12xx = "1"
+-SRCIPK_INSTALL_DIR_pn-ti-compat-wireless-wl12xx = "board-support/extra-drivers/${PN}-${PV}"
++CREATE_SRCIPK_pn-ti-compat-wireless-wl18xx = "1"
++SRCIPK_INSTALL_DIR_pn-ti-compat-wireless-wl18xx = "board-support/extra-drivers/${PN}-${PV}"
+ 
+ CREATE_SRCIPK_pn-ti-compat-bluetooth = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-compat-bluetooth = "board-support/extra-drivers/${PN}-${PV}"
+ 
++CREATE_SRCIPK_pn-wl18xx-firmware = "1"
++SRCIPK_INSTALL_DIR_pn-wl18xx-firmware = "board-support/extra-drivers/${PN}-${PV}"
++
+ CREATE_SRCIPK_pn-wl1271-wlan-cli = "1"
+ SRCIPK_INSTALL_DIR_pn-wl1271-wlan-cli = "example-applications/wlan"
+ 
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 9c7bcbd..e1da2e9 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -93,22 +93,5 @@ PREFERRED_VERSION_bluez-hcidump = "2.2"
+ PREFERRED_VERSION_bash = "3.2.48"
+ PREFERRED_VERSION_gettext = "0.16.1"
+ 
+-WILINK_VERSION = "WILINK-8"
+-# For AM335x & AM43x Wilink 8 is now the default version to be used
+-WILINK_VERSION_ti33x = "WILINK-8"
+-WILINK_VERSION_ti43x = "WILINK-8"
+-PREFERRED_PROVIDER_wl12xx-firmware = "${@base_contains('WILINK_VERSION','WILINK-8','wl18xx-firmware','wl12xx-firmware',d)}"
+-PREFERRED_PROVIDER_ti-compat-wireless-wl12xx = "${@base_contains('WILINK_VERSION','WILINK-8','ti-compat-wireless-wl18xx','ti-compat-wireless-wl12xx',d)}"
+-PREFERRED_PROVIDER_hostap-daemon = "${@base_contains('WILINK_VERSION','WILINK-8','hostap-daemon-wl18xx','hostap-daemon',d)}"
+-PREFERRED_PROVIDER_wpa-supplicant = "${@base_contains('WILINK_VERSION','WILINK-8','wpa-supplicant-wl18xx','wpa-supplicant',d)}"
+-PREFERRED_PROVIDER_ti-wifi-utils = "${@base_contains('WILINK_VERSION','WILINK-8','ti-wifi-utils-wl18xx','ti-wifi-utils',d)}"
+-
+-# Support Wilink 6 PG 2 modules
+-# By default am180x-evm comes with an outdated wilink 6 module
+-# All other platforms build the latest Wilink 6 PG 3 modules
+-PREFERRED_VERSION_ti-compat-bluetooth_am180x-evm = "r5.00.18"
+-PREFERRED_VERSION_ti-compat-wireless-wl12xx_am180x-evm = "r5.00.18"
+-PREFERRED_VERSION_wl12xx-firmware_am180x-evm = "r5.00.18"
+-PREFERRED_VERSION_wpa-supplicant_am180x-evm = "r5.00.18"
+-PREFERRED_VERSION_hostap-daemon_am180x-evm = "r5.00.18"
+-PREFERRED_VERSION_ti-wifi-utils_am180x-evm = "r5.00.18"
++PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
++PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
+index 8d4d081..50ca1bc 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
+@@ -1,25 +1,23 @@
+ DESCRIPTION = "Task to install wlan and bluetooth sources into the SDK"
+ LICENSE = "MIT"
+-PR = "r6"
++PR = "r7"
+ 
+ inherit packagegroup
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ # Further breaks to resolve
+-#    ti-compat-wireless-wl12xx-src
+ #    ti-compat-bluetooth-src
+ 
+ FIRMWARE_AND_DRIVERS_SRC = "\
+     bt-firmware-src \
+     bt-enable-src \
++    wl18xx-firmware-src \
+ "
+ 
+ CONNECTIVITY_RDEPENDS = ""
+ 
+-CONNECTIVITY_RDEPENDS_am37x-evm = "${FIRMWARE_AND_DRIVERS_SRC}"
+-CONNECTIVITY_RDEPENDS_am180x-evm = "${FIRMWARE_AND_DRIVERS_SRC}"
+-CONNECTIVITY_RDEPENDS_ti33x = "${@base_contains('ARAGO_BRAND','amsdk','${FIRMWARE_AND_DRIVERS_SRC}','',d)}"
++CONNECTIVITY_RDEPENDS_ti33x = "${FIRMWARE_AND_DRIVERS_SRC}"
+ 
+ RDEPENDS_${PN} = "\
+     ${CONNECTIVITY_RDEPENDS} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
+index da23384..b920770 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wlan and bluetooth headers and libraries into the SDK"
+ LICENSE = "MIT"
+-PR = "r3"
++PR = "r4"
+ 
+ inherit packagegroup
+ 
+@@ -14,24 +14,11 @@ BLUETOOTH_STACK = "\
+ 
+ CONNECTIVITY_RDEPENDS = ""
+ 
+-CONNECTIVITY_RDEPENDS_am37x-evm = "\
+-    ${BLUETOOTH_STACK} \
+-"
+-
+-#    wpa-supplicant-dev
+-
+-CONNECTIVITY_RDEPENDS_am180x-evm = "\
+-    ${BLUETOOTH_STACK} \
+-"
+-
+-#    wpa-supplicant-dev
+-
+ CONNECTIVITY_RDEPENDS_ti33x  = "\
+     ${BLUETOOTH_STACK} \
++    wpa-supplicant-wl18xx-dev \
+ "
+ 
+-#    wpa-supplicant-dev
+-
+ RDEPENDS_${PN} = "\
+     ${CONNECTIVITY_RDEPENDS} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index d7d2ef2..fd71494 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wlan and bluetooth packages into the target FS"
+ LICENSE = "MIT"
+-PR = "r18"
++PR = "r19"
+ 
+ inherit packagegroup
+ 
+@@ -22,11 +22,11 @@ WLAN_COMMON = "\
+     pulseaudio-module-bluetooth-discover \
+     pulseaudio-module-bluetooth-device \
+     eventdump \
+-    ${@base_contains('WILINK_VERSION','WILINK-8','wlconf','',d)} \
+-    wpa-supplicant \
++    wlconf \
++    wpa-supplicant-wl18xx \
+     crda \
+-    hostap-daemon \
+-    ti-wifi-utils \
++    hostap-daemon-wl18xx \
++    ti-wifi-utils-wl18xx \
+ "
+ # No bluetooth/bluetooth.h
+ 
+@@ -34,12 +34,10 @@ WLAN_COMMON = "\
+ #    netperf
+ 
+ # Further breaks to resolve
+-#    ti-compat-wireless-wl12xx
+ #    ti-compat-bluetooth
+ 
+ FIRMWARE_AND_DRIVERS = "\
+-    "${@base_contains('WILINK_VERSION','WILINK-6',' oppserver bt-firmware bt-enable' , '',d)}"\
+-    wl12xx-firmware \
++    wl18xx-firmware \
+ "
+ 
+ BLUETOOTH_STACK = "\
+@@ -55,34 +53,16 @@ BLUETOOTH_STACK = "\
+ 
+ DEMO_APPS = "\
+     bluetooth-gui \
+-    wl1271-demo \
++    wpa-gui-e \
+ "
+ 
+-#    wifi-direct-demo
+-#    battleship
+-#    wpa-gui-e
+-
+ CONNECTIVITY_RDEPENDS = ""
+ 
+-CONNECTIVITY_RDEPENDS_am37x-evm = "\
+-    ${WLAN_COMMON} \
+-    ${BLUETOOTH_STACK} \
+-    ${DEMO_APPS} \
+-    ${FIRMWARE_AND_DRIVERS} \
+-"
+-
+-CONNECTIVITY_RDEPENDS_am180x-evm  = "\
+-    ${WLAN_COMMON} \
+-    ${BLUETOOTH_STACK} \
+-    ${DEMO_APPS} \
+-    ${FIRMWARE_AND_DRIVERS} \
+-"
+-
+ CONNECTIVITY_RDEPENDS_ti33x = "\
+     ${WLAN_COMMON} \
+     ${BLUETOOTH_STACK} \
+     ${DEMO_APPS} \
+-    ${@base_contains('ARAGO_BRAND','amsdk','${FIRMWARE_AND_DRIVERS}','',d)} \
++    ${FIRMWARE_AND_DRIVERS} \
+ "
+ 
+ RDEPENDS_${PN} = "\
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index c3143d3..311ad2e 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r23"
++PR = "r24"
+ 
+ inherit packagegroup
+ 
+@@ -68,9 +68,6 @@ MATRIX_APPS_append_ti33x = "        \
+     matrix-gui-bluetooth-demos      \
+ "
+ 
+-#    matrix-gui-wifi-battleship-demo
+-#    matrix-gui-wifi-direct-demo
+-
+ MATRIX_APPS_append_ti43x = "        \
+     ${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}','',d)} \
+                                     \
+@@ -114,24 +111,15 @@ MATRIX_APPS_append_am37x-evm = "    \
+     matrix-gui-display-control      \
+     matrix-gui-clocks               \
+                                     \
+-    matrix-gui-wifi-demos           \
+-    matrix-gui-bluetooth-demos      \
+                                     \
+     matrix-multimedia-demo-audiocapture \
+ "
+ 
+-#    matrix-gui-wifi-battleship-demo
+-#    matrix-gui-wifi-direct-demo
+-
+ MATRIX_APPS_append_am180x-evm = "   \
+-    matrix-gui-wifi-demos           \
+     matrix-gui-bluetooth-demos      \
+     matrix-gui-pru-demos            \
+ "
+ 
+-#    matrix-gui-wifi-battleship-demo
+-#    matrix-gui-wifi-direct-demo
+-
+ RDEPENDS_${PN} = "        \
+     ${MATRIX_ESSENTIALS}  \
+     ${MATRIX_GUI}         \
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index bcc8d81..913553a 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -33,7 +33,7 @@ SRC_URI = "\
+     file://Makefile_oprofile-example \
+ "
+ 
+-PR = "r20"
++PR = "r21"
+ 
+ MAKEFILES_COMMON = "linux \
+                     matrix-gui \
+@@ -56,7 +56,6 @@ MAKEFILES_append_omap3 = " u-boot-spl \
+ "
+ MAKEFILES_append_am37x-evm = " av-examples \
+                                ti-ocf-crypto-module \
+-                               wireless \
+ "
+ MAKEFILES_append_am3517-evm = " av-examples \
+                                 ti-ocf-crypto-module \
+@@ -65,6 +64,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
+                            ${QUICK_PLAYGROUND} \
+                            ti-crypto-examples \
+                            linux-dtbs \
++                           wireless \
+ "
+ MAKEFILES_append_ti43x = " u-boot-spl \
+                            ${QUICK_PLAYGROUND} \
+@@ -78,7 +78,6 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
+ "
+ MAKEFILES_append_am180x-evm = " pru \
+                                 u-boot-legacy \
+-                                wireless \
+ "
+ 
+ # Use ARCH format expected by the makefile
+-- 
+1.7.0.4
 
-<h2>Status for 01/16/14</h2>
 
-<h2>BUILD_ID: build-2014-01-16_01-01-38</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_142_2029142819.1389862407407--
