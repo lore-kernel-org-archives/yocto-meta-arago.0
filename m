@@ -1,36 +1,28 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8ADCC52A20
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 44BEF52986
 	for <meta-arago@arago-project.org>;
-	Mon, 20 Jan 2014 21:35:46 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0KLZjhu016721
-	for <meta-arago@arago-project.org>; Mon, 20 Jan 2014 15:35:45 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0KLZj06026408
-	for <meta-arago@arago-project.org>; Mon, 20 Jan 2014 15:35:45 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Mon, 20 Jan 2014 15:35:45 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Cooper Jr., Franklin"
-	<fcooper@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/3] matrix-gui-tscal: Add init package to
-	run	ts_calibrate
-Thread-Index: AQHO8Vqnc35wxTg/G0WeoSLS4Y7YWZqObBeA
-Date: Mon, 20 Jan 2014 21:35:44 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED10159912920@DLEE11.ent.ti.com>
-References: <1386196643-11077-1-git-send-email-Chase.Maupin@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C5CE5B5@DFLE08.ent.ti.com>
-	<20131205013808.GY690@edge>
-In-Reply-To: <20131205013808.GY690@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Mon, 20 Jan 2014 21:54:11 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0KLsAXH029781
+	for <meta-arago@arago-project.org>; Mon, 20 Jan 2014 15:54:10 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0KLsAia004602
+	for <meta-arago@arago-project.org>; Mon, 20 Jan 2014 15:54:10 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 20 Jan 2014 15:54:10 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0KLs4SR025418;
+	Mon, 20 Jan 2014 15:54:08 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 20 Jan 2014 17:16:56 -0600
+Message-ID: <1390259818-10267-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/3] matrix-gui-tscal: Add init package to run	ts_calibrate
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/3] ti-tisdk-setup: Update to support new u-boot, kernel and device
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,207 +35,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jan 2014 21:35:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Jan 2014 21:54:11 -0000
+Content-Type: text/plain
 
->-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Wednesday, December 04, 2013 7:38 PM
->To: Cooper Jr., Franklin
->Cc: Maupin, Chase; meta-arago@arago-project.org
->Subject: Re: [meta-arago] [PATCH 1/3] matrix-gui-tscal: Add init
->package to run ts_calibrate
->
->That is what I was thinking myself - whether it should be named
->anything
->matrix-specific or not...
+* Add support for ti43x.
+* Update script to work with 3.12 kernel and U-boot 2013.10.
 
-Sorry I just got around to this.  I can change the name.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
->
->I haven't looked at those env scripts yet, so not sure about the
->second
->option. But I like the idea, if it works.
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 0084005..af10101 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+ 
+-PR = "r17"
++PR = "r18"
+ 
+ BRANCH ?= "master"
+-SRCREV = "01f88ec0391f00860bac1648dc95fc0eec0b8b99"
++SRCREV = "3e3e750153147f789dee5d59f45abcd14d001c64"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
+@@ -17,6 +17,7 @@ UBOOT_ENV_beagleboard = "setup-uboot-env-beagleboard.sh"
+ UBOOT_ENV_am3517-evm = "setup-uboot-env-am3517.sh"
+ UBOOT_ENV_am180x-evm = "setup-uboot-env-am18x.sh"
+ UBOOT_ENV_ti33x = "setup-uboot-env-am335x.sh"
++UBOOT_ENV_ti43x = "setup-uboot-env-am43x.sh"
+ UBOOT_ENV_omap5-evm = "setup-uboot-env-omap5.sh"
+ UBOOT_ENV = "setup-uboot-unknown.sh"
+ 
+-- 
+1.7.0.4
 
-I don't see this working.  The issue is that the files in /etc/profile.d ar=
-e not run until you log into the console.  We want ts_calibrate to run on b=
-oot up if needed without needing a console login.
-
->
->--
->Denys
->
->
->On Thu, Dec 05, 2013 at 12:31:16AM +0000, Cooper Jr., Franklin
->wrote:
->> Can we change the name of this recipe to reflect that it's a
->ts_calibrate
->> init script and that it has no relationship with matrix-gui?
->Probably put it
->> at recipes-graphics/ since that is the directory where tslib is
->located in.
->>
->> Another option:
->>
->> Looking at tslib there is already a script called tslib.sh that
->looks like
->> it has a similar purpose. That script is located at
->/etc/profile.d/ which is
->> meant for Application Environment variables to be set. So would
->simply
->> overriding this file with our script work?
->>
->> Qt has a similar file in /etc/profile.d called qte.sh. So we
->could even take
->> the Qt portion (matrix/matrix-gui/init) and override this file.
->This way
->> configuring Qt to work with our touchscreen isn't coupled with
->Matrix but
->> rather Qt itself.
->>
->> > -----Original Message-----
->> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->> > bounces@arago-project.org] On Behalf Of Maupin, Chase
->> > Sent: Wednesday, December 04, 2013 4:37 PM
->> > To: meta-arago@arago-project.org
->> > Subject: [meta-arago] [PATCH 1/3] matrix-gui-tscal: Add init
->package to run
->> > ts_calibrate
->> >
->> > * Add a package that will run ts_calibrate if needed.  This
->> >   will allow separating this logic from the matrix init script
->> >   since it is not always needed.
->> >
->> > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
->> > ---
->> >  .../recipes-core/matrix/matrix-gui-tscal/init      |   43
->++++++++++++++++++++
->> >  .../recipes-core/matrix/matrix-gui-tscal_1.0.bb    |   25
->+++++++++++
->> >  2 files changed, 68 insertions(+), 0 deletions(-)  create
->mode 100644 meta-
->> > arago-extras/recipes-core/matrix/matrix-gui-tscal/init
->> >  create mode 100644 meta-arago-extras/recipes-
->core/matrix/matrix-gui-
->> > tscal_1.0.bb
->> >
->> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-
->tscal/init b/meta-
->> > arago-extras/recipes-core/matrix/matrix-gui-tscal/init
->> > new file mode 100644
->> > index 0000000..e8d9197
->> > --- /dev/null
->> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-
->tscal/init
->> > @@ -0,0 +1,43 @@
->> > +#!/bin/sh
->> > +# Copyright (C) {2013} Texas Instruments Incorporated -
->> > +http://www.ti.com/ # # This program is free software; you can
->> > +redistribute it and/or # modify it under the terms of the GNU
->General
->> > +Public License as # published by the Free Software Foundation
->version
->> > +2.
->> > +#
->> > +# This program is distributed "as is" WITHOUT ANY WARRANTY of
->any #
->> > +kind, whether express or implied; without even the implied
->warranty #
->> > +of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
->the #
->> > GNU
->> > +General Public License for more details.
->> > +
->> > +tsfile=3D/etc/pointercal
->> > +
->> > +# Check if the SD card is mounted and the first partition is
-># vfat.
->> > +If so let's write the pointercal file there so that if #
->someone messes
->> > +up calibration they can just delete the file from # any
->system and
->> > +reboot the board.
->> > +
->> > +#TODO how can we find the SD card and not eMMC?  can we look
->for a "boot"
->> > +# LABEL?
->> > +mount | grep /media/mmcblk0p1 | grep vfat > /dev/null 2>&1 if
->[ "$?" =3D
->> > +"0" ] then
->> > +    tsfile=3D/media/mmcblk0p1/pointercal
->> > +    export TSLIB_CALIBFILE=3D$tsfile
->> > +fi
->> > +
->> > +if [ ! -f $tsfile ] ; then
->> > +    echo -n "Calibrating touchscreen (first time only)"
->> > +    ts_calibrate
->> > +    echo "."
->> > +
->> > +    # If we create a pointercal file and it was not in
->/etc/pointercal
->> > +    # let's copy it there as well if it does not already
->exist.  This is so
->> > +    # that running other applications that look for
->/etc/pointercal and
->> > +    # without TSLIB_CALIBFILE set will still get the right
->calibration.
->> > +    # TODO: can we just globally export TSLIB_CALIBFILE?
->> > +    if [ ! -f /etc/pointercal -a -f $tsfile ]
->> > +    then
->> > +        cp $tsfile /etc/pointercal
->> > +    fi
->> > +fi
->> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-
->tscal_1.0.bb
->> > b/meta-arago-extras/recipes-core/matrix/matrix-gui-
->tscal_1.0.bb
->> > new file mode 100644
->> > index 0000000..9156a6a
->> > --- /dev/null
->> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-
->tscal_1.0.bb
->> > @@ -0,0 +1,25 @@
->> > +DESCRIPTION =3D "Matrix GUI TS calibration init script"
->> > +
->> > +LICENSE =3D "GPLv2"
->> > +LIC_FILES_CHKSUM =3D
->> >
->"file://init;beginline=3D2;endline=3D11;md5=3D4b2e3b15f01cf63d2cb7988afd
->cc6c60
->> > "
->> > +
->> > +PR =3D "r0"
->> > +
->> > +S =3D "${WORKDIR}"
->> > +
->> > +INITSCRIPT_NAME =3D "matrix-gui-tscal"
->> > +# Start this init script before the matrix gui launches
->> > +INITSCRIPT_PARAMS =3D "start 96 2 3 4 5 ."
->> > +
->> > +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->> > +
->> > +inherit update-rc.d
->> > +
->> > +SRC_URI =3D "file://init"
->> > +
->> > +do_install(){
->> > +	# Install the init script
->> > +	# TODO: replace init script with systemd files
->> > +	install -d ${D}${sysconfdir}/init.d
->> > +	install -m 0755 ${WORKDIR}/init
->> > +${D}${sysconfdir}/init.d/matrix-gui-tscal
->> > +}
->> > --
->> > 1.7.0.4
->> >
->> > _______________________________________________
->> > meta-arago mailing list
->> > meta-arago@arago-project.org
->> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
