@@ -1,29 +1,36 @@
-Return-Path: <denys@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 3C53A52A6F
+	by arago-project.org (Postfix) with ESMTPS id 6C0E152972
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jan 2014 10:31:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0OAVF3H010476
-	for <meta-arago@arago-project.org>; Fri, 24 Jan 2014 04:31:15 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0OAVFYp023858
-	for <meta-arago@arago-project.org>; Fri, 24 Jan 2014 04:31:15 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 24 Jan 2014 04:31:14 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s0OAVE9O015637	for <meta-arago@arago-project.org>;
-	Fri, 24 Jan 2014 04:31:15 -0600
-Date: Fri, 24 Jan 2014 05:18:27 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1915984115.177.1390558707858.JavaMail.jenkins@puget>
+	Fri, 24 Jan 2014 15:20:28 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0OFKRlu000331
+	for <meta-arago@arago-project.org>; Fri, 24 Jan 2014 09:20:27 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0OFKRnk003127
+	for <meta-arago@arago-project.org>; Fri, 24 Jan 2014 09:20:27 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Fri, 24 Jan 2014 09:20:27 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 2/3] stress: Pull stress into
+	meta-arago-extras
+Thread-Index: AQHPFionFodPg2DcwUyNV3tguGMTMZqOkmEA///0EnqABXv2QA==
+Date: Fri, 24 Jan 2014 15:20:26 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C610AB5@DFLE08.ent.ti.com>
+References: <1390259818-10267-1-git-send-email-fcooper@ti.com>
+	<1390259818-10267-2-git-send-email-fcooper@ti.com>,
+	<20140120221502.GC24768@edge>
+	<DEC54650-487E-4972-A71B-3FED00D405C7@ti.com>
+In-Reply-To: <DEC54650-487E-4972-A71B-3FED00D405C7@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-01-24_01-00-24
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 2/3] stress: Pull stress into meta-arago-extras
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +43,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jan 2014 10:31:16 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_176_801123994.1390558707771"
-
-------=_Part_176_801123994.1390558707771
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<html>
-<head>
-<title>
-Status for 01/24/14
-</title>
-</head>
-<body>
-
-<h2>Status for 01/24/14</h2>
-
-<h2>BUILD_ID: build-2014-01-24_01-01-46</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
-        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+X-List-Received-Date: Fri, 24 Jan 2014 15:20:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
-------=_Part_176_801123994.1390558707771--
+
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+> Sent: Monday, January 20, 2014 9:32 PM
+> To: Dmytriyenko, Denys
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH 2/3] stress: Pull stress into meta-arago=
+-extras
+>=20
+>=20
+>=20
+> > On Jan 20, 2014, at 4:15 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
+> >
+> >> On Mon, Jan 20, 2014 at 05:16:57PM -0600, Franklin S. Cooper Jr wrote:
+> >> * Stress is a useful userspace testing tool.
+> >> * The original recipe can be found in meta-linaro/meta-linaro/recipes-=
+extra.
+> >> * However, to avoid pulling in that entire layer included bbappend
+> >> overrides  simply overlay the recipe into meta-arago-extras.
+> >
+> > Well, we are already cloning the entire repo anyway, even though only
+> > using meta-linaro-toolchain sub-layer. Are you afraid of any conflicts
+> > with their bbappends? I only see busybox being the obvious one, but we
+> > can BBMASK it for our distro... There are plenty of other useful
+> > testing tools, especially in master - are we interested?
+> > We've started talking to Linaro, so we may end up moving some of our
+> > recipes/enhancements back to their layer... Thoughts?
+> I'm ok with doing this.
+[Franklin] I thought about this more and would like to hold off adding this=
+ layer as an meta-argao dependency for now. This would break things for cur=
+rent users since it would require them to update their layer configuration.=
+ I rather pull in stress as is now and add this new layer dependency when w=
+e update meta-arago to support dora when we have to update the configuratio=
+n anyway. At that time we can also remove stress from meta-arago as part of=
+ cleanup.
+> >
+> > --
+> > Denys
+> >
+> >
+> >> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> >> ---
+> >> .../recipes-devtools/stress/files/texinfo.patch    |   79
+> ++++++++++++++++++++
+> >> .../recipes-devtools/stress/stress_1.0.4.bb        |   16 ++++
+> >> 2 files changed, 95 insertions(+), 0 deletions(-) create mode 100644
+> >> meta-arago-extras/recipes-devtools/stress/files/texinfo.patch
+> >> create mode 100644
+> >> meta-arago-extras/recipes-devtools/stress/stress_1.0.4.bb
+> >>
+> >> diff --git
+> >> a/meta-arago-extras/recipes-devtools/stress/files/texinfo.patch
+> >> b/meta-arago-extras/recipes-devtools/stress/files/texinfo.patch
+> >> new file mode 100644
+> >> index 0000000..5ac5951
+> >> --- /dev/null
+> >> +++ b/meta-arago-extras/recipes-devtools/stress/files/texinfo.patch
+> >> @@ -0,0 +1,79 @@
+> >> +--- a/doc/stress.texi
+> >> ++++ b/doc/stress.texi
+> >> +@@ -62,47 +62,47 @@
+> >> +
+> >> + @table @samp
+> >> + @item -?
+> >> +-@itemx --help
+> >> ++@item --help
+> >> + Show help information.
+> >> +
+> >> +-@itemx --version
+> >> ++@item --version
+> >> + Show version information.
+> >> +
+> >> + @item -v
+> >> +-@itemx --verbose
+> >> ++@item --verbose
+> >> + Turn up verbosity.
+> >> +
+> >> + @item -q
+> >> +-@itemx --quiet
+> >> ++@item --quiet
+> >> + Turn down verbosity.
+> >> +
+> >> + @item -n
+> >> +-@itemx --dry-run
+> >> ++@item --dry-run
+> >> + Show what would have been done.
+> >> +
+> >> + @item -t @var{secs}
+> >> +-@itemx --timeout @var{secs}
+> >> ++@item --timeout @var{secs}
+> >> + Time out after @var{secs} seconds.
+> >> +
+> >> +-@itemx --backoff @var{usecs}
+> >> ++@item --backoff @var{usecs}
+> >> + Wait for factor of @var{usecs} microseconds before starting work.
+> >> +
+> >> + @item -c @var{forks}
+> >> +-@itemx --cpu @var{forks}
+> >> ++@item --cpu @var{forks}
+> >> + Spawn @var{forks} processes each spinning on @samp{sqrt()}.
+> >> +
+> >> + @item -i @var{forks}
+> >> +-@itemx --io @var{forks}
+> >> ++@item --io @var{forks}
+> >> + Spawn @var{forks} processes each spinning on @samp{sync()}.
+> >> +
+> >> + @item -m @var{forks}
+> >> +-@itemx --vm @var{forks}
+> >> ++@item --vm @var{forks}
+> >> + Spawn @var{forks} processes each spinning on @samp{malloc()}.
+> >> +
+> >> +-@itemx --vm-bytes @var{bytes}
+> >> ++@item --vm-bytes @var{bytes}
+> >> + Allocate @var{bytes} number of bytes.  The default is 1.
+> >> +
+> >> +-@itemx --vm-hang
+> >> ++@item --vm-hang
+> >> + Instruct each vm hog process to go to sleep after allocating
+> >> +memory.  This  contrasts with their normal behavior, which is to
+> >> +free the memory and  reallocate @emph{ad infinitum}.  This is useful
+> >> +for simulating low memory @@ -114,13 +114,13 @@  @end example
+> >> +
+> >> + @item -d @var{forks}
+> >> +-@itemx --hdd @var{forks}
+> >> ++@item --hdd @var{forks}
+> >> + Spawn @var{forks} processes each spinning on @samp{write()}.
+> >> +
+> >> +-@itemx --hdd-bytes @var{bytes}
+> >> ++@item --hdd-bytes @var{bytes}
+> >> + Write @var{bytes} number of bytes.  The default is 1GB.
+> >> +
+> >> +-@itemx --hdd-noclean
+> >> ++@item --hdd-noclean
+> >> + Do not unlink file(s) to which random ASCII data is written.
+> >> +
+> >> + @end table
+> >> diff --git
+> >> a/meta-arago-extras/recipes-devtools/stress/stress_1.0.4.bb
+> >> b/meta-arago-extras/recipes-devtools/stress/stress_1.0.4.bb
+> >> new file mode 100644
+> >> index 0000000..04ad6ce
+> >> --- /dev/null
+> >> +++ b/meta-arago-extras/recipes-devtools/stress/stress_1.0.4.bb
+> >> @@ -0,0 +1,16 @@
+> >> +DESCRIPTION =3D "Deliberately simple workload generator for POSIX
+> >> +systems. It \ imposes a configurable amount of CPU, memory, I/O, and =
+disk
+> stress on the system."
+> >> +HOMEPAGE =3D "http://people.seas.harvard.edu/~apw/stress/"
+> >> +LICENSE =3D "GPLv2"
+> >> +LIC_FILES_CHKSUM =3D
+> "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504"
+> >> +
+> >> +PR =3D "r0"
+> >> +
+> >> +SRC_URI =3D "http://pkgs.fedoraproject.org/repo/pkgs/stress/stress-
+> ${PV}.tar.gz/a607afa695a511765b40993a64c6e2f4/stress-${PV}.tar.gz \
+> >> +           file://texinfo.patch \
+> >> +           "
+> >> +
+> >> +SRC_URI[md5sum] =3D "a607afa695a511765b40993a64c6e2f4"
+> >> +SRC_URI[sha256sum] =3D
+> "369c997f65e8426ae8b318d4fdc8e6f07a311cfa77cc4b25dace465c582163c0
+> "
+> >> +
+> >> +inherit autotools
+> >> --
+> >> 1.7.0.4
+> >>
+> >> _______________________________________________
+> >> meta-arago mailing list
+> >> meta-arago@arago-project.org
+> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
