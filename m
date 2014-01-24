@@ -1,24 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id D4A9A52AAF
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 0FD955298E
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jan 2014 19:57:53 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.18.138.84])
-	by vms173025.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MZX00MF78SENA20@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 24 Jan 2014 13:57:50 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 390A520099; Fri,
-	24 Jan 2014 14:57:50 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 24 Jan 2014 14:57:49 -0500
-Message-id: <1390593469-30757-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Cc: Joel Fernandes <joelf@ti.com>
-Subject: [PATCH] openssl: drop NO_ONESHOT patch to unbreak SHA1 and MD5
+	Fri, 24 Jan 2014 21:27:53 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0OLRqIi028721
+	for <meta-arago@arago-project.org>; Fri, 24 Jan 2014 15:27:52 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0OLRqSJ029520
+	for <meta-arago@arago-project.org>; Fri, 24 Jan 2014 15:27:52 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 24 Jan 2014 15:27:51 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0OLRpi1025036;
+	Fri, 24 Jan 2014 15:27:51 -0600
+Date: Fri, 24 Jan 2014 16:27:51 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20140124212751.GT30525@edge>
+References: <1390587699-26905-1-git-send-email-fcooper@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1390587699-26905-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 1/4] dual-camera-demo: Dual Camera Demo App
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -31,40 +37,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jan 2014 19:57:54 -0000
+X-List-Received-Date: Fri, 24 Jan 2014 21:27:53 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Fri, Jan 24, 2014 at 12:21:36PM -0600, Franklin S. Cooper Jr wrote:
+> * Add Qt dual camera demo application.
+> ---
+>  .../dual-camera-demo/dual-camera-demo_1.0.bb       |   32 ++++++++++++++++++++
+>  1 files changed, 32 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+> new file mode 100644
+> index 0000000..4d6d00c
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+> @@ -0,0 +1,32 @@
+> +DESCRIPTION = "Qt Dual Camera Demo"
+> +HOMEPAGE = "https://gitorious.org/dual-camera-demo/"
+> +SECTION = "multimedia"
+> +LICENSE = "BSD"
+> +LIC_FILES_CHKSUM = "file://main.cpp;md5=424a1b7299bcd2c5fad3b05493dd8898"
 
-This is no longer required, according to Joel's testing.
+Any code change to the main.cpp file will blow the license check - you may 
+want to limit it to the header with "beginline=;endline=" modifier...
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Joel Fernandes <joelf@ti.com>
----
- meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
-index 4154225..9b6bf00 100644
---- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
-@@ -12,7 +12,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PR_append = "-arago8"
-+PR_append = "-arago9"
- 
- DEPENDS_append_ti33x_class-target = " cryptodev"
- DEPENDS_append_ti43x_class-target = " cryptodev"
-@@ -27,7 +27,6 @@ python __anonymous () {
- 
- CRYPTODEV_AFALG_PATCHES = " \
- 	file://0001-Add-AF_ALG-interface-support-to-OpenSSL.patch \
--	file://0002-Modify-eng_cryptodev.c-to-make-SHA1-and-MD5-work-wit.patch \
- 	file://0004-Sample-AF_ALG-openssl.cnf.patch \
- 	file://0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch \
- 	file://0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch \
--- 
-1.8.3.2
+> +
+> +require recipes-core/matrix/matrix-gui-paths.inc
+> +
+> +PR = "r0"
+> +
+> +BRANCH = "master"
+> +SRCREV = "af299a206482562ceae8aa690a8b6644a3e0a66e"
+> +
+> +SRC_URI = "git://gitorious.org/dual-camera-demo/dual-camera-demo.git;protocol=git;branch=${BRANCH}"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +inherit qt-provider
+> +
+> +# use the make targets already created in the Makefile.build files
+> +do_install() {
+> +    cd ${S} && make -f Makefile.build DESTDIR=${D} install_common
+> +}
+> +
+> +PACKAGES += "matrix-gui-apps-dual-camera"
+> +
+> +RDEPENDS_matrix-gui-apps-dual-camera  = "matrix-gui-apps-images matrix-gui-submenus-multimedia ${PN}"
+> +
+> +# Add the matrix directory to the FILES
+> +FILES_${PN} = "/usr/bin/*"
 
+Isn't this the default or is it getting overwritten some other place?
+
+
+> +FILES_matrix-gui-apps-dual-camera = "${MATRIX_APP_DIR}/*"
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
