@@ -1,37 +1,32 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <joelf@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 22A2A529BD
+	by arago-project.org (Postfix) with ESMTPS id 30465529C6
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Feb 2014 13:16:49 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s14DGkZb025779
-	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 07:16:46 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14DGkaL014054
-	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 07:16:46 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Tue, 4 Feb 2014 07:16:45 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>, "Dmytriyenko, Denys"
-	<denys@ti.com>, "Etheridge, Darren" <detheridge@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm
-	version
-Thread-Index: AQHPHr1pNZDqcRZHD0KjvZI5nuKsW5qjwuKAgAEe7jCAADcq8A==
-Date: Tue, 4 Feb 2014 13:16:45 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015994658F@DLEE11.ent.ti.com>
-References: <1391197703-29424-1-git-send-email-chase.maupin@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015993D972@DLEE11.ent.ti.com>
-	<20140204005129.GE18784@edge>
-	<CF956B779D819D41BBC043B7082161D547CE0C@DBDE04.ent.ti.com>
-In-Reply-To: <CF956B779D819D41BBC043B7082161D547CE0C@DBDE04.ent.ti.com>
+	Sat, 25 Jan 2014 10:18:11 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0PAIAnD024688;
+	Sat, 25 Jan 2014 04:18:10 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0PAI9ab028992;
+	Sat, 25 Jan 2014 04:18:09 -0600
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.02.0342.003; Sat, 25 Jan 2014 04:18:09 -0600
+From: "Fernandes, Joel" <joelf@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Thread-Topic: [PATCH] openssl: drop NO_ONESHOT patch to unbreak SHA1 and MD5
+Thread-Index: AQHPGT6Snjy2hFTh20uevaARo/GnW5qVOv/u
+Date: Sat, 25 Jan 2014 10:18:08 +0000
+Message-ID: <EB6F2794-1FC7-43CF-9D3D-ACA0245ACF80@ti.com>
+References: <1390593469-30757-1-git-send-email-denis@denix.org>
+In-Reply-To: <1390593469-30757-1-git-send-email-denis@denix.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
+X-Mailman-Approved-At: Tue, 04 Feb 2014 20:42:03 +0000
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm version
+Subject: Re: [PATCH] openssl: drop NO_ONESHOT patch to unbreak SHA1 and MD5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,91 +39,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Feb 2014 13:16:56 -0000
+X-List-Received-Date: Sat, 25 Jan 2014 10:18:11 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Mrinmayee,
 
-What is in your 2.4.41 version that makes you need to pin there.  I ask bec=
-ause Darren has reported needing a newer version to work properly with devi=
-ces like DRA7xx.
 
->-----Original Message-----
->From: Hingolikar, Mrinmayee
->Sent: Tuesday, February 04, 2014 5:05 AM
->To: Dmytriyenko, Denys; Maupin, Chase
->Cc: meta-arago@arago-project.org
->Subject: RE: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK
->libdrm version
->
->Hi all,
->
->The libdrm in GLSDK is based on the 2.4.41 version from upstream.
->A preferred version is required since a 2.4.42 version is present
->in oe-core.
->
->
->Regards,
->Mrinmayee
->
->> -----Original Message-----
->> From: Dmytriyenko, Denys
->> Sent: Tuesday, February 04, 2014 6:21 AM
->> To: Maupin, Chase
->> Cc: meta-arago@arago-project.org; Hingolikar, Mrinmayee
->> Subject: Re: [meta-arago] [PATCH 1/2] branding-glsdk: pin to
->GLSDK
->> libdrm version
->>
->> Ping
->>
->> On Fri, Jan 31, 2014 at 07:50:39PM +0000, Maupin, Chase wrote:
->> > Mrinmayee,
->> >
->> > Can you comment on the below need for 2.4.41?
->> >
->> > >-----Original Message-----
->> > >From: Maupin, Chase
->> > >Sent: Friday, January 31, 2014 1:48 PM
->> > >To: meta-arago@arago-project.org
->> > >Cc: Maupin, Chase
->> > >Subject: [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm
->version
->> > >
->> > >* The GLSDK prefers to use the 2.4.41 version of libdrm from
->> > >  meta-ti so pin that version in the branding file.
->> > >
->> > >Signed-off-by: Chase Maupin <chase.maupin@ti.com>
->> > >---
->> > > .../conf/distro/include/branding-glsdk.inc         |    4
->++++
->> > > 1 file changed, 4 insertions(+)
->> > >
->> > >diff --git a/meta-arago-distro/conf/distro/include/branding-
->> > >glsdk.inc b/meta-arago-distro/conf/distro/include/branding-
->> > >glsdk.inc
->> > >index d1c30f3..b33b21d 100644
->> > >--- a/meta-arago-distro/conf/distro/include/branding-
->glsdk.inc
->> > >+++ b/meta-arago-distro/conf/distro/include/branding-
->glsdk.inc
->> > >@@ -2,3 +2,7 @@
->> > >
->> > > # Use the SDK supported kernel and kernel version
->> > > PREFERRED_PROVIDER_virtual/kernel =3D "linux-ti-glsdk"
->> > >+
->> > >+# Set the PREFERRED_VERSION of libdrm to the glsdk version
->for
->> > >the
->> > >+# glsdk branded builds
->> > >+PREFERRED_VERSION_libdrm =3D "2.4.41"
->> > >--
->> > >1.7.9.5
->> >
->> > _______________________________________________
->> > meta-arago mailing list
->> > meta-arago@arago-project.org
->> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> On Jan 25, 2014, at 1:27 AM, "Denys Dmytriyenko" <denis@denix.org> wrote:
+>=20
+> From: Denys Dmytriyenko <denys@ti.com>
+>=20
+> This is no longer required, according to Joel's testing.
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> Cc: Joel Fernandes <joelf@ti.com>
+
+Acked-by: Joel Fernandes <joelf@ti.com>
+
+> ---
+> meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend | =
+3 +--
+> 1 file changed, 1 insertion(+), 2 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1=
+e.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.=
+bbappend
+> index 4154225..9b6bf00 100644
+> --- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbapp=
+end
+> +++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbapp=
+end
+> @@ -12,7 +12,7 @@ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+>=20
+> -PR_append =3D "-arago8"
+> +PR_append =3D "-arago9"
+>=20
+> DEPENDS_append_ti33x_class-target =3D " cryptodev"
+> DEPENDS_append_ti43x_class-target =3D " cryptodev"
+> @@ -27,7 +27,6 @@ python __anonymous () {
+>=20
+> CRYPTODEV_AFALG_PATCHES =3D " \
+>    file://0001-Add-AF_ALG-interface-support-to-OpenSSL.patch \
+> -    file://0002-Modify-eng_cryptodev.c-to-make-SHA1-and-MD5-work-wit.pat=
+ch \
+>    file://0004-Sample-AF_ALG-openssl.cnf.patch \
+>    file://0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch \
+>    file://0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch=
+ \
+> --=20
+> 1.8.3.2
+>=20
 
