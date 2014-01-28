@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 1021D52972
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTP id A524B52972
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Jan 2014 20:23:00 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0SKMw4w025216
-	for <meta-arago@arago-project.org>; Tue, 28 Jan 2014 14:22:58 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0SKMwXM021031
-	for <meta-arago@arago-project.org>; Tue, 28 Jan 2014 14:22:58 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 28 Jan 2014 14:22:58 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0SKMwP7032711	for
-	<meta-arago@arago-project.org>; Tue, 28 Jan 2014 14:22:58 -0600
-Date: Tue, 28 Jan 2014 15:22:58 -0500
+	Tue, 28 Jan 2014 20:27:35 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N040027NOTT6UN0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 28 Jan 2014 14:27:29 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id EF8D0200E2; Tue,
+	28 Jan 2014 15:27:27 -0500 (EST)
+Date: Tue, 28 Jan 2014 15:27:27 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20140128202257.GG6814@edge>
-References: <1390871192-3063-1-git-send-email-denis@denix.org>
-MIME-Version: 1.0
-In-Reply-To: <1390871192-3063-1-git-send-email-denis@denix.org>
+Message-id: <20140128202727.GA6321@denix.org>
+References: <1390259818-10267-1-git-send-email-fcooper@ti.com>
+	<1390259818-10267-3-git-send-email-fcooper@ti.com>
+	<20140120224548.GF24768@edge>
+MIME-version: 1.0
+In-reply-to: <20140120224548.GF24768@edge>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [PATCH] php: amend URL with the new location of the source tarball
+Cc: meta-arago@arago-project.org, "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: Re: [PATCH 3/3] packagegroup-arago-test: Add useful testing tools
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,41 +34,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 20:23:00 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 28 Jan 2014 20:27:35 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Any comments/questions/objections? Should I take it as silent Ack? :)
-
-
-On Mon, Jan 27, 2014 at 08:06:32PM -0500, Denys Dmytriyenko wrote:
-> From: Denys Dmytriyenko <denys@ti.com>
+On Mon, Jan 20, 2014 at 05:45:48PM -0500, Denys Dmytriyenko wrote:
+> On Mon, Jan 20, 2014 at 05:16:58PM -0600, Franklin S. Cooper Jr wrote:
+> > * Add two useful testing utilites to the arago filesystem.
+> > 
+> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > ---
+> >  .../packagegroups/packagegroup-arago-test.bb       |    4 +++-
+> >  1 files changed, 3 insertions(+), 1 deletions(-)
+> > 
+> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+> > index 399eea9..93a980f 100644
+> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+> > @@ -1,6 +1,6 @@
+> >  DESCRIPTION = "Extended task to get System Test specific apps"
+> >  LICENSE = "MIT"
+> > -PR = "r13"
+> > +PR = "r14"
+> >  
+> >  inherit packagegroup
+> >  
+> > @@ -17,6 +17,8 @@ ARAGO_TEST = "\
+> >      bc \
+> >      memtester \
+> >      libdrm-tests \
+> > +    powertop \
 > 
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend b/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
-> index fb1c25d..ebf480c 100644
-> --- a/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
-> +++ b/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
-> @@ -1,10 +1,13 @@
->  # look for files in this layer first
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  
-> -PR_append = "-arago1"
-> +PR_append = "-arago2"
->  
->  SRC_URI_append_virtclass-native = " file://0001-php-native-Fix-host-contamination-issue.patch"
->  
-> +python __anonymous () {
-> +    d.setVar("SRC_URI", d.getVar("SRC_URI").replace('http://www.php.net/distributions/php-${PV}.tar.bz2', 'http://museum.php.net/php5/php-${PV}.tar.bz2'))
-> +}
->  
->  # Work around to address the fact that php-fpm and php-cgi can not coexist
->  # php-cgi is used by Matrix and php-fpm is in beta for this version of php.
-> -- 
-> 1.8.3.2
+> This will add powertop-1.13 from oe-core - is that what you want?
+> There's 2.3 in meta-linaro, which we don't use, though...
+
+Franklin, please confirm the above.
+
+
+> > +    stress \
+> >      "
+> >  
+> >  ARAGO_TI_TEST = "\
+> > -- 
+> > 1.7.0.4
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > 
 
