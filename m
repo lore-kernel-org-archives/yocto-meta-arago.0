@@ -1,34 +1,29 @@
-Return-Path: <eyalreizer@gmail.com>
-Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
-	by arago-project.org (Postfix) with ESMTPS id 66CA9529BC
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 83CC152972
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Jan 2014 13:32:46 +0000 (UTC)
-Received: by mail-wg0-f42.google.com with SMTP id l18so5998719wgh.1
-	for <meta-arago@arago-project.org>;
-	Tue, 28 Jan 2014 05:32:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=iea/aKeIMlDMi/ySRH6jybV7D1xveZD9RuMg7uzRlpc=;
-	b=j4UNVuxYLFttBPG+v34DDink50e5HEWgABcoUECRUaQYcB0uJ6WC1i1W0iAqH7TKCt
-	vKm59WZboXuVkz6qY2puSQpAeL2rKw5Isc+1Dp2rgQbMI/rWi+6DMx16OpnJvm1zsRAz
-	bVOKbts82tta7R5fZF+spMzm2r1Lz+BSK5QlxrTwUP4/nsRqOr0Erx84kt+sKAT0cnmD
-	s0ivOtXmQT+/GPgKRJC2UjuVxVM6oq6KMQsqbdlM+k+HRmwPbhZSb7lLIyr5FgAAE650
-	GVw2oCEto0f5dBpDb9F1iBLRfNji96EECrJJWZ4QG/6ui/dvguH6ASUWDg6CEgAemKOB
-	xBxQ==
-X-Received: by 10.180.73.19 with SMTP id h19mr2073098wiv.40.1390915963846;
-	Tue, 28 Jan 2014 05:32:43 -0800 (PST)
-Received: from localhost.localdomain (93-172-91-221.bb.netvision.net.il.
-	[93.172.91.221])
-	by mx.google.com with ESMTPSA id fb8sm11495231wic.3.2014.01.28.05.32.40
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 28 Jan 2014 05:32:41 -0800 (PST)
-From: Eyal Reizer <eyalreizer@gmail.com>
-To: meta-arago@arago-project.org
-Date: Tue, 28 Jan 2014 15:32:35 +0200
-Message-Id: <1390915955-4415-1-git-send-email-eyalr@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH v2 1/2] ti-connectivity/uim: Add Usermode Init Mgr for TI Wilink Shared Transport
+	Tue, 28 Jan 2014 17:28:37 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0SHSZSj017852
+	for <meta-arago@arago-project.org>; Tue, 28 Jan 2014 11:28:35 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0SHSZGb020013
+	for <meta-arago@arago-project.org>; Tue, 28 Jan 2014 11:28:35 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 28 Jan 2014 11:28:34 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s0SHSY5b021816	for <meta-arago@arago-project.org>;
+	Tue, 28 Jan 2014 11:28:34 -0600
+Date: Tue, 28 Jan 2014 12:15:41 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <29405114.195.1390929341308.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.12 build 2014-01-28_12-13-14
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,243 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 13:32:48 -0000
+X-List-Received-Date: Tue, 28 Jan 2014 17:28:38 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_194_745430416.1390929341307"
 
-From: Roger Monk <r-monk@ti.com>
+------=_Part_194_745430416.1390929341307
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-   * New recipe pulling latest git version
-   * Patched to allow sysfs node to be passed via command line argument
-   * UIM Daemon plumbed to rcS.S03
+<html>
+<head>
+<title>
+Status for 01/28/14
+</title>
+</head>
+<body>
 
-Signed-off-by: Roger Monk <r-monk@ti.com>
-Signed-off-by: Eyal Reizer <eyalr@ti.com>
----
-Changes in v2:
-use INITSCRIPT for starting the uim agent on boot
+<h2>Status for 01/28/14</h2>
 
- ...mand-line-args-for-passing-sysfs-node-pat.patch |  135 ++++++++++++++++++++
- .../recipes-connectivity/uim/files/uim-sysfs       |   33 +++++
- .../recipes-connectivity/uim/uim_git.bb            |   28 ++++
- 3 files changed, 196 insertions(+), 0 deletions(-)
- create mode 100644 meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
- create mode 100755 meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
- create mode 100644 meta-arago-extras/recipes-connectivity/uim/uim_git.bb
+<h2>BUILD_ID: build-2014-01-28_12-14-18</h2>
 
-diff --git a/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch b/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
-new file mode 100644
-index 0000000..ad6f95f
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
-@@ -0,0 +1,135 @@
-+From 0df5f6766722a844162e96777980feee146a3c86 Mon Sep 17 00:00:00 2001
-+From: Roger Monk <r-monk@ti.com>
-+Date: Tue, 1 Oct 2013 17:17:25 +0100
-+Subject: [PATCH] uim:  Add command line args for passing sysfs node path
-+
-+   * pass -f <sysfs path> and/or -b <bd address>
-+   * re-mapped DEFINEs to strings
-+      * minimal code changes for minimal instrusion
-+      * could be rewritten for cleaner implementation in the future
-+   * default path (no args) remains the same
-+   * users passing bd address via uim <addr> will need to add -b
-+
-+Signed-off-by: Roger Monk <r-monk@ti.com>
-+---
-+ uim.c |   61 +++++++++++++++++++++++++++++++++++++++++++++++++++++--------
-+ uim.h |   10 +++++-----
-+ 2 files changed, 58 insertions(+), 13 deletions(-)
-+
-+diff --git a/uim.c b/uim.c
-+index 3775dda..4dfdbd7 100644
-+--- a/uim.c
-++++ b/uim.c
-+@@ -38,6 +38,11 @@ static int exiting;
-+ static int line_discipline;
-+ static int dev_fd;
-+ 
-++static char install_sysfs_entry[48];
-++static char dev_name_sysfs[48];
-++static char baud_rate_sysfs[48];
-++static char flow_cntrl_sysfs[48];
-++
-+ /* BD address as string and a pointer to array of hex bytes */
-+ char uim_bd_address[BD_ADDR_LEN];
-+ bdaddr_t *bd_addr;
-+@@ -455,9 +460,17 @@ bdaddr_t *strtoba(const char *str)
-+         return (bdaddr_t *) ba;
-+ }
-+ 
-++void usage(void)
-++{
-++	UIM_ERR("Invalid arguments");
-++	UIM_ERR("Usage: uim [ -f <path-to-sysfs-kim> ] [ -b <bd address XX:XX:XX:XX:XX:XX> ]");
-++}
-++
-+ /*****************************************************************************/
-+ int main(int argc, char *argv[])
-+ {
-++	int opt;
-++	char *arg_kim_path = NULL, *arg_bd_addr = NULL, *temp_path = KIM_SYSFS_BASE;
-+ 	int st_fd, err;
-+ 	unsigned char install;
-+ 	struct pollfd 	p;
-+@@ -466,18 +479,50 @@ int main(int argc, char *argv[])
-+ 	err = 0;
-+ 
-+ 	/* Parse the user input */
-+-	if ((argc > 2)) {
-+-		UIM_ERR("Invalid arguements");
-+-		UIM_ERR("Usage: uim <bd address>");
-+-		return -1;
-++	while ((opt = getopt (argc, argv, "f:b:")) != -1) {
-++		switch (opt) {
-++			case 'f':
-++				arg_kim_path = optarg;
-++				break;
-++			case 'b':
-++				arg_bd_addr = optarg;
-++				break;
-++			default:
-++				usage();
-++				return -1;
-++		}
-++	}
-++
-++	if (arg_kim_path != NULL) {
-++		temp_path = arg_kim_path;
-++		if( strlen(temp_path) > (sizeof(install_sysfs_entry)-10) ) {
-++			UIM_ERR("Path to sysfs node too long");
-++			return -1;
-++		}
-+ 	}
-+-	if (argc == 2) {
-+-		if (strlen(argv[2]) != BD_ADDR_LEN) {
-+-			UIM_ERR("Usage: uim XX:XX:XX:XX:XX:XX");
-++	strcpy(install_sysfs_entry, temp_path);
-++	strcpy(dev_name_sysfs, temp_path);
-++	strcpy(baud_rate_sysfs, temp_path);
-++	strcpy(flow_cntrl_sysfs, temp_path);
-++
-++	strcat(install_sysfs_entry, "/install");
-++	strcat(dev_name_sysfs, "/dev_name");
-++	strcat(baud_rate_sysfs, "/baud_rate");
-++	strcat(flow_cntrl_sysfs, "/flow_cntrl");
-++
-++	UIM_DBG("install = %s", install_sysfs_entry);
-++	UIM_DBG("dev_name = %s", dev_name_sysfs);
-++	UIM_DBG("baud_rate = %s", baud_rate_sysfs);
-++	UIM_DBG("flow_cntrl = %s", flow_cntrl_sysfs);
-++
-++	if (arg_bd_addr != NULL) {
-++		if (strlen(arg_bd_addr) != BD_ADDR_LEN) {
-++			usage();
-+ 			return -1;
-+ 		}
-++		UIM_DBG("Address = %s", arg_bd_addr);
-+ 		/* BD address passed as string in xx:xx:xx:xx:xx:xx format */
-+-		strncpy(uim_bd_address, argv[2], sizeof(uim_bd_address));
-++		strncpy(uim_bd_address, arg_bd_addr, sizeof(uim_bd_address));
-+ 		bd_addr = strtoba(uim_bd_address);
-+ 	}
-+ 
-+diff --git a/uim.h b/uim.h
-+index a8ef699..32a8fe0 100644
-+--- a/uim.h
-++++ b/uim.h
-+@@ -65,11 +65,11 @@
-+ /* the sysfs entries with device configuration set by
-+  * shared transport driver
-+  */
-+-#define INSTALL_SYSFS_ENTRY "/sys/devices/platform/kim/install"
-+-#define DEV_NAME_SYSFS "/sys/devices/platform/kim/dev_name"
-+-#define BAUD_RATE_SYSFS "/sys/devices/platform/kim/baud_rate"
-+-#define FLOW_CTRL_SYSFS "/sys/devices/platform/kim/flow_cntrl"
-+-
-++#define KIM_SYSFS_BASE		"/sys/devices/platform/kim"
-++#define INSTALL_SYSFS_ENTRY	install_sysfs_entry
-++#define DEV_NAME_SYSFS		dev_name_sysfs
-++#define BAUD_RATE_SYSFS		baud_rate_sysfs
-++#define FLOW_CTRL_SYSFS		flow_cntrl_sysfs
-+ 
-+ #define VERBOSE
-+ /*Debug logs*/
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs b/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
-new file mode 100755
-index 0000000..0891768
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
-@@ -0,0 +1,33 @@
-+#! /bin/sh
-+
-+NODE=`cd /sys; find . | grep kim | grep install`
-+if [ $NODE ]
-+then
-+    echo UIM SYSFS Node Found at /sys/$NODE
-+else
-+    echo UIM SYSFS Node Not Found 
-+    exit 0
-+fi 
-+
-+uim="/usr/bin/uim"
-+uim_args="-f `dirname /sys/$NODE`"
-+
-+test -x "$uim" || exit 0
-+
-+case "$1" in
-+  start)
-+    echo -n "Starting uim-sysfs daemon"
-+    start-stop-daemon --start --quiet --pidfile /var/run/uim.pid --make-pidfile --exec $uim -- $uim_args & 
-+    echo "."
-+    ;;
-+  stop)
-+    echo -n "Stopping uim-sysfs daemon"
-+    start-stop-daemon --stop --quiet --pidfile /var/run/uim.pid
-+    echo "."
-+    ;;
-+  *)
-+    echo "Usage: /etc/init.d/uim-sysfs.sh {start|stop}"
-+    exit 1
-+esac
-+
-+exit 0
-diff --git a/meta-arago-extras/recipes-connectivity/uim/uim_git.bb b/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
-new file mode 100644
-index 0000000..82315ad
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
-@@ -0,0 +1,28 @@
-+DESCRIPTION = "Shared Transport Line Discipline User Mode initialisation Manager Daemon"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://uim.c;beginline=1;endline=18;md5=9f0bbfbc10c67689e81a523e2976c31e"
-+
-+PR ="r1"
-+PR_append = "+gitr${SRCPV}"
-+
-+INITSCRIPT_NAME = "uim-sysfs"
-+INITSCRIPT_PARAMS = "defaults 03"
-+
-+inherit update-rc.d
-+
-+SRCREV = "c73894456df5def97111cb33d2106b684b8b7959"
-+SRC_URI = "git://gitorious.org/uim/uim.git \
-+	   file://0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch \
-+	   file://uim-sysfs \
-+"
-+
-+S = "${WORKDIR}/git"
-+
-+EXTRA_OEMAKE = "CC=${TARGET_PREFIX}gcc"
-+
-+do_install() {
-+        install -d ${D}${bindir}
-+        install -m 0755 uim ${D}${bindir}
-+	install -d ${D}${sysconfdir}/init.d
-+	install -m 0755 ${WORKDIR}/uim-sysfs ${D}${sysconfdir}/init.d
-+}
--- 
-1.7.0.4
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
+        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.12"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_194_745430416.1390929341307--
