@@ -1,32 +1,34 @@
-Return-Path: <samant.uvaca@gmail.com>
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by arago-project.org (Postfix) with ESMTPS id 2D94F529C3
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9916C52A77
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jan 2014 16:35:56 +0000 (UTC)
-Received: by mail-qc0-f173.google.com with SMTP id i8so3026225qcq.4
-	for <multiple recipients>; Wed, 29 Jan 2014 08:35:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=GDiMKDhJTpbnJCKu8jWxmPQCYPIIsCYeZRlFR3Qftu8=;
-	b=TrWs2rrysqiP/pqT21YDIj8S/7JRHNoK//qbOeKwCcK2MOgbWu/OzB5d37MXlCZFcg
-	2MDPGZMUP7VFemYP9nx80+ff8fOy8IWcAzUxyhpnOuwdCtBBYi06eCFql5xw3/F/iQzN
-	JY1jpyVxLr7ejWTdswM9FZ/92TIuUXhr8Wq5rRs1k8pGPNVDS7v6xGhpoSRtWd7GycJs
-	LR/NZYXY3tX0n+1DnMEV0q1vNj+Pc3+lfu4qwczVKzOuGWOouvvFzDy4Poy09yp2tdb1
-	YewjhNwF9IZKXgSOjUZ0ULmOzljI3xToXX19pvhib3mmtidy9N2tzP99ydbz7zvgsWhp
-	ykgQ==
+	Wed, 29 Jan 2014 16:56:01 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0TGu07s017419
+	for <meta-arago@arago-project.org>; Wed, 29 Jan 2014 10:56:00 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0TGu0It009584
+	for <meta-arago@arago-project.org>; Wed, 29 Jan 2014 10:56:00 -0600
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.02.0342.003; Wed, 29 Jan 2014 10:56:00 -0600
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] php: amend URL with the new location of
+	the source tarball
+Thread-Index: AQHPHGbB54VyHlmnK0+e9U06ir8d0Zqb7SCg
+Date: Wed, 29 Jan 2014 16:55:59 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159935793@DLEE11.ent.ti.com>
+References: <1390871192-3063-1-git-send-email-denis@denix.org>
+	<20140128202257.GG6814@edge>
+In-Reply-To: <20140128202257.GG6814@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Received: by 10.140.93.111 with SMTP id c102mr12770913qge.53.1391013354070; 
-	Wed, 29 Jan 2014 08:35:54 -0800 (PST)
-Received: by 10.229.138.196 with HTTP; Wed, 29 Jan 2014 08:35:54 -0800 (PST)
-Received: by 10.229.138.196 with HTTP; Wed, 29 Jan 2014 08:35:54 -0800 (PST)
-In-Reply-To: <CA+B-G-jDW=-RBE7ZWUMS7fLiHOdMc0uquHRZS+yF=+uRX0qMMQ@mail.gmail.com>
-References: <CA+B-G-jDW=-RBE7ZWUMS7fLiHOdMc0uquHRZS+yF=+uRX0qMMQ@mail.gmail.com>
-Date: Wed, 29 Jan 2014 08:35:54 -0800
-Message-ID: <CA+B-G-hPSwxU-TkOQyxXw=Hd=7G8kS+cW5VGxGxLca0Rn4j8iw@mail.gmail.com>
-From: Samant Kumar <samant.uvaca@gmail.com>
-To: meta-arago@arago-project.org, meta-ti@arago-project.org, denys@ti.com
-Subject: DM816x-evm
+Subject: Re: [PATCH] php: amend URL with the new location of the source tarball
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,26 +41,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jan 2014 16:35:56 -0000
-Content-Type: multipart/alternative; boundary=001a1139b828d8ef8f04f11e88a1
+X-List-Received-Date: Wed, 29 Jan 2014 16:56:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
---001a1139b828d8ef8f04f11e88a1
-Content-Type: text/plain; charset=ISO-8859-1
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
+>Sent: Tuesday, January 28, 2014 2:23 PM
+>To: meta-arago@arago-project.org
+>Subject: Re: [meta-arago] [PATCH] php: amend URL with the new
+>location of the source tarball
+>
+>Any comments/questions/objections? Should I take it as silent Ack?
+>:)
 
-Hi Denys,
-I couldn't find any MACHINE conf for dm816x-evm or c6a816x-evm? Is there
-special tree/branch for support for Netra? I want to use arago software
-infrastructure for Netra s/w development.
+Ack
 
-Best Regards,
-Samant
+>
+>
+>On Mon, Jan 27, 2014 at 08:06:32PM -0500, Denys Dmytriyenko wrote:
+>> From: Denys Dmytriyenko <denys@ti.com>
+>>
+>> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>> ---
+>>  meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend | 5
+>++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/meta-arago-distro/recipes-
+>devtools/php/php_5.4.14.bbappend b/meta-arago-distro/recipes-
+>devtools/php/php_5.4.14.bbappend
+>> index fb1c25d..ebf480c 100644
+>> --- a/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
+>> +++ b/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
+>> @@ -1,10 +1,13 @@
+>>  # look for files in this layer first
+>>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>>
+>> -PR_append =3D "-arago1"
+>> +PR_append =3D "-arago2"
+>>
+>>  SRC_URI_append_virtclass-native =3D " file://0001-php-native-Fix-
+>host-contamination-issue.patch"
+>>
+>> +python __anonymous () {
+>> +    d.setVar("SRC_URI",
+>d.getVar("SRC_URI").replace('http://www.php.net/distributions/php-
+>${PV}.tar.bz2', 'http://museum.php.net/php5/php-${PV}.tar.bz2'))
+>> +}
+>>
+>>  # Work around to address the fact that php-fpm and php-cgi can
+>not coexist
+>>  # php-cgi is used by Matrix and php-fpm is in beta for this
+>version of php.
+>> --
+>> 1.8.3.2
+>>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
---001a1139b828d8ef8f04f11e88a1
-Content-Type: text/html; charset=ISO-8859-1
-
-<p>Hi Denys,<br>
-I couldn&#39;t find any MACHINE conf for dm816x-evm or c6a816x-evm? Is there special tree/branch for support for Netra? I want to use arago software infrastructure for Netra s/w development.</p>
-<p>Best Regards,<br>
-Samant</p>
-
---001a1139b828d8ef8f04f11e88a1--
