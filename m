@@ -1,29 +1,35 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4FB9D5298F
+Return-Path: <matti.kaasinen@gmail.com>
+Received: from mail-pb0-f47.google.com (mail-pb0-f47.google.com
+	[209.85.160.47])
+	by arago-project.org (Postfix) with ESMTPS id AADA9529BC
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jan 2014 14:45:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0TEjDDD003351
-	for <meta-arago@arago-project.org>; Wed, 29 Jan 2014 08:45:13 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0TEjDXC011943
-	for <meta-arago@arago-project.org>; Wed, 29 Jan 2014 08:45:13 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 29 Jan 2014 08:45:12 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s0TEjC1H016242	for <meta-arago@arago-project.org>;
-	Wed, 29 Jan 2014 08:45:12 -0600
-Date: Wed, 29 Jan 2014 09:32:17 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1175244063.201.1391005937614.JavaMail.jenkins@puget>
+	Wed, 29 Jan 2014 15:20:28 +0000 (UTC)
+Received: by mail-pb0-f47.google.com with SMTP id rp16so1864744pbb.34
+	for <meta-arago@arago-project.org>;
+	Wed, 29 Jan 2014 07:20:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=48LbgLArEFEZJS9xyDHQnYL5SdhxNO/NF1KyYE+XJlE=;
+	b=Ji/JSWN5+nNayrECoU0IWNrqpTksK9cNT8BfEZYbYWhIyjMJODjY5RBoeZsj/VqJ3+
+	TQe6LDuqxwN37a0jDjLFkL6QGQu7/xr9wf0WIohSl5drMyfkWEyUnGHmg6xV2yzq+dic
+	lBoknWmvHv6pDlzWeiT5U74UTU0m/rBGrMTcPcNs64NL4SqIV8aI/Otjt1uMF0SDDJKW
+	N8gSZGZw1wf5Ty6ORxtw4BkmtUre4TFLFF30GD0wduZBuCwSD7RrBTmvnkks3tf+Y1Jw
+	NowbxTZza39QEoasOuQOSiuHXjGmmj7WH1TXYFfKPJuZG4/j6nfdn6Ni4eSRpVfRqsta
+	xXsQ==
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-01-29_04-58-41
+X-Received: by 10.68.230.137 with SMTP id sy9mr8546971pbc.126.1391008826461;
+	Wed, 29 Jan 2014 07:20:26 -0800 (PST)
+Received: by 10.68.208.227 with HTTP; Wed, 29 Jan 2014 07:20:26 -0800 (PST)
+In-Reply-To: <20140129025313.GM6814@edge>
+References: <CADnUhn0GG7AByt0bWeqkCtVWxNxr66-8m16-YaxnM-S4aw5B4w@mail.gmail.com>
+	<20140129025313.GM6814@edge>
+Date: Wed, 29 Jan 2014 17:20:26 +0200
+Message-ID: <CADnUhn3EbUhYYo4TjxVi+dDM9n-62SOk65kCH-ehe_-Ax4DGZg@mail.gmail.com>
+From: matti kaasinen <matti.kaasinen@gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Cc: meta-arago@arago-project.org, Pekon Gupta <pekon@ti.com>
+Subject: Re: ubifs crossupport between Linux and U-Boot
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +42,132 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jan 2014 14:45:15 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_200_953513311.1391005937603"
+X-List-Received-Date: Wed, 29 Jan 2014 15:20:29 -0000
+Content-Type: multipart/alternative; boundary=047d7b339ba9fb14fb04f11d7a30
 
-------=_Part_200_953513311.1391005937603
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--047d7b339ba9fb14fb04f11d7a30
+Content-Type: text/plain; charset=ISO-8859-1
 
-<html>
-<head>
-<title>
-Status for 01/29/14
-</title>
-</head>
-<body>
+In short:
+If I create UBIFS partition on Linux side, it works quite fine. I can
+create directories, files update them without  problems. But if I open this
+volume on U-Boot side, I'll get thousands of ecc error messages. Now, if I
+try to access this same volume from Linux side after this episode, it also
+provides these ecc errors. Therefore, Linux created UBIFS partition gets
+corrupted by accessing it from U-Boot side. Volume opening is enough for
+this. This I have experienced by Angstrom distribution with Linux 3.8.13
+and it possibly was U-Boot 10.04. Anyhow, as it seems that you are now
+working with Linux 3.12 - U-Boot 2013-10 combination, you'll need patching
+to cope with this issue. By my understanding required patching is not made
+before U-Boot 2014-01 and Linux 3.14.
 
-<h2>Status for 01/29/14</h2>
+Patching required include:
+Quote from Pekon's answer to me:
 
-<h2>BUILD_ID: build-2014-01-29_05-00-01</h2>
+"
+I don't think any earlier kernel versions ever supported beaglebone
+Its only recently that a major patch-series of NAND driver was
+accepted and  tested on beaglebone.
+The patches  are currently in l2-mtd.git tree which should make into
+3.13 kernel, before being in linux-next for sometime.
+(a) Reference:
+http://lists.infradead.org/pipermail/linux-mtd/2013-October/049462.html
 
-<h2>Clean Build: false</h2>
+(b) In addition to above series, you might need beaglebone DTS updates
+which you can refer from below ..
+http://lists.infradead.org/pipermail/linux-mtd/2013-October/049438.html
+"
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+U-Boot patching over U-Boot 2013-10 should be found from:
+http://patchwork.ozlabs.org/project/uboot/list/?submitter=17320&state=*.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
+I'm not sure how valid above link is anymore. Maybe Pekon can comment that.
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+-Matti
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
+2014-01-29 Denys Dmytriyenko <denys@ti.com>
 
-</body>
-</html>
+> On Mon, Jan 20, 2014 at 04:29:52PM +0200, matti kaasinen wrote:
+> > Hi!
+> >
+> > I Have been using Angstrom distribution for my beaglebone (+ nand flash)
+> > based board. Problem with Angstrom baked Linux/U-boot images is that
+> > whereas both support ubifs partition on nand flash they both seem to
+> handle
+> > it in their own ways. Does Aragon distribution have this same problem?
+>
+> Can you please provide more detailed report for the issue? Otherwise it's
+> quite difficult to give any recommendations. Thanks.
+>
+> --
+> Denys
+>
 
+--047d7b339ba9fb14fb04f11d7a30
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_200_953513311.1391005937603--
+<div dir=3D"ltr"><div><div><div>In short:<br></div>If I create UBIFS partit=
+ion on Linux side, it works quite fine. I can create directories, files upd=
+ate them without=A0 problems. But if I open this volume on U-Boot side, I&#=
+39;ll get thousands of ecc error messages. Now, if I try to access this sam=
+e volume from Linux side after this episode, it also provides these ecc err=
+ors. Therefore, Linux created UBIFS partition gets corrupted by accessing i=
+t from U-Boot side. Volume opening is enough for this. This I have experien=
+ced by Angstrom distribution with Linux 3.8.13 and it possibly was U-Boot 1=
+0.04. Anyhow, as it seems that you are now working with Linux 3.12 - U-Boot=
+ 2013-10 combination, you&#39;ll need patching to cope with this issue. By =
+my understanding required patching is not made before U-Boot 2014-01 and Li=
+nux 3.14.<br>
+<br></div>Patching required include:<br></div>Quote from Pekon&#39;s answer=
+ to me:<br><br>&quot;<br>I don&#39;t think any earlier kernel versions ever=
+ supported beaglebone<br>
+Its only recently that a major patch-series of NAND driver was<br>
+accepted and =A0tested on beaglebone.<br>
+The patches =A0are currently in l2-mtd.git tree which should make into<br>
+3.13 kernel, before being in linux-next for sometime.<br>
+(a) Reference:<br>
+<a href=3D"http://lists.infradead.org/pipermail/linux-mtd/2013-October/0494=
+62.html" target=3D"_blank">http://lists.infradead.org/pipermail/linux-mtd/2=
+013-October/049462.html</a><br>
+<br>
+(b) In addition to above series, you might need beaglebone DTS updates<br>
+which you can refer from below ..<br>
+<a href=3D"http://lists.infradead.org/pipermail/linux-mtd/2013-October/0494=
+38.html" target=3D"_blank">http://lists.infradead.org/pipermail/linux-mtd/2=
+013-October/049438.html</a><br>
+<div>&quot;<br></div><div class=3D"gmail_extra"><br></div><div class=3D"gma=
+il_extra">U-Boot patching over U-Boot 2013-10 should be found from: <a href=
+=3D"http://patchwork.ozlabs.org/project/uboot/list/?submitter=3D17320&amp;s=
+tate=3D*" target=3D"_blank">http://patchwork.ozlabs.org/project/uboot/list/=
+?submitter=3D17320&amp;state=3D*</a>.</div>
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">I&#39;m not=
+ sure how valid above link is anymore. Maybe Pekon can comment that.<br><br=
+></div><div class=3D"gmail_extra">-Matti<br></div><div class=3D"gmail_extra=
+"><br>
+<div class=3D"gmail_quote">2014-01-29 Denys Dmytriyenko <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:denys@ti.com" target=3D"_blank">denys@ti.com</a>&gt;</=
+span><br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div class=3D""><div class=3D"h5">On Mon, Jan 20, 2014 at 04:29:52PM +0200,=
+ matti kaasinen wrote:<br>
+&gt; Hi!<br>
+&gt;<br>
+&gt; I Have been using Angstrom distribution for my beaglebone (+ nand flas=
+h)<br>
+&gt; based board. Problem with Angstrom baked Linux/U-boot images is that<b=
+r>
+&gt; whereas both support ubifs partition on nand flash they both seem to h=
+andle<br>
+&gt; it in their own ways. Does Aragon distribution have this same problem?=
+<br>
+<br>
+</div></div>Can you please provide more detailed report for the issue? Othe=
+rwise it&#39;s<br>
+quite difficult to give any recommendations. Thanks.<br>
+<span class=3D""><font color=3D"#888888"><br>
+--<br>
+Denys<br>
+</font></span></blockquote></div><br></div></div>
+
+--047d7b339ba9fb14fb04f11d7a30--
