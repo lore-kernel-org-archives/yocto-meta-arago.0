@@ -1,37 +1,23 @@
-Return-Path: <samant.uvaca@gmail.com>
-Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
-	[209.85.216.53])
-	by arago-project.org (Postfix) with ESMTPS id 7E415529BC
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id ED48E529BC
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jan 2014 17:51:43 +0000 (UTC)
-Received: by mail-qa0-f53.google.com with SMTP id cm18so2900298qab.12
-	for <meta-arago@arago-project.org>;
-	Wed, 29 Jan 2014 09:51:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=7FCvIhsn2rQaUM1j07iZbPDXPLAgs3I324+cSrcUjWA=;
-	b=0xsX3yKm90MgEiL3vqaVjN/NHBS5qhYdeaxNiMkWpYhx9C6OSG5NkUaV97AFgl2AkR
-	pPTCSin0Ko7I50/HPkitIEyvvzsiCyVsFDd2W83lTUhDKXZZbVMUV/HQBI+nA6K2b39J
-	v/8UAK7x0N9L81ddADQg907EuG8q63EBLWumnoBroLK6kF+szDWs2k4r6jT8INcQKtQY
-	HHJ6gCYoGm0QUj2YMnMX+0gNFrMOv6/HS/aIVrvlEFBDXr8Upv4brTtr0mdn6eR6GtGZ
-	IwYshinUnKE55uk70/VLNM1RZz7fDILaQ2aB+kJAYwpbX8sS00kxP1QHunWYDow1GgkB
-	+Jlg==
-MIME-Version: 1.0
-X-Received: by 10.224.165.133 with SMTP id i5mr14432436qay.75.1391017902212;
-	Wed, 29 Jan 2014 09:51:42 -0800 (PST)
-Received: by 10.229.138.196 with HTTP; Wed, 29 Jan 2014 09:51:42 -0800 (PST)
-Received: by 10.229.138.196 with HTTP; Wed, 29 Jan 2014 09:51:42 -0800 (PST)
-In-Reply-To: <20140129170711.GQ6814@edge>
-References: <CA+B-G-jDW=-RBE7ZWUMS7fLiHOdMc0uquHRZS+yF=+uRX0qMMQ@mail.gmail.com>
-	<CA+B-G-hPSwxU-TkOQyxXw=Hd=7G8kS+cW5VGxGxLca0Rn4j8iw@mail.gmail.com>
-	<20140129170711.GQ6814@edge>
-Date: Wed, 29 Jan 2014 09:51:42 -0800
-Message-ID: <CA+B-G-g4H98UmrXvEpi8N1AaECq6n0vvUrCzA2k+q_Qbn3k3gA@mail.gmail.com>
-From: Samant Kumar <samant.uvaca@gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org, meta-ti@yactoproject.org
-Subject: Re: DM816x-evm
+	Thu, 30 Jan 2014 02:34:11 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173017.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N070007E0G2M9C0@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 29 Jan 2014 20:33:53 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id A1FE6200DB; Wed,
+	29 Jan 2014 21:33:37 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 29 Jan 2014 21:33:34 -0500
+Message-id: <1391049214-14245-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] ipc-test-fw: add FW images version 3.21.00.02 for IPC tests
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,55 +30,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jan 2014 17:51:43 -0000
-Content-Type: multipart/alternative; boundary=089e0149c6c0f0259d04f11f9796
+X-List-Received-Date: Thu, 30 Jan 2014 02:34:12 -0000
 
---089e0149c6c0f0259d04f11f9796
-Content-Type: text/plain; charset=ISO-8859-1
+From: Denys Dmytriyenko <denys@ti.com>
 
-Thanks Denys.
-On Wed, Jan 29, 2014 at 08:35:54AM -0800, Samant Kumar wrote:
-> Hi Denys,
-> I couldn't find any MACHINE conf for dm816x-evm or c6a816x-evm? Is there
-> special tree/branch for support for Netra? I want to use arago software
-> infrastructure for Netra s/w development.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          | 33 ++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
 
-Samant,
+diff --git a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+new file mode 100644
+index 0000000..41ab2fb
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+@@ -0,0 +1,33 @@
++DESCRIPTION = "Firmware images to test IPC"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD;md5=3775480a712fc46a69647678acb234cb"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++PR = "eng-4-gb9283b0"
++
++COMPATIBLE_MACHINE = "omap5-evm|dra7xx-evm"
++
++INHIBIT_PACKAGE_STRIP = "1"
++INSANE_SKIP_${PN} = "arch"
++
++S = "${WORKDIR}/${PV}_${PR}"
++
++SRC_URI = "http://arago-project.org/files/releases/ipc-test-fw/${PV}_${PR}.tar.gz"
++
++SRC_URI[md5sum] = "4fcba6844949ea909131684a80233800"
++SRC_URI[sha256sum] = "3b90b195c382937551251055aaa9185627e86027c91fb41a594dc390391d5fb6"
++
++FW_FILES_omap5-evm = "tesla-dsp.xe64T ducati-m3-core0.xem3"
++FW_FILES_dra7xx-evm = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66 dra7-ipu1-fw.xem4 dra7-ipu2-fw.xem4"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    install -d ${D}${base_libdir}/firmware
++    install -m 755 ${FW_FILES} ${D}${base_libdir}/firmware/
++}
++
++FILES_${PN} += "${base_libdir}/firmware"
+-- 
+1.8.3.2
 
-Unfortunately, support for TI81x platforms was removed from meta-ti some
-time
-ago:
 
-http://thread.gmane.org/gmane.linux.embedded.yocto.meta-ti/1544/focus=1545
-
-There were numerous discussions on this topic on meta-ti mailing list - you
-might want to take a look...
-
---
-Denys
-
---089e0149c6c0f0259d04f11f9796
-Content-Type: text/html; charset=ISO-8859-1
-
-<p>Thanks Denys.</p>
-<div class="gmail_quot&lt;blockquote class=" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Wed, Jan 29, 2014 at 08:35:54AM -0800, Samant Kumar wrote:<br>
-&gt; Hi Denys,<br>
-&gt; I couldn&#39;t find any MACHINE conf for dm816x-evm or c6a816x-evm? Is there<br>
-&gt; special tree/branch for support for Netra? I want to use arago software<br>
-&gt; infrastructure for Netra s/w development.<br>
-<br>
-Samant,<br>
-<br>
-Unfortunately, support for TI81x platforms was removed from meta-ti some time<br>
-ago:<br>
-<br>
-<a href="http://thread.gmane.org/gmane.linux.embedded.yocto.meta-ti/1544/focus=1545" target="_blank">http://thread.gmane.org/gmane.linux.embedded.yocto.meta-ti/1544/focus=1545</a><br>
-<br>
-There were numerous discussions on this topic on meta-ti mailing list - you<br>
-might want to take a look...<br>
-<br>
---<br>
-Denys<br>
-</div>
-
---089e0149c6c0f0259d04f11f9796--
