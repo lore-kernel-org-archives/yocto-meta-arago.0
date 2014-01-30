@@ -1,29 +1,29 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id A03AD52A9B
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 1FBA852AB9
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jan 2014 18:34:41 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0UIYese022515
-	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 12:34:40 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0UIYeQ0002537
-	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 12:34:40 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 30 Jan 2014 12:34:40 -0600
+	Thu, 30 Jan 2014 18:34:44 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0UIYhMG030216
+	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 12:34:43 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0UIYhZ3012797
+	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 12:34:43 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 30 Jan 2014 12:34:42 -0600
 Received: from sdit-build04.dal.design.ti.com (dbdp20.itg.ti.com
 	[172.24.170.38])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s0UIYJOO003617;	Thu, 30 Jan 2014 12:34:39 -0600
+	s0UIYJOP003617;	Thu, 30 Jan 2014 12:34:41 -0600
 From: Chase Maupin <chase.maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 30 Jan 2014 12:34:13 -0600
-Message-ID: <1391106857-17112-8-git-send-email-chase.maupin@ti.com>
+Date: Thu, 30 Jan 2014 12:34:14 -0600
+Message-ID: <1391106857-17112-9-git-send-email-chase.maupin@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1391106857-17112-1-git-send-email-chase.maupin@ti.com>
 References: <1391106857-17112-1-git-send-email-chase.maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 07/11] arago.conf: Add libav to LICENSE_FLAGS_WHITELIST
+Subject: [PATCH 08/11] update nativesdk-linux-libc-headers version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,30 +36,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 18:34:41 -0000
+X-List-Received-Date: Thu, 30 Jan 2014 18:34:44 -0000
 Content-Type: text/plain
 
-* The libav bbappend removes the commerial license SW so we
-  can add it to the whitelist.
+* Update the linux-libc-headers version which depends on the
+  settings of SDKLINUXLIBCVERSION and LINUXLIBCVERSION
 
 Signed-off-by: Chase Maupin <chase.maupin@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../conf/distro/include/toolchain-gcc.inc          |    2 +-
+ .../conf/distro/include/toolchain-linaro.inc       |    4 ++--
+ .../conf/distro/include/tcmode-external-arago.inc  |    2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 76254f2..bf1c601 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -62,7 +62,7 @@ ENTERPRISE_DISTRO = "1"
- # disable by default the codecs in libav that causes issues with shipping an
- # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
- # disable troublesome software.
--LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg"
-+LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg commercial_libav"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+index 28e9859..f7c8032 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+@@ -22,7 +22,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+ SDKGCCVERSION ?= "4.7%"
+ SDKBINUVERSION ?= "2.23%"
+ SDKEGLIBCVERSION ?= "2.17%"
+-SDKLINUXLIBCVERSION ?= "3.8%"
++SDKLINUXLIBCVERSION ?= "3.10%"
  
- # Some machines with the same architecture use different kernel versions.
- # Set PACKAGE_ARCH to allow packages to be seperated by both architecture and
+ PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+index cc12f08..ba68bfd 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+@@ -31,8 +31,8 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+ SDKGCCVERSION ?= "4.7%"
+ SDKBINUVERSION ?= "2.23%"
+ SDKEGLIBCVERSION ?= "2.17%"
+-SDKLINUXLIBCVERSION ?= "3.8%"
+-LINUXLIBCVERSION ?= "3.8%"
++SDKLINUXLIBCVERSION ?= "3.10%"
++LINUXLIBCVERSION ?= "3.10%"
+ 
+ PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+diff --git a/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc b/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
+index 3ff235f..ddfee64 100644
+--- a/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
++++ b/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
+@@ -38,7 +38,7 @@ GCCVERSION ?= "4.5%"
+ SDKGCCVERSION ?= "4.5%"
+ BINUVERSION ?= "2.20%"
+ EGLIBCVERSION ?= "2.12%"
+-LINUXLIBCVERSION ?= "3.8"
++LINUXLIBCVERSION ?= "3.10"
+ 
+ PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+ PREFERRED_VERSION_gcc-cross ?= "${GCCVERSION}"
 -- 
 1.7.9.5
 
