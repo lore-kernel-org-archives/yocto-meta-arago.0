@@ -1,31 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id CE1E0529BC
+Return-Path: <chase.maupin@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 7F0AB529C3
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jan 2014 17:22:46 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0UHMkli009182
-	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 11:22:46 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0UHMjFc019222
-	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 11:22:46 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 30 Jan 2014 11:22:45 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0UHMj3T021119;
-	Thu, 30 Jan 2014 11:22:45 -0600
-Date: Thu, 30 Jan 2014 12:22:45 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140130172245.GC6814@edge>
-References: <1391049214-14245-1-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED10159939078@DLEE11.ent.ti.com>
+	Thu, 30 Jan 2014 18:34:23 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0UIYMoD024432
+	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 12:34:22 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0UIYM6D012650
+	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 12:34:22 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 30 Jan 2014 12:34:22 -0600
+Received: from sdit-build04.dal.design.ti.com (dbdp20.itg.ti.com
+	[172.24.170.38])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s0UIYJOH003617;	Thu, 30 Jan 2014 12:34:21 -0600
+From: Chase Maupin <chase.maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 30 Jan 2014 12:34:06 -0600
+Message-ID: <1391106857-17112-1-git-send-email-chase.maupin@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED10159939078@DLEE11.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] ipc-test-fw: add FW images version 3.21.00.02	for IPC tests
+Subject: [PATCH 00/11] Dora Updates
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,92 +34,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 17:22:47 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 30 Jan 2014 18:34:23 -0000
+Content-Type: text/plain
 
-The next question would be in which packagegroup to put it in? Is arago-test a 
-good one? Although it's being pulled in for regular rootfs - not sure if that 
-would be fine, especially since the images are 5-6 MB each...
+All,
 
+The following patches are my preliminary Dora updates for meta-arago
+to get the process started.
 
-On Thu, Jan 30, 2014 at 04:00:20PM +0000, Maupin, Chase wrote:
-> Acked-by: Chase Maupin <chase.maupin@ti.com>
-> 
-> 
-> >-----Original Message-----
-> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> >Sent: Wednesday, January 29, 2014 8:34 PM
-> >To: meta-arago@arago-project.org
-> >Subject: [meta-arago] [PATCH] ipc-test-fw: add FW images version
-> >3.21.00.02 for IPC tests
-> >
-> >From: Denys Dmytriyenko <denys@ti.com>
-> >
-> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >---
-> > .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          | 33
-> >++++++++++++++++++++++
-> > 1 file changed, 33 insertions(+)
-> > create mode 100644 meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-
-> >test-fw_3.21.00.02.bb
-> >
-> >diff --git a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-
-> >fw_3.21.00.02.bb b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-
-> >test-fw_3.21.00.02.bb
-> >new file mode 100644
-> >index 0000000..41ab2fb
-> >--- /dev/null
-> >+++ b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-
-> >fw_3.21.00.02.bb
-> >@@ -0,0 +1,33 @@
-> >+DESCRIPTION = "Firmware images to test IPC"
-> >+LICENSE = "BSD"
-> >+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-
-> >licenses/BSD;md5=3775480a712fc46a69647678acb234cb"
-> >+
-> >+PACKAGE_ARCH = "${MACHINE_ARCH}"
-> >+
-> >+PR = "eng-4-gb9283b0"
-> >+
-> >+COMPATIBLE_MACHINE = "omap5-evm|dra7xx-evm"
-> >+
-> >+INHIBIT_PACKAGE_STRIP = "1"
-> >+INSANE_SKIP_${PN} = "arch"
-> >+
-> >+S = "${WORKDIR}/${PV}_${PR}"
-> >+
-> >+SRC_URI = "http://arago-project.org/files/releases/ipc-test-
-> >fw/${PV}_${PR}.tar.gz"
-> >+
-> >+SRC_URI[md5sum] = "4fcba6844949ea909131684a80233800"
-> >+SRC_URI[sha256sum] =
-> >"3b90b195c382937551251055aaa9185627e86027c91fb41a594dc390391d5fb6"
-> >+
-> >+FW_FILES_omap5-evm = "tesla-dsp.xe64T ducati-m3-core0.xem3"
-> >+FW_FILES_dra7xx-evm = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66 dra7-
-> >ipu1-fw.xem4 dra7-ipu2-fw.xem4"
-> >+
-> >+do_compile() {
-> >+    :
-> >+}
-> >+
-> >+do_install() {
-> >+    install -d ${D}${base_libdir}/firmware
-> >+    install -m 755 ${FW_FILES} ${D}${base_libdir}/firmware/
-> >+}
-> >+
-> >+FILES_${PN} += "${base_libdir}/firmware"
-> >--
-> >1.8.3.2
-> >
-> >_______________________________________________
-> >meta-arago mailing list
-> >meta-arago@arago-project.org
-> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Chase Maupin (11):
+  qt4-embedded-gles: Update to 4.8.5 version
+  matrix-gui-apps-image: remove duplicate inclusion
+  matrix-gui-submenus: remove duplicate inclusion
+  eglibc-initial: remove duplicate include
+  arago-prefs: update linux-libc-headers version
+  libav: update bbappend to latest version
+  arago.conf: Add libav to LICENSE_FLAGS_WHITELIST
+  update nativesdk-linux-libc-headers version
+  libnl: Update PREFERRED_VERSION to latest
+  Update bbappends for Dora
+  bc: remove bbappend for Dora release
+
+ meta-arago-distro/conf/distro/arago.conf           |    2 +-
+ .../conf/distro/include/arago-prefs.inc            |   14 +++++-----
+ .../conf/distro/include/toolchain-gcc.inc          |    2 +-
+ .../conf/distro/include/toolchain-linaro.inc       |    4 +--
+ ...enssh_6.1p1.bbappend => openssh_6.2p2.bbappend} |    3 +++
+ ...box_1.20.2.bbappend => busybox_1.21.1.bbappend} |    0
+ .../{dbus_1.6.8.bbappend => dbus_1.6.10.bbappend}  |    0
+ ..._2012.55.bbappend => dropbear_2013.58.bbappend} |    2 ++
+ .../recipes-extended/bc/bc/bc-1.06-fixes-1.patch   |   27 --------------------
+ .../recipes-extended/bc/bc_1.06.bbappend           |    7 -----
+ ...pe_2.4.11.bbappend => freetype_2.4.12.bbappend} |    0
+ .../{libav_0.8.4.bbappend => libav_0.8.8.bbappend} |    4 ++-
+ ...eaudio_3.0.bbappend => pulseaudio_4.0.bbappend} |    0
+ ...bbappend => nativesdk-qt4-tools_4.8.5.bbappend} |    0
+ ...4.bbappend => qt4-embedded-gles_4.8.5.bbappend} |    0
+ ..._4.8.4.bbappend => qt4-embedded_4.8.5.bbappend} |    0
+ .../{curl_7.29.0.bbappend => curl_7.32.0.bbappend} |    0
+ .../conf/distro/include/tcmode-external-arago.inc  |    2 +-
+ .../recipes-core/eglibc/eglibc-initial.inc         |    2 --
+ .../matrix/matrix-gui-apps-images_2.0.bb           |    1 -
+ .../recipes-core/matrix/matrix-gui-submenus_2.0.bb |    1 -
+ ...ed-gles_4.8.4.bb => qt4-embedded-gles_4.8.5.bb} |    0
+ 22 files changed, 20 insertions(+), 51 deletions(-)
+ rename meta-arago-distro/recipes-connectivity/openssh/{openssh_6.1p1.bbappend => openssh_6.2p2.bbappend} (91%)
+ rename meta-arago-distro/recipes-core/busybox/{busybox_1.20.2.bbappend => busybox_1.21.1.bbappend} (100%)
+ rename meta-arago-distro/recipes-core/dbus/{dbus_1.6.8.bbappend => dbus_1.6.10.bbappend} (100%)
+ rename meta-arago-distro/recipes-core/dropbear/{dropbear_2012.55.bbappend => dropbear_2013.58.bbappend} (92%)
+ delete mode 100644 meta-arago-distro/recipes-extended/bc/bc/bc-1.06-fixes-1.patch
+ delete mode 100644 meta-arago-distro/recipes-extended/bc/bc_1.06.bbappend
+ rename meta-arago-distro/recipes-graphics/freetype/{freetype_2.4.11.bbappend => freetype_2.4.12.bbappend} (100%)
+ rename meta-arago-distro/recipes-multimedia/libav/{libav_0.8.4.bbappend => libav_0.8.8.bbappend} (92%)
+ rename meta-arago-distro/recipes-multimedia/pulseaudio/{pulseaudio_3.0.bbappend => pulseaudio_4.0.bbappend} (100%)
+ rename meta-arago-distro/recipes-qt/qt4/{nativesdk-qt4-tools_4.8.4.bbappend => nativesdk-qt4-tools_4.8.5.bbappend} (100%)
+ rename meta-arago-distro/recipes-qt/qt4/{qt4-embedded-gles_4.8.4.bbappend => qt4-embedded-gles_4.8.5.bbappend} (100%)
+ rename meta-arago-distro/recipes-qt/qt4/{qt4-embedded_4.8.4.bbappend => qt4-embedded_4.8.5.bbappend} (100%)
+ rename meta-arago-distro/recipes-support/curl/{curl_7.29.0.bbappend => curl_7.32.0.bbappend} (100%)
+ rename meta-arago-extras/recipes-qt/qt4/{qt4-embedded-gles_4.8.4.bb => qt4-embedded-gles_4.8.5.bb} (100%)
+
+-- 
+1.7.9.5
+
 
