@@ -1,23 +1,23 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id DBB1A529BC
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id CE7CB529B2
 	for <meta-arago@arago-project.org>;
-	Fri, 31 Jan 2014 00:28:51 +0000 (UTC)
+	Fri, 31 Jan 2014 00:48:13 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
+	by vms173017.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N080036WPBHI911@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 30 Jan 2014 18:28:43 -0600 (CST)
+	2009)) with ESMTPA id <0N0800JNKQ7ZFP60@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 30 Jan 2014 18:48:10 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 6B5E120086; Thu,
-	30 Jan 2014 19:28:29 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id 9498520210; Thu,
+	30 Jan 2014 19:47:59 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 30 Jan 2014 19:28:27 -0500
-Message-id: <1391128108-3856-1-git-send-email-denis@denix.org>
+Date: Thu, 30 Jan 2014 19:47:58 -0500
+Message-id: <1391129278-9755-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH 1/2] udev-extraconf: overlay mount.sh as is from oe-core/dylan
+Subject: [PATCH] oe-layertool-setup.sh: avoid == bashism
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,112 +30,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 00:28:52 -0000
+X-List-Received-Date: Fri, 31 Jan 2014 00:48:14 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-This will be modified to fix SD mounting issues.
+Use POSIX "=" for comparison instead of bash "=="
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/udev/udev-extraconf/mount.sh      | 76 ++++++++++++++++++++++
- .../recipes-core/udev/udev-extraconf_1.0.bb        |  4 ++
- 2 files changed, 80 insertions(+)
- create mode 100644 meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
- create mode 100644 meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb
+ oe-layertool-setup.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh b/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
-new file mode 100644
-index 0000000..d1419ed
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
-@@ -0,0 +1,76 @@
-+#!/bin/sh
-+#
-+# Called from udev
-+#
-+# Attempt to mount any added block devices and umount any removed devices
-+
-+
-+MOUNT="/bin/mount"
-+PMOUNT="/usr/bin/pmount"
-+UMOUNT="/bin/umount"
-+for line in `grep -v ^# /etc/udev/mount.blacklist`
-+do
-+	if [ ` expr match "$DEVNAME" "$line" ` -gt 0 ];
-+	then
-+		logger "udev/mount.sh" "[$DEVNAME] is blacklisted, ignoring"
-+		exit 0
-+	fi
-+done
-+
-+automount() {	
-+	name="`basename "$DEVNAME"`"
-+
-+	! test -d "/media/$name" && mkdir -p "/media/$name"
-+	# Silent util-linux's version of mounting auto
-+	if [ "x`readlink $MOUNT`" = "x/bin/mount.util-linux" ] ;
-+	then
-+		MOUNT="$MOUNT -o silent"
-+	fi
-+	
-+	if ! $MOUNT -t auto $DEVNAME "/media/$name"
-+	then
-+		#logger "mount.sh/automount" "$MOUNT -t auto $DEVNAME \"/media/$name\" failed!"
-+		rm_dir "/media/$name"
-+	else
-+		logger "mount.sh/automount" "Auto-mount of [/media/$name] successful"
-+		touch "/tmp/.automount-$name"
-+	fi
-+}
-+	
-+rm_dir() {
-+	# We do not want to rm -r populated directories
-+	if test "`find "$1" | wc -l | tr -d " "`" -lt 2 -a -d "$1"
-+	then
-+		! test -z "$1" && rm -r "$1"
-+	else
-+		logger "mount.sh/automount" "Not removing non-empty directory [$1]"
-+	fi
-+}
-+
-+if [ "$ACTION" = "add" ] && [ -n "$DEVNAME" ] && [ -n "$ID_FS_TYPE" ]; then
-+	if [ -x "$PMOUNT" ]; then
-+		$PMOUNT $DEVNAME 2> /dev/null
-+	elif [ -x $MOUNT ]; then
-+    		$MOUNT $DEVNAME 2> /dev/null
-+	fi
-+	
-+	# If the device isn't mounted at this point, it isn't
-+	# configured in fstab (note the root filesystem can show up as
-+	# /dev/root in /proc/mounts, so check the device number too)
-+	if expr $MAJOR "*" 256 + $MINOR != `stat -c %d /`; then
-+		grep -q "^$DEVNAME " /proc/mounts || automount
-+	fi
-+fi
-+
-+
-+
-+if [ "$ACTION" = "remove" ] && [ -x "$UMOUNT" ] && [ -n "$DEVNAME" ]; then
-+	for mnt in `cat /proc/mounts | grep "$DEVNAME" | cut -f 2 -d " " `
-+	do
-+		$UMOUNT $mnt
-+	done
-+	
-+	# Remove empty directories from auto-mounter
-+	name="`basename "$DEVNAME"`"
-+	test -e "/tmp/.automount-$name" && rm_dir "/media/$name"
-+fi
-diff --git a/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb b/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb
-new file mode 100644
-index 0000000..c0ab069
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb
-@@ -0,0 +1,4 @@
-+# look for files in this layer first
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+PR_append = "-arago0"
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index ab66ef3..91fb71a 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -742,7 +742,7 @@ EOM
+     fi
+ 
+     # If command line option was not set use the old dldir
+-    if [ "x$dldir" == "x" ]
++    if [ "x$dldir" = "x" ]
+     then
+         dldir=$old_dldir
+     fi
 -- 
 1.8.3.2
 
