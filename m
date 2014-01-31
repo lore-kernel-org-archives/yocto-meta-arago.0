@@ -1,34 +1,25 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7E54C529B2
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTP id 2A45C529BC
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jan 2014 23:01:06 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0UN15P7006911
-	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 17:01:05 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0UN15CC002863
-	for <meta-arago@arago-project.org>; Thu, 30 Jan 2014 17:01:05 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Thu, 30 Jan 2014 17:01:05 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] ts-calibrate: Always export
-	TSLIB_CALIBFILE	env variable
-Thread-Index: AQHPHg46gvGOEBattkiVXr+OWCBEOJqd4JVQ
-Date: Thu, 30 Jan 2014 23:01:04 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C616729@DFLE08.ent.ti.com>
-References: <1391127157-6874-1-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015993A8B6@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015993A8B6@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH] ts-calibrate: Always export TSLIB_CALIBFILE	env variable
+	Fri, 31 Jan 2014 00:28:51 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N080090WPBIMU61@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 30 Jan 2014 18:28:42 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 70CEC20210; Thu,
+	30 Jan 2014 19:28:30 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 30 Jan 2014 19:28:28 -0500
+Message-id: <1391128108-3856-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+In-reply-to: <1391128108-3856-1-git-send-email-denis@denix.org>
+References: <1391128108-3856-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] udev-extraconf: update mount.sh to use /run/media instead of /media
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,101 +32,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 23:01:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 31 Jan 2014 00:28:51 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
 
+This is done to work around the issue of auto-mounting block devices
+(i.e. SD cards) when root filesystem is still in read-only mode and
+creating /media/<device> is not possible. That is due to udev getting
+started earlier (/etc/rcS.d/S03udev) than checkroot gets a chance to
+re-mount the rootfs as read-write (/etc/rcS.d/S10checkroot.sh).
 
-> -----Original Message-----
-> From: Maupin, Chase
-> Sent: Thursday, January 30, 2014 4:54 PM
-> To: Cooper Jr., Franklin; meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH] ts-calibrate: Always export TSLIB_CALIB=
-FILE
-> env variable
->=20
-> >-----Original Message-----
-> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> >Sent: Thursday, January 30, 2014 6:13 PM
-> >To: meta-arago@arago-project.org
-> >Cc: Cooper Jr., Franklin
-> >Subject: [meta-arago] [PATCH] ts-calibrate: Always export
-> >TSLIB_CALIBFILE env variable
-> >
-> >* Previously TSLIB_CALIBFILE env variable was only being exported if
-> >the mmc
-> >  partition was mounted.
-> >* Move the export statement outside of the if statement to insure that
-> >this
-> >  important variable is always exported.
-> >
-> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> >---
-> > .../recipes-graphics/tslib/ts-calibrate-init/init  |    3 ++-
-> > .../tslib/ts-calibrate-init_1.0.bb                 |    2 +-
-> > 2 files changed, 3 insertions(+), 2 deletions(-)
-> >
-> >diff --git a/meta-arago-extras/recipes-graphics/tslib/ts-
-> >calibrate-init/init b/meta-arago-extras/recipes-graphics/tslib/ts-
-> >calibrate-init/init
-> >index 5d5c0aa..ab19da3 100644
-> >--- a/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
-> >init/init
-> >+++ b/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
-> >init/init
-> >@@ -31,9 +31,10 @@ mount | grep /media/mmcblk0p1 | grep vfat >
-> >/dev/null 2>&1  if [ "$?" =3D "0" ]  then
-> >     tsfile=3D/media/mmcblk0p1/pointercal
-> >-    export TSLIB_CALIBFILE=3D$tsfile
-> > fi
-> >
-> >+export TSLIB_CALIBFILE=3D$tsfile
->=20
-> This is a nice to have but not strictly required right?  Because the defa=
-ult is
-> /etc/pointercal and you only need to reset this if you are pointing to th=
-e SD card.
-> Or am I missing something?
-[Franklin] Your right if tslib by default assumes that file is located at /=
-etc/pointercal but at the time I didn't think that was the case.
+Although, canonical FHS specifies /media/<device> as a mount point
+for removable media devices, the latest 2.3 version was released in
+2004 and since then FreeDekstops/udisks and other tools adopted the
+new /run/media/<user>/<device> location. That was done to overcome
+read-only rootfs limitation and avoid name-clash between users.
 
-After searching some more that is indeed the case: http://manpages.ubuntu.c=
-om/manpages/raring/man5/ts.conf.5.html
+For our embedded systems environment we assume single-user operation
+and hence simplify mount point to just /run/media/<device>.
 
-So we can take this patch or leave it.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh | 12 ++++++------
+ meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb   |  2 +-
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
->=20
-> >+
-> > if [ ! -f $tsfile ] ; then
-> >     echo -n "Calibrating touchscreen (first time only)"
-> >     ts_calibrate
-> >diff --git a/meta-arago-extras/recipes-graphics/tslib/ts-
-> >calibrate-init_1.0.bb b/meta-arago-extras/recipes-
-> >graphics/tslib/ts-calibrate-init_1.0.bb
-> >index dde5c42..0915941 100644
-> >--- a/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
-> >init_1.0.bb
-> >+++ b/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
-> >init_1.0.bb
-> >@@ -6,7 +6,7 @@ RDEPENDS_${PN} +=3D "tslib"
-> > LICENSE =3D "GPLv2"
-> > LIC_FILES_CHKSUM =3D
-> >"file://init;beginline=3D2;endline=3D11;md5=3D4b2e3b15f01cf63d2cb7988afd
-> >cc6c60"
-> >
-> >-PR =3D "r2"
-> >+PR =3D "r3"
-> >
-> > S =3D "${WORKDIR}"
-> >
-> >--
-> >1.7.0.4
-> >
-> >_______________________________________________
-> >meta-arago mailing list
-> >meta-arago@arago-project.org
-> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh b/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
+index d1419ed..0f436ca 100644
+--- a/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
++++ b/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
+@@ -20,19 +20,19 @@ done
+ automount() {	
+ 	name="`basename "$DEVNAME"`"
+ 
+-	! test -d "/media/$name" && mkdir -p "/media/$name"
++	! test -d "/run/media/$name" && mkdir -p "/run/media/$name"
+ 	# Silent util-linux's version of mounting auto
+ 	if [ "x`readlink $MOUNT`" = "x/bin/mount.util-linux" ] ;
+ 	then
+ 		MOUNT="$MOUNT -o silent"
+ 	fi
+ 	
+-	if ! $MOUNT -t auto $DEVNAME "/media/$name"
++	if ! $MOUNT -t auto $DEVNAME "/run/media/$name"
+ 	then
+-		#logger "mount.sh/automount" "$MOUNT -t auto $DEVNAME \"/media/$name\" failed!"
+-		rm_dir "/media/$name"
++		#logger "mount.sh/automount" "$MOUNT -t auto $DEVNAME \"/run/media/$name\" failed!"
++		rm_dir "/run/media/$name"
+ 	else
+-		logger "mount.sh/automount" "Auto-mount of [/media/$name] successful"
++		logger "mount.sh/automount" "Auto-mount of [/run/media/$name] successful"
+ 		touch "/tmp/.automount-$name"
+ 	fi
+ }
+@@ -72,5 +72,5 @@ if [ "$ACTION" = "remove" ] && [ -x "$UMOUNT" ] && [ -n "$DEVNAME" ]; then
+ 	
+ 	# Remove empty directories from auto-mounter
+ 	name="`basename "$DEVNAME"`"
+-	test -e "/tmp/.automount-$name" && rm_dir "/media/$name"
++	test -e "/tmp/.automount-$name" && rm_dir "/run/media/$name"
+ fi
+diff --git a/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb b/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb
+index c0ab069..997adf2 100644
+--- a/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb
++++ b/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bb
+@@ -1,4 +1,4 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
+-- 
+1.8.3.2
+
 
