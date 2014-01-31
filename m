@@ -1,29 +1,35 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id EA509529AD
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 896895298F
 	for <meta-arago@arago-project.org>;
-	Fri, 31 Jan 2014 10:48:12 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0VAmCVp012326
-	for <meta-arago@arago-project.org>; Fri, 31 Jan 2014 04:48:12 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0VAmCam017630
-	for <meta-arago@arago-project.org>; Fri, 31 Jan 2014 04:48:12 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 31 Jan 2014 04:48:11 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s0VAmBhd014516	for <meta-arago@arago-project.org>;
-	Fri, 31 Jan 2014 04:48:11 -0600
-Date: Fri, 31 Jan 2014 05:35:13 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1210577620.211.1391164513874.JavaMail.jenkins@puget>
+	Fri, 31 Jan 2014 14:47:25 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0VElOMb015623
+	for <meta-arago@arago-project.org>; Fri, 31 Jan 2014 08:47:24 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0VElOfR024655
+	for <meta-arago@arago-project.org>; Fri, 31 Jan 2014 08:47:24 -0600
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Fri, 31 Jan 2014 08:47:24 -0600
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] ts-calibrate: Always export
+	TSLIB_CALIBFILE	env variable
+Thread-Index: AQHPHg0cSXiUbazbAEWjG69VTkbnz5qd4CVwgABmowCAAKOyUA==
+Date: Fri, 31 Jan 2014 14:47:23 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015993C6DE@DLEE11.ent.ti.com>
+References: <1391127157-6874-1-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015993A8B6@DLEE11.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C616729@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C616729@DFLE08.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-01-31_01-00-24
+Subject: Re: [PATCH] ts-calibrate: Always export TSLIB_CALIBFILE	env variable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +42,118 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 10:48:13 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_210_502731674.1391164513855"
+X-List-Received-Date: Fri, 31 Jan 2014 14:47:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_210_502731674.1391164513855
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+>-----Original Message-----
+>From: Cooper Jr., Franklin
+>Sent: Thursday, January 30, 2014 5:01 PM
+>To: Maupin, Chase; meta-arago@arago-project.org
+>Subject: RE: [meta-arago] [PATCH] ts-calibrate: Always export
+>TSLIB_CALIBFILE env variable
+>
+>
+>
+>> -----Original Message-----
+>> From: Maupin, Chase
+>> Sent: Thursday, January 30, 2014 4:54 PM
+>> To: Cooper Jr., Franklin; meta-arago@arago-project.org
+>> Subject: RE: [meta-arago] [PATCH] ts-calibrate: Always export
+>TSLIB_CALIBFILE
+>> env variable
+>>
+>> >-----Original Message-----
+>> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+>> >Sent: Thursday, January 30, 2014 6:13 PM
+>> >To: meta-arago@arago-project.org
+>> >Cc: Cooper Jr., Franklin
+>> >Subject: [meta-arago] [PATCH] ts-calibrate: Always export
+>> >TSLIB_CALIBFILE env variable
+>> >
+>> >* Previously TSLIB_CALIBFILE env variable was only being
+>exported if
+>> >the mmc
+>> >  partition was mounted.
+>> >* Move the export statement outside of the if statement to
+>insure that
+>> >this
+>> >  important variable is always exported.
+>> >
+>> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>> >---
+>> > .../recipes-graphics/tslib/ts-calibrate-init/init  |    3 ++-
+>> > .../tslib/ts-calibrate-init_1.0.bb                 |    2 +-
+>> > 2 files changed, 3 insertions(+), 2 deletions(-)
+>> >
+>> >diff --git a/meta-arago-extras/recipes-graphics/tslib/ts-
+>> >calibrate-init/init b/meta-arago-extras/recipes-
+>graphics/tslib/ts-
+>> >calibrate-init/init
+>> >index 5d5c0aa..ab19da3 100644
+>> >--- a/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
+>> >init/init
+>> >+++ b/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
+>> >init/init
+>> >@@ -31,9 +31,10 @@ mount | grep /media/mmcblk0p1 | grep vfat >
+>> >/dev/null 2>&1  if [ "$?" =3D "0" ]  then
+>> >     tsfile=3D/media/mmcblk0p1/pointercal
+>> >-    export TSLIB_CALIBFILE=3D$tsfile
+>> > fi
+>> >
+>> >+export TSLIB_CALIBFILE=3D$tsfile
+>>
+>> This is a nice to have but not strictly required right?  Because
+>the default is
+>> /etc/pointercal and you only need to reset this if you are
+>pointing to the SD card.
+>> Or am I missing something?
+>[Franklin] Your right if tslib by default assumes that file is
+>located at /etc/pointercal but at the time I didn't think that was
+>the case.
+>
+>After searching some more that is indeed the case:
+>http://manpages.ubuntu.com/manpages/raring/man5/ts.conf.5.html
+>
+>So we can take this patch or leave it.
 
-<html>
-<head>
-<title>
-Status for 01/31/14
-</title>
-</head>
-<body>
+I'm OK with it since it makes things clear, I was just checking in case the=
+re was something I was missing.
 
-<h2>Status for 01/31/14</h2>
+>
+>>
+>> >+
+>> > if [ ! -f $tsfile ] ; then
+>> >     echo -n "Calibrating touchscreen (first time only)"
+>> >     ts_calibrate
+>> >diff --git a/meta-arago-extras/recipes-graphics/tslib/ts-
+>> >calibrate-init_1.0.bb b/meta-arago-extras/recipes-
+>> >graphics/tslib/ts-calibrate-init_1.0.bb
+>> >index dde5c42..0915941 100644
+>> >--- a/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
+>> >init_1.0.bb
+>> >+++ b/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-
+>> >init_1.0.bb
+>> >@@ -6,7 +6,7 @@ RDEPENDS_${PN} +=3D "tslib"
+>> > LICENSE =3D "GPLv2"
+>> > LIC_FILES_CHKSUM =3D
+>>
+>>"file://init;beginline=3D2;endline=3D11;md5=3D4b2e3b15f01cf63d2cb7988af
+>d
+>> >cc6c60"
+>> >
+>> >-PR =3D "r2"
+>> >+PR =3D "r3"
+>> >
+>> > S =3D "${WORKDIR}"
+>> >
+>> >--
+>> >1.7.0.4
+>> >
+>> >_______________________________________________
+>> >meta-arago mailing list
+>> >meta-arago@arago-project.org
+>> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-<h2>BUILD_ID: build-2014-01-31_01-01-35</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_210_502731674.1391164513855--
