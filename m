@@ -1,32 +1,23 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 0475552A55
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id AC9DF5298F
 	for <meta-arago@arago-project.org>;
-	Fri, 31 Jan 2014 23:27:36 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s0VNRa2k002689
-	for <meta-arago@arago-project.org>; Fri, 31 Jan 2014 17:27:36 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s0VNRa2X014881
-	for <meta-arago@arago-project.org>; Fri, 31 Jan 2014 17:27:36 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Fri, 31 Jan 2014 17:27:35 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] oe-layertool-setup.sh: avoid == bashism
-Thread-Index: AQHPHtnM8ubdyzx/s0iyaUKZYL+xqZqfelcY
-Date: Fri, 31 Jan 2014 23:27:35 +0000
-Message-ID: <DF71B322-F679-47D5-B2B9-2E802D7E41B0@ti.com>
-References: <1391129278-9755-1-git-send-email-denis@denix.org>,
-	<20140131231133.GO6814@edge>
-In-Reply-To: <20140131231133.GO6814@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] oe-layertool-setup.sh: avoid == bashism
+	Sat,  1 Feb 2014 02:02:59 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N0A00MDEOCM1040@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 31 Jan 2014 20:02:47 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 8CCD620094; Fri,
+	31 Jan 2014 21:02:46 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 31 Jan 2014 21:02:46 -0500
+Message-id: <1391220166-17777-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] packagegroup-*-connectivity: add back bt-firmware required for WiLink8 on am335x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,44 +30,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 23:27:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 01 Feb 2014 02:03:00 -0000
 
-Sorry, fine by me
-> On Jan 31, 2014, at 5:11 PM, "Dmytriyenko, Denys" <denys@ti.com> wrote:
->=20
-> Ping. Any objections?
->=20
->=20
->> On Thu, Jan 30, 2014 at 07:47:58PM -0500, Denys Dmytriyenko wrote:
->> From: Denys Dmytriyenko <denys@ti.com>
->>=20
->> Use POSIX "=3D" for comparison instead of bash "=3D=3D"
->>=20
->> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> ---
->> oe-layertool-setup.sh | 2 +-
->> 1 file changed, 1 insertion(+), 1 deletion(-)
->>=20
->> diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
->> index ab66ef3..91fb71a 100755
->> --- a/oe-layertool-setup.sh
->> +++ b/oe-layertool-setup.sh
->> @@ -742,7 +742,7 @@ EOM
->>     fi
->>=20
->>     # If command line option was not set use the old dldir
->> -    if [ "x$dldir" =3D=3D "x" ]
->> +    if [ "x$dldir" =3D "x" ]
->>     then
->>         dldir=3D$old_dldir
->>     fi
->> --=20
->> 1.8.3.2
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb             | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index a925749..7b3480c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wireless packages into the target FS"
+ LICENSE = "MIT"
+-PR = "r23"
++PR = "r24"
+ 
+ inherit packagegroup
+ 
+@@ -51,6 +51,7 @@ CONNECTIVITY_RDEPENDS_ti33x = "\
+     ${DEMO_APPS} \
+     ${BLUETOOTH_STACK} \
+     ${FIRMWARE_AND_DRIVERS} \
++    bt-firmware \
+ "
+ 
+ CONNECTIVITY_RDEPENDS_ti43x = "\
+-- 
+1.8.3.2
+
 
