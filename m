@@ -1,35 +1,29 @@
-Return-Path: <mrinmayee@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 979D3529BD
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 89780529B5
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Feb 2014 10:04:46 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s14A4iHY015214
-	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 04:04:45 -0600
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14A4gv1010746
-	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 15:34:43 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE72.ent.ti.com ([fe80::bd56:32bf:87fd:2763%27]) with mapi id
-	14.02.0342.003; Tue, 4 Feb 2014 18:04:42 +0800
-From: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Maupin, Chase" <chase.maupin@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm
-	version
-Thread-Index: AQHPHr26GFDUBInyrkW6B+ixAnJO7pqjwuKAgAEe7jA=
-Date: Tue, 4 Feb 2014 10:04:42 +0000
-Message-ID: <CF956B779D819D41BBC043B7082161D547CE0C@DBDE04.ent.ti.com>
-References: <1391197703-29424-1-git-send-email-chase.maupin@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015993D972@DLEE11.ent.ti.com>
-	<20140204005129.GE18784@edge>
-In-Reply-To: <20140204005129.GE18784@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
+	Tue,  4 Feb 2014 10:44:21 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s14AiKXZ030251
+	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 04:44:20 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14AiKP5030158
+	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 04:44:20 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 4 Feb 2014 04:44:19 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s14AiJHv017481	for <meta-arago@arago-project.org>;
+	Tue, 4 Feb 2014 04:44:19 -0600
+Date: Tue, 4 Feb 2014 05:31:15 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <877240560.229.1391509875748.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm version
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2013.12 build 2014-02-04_01-00-24
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,71 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Feb 2014 10:04:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 04 Feb 2014 10:44:21 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_228_691432811.1391509875719"
 
-Hi all,
+------=_Part_228_691432811.1391509875719
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The libdrm in GLSDK is based on the 2.4.41 version from upstream.=20
-A preferred version is required since a 2.4.42 version is present in oe-cor=
-e.=20
+<html>
+<head>
+<title>
+Status for 02/04/14
+</title>
+</head>
+<body>
+
+<h2>Status for 02/04/14</h2>
+
+<h2>BUILD_ID: build-2014-02-04_01-01-41</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dylan</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2013.12"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
+OPENTEST_TEE_IP="10.218.102.142"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-Regards,
-Mrinmayee
-
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Tuesday, February 04, 2014 6:21 AM
-> To: Maupin, Chase
-> Cc: meta-arago@arago-project.org; Hingolikar, Mrinmayee
-> Subject: Re: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK
-> libdrm version
->=20
-> Ping
->=20
-> On Fri, Jan 31, 2014 at 07:50:39PM +0000, Maupin, Chase wrote:
-> > Mrinmayee,
-> >
-> > Can you comment on the below need for 2.4.41?
-> >
-> > >-----Original Message-----
-> > >From: Maupin, Chase
-> > >Sent: Friday, January 31, 2014 1:48 PM
-> > >To: meta-arago@arago-project.org
-> > >Cc: Maupin, Chase
-> > >Subject: [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm version
-> > >
-> > >* The GLSDK prefers to use the 2.4.41 version of libdrm from
-> > >  meta-ti so pin that version in the branding file.
-> > >
-> > >Signed-off-by: Chase Maupin <chase.maupin@ti.com>
-> > >---
-> > > .../conf/distro/include/branding-glsdk.inc         |    4 ++++
-> > > 1 file changed, 4 insertions(+)
-> > >
-> > >diff --git a/meta-arago-distro/conf/distro/include/branding-
-> > >glsdk.inc b/meta-arago-distro/conf/distro/include/branding-
-> > >glsdk.inc
-> > >index d1c30f3..b33b21d 100644
-> > >--- a/meta-arago-distro/conf/distro/include/branding-glsdk.inc
-> > >+++ b/meta-arago-distro/conf/distro/include/branding-glsdk.inc
-> > >@@ -2,3 +2,7 @@
-> > >
-> > > # Use the SDK supported kernel and kernel version
-> > > PREFERRED_PROVIDER_virtual/kernel =3D "linux-ti-glsdk"
-> > >+
-> > >+# Set the PREFERRED_VERSION of libdrm to the glsdk version for
-> > >the
-> > >+# glsdk branded builds
-> > >+PREFERRED_VERSION_libdrm =3D "2.4.41"
-> > >--
-> > >1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_228_691432811.1391509875719--
