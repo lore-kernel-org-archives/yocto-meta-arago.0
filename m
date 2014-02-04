@@ -1,24 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTP id 44B75529B5
+Return-Path: <aravindbr@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 85D38529B5
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Feb 2014 21:42:57 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173017.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0H00DL4QYCKQB0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 04 Feb 2014 15:42:22 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 1FBC820086; Tue,
-	04 Feb 2014 16:42:12 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 04 Feb 2014 16:42:11 -0500
-Message-id: <1391550131-28566-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Cc: Tom Rini <trini@ti.com>, "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCHv2 2/2] udev-extraconf: update mount.sh to use /run/media instead of /media
+	Tue,  4 Feb 2014 21:44:50 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s14LinqK028609
+	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 15:44:49 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14Ldk9g009518
+	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 15:39:46 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 4 Feb 2014 15:39:46 -0600
+Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
+	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp33.itg.ti.com
+	(8.14.3/8.13.8) with ESMTP id s14LdkxC029766;
+	Tue, 4 Feb 2014 15:39:46 -0600
+From: Aravind Batni <aravindbr@ti.com>
+To: <meta-arago@arago-project.org>, <sam.nelson@ti.com>
+Date: Tue, 4 Feb 2014 16:39:31 -0500
+Message-ID: <1391549971-21990-1-git-send-email-aravindbr@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Cc: Aravind Batni <aravindbr@ti.com>
+Subject: [PATCH] ti-csl: new recipe providing CSL for TI-KeyStone2 devices -This package provides chip support library interface files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -31,82 +36,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Feb 2014 21:42:57 -0000
+X-List-Received-Date: Tue, 04 Feb 2014 21:44:50 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-This is done to work around the issue of auto-mounting block devices
-(i.e. SD cards) when root filesystem is still in read-only mode and
-creating /media/<device> is not possible. That is due to udev getting
-started earlier (/etc/rcS.d/S03udev) than checkroot gets a chance to
-re-mount the rootfs as read-write (/etc/rcS.d/S10checkroot.sh).
-
-Although, canonical FHS specifies /media/<device> as a mount point
-for removable media devices, the latest 2.3 version was released in
-2004 and since then FreeDesktop/udisks and other tools adopted the
-new /run/media/<user>/<device> location. That was done to overcome
-read-only rootfs limitation and avoid name-clash between users.
-
-For our embedded systems environment we assume single-user operation
-and hence simplify mount point to just /run/media/<device>.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Tom Rini <trini@ti.com>
-Cc: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Aravind Batni <aravindbr@ti.com>
 ---
-v2 - fix typo in FreeDesktop and Cc Tom and Franklin
+ meta-arago-extras/recipes-bsp/ti-csl/ti-csl_git.bb |   27 ++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-csl/ti-csl_git.bb
 
- meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh  | 12 ++++++------
- .../recipes-core/udev/udev-extraconf_1.0.bbappend            |  2 +-
- 2 files changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh b/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
-index d1419ed..0f436ca 100644
---- a/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
-+++ b/meta-arago-distro/recipes-core/udev/udev-extraconf/mount.sh
-@@ -20,19 +20,19 @@ done
- automount() {	
- 	name="`basename "$DEVNAME"`"
- 
--	! test -d "/media/$name" && mkdir -p "/media/$name"
-+	! test -d "/run/media/$name" && mkdir -p "/run/media/$name"
- 	# Silent util-linux's version of mounting auto
- 	if [ "x`readlink $MOUNT`" = "x/bin/mount.util-linux" ] ;
- 	then
- 		MOUNT="$MOUNT -o silent"
- 	fi
- 	
--	if ! $MOUNT -t auto $DEVNAME "/media/$name"
-+	if ! $MOUNT -t auto $DEVNAME "/run/media/$name"
- 	then
--		#logger "mount.sh/automount" "$MOUNT -t auto $DEVNAME \"/media/$name\" failed!"
--		rm_dir "/media/$name"
-+		#logger "mount.sh/automount" "$MOUNT -t auto $DEVNAME \"/run/media/$name\" failed!"
-+		rm_dir "/run/media/$name"
- 	else
--		logger "mount.sh/automount" "Auto-mount of [/media/$name] successful"
-+		logger "mount.sh/automount" "Auto-mount of [/run/media/$name] successful"
- 		touch "/tmp/.automount-$name"
- 	fi
- }
-@@ -72,5 +72,5 @@ if [ "$ACTION" = "remove" ] && [ -x "$UMOUNT" ] && [ -n "$DEVNAME" ]; then
- 	
- 	# Remove empty directories from auto-mounter
- 	name="`basename "$DEVNAME"`"
--	test -e "/tmp/.automount-$name" && rm_dir "/media/$name"
-+	test -e "/tmp/.automount-$name" && rm_dir "/run/media/$name"
- fi
-diff --git a/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bbappend b/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bbappend
-index c0ab069..997adf2 100644
---- a/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bbappend
-+++ b/meta-arago-distro/recipes-core/udev/udev-extraconf_1.0.bbappend
-@@ -1,4 +1,4 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = "-arago0"
-+PR_append = "-arago1"
+diff --git a/meta-arago-extras/recipes-bsp/ti-csl/ti-csl_git.bb b/meta-arago-extras/recipes-bsp/ti-csl/ti-csl_git.bb
+new file mode 100644
+index 0000000..2896506
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-csl/ti-csl_git.bb
+@@ -0,0 +1,27 @@
++DESCRIPTION = "TI CSL"
++LICENSE = "TI BSD"
++LIC_FILES_CHKSUM = "file://COPYING.txt;md5=5857833e20836213677fac33f9aded21"
++
++COMPATIBLE_MACHINE = "keystone-evm"
++ALLOW_EMPTY_${PN} = "1"
++
++PR = "r1"
++BRANCH="master"
++LLD-NAME="csl"
++SRC_URI = "git://git.ti.com/keystone-rtos/common-csl-ip.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
++# commit ID corresponds to DEV.CSL_KEYSTONE2.02.00.00.17
++SRCREV = "f6f90144c14e1ee783c4b893b52e54830be8166e" 
++
++do_install () {
++    install -d ${D}/${includedir}/ti/csl
++    cp -r ${S}/* ${D}/${includedir}/ti/csl
++#   Retain only header files
++    cd ${D}/${includedir}/ti/csl
++    find . \( -name "*.xdt" -o -name "*.bld" -o -name "*.bat" -o -name "*.c" -o -name "*.xdc" -o -name "*.asm" -o -name "*.xs" \) | xargs rm -rf
++    rm -rf build docs
++    mkdir -p src/ip/serdes_sb
++    cp -r ${S}/src/ip/serdes_sb/V0 src/ip/serdes_sb
++}
++
 -- 
-1.8.3.2
+1.7.9.5
 
 
