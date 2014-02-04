@@ -1,39 +1,37 @@
-Return-Path: <detheridge@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 22954529B5
+Return-Path: <trini@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6248A529B5
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Feb 2014 15:48:26 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s14FmP7P020225
-	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 09:48:25 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14FhMAq028368
-	for <meta-arago@arago-project.org>; Tue, 4 Feb 2014 09:43:22 -0600
-Received: from DLEE10.ent.ti.com ([fe80::25c2:476d:5bee:70aa]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Tue, 4 Feb 2014 09:43:21 -0600
-From: "Etheridge, Darren" <detheridge@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, "Hingolikar, Mrinmayee"
-	<mrinmayee@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm
-	version
-Thread-Index: AQHPHr1pNZDqcRZHD0KjvZI5nuKsW5qjwuKAgAEe7jCAADcq8IAAJWUg
-Date: Tue, 4 Feb 2014 15:43:21 +0000
-Message-ID: <1A80A2FD7F34484786E5DF71F3968B6941E8B45D@DLEE10.ent.ti.com>
-References: <1391197703-29424-1-git-send-email-chase.maupin@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015993D972@DLEE11.ent.ti.com>
-	<20140204005129.GE18784@edge>
-	<CF956B779D819D41BBC043B7082161D547CE0C@DBDE04.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015994658F@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015994658F@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	Tue,  4 Feb 2014 20:39:28 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s14KdRJD005241;
+	Tue, 4 Feb 2014 14:39:27 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14KdRRo029839;
+	Tue, 4 Feb 2014 14:39:27 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 4 Feb 2014 14:39:27 -0600
+Received: from [172.22.136.209] (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s14KdLtH019330;
+	Tue, 4 Feb 2014 14:39:22 -0600
+Message-ID: <52F14FF7.5090103@ti.com>
+Date: Tue, 4 Feb 2014 15:39:19 -0500
+From: Tom Rini <trini@ti.com>
+Organization: Texas Instruments
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 04 Feb 2014 20:42:02 +0000
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm version
+To: matti kaasinen <matti.kaasinen@gmail.com>
+References: <CADnUhn0GG7AByt0bWeqkCtVWxNxr66-8m16-YaxnM-S4aw5B4w@mail.gmail.com>
+	<20140129025313.GM6814@edge>
+	<CADnUhn3EbUhYYo4TjxVi+dDM9n-62SOk65kCH-ehe_-Ax4DGZg@mail.gmail.com>
+	<20140129162314.GP6814@edge>
+In-Reply-To: <20140129162314.GP6814@edge>
+X-Enigmail-Version: 1.6
+X-Mailman-Approved-At: Tue, 04 Feb 2014 20:42:03 +0000
+Cc: meta-arago@arago-project.org, Pekon Gupta <pekon@ti.com>
+Subject: Re: ubifs crossupport between Linux and U-Boot
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,112 +44,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Feb 2014 15:48:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 04 Feb 2014 20:39:28 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Actually devices like AM335x (DRA7x works with existing libdrm version, alt=
-hough 2.4.41 is a year old now):
+On 01/29/2014 11:23 AM, Denys Dmytriyenko wrote:
+> +Tom Rini
+> 
+> Tom, can you please comment? Thanks.
+> 
+> 
+> On Wed, Jan 29, 2014 at 05:20:26PM +0200, matti kaasinen wrote:
+>> In short:
+>> If I create UBIFS partition on Linux side, it works quite fine. I can
+>> create directories, files update them without  problems. But if I open this
+>> volume on U-Boot side, I'll get thousands of ecc error messages. Now, if I
+>> try to access this same volume from Linux side after this episode, it also
+>> provides these ecc errors. Therefore, Linux created UBIFS partition gets
+>> corrupted by accessing it from U-Boot side. Volume opening is enough for
+>> this. This I have experienced by Angstrom distribution with Linux 3.8.13
+>> and it possibly was U-Boot 10.04. Anyhow, as it seems that you are now
+>> working with Linux 3.12 - U-Boot 2013-10 combination, you'll need patching
+>> to cope with this issue. By my understanding required patching is not made
+>> before U-Boot 2014-01 and Linux 3.14.
 
-Two reasons for needing the version bump:
-1)  tilcdc DRM device is supported (this commit - http://cgit.freedesktop.o=
-rg/mesa/drm/commit/?id=3D6e8f868e034531b66a215e4e6d978b43b58b92d0)
-2) Pixel type of XB24 is supported in modetest (this is the correct pixel o=
-rdering for AM335x hardware added here: http://cgit.freedesktop.org/mesa/dr=
-m/commit/?id=3Dfa2925aa342158037ef972f3ef095442fb1fe430)
+If you do not have sufficient malloc space in U-Boot (and by default, we
+do not right now on TI armv7 platforms, in some cases, I will be fixing
+this shortly), UBI/UBIFS support can go whacky.  I've not seen ECC
+errors, but I've seen other things.
 
+Also you made sure that step one was a 'nand erase' on the whole of the
+area you're going to be using, right?
 
-Darren
-
-> -----Original Message-----
-> From: Maupin, Chase
-> Sent: Tuesday, February 04, 2014 7:17 AM
-> To: Hingolikar, Mrinmayee; Dmytriyenko, Denys; Etheridge, Darren
-> Cc: meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm
-> version
->=20
-> Mrinmayee,
->=20
-> What is in your 2.4.41 version that makes you need to pin there.  I ask
-> because Darren has reported needing a newer version to work properly with
-> devices like DRA7xx.
->=20
-> >-----Original Message-----
-> >From: Hingolikar, Mrinmayee
-> >Sent: Tuesday, February 04, 2014 5:05 AM
-> >To: Dmytriyenko, Denys; Maupin, Chase
-> >Cc: meta-arago@arago-project.org
-> >Subject: RE: [meta-arago] [PATCH 1/2] branding-glsdk: pin to GLSDK
-> >libdrm version
-> >
-> >Hi all,
-> >
-> >The libdrm in GLSDK is based on the 2.4.41 version from upstream.
-> >A preferred version is required since a 2.4.42 version is present
-> >in oe-core.
-> >
-> >
-> >Regards,
-> >Mrinmayee
-> >
-> >> -----Original Message-----
-> >> From: Dmytriyenko, Denys
-> >> Sent: Tuesday, February 04, 2014 6:21 AM
-> >> To: Maupin, Chase
-> >> Cc: meta-arago@arago-project.org; Hingolikar, Mrinmayee
-> >> Subject: Re: [meta-arago] [PATCH 1/2] branding-glsdk: pin to
-> >GLSDK
-> >> libdrm version
-> >>
-> >> Ping
-> >>
-> >> On Fri, Jan 31, 2014 at 07:50:39PM +0000, Maupin, Chase wrote:
-> >> > Mrinmayee,
-> >> >
-> >> > Can you comment on the below need for 2.4.41?
-> >> >
-> >> > >-----Original Message-----
-> >> > >From: Maupin, Chase
-> >> > >Sent: Friday, January 31, 2014 1:48 PM
-> >> > >To: meta-arago@arago-project.org
-> >> > >Cc: Maupin, Chase
-> >> > >Subject: [PATCH 1/2] branding-glsdk: pin to GLSDK libdrm
-> >version
-> >> > >
-> >> > >* The GLSDK prefers to use the 2.4.41 version of libdrm from
-> >> > >  meta-ti so pin that version in the branding file.
-> >> > >
-> >> > >Signed-off-by: Chase Maupin <chase.maupin@ti.com>
-> >> > >---
-> >> > > .../conf/distro/include/branding-glsdk.inc         |    4
-> >++++
-> >> > > 1 file changed, 4 insertions(+)
-> >> > >
-> >> > >diff --git a/meta-arago-distro/conf/distro/include/branding-
-> >> > >glsdk.inc b/meta-arago-distro/conf/distro/include/branding-
-> >> > >glsdk.inc
-> >> > >index d1c30f3..b33b21d 100644
-> >> > >--- a/meta-arago-distro/conf/distro/include/branding-
-> >glsdk.inc
-> >> > >+++ b/meta-arago-distro/conf/distro/include/branding-
-> >glsdk.inc
-> >> > >@@ -2,3 +2,7 @@
-> >> > >
-> >> > > # Use the SDK supported kernel and kernel version
-> >> > > PREFERRED_PROVIDER_virtual/kernel =3D "linux-ti-glsdk"
-> >> > >+
-> >> > >+# Set the PREFERRED_VERSION of libdrm to the glsdk version
-> >for
-> >> > >the
-> >> > >+# glsdk branded builds
-> >> > >+PREFERRED_VERSION_libdrm =3D "2.4.41"
-> >> > >--
-> >> > >1.7.9.5
-> >> >
-> >> > _______________________________________________
-> >> > meta-arago mailing list
-> >> > meta-arago@arago-project.org
-> >> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+-- 
+Tom
 
