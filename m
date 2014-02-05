@@ -1,31 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id A8881529AA
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 221C5529AA
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Feb 2014 18:47:58 +0000 (UTC)
+	Wed,  5 Feb 2014 18:53:11 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s15IlvEi011923
-	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 12:47:57 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s15IlvY7025343
-	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 12:47:57 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 5 Feb 2014 12:47:57 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s15IrAtX010779
+	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 12:53:10 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s15IrAow028943
+	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 12:53:10 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 5 Feb 2014 12:53:10 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s15IlvmN008262;
-	Wed, 5 Feb 2014 12:47:57 -0600
-Date: Wed, 5 Feb 2014 13:47:57 -0500
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s15Ir96q021694;
+	Wed, 5 Feb 2014 12:53:10 -0600
+Date: Wed, 5 Feb 2014 13:53:09 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: Chase Maupin <Chase.Maupin@ti.com>
-Message-ID: <20140205184757.GQ18784@edge>
-References: <1391630646-9727-1-git-send-email-Chase.Maupin@ti.com>
-	<1391630646-9727-5-git-send-email-Chase.Maupin@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20140205185309.GR18784@edge>
+References: <1391625096-21593-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1391630646-9727-5-git-send-email-Chase.Maupin@ti.com>
+In-Reply-To: <1391625096-21593-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 5/6] arago-core-tisdk-image: add support for keystone devices
+Subject: Re: [PATCH] dual-camera-demo: Pull in latest commits of camera demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,55 +36,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2014 18:47:58 -0000
+X-List-Received-Date: Wed, 05 Feb 2014 18:53:11 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Feb 05, 2014 at 02:04:05PM -0600, Chase Maupin wrote:
-> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+On Wed, Feb 05, 2014 at 12:31:36PM -0600, Franklin S. Cooper Jr wrote:
+> * This demo is going to be frequently updated for a couple of weeks.
+> * Set to AUTOREV until this demo stops updating so often.
+
+We are in code freeze for the next release in about 2 weeks, so cannot do 
+AUTOREV there...
+
+
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  .../recipes-core/images/arago-core-tisdk-image.bb  |    1 +
->  .../recipes-core/images/arago-core-tisdk-image.inc |    3 ++-
->  2 files changed, 3 insertions(+), 1 deletions(-)
+>  .../dual-camera-demo/dual-camera-demo_1.0.bb       |    4 ++--
+>  1 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-> index 33bfc11..ccddbc1 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-> @@ -1,5 +1,6 @@
->  require arago-core-tisdk-image.inc
+> diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+> index 12f42e5..ba891d5 100644
+> --- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+> +++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+> @@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=18;md5=1e0116b09fc3d8f88
 >  
->  DEPLOY_SPL_NAME_omapl138 = ""
-> +DEPLOY_SPL_NAME_keystone = ""
+>  require recipes-core/matrix/matrix-gui-paths.inc
 >  
->  export IMAGE_BASENAME = "arago-core-tisdk-image"
-> diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> index 74c2b87..e3de734 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> @@ -7,7 +7,7 @@ IMAGE_FSTYPES = "tar.gz"
+> -PR = "r0"
+> +PR = "r1"
 >  
->  inherit tisdk-image
+>  BRANCH = "master"
+> -SRCREV = "af299a206482562ceae8aa690a8b6644a3e0a66e"
+> +SRCREV = "${AUTOREV}"
 >  
-> -COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap-a15"
-> +COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap-a15|keystone"
+>  SRC_URI = "git://gitorious.org/dual-camera-demo/dual-camera-demo.git;protocol=git;branch=${BRANCH}"
 >  
->  # List of packages to remove from the host package.  This is usually due to
->  # licensing issues and unneeded dependencies.
-> @@ -21,6 +21,7 @@ DTB_FILTER_ti33x = "am335x"
->  DTB_FILTER_omap5-evm = "omap5"
->  DTB_FILTER_dra7xx-evm = "dra7"
->  DTB_FILTER_ti43x = "am43"
-> +DTB_FILTER_keystone = "k2hk"
->  
->  # List of target side images to build for the SDK
->  TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
-
-Missing here:
-
-TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image"
-
-
 > -- 
 > 1.7.0.4
 > 
