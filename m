@@ -1,28 +1,27 @@
 Return-Path: <denis@denix.org>
 Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
 	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 1CA02529D2
+	by arago-project.org (Postfix) with ESMTP id 766FA529D2
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Feb 2014 17:17:10 +0000 (UTC)
+	Wed,  5 Feb 2014 17:18:00 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173025.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0J0080Q9CD1SO0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 05 Feb 2014 11:17:01 -0600 (CST)
+	2009)) with ESMTPA id <0N0J00AUH9DZPFM0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 05 Feb 2014 11:18:00 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 40F81201BF; Wed,
-	05 Feb 2014 12:17:01 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id 93A3A201BF; Wed,
+	05 Feb 2014 12:17:59 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 05 Feb 2014 12:17:00 -0500
-Message-id: <1391620620-4241-1-git-send-email-denis@denix.org>
+Date: Wed, 05 Feb 2014 12:17:59 -0500
+Message-id: <1391620679-4518-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 Subject: [PATCH] base-files: pre-create /run symlink to point to /var/run
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
-List-Id: Arago metadata layer for TI SDKs - OE-Core/Yocto compatible
-	<meta-arago.arago-project.org>
+List-Id: <meta-arago.arago-project.org>
 List-Unsubscribe: <http://arago-project.org/cgi-bin/mailman/options/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=unsubscribe>
 List-Archive: <http://arago-project.org/pipermail/meta-arago>
@@ -30,7 +29,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2014 17:17:10 -0000
+X-List-Received-Date: Wed, 05 Feb 2014 17:18:00 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
