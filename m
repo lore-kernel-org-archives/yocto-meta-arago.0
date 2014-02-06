@@ -1,34 +1,35 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A88A352A38
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 253FB52A38
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 15:25:49 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16FPmdq000376
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:25:48 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FPm2b015810
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:25:48 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 6 Feb 2014 09:25:48 -0600
+	Thu,  6 Feb 2014 15:28:02 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16FS1qG007079
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:28:01 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FS10s017189
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:28:01 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 6 Feb 2014 09:28:00 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FPmG3000906;
-	Thu, 6 Feb 2014 09:25:48 -0600
-Date: Thu, 6 Feb 2014 10:25:47 -0500
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FS0ga012652;
+	Thu, 6 Feb 2014 09:28:01 -0600
+Date: Thu, 6 Feb 2014 10:28:00 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140206152547.GH18784@edge>
-References: <1391700887-26166-1-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159950281@DLEE11.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C61D94B@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015995037E@DLEE11.ent.ti.com>
+Message-ID: <20140206152800.GI18784@edge>
+References: <1391630646-9727-1-git-send-email-Chase.Maupin@ti.com>
+	<1391630646-9727-4-git-send-email-Chase.Maupin@ti.com>
+	<20140206000015.GC22890@denix.org>
+	<7D46E86EC0A8354091174257B2FED1015994FE9D@DLEE11.ent.ti.com>
+	<20140206151854.GE18784@edge>
+	<7D46E86EC0A8354091174257B2FED1015995045B@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015995037E@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015995045B@DLEE11.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
-	Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 1/5] ti-tisdk-makefile: Update U-boot makefile
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 4/6] arago-base-tisdk-image: add keystone support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,143 +41,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 15:25:49 -0000
+X-List-Received-Date: Thu, 06 Feb 2014 15:28:02 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Thu, Feb 06, 2014 at 02:59:09PM +0000, Maupin, Chase wrote:
+On Thu, Feb 06, 2014 at 10:24:41AM -0500, Maupin, Chase wrote:
+> It has both listed for TARGET_IMAGES
+
+Indeed... Can you remind me what is the purpose?
+
+
 > >-----Original Message-----
-> >From: Cooper Jr., Franklin
-> >Sent: Thursday, February 06, 2014 9:53 AM
-> >To: Maupin, Chase; meta-arago@arago-project.org
-> >Subject: RE: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-
-> >boot makefile
+> >From: Dmytriyenko, Denys
+> >Sent: Thursday, February 06, 2014 10:19 AM
+> >To: Maupin, Chase
+> >Cc: meta-arago@arago-project.org
+> >Subject: Re: [meta-arago] [PATCH 4/6] arago-base-tisdk-image: add
+> >keystone support
 > >
-> >
-> >
-> >> -----Original Message-----
-> >> From: Maupin, Chase
-> >> Sent: Thursday, February 06, 2014 8:28 AM
-> >> To: Cooper Jr., Franklin; meta-arago@arago-project.org
-> >> Subject: RE: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update
-> >U-boot
-> >> makefile
-> >>
+> >On Thu, Feb 06, 2014 at 07:45:59AM -0500, Maupin, Chase wrote:
 > >> >-----Original Message-----
-> >> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> >> >Sent: Thursday, February 06, 2014 10:35 AM
-> >> >To: meta-arago@arago-project.org
-> >> >Cc: Cooper Jr., Franklin
-> >> >Subject: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-
-> >boot
-> >> >makefile
+> >> >From: Dmytriyenko, Denys
+> >> >Sent: Wednesday, February 05, 2014 7:00 PM
+> >> >To: Maupin, Chase
+> >> >Cc: meta-arago@arago-project.org
+> >> >Subject: Re: [meta-arago] [PATCH 4/6] arago-base-tisdk-image:
+> >add
+> >> >keystone support
 > >> >
-> >> >* Add echo statements to make U-boot make,clean,install steps
-> >stand
-> >> >out.
-> >> >* Remove installing of U-boot files since installing them into
-> >the file
-> >> >system
-> >> >  servers no purpose.
+> >> >On Wed, Feb 05, 2014 at 02:04:04PM -0600, Chase Maupin wrote:
+> >> >> * Add support to this image for keystone devices
+> >> >
+> >> >And the server image doesn't use arago-base-tisdk-image
+> >directly.
 > >>
-> >> I would argue that this doesn't hurt anything and having them on
-> >the file system
-> >> allows for people to update the bootloader from Linux itself.
-> >[Franklin] I can see your point but I was worried about the
-> >confusion it would cause especially since the all the kernel files
-> >are now in the /boot directory. Is there a point in copying u-
-> >boot.map also?
-> 
-> Not sure about that one.
-
-I would agree with removing u-boot from rootfs - it's not needed, but rather 
-nice to have, plus it takes up space. I know flash storage is getting cheaper 
-and we are getting larger partitions, but there were/are/will-be platforms 
-with limited storage. And it's not that hard to transfer u-boot to Linux for 
-flashing purposes, instead of having it there all the time. Plus, it will 
-quickly get stale, as it's safe to assume users would want to flash a more 
-recent u-boot image later on, not the one we ship...
-
-
-> >> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> >> >---
-> >> > .../ti-tisdk-makefile/Makefile_u-boot-spl          |   14
-> >> >++++++++++----
-> >> > .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
-> >> > 2 files changed, 11 insertions(+), 5 deletions(-)
+> >> But the arago-core-tisdk-image does right?  So I still need this
+> >support added.
+> >
+> >But, arago-core-tisdk-image uses server-rootfs image for keystone,
+> >so it still
+> >skips this...
+> >
+> >
+> >> >So, I'll push the first 3 patches from the series.
 > >> >
-> >> >diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-
-> >makefile/ti-
-> >> >tisdk-makefile/Makefile_u-boot-spl b/meta-arago-distro/recipes-
-> >> >tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl
-> >> >index 9ce6429..d2de7a9 100644
-> >> >--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> >tisdk-
-> >> >makefile/Makefile_u-boot-spl
-> >> >+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> >tisdk-
-> >> >makefile/Makefile_u-boot-spl
-> >> >@@ -4,14 +4,20 @@ u-boot-spl_clean: u-boot_clean
-> >> > u-boot-spl_install: u-boot_install
 > >> >
-> >> > u-boot:
-> >> >+	@echo ===================================
-> >> >+	@echo    Building U-boot
-> >> >+	@echo ===================================
-> >> > 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-
-> >> >boot-* CROSS_COMPILE=$(CROSS_COMPILE) $(UBOOT_MACHINE)
-> >> > 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-
-> >> >boot-* CROSS_COMPILE=$(CROSS_COMPILE)
-> >> >
-> >> > u-boot_clean:
-> >> >+	@echo ===================================
-> >> >+	@echo    Cleaining U-boot
-> >> >+	@echo ===================================
-> >> > 	$(MAKE) -C $(TI_SDK_PATH)/board-support/u-boot-*
-> >> >CROSS_COMPILE=$(CROSS_COMPILE) clean
-> >> >
-> >> > u-boot_install:
-> >> >-	install -d $(DESTDIR)/boot
-> >> >-	install $(TI_SDK_PATH)/board-support/u-boot-*/u-boot.img
-> >> >$(DESTDIR)/boot
-> >> >-	install $(TI_SDK_PATH)/board-support/u-boot-*/MLO
-> >> >$(DESTDIR)/boot
-> >> >-	install $(TI_SDK_PATH)/board-support/u-boot-*/u-boot.map
-> >> >$(DESTDIR)/boot
-> >> >+	@echo ===================================
-> >> >+	@echo    Installing U-boot
-> >> >+	@echo ===================================
-> >> >+	@echo "Nothing to do"
-> >> >diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-
-> >makefile/ti-
-> >> >tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-
-> >tisdk-
-> >> >makefile/ti-tisdk-makefile_1.0.bb
-> >> >index 30c2901..374fa81 100644
-> >> >--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> >tisdk-
-> >> >makefile_1.0.bb
-> >> >+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> >tisdk-
-> >> >makefile_1.0.bb
-> >> >@@ -34,7 +34,7 @@ SRC_URI = "\
-> >> >     file://Makefile_dual-camera-demo \  "
-> >> >
-> >> >-PR = "r25"
-> >> >+PR = "r26"
-> >> >
-> >> > MAKEFILES_COMMON = "linux \
-> >> >                     matrix-gui \
-> >> >--
-> >> >1.7.0.4
-> >> >
-> >> >_______________________________________________
-> >> >meta-arago mailing list
-> >> >meta-arago@arago-project.org
-> >> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> >> >> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> >> >> ---
+> >> >>  .../recipes-core/images/arago-base-tisdk-image.bb  |    2 +-
+> >> >>  1 files changed, 1 insertions(+), 1 deletions(-)
+> >> >>
+> >> >> diff --git a/meta-arago-distro/recipes-core/images/arago-
+> >base-
+> >> >tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-
+> >base-
+> >> >tisdk-image.bb
+> >> >> index 2c0e217..ef47dc0 100644
+> >> >> --- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-
+> >> >image.bb
+> >> >> +++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-
+> >> >image.bb
+> >> >> @@ -4,7 +4,7 @@
+> >> >>  require arago-image.inc
+> >> >>  inherit remove-net-rules
+> >> >>
+> >> >> -COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-
+> >> >a15"
+> >> >> +COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-
+> >> >a15|keystone"
+> >> >>
+> >> >>  IMAGE_INSTALL += "\
+> >> >>      packagegroup-arago-base \
+> >> >> --
+> >> >> 1.7.0.4
+> >> >>
+> >> >> _______________________________________________
+> >> >> meta-arago mailing list
+> >> >> meta-arago@arago-project.org
+> >> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> >> >>
 
