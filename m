@@ -1,33 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 32C6B52A38
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 4B42F52A38
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 15:18:57 +0000 (UTC)
+	Thu,  6 Feb 2014 15:19:30 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16FIukc001462
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:18:56 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FIuKk009544
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:18:56 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 6 Feb 2014 09:18:55 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16FJTG5029112
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:19:29 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FJTsP010059
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:19:29 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 6 Feb 2014 09:19:29 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FItnF006520;
-	Thu, 6 Feb 2014 09:18:55 -0600
-Date: Thu, 6 Feb 2014 10:18:54 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FJSZJ027961;
+	Thu, 6 Feb 2014 09:19:29 -0600
+Date: Thu, 6 Feb 2014 10:19:28 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140206151854.GE18784@edge>
-References: <1391630646-9727-1-git-send-email-Chase.Maupin@ti.com>
-	<1391630646-9727-4-git-send-email-Chase.Maupin@ti.com>
-	<20140206000015.GC22890@denix.org>
-	<7D46E86EC0A8354091174257B2FED1015994FE9D@DLEE11.ent.ti.com>
+To: Chase Maupin <Chase.Maupin@ti.com>
+Message-ID: <20140206151928.GF18784@edge>
+References: <1391697602-1599-1-git-send-email-Chase.Maupin@ti.com>
+	<1391697602-1599-3-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015994FE9D@DLEE11.ent.ti.com>
+In-Reply-To: <1391697602-1599-3-git-send-email-Chase.Maupin@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 4/6] arago-base-tisdk-image: add keystone support
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 3/4] mmc-utils: add mmc-utils for working with eMMC devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,63 +37,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 15:18:57 -0000
+X-List-Received-Date: Thu, 06 Feb 2014 15:19:30 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Thu, Feb 06, 2014 at 07:45:59AM -0500, Maupin, Chase wrote:
-> >-----Original Message-----
-> >From: Dmytriyenko, Denys
-> >Sent: Wednesday, February 05, 2014 7:00 PM
-> >To: Maupin, Chase
-> >Cc: meta-arago@arago-project.org
-> >Subject: Re: [meta-arago] [PATCH 4/6] arago-base-tisdk-image: add
-> >keystone support
-> >
-> >On Wed, Feb 05, 2014 at 02:04:04PM -0600, Chase Maupin wrote:
-> >> * Add support to this image for keystone devices
-> >
-> >And the server image doesn't use arago-base-tisdk-image directly.
+On Thu, Feb 06, 2014 at 08:40:01AM -0600, Chase Maupin wrote:
+> * These utils make working with eMMC devices as raw devices easier
+>   for setting up the boot locations, etc
+> * This is overlayed into meta-arago until picked up in oe-core
+
+Still no PV? It will default to 0.0, but maybe we want to set it explicitly?
+
+
+> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> ---
+>  .../recipes-devtools/mmc/mmc-utils_git.bb          |   17 +++++++++++++++++
+>  1 files changed, 17 insertions(+), 0 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb
 > 
-> But the arago-core-tisdk-image does right?  So I still need this support added.
-
-But, arago-core-tisdk-image uses server-rootfs image for keystone, so it still 
-skips this...
-
-
-> >So, I'll push the first 3 patches from the series.
-> >
-> >
-> >> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
-> >> ---
-> >>  .../recipes-core/images/arago-base-tisdk-image.bb  |    2 +-
-> >>  1 files changed, 1 insertions(+), 1 deletions(-)
-> >>
-> >> diff --git a/meta-arago-distro/recipes-core/images/arago-base-
-> >tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-
-> >tisdk-image.bb
-> >> index 2c0e217..ef47dc0 100644
-> >> --- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-
-> >image.bb
-> >> +++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-
-> >image.bb
-> >> @@ -4,7 +4,7 @@
-> >>  require arago-image.inc
-> >>  inherit remove-net-rules
-> >>
-> >> -COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-
-> >a15"
-> >> +COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-
-> >a15|keystone"
-> >>
-> >>  IMAGE_INSTALL += "\
-> >>      packagegroup-arago-base \
-> >> --
-> >> 1.7.0.4
-> >>
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >>
+> diff --git a/meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb b/meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb
+> new file mode 100644
+> index 0000000..fe9a3fa
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb
+> @@ -0,0 +1,17 @@
+> +DESCRIPTION = "Userspace tools for MMC/SD devices"
+> +HOMEPAGE = "http://git.kernel.org/cgit/linux/kernel/git/cjb/mmc-utils.git/"
+> +LICENSE = "GPLv2"
+> +LIC_FILES_CHKSUM = "file://mmc.c;beginline=1;endline=17;md5=d7747fc87f1eb22b946ef819969503f0"
+> +
+> +BRANCH ?= "master"
+> +SRCREV = "11f2ceabc4ad3f0dd568e0ce68166e4803e0615b"
+> +
+> +SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/cjb/mmc-utils.git;protocol=git;branch=${BRANCH}"
+> +
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_install() {
+> +    install -d ${D}${bindir}
+> +    install -m 0755 mmc ${D}${bindir}
+> +}
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
