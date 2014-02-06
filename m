@@ -1,25 +1,28 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id EAFED529AA
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 42836529AA
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 00:25:26 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0J00MIUT6DBT30@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 05 Feb 2014 18:25:26 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id D6BB320086; Wed,
-	05 Feb 2014 19:25:25 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 05 Feb 2014 19:25:24 -0500
-Message-id: <1391646324-7773-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-In-reply-to: <1391646093-6544-3-git-send-email-denis@denix.org>
-References: <1391646093-6544-3-git-send-email-denis@denix.org>
-Subject: [PATCHv2 3/3] ltp-ddt: disable AUTOREV and lock SRCREV for release
+	Thu,  6 Feb 2014 04:50:00 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s164nxth030230
+	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 22:49:59 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s164nx9r007201
+	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 22:49:59 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 5 Feb 2014 22:49:59 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s164nuYe020376;
+	Wed, 5 Feb 2014 22:49:57 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 6 Feb 2014 00:18:43 -0600
+Message-ID: <1391667523-6450-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+MIME-Version: 1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCHv2] dual-camera-demo: Pull in latest commits of camera demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -31,49 +34,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 00:25:27 -0000
+X-List-Received-Date: Thu, 06 Feb 2014 04:50:00 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-v2 - don't change SRCREV incorrectly for ltp-ddt-legacy, and it's already latest
+Version 2 changes:
+Switched from AUTOREV to the latest commit
+Update do_install to reflect makefile changes.
 
- .../recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend            | 5 +----
- meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend   | 6 +++---
- 2 files changed, 4 insertions(+), 7 deletions(-)
+ .../dual-camera-demo/dual-camera-demo_1.0.bb       |   10 +++++++---
+ 1 files changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
-index 65a16f9..00ba0d9 100644
---- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
-+++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bbappend
-@@ -1,7 +1,4 @@
--PR_append = "-arago0+gitr${SRCPV}"
--
--# Auto rev so we pick up the latest changes
--SRCREV = "${AUTOREV}"
-+PR_append = "-arago1+gitr${SRCPV}"
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+index 12f42e5..4e33d9d 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+@@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=18;md5=1e0116b09fc3d8f88
  
- do_compile_kmodules() {
-         unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
-diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-index 7d6871a..1be8bea 100644
---- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-+++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-@@ -1,9 +1,9 @@
--PR_append = "-arago6+gitr${SRCPV}"
-+PR_append = "-arago7+gitr${SRCPV}"
+ require recipes-core/matrix/matrix-gui-paths.inc
  
- RDEPENDS_${PN} += "linaro-pm-qa-utils"
+-PR = "r0"
++PR = "r1"
  
--# Auto rev so we pick up the latest changes
--SRCREV = "${AUTOREV}"
-+# Commit corresponds to ti2013.12.01 release
-+SRCREV = "3f1faf23ffce1a150e928775258877680e6176d9"
+ BRANCH = "master"
+-SRCREV = "af299a206482562ceae8aa690a8b6644a3e0a66e"
++SRCREV = "ee954e04b3efe160b3fabf5a8d640740ce1a7e85"
  
- FILES_${PN}-dbg += " \
- 	${LTPROOT}/testcases/realtime/*/*/.debug \
+ SRC_URI = "git://gitorious.org/dual-camera-demo/dual-camera-demo.git;protocol=git;branch=${BRANCH}"
+ 
+@@ -19,7 +19,11 @@ inherit qt-provider
+ 
+ # use the make targets already created in the Makefile.build files
+ do_install() {
+-    cd ${S} && make -f Makefile.build DESTDIR=${D} install_common
++    install -d ${D}/usr/bin
++    install -d ${D}${MATRIX_APP_DIR}/arm_multimedia_dual-camera
++    install dual_camera ${D}/usr/bin/dual_camera
++    install dual_camera.sh ${D}/usr/bin/dual_camera.sh
++    install matrix/* ${D}/${MATRIX_APP_DIR}/arm_multimedia_dual-camera
+ }
+ 
+ PACKAGES += "matrix-gui-apps-dual-camera"
 -- 
-1.8.3.2
+1.7.0.4
 
 
