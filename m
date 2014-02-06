@@ -1,37 +1,23 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C5085529BD
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTP id 5D3E3529BD
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 15:52:21 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16FqKf7030719
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:52:20 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16FqK1N004049
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 09:52:20 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.02.0342.003; Thu, 6 Feb 2014 09:52:20 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Maupin, Chase" <chase.maupin@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-boot
-	makefile
-Thread-Index: AQHPI0SMSkKduA8N8EuygwR+Oglp25qorWAA//+gqECAAGf9gIAAB3GA//+ik4A=
-Date: Thu, 6 Feb 2014 15:52:19 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C61DCAC@DFLE08.ent.ti.com>
-References: <1391700887-26166-1-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED10159950281@DLEE11.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C61D94B@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015995037E@DLEE11.ent.ti.com>
-	<20140206152547.GH18784@edge>
-In-Reply-To: <20140206152547.GH18784@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/5] ti-tisdk-makefile: Update U-boot makefile
+	Thu,  6 Feb 2014 16:06:52 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N0L000170RFEXE0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 06 Feb 2014 10:06:52 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 2DCD420085; Thu,
+	06 Feb 2014 11:06:51 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 06 Feb 2014 11:06:50 -0500
+Message-id: <1391702810-23105-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] base-files: pre-create /run symlink to point to /var/run
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,166 +29,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 15:52:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 06 Feb 2014 16:06:52 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
 
+Make it available on the first boot too, otherwise the first boot may fail
+to automount SD card partitions. Normally, it gets created on the first
+boot by volatiles init script and stays there on consecutive boots.
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Thursday, February 06, 2014 9:26 AM
-> To: Maupin, Chase
-> Cc: Cooper Jr., Franklin; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-boot
-> makefile
->=20
-> On Thu, Feb 06, 2014 at 02:59:09PM +0000, Maupin, Chase wrote:
-> > >-----Original Message-----
-> > >From: Cooper Jr., Franklin
-> > >Sent: Thursday, February 06, 2014 9:53 AM
-> > >To: Maupin, Chase; meta-arago@arago-project.org
-> > >Subject: RE: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-
-> > >boot makefile
-> > >
-> > >
-> > >
-> > >> -----Original Message-----
-> > >> From: Maupin, Chase
-> > >> Sent: Thursday, February 06, 2014 8:28 AM
-> > >> To: Cooper Jr., Franklin; meta-arago@arago-project.org
-> > >> Subject: RE: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update
-> > >U-boot
-> > >> makefile
-> > >>
-> > >> >-----Original Message-----
-> > >> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > >> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> > >> >Sent: Thursday, February 06, 2014 10:35 AM
-> > >> >To: meta-arago@arago-project.org
-> > >> >Cc: Cooper Jr., Franklin
-> > >> >Subject: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-
-> > >boot
-> > >> >makefile
-> > >> >
-> > >> >* Add echo statements to make U-boot make,clean,install steps
-> > >stand
-> > >> >out.
-> > >> >* Remove installing of U-boot files since installing them into
-> > >the file
-> > >> >system
-> > >> >  servers no purpose.
-> > >>
-> > >> I would argue that this doesn't hurt anything and having them on
-> > >the file system
-> > >> allows for people to update the bootloader from Linux itself.
-> > >[Franklin] I can see your point but I was worried about the confusion
-> > >it would cause especially since the all the kernel files are now in
-> > >the /boot directory. Is there a point in copying u- boot.map also?
-> >
-> > Not sure about that one.
->=20
-> I would agree with removing u-boot from rootfs - it's not needed, but rat=
-her
-> nice to have, plus it takes up space. I know flash storage is getting che=
-aper and
-> we are getting larger partitions, but there were/are/will-be platforms wi=
-th
-> limited storage. And it's not that hard to transfer u-boot to Linux for f=
-lashing
-> purposes, instead of having it there all the time. Plus, it will quickly =
-get stale, as
-> it's safe to assume users would want to flash a more recent u-boot image =
-later
-> on, not the one we ship...
-[Franklin] I'll leave this patch as is unless there is further objections.
->=20
->=20
-> > >> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > >> >---
-> > >> > .../ti-tisdk-makefile/Makefile_u-boot-spl          |   14
-> > >> >++++++++++----
-> > >> > .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
-> > >> > 2 files changed, 11 insertions(+), 5 deletions(-)
-> > >> >
-> > >> >diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-
-> > >makefile/ti-
-> > >> >tisdk-makefile/Makefile_u-boot-spl b/meta-arago-distro/recipes-
-> > >> >tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl
-> > >> >index 9ce6429..d2de7a9 100644
-> > >> >--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> > >tisdk-
-> > >> >makefile/Makefile_u-boot-spl
-> > >> >+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> > >tisdk-
-> > >> >makefile/Makefile_u-boot-spl
-> > >> >@@ -4,14 +4,20 @@ u-boot-spl_clean: u-boot_clean
-> > >> > u-boot-spl_install: u-boot_install
-> > >> >
-> > >> > u-boot:
-> > >> >+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >> >+	@echo    Building U-boot
-> > >> >+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >> > 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-
-> > >> >boot-* CROSS_COMPILE=3D$(CROSS_COMPILE) $(UBOOT_MACHINE)
-> > >> > 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-
-> > >> >boot-* CROSS_COMPILE=3D$(CROSS_COMPILE)
-> > >> >
-> > >> > u-boot_clean:
-> > >> >+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >> >+	@echo    Cleaining U-boot
-> > >> >+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >> > 	$(MAKE) -C $(TI_SDK_PATH)/board-support/u-boot-*
-> > >> >CROSS_COMPILE=3D$(CROSS_COMPILE) clean
-> > >> >
-> > >> > u-boot_install:
-> > >> >-	install -d $(DESTDIR)/boot
-> > >> >-	install $(TI_SDK_PATH)/board-support/u-boot-*/u-boot.img
-> > >> >$(DESTDIR)/boot
-> > >> >-	install $(TI_SDK_PATH)/board-support/u-boot-*/MLO
-> > >> >$(DESTDIR)/boot
-> > >> >-	install $(TI_SDK_PATH)/board-support/u-boot-*/u-boot.map
-> > >> >$(DESTDIR)/boot
-> > >> >+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >> >+	@echo    Installing U-boot
-> > >> >+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >> >+	@echo "Nothing to do"
-> > >> >diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-
-> > >makefile/ti-
-> > >> >tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-
-> > >tisdk-
-> > >> >makefile/ti-tisdk-makefile_1.0.bb
-> > >> >index 30c2901..374fa81 100644
-> > >> >--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> > >tisdk-
-> > >> >makefile_1.0.bb
-> > >> >+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
-> > >tisdk-
-> > >> >makefile_1.0.bb
-> > >> >@@ -34,7 +34,7 @@ SRC_URI =3D "\
-> > >> >     file://Makefile_dual-camera-demo \  "
-> > >> >
-> > >> >-PR =3D "r25"
-> > >> >+PR =3D "r26"
-> > >> >
-> > >> > MAKEFILES_COMMON =3D "linux \
-> > >> >                     matrix-gui \
-> > >> >--
-> > >> >1.7.0.4
-> > >> >
-> > >> >_______________________________________________
-> > >> >meta-arago mailing list
-> > >> >meta-arago@arago-project.org
-> > >> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/base-files/base-files_3.0.14.bbappend        | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
+index c0ab069..4d831fd 100644
+--- a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
++++ b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
+@@ -1,4 +1,13 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
++
++# Pre-create /run symlink to point to /var/run at build time
++# This normally happens on first boot, but may be too late for automount,
++# which tries to create mount-points in /run
++# NOTE: This step is not required in Dora and up, due to reverse direction
++# of symlinking between /run and /var/run
++do_install_append () {
++	ln -sf /var/run ${D}/run
++}
+-- 
+1.8.3.2
+
 
