@@ -1,30 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 00A9052AB8
+Return-Path: <chase.maupin@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 68B1052A52
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 14:06:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16E64Aa023914
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 08:06:04 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16E64o7023530
-	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 08:06:04 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 6 Feb 2014 08:06:04 -0600
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16E5p5W011240;
-	Thu, 6 Feb 2014 08:06:02 -0600
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 6 Feb 2014 09:34:47 -0600
-Message-ID: <1391700887-26166-5-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <1391700887-26166-1-git-send-email-fcooper@ti.com>
+	Thu,  6 Feb 2014 14:28:14 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16ESDuf021142
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 08:28:13 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16ESD2S001676
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 08:28:13 -0600
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Thu, 6 Feb 2014 08:28:13 -0600
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-boot
+	makefile
+Thread-Index: AQHPI0SRMSr1rdPgFk2/9pzqE2V365qoSJAQ
+Date: Thu, 6 Feb 2014 14:28:12 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED10159950281@DLEE11.ent.ti.com>
 References: <1391700887-26166-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1391700887-26166-1-git-send-email-fcooper@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 5/5] ti-tisdk-makefile: Update Makefile stubs
+Subject: Re: [PATCH 1/5] ti-tisdk-makefile: Update U-boot makefile
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,205 +39,104 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 14:06:05 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 06 Feb 2014 14:28:14 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-* Various recipes have been updated to pull in the latest makefile changes.
-* Update makefile stubs to reflect these changes.
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+>Sent: Thursday, February 06, 2014 10:35 AM
+>To: meta-arago@arago-project.org
+>Cc: Cooper Jr., Franklin
+>Subject: [meta-arago] [PATCH 1/5] ti-tisdk-makefile: Update U-boot
+>makefile
+>
+>* Add echo statements to make U-boot make,clean,install steps
+>stand out.
+>* Remove installing of U-boot files since installing them into the
+>file system
+>  servers no purpose.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../ti-tisdk-makefile/Makefile_dual-camera-demo    |    8 ++++----
- .../ti-tisdk-makefile/Makefile_matrix-gui-browser  |    8 ++++----
- .../ti-tisdk-makefile/Makefile_qt-tstat            |    8 ++++----
- .../ti-tisdk-makefile/Makefile_quick-playground    |    8 ++++----
- .../ti-tisdk-makefile/Makefile_refresh-screen      |    8 ++++----
- .../ti-tisdk-makefile/Makefile_ti-crypto-examples  |    2 +-
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
- 7 files changed, 22 insertions(+), 22 deletions(-)
+I would argue that this doesn't hurt anything and having them on the file s=
+ystem allows for people to update the bootloader from Linux itself.
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo
-index a682d59..14ee3df 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo
-@@ -3,22 +3,22 @@ dual-camera:
- 	@echo ================================
- 	@echo    Building Dual Camera Demo
- 	@echo ================================
--	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build release
-+	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make
- 
- dual-camera_clean:
- 	@echo ================================
- 	@echo    Building Dual Camera Demo
- 	@echo ================================
--	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build clean
-+	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make clean
- 
- dual-camera_install:
- 	@echo ===================================================
- 	@echo   Installing Dual Camera Demo - Release version
- 	@echo ===================================================
--	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build install
-+	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make install
- 
- dual-camera_install_debug:
- 	@echo =================================================
- 	@echo   Installing Dual Camera Demo - Debug version
- 	@echo =================================================
--	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build install_debug
-+	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser
-index 2fc3b21..eb60e4f 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser
-@@ -3,22 +3,22 @@ matrix-gui-browser:
- 	@echo =================================
- 	@echo    Building Matrix GUI Browser
- 	@echo =================================
--	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build release
-+	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make release
- 
- matrix-gui-browser_clean:
- 	@echo =================================
- 	@echo    Cleaning Matrix GUI Browser
- 	@echo =================================
--	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build clean
-+	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make clean
- 
- matrix-gui-browser_install:
- 	@echo ===================================================
- 	@echo   Installing Matrix GUI Browser - Release version
- 	@echo ===================================================
--	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build install
-+	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make install
- 
- matrix-gui-browser_install_debug:
- 	@echo =================================================
- 	@echo   Installing Matrix GUI Browser - Debug Version
- 	@echo =================================================
--	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build install_debug
-+	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat
-index 857e058..36d7ef5 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat
-@@ -3,22 +3,22 @@ qt-tstat:
- 	@echo ================================
- 	@echo    Building QT Thermostat App
- 	@echo ================================
--	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build release
-+	@cd example-applications; cd `find . -name "*qt-tstat*"`; make release
- 
- qt-tstat_clean:
- 	@echo ================================
- 	@echo    Cleaning QT Thermostat App
- 	@echo ================================
--	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build clean
-+	@cd example-applications; cd `find . -name "*qt-tstat*"`; make clean
- 
- qt-tstat_install:
- 	@echo ===================================================
- 	@echo   Installing QT Thermostat App - Release version
- 	@echo ===================================================
--	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build install
-+	@cd example-applications; cd `find . -name "*qt-tstat*"`; make install
- 
- qt-tstat_install_debug:
- 	@echo =================================================
- 	@echo   Installing QT Thermostat App - Debug version
- 	@echo =================================================
--	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build install_debug
-+	@cd example-applications; cd `find . -name "*qt-tstat*"`; make install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
-index 06cbd49..a87471b 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
-@@ -3,22 +3,22 @@ quick-playground:
- 	@echo =================================
- 	@echo    Building Quick Playground App
- 	@echo =================================
--	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build release
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make
- 
- quick-playground_clean:
- 	@echo =================================
- 	@echo    Cleaning Quick Playground App
- 	@echo =================================
--	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build clean
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make clean
- 
- quick-playground_install:
- 	@echo ====================================================
- 	@echo   Installing Quick Playground App - Release version
- 	@echo ====================================================
--	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build install
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make install
- 
- quick-playground_install_debug:
- 	@echo ==================================================
- 	@echo   Installing Quick Playground App - Debug version
- 	@echo ==================================================
--	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build install_debug
-+	@cd example-applications; cd `find . -name "*quick-playground*"`; make install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen
-index bcc17fa..6d8f203 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen
-@@ -3,22 +3,22 @@ refresh-screen:
- 	@echo =============================
- 	@echo    Building Refresh Screen
- 	@echo =============================
--	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build release
-+	@cd example-applications; cd `find . -name "*refresh-screen*"`; make release
- 
- refresh-screen_clean:
- 	@echo =============================
- 	@echo    Cleaning Refresh Screen
- 	@echo =============================
--	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build clean
-+	@cd example-applications; cd `find . -name "*refresh-screen*"`; make clean
- 
- refresh-screen_install:
- 	@echo ================================================
- 	@echo   Installing Refresh Screen - Release version
- 	@echo ================================================
--	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build install
-+	@cd example-applications; cd `find . -name "*refresh-screen*"`; make install
- 
- refresh-screen_install_debug:
- 	@echo ==============================================
- 	@echo   Installing Refresh Screen - Debug Version
- 	@echo ==============================================
--	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build install_debug
-+	@cd example-applications; cd `find . -name "*refresh-screen*"`; make install_debug
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
-index 3588381..9ab9616 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
-@@ -3,7 +3,7 @@ ti-crypto-examples:
- 	@echo =================================
- 	@echo    Building TI Crypto Examples
- 	@echo =================================
--	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make
-+	@cd example-applications; cd `find . -name "*ti-crypto-examples*"`; make release
- 
- ti-crypto-examples_clean:
- 	@echo =================================
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 374fa81..f8e0799 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -34,7 +34,7 @@ SRC_URI = "\
-     file://Makefile_dual-camera-demo \
- "
- 
--PR = "r26"
-+PR = "r27"
- 
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
--- 
-1.7.0.4
-
+>
+>Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>---
+> .../ti-tisdk-makefile/Makefile_u-boot-spl          |   14
+>++++++++++----
+> .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
+> 2 files changed, 11 insertions(+), 5 deletions(-)
+>
+>diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
+>tisdk-makefile/Makefile_u-boot-spl b/meta-arago-distro/recipes-
+>tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl
+>index 9ce6429..d2de7a9 100644
+>--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
+>makefile/Makefile_u-boot-spl
+>+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
+>makefile/Makefile_u-boot-spl
+>@@ -4,14 +4,20 @@ u-boot-spl_clean: u-boot_clean
+> u-boot-spl_install: u-boot_install
+>
+> u-boot:
+>+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>+	@echo    Building U-boot
+>+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-
+>boot-* CROSS_COMPILE=3D$(CROSS_COMPILE) $(UBOOT_MACHINE)
+> 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-
+>boot-* CROSS_COMPILE=3D$(CROSS_COMPILE)
+>
+> u-boot_clean:
+>+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>+	@echo    Cleaining U-boot
+>+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> 	$(MAKE) -C $(TI_SDK_PATH)/board-support/u-boot-*
+>CROSS_COMPILE=3D$(CROSS_COMPILE) clean
+>
+> u-boot_install:
+>-	install -d $(DESTDIR)/boot
+>-	install $(TI_SDK_PATH)/board-support/u-boot-*/u-boot.img
+>$(DESTDIR)/boot
+>-	install $(TI_SDK_PATH)/board-support/u-boot-*/MLO
+>$(DESTDIR)/boot
+>-	install $(TI_SDK_PATH)/board-support/u-boot-*/u-boot.map
+>$(DESTDIR)/boot
+>+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>+	@echo    Installing U-boot
+>+	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>+	@echo "Nothing to do"
+>diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-
+>tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-
+>makefile/ti-tisdk-makefile_1.0.bb
+>index 30c2901..374fa81 100644
+>--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
+>makefile_1.0.bb
+>+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
+>makefile_1.0.bb
+>@@ -34,7 +34,7 @@ SRC_URI =3D "\
+>     file://Makefile_dual-camera-demo \
+> "
+>
+>-PR =3D "r25"
+>+PR =3D "r26"
+>
+> MAKEFILES_COMMON =3D "linux \
+>                     matrix-gui \
+>--
+>1.7.0.4
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
