@@ -1,21 +1,21 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 5D3E3529BD
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id 1091C529BD
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 16:06:52 +0000 (UTC)
+	Thu,  6 Feb 2014 16:10:30 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
+	by vms173023.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0L000170RFEXE0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 06 Feb 2014 10:06:52 -0600 (CST)
+	2009)) with ESMTPA id <0N0L00EJ70XH6UJ0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 06 Feb 2014 10:10:29 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 2DCD420085; Thu,
-	06 Feb 2014 11:06:51 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id EDA5420085; Thu,
+	06 Feb 2014 11:10:28 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 06 Feb 2014 11:06:50 -0500
-Message-id: <1391702810-23105-1-git-send-email-denis@denix.org>
+Date: Thu, 06 Feb 2014 11:10:28 -0500
+Message-id: <1391703028-23852-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
 Subject: [PATCH] base-files: pre-create /run symlink to point to /var/run
 X-BeenThere: meta-arago@arago-project.org
@@ -29,7 +29,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 16:06:52 -0000
+X-List-Received-Date: Thu, 06 Feb 2014 16:10:30 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
