@@ -1,27 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 575D6529AA
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 5453A529AA
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 00:00:23 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0J00LTCS0FS7N0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 05 Feb 2014 18:00:16 -0600 (CST)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 9700C20210; Wed,
-	05 Feb 2014 19:00:15 -0500 (EST)
-Date: Wed, 05 Feb 2014 19:00:15 -0500
+	Thu,  6 Feb 2014 00:04:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1604Jqq022680
+	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 18:04:19 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1604J1P028952
+	for <meta-arago@arago-project.org>; Wed, 5 Feb 2014 18:04:19 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 5 Feb 2014 18:04:19 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1604J6g006721;
+	Wed, 5 Feb 2014 18:04:19 -0600
+Date: Wed, 5 Feb 2014 19:04:18 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Chase Maupin <Chase.Maupin@ti.com>
-Message-id: <20140206000015.GC22890@denix.org>
+Message-ID: <20140206000418.GD18784@edge>
 References: <1391630646-9727-1-git-send-email-Chase.Maupin@ti.com>
-	<1391630646-9727-4-git-send-email-Chase.Maupin@ti.com>
-MIME-version: 1.0
-In-reply-to: <1391630646-9727-4-git-send-email-Chase.Maupin@ti.com>
+	<1391630646-9727-3-git-send-email-Chase.Maupin@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1391630646-9727-3-git-send-email-Chase.Maupin@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 4/6] arago-base-tisdk-image: add keystone support
+Subject: Re: [PATCH 3/6] tisdk-amsdk-sdk-host: remove pinmux for keystone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,36 +37,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 00:00:23 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 06 Feb 2014 00:04:20 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-On Wed, Feb 05, 2014 at 02:04:04PM -0600, Chase Maupin wrote:
-> * Add support to this image for keystone devices
+Sam,
 
-And the server image doesn't use arago-base-tisdk-image directly.
+Which recipe do you currently use to build linux-devkit for MCSDK? I'm trying 
+to see if this recipe is in your path or not. But either way we need to unify 
+these thinks a bit better...
 
-So, I'll push the first 3 patches from the series.
+-- 
+Denys
 
 
+On Wed, Feb 05, 2014 at 02:04:03PM -0600, Chase Maupin wrote:
+> * Keystone devices do not have a pinmux utility currently so
+>   do not try to package one.
+> 
 > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 > ---
->  .../recipes-core/images/arago-base-tisdk-image.bb  |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
+>  .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    3 ++-
+>  1 files changed, 2 insertions(+), 1 deletions(-)
 > 
-> diff --git a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
-> index 2c0e217..ef47dc0 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
-> @@ -4,7 +4,7 @@
->  require arago-image.inc
->  inherit remove-net-rules
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+> index cb95ae9..e5d1be5 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to install additional scripts and applications into the SDK"
+>  LICENSE = "MIT"
+> -PR = "r17"
+> +PR = "r18"
 >  
-> -COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-a15"
-> +COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-a15|keystone"
+>  inherit packagegroup
 >  
->  IMAGE_INSTALL += "\
->      packagegroup-arago-base \
+> @@ -14,6 +14,7 @@ KERNEL_SRC = "${PREFERRED_PROVIDER_virtual/kernel}-src"
+>  TOOLS = "pinmux-utility"
+>  TOOLS_omap-a15 = ""
+>  TOOLS_ti43x = ""
+> +TOOLS_keystone = ""
+>  TOOLS_append_am37x-evm = " flash-utility"
+>  TOOLS_append_am3517-evm = " flash-utility"
+>  
 > -- 
 > 1.7.0.4
 > 
@@ -70,5 +87,4 @@ So, I'll push the first 3 patches from the series.
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
