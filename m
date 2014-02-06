@@ -1,27 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 2034D529BD
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 57F0752A38
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Feb 2014 19:07:42 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0L001KN94NSMB0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 06 Feb 2014 13:07:36 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 75A77200AC; Thu,
-	06 Feb 2014 14:07:35 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 06 Feb 2014 14:07:34 -0500
-Message-id: <1391713654-26395-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] base-files: pre-create /run symlink to point to /var/run
+	Thu,  6 Feb 2014 22:17:52 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s16MHpMT003964
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 16:17:51 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16MHptU014616
+	for <meta-arago@arago-project.org>; Thu, 6 Feb 2014 16:17:51 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 6 Feb 2014 16:17:51 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s16MHmVh031086;
+	Thu, 6 Feb 2014 16:17:49 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 6 Feb 2014 16:17:46 -0600
+Message-ID: <1391725066-27947-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
+MIME-Version: 1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] cryptodev: Autoload cryptodev module
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
-List-Id: <meta-arago.arago-project.org>
+List-Id: Arago metadata layer for TI SDKs - OE-Core/Yocto compatible
+	<meta-arago.arago-project.org>
 List-Unsubscribe: <http://arago-project.org/cgi-bin/mailman/options/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=unsubscribe>
 List-Archive: <http://arago-project.org/pipermail/meta-arago>
@@ -29,37 +35,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 19:07:42 -0000
+X-List-Received-Date: Thu, 06 Feb 2014 22:17:52 -0000
+Content-Type: text/plain
 
-Make it available on the first boot too, otherwise the first boot may fail
-to automount SD card partitions. Normally, it gets created on the first
-boot by volatiles init script and stays there on consecutive boots.
+* Create append that will create /etc/modules-load.d/ config file which will
+  autoload the cryptodev module.
 
-Signed-off-by: Denys Dmytriyenko <denis@denix.org>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/base-files/base-files_3.0.14.bbappend        | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ .../cryptodev/cryptodev_1.6.bbappend               |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
-index c0ab069..4d831fd 100644
---- a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
-+++ b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
-@@ -1,4 +1,13 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = "-arago0"
-+PR_append = "-arago1"
+diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend
+new file mode 100644
+index 0000000..96fb74d
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend
+@@ -0,0 +1,9 @@
++PR_append = "-arago0"
 +
-+# Pre-create /run symlink to point to /var/run at build time
-+# This normally happens on first boot, but may be too late for automount,
-+# which tries to create mount-points in /run
-+# NOTE: This step is not required in Dora and up, due to reverse direction
-+# of symlinking between /run and /var/run
-+do_install_append () {
-+	ln -sf /var/run ${D}/run
++do_install_append() {
++
++    # Create conf file to autoload kernel module
++    install -d ${D}/etc/modules-load.d/
++    touch ${D}/etc/modules-load.d/cryptodev.conf
++    echo "cryptodev" > ${D}/etc//modules-load.d/cryptodev.conf
 +}
 -- 
-1.8.3.2
+1.7.0.4
 
 
