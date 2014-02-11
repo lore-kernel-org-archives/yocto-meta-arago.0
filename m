@@ -1,29 +1,35 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B7DDC5298A
+Return-Path: <eyalreizer@gmail.com>
+Received: from mail-ea0-f169.google.com (mail-ea0-f169.google.com
+	[209.85.215.169])
+	by arago-project.org (Postfix) with ESMTPS id B39FF52A72
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Feb 2014 08:11:06 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1B8B5PM014335
-	for <meta-arago@arago-project.org>; Tue, 11 Feb 2014 02:11:05 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1B8B5xY031091
-	for <meta-arago@arago-project.org>; Tue, 11 Feb 2014 02:11:05 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 11 Feb 2014 02:11:05 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s1B8B5Lg004093	for <meta-arago@arago-project.org>;
-	Tue, 11 Feb 2014 02:11:05 -0600
-Date: Tue, 11 Feb 2014 02:57:50 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <523123201.259.1392105470388.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-02-11_01-00-24
+	Tue, 11 Feb 2014 14:05:18 +0000 (UTC)
+Received: by mail-ea0-f169.google.com with SMTP id h10so3761704eak.28
+	for <meta-arago@arago-project.org>;
+	Tue, 11 Feb 2014 06:05:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=Qu64qNN1QGYD8GGFRgTmOmWHxRa+cJtVIiyzb+nzkKI=;
+	b=OqvpmHSty12QngMufgua8ylyQvbM7md3p+avaNFLaI/3x8f2leskqC0NpXI2dwXYFc
+	SZq96OfC/B9MTc3iTSidVQkaGvMEf0TMHx3H72IVzuXhsisc/nYfpNHEQ6q1yATNh7Ef
+	4LQtiVZVI5Gk60xP/wEmSXnLMqQoc6S72dWyLQv3lp4tmoGLYXxZP7CDJdS8MCwd1/zR
+	ICHcvYKsVxYkznn0w66bydWwSfFl+SuZwtwc1n0u//3gOq22Ay/d+5KIT+xNZN746sMr
+	bpwoxh2TUVFS4b/DuVInvFxYMYLvZFZeCmHpE+HQ4C5CmPLRQLJH1K0MRSHXIbQEZBoI
+	qhoQ==
+X-Received: by 10.14.205.3 with SMTP id i3mr43608355eeo.23.1392127515912;
+	Tue, 11 Feb 2014 06:05:15 -0800 (PST)
+Received: from localhost.localdomain (93-172-91-221.bb.netvision.net.il.
+	[93.172.91.221])
+	by mx.google.com with ESMTPSA id d9sm67636142eei.9.2014.02.11.06.05.12
+	for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 11 Feb 2014 06:05:15 -0800 (PST)
+From: Eyal Reizer <eyalreizer@gmail.com>
+To: meta-arago@arago-project.org
+Date: Tue, 11 Feb 2014 16:04:52 +0200
+Message-Id: <1392127492-3220-1-git-send-email-eyalr@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] bt-firmware: Add support for am437x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +42,107 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2014 08:11:07 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_258_422321448.1392105470387"
+X-List-Received-Date: Tue, 11 Feb 2014 14:05:19 -0000
 
-------=_Part_258_422321448.1392105470387
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Modify the recipe to allow installing the bluetooth init script for
+am437x-evm
 
-<html>
-<head>
-<title>
-Status for 02/11/14
-</title>
-</head>
-<body>
+Signed-off-by: Eyal Reizer <eyalr@ti.com>
+---
+ ...001-Makefile-allow-building-within-the-OE.patch |   29 +++++++++++--------
+ .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |    9 +++---
+ 2 files changed, 22 insertions(+), 16 deletions(-)
 
-<h2>Status for 02/11/14</h2>
-
-<h2>BUILD_ID: build-2014-02-11_01-01-35</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
-        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-Makefile-allow-building-within-the-OE.patch b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-Makefile-allow-building-within-the-OE.patch
+index 49caa85..a8642a9 100644
+--- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-Makefile-allow-building-within-the-OE.patch
++++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-Makefile-allow-building-within-the-OE.patch
+@@ -1,6 +1,6 @@
+-From 8f226ccc9d2cbd10d454e131376c35f502a45e3b Mon Sep 17 00:00:00 2001
+-From: Chase Maupin <Chase.Maupin@ti.com>
+-Date: Wed, 7 Mar 2012 14:11:42 -0600
++From 465ffd990e3366732eb5e2271313539b55c4ccb7 Mon Sep 17 00:00:00 2001
++From: Eyal Reizer <eyalr@ti.com>
++Date: Tue, 11 Feb 2014 15:17:53 +0200
+ Subject: [PATCH] Makefile: allow building with OE
+ 
+ * Use defaults and source values that allow building this
+@@ -10,17 +10,19 @@ Upstread-Status: Pending
+     * Will be accepted into next release
+ 
+ Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
++    < adapated for am437x>
++Signed-off-by: Eyal Reizer <eyalr@ti.com>
+ ---
+- Makefile |   21 +++++++++++++++++++++
+- 1 files changed, 21 insertions(+), 0 deletions(-)
++ Makefile |   23 +++++++++++++++++++++++
++ 1 files changed, 23 insertions(+), 0 deletions(-)
+ 
+ diff --git a/Makefile b/Makefile
+-index 9035e40..bd94881 100644
++index 9035e40..23bc5b6 100644
+ --- a/Makefile
+ +++ b/Makefile
+-@@ -1,5 +1,26 @@
++@@ -1,5 +1,28 @@
+  # Installs the the Bluetooth firmware files into the root file system
+-
++ 
+ +-include ../../../Rules.make
+ +
+ +# If KERNEL_DIR is not set then use the default in Rules.make
+@@ -41,9 +43,12 @@ index 9035e40..bd94881 100644
+ +ifeq ($(PLATFORM), am37x-evm)
+ +    MACHINE_NAME := omap3evm
+ +endif
+-+
+++ifeq ($(PLATFORM), am437x-evm)
+++    MACHINE_NAME := am43xx
+++endif
+  install:
+-	install -d $(DEST_DIR)${BASE_LIB_DIR}/firmware
+-	cp -f ./${MACHINE_NAME}/* $(DEST_DIR)${BASE_LIB_DIR}/firmware
+---
++ 	install -d $(DEST_DIR)${BASE_LIB_DIR}/firmware
++ 	cp -f ./${MACHINE_NAME}/* $(DEST_DIR)${BASE_LIB_DIR}/firmware
++-- 
+ 1.7.0.4
++
+diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
+index d788875..9aff61a 100644
+--- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
++++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Firmware files for Bluetooth"
+ LICENSE = "TI-TSPA"
+-LIC_FILES_CHKSUM = "file://am335x/LICENCE;md5=5f67a65df8b40038a3251b2fe5b912df \
++LIC_FILES_CHKSUM = "file://am335x/LICENCE;md5=4b46aed2a87412c84f9363a8db053e1b \
+ "
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -11,16 +11,17 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ RCONFLICTS_${PN} = "linux-firmware-wl12xx"
+ RREPLACES_${PN}  = "linux-firmware-wl12xx"
+ 
+-PR = "r3+gitr${SRCPV}"
++PR = "r4+gitr${SRCPV}"
+ 
+-COMPATIBLE_MACHINE = "ti33x"
++COMPATIBLE_MACHINE = "ti33x|ti43x"
+ 
+-SRCREV = "57a8e569575e742c47dc2452c4932dcfff816442"
++SRCREV = "7496df8d130f2db85d5d50b1f703213edf0b54fb"
+ SRC_URI = "git://github.com/TI-ECS/bt-firmware.git;protocol=git \
+            file://0001-Makefile-allow-building-within-the-OE.patch"
+ 
+ PLATFORM = "unknown"
+ PLATFORM_ti33x = "am335x-evm"
++PLATFORM_ti43x = "am437x-evm"
+ 
+ S = "${WORKDIR}/git"
+ 
+-- 
+1.7.0.4
 
 
-------=_Part_258_422321448.1392105470387--
