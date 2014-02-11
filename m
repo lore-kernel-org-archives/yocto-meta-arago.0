@@ -1,23 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 9A80C52A79
+Return-Path: <sam.nelson@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id B90A3529CE
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Feb 2014 21:52:35 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N0U00CD6Q2VTWW0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 11 Feb 2014 15:52:07 -0600 (CST)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 05E08200BE; Tue,
-	11 Feb 2014 16:52:07 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 11 Feb 2014 16:52:06 -0500
-Message-id: <1392155526-1568-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [2013.12.x][PATCH] ltp-ddt: update with more fixes for the release
+	Tue, 11 Feb 2014 23:57:02 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1BNv0iY024143
+	for <meta-arago@arago-project.org>; Tue, 11 Feb 2014 17:57:00 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1BNv0la003146
+	for <meta-arago@arago-project.org>; Tue, 11 Feb 2014 17:57:00 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 11 Feb 2014 17:56:59 -0600
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s1BNuxkd016652;	Tue, 11 Feb 2014 17:56:59 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 11 Feb 2014 18:56:58 -0500
+Message-ID: <1392163018-32052-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH v2] linuxptp: Add recipe for linux ptp
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,32 +34,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2014 21:52:35 -0000
+X-List-Received-Date: Tue, 11 Feb 2014 23:57:03 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+- linuxptp is an implementation of precision time protocol (PTP)
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+
 ---
- meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Change from previous patch
+* Removed redundant setting of STAGING_KERNEL_DIR
+---
+---
+ .../recipes-bsp/linuxptp/linuxptp_1.0.bb           |   24 ++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+ create mode 100755 meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb
 
-diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-index 1be8bea..bb5462e 100644
---- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-+++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-@@ -1,9 +1,9 @@
--PR_append = "-arago7+gitr${SRCPV}"
-+PR_append = "-arago8+gitr${SRCPV}"
- 
- RDEPENDS_${PN} += "linaro-pm-qa-utils"
- 
- # Commit corresponds to ti2013.12.01 release
--SRCREV = "3f1faf23ffce1a150e928775258877680e6176d9"
-+SRCREV = "ed54f16df631bcbb6d6817d7e3540587e7f03123"
- 
- FILES_${PN}-dbg += " \
- 	${LTPROOT}/testcases/realtime/*/*/.debug \
+diff --git a/meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb b/meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb
+new file mode 100755
+index 0000000..6d3d3a1
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb
+@@ -0,0 +1,24 @@
++DESCRIPTION = "This software is an implementation of the Precision Time Protocol (PTP) \
++according to IEEE standard 1588 for Linux"
++HOMEPAGE = "http://linuxptp.sourceforge.net/"
++SECTION = "console/network"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++DEPENDS += "virtual/kernel"
++PR = "r0"
++
++SRC_URI = "git://git.code.sf.net/p/linuxptp/code;protocol=git"
++
++SRCREV = "74e703727ec9b1c334c7bfbba9be1cabf4b7b461"
++
++S = "${WORKDIR}/git"
++
++inherit autotools 
++
++EXTRA_OEMAKE = "KBUILD_OUTPUT=${STAGING_KERNEL_DIR} CROSS_COMPILE=${TARGET_PREFIX} ARCH=${TARGET_ARCH}"
++
++do_install() {
++	install -d ${D}${bindir}/
++	install -c -m 755 ${S}/ptp4l ${D}${bindir}/
++}
++
 -- 
-1.8.3.2
+1.7.9.5
 
 
