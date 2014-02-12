@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A302E5299C
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id B74E55299C
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Feb 2014 19:14:15 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CJEDc2027191
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 13:14:13 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CJED5w020985
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 13:14:13 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 12 Feb 2014 13:14:13 -0600
+	Wed, 12 Feb 2014 19:14:16 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CJEGDi008897
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 13:14:16 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CJEFFs019061
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 13:14:16 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 12 Feb 2014 13:14:15 -0600
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CJE4Qu018111;
-	Wed, 12 Feb 2014 13:14:11 -0600
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CJE4Qv018111;
+	Wed, 12 Feb 2014 13:14:14 -0600
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 12 Feb 2014 13:14:01 -0600
-Message-ID: <1392232442-27754-3-git-send-email-fcooper@ti.com>
+Date: Wed, 12 Feb 2014 13:14:02 -0600
+Message-ID: <1392232442-27754-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1392232442-27754-1-git-send-email-fcooper@ti.com>
 References: <1392232442-27754-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/4] matrix-gui: Generate json.txt incase the file is empty
+Subject: [PATCH 4/4] ti-crypto-examples: Update commit to fix mknod issues
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,53 +40,33 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 12 Feb 2014 19:14:16 -0000
 Content-Type: text/plain
 
-* Json.txt may end up empty if the board isn't properly shutdown.
-* Pull in commit that regenerates the file if it is empty.
+* Certificate generation script for some reason deletes and recreates crypto
+  mknod.
+* Doing this is incorrect and shouldn't be done.
+* Update commit that pulls in the change that deletes mknod related lines.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |    4 ++--
- .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ .../ti-crypto-examples/ti-crypto-examples_git.bb   |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 1e54444..7d47e5b 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -11,9 +11,9 @@ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
+diff --git a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+index 485faed..777d1c3 100644
+--- a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
++++ b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+@@ -5,10 +5,10 @@ LIC_FILES_CHKSUM = "file://AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965
+ SECTION = "console"
+ DEPENDS += "openssl"
  
- DEPENDS += "${QT_DEPENDS_WEBKIT}"
- 
--PR = "r5"
-+PR = "r6"
- 
--SRCREV = "ac2338295ccb4c6c2ffa58b5ad48659a5430"
-+SRCREV = "8517ac2338295ccb4c6c2ffa58b5ad48659a5430"
- BRANCH ?= "master"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index b96d67c..523cfe1 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
- 
- SECTION = "multimedia"
- 
--PR = "r15"
-+PR = "r16"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- inherit update-rc.d
+-PR = "r6"
++PR = "r7"
  
  BRANCH ?= "master"
--SRCREV = "a67a9721134fcbf9017d2dd361079f67b10b0ace"
-+SRCREV = "d0fcc5ab50c9ecdf7a3cc5610807d16a6c91a850"
+-SRCREV = "616ca5b6a0feefc1ba2e876c7ced4407f927ef1b"
++SRCREV = "6f4b09fffe970bb6b448369875874e798ef282f6"
  
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
-            file://init \
+ SRC_URI = "git://arago-project.org/git/projects/crypto-example-apps.git;protocol=git;branch=${BRANCH}"
+ 
 -- 
 1.7.0.4
 
