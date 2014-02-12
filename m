@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4A38352972
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9FBF75298A
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Feb 2014 16:48:32 +0000 (UTC)
+	Wed, 12 Feb 2014 17:52:54 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CGmUHS015111
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 10:48:30 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CGmUp5008183
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 10:48:30 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 12 Feb 2014 10:48:29 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CHqrfm011612
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 11:52:53 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CHqr6j023754
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 11:52:53 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 12 Feb 2014 11:52:53 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CGmTj8004183;
-	Wed, 12 Feb 2014 10:48:29 -0600
-Date: Wed, 12 Feb 2014 11:48:29 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CHqr9D023622;
+	Wed, 12 Feb 2014 11:52:53 -0600
+Date: Wed, 12 Feb 2014 12:52:53 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20140212164829.GH4346@edge>
-References: <1392163018-32052-1-git-send-email-sam.nelson@ti.com>
+Message-ID: <20140212175252.GI4346@edge>
+References: <1391785246-19688-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1392163018-32052-1-git-send-email-sam.nelson@ti.com>
+In-Reply-To: <1391785246-19688-1-git-send-email-sam.nelson@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] linuxptp: Add recipe for linux ptp
+Subject: Re: [PATCH] openntpd: Add recipe for building OpenNTPD
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,62 +37,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Feb 2014 16:48:33 -0000
+X-List-Received-Date: Wed, 12 Feb 2014 17:52:55 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Feb 11, 2014 at 06:56:58PM -0500, Sam Nelson wrote:
-> - linuxptp is an implementation of precision time protocol (PTP)
+On Fri, Feb 07, 2014 at 10:00:46AM -0500, Sam Nelson wrote:
+> - OpenNTPD is a open source implementation of Network time protocol
 > 
 > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> 
 > ---
-> Change from previous patch
-> * Removed redundant setting of STAGING_KERNEL_DIR
-> ---
-> ---
->  .../recipes-bsp/linuxptp/linuxptp_1.0.bb           |   24 ++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100755 meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb
+>  .../recipes-bsp/openntpd/openntpd_3.9p1.bb         |   27 ++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100755 meta-arago-extras/recipes-bsp/openntpd/openntpd_3.9p1.bb
 
-You keep adding everything to recipes-bsp... This one is not really BSP 
-specific. For networking stuff, there's recipes-connectivity directory.
-
-Otherwise looks good. BTW, does that SRCREV correspond to any official 
-release? If it is, handling tarball would be easier than checking out from 
-a git repository - release tarballs are usually mirrored much wider...
+Same comment - recipes-connectivity seems better fit for networking 
+tools/daemons.
 
 
-> diff --git a/meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb b/meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb
+> diff --git a/meta-arago-extras/recipes-bsp/openntpd/openntpd_3.9p1.bb b/meta-arago-extras/recipes-bsp/openntpd/openntpd_3.9p1.bb
 > new file mode 100755
-> index 0000000..6d3d3a1
+> index 0000000..b4e3402
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/linuxptp/linuxptp_1.0.bb
-> @@ -0,0 +1,24 @@
-> +DESCRIPTION = "This software is an implementation of the Precision Time Protocol (PTP) \
-> +according to IEEE standard 1588 for Linux"
-> +HOMEPAGE = "http://linuxptp.sourceforge.net/"
+> +++ b/meta-arago-extras/recipes-bsp/openntpd/openntpd_3.9p1.bb
+> @@ -0,0 +1,27 @@
+> +DESCRIPTION = "OpenNTPD is a FREE, easy to use implementation of the \
+> +Network Time Protocol."
+> +HOMEPAGE = "http://www.openntpd.org/"
 > +SECTION = "console/network"
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+> +LICENSE = "BSD ISC"
+> +LIC_FILES_CHKSUM = "file://LICENCE;md5=4b4f5158007cc97e6b0e2325bb99854a"
+> +
 > +DEPENDS += "virtual/kernel"
 > +PR = "r0"
 > +
-> +SRC_URI = "git://git.code.sf.net/p/linuxptp/code;protocol=git"
+> +SRC_URI = "http://mirror.ece.vt.edu/pub/OpenBSD/OpenNTPD/${P}.tar.gz"
 > +
-> +SRCREV = "74e703727ec9b1c334c7bfbba9be1cabf4b7b461"
+> +S = "${WORKDIR}/openntpd-${PV}"
+> +EXTRA_OECONF = "--disable-strip"
+> +inherit autotools
 > +
-> +S = "${WORKDIR}/git"
+> +LDFLAGS += "-lrt"
+> +CFLAGS += "-DTI_ADD_SUPPORT_HW_TIMESTAMPING"
+> +STAGING_KERNEL_DIR = "${STAGING_DIR}/${MACHINE_ARCH}${TARGET_VENDOR}-${TARGET_OS}/kernel"
+
+^^^ I don't think the above variable is correct any longer.
+
+Plus, it's already properly defined for you, so why redefine it?
+
+
+> +CPPFLAGS = "-I${STAGING_KERNEL_DIR}/include"
+> +CPPFLAGS += "-I${STAGING_KERNEL_DIR}/arch/arm/include"
 > +
-> +inherit autotools 
+> +EXTRA_OECONF += "CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" CFLAGS="${CFLAGS}" \
+> +                 --with-privsep-user=root --with-privsep-path=/${prefix}"
 > +
-> +EXTRA_OEMAKE = "KBUILD_OUTPUT=${STAGING_KERNEL_DIR} CROSS_COMPILE=${TARGET_PREFIX} ARCH=${TARGET_ARCH}"
-> +
-> +do_install() {
-> +	install -d ${D}${bindir}/
-> +	install -c -m 755 ${S}/ptp4l ${D}${bindir}/
-> +}
-> +
+> +SRC_URI[md5sum] = "afc34175f38d08867c1403d9008600b3"
+> +SRC_URI[sha256sum] = "83dd7c1e8ec8b4567afe49af539271b5a73562fb7a3ca51df73eccba89ec8c49"
 > -- 
 > 1.7.9.5
 > 
