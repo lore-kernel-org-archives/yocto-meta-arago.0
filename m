@@ -1,34 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B256E52972
+Return-Path: <aravindbr@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6A51752972
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Feb 2014 20:31:37 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CKVaFx004903
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 14:31:36 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CKVaq9012382
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 14:31:36 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.02.0342.003; Wed, 12 Feb 2014 14:31:35 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/4] qt applications: Fix issue with SDK
-	makefile.
-Thread-Index: AQHPKCaa/qA+2hj0eECLRqz+jrzR7pqyaRCA//+cF+A=
-Date: Wed, 12 Feb 2014 20:31:34 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C624681@DFLE08.ent.ti.com>
-References: <1392232442-27754-1-git-send-email-fcooper@ti.com>
-	<20140212194115.GP4346@edge>
-In-Reply-To: <20140212194115.GP4346@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Wed, 12 Feb 2014 22:14:52 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CMEpAC002636
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 16:14:51 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CMEpEp016541
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 16:14:51 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 12 Feb 2014 16:14:51 -0600
+Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
+	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp32.itg.ti.com
+	(8.14.3/8.13.8) with ESMTP id s1CMEp96032413;
+	Wed, 12 Feb 2014 16:14:51 -0600
+From: Aravind Batni <aravindbr@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 12 Feb 2014 17:14:49 -0500
+Message-ID: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/4] qt applications: Fix issue with SDK makefile.
+Cc: Aravind Batni <aravindbr@ti.com>
+Subject: [PATCH] ti-rm: provides ti resouce manager recipe for KeyStone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,135 +36,84 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Feb 2014 20:31:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Feb 2014 22:14:52 -0000
+Content-Type: text/plain
 
-All these patches can be pushed into master.
+- TI Resource Manager Low Level Driver
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, February 12, 2014 1:41 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/4] qt applications: Fix issue with SDK
-> makefile.
->=20
-> Franklin,
->=20
-> Do you need these changes to make into our 2013.12.01 release this week?
-> They should be fine for master though...
->=20
->=20
-> On Wed, Feb 12, 2014 at 01:13:59PM -0600, Franklin S. Cooper Jr wrote:
-> > * Makefiles have been updated to insure that qmake is called as part of=
- the
-> make
-> >   clean target.
-> > * This insures that the App-Makefile always exist and will be able to c=
-lean the
-> >   sources.
-> >
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |    4 ++--
-> >  .../recipes-core/matrix/refresh-screen_2.0.bb      |    4 ++--
-> >  .../dual-camera-demo/dual-camera-demo_1.0.bb       |    4 ++--
-> >  .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
-> >  4 files changed, 8 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2=
-.0.bb
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-> > index 4d41b73..1e54444 100644
-> > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-> > @@ -11,9 +11,9 @@ RDEPENDS_${PN} +=3D "${QT_RDEPENDS_FONTS}"
-> >
-> >  DEPENDS +=3D "${QT_DEPENDS_WEBKIT}"
-> >
-> > -PR =3D "r4"
-> > +PR =3D "r5"
-> >
-> > -SRCREV =3D "d962b18b628f0006642491c2250ef01557591e66"
-> > +SRCREV =3D "ac2338295ccb4c6c2ffa58b5ad48659a5430"
-> >  BRANCH ?=3D "master"
-> >
-> >  SRC_URI =3D "git://gitorious.org/matrix-gui-
-> v2/matrix_browser.git;protocol=3Dgit;branch=3D${BRANCH}"
-> > diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.b=
-b
-> b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > index f409c1e..2696978 100644
-> > --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > @@ -7,9 +7,9 @@ SECTION =3D "multimedia"
-> >  # Make sure that QT font libraries have been installed
-> >  RDEPENDS_${PN} +=3D "qt4-embedded-fonts"
-> >
-> > -PR =3D "r3"
-> > +PR =3D "r4"
-> >
-> > -SRCREV =3D "e652edf9403fe9329e1bcd14b79503045a53705c"
-> > +SRCREV =3D "4dfdf85f17033f950e01f25341665f979edde6c3"
-> >  BRANCH ?=3D "master"
-> >
-> >  SRC_URI =3D "git://gitorious.org/matrix-gui-v2/refresh-
-> screen.git;protocol=3Dgit;branch=3D${BRANCH}"
-> > diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual=
--
-> camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-
-> demo/dual-camera-demo_1.0.bb
-> > index 4e33d9d..ba3cc57 100644
-> > --- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera=
--
-> demo_1.0.bb
-> > +++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-
-> camera-demo_1.0.bb
-> > @@ -6,10 +6,10 @@ LIC_FILES_CHKSUM =3D
-> "file://main.cpp;beginline=3D1;endline=3D18;md5=3D1e0116b09fc3d8f88
-> >
-> >  require recipes-core/matrix/matrix-gui-paths.inc
-> >
-> > -PR =3D "r1"
-> > +PR =3D "r2"
-> >
-> >  BRANCH =3D "master"
-> > -SRCREV =3D "ee954e04b3efe160b3fabf5a8d640740ce1a7e85"
-> > +SRCREV =3D "e8412769dfe650afd528dc2eb791ddf96143771e"
-> >
-> >  SRC_URI =3D "git://gitorious.org/dual-camera-demo/dual-camera-
-> demo.git;protocol=3Dgit;branch=3D${BRANCH}"
-> >
-> > diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/met=
-a-
-> arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-> > index 6704354..d0a9f7a 100644
-> > --- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-> > +++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-> > @@ -12,12 +12,12 @@ require recipes-core/matrix/matrix-gui-paths.inc
-> >
-> >  inherit qt-provider
-> >
-> > -PR =3D "r6"
-> > +PR =3D "r7"
-> >
-> >  DEPENDS +=3D "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
-> >
-> >  BRANCH ?=3D "master"
-> > -SRCREV =3D "e6225f9e485675e4390dcc7575810e9f63501692"
-> > +SRCREV =3D "2960431fd38239cc089c8738776f3ff9dcfe7f1c"
-> >
-> >  SRC_URI =3D " \
-> >  	git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=3Dgi=
-t
-> \
-> > --
-> > 1.7.0.4
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Aravind Batni <aravindbr@ti.com>
+---
+ meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc    |    7 ++++
+ meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb |   45 ++++++++++++++++++++++
+ 2 files changed, 52 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+
+diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+new file mode 100644
+index 0000000..96da467
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+@@ -0,0 +1,7 @@
++LICENSE = "TI BSD"
++LIC_FILES_CHKSUM = "file://COPYING.txt;md5=dc61631b65360e6beb73b6c337800afc"
++
++BRANCH="master"
++SRC_URI = "git://git.ti.com/keystone-rtos/rm-lld.git;protocol=git;branch=${BRANCH}"
++# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
++SRCREV = "3a73cfe015214ff0401639f85fa5e52ea610e59d"
+diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+new file mode 100644
+index 0000000..7c8dad0
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+@@ -0,0 +1,45 @@
++DESCRIPTION = "TI Resource Manager Low Level Driver"
++
++COMPATIBLE_MACHINE = "keystone"
++
++PR = "r0"
++DEPENDS="ti-ipc"
++LLD-NAME="rm"
++
++include ti-rm.inc
++
++S = "${WORKDIR}/git"
++LLD-BLD-DIR="${S}/ti/drv"
++
++PACKAGES =+ "${PN}-test"
++
++FILES_${PN}-test = "${bindir}/rmDspClientTest_*.out \
++                    ${bindir}/rmLinuxClientTest_*.out \
++                    ${bindir}/ti/drv/rm/test/dts_files/*.dtb"
++
++do_configure () {
++#   tweak the directory structure to LLD way
++    cd ${S}
++    mkdir -p ${LLD-BLD-DIR}
++    cd ${LLD-BLD-DIR}
++    ln -s ${S} ${LLD-NAME}
++}
++
++do_compile () {
++#   Now build the lld in the updated directory	
++    cd ${LLD-BLD-DIR}/${LLD-NAME}   
++    make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
++    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
++    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes	
++    make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
++    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
++    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes	
++}
++
++do_install () {
++    install -d ${D}/${includedir}/ti/drv/${LLD-NAME}
++    install -d ${D}/${libdir}
++    install -d ${D}/${bindir}	
++    make -f makefile_armv7 install installbin installbin_test INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}/${libdir} INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2h
++    make -f makefile_armv7 install installbin installbin_test INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}/${libdir} INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2k	
++}
+-- 
+1.7.9.5
+
 
