@@ -1,29 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 533AE5298A
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 11BD75298A
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Feb 2014 08:06:42 +0000 (UTC)
+	Thu, 13 Feb 2014 14:14:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1D86fWY015172
-	for <meta-arago@arago-project.org>; Thu, 13 Feb 2014 02:06:41 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1D86fJq001300
-	for <meta-arago@arago-project.org>; Thu, 13 Feb 2014 02:06:41 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 13 Feb 2014 02:06:40 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s1D86ejt002818	for <meta-arago@arago-project.org>;
-	Thu, 13 Feb 2014 02:06:41 -0600
-Date: Thu, 13 Feb 2014 02:53:22 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1657319804.267.1392278002793.JavaMail.jenkins@puget>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1DEEvsk023713
+	for <meta-arago@arago-project.org>; Thu, 13 Feb 2014 08:14:57 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1DEEvAm022540
+	for <meta-arago@arago-project.org>; Thu, 13 Feb 2014 08:14:57 -0600
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.02.0342.003; Thu, 13 Feb 2014 08:14:56 -0600
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: Aravind Batni <aravindbr@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] ti-rm: provides ti resouce manager recipe
+	for	KeyStone devices
+Thread-Index: AQHPKD/eHu4VRm+dH0WF9KiQTuaYsZqzNmeQ
+Date: Thu, 13 Feb 2014 14:14:56 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015996BEC8@DLEE11.ent.ti.com>
+References: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
+In-Reply-To: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-02-13_01-00-24
+Subject: Re: [PATCH] ti-rm: provides ti resouce manager recipe for	KeyStone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +40,168 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Feb 2014 08:06:42 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_266_1126163545.1392278002792"
+X-List-Received-Date: Thu, 13 Feb 2014 14:14:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_266_1126163545.1392278002792
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Aravind Batni
+>Sent: Wednesday, February 12, 2014 4:15 PM
+>To: meta-arago@arago-project.org
+>Cc: Aravind Batni
+>Subject: [meta-arago] [PATCH] ti-rm: provides ti resouce manager
+>recipe for KeyStone devices
+>
+>- TI Resource Manager Low Level Driver
+>
+>Signed-off-by: Aravind Batni <aravindbr@ti.com>
+>---
+> meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc    |    7 ++++
+> meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb |   45
+>++++++++++++++++++++++
+> 2 files changed, 52 insertions(+)
+> create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+> create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-
+>rm_git.bb
+>
+>diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc b/meta-
+>arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+>new file mode 100644
+>index 0000000..96da467
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+>@@ -0,0 +1,7 @@
+>+LICENSE =3D "TI BSD"
+>+LIC_FILES_CHKSUM =3D
+>"file://COPYING.txt;md5=3Ddc61631b65360e6beb73b6c337800afc"
+>+
+>+BRANCH=3D"master"
+>+SRC_URI =3D "git://git.ti.com/keystone-rtos/rm-
+>lld.git;protocol=3Dgit;branch=3D${BRANCH}"
+>+# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
+>+SRCREV =3D "3a73cfe015214ff0401639f85fa5e52ea610e59d"
 
-<html>
-<head>
-<title>
-Status for 02/13/14
-</title>
-</head>
-<body>
+If you aren't going to have multiple versions of a recipe the .inc is not r=
+equired.  If you do plan for multiple versions then the SRCREV at least is =
+probably best left in the version specific recipe and not in the .inc.  Loo=
+king at this I would think it likely that you could/should just roll this .=
+inc into the regular .bb recipe. =20
 
-<h2>Status for 02/13/14</h2>
+>diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
 
-<h2>BUILD_ID: build-2014-02-13_01-01-35</h2>
+Looking at the SRCREV below do you want to call this 02.00.00.08 version of=
+ the recipe instead of just _git?
 
-<h2>Clean Build: false</h2>
+>b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+>new file mode 100644
+>index 0000000..7c8dad0
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+>@@ -0,0 +1,45 @@
+>+DESCRIPTION =3D "TI Resource Manager Low Level Driver"
+>+
+>+COMPATIBLE_MACHINE =3D "keystone"
+>+
+>+PR =3D "r0"
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+You should probably set PV here if you are not going to change this recipe =
+to a specific version.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
-        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
+>+DEPENDS=3D"ti-ipc"
+>+LLD-NAME=3D"rm"
+>+
+>+include ti-rm.inc
+>+
+>+S =3D "${WORKDIR}/git"
+>+LLD-BLD-DIR=3D"${S}/ti/drv"
+>+
+>+PACKAGES =3D+ "${PN}-test"
+>+
+>+FILES_${PN}-test =3D "${bindir}/rmDspClientTest_*.out \
+>+                    ${bindir}/rmLinuxClientTest_*.out \
+>+                    ${bindir}/ti/drv/rm/test/dts_files/*.dtb"
+>+
+>+do_configure () {
+>+#   tweak the directory structure to LLD way
+>+    cd ${S}
+>+    mkdir -p ${LLD-BLD-DIR}
+>+    cd ${LLD-BLD-DIR}
+>+    ln -s ${S} ${LLD-NAME}
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+I'm not sure I understand what you are trying to do here.  It seems like yo=
+u want ${WORKDIR}/git/ti/drv/rm to be pointed to ${S}?  Looking below it se=
+ems like you then want to pass ${S}/ti/drm/rm, which points to ${S} to the =
+make commands.  So can't you just point things to ${S}?
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
+Are you trying to work around the Makefile maybe looking for other files in=
+ the ti/drv directory?  Since you created that directory that doesn't seem =
+likely though.  This seems like an issue best handled by updating the Makef=
+iles to allow you to set paths and have a set of defaults.  i.e. PATHX ?=3D=
+ "default path".  That way you can update PATHX as a parameter you pass.  B=
+ut this seems strange to make new direcory structures that then link back t=
+o the base directory you were already in.
 
-</body>
-</html>
+>+}
+>+
+>+do_compile () {
+>+#   Now build the lld in the updated directory
+>+    cd ${LLD-BLD-DIR}/${LLD-NAME}
+>+    make -f makefile_armv7 clean
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2h RM_SRC_DIR=3D${LLD-
+>BLD-DIR}/${LLD-NAME}
+>+    make -f makefile_armv7 lib tests
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2h RM_SRC_DIR=3D${LLD-
+>BLD-DIR}/${LLD-NAME}
+>+    make -f makefile_armv7 lib tests
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2h RM_SRC_DIR=3D${LLD-
+>BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=3Dyes
+>+    make -f makefile_armv7 clean
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2k RM_SRC_DIR=3D${LLD-
+>BLD-DIR}/${LLD-NAME}
+>+    make -f makefile_armv7 lib tests
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2k RM_SRC_DIR=3D${LLD-
+>BLD-DIR}/${LLD-NAME}
+>+    make -f makefile_armv7 lib tests
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2k RM_SRC_DIR=3D${LLD-
+>BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=3Dyes
 
+Some thoughts:
 
-------=_Part_266_1126163545.1392278002792--
+1. Would this be better done as a for loop iterated of the different DEVICE=
+ settings?
+2. Since you don't seem to be breaking these libraries out per DEVICE and I=
+ think you are packaging both static and dynamic libraries would an "all" m=
+ake target be better than calling each individually?
+	- I actually wonder if you would prefer to split dynamic vs. static librar=
+ies.  Why are both packaged?  Or maybe I don't understand what you are doin=
+g here?
+3. Should the libraries be packaged per DEVICE? The root of this question i=
+s whether this recipe should be machine specific and you build the package =
+for k2k and k2h devices.  It seems like you are making one package that has=
+ support for multiple devices.
+
+>+}
+>+
+>+do_install () {
+>+    install -d ${D}/${includedir}/ti/drv/${LLD-NAME}
+>+    install -d ${D}/${libdir}
+>+    install -d ${D}/${bindir}
+>+    make -f makefile_armv7 install installbin installbin_test
+>INSTALL_INC_BASE_DIR=3D${D}/${includedir}
+>INSTALL_LIB_BASE_DIR=3D${D}/${libdir}
+>INSTALL_BIN_BASE_DIR=3D${D}/${bindir} DEVICE=3Dk2h
+>+    make -f makefile_armv7 install installbin installbin_test
+>INSTALL_INC_BASE_DIR=3D${D}/${includedir}
+>INSTALL_LIB_BASE_DIR=3D${D}/${libdir}
+>INSTALL_BIN_BASE_DIR=3D${D}/${bindir} DEVICE=3Dk2k
+>+}
+>--
+>1.7.9.5
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
