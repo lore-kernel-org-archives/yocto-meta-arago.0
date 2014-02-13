@@ -1,29 +1,34 @@
-Return-Path: <aravindbr@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6A51752972
+Return-Path: <sam.nelson@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 89A625299C
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Feb 2014 22:14:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1CMEpAC002636
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 16:14:51 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1CMEpEp016541
-	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 16:14:51 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 12 Feb 2014 16:14:51 -0600
-Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
-	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp32.itg.ti.com
-	(8.14.3/8.13.8) with ESMTP id s1CMEp96032413;
-	Wed, 12 Feb 2014 16:14:51 -0600
-From: Aravind Batni <aravindbr@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 12 Feb 2014 17:14:49 -0500
-Message-ID: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Thu, 13 Feb 2014 04:02:48 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1D42jD1016405
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 22:02:45 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1D42jcl031310
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2014 22:02:45 -0600
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Wed, 12 Feb 2014 22:02:45 -0600
+From: "Nelson, Sam" <sam.nelson@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH v2] openntpd: Add recipe for building
+	OpenNTPD
+Thread-Index: AQHPKCD5alOZQP3K3UuBvG8SEGWRUZqyaEMAgAAhygA=
+Date: Thu, 13 Feb 2014 04:02:45 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F490549F71C4@DLEE11.ent.ti.com>
+References: <1392230029-12829-1-git-send-email-sam.nelson@ti.com>
+	<20140212193813.GO4346@edge>
+In-Reply-To: <20140212193813.GO4346@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: Aravind Batni <aravindbr@ti.com>
-Subject: [PATCH] ti-rm: provides ti resouce manager recipe for KeyStone devices
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH v2] openntpd: Add recipe for building OpenNTPD
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,84 +41,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Feb 2014 22:14:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 13 Feb 2014 04:02:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- TI Resource Manager Low Level Driver
 
-Signed-off-by: Aravind Batni <aravindbr@ti.com>
----
- meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc    |    7 ++++
- meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb |   45 ++++++++++++++++++++++
- 2 files changed, 52 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
- create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
-new file mode 100644
-index 0000000..96da467
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
-@@ -0,0 +1,7 @@
-+LICENSE = "TI BSD"
-+LIC_FILES_CHKSUM = "file://COPYING.txt;md5=dc61631b65360e6beb73b6c337800afc"
-+
-+BRANCH="master"
-+SRC_URI = "git://git.ti.com/keystone-rtos/rm-lld.git;protocol=git;branch=${BRANCH}"
-+# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
-+SRCREV = "3a73cfe015214ff0401639f85fa5e52ea610e59d"
-diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
-new file mode 100644
-index 0000000..7c8dad0
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
-@@ -0,0 +1,45 @@
-+DESCRIPTION = "TI Resource Manager Low Level Driver"
-+
-+COMPATIBLE_MACHINE = "keystone"
-+
-+PR = "r0"
-+DEPENDS="ti-ipc"
-+LLD-NAME="rm"
-+
-+include ti-rm.inc
-+
-+S = "${WORKDIR}/git"
-+LLD-BLD-DIR="${S}/ti/drv"
-+
-+PACKAGES =+ "${PN}-test"
-+
-+FILES_${PN}-test = "${bindir}/rmDspClientTest_*.out \
-+                    ${bindir}/rmLinuxClientTest_*.out \
-+                    ${bindir}/ti/drv/rm/test/dts_files/*.dtb"
-+
-+do_configure () {
-+#   tweak the directory structure to LLD way
-+    cd ${S}
-+    mkdir -p ${LLD-BLD-DIR}
-+    cd ${LLD-BLD-DIR}
-+    ln -s ${S} ${LLD-NAME}
-+}
-+
-+do_compile () {
-+#   Now build the lld in the updated directory	
-+    cd ${LLD-BLD-DIR}/${LLD-NAME}   
-+    make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
-+    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
-+    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes	
-+    make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
-+    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME}
-+    make -f makefile_armv7 lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes	
-+}
-+
-+do_install () {
-+    install -d ${D}/${includedir}/ti/drv/${LLD-NAME}
-+    install -d ${D}/${libdir}
-+    install -d ${D}/${bindir}	
-+    make -f makefile_armv7 install installbin installbin_test INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}/${libdir} INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2h
-+    make -f makefile_armv7 install installbin installbin_test INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}/${libdir} INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2k	
-+}
--- 
-1.7.9.5
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Wednesday, February 12, 2014 2:38 PM
+> To: Nelson, Sam
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH v2] openntpd: Add recipe for building
+> OpenNTPD
+>=20
+> On Wed, Feb 12, 2014 at 01:33:49PM -0500, Sam Nelson wrote:
+> > - OpenNTPD is a open source implementation of Network time protocol
+> >
+> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> >
+> > ---
+> > Changes from previous patch
+> > * Moved to recipes-connectivity
+> > * Removed redundant setting of STAGING_KERNEL_DIR
+> > ---
+> > ---
+> >  .../openntpd/openntpd_3.9p1.bb                     |   26 ++++++++++++=
+++++++++
+> >  1 file changed, 26 insertions(+)
+> >  create mode 100755 meta-arago-extras/recipes-
+> connectivity/openntpd/openntpd_3.9p1.bb
+> >
+> > diff --git a/meta-arago-extras/recipes-
+> connectivity/openntpd/openntpd_3.9p1.bb b/meta-arago-extras/recipes-
+> connectivity/openntpd/openntpd_3.9p1.bb
+> > new file mode 100755
+> > index 0000000..ca090e4
+> > --- /dev/null
+> > +++ b/meta-arago-extras/recipes-
+> connectivity/openntpd/openntpd_3.9p1.bb
+> > @@ -0,0 +1,26 @@
+> > +DESCRIPTION =3D "OpenNTPD is a FREE, easy to use implementation of the=
+ \
+> > +Network Time Protocol."
+> > +HOMEPAGE =3D "http://www.openntpd.org/"
+> > +SECTION =3D "console/network"
+> > +LICENSE =3D "BSD ISC"
+> > +LIC_FILES_CHKSUM =3D
+> "file://LICENCE;md5=3D4b4f5158007cc97e6b0e2325bb99854a"
+> > +
+> > +DEPENDS +=3D "virtual/kernel"
+> > +PR =3D "r0"
+> > +
+> > +SRC_URI =3D
+> "http://mirror.ece.vt.edu/pub/OpenBSD/OpenNTPD/${P}.tar.gz"
+> > +
+> > +S =3D "${WORKDIR}/openntpd-${PV}"
+> > +EXTRA_OECONF =3D "--disable-strip"
+> > +inherit autotools
+> > +
+> > +LDFLAGS +=3D "-lrt"
+> > +CFLAGS +=3D "-DTI_ADD_SUPPORT_HW_TIMESTAMPING"
+> > +CPPFLAGS =3D "-I${STAGING_KERNEL_DIR}/include"
+> > +CPPFLAGS +=3D "-I${STAGING_KERNEL_DIR}/arch/arm/include"
+>=20
+> Sam, I keep seeing you passing staged kernel location to user-space apps =
+and
+> daemons and I'm growing suspicious that it's not really needed... Both
+> openntpd and linuxptp should be buildable as is w/o needing to have acces=
+s
+> to
+> the staged kernel. Unless I'm missing something and they do use kernel
+> headers
+> directly (not libc provided) and you have those headers modified for your
+> platform... Can you please elaborate here? Thanks.
+>=20
+[Sam]  I checked on openntp and looks like the kernel reference may be unne=
+cessary.  This recipe came from tci6614 and I will check on more details.
+But linuxptp does depend on kernel headers.
+>=20
+> > +EXTRA_OECONF +=3D "CPPFLAGS=3D"${CPPFLAGS}" LDFLAGS=3D"${LDFLAGS}"
+> CFLAGS=3D"${CFLAGS}" \
+> > +                 --with-privsep-user=3Droot --with-privsep-path=3D/${p=
+refix}"
+> > +
+> > +SRC_URI[md5sum] =3D "afc34175f38d08867c1403d9008600b3"
+> > +SRC_URI[sha256sum] =3D
+> "83dd7c1e8ec8b4567afe49af539271b5a73562fb7a3ca51df73eccba89ec8c49
+> "
+> > --
+> > 1.7.9.5
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
