@@ -1,33 +1,23 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 11BD75298A
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTP id 186765299C
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Feb 2014 14:14:58 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1DEEvsk023713
-	for <meta-arago@arago-project.org>; Thu, 13 Feb 2014 08:14:57 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1DEEvAm022540
-	for <meta-arago@arago-project.org>; Thu, 13 Feb 2014 08:14:57 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.02.0342.003; Thu, 13 Feb 2014 08:14:56 -0600
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: Aravind Batni <aravindbr@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] ti-rm: provides ti resouce manager recipe
-	for	KeyStone devices
-Thread-Index: AQHPKD/eHu4VRm+dH0WF9KiQTuaYsZqzNmeQ
-Date: Thu, 13 Feb 2014 14:14:56 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015996BEC8@DLEE11.ent.ti.com>
-References: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
-In-Reply-To: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH] ti-rm: provides ti resouce manager recipe for	KeyStone devices
+	Thu, 13 Feb 2014 22:47:07 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N0Y0099CHXVYDD0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 13 Feb 2014 16:46:43 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id A0B34201BF; Thu,
+	13 Feb 2014 17:46:41 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 13 Feb 2014 17:46:41 -0500
+Message-id: <1392331601-23980-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] ltp-ddt: update with latest fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,168 +30,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Feb 2014 14:14:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Feb 2014 22:47:07 -0000
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Aravind Batni
->Sent: Wednesday, February 12, 2014 4:15 PM
->To: meta-arago@arago-project.org
->Cc: Aravind Batni
->Subject: [meta-arago] [PATCH] ti-rm: provides ti resouce manager
->recipe for KeyStone devices
->
->- TI Resource Manager Low Level Driver
->
->Signed-off-by: Aravind Batni <aravindbr@ti.com>
->---
-> meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc    |    7 ++++
-> meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb |   45
->++++++++++++++++++++++
-> 2 files changed, 52 insertions(+)
-> create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
-> create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-
->rm_git.bb
->
->diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc b/meta-
->arago-extras/recipes-bsp/ti-rm/ti-rm.inc
->new file mode 100644
->index 0000000..96da467
->--- /dev/null
->+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
->@@ -0,0 +1,7 @@
->+LICENSE =3D "TI BSD"
->+LIC_FILES_CHKSUM =3D
->"file://COPYING.txt;md5=3Ddc61631b65360e6beb73b6c337800afc"
->+
->+BRANCH=3D"master"
->+SRC_URI =3D "git://git.ti.com/keystone-rtos/rm-
->lld.git;protocol=3Dgit;branch=3D${BRANCH}"
->+# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
->+SRCREV =3D "3a73cfe015214ff0401639f85fa5e52ea610e59d"
+From: Denys Dmytriyenko <denys@ti.com>
 
-If you aren't going to have multiple versions of a recipe the .inc is not r=
-equired.  If you do plan for multiple versions then the SRCREV at least is =
-probably best left in the version specific recipe and not in the .inc.  Loo=
-king at this I would think it likely that you could/should just roll this .=
-inc into the regular .bb recipe. =20
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+index bb5462e..e8bc2f6 100644
+--- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
++++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
+@@ -1,9 +1,9 @@
+-PR_append = "-arago8+gitr${SRCPV}"
++PR_append = "-arago9+gitr${SRCPV}"
+ 
+ RDEPENDS_${PN} += "linaro-pm-qa-utils"
+ 
+ # Commit corresponds to ti2013.12.01 release
+-SRCREV = "ed54f16df631bcbb6d6817d7e3540587e7f03123"
++SRCREV = "54b3562fffbb8ace4dc16b3977361e517c976a07"
+ 
+ FILES_${PN}-dbg += " \
+ 	${LTPROOT}/testcases/realtime/*/*/.debug \
+-- 
+1.8.3.2
 
-Looking at the SRCREV below do you want to call this 02.00.00.08 version of=
- the recipe instead of just _git?
-
->b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
->new file mode 100644
->index 0000000..7c8dad0
->--- /dev/null
->+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
->@@ -0,0 +1,45 @@
->+DESCRIPTION =3D "TI Resource Manager Low Level Driver"
->+
->+COMPATIBLE_MACHINE =3D "keystone"
->+
->+PR =3D "r0"
-
-You should probably set PV here if you are not going to change this recipe =
-to a specific version.
-
->+DEPENDS=3D"ti-ipc"
->+LLD-NAME=3D"rm"
->+
->+include ti-rm.inc
->+
->+S =3D "${WORKDIR}/git"
->+LLD-BLD-DIR=3D"${S}/ti/drv"
->+
->+PACKAGES =3D+ "${PN}-test"
->+
->+FILES_${PN}-test =3D "${bindir}/rmDspClientTest_*.out \
->+                    ${bindir}/rmLinuxClientTest_*.out \
->+                    ${bindir}/ti/drv/rm/test/dts_files/*.dtb"
->+
->+do_configure () {
->+#   tweak the directory structure to LLD way
->+    cd ${S}
->+    mkdir -p ${LLD-BLD-DIR}
->+    cd ${LLD-BLD-DIR}
->+    ln -s ${S} ${LLD-NAME}
-
-I'm not sure I understand what you are trying to do here.  It seems like yo=
-u want ${WORKDIR}/git/ti/drv/rm to be pointed to ${S}?  Looking below it se=
-ems like you then want to pass ${S}/ti/drm/rm, which points to ${S} to the =
-make commands.  So can't you just point things to ${S}?
-
-Are you trying to work around the Makefile maybe looking for other files in=
- the ti/drv directory?  Since you created that directory that doesn't seem =
-likely though.  This seems like an issue best handled by updating the Makef=
-iles to allow you to set paths and have a set of defaults.  i.e. PATHX ?=3D=
- "default path".  That way you can update PATHX as a parameter you pass.  B=
-ut this seems strange to make new direcory structures that then link back t=
-o the base directory you were already in.
-
->+}
->+
->+do_compile () {
->+#   Now build the lld in the updated directory
->+    cd ${LLD-BLD-DIR}/${LLD-NAME}
->+    make -f makefile_armv7 clean
->PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2h RM_SRC_DIR=3D${LLD-
->BLD-DIR}/${LLD-NAME}
->+    make -f makefile_armv7 lib tests
->PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2h RM_SRC_DIR=3D${LLD-
->BLD-DIR}/${LLD-NAME}
->+    make -f makefile_armv7 lib tests
->PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2h RM_SRC_DIR=3D${LLD-
->BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=3Dyes
->+    make -f makefile_armv7 clean
->PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2k RM_SRC_DIR=3D${LLD-
->BLD-DIR}/${LLD-NAME}
->+    make -f makefile_armv7 lib tests
->PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2k RM_SRC_DIR=3D${LLD-
->BLD-DIR}/${LLD-NAME}
->+    make -f makefile_armv7 lib tests
->PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3Dk2k RM_SRC_DIR=3D${LLD-
->BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=3Dyes
-
-Some thoughts:
-
-1. Would this be better done as a for loop iterated of the different DEVICE=
- settings?
-2. Since you don't seem to be breaking these libraries out per DEVICE and I=
- think you are packaging both static and dynamic libraries would an "all" m=
-ake target be better than calling each individually?
-	- I actually wonder if you would prefer to split dynamic vs. static librar=
-ies.  Why are both packaged?  Or maybe I don't understand what you are doin=
-g here?
-3. Should the libraries be packaged per DEVICE? The root of this question i=
-s whether this recipe should be machine specific and you build the package =
-for k2k and k2h devices.  It seems like you are making one package that has=
- support for multiple devices.
-
->+}
->+
->+do_install () {
->+    install -d ${D}/${includedir}/ti/drv/${LLD-NAME}
->+    install -d ${D}/${libdir}
->+    install -d ${D}/${bindir}
->+    make -f makefile_armv7 install installbin installbin_test
->INSTALL_INC_BASE_DIR=3D${D}/${includedir}
->INSTALL_LIB_BASE_DIR=3D${D}/${libdir}
->INSTALL_BIN_BASE_DIR=3D${D}/${bindir} DEVICE=3Dk2h
->+    make -f makefile_armv7 install installbin installbin_test
->INSTALL_INC_BASE_DIR=3D${D}/${includedir}
->INSTALL_LIB_BASE_DIR=3D${D}/${libdir}
->INSTALL_BIN_BASE_DIR=3D${D}/${bindir} DEVICE=3Dk2k
->+}
->--
->1.7.9.5
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
