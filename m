@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B8E4B5299C
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 6F1D55299C
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Feb 2014 19:02:09 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1EJ27bZ013400
-	for <meta-arago@arago-project.org>; Fri, 14 Feb 2014 13:02:07 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1EJ27AH015239
-	for <meta-arago@arago-project.org>; Fri, 14 Feb 2014 13:02:07 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 14 Feb 2014 13:02:07 -0600
+	Fri, 14 Feb 2014 21:11:39 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1ELBcY5017745
+	for <meta-arago@arago-project.org>; Fri, 14 Feb 2014 15:11:38 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1ELBcRh018775
+	for <meta-arago@arago-project.org>; Fri, 14 Feb 2014 15:11:38 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 14 Feb 2014 15:11:37 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1EJ276r001507;
-	Fri, 14 Feb 2014 13:02:07 -0600
-Date: Fri, 14 Feb 2014 14:02:06 -0500
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1ELBbgH017866;
+	Fri, 14 Feb 2014 15:11:37 -0600
+Date: Fri, 14 Feb 2014 16:11:37 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Nelson, Sam" <sam.nelson@ti.com>
-Message-ID: <20140214190206.GH7138@edge>
-References: <1392230029-12829-1-git-send-email-sam.nelson@ti.com>
-	<20140212193813.GO4346@edge>
-	<4F9216F96E5DF9428610502835A9F49054A02CA3@DLEE11.ent.ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-ID: <20140214211136.GM7138@edge>
+References: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015996BEC8@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <4F9216F96E5DF9428610502835A9F49054A02CA3@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015996BEC8@DLEE11.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v2] openntpd: Add recipe for building OpenNTPD
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
+	Aravind Batni <aravindbr@ti.com>
+Subject: Re: [PATCH] ti-rm: provides ti resouce manager recipe for	KeyStone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,124 +39,180 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Feb 2014 19:02:11 -0000
+X-List-Received-Date: Fri, 14 Feb 2014 21:11:40 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Fri, Feb 14, 2014 at 10:27:13AM -0500, Nelson, Sam wrote:
+On Thu, Feb 13, 2014 at 02:14:56PM +0000, Maupin, Chase wrote:
+> >-----Original Message-----
+> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >bounces@arago-project.org] On Behalf Of Aravind Batni
+> >Sent: Wednesday, February 12, 2014 4:15 PM
+> >To: meta-arago@arago-project.org
+> >Cc: Aravind Batni
+> >Subject: [meta-arago] [PATCH] ti-rm: provides ti resouce manager
+> >recipe for KeyStone devices
+> >
+> >- TI Resource Manager Low Level Driver
+> >
+> >Signed-off-by: Aravind Batni <aravindbr@ti.com>
+> >---
+> > meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc    |    7 ++++
+> > meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb |   45
+> >++++++++++++++++++++++
+> > 2 files changed, 52 insertions(+)
+> > create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+> > create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-
+> >rm_git.bb
+> >
+> >diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc b/meta-
+> >arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+> >new file mode 100644
+> >index 0000000..96da467
+> >--- /dev/null
+> >+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
+> >@@ -0,0 +1,7 @@
+> >+LICENSE = "TI BSD"
+> >+LIC_FILES_CHKSUM =
+> >"file://COPYING.txt;md5=dc61631b65360e6beb73b6c337800afc"
+> >+
+> >+BRANCH="master"
+> >+SRC_URI = "git://git.ti.com/keystone-rtos/rm-
+> >lld.git;protocol=git;branch=${BRANCH}"
+> >+# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
+> >+SRCREV = "3a73cfe015214ff0401639f85fa5e52ea610e59d"
 > 
+> If you aren't going to have multiple versions of a recipe the .inc is not 
+> required.  If you do plan for multiple versions then the SRCREV at least is 
+> probably best left in the version specific recipe and not in the .inc.  
+> Looking at this I would think it likely that you could/should just roll this 
+> .inc into the regular .bb recipe.
 > 
-> > -----Original Message-----
-> > From: Nelson, Sam
-> > Sent: Wednesday, February 12, 2014 11:03 PM
-> > To: Dmytriyenko, Denys
-> > Cc: meta-arago@arago-project.org
-> > Subject: RE: [meta-arago] [PATCH v2] openntpd: Add recipe for building
-> > OpenNTPD
-> > 
-> > 
-> > 
-> > > -----Original Message-----
-> > > From: Dmytriyenko, Denys
-> > > Sent: Wednesday, February 12, 2014 2:38 PM
-> > > To: Nelson, Sam
-> > > Cc: meta-arago@arago-project.org
-> > > Subject: Re: [meta-arago] [PATCH v2] openntpd: Add recipe for building
-> > > OpenNTPD
-> > >
-> > > On Wed, Feb 12, 2014 at 01:33:49PM -0500, Sam Nelson wrote:
-> > > > - OpenNTPD is a open source implementation of Network time protocol
-> > > >
-> > > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > > >
-> > > > ---
-> > > > Changes from previous patch
-> > > > * Moved to recipes-connectivity
-> > > > * Removed redundant setting of STAGING_KERNEL_DIR
-> > > > ---
-> > > > ---
-> > > >  .../openntpd/openntpd_3.9p1.bb                     |   26
-> > ++++++++++++++++++++
-> > > >  1 file changed, 26 insertions(+)
-> > > >  create mode 100755 meta-arago-extras/recipes-
-> > > connectivity/openntpd/openntpd_3.9p1.bb
-> > > >
-> > > > diff --git a/meta-arago-extras/recipes-
-> > > connectivity/openntpd/openntpd_3.9p1.bb b/meta-arago-extras/recipes-
-> > > connectivity/openntpd/openntpd_3.9p1.bb
-> > > > new file mode 100755
-> > > > index 0000000..ca090e4
-> > > > --- /dev/null
-> > > > +++ b/meta-arago-extras/recipes-
-> > > connectivity/openntpd/openntpd_3.9p1.bb
-> > > > @@ -0,0 +1,26 @@
-> > > > +DESCRIPTION = "OpenNTPD is a FREE, easy to use implementation of
-> > the \
-> > > > +Network Time Protocol."
-> > > > +HOMEPAGE = "http://www.openntpd.org/"
-> > > > +SECTION = "console/network"
-> > > > +LICENSE = "BSD ISC"
-> > > > +LIC_FILES_CHKSUM =
-> > > "file://LICENCE;md5=4b4f5158007cc97e6b0e2325bb99854a"
-> > > > +
-> > > > +DEPENDS += "virtual/kernel"
-> > > > +PR = "r0"
-> > > > +
-> > > > +SRC_URI =
-> > > "http://mirror.ece.vt.edu/pub/OpenBSD/OpenNTPD/${P}.tar.gz"
-> > > > +
-> > > > +S = "${WORKDIR}/openntpd-${PV}"
-> > > > +EXTRA_OECONF = "--disable-strip"
-> > > > +inherit autotools
-> > > > +
-> > > > +LDFLAGS += "-lrt"
-> > > > +CFLAGS += "-DTI_ADD_SUPPORT_HW_TIMESTAMPING"
-> > > > +CPPFLAGS = "-I${STAGING_KERNEL_DIR}/include"
-> > > > +CPPFLAGS += "-I${STAGING_KERNEL_DIR}/arch/arm/include"
-> > >
-> > > Sam, I keep seeing you passing staged kernel location to user-space apps
-> > and
-> > > daemons and I'm growing suspicious that it's not really needed... Both
-> > > openntpd and linuxptp should be buildable as is w/o needing to have
-> > access
-> > > to
-> > > the staged kernel. Unless I'm missing something and they do use kernel
-> > > headers
-> > > directly (not libc provided) and you have those headers modified for your
-> > > platform... Can you please elaborate here? Thanks.
-> > >
-> > [Sam]  I checked on openntp and looks like the kernel reference may be
-> > unnecessary.  This recipe came from tci6614 and I will check on more details.
-> > But linuxptp does depend on kernel headers.
+> >diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+> 
+> Looking at the SRCREV below do you want to call this 02.00.00.08 version of 
+> the recipe instead of just _git?
+> 
+> >b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+> >new file mode 100644
+> >index 0000000..7c8dad0
+> >--- /dev/null
+> >+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+> >@@ -0,0 +1,45 @@
+> >+DESCRIPTION = "TI Resource Manager Low Level Driver"
+> >+
+> >+COMPATIBLE_MACHINE = "keystone"
+> >+
+> >+PR = "r0"
+> 
+> You should probably set PV here if you are not going to change this recipe 
+> to a specific version.
+> 
+> >+DEPENDS="ti-ipc"
+> >+LLD-NAME="rm"
+> >+
+> >+include ti-rm.inc
+> >+
+> >+S = "${WORKDIR}/git"
+> >+LLD-BLD-DIR="${S}/ti/drv"
+> >+
+> >+PACKAGES =+ "${PN}-test"
+> >+
+> >+FILES_${PN}-test = "${bindir}/rmDspClientTest_*.out \
+> >+                    ${bindir}/rmLinuxClientTest_*.out \
+> >+                    ${bindir}/ti/drv/rm/test/dts_files/*.dtb"
+> >+
+> >+do_configure () {
+> >+#   tweak the directory structure to LLD way
+> >+    cd ${S}
+> >+    mkdir -p ${LLD-BLD-DIR}
+> >+    cd ${LLD-BLD-DIR}
+> >+    ln -s ${S} ${LLD-NAME}
 
-> [Sam] I was wrong, the openntp looks like does depend on H/W timestamping 
-> defines from the kernel header based on local expert here. So recipe should 
-> be pushed as is.
+Also, please don't use dashes in variable names! Underscores, while not 
+recommended, are still acceptable:
 
-Can you please be more specific - what defines and in which files?
-
-The reason I'm asking is that you use both of those user-space networking 
-daemons directly from upstream w/o modifications. So, even if they do include 
-kernel header files and require some specific defines, they work with a well 
-defined user-space API that should exist on any other regular Linux system. 
-And that means the headers should come from linux-libc-headers, not directly 
-from the kernel.
+LLDBLDDIR - best from Bitbake perspective, not very human-readable
+LLD_BLD_DIR - not perfect from Bitbake perspective, but parseable and readable
+LLD-BLD-DIR - may cause all kinds of issues
 
 
-> > > > +EXTRA_OECONF += "CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-> > > CFLAGS="${CFLAGS}" \
-> > > > +                 --with-privsep-user=root --with-privsep-path=/${prefix}"
-> > > > +
-> > > > +SRC_URI[md5sum] = "afc34175f38d08867c1403d9008600b3"
-> > > > +SRC_URI[sha256sum] =
-> > >
-> > "83dd7c1e8ec8b4567afe49af539271b5a73562fb7a3ca51df73eccba89ec8c49
-> > > "
-> > > > --
-> > > > 1.7.9.5
-> > > >
-> > > > _______________________________________________
-> > > > meta-arago mailing list
-> > > > meta-arago@arago-project.org
-> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> I'm not sure I understand what you are trying to do here.  It seems like you 
+> want ${WORKDIR}/git/ti/drv/rm to be pointed to ${S}?  Looking below it seems 
+> like you then want to pass ${S}/ti/drm/rm, which points to ${S} to the make 
+> commands.  So can't you just point things to ${S}?
+> 
+> Are you trying to work around the Makefile maybe looking for other files in 
+> the ti/drv directory?  Since you created that directory that doesn't seem 
+> likely though.  This seems like an issue best handled by updating the 
+> Makefiles to allow you to set paths and have a set of defaults.  i.e. PATHX 
+> ?= "default path".  That way you can update PATHX as a parameter you pass.  
+> But this seems strange to make new direcory structures that then link back 
+> to the base directory you were already in.
+> 
+> >+}
+> >+
+> >+do_compile () {
+> >+#   Now build the lld in the updated directory
+> >+    cd ${LLD-BLD-DIR}/${LLD-NAME}
+> >+    make -f makefile_armv7 clean
+> >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-
+> >BLD-DIR}/${LLD-NAME}
+> >+    make -f makefile_armv7 lib tests
+> >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-
+> >BLD-DIR}/${LLD-NAME}
+> >+    make -f makefile_armv7 lib tests
+> >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h RM_SRC_DIR=${LLD-
+> >BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes
+> >+    make -f makefile_armv7 clean
+> >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-
+> >BLD-DIR}/${LLD-NAME}
+> >+    make -f makefile_armv7 lib tests
+> >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-
+> >BLD-DIR}/${LLD-NAME}
+> >+    make -f makefile_armv7 lib tests
+> >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k RM_SRC_DIR=${LLD-
+> >BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes
+> 
+> Some thoughts:
+> 
+> 1. Would this be better done as a for loop iterated of the different DEVICE 
+> settings?
+> 2. Since you don't seem to be breaking these libraries out per DEVICE and I 
+> think you are packaging both static and dynamic libraries would an "all" 
+> make target be better than calling each individually?
+> 	- I actually wonder if you would prefer to split dynamic vs. static 
+> 	libraries.  Why are both packaged?  Or maybe I don't understand what 
+> 	you are doing here?
+> 3. Should the libraries be packaged per DEVICE? The root of this question is 
+> whether this recipe should be machine specific and you build the package for 
+> k2k and k2h devices.  It seems like you are making one package that has 
+> support for multiple devices.
+> 
+> >+}
+> >+
+> >+do_install () {
+> >+    install -d ${D}/${includedir}/ti/drv/${LLD-NAME}
+> >+    install -d ${D}/${libdir}
+> >+    install -d ${D}/${bindir}
+> >+    make -f makefile_armv7 install installbin installbin_test
+> >INSTALL_INC_BASE_DIR=${D}/${includedir}
+> >INSTALL_LIB_BASE_DIR=${D}/${libdir}
+> >INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2h
+> >+    make -f makefile_armv7 install installbin installbin_test
+> >INSTALL_INC_BASE_DIR=${D}/${includedir}
+> >INSTALL_LIB_BASE_DIR=${D}/${libdir}
+> >INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2k
+> >+}
+> >--
+> >1.7.9.5
+> >
+> >_______________________________________________
+> >meta-arago mailing list
+> >meta-arago@arago-project.org
+> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
