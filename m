@@ -1,34 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E3A0252986
+Return-Path: <aravindbr@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 30C7752986
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Feb 2014 22:03:56 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1JM3uJH000889
-	for <meta-arago@arago-project.org>; Wed, 19 Feb 2014 16:03:56 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1JM3txb012246
-	for <meta-arago@arago-project.org>; Wed, 19 Feb 2014 16:03:55 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 19 Feb 2014 16:03:55 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1JM3t5f001040;
-	Wed, 19 Feb 2014 16:03:55 -0600
-Date: Wed, 19 Feb 2014 17:03:55 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140219220355.GF7138@edge>
+	Wed, 19 Feb 2014 22:09:18 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1JM9G09021738
+	for <meta-arago@arago-project.org>; Wed, 19 Feb 2014 16:09:16 -0600
+Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1JM9CQb005408
+	for <meta-arago@arago-project.org>; Thu, 20 Feb 2014 03:39:14 +0530
+Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
+	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
+	14.03.0174.001; Thu, 20 Feb 2014 03:39:11 +0530
+From: Aravind Batni <aravindbr@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>, "Maupin, Chase" <chase.maupin@ti.com>
+Thread-Topic: [meta-arago] [PATCH] ti-rm: provides ti resouce manager recipe
+	for	KeyStone devices
+Thread-Index: AQHPKMX6ybdzqA293UKK2HYxGYka75q05PGAgAbjSeCAAITBAIAAgjuAgABdVmA=
+Date: Wed, 19 Feb 2014 22:09:12 +0000
+Message-ID: <941289A393E94C478C153EF5E432FDBB3EA7CD49@DBDE04.ent.ti.com>
 References: <1392243289-10398-1-git-send-email-aravindbr@ti.com>
 	<7D46E86EC0A8354091174257B2FED1015996BEC8@DLEE11.ent.ti.com>
 	<20140214211136.GM7138@edge>
 	<941289A393E94C478C153EF5E432FDBB3EA797F4@DBDE04.ent.ti.com>
 	<7D46E86EC0A8354091174257B2FED1015CEBED5F@DLEE11.ent.ti.com>
+	<20140219220355.GF7138@edge>
+In-Reply-To: <20140219220355.GF7138@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.24.170.142]
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015CEBED5F@DLEE11.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	Aravind Batni <aravindbr@ti.com>
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] ti-rm: provides ti resouce manager recipe for	KeyStone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -42,291 +45,209 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Feb 2014 22:03:57 -0000
+X-List-Received-Date: Wed, 19 Feb 2014 22:09:18 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: base64
 
-On Wed, Feb 19, 2014 at 09:17:48AM -0500, Maupin, Chase wrote:
-> >-----Original Message-----
-> >From: Aravind Batni
-> >Sent: Tuesday, February 18, 2014 7:41 PM
-> >To: Dmytriyenko, Denys; Maupin, Chase
-> >Cc: meta-arago@arago-project.org
-> >Subject: RE: [meta-arago] [PATCH] ti-rm: provides ti resouce
-> >manager recipe for KeyStone devices
-> >
-> >Denys/Chase,
-> >Thanks for the inputs - Please find the response in-lined.
-> >
-> >-Best Regards,
-> >Aravind
-> >
-> >
-> >> -----Original Message-----
-> >> From: Dmytriyenko, Denys
-> >> Sent: Friday, February 14, 2014 4:12 PM
-> >> To: Maupin, Chase
-> >> Cc: Aravind Batni; meta-arago@arago-project.org
-> >> Subject: Re: [meta-arago] [PATCH] ti-rm: provides ti resouce
-> >manager recipe
-> >> for KeyStone devices
-> >>
-> >> On Thu, Feb 13, 2014 at 02:14:56PM +0000, Maupin, Chase wrote:
-> >> > >-----Original Message-----
-> >> > >From: meta-arago-bounces@arago-project.org [mailto:meta-
-> >arago-
-> >> > >bounces@arago-project.org] On Behalf Of Aravind Batni
-> >> > >Sent: Wednesday, February 12, 2014 4:15 PM
-> >> > >To: meta-arago@arago-project.org
-> >> > >Cc: Aravind Batni
-> >> > >Subject: [meta-arago] [PATCH] ti-rm: provides ti resouce
-> >manager
-> >> > >recipe for KeyStone devices
-> >> > >
-> >> > >- TI Resource Manager Low Level Driver
-> >> > >
-> >> > >Signed-off-by: Aravind Batni <aravindbr@ti.com>
-> >> > >---
-> >> > > meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc    |    7 ++++
-> >> > > meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb |   45
-> >> > >++++++++++++++++++++++
-> >> > > 2 files changed, 52 insertions(+)
-> >> > > create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-
-> >rm.inc
-> >> > > create mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-
-> >> > >rm_git.bb
-> >> > >
-> >> > >diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
-> >b/meta-
-> >> > >arago-extras/recipes-bsp/ti-rm/ti-rm.inc
-> >> > >new file mode 100644
-> >> > >index 0000000..96da467
-> >> > >--- /dev/null
-> >> > >+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm.inc
-> >> > >@@ -0,0 +1,7 @@
-> >> > >+LICENSE = "TI BSD"
-> >> > >+LIC_FILES_CHKSUM =
-> >> > >"file://COPYING.txt;md5=dc61631b65360e6beb73b6c337800afc"
-> >> > >+
-> >> > >+BRANCH="master"
-> >> > >+SRC_URI = "git://git.ti.com/keystone-rtos/rm-
-> >> > >lld.git;protocol=git;branch=${BRANCH}"
-> >> > >+# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
-> >SRCREV =
-> >> > >+"3a73cfe015214ff0401639f85fa5e52ea610e59d"
-> >> >
-> >> > If you aren't going to have multiple versions of a recipe the
-> >.inc is
-> >> > not required.  If you do plan for multiple versions then the
-> >SRCREV at
-> >> > least is probably best left in the version specific recipe and
-> >not in the .inc.
-> >> > Looking at this I would think it likely that you could/should
-> >just
-> >> > roll this .inc into the regular .bb recipe.
-> >> >
-> >
-> > [Aravind Batni] Yes, we can roll this to the regular .bb recipe
-> >
-> >> > >diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
-> >> >
-> >> > Looking at the SRCREV below do you want to call this
-> >02.00.00.08
-> >> > version of the recipe instead of just _git?
-> >> >
-> >[Aravind Batni]  We would like to call this as _git recipe since
-> >we don't plan to provide multiple recipes per RM release.
-> >
-> >> > >b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
-> >> > >new file mode 100644
-> >> > >index 0000000..7c8dad0
-> >> > >--- /dev/null
-> >> > >+++ b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
-> >> > >@@ -0,0 +1,45 @@
-> >> > >+DESCRIPTION = "TI Resource Manager Low Level Driver"
-> >> > >+
-> >> > >+COMPATIBLE_MACHINE = "keystone"
-> >> > >+
-> >> > >+PR = "r0"
-> >> >
-> >> > You should probably set PV here if you are not going to change
-> >this
-> >> > recipe to a specific version.
-> >
-> >[Aravind Batni] Yes, I would add PV variable in the recipe
-> >> >
-> >> > >+DEPENDS="ti-ipc"
-> >> > >+LLD-NAME="rm"
-> >> > >+
-> >> > >+include ti-rm.inc
-> >> > >+
-> >> > >+S = "${WORKDIR}/git"
-> >> > >+LLD-BLD-DIR="${S}/ti/drv"
-> >> > >+
-> >> > >+PACKAGES =+ "${PN}-test"
-> >> > >+
-> >> > >+FILES_${PN}-test = "${bindir}/rmDspClientTest_*.out \
-> >> > >+                    ${bindir}/rmLinuxClientTest_*.out \
-> >> > >+
-> >${bindir}/ti/drv/rm/test/dts_files/*.dtb"
-> >> > >+
-> >> > >+do_configure () {
-> >> > >+#   tweak the directory structure to LLD way
-> >> > >+    cd ${S}
-> >> > >+    mkdir -p ${LLD-BLD-DIR}
-> >> > >+    cd ${LLD-BLD-DIR}
-> >> > >+    ln -s ${S} ${LLD-NAME}
-> >>
-> >> Also, please don't use dashes in variable names! Underscores,
-> >while not
-> >> recommended, are still acceptable:
-> >>
-> >> LLDBLDDIR - best from Bitbake perspective, not very human-
-> >readable
-> >> LLD_BLD_DIR - not perfect from Bitbake perspective, but
-> >parseable and
-> >> readable LLD-BLD-DIR - may cause all kinds of issues
-> >>
-> > [Aravind Batni] Yes, I would correct the recipe not to use any
-> >dashes
-> >>
-> >> > I'm not sure I understand what you are trying to do here.  It
-> >seems
-> >> > like you want ${WORKDIR}/git/ti/drv/rm to be pointed to ${S}?
-> >Looking
-> >> > below it seems like you then want to pass ${S}/ti/drm/rm,
-> >which points
-> >> > to ${S} to the make commands.  So can't you just point things
-> >to ${S}?
-> >> >
-> >> > Are you trying to work around the Makefile maybe looking for
-> >other
-> >> > files in the ti/drv directory?  Since you created that
-> >directory that
-> >> > doesn't seem likely though.  This seems like an issue best
-> >handled by
-> >> > updating the Makefiles to allow you to set paths and have a
-> >set of
-> >> > defaults.  i.e. PATHX ?= "default path".  That way you can
-> >update PATHX as
-> >> a parameter you pass.
-> >> > But this seems strange to make new direcory structures that
-> >then link
-> >> > back to the base directory you were already in.
-> >[Aravind Batni]  The RM source does not permit to build from ${S}
-> >directly. If we had a way to create ${S} (git clone) under
-> >ti/drv/rm, then we don’t need to create the symbolic links to
-> >build RM lld. This is done originally to support DSP builds that
-> >are delivered from PDK, which demand this depth in the directory.
-> 
-> OK, help me understand here.  You are cloning to ${WORKDIR}/git, but you 
-> need the clone to really be in ${WORKDIR}/git/ti/drv/rm directory because 
-> the makefiles/sources demand this directory structure?
-> 
-> Denys, are you aware of any option to control where the clone checks out to?
-
-Yes, adding ;destsuffix=ti/drv/rm to SRC_URI will check out into that 
-directory relative to ${WORKDIR}. If you want the default "git" part 
-preserved, you can do ;destsuffix=git/ti/drv/rm - either way is fine.
-
-
-> If the sources were stored in the repo under ti/drm/rm would this work?
-> 
-> 
-> >> >
-> >> > >+}
-> >> > >+
-> >> > >+do_compile () {
-> >> > >+#   Now build the lld in the updated directory
-> >> > >+    cd ${LLD-BLD-DIR}/${LLD-NAME}
-> >> > >+    make -f makefile_armv7 clean
-> >> > >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h
-> >> RM_SRC_DIR=${LLD-
-> >> > >BLD-DIR}/${LLD-NAME}
-> >> > >+    make -f makefile_armv7 lib tests
-> >> > >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h
-> >> RM_SRC_DIR=${LLD-
-> >> > >BLD-DIR}/${LLD-NAME}
-> >> > >+    make -f makefile_armv7 lib tests
-> >> > >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2h
-> >> RM_SRC_DIR=${LLD-
-> >> > >BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes
-> >> > >+    make -f makefile_armv7 clean
-> >> > >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k
-> >> RM_SRC_DIR=${LLD-
-> >> > >BLD-DIR}/${LLD-NAME}
-> >> > >+    make -f makefile_armv7 lib tests
-> >> > >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k
-> >> RM_SRC_DIR=${LLD-
-> >> > >BLD-DIR}/${LLD-NAME}
-> >> > >+    make -f makefile_armv7 lib tests
-> >> > >PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE=k2k
-> >> RM_SRC_DIR=${LLD-
-> >> > >BLD-DIR}/${LLD-NAME} USEDYNAMIC_LIB=yes
-> >> >
-> >> > Some thoughts:
-> >> >
-> >> > 1. Would this be better done as a for loop iterated of the
-> >different
-> >> > DEVICE settings?
-> >[Aravind Batni] Yes, thanks for the inputs. I will modify the
-> >recipe to have for loops .
-> >> > 2. Since you don't seem to be breaking these libraries out per
-> >DEVICE
-> >> > and I think you are packaging both static and dynamic
-> >libraries would an
-> >> "all"
-> >> > make target be better than calling each individually?
-> >> > 	- I actually wonder if you would prefer to split dynamic vs.
-> >static
-> >> > 	libraries.  Why are both packaged?  Or maybe I don't
-> >understand
-> >> what
-> >> > 	you are doing here?
-> >> > 3. Should the libraries be packaged per DEVICE? The root of
-> >this
-> >> > question is whether this recipe should be machine specific and
-> >you
-> >> > build the package for k2k and k2h devices.  It seems like you
-> >are
-> >> > making one package that has support for multiple devices.
-> >
-> >[Aravind Batni] There is a single library for both K2H and K2K
-> >devices, the options are for test applications. I now modified the
-> >recipe
-> >to  build the library only once for both K2H and K2K and build all
-> >other variations on the test applications in the next updated
-> >patch submit.
-> >> >
-> >> > >+}
-> >> > >+
-> >> > >+do_install () {
-> >> > >+    install -d ${D}/${includedir}/ti/drv/${LLD-NAME}
-> >> > >+    install -d ${D}/${libdir}
-> >> > >+    install -d ${D}/${bindir}
-> >> > >+    make -f makefile_armv7 install installbin
-> >installbin_test
-> >> > >INSTALL_INC_BASE_DIR=${D}/${includedir}
-> >> > >INSTALL_LIB_BASE_DIR=${D}/${libdir}
-> >> > >INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2h
-> >> > >+    make -f makefile_armv7 install installbin
-> >installbin_test
-> >> > >INSTALL_INC_BASE_DIR=${D}/${includedir}
-> >> > >INSTALL_LIB_BASE_DIR=${D}/${libdir}
-> >> > >INSTALL_BIN_BASE_DIR=${D}/${bindir} DEVICE=k2k
-> >> > >+}
-> >> > >--
-> >[Aravind Batni] I would have a for loop based installs for every
-> >device.
-> >> > >1.7.9.5
-> >> > >
-> >> > >_______________________________________________
-> >> > >meta-arago mailing list
-> >> > >meta-arago@arago-project.org
-> >> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >> > _______________________________________________
-> >> > meta-arago mailing list
-> >> > meta-arago@arago-project.org
-> >> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBEbXl0cml5ZW5rbywgRGVueXMN
+Cj4gU2VudDogV2VkbmVzZGF5LCBGZWJydWFyeSAxOSwgMjAxNCA1OjA0IFBNDQo+IFRvOiBNYXVw
+aW4sIENoYXNlDQo+IENjOiBBcmF2aW5kIEJhdG5pOyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qu
+b3JnDQo+IFN1YmplY3Q6IFJlOiBbbWV0YS1hcmFnb10gW1BBVENIXSB0aS1ybTogcHJvdmlkZXMg
+dGkgcmVzb3VjZSBtYW5hZ2VyIHJlY2lwZQ0KPiBmb3IgS2V5U3RvbmUgZGV2aWNlcw0KPiANCj4g
+T24gV2VkLCBGZWIgMTksIDIwMTQgYXQgMDk6MTc6NDhBTSAtMDUwMCwgTWF1cGluLCBDaGFzZSB3
+cm90ZToNCj4gPiA+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+RnJvbTogQXJhdmlu
+ZCBCYXRuaQ0KPiA+ID5TZW50OiBUdWVzZGF5LCBGZWJydWFyeSAxOCwgMjAxNCA3OjQxIFBNDQo+
+ID4gPlRvOiBEbXl0cml5ZW5rbywgRGVueXM7IE1hdXBpbiwgQ2hhc2UNCj4gPiA+Q2M6IG1ldGEt
+YXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNCj4gPiA+U3ViamVjdDogUkU6IFttZXRhLWFyYWdvXSBb
+UEFUQ0hdIHRpLXJtOiBwcm92aWRlcyB0aSByZXNvdWNlIG1hbmFnZXINCj4gPiA+cmVjaXBlIGZv
+ciBLZXlTdG9uZSBkZXZpY2VzDQo+ID4gPg0KPiA+ID5EZW55cy9DaGFzZSwNCj4gPiA+VGhhbmtz
+IGZvciB0aGUgaW5wdXRzIC0gUGxlYXNlIGZpbmQgdGhlIHJlc3BvbnNlIGluLWxpbmVkLg0KPiA+
+ID4NCj4gPiA+LUJlc3QgUmVnYXJkcywNCj4gPiA+QXJhdmluZA0KPiA+ID4NCj4gPiA+DQo+ID4g
+Pj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+PiBGcm9tOiBEbXl0cml5ZW5rbywg
+RGVueXMNCj4gPiA+PiBTZW50OiBGcmlkYXksIEZlYnJ1YXJ5IDE0LCAyMDE0IDQ6MTIgUE0NCj4g
+PiA+PiBUbzogTWF1cGluLCBDaGFzZQ0KPiA+ID4+IENjOiBBcmF2aW5kIEJhdG5pOyBtZXRhLWFy
+YWdvQGFyYWdvLXByb2plY3Qub3JnDQo+ID4gPj4gU3ViamVjdDogUmU6IFttZXRhLWFyYWdvXSBb
+UEFUQ0hdIHRpLXJtOiBwcm92aWRlcyB0aSByZXNvdWNlDQo+ID4gPm1hbmFnZXIgcmVjaXBlDQo+
+ID4gPj4gZm9yIEtleVN0b25lIGRldmljZXMNCj4gPiA+Pg0KPiA+ID4+IE9uIFRodSwgRmViIDEz
+LCAyMDE0IGF0IDAyOjE0OjU2UE0gKzAwMDAsIE1hdXBpbiwgQ2hhc2Ugd3JvdGU6DQo+ID4gPj4g
+PiA+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+PiA+ID5Gcm9tOiBtZXRhLWFyYWdv
+LWJvdW5jZXNAYXJhZ28tcHJvamVjdC5vcmcgW21haWx0bzptZXRhLQ0KPiA+ID5hcmFnby0NCj4g
+PiA+PiA+ID5ib3VuY2VzQGFyYWdvLXByb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgQXJhdmluZCBC
+YXRuaQ0KPiA+ID4+ID4gPlNlbnQ6IFdlZG5lc2RheSwgRmVicnVhcnkgMTIsIDIwMTQgNDoxNSBQ
+TQ0KPiA+ID4+ID4gPlRvOiBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQo+ID4gPj4gPiA+
+Q2M6IEFyYXZpbmQgQmF0bmkNCj4gPiA+PiA+ID5TdWJqZWN0OiBbbWV0YS1hcmFnb10gW1BBVENI
+XSB0aS1ybTogcHJvdmlkZXMgdGkgcmVzb3VjZQ0KPiA+ID5tYW5hZ2VyDQo+ID4gPj4gPiA+cmVj
+aXBlIGZvciBLZXlTdG9uZSBkZXZpY2VzDQo+ID4gPj4gPiA+DQo+ID4gPj4gPiA+LSBUSSBSZXNv
+dXJjZSBNYW5hZ2VyIExvdyBMZXZlbCBEcml2ZXINCj4gPiA+PiA+ID4NCj4gPiA+PiA+ID5TaWdu
+ZWQtb2ZmLWJ5OiBBcmF2aW5kIEJhdG5pIDxhcmF2aW5kYnJAdGkuY29tPg0KPiA+ID4+ID4gPi0t
+LQ0KPiA+ID4+ID4gPiBtZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWJzcC90aS1ybS90aS1ybS5p
+bmMgICAgfCAgICA3ICsrKysNCj4gPiA+PiA+ID4gbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1i
+c3AvdGktcm0vdGktcm1fZ2l0LmJiIHwgICA0NQ0KPiA+ID4+ID4gPisrKysrKysrKysrKysrKysr
+KysrKysNCj4gPiA+PiA+ID4gMiBmaWxlcyBjaGFuZ2VkLCA1MiBpbnNlcnRpb25zKCspIGNyZWF0
+ZSBtb2RlIDEwMDY0NA0KPiA+ID4+ID4gPiBtZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWJzcC90
+aS1ybS90aS0NCj4gPiA+cm0uaW5jDQo+ID4gPj4gPiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRh
+LWFyYWdvLWV4dHJhcy9yZWNpcGVzLWJzcC90aS1ybS90aS0NCj4gPiA+PiA+ID5ybV9naXQuYmIN
+Cj4gPiA+PiA+ID4NCj4gPiA+PiA+ID5kaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVj
+aXBlcy1ic3AvdGktcm0vdGktcm0uaW5jDQo+ID4gPmIvbWV0YS0NCj4gPiA+PiA+ID5hcmFnby1l
+eHRyYXMvcmVjaXBlcy1ic3AvdGktcm0vdGktcm0uaW5jDQo+ID4gPj4gPiA+bmV3IGZpbGUgbW9k
+ZSAxMDA2NDQNCj4gPiA+PiA+ID5pbmRleCAwMDAwMDAwLi45NmRhNDY3DQo+ID4gPj4gPiA+LS0t
+IC9kZXYvbnVsbA0KPiA+ID4+ID4gPisrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtYnNw
+L3RpLXJtL3RpLXJtLmluYw0KPiA+ID4+ID4gPkBAIC0wLDAgKzEsNyBAQA0KPiA+ID4+ID4gPitM
+SUNFTlNFID0gIlRJIEJTRCINCj4gPiA+PiA+ID4rTElDX0ZJTEVTX0NIS1NVTSA9DQo+ID4gPj4g
+PiA+ImZpbGU6Ly9DT1BZSU5HLnR4dDttZDU9ZGM2MTYzMWI2NTM2MGU2YmViNzNiNmMzMzc4MDBh
+ZmMiDQo+ID4gPj4gPiA+Kw0KPiA+ID4+ID4gPitCUkFOQ0g9Im1hc3RlciINCj4gPiA+PiA+ID4r
+U1JDX1VSSSA9ICJnaXQ6Ly9naXQudGkuY29tL2tleXN0b25lLXJ0b3Mvcm0tDQo+ID4gPj4gPiA+
+bGxkLmdpdDtwcm90b2NvbD1naXQ7YnJhbmNoPSR7QlJBTkNIfSINCj4gPiA+PiA+ID4rIyBCZWxv
+dyBjb21taXQgSUQgY29ycmVzcG9uZHMgdG8gREVWLlJNX0xMRC4wMi4wMC4wMC4wOA0KPiA+ID5T
+UkNSRVYgPQ0KPiA+ID4+ID4gPisiM2E3M2NmZTAxNTIxNGZmMDQwMTYzOWY4NWZhNWU1MmVhNjEw
+ZTU5ZCINCj4gPiA+PiA+DQo+ID4gPj4gPiBJZiB5b3UgYXJlbid0IGdvaW5nIHRvIGhhdmUgbXVs
+dGlwbGUgdmVyc2lvbnMgb2YgYSByZWNpcGUgdGhlDQo+ID4gPi5pbmMgaXMNCj4gPiA+PiA+IG5v
+dCByZXF1aXJlZC4gIElmIHlvdSBkbyBwbGFuIGZvciBtdWx0aXBsZSB2ZXJzaW9ucyB0aGVuIHRo
+ZQ0KPiA+ID5TUkNSRVYgYXQNCj4gPiA+PiA+IGxlYXN0IGlzIHByb2JhYmx5IGJlc3QgbGVmdCBp
+biB0aGUgdmVyc2lvbiBzcGVjaWZpYyByZWNpcGUgYW5kDQo+ID4gPm5vdCBpbiB0aGUgLmluYy4N
+Cj4gPiA+PiA+IExvb2tpbmcgYXQgdGhpcyBJIHdvdWxkIHRoaW5rIGl0IGxpa2VseSB0aGF0IHlv
+dSBjb3VsZC9zaG91bGQNCj4gPiA+anVzdA0KPiA+ID4+ID4gcm9sbCB0aGlzIC5pbmMgaW50byB0
+aGUgcmVndWxhciAuYmIgcmVjaXBlLg0KPiA+ID4+ID4NCj4gPiA+DQo+ID4gPiBbQXJhdmluZCBC
+YXRuaV0gWWVzLCB3ZSBjYW4gcm9sbCB0aGlzIHRvIHRoZSByZWd1bGFyIC5iYiByZWNpcGUNCj4g
+PiA+DQo+ID4gPj4gPiA+ZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtYnNw
+L3RpLXJtL3RpLXJtX2dpdC5iYg0KPiA+ID4+ID4NCj4gPiA+PiA+IExvb2tpbmcgYXQgdGhlIFNS
+Q1JFViBiZWxvdyBkbyB5b3Ugd2FudCB0byBjYWxsIHRoaXMNCj4gPiA+MDIuMDAuMDAuMDgNCj4g
+PiA+PiA+IHZlcnNpb24gb2YgdGhlIHJlY2lwZSBpbnN0ZWFkIG9mIGp1c3QgX2dpdD8NCj4gPiA+
+PiA+DQo+ID4gPltBcmF2aW5kIEJhdG5pXSAgV2Ugd291bGQgbGlrZSB0byBjYWxsIHRoaXMgYXMg
+X2dpdCByZWNpcGUgc2luY2Ugd2UNCj4gPiA+ZG9uJ3QgcGxhbiB0byBwcm92aWRlIG11bHRpcGxl
+IHJlY2lwZXMgcGVyIFJNIHJlbGVhc2UuDQo+ID4gPg0KPiA+ID4+ID4gPmIvbWV0YS1hcmFnby1l
+eHRyYXMvcmVjaXBlcy1ic3AvdGktcm0vdGktcm1fZ2l0LmJiDQo+ID4gPj4gPiA+bmV3IGZpbGUg
+bW9kZSAxMDA2NDQNCj4gPiA+PiA+ID5pbmRleCAwMDAwMDAwLi43YzhkYWQwDQo+ID4gPj4gPiA+
+LS0tIC9kZXYvbnVsbA0KPiA+ID4+ID4gPisrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMt
+YnNwL3RpLXJtL3RpLXJtX2dpdC5iYg0KPiA+ID4+ID4gPkBAIC0wLDAgKzEsNDUgQEANCj4gPiA+
+PiA+ID4rREVTQ1JJUFRJT04gPSAiVEkgUmVzb3VyY2UgTWFuYWdlciBMb3cgTGV2ZWwgRHJpdmVy
+Ig0KPiA+ID4+ID4gPisNCj4gPiA+PiA+ID4rQ09NUEFUSUJMRV9NQUNISU5FID0gImtleXN0b25l
+Ig0KPiA+ID4+ID4gPisNCj4gPiA+PiA+ID4rUFIgPSAicjAiDQo+ID4gPj4gPg0KPiA+ID4+ID4g
+WW91IHNob3VsZCBwcm9iYWJseSBzZXQgUFYgaGVyZSBpZiB5b3UgYXJlIG5vdCBnb2luZyB0byBj
+aGFuZ2UNCj4gPiA+dGhpcw0KPiA+ID4+ID4gcmVjaXBlIHRvIGEgc3BlY2lmaWMgdmVyc2lvbi4N
+Cj4gPiA+DQo+ID4gPltBcmF2aW5kIEJhdG5pXSBZZXMsIEkgd291bGQgYWRkIFBWIHZhcmlhYmxl
+IGluIHRoZSByZWNpcGUNCj4gPiA+PiA+DQo+ID4gPj4gPiA+K0RFUEVORFM9InRpLWlwYyINCj4g
+PiA+PiA+ID4rTExELU5BTUU9InJtIg0KPiA+ID4+ID4gPisNCj4gPiA+PiA+ID4raW5jbHVkZSB0
+aS1ybS5pbmMNCj4gPiA+PiA+ID4rDQo+ID4gPj4gPiA+K1MgPSAiJHtXT1JLRElSfS9naXQiDQo+
+ID4gPj4gPiA+K0xMRC1CTEQtRElSPSIke1N9L3RpL2RydiINCj4gPiA+PiA+ID4rDQo+ID4gPj4g
+PiA+K1BBQ0tBR0VTID0rICIke1BOfS10ZXN0Ig0KPiA+ID4+ID4gPisNCj4gPiA+PiA+ID4rRklM
+RVNfJHtQTn0tdGVzdCA9ICIke2JpbmRpcn0vcm1Ec3BDbGllbnRUZXN0Xyoub3V0IFwNCj4gPiA+
+PiA+ID4rICAgICAgICAgICAgICAgICAgICAke2JpbmRpcn0vcm1MaW51eENsaWVudFRlc3RfKi5v
+dXQgXA0KPiA+ID4+ID4gPisNCj4gPiA+JHtiaW5kaXJ9L3RpL2Rydi9ybS90ZXN0L2R0c19maWxl
+cy8qLmR0YiINCj4gPiA+PiA+ID4rDQo+ID4gPj4gPiA+K2RvX2NvbmZpZ3VyZSAoKSB7DQo+ID4g
+Pj4gPiA+KyMgICB0d2VhayB0aGUgZGlyZWN0b3J5IHN0cnVjdHVyZSB0byBMTEQgd2F5DQo+ID4g
+Pj4gPiA+KyAgICBjZCAke1N9DQo+ID4gPj4gPiA+KyAgICBta2RpciAtcCAke0xMRC1CTEQtRElS
+fQ0KPiA+ID4+ID4gPisgICAgY2QgJHtMTEQtQkxELURJUn0NCj4gPiA+PiA+ID4rICAgIGxuIC1z
+ICR7U30gJHtMTEQtTkFNRX0NCj4gPiA+Pg0KPiA+ID4+IEFsc28sIHBsZWFzZSBkb24ndCB1c2Ug
+ZGFzaGVzIGluIHZhcmlhYmxlIG5hbWVzISBVbmRlcnNjb3JlcywNCj4gPiA+d2hpbGUgbm90DQo+
+ID4gPj4gcmVjb21tZW5kZWQsIGFyZSBzdGlsbCBhY2NlcHRhYmxlOg0KPiA+ID4+DQo+ID4gPj4g
+TExEQkxERElSIC0gYmVzdCBmcm9tIEJpdGJha2UgcGVyc3BlY3RpdmUsIG5vdCB2ZXJ5IGh1bWFu
+LQ0KPiA+ID5yZWFkYWJsZQ0KPiA+ID4+IExMRF9CTERfRElSIC0gbm90IHBlcmZlY3QgZnJvbSBC
+aXRiYWtlIHBlcnNwZWN0aXZlLCBidXQNCj4gPiA+cGFyc2VhYmxlIGFuZA0KPiA+ID4+IHJlYWRh
+YmxlIExMRC1CTEQtRElSIC0gbWF5IGNhdXNlIGFsbCBraW5kcyBvZiBpc3N1ZXMNCj4gPiA+Pg0K
+PiA+ID4gW0FyYXZpbmQgQmF0bmldIFllcywgSSB3b3VsZCBjb3JyZWN0IHRoZSByZWNpcGUgbm90
+IHRvIHVzZSBhbnkNCj4gPiA+ZGFzaGVzDQo+ID4gPj4NCj4gPiA+PiA+IEknbSBub3Qgc3VyZSBJ
+IHVuZGVyc3RhbmQgd2hhdCB5b3UgYXJlIHRyeWluZyB0byBkbyBoZXJlLiAgSXQNCj4gPiA+c2Vl
+bXMNCj4gPiA+PiA+IGxpa2UgeW91IHdhbnQgJHtXT1JLRElSfS9naXQvdGkvZHJ2L3JtIHRvIGJl
+IHBvaW50ZWQgdG8gJHtTfT8NCj4gPiA+TG9va2luZw0KPiA+ID4+ID4gYmVsb3cgaXQgc2VlbXMg
+bGlrZSB5b3UgdGhlbiB3YW50IHRvIHBhc3MgJHtTfS90aS9kcm0vcm0sDQo+ID4gPndoaWNoIHBv
+aW50cw0KPiA+ID4+ID4gdG8gJHtTfSB0byB0aGUgbWFrZSBjb21tYW5kcy4gIFNvIGNhbid0IHlv
+dSBqdXN0IHBvaW50IHRoaW5ncw0KPiA+ID50byAke1N9Pw0KPiA+ID4+ID4NCj4gPiA+PiA+IEFy
+ZSB5b3UgdHJ5aW5nIHRvIHdvcmsgYXJvdW5kIHRoZSBNYWtlZmlsZSBtYXliZSBsb29raW5nIGZv
+cg0KPiA+ID5vdGhlcg0KPiA+ID4+ID4gZmlsZXMgaW4gdGhlIHRpL2RydiBkaXJlY3Rvcnk/ICBT
+aW5jZSB5b3UgY3JlYXRlZCB0aGF0DQo+ID4gPmRpcmVjdG9yeSB0aGF0DQo+ID4gPj4gPiBkb2Vz
+bid0IHNlZW0gbGlrZWx5IHRob3VnaC4gIFRoaXMgc2VlbXMgbGlrZSBhbiBpc3N1ZSBiZXN0DQo+
+ID4gPmhhbmRsZWQgYnkNCj4gPiA+PiA+IHVwZGF0aW5nIHRoZSBNYWtlZmlsZXMgdG8gYWxsb3cg
+eW91IHRvIHNldCBwYXRocyBhbmQgaGF2ZSBhDQo+ID4gPnNldCBvZg0KPiA+ID4+ID4gZGVmYXVs
+dHMuICBpLmUuIFBBVEhYID89ICJkZWZhdWx0IHBhdGgiLiAgVGhhdCB3YXkgeW91IGNhbg0KPiA+
+ID51cGRhdGUgUEFUSFggYXMNCj4gPiA+PiBhIHBhcmFtZXRlciB5b3UgcGFzcy4NCj4gPiA+PiA+
+IEJ1dCB0aGlzIHNlZW1zIHN0cmFuZ2UgdG8gbWFrZSBuZXcgZGlyZWNvcnkgc3RydWN0dXJlcyB0
+aGF0DQo+ID4gPnRoZW4gbGluaw0KPiA+ID4+ID4gYmFjayB0byB0aGUgYmFzZSBkaXJlY3Rvcnkg
+eW91IHdlcmUgYWxyZWFkeSBpbi4NCj4gPiA+W0FyYXZpbmQgQmF0bmldICBUaGUgUk0gc291cmNl
+IGRvZXMgbm90IHBlcm1pdCB0byBidWlsZCBmcm9tICR7U30NCj4gPiA+ZGlyZWN0bHkuIElmIHdl
+IGhhZCBhIHdheSB0byBjcmVhdGUgJHtTfSAoZ2l0IGNsb25lKSB1bmRlciB0aS9kcnYvcm0sDQo+
+ID4gPnRoZW4gd2UgZG9u4oCZdCBuZWVkIHRvIGNyZWF0ZSB0aGUgc3ltYm9saWMgbGlua3MgdG8g
+YnVpbGQgUk0gbGxkLiBUaGlzDQo+ID4gPmlzIGRvbmUgb3JpZ2luYWxseSB0byBzdXBwb3J0IERT
+UCBidWlsZHMgdGhhdCBhcmUgZGVsaXZlcmVkIGZyb20gUERLLA0KPiA+ID53aGljaCBkZW1hbmQg
+dGhpcyBkZXB0aCBpbiB0aGUgZGlyZWN0b3J5Lg0KPiA+DQo+ID4gT0ssIGhlbHAgbWUgdW5kZXJz
+dGFuZCBoZXJlLiAgWW91IGFyZSBjbG9uaW5nIHRvICR7V09SS0RJUn0vZ2l0LCBidXQNCj4gPiB5
+b3UgbmVlZCB0aGUgY2xvbmUgdG8gcmVhbGx5IGJlIGluICR7V09SS0RJUn0vZ2l0L3RpL2Rydi9y
+bSBkaXJlY3RvcnkNCj4gPiBiZWNhdXNlIHRoZSBtYWtlZmlsZXMvc291cmNlcyBkZW1hbmQgdGhp
+cyBkaXJlY3Rvcnkgc3RydWN0dXJlPw0KPiA+DQo+ID4gRGVueXMsIGFyZSB5b3UgYXdhcmUgb2Yg
+YW55IG9wdGlvbiB0byBjb250cm9sIHdoZXJlIHRoZSBjbG9uZSBjaGVja3Mgb3V0DQo+IHRvPw0K
+PiANCj4gWWVzLCBhZGRpbmcgO2Rlc3RzdWZmaXg9dGkvZHJ2L3JtIHRvIFNSQ19VUkkgd2lsbCBj
+aGVjayBvdXQgaW50byB0aGF0DQo+IGRpcmVjdG9yeSByZWxhdGl2ZSB0byAke1dPUktESVJ9LiBJ
+ZiB5b3Ugd2FudCB0aGUgZGVmYXVsdCAiZ2l0IiBwYXJ0DQo+IHByZXNlcnZlZCwgeW91IGNhbiBk
+byA7ZGVzdHN1ZmZpeD1naXQvdGkvZHJ2L3JtIC0gZWl0aGVyIHdheSBpcyBmaW5lLg0KPiANCltB
+cmF2aW5kIEJhdG5pXSBEZW55cywgVGhhbmtzIC0gdGhpcyB3b3VsZCBoZWxwIG1lIG5vdCB0byBo
+YXZlIGFueSBzeW1ib2xpYyBsaW5rcyBpbiB0aGUgcmVjaXBlLg0KPiANCj4gPiBJZiB0aGUgc291
+cmNlcyB3ZXJlIHN0b3JlZCBpbiB0aGUgcmVwbyB1bmRlciB0aS9kcm0vcm0gd291bGQgdGhpcyB3
+b3JrPw0KPiA+DQo+ID4NCj4gPiA+PiA+DQo+ID4gPj4gPiA+K30NCj4gPiA+PiA+ID4rDQo+ID4g
+Pj4gPiA+K2RvX2NvbXBpbGUgKCkgew0KPiA+ID4+ID4gPisjICAgTm93IGJ1aWxkIHRoZSBsbGQg
+aW4gdGhlIHVwZGF0ZWQgZGlyZWN0b3J5DQo+ID4gPj4gPiA+KyAgICBjZCAke0xMRC1CTEQtRElS
+fS8ke0xMRC1OQU1FfQ0KPiA+ID4+ID4gPisgICAgbWFrZSAtZiBtYWtlZmlsZV9hcm12NyBjbGVh
+bg0KPiA+ID4+ID4gPlBES19JTlNUQUxMX1BBVEg9JHtTVEFHSU5HX0lOQ0RJUn0gREVWSUNFPWsy
+aA0KPiA+ID4+IFJNX1NSQ19ESVI9JHtMTEQtDQo+ID4gPj4gPiA+QkxELURJUn0vJHtMTEQtTkFN
+RX0NCj4gPiA+PiA+ID4rICAgIG1ha2UgLWYgbWFrZWZpbGVfYXJtdjcgbGliIHRlc3RzDQo+ID4g
+Pj4gPiA+UERLX0lOU1RBTExfUEFUSD0ke1NUQUdJTkdfSU5DRElSfSBERVZJQ0U9azJoDQo+ID4g
+Pj4gUk1fU1JDX0RJUj0ke0xMRC0NCj4gPiA+PiA+ID5CTEQtRElSfS8ke0xMRC1OQU1FfQ0KPiA+
+ID4+ID4gPisgICAgbWFrZSAtZiBtYWtlZmlsZV9hcm12NyBsaWIgdGVzdHMNCj4gPiA+PiA+ID5Q
+REtfSU5TVEFMTF9QQVRIPSR7U1RBR0lOR19JTkNESVJ9IERFVklDRT1rMmgNCj4gPiA+PiBSTV9T
+UkNfRElSPSR7TExELQ0KPiA+ID4+ID4gPkJMRC1ESVJ9LyR7TExELU5BTUV9IFVTRURZTkFNSUNf
+TElCPXllcw0KPiA+ID4+ID4gPisgICAgbWFrZSAtZiBtYWtlZmlsZV9hcm12NyBjbGVhbg0KPiA+
+ID4+ID4gPlBES19JTlNUQUxMX1BBVEg9JHtTVEFHSU5HX0lOQ0RJUn0gREVWSUNFPWsyaw0KPiA+
+ID4+IFJNX1NSQ19ESVI9JHtMTEQtDQo+ID4gPj4gPiA+QkxELURJUn0vJHtMTEQtTkFNRX0NCj4g
+PiA+PiA+ID4rICAgIG1ha2UgLWYgbWFrZWZpbGVfYXJtdjcgbGliIHRlc3RzDQo+ID4gPj4gPiA+
+UERLX0lOU1RBTExfUEFUSD0ke1NUQUdJTkdfSU5DRElSfSBERVZJQ0U9azJrDQo+ID4gPj4gUk1f
+U1JDX0RJUj0ke0xMRC0NCj4gPiA+PiA+ID5CTEQtRElSfS8ke0xMRC1OQU1FfQ0KPiA+ID4+ID4g
+PisgICAgbWFrZSAtZiBtYWtlZmlsZV9hcm12NyBsaWIgdGVzdHMNCj4gPiA+PiA+ID5QREtfSU5T
+VEFMTF9QQVRIPSR7U1RBR0lOR19JTkNESVJ9IERFVklDRT1rMmsNCj4gPiA+PiBSTV9TUkNfRElS
+PSR7TExELQ0KPiA+ID4+ID4gPkJMRC1ESVJ9LyR7TExELU5BTUV9IFVTRURZTkFNSUNfTElCPXll
+cw0KPiA+ID4+ID4NCj4gPiA+PiA+IFNvbWUgdGhvdWdodHM6DQo+ID4gPj4gPg0KPiA+ID4+ID4g
+MS4gV291bGQgdGhpcyBiZSBiZXR0ZXIgZG9uZSBhcyBhIGZvciBsb29wIGl0ZXJhdGVkIG9mIHRo
+ZQ0KPiA+ID5kaWZmZXJlbnQNCj4gPiA+PiA+IERFVklDRSBzZXR0aW5ncz8NCj4gPiA+W0FyYXZp
+bmQgQmF0bmldIFllcywgdGhhbmtzIGZvciB0aGUgaW5wdXRzLiBJIHdpbGwgbW9kaWZ5IHRoZSBy
+ZWNpcGUNCj4gPiA+dG8gaGF2ZSBmb3IgbG9vcHMgLg0KPiA+ID4+ID4gMi4gU2luY2UgeW91IGRv
+bid0IHNlZW0gdG8gYmUgYnJlYWtpbmcgdGhlc2UgbGlicmFyaWVzIG91dCBwZXINCj4gPiA+REVW
+SUNFDQo+ID4gPj4gPiBhbmQgSSB0aGluayB5b3UgYXJlIHBhY2thZ2luZyBib3RoIHN0YXRpYyBh
+bmQgZHluYW1pYw0KPiA+ID5saWJyYXJpZXMgd291bGQgYW4NCj4gPiA+PiAiYWxsIg0KPiA+ID4+
+ID4gbWFrZSB0YXJnZXQgYmUgYmV0dGVyIHRoYW4gY2FsbGluZyBlYWNoIGluZGl2aWR1YWxseT8N
+Cj4gPiA+PiA+IAktIEkgYWN0dWFsbHkgd29uZGVyIGlmIHlvdSB3b3VsZCBwcmVmZXIgdG8gc3Bs
+aXQgZHluYW1pYyB2cy4NCj4gPiA+c3RhdGljDQo+ID4gPj4gPiAJbGlicmFyaWVzLiAgV2h5IGFy
+ZSBib3RoIHBhY2thZ2VkPyAgT3IgbWF5YmUgSSBkb24ndA0KPiA+ID51bmRlcnN0YW5kDQo+ID4g
+Pj4gd2hhdA0KPiA+ID4+ID4gCXlvdSBhcmUgZG9pbmcgaGVyZT8NCj4gPiA+PiA+IDMuIFNob3Vs
+ZCB0aGUgbGlicmFyaWVzIGJlIHBhY2thZ2VkIHBlciBERVZJQ0U/IFRoZSByb290IG9mDQo+ID4g
+PnRoaXMNCj4gPiA+PiA+IHF1ZXN0aW9uIGlzIHdoZXRoZXIgdGhpcyByZWNpcGUgc2hvdWxkIGJl
+IG1hY2hpbmUgc3BlY2lmaWMgYW5kDQo+ID4gPnlvdQ0KPiA+ID4+ID4gYnVpbGQgdGhlIHBhY2th
+Z2UgZm9yIGsyayBhbmQgazJoIGRldmljZXMuICBJdCBzZWVtcyBsaWtlIHlvdQ0KPiA+ID5hcmUN
+Cj4gPiA+PiA+IG1ha2luZyBvbmUgcGFja2FnZSB0aGF0IGhhcyBzdXBwb3J0IGZvciBtdWx0aXBs
+ZSBkZXZpY2VzLg0KPiA+ID4NCj4gPiA+W0FyYXZpbmQgQmF0bmldIFRoZXJlIGlzIGEgc2luZ2xl
+IGxpYnJhcnkgZm9yIGJvdGggSzJIIGFuZCBLMksNCj4gPiA+ZGV2aWNlcywgdGhlIG9wdGlvbnMg
+YXJlIGZvciB0ZXN0IGFwcGxpY2F0aW9ucy4gSSBub3cgbW9kaWZpZWQgdGhlDQo+ID4gPnJlY2lw
+ZSB0byAgYnVpbGQgdGhlIGxpYnJhcnkgb25seSBvbmNlIGZvciBib3RoIEsySCBhbmQgSzJLIGFu
+ZCBidWlsZA0KPiA+ID5hbGwgb3RoZXIgdmFyaWF0aW9ucyBvbiB0aGUgdGVzdCBhcHBsaWNhdGlv
+bnMgaW4gdGhlIG5leHQgdXBkYXRlZA0KPiA+ID5wYXRjaCBzdWJtaXQuDQo+ID4gPj4gPg0KPiA+
+ID4+ID4gPit9DQo+ID4gPj4gPiA+Kw0KPiA+ID4+ID4gPitkb19pbnN0YWxsICgpIHsNCj4gPiA+
+PiA+ID4rICAgIGluc3RhbGwgLWQgJHtEfS8ke2luY2x1ZGVkaXJ9L3RpL2Rydi8ke0xMRC1OQU1F
+fQ0KPiA+ID4+ID4gPisgICAgaW5zdGFsbCAtZCAke0R9LyR7bGliZGlyfQ0KPiA+ID4+ID4gPisg
+ICAgaW5zdGFsbCAtZCAke0R9LyR7YmluZGlyfQ0KPiA+ID4+ID4gPisgICAgbWFrZSAtZiBtYWtl
+ZmlsZV9hcm12NyBpbnN0YWxsIGluc3RhbGxiaW4NCj4gPiA+aW5zdGFsbGJpbl90ZXN0DQo+ID4g
+Pj4gPiA+SU5TVEFMTF9JTkNfQkFTRV9ESVI9JHtEfS8ke2luY2x1ZGVkaXJ9DQo+ID4gPj4gPiA+
+SU5TVEFMTF9MSUJfQkFTRV9ESVI9JHtEfS8ke2xpYmRpcn0NCj4gPiA+PiA+ID5JTlNUQUxMX0JJ
+Tl9CQVNFX0RJUj0ke0R9LyR7YmluZGlyfSBERVZJQ0U9azJoDQo+ID4gPj4gPiA+KyAgICBtYWtl
+IC1mIG1ha2VmaWxlX2FybXY3IGluc3RhbGwgaW5zdGFsbGJpbg0KPiA+ID5pbnN0YWxsYmluX3Rl
+c3QNCj4gPiA+PiA+ID5JTlNUQUxMX0lOQ19CQVNFX0RJUj0ke0R9LyR7aW5jbHVkZWRpcn0NCj4g
+PiA+PiA+ID5JTlNUQUxMX0xJQl9CQVNFX0RJUj0ke0R9LyR7bGliZGlyfQ0KPiA+ID4+ID4gPklO
+U1RBTExfQklOX0JBU0VfRElSPSR7RH0vJHtiaW5kaXJ9IERFVklDRT1rMmsNCj4gPiA+PiA+ID4r
+fQ0KPiA+ID4+ID4gPi0tDQo+ID4gPltBcmF2aW5kIEJhdG5pXSBJIHdvdWxkIGhhdmUgYSBmb3Ig
+bG9vcCBiYXNlZCBpbnN0YWxscyBmb3IgZXZlcnkNCj4gPiA+ZGV2aWNlLg0KPiA+ID4+ID4gPjEu
+Ny45LjUNCj4gPiA+PiA+ID4NCj4gPiA+PiA+ID5fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXw0KPiA+ID4+ID4gPm1ldGEtYXJhZ28gbWFpbGluZyBsaXN0DQo+
+ID4gPj4gPiA+bWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPiA+ID4+ID4gPmh0dHA6Ly9h
+cmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbw0KPiA+
+ID4+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4g
+PiA+PiA+IG1ldGEtYXJhZ28gbWFpbGluZyBsaXN0DQo+ID4gPj4gPiBtZXRhLWFyYWdvQGFyYWdv
+LXByb2plY3Qub3JnDQo+ID4gPj4gPiBodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dpLWJpbi9t
+YWlsbWFuL2xpc3RpbmZvL21ldGEtYXJhZ28NCg==
 
