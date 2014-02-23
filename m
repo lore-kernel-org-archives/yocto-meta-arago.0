@@ -1,27 +1,27 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C3076529B5
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 19C83529AE
 	for <meta-arago@arago-project.org>;
-	Sat, 22 Feb 2014 23:32:02 +0000 (UTC)
+	Sun, 23 Feb 2014 02:46:43 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1MNW22Y010400
-	for <meta-arago@arago-project.org>; Sat, 22 Feb 2014 17:32:02 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1MNW1OZ031728
-	for <meta-arago@arago-project.org>; Sat, 22 Feb 2014 17:32:02 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Sat, 22 Feb 2014 17:32:01 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1N2kgOr021069
+	for <meta-arago@arago-project.org>; Sat, 22 Feb 2014 20:46:42 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1N2kgNP023404
+	for <meta-arago@arago-project.org>; Sat, 22 Feb 2014 20:46:42 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Sat, 22 Feb 2014 20:46:41 -0600
 Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s1MNW1kW005859;	Sat, 22 Feb 2014 17:32:01 -0600
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s1N2kfsR031452;	Sat, 22 Feb 2014 20:46:41 -0600
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sat, 22 Feb 2014 18:31:56 -0500
-Message-ID: <1393111916-9471-1-git-send-email-sam.nelson@ti.com>
+Date: Sat, 22 Feb 2014 21:46:39 -0500
+Message-ID: <1393123599-4661-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] lksctp-tools: Add recipe for lksctp
+Subject: [PATCH v2] lksctp-tools: Add recipe for lksctp
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,31 +34,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Feb 2014 23:32:03 -0000
+X-List-Received-Date: Sun, 23 Feb 2014 02:46:43 -0000
 Content-Type: text/plain
 
 - The linux kernel Stream control transmission protocol
 - Original recipe by Jingting Zhou
 
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+
 ---
- .../recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb |   50 ++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+Updated RREPLACES_${PN}
+Fix build issue with .so
+---
+---
+ .../recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb |   51 ++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
  create mode 100755 meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
 
 diff --git a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
 new file mode 100755
-index 0000000..8cd95e0
+index 0000000..5c75552
 --- /dev/null
 +++ b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb
-@@ -0,0 +1,50 @@
+@@ -0,0 +1,51 @@
 +DESCRIPTION = "The Linux Kernel Stream Control Transmission Protocol (lksctp) project"
 +SECTION = "libs"
 +PRIORITY = "optional"
 +LICENSE = "LGPLv2"
 +LIC_FILES_CHKSUM = "file://src/include/netinet/sctp.h;md5=8089fbe48b63b73c8d091bee750b2ebc"
 +
-+INC_PR = "r2"
++INC_PR = "r0"
 +PR = "${INC_PR}.0"
 +
 +SRC_URI = "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz"
@@ -76,7 +81,7 @@ index 0000000..8cd95e0
 +	:
 +}
 +
-+RREPLACES = "lksctp"
++RREPLACES_${PN} = "lksctp"
 +
 +LEAD_SONAME = "libsctp.so"
 +
@@ -95,7 +100,8 @@ index 0000000..8cd95e0
 +  ${datadir}/lksctp-tools/sctp_sockopt.c \
 +  ${datadir}/lksctp-tools/sctp_socket.h \
 +  ${datadir}/lksctp-tools/sctp_test.c \
-+  ${datadir}/lksctp-tools/sctp_darn.h"
++  ${datadir}/lksctp-tools/sctp_darn.h \
++  ${libdir}/lksctp-tools/lib*.so"
 +
 +FILES_${PN}-utils = " \
 +  ${bindir}/sctp_test \
