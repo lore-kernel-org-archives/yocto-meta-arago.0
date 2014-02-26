@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C6EAD52A20
+Return-Path: <sam.nelson@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 8C6CF52A79
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Feb 2014 07:39:44 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1Q7dhvI025059
-	for <meta-arago@arago-project.org>; Wed, 26 Feb 2014 01:39:43 -0600
+	Wed, 26 Feb 2014 16:47:15 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s1QGlEKD028239
+	for <meta-arago@arago-project.org>; Wed, 26 Feb 2014 10:47:14 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1Q7dhDd021502
-	for <meta-arago@arago-project.org>; Wed, 26 Feb 2014 01:39:43 -0600
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s1QGlErB013475
+	for <meta-arago@arago-project.org>; Wed, 26 Feb 2014 10:47:14 -0600
 Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 26 Feb 2014 01:39:43 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Wed, 26 Feb 2014 10:47:14 -0600
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s1Q7dhoQ024703	for <meta-arago@arago-project.org>;
-	Wed, 26 Feb 2014 01:39:43 -0600
-Date: Wed, 26 Feb 2014 02:26:04 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	s1QGlEsg023866;	Wed, 26 Feb 2014 10:47:14 -0600
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <337534983.327.1393399564912.JavaMail.jenkins@puget>
+Date: Wed, 26 Feb 2014 11:47:12 -0500
+Message-ID: <1393433232-24478-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-02-26_01-00-24
+Subject: [PATCH] ti-edma3: Add recipes for EDMA3 user space low level driver
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +34,118 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Feb 2014 07:39:45 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_326_667890436.1393399564911"
+X-List-Received-Date: Wed, 26 Feb 2014 16:47:15 -0000
+Content-Type: text/plain
 
-------=_Part_326_667890436.1393399564911
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+- Low level user space driver and test code for TI EDMA3
 
-<html>
-<head>
-<title>
-Status for 02/26/14
-</title>
-</head>
-<body>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../recipes-bsp/ti-edma3/ti-edma3-bin_git.bb       |   28 ++++++++++++
+ .../recipes-bsp/ti-edma3/ti-edma3-lib_git.bb       |   45 ++++++++++++++++++++
+ .../recipes-bsp/ti-edma3/ti-edma3.inc              |    5 +++
+ 3 files changed, 78 insertions(+)
+ create mode 100755 meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-bin_git.bb
+ create mode 100755 meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-lib_git.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3.inc
 
-<h2>Status for 02/26/14</h2>
-
-<h2>BUILD_ID: build-2014-02-26_01-01-45</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
-        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"<br>
-OPENTEST_TEE_IP="10.218.102.142"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-bin_git.bb b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-bin_git.bb
+new file mode 100755
+index 0000000..f61b8cc
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-bin_git.bb
+@@ -0,0 +1,28 @@
++DESCRIPTION = "TI EDMA3 low level driver test code"
++LICENSE = "TI BSD"
++
++COMPATIBLE_MACHINE = "keystone-evm"
++
++PR = "r0"
++DEPENDS="ti-csl"
++
++include ti-edma3.inc
++
++S = "${WORKDIR}/git"
++
++do_compile () {
++	cd ${S}/packages
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" INTERNAL_SW_ROOT=${S} make PLATFORM=tci6636k2h-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" INTERNAL_SW_ROOT=${S} make PLATFORM=tci6638k2k-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" INTERNAL_SW_ROOT=${S} make PLATFORM=tci6630k2l-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" INTERNAL_SW_ROOT=${S} make PLATFORM=c66ak2e-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF
++}
++
++do_install () {
++	install -d ${D}/${bindir}
++	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6636K2H/bin/tci6636k2h-evm/edma3_drv_6636k2h_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6636k2h_a15_sample_a15host_release.xa15fg
++	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6638K2K/bin/tci6638k2k-evm/edma3_drv_6638k2k_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6638k2k_a15_sample_a15host_release.xa15fg
++	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6630K2L/bin/tci6630k2l-evm/edma3_drv_6630k2l_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6630k2l_a15_sample_a15host_release.xa15fg
++	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmC66AK2E/bin/c66ak2e-evm/edma3_drv_c66ak2e_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_c66ak2e_a15_sample_a15host_release.xa15fg
++}
++
+diff --git a/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-lib_git.bb b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-lib_git.bb
+new file mode 100755
+index 0000000..8da7e38
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3-lib_git.bb
+@@ -0,0 +1,45 @@
++DESCRIPTION = "TI EDMA3 low level driver"
++LICENSE = "TI BSD"
++
++COMPATIBLE_MACHINE = "keystone"
++
++PR = "r0"
++DEPENDS="ti-csl"
++
++include ti-edma3.inc
++
++S = "${WORKDIR}/git"
++
++do_compile () {
++	cd ${S}/packages
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" CROSSLNK="${TARGET_PREFIX}gcc" INTERNAL_SW_ROOT=${S} make PLATFORM=tci6636k2h-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF SONAME=libedma3.so libs
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" CROSSLNK="${TARGET_PREFIX}gcc" INTERNAL_SW_ROOT=${S} make PLATFORM=tci6638k2k-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF SONAME=libedma3.so libs
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" CROSSLNK="${TARGET_PREFIX}gcc" INTERNAL_SW_ROOT=${S} make PLATFORM=tci6630k2l-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF SONAME=libedma3.so libs
++	ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" CROSSLNK="${TARGET_PREFIX}gcc" INTERNAL_SW_ROOT=${S} make PLATFORM=c66ak2e-evm TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF SONAME=libedma3.so libs
++}
++
++do_install () {
++	install -d ${D}/${libdir}
++
++	# Static Libraries
++	cp ${S}/packages/ti/sdo/edma3/drv/lib/a15/release/edma3_lld_drv.aa15fg ${D}/${libdir}/libedma3.a
++	cp ${S}/packages/ti/sdo/edma3/rm/lib/tci6636k2h-evm/a15/release/edma3_lld_rm.aa15fg ${D}/${libdir}/libedma3rm.a
++
++	# Shared Libraries
++	cp -a ${S}/packages/ti/sdo/edma3/drv/lib/a15/release/libedma* ${D}/${libdir}
++	cp -a ${S}/packages/ti/sdo/edma3/rm/lib/tci6636k2h-evm/a15/release/libedma* ${D}/${libdir}
++
++	# Copy Headers
++	install -d ${D}/${includedir}/ti/sdo/edma3/drv/
++	install -d ${D}/${includedir}/ti/sdo/edma3/rm
++	cp ${S}/packages/ti/sdo/edma3/drv/*.h ${D}/${includedir}/ti/sdo/edma3/drv/
++	cp ${S}/packages/ti/sdo/edma3/rm/*.h ${D}/${includedir}/ti/sdo/edma3/rm/
++
++	# Copy Sample Config
++	install -d ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
++	cp ${S}/examples/edma3_user_space_driver/evmTCI6636K2H/evmTCI6636K2HSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
++	cp ${S}/examples/edma3_user_space_driver/evmTCI6638K2K/evmTCI6638K2KSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
++	cp ${S}/examples/edma3_user_space_driver/evmTCI6630K2L/evmTCI6630K2LSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
++	cp ${S}/examples/edma3_user_space_driver/evmC66AK2E/evmC66AK2ESample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
++}
++
+diff --git a/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3.inc b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3.inc
+new file mode 100644
+index 0000000..948e045
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3.inc
+@@ -0,0 +1,5 @@
++LIC_FILES_CHKSUM = "file://COPYING.txt;md5=5bdceac872dffdec915b819654ee23ea"
++BRANCH="master"
++SRC_URI = "git://git.ti.com/keystone-rtos/edma3_lld.git"
++# The following commit corresponds to tag DEV_EDMA3_LLD_02_11_11_15_RC01
++SRCREV = "b73a262bf6f6d366e3bf83d0c116be2b61a86dde"
+-- 
+1.7.9.5
 
 
-------=_Part_326_667890436.1393399564911--
