@@ -1,27 +1,27 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B649F529F9
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 9749152A1E
 	for <meta-arago@arago-project.org>;
-	Sun,  2 Mar 2014 23:13:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s22ND9XH006315
-	for <meta-arago@arago-project.org>; Sun, 2 Mar 2014 17:13:09 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s22ND9Ff010489
-	for <meta-arago@arago-project.org>; Sun, 2 Mar 2014 17:13:09 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	Sun,  2 Mar 2014 23:18:18 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s22NIIXC009826
+	for <meta-arago@arago-project.org>; Sun, 2 Mar 2014 17:18:18 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s22NIHrQ022938
+	for <meta-arago@arago-project.org>; Sun, 2 Mar 2014 17:18:17 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Sun, 2 Mar 2014 17:13:09 -0600
+	Sun, 2 Mar 2014 17:18:17 -0600
 Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s22ND8hi002418;	Sun, 2 Mar 2014 17:13:08 -0600
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s22NIHqQ015977;	Sun, 2 Mar 2014 17:18:17 -0600
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sun, 2 Mar 2014 18:13:07 -0500
-Message-ID: <1393801987-6753-1-git-send-email-sam.nelson@ti.com>
+Date: Sun, 2 Mar 2014 18:18:15 -0500
+Message-ID: <1393802295-7212-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] ti-edma3: Add recipe for EDMA3 user space low level driver
+Subject: [PATCH] arago.conf: Update preferred version of binutils to 2.23.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,92 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Mar 2014 23:13:11 -0000
+X-List-Received-Date: Sun, 02 Mar 2014 23:18:18 -0000
 Content-Type: text/plain
 
-- Low level user space driver and test code for TI EDMA3
-
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
----
- .../recipes-bsp/ti-edma3/ti-edma3_git.bb           |   69 ++++++++++++++++++++
- 1 file changed, 69 insertions(+)
- create mode 100755 meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb
-new file mode 100755
-index 0000000..82b980f
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb
-@@ -0,0 +1,69 @@
-+DESCRIPTION = "TI EDMA3 low level driver and test code"
-+LICENSE = "TI-BSD"
-+LIC_FILES_CHKSUM = "file://COPYING.txt;md5=5bdceac872dffdec915b819654ee23ea"
+---
+- 2.23.1 is available in oe-core/meta/recipes-devtools/binutils/binutils_2.23.1.bb
+---
+---
+ meta-arago-distro/conf/distro/arago.conf |    2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 76254f2..a789e89 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -70,3 +70,5 @@ LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg"
+ PACKAGE_ARCH := "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}"
+ # Need to include the new PACKAGE_ARCH to the PACKAGE_ARCHS variable
+ PACKAGE_ARCHS += "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}"
 +
-+BRANCH="master"
-+SRC_URI = "git://git.ti.com/keystone-rtos/edma3_lld.git"
-+# The following commit corresponds to tag DEV_EDMA3_LLD_02_11_11_15_RC01
-+SRCREV = "b73a262bf6f6d366e3bf83d0c116be2b61a86dde"
-+
-+PV="2.11.11"
-+
-+COMPATIBLE_MACHINE = "keystone-evm"
-+
-+PR = "r0"
-+DEPENDS="ti-csl"
-+
-+PLATFORMLIST = "tci6636k2h-evm \
-+	tci6638k2k-evm \
-+	tci6630k2l-evm \
-+	c66ak2e-evm \
-+	"
-+
-+PACKAGES =+ "${PN}-bin"
-+
-+FILES_${PN}-bin = "${bindir}/*"
-+
-+S = "${WORKDIR}/git"
-+
-+do_compile () {
-+	cd ${S}/packages
-+	for platform in ${PLATFORMLIST}
-+	do
-+		ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" \
-+		CROSSLNK="${TARGET_PREFIX}gcc" INTERNAL_SW_ROOT=${S} make \
-+		PLATFORM=${platform} TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF SONAME=libedma3.so all
-+	done
-+}
-+
-+do_install () {
-+	install -d ${D}/${libdir}
-+
-+	# Static Libraries
-+	cp ${S}/packages/ti/sdo/edma3/drv/lib/a15/release/edma3_lld_drv.aa15fg ${D}/${libdir}/libedma3.a
-+	cp ${S}/packages/ti/sdo/edma3/rm/lib/tci6636k2h-evm/a15/release/edma3_lld_rm.aa15fg ${D}/${libdir}/libedma3rm.a
-+
-+	# Shared Libraries
-+	cp -a ${S}/packages/ti/sdo/edma3/drv/lib/a15/release/libedma* ${D}/${libdir}
-+	cp -a ${S}/packages/ti/sdo/edma3/rm/lib/tci6636k2h-evm/a15/release/libedma* ${D}/${libdir}
-+
-+	# Copy Headers
-+	install -d ${D}/${includedir}/ti/sdo/edma3/drv/
-+	install -d ${D}/${includedir}/ti/sdo/edma3/rm
-+	cp ${S}/packages/ti/sdo/edma3/drv/*.h ${D}/${includedir}/ti/sdo/edma3/drv/
-+	cp ${S}/packages/ti/sdo/edma3/rm/*.h ${D}/${includedir}/ti/sdo/edma3/rm/
-+
-+	# Copy Sample Config
-+	install -d ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-+	cp ${S}/examples/edma3_user_space_driver/evmTCI6636K2H/evmTCI6636K2HSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-+	cp ${S}/examples/edma3_user_space_driver/evmTCI6638K2K/evmTCI6638K2KSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-+	cp ${S}/examples/edma3_user_space_driver/evmTCI6630K2L/evmTCI6630K2LSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-+	cp ${S}/examples/edma3_user_space_driver/evmC66AK2E/evmC66AK2ESample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-+
-+	install -d ${D}/${bindir}
-+	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6636K2H/bin/tci6636k2h-evm/edma3_drv_6636k2h_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6636k2h_a15_sample_a15host_release.xa15fg
-+	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6638K2K/bin/tci6638k2k-evm/edma3_drv_6638k2k_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6638k2k_a15_sample_a15host_release.xa15fg
-+	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6630K2L/bin/tci6630k2l-evm/edma3_drv_6630k2l_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6630k2l_a15_sample_a15host_release.xa15fg
-+	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmC66AK2E/bin/c66ak2e-evm/edma3_drv_c66ak2e_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_c66ak2e_a15_sample_a15host_release.xa15fg
-+}
-+
++PREFERRED_VERSION_binutils = "2.23.1"
 -- 
 1.7.9.5
 
