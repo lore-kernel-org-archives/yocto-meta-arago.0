@@ -1,27 +1,25 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 0A0085208C
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id CF1515208C
 	for <meta-arago@arago-project.org>;
-	Mon,  3 Mar 2014 20:52:28 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s23KqSjC009745
-	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 14:52:28 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s23KqRLT010797
-	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 14:52:27 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 3 Mar 2014 14:52:27 -0600
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s23KqRdL032693;	Mon, 3 Mar 2014 14:52:27 -0600
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 3 Mar 2014 15:52:25 -0500
-Message-ID: <1393879945-11703-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH] initscripts: Add mkdir debugfs and mount
+	Mon,  3 Mar 2014 23:36:41 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173017.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N1V00AB3W8P7B20@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 03 Mar 2014 17:36:40 -0600 (CST)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 3929E2039D; Mon,
+	03 Mar 2014 18:36:25 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 03 Mar 2014 18:36:15 -0500
+Message-id: <1393889779-3995-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+In-reply-to: <1393889779-3995-1-git-send-email-denis@denix.org>
+References: <1393889779-3995-1-git-send-email-denis@denix.org>
+Subject: [tisdk-build-scripts][PATCH 1/5] run-opentest: make assigning tests to a specific TEE optional
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,47 +32,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 20:52:29 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 03 Mar 2014 23:36:43 -0000
 
-- Add script to create /debug directory and mount debugfs
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/initscripts/files/debugfs.sh      |    8 ++++++++
- .../initscripts/initscripts_1.0.bbappend           |    8 ++++++++
- 2 files changed, 16 insertions(+)
- create mode 100755 meta-arago-distro/recipes-core/initscripts/files/debugfs.sh
- create mode 100644 meta-arago-distro/recipes-core/initscripts/initscripts_1.0.bbappend
+ lib/run-opentest |   12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/initscripts/files/debugfs.sh b/meta-arago-distro/recipes-core/initscripts/files/debugfs.sh
-new file mode 100755
-index 0000000..17e2474
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/initscripts/files/debugfs.sh
-@@ -0,0 +1,8 @@
-+#!/bin/sh
+diff --git a/lib/run-opentest b/lib/run-opentest
+index 98a7dc8..c502764 100644
+--- a/lib/run-opentest
++++ b/lib/run-opentest
+@@ -213,6 +213,14 @@ run_target_side_test() {
+         OPENTEST_TEE_IP="128.247.105.52"
+     fi
+ 
++    # if OPENTEST_TEE_IP is set to "none", disable assigning to a specific TEE
++    if [ "$OPENTEST_TEE_IP" == "none" ]
++    then
++        ASSIGN_TO_TEE=""
++    else
++        ASSIGN_TO_TEE="~assign_to_tees=\"vatf on $OPENTEST_TEE_IP\""
++    fi
 +
-+if ! [ -e /debug ] ; then
-+  mkdir -p /debug
-+fi
-+mount -t debugfs debugfs /debug
-+
-+exit 0
-diff --git a/meta-arago-distro/recipes-core/initscripts/initscripts_1.0.bbappend b/meta-arago-distro/recipes-core/initscripts/initscripts_1.0.bbappend
-new file mode 100644
-index 0000000..1d78ab3
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/initscripts/initscripts_1.0.bbappend
-@@ -0,0 +1,8 @@
-+FILESEXTRAPATHS_append := "${THISDIR}/files"
-+
-+SRC_URI += "file://debugfs.sh"
-+
-+do_install_append () {
-+	install -c -m 755 ${WORKDIR}/debugfs.sh ${D}${sysconfdir}/init.d/debugfs.sh
-+	update-rc.d -r ${D} devpts.sh start 09 S .
-+}
+     # if OPENTEST_HW_CAP is not set in config, default to "linux"
+     if [ -z $OPENTEST_HW_CAP ]
+     then
+@@ -220,8 +228,8 @@ run_target_side_test() {
+     fi
+ 
+     # Call opentest framework.  Echo the command being used for logging
+-    echo "java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir~assign_to_tees=\"vatf on $OPENTEST_TEE_IP\" --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
+-    java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir~assign_to_tees="vatf on $OPENTEST_TEE_IP" --params script=/$TEST_SCRIPTS_TGT/opentest.sh
++    echo "java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
++    java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE --params script=/$TEST_SCRIPTS_TGT/opentest.sh
+ 
+ ################################################################################
+ # Check the results of the opentest run.
 -- 
 1.7.9.5
 
