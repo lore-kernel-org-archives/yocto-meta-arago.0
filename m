@@ -1,23 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTP id 0905952986
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id 5CE665208C
 	for <meta-arago@arago-project.org>;
-	Mon,  3 Mar 2014 23:36:42 +0000 (UTC)
+	Mon,  3 Mar 2014 23:36:55 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173017.mailsrvcs.net
+	by vms173023.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N1V006LYW8PGGC0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 03 Mar 2014 17:36:41 -0600 (CST)
+	2009)) with ESMTPA id <0N1V00C0WW8PRZF0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 03 Mar 2014 17:36:40 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 2C235201BF; Mon,
+	by gandalf.denix.org (Postfix) with ESMTP id 3B9562046C; Mon,
 	03 Mar 2014 18:36:25 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 03 Mar 2014 18:36:14 -0500
-Message-id: <1393889779-3995-1-git-send-email-denis@denix.org>
+Date: Mon, 03 Mar 2014 18:36:16 -0500
+Message-id: <1393889779-3995-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-Subject: [tisdk-build-scripts][PATCH 0/5] updates for several recent OpenTest framework changes
+In-reply-to: <1393889779-3995-1-git-send-email-denis@denix.org>
+References: <1393889779-3995-1-git-send-email-denis@denix.org>
+Subject: [tisdk-build-scripts][PATCH 2/5] run-opentest: pass test_scripts_root to always get latest vatf from git
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,30 +32,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 23:36:43 -0000
+X-List-Received-Date: Mon, 03 Mar 2014 23:36:55 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-There were several changes made in the OpenTest framework configuration and
-setup in the past few months, breaking compatibility with the old CLI client
-as well as several other assumptions made in the build scripts. This patchset
-updates the scripts with the new CLI and other config options to work with
-the new OpenTest framework setup again.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ lib/run-opentest |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Denys Dmytriyenko (5):
-  run-opentest: make assigning tests to a specific TEE optional
-  run-opentest: pass test_scripts_root to always get latest vatf from
-    git
-  run-opentest: add support for new version of opentest CLI
-  linux-devtest.tgz: add new version of OpenTest CLI 13.11
-  arago-core-tisdk-dylan-puget: update to use new CLI
-
- configs/arago-core-tisdk-dylan-puget.txt |    4 ++--
- lib/run-opentest                         |   25 ++++++++++++++++++++++---
- linux-devtest.tgz                        |  Bin 0 -> 505553 bytes
- 3 files changed, 24 insertions(+), 5 deletions(-)
- create mode 100644 linux-devtest.tgz
-
+diff --git a/lib/run-opentest b/lib/run-opentest
+index c502764..bf779e8 100644
+--- a/lib/run-opentest
++++ b/lib/run-opentest
+@@ -228,8 +228,8 @@ run_target_side_test() {
+     fi
+ 
+     # Call opentest framework.  Echo the command being used for logging
+-    echo "java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
+-    java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE --params script=/$TEST_SCRIPTS_TGT/opentest.sh
++    echo "java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
++    java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --params script=/$TEST_SCRIPTS_TGT/opentest.sh
+ 
+ ################################################################################
+ # Check the results of the opentest run.
 -- 
 1.7.9.5
 
