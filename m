@@ -1,25 +1,23 @@
 Return-Path: <denis@denix.org>
 Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
 	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTP id CF1515208C
+	by arago-project.org (Postfix) with ESMTP id 0905952986
 	for <meta-arago@arago-project.org>;
-	Mon,  3 Mar 2014 23:36:41 +0000 (UTC)
+	Mon,  3 Mar 2014 23:36:42 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173017.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N1V00AB3W8P7B20@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 03 Mar 2014 17:36:40 -0600 (CST)
+	2009)) with ESMTPA id <0N1V006LYW8PGGC0@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 03 Mar 2014 17:36:41 -0600 (CST)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 3929E2039D; Mon,
+	by gandalf.denix.org (Postfix) with ESMTP id 2C235201BF; Mon,
 	03 Mar 2014 18:36:25 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 03 Mar 2014 18:36:15 -0500
-Message-id: <1393889779-3995-2-git-send-email-denis@denix.org>
+Date: Mon, 03 Mar 2014 18:36:14 -0500
+Message-id: <1393889779-3995-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.8.3.2
-In-reply-to: <1393889779-3995-1-git-send-email-denis@denix.org>
-References: <1393889779-3995-1-git-send-email-denis@denix.org>
-Subject: [tisdk-build-scripts][PATCH 1/5] run-opentest: make assigning tests to a specific TEE optional
+Subject: [tisdk-build-scripts][PATCH 0/5] updates for several recent OpenTest framework changes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,41 +34,26 @@ X-List-Received-Date: Mon, 03 Mar 2014 23:36:43 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- lib/run-opentest |   12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+There were several changes made in the OpenTest framework configuration and
+setup in the past few months, breaking compatibility with the old CLI client
+as well as several other assumptions made in the build scripts. This patchset
+updates the scripts with the new CLI and other config options to work with
+the new OpenTest framework setup again.
 
-diff --git a/lib/run-opentest b/lib/run-opentest
-index 98a7dc8..c502764 100644
---- a/lib/run-opentest
-+++ b/lib/run-opentest
-@@ -213,6 +213,14 @@ run_target_side_test() {
-         OPENTEST_TEE_IP="128.247.105.52"
-     fi
- 
-+    # if OPENTEST_TEE_IP is set to "none", disable assigning to a specific TEE
-+    if [ "$OPENTEST_TEE_IP" == "none" ]
-+    then
-+        ASSIGN_TO_TEE=""
-+    else
-+        ASSIGN_TO_TEE="~assign_to_tees=\"vatf on $OPENTEST_TEE_IP\""
-+    fi
-+
-     # if OPENTEST_HW_CAP is not set in config, default to "linux"
-     if [ -z $OPENTEST_HW_CAP ]
-     then
-@@ -220,8 +228,8 @@ run_target_side_test() {
-     fi
- 
-     # Call opentest framework.  Echo the command being used for logging
--    echo "java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir~assign_to_tees=\"vatf on $OPENTEST_TEE_IP\" --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
--    java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir~assign_to_tees="vatf on $OPENTEST_TEE_IP" --params script=/$TEST_SCRIPTS_TGT/opentest.sh
-+    echo "java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
-+    java -jar opentest_cli_0.7.jar --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE --params script=/$TEST_SCRIPTS_TGT/opentest.sh
- 
- ################################################################################
- # Check the results of the opentest run.
+Denys Dmytriyenko (5):
+  run-opentest: make assigning tests to a specific TEE optional
+  run-opentest: pass test_scripts_root to always get latest vatf from
+    git
+  run-opentest: add support for new version of opentest CLI
+  linux-devtest.tgz: add new version of OpenTest CLI 13.11
+  arago-core-tisdk-dylan-puget: update to use new CLI
+
+ configs/arago-core-tisdk-dylan-puget.txt |    4 ++--
+ lib/run-opentest                         |   25 ++++++++++++++++++++++---
+ linux-devtest.tgz                        |  Bin 0 -> 505553 bytes
+ 3 files changed, 24 insertions(+), 5 deletions(-)
+ create mode 100644 linux-devtest.tgz
+
 -- 
 1.7.9.5
 
