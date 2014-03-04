@@ -1,29 +1,28 @@
-Return-Path: <aravindbr@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C20A45208C
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 32BC052A77
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Mar 2014 18:12:44 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24ICimB020292
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 12:12:44 -0600
+	Tue,  4 Mar 2014 19:04:15 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24J4ENl024603
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 13:04:14 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24IChKw026885
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 12:12:43 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24J4EVB005598
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 13:04:14 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 4 Mar 2014 12:12:43 -0600
-Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
-	(ileax41-snat.itg.ti.com [10.172.224.153])	by dlep33.itg.ti.com
-	(8.14.3/8.13.8) with ESMTP id s24ICh8e032212;
-	Tue, 4 Mar 2014 12:12:43 -0600
-From: Aravind Batni <aravindbr@ti.com>
+	Tue, 4 Mar 2014 13:04:14 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24J4BjJ027270;
+	Tue, 4 Mar 2014 13:04:12 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 4 Mar 2014 13:12:41 -0500
-Message-ID: <1393956761-15235-1-git-send-email-aravindbr@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Tue, 4 Mar 2014 13:04:09 -0600
+Message-ID: <1393959849-32619-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Cc: Aravind Batni <aravindbr@ti.com>
-Subject: [PATCH] ti-qmss: provides ti queue manager sub system recipe for KeyStone devices
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [dylan|ti2013.12.x][PATCH] Revert "arago-prefs: set PREFERRED VERSION of libdrm to latest"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,102 +35,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 18:12:44 -0000
+X-List-Received-Date: Tue, 04 Mar 2014 19:04:15 -0000
 Content-Type: text/plain
 
-- TI QMSS Low Level Driver
+This reverts commit 8303758bc661f660a39b75e0ff7aa2a0ca6fea56.
 
-Signed-off-by: Aravind Batni <aravindbr@ti.com>
+libdrm v2.4.46 doesn't exist for the dylan (ti2013.12.x) maintenance branch
 ---
- .../recipes-bsp/ti-qmss/ti-qmss-bin.bb             |   33 ++++++++++++++++++++
- .../recipes-bsp/ti-qmss/ti-qmss-lib.bb             |   20 ++++++++++++
- meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss.inc  |    9 ++++++
- 3 files changed, 62 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-bin.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-lib.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss.inc
+ .../conf/distro/include/arago-prefs.inc            |    3 ---
+ 1 files changed, 0 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-bin.bb b/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-bin.bb
-new file mode 100644
-index 0000000..2f4de33
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-bin.bb
-@@ -0,0 +1,33 @@
-+DESCRIPTION = "TI QMSS LLD unit test and example binaries"
-+COMPATIBLE_MACHINE = "keystone"
-+DEPENDS="ti-csl ti-rm ti-cppi-lib ti-qmss-lib"
-+
-+include ti-qmss.inc
-+
-+PR = "r0"
-+
-+DEVICELIST = "k2h k2k"
-+
-+CHOICELIST = "yes no"
-+
-+BASEDIR = "${WORKDIR}/git"
-+S = "${BASEDIR}/ti/drv/qmss"
-+
-+do_compile () {
-+#   Now build the lld in the updated directory	
-+    for device in ${DEVICELIST}
-+    do
-+      make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" QMSS_SRC_DIR=${S}	
-+      for choice in ${CHOICELIST}
-+      do
-+        make -f makefile_armv7 tests examples PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" QMSS_SRC_DIR=${S} USEDYNAMIC_LIB="$choice"
-+      done
-+    done
-+}
-+
-+do_install () {
-+    for device in ${DEVICELIST}
-+    do
-+      make -f makefile_armv7 installbin PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" QMSS_SRC_DIR=${S} INSTALL_BIN_BASE_DIR=${D}${bindir}
-+    done
-+}
-diff --git a/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-lib.bb b/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-lib.bb
-new file mode 100644
-index 0000000..aa72825
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss-lib.bb
-@@ -0,0 +1,20 @@
-+DESCRIPTION = "TI QMSS LLD library"
-+COMPATIBLE_MACHINE = "keystone"
-+
-+DEPENDS="ti-csl ti-rm"
-+
-+include ti-qmss.inc
-+
-+PR = "r0"
-+
-+BASEDIR = "${WORKDIR}/git"
-+S = "${BASEDIR}/ti/drv/qmss"
-+
-+do_compile () {
-+#   Now build the lld	
-+    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR}
-+}
-+
-+do_install () {
-+    make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir}
-+}
-diff --git a/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss.inc b/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss.inc
-new file mode 100644
-index 0000000..5675b62
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-qmss/ti-qmss.inc
-@@ -0,0 +1,9 @@
-+LICENSE = "TI BSD"
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/drv/qmss/COPYING.txt;md5=e8f6789acdcda76d02ed9203fc2e603d"
-+
-+BRANCH="master"
-+SRC_URI = "git://git.ti.com/keystone-rtos/qmss-lld.git;destsuffix=git/ti/drv/qmss;protocol=git;branch=${BRANCH}"
-+
-+# commit ID corresponding to DEV.QMSS_LLD.02.00.00.18
-+SRCREV = "9f80224bf705888a4f4348c8bed054bdae84ef94"
-+PV = "02.00.00.18"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 5f7b023..d5176fd 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -4,9 +4,6 @@ include conf/distro/include/qt5-versions.inc
+ # Use the latest version of ltp-ddt for kernel versions 3.8+
+ PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
+ 
+-# Use the latest version of libdrm
+-PREFERRED_VERSION_libdrm = "2.4.46"
+-
+ PREFERRED_PROVIDER_virtual/gettext = "gettext"
+ 
+ ARAGO_QT_PROVIDER = "${@base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d)}"
 -- 
-1.7.9.5
+1.7.0.4
 
 
