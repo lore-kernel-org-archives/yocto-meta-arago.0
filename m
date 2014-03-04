@@ -1,34 +1,33 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A85E852A5B
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 99E585208C
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Mar 2014 03:38:58 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s243cv0b002697
-	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 21:38:57 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s243cvsp024999
-	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 21:38:57 -0600
+	Tue,  4 Mar 2014 03:52:02 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s243q1ZX015071
+	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 21:52:01 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s243q1iu025191
+	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 21:52:01 -0600
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Mon, 3 Mar 2014 21:38:57 -0600
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0174.001; Mon, 3 Mar 2014 21:52:01 -0600
 From: "Nelson, Sam" <sam.nelson@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH v3] openntpd: Add recipe for building
-	OpenNTPD
-Thread-Index: AQHPNmNBSefFZfZ0uEmOySZSl74kiprQpcAA//+jt5A=
-Date: Tue, 4 Mar 2014 03:38:56 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49057F48726@DLEE11.ent.ti.com>
-References: <1393797813-21978-1-git-send-email-sam.nelson@ti.com>
-	<20140304030810.GA22125@edge>
-In-Reply-To: <20140304030810.GA22125@edge>
+Thread-Topic: [meta-arago] [PATCH v4] linuxptp: Add recipe for linux ptp
+Thread-Index: AQHPNmF5x75yWoZSikWmuLCqRY97wprQoeyA//+qgZA=
+Date: Tue, 4 Mar 2014 03:52:01 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F49057F48780@DLEE11.ent.ti.com>
+References: <1393797046-961-1-git-send-email-sam.nelson@ti.com>
+	<20140304025424.GY22125@edge>
+In-Reply-To: <20140304025424.GY22125@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v3] openntpd: Add recipe for building OpenNTPD
+Subject: Re: [PATCH v4] linuxptp: Add recipe for linux ptp
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,7 +40,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 03:38:58 -0000
+X-List-Received-Date: Tue, 04 Mar 2014 03:52:02 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -50,82 +49,92 @@ Content-Transfer-Encoding: quoted-printable
 
 > -----Original Message-----
 > From: Dmytriyenko, Denys
-> Sent: Monday, March 03, 2014 10:08 PM
+> Sent: Monday, March 03, 2014 9:54 PM
 > To: Nelson, Sam
 > Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH v3] openntpd: Add recipe for building
-> OpenNTPD
+> Subject: Re: [meta-arago] [PATCH v4] linuxptp: Add recipe for linux ptp
 >=20
-> On Sun, Mar 02, 2014 at 05:03:33PM -0500, Sam Nelson wrote:
-> > - OpenNTPD is a open source implementation of Network time protocol
-> >
+> On Sun, Mar 02, 2014 at 04:50:46PM -0500, Sam Nelson wrote:
+> > - linuxptp is an implementation of precision time protocol (PTP)
+>=20
+> Much better! Sorry, couple of comments I missed the last time.
+>=20
+>=20
 > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
->=20
-> The patch looks good, just one question below.
->=20
->=20
+> >
 > > ---
-> > Changes from previous patch
-> > * Remove kernel dependency
-> > * removed Flags depending on staging  kernel
+> > Change from previous patch
+> > * Removed dependency on kernel
+> > * Added flags for CLOCKADJTIME & ONESTEPSYNC
 > > ---
 > > ---
-> >  .../openntpd/openntpd_3.9p1.bb                     |   22 ++++++++++++=
-++++++++
-> >  1 file changed, 22 insertions(+)
+> >  .../recipes-connectivity/linuxptp/linuxptp_1.3.bb  |   23
+> ++++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
 > >  create mode 100755 meta-arago-extras/recipes-
-> connectivity/openntpd/openntpd_3.9p1.bb
+> connectivity/linuxptp/linuxptp_1.3.bb
 > >
 > > diff --git a/meta-arago-extras/recipes-
-> connectivity/openntpd/openntpd_3.9p1.bb b/meta-arago-extras/recipes-
-> connectivity/openntpd/openntpd_3.9p1.bb
+> connectivity/linuxptp/linuxptp_1.3.bb b/meta-arago-extras/recipes-
+> connectivity/linuxptp/linuxptp_1.3.bb
 > > new file mode 100755
-> > index 0000000..9b5e6ce
+> > index 0000000..0a36631
 > > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-
-> connectivity/openntpd/openntpd_3.9p1.bb
-> > @@ -0,0 +1,22 @@
-> > +DESCRIPTION =3D "OpenNTPD is a FREE, easy to use implementation of the=
- \
-> > +Network Time Protocol."
-> > +HOMEPAGE =3D "http://www.openntpd.org/"
+> > +++ b/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+>=20
+> The latest version is 1.4 and you are adding 1.3 - I only checked 1.4, bu=
+t
+> don't think it changed that much. Do you specifically need 1.3 or 1.4 wil=
+l
+> also work?
+[Sam] Currently system tested with 1.3. Probably will consider 1.4 later. I=
+s that Ok?
+>=20
+>=20
+> > @@ -0,0 +1,23 @@
+> > +DESCRIPTION =3D "This software is an implementation of the Precision T=
+ime
+> Protocol (PTP) \
+> > +according to IEEE standard 1588 for Linux"
+> > +HOMEPAGE =3D "http://linuxptp.sourceforge.net/"
 > > +SECTION =3D "console/network"
-> > +LICENSE =3D "BSD ISC"
+> > +LICENSE =3D "GPLv2"
 > > +LIC_FILES_CHKSUM =3D
-> "file://LICENCE;md5=3D4b4f5158007cc97e6b0e2325bb99854a"
-> > +
+> "file://COPYING;md5=3Db234ee4d69f5fce4486a80fdaf4a4263"
 > > +PR =3D "r0"
 > > +
 > > +SRC_URI =3D
-> "http://mirror.ece.vt.edu/pub/OpenBSD/OpenNTPD/${P}.tar.gz"
-> > +
-> > +S =3D "${WORKDIR}/openntpd-${PV}"
-> > +EXTRA_OECONF =3D "--disable-strip"
-> > +inherit autotools
-> > +
-> > +LDFLAGS +=3D "-lrt"
-> > +CFLAGS +=3D "-DTI_ADD_SUPPORT_HW_TIMESTAMPING"
->=20
-> I cannot find any reference for the above define inside OpenNTPD source
-> code.
-[Sam] I think this is not needed. Previously we were having a patch on top =
-of openntpd. This is not needed anymore without the patch. I will send upda=
-ted patch.
->=20
->=20
-> > +EXTRA_OECONF +=3D "LDFLAGS=3D"${LDFLAGS}" CFLAGS=3D"${CFLAGS}"\
-> > +                 --with-privsep-user=3Droot --with-privsep-path=3D/${p=
-refix}"
-> > +
-> > +SRC_URI[md5sum] =3D "afc34175f38d08867c1403d9008600b3"
+> "http://iweb.dl.sourceforge.net/project/linuxptp/v${PV}/linuxptp-${PV}.tg=
+z"
+> > +SRC_URI[md5sum] =3D "664706a86fe1413391d4536080548501"
 > > +SRC_URI[sha256sum] =3D
-> "83dd7c1e8ec8b4567afe49af539271b5a73562fb7a3ca51df73eccba89ec8c49
-> "
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> "b1651186689ef06e56add506bd9bb55a700ca56e3f92ba71d08f3ad12fad30
+> 85"
+> > +
+> > +inherit autotools
+>=20
+> I didn't see any autotools file in the package - no configure script, no
+> Makefile.am, no acinclude.m4 etc., etc.
+[Sam] I guess this can be removed.
+>=20
+>=20
+> > +EXTRA_OEMAKE =3D "CROSS_COMPILE=3D${TARGET_PREFIX}
+> ARCH=3D${TARGET_ARCH} \
+> > +		EXTRA_CFLAGS=3D\"-D_GNU_SOURCE -
+> DHAVE_CLOCK_ADJTIME \
+> > +		-DHAVE_ONESTEP_SYNC\""
+> > +
+> > +do_install() {
+> > +	install -d ${D}${bindir}/
+> > +	install -c -m 755 ${S}/ptp4l ${D}${bindir}/
+> > +}
+>=20
+> Other than that, looks much cleaner. If you are tired re-iterating it, ju=
+st
+> answer my 2 questions above and I'll make the amends myself when
+> applying your
+> patch...
+>=20
+> --
+> Denys
 
