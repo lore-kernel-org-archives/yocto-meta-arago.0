@@ -1,29 +1,34 @@
-Return-Path: <aravindbr@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2487C52986
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id EEC7252AB3
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Mar 2014 19:52:06 +0000 (UTC)
+	Tue,  4 Mar 2014 19:59:26 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24Jq5o1020849
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 13:52:05 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24Jq5Hp005914
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 13:52:05 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 4 Mar 2014 13:52:04 -0600
-Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
-	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp32.itg.ti.com
-	(8.14.3/8.13.8) with ESMTP id s24Jq4U3012119;
-	Tue, 4 Mar 2014 13:52:04 -0600
-From: Aravind Batni <aravindbr@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 4 Mar 2014 14:52:02 -0500
-Message-ID: <1393962722-25323-1-git-send-email-aravindbr@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24JxQTU018731
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 13:59:26 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24JxQPY010684
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 13:59:26 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0174.001; Tue, 4 Mar 2014 13:59:25 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [dylan|ti2013.12.x][PATCH] Revert "arago-prefs:
+	set PREFERRED VERSION of libdrm to latest"
+Thread-Index: AQHPN9yIJwWiT59pEkuxWUltCI3E2JrRsJqA//+nV6A=
+Date: Tue, 4 Mar 2014 19:59:25 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C65D344@DFLE08.ent.ti.com>
+References: <1393959849-32619-1-git-send-email-fcooper@ti.com>
+	<20140304191348.GM22125@edge>
+In-Reply-To: <20140304191348.GM22125@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: Aravind Batni <aravindbr@ti.com>
-Subject: [PATCH] ti-pa: provides ti pa recipe for KeyStone devices
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [dylan|ti2013.12.x][PATCH] Revert "arago-prefs: set PREFERRED VERSION of libdrm to latest"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,103 +41,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 19:52:06 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 04 Mar 2014 19:59:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- TI PA Low Level Driver
 
-Signed-off-by: Aravind Batni <aravindbr@ti.com>
----
- .../recipes-bsp/ti-pa/ti-pa-bin_git.bb             |   33 ++++++++++++++++++++
- .../recipes-bsp/ti-pa/ti-pa-lib_git.bb             |   20 ++++++++++++
- meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc      |   10 ++++++
- 3 files changed, 63 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb
-new file mode 100644
-index 0000000..ecfffc2
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb
-@@ -0,0 +1,33 @@
-+DESCRIPTION = "TI PA LLD unit test and example binaries"
-+COMPATIBLE_MACHINE = "keystone"
-+DEPENDS="ti-csl ti-pa-lib ti-cppi-lib ti-qmss-lib"
-+
-+include ti-pa.inc
-+
-+PR = "r0"
-+
-+DEVICELIST = "k2h k2k"
-+
-+CHOICELIST = "yes no"
-+
-+BASEDIR = "${WORKDIR}/git"
-+S = "${BASEDIR}/ti/drv/pa"
-+
-+do_compile () {
-+# Now build the lld unit test examples
-+    for device in ${DEVICELIST}
-+    do
-+      make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" PA_SRC_DIR=${S}
-+      for choice in ${CHOICELIST}
-+      do
-+        make -f makefile_armv7 tests examples PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" PA_SRC_DIR=${S} USEDYNAMIC_LIB="$choice"
-+      done
-+    done
-+}
-+
-+do_install () {
-+    for device in ${DEVICELIST}
-+    do
-+      make -f makefile_armv7 installbin PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" PA_SRC_DIR=${S} INSTALL_BIN_BASE_DIR=${D}${bindir}
-+    done
-+}
-diff --git a/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb
-new file mode 100644
-index 0000000..a549a99
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb
-@@ -0,0 +1,20 @@
-+DESCRIPTION = "TI PA LLD library"
-+COMPATIBLE_MACHINE = "keystone"
-+
-+DEPENDS="ti-csl ti-rm"
-+
-+include ti-pa.inc
-+
-+PR = "r0"
-+
-+BASEDIR = "${WORKDIR}/git"
-+S = "${BASEDIR}/ti/drv/pa"
-+
-+do_compile () {
-+#   Now build the lld in the updated directory	
-+    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR}
-+}
-+
-+do_install () {
-+    make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir}
-+}
-diff --git a/meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc
-new file mode 100644
-index 0000000..134f1f2
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc
-@@ -0,0 +1,10 @@
-+LICENSE = "TI BSD"
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/drv/pa/COPYING.txt;md5=e8f6789acdcda76d02ed9203fc2e603d"
-+
-+BRANCH="master"
-+SRC_URI = "git://git.ti.com/keystone-rtos/pa-lld.git;destsuffix=git/ti/drv/pa;protocol=git;branch=${BRANCH}"
-+
-+# Below Commit ID corresponds to "DEV.PA_LLD.02.00.01.05"
-+SRCREV = "a8f42102a60528c36720c211ea457eecf20f8481"
-+PV = "02.00.01.05"
-+SRCREV = "DEV.PA_LLD.02.00.01.05"
--- 
-1.7.9.5
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Tuesday, March 04, 2014 1:14 PM
+> To: Cooper Jr., Franklin
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [dylan|ti2013.12.x][PATCH] Revert "arago-prefs:=
+ set
+> PREFERRED VERSION of libdrm to latest"
+>=20
+> Have you seen this:
+> http://arago-project.org/pipermail/meta-arago/2014-February/003143.html
+[Franklin] Yes. Chase responded that his original patch was meant for dora =
+and up.=20
 
+My patch is only for Dylan and ti2013.12.x.
+>=20
+>=20
+> On Tue, Mar 04, 2014 at 01:04:09PM -0600, Franklin S. Cooper Jr wrote:
+> > This reverts commit 8303758bc661f660a39b75e0ff7aa2a0ca6fea56.
+> >
+> > libdrm v2.4.46 doesn't exist for the dylan (ti2013.12.x) maintenance
+> > branch
+> > ---
+> >  .../conf/distro/include/arago-prefs.inc            |    3 ---
+> >  1 files changed, 0 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> > b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> > index 5f7b023..d5176fd 100644
+> > --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> > +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> > @@ -4,9 +4,6 @@ include conf/distro/include/qt5-versions.inc
+> >  # Use the latest version of ltp-ddt for kernel versions 3.8+
+> > PREFERRED_PROVIDER_ltp-ddt =3D "ltp-ddt"
+> >
+> > -# Use the latest version of libdrm
+> > -PREFERRED_VERSION_libdrm =3D "2.4.46"
+> > -
+> >  PREFERRED_PROVIDER_virtual/gettext =3D "gettext"
+> >
+> >  ARAGO_QT_PROVIDER =3D
+> "${@base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-
+> embedded',d)}"
+> > --
+> > 1.7.0.4
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
