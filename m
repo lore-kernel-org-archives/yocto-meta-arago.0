@@ -1,29 +1,29 @@
 Return-Path: <aravindbr@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2179D52A00
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 2086552A00
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Mar 2014 20:51:40 +0000 (UTC)
+	Tue,  4 Mar 2014 20:58:22 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24KpddR023223
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 14:51:39 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24Kpd9j018141
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 14:51:39 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 4 Mar 2014 14:51:38 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24KwLWE024801
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 14:58:21 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24KwLJH022549
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 14:58:21 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 4 Mar 2014 14:58:21 -0600
 Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
 	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp33.itg.ti.com
-	(8.14.3/8.13.8) with ESMTP id s24Kpccn011772;
-	Tue, 4 Mar 2014 14:51:38 -0600
+	(8.14.3/8.13.8) with ESMTP id s24KwKB7016006;
+	Tue, 4 Mar 2014 14:58:21 -0600
 From: Aravind Batni <aravindbr@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 4 Mar 2014 15:51:35 -0500
-Message-ID: <1393966295-21617-1-git-send-email-aravindbr@ti.com>
+Date: Tue, 4 Mar 2014 15:58:19 -0500
+Message-ID: <1393966699-23026-1-git-send-email-aravindbr@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 Cc: Aravind Batni <aravindbr@ti.com>
-Subject: [PATCH] ti-sa: provides ti sa recipe for KeyStone devices
+Subject: [PATCH] ti-pktlib: provides ti pktlib recipe for KeyStone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,92 +36,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 20:51:40 -0000
+X-List-Received-Date: Tue, 04 Mar 2014 20:58:22 -0000
 Content-Type: text/plain
 
-- TI Security Accelerator Low Level Driver
+-TI packet library user space library
 
 Signed-off-by: Aravind Batni <aravindbr@ti.com>
 ---
- .../recipes-bsp/ti-sa/ti-sa_2.00.03.00.bb          |   70 ++++++++++++++++++++
- 1 file changed, 70 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ti-sa/ti-sa_2.00.03.00.bb
+ .../recipes-bsp/ti-pktlib/ti-pktlib_git.bb         |   27 ++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-pktlib/ti-pktlib_git.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-sa/ti-sa_2.00.03.00.bb b/meta-arago-extras/recipes-bsp/ti-sa/ti-sa_2.00.03.00.bb
+diff --git a/meta-arago-extras/recipes-bsp/ti-pktlib/ti-pktlib_git.bb b/meta-arago-extras/recipes-bsp/ti-pktlib/ti-pktlib_git.bb
 new file mode 100644
-index 0000000..0fbb017
+index 0000000..1fac9ab
 --- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-sa/ti-sa_2.00.03.00.bb
-@@ -0,0 +1,70 @@
-+DESCRIPTION = "TI Security Accelerator LLD (SA LLD)"
-+HOMEPAGE = "http://downloads.ti.com/sdoemb/sdoemb_public_sw/salld/index.html"
-+LICENSE = "TI BSD and SSLeay" 
-+SECTION = "devel"
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/salld_keystone2_${PV}/packages/ti/drv/sa/docs/SA_LLD_2_0_SoftwareManifest.pdf;md5=ef1f05d5dd5b6cf5abc7180eda81aec9"
++++ b/meta-arago-extras/recipes-bsp/ti-pktlib/ti-pktlib_git.bb
+@@ -0,0 +1,27 @@
++DESCRIPTION = "TI PKTLIB"
++LICENSE = "TI BSD"
++LIC_FILES_CHKSUM = "file://${WORKDIR}/git/COPYING.txt;md5=b7982a377c680ad71ca2fbb735982462"
 +
-+PR ="r0"
-+PV = "02_00_03_00"
-+SRC_URI = "http://software-dl.ti.com/sdoemb/sdoemb_public_sw/salld/${PV}/exports/setupLinux_salld_keystone2_${PV}.bin;name=sabin"
-+SRC_URI[sabin.md5sum] = "33c97a5214e19fb00e587dda86fc7b91"
-+SRC_URI[sabin.sha256sum] = "7e63703b867efd3800e9d14742b426e12ebeca50836b4c4021f4c671eab1920e"
-+
++DEPENDS="ti-csl ti-rm ti-qmss-lib ti-cppi-lib"
 +COMPATIBLE_MACHINE = "keystone"
 +
-+DEPENDS = "ti-csl ti-cppi-lib ti-pa-lib ti-qmss-lib"
++BRANCH = "master"
++SRC_URI = "git://git.ti.com/keystone-rtos/pktlib.git;protocol=git;branch=${BRANCH}"
 +
-+require  ../../../../../sources/meta-ti/recipes-ti/includes/ti-eula-unpack.inc
++# Corresponds to DEV.PKTLIB.2.0.0.11
++SRCREV = "9f613bea325f8b1cd728b203a29ebb8c5b368d98"
++PV = "2.0.0.11"
++PR = "r0"
 +
-+PACKAGES =+ "${PN}-test"
++ALLOW_EMPTY_${PN} = "1"
 +
-+FILES_${PN}-test = "${bindir}/saBasicExample_*.out \
-+                    ${bindir}/saMCExample_*.out \
-+                    ${bindir}/ti/drv/sa/example/saBasicExample/vectors/*.bin"
++S = "${WORKDIR}/git//ti/runtime/pktlib"
 +
-+DEVICELIST = "k2h k2k"
-+
-+CHOICELIST = "yes no"
-+
-+BINFILE="setupLinux_salld_keystone2_${PV}.bin"
-+TI_BIN_UNPK_CMDS="Y:workdir"
-+TI_BIN_UNPK_WDEXT="/salld_keystone2_${PV}"
-+
-+S = "${WORKDIR}/salld_keystone2_${PV}/packages/ti/drv/sa"
-+
-+do_compile() {
-+#   Now build the lld
-+    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR} ARMV7SALIBDIR=${S}/lib/armv7
-+    for device in ${DEVICELIST}
-+    do
-+      for choice in ${CHOICELIST}
-+      do
-+        make -f makefile_armv7 examples PDK_INSTALL_PATH=${STAGING_INCDIR} ARMV7LIBDIR=${STAGING_LIBDIR} ARMV7SALIBDIR=${S}/lib/armv7 DEVICE="$device" USEDYNAMIC_LIB="$choice"
-+      done
-+    done
++do_compile () {
++#   Now build the pktlib in the updated directory
++    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR}
 +}
 +
-+do_install() {
-+   install -d ${D}${libdir}/
-+   install -d ${D}${bindir}/ti/drv/sa/example/SaBasicExample/vectors
-+   install -d ${D}${includedir}/ti/drv/sa/fw
-+
-+# copy interface header files and firmware c files
-+   find *.h fw/*.h fw/*.c -type f | xargs -I {} cp --parents {} ${D}${includedir}/ti/drv/sa
-+
-+# copy all the test vectors  
-+   find example/SaBasicExample/vectors -name *.bin -type f | xargs -I {} cp --parents {} ${D}${bindir}/ti/drv/sa
-+
-+# copy the library files   
-+   cp -rp ${S}/lib/armv7/lib* ${D}${libdir}/ 
-+
-+# copy the example test binaries
-+   for device in ${DEVICELIST}
-+   do
-+     cp ${S}/example/SaBasicExample/$device/armv7/linux/build/bin/sa/example/saBasicExample.out ${D}${bindir}/saBasicExample_$device.out
-+     cp ${S}/example/SaBasicExample/$device/armv7/linux/build/bin/sa/example/saBasicExample_so.out ${D}${bindir}/saBasicExample_so_$device.out
-+     cp ${S}/example/SaMultiCoreExample/$device/armv7/linux/build/bin/sa/example/saMCExample.out ${D}${bindir}/saMCExample_$device.out
-+     cp ${S}/example/SaMultiCoreExample/$device/armv7/linux/build/bin/sa/example/saMCExample_so.out ${D}${bindir}/saMCExample_so_$device.out
-+   done
-+
++do_install () {
++    make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir}
 +}
 -- 
 1.7.9.5
