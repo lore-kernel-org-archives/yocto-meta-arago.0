@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C3DD45208C
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id BFE895208C
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Mar 2014 04:11:34 +0000 (UTC)
+	Tue,  4 Mar 2014 04:12:22 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s244BY6g028521
-	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 22:11:34 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s244BXqg011941
-	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 22:11:34 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 3 Mar 2014 22:11:33 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s244CMU1005940
+	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 22:12:22 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s244CM63012272
+	for <meta-arago@arago-project.org>; Mon, 3 Mar 2014 22:12:22 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 3 Mar 2014 22:12:21 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s244BX94022361;
-	Mon, 3 Mar 2014 22:11:33 -0600
-Date: Mon, 3 Mar 2014 23:11:33 -0500
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s244CL3w021589;
+	Mon, 3 Mar 2014 22:12:21 -0600
+Date: Mon, 3 Mar 2014 23:12:21 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20140304041133.GC22125@edge>
-References: <1393905551-11880-1-git-send-email-sam.nelson@ti.com>
+Message-ID: <20140304041221.GD22125@edge>
+References: <1393906061-15381-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1393905551-11880-1-git-send-email-sam.nelson@ti.com>
+In-Reply-To: <1393906061-15381-1-git-send-email-sam.nelson@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v6] linuxptp: Add recipe for linux ptp
+Subject: Re: [PATCH v4] openntpd: Add recipe for building OpenNTPD
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,57 +37,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 04:11:35 -0000
+X-List-Received-Date: Tue, 04 Mar 2014 04:12:22 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Mon, Mar 03, 2014 at 10:59:11PM -0500, Sam Nelson wrote:
-> - linuxptp is an implementation of precision time protocol (PTP)
+On Mon, Mar 03, 2014 at 11:07:41PM -0500, Sam Nelson wrote:
+> - OpenNTPD is a open source implementation of Network time protocol
 > 
 > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 
 Acked-by: Denys Dmytriyenko <denys@ti.com>
 
+
+> ---
+> Changes in patch V4
+> - Removed unused CFLAGS TI_ADD_SUPPORT_HW_TIMESTAMPING
 > 
-> ---
-> Change in Patch v6:
-> * Removed inherit autotools
-> 
-> Change in Patch v5
-> * Fix issues with passing extra Cflags
+> Changes patch v3
+> * Remove kernel dependency
+> * removed Flags depending on staging  kernel
 > ---
 > ---
->  .../recipes-connectivity/linuxptp/linuxptp_1.3.bb  |   21 ++++++++++++++++++++
+>  .../openntpd/openntpd_3.9p1.bb                     |   21 ++++++++++++++++++++
 >  1 file changed, 21 insertions(+)
->  create mode 100755 meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+>  create mode 100755 meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb
 > 
-> diff --git a/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb b/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+> diff --git a/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb b/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb
 > new file mode 100755
-> index 0000000..85062aa
+> index 0000000..ba8a9d3
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+> +++ b/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb
 > @@ -0,0 +1,21 @@
-> +DESCRIPTION = "This software is an implementation of the Precision Time Protocol (PTP) \
-> +according to IEEE standard 1588 for Linux"
-> +HOMEPAGE = "http://linuxptp.sourceforge.net/"
+> +DESCRIPTION = "OpenNTPD is a FREE, easy to use implementation of the \
+> +Network Time Protocol."
+> +HOMEPAGE = "http://www.openntpd.org/"
 > +SECTION = "console/network"
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+> +LICENSE = "BSD ISC"
+> +LIC_FILES_CHKSUM = "file://LICENCE;md5=4b4f5158007cc97e6b0e2325bb99854a"
+> +
 > +PR = "r0"
 > +
-> +SRC_URI = "http://iweb.dl.sourceforge.net/project/linuxptp/v${PV}/linuxptp-${PV}.tgz"
-> +SRC_URI[md5sum] = "664706a86fe1413391d4536080548501"
-> +SRC_URI[sha256sum] = "b1651186689ef06e56add506bd9bb55a700ca56e3f92ba71d08f3ad12fad3085"
+> +SRC_URI = "http://mirror.ece.vt.edu/pub/OpenBSD/OpenNTPD/${P}.tar.gz"
 > +
-> +EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} ARCH=${TARGET_ARCH} \
-> +		EXTRA_CFLAGS="-D_GNU_SOURCE -DHAVE_CLOCK_ADJTIME \
-> +		-DHAVE_ONESTEP_SYNC""
+> +S = "${WORKDIR}/openntpd-${PV}"
+> +EXTRA_OECONF = "--disable-strip"
+> +inherit autotools
 > +
-> +do_install() {
-> +	install -d ${D}${bindir}/
-> +	install -c -m 755 ${S}/ptp4l ${D}${bindir}/
-> +}
+> +LDFLAGS += "-lrt"
+> +EXTRA_OECONF += "LDFLAGS="${LDFLAGS}" CFLAGS="${CFLAGS}"\
+> +                 --with-privsep-user=root --with-privsep-path=/${prefix}"
 > +
+> +SRC_URI[md5sum] = "afc34175f38d08867c1403d9008600b3"
+> +SRC_URI[sha256sum] = "83dd7c1e8ec8b4567afe49af539271b5a73562fb7a3ca51df73eccba89ec8c49"
 > -- 
 > 1.7.9.5
 > 
