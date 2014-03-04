@@ -1,33 +1,29 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 385BE5208C
+Return-Path: <aravindbr@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 117F05208C
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Mar 2014 16:39:11 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24Gd6HI002083
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 10:39:06 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24Gd6XB015199
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 10:39:06 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Tue, 4 Mar 2014 10:39:06 -0600
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] initscripts: Add mkdir debugfs and mount
-Thread-Index: AQHPNyJ8lmpUbFJ1J0i9goRnwProeJrQnjEA//+coqA=
-Date: Tue, 4 Mar 2014 16:39:05 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49057F4922B@DLEE11.ent.ti.com>
-References: <1393879945-11703-1-git-send-email-sam.nelson@ti.com>
-	<20140304024628.GX22125@edge>
-In-Reply-To: <20140304024628.GX22125@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Tue,  4 Mar 2014 17:41:05 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s24Hf4TZ001301
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 11:41:04 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s24Hf4xQ010866
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 11:41:04 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 4 Mar 2014 11:41:04 -0600
+Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
+	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp33.itg.ti.com
+	(8.14.3/8.13.8) with ESMTP id s24Hf4xg003097;
+	Tue, 4 Mar 2014 11:41:04 -0600
+From: Aravind Batni <aravindbr@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 4 Mar 2014 12:40:59 -0500
+Message-ID: <1393954859-8634-1-git-send-email-aravindbr@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] initscripts: Add mkdir debugfs and mount
+Cc: Aravind Batni <aravindbr@ti.com>
+Subject: [PATCH] ti-cppi: provides ti cppi recipe for KeyStone devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,86 +36,103 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 16:39:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 04 Mar 2014 17:41:07 -0000
+Content-Type: text/plain
 
+- TI CPPI Low Level Driver
 
+Signed-off-by: Aravind Batni <aravindbr@ti.com>
+---
+ .../recipes-bsp/ti-cppi/ti-cppi-bin.bb             |   34 ++++++++++++++++++++
+ .../recipes-bsp/ti-cppi/ti-cppi-lib.bb             |   20 ++++++++++++
+ meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi.inc  |    9 ++++++
+ 3 files changed, 63 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-bin.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-lib.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi.inc
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Monday, March 03, 2014 9:46 PM
-> To: Nelson, Sam
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] initscripts: Add mkdir debugfs and moun=
-t
->=20
-> On Mon, Mar 03, 2014 at 03:52:25PM -0500, Sam Nelson wrote:
-> > - Add script to create /debug directory and mount debugfs
-> >
-> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > ---
-> >  .../recipes-core/initscripts/files/debugfs.sh      |    8 ++++++++
-> >  .../initscripts/initscripts_1.0.bbappend           |    8 ++++++++
-> >  2 files changed, 16 insertions(+)
-> >  create mode 100755 meta-arago-distro/recipes-
-> core/initscripts/files/debugfs.sh
-> >  create mode 100644 meta-arago-distro/recipes-
-> core/initscripts/initscripts_1.0.bbappend
-> >
-> > diff --git a/meta-arago-distro/recipes-core/initscripts/files/debugfs.s=
-h
-> b/meta-arago-distro/recipes-core/initscripts/files/debugfs.sh
-> > new file mode 100755
-> > index 0000000..17e2474
-> > --- /dev/null
-> > +++ b/meta-arago-distro/recipes-core/initscripts/files/debugfs.sh
-> > @@ -0,0 +1,8 @@
-> > +#!/bin/sh
-> > +
-> > +if ! [ -e /debug ] ; then
-> > +  mkdir -p /debug
-> > +fi
-> > +mount -t debugfs debugfs /debug
->=20
-> Why /debug? The convention is to use /sys/kernel/debug as a mount point
-> for
-> debugfs...
->=20
-[Sam] Ok.   Actually the mount to  /sys/kernel/debug should suffice. I thin=
-k we don't need this.=20
-No need for this commit.
->=20
-> > +
-> > +exit 0
-> > diff --git a/meta-arago-distro/recipes-
-> core/initscripts/initscripts_1.0.bbappend b/meta-arago-distro/recipes-
-> core/initscripts/initscripts_1.0.bbappend
-> > new file mode 100644
-> > index 0000000..1d78ab3
-> > --- /dev/null
-> > +++ b/meta-arago-distro/recipes-core/initscripts/initscripts_1.0.bbappe=
-nd
-> > @@ -0,0 +1,8 @@
-> > +FILESEXTRAPATHS_append :=3D "${THISDIR}/files"
-> > +
-> > +SRC_URI +=3D "file://debugfs.sh"
-> > +
-> > +do_install_append () {
-> > +	install -c -m 755 ${WORKDIR}/debugfs.sh
-> ${D}${sysconfdir}/init.d/debugfs.sh
-> > +	update-rc.d -r ${D} devpts.sh start 09 S .
->=20
-> ^^^^ copy/paste error - it still says devpts.sh here instead of debugfs.s=
-h :)
->=20
->=20
-> Anyway, can you just add it to /etc/fstab? And if you use the default
-> /sys/kernel/debug mount point, you won't need to pre-create it. But you
-> may need to make sure /sys is mounted... Anyway, take a look at our
-> base-files.bbappend in meta-arago-distro. Thanks.
->=20
-> --
-> Denys
+diff --git a/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-bin.bb b/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-bin.bb
+new file mode 100644
+index 0000000..8590dcd
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-bin.bb
+@@ -0,0 +1,34 @@
++DESCRIPTION = "TI CPPI LLD unit test and example binaries"
++COMPATIBLE_MACHINE = "keystone"
++DEPENDS="ti-csl ti-rm ti-cppi-lib ti-qmss-lib"
++
++include ti-cppi.inc
++
++PR = "r0"
++S = "${WORKDIR}/git"
++
++DEVICELIST = "k2h k2k"
++
++CHOICELIST = "yes no"
++
++BASEDIR = "${WORKDIR}/git"
++S = "${BASEDIR}/ti/drv/cppi"
++
++do_compile () {
++#   Now build the lld in the updated directory	
++    for device in ${DEVICELIST}
++    do
++      make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" CPPI_SRC_DIR=${S}	
++      for choice in ${CHOICELIST}
++      do
++        make -f makefile_armv7 tests examples PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" CPPI_SRC_DIR=${S} USEDYNAMIC_LIB="$choice"
++      done
++    done
++}
++
++do_install () {
++    for device in ${DEVICELIST}
++    do
++      make -f makefile_armv7 installbin PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="$device" CPPI_SRC_DIR=${S} INSTALL_BIN_BASE_DIR=${D}${bindir}
++    done
++}
+diff --git a/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-lib.bb b/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-lib.bb
+new file mode 100644
+index 0000000..c92b546
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi-lib.bb
+@@ -0,0 +1,20 @@
++DESCRIPTION = "TI CPPI LLD library"
++COMPATIBLE_MACHINE = "keystone"
++
++DEPENDS="ti-csl ti-rm ti-qmss-lib"
++
++include ti-cppi.inc
++
++PR = "r0"
++
++BASEDIR = "${WORKDIR}/git"
++S = "${BASEDIR}/ti/drv/cppi"
++
++do_compile () {
++#   Now build the lld in the updated directory	
++    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR} 
++}
++
++do_install () {
++    make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir}
++}
+diff --git a/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi.inc b/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi.inc
+new file mode 100644
+index 0000000..3bf27b8
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-cppi/ti-cppi.inc
+@@ -0,0 +1,9 @@
++LICENSE = "TI BSD"
++LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/drv/cppi/COPYING.txt;md5=e8f6789acdcda76d02ed9203fc2e603d"
++
++BRANCH="master"
++SRC_URI = "git://git.ti.com/keystone-rtos/cppi-lld.git;destsuffix=git/ti/drv/cppi;protocol=git;branch=${BRANCH}"
++
++# Below Commit ID corresponds to "DEV.CPPI_LLD.02.00.00.13"
++SRCREV = "fc85ebc584e6981c91a2e442f94aff284dc85151"
++PV = "02.00.00.13"
+-- 
+1.7.9.5
+
 
