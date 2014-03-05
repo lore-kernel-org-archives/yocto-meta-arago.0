@@ -1,29 +1,34 @@
-Return-Path: <aravindbr@ti.com>
+Return-Path: <sam.nelson@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C159C52972
+	by arago-project.org (Postfix) with ESMTPS id EDF4D52972
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Mar 2014 16:17:49 +0000 (UTC)
+	Wed,  5 Mar 2014 17:41:56 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s25GHmHq032208
-	for <meta-arago@arago-project.org>; Wed, 5 Mar 2014 10:17:48 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s25GHme6023604
-	for <meta-arago@arago-project.org>; Wed, 5 Mar 2014 10:17:48 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 5 Mar 2014 10:17:47 -0600
-Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
-	(ileax41-snat.itg.ti.com [10.172.224.153])	by dlep33.itg.ti.com
-	(8.14.3/8.13.8) with ESMTP id s25GHlsp017514;
-	Wed, 5 Mar 2014 10:17:47 -0600
-From: Aravind Batni <aravindbr@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 5 Mar 2014 11:17:45 -0500
-Message-ID: <1394036265-9590-1-git-send-email-aravindbr@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s25Hfu8F017646
+	for <meta-arago@arago-project.org>; Wed, 5 Mar 2014 11:41:56 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s25HfuZ9027144
+	for <meta-arago@arago-project.org>; Wed, 5 Mar 2014 11:41:56 -0600
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0174.001; Wed, 5 Mar 2014 11:41:55 -0600
+From: "Nelson, Sam" <sam.nelson@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] arago.conf: Update preferred version of
+	binutils to 2.23.1
+Thread-Index: AQHPNm2y5y5TZihinE6UglIhKr2fhJrSN5AAgACPrIA=
+Date: Wed, 5 Mar 2014 17:41:55 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F49057F4C2B9@DLEE11.ent.ti.com>
+References: <1393802295-7212-1-git-send-email-sam.nelson@ti.com>
+	<20140305030635.GT22125@edge>
+In-Reply-To: <20140305030635.GT22125@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: Aravind Batni <aravindbr@ti.com>
-Subject: [PATCH v2] ti-hplib: provides ti hplib recipe for ti KeyStone devices
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] arago.conf: Update preferred version of binutils to 2.23.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,111 +41,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 16:17:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 05 Mar 2014 17:41:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
--TI hplib library and kernel module
+I guess the arago-prefs.inc or branding-xyz.inc is the right place. Please =
+ignore this patch.
+Sam
 
-Signed-off-by: Aravind Batni <aravindbr@ti.com>
----
-* removed kernel RDEPENDS check
----
----
- .../recipes-bsp/ti-hplib/ti-hplib-lib_git.bb       |   29 +++++++++++++++++
- .../recipes-bsp/ti-hplib/ti-hplib-mod_git.bb       |   33 ++++++++++++++++++++
- .../recipes-bsp/ti-hplib/ti-hplib.inc              |    6 ++++
- 3 files changed, 68 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-lib_git.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-mod_git.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib.inc
-
-diff --git a/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-lib_git.bb b/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-lib_git.bb
-new file mode 100644
-index 0000000..720ac83
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-lib_git.bb
-@@ -0,0 +1,29 @@
-+DESCRIPTION = "TI HPLIB"
-+LICENSE = "TI BSD"
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/runtime/hplib/src/COPYING.txt;md5=b7982a377c680ad71ca2fbb735982462"
-+COMPATIBLE_MACHINE = "keystone"
-+
-+DEPENDS = "ti-csl ti-rm ti-qmss-lib ti-sa ti-pktlib"
-+
-+include ti-hplib.inc
-+
-+PR = "r0"
-+S = "${WORKDIR}/git/ti/runtime/hplib"
-+
-+PACKAGES =+ "${PN}-test"
-+FILES_${PN}-test = "${bindir}/*test*"
-+
-+CHOICELIST = "yes no"
-+
-+do_compile () {
-+  for choice in ${CHOICELIST}
-+  do
-+    make -f makefile_armv7 clean lib tests PDK_INSTALL_PATH=${STAGING_INCDIR} HPLIB_SRC_DIR=${S} USEDYNAMIC_LIB=$choice
-+  done
-+}
-+
-+do_install () {
-+     make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir} INSTALL_BIN_BASE_DIR=${D}${bindir}
-+}
-+
-+
-diff --git a/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-mod_git.bb b/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-mod_git.bb
-new file mode 100644
-index 0000000..e260252
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib-mod_git.bb
-@@ -0,0 +1,33 @@
-+DESCRIPTION = "TI High Performance Library kernel module"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/runtime/hplib/module/COPYING.txt;md5=c1c4d3453cddc5b7f0ce84a277e66779"
-+COMPATIBLE_MACHINE = "keystone-evm"
-+
-+DEPENDS = "ti-hplib-lib"
-+
-+include ti-hplib.inc
-+
-+PKG_${PN} = "kernel-module-${PN}"
-+
-+# This package builds a kernel module, use kernel PR as base and append a local
-+PR = "${MACHINE_KERNEL_PR}"
-+PR_append = "d"
-+
-+PKG_${PN} = "kernel-module-${PN}"
-+
-+S ="${WORKDIR}/git/ti/runtime/hplib/module"
-+
-+inherit module
-+
-+do_compile () {
-+    unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
-+    make KDIR=${STAGING_KERNEL_DIR} clean
-+    make KDIR=${STAGING_KERNEL_DIR} PDK_INSTALL_PATH=${STAGING_INCDIR}
-+}
-+
-+do_install () {
-+     make KDIR="${STAGING_KERNEL_DIR}" INSTALL_MOD_PATH="${D}" install
-+}
-+
-+PACKAGE_STRIP = "no"
-+
-diff --git a/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib.inc b/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib.inc
-new file mode 100644
-index 0000000..c7a767d
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-hplib/ti-hplib.inc
-@@ -0,0 +1,6 @@
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/keystone-rtos/hplib.git;protocol=git;branch=${BRANCH}"
-+
-+# Below Commit ID corresponds to "DEV.HPLIB.01.00.00.06"
-+SRCREV = "3afeeffd93f8ec7438329eca273db8bf8c7ff645"
-+PV = "01.00.00.06"
--- 
-1.7.9.5
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Tuesday, March 04, 2014 10:07 PM
+> To: Nelson, Sam
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] arago.conf: Update preferred version of
+> binutils to 2.23.1
+>=20
+> What are you strying to fix here? Moreover, arago.conf is not the right p=
+lace
+> for that...
+>=20
+>=20
+> On Sun, Mar 02, 2014 at 06:18:15PM -0500, Sam Nelson wrote:
+> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> >
+> > ---
+> > - 2.23.1 is available in oe-core/meta/recipes-
+> devtools/binutils/binutils_2.23.1.bb
+> > ---
+> > ---
+> >  meta-arago-distro/conf/distro/arago.conf |    2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-
+> distro/conf/distro/arago.conf
+> > index 76254f2..a789e89 100644
+> > --- a/meta-arago-distro/conf/distro/arago.conf
+> > +++ b/meta-arago-distro/conf/distro/arago.conf
+> > @@ -70,3 +70,5 @@ LICENSE_FLAGS_WHITELIST =3D "commercial_gst-
+> ffmpeg"
+> >  PACKAGE_ARCH :=3D "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-
+> libc-headers}"
+> >  # Need to include the new PACKAGE_ARCH to the PACKAGE_ARCHS
+> variable
+> >  PACKAGE_ARCHS +=3D "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-
+> libc-headers}"
+> > +
+> > +PREFERRED_VERSION_binutils =3D "2.23.1"
+> > --
+> > 1.7.9.5
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
