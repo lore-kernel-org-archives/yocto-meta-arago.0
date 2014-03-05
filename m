@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id C3B9E52986
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 701CD52986
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Mar 2014 03:09:38 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2539bi0002899
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:09:37 -0600
+	Wed,  5 Mar 2014 03:10:14 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s253ADGT009809
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:10:13 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2539bQY012784
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:09:37 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s253ADR0026922
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:10:13 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 4 Mar 2014 21:09:37 -0600
+	Tue, 4 Mar 2014 21:10:13 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2539bnl029011;
-	Tue, 4 Mar 2014 21:09:37 -0600
-Date: Tue, 4 Mar 2014 22:09:37 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s253ACPR016068;
+	Tue, 4 Mar 2014 21:10:13 -0600
+Date: Tue, 4 Mar 2014 22:10:12 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20140305030936.GU22125@edge>
-References: <1393801987-6753-1-git-send-email-sam.nelson@ti.com>
+Message-ID: <20140305031012.GV22125@edge>
+References: <1393802558-7742-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1393801987-6753-1-git-send-email-sam.nelson@ti.com>
+In-Reply-To: <1393802558-7742-1-git-send-email-sam.nelson@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] ti-edma3: Add recipe for EDMA3 user space low level driver
+Subject: Re: [PATCH] ti-hyplnk: Add recipe for ti hyperlink low level driver
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,97 +37,116 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 03:09:39 -0000
+X-List-Received-Date: Wed, 05 Mar 2014 03:10:14 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Is this a re-submit or v2 of the previous submission?
+This one as well - is this a v2 of previously submitted patch, or just 
+re-send?
 
 
-On Sun, Mar 02, 2014 at 06:13:07PM -0500, Sam Nelson wrote:
-> - Low level user space driver and test code for TI EDMA3
+On Sun, Mar 02, 2014 at 06:22:38PM -0500, Sam Nelson wrote:
+> - User space low level driver and test code for hyperlink
+>   peripheral
 > 
 > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 > ---
->  .../recipes-bsp/ti-edma3/ti-edma3_git.bb           |   69 ++++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100755 meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb
+>  .../recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb     |   38 ++++++++++++++++++++
+>  .../recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb     |   21 +++++++++++
+>  .../recipes-bsp/ti-hyplnk/ti-hyplnk.inc            |   10 ++++++
+>  3 files changed, 69 insertions(+)
+>  create mode 100755 meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb
+>  create mode 100755 meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb
+>  create mode 100644 meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc
 > 
-> diff --git a/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb
+> diff --git a/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb
 > new file mode 100755
-> index 0000000..82b980f
+> index 0000000..9938b18
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-bsp/ti-edma3/ti-edma3_git.bb
-> @@ -0,0 +1,69 @@
-> +DESCRIPTION = "TI EDMA3 low level driver and test code"
-> +LICENSE = "TI-BSD"
-> +LIC_FILES_CHKSUM = "file://COPYING.txt;md5=5bdceac872dffdec915b819654ee23ea"
+> +++ b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb
+> @@ -0,0 +1,38 @@
+> +DESCRIPTION = "TI HYPLNK low level driver test binaries"
+> +LICENSE = "TI BSD"
 > +
-> +BRANCH="master"
-> +SRC_URI = "git://git.ti.com/keystone-rtos/edma3_lld.git"
-> +# The following commit corresponds to tag DEV_EDMA3_LLD_02_11_11_15_RC01
-> +SRCREV = "b73a262bf6f6d366e3bf83d0c116be2b61a86dde"
-> +
-> +PV="2.11.11"
-> +
-> +COMPATIBLE_MACHINE = "keystone-evm"
+> +COMPATIBLE_MACHINE = "keystone"
 > +
 > +PR = "r0"
-> +DEPENDS="ti-csl"
+> +DEPENDS="ti-csl ti-hyplnk-lib"
 > +
-> +PLATFORMLIST = "tci6636k2h-evm \
-> +	tci6638k2k-evm \
-> +	tci6630k2l-evm \
-> +	c66ak2e-evm \
-> +	"
+> +include ti-hyplnk.inc
 > +
-> +PACKAGES =+ "${PN}-bin"
+> +BASEDIR = "${WORKDIR}/git"
+> +S = "${BASEDIR}/ti/drv/${LLDNAME}"
 > +
-> +FILES_${PN}-bin = "${bindir}/*"
+> +DEVICELIST = " k2h \
+> +               k2k \
+> +"
 > +
-> +S = "${WORKDIR}/git"
+> +CHOICELIST = " yes \
+> +               no  \
+> +"
 > +
 > +do_compile () {
-> +	cd ${S}/packages
-> +	for platform in ${PLATFORMLIST}
+> +	make -f makefile_armv7 clean PDK_INSTALL_PATH=${STAGING_INCDIR} HYPLNK_SRC_DIR=${PWD}
+> +	for device in ${DEVICELIST}
 > +	do
-> +		ROOTDIR=${S} CROSSCC="${TARGET_PREFIX}gcc" CROSSAR="${TARGET_PREFIX}ar" \
-> +		CROSSLNK="${TARGET_PREFIX}gcc" INTERNAL_SW_ROOT=${S} make \
-> +		PLATFORM=${platform} TARGET=a15 TOOLCHAIN_a15=GCC FORMAT=ELF SONAME=libedma3.so all
+> +		for choice in ${CHOICELIST}
+> +		do
+> +			make -f makefile_armv7 tests examples PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="${device}" HYPLNK_SRC_DIR=${S} USEDYNAMIC_LIB="${choice}"
+> +		done
 > +	done
 > +}
 > +
 > +do_install () {
-> +	install -d ${D}/${libdir}
+> +    for device in ${DEVICELIST}
+> +	do
+> +	    make -f makefile_armv7 installbin PDK_INSTALL_PATH=${STAGING_INCDIR} DEVICE="${device}" HYPLNK_SRC_DIR=${S} INSTALL_BIN_BASE_DIR=${D}/${bindir}
+> +	done
+> +}
+> diff --git a/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb
+> new file mode 100755
+> index 0000000..03399c6
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb
+> @@ -0,0 +1,21 @@
+> +DESCRIPTION = "TI HYPLNK Low Level Driver"
+> +LICENSE = "TI BSD"
 > +
-> +	# Static Libraries
-> +	cp ${S}/packages/ti/sdo/edma3/drv/lib/a15/release/edma3_lld_drv.aa15fg ${D}/${libdir}/libedma3.a
-> +	cp ${S}/packages/ti/sdo/edma3/rm/lib/tci6636k2h-evm/a15/release/edma3_lld_rm.aa15fg ${D}/${libdir}/libedma3rm.a
+> +COMPATIBLE_MACHINE = "keystone"
 > +
-> +	# Shared Libraries
-> +	cp -a ${S}/packages/ti/sdo/edma3/drv/lib/a15/release/libedma* ${D}/${libdir}
-> +	cp -a ${S}/packages/ti/sdo/edma3/rm/lib/tci6636k2h-evm/a15/release/libedma* ${D}/${libdir}
+> +PR = "r0"
+> +DEPENDS="ti-csl"
 > +
-> +	# Copy Headers
-> +	install -d ${D}/${includedir}/ti/sdo/edma3/drv/
-> +	install -d ${D}/${includedir}/ti/sdo/edma3/rm
-> +	cp ${S}/packages/ti/sdo/edma3/drv/*.h ${D}/${includedir}/ti/sdo/edma3/drv/
-> +	cp ${S}/packages/ti/sdo/edma3/rm/*.h ${D}/${includedir}/ti/sdo/edma3/rm/
+> +include ti-hyplnk.inc
 > +
-> +	# Copy Sample Config
-> +	install -d ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-> +	cp ${S}/examples/edma3_user_space_driver/evmTCI6636K2H/evmTCI6636K2HSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-> +	cp ${S}/examples/edma3_user_space_driver/evmTCI6638K2K/evmTCI6638K2KSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-> +	cp ${S}/examples/edma3_user_space_driver/evmTCI6630K2L/evmTCI6630K2LSample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
-> +	cp ${S}/examples/edma3_user_space_driver/evmC66AK2E/evmC66AK2ESample.c ${D}/${includedir}/ti/sdo/edma3/drv/sample/src/platforms
+> +BASEDIR = "${WORKDIR}/git"
+> +S = "${BASEDIR}/ti/drv/${LLDNAME}"
 > +
-> +	install -d ${D}/${bindir}
-> +	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6636K2H/bin/tci6636k2h-evm/edma3_drv_6636k2h_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6636k2h_a15_sample_a15host_release.xa15fg
-> +	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6638K2K/bin/tci6638k2k-evm/edma3_drv_6638k2k_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6638k2k_a15_sample_a15host_release.xa15fg
-> +	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmTCI6630K2L/bin/tci6630k2l-evm/edma3_drv_6630k2l_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_6630k2l_a15_sample_a15host_release.xa15fg
-> +	install -c -m 755 ${S}/examples/edma3_user_space_driver/evmC66AK2E/bin/c66ak2e-evm/edma3_drv_c66ak2e_a15_sample_a15host_release.xa15fg ${D}/${bindir}/edma3_drv_c66ak2e_a15_sample_a15host_release.xa15fg
+> +do_compile () {
+> +#   Now build the lld in the updated directory	
+> +    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR}
 > +}
 > +
+> +do_install () {
+> +    make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir}
+> +}
+> diff --git a/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc
+> new file mode 100644
+> index 0000000..26f22db
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc
+> @@ -0,0 +1,10 @@
+> +LLDNAME="hyplnk"
+> +
+> +LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/drv/${LLDNAME}/COPYING.txt;md5=5bdceac872dffdec915b819654ee23ea"
+> +
+> +BRANCH="master"
+> +SRC_URI = "git://git.ti.com/keystone-rtos/hyplnk-lld.git;destsuffix=git/ti/drv/${LLDNAME};protocol=git;branch=${BRANCH}"
+> +# Following commit corresponds to tag DEV.HYPLNK_LLD.02.00.00.09
+> +SRCREV = "f88e31b60aa2b4d591d5a845361c7e56792eeda1"
+> +
+> +PV = "2.0.0"
+> \ No newline at end of file
 > -- 
 > 1.7.9.5
 > 
