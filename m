@@ -1,34 +1,30 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B82165208C
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 5711F5208C
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Mar 2014 03:41:02 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s253f29u032767
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:41:02 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s253f1ti012100
-	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:41:02 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0174.001; Tue, 4 Mar 2014 21:41:01 -0600
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] ti-hyplnk: Add recipe for ti hyperlink
-	low level driver
-Thread-Index: AQHPNm5OpyuH6v9UT0CifcjimL6o75rSOJAA//+j4sA=
-Date: Wed, 5 Mar 2014 03:41:01 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49057F4B5DB@DLEE11.ent.ti.com>
-References: <1393802558-7742-1-git-send-email-sam.nelson@ti.com>
-	<20140305031012.GV22125@edge>
-In-Reply-To: <20140305031012.GV22125@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Wed,  5 Mar 2014 03:46:22 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s253kL82029443
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:46:21 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s253kLx5001488
+	for <meta-arago@arago-project.org>; Tue, 4 Mar 2014 21:46:21 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 4 Mar 2014 21:46:21 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s253kL3c018700;
+	Tue, 4 Mar 2014 21:46:21 -0600
+Date: Tue, 4 Mar 2014 22:46:20 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20140305034620.GZ22125@edge>
+References: <1392141117-22223-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] ti-hyplnk: Add recipe for ti hyperlink low level driver
+In-Reply-To: <1392141117-22223-1-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v2] vtun: Add new recipe for vtun
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,158 +37,71 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 03:41:03 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 05 Mar 2014 03:46:22 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Previous one can be ignored.=20
-Thanks,
-Sam
+On Tue, Feb 11, 2014 at 12:51:57PM -0500, Sam Nelson wrote:
+> - Virtual Tunnels over TCP/IP networks with
+>    traffic shaping, compression and encryption
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Tuesday, March 04, 2014 10:10 PM
-> To: Nelson, Sam
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] ti-hyplnk: Add recipe for ti hyperlink =
-low
-> level driver
->=20
-> This one as well - is this a v2 of previously submitted patch, or just
-> re-send?
->=20
->=20
-> On Sun, Mar 02, 2014 at 06:22:38PM -0500, Sam Nelson wrote:
-> > - User space low level driver and test code for hyperlink
-> >   peripheral
-> >
-> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > ---
-> >  .../recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb     |   38
-> ++++++++++++++++++++
-> >  .../recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb     |   21 +++++++++++
-> >  .../recipes-bsp/ti-hyplnk/ti-hyplnk.inc            |   10 ++++++
-> >  3 files changed, 69 insertions(+)
-> >  create mode 100755 meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-
-> bin_git.bb
-> >  create mode 100755 meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-
-> lib_git.bb
-> >  create mode 100644 meta-arago-extras/recipes-bsp/ti-hyplnk/ti-
-> hyplnk.inc
-> >
-> > diff --git a/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.=
-bb
-> b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb
-> > new file mode 100755
-> > index 0000000..9938b18
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-bin_git.bb
-> > @@ -0,0 +1,38 @@
-> > +DESCRIPTION =3D "TI HYPLNK low level driver test binaries"
-> > +LICENSE =3D "TI BSD"
-> > +
-> > +COMPATIBLE_MACHINE =3D "keystone"
-> > +
-> > +PR =3D "r0"
-> > +DEPENDS=3D"ti-csl ti-hyplnk-lib"
-> > +
-> > +include ti-hyplnk.inc
-> > +
-> > +BASEDIR =3D "${WORKDIR}/git"
-> > +S =3D "${BASEDIR}/ti/drv/${LLDNAME}"
-> > +
-> > +DEVICELIST =3D " k2h \
-> > +               k2k \
-> > +"
-> > +
-> > +CHOICELIST =3D " yes \
-> > +               no  \
-> > +"
-> > +
-> > +do_compile () {
-> > +	make -f makefile_armv7 clean
-> PDK_INSTALL_PATH=3D${STAGING_INCDIR} HYPLNK_SRC_DIR=3D${PWD}
-> > +	for device in ${DEVICELIST}
-> > +	do
-> > +		for choice in ${CHOICELIST}
-> > +		do
-> > +			make -f makefile_armv7 tests examples
-> PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3D"${device}"
-> HYPLNK_SRC_DIR=3D${S} USEDYNAMIC_LIB=3D"${choice}"
-> > +		done
-> > +	done
-> > +}
-> > +
-> > +do_install () {
-> > +    for device in ${DEVICELIST}
-> > +	do
-> > +	    make -f makefile_armv7 installbin
-> PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3D"${device}"
-> HYPLNK_SRC_DIR=3D${S} INSTALL_BIN_BASE_DIR=3D${D}/${bindir}
-> > +	done
-> > +}
-> > diff --git a/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.=
-bb
-> b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb
-> > new file mode 100755
-> > index 0000000..03399c6
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk-lib_git.bb
-> > @@ -0,0 +1,21 @@
-> > +DESCRIPTION =3D "TI HYPLNK Low Level Driver"
-> > +LICENSE =3D "TI BSD"
-> > +
-> > +COMPATIBLE_MACHINE =3D "keystone"
-> > +
-> > +PR =3D "r0"
-> > +DEPENDS=3D"ti-csl"
-> > +
-> > +include ti-hyplnk.inc
-> > +
-> > +BASEDIR =3D "${WORKDIR}/git"
-> > +S =3D "${BASEDIR}/ti/drv/${LLDNAME}"
-> > +
-> > +do_compile () {
-> > +#   Now build the lld in the updated directory
-> > +    make -f makefile_armv7 clean lib
-> PDK_INSTALL_PATH=3D${STAGING_INCDIR}
-> > +}
-> > +
-> > +do_install () {
-> > +    make -f makefile_armv7 install
-> PDK_INSTALL_PATH=3D${STAGING_INCDIR}
-> INSTALL_INC_BASE_DIR=3D${D}/${includedir}
-> INSTALL_LIB_BASE_DIR=3D${D}${libdir}
-> > +}
-> > diff --git a/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc b/me=
-ta-
-> arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc
-> > new file mode 100644
-> > index 0000000..26f22db
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-bsp/ti-hyplnk/ti-hyplnk.inc
-> > @@ -0,0 +1,10 @@
-> > +LLDNAME=3D"hyplnk"
-> > +
-> > +LIC_FILES_CHKSUM =3D
-> "file://${WORKDIR}/git/ti/drv/${LLDNAME}/COPYING.txt;md5=3D5bdceac872df
-> fdec915b819654ee23ea"
-> > +
-> > +BRANCH=3D"master"
-> > +SRC_URI =3D "git://git.ti.com/keystone-rtos/hyplnk-
-> lld.git;destsuffix=3Dgit/ti/drv/${LLDNAME};protocol=3Dgit;branch=3D${BRAN=
-CH}"
-> > +# Following commit corresponds to tag DEV.HYPLNK_LLD.02.00.00.09
-> > +SRCREV =3D "f88e31b60aa2b4d591d5a845361c7e56792eeda1"
-> > +
-> > +PV =3D "2.0.0"
-> > \ No newline at end of file
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Looks mostly good, just couple comments.
+
+
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> 
+> ---
+> Changes from previous patch
+> * Updated LIC_FILES_CHECKSUM to use just the copyright lines
+> ---
+> ---
+>  .../recipes-connectivity/vtun/vtun_3.0.3.bb        |   23 ++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>  create mode 100755 meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
+> 
+> diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
+> new file mode 100755
+> index 0000000..bb4d69d
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
+> @@ -0,0 +1,23 @@
+> +DESCRIPTION = "Virtual Tunnels over TCP/IP networks with traffic shaping, compression and encryption."
+> +HOMEPAGE = "http://vtun.sourceforge.net/"
+> +SECTION = "console/network"
+> +PRIORITY = "optional"
+
+Drop PRIORITY please.
+
+
+> +LICENSE = "GPLv2"
+> +DEPENDS = "zlib lzo openssl"
+> +PR = "r0"
+> +LIC_FILES_CHKSUM = "file://vtun.h;startline=1;endline=17;md5=9ac9e7fefca60c72400239e0de40cde8"
+> +
+> +SRC_URI = "http://downloads.sourceforge.net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz"
+> +
+> +SRC_URI[md5sum] = "f3becf2a0270910a841060c08d1db824"
+> +SRC_URI[sha256sum] = "69dcbe4f8c5ce7d91b4150a6309e536d03b61841169746ca5788413ac7edb9cb"
+> +
+> +inherit autotools
+> +
+> +do_configure() {
+> +	sed -i "s/\$BLOWFISH_HDR_DIR \/usr\/include\/ssl/\$BLOWFISH_HDR_DIR \/usr\/include\/ssl \$SSL_HDR_DIR/" configure
+> +	oe_runconf --with-lzo-headers=${STAGING_INCDIR}/lzo --with-lzo-lib=${STAGING_LIBDIR} --with-ssl-headers=${STAGING_INCDIR}/openssl --with-ssl-lib=${STAGING_LIBDIR}
+> +	sed '102d' Makefile > Makefile.new
+> +	mv Makefile.new Makefile
+
+What's the reason for the above 2 sed commands? A small comment before 
+do_configure() explaining why you are doing that, would be great! Thanks.
+
+
+> +}
+> +
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
