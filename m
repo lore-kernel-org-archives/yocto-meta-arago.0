@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 9AB3752A0A
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 07DFD52A0A
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Mar 2014 21:57:18 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s27LvHoI026304
-	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 15:57:17 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27LvHJC019093
-	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 15:57:17 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 7 Mar 2014 15:57:17 -0600
+	Fri,  7 Mar 2014 21:57:20 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s27LvK0s024234
+	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 15:57:20 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27LvKhC019299
+	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 15:57:20 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 7 Mar 2014 15:57:19 -0600
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27Lv98c006131;
-	Fri, 7 Mar 2014 15:57:15 -0600
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27Lv98d006131;
+	Fri, 7 Mar 2014 15:57:18 -0600
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 7 Mar 2014 15:57:05 -0600
-Message-ID: <1394229426-12753-3-git-send-email-fcooper@ti.com>
+Date: Fri, 7 Mar 2014 15:57:06 -0600
+Message-ID: <1394229426-12753-4-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1394229426-12753-1-git-send-email-fcooper@ti.com>
 References: <1394229426-12753-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/4] cryptodev: Add patch to make cryptodev cross compile friendly.
+Subject: [PATCH 4/4] ti-tisdk-makefile: Add Makefile stub for cryptodev
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,72 +37,86 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 21:57:18 -0000
+X-List-Received-Date: Fri, 07 Mar 2014 21:57:21 -0000
 Content-Type: text/plain
-
-* This patch is already upstreamed.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../0001-allow-for-cross-compiling-cryptodev.patch |   35 ++++++++++++++++++++
- .../cryptodev/cryptodev_1.6.bbappend               |    6 +++-
- 2 files changed, 40 insertions(+), 1 deletions(-)
- create mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev/0001-allow-for-cross-compiling-cryptodev.patch
+ .../ti-tisdk-makefile/Makefile_cryptodev           |   28 ++++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    8 +++++-
+ 2 files changed, 35 insertions(+), 1 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev
 
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev/0001-allow-for-cross-compiling-cryptodev.patch b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev/0001-allow-for-cross-compiling-cryptodev.patch
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev
 new file mode 100644
-index 0000000..e6f04e0
+index 0000000..c05dc66
 --- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev/0001-allow-for-cross-compiling-cryptodev.patch
-@@ -0,0 +1,35 @@
-+From 90f5154302df24d9fe4a71270cb87261789c036a Mon Sep 17 00:00:00 2001
-+From: Phil Sutter <phil.sutter@viprinet.com>
-+Date: Mon, 24 Jan 2011 17:44:30 +0100
-+Subject: [PATCH] allow for cross-compiling cryptodev
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev
+@@ -0,0 +1,28 @@
++cryptodev: linux
++	@echo ================================
++	@echo      Building cryptodev-linux
++	@echo ================================
++	@cd board-support/extra-drivers; \
++	cd `find . -maxdepth 1 -name "cryptodev*"`; \
++	make ARCH=arm KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR)
 +
-+Signed-off-by: Phil Sutter <phil@nwl.cc>
-+---
-+ Makefile |   10 +++++++++-
-+ 1 files changed, 9 insertions(+), 1 deletions(-)
++cryptodev_clean:
++	@echo ================================
++	@echo      Cleaning cryptodev-linux
++	@echo ================================
++	@cd board-support/extra-drivers; \
++	cd `find . -maxdepth 1 -name "cryptodev*"`; \
++	make clean
 +
-+diff --git a/Makefile b/Makefile
-+index 489c5f3..c657c70 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -13,8 +13,16 @@ cryptodev-objs = ioctl.o main.o cryptlib.o authenc.o zc.o util.o
-+ 
-+ obj-m += cryptodev.o
-+ 
-++KERNEL_MAKE_OPTS := -C ${KERNEL_DIR} SUBDIRS=`pwd`
-++ifneq (${ARCH},)
-++KERNEL_MAKE_OPTS += ARCH=${ARCH}
-++endif
-++ifneq (${CROSS_COMPILE},)
-++KERNEL_MAKE_OPTS += CROSS_COMPILE=${CROSS_COMPILE}
-++endif
-++
-+ build: version.h
-+-	make -C $(KERNEL_DIR) SUBDIRS=`pwd` modules
-++	make ${KERNEL_MAKE_OPTS} modules
-+ 
-+ version.h: Makefile
-+ 	@echo "#define VERSION \"$(VERSION)\"" > version.h
-+-- 
-+1.7.0.4
-+
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend
-index 0c6a087..75f5a29 100644
---- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend
-+++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev_1.6.bbappend
-@@ -1,3 +1,7 @@
--PR_append = "-arago0"
-+PR_append = "-arago1"
++cryptodev_install:
++	@echo ================================
++	@echo      Installing cryptodev-linux
++	@echo ================================
++	@if [ ! -d $(DESTDIR) ] ; then \
++		echo "The extracted target filesystem directory doesn't exist."; \
++		echo "Please run setup.sh in the SDK's root directory and then try again."; \
++		exit 1; \
++	fi
++	@cd board-support/extra-drivers; \
++	cd `find . -maxdepth 1 -name "cryptodev*"`; \
++	make ARCH=arm  KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET)  install
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 67e1b81..0817e4e 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -32,9 +32,10 @@ SRC_URI = "\
+     file://Makefile_omapconf \
+     file://Makefile_oprofile-example \
+     file://Makefile_dual-camera-demo \
++    file://Makefile_cryptodev \
+ "
  
- module_autoload_cryptodev = "cryptodev"
+-PR = "r30"
++PR = "r31"
+ 
+ MAKEFILES_COMMON = "linux \
+                     matrix-gui \
+@@ -66,6 +67,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
+                            ti-crypto-examples \
+                            linux-dtbs \
+                            wireless \
++                           cryptodev \
+ "
+ MAKEFILES_append_ti43x = " u-boot-spl \
+                            ${QUICK_PLAYGROUND} \
+@@ -73,7 +75,11 @@ MAKEFILES_append_ti43x = " u-boot-spl \
+                            linux-dtbs \
+                            wireless \
+                            dual-camera-demo \
++                           cryptodev \
+ "
 +
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++MAKEFILES_append_dra7xx-evm = " cryptodev"
 +
-+SRC_URI += "file://0001-allow-for-cross-compiling-cryptodev.patch"
+ MAKEFILES_append_omap-a15 = " u-boot-spl \
+                               ${QUICK_PLAYGROUND} \
+                               omapconf \
 -- 
 1.7.0.4
 
