@@ -1,34 +1,28 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id EF0D052A14
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 452FB52A0A
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Mar 2014 20:38:02 +0000 (UTC)
+	Fri,  7 Mar 2014 21:57:13 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s27Kc1B7005337
-	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 14:38:01 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27Kc19q026991
-	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 14:38:01 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Fri, 7 Mar 2014 14:38:01 -0600
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [oe-layersetup][PATCH] mcsdk-dylan-config: Update
-	mcsdk-config to use java layer
-Thread-Index: AQHPOkCCWtltJDe6CUS/O11Awnlj7prWcVIA//+kalA=
-Date: Fri, 7 Mar 2014 20:38:01 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49057F4FCEA@DLEE11.ent.ti.com>
-References: <1394222695-22077-1-git-send-email-sam.nelson@ti.com>
-	<20140307200544.GO22125@edge>
-In-Reply-To: <20140307200544.GO22125@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s27LvCSp024225
+	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 15:57:12 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27LvC0e019047
+	for <meta-arago@arago-project.org>; Fri, 7 Mar 2014 15:57:12 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 7 Mar 2014 15:57:11 -0600
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s27Lv98a006131;
+	Fri, 7 Mar 2014 15:57:10 -0600
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 7 Mar 2014 15:57:03 -0600
+Message-ID: <1394229426-12753-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.0.4
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [oe-layersetup][PATCH] mcsdk-dylan-config: Update mcsdk-config to use java layer
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/4] tisdk-install: Add SDK_PATH_TARGET varaible
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,56 +35,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 20:38:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 07 Mar 2014 21:57:13 -0000
+Content-Type: text/plain
 
-Thanks Denys.
+* Some software like cryptodev-linux needs to know where to install header or
+  library files that may be needed to cross compile.
+* These files should go to the SDK_PATH_TARGET directory that is defined in
+   environment-setup.
+* Add that variable to Rules.make to enable proper cross compiling from the top
+  level Makefile.
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Friday, March 07, 2014 3:06 PM
-> To: Nelson, Sam
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [oe-layersetup][PATCH] mcsdk-dylan-config:
-> Update mcsdk-config to use java layer
->=20
-> Thanks, that already went in.
->=20
-> On Fri, Mar 07, 2014 at 03:04:55PM -0500, Sam Nelson wrote:
-> > - Needed to support openjdk in filesystem for XDC tools native compilat=
-ion
-> >
-> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > ---
-> >  configs/mcsdk/mcsdk-dylan-config.txt |    1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/configs/mcsdk/mcsdk-dylan-config.txt b/configs/mcsdk/mcsdk=
--
-> dylan-config.txt
-> > index 9925642..1489b7b 100644
-> > --- a/configs/mcsdk/mcsdk-dylan-config.txt
-> > +++ b/configs/mcsdk/mcsdk-dylan-config.txt
-> > @@ -8,6 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-
-> qt5.git,master,HEAD,layers=3D
-> >  meta-openembedded,git://git.openembedded.org/meta-
-> openembedded,dylan,HEAD,layers=3Dtoolchain-layer:meta-networking:meta-
-> ruby:meta-oe
-> >  meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=3D
-> >  meta-linaro,git://git.linaro.org/openembedded/meta-
-> linaro.git,dylan,HEAD,layers=3Dmeta-linaro-toolchain
-> > +meta-java,git://github.com/woglinde/meta-java,master,HEAD,layers=3D
-> >  oe-core,git://git.openembedded.org/openembedded-
-> core,dylan,HEAD,layers=3Dmeta
-> >  OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-> >  OECORELOCALCONF=3D./sample-files/local-arago.conf.sample
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../tisdk-install/tisdk-install/sdk-install.sh     |    4 ++++
+ .../tisdk-install/tisdk-install_1.0.bb             |    2 +-
+ 2 files changed, 5 insertions(+), 1 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
+index 86799c1..c0284c7 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
++++ b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
+@@ -94,6 +94,10 @@ GCC_VERSION=`ls $install_dir/linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHA
+ TOOLCHAIN_TARGET_INCLUDE_DIR="linux-devkit/sysroots/$REAL_MULTIMACH_TARGET_SYS/usr/include"
+ TOOLCHAIN_INCLUDE_DIR="linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/$GCC_VERSION/include"
+ 
++SDK_PATH_TARGET="linux-devkit/sysroots/$REAL_MULTIMACH_TARGET_SYS/"
++
++sed -i -e s=__SDK_PATH_TARGET__=$SDK_PATH_TARGET= $install_dir/Rules.make
++
+ # Update CCS project files using important paths to headers
+ 
+ find $install_dir/example-applications -type f -exec sed -i "s|<TOOLCHAIN_TARGET_INCLUDE_DIR>|$TOOLCHAIN_TARGET_INCLUDE_DIR|g" {} \;
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
+index 9548ee5..98304b4 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
+@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://../sdk-install.sh;beginline=3;endline=19;md5=4b899037
+ 
+ SRC_URI = "file://sdk-install.sh"
+ 
+-PR = "r2"
++PR = "r3"
+ 
+ do_install () {
+     install -d ${D}/
+-- 
+1.7.0.4
+
 
