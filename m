@@ -1,24 +1,23 @@
-Return-Path: <anders@chargestorm.se>
-Received: from STOEXHUB01.domain01.net (STOEXHUB01.domain01.net
-	[83.145.59.142])
-	by arago-project.org (Postfix) with ESMTPS id EA78A529CE
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id BC20A529B5
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Mar 2014 12:14:32 +0000 (UTC)
-Received: from ad.chargestorm.se (95.209.5.138) by STOEXHUB01.domain01.net
-	(10.12.10.1) with Microsoft SMTP Server (TLS) id 8.3.279.1;
-	Mon, 10 Mar 2014 13:14:31 +0100
-Date: Mon, 10 Mar 2014 13:14:28 +0100
-From: Anders Darander <anders@chargestorm.se>
-To: <meta-arago@arago-project.org>
-Message-ID: <20140310121416.GC4423@ad.chargestorm.se>
-MIME-Version: 1.0
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Subject: Issue building gcc-cross-initial
+	Mon, 10 Mar 2014 14:22:03 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N2800CTJ58G9960@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 10 Mar 2014 09:21:53 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 92B0120086; Mon,
+	10 Mar 2014 10:21:52 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 10 Mar 2014 10:21:52 -0400
+Message-id: <1394461312-32573-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCHv2] arago: set target toolchain preferences at distro level
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -31,208 +30,96 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Mar 2014 12:14:33 -0000
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Mar 2014 14:22:03 -0000
 
-Hi,
+From: Denys Dmytriyenko <denys@ti.com>
 
-Summary:
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+v2 - don't use wildcard for LINUXLIBCHEADERS, as it's used in other places and
+break things
 
-I'm attempting at moving a custom product from meta-arago (danny) to the
-latest master based on dora.
+ meta-arago-distro/conf/distro/include/arago-prefs.inc   | 17 ++++++++++++++++-
+ .../conf/distro/include/toolchain-linaro.inc            |  2 --
+ .../conf/distro/include/tcmode-external-arago.inc       |  5 ++---
+ 3 files changed, 18 insertions(+), 6 deletions(-)
 
-However, I'm getting issues when I'm building gcc-cross-initial (we're
-not using an external toolchain).i
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index d5176fd..4de0301 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -1,3 +1,19 @@
++# Set *target* toolchain preferences at global distro level.
++# Cross and SDK toolchain preferences are set in toolchain-*.inc files
++GCCVERSION ?= "4.7%"
++BINUVERSION ?= "2.23%"
++EGLIBCVERSION ?= "2.17%"
++LINUXLIBCVERSION ?= "3.8"
++
++PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
++PREFERRED_VERSION_gcc-runtime ?= "${GCCVERSION}"
++PREFERRED_VERSION_libgcc ?= "${GCCVERSION}"
++PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
++PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
++PREFERRED_VERSION_eglibc ?= "${EGLIBCVERSION}"
++PREFERRED_VERSION_eglibc-locale ?= "${EGLIBCVERSION}"
++PREFERRED_VERSION_eglibc-initial ?= "${EGLIBCVERSION}"
++
+ # Set preferred Qt5 versions. Different namespace from Qt4, so no conflict
+ include conf/distro/include/qt5-versions.inc
+ 
+@@ -12,7 +28,6 @@ PREFERRED_PROVIDER_qt4-embedded = "${ARAGO_QT_PROVIDER}"
+ PREFERRED_VERSION_qt4-embedded = "4.8.4"
+ PREFERRED_VERSION_qt4-native = "4.8.4"
+ PREFERRED_VERSION_nativesdk-qt4-tools = "4.8.4"
+-PREFERRED_VERSION_linux-libc-headers = "3.8"
+ 
+ # Use v4.09.00.01 of the Graphics SDK
+ PREFERRED_VERSION_omap3-sgx-modules_omap3 = "4.09.00.01"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+index cc12f08..08aa3f6 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+@@ -32,7 +32,6 @@ SDKGCCVERSION ?= "4.7%"
+ SDKBINUVERSION ?= "2.23%"
+ SDKEGLIBCVERSION ?= "2.17%"
+ SDKLINUXLIBCVERSION ?= "3.8%"
+-LINUXLIBCVERSION ?= "3.8%"
+ 
+ PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+@@ -40,7 +39,6 @@ PREFERRED_VERSION_gcc-crosssdk-intermediate ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_binutils-crosssdk ?= "${SDKBINUVERSION}"
+-PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
+ PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+ PREFERRED_VERSION_nativesdk-eglibc ?= "${SDKEGLIBCVERSION}"
+ PREFERRED_VERSION_nativesdk-eglibc-initial ?= "${SDKEGLIBCVERSION}"
+diff --git a/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc b/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
+index 3ff235f..676e08e 100644
+--- a/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
++++ b/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
+@@ -38,7 +38,7 @@ GCCVERSION ?= "4.5%"
+ SDKGCCVERSION ?= "4.5%"
+ BINUVERSION ?= "2.20%"
+ EGLIBCVERSION ?= "2.12%"
+-LINUXLIBCVERSION ?= "3.8"
++SDKLINUXLIBCVERSION ?= "3.8"
+ 
+ PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+ PREFERRED_VERSION_gcc-cross ?= "${GCCVERSION}"
+@@ -56,8 +56,7 @@ PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
+ PREFERRED_VERSION_binutils-cross ?= "${BINUVERSION}"
+ PREFERRED_VERSION_binutils-crosssdk ?= "${BINUVERSION}"
+ PREFERRED_VERSION_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "${BINUVERSION}"
+-PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${LINUXLIBCVERSION}"
++PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+ PREFERRED_VERSION_eglibc ?= "${EGLIBCVERSION}"
+ PREFERRED_VERSION_eglibc-locale ?= "${EGLIBCVERSION}"
+ PREFERRED_VERSION_nativesdk-eglibc ?= "${EGLIBCVERSION}"
+-- 
+1.8.3.2
 
-I've seen this on my normal build machine running Ubuntu 12.04, though
-my example below was running a new OpenSuse machine.=20
-The choice of MACHINE=3D"am37x-evm" is made to get something resembling
-our real machine.
-
-When building gcc-cross-initial, libgcc fails to identify the "suffix of
-object files" when the configure-script for libgcc is being run.
-
-I hope that someone can help me with some ideas/pointers as to how this
-can be resolved. I've got the same issue with both gcc 4.7.2 and
-4.8.1...
-
-
-
-Long story:
-Example for reproduction and some logs:
-
-
-I've reproduce the same issue using a clean, upstream checkout of
-everything, i.e.
-
-Checking out oe-layersetup.git
-Running:
-=2E/oe-layertool-setup.sh -f configs/arago-dora-config.txt
-cd build
-=2E conf/setenv
-
-Modifying conf/local.conf:
-MACHINE =3D "am37x-evm"
-TOOLCHAIN_TYPE =3D "internal"
-TOOLCHAIN_BRAND =3D "gcc"
-
-Running
-bitbake gcc-cross-initial
-
-
-
-This results in:
-Build Configuration:
-BB_VERSION        =3D "1.20.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "SUSE-LINUX-13.1"
-TARGET_SYS        =3D "arm-oe-linux-gnueabi"
-MACHINE           =3D "am37x-evm"
-DISTRO            =3D "arago"
-DISTRO_VERSION    =3D "2013.12"
-TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa8"
-TARGET_FPU        =3D "vfp-neon"
-meta-arago-distro=20
-meta-arago-extras =3D "master:7c1b5d8cab13d2f8459391db69157a58f8c3c8dc"
-meta-qt5          =3D "dora:0713745617924844fa04d865f0e502c2765e7a41"
-toolchain-layer  =20
-meta-networking  =20
-meta-ruby        =20
-meta-oe           =3D "dora:40e0f371f3eb1628655c484feac0cebf810737b4"
-meta-ti           =3D "dora:d343e3021c8c85b0defd635ae68b71ba60648e1d"
-meta-linaro-toolchain =3D "dora:00c2a868cafecb739178d6cdf912699ec3199fab"
-meta              =3D "dora:18f34944696a8098daf33a94bc2f532deb217d0a"
-
-=2E...
-
-And when reching gcc-cross-initial:
-
-| make[1]: Leaving directory
-`/mnt/cs-builds/anders/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
-n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
-64-linux.arm-oe-linux-gnueabi/gcc'=20
-| Checking multilib configuration for libgcc... =20
-| mkdir -p -- arm-oe-linux-gnueabi/libgcc =20
-| Configuring in arm-oe-linux-gnueabi/libgcc =20
-| configure: creating cache ./config.cache =20
-| checking build system type... x86_64-pc-linux-gnu =20
-| checking host system type... arm-oe-linux-gnueabi =20
-| checking for --enable-version-specific-runtime-libs... no =20
-| checking for a BSD-compatible install... /usr/bin/install -c=20
-| checking for gawk... gawk =20
-| checking for arm-oe-linux-gnueabi-ar... arm-oe-linux-gnueabi-ar=20
-| checking for arm-oe-linux-gnueabi-lipo... arm-oe-linux-gnueabi-lipo =20
-| checking for arm-oe-linux-gnueabi-nm...
-/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
-n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
-64-linux.arm-oe-linux-gnueabi/./gcc/nm =20
-| checking for arm-oe-linux-gnueabi-ranlib...
-arm-oe-linux-gnueabi-ranlib =20
-| checking for arm-oe-linux-gnueabi-strip... arm-oe-linux-gnueabi-strip =20
-| checking whether ln -s works... yes =20
-| checking for arm-oe-linux-gnueabi-gcc...
-/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
-n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
-64-linux.arm-oe-linux-gnueabi/./gcc/xgcc
--B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
-eon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x8=
-6_64-linux.arm-oe-linux-gnueabi/./gcc/
--march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon
--mtune=3Dcortex-a8
--isystem/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/am37x-=
-evm/usr/include
--B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux=
-/usr/arm-oe-linux-gnueabi/bin/
--B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux=
-/usr/arm-oe-linux-gnueabi/lib/
--isystem
-/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/u=
-sr/arm-oe-linux-gnueabi/include
--isystem
-/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/u=
-sr/arm-oe-linux-gnueabi/sys-include
---sysroot=3D/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortex=
-a8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.=
-1/build.x86_64-linux.arm-oe-linux-gnueabi/tmpsysroot =20
-| checking for suffix of object files... configure: error: in
-`/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-ne=
-on-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86=
-_64-linux.arm-oe-linux-gnueabi/arm-oe-linux-gnueabi/libgcc': =20
-| configure: error: cannot compute suffix of object files: cannot
-compile=20
-| See `config.log' for more details.=20
-| make: *** [configure-target-libgcc] Error 1 =20
-| ERROR: oe_runmake failed=20
-
-
-The log from the check for "suffix of object files" in config.log is:
-configure:3565: checking for suffix of object files
-configure:3587:
-/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
-n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
-64-linux.arm-oe-linux-gnueabi/./gcc/xgcc -B/home/anders/cs-builds/arago/bui=
-ld/arago-tmp-eglibc/work/cortexa8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/gcc-=
-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi/./=
-gcc/ -march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dne=
-on -mtune=3Dcortex-a8 -isystem/home/anders/cs-builds/arago/build/arago-tmp-=
-eglibc/sysroots/am37x-evm/usr/include -B/home/anders/cs-builds/arago/build/=
-arago-tmp-eglibc/sysroots/x86_64-linux/usr/arm-oe-linux-gnueabi/bin/ -B/hom=
-e/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/usr/a=
-rm-oe-linux-gnueabi/lib/ -isystem/home/anders/cs-builds/arago/build/arago-t=
-mp-eglibc/sysroots/x86_64-linux/usr/arm-oe-linux-gnueabi/include -isystem/h=
-ome/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/usr=
-/arm-oe-linux-gnueabi/sys-include --sysroot=3D/home/anders/cs-builds/arago/=
-build/arago-tmp-eglibc/work/cortexa8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/g=
-cc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi=
-/tmpsysroot -c -g -Os
-  conftest.c >&5
-/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
-n-2.6.37.2-oe-linux-gnueabi/gcc-cross
--initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi/./gcc/a=
-s: line 87: exec: -m: invalid option
-exec: usage: exec [-cl] [-a name] [command [arguments ...]] [redirection
-=2E..]
-configure:3591: $? =3D 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "GNU C Runtime Library"
-| #define PACKAGE_TARNAME "libgcc"
-| #define PACKAGE_VERSION "1.0"
-| #define PACKAGE_STRING "GNU C Runtime Library 1.0"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL "http://www.gnu.org/software/libgcc/"
-| /* end confdefs.h.  */
-|=20
-| int
-| main ()
-| {
-|=20
-|   ;
-|   return 0;
-| } =20
-configure:3605: error: in
-`/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-ne=
-on-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86=
-_64-linux.arm-oe-linux-gnueabi/arm-oe-linux-gnueabi/libgcc':
-configure:3608: error: cannot compute suffix of object files: cannot
-compile
-See `config.log' for more details.
-
-On the Ubuntu machine, the error is the same.
-
-
-Any ideas what can be causing this?=20
-
-Thanks in advance for any pointers...
-
-Cheers,
-Anders
-
---=20
-Anders Darander
-ChargeStorm AB		Tel: +46 702 44 84 36
-Drottninggatan 20	Email: anders@chargestorm.se
-602 24 Norrk=F6ping	Web: www.chargestorm.se
 
