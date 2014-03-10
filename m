@@ -1,29 +1,24 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D89B952A0E
+Return-Path: <anders@chargestorm.se>
+Received: from STOEXHUB01.domain01.net (STOEXHUB01.domain01.net
+	[83.145.59.142])
+	by arago-project.org (Postfix) with ESMTPS id EA78A529CE
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Mar 2014 07:03:07 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2A736Gl009491
-	for <meta-arago@arago-project.org>; Mon, 10 Mar 2014 02:03:06 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2A736Jv008859
-	for <meta-arago@arago-project.org>; Mon, 10 Mar 2014 02:03:06 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 10 Mar 2014 02:03:06 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s2A736vL027701	for <meta-arago@arago-project.org>;
-	Mon, 10 Mar 2014 02:03:06 -0500
-Date: Mon, 10 Mar 2014 02:49:09 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	Mon, 10 Mar 2014 12:14:32 +0000 (UTC)
+Received: from ad.chargestorm.se (95.209.5.138) by STOEXHUB01.domain01.net
+	(10.12.10.1) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Mon, 10 Mar 2014 13:14:31 +0100
+Date: Mon, 10 Mar 2014 13:14:28 +0100
+From: Anders Darander <anders@chargestorm.se>
 To: <meta-arago@arago-project.org>
-Message-ID: <132607910.389.1394434149113.JavaMail.jenkins@puget>
+Message-ID: <20140310121416.GC4423@ad.chargestorm.se>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2013.12 build 2014-03-10_01-00-24
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.22 (2013-10-16)
+Subject: Issue building gcc-cross-initial
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,203 +31,208 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Mar 2014 07:03:08 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_388_1590144975.1394434149083"
+X-List-Received-Date: Mon, 10 Mar 2014 12:14:33 -0000
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_388_1590144975.1394434149083
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Hi,
 
-<html>
-<head>
-<title>
-Status for 03/10/14
-</title>
-</head>
-<body>
+Summary:
 
-<h2>Status for 03/10/14</h2>
+I'm attempting at moving a custom product from meta-arago (danny) to the
+latest master based on dora.
 
-<h2>BUILD_ID: build-2014-03-10_01-01-24</h2>
+However, I'm getting issues when I'm building gcc-cross-initial (we're
+not using an external toolchain).i
 
-<h2>Clean Build: false</h2>
+I've seen this on my normal build machine running Ubuntu 12.04, though
+my example below was running a new OpenSuse machine.=20
+The choice of MACHINE=3D"am37x-evm" is made to get something resembling
+our real machine.
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+When building gcc-cross-initial, libgcc fails to identify the "suffix of
+object files" when the configure-script for libgcc is being run.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>bbb4fa427739912ff3b87379bf629066f6662458</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dylan</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am37x-evm</td>
-        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am3517-evm</td>
-        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>beagleboard</td>
-        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am180x-evm</td>
-        <td id="am180x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am180x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2013.12"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+I hope that someone can help me with some ideas/pointers as to how this
+can be resolved. I've got the same issue with both gcc 4.7.2 and
+4.8.1...
 
 
-------=_Part_388_1590144975.1394434149083--
+
+Long story:
+Example for reproduction and some logs:
+
+
+I've reproduce the same issue using a clean, upstream checkout of
+everything, i.e.
+
+Checking out oe-layersetup.git
+Running:
+=2E/oe-layertool-setup.sh -f configs/arago-dora-config.txt
+cd build
+=2E conf/setenv
+
+Modifying conf/local.conf:
+MACHINE =3D "am37x-evm"
+TOOLCHAIN_TYPE =3D "internal"
+TOOLCHAIN_BRAND =3D "gcc"
+
+Running
+bitbake gcc-cross-initial
+
+
+
+This results in:
+Build Configuration:
+BB_VERSION        =3D "1.20.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "SUSE-LINUX-13.1"
+TARGET_SYS        =3D "arm-oe-linux-gnueabi"
+MACHINE           =3D "am37x-evm"
+DISTRO            =3D "arago"
+DISTRO_VERSION    =3D "2013.12"
+TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa8"
+TARGET_FPU        =3D "vfp-neon"
+meta-arago-distro=20
+meta-arago-extras =3D "master:7c1b5d8cab13d2f8459391db69157a58f8c3c8dc"
+meta-qt5          =3D "dora:0713745617924844fa04d865f0e502c2765e7a41"
+toolchain-layer  =20
+meta-networking  =20
+meta-ruby        =20
+meta-oe           =3D "dora:40e0f371f3eb1628655c484feac0cebf810737b4"
+meta-ti           =3D "dora:d343e3021c8c85b0defd635ae68b71ba60648e1d"
+meta-linaro-toolchain =3D "dora:00c2a868cafecb739178d6cdf912699ec3199fab"
+meta              =3D "dora:18f34944696a8098daf33a94bc2f532deb217d0a"
+
+=2E...
+
+And when reching gcc-cross-initial:
+
+| make[1]: Leaving directory
+`/mnt/cs-builds/anders/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
+n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
+64-linux.arm-oe-linux-gnueabi/gcc'=20
+| Checking multilib configuration for libgcc... =20
+| mkdir -p -- arm-oe-linux-gnueabi/libgcc =20
+| Configuring in arm-oe-linux-gnueabi/libgcc =20
+| configure: creating cache ./config.cache =20
+| checking build system type... x86_64-pc-linux-gnu =20
+| checking host system type... arm-oe-linux-gnueabi =20
+| checking for --enable-version-specific-runtime-libs... no =20
+| checking for a BSD-compatible install... /usr/bin/install -c=20
+| checking for gawk... gawk =20
+| checking for arm-oe-linux-gnueabi-ar... arm-oe-linux-gnueabi-ar=20
+| checking for arm-oe-linux-gnueabi-lipo... arm-oe-linux-gnueabi-lipo =20
+| checking for arm-oe-linux-gnueabi-nm...
+/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
+n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
+64-linux.arm-oe-linux-gnueabi/./gcc/nm =20
+| checking for arm-oe-linux-gnueabi-ranlib...
+arm-oe-linux-gnueabi-ranlib =20
+| checking for arm-oe-linux-gnueabi-strip... arm-oe-linux-gnueabi-strip =20
+| checking whether ln -s works... yes =20
+| checking for arm-oe-linux-gnueabi-gcc...
+/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
+n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
+64-linux.arm-oe-linux-gnueabi/./gcc/xgcc
+-B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
+eon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x8=
+6_64-linux.arm-oe-linux-gnueabi/./gcc/
+-march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon
+-mtune=3Dcortex-a8
+-isystem/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/am37x-=
+evm/usr/include
+-B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux=
+/usr/arm-oe-linux-gnueabi/bin/
+-B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux=
+/usr/arm-oe-linux-gnueabi/lib/
+-isystem
+/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/u=
+sr/arm-oe-linux-gnueabi/include
+-isystem
+/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/u=
+sr/arm-oe-linux-gnueabi/sys-include
+--sysroot=3D/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortex=
+a8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.=
+1/build.x86_64-linux.arm-oe-linux-gnueabi/tmpsysroot =20
+| checking for suffix of object files... configure: error: in
+`/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-ne=
+on-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86=
+_64-linux.arm-oe-linux-gnueabi/arm-oe-linux-gnueabi/libgcc': =20
+| configure: error: cannot compute suffix of object files: cannot
+compile=20
+| See `config.log' for more details.=20
+| make: *** [configure-target-libgcc] Error 1 =20
+| ERROR: oe_runmake failed=20
+
+
+The log from the check for "suffix of object files" in config.log is:
+configure:3565: checking for suffix of object files
+configure:3587:
+/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
+n-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_=
+64-linux.arm-oe-linux-gnueabi/./gcc/xgcc -B/home/anders/cs-builds/arago/bui=
+ld/arago-tmp-eglibc/work/cortexa8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/gcc-=
+cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi/./=
+gcc/ -march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dne=
+on -mtune=3Dcortex-a8 -isystem/home/anders/cs-builds/arago/build/arago-tmp-=
+eglibc/sysroots/am37x-evm/usr/include -B/home/anders/cs-builds/arago/build/=
+arago-tmp-eglibc/sysroots/x86_64-linux/usr/arm-oe-linux-gnueabi/bin/ -B/hom=
+e/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/usr/a=
+rm-oe-linux-gnueabi/lib/ -isystem/home/anders/cs-builds/arago/build/arago-t=
+mp-eglibc/sysroots/x86_64-linux/usr/arm-oe-linux-gnueabi/include -isystem/h=
+ome/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/usr=
+/arm-oe-linux-gnueabi/sys-include --sysroot=3D/home/anders/cs-builds/arago/=
+build/arago-tmp-eglibc/work/cortexa8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/g=
+cc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi=
+/tmpsysroot -c -g -Os
+  conftest.c >&5
+/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neo=
+n-2.6.37.2-oe-linux-gnueabi/gcc-cross
+-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi/./gcc/a=
+s: line 87: exec: -m: invalid option
+exec: usage: exec [-cl] [-a name] [command [arguments ...]] [redirection
+=2E..]
+configure:3591: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "GNU C Runtime Library"
+| #define PACKAGE_TARNAME "libgcc"
+| #define PACKAGE_VERSION "1.0"
+| #define PACKAGE_STRING "GNU C Runtime Library 1.0"
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL "http://www.gnu.org/software/libgcc/"
+| /* end confdefs.h.  */
+|=20
+| int
+| main ()
+| {
+|=20
+|   ;
+|   return 0;
+| } =20
+configure:3605: error: in
+`/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-ne=
+on-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86=
+_64-linux.arm-oe-linux-gnueabi/arm-oe-linux-gnueabi/libgcc':
+configure:3608: error: cannot compute suffix of object files: cannot
+compile
+See `config.log' for more details.
+
+On the Ubuntu machine, the error is the same.
+
+
+Any ideas what can be causing this?=20
+
+Thanks in advance for any pointers...
+
+Cheers,
+Anders
+
+--=20
+Anders Darander
+ChargeStorm AB		Tel: +46 702 44 84 36
+Drottninggatan 20	Email: anders@chargestorm.se
+602 24 Norrk=F6ping	Web: www.chargestorm.se
+
