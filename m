@@ -1,34 +1,30 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id CD118529B1
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 43A3652986
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Mar 2014 12:51:19 +0000 (UTC)
+	Fri, 14 Mar 2014 16:16:55 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2ECpJtC018227
-	for <meta-arago@arago-project.org>; Fri, 14 Mar 2014 07:51:19 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2ECpJqg015826
-	for <meta-arago@arago-project.org>; Fri, 14 Mar 2014 07:51:19 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Fri, 14 Mar 2014 07:51:18 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Nelson, Sam" <sam.nelson@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v3 2/2] lksctp-tools: Update recipe to
-	make it	work in dylan branch
-Thread-Index: AQHPNz6vx+IgVRvIQUC8PzG+D6QZ1JrgmKog
-Date: Fri, 14 Mar 2014 12:51:18 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015CF27F42@DLEE11.ent.ti.com>
-References: <1393892044-17112-1-git-send-email-sam.nelson@ti.com>
-	<1393892044-17112-2-git-send-email-sam.nelson@ti.com>
-In-Reply-To: <1393892044-17112-2-git-send-email-sam.nelson@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2EGGr7L005758;
+	Fri, 14 Mar 2014 11:16:53 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2EGGrqf009535;
+	Fri, 14 Mar 2014 11:16:53 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 14 Mar 2014 11:16:52 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2EGGptB004580;
+	Fri, 14 Mar 2014 11:16:52 -0500
+Date: Fri, 14 Mar 2014 12:16:50 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Anders Darander <anders@chargestorm.se>
+Message-ID: <20140314161649.GD12929@edge>
+References: <20140310121416.GC4423@ad.chargestorm.se>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 2/2] lksctp-tools: Update recipe to make it	work in dylan branch
+In-Reply-To: <20140310121416.GC4423@ad.chargestorm.se>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: Issue building gcc-cross-initial
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,174 +37,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Mar 2014 12:51:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
+X-List-Received-Date: Fri, 14 Mar 2014 16:16:57 -0000
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Nelson, Sam
->Sent: Monday, March 03, 2014 6:14 PM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH v3 2/2] lksctp-tools: Update recipe
->to make it work in dylan branch
->
->- Combined to one recipe file
->- Fixed build issues
->
->Signed-off-by: Sam Nelson <sam.nelson@ti.com>
->---
->Changes from earlier patch
->- Produced patch as 2 patches including original files
->  as first commit.
->---
->---
-> .../recipes-bsp/lksctp-tools/lksctp-tools.inc      |   47 -------
->-------------
-> .../recipes-bsp/lksctp-tools/lksctp-tools_1.0.7.bb |   41
->++++++++++++++++-
-> 2 files changed, 40 insertions(+), 48 deletions(-)
-> delete mode 100644 meta-arago-extras/recipes-bsp/lksctp-
->tools/lksctp-tools.inc
->
->diff --git a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-
->tools.inc b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-
->tools.inc
->deleted file mode 100644
->index 8a66dc9..0000000
->--- a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-tools.inc
->+++ /dev/null
->@@ -1,47 +0,0 @@
->-DESCRIPTION =3D "The Linux Kernel Stream Control Transmission
->Protocol (lksctp) project"
->-SECTION =3D "libs"
->-PRIORITY =3D "optional"
->-LICENSE =3D "LGPLv2"
->-
->-S =3D "${WORKDIR}/${BPN}-${PV}"
->-
->-INC_PR =3D "r1"
->-
->-BBCLASSEXTEND =3D "native"
->-
->-inherit autotools pkgconfig binconfig
->-
->-do_install_append_virtclass-native() {
->-	:
->-}
->-
->-RREPLACES =3D "lksctp"
->-
->-LEAD_SONAME =3D "libsctp.so"
->-
->-PACKAGES =3D+ "${PN}-withsctp ${PN}-utils"
->-
->-FILES_${PN} =3D "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
->-            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
->-            ${base_libdir}/*${SOLIBS}"
->-
->-FILES_${PN}-withsctp =3D " \
->-  ${libdir}/lksctp-tools/lib*"
->-
->-FILES_${PN}-dev +=3D " \
->-  ${datadir}/lksctp-tools/checksctp.c \
->-  ${datadir}/lksctp-tools/sctp_socket.c \
->-  ${datadir}/lksctp-tools/sctp_bind.c \
->-  ${datadir}/lksctp-tools/sctp_darn.c \
->-  ${datadir}/lksctp-tools/sctp_load_libs.c \
->-  ${datadir}/lksctp-tools/sctp_sockopt.c \
->-  ${datadir}/lksctp-tools/sctp_socket.h \
->-  ${datadir}/lksctp-tools/sctp_test.c \
->-  ${datadir}/lksctp-tools/sctp_darn.h"
->-
->-FILES_${PN}-utils =3D " \
->-  ${bindir}/sctp_test \
->-  ${bindir}/sctp_darn \
->-  ${bindir}/checksctp \
->-  ${bindir}/withsctp"
->-
->diff --git a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-
->tools_1.0.7.bb b/meta-arago-extras/recipes-bsp/lksctp-
->tools/lksctp-tools_1.0.7.bb
->index 000bc31..f98ffc7 100755
->--- a/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-
->tools_1.0.7.bb
->+++ b/meta-arago-extras/recipes-bsp/lksctp-tools/lksctp-
->tools_1.0.7.bb
->@@ -1,4 +1,10 @@
->-require lksctp-tools.inc
->+DESCRIPTION =3D "The Linux Kernel Stream Control Transmission
->Protocol (lksctp) project"
->+SECTION =3D "libs"
->+PRIORITY =3D "optional"
->+LICENSE =3D "LGPLv2"
->+LIC_FILES_CHKSUM =3D
->"file://src/include/netinet/sctp.h;md5=3D8089fbe48b63b73c8d091bee750
->b2ebc"
->+
->+INC_PR =3D "r0"
-> PR =3D "${INC_PR}.0"
+Yeah, I'm seeing the same breakage even in dylan - I'm looking into it now.=
+=2E.
 
-No need for INC_PR
-
->
-> SRC_URI =3D "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-
->${PV}.tar.gz"
->@@ -6,3 +12,36 @@ SRC_URI =3D "${SOURCEFORGE_MIRROR}/lksctp/lksctp-
->tools-${PV}.tar.gz"
-> SRC_URI[md5sum] =3D "047562b40537eb3be5d5ec3ae0a2198b"
-> SRC_URI[sha256sum] =3D
->"e920e89d110cff9847f1d86a1d7a23a156a8abcc9e65a35655d687fd08377595"
->
->+S =3D "${WORKDIR}/${BPN}-${PV}"
-
-Isn't this the default?
-
->+
->+BBCLASSEXTEND =3D "native"
->+
->+inherit autotools pkgconfig binconfig
->+
->+RREPLACES_${PN} =3D "lksctp"
->+
->+LEAD_SONAME =3D "libsctp.so"
-
-Not sure this is required
-
->+
->+PACKAGES =3D+ "${PN}-withsctp ${PN}-utils"
-
-You define a -withsctp package but I don't see you setting what files go in=
- that package.
-
->+
->+FILES_${PN} =3D "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
->+            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
->+            ${base_libdir}/*${SOLIBS}"
->+
->+FILES_${PN}-dev +=3D " \
->+  ${datadir}/lksctp-tools/checksctp.c \
->+  ${datadir}/lksctp-tools/sctp_socket.c \
->+  ${datadir}/lksctp-tools/sctp_bind.c \
->+  ${datadir}/lksctp-tools/sctp_darn.c \
->+  ${datadir}/lksctp-tools/sctp_load_libs.c \
->+  ${datadir}/lksctp-tools/sctp_sockopt.c \
->+  ${datadir}/lksctp-tools/sctp_socket.h \
->+  ${datadir}/lksctp-tools/sctp_test.c \
->+  ${datadir}/lksctp-tools/sctp_darn.h \
->+  ${libdir}/lksctp-tools/lib*.so"
->+
->+FILES_${PN}-utils =3D " \
->+  ${bindir}/sctp_test \
->+  ${bindir}/sctp_darn \
->+  ${bindir}/checksctp \
->+  ${bindir}/withsctp"
->--
->1.7.9.5
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+On Mon, Mar 10, 2014 at 01:14:28PM +0100, Anders Darander wrote:
+> Hi,
+>=20
+> Summary:
+>=20
+> I'm attempting at moving a custom product from meta-arago (danny) to the
+> latest master based on dora.
+>=20
+> However, I'm getting issues when I'm building gcc-cross-initial (we're
+> not using an external toolchain).i
+>=20
+> I've seen this on my normal build machine running Ubuntu 12.04, though
+> my example below was running a new OpenSuse machine.=20
+> The choice of MACHINE=3D"am37x-evm" is made to get something resembling
+> our real machine.
+>=20
+> When building gcc-cross-initial, libgcc fails to identify the "suffix of
+> object files" when the configure-script for libgcc is being run.
+>=20
+> I hope that someone can help me with some ideas/pointers as to how this
+> can be resolved. I've got the same issue with both gcc 4.7.2 and
+> 4.8.1...
+>=20
+>=20
+>=20
+> Long story:
+> Example for reproduction and some logs:
+>=20
+>=20
+> I've reproduce the same issue using a clean, upstream checkout of
+> everything, i.e.
+>=20
+> Checking out oe-layersetup.git
+> Running:
+> ./oe-layertool-setup.sh -f configs/arago-dora-config.txt
+> cd build
+> . conf/setenv
+>=20
+> Modifying conf/local.conf:
+> MACHINE =3D "am37x-evm"
+> TOOLCHAIN_TYPE =3D "internal"
+> TOOLCHAIN_BRAND =3D "gcc"
+>=20
+> Running
+> bitbake gcc-cross-initial
+>=20
+>=20
+>=20
+> This results in:
+> Build Configuration:
+> BB_VERSION        =3D "1.20.0"
+> BUILD_SYS         =3D "x86_64-linux"
+> NATIVELSBSTRING   =3D "SUSE-LINUX-13.1"
+> TARGET_SYS        =3D "arm-oe-linux-gnueabi"
+> MACHINE           =3D "am37x-evm"
+> DISTRO            =3D "arago"
+> DISTRO_VERSION    =3D "2013.12"
+> TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa8"
+> TARGET_FPU        =3D "vfp-neon"
+> meta-arago-distro=20
+> meta-arago-extras =3D "master:7c1b5d8cab13d2f8459391db69157a58f8c3c8dc"
+> meta-qt5          =3D "dora:0713745617924844fa04d865f0e502c2765e7a41"
+> toolchain-layer  =20
+> meta-networking  =20
+> meta-ruby        =20
+> meta-oe           =3D "dora:40e0f371f3eb1628655c484feac0cebf810737b4"
+> meta-ti           =3D "dora:d343e3021c8c85b0defd635ae68b71ba60648e1d"
+> meta-linaro-toolchain =3D "dora:00c2a868cafecb739178d6cdf912699ec3199fab"
+> meta              =3D "dora:18f34944696a8098daf33a94bc2f532deb217d0a"
+>=20
+> ....
+>=20
+> And when reching gcc-cross-initial:
+>=20
+> | make[1]: Leaving directory
+> `/mnt/cs-builds/anders/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
+eon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x8=
+6_64-linux.arm-oe-linux-gnueabi/gcc'=20
+> | Checking multilib configuration for libgcc... =20
+> | mkdir -p -- arm-oe-linux-gnueabi/libgcc =20
+> | Configuring in arm-oe-linux-gnueabi/libgcc =20
+> | configure: creating cache ./config.cache =20
+> | checking build system type... x86_64-pc-linux-gnu =20
+> | checking host system type... arm-oe-linux-gnueabi =20
+> | checking for --enable-version-specific-runtime-libs... no =20
+> | checking for a BSD-compatible install... /usr/bin/install -c=20
+> | checking for gawk... gawk =20
+> | checking for arm-oe-linux-gnueabi-ar... arm-oe-linux-gnueabi-ar=20
+> | checking for arm-oe-linux-gnueabi-lipo... arm-oe-linux-gnueabi-lipo =20
+> | checking for arm-oe-linux-gnueabi-nm...
+> /home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
+eon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x8=
+6_64-linux.arm-oe-linux-gnueabi/./gcc/nm =20
+> | checking for arm-oe-linux-gnueabi-ranlib...
+> arm-oe-linux-gnueabi-ranlib =20
+> | checking for arm-oe-linux-gnueabi-strip... arm-oe-linux-gnueabi-strip =
+=20
+> | checking whether ln -s works... yes =20
+> | checking for arm-oe-linux-gnueabi-gcc...
+> /home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
+eon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x8=
+6_64-linux.arm-oe-linux-gnueabi/./gcc/xgcc
+> -B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp=
+-neon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.=
+x86_64-linux.arm-oe-linux-gnueabi/./gcc/
+> -march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon
+> -mtune=3Dcortex-a8
+> -isystem/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/am37=
+x-evm/usr/include
+> -B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-lin=
+ux/usr/arm-oe-linux-gnueabi/bin/
+> -B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-lin=
+ux/usr/arm-oe-linux-gnueabi/lib/
+> -isystem
+> /home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux=
+/usr/arm-oe-linux-gnueabi/include
+> -isystem
+> /home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux=
+/usr/arm-oe-linux-gnueabi/sys-include
+> --sysroot=3D/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cort=
+exa8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.=
+8.1/build.x86_64-linux.arm-oe-linux-gnueabi/tmpsysroot =20
+> | checking for suffix of object files... configure: error: in
+> `/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-=
+neon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x=
+86_64-linux.arm-oe-linux-gnueabi/arm-oe-linux-gnueabi/libgcc': =20
+> | configure: error: cannot compute suffix of object files: cannot
+> compile=20
+> | See `config.log' for more details.=20
+> | make: *** [configure-target-libgcc] Error 1 =20
+> | ERROR: oe_runmake failed=20
+>=20
+>=20
+> The log from the check for "suffix of object files" in config.log is:
+> configure:3565: checking for suffix of object files
+> configure:3587:
+> /home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
+eon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x8=
+6_64-linux.arm-oe-linux-gnueabi/./gcc/xgcc -B/home/anders/cs-builds/arago/b=
+uild/arago-tmp-eglibc/work/cortexa8hf-vfp-neon-2.6.37.2-oe-linux-gnueabi/gc=
+c-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi/=
+=2E/gcc/ -march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=
+=3Dneon -mtune=3Dcortex-a8 -isystem/home/anders/cs-builds/arago/build/arago=
+-tmp-eglibc/sysroots/am37x-evm/usr/include -B/home/anders/cs-builds/arago/b=
+uild/arago-tmp-eglibc/sysroots/x86_64-linux/usr/arm-oe-linux-gnueabi/bin/ -=
+B/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linux/=
+usr/arm-oe-linux-gnueabi/lib/ -isystem/home/anders/cs-builds/arago/build/ar=
+ago-tmp-eglibc/sysroots/x86_64-linux/usr/arm-oe-linux-gnueabi/include -isys=
+tem/home/anders/cs-builds/arago/build/arago-tmp-eglibc/sysroots/x86_64-linu=
+x/usr/arm-oe-linux-gnueabi/sys-include --sysroot=3D/home/anders
+> /cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-neon-2.6.37.2=
+-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.a=
+rm-oe-linux-gnueabi/tmpsysroot -c -g -Os
+>   conftest.c >&5
+> /home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-n=
+eon-2.6.37.2-oe-linux-gnueabi/gcc-cross
+> -initial/4.8.1-r0/gcc-4.8.1/build.x86_64-linux.arm-oe-linux-gnueabi/./gcc=
+/as: line 87: exec: -m: invalid option
+> exec: usage: exec [-cl] [-a name] [command [arguments ...]] [redirection
+> ...]
+> configure:3591: $? =3D 1
+> configure: failed program was:
+> | /* confdefs.h */
+> | #define PACKAGE_NAME "GNU C Runtime Library"
+> | #define PACKAGE_TARNAME "libgcc"
+> | #define PACKAGE_VERSION "1.0"
+> | #define PACKAGE_STRING "GNU C Runtime Library 1.0"
+> | #define PACKAGE_BUGREPORT ""
+> | #define PACKAGE_URL "http://www.gnu.org/software/libgcc/"
+> | /* end confdefs.h.  */
+> |=20
+> | int
+> | main ()
+> | {
+> |=20
+> |   ;
+> |   return 0;
+> | } =20
+> configure:3605: error: in
+> `/home/anders/cs-builds/arago/build/arago-tmp-eglibc/work/cortexa8hf-vfp-=
+neon-2.6.37.2-oe-linux-gnueabi/gcc-cross-initial/4.8.1-r0/gcc-4.8.1/build.x=
+86_64-linux.arm-oe-linux-gnueabi/arm-oe-linux-gnueabi/libgcc':
+> configure:3608: error: cannot compute suffix of object files: cannot
+> compile
+> See `config.log' for more details.
+>=20
+> On the Ubuntu machine, the error is the same.
+>=20
+>=20
+> Any ideas what can be causing this?=20
+>=20
+> Thanks in advance for any pointers...
+>=20
+> Cheers,
+> Anders
+>=20
+> --=20
+> Anders Darander
+> ChargeStorm AB		Tel: +46 702 44 84 36
+> Drottninggatan 20	Email: anders@chargestorm.se
+> 602 24 Norrk=F6ping	Web: www.chargestorm.se
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
