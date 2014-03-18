@@ -1,34 +1,34 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 73ED852A61
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 17ADF52A61
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Mar 2014 14:20:30 +0000 (UTC)
+	Tue, 18 Mar 2014 14:21:59 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2IEKT76011166;
-	Tue, 18 Mar 2014 09:20:29 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2IEKSb6030442;
-	Tue, 18 Mar 2014 09:20:29 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2IELwNJ007321;
+	Tue, 18 Mar 2014 09:21:58 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2IELwPo031594;
+	Tue, 18 Mar 2014 09:21:58 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Tue, 18 Mar 2014 09:20:29 -0500
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0174.001; Tue, 18 Mar 2014 09:21:57 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 5/5]
-	arago-core-tisdk-dylan-puget: update to use new CLI
-Thread-Index: AQHPNzl72VKES90Ad0msB767J7UNhprm+vpA
-Date: Tue, 18 Mar 2014 14:20:28 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C66853C@DFLE08.ent.ti.com>
+Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 3/5] run-opentest:
+	add support for new version of opentest CLI
+Thread-Index: AQHPNzl6ujN9PqzJZ0iYjdrN2Qkxcprm/CoA
+Date: Tue, 18 Mar 2014 14:21:57 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C668581@DFLE08.ent.ti.com>
 References: <1393889779-3995-1-git-send-email-denis@denix.org>
-	<1393889779-3995-6-git-send-email-denis@denix.org>
-In-Reply-To: <1393889779-3995-6-git-send-email-denis@denix.org>
+	<1393889779-3995-4-git-send-email-denis@denix.org>
+In-Reply-To: <1393889779-3995-4-git-send-email-denis@denix.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [tisdk-build-scripts][PATCH 5/5] arago-core-tisdk-dylan-puget: update to use new CLI
+Subject: Re: [tisdk-build-scripts][PATCH 3/5] run-opentest: add support for new version of opentest CLI
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,53 +41,95 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Mar 2014 14:20:30 -0000
+X-List-Received-Date: Tue, 18 Mar 2014 14:21:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
 > Sent: Monday, March 03, 2014 5:36 PM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [tisdk-build-scripts][PATCH 5/5] arago-core-tisdk-d=
-ylan-
-> puget: update to use new CLI
+> Subject: [meta-arago] [tisdk-build-scripts][PATCH 3/5] run-opentest: add
+> support for new version of opentest CLI
 >=20
 > From: Denys Dmytriyenko <denys@ti.com>
 >=20
 > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > ---
->  configs/arago-core-tisdk-dylan-puget.txt |    4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  lib/run-opentest |   17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
 >=20
-> diff --git a/configs/arago-core-tisdk-dylan-puget.txt b/configs/arago-cor=
-e-tisdk-
-> dylan-puget.txt
-> index f4ccb26..e24ab70 100644
-> --- a/configs/arago-core-tisdk-dylan-puget.txt
-> +++ b/configs/arago-core-tisdk-dylan-puget.txt
-> @@ -164,11 +164,11 @@ TEST_LOCAL_IFACE=3D"eth1"
+> diff --git a/lib/run-opentest b/lib/run-opentest index bf779e8..9a8e45b
+> 100644
+> --- a/lib/run-opentest
+> +++ b/lib/run-opentest
+> @@ -139,9 +139,20 @@ run_target_side_test() {
+>          return 1
+>      fi
 >=20
->  # This variable contains the tarball name for the opentest CLI which is =
- #
-> required to do target side testing.
-> -OPENTEST_CLI=3D"$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
-> +OPENTEST_CLI=3D"$SCRIPTS_ROOT/linux-devtest.tgz"
-[Franklin] Would it make sense to make this update to all the different con=
-figs?
+> -    # Extrace the CLI utility
+> +    # Extract the CLI utility
+>      tar xf $OPENTEST_CLI
 >=20
->  # This variable specifies the IP address of the TEE to be used with Open=
-Test  #
-> Defaults to 128.247.105.11 if not set -OPENTEST_TEE_IP=3D"10.218.102.142"
-> +OPENTEST_TEE_IP=3D"none"
+> +    # New version of CLI has "client" subdir
+> +    mv client/* . || true
+> +
+> +    # New version of CLI has no version in JAR name
+> +    if [ -e opentest_cli_0.7.jar ]
+> +    then
+> +        OPENTEST_JAR=3D"opentest_cli_0.7.jar"
+> +    else
+> +        OPENTEST_JAR=3D"opentest_cli.jar"
+> +    fi
+> +
+>      # Determine the oplatform to use for testing
+>      set_opentest_platform $m
 >=20
->  # This variable specifies the hardware capabilities to be used with Open=
-Test
-> # Capabilities are separated by underscores, some excamples are here:
+> @@ -228,8 +239,8 @@ run_target_side_test() {
+>      fi
+>=20
+>      # Call opentest framework.  Echo the command being used for logging
+> -    echo "java -jar opentest_cli_0.7.jar --template penguin --hw
+> platform=3D$oplatform,$OPENTEST_HW_CAP --sw
+> kernel=3D$kernel$dtb~kernel_modules=3D$spluart$uboot~nfs=3D$ipaddr:$nfs_d=
+ir$A
+> SSIGN_TO_TEE~test_scripts_root=3Dgit://http://arago-
+> project.org/git/projects/test-automation/execution-engines/vatf-scripts.g=
+it --
+> params script=3D/$TEST_SCRIPTS_TGT/opentest.sh"
+> -    java -jar opentest_cli_0.7.jar --template penguin --hw
+> platform=3D$oplatform,$OPENTEST_HW_CAP --sw
+> kernel=3D$kernel$dtb~kernel_modules=3D$spluart$uboot~nfs=3D$ipaddr:$nfs_d=
+ir$A
+> SSIGN_TO_TEE~test_scripts_root=3Dgit://http://arago-
+> project.org/git/projects/test-automation/execution-engines/vatf-scripts.g=
+it --
+> params script=3D/$TEST_SCRIPTS_TGT/opentest.sh
+> +    echo "java -jar $OPENTEST_JAR --template penguin --hw
+> platform=3D$oplatform,$OPENTEST_HW_CAP --sw
+> kernel=3D$kernel$dtb~kernel_modules=3D$spluart$uboot~nfs=3D$ipaddr:$nfs_d=
+ir$A
+> SSIGN_TO_TEE~test_scripts_root=3Dgit://http://arago-
+> project.org/git/projects/test-automation/execution-engines/vatf-scripts.g=
+it --
+> params script=3D/$TEST_SCRIPTS_TGT/opentest.sh"
+> +    java -jar $OPENTEST_JAR --template penguin --hw
+> + platform=3D$oplatform,$OPENTEST_HW_CAP --sw
+> + kernel=3D$kernel$dtb~kernel_modules=3D$spluart$uboot~nfs=3D$ipaddr:$nfs=
+_dir$
+> + ASSIGN_TO_TEE~test_scripts_root=3Dgit://http://arago-project.org/git/pr=
+o
+> + jects/test-automation/execution-engines/vatf-scripts.git --params
+> + script=3D/$TEST_SCRIPTS_TGT/opentest.sh
+>=20
+>=20
+> #################################################################
+> ###############
+>  # Check the results of the opentest run.
 > --
 > 1.7.9.5
 >=20
