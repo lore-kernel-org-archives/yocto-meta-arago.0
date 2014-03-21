@@ -1,37 +1,31 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 9F70D52998
+Return-Path: <anders@chargestorm.se>
+Received: from stoexhub03.domain01.net (STOEXHUB03.domain01.net
+	[83.145.59.144])
+	by arago-project.org (Postfix) with ESMTPS id 4F2A5529BA
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Mar 2014 14:20:54 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2LEKrNd027096
-	for <meta-arago@arago-project.org>; Fri, 21 Mar 2014 09:20:53 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2LEKrrS030297
-	for <meta-arago@arago-project.org>; Fri, 21 Mar 2014 09:20:53 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Fri, 21 Mar 2014 09:20:53 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 4/5]
-	linux-devtest.tgz: add new version of OpenTest CLI 13.11
-Thread-Index: AQHPNznfQ87gtBVb00GIsht174AlUprm/GhggANlHgiAAFiqAIAA+Bjw
-Date: Fri, 21 Mar 2014 14:20:52 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C66B25A@DFLE08.ent.ti.com>
-References: <1393889779-3995-1-git-send-email-denis@denix.org>
-	<1393889779-3995-5-git-send-email-denis@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C668606@DFLE08.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C66AAE0@DFLE08.ent.ti.com>
-	<20140320183004.GA3370@denix.org>
-In-Reply-To: <20140320183004.GA3370@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Fri, 21 Mar 2014 14:30:41 +0000 (UTC)
+Received: from ad.chargestorm.se (37.250.13.79) by stoexhub03.domain01.net
+	(10.12.10.3) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Fri, 21 Mar 2014 15:30:39 +0100
+Date: Fri, 21 Mar 2014 15:30:17 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: Denys Dmytriyenko <denys@ti.com>
+Message-ID: <20140321142643.GA1479@ad.chargestorm.se>
+Mail-Followup-To: Denys Dmytriyenko <denys@ti.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+References: <20140310121416.GC4423@ad.chargestorm.se>
+	<20140314161649.GD12929@edge>
 MIME-Version: 1.0
+In-Reply-To: <20140314161649.GD12929@edge>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-GFI-SMTP-Submission: 1
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [tisdk-build-scripts][PATCH 4/5] linux-devtest.tgz: add new version of OpenTest CLI 13.11
+Subject: Re: Issue building gcc-cross-initial
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,51 +38,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Mar 2014 14:20:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 21 Mar 2014 14:30:41 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-I'm not sure what kind of changes to a TEE are required to use an updated O=
-penTest CLI but I guess we just need to make sure that all the TEEs upgrade=
- together in the future before pushing updated tarballs if the naming isn't=
- going to change.
+* Denys Dmytriyenko <denys@ti.com> [140314 17:17]:
 
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
+> Yeah, I'm seeing the same breakage even in dylan - I'm looking into it no=
+w...
 
-Consider this an Ack to all the other patches as well.
+Good to know that I'm not alone in seeing this...
 
+Any ideas regarding the root cause or possible fixes? Sofar, I've been
+occupied with work on our old release branch, though soon I=CD=84'll start
+working on the update again.
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Thursday, March 20, 2014 1:30 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [tisdk-build-scripts][PATCH 4/5] linux-devtest.=
-tgz:
-> add new version of OpenTest CLI 13.11
->=20
-> On Thu, Mar 20, 2014 at 06:13:12PM +0000, Cooper Jr., Franklin wrote:
-> > Sorry sent this before but apparently I didn't use reply all.
-> > ________________________________________
-> > From: Cooper Jr., Franklin
-> > Sent: Tuesday, March 18, 2014 9:27 AM
-> > To: Denys Dmytriyenko
-> > Subject: RE: [meta-arago] [tisdk-build-scripts][PATCH 4/5]
-> > linux-devtest.tgz: add new version of OpenTest CLI 13.11
-> >
-> > Any reason why we need to name this linux-devtest.tgz instead of
-> opentest_cli_xxx.tar.gz?
-> >
-> > It would just make it easier to recognize what this tarball contains.
->=20
-> The main reason being this is AS IS tarball that comes directly from Open=
-Test
-> install. I didn't want to change it - either rename or change the new dir=
-ectory
-> structure. This way it should be very straightforward to update to new
-> versions in the future.
->=20
-> --
-> Denys
+Cheers,
+Anders
+
+> On Mon, Mar 10, 2014 at 01:14:28PM +0100, Anders Darander wrote:
+> > Hi,
+
+> > Summary:
+
+> > I'm attempting at moving a custom product from meta-arago (danny) to the
+> > latest master based on dora.
+
+> > However, I'm getting issues when I'm building gcc-cross-initial (we're
+> > not using an external toolchain).i
+
+> > I've seen this on my normal build machine running Ubuntu 12.04, though
+> > my example below was running a new OpenSuse machine.=20
+> > The choice of MACHINE=3D"am37x-evm" is made to get something resembling
+> > our real machine.
+
+> > When building gcc-cross-initial, libgcc fails to identify the "suffix of
+> > object files" when the configure-script for libgcc is being run.
+
+> > I hope that someone can help me with some ideas/pointers as to how this
+> > can be resolved. I've got the same issue with both gcc 4.7.2 and
+> > 4.8.1...
+
+--=20
+Anders Darander
+ChargeStorm AB / eStorm AB
 
