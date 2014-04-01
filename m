@@ -1,27 +1,23 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id E632B52A2D
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id 5C24E529CF
 	for <meta-arago@arago-project.org>;
-	Mon, 31 Mar 2014 17:30:09 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s2VHU9Yf021500
-	for <meta-arago@arago-project.org>; Mon, 31 Mar 2014 12:30:09 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s2VHU7xp017174
-	for <meta-arago@arago-project.org>; Mon, 31 Mar 2014 12:30:09 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 31 Mar 2014 12:30:08 -0500
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s2VHU8v0025334;	Mon, 31 Mar 2014 12:30:08 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 31 Mar 2014 13:30:07 -0400
-Message-ID: <1396287007-16285-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH] configs: Add release config mcsdk/mcsdk-03.00.04.18
+	Tue,  1 Apr 2014 03:06:17 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173017.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N3C00E2H0LVY3B0@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 31 Mar 2014 22:06:01 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id B8BBE200BA; Mon,
+	31 Mar 2014 23:05:55 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 31 Mar 2014 23:05:37 -0400
+Message-id: <1396321538-12363-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.9.1
+Subject: [PATCH 1/2] wayland: add latest wayland and weston recipes from master to fix mesa/mesa-gl issues
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +30,321 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Mar 2014 17:30:10 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 01 Apr 2014 03:06:18 -0000
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/mcsdk/mcsdk-03.00.04.18-config.txt |   14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/mcsdk/mcsdk-03.00.04.18-config.txt
+ .../wayland/wayland/just-scanner.patch             |  49 +++++++++++++
+ .../recipes-graphics/wayland/wayland_1.4.0.bb      |  40 +++++++++++
+ ...emove-dependence-on-wayland-scanner-flags.patch |  30 ++++++++
+ .../recipes-graphics/wayland/weston/weston.desktop |   9 +++
+ .../recipes-graphics/wayland/weston/weston.png     | Bin 0 -> 2383 bytes
+ .../recipes-graphics/wayland/weston_1.4.0.bb       |  80 +++++++++++++++++++++
+ 6 files changed, 208 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland/just-scanner.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland_1.4.0.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-remove-dependence-on-wayland-scanner-flags.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/weston.desktop
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/weston.png
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston_1.4.0.bb
 
-diff --git a/configs/mcsdk/mcsdk-03.00.04.18-config.txt b/configs/mcsdk/mcsdk-03.00.04.18-config.txt
+diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland/just-scanner.patch b/meta-arago-extras/recipes-graphics/wayland/wayland/just-scanner.patch
 new file mode 100644
-index 0000000..2f69ebb
+index 0000000..ae9935e
 --- /dev/null
-+++ b/configs/mcsdk/mcsdk-03.00.04.18-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++++ b/meta-arago-extras/recipes-graphics/wayland/wayland/just-scanner.patch
+@@ -0,0 +1,49 @@
++From f674544d4f6f5f763e449207da77a561b22eff97 Mon Sep 17 00:00:00 2001
++From: Valentin Popa <valentin.popa@intel.com>
++Date: Fri, 7 Feb 2014 16:36:47 +0200
++Subject: [PATCH] just scanner
 +
-+bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
-+meta-mcsdk,git://arago-project.org/git/projects/meta-mcsdk.git,master,HEAD,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,dylan,608fd3be257002256d13422daf0b593b55463d4d,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,1fa7f364f682e5cfaa9d6e565b7ae6b8ec2a90ff,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,cb182019c4f7485713cb50623240c01882448ffd,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,dylan,14858daa694a559b89881741ad9033acd925143c,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
-+meta-java,git://github.com/woglinde/meta-java,master,20fa82037c93e6814f1b76c0b8adc73616be8aa2,layers=
-+oe-core,git://git.openembedded.org/openembedded-core,dylan,58b479f4d4d283e590a55a71151fca481fbe3c24,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago.conf.sample
++We only build wayland-native for the scanner, so disable the bits we don't
++actually need.  This gives us a small speed up but importantly should allow
++wayland-native to compile on older hosts such as CentOS 5 which currently fails:
++
++| wayland-1.0.6/src/wayland-server.c:1245: error: 'O_CLOEXEC' undeclared (first use in this function)
++| wayland-1.0.6/src/event-loop.c:34:25: error: sys/timerfd.h: No such file or directory
++| wayland-1.0.6/src/event-loop.c:199: error: 'CLOCK_MONOTONIC' undeclared (first use in this function)
++| wayland-1.0.6/src/event-loop.c:199: error: 'TFD_CLOEXEC' undeclared (first use in this function)
++| wayland-1.0.6/src/event-loop.c:268: error: 'SFD_CLOEXEC' undeclared (first use in this function)
++
++Upstream-Status: Inappropriate
++Signed-off-by: Ross Burton <ross.burton@intel.com>
++Signed-off-by: Valentin Popa <valentin.popa@intel.com>
++---
++ Makefile.am     | 2 +-
++ src/Makefile.am | 2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/Makefile.am b/Makefile.am
++index 99607b0..ecce1f1 100644
++--- a/Makefile.am
+++++ b/Makefile.am
++@@ -2,7 +2,7 @@ if BUILD_DOCS
++ doc_subdir = doc
++ endif
++ 
++-SUBDIRS = protocol src $(doc_subdir) tests cursor
+++SUBDIRS = protocol src $(doc_subdir)
++ 
++ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
++ 
++diff --git a/src/Makefile.am b/src/Makefile.am
++index 15f44a5..b938d17 100644
++--- a/src/Makefile.am
+++++ b/src/Makefile.am
++@@ -1,4 +1,4 @@
++-lib_LTLIBRARIES = libwayland-server.la libwayland-client.la
+++#lib_LTLIBRARIES = libwayland-server.la libwayland-client.la
++ noinst_LTLIBRARIES = libwayland-util.la
++ 
++ include_HEADERS =				\
++-- 
++1.8.3.2
++
+diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland_1.4.0.bb b/meta-arago-extras/recipes-graphics/wayland/wayland_1.4.0.bb
+new file mode 100644
+index 0000000..604b7f4
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/wayland/wayland_1.4.0.bb
+@@ -0,0 +1,40 @@
++SUMMARY = "Wayland, a protocol between a compositor and clients"
++DESCRIPTION = "Wayland is a protocol for a compositor to talk to its clients \
++as well as a C library implementation of that protocol. The compositor can be \
++a standalone display server running on Linux kernel modesetting and evdev \
++input devices, an X application, or a wayland client itself. The clients can \
++be traditional applications, X servers (rootless or fullscreen) or other \
++display servers."
++HOMEPAGE = "http://wayland.freedesktop.org"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://COPYING;md5=1d4476a7d98dd5691c53d4d43a510c72 \
++                    file://src/wayland-server.c;endline=21;md5=079ae21dbf98ada52ec23744851b0a5c"
++
++SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz"
++SRC_URI[md5sum] = "332cf9191837be12638a29265ed7cf46"
++SRC_URI[sha256sum] = "18f33b9f15b4c8b662fb1968e7636e7926b419dfc48de8a164b3a3d7095c5a58"
++
++SRC_URI_append_class-native = " file://just-scanner.patch"
++EXTRA_OECONF_class-native = "--disable-documentation --enable-scanner"
++
++inherit autotools pkgconfig
++
++# We need wayland-native for the wayland-scanner utility
++BBCLASSEXTEND = "native"
++
++DEPENDS_class-native = "expat-native libffi-native"
++DEPENDS = "expat libffi wayland-native"
++
++EXTRA_OECONF = "--disable-documentation --disable-scanner"
++
++# Wayland installs a M4 macro for other projects to use, which uses the target
++# pkg-config to find files.  Replace pkg-config with pkg-config-native.
++do_install_append_class-native() {
++  sed -e 's,PKG_CHECK_MODULES(.*),,g' \
++      -e 's,$PKG_CONFIG,pkg-config-native,g' \
++      -i ${D}/${datadir}/aclocal/wayland-scanner.m4
++}
++
++sysroot_stage_all_append_class-target () {
++	cp ${STAGING_DATADIR_NATIVE}/aclocal/wayland-scanner.m4 ${SYSROOT_DESTDIR}/${datadir}/aclocal/
++}
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-remove-dependence-on-wayland-scanner-flags.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-remove-dependence-on-wayland-scanner-flags.patch
+new file mode 100644
+index 0000000..14606c8
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-remove-dependence-on-wayland-scanner-flags.patch
+@@ -0,0 +1,30 @@
++From a0335393ddde2228c84eda1081b5d7b175f78a94 Mon Sep 17 00:00:00 2001
++From: Valentin Popa <valentin.popa@intel.com>
++Date: Fri, 7 Feb 2014 16:59:58 +0200
++Subject: [PATCH] remove dependence on wayland-scanner flags
++
++weston doesn't make use of wayland-scanner flags,
++it only uses the -native- wayland-scanner for protocol.
++
++Upstream-Status: Pending
++Signed-off-by: Valentin Popa <valentin.popa@intel.com>
++---
++ configure.ac | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/configure.ac b/configure.ac
++index cce1850..8775eb9 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -482,7 +482,7 @@ if test x$wayland_scanner = x; then
++ 	AC_MSG_ERROR([wayland-scanner is needed to compile weston])
++ fi
++ 
++-PKG_CHECK_MODULES(WAYLAND_SCANNER, wayland-scanner)
+++#PKG_CHECK_MODULES(WAYLAND_SCANNER, wayland-scanner)
++ AC_PATH_PROG(XMLLINT, xmllint)
++ AC_ARG_WITH([dtddir],
++ 	    AS_HELP_STRING([--with-dtddir],
++-- 
++1.8.3.2
++
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/weston.desktop b/meta-arago-extras/recipes-graphics/wayland/weston/weston.desktop
+new file mode 100644
+index 0000000..1086ae8
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/wayland/weston/weston.desktop
+@@ -0,0 +1,9 @@
++[Desktop Entry]
++Encoding=UTF-8
++Type=Application
++Name=Weston
++Comment=Wayland Compostitor
++Exec=weston
++Icon=weston
++Terminal=false
++Categories=Utility;
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/weston.png b/meta-arago-extras/recipes-graphics/wayland/weston/weston.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea8b7e0e233c86301a88e5bc925f09b3de2f9dec
+GIT binary patch
+literal 2383
+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
+BD_j5o
+
+literal 0
+HcmV?d00001
+
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.4.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.4.0.bb
+new file mode 100644
+index 0000000..5213166
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.4.0.bb
+@@ -0,0 +1,80 @@
++SUMMARY = "Weston, a Wayland compositor"
++DESCRIPTION = "Weston is the reference implementation of a Wayland compositor"
++HOMEPAGE = "http://wayland.freedesktop.org"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
++                    file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
++
++SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
++           file://weston.png \
++           file://weston.desktop \
++           file://0001-remove-dependence-on-wayland-scanner-flags.patch"
++SRC_URI[md5sum] = "4438d2b1f3c9ba9a4a2b10d89fac6fd0"
++SRC_URI[sha256sum] = "74a2319d98e9cdb1acf24659699719aa89ac268cf549759271e326edc5f9ed64"
++
++
++inherit autotools pkgconfig useradd
++
++DEPENDS = "libxkbcommon gdk-pixbuf pixman cairo glib-2.0 jpeg"
++DEPENDS += "wayland virtual/egl pango"
++
++EXTRA_OECONF = "--enable-setuid-install \
++                --disable-xwayland \
++                --enable-simple-clients \
++                --enable-clients \
++                --enable-demo-clients-install \
++                --disable-libunwind \
++                --disable-rpi-compositor \
++                --disable-rdp-compositor"
++
++
++PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'wayland', 'kms fbdev wayland egl', '', d)} \
++                   ${@base_contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
++                   ${@base_contains('DISTRO_FEATURES', 'pam', 'launch', '', d)} \
++                  "
++#
++# Compositor choices
++#
++# Weston on KMS
++PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev virtual/mesa mtdev"
++# Weston on Wayland (nested Weston)
++PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,virtual/mesa"
++# Weston on X11
++PACKAGECONFIG[x11] = "--enable-x11-compositor,--disable-x11-compositor,virtual/libx11 libxcb libxcb libxcursor cairo"
++# Headless Weston
++PACKAGECONFIG[headless] = "--enable-headless-compositor,--disable-headless-compositor"
++# Weston on framebuffer
++PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor,--disable-fbdev-compositor,udev mtdev"
++# weston-launch
++PACKAGECONFIG[launch] = "--enable-weston-launch,--disable-weston-launch,libpam drm"
++# VA-API desktop recorder
++PACKAGECONFIG[vaapi] = "--enable-vaapi-recorder,--disable-vaapi-recorder,libva"
++# Weston with EGL support
++PACKAGECONFIG[egl] = "--enable-egl --enable-simple-egl-clients,--disable-egl --disable-simple-egl-clients,virtual/egl"
++# Weston with cairo glesv2 support
++PACKAGECONFIG[cairo-glesv2] = "--with-cairo-glesv2,--with-cairo=image,cairo"
++
++do_install_append() {
++	# Weston doesn't need the .la files to load modules, so wipe them
++	rm -f ${D}/${libdir}/weston/*.la
++
++	# If X11, ship a desktop file to launch it
++	if [ "${@base_contains('DISTRO_FEATURES', 'x11', 'x11', '', d)}" = "x11" ]; then
++		install -d ${D}${datadir}/applications
++		install ${WORKDIR}/weston.desktop ${D}${datadir}/applications
++
++		install -d ${D}${datadir}/icons/hicolor/48x48/apps
++		install ${WORKDIR}/weston.png ${D}${datadir}/icons/hicolor/48x48/apps
++        fi
++}
++
++PACKAGES += "${PN}-examples"
++
++FILES_${PN} = "${bindir}/weston ${bindir}/weston-terminal ${bindir}/weston-info ${bindir}/weston-launch ${bindir}/wcap-decode ${libexecdir} ${datadir}"
++FILES_${PN}-examples = "${bindir}/*"
++
++RDEPENDS_${PN} += "xkeyboard-config"
++RRECOMMENDS_${PN} = "liberation-fonts"
++
++USERADD_PACKAGES = "${PN}"
++GROUPADD_PARAM_${PN} = "--system weston-launch"
 -- 
-1.7.9.5
+1.9.1
 
 
