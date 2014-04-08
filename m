@@ -1,33 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 600485299C
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id E655C529BC
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Apr 2014 01:04:51 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3814oSd004046
-	for <meta-arago@arago-project.org>; Mon, 7 Apr 2014 20:04:50 -0500
+	Tue,  8 Apr 2014 04:21:33 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s384LXa7028313
+	for <meta-arago@arago-project.org>; Mon, 7 Apr 2014 23:21:33 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3814oE6028692
-	for <meta-arago@arago-project.org>; Mon, 7 Apr 2014 20:04:50 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s384LXMU007016
+	for <meta-arago@arago-project.org>; Mon, 7 Apr 2014 23:21:33 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 7 Apr 2014 20:04:50 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3814o9l032114	for
-	<meta-arago@arago-project.org>; Mon, 7 Apr 2014 20:04:50 -0500
-Date: Mon, 7 Apr 2014 21:04:49 -0400
+	Mon, 7 Apr 2014 23:21:33 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s384LWYG009232	for <meta-arago@arago-project.org>;
+	Mon, 7 Apr 2014 23:21:33 -0500
+Date: Tue, 8 Apr 2014 00:06:50 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Message-ID: <20140408010449.GE12929@edge>
-References: <20140310121416.GC4423@ad.chargestorm.se>
-	<20140314161649.GD12929@edge>
-	<20140321142643.GA1479@ad.chargestorm.se>
-	<20140402075039.GA5988@ad.chargestorm.se>
-	<20140407223700.GC12929@edge>
+To: <meta-arago@arago-project.org>
+Message-ID: <239054689.499.1396930010060.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <20140407223700.GC12929@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: Issue building gcc-cross-initial
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.03 build 2014-04-06_02-10-49
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,78 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 01:04:51 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 08 Apr 2014 04:21:34 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_498_450925736.1396930010060"
 
-On Mon, Apr 07, 2014 at 06:37:01PM -0400, Denys Dmytriyenko wrote:
-> Ok, it took me some time and effort (the error is severely misleading), but I 
-> was finally able to trace down what causes the breakage in the internal 
-> toolchain:
-> 
-> http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=e9797a456c99c890e5ff62334b7d65e1ff7db676
-> 
-> The addition of libc-headers version used for the platform into the 
-> PACKAGE_ARCH causes gcc-cross-initial to not find binutils binaries during 
-> bootstrap.
-> 
-> I'm still trying to figure out if it would be possible to unbreak the build, 
-> while keeping the change, but at least it should be possible to have a quick 
-> workaround for now...
+------=_Part_498_450925736.1396930010060
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-And this seems to have resolved the issue:
+<html>
+<head>
+<title>
+Status for 04/07/14
+</title>
+</head>
+<body>
 
-STAGING_BINDIR_TOOLCHAIN = "${STAGING_DIR_NATIVE}${bindir_native}/${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}${TARGET_VENDOR}-${TARGET_OS}"
+<h2>Status for 04/07/14</h2>
 
-Still testing it...
+<h2>BUILD_ID: build-2014-04-06_02-11-50</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.20</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am37x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am3517-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am180x-evm</td>
+        <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.03"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> On Wed, Apr 02, 2014 at 09:50:41AM +0200, Anders Darander wrote:
-> > Ping...
-> > 
-> > * Anders Darander <anders@chargestorm.se> [140321 15:30]:
-> > 
-> > > * Denys Dmytriyenko <denys@ti.com> [140314 17:17]:
-> > 
-> > > > Yeah, I'm seeing the same breakage even in dylan - I'm looking into it now...
-> > 
-> > > Good to know that I'm not alone in seeing this...
-> > 
-> > > Any ideas regarding the root cause or possible fixes? Sofar, I've been
-> > > occupied with work on our old release branch, though soon Ḯ'll start
-> > > working on the update again.
-> > 
-> > > Cheers,
-> > > Anders
-> > 
-> > > > On Mon, Mar 10, 2014 at 01:14:28PM +0100, Anders Darander wrote:
-> > > > > Hi,
-> > 
-> > > > > Summary:
-> > 
-> > > > > I'm attempting at moving a custom product from meta-arago (danny) to the
-> > > > > latest master based on dora.
-> > 
-> > > > > However, I'm getting issues when I'm building gcc-cross-initial (we're
-> > > > > not using an external toolchain).i
-> > 
-> > > > > I've seen this on my normal build machine running Ubuntu 12.04, though
-> > > > > my example below was running a new OpenSuse machine. 
-> > > > > The choice of MACHINE="am37x-evm" is made to get something resembling
-> > > > > our real machine.
-> > 
-> > > > > When building gcc-cross-initial, libgcc fails to identify the "suffix of
-> > > > > object files" when the configure-script for libgcc is being run.
-> > 
-> > > > > I hope that someone can help me with some ideas/pointers as to how this
-> > > > > can be resolved. I've got the same issue with both gcc 4.7.2 and
-> > > > > 4.8.1...
-> > -- 
-> > Anders Darander
-> > ChargeStorm AB / eStorm AB
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_498_450925736.1396930010060--
