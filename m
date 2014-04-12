@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 3BF6252972
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9FF9E52972
 	for <meta-arago@arago-project.org>;
-	Sat, 12 Apr 2014 10:43:19 +0000 (UTC)
+	Sat, 12 Apr 2014 12:09:57 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3CAhItd009267
-	for <meta-arago@arago-project.org>; Sat, 12 Apr 2014 05:43:18 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3CC9u6W014205
+	for <meta-arago@arago-project.org>; Sat, 12 Apr 2014 07:09:56 -0500
 Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3CAhFcl007325
-	for <meta-arago@arago-project.org>; Sat, 12 Apr 2014 05:43:18 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3CC9uSo031830
+	for <meta-arago@arago-project.org>; Sat, 12 Apr 2014 07:09:56 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Sat, 12 Apr 2014 05:43:16 -0500
+	Sat, 12 Apr 2014 07:09:56 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s3CAhFc7023410	for <meta-arago@arago-project.org>;
-	Sat, 12 Apr 2014 05:43:16 -0500
-Date: Sat, 12 Apr 2014 06:28:26 -0400
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s3CC9uK3003314	for <meta-arago@arago-project.org>;
+	Sat, 12 Apr 2014 07:09:56 -0500
+Date: Sat, 12 Apr 2014 07:55:06 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <4556930.521.1397298506385.JavaMail.jenkins@puget>
+Message-ID: <1728967597.523.1397303706736.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.03 build 2014-04-11_22-10-08
+Subject: [nightly] Core TISDK 2014.03 build 2014-04-12_06-28-27
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Apr 2014 10:43:19 -0000
+X-List-Received-Date: Sat, 12 Apr 2014 12:09:57 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_520_1574165710.1397298506295"
+	boundary="----=_Part_522_1847064026.1397303706684"
 
-------=_Part_520_1574165710.1397298506295
+------=_Part_522_1847064026.1397303706684
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,9 +54,9 @@ Status for 04/12/14
 
 <h2>Status for 04/12/14</h2>
 
-<h2>BUILD_ID: build-2014-04-11_22-11-09</h2>
+<h2>BUILD_ID: build-2014-04-12_06-29-27</h2>
 
-<h2>Clean Build: true</h2>
+<h2>Clean Build: false</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -159,7 +159,7 @@ Status for 04/12/14
     <tr>
         <td>beagleboard</td>
         <td id="beagleboard-build-result" bgcolor=lime>PASSED</td>
-        <td id="beagleboard-target-result" bgcolor=lime>PASSED</td>
+        <td id="beagleboard-target-result" bgcolor=red>FAILED</td>
     </tr>
     <tr>
         <td>am180x-evm</td>
@@ -198,7 +198,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
+CLEAN_BUILD="false"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -235,4 +235,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_520_1574165710.1397298506295--
+------=_Part_522_1847064026.1397303706684--
