@@ -1,27 +1,29 @@
 Return-Path: <mrinmayee@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 9ECCA52974
+	by arago-project.org (Postfix) with ESMTPS id 8D33C52A23
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 06:14:39 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3O6EcvW000376
-	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:14:38 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6Ec8U029367
-	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:14:38 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 24 Apr 2014 01:14:38 -0500
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6EbWS022640	for
-	<meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:14:38 -0500
-Date: Thu, 24 Apr 2014 11:44:37 +0530
-From: Mrinmayee Hingolikar <mrinmayee@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20140424061437.GA26632@ti.com>
+	Thu, 24 Apr 2014 06:20:48 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3O6KkGJ001048
+	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:20:47 -0500
+Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6KiFo007103
+	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 11:50:45 +0530
+Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
+	DBDE72.ent.ti.com ([fe80::bd56:32bf:87fd:2763%27]) with mapi id
+	14.03.0174.001; Thu, 24 Apr 2014 11:50:43 +0530
+From: "Hingolikar, Mrinmayee" <mrinmayee@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [PATCH] configs: Config for the GLSDK 6.03.00.01
+Thread-Index: AQHPX4UrpMa2x1DuukaFUkDCANC7r5sgS3kA
+Date: Thu, 24 Apr 2014 06:20:43 +0000
+Message-ID: <CF956B779D819D41BBC043B7082161D54BA317@DBDE04.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.24.170.142]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [PATCH] configs: Config for the GLSDK 6.04.00.02
+Subject: [PATCH] configs: Config for the GLSDK 6.03.00.01
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,35 +36,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 06:14:39 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 06:20:48 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
+Signed-off-by: Vivek Bardia <x0161644@ti.com>
 ---
- configs/glsdk/glsdk-06.04.00.02-config.txt |   12 ++++++++++++
- 1 files changed, 12 insertions(+), 0 deletions(-)
- create mode 100644 configs/glsdk/glsdk-06.04.00.02-config.txt
+ configs/glsdk/glsdk-06.03.00.01-config.txt |   12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 configs/glsdk/glsdk-06.03.00.01-config.txt
 
-diff --git a/configs/glsdk/glsdk-06.04.00.02-config.txt b/configs/glsdk/glsdk-06.04.00.02-config.txt
+diff --git a/configs/glsdk/glsdk-06.03.00.01-config.txt b/configs/glsdk/gls=
+dk-06.03.00.01-config.txt
 new file mode 100644
-index 0000000..07fb9c3
+index 0000000..551a2e6
 --- /dev/null
-+++ b/configs/glsdk/glsdk-06.04.00.02-config.txt
++++ b/configs/glsdk/glsdk-06.03.00.01-config.txt
 @@ -0,0 +1,12 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++# This file takes repo entries in the format # repo name,repo uri,repo=20
++branch,repo commit[,layers=3Dlayer1:layer2...:layern]
 +
-+bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
-+meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,master,283813dffe8633af04c87faedb4c601518fa3a9c,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,775d77e482f1ea203c78003cccd2547075fd720f,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,44754206632dd5b0725aeb43e99e4ff9e0245dca,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,dylan,96fae48172519a621bb38c875a0b0e89a198868c,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dylan,394fa61d00b97c19610bfb38f02174c4e8aeeb15,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago.conf.sample
--- 
-1.7.0.4
++bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87
++379bf629066f6662458,layers=3D=20
++meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,ma
++ster,b838c23aae724496b3aee48b5daa0f458e0526c1,layers=3Dmeta-arago-distro:
++meta-arago-extras=20
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,775d77e482f1ea20
++3c78003cccd2547075fd720f,layers=3D=20
++meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,44
++754206632dd5b0725aeb43e99e4ff9e0245dca,layers=3Dtoolchain-layer:meta-netw
++orking:meta-ruby:meta-oe=20
++meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,dylan,69
++1ad445d8d55971ac787a60516aaf91bc4bc3a3,layers=3D
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f
++78d6eff14ada3f2bc960e81883b27a10afecc,layers=3Dmeta-linaro-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,dylan,394fa61d00b9
++7c19610bfb38f02174c4e8aeeb15,layers=3Dmeta
++OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
++OECORELOCALCONF=3D./sample-files/local-arago.conf.sample
+--
+1.7.9.5
 
 
