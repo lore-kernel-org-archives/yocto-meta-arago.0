@@ -1,23 +1,23 @@
 Return-Path: <vivek.bardia@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id C5AD752974
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id ABC6852974
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 06:13:22 +0000 (UTC)
+	Thu, 24 Apr 2014 06:15:18 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3O6DLHY009264
-	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:13:21 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3O6FHt1002566
+	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:15:17 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6DLHO004503
-	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:13:21 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6FHXf006192
+	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:15:17 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 24 Apr 2014 01:13:21 -0500
+	Thu, 24 Apr 2014 01:15:17 -0500
 Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6DKq8021520	for
-	<meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:13:21 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O6FG5H000620	for
+	<meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:15:17 -0500
 From: Vivek Bardia <x0161644@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20140424061319.GA26585@ti.com>
+Message-ID: <20140424061515.GA26649@ti.com>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Mailman-Approved-At: Thu, 05 Jun 2014 15:53:33 +0000
@@ -34,9 +34,9 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-Date: Thu, 24 Apr 2014 06:13:23 -0000
-X-Original-Date: Thu, 24 Apr 2014 11:43:20 +0530
-X-List-Received-Date: Thu, 24 Apr 2014 06:13:23 -0000
+Date: Thu, 24 Apr 2014 06:15:18 -0000
+X-Original-Date: Thu, 24 Apr 2014 11:45:15 +0530
+X-List-Received-Date: Thu, 24 Apr 2014 06:15:18 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
