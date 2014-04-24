@@ -1,34 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8B3BC52998
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B6FB652998
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 15:08:56 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3OF8tSn018811;
-	Thu, 24 Apr 2014 10:08:55 -0500
+	Thu, 24 Apr 2014 17:10:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3OHAgTh031930;
+	Thu, 24 Apr 2014 12:10:42 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OF8tgv028411;
-	Thu, 24 Apr 2014 10:08:55 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OHAg4O018130;
+	Thu, 24 Apr 2014 12:10:42 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 24 Apr 2014 10:08:55 -0500
+	Thu, 24 Apr 2014 12:10:42 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OF8tqT011814;
-	Thu, 24 Apr 2014 10:08:55 -0500
-Date: Thu, 24 Apr 2014 11:08:54 -0400
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OHAgIO024823;
+	Thu, 24 Apr 2014 12:10:42 -0500
+Date: Thu, 24 Apr 2014 13:10:41 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140424150854.GL18053@edge>
-References: <1398304280-15426-1-git-send-email-denis@denix.org>
-	<1398304280-15426-8-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED1015CFB2056@DLEE11.ent.ti.com>
-	<20140424145451.GI18053@edge>
-	<7D46E86EC0A8354091174257B2FED1015CFB2FD5@DLEE11.ent.ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20140424171041.GS18053@edge>
+References: <1398282148-11547-1-git-send-email-denis@denix.org>
+	<8F29D6B095ED194EA1980491A5E029710C68D7F2@DFLE08.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015CFB2FD5@DLEE11.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C68D7F2@DFLE08.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 8/8] linux-ti-staging: disable AUTOREV
+Subject: Re: [oe-layersetup][PATCH 0/5] RFC: cleanup and remove	denzil configs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,87 +38,86 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 15:08:56 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 17:10:43 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Thu, Apr 24, 2014 at 10:55:44AM -0400, Maupin, Chase wrote:
-> >-----Original Message-----
-> >From: Dmytriyenko, Denys
-> >Sent: Thursday, April 24, 2014 9:55 AM
-> >To: Maupin, Chase
-> >Cc: Denys Dmytriyenko; meta-arago@arago-project.org
-> >Subject: Re: [meta-arago] [PATCH 8/8] linux-ti-staging: disable
-> >AUTOREV
-> >
-> >On Thu, Apr 24, 2014 at 12:36:35PM +0000, Maupin, Chase wrote:
-> >> >-----Original Message-----
-> >> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >> >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> >> >Sent: Wednesday, April 23, 2014 8:51 PM
-> >> >To: meta-arago@arago-project.org
-> >> >Subject: [meta-arago] [PATCH 8/8] linux-ti-staging: disable
-> >> >AUTOREV
-> >> >
-> >> >From: Denys Dmytriyenko <denys@ti.com>
-> >> >
-> >> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >> >---
-> >> > meta-arago-distro/recipes-kernel/linux/linux-ti-
-> >> >staging_3.12.bbappend | 4 +---
-> >> > 1 file changed, 1 insertion(+), 3 deletions(-)
-> >> >
-> >> >diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> >> >staging_3.12.bbappend b/meta-arago-distro/recipes-
-> >> >kernel/linux/linux-ti-staging_3.12.bbappend
-> >> >index f99482c..2a6f090 100644
-> >> >--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> >> >staging_3.12.bbappend
-> >> >+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> >> >staging_3.12.bbappend
-> >> >@@ -1,11 +1,9 @@
-> >> >-MACHINE_KERNEL_PR_append = "-arago0"
-> >> >+MACHINE_KERNEL_PR_append = "-arago1"
-> >> >
-> >> > FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-> >> >
-> >> > require copy-defconfig.inc
-> >> >
-> >> >-SRCREV = "${AUTOREV}"
-> >>
-> >> Any reason not to autorev to pickup the latest stable releases?
-> >
-> >AUTOREVs are evil!
-> 
-> :)
-> 
-> >
-> >It just pissed me off yesterday, when I was debugging something
-> >and it decided
-> >to trigger almost a complete rebuild, because kernel just got
-> >updated...
-> 
-> OK.  Let's not forget to bump regularly then.
+On Wed, Apr 23, 2014 at 08:30:04PM +0000, Cooper Jr., Franklin wrote:
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> > Sent: Wednesday, April 23, 2014 2:42 PM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [oe-layersetup][PATCH 0/5] RFC: cleanup and remove
+> > denzil configs
+> > 
+> > From: Denys Dmytriyenko <denys@ti.com>
+> > 
+> > RFC: Remove some cruft of old denzil configs.
+> > 
+> > I would have left amsdk* and mcsdk* configs alone, if they didn't reference
+> > other config files in sample-files/, which I would like to clean up mostly.
 
-It's 3.12 line - I've already bumped to 3.12.17 and 3.12.18 was released 
-yesterday. I'll keep bumping stable versions.
-But most probably we'll switch to 3.14/3.15 by the time we'll be doing any 
-Dora-based releases... So keeping 3.12 AUTOREV-ed doesn't make much sense now.
+> [Franklin] So how about subdirectories in sample-files for each maintenance 
+> branch?
+
+Ok, I'll see what I can do...
 
 
-> >> > KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV',
-> >> >True).partition('+')[2][0:7]}"
-> >> >
-> >> > kernel_do_configure_prepend() {
-> >> >--
-> >> >1.9.2
-> >> >
-> >> >_______________________________________________
-> >> >meta-arago mailing list
-> >> >meta-arago@arago-project.org
-> >> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> I wouldn't mind deleting the generic arago config files from old maintenance 
+> branches since most of the time people really care about the sdk specific 
+> config files.
+
+Depends on people...
+
+
+> > This repository is not tagged, but used as a BOM-reference for old release
+> > configs. Do we need to preserve those files some other place?
+> > 
+> > Other alternatives for preserving the configs are:
+> > * in a separate "old/deprecated" branch
+> > * in a sub-directory of a similar name
+> > * tagging the repo before removal
+
+> [Franklin] I envisioned oe-layersetup as a way that you can simply rebuild 
+> any sdk no matter how old by simply swapping out config files. So I would 
+> prefer a sub-directory approach instead of a branch or tagging approach 
+> since that will add complexity for users.
+> > 
+> > Denys Dmytriyenko (5):
+> >   bblayers-denzil: remove denzil-specific bblayers file, deprecated
+> >   local-arago-linaro.conf: remove denzil-specific version setting Linaro
+> >     TC
+> >   mcsdk-03.00.00.xx: remove old denzil-based configs
+> >   arago-denzil-config: remove denzil-specific config
+> >   amsdk-05.06.00.00: remove denzil-specific config
+> > 
+> >  configs/amsdk/amsdk-05.06.00.00-config.txt  |  10 --
+> >  configs/arago-denzil-config.txt             |  11 --
+> >  configs/mcsdk/mcsdk-03.00.00.03-config.txt  |  10 --  configs/mcsdk/mcsdk-
+> > 03.00.00.05-config.txt  |  11 --  configs/mcsdk/mcsdk-03.00.00.06-config.txt  |
+> > 11 --  configs/mcsdk/mcsdk-03.00.00.07-config.txt  |  11 --
+> >  sample-files/bblayers-denzil.conf.sample    |   9 --
+> >  sample-files/local-arago-linaro.conf.sample | 160 ----------------------------
+> >  8 files changed, 233 deletions(-)
+> >  delete mode 100644 configs/amsdk/amsdk-05.06.00.00-config.txt
+> >  delete mode 100644 configs/arago-denzil-config.txt  delete mode 100644
+> > configs/mcsdk/mcsdk-03.00.00.03-config.txt
+> >  delete mode 100644 configs/mcsdk/mcsdk-03.00.00.05-config.txt
+> >  delete mode 100644 configs/mcsdk/mcsdk-03.00.00.06-config.txt
+> >  delete mode 100644 configs/mcsdk/mcsdk-03.00.00.07-config.txt
+> >  delete mode 100644 sample-files/bblayers-denzil.conf.sample
+> >  delete mode 100644 sample-files/local-arago-linaro.conf.sample
+> > 
+> > --
+> > 1.9.2
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
