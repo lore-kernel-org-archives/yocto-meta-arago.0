@@ -1,25 +1,23 @@
 Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTP id 8D8F652A32
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTP id 19F6452A32
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 01:51:35 +0000 (UTC)
+	Thu, 24 Apr 2014 01:51:53 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173017.mailsrvcs.net
+	by vms173021.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N4I00DT8IHOU8F0@vms173017.mailsrvcs.net> for
+	2009)) with ESMTPA id <0N4I003C9IHO3S30@vms173021.mailsrvcs.net> for
 	meta-arago@arago-project.org; Wed, 23 Apr 2014 20:51:34 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 20D9320644; Wed,
-	23 Apr 2014 21:51:24 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id EEB4C200AC; Wed,
+	23 Apr 2014 21:51:23 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 23 Apr 2014 21:51:20 -0400
-Message-id: <1398304280-15426-8-git-send-email-denis@denix.org>
+Date: Wed, 23 Apr 2014 21:51:13 -0400
+Message-id: <1398304280-15426-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.9.2
-In-reply-to: <1398304280-15426-1-git-send-email-denis@denix.org>
-References: <1398304280-15426-1-git-send-email-denis@denix.org>
-Subject: [PATCH 8/8] linux-ti-staging: disable AUTOREV
+Subject: [PATCH 1/8] arago.conf: minor cleanup, version bump
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,32 +30,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 01:51:35 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 01:51:53 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
-index f99482c..2a6f090 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
-@@ -1,11 +1,9 @@
--MACHINE_KERNEL_PR_append = "-arago0"
-+MACHINE_KERNEL_PR_append = "-arago1"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index cc3cedf..1c8c572 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,6 +1,6 @@
+ # Name and version of the distribution
+ DISTRO_NAME = "Arago"
+-DISTRO_VERSION = "2014.03"
++DISTRO_VERSION = "2014.05"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+ # SDK paths and names
+ SDK_NAME_PREFIX = "arago"
+@@ -10,8 +10,8 @@ SDK_NAME = "${SDK_NAME_PREFIX}-${SDK_VERSION}"
+ SDKPATH_REAL = "/usr/local/${SDK_NAME_PREFIX}-${SDK_VERSION}"
+ SDKPATH = "${@"/tmp/"+"x"*96+"/"+"y"*96}"
  
- require copy-defconfig.inc
+-# Mask some broken recipes
+-BBMASK = "meta-ti/recipes-misc|meta-linaro/recipes-lamp|meta-oe/recipes-extended/lighttpd|meta-linaro/recipes-core/netbase"
++# Mask any broken recipes (currently none)
++#BBMASK = ""
  
--SRCREV = "${AUTOREV}"
--
- KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
- 
- kernel_do_configure_prepend() {
+ # Bump the connection timeout to 5 minutes to overcome slow proxy servers
+ FETCHCMD_wget = "/usr/bin/env wget -t 2 -T 300 -nv --passive-ftp --no-check-certificate"
 -- 
 1.9.2
 
