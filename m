@@ -1,35 +1,32 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 084D952998
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id D73D552974
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 14:34:09 +0000 (UTC)
+	Thu, 24 Apr 2014 14:51:00 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3OEY9SI023278;
-	Thu, 24 Apr 2014 09:34:09 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OEY8D5020499;
-	Thu, 24 Apr 2014 09:34:08 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Thu, 24 Apr 2014 09:34:08 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Maupin, Chase" <chase.maupin@ti.com>, Denys Dmytriyenko <denis@denix.org>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 7/8] iperf: update the license from NewBSD
-	to the proper BSD-3-Clause
-Thread-Index: AQHPX1+8YOuyiVoC4kmuIcV+o+fSVJshCIaA///NPdA=
-Date: Thu, 24 Apr 2014 14:34:07 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C68E1B3@DFLE08.ent.ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3OEp001012013;
+	Thu, 24 Apr 2014 09:51:00 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OEp0I0003352;
+	Thu, 24 Apr 2014 09:51:00 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 24 Apr 2014 09:50:59 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OEoxhZ018910;
+	Thu, 24 Apr 2014 09:50:59 -0500
+Date: Thu, 24 Apr 2014 10:50:59 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>
+Message-ID: <20140424145059.GH18053@edge>
 References: <1398304280-15426-1-git-send-email-denis@denix.org>
-	<1398304280-15426-7-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED1015CFB2007@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015CFB2007@DLEE11.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	<1398304280-15426-3-git-send-email-denis@denix.org>
+	<7D46E86EC0A8354091174257B2FED1015CFB1F10@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 7/8] iperf: update the license from NewBSD to the proper BSD-3-Clause
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015CFB1F10@DLEE11.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 3/8] qtbase: move setting PACKAGECONFIG flags	to arago.conf
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,59 +39,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 14:34:10 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 24 Apr 2014 14:51:01 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Maupin, Chase
-> Sent: Thursday, April 24, 2014 7:36 AM
-> To: Denys Dmytriyenko; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 7/8] iperf: update the license from NewB=
-SD
-> to the proper BSD-3-Clause
->=20
-> Acked-by: Chase Maupin <chase.maupin@ti.com>
->=20
+On Thu, Apr 24, 2014 at 12:33:21PM +0000, Maupin, Chase wrote:
+> 
 > >-----Original Message-----
 > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
 > >Sent: Wednesday, April 23, 2014 8:51 PM
 > >To: meta-arago@arago-project.org
-> >Subject: [meta-arago] [PATCH 7/8] iperf: update the license from NewBSD
-> >to the proper BSD-3-Clause
+> >Subject: [meta-arago] [PATCH 3/8] qtbase: move setting
+> >PACKAGECONFIG flags to arago.conf
 > >
 > >From: Denys Dmytriyenko <denys@ti.com>
 > >
 > >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > >---
-> > meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb | 4 ++--
-> > 1 file changed, 2 insertions(+), 2 deletions(-)
+> > meta-arago-distro/conf/distro/arago.conf               | 5 +++++
+> > meta-arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend | 4 +---
+> > 2 files changed, 6 insertions(+), 3 deletions(-)
 > >
-> >diff --git a/meta-arago-extras/recipes- benchmark/iperf/iperf_2.0.5.bb
-> >b/meta-arago-extras/recipes- benchmark/iperf/iperf_2.0.5.bb index
-> >208b955..32c76e1 100644
-> >--- a/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
-> >+++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.5.bb
-> >@@ -1,10 +1,10 @@
-> > DESCRIPTION =3D "Iperf is a tool to measure maximum TCP bandwidth,
-> >allowing the tuning of various parameters and UDP characteristics"
-> > HOMEPAGE =3D "http://dast.nlanr.net/Projects/Iperf/"
-> > SECTION =3D "console/network"
-> >-LICENSE =3D "NewBSD"
-> >+LICENSE =3D "BSD-3-Clause"
-> > LIC_FILES_CHKSUM =3D
-> >"file://COPYING;md5=3De8478eae9f479e39bc34975193360298"
+> >diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-
+> >arago-distro/conf/distro/arago.conf
+> >index 1c8c572..7bd1de2 100644
+> >--- a/meta-arago-distro/conf/distro/arago.conf
+> >+++ b/meta-arago-distro/conf/distro/arago.conf
+> >@@ -26,6 +26,11 @@ DISTRO_FEATURES = "alsa argp bluetooth ext2
+> >irda largefile pcmcia usbgadget usbh
+> > DISTRO_FEATURES += "opengl"
+> > PACKAGECONFIG_pn-weston = "kms fbdev"
 > >
-> >-PR =3D "r0"
-> >+PR =3D "r1"
+> >+# Configure Qt5 flags (GLES is disabled for now)
+> >+#PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+> >+PACKAGECONFIG_GL_pn-qtbase = "linuxfb"
+> >+PACKAGECONFIG_DISTRO_pn-qtbase = "icu"
+> >+
+> 
+> Can you explain this a bit more?  What is the advantage of moving it to the 
+> config vs in the recipe?
+
+Most of PACKAGECONFIG flags are set automatically based on DISTRO_FEATURES, 
+but not all of them. The remainder can still be thought as distro-specific.
+The big thing is to set those up centrally w/o creating unnecessary bbappends. 
+Of course, in this case we still need bbappend for qtbase for patches, but I 
+just wanted to start consolidating different PACKAGEGROUPS in one place, like 
+I did with Weston above...
+
+
+> > # ARM9 is not supported by the Linaro toolchain so default back
+> >to the Arago
+> > # toolchain for ARM9 based SOCs.
+> > TC_SANE_DEFAULT :=
+> >"${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}
+> >"
+> >diff --git a/meta-arago-distro/recipes-
+> >qt/qt5/qtbase_5.2.0.bbappend b/meta-arago-distro/recipes-
+> >qt/qt5/qtbase_5.2.0.bbappend
+> >index d35a948..2c0a52d 100644
+> >--- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend
+> >+++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend
+> >@@ -1,10 +1,8 @@
+> > FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 > >
-> > SRC_URI =3D " ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz \
-> >             file://000-Iperf_Fix-CPU-Usage.diff \
+> >-PACKAGECONFIG_GL = "icu linuxfb"
+> >-
+> > SRC_URI += " \
+> > 	file://0001-qeglfswindow.cpp.patch \
+> > 	file://0002-qeglfswindow.cpp.patch \
+> > "
+> >
+> >-PR_append = "-arago0"
+> >+PR_append = "-arago1"
 > >--
 > >1.9.2
 > >
