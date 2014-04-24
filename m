@@ -1,25 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTP id 55EB852A6D
+Return-Path: <mrinmayee@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 5CE4852974
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 01:51:53 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173021.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N4I00B1CIHO5OQ0@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 23 Apr 2014 20:51:34 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id F193320396; Wed,
-	23 Apr 2014 21:51:23 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 23 Apr 2014 21:51:14 -0400
-Message-id: <1398304280-15426-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.9.2
-In-reply-to: <1398304280-15426-1-git-send-email-denis@denix.org>
-References: <1398304280-15426-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/8] u-boot-ti-staging: remove UBOOT_LOCALVERSION handling, now upstream
+	Thu, 24 Apr 2014 06:09:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3O69gJO032403
+	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:09:42 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O69f9q001478
+	for <meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:09:42 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 24 Apr 2014 01:09:41 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3O69eKu000497	for
+	<meta-arago@arago-project.org>; Thu, 24 Apr 2014 01:09:41 -0500
+Date: Thu, 24 Apr 2014 11:39:40 +0530
+From: Mrinmayee Hingolikar <mrinmayee@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20140424060940.GA26533@ti.com>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [PATCH] configs: Lock down the configs for 06.02.01.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,54 +34,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 01:51:53 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 06:09:43 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Mrinmayee Hingolikar <mrinmayee@ti.com>
 ---
- .../recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend | 10 ----------
- .../recipes-bsp/u-boot/u-boot-ti-staging_2013.10.bbappend    | 12 +-----------
- 2 files changed, 1 insertion(+), 21 deletions(-)
+ configs/glsdk/glsdk-06.02.01.02-config.txt |   11 +++++++++++
+ 1 files changed, 11 insertions(+), 0 deletions(-)
+ create mode 100644 configs/glsdk/glsdk-06.02.01.02-config.txt
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
-index 911a8ce..1fb654b 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.01.01.bbappend
-@@ -1,13 +1,3 @@
- PR_append = "-arago4"
- 
- UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
--
--# the lines below can be removed once the U-Boot LOCALVERSION patches are merged
--# into the oe-core danny branch. Update: not coming to danny, wait for dylan.
--do_compile_prepend() {
--    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
--    then
--        echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
--        echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
--    fi
--}
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.10.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.10.bbappend
-index 8174bc7..f015993 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.10.bbappend
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2013.10.bbappend
-@@ -1,13 +1,3 @@
--PR_append = "-arago0"
--
--SRCREV = "${AUTOREV}"
-+PR_append = "-arago1"
- 
- UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
--
--do_compile_prepend() {
--    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
--    then
--        echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
--        echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
--    fi
--}
+diff --git a/configs/glsdk/glsdk-06.02.01.02-config.txt b/configs/glsdk/glsdk-06.02.01.02-config.txt
+new file mode 100644
+index 0000000..52a4229
+--- /dev/null
++++ b/configs/glsdk/glsdk-06.02.01.02-config.txt
+@@ -0,0 +1,11 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
++meta-arago,git://arago-project.org/git/projects/meta-arago-glsdk.git,danny,DEV_SDK_06_02_01_02,layers=meta-arago-distro:meta-arago-extras
++meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,f00028caf257e386c0f3ae46bd4b3ba53dd0729d,layers=toolchain-layer:meta-oe
++meta-ti,git://arago-project.org/git/projects/meta-ti-glsdk.git,danny,DEV_SDK_06_02_01_02,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,d0558fa4304592622423582f8b464e1c22cfe6f1,layers=
++oe-core,git://git.openembedded.org/openembedded-core,danny,0785489d558c34cacf5cb349949a15e27084efbf,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-glsdk.conf.sample
 -- 
-1.9.2
+1.7.0.4
 
 
