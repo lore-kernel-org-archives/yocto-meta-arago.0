@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 49DF452A8F
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id 5D19052A8F
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 17:18:01 +0000 (UTC)
+	Thu, 24 Apr 2014 17:18:08 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
+	by vms173019.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N4J005F8PDVBAS0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 24 Apr 2014 12:17:56 -0500 (CDT)
+	2009)) with ESMTPA id <0N4J0059FPDVRH40@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 24 Apr 2014 12:18:08 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 5108A2011D; Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 7E9D720120; Thu,
 	24 Apr 2014 13:17:55 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 24 Apr 2014 13:17:50 -0400
-Message-id: <1398359871-24257-2-git-send-email-denis@denix.org>
+Date: Thu, 24 Apr 2014 13:17:51 -0400
+Message-id: <1398359871-24257-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 1.9.2
 In-reply-to: <1398359871-24257-1-git-send-email-denis@denix.org>
 References: <1398359871-24257-1-git-send-email-denis@denix.org>
-Subject: [oe-layersetup][PATCH 2/3] local.conf.sample: remove no longer needed BBMASK
+Subject: [oe-layersetup][PATCH 3/3] local-arago.conf.sample: enable single set of images by default
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,29 +32,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 17:18:01 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 17:18:08 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- sample-files/local.conf.sample | 3 ---
- 1 file changed, 3 deletions(-)
+ sample-files/local-arago.conf.sample | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/sample-files/local.conf.sample b/sample-files/local.conf.sample
-index 24cb44f..66c1d51 100644
---- a/sample-files/local.conf.sample
-+++ b/sample-files/local.conf.sample
-@@ -149,9 +149,6 @@ PARALLEL_MAKE = "-j 1"
- # By default, go with the "distroless" configuration, when not set
- #DISTRO   = "arago"
+diff --git a/sample-files/local-arago.conf.sample b/sample-files/local-arago.conf.sample
+index 06352e0..44fe8ce 100644
+--- a/sample-files/local-arago.conf.sample
++++ b/sample-files/local-arago.conf.sample
+@@ -157,3 +157,6 @@ BB_GENERATE_MIRROR_TARBALLS = "0"
  
--# Mask misc recipes for distroless setup
--BBMASK = "meta-ti/recipes-misc"
--
- # Set terminal types by default it expects gnome-terminal
- # but we chose xterm
- TERMCMD = "${XTERM_TERMCMD}"
+ # Uncomment this to remove work directory after packaging to save disk space
+ #INHERIT += "rm_work"
++
++# Keep one set of images by default
++RM_OLD_IMAGE = "1"
 -- 
 1.9.2
 
