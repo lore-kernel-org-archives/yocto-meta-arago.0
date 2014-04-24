@@ -1,31 +1,25 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B6FB652998
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id 49DF452A8F
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Apr 2014 17:10:43 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s3OHAgTh031930;
-	Thu, 24 Apr 2014 12:10:42 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OHAg4O018130;
-	Thu, 24 Apr 2014 12:10:42 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 24 Apr 2014 12:10:42 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s3OHAgIO024823;
-	Thu, 24 Apr 2014 12:10:42 -0500
-Date: Thu, 24 Apr 2014 13:10:41 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20140424171041.GS18053@edge>
-References: <1398282148-11547-1-git-send-email-denis@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C68D7F2@DFLE08.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C68D7F2@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [oe-layersetup][PATCH 0/5] RFC: cleanup and remove	denzil configs
+	Thu, 24 Apr 2014 17:18:01 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N4J005F8PDVBAS0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 24 Apr 2014 12:17:56 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 5108A2011D; Thu,
+	24 Apr 2014 13:17:55 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 24 Apr 2014 13:17:50 -0400
+Message-id: <1398359871-24257-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.9.2
+In-reply-to: <1398359871-24257-1-git-send-email-denis@denix.org>
+References: <1398359871-24257-1-git-send-email-denis@denix.org>
+Subject: [oe-layersetup][PATCH 2/3] local.conf.sample: remove no longer needed BBMASK
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,86 +32,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 17:10:43 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 24 Apr 2014 17:18:01 -0000
 
-On Wed, Apr 23, 2014 at 08:30:04PM +0000, Cooper Jr., Franklin wrote:
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> > Sent: Wednesday, April 23, 2014 2:42 PM
-> > To: meta-arago@arago-project.org
-> > Subject: [meta-arago] [oe-layersetup][PATCH 0/5] RFC: cleanup and remove
-> > denzil configs
-> > 
-> > From: Denys Dmytriyenko <denys@ti.com>
-> > 
-> > RFC: Remove some cruft of old denzil configs.
-> > 
-> > I would have left amsdk* and mcsdk* configs alone, if they didn't reference
-> > other config files in sample-files/, which I would like to clean up mostly.
+From: Denys Dmytriyenko <denys@ti.com>
 
-> [Franklin] So how about subdirectories in sample-files for each maintenance 
-> branch?
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ sample-files/local.conf.sample | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Ok, I'll see what I can do...
+diff --git a/sample-files/local.conf.sample b/sample-files/local.conf.sample
+index 24cb44f..66c1d51 100644
+--- a/sample-files/local.conf.sample
++++ b/sample-files/local.conf.sample
+@@ -149,9 +149,6 @@ PARALLEL_MAKE = "-j 1"
+ # By default, go with the "distroless" configuration, when not set
+ #DISTRO   = "arago"
+ 
+-# Mask misc recipes for distroless setup
+-BBMASK = "meta-ti/recipes-misc"
+-
+ # Set terminal types by default it expects gnome-terminal
+ # but we chose xterm
+ TERMCMD = "${XTERM_TERMCMD}"
+-- 
+1.9.2
 
-
-> I wouldn't mind deleting the generic arago config files from old maintenance 
-> branches since most of the time people really care about the sdk specific 
-> config files.
-
-Depends on people...
-
-
-> > This repository is not tagged, but used as a BOM-reference for old release
-> > configs. Do we need to preserve those files some other place?
-> > 
-> > Other alternatives for preserving the configs are:
-> > * in a separate "old/deprecated" branch
-> > * in a sub-directory of a similar name
-> > * tagging the repo before removal
-
-> [Franklin] I envisioned oe-layersetup as a way that you can simply rebuild 
-> any sdk no matter how old by simply swapping out config files. So I would 
-> prefer a sub-directory approach instead of a branch or tagging approach 
-> since that will add complexity for users.
-> > 
-> > Denys Dmytriyenko (5):
-> >   bblayers-denzil: remove denzil-specific bblayers file, deprecated
-> >   local-arago-linaro.conf: remove denzil-specific version setting Linaro
-> >     TC
-> >   mcsdk-03.00.00.xx: remove old denzil-based configs
-> >   arago-denzil-config: remove denzil-specific config
-> >   amsdk-05.06.00.00: remove denzil-specific config
-> > 
-> >  configs/amsdk/amsdk-05.06.00.00-config.txt  |  10 --
-> >  configs/arago-denzil-config.txt             |  11 --
-> >  configs/mcsdk/mcsdk-03.00.00.03-config.txt  |  10 --  configs/mcsdk/mcsdk-
-> > 03.00.00.05-config.txt  |  11 --  configs/mcsdk/mcsdk-03.00.00.06-config.txt  |
-> > 11 --  configs/mcsdk/mcsdk-03.00.00.07-config.txt  |  11 --
-> >  sample-files/bblayers-denzil.conf.sample    |   9 --
-> >  sample-files/local-arago-linaro.conf.sample | 160 ----------------------------
-> >  8 files changed, 233 deletions(-)
-> >  delete mode 100644 configs/amsdk/amsdk-05.06.00.00-config.txt
-> >  delete mode 100644 configs/arago-denzil-config.txt  delete mode 100644
-> > configs/mcsdk/mcsdk-03.00.00.03-config.txt
-> >  delete mode 100644 configs/mcsdk/mcsdk-03.00.00.05-config.txt
-> >  delete mode 100644 configs/mcsdk/mcsdk-03.00.00.06-config.txt
-> >  delete mode 100644 configs/mcsdk/mcsdk-03.00.00.07-config.txt
-> >  delete mode 100644 sample-files/bblayers-denzil.conf.sample
-> >  delete mode 100644 sample-files/local-arago-linaro.conf.sample
-> > 
-> > --
-> > 1.9.2
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
