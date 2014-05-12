@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 349FC52A10
+	by arago-project.org (Postfix) with ESMTPS id 8C3D452A10
 	for <meta-arago@arago-project.org>;
-	Mon, 12 May 2014 06:53:04 +0000 (UTC)
+	Mon, 12 May 2014 21:32:25 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4C6r3CL025208
-	for <meta-arago@arago-project.org>; Mon, 12 May 2014 01:53:03 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4C6r2TK024303
-	for <meta-arago@arago-project.org>; Mon, 12 May 2014 01:53:03 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 12 May 2014 01:53:02 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4CLWOLm026869
+	for <meta-arago@arago-project.org>; Mon, 12 May 2014 16:32:24 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4CLWOrB011751
+	for <meta-arago@arago-project.org>; Mon, 12 May 2014 16:32:24 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 12 May 2014 16:32:24 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s4C6r2GQ012004	for <meta-arago@arago-project.org>;
-	Mon, 12 May 2014 01:53:02 -0500
-Date: Mon, 12 May 2014 02:37:26 -0400
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s4CLWOaa002528	for <meta-arago@arago-project.org>;
+	Mon, 12 May 2014 16:32:24 -0500
+Date: Mon, 12 May 2014 17:16:46 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1306887337.27.1399876646151.JavaMail.jenkins@puget>
+Message-ID: <1645137364.29.1399929406924.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.05 build 2014-05-12_01-00-30
+Subject: [nightly] Core TISDK 2014.05 build 2014-05-12_15-32-09
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 May 2014 06:53:04 -0000
+X-List-Received-Date: Mon, 12 May 2014 21:32:25 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_26_1345273679.1399876646068"
+	boundary="----=_Part_28_1650799451.1399929406921"
 
-------=_Part_26_1345273679.1399876646068
+------=_Part_28_1650799451.1399929406921
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +54,7 @@ Status for 05/12/14
 
 <h2>Status for 05/12/14</h2>
 
-<h2>BUILD_ID: build-2014-05-12_01-01-49</h2>
+<h2>BUILD_ID: build-2014-05-12_15-33-20</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -166,6 +166,11 @@ Status for 05/12/14
         <td id="am180x-evm-build-result" bgcolor=red>FAILED</td>
         <td id="am180x-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
+    <tr>
+        <td>keystone-evm</td>
+        <td id="keystone-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="keystone-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
 </table>
 
 <p>
@@ -181,7 +186,7 @@ The configuration file passed to this script had the contents:
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
 TISDK_VERSION="2014.05"<br>
-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm keystone-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
@@ -235,4 +240,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_26_1345273679.1399876646068--
+------=_Part_28_1650799451.1399929406921--
