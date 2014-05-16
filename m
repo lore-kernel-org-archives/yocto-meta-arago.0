@@ -1,30 +1,30 @@
 Return-Path: <hzhang@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 363C252ABC
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 127BC52ABC
 	for <meta-arago@arago-project.org>;
-	Fri, 16 May 2014 19:27:34 +0000 (UTC)
+	Fri, 16 May 2014 19:27:42 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4GJRXGM004582
-	for <meta-arago@arago-project.org>; Fri, 16 May 2014 14:27:33 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4GJRXmc014009
-	for <meta-arago@arago-project.org>; Fri, 16 May 2014 14:27:33 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 16 May 2014 14:27:33 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4GJRfvb000486
+	for <meta-arago@arago-project.org>; Fri, 16 May 2014 14:27:41 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4GJRfF2014056
+	for <meta-arago@arago-project.org>; Fri, 16 May 2014 14:27:41 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 16 May 2014 14:27:41 -0500
 Received: from ares-ubuntu.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s4GJRW5h027288;	Fri, 16 May 2014 14:27:32 -0500
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s4GJRejM024004;	Fri, 16 May 2014 14:27:40 -0500
 Received: from a0868496 by ares-ubuntu.am.dhcp.ti.com with local (Exim 4.76)
-	(envelope-from <hzhang@ti.com>)	id 1WlNn2-0006Uk-G7; Fri, 16 May 2014
-	15:27:32 -0400
+	(envelope-from <hzhang@ti.com>)	id 1WlNnA-0006VM-EG; Fri, 16 May 2014
+	15:27:40 -0400
 From: <hzhang@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 16 May 2014 15:27:28 -0400
-Message-ID: <1400268448-24936-1-git-send-email-hzhang@ti.com>
+Date: Fri, 16 May 2014 15:27:39 -0400
+Message-ID: <1400268459-24974-1-git-send-email-hzhang@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH 0/3] add tisdk image support for 3 Keystone II machine config
+Subject: [PATCH 1/3] keystone: tisdk-image: change machine config from keystone-evm to k2hk-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,22 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 May 2014 19:27:34 -0000
+X-List-Received-Date: Fri, 16 May 2014 19:27:42 -0000
 Content-Type: text/plain
 
 From: Hao Zhang <hzhang@ti.com>
 
-Add K2HK, K2L and K2E EVM machine config support to build tisdk iamge
+Keystone II SoC family has multiple devices and EVM's: k2hk, k2l and k2e.
+Each EVM should have a machine specific tisdk image, and keystone-evm
+machine name should be renamed to k2hk-evm.
 
-Hao Zhang (3):
-  keystone: tisdk-image: change machine config from keystone-evm to
-    k2hk-evm
-  keystone: ti-sdk image: add k2l-evm core ti-sdk image
-  keystone: ti-sdk: add k2e-evm core ti-sdk image
+Signed-off-by: Hao Zhang <hzhang@ti.com>
+---
+ .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../recipes-core/images/arago-core-tisdk-image.inc |    4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index f25db51..4f775b4 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -27,7 +27,7 @@ DTB_FILTER_keystone = "k2hk"
+ TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
+ 
+ # Some devices do not support display and use a server image instead
+-TARGET_IMAGES_keystone-evm = "arago-base-tisdk-image tisdk-server-rootfs-image"
++TARGET_IMAGES_k2hk-evm = "arago-base-tisdk-image tisdk-server-rootfs-image"
+ 
+ TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
+ 
 -- 
 1.7.9.5
 
