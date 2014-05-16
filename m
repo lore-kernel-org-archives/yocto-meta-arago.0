@@ -1,29 +1,33 @@
-Return-Path: <aravindbr@ti.com>
+Return-Path: <chase.maupin@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 38C3E52986
+	by arago-project.org (Postfix) with ESMTPS id B0B6C52986
 	for <meta-arago@arago-project.org>;
-	Fri, 16 May 2014 18:42:18 +0000 (UTC)
+	Fri, 16 May 2014 18:42:32 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4GIgHIc028607
-	for <meta-arago@arago-project.org>; Fri, 16 May 2014 13:42:17 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4GIgHBA008615
-	for <meta-arago@arago-project.org>; Fri, 16 May 2014 13:42:17 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 16 May 2014 13:42:16 -0500
-Received: from ares-ubuntu.am.dhcp.ti.com.am.dhcp.ti.com
-	(ileax41-snat.itg.ti.com [10.172.224.153])	by dflp32.itg.ti.com
-	(8.14.3/8.13.8) with ESMTP id s4GIgGYT013882;
-	Fri, 16 May 2014 13:42:17 -0500
-From: Aravind Batni <aravindbr@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 16 May 2014 14:42:14 -0400
-Message-ID: <1400265734-8795-1-git-send-email-aravindbr@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4GIgWT3028638
+	for <meta-arago@arago-project.org>; Fri, 16 May 2014 13:42:32 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4GIgVVY008766
+	for <meta-arago@arago-project.org>; Fri, 16 May 2014 13:42:32 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0174.001; Fri, 16 May 2014 13:42:31 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: Aravind Batni <aravindbr@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] ti-pa: provides ti pa recipe for KeyStone
+	devices
+Thread-Index: AQHPcTYsZW/Wp8MNPESp5qTL6AMDOJtDiguw
+Date: Fri, 16 May 2014 18:42:31 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015D022940@DLEE11.ent.ti.com>
+References: <1400265558-8643-1-git-send-email-aravindbr@ti.com>
+In-Reply-To: <1400265558-8643-1-git-send-email-aravindbr@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: Aravind Batni <aravindbr@ti.com>
-Subject: [PATCH] ti-netapi: provides ti-netapi recipe for ti KeyStone devices
+Subject: Re: [PATCH] ti-pa: provides ti pa recipe for KeyStone	devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,113 +40,141 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 May 2014 18:42:18 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 16 May 2014 18:42:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
--TI netapi user space library and examples
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Aravind Batni
+>Sent: Friday, May 16, 2014 1:39 PM
+>To: meta-arago@arago-project.org
+>Cc: Aravind Batni
+>Subject: [meta-arago] [PATCH] ti-pa: provides ti pa recipe for
+>KeyStone devices
+>
+>- TI PA Low Level Driver
+>
+>Signed-off-by: Aravind Batni <aravindbr@ti.com>
+>---
+> .../recipes-bsp/ti-pa/ti-pa-bin_git.bb             |   33
+>++++++++++++++++++++
+> .../recipes-bsp/ti-pa/ti-pa-lib_git.bb             |   20
+>++++++++++++
+> meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc      |   10 ++++++
+> 3 files changed, 63 insertions(+)
+> create mode 100644 meta-arago-extras/recipes-bsp/ti-pa/ti-pa-
+>bin_git.bb
+> create mode 100644 meta-arago-extras/recipes-bsp/ti-pa/ti-pa-
+>lib_git.bb
+> create mode 100644 meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc
+>
+>diff --git a/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb
+>b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb
+>new file mode 100644
+>index 0000000..ecfffc2
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-bin_git.bb
+>@@ -0,0 +1,33 @@
+>+DESCRIPTION =3D "TI PA LLD unit test and example binaries"
+>+COMPATIBLE_MACHINE =3D "keystone"
+>+DEPENDS=3D"ti-csl ti-pa-lib ti-cppi-lib ti-qmss-lib"
 
-Signed-off-by: Aravind Batni <aravindbr@ti.com>
----
- .../recipes-bsp/ti-netapi/ti-netapi-bin_git.bb     |   41 ++++++++++++++++++++
- .../recipes-bsp/ti-netapi/ti-netapi-lib_git.bb     |   23 +++++++++++
- .../recipes-bsp/ti-netapi/ti-netapi.inc            |    9 +++++
- 3 files changed, 73 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-bin_git.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-lib_git.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi.inc
+Dependencies are missing
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-bin_git.bb b/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-bin_git.bb
-new file mode 100644
-index 0000000..a06a9eb
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-bin_git.bb
-@@ -0,0 +1,41 @@
-+DESCRIPTION = "TI NETAPI test application"
-+COMPATIBLE_MACHINE = "keystone"
-+DEPENDS="ti-netapi-lib ti-transportnetlib-ipsecmgr"
-+
-+include ti-netapi.inc
-+
-+PR = "r0"
-+
-+BASEDIR = "${WORKDIR}/git"
-+S = "${BASEDIR}/ti/runtime/netapi"
-+
-+CHOICELIST = " yes \
-+               no  \
-+"
-+
-+do_compile () {
-+#   Build the netapi binaries
-+    for choice in ${CHOICELIST}
-+    do
-+	  make -f makefile_armv7 tests PDK_INSTALL_PATH=${STAGING_INCDIR} NETAPI_SRC_DIR=${S} NETAPI_INC_DIR=${BASEDIR} USEDYNAMIC_LIB="$choice"
-+    done 
-+
-+#   Now build the netapi appplications 
-+    cd ${S}/applications/ipsec_offload/ipsecmgr/build
-+    make clean app PDK_INSTALL_PATH=${STAGING_INCDIR}
-+    
-+    cd ${S}/applications/ipsec_offload/config-app/build
-+    make clean app PDK_INSTALL_PATH=${STAGING_INCDIR}
-+}
-+
-+do_install () {
-+    make -f makefile_armv7 installbin PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir} INSTALL_BIN_BASE_DIR=${D}${bindir} SYSCONFDIR=${D}${sysconfdir}
-+    
-+    cd ${S}/applications/ipsec_offload/ipsecmgr/build
-+    echo ${INSTALL_BIN_BASE_DIR}
-+    echo ${INSTALL_INC_BASE_DIR}
-+    make install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_BIN_BASE_DIR=${D}${bindir} SYSCONFDIR=${D}${sysconfdir}
-+    
-+    cd ${S}/applications/ipsec_offload/config-app/build
-+    make install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_BIN_BASE_DIR=${D}${bindir} SYSCONFDIR=${D}${sysconfdir}
-+}
-diff --git a/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-lib_git.bb b/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-lib_git.bb
-new file mode 100644
-index 0000000..befad52
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi-lib_git.bb
-@@ -0,0 +1,23 @@
-+DESCRIPTION = "TI NETAPI Library"
-+
-+COMPATIBLE_MACHINE = "keystone"
-+
-+DEPENDS="ti-csl ti-rm ti-qmss-lib ti-cppi-lib ti-sa ti-hplib-lib ti-pktlib ti-nwal"
-+
-+NAME="netapi"
-+
-+include ti-netapi.inc
-+
-+PR = "r0"
-+
-+BASEDIR = "${WORKDIR}/git"
-+S = "${BASEDIR}/ti/runtime/netapi"
-+
-+do_compile () {
-+#   Now build the netapi
-+    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR} NETAPI_SRC_DIR=${S} NETAPI_INC_DIR=${BASEDIR}
-+}
-+
-+do_install () {
-+    make -f makefile_armv7 install PDK_INSTALL_PATH=${STAGING_INCDIR} INSTALL_INC_BASE_DIR=${D}/${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir} INSTALL_BIN_BASE_DIR=${D}${bindir} SYSCONFDIR=${D}${sysconfdir}
-+}
-diff --git a/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi.inc b/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi.inc
-new file mode 100644
-index 0000000..0b24103
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-netapi/ti-netapi.inc
-@@ -0,0 +1,9 @@
-+LICENSE = "TI BSD"
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/git/COPYING.txt;md5=f2b4f162358b1ffaf3f2307287ca2074"
-+
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/keystone-rtos/netapi.git;protocol=git;branch=${BRANCH}"
-+
-+# Below Commit ID corresponds to "DEV.NETAPI.01.00.00.10"
-+SRCREV = "c0feddd60f2812f095436578534a90bdbd953d39"
-+PV = "01.00.00.10"
--- 
-1.7.9.5
-
+>+
+>+include ti-pa.inc
+>+
+>+PR =3D "r0"
+>+
+>+DEVICELIST =3D "k2h k2k"
+>+
+>+CHOICELIST =3D "yes no"
+>+
+>+BASEDIR =3D "${WORKDIR}/git"
+>+S =3D "${BASEDIR}/ti/drv/pa"
+>+
+>+do_compile () {
+>+# Now build the lld unit test examples
+>+    for device in ${DEVICELIST}
+>+    do
+>+      make -f makefile_armv7 clean
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3D"$device"
+>PA_SRC_DIR=3D${S}
+>+      for choice in ${CHOICELIST}
+>+      do
+>+        make -f makefile_armv7 tests examples
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3D"$device"
+>PA_SRC_DIR=3D${S} USEDYNAMIC_LIB=3D"$choice"
+>+      done
+>+    done
+>+}
+>+
+>+do_install () {
+>+    for device in ${DEVICELIST}
+>+    do
+>+      make -f makefile_armv7 installbin
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR} DEVICE=3D"$device"
+>PA_SRC_DIR=3D${S} INSTALL_BIN_BASE_DIR=3D${D}${bindir}
+>+    done
+>+}
+>diff --git a/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb
+>b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb
+>new file mode 100644
+>index 0000000..a549a99
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa-lib_git.bb
+>@@ -0,0 +1,20 @@
+>+DESCRIPTION =3D "TI PA LLD library"
+>+COMPATIBLE_MACHINE =3D "keystone"
+>+
+>+DEPENDS=3D"ti-csl ti-rm"
+>+
+>+include ti-pa.inc
+>+
+>+PR =3D "r0"
+>+
+>+BASEDIR =3D "${WORKDIR}/git"
+>+S =3D "${BASEDIR}/ti/drv/pa"
+>+
+>+do_compile () {
+>+#   Now build the lld in the updated directory
+>+    make -f makefile_armv7 clean lib
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR}
+>+}
+>+
+>+do_install () {
+>+    make -f makefile_armv7 install
+>PDK_INSTALL_PATH=3D${STAGING_INCDIR}
+>INSTALL_INC_BASE_DIR=3D${D}${includedir}
+>INSTALL_LIB_BASE_DIR=3D${D}${libdir}
+>+}
+>diff --git a/meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc b/meta-
+>arago-extras/recipes-bsp/ti-pa/ti-pa.inc
+>new file mode 100644
+>index 0000000..134f1f2
+>--- /dev/null
+>+++ b/meta-arago-extras/recipes-bsp/ti-pa/ti-pa.inc
+>@@ -0,0 +1,10 @@
+>+LICENSE =3D "TI BSD"
+>+LIC_FILES_CHKSUM =3D
+>"file://${WORKDIR}/git/ti/drv/pa/COPYING.txt;md5=3De8f6789acdcda76d0
+>2ed9203fc2e603d"
+>+
+>+BRANCH=3D"master"
+>+SRC_URI =3D "git://git.ti.com/keystone-rtos/pa-
+>lld.git;destsuffix=3Dgit/ti/drv/pa;protocol=3Dgit;branch=3D${BRANCH}"
+>+
+>+# Below Commit ID corresponds to "DEV.PA_LLD.02.00.01.05"
+>+SRCREV =3D "a8f42102a60528c36720c211ea457eecf20f8481"
+>+PV =3D "02.00.01.05"
+>+SRCREV =3D "DEV.PA_LLD.02.00.01.05"
+>--
+>1.7.9.5
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
