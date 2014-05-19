@@ -1,33 +1,27 @@
-Return-Path: <hzhang@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 04AFD52094
+Return-Path: <chase.maupin@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 1F5EA529A6
 	for <meta-arago@arago-project.org>;
-	Mon, 19 May 2014 14:11:48 +0000 (UTC)
+	Mon, 19 May 2014 19:20:13 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4JEBmYN008261
-	for <meta-arago@arago-project.org>; Mon, 19 May 2014 09:11:48 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4JEBmsE009096
-	for <meta-arago@arago-project.org>; Mon, 19 May 2014 09:11:48 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 19 May 2014 09:11:48 -0500
-Received: from [158.218.103.104] (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4JEBmJl025683;
-	Mon, 19 May 2014 09:11:48 -0500
-Message-ID: <537A1124.1040609@ti.com>
-Date: Mon, 19 May 2014 10:11:48 -0400
-From: Hao Zhang <hzhang@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4JJKCpp012403
+	for <meta-arago@arago-project.org>; Mon, 19 May 2014 14:20:12 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4JJKCNG020503
+	for <meta-arago@arago-project.org>; Mon, 19 May 2014 14:20:12 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 19 May 2014 14:20:11 -0500
+Received: from sdit-build04.dal.design.ti.com (dbdp20.itg.ti.com
+	[172.24.170.38])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s4JJK8Bt001355;	Mon, 19 May 2014 14:20:10 -0500
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 19 May 2014 14:19:48 -0500
+Message-ID: <1400527207-17021-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: "Maupin, Chase" <chase.maupin@ti.com>
-References: <1400507721-22387-1-git-send-email-hzhang@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015D028610@DLEE11.ent.ti.com>
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015D028610@DLEE11.ent.ti.com>
-X-Enigmail-Version: 1.6
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [Re-submit: v2] keystone: tisdk-image: change machine config from keystone-evm to k2hk-evm
+Subject: [PATCH 00/19] Add GLSDK accelerated MM and GFX support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,65 +34,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 May 2014 14:11:49 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 May 2014 19:20:13 -0000
+Content-Type: text/plain
 
-On 5/19/2014 10:09 AM, Maupin, Chase wrote:
->> -----Original Message-----
->> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->> bounces@arago-project.org] On Behalf Of Zhang, Hao
->> Sent: Monday, May 19, 2014 8:55 AM
->> To: meta-arago@arago-project.org
->> Subject: [meta-arago] [Re-submit: v2] keystone: tisdk-image:
->> change machine config from keystone-evm to k2hk-evm
->>
->> From: Hao Zhang <hzhang@ti.com>
->>
->> Keystone II SoC family has multiple devices and EVM's: k2hk, k2l
->> and k2e.
->> Each EVM should have a machine specific tisdk image, and keystone-
->> evm
->> machine name should be renamed to k2hk-evm.
->>
->> Signed-off-by: Hao Zhang <hzhang@ti.com>
->> ---
->> .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
->> 1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/meta-arago-distro/recipes-core/images/arago-core-
->> tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-
->> core-tisdk-image.inc
->> index f25db51..1dd9d6d 100644
->> --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-
->> image.inc
->> +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-
->> image.inc
->> @@ -27,7 +27,7 @@ DTB_FILTER_keystone = "k2hk"
->> TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
->>
->> # Some devices do not support display and use a server image
->> instead
->> -TARGET_IMAGES_keystone-evm = "arago-base-tisdk-image tisdk-
->> server-rootfs-image"
->> +TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-
->> rootfs-image"
-> 
-> This doesn't match the description and summary above.  This looks right for setting to SOC Family though.
-> 
+The following patch set will add the MM and GFX support from the GLSDK
+to meta-arago.  It depends on the corresponding patch set sent to
+meta-ti which provides many of the drivers and dependencies used by
+these recipes.
 
-You are right, I updated the change with Denys's comment, but forgot to
-change description. I will update the description and re-submit.
+These patches were ported from meta-arago-glsdk and authorship was
+preserved where possible.
 
->>
->> TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
->>
->> --
->> 1.7.9.5
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Chase Maupin (8):
+  ipc-test-fw: Update to not conflict with ipumm-fw
+  packagegroup-arago-base-tiskd: Add base nfs-utils
+  packagegroup-arago-gst: Add accelerated MM packages
+  packagegroup-arago-tisdk-graphics: Add SGX and BLTsville packages
+  packagegroup-arago-tisdk-addons: Add libdrm components
+  packagegroup-arago-tisdk-multimedia: Add accelerator firmwares
+  packagegroup-arago-test: Add drm and bltsville tests
+  arago-prefs: Use omap5-sgx package for libgles dependencies
+
+Mrinmayee Hingolikar (11):
+  libdce: Add libdce version 2.0 support from glsdk
+  gstreamer: Add append to use TI version
+  gst-plugins-bad: Append with TI version of plugins
+  gst-plugins-good: Add TI version of gst-plugins-good
+  gst-plugins-base: Add TI version with bbappend
+  gst-plugins-ducati: Add GStreamer elements that use ducati
+  gst-plugins-vpe: Add TI VPE GStreamer plugins
+  bvtest: Add bltsville test application
+  omapdrmtest: Test application for OMAP DRM interface
+  libgbm: Add TI specific version of libgbm
+  kmscube: Add kmscube demo application
+
+ .../conf/distro/include/arago-prefs.inc            |    4 +++
+ .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          |   14 ++++++---
+ .../packagegroups/packagegroup-arago-base-tisdk.bb |    3 +-
+ .../packagegroups/packagegroup-arago-gst.bb        |    7 ++++-
+ .../packagegroups/packagegroup-arago-test.bb       |    4 ++-
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb  |    4 +--
+ .../packagegroup-arago-tisdk-addons.bb             |    1 +
+ ...packagegroup-arago-tisdk-graphics-sdk-target.bb |   11 ++++++-
+ .../packagegroup-arago-tisdk-graphics.bb           |   14 +++++++++
+ .../packagegroup-arago-tisdk-multimedia.bb         |   17 ++++++++++-
+ .../recipes-graphics/bvtest/bvtest_git.bb          |   30 ++++++++++++++++++++
+ .../recipes-graphics/gbm/libgbm_9.0.0.bb           |   15 ++++++++++
+ .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |   19 +++++++++++++
+ .../omapdrmtest/omapdrmtest_1.0.0.bb               |   16 +++++++++++
+ .../gst-plugins-ti/gst-plugins-ducati_git.bb       |   10 +++++++
+ .../gst-plugins-ti/gst-plugins-ti.inc              |   19 +++++++++++++
+ .../gst-plugins-ti/gst-plugins-vpe_git.bb          |   11 +++++++
+ .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |   22 ++++++++++++++
+ .../gstreamer/gst-plugins-base_0.10.36.bbappend    |   20 +++++++++++++
+ .../gstreamer/gst-plugins-good_0.10.31.bbappend    |   23 +++++++++++++++
+ .../gstreamer/gstreamer_0.10.36.bbappend           |   14 +++++++++
+ .../recipes-multimedia/libdce/libdce_git.bb        |   16 +++++++++++
+ 22 files changed, 283 insertions(+), 11 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-graphics/bvtest/bvtest_git.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/gbm/libgbm_9.0.0.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-ducati_git.bb
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-ti.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-vpe_git.bb
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base_0.10.36.bbappend
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer_0.10.36.bbappend
+ create mode 100644 meta-arago-extras/recipes-multimedia/libdce/libdce_git.bb
+
+-- 
+1.7.9.5
 
 
