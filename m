@@ -1,29 +1,29 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 471DF529A6
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 4D917529A6
 	for <meta-arago@arago-project.org>;
-	Mon, 19 May 2014 19:20:33 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4JJKW3V028462
-	for <meta-arago@arago-project.org>; Mon, 19 May 2014 14:20:32 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4JJKWvG020752
-	for <meta-arago@arago-project.org>; Mon, 19 May 2014 14:20:32 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 19 May 2014 14:20:32 -0500
+	Mon, 19 May 2014 19:20:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4JJKZf9031764
+	for <meta-arago@arago-project.org>; Mon, 19 May 2014 14:20:35 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4JJKZJY017266
+	for <meta-arago@arago-project.org>; Mon, 19 May 2014 14:20:35 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 19 May 2014 14:20:34 -0500
 Received: from sdit-build04.dal.design.ti.com (dbdp20.itg.ti.com
 	[172.24.170.38])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s4JJK8C2001355;	Mon, 19 May 2014 14:20:30 -0500
+	s4JJK8C3001355;	Mon, 19 May 2014 14:20:33 -0500
 From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 19 May 2014 14:19:55 -0500
-Message-ID: <1400527207-17021-8-git-send-email-Chase.Maupin@ti.com>
+Date: Mon, 19 May 2014 14:19:56 -0500
+Message-ID: <1400527207-17021-9-git-send-email-Chase.Maupin@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1400527207-17021-1-git-send-email-Chase.Maupin@ti.com>
 References: <1400527207-17021-1-git-send-email-Chase.Maupin@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 07/19] gst-plugins-vpe: Add TI VPE GStreamer plugins
+Subject: [PATCH 08/19] ipc-test-fw: Update to not conflict with ipumm-fw
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,42 +36,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 May 2014 19:20:33 -0000
+X-List-Received-Date: Mon, 19 May 2014 19:20:36 -0000
 Content-Type: text/plain
 
-From: Mrinmayee Hingolikar <mrinmayee@ti.com>
-
-* Added plugins from meta-arago-glsdk that enable the use of
-  the VPE module in GStreamer.  Preserved authorship for Mrinmayee
-* Modified the following for upstreaming:
-    * Moved to gst-plugins-ti so that the gst-plugins-ti.inc file
-      could be used.
-    * Modified to use gst-plugins-ti.inc
-    * Added DESCRIPTION
+* This test package installs a firmware only used during IPC
+  testing.  This firmware will conflict with the firmware file
+  installed by the ipumm-fw recipe.  So the firmware needs to
+  be installed with a .test extension to avoid the conflict.
+* The test case will be modified to link the proper firmware to
+  the proper name at test time.
 
 Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 ---
- .../gst-plugins-ti/gst-plugins-vpe_git.bb          |   11 +++++++++++
- 1 file changed, 11 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-vpe_git.bb
+ .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          |   14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-vpe_git.bb
-new file mode 100644
-index 0000000..cd6f0af
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gst-plugins-vpe_git.bb
-@@ -0,0 +1,11 @@
-+DESCRIPTION = "GStreamer elements to use the Video Processing Engine (VPE) found on some TI devices"
-+
-+LICENSE = "LGPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
-+
-+require gst-plugins-ti.inc
-+
-+PR = "${INC_PR}.0"
-+SRCREV = "5107007ca1be8ed66f6a9ec3ffbb70ec7eb0b120"
-+
-+SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git"
+diff --git a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+index 41ab2fb..e855e8b 100644
+--- a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
++++ b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+@@ -4,16 +4,17 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD;md5=377548
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-PR = "eng-4-gb9283b0"
++FWVER = "eng-4-gb9283b0"
++PR = "r0+${FWVER}"
+ 
+ COMPATIBLE_MACHINE = "omap5-evm|dra7xx-evm"
+ 
+ INHIBIT_PACKAGE_STRIP = "1"
+ INSANE_SKIP_${PN} = "arch"
+ 
+-S = "${WORKDIR}/${PV}_${PR}"
++S = "${WORKDIR}/${PV}_${FWVER}"
+ 
+-SRC_URI = "http://arago-project.org/files/releases/ipc-test-fw/${PV}_${PR}.tar.gz"
++SRC_URI = "http://arago-project.org/files/releases/ipc-test-fw/${PV}_${FWVER}.tar.gz"
+ 
+ SRC_URI[md5sum] = "4fcba6844949ea909131684a80233800"
+ SRC_URI[sha256sum] = "3b90b195c382937551251055aaa9185627e86027c91fb41a594dc390391d5fb6"
+@@ -25,9 +26,14 @@ do_compile() {
+     :
+ }
+ 
++# Add a .test extension to the firmware files so that they do not conflict
++# with the real firmware images
+ do_install() {
+     install -d ${D}${base_libdir}/firmware
+-    install -m 755 ${FW_FILES} ${D}${base_libdir}/firmware/
++    for f in ${FW_FILES}
++    do
++        install -m 755 ${f} ${D}${base_libdir}/firmware/${f}.test
++    done
+ }
+ 
+ FILES_${PN} += "${base_libdir}/firmware"
 -- 
 1.7.9.5
 
