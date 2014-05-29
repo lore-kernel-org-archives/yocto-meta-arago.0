@@ -1,30 +1,30 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 31CD352A89
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 8EDFF52A89
 	for <meta-arago@arago-project.org>;
-	Thu, 29 May 2014 18:38:23 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4TIcMgL028627
-	for <meta-arago@arago-project.org>; Thu, 29 May 2014 13:38:22 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4TIcM7A018917
-	for <meta-arago@arago-project.org>; Thu, 29 May 2014 13:38:22 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 29 May 2014 13:38:22 -0500
+	Thu, 29 May 2014 18:38:25 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s4TIcOvr030667
+	for <meta-arago@arago-project.org>; Thu, 29 May 2014 13:38:25 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4TIcO7u025476
+	for <meta-arago@arago-project.org>; Thu, 29 May 2014 13:38:24 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 29 May 2014 13:38:24 -0500
 Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4TIcGgK022027;
-	Thu, 29 May 2014 13:38:20 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s4TIcGgL022027;
+	Thu, 29 May 2014 13:38:23 -0500
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 29 May 2014 13:38:06 -0500
-Message-ID: <1401388695-30526-2-git-send-email-fcooper@ti.com>
+Date: Thu, 29 May 2014 13:38:07 -0500
+Message-ID: <1401388695-30526-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <1401388695-30526-1-git-send-email-fcooper@ti.com>
 References: <1401388695-30526-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 02/11] qt example apps: Use Makefile.build instead of Makefile for the SDK makefile
+Subject: [PATCH 03/11] ti-tisdk-makefile: Update Qt Makefile stubs to reflect Makefile name change
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,88 +37,187 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 May 2014 18:38:23 -0000
+X-List-Received-Date: Thu, 29 May 2014 18:38:26 -0000
 Content-Type: text/plain
-
-* This insures that Qt users will have qmake generate "Makefile" instead of
-  App-Makefile which is the expected/default behavior.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |    4 ++--
- .../recipes-core/matrix/refresh-screen_2.0.bb      |    4 ++--
- .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
- .../recipes-qt/qt-apps/quick-playground_1.0.bb     |    4 ++--
- 4 files changed, 8 insertions(+), 8 deletions(-)
+ .../ti-tisdk-makefile/Makefile_dual-camera-demo    |    8 ++++----
+ .../ti-tisdk-makefile/Makefile_matrix-gui-browser  |    8 ++++----
+ .../ti-tisdk-makefile/Makefile_qt-tstat            |    8 ++++----
+ .../ti-tisdk-makefile/Makefile_quick-playground    |    8 ++++----
+ .../ti-tisdk-makefile/Makefile_refresh-screen      |    8 ++++----
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
+ 6 files changed, 21 insertions(+), 21 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 7d47e5b..afd5aa3 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -11,9 +11,9 @@ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo
+index 5a1475e..bd99075 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_dual-camera-demo
+@@ -3,22 +3,22 @@ dual-camera-demo:
+ 	@echo ================================
+ 	@echo    Building Dual Camera Demo
+ 	@echo ================================
+-	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make
++	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build
  
- DEPENDS += "${QT_DEPENDS_WEBKIT}"
+ dual-camera-demo_clean:
+ 	@echo ================================
+ 	@echo    Building Dual Camera Demo
+ 	@echo ================================
+-	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make clean
++	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build clean
  
--PR = "r6"
-+PR = "r7"
+ dual-camera-demo_install:
+ 	@echo ===================================================
+ 	@echo   Installing Dual Camera Demo - Release version
+ 	@echo ===================================================
+-	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make install
++	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build install
  
--SRCREV = "8517ac2338295ccb4c6c2ffa58b5ad48659a5430"
-+SRCREV = "7f5dccfb5b1b68a3f9162f6ee072eef0e0ba06fe"
- BRANCH ?= "master"
+ dual-camera-demo_install_debug:
+ 	@echo =================================================
+ 	@echo   Installing Dual Camera Demo - Debug version
+ 	@echo =================================================
+-	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make install_debug
++	@cd example-applications; cd `find . -name "*dual-camera-demo*"`; make -f Makefile.build install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser
+index eb60e4f..2fc3b21 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_matrix-gui-browser
+@@ -3,22 +3,22 @@ matrix-gui-browser:
+ 	@echo =================================
+ 	@echo    Building Matrix GUI Browser
+ 	@echo =================================
+-	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make release
++	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build release
  
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-index 2696978..e3d59e2 100644
---- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-@@ -7,9 +7,9 @@ SECTION = "multimedia"
- # Make sure that QT font libraries have been installed
- RDEPENDS_${PN} += "qt4-embedded-fonts"
+ matrix-gui-browser_clean:
+ 	@echo =================================
+ 	@echo    Cleaning Matrix GUI Browser
+ 	@echo =================================
+-	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make clean
++	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build clean
  
--PR = "r4"
-+PR = "r5"
+ matrix-gui-browser_install:
+ 	@echo ===================================================
+ 	@echo   Installing Matrix GUI Browser - Release version
+ 	@echo ===================================================
+-	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make install
++	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build install
  
--SRCREV = "4dfdf85f17033f950e01f25341665f979edde6c3"
-+SRCREV = "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
- BRANCH ?= "master"
+ matrix-gui-browser_install_debug:
+ 	@echo =================================================
+ 	@echo   Installing Matrix GUI Browser - Debug Version
+ 	@echo =================================================
+-	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make install_debug
++	@cd example-applications; cd `find . -name "*matrix-gui-browser*"`; make -f Makefile.build install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat
+index 36d7ef5..857e058 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_qt-tstat
+@@ -3,22 +3,22 @@ qt-tstat:
+ 	@echo ================================
+ 	@echo    Building QT Thermostat App
+ 	@echo ================================
+-	@cd example-applications; cd `find . -name "*qt-tstat*"`; make release
++	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build release
  
- SRC_URI = "git://gitorious.org/matrix-gui-v2/refresh-screen.git;protocol=git;branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-index d0a9f7a..0e3fc01 100644
---- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-+++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-@@ -12,12 +12,12 @@ require recipes-core/matrix/matrix-gui-paths.inc
+ qt-tstat_clean:
+ 	@echo ================================
+ 	@echo    Cleaning QT Thermostat App
+ 	@echo ================================
+-	@cd example-applications; cd `find . -name "*qt-tstat*"`; make clean
++	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build clean
  
- inherit qt-provider
+ qt-tstat_install:
+ 	@echo ===================================================
+ 	@echo   Installing QT Thermostat App - Release version
+ 	@echo ===================================================
+-	@cd example-applications; cd `find . -name "*qt-tstat*"`; make install
++	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build install
  
--PR = "r7"
-+PR = "r8"
+ qt-tstat_install_debug:
+ 	@echo =================================================
+ 	@echo   Installing QT Thermostat App - Debug version
+ 	@echo =================================================
+-	@cd example-applications; cd `find . -name "*qt-tstat*"`; make install_debug
++	@cd example-applications; cd `find . -name "*qt-tstat*"`; make -f Makefile.build install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
+index a87471b..b8b7c51 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_quick-playground
+@@ -3,22 +3,22 @@ quick-playground:
+ 	@echo =================================
+ 	@echo    Building Quick Playground App
+ 	@echo =================================
+-	@cd example-applications; cd `find . -name "*quick-playground*"`; make
++	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build
  
- DEPENDS += "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
+ quick-playground_clean:
+ 	@echo =================================
+ 	@echo    Cleaning Quick Playground App
+ 	@echo =================================
+-	@cd example-applications; cd `find . -name "*quick-playground*"`; make clean
++	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build clean
  
- BRANCH ?= "master"
--SRCREV = "2960431fd38239cc089c8738776f3ff9dcfe7f1c"
-+SRCREV = "2512773c2d9da989e6a42c1e90b2b34496713072"
+ quick-playground_install:
+ 	@echo ====================================================
+ 	@echo   Installing Quick Playground App - Release version
+ 	@echo ====================================================
+-	@cd example-applications; cd `find . -name "*quick-playground*"`; make install
++	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build install
  
- SRC_URI = " \
- 	git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git \
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
-index 5f493d3..2da5a36 100644
---- a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
-+++ b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
-@@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://Licence.txt;md5=7cc88160b55ec5db6c6c5bb8e3238c0b"
+ quick-playground_install_debug:
+ 	@echo ==================================================
+ 	@echo   Installing Quick Playground App - Debug version
+ 	@echo ==================================================
+-	@cd example-applications; cd `find . -name "*quick-playground*"`; make install_debug
++	@cd example-applications; cd `find . -name "*quick-playground*"`; make -f Makefile.build install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen
+index 6d8f203..bcc17fa 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_refresh-screen
+@@ -3,22 +3,22 @@ refresh-screen:
+ 	@echo =============================
+ 	@echo    Building Refresh Screen
+ 	@echo =============================
+-	@cd example-applications; cd `find . -name "*refresh-screen*"`; make release
++	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build release
  
- require recipes-core/matrix/matrix-gui-paths.inc
+ refresh-screen_clean:
+ 	@echo =============================
+ 	@echo    Cleaning Refresh Screen
+ 	@echo =============================
+-	@cd example-applications; cd `find . -name "*refresh-screen*"`; make clean
++	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build clean
  
--PR = "r1"
-+PR = "r2"
+ refresh-screen_install:
+ 	@echo ================================================
+ 	@echo   Installing Refresh Screen - Release version
+ 	@echo ================================================
+-	@cd example-applications; cd `find . -name "*refresh-screen*"`; make install
++	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build install
  
- BRANCH = "master"
--SRCREV = "0be45ce805147798c98b2dee65e41de67bfcea5d"
-+SRCREV = "4bcf4e7f5aa68dcd28f54bf921c6cc3985ce4305"
+ refresh-screen_install_debug:
+ 	@echo ==============================================
+ 	@echo   Installing Refresh Screen - Debug Version
+ 	@echo ==============================================
+-	@cd example-applications; cd `find . -name "*refresh-screen*"`; make install_debug
++	@cd example-applications; cd `find . -name "*refresh-screen*"`; make -f Makefile.build install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 0817e4e..4d8c486 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -35,7 +35,7 @@ SRC_URI = "\
+     file://Makefile_cryptodev \
+ "
  
- SRC_URI = "git://arago-project.org/git/projects/qt4-demos.git;protocol=git;branch=${BRANCH}"
+-PR = "r31"
++PR = "r32"
  
+ MAKEFILES_COMMON = "linux \
+                     matrix-gui \
 -- 
 1.7.0.4
 
