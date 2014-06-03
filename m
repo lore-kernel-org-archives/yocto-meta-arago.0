@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 6A13E52AA6
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id 537A852AA6
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Jun 2014 02:30:20 +0000 (UTC)
+	Tue,  3 Jun 2014 02:30:24 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
+	by vms173019.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N6K00BBFMXPP2G0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 02 Jun 2014 21:30:02 -0500 (CDT)
+	2009)) with ESMTPA id <0N6K00KZFMY2PV00@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 02 Jun 2014 21:30:07 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 971392011D; Mon,
+	by gandalf.denix.org (Postfix) with ESMTP id A3A6B20329; Mon,
 	02 Jun 2014 22:29:49 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 02 Jun 2014 22:29:37 -0400
-Message-id: <1401762581-31370-2-git-send-email-denis@denix.org>
+Date: Mon, 02 Jun 2014 22:29:41 -0400
+Message-id: <1401762581-31370-6-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1401762581-31370-1-git-send-email-denis@denix.org>
 References: <1401762581-31370-1-git-send-email-denis@denix.org>
-Subject: [PATCH 1/5] qt-tstat: fix install with Qt5, broken by latest change
+Subject: [PATCH 5/5] tisdk-rootfs-image: use correct packagegroup for Qt4/Qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,46 +32,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jun 2014 02:30:20 -0000
+X-List-Received-Date: Tue, 03 Jun 2014 02:30:25 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Last change broke Qt5 install, which uses B!=S unlike Qt4.
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-index d0a9f7a..1b15f2f 100644
---- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-+++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-@@ -12,7 +12,7 @@ require recipes-core/matrix/matrix-gui-paths.inc
- 
- inherit qt-provider
- 
--PR = "r7"
-+PR = "r8"
- 
- DEPENDS += "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
- 
-@@ -28,13 +28,11 @@ SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', 'file://0002-Replace-QtGui
- 
- S = "${WORKDIR}/git/"
- 
--BUILDDIR ?= "."
--
- do_install() {
- 	install -d ${D}/usr/bin
--	install -m 0755 ${BUILDDIR}/ThermostatDemo ${D}/usr/bin/ThermostatDemo
-+	install -m 0755 ${B}/ThermostatDemo ${D}/usr/bin/ThermostatDemo
- 	install -d ${D}${MATRIX_APP_DIR}/qt_tstat
--	cp -rf matrix-files/*  ${D}${MATRIX_APP_DIR}/qt_tstat
-+	cp -rf ${S}/matrix-files/*  ${D}${MATRIX_APP_DIR}/qt_tstat
- }
- 
- PACKAGES += "matrix-gui-thermostat-demo"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+index 1bc6a36..0d7810a 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+@@ -5,7 +5,7 @@ require arago-base-tisdk-image.bb
+ IMAGE_INSTALL += "\
+     packagegroup-arago-test \
+     ${@base_contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics','',d)} \
+-    packagegroup-arago-tisdk-qte \
++    ${@base_contains('QT_PROVIDER','qt5','packagegroup-arago-tisdk-qt5','packagegroup-arago-tisdk-qte',d)} \
+     packagegroup-arago-tisdk-addons \
+     packagegroup-arago-tisdk-connectivity \
+     packagegroup-arago-tisdk-crypto \
 -- 
 1.9.2
 
