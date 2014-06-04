@@ -1,35 +1,33 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 9259252A04
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 152C7529A6
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Jun 2014 16:00:21 +0000 (UTC)
+	Wed,  4 Jun 2014 16:15:04 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54G0KxN013993
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 11:00:20 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54GF3la018306
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 11:15:03 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54G0K0l026520
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 11:00:20 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54GF2bE008272
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 11:15:03 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 4 Jun 2014 11:00:20 -0500
+	Wed, 4 Jun 2014 11:15:01 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54G0KFe014211;
-	Wed, 4 Jun 2014 11:00:20 -0500
-Date: Wed, 4 Jun 2014 12:00:19 -0400
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54GExl2010270;
+	Wed, 4 Jun 2014 11:15:00 -0500
+Date: Wed, 4 Jun 2014 12:14:58 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140604160019.GN21819@edge>
-References: <1401388695-30526-1-git-send-email-fcooper@ti.com>
-	<1401388695-30526-6-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015D08C25A@DLEE11.ent.ti.com>
-	<20140604152754.GK21819@edge>
-	<7D46E86EC0A8354091174257B2FED1015D08CBC6@DLEE11.ent.ti.com>
+Message-ID: <20140604161457.GO21819@edge>
+References: <7D46E86EC0A8354091174257B2FED1015D08C432@DLEE11.ent.ti.com>
+	<7D46E86EC0A8354091174257B2FED1015D08C524@DLEE11.ent.ti.com>
+	<20140604150938.GH21819@edge>
+	<7D46E86EC0A8354091174257B2FED1015D08CB81@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015D08CBC6@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015D08CB81@DLEE11.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
-	Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 06/11] image-gallery: Add image gallery application
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: qt4-embedded-gles breakage for dra7xx-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,133 +40,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 16:00:21 -0000
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 04 Jun 2014 16:15:04 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 04, 2014 at 11:53:45AM -0400, Maupin, Chase wrote:
+On Wed, Jun 04, 2014 at 11:52:32AM -0400, Maupin, Chase wrote:
 > >-----Original Message-----
 > >From: Dmytriyenko, Denys
-> >Sent: Wednesday, June 04, 2014 10:28 AM
+> >Sent: Wednesday, June 04, 2014 10:10 AM
 > >To: Maupin, Chase
-> >Cc: Cooper Jr., Franklin; meta-arago@arago-project.org
-> >Subject: Re: [meta-arago] [PATCH 06/11] image-gallery: Add image
-> >gallery application
+> >Cc: meta-arago@arago-project.org
+> >Subject: Re: [meta-arago] qt4-embedded-gles breakage for dra7xx-
+> >evm
 > >
-> >On Wed, Jun 04, 2014 at 02:38:23PM +0000, Maupin, Chase wrote:
-> >> >-----Original Message-----
-> >> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> >> >Sent: Thursday, May 29, 2014 1:38 PM
-> >> >To: meta-arago@arago-project.org
-> >> >Cc: Cooper Jr., Franklin
-> >> >Subject: [meta-arago] [PATCH 06/11] image-gallery: Add image
-> >> >gallery application
-> >> >
-> >> >* Add new Qt application to the SDK which displays pictures
-> >taken
-> >> >by the camera
-> >> >  demo.
-> >> >
-> >> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> >> >---
-> >> > .../recipes-qt/qt-apps/image-gallery_git.bb        |   33
-> >> >++++++++++++++++++++
-> >> > 1 files changed, 33 insertions(+), 0 deletions(-)
-> >> > create mode 100644 meta-arago-extras/recipes-qt/qt-apps/image-
-> >> >gallery_git.bb
-> >> >
-> >> >diff --git a/meta-arago-extras/recipes-qt/qt-apps/image-
-> >> >gallery_git.bb b/meta-arago-extras/recipes-qt/qt-apps/image-
-> >> >gallery_git.bb
-> >> >new file mode 100644
-> >> >index 0000000..3040415
-> >> >--- /dev/null
-> >> >+++ b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
-> >> >@@ -0,0 +1,33 @@
-> >> >+DESCRIPTION = "Image Gallery"
-> >> >+HOMEPAGE = "https://gitorious.org/image-gallery"
-> >> >+SECTION = "multimedia"
-> >> >+LICENSE = "BSD"
-> >> >+LIC_FILES_CHKSUM =
-> >> >"file://LICENSE;md5=9c57cc1cdee589f97cbba69e95a89a15"
-> >> >+
-> >> >+require recipes-core/matrix/matrix-gui-paths.inc
-> >> >+
-> >> >+PR = "r0"
+> >On Wed, Jun 04, 2014 at 02:57:39PM +0000, Maupin, Chase wrote:
 > >>
-> >> Not needed
+> >> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> >bounces@arago-project.org] On Behalf Of Maupin, Chase
+> >> Sent: Wednesday, June 04, 2014 9:49 AM
+> >> To: meta-arago@arago-project.org
+> >> Subject: [meta-arago] qt4-embedded-gles breakage for dra7xx-evm
+> >>
+> >> All,
+> >>
+> >> Currently qt4-embedded-gles breaks for dra7xx-evm machine type
+> >(and likely
+> >> omap5-evm as well) because of the following:
+> >>
+> >>
+> >> - For AM devices such as am335x-evm the GLES library is called
+> >libGLES_CM.so
+> >>
+> >> - For OMAP devices such as dra7xx-evm the GLES library is called
+> >> libGLESv1_CM.so
+> >>
+> >> - In the linux.conf for qt4-embedded-gles the libraries to
+> >include are
+> >> listed as GLES_CM
+> >>
+> >> This causes the do_configure stage to fail for the qt4-embedded-
+> >gles recipe
+> >> on dra7xx-evm because it cannot find the GLES_CM library since
+> >that library
+> >> for those devices is named GLESv1_CM.  I currently have a work
+> >around to fix
+> >> this configure error of creating a version of the linux.conf for
+> >> qt4-embedded-gles that uses for omap-a15 machine types.  This
+> >works
+> >> (although there is a compile error I am tracking down due to
+> >missing pvr2d.h
+> >> header files) but I was curious if this is the best way to solve
+> >this, or
+> >> would it be better to fixup the library name or make symlinks
+> >between
+> >> libGLES_CM and libGLESv1_CM in the graphics library recipe.
+> >>
+> >> BTW, some of this may be a moot point because none of the OMAP
+> >SGX packages
+> >> provide the pvr2d.h header.  So until there is alignment in
+> >these packages
+> >> the version of Qt used for these devices either needs to be Qt5
+> >which
+> >> doesn’t have SGX acceleration yet, or the sgx MACHINE_FEATURE
+> >should be
+> >> removed from the omap-a15 devices.  Thoughts?
 > >
-> >Why? Even though it's default, it helps remember to bump it next
-> >time :)
+> >Qt5 does have GLES acceleation. It can be easily turned on and
+> >off, but it's
+> >required for QtWebkit, IIRC. Why are you saying there's no SGX
+> >acceleration?
 > 
-> True, but I thought as we look at new releases the PR wasn't needed anymore.  
-> Or do we not have the version server turned on?
+> I thought Qt5 required similar patches to use the pvr2d library as Qt4 did.  
+> I figured it could find the GLES libraries on it's own though.  Would it 
+> have the same issue with the renamed library?
+> 
+> >
+> >As of the question - I'm fine disabling sgx MACHINE_FEATURE for
+> >now. Let's
+> >talk to the graphics team to see if/when it will be
+> >aligned/resolved.
+> 
+> Or when do we want to change the default Qt to Qt5?  If you are saying the 
+> Qt5 can work with our SGX as is then maybe that should be the new default 
+> with Wayland/Weston as the window manager.  What are your thoughts?  
+> Hopefully Franklin can chime in as well.
 
-Ah, good point. Need to enaable PR service...
+As we just discussed on IRC, Qt5 uses GLES2 and the library name is the same 
+between libgles-omap3 and omap5-sgx-ddk, so no issues building Qt5 with gles2 
+enabled for dra7xx/omap5. There are still some runtime issues expected though.
 
+Looks like Qt5 is becoming a requirement for going forward with the new 
+platforms. We need to finish porting remainder of AMSDK to start using Qt5 and 
+Wayland/Weston...
 
-> >> >+BRANCH = "master"
-> >> >+SRCREV = "8901d7c598b277e4e26a5abbcb859e7ceebd340a"
-> >> >+
-> >> >+SRC_URI = "git://gitorious.org/image-gallery/image-
-> >> >gallery.git;protocol=git;branch=${BRANCH}"
-> >> >+
-> >> >+S = "${WORKDIR}/git/"
-> >> >+
-> >> >+BUILDDIR ?= "."
-> >>
-> >> I'm not entirely sure what this is for.  When should this be set
-> >> differently?  And would it be better to use a variable like ${S}
-> >rather than
-> >> "."
-> >
-> >I have seen this variable in qt-tstat recipe and had to remove it.
-> >There is no
-> >need for it and moreover, there's already ${B} defined and used
-> >for build dir.
-> >See my recent patch re-submission for qt-tstat.
-> >
-> >
-> >> >+inherit qt-provider
-> >> >+
-> >> >+do_install() {
-> >> >+	install -d ${D}/usr/bin
-> >>
-> >> Use ${bindir}
-> >
-> >+1
-> >
-> >
-> >> >+	install -m 0755 ${BUILDDIR}/image-gallery
-> >> >${D}/usr/bin/image-gallery
-> >>
-> >> Use ${bindir}
-> >
-> >+1
-> >
-> >
-> >> >+	install -d ${D}${MATRIX_APP_DIR}/qt-image-gallery
-> >> >+	cp -rf matrix-files/*  ${D}${MATRIX_APP_DIR}/qt-image-
-> >> >gallery
-> >> >+}
-> >> >+
-> >> >+PACKAGES += "matrix-gui-apps-image-gallery"
-> >> >+
-> >> >+RDEPENDS_matrix-gui-apps-image-gallery  = "matrix-gui-apps-
-> >images
-> >> >matrix-gui-submenus-camera ${PN}"
-> >> >+
-> >> >+FILES_matrix-gui-apps-image-gallery += "${MATRIX_APP_DIR}/*"
-> >> >--
-> >> >1.7.0.4
-> >> >
-> >> >_______________________________________________
-> >> >meta-arago mailing list
-> >> >meta-arago@arago-project.org
-> >> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+-- 
+Denys
 
