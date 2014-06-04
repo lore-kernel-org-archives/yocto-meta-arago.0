@@ -1,33 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 037D352A1E
+Return-Path: <chase.maupin@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 3CFBA52A04
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Jun 2014 15:38:39 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54FcdRB011323
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:38:39 -0500
+	Wed,  4 Jun 2014 15:52:34 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54FqXqP001734
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:52:33 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54Fcdge032359
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:38:39 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 4 Jun 2014 10:38:38 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FccBX000539;
-	Wed, 4 Jun 2014 10:38:38 -0500
-Date: Wed, 4 Jun 2014 11:38:38 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20140604153838.GM21819@edge>
-References: <1401762581-31370-1-git-send-email-denis@denix.org>
-	<1401762581-31370-3-git-send-email-denis@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C6C227D@DFLE08.ent.ti.com>
-	<20140603144736.GB21819@edge>
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FqXoQ019024
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:52:33 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0174.001; Wed, 4 Jun 2014 10:52:32 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] qt4-embedded-gles breakage for dra7xx-evm
+Thread-Index: Ac+ABC1HJwWIH5kCRumgb0z1/FJf5AAANQMQAAr6BgAACRkKIA==
+Date: Wed, 4 Jun 2014 15:52:32 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015D08CB81@DLEE11.ent.ti.com>
+References: <7D46E86EC0A8354091174257B2FED1015D08C432@DLEE11.ent.ti.com>
+	<7D46E86EC0A8354091174257B2FED1015D08C524@DLEE11.ent.ti.com>
+	<20140604150938.GH21819@edge>
+In-Reply-To: <20140604150938.GH21819@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <20140603144736.GB21819@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/5] refresh-screen: convert to Qt5
+Subject: Re: qt4-embedded-gles breakage for dra7xx-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,189 +41,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 15:38:40 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 04 Jun 2014 15:52:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Jun 03, 2014 at 10:47:37AM -0400, Denys Dmytriyenko wrote:
-> On Tue, Jun 03, 2014 at 02:39:44PM +0000, Cooper Jr., Franklin wrote:
-> > It would be nice if we can drop the Qt 5 specific patches and simply allow 
-> > the "clean" sources to work for both Qt 4 and Qt 5.
-> > 
-> >  http://www.kdab.com/automated-porting-from-qt-4-to-qt-5/
-> > http://stackoverflow.com/questions/18663331/how-to-check-the-selected-version-of-qt-in-a-pro-file
-> 
-> The .pro file should be easy, but the sources are rather involved. It's up to 
-> you if you want to use the method to pre-process the sources to work with qt4 
-> and qt5...
-
-Franklin,
-
-So, how would you like to proceed in this case? You own the source repository. 
-Do you want me to submit a patch for .pro file change? I don't feel very 
-comfortable with the .cpp changes suggested in the first link - looked finicky 
-to me. I'll leave that to you to decide.
-
-As of this patch - do you want me to push it as is for now or should I wait 
-for the source change?
-
--- 
-Denys
-
-
-> > > -----Original Message-----
-> > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> > > Sent: Monday, June 02, 2014 9:30 PM
-> > > To: meta-arago@arago-project.org
-> > > Subject: [meta-arago] [PATCH 2/5] refresh-screen: convert to Qt5
-> > > 
-> > > From: Denys Dmytriyenko <denys@ti.com>
-> > > 
-> > > Use qt-provider to build it against Qt4 or Qt5
-> > > 
-> > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > ---
-> > >  ...een.pro-add-widgets-module-to-the-project.patch | 26
-> > > ++++++++++++++++++++++  ...place-QtGui-header-with-QtWidgets-for-
-> > > Qt5.patch | 26 ++++++++++++++++++++++
-> > >  .../recipes-core/matrix/refresh-screen_2.0.bb      | 17 +++++++++-----
-> > >  3 files changed, 64 insertions(+), 5 deletions(-)  create mode 100644 meta-
-> > > arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-
-> > > widgets-module-to-the-project.patch
-> > >  create mode 100644 meta-arago-extras/recipes-core/matrix/refresh-
-> > > screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
-> > > 
-> > > diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-
-> > > refresh-screen.pro-add-widgets-module-to-the-project.patch b/meta-arago-
-> > > extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-
-> > > widgets-module-to-the-project.patch
-> > > new file mode 100644
-> > > index 0000000..b9a1f80
-> > > --- /dev/null
-> > > +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-
-> > > +++ screen.pro-add-widgets-module-to-the-project.patch
-> > > @@ -0,0 +1,26 @@
-> > > +From 3969a5b06cfa28e531080cfdb12ea69ada870f36 Mon Sep 17 00:00:00
-> > > 2001
-> > > +From: Denys Dmytriyenko <denys@ti.com>
-> > > +Date: Mon, 12 May 2014 21:07:32 -0400
-> > > +Subject: [PATCH] refresh-screen.pro: add widgets module to the project
-> > > +for Qt5
-> > > +
-> > > +Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > +---
-> > > + refresh_screen.pro | 2 +-
-> > > + 1 file changed, 1 insertion(+), 1 deletion(-)
-> > > +
-> > > +diff --git a/refresh_screen.pro b/refresh_screen.pro index
-> > > +afe5c25..a79abd0 100644
-> > > +--- a/refresh_screen.pro
-> > > ++++ b/refresh_screen.pro
-> > > +@@ -4,7 +4,7 @@
-> > > + #
-> > > + #-------------------------------------------------
-> > > +
-> > > +-QT       += core gui
-> > > ++QT       += core gui widgets
-> > > +
-> > > + TARGET = refresh_screen
-> > > + TEMPLATE = app
-> > > +--
-> > > +1.9.2
-> > > +
-> > > diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-
-> > > Replace-QtGui-header-with-QtWidgets-for-Qt5.patch b/meta-arago-
-> > > extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-
-> > > QtWidgets-for-Qt5.patch
-> > > new file mode 100644
-> > > index 0000000..66c002d
-> > > --- /dev/null
-> > > +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-
-> > > +++ QtGui-header-with-QtWidgets-for-Qt5.patch
-> > > @@ -0,0 +1,26 @@
-> > > +From 60a8e6c8ea763ed88442f16509cae99d8e43918e Mon Sep 17 00:00:00
-> > > 2001
-> > > +From: Denys Dmytriyenko <denys@ti.com>
-> > > +Date: Mon, 12 May 2014 21:01:57 -0400
-> > > +Subject: [PATCH] Replace QtGui header with QtWidgets for Qt5
-> > > +
-> > > +Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > +---
-> > > + main.cpp | 2 +-
-> > > + 1 file changed, 1 insertion(+), 1 deletion(-)
-> > > +
-> > > +diff --git a/main.cpp b/main.cpp
-> > > +index c5744d8..5a61904 100644
-> > > +--- a/main.cpp
-> > > ++++ b/main.cpp
-> > > +@@ -36,7 +36,7 @@
-> > > +  *
-> > > + */
-> > > +
-> > > +-#include <QtGui/QApplication>
-> > > ++#include <QtWidgets/QApplication>
-> > > + #include "mainwindow.h"
-> > > +
-> > > + int main(int argc, char *argv[])
-> > > +--
-> > > +1.9.2
-> > > +
-> > > diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > > b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > > index 2696978..fc41f32 100644
-> > > --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > > +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> > > @@ -4,21 +4,28 @@ LICENSE = "BSD"
-> > >  LIC_FILES_CHKSUM =
-> > > "file://main.cpp;beginline=9;endline=37;md5=884b90f5bf0d711fe32c4f04b527
-> > > 6496"
-> > >  SECTION = "multimedia"
-> > > 
-> > > +inherit qt-provider
-> > > +
-> > >  # Make sure that QT font libraries have been installed -RDEPENDS_${PN} +=
-> > > "qt4-embedded-fonts"
-> > > +RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
-> > > 
-> > > -PR = "r4"
-> > > +PR = "r5"
-> > > 
-> > >  SRCREV = "4dfdf85f17033f950e01f25341665f979edde6c3"
-> > >  BRANCH ?= "master"
-> > > 
-> > >  SRC_URI = "git://gitorious.org/matrix-gui-v2/refresh-
-> > > screen.git;protocol=git;branch=${BRANCH}"
-> > > 
-> > > -S = "${WORKDIR}/git"
-> > > +QT5_DIFF = " \
-> > > +file://0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
-> > > +\ file://0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch \ "
-> > > 
-> > > -inherit qt4e
-> > > +SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '',
-> > > d)}"
-> > > +
-> > > +S = "${WORKDIR}/git"
-> > > 
-> > >  do_install() {
-> > >      install -d ${D}/${bindir}
-> > > -    install -m 0755 ${S}/refresh_screen ${D}/${bindir}
-> > > +    install -m 0755 ${B}/refresh_screen ${D}/${bindir}
-> > >  }
-> > > --
-> > > 1.9.2
-> > > 
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogRG15dHJpeWVua28sIERlbnlzDQo+
+U2VudDogV2VkbmVzZGF5LCBKdW5lIDA0LCAyMDE0IDEwOjEwIEFNDQo+VG86IE1hdXBpbiwgQ2hh
+c2UNCj5DYzogbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPlN1YmplY3Q6IFJlOiBbbWV0
+YS1hcmFnb10gcXQ0LWVtYmVkZGVkLWdsZXMgYnJlYWthZ2UgZm9yIGRyYTd4eC0NCj5ldm0NCj4N
+Cj5PbiBXZWQsIEp1biAwNCwgMjAxNCBhdCAwMjo1NzozOVBNICswMDAwLCBNYXVwaW4sIENoYXNl
+IHdyb3RlOg0KPj4NCj4+IEZyb206IG1ldGEtYXJhZ28tYm91bmNlc0BhcmFnby1wcm9qZWN0Lm9y
+ZyBbbWFpbHRvOm1ldGEtYXJhZ28tDQo+Ym91bmNlc0BhcmFnby1wcm9qZWN0Lm9yZ10gT24gQmVo
+YWxmIE9mIE1hdXBpbiwgQ2hhc2UNCj4+IFNlbnQ6IFdlZG5lc2RheSwgSnVuZSAwNCwgMjAxNCA5
+OjQ5IEFNDQo+PiBUbzogbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPj4gU3ViamVjdDog
+W21ldGEtYXJhZ29dIHF0NC1lbWJlZGRlZC1nbGVzIGJyZWFrYWdlIGZvciBkcmE3eHgtZXZtDQo+
+Pg0KPj4gQWxsLA0KPj4NCj4+IEN1cnJlbnRseSBxdDQtZW1iZWRkZWQtZ2xlcyBicmVha3MgZm9y
+IGRyYTd4eC1ldm0gbWFjaGluZSB0eXBlDQo+KGFuZCBsaWtlbHkNCj4+IG9tYXA1LWV2bSBhcyB3
+ZWxsKSBiZWNhdXNlIG9mIHRoZSBmb2xsb3dpbmc6DQo+Pg0KPj4NCj4+IC0gRm9yIEFNIGRldmlj
+ZXMgc3VjaCBhcyBhbTMzNXgtZXZtIHRoZSBHTEVTIGxpYnJhcnkgaXMgY2FsbGVkDQo+bGliR0xF
+U19DTS5zbw0KPj4NCj4+IC0gRm9yIE9NQVAgZGV2aWNlcyBzdWNoIGFzIGRyYTd4eC1ldm0gdGhl
+IEdMRVMgbGlicmFyeSBpcyBjYWxsZWQNCj4+IGxpYkdMRVN2MV9DTS5zbw0KPj4NCj4+IC0gSW4g
+dGhlIGxpbnV4LmNvbmYgZm9yIHF0NC1lbWJlZGRlZC1nbGVzIHRoZSBsaWJyYXJpZXMgdG8NCj5p
+bmNsdWRlIGFyZQ0KPj4gbGlzdGVkIGFzIEdMRVNfQ00NCj4+DQo+PiBUaGlzIGNhdXNlcyB0aGUg
+ZG9fY29uZmlndXJlIHN0YWdlIHRvIGZhaWwgZm9yIHRoZSBxdDQtZW1iZWRkZWQtDQo+Z2xlcyBy
+ZWNpcGUNCj4+IG9uIGRyYTd4eC1ldm0gYmVjYXVzZSBpdCBjYW5ub3QgZmluZCB0aGUgR0xFU19D
+TSBsaWJyYXJ5IHNpbmNlDQo+dGhhdCBsaWJyYXJ5DQo+PiBmb3IgdGhvc2UgZGV2aWNlcyBpcyBu
+YW1lZCBHTEVTdjFfQ00uICBJIGN1cnJlbnRseSBoYXZlIGEgd29yaw0KPmFyb3VuZCB0byBmaXgN
+Cj4+IHRoaXMgY29uZmlndXJlIGVycm9yIG9mIGNyZWF0aW5nIGEgdmVyc2lvbiBvZiB0aGUgbGlu
+dXguY29uZiBmb3INCj4+IHF0NC1lbWJlZGRlZC1nbGVzIHRoYXQgdXNlcyBmb3Igb21hcC1hMTUg
+bWFjaGluZSB0eXBlcy4gIFRoaXMNCj53b3Jrcw0KPj4gKGFsdGhvdWdoIHRoZXJlIGlzIGEgY29t
+cGlsZSBlcnJvciBJIGFtIHRyYWNraW5nIGRvd24gZHVlIHRvDQo+bWlzc2luZyBwdnIyZC5oDQo+
+PiBoZWFkZXIgZmlsZXMpIGJ1dCBJIHdhcyBjdXJpb3VzIGlmIHRoaXMgaXMgdGhlIGJlc3Qgd2F5
+IHRvIHNvbHZlDQo+dGhpcywgb3INCj4+IHdvdWxkIGl0IGJlIGJldHRlciB0byBmaXh1cCB0aGUg
+bGlicmFyeSBuYW1lIG9yIG1ha2Ugc3ltbGlua3MNCj5iZXR3ZWVuDQo+PiBsaWJHTEVTX0NNIGFu
+ZCBsaWJHTEVTdjFfQ00gaW4gdGhlIGdyYXBoaWNzIGxpYnJhcnkgcmVjaXBlLg0KPj4NCj4+IEJU
+Vywgc29tZSBvZiB0aGlzIG1heSBiZSBhIG1vb3QgcG9pbnQgYmVjYXVzZSBub25lIG9mIHRoZSBP
+TUFQDQo+U0dYIHBhY2thZ2VzDQo+PiBwcm92aWRlIHRoZSBwdnIyZC5oIGhlYWRlci4gIFNvIHVu
+dGlsIHRoZXJlIGlzIGFsaWdubWVudCBpbg0KPnRoZXNlIHBhY2thZ2VzDQo+PiB0aGUgdmVyc2lv
+biBvZiBRdCB1c2VkIGZvciB0aGVzZSBkZXZpY2VzIGVpdGhlciBuZWVkcyB0byBiZSBRdDUNCj53
+aGljaA0KPj4gZG9lc27igJl0IGhhdmUgU0dYIGFjY2VsZXJhdGlvbiB5ZXQsIG9yIHRoZSBzZ3gg
+TUFDSElORV9GRUFUVVJFDQo+c2hvdWxkIGJlDQo+PiByZW1vdmVkIGZyb20gdGhlIG9tYXAtYTE1
+IGRldmljZXMuICBUaG91Z2h0cz8NCj4NCj5RdDUgZG9lcyBoYXZlIEdMRVMgYWNjZWxlYXRpb24u
+IEl0IGNhbiBiZSBlYXNpbHkgdHVybmVkIG9uIGFuZA0KPm9mZiwgYnV0IGl0J3MNCj5yZXF1aXJl
+ZCBmb3IgUXRXZWJraXQsIElJUkMuIFdoeSBhcmUgeW91IHNheWluZyB0aGVyZSdzIG5vIFNHWA0K
+PmFjY2VsZXJhdGlvbj8NCg0KSSB0aG91Z2h0IFF0NSByZXF1aXJlZCBzaW1pbGFyIHBhdGNoZXMg
+dG8gdXNlIHRoZSBwdnIyZCBsaWJyYXJ5IGFzIFF0NCBkaWQuICBJIGZpZ3VyZWQgaXQgY291bGQg
+ZmluZCB0aGUgR0xFUyBsaWJyYXJpZXMgb24gaXQncyBvd24gdGhvdWdoLiAgV291bGQgaXQgaGF2
+ZSB0aGUgc2FtZSBpc3N1ZSB3aXRoIHRoZSByZW5hbWVkIGxpYnJhcnk/DQoNCj4NCj5BcyBvZiB0
+aGUgcXVlc3Rpb24gLSBJJ20gZmluZSBkaXNhYmxpbmcgc2d4IE1BQ0hJTkVfRkVBVFVSRSBmb3IN
+Cj5ub3cuIExldCdzDQo+dGFsayB0byB0aGUgZ3JhcGhpY3MgdGVhbSB0byBzZWUgaWYvd2hlbiBp
+dCB3aWxsIGJlDQo+YWxpZ25lZC9yZXNvbHZlZC4NCg0KT3Igd2hlbiBkbyB3ZSB3YW50IHRvIGNo
+YW5nZSB0aGUgZGVmYXVsdCBRdCB0byBRdDU/ICBJZiB5b3UgYXJlIHNheWluZyB0aGUgUXQ1IGNh
+biB3b3JrIHdpdGggb3VyIFNHWCBhcyBpcyB0aGVuIG1heWJlIHRoYXQgc2hvdWxkIGJlIHRoZSBu
+ZXcgZGVmYXVsdCB3aXRoIFdheWxhbmQvV2VzdG9uIGFzIHRoZSB3aW5kb3cgbWFuYWdlci4gIFdo
+YXQgYXJlIHlvdXIgdGhvdWdodHM/ICBIb3BlZnVsbHkgRnJhbmtsaW4gY2FuIGNoaW1lIGluIGFz
+IHdlbGwuDQoNCj4NCj4tLQ0KPkRlbnlzDQo=
 
