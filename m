@@ -1,34 +1,37 @@
 Return-Path: <chase.maupin@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 3CFBA52A04
+	by arago-project.org (Postfix) with ESMTPS id E081152A04
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Jun 2014 15:52:34 +0000 (UTC)
+	Wed,  4 Jun 2014 15:53:46 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54FqXqP001734
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:52:33 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FqXoQ019024
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:52:33 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54FrkCt002577
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:53:46 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FrkXM019981
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:53:46 -0500
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0174.001; Wed, 4 Jun 2014 10:52:32 -0500
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0174.001; Wed, 4 Jun 2014 10:53:45 -0500
 From: "Maupin, Chase" <chase.maupin@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] qt4-embedded-gles breakage for dra7xx-evm
-Thread-Index: Ac+ABC1HJwWIH5kCRumgb0z1/FJf5AAANQMQAAr6BgAACRkKIA==
-Date: Wed, 4 Jun 2014 15:52:32 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015D08CB81@DLEE11.ent.ti.com>
-References: <7D46E86EC0A8354091174257B2FED1015D08C432@DLEE11.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015D08C524@DLEE11.ent.ti.com>
-	<20140604150938.GH21819@edge>
-In-Reply-To: <20140604150938.GH21819@edge>
+Thread-Topic: [meta-arago] [PATCH 06/11] image-gallery: Add image gallery
+	application
+Thread-Index: AQHPgA0qKN6gT8A50U2LS2HFAymU4A==
+Date: Wed, 4 Jun 2014 15:53:45 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015D08CBC6@DLEE11.ent.ti.com>
+References: <1401388695-30526-1-git-send-email-fcooper@ti.com>
+	<1401388695-30526-6-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015D08C25A@DLEE11.ent.ti.com>
+	<20140604152754.GK21819@edge>
+In-Reply-To: <20140604152754.GK21819@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: qt4-embedded-gles breakage for dra7xx-evm
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
+	Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH 06/11] image-gallery: Add image gallery application
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,60 +44,132 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 15:52:34 -0000
+X-List-Received-Date: Wed, 04 Jun 2014 15:53:47 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogRG15dHJpeWVua28sIERlbnlzDQo+
-U2VudDogV2VkbmVzZGF5LCBKdW5lIDA0LCAyMDE0IDEwOjEwIEFNDQo+VG86IE1hdXBpbiwgQ2hh
-c2UNCj5DYzogbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPlN1YmplY3Q6IFJlOiBbbWV0
-YS1hcmFnb10gcXQ0LWVtYmVkZGVkLWdsZXMgYnJlYWthZ2UgZm9yIGRyYTd4eC0NCj5ldm0NCj4N
-Cj5PbiBXZWQsIEp1biAwNCwgMjAxNCBhdCAwMjo1NzozOVBNICswMDAwLCBNYXVwaW4sIENoYXNl
-IHdyb3RlOg0KPj4NCj4+IEZyb206IG1ldGEtYXJhZ28tYm91bmNlc0BhcmFnby1wcm9qZWN0Lm9y
-ZyBbbWFpbHRvOm1ldGEtYXJhZ28tDQo+Ym91bmNlc0BhcmFnby1wcm9qZWN0Lm9yZ10gT24gQmVo
-YWxmIE9mIE1hdXBpbiwgQ2hhc2UNCj4+IFNlbnQ6IFdlZG5lc2RheSwgSnVuZSAwNCwgMjAxNCA5
-OjQ5IEFNDQo+PiBUbzogbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPj4gU3ViamVjdDog
-W21ldGEtYXJhZ29dIHF0NC1lbWJlZGRlZC1nbGVzIGJyZWFrYWdlIGZvciBkcmE3eHgtZXZtDQo+
-Pg0KPj4gQWxsLA0KPj4NCj4+IEN1cnJlbnRseSBxdDQtZW1iZWRkZWQtZ2xlcyBicmVha3MgZm9y
-IGRyYTd4eC1ldm0gbWFjaGluZSB0eXBlDQo+KGFuZCBsaWtlbHkNCj4+IG9tYXA1LWV2bSBhcyB3
-ZWxsKSBiZWNhdXNlIG9mIHRoZSBmb2xsb3dpbmc6DQo+Pg0KPj4NCj4+IC0gRm9yIEFNIGRldmlj
-ZXMgc3VjaCBhcyBhbTMzNXgtZXZtIHRoZSBHTEVTIGxpYnJhcnkgaXMgY2FsbGVkDQo+bGliR0xF
-U19DTS5zbw0KPj4NCj4+IC0gRm9yIE9NQVAgZGV2aWNlcyBzdWNoIGFzIGRyYTd4eC1ldm0gdGhl
-IEdMRVMgbGlicmFyeSBpcyBjYWxsZWQNCj4+IGxpYkdMRVN2MV9DTS5zbw0KPj4NCj4+IC0gSW4g
-dGhlIGxpbnV4LmNvbmYgZm9yIHF0NC1lbWJlZGRlZC1nbGVzIHRoZSBsaWJyYXJpZXMgdG8NCj5p
-bmNsdWRlIGFyZQ0KPj4gbGlzdGVkIGFzIEdMRVNfQ00NCj4+DQo+PiBUaGlzIGNhdXNlcyB0aGUg
-ZG9fY29uZmlndXJlIHN0YWdlIHRvIGZhaWwgZm9yIHRoZSBxdDQtZW1iZWRkZWQtDQo+Z2xlcyBy
-ZWNpcGUNCj4+IG9uIGRyYTd4eC1ldm0gYmVjYXVzZSBpdCBjYW5ub3QgZmluZCB0aGUgR0xFU19D
-TSBsaWJyYXJ5IHNpbmNlDQo+dGhhdCBsaWJyYXJ5DQo+PiBmb3IgdGhvc2UgZGV2aWNlcyBpcyBu
-YW1lZCBHTEVTdjFfQ00uICBJIGN1cnJlbnRseSBoYXZlIGEgd29yaw0KPmFyb3VuZCB0byBmaXgN
-Cj4+IHRoaXMgY29uZmlndXJlIGVycm9yIG9mIGNyZWF0aW5nIGEgdmVyc2lvbiBvZiB0aGUgbGlu
-dXguY29uZiBmb3INCj4+IHF0NC1lbWJlZGRlZC1nbGVzIHRoYXQgdXNlcyBmb3Igb21hcC1hMTUg
-bWFjaGluZSB0eXBlcy4gIFRoaXMNCj53b3Jrcw0KPj4gKGFsdGhvdWdoIHRoZXJlIGlzIGEgY29t
-cGlsZSBlcnJvciBJIGFtIHRyYWNraW5nIGRvd24gZHVlIHRvDQo+bWlzc2luZyBwdnIyZC5oDQo+
-PiBoZWFkZXIgZmlsZXMpIGJ1dCBJIHdhcyBjdXJpb3VzIGlmIHRoaXMgaXMgdGhlIGJlc3Qgd2F5
-IHRvIHNvbHZlDQo+dGhpcywgb3INCj4+IHdvdWxkIGl0IGJlIGJldHRlciB0byBmaXh1cCB0aGUg
-bGlicmFyeSBuYW1lIG9yIG1ha2Ugc3ltbGlua3MNCj5iZXR3ZWVuDQo+PiBsaWJHTEVTX0NNIGFu
-ZCBsaWJHTEVTdjFfQ00gaW4gdGhlIGdyYXBoaWNzIGxpYnJhcnkgcmVjaXBlLg0KPj4NCj4+IEJU
-Vywgc29tZSBvZiB0aGlzIG1heSBiZSBhIG1vb3QgcG9pbnQgYmVjYXVzZSBub25lIG9mIHRoZSBP
-TUFQDQo+U0dYIHBhY2thZ2VzDQo+PiBwcm92aWRlIHRoZSBwdnIyZC5oIGhlYWRlci4gIFNvIHVu
-dGlsIHRoZXJlIGlzIGFsaWdubWVudCBpbg0KPnRoZXNlIHBhY2thZ2VzDQo+PiB0aGUgdmVyc2lv
-biBvZiBRdCB1c2VkIGZvciB0aGVzZSBkZXZpY2VzIGVpdGhlciBuZWVkcyB0byBiZSBRdDUNCj53
-aGljaA0KPj4gZG9lc27igJl0IGhhdmUgU0dYIGFjY2VsZXJhdGlvbiB5ZXQsIG9yIHRoZSBzZ3gg
-TUFDSElORV9GRUFUVVJFDQo+c2hvdWxkIGJlDQo+PiByZW1vdmVkIGZyb20gdGhlIG9tYXAtYTE1
-IGRldmljZXMuICBUaG91Z2h0cz8NCj4NCj5RdDUgZG9lcyBoYXZlIEdMRVMgYWNjZWxlYXRpb24u
-IEl0IGNhbiBiZSBlYXNpbHkgdHVybmVkIG9uIGFuZA0KPm9mZiwgYnV0IGl0J3MNCj5yZXF1aXJl
-ZCBmb3IgUXRXZWJraXQsIElJUkMuIFdoeSBhcmUgeW91IHNheWluZyB0aGVyZSdzIG5vIFNHWA0K
-PmFjY2VsZXJhdGlvbj8NCg0KSSB0aG91Z2h0IFF0NSByZXF1aXJlZCBzaW1pbGFyIHBhdGNoZXMg
-dG8gdXNlIHRoZSBwdnIyZCBsaWJyYXJ5IGFzIFF0NCBkaWQuICBJIGZpZ3VyZWQgaXQgY291bGQg
-ZmluZCB0aGUgR0xFUyBsaWJyYXJpZXMgb24gaXQncyBvd24gdGhvdWdoLiAgV291bGQgaXQgaGF2
-ZSB0aGUgc2FtZSBpc3N1ZSB3aXRoIHRoZSByZW5hbWVkIGxpYnJhcnk/DQoNCj4NCj5BcyBvZiB0
-aGUgcXVlc3Rpb24gLSBJJ20gZmluZSBkaXNhYmxpbmcgc2d4IE1BQ0hJTkVfRkVBVFVSRSBmb3IN
-Cj5ub3cuIExldCdzDQo+dGFsayB0byB0aGUgZ3JhcGhpY3MgdGVhbSB0byBzZWUgaWYvd2hlbiBp
-dCB3aWxsIGJlDQo+YWxpZ25lZC9yZXNvbHZlZC4NCg0KT3Igd2hlbiBkbyB3ZSB3YW50IHRvIGNo
-YW5nZSB0aGUgZGVmYXVsdCBRdCB0byBRdDU/ICBJZiB5b3UgYXJlIHNheWluZyB0aGUgUXQ1IGNh
-biB3b3JrIHdpdGggb3VyIFNHWCBhcyBpcyB0aGVuIG1heWJlIHRoYXQgc2hvdWxkIGJlIHRoZSBu
-ZXcgZGVmYXVsdCB3aXRoIFdheWxhbmQvV2VzdG9uIGFzIHRoZSB3aW5kb3cgbWFuYWdlci4gIFdo
-YXQgYXJlIHlvdXIgdGhvdWdodHM/ICBIb3BlZnVsbHkgRnJhbmtsaW4gY2FuIGNoaW1lIGluIGFz
-IHdlbGwuDQoNCj4NCj4tLQ0KPkRlbnlzDQo=
+>-----Original Message-----
+>From: Dmytriyenko, Denys
+>Sent: Wednesday, June 04, 2014 10:28 AM
+>To: Maupin, Chase
+>Cc: Cooper Jr., Franklin; meta-arago@arago-project.org
+>Subject: Re: [meta-arago] [PATCH 06/11] image-gallery: Add image
+>gallery application
+>
+>On Wed, Jun 04, 2014 at 02:38:23PM +0000, Maupin, Chase wrote:
+>> >-----Original Message-----
+>> >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+>> >Sent: Thursday, May 29, 2014 1:38 PM
+>> >To: meta-arago@arago-project.org
+>> >Cc: Cooper Jr., Franklin
+>> >Subject: [meta-arago] [PATCH 06/11] image-gallery: Add image
+>> >gallery application
+>> >
+>> >* Add new Qt application to the SDK which displays pictures
+>taken
+>> >by the camera
+>> >  demo.
+>> >
+>> >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+>> >---
+>> > .../recipes-qt/qt-apps/image-gallery_git.bb        |   33
+>> >++++++++++++++++++++
+>> > 1 files changed, 33 insertions(+), 0 deletions(-)
+>> > create mode 100644 meta-arago-extras/recipes-qt/qt-apps/image-
+>> >gallery_git.bb
+>> >
+>> >diff --git a/meta-arago-extras/recipes-qt/qt-apps/image-
+>> >gallery_git.bb b/meta-arago-extras/recipes-qt/qt-apps/image-
+>> >gallery_git.bb
+>> >new file mode 100644
+>> >index 0000000..3040415
+>> >--- /dev/null
+>> >+++ b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
+>> >@@ -0,0 +1,33 @@
+>> >+DESCRIPTION =3D "Image Gallery"
+>> >+HOMEPAGE =3D "https://gitorious.org/image-gallery"
+>> >+SECTION =3D "multimedia"
+>> >+LICENSE =3D "BSD"
+>> >+LIC_FILES_CHKSUM =3D
+>> >"file://LICENSE;md5=3D9c57cc1cdee589f97cbba69e95a89a15"
+>> >+
+>> >+require recipes-core/matrix/matrix-gui-paths.inc
+>> >+
+>> >+PR =3D "r0"
+>>
+>> Not needed
+>
+>Why? Even though it's default, it helps remember to bump it next
+>time :)
+
+True, but I thought as we look at new releases the PR wasn't needed anymore=
+.  Or do we not have the version server turned on?
+
+>
+>
+>> >+BRANCH =3D "master"
+>> >+SRCREV =3D "8901d7c598b277e4e26a5abbcb859e7ceebd340a"
+>> >+
+>> >+SRC_URI =3D "git://gitorious.org/image-gallery/image-
+>> >gallery.git;protocol=3Dgit;branch=3D${BRANCH}"
+>> >+
+>> >+S =3D "${WORKDIR}/git/"
+>> >+
+>> >+BUILDDIR ?=3D "."
+>>
+>> I'm not entirely sure what this is for.  When should this be set
+>> differently?  And would it be better to use a variable like ${S}
+>rather than
+>> "."
+>
+>I have seen this variable in qt-tstat recipe and had to remove it.
+>There is no
+>need for it and moreover, there's already ${B} defined and used
+>for build dir.
+>See my recent patch re-submission for qt-tstat.
+>
+>
+>> >+inherit qt-provider
+>> >+
+>> >+do_install() {
+>> >+	install -d ${D}/usr/bin
+>>
+>> Use ${bindir}
+>
+>+1
+>
+>
+>> >+	install -m 0755 ${BUILDDIR}/image-gallery
+>> >${D}/usr/bin/image-gallery
+>>
+>> Use ${bindir}
+>
+>+1
+>
+>
+>> >+	install -d ${D}${MATRIX_APP_DIR}/qt-image-gallery
+>> >+	cp -rf matrix-files/*  ${D}${MATRIX_APP_DIR}/qt-image-
+>> >gallery
+>> >+}
+>> >+
+>> >+PACKAGES +=3D "matrix-gui-apps-image-gallery"
+>> >+
+>> >+RDEPENDS_matrix-gui-apps-image-gallery  =3D "matrix-gui-apps-
+>images
+>> >matrix-gui-submenus-camera ${PN}"
+>> >+
+>> >+FILES_matrix-gui-apps-image-gallery +=3D "${MATRIX_APP_DIR}/*"
+>> >--
+>> >1.7.0.4
+>> >
+>> >_______________________________________________
+>> >meta-arago mailing list
+>> >meta-arago@arago-project.org
+>> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
