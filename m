@@ -1,33 +1,33 @@
 Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B433C52A1E
+	by arago-project.org (Postfix) with ESMTPS id 391F552A1E
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Jun 2014 15:23:18 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54FNICk022444
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:23:18 -0500
+	Wed,  4 Jun 2014 15:27:56 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s54FRtI2025305
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:27:55 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FNIRj023936
-	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:23:18 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FRtC7022905
+	for <meta-arago@arago-project.org>; Wed, 4 Jun 2014 10:27:55 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 4 Jun 2014 10:23:17 -0500
+	Wed, 4 Jun 2014 10:27:55 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FNHVP014950;
-	Wed, 4 Jun 2014 10:23:17 -0500
-Date: Wed, 4 Jun 2014 11:23:17 -0400
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s54FRtOs000389;
+	Wed, 4 Jun 2014 10:27:55 -0500
+Date: Wed, 4 Jun 2014 11:27:55 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Maupin, Chase" <chase.maupin@ti.com>
-Message-ID: <20140604152317.GJ21819@edge>
+Message-ID: <20140604152754.GK21819@edge>
 References: <1401388695-30526-1-git-send-email-fcooper@ti.com>
-	<1401388695-30526-5-git-send-email-fcooper@ti.com>
-	<7D46E86EC0A8354091174257B2FED1015D08C1E8@DLEE11.ent.ti.com>
+	<1401388695-30526-6-git-send-email-fcooper@ti.com>
+	<7D46E86EC0A8354091174257B2FED1015D08C25A@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <7D46E86EC0A8354091174257B2FED1015D08C1E8@DLEE11.ent.ti.com>
+In-Reply-To: <7D46E86EC0A8354091174257B2FED1015D08C25A@DLEE11.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
 	Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 05/11] matrix-gui: Add camera submenu
+Subject: Re: [PATCH 06/11] image-gallery: Add image gallery application
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,94 +40,104 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 15:23:18 -0000
+X-List-Received-Date: Wed, 04 Jun 2014 15:27:56 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Jun 04, 2014 at 02:32:37PM +0000, Maupin, Chase wrote:
+On Wed, Jun 04, 2014 at 02:38:23PM +0000, Maupin, Chase wrote:
 > >-----Original Message-----
 > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
 > >Sent: Thursday, May 29, 2014 1:38 PM
 > >To: meta-arago@arago-project.org
 > >Cc: Cooper Jr., Franklin
-> >Subject: [meta-arago] [PATCH 05/11] matrix-gui: Add camera submenu
+> >Subject: [meta-arago] [PATCH 06/11] image-gallery: Add image
+> >gallery application
+> >
+> >* Add new Qt application to the SDK which displays pictures taken
+> >by the camera
+> >  demo.
 > >
 > >Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > >---
-> > .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
-> > .../recipes-core/matrix/matrix-gui-submenus_2.0.bb |    5 +++--
-> > 2 files changed, 5 insertions(+), 4 deletions(-)
+> > .../recipes-qt/qt-apps/image-gallery_git.bb        |   33
+> >++++++++++++++++++++
+> > 1 files changed, 33 insertions(+), 0 deletions(-)
+> > create mode 100644 meta-arago-extras/recipes-qt/qt-apps/image-
+> >gallery_git.bb
 > >
-> >diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-
-> >apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-
-> >apps-git.inc
-> >index fe4b3f0..c985859 100644
-> >--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-
-> >git.inc
-> >+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-
-> >git.inc
-> >@@ -4,9 +4,9 @@ LICENSE_CHECKSUM =
-> >"LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
-> > LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
-> >
-> > SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-
-> >apps.git;protocol=git;branch=${BRANCH}"
-> >-SRCREV = "ea1592722e9b00a6324d031af1fa23a3683ff7a6"
-> >+SRCREV = "6ba41c4070cbc723d758f5d493859ae6470cdceb"
-> > BRANCH = "master"
-> >-INC_PR = "r22"
-> >+INC_PR = "r23"
-> >
-> > # Pull in the base package for installing matrix applications
-> > require matrix-gui-apps.inc
-> >diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-
-> >submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-
-> >gui-submenus_2.0.bb
-> >index d108500..d794277 100644
-> >--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-
-> >submenus_2.0.bb
-> >+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-
-> >submenus_2.0.bb
-> >@@ -8,7 +8,7 @@ require matrix-gui-apps-git.inc
-> > # reset the LIC_FILES_CHKSUM setting from the matrix-gui-apps-
-> >git.inc file
-> > LIC_FILES_CHKSUM =
-> >"file://LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
-> >
-> >-PR = "${INC_PR}.9"
-> >+PR = "${INC_PR}.10"
+> >diff --git a/meta-arago-extras/recipes-qt/qt-apps/image-
+> >gallery_git.bb b/meta-arago-extras/recipes-qt/qt-apps/image-
+> >gallery_git.bb
+> >new file mode 100644
+> >index 0000000..3040415
+> >--- /dev/null
+> >+++ b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
+> >@@ -0,0 +1,33 @@
+> >+DESCRIPTION = "Image Gallery"
+> >+HOMEPAGE = "https://gitorious.org/image-gallery"
+> >+SECTION = "multimedia"
+> >+LICENSE = "BSD"
+> >+LIC_FILES_CHKSUM =
+> >"file://LICENSE;md5=9c57cc1cdee589f97cbba69e95a89a15"
+> >+
+> >+require recipes-core/matrix/matrix-gui-paths.inc
+> >+
+> >+PR = "r0"
 > 
-> Just a nit, but if you bumped the INC_PR already then do you really need to 
-> bump this PR?  I don't think this is worth submitting a v2 for though.
+> Not needed
 
-From my perspective - if you made any changes in the .inc file, you bump 
-INC_PR and then if you made any changes to the actual recipe, you bump it own 
-PR. That way you can track the history of changes in each file separately...
+Why? Even though it's default, it helps remember to bump it next time :)
 
 
-> > # These packages make submenus in matrix and are not architecture
-> >specific
-> > inherit allarch
-> >@@ -27,7 +27,7 @@ do_install(){
-> >     done
-> > }
-> >
-> >-PACKAGES += "${PN}-arm ${PN}-3d ${PN}-cryptos ${PN}-display
-> >${PN}-ethernet ${PN}-multimedia ${PN}-power ${PN}-pru ${PN}-qt4
-> >${PN}-settings ${PN}-usb ${PN}-wifi ${PN}-oprofile"
-> >+PACKAGES += "${PN}-arm ${PN}-3d ${PN}-cryptos ${PN}-display
-> >${PN}-ethernet ${PN}-multimedia ${PN}-power ${PN}-pru ${PN}-qt4
-> >${PN}-settings ${PN}-usb ${PN}-wifi ${PN}-oprofile ${PN}-camera"
-> >
-> > # Make sure app images has been installed
-> > RDEPENDS_${PN} += "matrix-gui-apps-images"
-> >@@ -46,3 +46,4 @@ FILES_${PN}-settings =
-> >"${MATRIX_APP_DIR}/settings_submenu/*"
-> > FILES_${PN}-usb = "${MATRIX_APP_DIR}/usb_submenu/*"
-> > FILES_${PN}-wifi = "${MATRIX_APP_DIR}/wifi_submenu/*"
-> > FILES_${PN}-oprofile = "${MATRIX_APP_DIR}/oprofile_submenu/*"
-> >+FILES_${PN}-camera = "${MATRIX_APP_DIR}/camera_submenu/*"
+> >+BRANCH = "master"
+> >+SRCREV = "8901d7c598b277e4e26a5abbcb859e7ceebd340a"
+> >+
+> >+SRC_URI = "git://gitorious.org/image-gallery/image-
+> >gallery.git;protocol=git;branch=${BRANCH}"
+> >+
+> >+S = "${WORKDIR}/git/"
+> >+
+> >+BUILDDIR ?= "."
+> 
+> I'm not entirely sure what this is for.  When should this be set 
+> differently?  And would it be better to use a variable like ${S} rather than 
+> "."
+
+I have seen this variable in qt-tstat recipe and had to remove it. There is no 
+need for it and moreover, there's already ${B} defined and used for build dir.
+See my recent patch re-submission for qt-tstat.
+
+
+> >+inherit qt-provider
+> >+
+> >+do_install() {
+> >+	install -d ${D}/usr/bin
+> 
+> Use ${bindir}
+
++1
+
+
+> >+	install -m 0755 ${BUILDDIR}/image-gallery
+> >${D}/usr/bin/image-gallery
+> 
+> Use ${bindir}
+
++1
+
+
+> >+	install -d ${D}${MATRIX_APP_DIR}/qt-image-gallery
+> >+	cp -rf matrix-files/*  ${D}${MATRIX_APP_DIR}/qt-image-
+> >gallery
+> >+}
+> >+
+> >+PACKAGES += "matrix-gui-apps-image-gallery"
+> >+
+> >+RDEPENDS_matrix-gui-apps-image-gallery  = "matrix-gui-apps-images
+> >matrix-gui-submenus-camera ${PN}"
+> >+
+> >+FILES_matrix-gui-apps-image-gallery += "${MATRIX_APP_DIR}/*"
 > >--
 > >1.7.0.4
 > >
