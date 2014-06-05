@@ -1,29 +1,28 @@
-Return-Path: <aparnab@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 4615F52A5D
+	by arago-project.org (Postfix) with ESMTPS id 3BF4252AB8
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Jun 2014 18:45:27 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s55IjQMA023629
-	for <meta-arago@arago-project.org>; Thu, 5 Jun 2014 13:45:26 -0500
+	Thu,  5 Jun 2014 20:16:29 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s55KGSMn001285
+	for <meta-arago@arago-project.org>; Thu, 5 Jun 2014 15:16:28 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s55IjQ8q016785
-	for <meta-arago@arago-project.org>; Thu, 5 Jun 2014 13:45:26 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s55KGS2F016873
+	for <meta-arago@arago-project.org>; Thu, 5 Jun 2014 15:16:28 -0500
 Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 5 Jun 2014 13:45:25 -0500
-Received: from localhost.localdomain (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s55IjQbe019345;	Thu, 5 Jun 2014 13:45:26 -0500
-From: Aparna Balasubramanian <aparnab@ti.com>
+	Thu, 5 Jun 2014 15:16:28 -0500
+Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s55KGPF9004342;
+	Thu, 5 Jun 2014 15:16:26 -0500
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 5 Jun 2014 13:47:06 -0500
-Message-ID: <1401994026-20738-1-git-send-email-aparnab@ti.com>
+Date: Thu, 5 Jun 2014 15:16:21 -0500
+Message-ID: <1401999381-14474-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <rng_tools>
-References: <rng_tools>
 MIME-Version: 1.0
-Subject: [META-ARAGO V1] Including rng-tools in arago test package
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH v2] image-gallery: Add image gallery application
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,36 +35,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 18:45:27 -0000
+X-List-Received-Date: Thu, 05 Jun 2014 20:16:29 -0000
 Content-Type: text/plain
 
-This patch includes rng-tools in arago test package and bumps up revision of package-arago-test.bb.
+* Add new Qt application to the SDK which displays pictures taken by the camera
+  demo.
 
-Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../packagegroups/packagegroup-arago-test.bb       |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+v2 Changes:
+Removed BUILDDIR variable.
+Replaced /usr/bin with standard ${bindir} variable.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 29c8dae..28269c6 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r16"
-+PR = "r17"
- 
- inherit packagegroup
- 
-@@ -19,6 +19,7 @@ ARAGO_TEST = "\
-     libdrm-tests \
-     powertop \
-     stress \
-+    rng-tools \
-     "
- 
- ARAGO_TI_TEST = "\
+ .../recipes-qt/qt-apps/image-gallery_git.bb        |   31 ++++++++++++++++++++
+ 1 files changed, 31 insertions(+), 0 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
+
+diff --git a/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
+new file mode 100644
+index 0000000..50ea24c
+--- /dev/null
++++ b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
+@@ -0,0 +1,31 @@
++DESCRIPTION = "Image Gallery"
++HOMEPAGE = "https://gitorious.org/image-gallery"
++SECTION = "multimedia"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=9c57cc1cdee589f97cbba69e95a89a15"
++
++require recipes-core/matrix/matrix-gui-paths.inc
++
++inherit qt-provider
++
++PR = "r0"
++
++BRANCH = "master"
++SRCREV = "8901d7c598b277e4e26a5abbcb859e7ceebd340a"
++
++SRC_URI = "git://gitorious.org/image-gallery/image-gallery.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git/"
++
++do_install() {
++	install -d ${D}/${bindir}
++	install -m 0755 ${B}/image-gallery ${D}/${bindir}/image-gallery
++	install -d ${D}${MATRIX_APP_DIR}/qt-image-gallery
++	cp -rf matrix-files/*  ${D}${MATRIX_APP_DIR}/qt-image-gallery
++}
++
++PACKAGES += "matrix-gui-apps-image-gallery"
++
++RDEPENDS_matrix-gui-apps-image-gallery  = "matrix-gui-apps-images matrix-gui-submenus-camera ${PN}"
++
++FILES_matrix-gui-apps-image-gallery += "${MATRIX_APP_DIR}/*"
 -- 
 1.7.0.4
 
