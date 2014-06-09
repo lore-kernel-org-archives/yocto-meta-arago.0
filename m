@@ -1,27 +1,27 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7C25C52A1E
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id 5886A52A87
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Jun 2014 13:59:53 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s59DxqII032764
-	for <meta-arago@arago-project.org>; Mon, 9 Jun 2014 08:59:52 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s59Dxqbi030045
-	for <meta-arago@arago-project.org>; Mon, 9 Jun 2014 08:59:52 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 9 Jun 2014 08:59:52 -0500
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s59DxpHF014267;	Mon, 9 Jun 2014 08:59:51 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 9 Jun 2014 09:59:49 -0400
-Message-ID: <1402322389-22164-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH] configs: mcsdk 3.1.0: Add configuration for mcsdk 3.1.0
+	Mon,  9 Jun 2014 16:26:28 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N6W00CX2TMPVMA0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 09 Jun 2014 11:25:53 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 3BC5F20120; Mon,
+	09 Jun 2014 12:25:35 -0400 (EDT)
+Date: Mon, 09 Jun 2014 12:25:35 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-id: <20140609162535.GJ27324@denix.org>
+References: <1401388695-30526-1-git-send-email-fcooper@ti.com>
+	<1401388695-30526-2-git-send-email-fcooper@ti.com>
+MIME-version: 1.0
+In-reply-to: <1401388695-30526-2-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 02/11] qt example apps: Use Makefile.build instead of Makefile for the SDK makefile
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,39 +34,102 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jun 2014 13:59:53 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 09 Jun 2014 16:26:28 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-- Add release configuration for upcoming release
-  MCSDK 3.1.0
+On Thu, May 29, 2014 at 01:38:06PM -0500, Franklin S. Cooper Jr wrote:
+> * This insures that Qt users will have qmake generate "Makefile" instead of
+>   App-Makefile which is the expected/default behavior.
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
----
- configs/mcsdk/mcsdk-3.1.0-config.txt |   14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/mcsdk/mcsdk-3.1.0-config.txt
+Franklin,
 
-diff --git a/configs/mcsdk/mcsdk-3.1.0-config.txt b/configs/mcsdk/mcsdk-3.1.0-config.txt
-new file mode 100644
-index 0000000..44feb12
---- /dev/null
-+++ b/configs/mcsdk/mcsdk-3.1.0-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
-+meta-mcsdk,git://arago-project.org/git/projects/meta-mcsdk.git,master,HEAD,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,dylan,370ed5e9f68afd0937e01f6cd69863e45ba19c1f,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,ed05b91f137cb229e9ebababf9f72748aece1bf3,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,70ebe86f193decd17d6295bcd4d4e5589585c0cc,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,dylan,0056050410c1d5f8627c509490a5650eb082261c,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
-+meta-java,git://github.com/woglinde/meta-java,master,ac8c0604d1ed63b1ae0e05f870f53b8241e6dda1,layers=
-+oe-core,git://git.openembedded.org/openembedded-core,dylan,7ff1924674871d604f9656f3928b91dc417c7246,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago.conf.sample
--- 
-1.7.9.5
+Can you please re-submit this one patch as well? As refresh-screen recipe has 
+been updated with Qt5 support and this no longer applies. Thanks.
 
+
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |    4 ++--
+>  .../recipes-core/matrix/refresh-screen_2.0.bb      |    4 ++--
+>  .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
+>  .../recipes-qt/qt-apps/quick-playground_1.0.bb     |    4 ++--
+>  4 files changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
+> index 7d47e5b..afd5aa3 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
+> @@ -11,9 +11,9 @@ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
+>  
+>  DEPENDS += "${QT_DEPENDS_WEBKIT}"
+>  
+> -PR = "r6"
+> +PR = "r7"
+>  
+> -SRCREV = "8517ac2338295ccb4c6c2ffa58b5ad48659a5430"
+> +SRCREV = "7f5dccfb5b1b68a3f9162f6ee072eef0e0ba06fe"
+>  BRANCH ?= "master"
+>  
+>  SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> index 2696978..e3d59e2 100644
+> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> @@ -7,9 +7,9 @@ SECTION = "multimedia"
+>  # Make sure that QT font libraries have been installed
+>  RDEPENDS_${PN} += "qt4-embedded-fonts"
+>  
+> -PR = "r4"
+> +PR = "r5"
+>  
+> -SRCREV = "4dfdf85f17033f950e01f25341665f979edde6c3"
+> +SRCREV = "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
+>  BRANCH ?= "master"
+>  
+>  SRC_URI = "git://gitorious.org/matrix-gui-v2/refresh-screen.git;protocol=git;branch=${BRANCH}"
+> diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+> index d0a9f7a..0e3fc01 100644
+> --- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+> +++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
+> @@ -12,12 +12,12 @@ require recipes-core/matrix/matrix-gui-paths.inc
+>  
+>  inherit qt-provider
+>  
+> -PR = "r7"
+> +PR = "r8"
+>  
+>  DEPENDS += "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
+>  
+>  BRANCH ?= "master"
+> -SRCREV = "2960431fd38239cc089c8738776f3ff9dcfe7f1c"
+> +SRCREV = "2512773c2d9da989e6a42c1e90b2b34496713072"
+>  
+>  SRC_URI = " \
+>  	git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git \
+> diff --git a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+> index 5f493d3..2da5a36 100644
+> --- a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+> +++ b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+> @@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://Licence.txt;md5=7cc88160b55ec5db6c6c5bb8e3238c0b"
+>  
+>  require recipes-core/matrix/matrix-gui-paths.inc
+>  
+> -PR = "r1"
+> +PR = "r2"
+>  
+>  BRANCH = "master"
+> -SRCREV = "0be45ce805147798c98b2dee65e41de67bfcea5d"
+> +SRCREV = "4bcf4e7f5aa68dcd28f54bf921c6cc3985ce4305"
+>  
+>  SRC_URI = "git://arago-project.org/git/projects/qt4-demos.git;protocol=git;branch=${BRANCH}"
+>  
+> -- 
+> 1.7.0.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
