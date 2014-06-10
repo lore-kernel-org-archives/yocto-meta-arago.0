@@ -1,33 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2367152A88
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 109F5529D7
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Jun 2014 17:02:03 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s59H22ER013701
-	for <meta-arago@arago-project.org>; Mon, 9 Jun 2014 12:02:02 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s59H22OI002636
-	for <meta-arago@arago-project.org>; Mon, 9 Jun 2014 12:02:02 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Mon, 9 Jun 2014 12:02:01 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH 02/11] qt example apps: Use Makefile.build instead of
-	Makefile for the SDK makefile
-Thread-Index: AQHPe20ra4UM+503F06cukx/tPeDyZtpEiIg
-Date: Mon, 9 Jun 2014 17:02:00 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6C84E2@DFLE08.ent.ti.com>
-References: <1401388695-30526-1-git-send-email-fcooper@ti.com>
-	<1401388695-30526-2-git-send-email-fcooper@ti.com>
-In-Reply-To: <1401388695-30526-2-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Tue, 10 Jun 2014 06:55:57 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5A6tuaf031263
+	for <meta-arago@arago-project.org>; Tue, 10 Jun 2014 01:55:56 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5A6tt5o001650
+	for <meta-arago@arago-project.org>; Tue, 10 Jun 2014 01:55:56 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 10 Jun 2014 01:55:55 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s5A6tttI007724	for <meta-arago@arago-project.org>;
+	Tue, 10 Jun 2014 01:55:55 -0500
+Date: Tue, 10 Jun 2014 02:39:33 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <205696419.161.1402382373252.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH 02/11] qt example apps: Use Makefile.build instead of Makefile for the SDK makefile
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.05 build 2014-06-10_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,114 +36,203 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jun 2014 17:02:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 10 Jun 2014 06:55:57 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_160_858903479.1402382373250"
 
-Will do
+------=_Part_160_858903479.1402382373250
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Thursday, May 29, 2014 1:38 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [PATCH 02/11] qt example apps: Use Makefile.build instead of
-> Makefile for the SDK makefile
->=20
-> * This insures that Qt users will have qmake generate "Makefile" instead =
-of
->   App-Makefile which is the expected/default behavior.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |    4 ++--
->  .../recipes-core/matrix/refresh-screen_2.0.bb      |    4 ++--
->  .../recipes-qt/qt-apps/qt-tstat_2.0.bb             |    4 ++--
->  .../recipes-qt/qt-apps/quick-playground_1.0.bb     |    4 ++--
->  4 files changed, 8 insertions(+), 8 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0=
-.bb
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-> index 7d47e5b..afd5aa3 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-> @@ -11,9 +11,9 @@ RDEPENDS_${PN} +=3D "${QT_RDEPENDS_FONTS}"
->=20
->  DEPENDS +=3D "${QT_DEPENDS_WEBKIT}"
->=20
-> -PR =3D "r6"
-> +PR =3D "r7"
->=20
-> -SRCREV =3D "8517ac2338295ccb4c6c2ffa58b5ad48659a5430"
-> +SRCREV =3D "7f5dccfb5b1b68a3f9162f6ee072eef0e0ba06fe"
->  BRANCH ?=3D "master"
->=20
->  SRC_URI =3D "git://gitorious.org/matrix-gui-
-> v2/matrix_browser.git;protocol=3Dgit;branch=3D${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> index 2696978..e3d59e2 100644
-> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-> @@ -7,9 +7,9 @@ SECTION =3D "multimedia"
->  # Make sure that QT font libraries have been installed  RDEPENDS_${PN} +=
-=3D
-> "qt4-embedded-fonts"
->=20
-> -PR =3D "r4"
-> +PR =3D "r5"
->=20
-> -SRCREV =3D "4dfdf85f17033f950e01f25341665f979edde6c3"
-> +SRCREV =3D "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
->  BRANCH ?=3D "master"
->=20
->  SRC_URI =3D "git://gitorious.org/matrix-gui-v2/refresh-
-> screen.git;protocol=3Dgit;branch=3D${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb b/meta-
-> arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-> index d0a9f7a..0e3fc01 100644
-> --- a/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-> +++ b/meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb
-> @@ -12,12 +12,12 @@ require recipes-core/matrix/matrix-gui-paths.inc
->=20
->  inherit qt-provider
->=20
-> -PR =3D "r7"
-> +PR =3D "r8"
->=20
->  DEPENDS +=3D "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
->=20
->  BRANCH ?=3D "master"
-> -SRCREV =3D "2960431fd38239cc089c8738776f3ff9dcfe7f1c"
-> +SRCREV =3D "2512773c2d9da989e6a42c1e90b2b34496713072"
->=20
->  SRC_URI =3D " \
->  	git://gitorious.org/thermostat-demo/thermostat-
-> demo.git;protocol=3Dgit \ diff --git a/meta-arago-extras/recipes-qt/qt-
-> apps/quick-playground_1.0.bb b/meta-arago-extras/recipes-qt/qt-apps/quick=
--
-> playground_1.0.bb
-> index 5f493d3..2da5a36 100644
-> --- a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
-> +++ b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
-> @@ -6,10 +6,10 @@ LIC_FILES_CHKSUM =3D
-> "file://Licence.txt;md5=3D7cc88160b55ec5db6c6c5bb8e3238c0b"
->=20
->  require recipes-core/matrix/matrix-gui-paths.inc
->=20
-> -PR =3D "r1"
-> +PR =3D "r2"
->=20
->  BRANCH =3D "master"
-> -SRCREV =3D "0be45ce805147798c98b2dee65e41de67bfcea5d"
-> +SRCREV =3D "4bcf4e7f5aa68dcd28f54bf921c6cc3985ce4305"
->=20
->  SRC_URI =3D "git://arago-project.org/git/projects/qt4-
-> demos.git;protocol=3Dgit;branch=3D${BRANCH}"
->=20
-> --
-> 1.7.0.4
+<html>
+<head>
+<title>
+Status for 06/10/14
+</title>
+</head>
+<body>
+
+<h2>Status for 06/10/14</h2>
+
+<h2>BUILD_ID: build-2014-06-10_01-01-41</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.20</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am37x-evm</td>
+        <td id="am37x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am37x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am3517-evm</td>
+        <td id="am3517-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am3517-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>beagleboard</td>
+        <td id="beagleboard-build-result" bgcolor=red>FAILED</td>
+        <td id="beagleboard-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.05"<br>
+MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_160_858903479.1402382373250--
