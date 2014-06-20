@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
 	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 0950E52A0F
+	by arago-project.org (Postfix) with ESMTP id 419B952A63
 	for <meta-arago@arago-project.org>;
 	Fri, 20 Jun 2014 18:06:53 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173025.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H006QIBNF2VC0@vms173025.mailsrvcs.net> for
+	2009)) with ESMTPA id <0N7H005G7BNGMEC0@vms173025.mailsrvcs.net> for
 	meta-arago@arago-project.org; Fri, 20 Jun 2014 13:06:52 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 8AF09259AC; Fri,
+	by gandalf.denix.org (Postfix) with ESMTP id BEDDA259AD; Fri,
 	20 Jun 2014 13:57:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:42 -0400
-Message-id: <1403287009-11256-13-git-send-email-denis@denix.org>
+Date: Fri, 20 Jun 2014 13:56:43 -0400
+Message-id: <1403287009-11256-14-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 12/19] hostap-daemon: specify the branch being used for this version
+Subject: [PATCH 13/19] wpa-supplicant: specify the branch being used for this version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,35 +40,35 @@ Bitbake fetcher now requires the branch to be specified when SRCREV is not on ma
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb        | 1 +
- meta-arago-extras/recipes-connectivity/hostap/hostap.inc                | 2 +-
+ .../wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb                    | 1 +
+ .../recipes-connectivity/wpa-supplicant/wpa-supplicant.inc              | 2 +-
  2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
-index acd3c29..cd5d8d3 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
-@@ -16,6 +16,7 @@ PV = "2.0-devel-ti"
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
+index 6340967..bfe617e 100644
+--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
+@@ -12,6 +12,7 @@ FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
  
  # Tag: ol_r8.a8.10
  SRCREV = "257ab333aad993b4be81808524bc0d939c276058"
 +BRANCH = "mbss_suspend"
+ PR_append = "b+gitr${SRCPV}"
  
- PROVIDES += "hostap-daemon"
- RPROVIDES_${PN} += "hostap-daemon"
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-index 9be2585..15e82d5 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-@@ -18,7 +18,7 @@ INITSCRIPT_NAME="hostapd"
+ # Add ti to the PV to indicate that this is a TI modify version of wpa-supplicant.
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
+index 9678b1b..e0bda11 100644
+--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
+@@ -16,7 +16,7 @@ DEFAULT_PREFERENCE = "-1"
  
- CONFFILES_${PN} += "${sysconfdir}/hostapd.conf"
+ PR = "r6"
  
 -SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git \
 +SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git;branch=${BRANCH} \
-            file://0001-hostapd-change-conf-file-for-better-oob-startup.patch;patchdir=.. \
             file://defconfig \
- 	       file://init"
+            file://defaults-sane \
+            file://wpa-supplicant.sh \
 -- 
 2.0.0
 
