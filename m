@@ -1,37 +1,37 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 565B552A0F
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 0A2FD52A0F
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Jun 2014 20:15:02 +0000 (UTC)
+	Fri, 20 Jun 2014 20:15:16 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5KKF14n027443
-	for <meta-arago@arago-project.org>; Fri, 20 Jun 2014 15:15:01 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5KKF0sR025838
-	for <meta-arago@arago-project.org>; Fri, 20 Jun 2014 15:15:01 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5KKFGTq029508;
+	Fri, 20 Jun 2014 15:15:16 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5KKFGvp026651;
+	Fri, 20 Jun 2014 15:15:16 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Fri, 20 Jun 2014 15:15:01 -0500
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0174.001; Fri, 20 Jun 2014 15:15:16 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Maupin, Chase" <chase.maupin@ti.com>
-Thread-Topic: [meta-arago] [PATCH 02/19] linux-libc-headers: remove old
-	2.6.37	version
-Thread-Index: AQHPjLEYEUUJkghBL0OXAJ0UuNToc5t6r3OAgAABHoD//71OkIAAATyA
-Date: Fri, 20 Jun 2014 20:14:59 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6D654C@DFLE08.ent.ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 12/19] hostap-daemon: specify the branch
+	being used for this version
+Thread-Index: AQHPjLJummTmVNgFcEWHk/nODv/qmZt6sLmA//+si/CAAFouAP//t9mA
+Date: Fri, 20 Jun 2014 20:15:15 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C6D6558@DFLE08.ent.ti.com>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-	<1403287009-11256-3-git-send-email-denis@denix.org>
-	<7D46E86EC0A8354091174257B2FED1015D0D9033@DLEE11.ent.ti.com>
-	<20140620190849.GA1825@edge>
-	<8F29D6B095ED194EA1980491A5E029710C6D653B@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6D653B@DFLE08.ent.ti.com>
+	<1403287009-11256-13-git-send-email-denis@denix.org>
+	<7D46E86EC0A8354091174257B2FED1015D0D936D@DLEE11.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C6D63CF@DFLE08.ent.ti.com>
+	<20140620193328.GG1825@edge>
+In-Reply-To: <20140620193328.GG1825@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 02/19] linux-libc-headers: remove old 2.6.37	version
+Subject: Re: [PATCH 12/19] hostap-daemon: specify the branch being used for this version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,7 +44,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jun 2014 20:15:02 -0000
+X-List-Received-Date: Fri, 20 Jun 2014 20:15:17 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -52,84 +52,94 @@ Content-Transfer-Encoding: quoted-printable
 Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
 > -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
-> Sent: Friday, June 20, 2014 3:13 PM
-> To: Dmytriyenko, Denys; Maupin, Chase
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 02/19] linux-libc-headers: remove old 2.=
-6.37
-> version
+> From: Dmytriyenko, Denys
+> Sent: Friday, June 20, 2014 2:33 PM
+> To: Cooper Jr., Franklin
+> Cc: Maupin, Chase; Denys Dmytriyenko; meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH 12/19] hostap-daemon: specify the branch
+> being used for this version
+>=20
+> Yeah, if we can get someone from Wireless to confirm that would be great.=
+ I
+> just picked the first branch that contained the required commit ID.
 >=20
 >=20
->=20
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> > Sent: Friday, June 20, 2014 2:09 PM
-> > To: Maupin, Chase
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 02/19] linux-libc-headers: remove old
-> > 2.6.37 version
+> On Fri, Jun 20, 2014 at 07:28:43PM +0000, Cooper Jr., Franklin wrote:
+> > I'm not familiar with the git repos for these wireless packages. Do we =
+need
+> > our wireless friends to confirm these branches? Taking a quick glance i=
+t
+> > looks like this tag was based on the android_jb_mr1_39 branch but
+> > mbss_suspend is forked off of android_jb_mr1_39.
 > >
-> > Yes, 2.6 is just completely and utterly broken with newer toolchains,
-> > newer udev and newer kmod. Nothing builds anymore... I'll update commit
-> message.
-> >
-> >
-> > On Fri, Jun 20, 2014 at 07:04:49PM +0000, Maupin, Chase wrote:
-> > > I'm assuming this is because the legacy machines line am180x are
-> > > moving to using the mainline kernel?  A more detailed commit message
-> > > explaining this move would help.  Aside from that:
-> [Franklin] We talked about this sometime last year about removing old
-> machines. I think we should go ahead with that plan.
+> > > -----Original Message-----
+> > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > > bounces@arago-project.org] On Behalf Of Maupin, Chase
+> > > Sent: Friday, June 20, 2014 2:09 PM
+> > > To: Denys Dmytriyenko; meta-arago@arago-project.org
+> > > Subject: Re: [meta-arago] [PATCH 12/19] hostap-daemon: specify the
+> branch
+> > > being used for this version
 > > >
 > > > Acked-by: Chase Maupin <chase.maupin@ti.com>
-> > >
 > > >
 > > > >-----Original Message-----
 > > > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > > > >bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
 > > > >Sent: Friday, June 20, 2014 12:57 PM
 > > > >To: meta-arago@arago-project.org
-> > > >Subject: [meta-arago] [PATCH 02/19] linux-libc-headers: remove old
-> > > >2.6.37 version
+> > > >Subject: [meta-arago] [PATCH 12/19] hostap-daemon: specify the branc=
+h
+> > > >being used for this version
 > > > >
 > > > >From: Denys Dmytriyenko <denys@ti.com>
 > > > >
+> > > >Bitbake fetcher now requires the branch to be specified when SRCREV =
+is
+> > > >not on master
+> > > >
 > > > >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > > > >---
-> > > > .../linux-libc-headers/linux-libc-headers_2.6.37.2.bb          |
-> > > >10 ----------
-> > > > 1 file changed, 10 deletions(-)
-> > > > delete mode 100644 meta-arago-extras/recipes-kernel/linux-libc-
-> > > >headers/linux-libc-headers_2.6.37.2.bb
+> > > > .../recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
+> > > >| 1 +
+> > > > meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+> > > >| 2 +-
+> > > > 2 files changed, 2 insertions(+), 1 deletion(-)
 > > > >
-> > > >diff --git a/meta-arago-extras/recipes-kernel/linux-libc-
-> > > >headers/linux-libc-headers_2.6.37.2.bb b/meta-arago-
-> > > >extras/recipes-kernel/linux-libc-headers/linux-libc-
-> > > >headers_2.6.37.2.bb
-> > > >deleted file mode 100644
-> > > >index 5c00af5..0000000
-> > > >--- a/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-
-> > > >libc-headers_2.6.37.2.bb
-> > > >+++ /dev/null
-> > > >@@ -1,10 +0,0 @@
-> > > >-require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
-> > > >-
-> > > >-FILESEXTRAPATHS_append :=3D
-> > > >"${THISDIR}/${PN}:${COREBASE}/meta/recipes-kernel/linux-libc-
-> > > >headers/${PN}"
-> > > >-
-> > > >-PR =3D "r1"
-> > > >-
-> > > >-SRC_URI +=3D " file://connector-msg-size-fix.patch"
-> > > >-SRC_URI[md5sum] =3D "89f681bc7c917a84aa7470da6eed5101"
-> > > >-SRC_URI[sha256sum] =3D
-> > >
-> >
-> >"2920c4cd3e87fe40ebee96d28779091548867e1c36f71c1fc3d07e6d5802161f"
-> > > >-
+> > > >diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> > > >daemon-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-
+> > > >connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
+> > > >index acd3c29..cd5d8d3 100644
+> > > >--- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-
+> > > >wl18xx_r8.a8.10.bb
+> > > >+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-
+> > > >wl18xx_r8.a8.10.bb
+> > > >@@ -16,6 +16,7 @@ PV =3D "2.0-devel-ti"
+> > > >
+> > > > # Tag: ol_r8.a8.10
+> > > > SRCREV =3D "257ab333aad993b4be81808524bc0d939c276058"
+> > > >+BRANCH =3D "mbss_suspend"
+> > > >
+> > > > PROVIDES +=3D "hostap-daemon"
+> > > > RPROVIDES_${PN} +=3D "hostap-daemon"
+> > > >diff --git a/meta-arago-extras/recipes- connectivity/hostap/hostap.i=
+nc
+> > > >b/meta-arago-extras/recipes- connectivity/hostap/hostap.inc index
+> > > >9be2585..15e82d5 100644
+> > > >--- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+> > > >+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+> > > >@@ -18,7 +18,7 @@ INITSCRIPT_NAME=3D"hostapd"
+> > > >
+> > > > CONFFILES_${PN} +=3D "${sysconfdir}/hostapd.conf"
+> > > >
+> > > >-SRC_URI =3D "git://github.com/TI-OpenLink/hostap.git;protocol=3Dgit=
+ \
+> > > >+SRC_URI =3D "git://github.com/TI-
+> > > >OpenLink/hostap.git;protocol=3Dgit;branch=3D${BRANCH} \
+> > > >            file://0001-hostapd-change-conf-file-for-better-oob-
+> > > >startup.patch;patchdir=3D.. \
+> > > >            file://defconfig \
+> > > > 	       file://init"
 > > > >--
 > > > >2.0.0
 > > > >
@@ -145,8 +155,4 @@ Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 > > meta-arago mailing list
 > > meta-arago@arago-project.org
 > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
