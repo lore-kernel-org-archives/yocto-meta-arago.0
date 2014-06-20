@@ -1,34 +1,32 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 4448852A0F
+	by arago-project.org (Postfix) with ESMTPS id D49A752A0F
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Jun 2014 19:11:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5KJBa2i025451;
-	Fri, 20 Jun 2014 14:11:36 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5KJBaP6019780;
-	Fri, 20 Jun 2014 14:11:36 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Fri, 20 Jun 2014 14:11:36 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 19/19] arago.conf: update version, remove
-	FETCHCMD_wget workaround
-Thread-Index: AQHPjLEcF97zMd235E6oKl1rMs/WX5t6XYLg
-Date: Fri, 20 Jun 2014 19:11:35 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015D0D95A0@DLEE11.ent.ti.com>
+	Fri, 20 Jun 2014 19:13:13 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5KJDDXN026326;
+	Fri, 20 Jun 2014 14:13:13 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5KJDDHN007723;
+	Fri, 20 Jun 2014 14:13:13 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 20 Jun 2014 14:13:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5KJDCpL023849;
+	Fri, 20 Jun 2014 14:13:13 -0500
+Date: Fri, 20 Jun 2014 15:13:12 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20140620191312.GB1825@edge>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-	<1403287009-11256-20-git-send-email-denis@denix.org>
-In-Reply-To: <1403287009-11256-20-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	<1403287009-11256-18-git-send-email-denis@denix.org>
+	<8F29D6B095ED194EA1980491A5E029710C6D61C9@DFLE08.ent.ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 19/19] arago.conf: update version, remove FETCHCMD_wget workaround
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6D61C9@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 17/19] arago.conf: with unification on mainline, remove PACKAGE_ARCH logic
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,59 +39,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jun 2014 19:11:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 20 Jun 2014 19:13:14 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+I meant unification on mainline kernel, or at least the same version of the 
+kernel used for all our platforms.
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->Sent: Friday, June 20, 2014 12:57 PM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH 19/19] arago.conf: update version,
->remove FETCHCMD_wget workaround
->
->From: Denys Dmytriyenko <denys@ti.com>
->
->Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->---
-> meta-arago-distro/conf/distro/arago.conf | 5 +----
-> 1 file changed, 1 insertion(+), 4 deletions(-)
->
->diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-
->arago-distro/conf/distro/arago.conf
->index b652fda..7d916e3 100644
->--- a/meta-arago-distro/conf/distro/arago.conf
->+++ b/meta-arago-distro/conf/distro/arago.conf
->@@ -1,6 +1,6 @@
-> # Name and version of the distribution
-> DISTRO_NAME =3D "Arago"
->-DISTRO_VERSION =3D "2014.05"
->+DISTRO_VERSION =3D "2014.06"
->
-> # SDK paths and names
-> SDK_NAME_PREFIX =3D "arago"
->@@ -13,9 +13,6 @@ SDKPATH =3D "${@"/tmp/"+"x"*96+"/"+"y"*96}"
-> # Mask any broken recipes (currently none)
-> #BBMASK =3D ""
->
->-# Bump the connection timeout to 5 minutes to overcome slow proxy
->servers
->-FETCHCMD_wget =3D "/usr/bin/env wget -t 2 -T 300 -nv --passive-ftp
->--no-check-certificate"
->-
-> # Also build 32bit Pseudo on 64bit machines, fix error when
->preloading libpseudo.so
-> NO32LIBS =3D "0"
->
->--
->2.0.0
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+On the other hand, there's nothing to fix. If a package builds differently 
+when used with different linux-libc-headers version, then it should be rather 
+marked machine-specific. In other words, if it's generic to all armv7a 
+platforms, it shouldn't matter what linux-libc-headers it builds against, as 
+that provides kernel-userspace API and it should be rather stable.
+
+
+On Fri, Jun 20, 2014 at 07:08:52PM +0000, Cooper Jr., Franklin wrote:
+> Does this mean that a fix for this issue was pushed to mainline?
+> 
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> > Sent: Friday, June 20, 2014 12:57 PM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCH 17/19] arago.conf: with unification on mainline,
+> > remove PACKAGE_ARCH logic
+> > 
+> > From: Denys Dmytriyenko <denys@ti.com>
+> > 
+> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > ---
+> >  meta-arago-distro/conf/distro/arago.conf | 9 ---------
+> >  1 file changed, 9 deletions(-)
+> > 
+> > diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-
+> > distro/conf/distro/arago.conf
+> > index 7bd1de2..b652fda 100644
+> > --- a/meta-arago-distro/conf/distro/arago.conf
+> > +++ b/meta-arago-distro/conf/distro/arago.conf
+> > @@ -72,12 +72,3 @@ ENTERPRISE_DISTRO = "1"
+> >  # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
+> > # disable troublesome software.
+> >  LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg"
+> > -
+> > -# Some machines with the same architecture use different kernel versions.
+> > -# Set PACKAGE_ARCH to allow packages to be seperated by both architecture
+> > and -# linux-libc-headers version.
+> > -PACKAGE_ARCH := "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-
+> > headers}"
+> > -# Need to include the new PACKAGE_ARCH to the PACKAGE_ARCHS variable -
+> > PACKAGE_ARCHS += "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-
+> > headers}"
+> > -# Adjust some vars accordingly
+> > -STAGING_BINDIR_TOOLCHAIN =
+> > "${STAGING_DIR_NATIVE}${bindir_native}/${TUNE_PKGARCH}-
+> > ${PREFERRED_VERSION_linux-libc-headers}${TARGET_VENDOR}-
+> > ${TARGET_OS}"
+> > --
+> > 2.0.0
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
