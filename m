@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTP id 419B952A63
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTP id 6C25452A0F
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Jun 2014 18:06:53 +0000 (UTC)
+	Fri, 20 Jun 2014 18:06:57 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
+	by vms173023.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H005G7BNGMEC0@vms173025.mailsrvcs.net> for
+	2009)) with ESMTPA id <0N7H0094FBNGS7K0@vms173023.mailsrvcs.net> for
 	meta-arago@arago-project.org; Fri, 20 Jun 2014 13:06:52 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id BEDDA259AD; Fri,
+	by gandalf.denix.org (Postfix) with ESMTP id 79CEE255DD; Fri,
 	20 Jun 2014 13:57:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:43 -0400
-Message-id: <1403287009-11256-14-git-send-email-denis@denix.org>
+Date: Fri, 20 Jun 2014 13:56:40 -0400
+Message-id: <1403287009-11256-11-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 13/19] wpa-supplicant: specify the branch being used for this version
+Subject: [PATCH 10/19] gadget-init: LICENSE from oe-core has changed, update hash
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,43 +32,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jun 2014 18:06:53 -0000
+X-List-Received-Date: Fri, 20 Jun 2014 18:06:57 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Bitbake fetcher now requires the branch to be specified when SRCREV is not on master
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb                    | 1 +
- .../recipes-connectivity/wpa-supplicant/wpa-supplicant.inc              | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
-index 6340967..bfe617e 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
-@@ -12,6 +12,7 @@ FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
+diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
+index 477f16a..3f69c53 100644
+--- a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
++++ b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
+@@ -1,7 +1,7 @@
+ # This recipe is based on the recipe by Koen in meta-texasinstruments
+ DESCRIPTION = "Scripts to initialize usb gadgets"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
  
- # Tag: ol_r8.a8.10
- SRCREV = "257ab333aad993b4be81808524bc0d939c276058"
-+BRANCH = "mbss_suspend"
- PR_append = "b+gitr${SRCPV}"
- 
- # Add ti to the PV to indicate that this is a TI modify version of wpa-supplicant.
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-index 9678b1b..e0bda11 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-@@ -16,7 +16,7 @@ DEFAULT_PREFERENCE = "-1"
- 
- PR = "r6"
- 
--SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git \
-+SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git;branch=${BRANCH} \
-            file://defconfig \
-            file://defaults-sane \
-            file://wpa-supplicant.sh \
+ COMPATIBLE_MACHINE = "ti33x"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
 -- 
 2.0.0
 
