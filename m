@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
 	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTP id 4FA3B52A0F
+	by arago-project.org (Postfix) with ESMTP id 733B952A63
 	for <meta-arago@arago-project.org>;
 	Fri, 20 Jun 2014 18:06:52 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173019.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H007QQBNFVM50@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 20 Jun 2014 13:06:51 -0500 (CDT)
+	2009)) with ESMTPA id <0N7H00F36BNFAM20@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 20 Jun 2014 13:06:52 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id CD942259B2; Fri,
+	by gandalf.denix.org (Postfix) with ESMTP id C1E54259AF; Fri,
 	20 Jun 2014 13:57:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:47 -0400
-Message-id: <1403287009-11256-18-git-send-email-denis@denix.org>
+Date: Fri, 20 Jun 2014 13:56:44 -0400
+Message-id: <1403287009-11256-15-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 17/19] arago.conf: with unification on mainline, remove PACKAGE_ARCH logic
+Subject: [PATCH 14/19] toolchain-external: bb.which() is not part of bb.utils module
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,26 +38,19 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 9 ---------
- 1 file changed, 9 deletions(-)
+ meta-arago-distro/conf/distro/include/toolchain-external.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 7bd1de2..b652fda 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -72,12 +72,3 @@ ENTERPRISE_DISTRO = "1"
- # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
- # disable troublesome software.
- LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg"
--
--# Some machines with the same architecture use different kernel versions.
--# Set PACKAGE_ARCH to allow packages to be seperated by both architecture and
--# linux-libc-headers version.
--PACKAGE_ARCH := "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}"
--# Need to include the new PACKAGE_ARCH to the PACKAGE_ARCHS variable
--PACKAGE_ARCHS += "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}"
--# Adjust some vars accordingly
--STAGING_BINDIR_TOOLCHAIN = "${STAGING_DIR_NATIVE}${bindir_native}/${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}${TARGET_VENDOR}-${TARGET_OS}"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-external.inc b/meta-arago-distro/conf/distro/include/toolchain-external.inc
+index 5356082..4d14c00 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-external.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-external.inc
+@@ -1,4 +1,4 @@
+ # Locate the toolchain automatically from PATH
+-TOOLCHAIN_SYSPATH := "${@os.path.abspath(os.path.dirname(bb.which(d.getVar('PATH', d, 1), d.getVar('TOOLCHAIN_PREFIX', d, 1)+'cpp'))+'/../'+d.getVar('TOOLCHAIN_SYS', d, 1))}"
++TOOLCHAIN_SYSPATH := "${@os.path.abspath(os.path.dirname(bb.utils.which(d.getVar('PATH', d, 1), d.getVar('TOOLCHAIN_PREFIX', d, 1)+'cpp'))+'/../'+d.getVar('TOOLCHAIN_SYS', d, 1))}"
+ TOOLCHAIN_PATH := "${@bool(d.getVar('TOOLCHAIN_SYSPATH', d, 1)) and (os.path.exists(d.getVar('TOOLCHAIN_SYSPATH', d, 1)) and os.path.dirname(d.getVar('TOOLCHAIN_SYSPATH', d, 1)) or bb.fatal('No valid toolchain in PATH')) or ''}"
+ EXTERNAL_TOOLCHAIN = "${TOOLCHAIN_PATH}"
 -- 
 2.0.0
 
