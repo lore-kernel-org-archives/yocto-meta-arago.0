@@ -1,25 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 6C25452A0F
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id CE3E2529D7
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Jun 2014 18:06:57 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H0094FBNGS7K0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 20 Jun 2014 13:06:52 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 79CEE255DD; Fri,
-	20 Jun 2014 13:57:11 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:40 -0400
-Message-id: <1403287009-11256-11-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.0.0
-In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
+	Fri, 20 Jun 2014 19:03:08 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5KJ37jl021191;
+	Fri, 20 Jun 2014 14:03:07 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5KJ37jk029400;
+	Fri, 20 Jun 2014 14:03:07 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0174.001; Fri, 20 Jun 2014 14:03:07 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 01/19] README: update with Daisy info
+Thread-Index: AQHPjLEbVprG91w9KUakJjlhCeJNspt6WxQA
+Date: Fri, 20 Jun 2014 19:03:07 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015D0D8FBD@DLEE11.ent.ti.com>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 10/19] gadget-init: LICENSE from oe-core has changed, update hash
+	<1403287009-11256-2-git-send-email-denis@denix.org>
+In-Reply-To: <1403287009-11256-2-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Subject: Re: [PATCH 01/19] README: update with Daisy info
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,29 +40,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jun 2014 18:06:57 -0000
+X-List-Received-Date: Fri, 20 Jun 2014 19:03:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-From: Denys Dmytriyenko <denys@ti.com>
+Acked-by: Chase Maupin <chase.maupin@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-index 477f16a..3f69c53 100644
---- a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-+++ b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-@@ -1,7 +1,7 @@
- # This recipe is based on the recipe by Koen in meta-texasinstruments
- DESCRIPTION = "Scripts to initialize usb gadgets"
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
- 
- COMPATIBLE_MACHINE = "ti33x"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
--- 
-2.0.0
-
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+>Sent: Friday, June 20, 2014 12:57 PM
+>To: meta-arago@arago-project.org
+>Subject: [meta-arago] [PATCH 01/19] README: update with Daisy info
+>
+>From: Denys Dmytriyenko <denys@ti.com>
+>
+>Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>---
+> meta-arago-distro/README | 12 ++++++------
+> meta-arago-extras/README | 12 ++++++------
+> 2 files changed, 12 insertions(+), 12 deletions(-)
+>
+>diff --git a/meta-arago-distro/README b/meta-arago-distro/README
+>index aed3b58..05b0261 100644
+>--- a/meta-arago-distro/README
+>+++ b/meta-arago-distro/README
+>@@ -1,24 +1,24 @@
+> meta-arago-distro provides Arago distribution configuration for
+>TI SDK products
+>
+>-This layer works with the latest Yocto Project release (currently
+>1.5) and tracks
+>-the stable/maintenance branches (currently "dora") of the
+>corresponding layers:
+>+This layer works with the latest Yocto Project release (currently
+>1.6) and tracks
+>+the stable/maintenance branches (currently "daisy") of the
+>corresponding layers:
+>
+> URI: git://git.openembedded.org/openembedded-core
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+> layers: meta
+>
+> URI: git://git.openembedded.org/meta-openembedded
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+> layers: meta-oe, toolchain-layer, meta-networking
+>
+> URI: git://arago-project.org/git/meta-ti
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+>
+> URI: git://git.linaro.org/openembedded/meta-linaro
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+> layers: meta-linaro-toolchain
+>
+>diff --git a/meta-arago-extras/README b/meta-arago-extras/README
+>index f303d14..1c6e8e5 100644
+>--- a/meta-arago-extras/README
+>+++ b/meta-arago-extras/README
+>@@ -1,24 +1,24 @@
+> meta-arago-extras provides additional TI SDK applications that
+>are distro-agnostic
+>
+>-This layer works with the latest Yocto Project release (currently
+>1.5) and tracks
+>-the stable/maintenance branches (currently "dora") of the
+>corresponding layers:
+>+This layer works with the latest Yocto Project release (currently
+>1.6) and tracks
+>+the stable/maintenance branches (currently "daisy") of the
+>corresponding layers:
+>
+> URI: git://git.openembedded.org/openembedded-core
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+> layers: meta
+>
+> URI: git://git.openembedded.org/meta-openembedded
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+> layers: meta-oe, toolchain-layers, meta-networking
+>
+> URI: git://arago-project.org/git/meta-ti
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+>
+> URI: git://git.linaro.org/openembedded/meta-linaro
+>-branch: dora
+>+branch: daisy
+> revision: HEAD
+> layers: meta-linaro-toolchain
+>
+>--
+>2.0.0
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
