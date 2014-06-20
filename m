@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 4F563529C3
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id E84BB529C3
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Jun 2014 17:57:20 +0000 (UTC)
+	Fri, 20 Jun 2014 17:57:21 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
+	by vms173019.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H00AATB7B0PU0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 20 Jun 2014 12:57:11 -0500 (CDT)
+	2009)) with ESMTPA id <0N7H0096PB757KF0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 20 Jun 2014 12:57:06 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 62F7E24A71; Fri,
-	20 Jun 2014 13:57:11 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 62DF320184; Fri,
+	20 Jun 2014 13:57:05 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:37 -0400
-Message-id: <1403287009-11256-8-git-send-email-denis@denix.org>
+Date: Fri, 20 Jun 2014 13:56:31 -0400
+Message-id: <1403287009-11256-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 07/19] libjpeg-turbo: remove bbappend for SVN URI, as main recipe uses tarball now
+Subject: [PATCH 01/19] README: update with Daisy info
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,25 +32,86 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jun 2014 17:57:20 -0000
+X-List-Received-Date: Fri, 20 Jun 2014 17:57:22 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend | 3 ---
- 1 file changed, 3 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend
+ meta-arago-distro/README | 12 ++++++------
+ meta-arago-extras/README | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend b/meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend
-deleted file mode 100644
-index 23949aa..0000000
---- a/meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend
-+++ /dev/null
-@@ -1,3 +0,0 @@
--python __anonymous () {
--    d.setVar("SRC_URI", d.getVar("SRC_URI").replace("protocol=svn", "protocol=http"))
--}
+diff --git a/meta-arago-distro/README b/meta-arago-distro/README
+index aed3b58..05b0261 100644
+--- a/meta-arago-distro/README
++++ b/meta-arago-distro/README
+@@ -1,24 +1,24 @@
+ meta-arago-distro provides Arago distribution configuration for TI SDK products
+ 
+-This layer works with the latest Yocto Project release (currently 1.5) and tracks
+-the stable/maintenance branches (currently "dora") of the corresponding layers:
++This layer works with the latest Yocto Project release (currently 1.6) and tracks
++the stable/maintenance branches (currently "daisy") of the corresponding layers:
+ 
+ URI: git://git.openembedded.org/openembedded-core
+-branch: dora
++branch: daisy
+ revision: HEAD
+ layers: meta
+ 
+ URI: git://git.openembedded.org/meta-openembedded
+-branch: dora
++branch: daisy
+ revision: HEAD
+ layers: meta-oe, toolchain-layer, meta-networking
+ 
+ URI: git://arago-project.org/git/meta-ti
+-branch: dora
++branch: daisy
+ revision: HEAD
+ 
+ URI: git://git.linaro.org/openembedded/meta-linaro
+-branch: dora
++branch: daisy
+ revision: HEAD
+ layers: meta-linaro-toolchain
+ 
+diff --git a/meta-arago-extras/README b/meta-arago-extras/README
+index f303d14..1c6e8e5 100644
+--- a/meta-arago-extras/README
++++ b/meta-arago-extras/README
+@@ -1,24 +1,24 @@
+ meta-arago-extras provides additional TI SDK applications that are distro-agnostic
+ 
+-This layer works with the latest Yocto Project release (currently 1.5) and tracks
+-the stable/maintenance branches (currently "dora") of the corresponding layers:
++This layer works with the latest Yocto Project release (currently 1.6) and tracks
++the stable/maintenance branches (currently "daisy") of the corresponding layers:
+ 
+ URI: git://git.openembedded.org/openembedded-core
+-branch: dora
++branch: daisy
+ revision: HEAD
+ layers: meta
+ 
+ URI: git://git.openembedded.org/meta-openembedded
+-branch: dora
++branch: daisy
+ revision: HEAD
+ layers: meta-oe, toolchain-layers, meta-networking
+ 
+ URI: git://arago-project.org/git/meta-ti
+-branch: dora
++branch: daisy
+ revision: HEAD
+ 
+ URI: git://git.linaro.org/openembedded/meta-linaro
+-branch: dora
++branch: daisy
+ revision: HEAD
+ layers: meta-linaro-toolchain
+ 
 -- 
 2.0.0
 
