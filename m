@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 2A1DA529D7
+	by arago-project.org (Postfix) with ESMTP id 4F563529C3
 	for <meta-arago@arago-project.org>;
 	Fri, 20 Jun 2014 17:57:20 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173023.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H009WJB7BOFI0@vms173023.mailsrvcs.net> for
+	2009)) with ESMTPA id <0N7H00AATB7B0PU0@vms173023.mailsrvcs.net> for
 	meta-arago@arago-project.org; Fri, 20 Jun 2014 12:57:11 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 5165D22F54; Fri,
-	20 Jun 2014 13:57:10 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 62F7E24A71; Fri,
+	20 Jun 2014 13:57:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:36 -0400
-Message-id: <1403287009-11256-7-git-send-email-denis@denix.org>
+Date: Fri, 20 Jun 2014 13:56:37 -0400
+Message-id: <1403287009-11256-8-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 06/19] linux-ti-staging: remove 3.8 bbappend, as recipe is gone from meta-ti
+Subject: [PATCH 07/19] libjpeg-turbo: remove bbappend for SVN URI, as main recipe uses tarball now
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,32 +38,18 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-kernel/linux/linux-ti-staging_3.8.bbappend  | 17 -----------------
- 1 file changed, 17 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
+ meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend | 3 ---
+ 1 file changed, 3 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
+diff --git a/meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend b/meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend
 deleted file mode 100644
-index b20c63a..0000000
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
+index 23949aa..0000000
+--- a/meta-arago-distro/recipes-core/jpeg/libjpeg-turbo_svn.bbappend
 +++ /dev/null
-@@ -1,17 +0,0 @@
--MACHINE_KERNEL_PR_append = "-arago6"
--
--FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
--
--require copy-defconfig.inc
--
--KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
--
--# The below lines are overlayed until the LOCALVERSION change is merged into
--# the oe-core danny branch. Update: not coming to danny, keep until dylan.
--kernel_do_configure_prepend() {
--    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
--    then
--        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
--        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
--    fi
+@@ -1,3 +0,0 @@
+-python __anonymous () {
+-    d.setVar("SRC_URI", d.getVar("SRC_URI").replace("protocol=svn", "protocol=http"))
 -}
 -- 
 2.0.0
