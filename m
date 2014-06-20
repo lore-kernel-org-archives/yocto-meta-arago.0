@@ -1,25 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 04BC7529C3
+	by arago-project.org (Postfix) with ESMTP id 2A1DA529D7
 	for <meta-arago@arago-project.org>;
 	Fri, 20 Jun 2014 17:57:20 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173023.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N7H00FRJB75UMP0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 20 Jun 2014 12:57:06 -0500 (CDT)
+	2009)) with ESMTPA id <0N7H009WJB7BOFI0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 20 Jun 2014 12:57:11 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 70EA1201C2; Fri,
-	20 Jun 2014 13:57:05 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 5165D22F54; Fri,
+	20 Jun 2014 13:57:10 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 20 Jun 2014 13:56:32 -0400
-Message-id: <1403287009-11256-3-git-send-email-denis@denix.org>
+Date: Fri, 20 Jun 2014 13:56:36 -0400
+Message-id: <1403287009-11256-7-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
 In-reply-to: <1403287009-11256-1-git-send-email-denis@denix.org>
 References: <1403287009-11256-1-git-send-email-denis@denix.org>
-Subject: [PATCH 02/19] linux-libc-headers: remove old 2.6.37 version
+Subject: [PATCH 06/19] linux-ti-staging: remove 3.8 bbappend, as recipe is gone from meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,26 +38,33 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../linux-libc-headers/linux-libc-headers_2.6.37.2.bb          | 10 ----------
- 1 file changed, 10 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb
+ .../recipes-kernel/linux/linux-ti-staging_3.8.bbappend  | 17 -----------------
+ 1 file changed, 17 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
 
-diff --git a/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb b/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
 deleted file mode 100644
-index 5c00af5..0000000
---- a/meta-arago-extras/recipes-kernel/linux-libc-headers/linux-libc-headers_2.6.37.2.bb
+index b20c63a..0000000
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.8.bbappend
 +++ /dev/null
-@@ -1,10 +0,0 @@
--require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+@@ -1,17 +0,0 @@
+-MACHINE_KERNEL_PR_append = "-arago6"
 -
--FILESEXTRAPATHS_append := "${THISDIR}/${PN}:${COREBASE}/meta/recipes-kernel/linux-libc-headers/${PN}"
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 -
--PR = "r1"
+-require copy-defconfig.inc
 -
--SRC_URI += " file://connector-msg-size-fix.patch"
--SRC_URI[md5sum] = "89f681bc7c917a84aa7470da6eed5101"
--SRC_URI[sha256sum] = "2920c4cd3e87fe40ebee96d28779091548867e1c36f71c1fc3d07e6d5802161f"
+-KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
 -
+-# The below lines are overlayed until the LOCALVERSION change is merged into
+-# the oe-core danny branch. Update: not coming to danny, keep until dylan.
+-kernel_do_configure_prepend() {
+-    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
+-    then
+-        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
+-        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
+-    fi
+-}
 -- 
 2.0.0
 
