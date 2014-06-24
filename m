@@ -1,27 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 1432252A42
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTP id C1599529C8
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Jun 2014 02:33:15 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5O2XEjU010810
-	for <meta-arago@arago-project.org>; Mon, 23 Jun 2014 21:33:14 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5O2XEqE007077
-	for <meta-arago@arago-project.org>; Mon, 23 Jun 2014 21:33:14 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 23 Jun 2014 21:33:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5O2XDid011922	for
-	<meta-arago@arago-project.org>; Mon, 23 Jun 2014 21:33:13 -0500
-Date: Mon, 23 Jun 2014 22:33:12 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20140624023312.GM6700@edge>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Matrix license
+	Tue, 24 Jun 2014 03:17:12 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N7N00122L4OMZC0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 23 Jun 2014 22:17:12 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id ECB2E200BD; Mon,
+	23 Jun 2014 23:17:11 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 23 Jun 2014 23:17:08 -0400
+Message-id: <1403579830-27590-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.0.0
+Subject: [PATCH 1/3] u-boot-am37x: remove old machine-specific bbappend
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,15 +30,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jun 2014 02:33:15 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 24 Jun 2014 03:17:13 -0000
 
-Franklin,
+From: Denys Dmytriyenko <denys@ti.com>
 
-Do you know the exact version of CC-BY-SA that matrix and matrix-gui-apps are 
-released under?
+Also remove left-over from previous commit with empty linux-omapl138-psp config
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-bsp/u-boot/u-boot-am37x_2012.04.01.bbappend | 4 ----
+ .../linux/linux-omapl138-psp-2.6.37/am180x-evm/configs/empty          | 0
+ 2 files changed, 4 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-am37x_2012.04.01.bbappend
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-omapl138-psp-2.6.37/am180x-evm/configs/empty
+
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-am37x_2012.04.01.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-am37x_2012.04.01.bbappend
+deleted file mode 100644
+index 580d8dc..0000000
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-am37x_2012.04.01.bbappend
++++ /dev/null
+@@ -1,4 +0,0 @@
+-PR_append = "-arago0"
+-
+-UVER = "2012.04.01"
+-PSPREL = "mainline"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-omapl138-psp-2.6.37/am180x-evm/configs/empty b/meta-arago-distro/recipes-kernel/linux/linux-omapl138-psp-2.6.37/am180x-evm/configs/empty
+deleted file mode 100644
+index e69de29..0000000
 -- 
-Denys
+2.0.0
+
 
