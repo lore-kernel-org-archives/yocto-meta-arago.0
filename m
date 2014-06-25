@@ -1,28 +1,31 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0295352A71
+	by arago-project.org (Postfix) with ESMTPS id 316D752A80
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Jun 2014 17:01:32 +0000 (UTC)
+	Wed, 25 Jun 2014 17:05:46 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5PH1Wpl008872
-	for <meta-arago@arago-project.org>; Wed, 25 Jun 2014 12:01:32 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5PH1WOW000321
-	for <meta-arago@arago-project.org>; Wed, 25 Jun 2014 12:01:32 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 25 Jun 2014 12:01:31 -0500
-Received: from localhost.localdomain (dbdp20.itg.ti.com [172.24.170.38])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5PH1SAw030844;
-	Wed, 25 Jun 2014 12:01:30 -0500
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 25 Jun 2014 12:01:27 -0500
-Message-ID: <1403715687-3620-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.0.4
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s5PH5jb9011347
+	for <meta-arago@arago-project.org>; Wed, 25 Jun 2014 12:05:45 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5PH5jNt004210
+	for <meta-arago@arago-project.org>; Wed, 25 Jun 2014 12:05:45 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 25 Jun 2014 12:05:45 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s5PH5i5N025079;
+	Wed, 25 Jun 2014 12:05:45 -0500
+Date: Wed, 25 Jun 2014 13:05:43 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20140625170543.GX6700@edge>
+References: <20140624023312.GM6700@edge> <20140625161551.GW6700@edge>
+	<8F29D6B095ED194EA1980491A5E029710C6D74A3@DFLE08.ent.ti.com>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH v2] packagegroup-arago-tisdk-addons: Add valgrind
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6D74A3@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: Matrix license
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,40 +38,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jun 2014 17:01:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 25 Jun 2014 17:05:46 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Add valgrind to aide users in debugging userspace applications.
+On Wed, Jun 25, 2014 at 12:53:05PM -0400, Cooper Jr., Franklin wrote:
+> The license for Matrix is BSD v3 and MIT. Matrix apps we have it licensed to 
+> CC BY-SA 3.0 but I have no idea why we selected that.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 2 changes:
-Check for arm architecture instead of checking based on SOC family
+Thanks.
 
- .../packagegroup-arago-tisdk-addons.bb             |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 6fe9d41..958db56 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r16"
-+PR = "r17"
- 
- inherit packagegroup
- 
-@@ -18,6 +18,7 @@ UTILS = " \
-     openssh-sftp-server \
-     ptpd \
-     libdrm-kms \
-+    ${@base_contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
- "
- 
- UTILS_UBOOT_FW = "u-boot-fw-utils"
--- 
-1.7.0.4
-
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Wednesday, June 25, 2014 11:16 AM
+> > To: meta-arago@arago-project.org
+> > Cc: Cooper Jr., Franklin
+> > Subject: Re: [meta-arago] Matrix license
+> > 
+> > Ping.
+> > 
+> > On Mon, Jun 23, 2014 at 10:33:12PM -0400, Denys Dmytriyenko wrote:
+> > > Franklin,
+> > >
+> > > Do you know the exact version of CC-BY-SA that matrix and
+> > > matrix-gui-apps are released under?
+> > >
+> > > --
+> > > Denys
+> > > _______________________________________________
+> > > meta-arago mailing list
+> > > meta-arago@arago-project.org
+> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
