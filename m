@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0EC66529D5
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 74F9352A78
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Jul 2014 05:57:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s615vCBv029586
-	for <meta-arago@arago-project.org>; Tue, 1 Jul 2014 00:57:12 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s615vCWw009548
-	for <meta-arago@arago-project.org>; Tue, 1 Jul 2014 00:57:12 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 1 Jul 2014 00:57:11 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s615vBuP008955	for <meta-arago@arago-project.org>;
-	Tue, 1 Jul 2014 00:57:11 -0500
-Date: Tue, 1 Jul 2014 01:40:15 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	Tue,  1 Jul 2014 15:24:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s61FOg2l010669
+	for <meta-arago@arago-project.org>; Tue, 1 Jul 2014 10:24:42 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s61FOgKK024310
+	for <meta-arago@arago-project.org>; Tue, 1 Jul 2014 10:24:42 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 1 Jul 2014 10:24:42 -0500
+Received: from sdit-build04.dal.design.ti.com (dbdp20.itg.ti.com
+	[172.24.170.38])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s61FOceT031064;	Tue, 1 Jul 2014 10:24:40 -0500
+From: Chase Maupin <Chase.Maupin@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1752879314.253.1404193215910.JavaMail.jenkins@puget>
+Date: Tue, 1 Jul 2014 10:24:37 -0500
+Message-ID: <1404228277-7421-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.06 build 2014-07-01_01-00-30
+Subject: [PATCH] Add am57xx-evm support and use dra7xx SOC_FAMILY
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,188 +34,240 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Jul 2014 05:57:13 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_252_1535298917.1404193215909"
+X-List-Received-Date: Tue, 01 Jul 2014 15:24:44 -0000
+Content-Type: text/plain
 
-------=_Part_252_1535298917.1404193215909
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+* Update the packages and appends in meta-arago to use the dra7xx
+  SOC_FAMILY and add support for the am57xx-evm machine type.
 
-<html>
-<head>
-<title>
-Status for 07/01/14
-</title>
-</head>
-<body>
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+---
+ .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          |    4 ++--
+ .../openssl/openssl_1.0.1e.bbappend                |    3 +++
+ .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
+ .../packagegroups/packagegroup-arago-gst.bb        |    2 +-
+ .../packagegroups/packagegroup-arago-test.bb       |    3 ++-
+ .../packagegroup-arago-tisdk-crypto-sdk-host.bb    |    2 +-
+ .../packagegroup-arago-tisdk-crypto-sdk-target.bb  |    2 +-
+ .../packagegroup-arago-tisdk-crypto.bb             |    2 +-
+ .../packagegroup-arago-tisdk-multimedia.bb         |    8 +++++++-
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    4 ++--
+ .../matrix/matrix-gui-crypto-demos_2.0.bb          |    4 ++--
+ .../amsdk-av-files/amsdk-av-files_1.1.bb           |    2 +-
+ 12 files changed, 24 insertions(+), 14 deletions(-)
 
-<h2>Status for 07/01/14</h2>
+diff --git a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+index e855e8b..232301f 100644
+--- a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
++++ b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+@@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ FWVER = "eng-4-gb9283b0"
+ PR = "r0+${FWVER}"
+ 
+-COMPATIBLE_MACHINE = "omap5-evm|dra7xx-evm"
++COMPATIBLE_MACHINE = "omap5-evm|dra7xx"
+ 
+ INHIBIT_PACKAGE_STRIP = "1"
+ INSANE_SKIP_${PN} = "arch"
+@@ -20,7 +20,7 @@ SRC_URI[md5sum] = "4fcba6844949ea909131684a80233800"
+ SRC_URI[sha256sum] = "3b90b195c382937551251055aaa9185627e86027c91fb41a594dc390391d5fb6"
+ 
+ FW_FILES_omap5-evm = "tesla-dsp.xe64T ducati-m3-core0.xem3"
+-FW_FILES_dra7xx-evm = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66 dra7-ipu1-fw.xem4 dra7-ipu2-fw.xem4"
++FW_FILES_dra7xx = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66 dra7-ipu1-fw.xem4 dra7-ipu2-fw.xem4"
+ 
+ do_compile() {
+     :
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
+index 9b6bf00..f58edb5 100644
+--- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
+@@ -17,12 +17,14 @@ PR_append = "-arago9"
+ DEPENDS_append_ti33x_class-target = " cryptodev"
+ DEPENDS_append_ti43x_class-target = " cryptodev"
+ DEPENDS_append_dra7xx-evm_class-target = " cryptodev"
++DEPENDS_append_am57xx-evm_class-target = " cryptodev"
+ 
+ python __anonymous () {
+     crypdep = d.getVar("DEPENDS").replace("ocf-linux ", "")
+     d.setVar("DEPENDS_ti33x_class-target", crypdep)
+     d.setVar("DEPENDS_ti43x_class-target", crypdep)
+     d.setVar("DEPENDS_dra7xx-evm_class-target", crypdep)
++    d.setVar("DEPENDS_am57xx-evm_class-target", crypdep)
+ }
+ 
+ CRYPTODEV_AFALG_PATCHES = " \
+@@ -36,6 +38,7 @@ CRYPTODEV_AFALG_PATCHES = " \
+ SRC_URI_append_ti33x_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+ SRC_URI_append_ti43x_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+ SRC_URI_append_dra7xx-evm_class-target = "${CRYPTODEV_AFALG_PATCHES}"
++SRC_URI_append_am57xx-evm_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+ 
+ # Override do_configure to replace target with linux-armv4 to enable ASM code
+ # optimization for ARM arch (including armv7) for extra performance
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index c38e277..2932714 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -19,7 +19,7 @@ TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev libgnutls-extra26 libgnutls-openssl2
+ DTB_FILTER = "unknown"
+ DTB_FILTER_ti33x = "am335x"
+ DTB_FILTER_omap5-evm = "omap5"
+-DTB_FILTER_dra7xx-evm = "dra7"
++DTB_FILTER_dra7xx = "dra7"
+ DTB_FILTER_ti43x = "am43"
+ DTB_FILTER_keystone = "k2hk"
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+index 9e35f26..03a04c4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+@@ -16,7 +16,7 @@ GSTREAMER = " \
+ 
+ GSTREAMER_ACCEL_MM = ""
+ GSTREAMER_ACCEL_MM_omap-a15 = "gst-plugins-ducati"
+-GSTREAMER_ACCEL_MM_append_dra7xx-evm = " gst-plugins-vpe"
++GSTREAMER_ACCEL_MM_append_dra7xx = " gst-plugins-vpe"
+ 
+ RDEPENDS_${PN} = "\
+     ${GSTREAMER} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index b8b85a0..54d44e1 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -22,6 +22,7 @@ ARAGO_TEST = "\
+     yavta \
+     "
+ 
++ARAGO_TI_TEST_am57xx-evm = ""
+ ARAGO_TI_TEST = "\
+     ltp-ddt \
+     input-utils \
+@@ -36,7 +37,7 @@ ARAGO_TI_TEST_append_omap-a15 = " \
+     bvtest \
+     "
+ 
+-ARAGO_TI_TEST_append_dra7xx-evm = " \
++ARAGO_TI_TEST_append_dra7xx = " \
+     vpe-vpdma \
+     "
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+index bb406d7..492e174 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+@@ -13,7 +13,7 @@ CRYPTO_RDEPENDS_append_ti43x = " ti-crypto-examples-src"
+ 
+ CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
+ CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
+-CRYPTO_RDEPENDS_append_dra7xx-evm = " cryptodev-module-src"
++CRYPTO_RDEPENDS_append_dra7xx = " cryptodev-module-src"
+ 
+ CRYPTO_RDEPENDS_append_am37x-evm = "\
+     ti-ocf-crypto-module-src \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
+index fa14649..b3df987 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
+@@ -10,7 +10,7 @@ CRYPTO_API = "ocf-linux-dev"
+ 
+ CRYPTO_API_ti33x = "cryptodev-module-dev"
+ CRYPTO_API_ti43x = "cryptodev-module-dev"
+-CRYPTO_API_dra7xx-evm = "cryptodev-module-dev"
++CRYPTO_API_dra7xx = "cryptodev-module-dev"
+ 
+ RDEPENDS_${PN} = "\
+     openssl-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+index e6b6ec4..53a914b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+@@ -17,7 +17,7 @@ CRYPTO_SUPPORT = "\
+ 
+ CRYPTO_SUPPORT_append_ti33x = " ti-crypto-examples cryptodev-module cryptodev-tests"
+ CRYPTO_SUPPORT_append_ti43x = " ti-crypto-examples cryptodev-module cryptodev-tests"
+-CRYPTO_SUPPORT_append_dra7xx-evm = " ti-crypto-examples cryptodev-module cryptodev-tests"
++CRYPTO_SUPPORT_append_dra7xx = " ti-crypto-examples cryptodev-module cryptodev-tests"
+ 
+ # Add crypto hardware support for am37x-evm
+ # NOTE: this package depends on a kernel patch which also has a TSU
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index ab88609..b044f58 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -39,10 +39,16 @@ MULTIMEDIA_append_am3517-evm = " \
+ "
+ 
+ ACCEL_FW = ""
+-ACCEL_FW_append_omap-a15 = " \
++ACCEL_FW_append_am57xx-evm = " \
+     ipumm-fw \
+     "
++
++ACCEL_FW_append_omap5-evm = " \
++    ipumm-fw \
++    "
++
+ ACCEL_FW_append_dra7xx-evm = " \
++    ipumm-fw \
+     dspdce-fw \
+     vis \
+     "
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index ab4244c..749fb72 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -80,7 +80,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
+                            cryptodev \
+ "
+ 
+-MAKEFILES_append_dra7xx-evm = " cryptodev"
++MAKEFILES_append_dra7xx = " cryptodev"
+ 
+ MAKEFILES_append_omap-a15 = " u-boot-spl \
+                               ${QUICK_PLAYGROUND} \
+@@ -101,7 +101,7 @@ KERNEL_DEVICETREE_ti33x = "am335x-evm.dtb am335x-evmsk.dtb am335x-bone.dtb am335
+ KERNEL_DEVICETREE_ti43x = "am43x-epos-evm.dtb am437x-gp-evm.dtb"
+ KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb"
+ KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
+-KERNEL_DEVICETREE_dra7xx-evm = "dra7-evm.dtb"
++KERNEL_DEVICETREE_dra7xx = "dra7-evm.dtb"
+ 
+ # This step will stitch together the final Makefile based on the supported
+ # make targets.
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+index 698749c..92fc916 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+@@ -11,7 +11,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ S = "${WORKDIR}/git/cryptos_apps_scripts"
+ S_ti33x = "${WORKDIR}/git/cryptos_apps_program"
+ S_ti43x = "${WORKDIR}/git/cryptos_apps_program"
+-S_dra7xx-evm = "${WORKDIR}/git/cryptos_apps_program"
++S_dra7xx = "${WORKDIR}/git/cryptos_apps_program"
+ 
+ SRC_URI += "file://0001-openssl_perf.sh-remove-module-manipulation.patch;striplevel=2"
+ 
+@@ -22,4 +22,4 @@ RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl"
+ 
+ RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
+ RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
+-RDEPENDS_${PN}_append_dra7xx-evm = " ti-crypto-examples"
++RDEPENDS_${PN}_append_dra7xx = " ti-crypto-examples"
+diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb
+index 553ead5..e23fdf3 100644
+--- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb
++++ b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb
+@@ -14,7 +14,7 @@ VIDEO_FILES_append_beagleboard = "video_vga"
+ VIDEO_FILES_append_am3517-evm  = "video_wqvga"
+ VIDEO_FILES_append_am335x-evm  = "video_wvga \
+ 				                  video_wqvga"
+-VIDEO_FILES_append_dra7xx-evm  = "video_wvga"
++VIDEO_FILES_append_dra7xx  = "video_wvga"
+ 
+ SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/564/5179/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
+ 
+-- 
+1.7.9.5
 
-<h2>BUILD_ID: build-2014-07-01_01-01-32</h2>
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.20</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.06"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_252_1535298917.1404193215909--
