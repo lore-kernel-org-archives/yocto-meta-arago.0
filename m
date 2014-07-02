@@ -1,39 +1,27 @@
 Return-Path: <chase.maupin@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 0F9C55298B
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C9D1252A80
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Jul 2014 13:56:00 +0000 (UTC)
+	Wed,  2 Jul 2014 14:36:23 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s62DtxBR021274;
-	Wed, 2 Jul 2014 08:55:59 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s62Dtxie011040;
-	Wed, 2 Jul 2014 08:55:59 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0174.001; Wed, 2 Jul 2014 08:55:59 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] tisdk-image.bbclass: update for the new
-	rootfs/image infrastructure
-Thread-Index: AQHPlWGMg1tASeMrv0aWWahAN004L5uLtrVggAEIeDCAAFyeAP//sEjQgABXBID//6y/cA==
-Date: Wed, 2 Jul 2014 13:55:58 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015D1094FA@DLEE11.ent.ti.com>
-References: <1404242399-15206-1-git-send-email-denis@denix.org>
-	<8F29D6B095ED194EA1980491A5E029710C6D8314@DFLE08.ent.ti.com>
-	<7D46E86EC0A8354091174257B2FED1015D108C96@DLEE11.ent.ti.com>
-	<20140702132728.GM15788@edge>
-	<7D46E86EC0A8354091174257B2FED1015D10936D@DLEE11.ent.ti.com>
-	<20140702135335.GQ15788@edge>
-In-Reply-To: <20140702135335.GQ15788@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s62EaNp6007881
+	for <meta-arago@arago-project.org>; Wed, 2 Jul 2014 09:36:23 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s62EaNnf017221
+	for <meta-arago@arago-project.org>; Wed, 2 Jul 2014 09:36:23 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 2 Jul 2014 09:36:22 -0500
+Received: from sdit-build04.dal.design.ti.com (dbdp20.itg.ti.com
+	[172.24.170.38])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s62EaJ5O014185;	Wed, 2 Jul 2014 09:36:21 -0500
+From: Chase Maupin <Chase.Maupin@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 2 Jul 2014 09:36:18 -0500
+Message-ID: <1404311778-16048-1-git-send-email-Chase.Maupin@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
-	Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH] tisdk-image.bbclass: update for the new rootfs/image infrastructure
+Subject: [PATCH] arago-prefs: Use u-boot-ti-staging instead of mainline
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,346 +34,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jul 2014 13:56:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 Jul 2014 14:36:24 -0000
+Content-Type: text/plain
 
->-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Wednesday, July 02, 2014 8:54 AM
->To: Maupin, Chase
->Cc: Cooper Jr., Franklin; Denys Dmytriyenko; meta-arago@arago-
->project.org
->Subject: Re: [meta-arago] [PATCH] tisdk-image.bbclass: update for
->the new rootfs/image infrastructure
->
->On Wed, Jul 02, 2014 at 09:44:11AM -0400, Maupin, Chase wrote:
->> >-----Original Message-----
->> >From: Dmytriyenko, Denys
->> >Sent: Wednesday, July 02, 2014 8:27 AM
->> >To: Maupin, Chase
->> >Cc: Cooper Jr., Franklin; Denys Dmytriyenko; meta-arago@arago-
->> >project.org
->> >Subject: Re: [meta-arago] [PATCH] tisdk-image.bbclass: update
->for
->> >the new rootfs/image infrastructure
->> >
->> >On Wed, Jul 02, 2014 at 01:00:17PM +0000, Maupin, Chase wrote:
->> >> >-----Original Message-----
->> >> >From: meta-arago-bounces@arago-project.org [mailto:meta-
->arago-
->> >> >bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
->> >> >Sent: Tuesday, July 01, 2014 4:10 PM
->> >> >To: Denys Dmytriyenko; meta-arago@arago-project.org
->> >> >Subject: Re: [meta-arago] [PATCH] tisdk-image.bbclass:
->update
->> >for
->> >> >the new rootfs/image infrastructure
->> >> >
->> >> >Thanks for this!
->> >> >Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
->> >> >
->> >> >> -----Original Message-----
->> >> >> From: meta-arago-bounces@arago-project.org [mailto:meta-
->> >arago-
->> >> >> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->> >> >> Sent: Tuesday, July 01, 2014 2:20 PM
->> >> >> To: meta-arago@arago-project.org
->> >> >> Subject: [meta-arago] [PATCH] tisdk-image.bbclass: update
->for
->> >> >the new
->> >> >> rootfs/image infrastructure
->> >> >>
->> >> >> From: Denys Dmytriyenko <denys@ti.com>
->> >> >>
->> >> >> The entire rootfs/image processing infrastructure was
->> >rewritten
->> >> >in Python for
->> >> >> Daisy release. Since tisdk_image class is based on
->> >rootfs/image
->> >> >base classes
->> >> >> and uses their APIs, some adjustments are required in
->order
->> >for
->> >> >it to work.
->> >> >>
->> >> >> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> >> >> ---
->> >> >>  meta-arago-distro/classes/tisdk-image.bbclass | 83
->> >> >+++++++++++++--------------
->> >> >>  1 file changed, 39 insertions(+), 44 deletions(-)
->> >> >>
->> >> >> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass
->> >> >b/meta-arago-
->> >> >> distro/classes/tisdk-image.bbclass
->> >> >> index b100261..6023d6b 100644
->> >> >> --- a/meta-arago-distro/classes/tisdk-image.bbclass
->> >> >> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
->> >> >> @@ -65,18 +65,18 @@ def string_set(iterable):
->> >> >>
->> >> >>  # Add a dependency for the do_rootfs function that will
->> >force
->> >> >us to build  #
->> >> >> the TARGET_IMAGES first so that they will be available for
->> >> >packaging.
->> >> >> -do_sdk_image[depends] +=3D "${@string_set('%s:do_rootfs' %
->pn
->> >for
->> >> >pn in
->> >> >> (d.getVar("TARGET_IMAGES", True) or "").split())}"
->> >> >> +do_rootfs[depends] +=3D "${@string_set('%s:do_rootfs' % pn
->for
->> >pn
->> >> >in
->> >> >> (d.getVar("TARGET_IMAGES", True) or "").split())}"
->> >> >>
->> >> >>  # Add a dependency for the do_populate_sdk function of
->the
->> >> >> TIDSK_TOOLCHAIN  # variable which will force us to build
->the
->> >> >toolchain first so
->> >> >> that it will be  # available for packaging -
->> >> >do_sdk_image[depends] +=3D
->> >> >> "${@string_set('%s:do_populate_sdk' % pn for pn in
->> >> >> (d.getVar("TISDK_TOOLCHAIN", True) or "").split())}"
->> >> >> +do_rootfs[depends] +=3D "${@string_set('%s:do_populate_sdk'
->%
->> >pn
->> >> >for pn in
->> >> >> (d.getVar("TISDK_TOOLCHAIN", True) or "").split())}"
->> >> >>
->> >> >> -do_sdk_image[nostamp] =3D "1"
->> >> >> -do_sdk_image[lockfiles] +=3D "${IMAGE_ROOTFS}.lock"
->> >> >> -do_sdk_image[cleandirs] +=3D "${S}"
->> >> >> +do_rootfs[nostamp] =3D "1"
->> >> >> +do_rootfs[lockfiles] +=3D "${IMAGE_ROOTFS}.lock"
->> >> >> +do_rootfs[cleandirs] +=3D "${S}"
->> >> >>
->> >> >> -# Call the cleanup_host_packes to remove packages that
->> >should
->> >> >be removed
->> >> >> from
->> >> >> +# Call the cleanup_host_packages to remove packages that
->> >should
->> >> >be
->> >> >> +removed from
->> >> >>  # the host for various reasons.  This may include
->licensing
->> >> >issues as well.
->> >> >>  OPKG_POSTPROCESS_COMMANDS =3D "cleanup_host_packages; "
->> >> >>
->> >> >> @@ -92,25 +92,6 @@ cleanup_host_packages() {
->> >> >>      fi
->> >> >>  }
->> >> >>
->> >> >> -# Copy log_check from image.bbclass since the
->> >> >rootfs_ipk_do_rootfs function
->> >> >> -# uses it, but we are not inheriting the full image
->class.
->> >> >> -log_check() {
->> >> >> -	for target in $*
->> >> >> -	do
->> >> >> -		lf_path=3D"${WORKDIR}/temp/log.do_$target.${PID}"
->> >> >> -
->> >> >> -		echo "log_check: Using $lf_path as logfile"
->> >> >> -
->> >> >> -		if test -e "$lf_path"
->> >> >> -		then
->> >> >> -			${IMAGE_PKGTYPE}_log_check $target
->> >$lf_path
->> >> >> -		else
->> >> >> -			echo "Cannot find logfile [$lf_path]"
->> >> >> -		fi
->> >> >> -		echo "Logfile is clean"
->> >> >> -	done
->> >> >> -}
->> >> >> -
->> >> >>  # Generate the header for a TI style software manifest
->> >> >>  sw_manifest_header() {
->> >> >>  echo "
->> >> >> @@ -235,7 +216,7 @@ echo "
->> >> >>
->> >> >>  # Create the host side toolchain components table
->> >> >>  sw_manifest_toolchain_host() {
->> >> >> -
->> >>
->>
->>>opkg_dir=3D"${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}/sysroots/i686-
->> >*-
->> >> >> linux/var/lib/opkg/info"
->> >> >> +
->> >>
->>
->>>opkg_dir=3D"${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}/sysroots/i686-
->> >*-
->> >> >> linux/var/lib/opkg"
->> >> >>
->> >> >>  echo "
->> >> >>  <h2><u>GPLv3 Development Host Content</u></h2> @@ -471,24
->> >> >+452,43
->> >> >> @@ generate_sw_manifest() {
->> >> >>      sw_manifest_footer
->> >> >>  }
->> >> >>
->> >> >> +ROOTFS_PREPROCESS_COMMAND +=3D "tisdk_image_setup; "
->> >> >> +ROOTFS_POSTPROCESS_COMMAND +=3D "tisdk_image_build; "
->> >> >> +IMAGE_PREPROCESS_COMMAND +=3D "tisdk_image_cleanup; "
->> >> >> +
->> >> >>  # Create the SDK image.  We will re-use the
->> >> >rootfs_ipk_do_rootfs
->> >> >> functionality  # to install a given list of packages using
->> >opkg.
->> >> >> -do_sdk_image () {
->> >> >> -	set -x
->> >> >> -	rm -rf ${IMAGE_ROOTFS}
->> >> >> -	mkdir -p ${IMAGE_ROOTFS}
->> >> >> -	mkdir -p ${DEPLOY_DIR_IMAGE}
->> >> >> +fakeroot python do_rootfs () {
->> >> >> +    from oe.rootfs import create_rootfs
->> >> >> +    from oe.image import create_image
->> >> >> +    from oe.manifest import create_manifest
->> >> >> +
->> >> >> +    # generate the initial manifest
->> >> >> +    create_manifest(d)
->> >>
->> >> What about the generate_sw_manifest function?
->> >
->> >What about it? It's still there. I haven't validated all the
->> >licenses and
->> >other data in the manifest, but it looks reasonable on the
->first
->> >pass.
->>
->> I thought this was called from the do_sdk_image function which
->was replaced
->> by the do_rootfs function here so I looked like the call to that
->function
->> was removed.
->
->No, do_sdk_image (which originally was almost a direct replacement
->for
->do_rootfs) was split out into 3 sub-functions tisdk_image_setup,
->tisdk_image_build and tisdk_imgage_cleanup to wrap around the
->standard
->Python-based do_rootfs. The 100% of tisdk functionality is still
->there!
->
->So, I basically reversed the logic. It used to be driven by
->do_sdk_image
->function and calling out APIs from rootfs and image classes
->inside, when
->needed. Now, it lets standard do_rootfs do its thing and asks to
->call us back
->at proper times through those 3 callback functions above. This was
->the least
->invasive fix - it still works and keeps 95% of our code as is.
->Otherwise it
->would have been required to rewrite it entirely in Python...
+* The migration to use mainline u-boot which supports all
+  platforms was added for the Daisy branch of meta-ti.  For Dora
+  the mainline version does not support all platforms and the
+  u-boot-ti-staging recipe should be used instead by default.
 
-Now I understand.  Thanks for the explanation.
+Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+---
+ .../conf/distro/include/arago-prefs.inc            |    7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
->
->
->> >> Overall I think this is a step in the right direction though,
->so
->> >ACK for
->> >> this patch.  Just curious if we should expect more.
->> >
->> >Yeah, I tried to minimize the impact as much as possible. But
->> >overall, it's
->> >still rather hacky...
->> >
->> >
->> >> >> +
->> >> >> +    # generate rootfs
->> >> >> +    create_rootfs(d)
->> >> >> +
->> >> >> +    # generate final images
->> >> >> +    create_image(d)
->> >> >> +}
->> >> >> +
->> >> >> +tisdk_image_setup () {
->> >> >> +    set -x
->> >> >> +    rm -rf ${IMAGE_ROOTFS}
->> >> >> +    mkdir -p ${IMAGE_ROOTFS}
->> >> >> +    mkdir -p ${DEPLOY_DIR_IMAGE}
->> >> >>
->> >> >> -	mkdir -p ${IMAGE_ROOTFS}/etc
->> >> >> +    mkdir -p ${IMAGE_ROOTFS}/etc
->> >> >> +    mkdir -p ${IMAGE_ROOTFS}/var/lib/opkg
->> >> >>
->> >> >>      chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-
->${ARMPKGARCH}-
->> >> >> ${TARGET_OS}-tisdk*
->> >> >>
->> >> >>      # Temporarily extract the toolchain sdk so we can
->read
->> >> >license information
->> >> >> from it.
->> >> >>      echo "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}" |
->> >> >> ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-
->> >tisdk*
->> >> >> +}
->> >> >>
->> >> >> -    # Creat the base SDK image
->> >> >> -	rootfs_${IMAGE_PKGTYPE}_do_rootfs
->> >> >> -
->> >> >> +tisdk_image_build () {
->> >> >>      mkdir -p ${IMAGE_ROOTFS}/filesystem
->> >> >>
->> >> >>      # Copy the TARGET_IMAGES to the sdk image before
->> >packaging
->> >> >@@ -
->> >> >> 607,23 +607,18 @@ do_sdk_image () {
->> >> >>
->> >> >>      # Copy the opkg.conf used by the image to allow for
->> >future
->> >> >updates
->> >> >>      cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
->> >> >> +}
->> >> >>
->> >> >> +tisdk_image_cleanup () {
->> >> >>      # Move the var/etc directories which contains the
->opkg
->> >data
->> >> >used for the
->> >> >>      # manifest (and maybe one day for online updates) to
->a
->> >> >hidden directory.
->> >> >>      mv ${IMAGE_ROOTFS}/var ${IMAGE_ROOTFS}/.var
->> >> >>      mv ${IMAGE_ROOTFS}/etc ${IMAGE_ROOTFS}/.etc
->> >> >> -
->> >> >> -    # Create the image directory symlinks
->> >> >> -    # $ { @ get_imagecmds(d) }
->> >> >>  }
->> >> >>
->> >> >>  license_create_manifest() {
->> >> >>      :
->> >> >>  }
->> >> >>
->> >> >> -rootfs_install_complementary() {
->> >> >> -    :
->> >> >> -}
->> >> >> -
->> >> >> -EXPORT_FUNCTIONS do_sdk_image
->> >> >> -addtask sdk_image before do_build after do_install
->> >> >> +EXPORT_FUNCTIONS do_rootfs
->> >> >> +addtask rootfs before do_build after do_install
->> >> >> --
->> >> >> 2.0.0
->> >> >>
->> >> >> _______________________________________________
->> >> >> meta-arago mailing list
->> >> >> meta-arago@arago-project.org
->> >> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-
->arago
->> >> >_______________________________________________
->> >> >meta-arago mailing list
->> >> >meta-arago@arago-project.org
->> >> >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> >> _______________________________________________
->> >> meta-arago mailing list
->> >> meta-arago@arago-project.org
->> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 63e9e22..a2f42b1 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -59,10 +59,9 @@ PREFERRED_PROVIDER_virtual/libgles2_keystone = "mesa"
+ PREFERRED_PROVIDER_virtual/libgl_keystone = "mesa"
+ PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
+ 
+-# Use the mainline u-boot recipe for TI devices unless overridden below
+-PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
+-PREFERRED_PROVIDER_u-boot = "u-boot"
+-PREFERRED_VERSION_u-boot = "2014.04+2014.07-rc3"
++# Use the u-boot staging recipe for TI devices unless overridden below
++PREFERRED_PROVIDER_virtual/bootloader = "u-boot-ti-staging"
++PREFERRED_PROVIDER_u-boot = "u-boot-ti-staging"
+ 
+ # Use latest TI staging kernel and u-boot trees
+ PREFERRED_PROVIDER_virtual/bootloader_keystone = "u-boot-keystone"
+-- 
+1.7.9.5
+
 
