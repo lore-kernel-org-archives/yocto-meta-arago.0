@@ -1,24 +1,29 @@
-Return-Path: <meta-arago@emagii.com>
-Received: from smtp-out12.han.skanova.net (smtp-out12.han.skanova.net
-	[195.67.226.212])
-	by arago-project.org (Postfix) with ESMTP id 6DF5352A72
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 8177E52A42
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Jul 2014 20:38:02 +0000 (UTC)
-Received: from [10.175.196.23] (213.66.90.56) by smtp-out12.han.skanova.net
-	(8.5.133) (authenticated as u82406562)
-	id 538049690082E560 for meta-arago@arago-project.org;
-	Wed, 2 Jul 2014 22:38:01 +0200
-Message-ID: <53B46D84.9070601@emagii.com>
-Date: Wed, 02 Jul 2014 22:37:24 +0200
-From: Ulf Samuelsson <meta-arago@emagii.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	Wed,  2 Jul 2014 22:17:34 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s62MHXol026565
+	for <meta-arago@arago-project.org>; Wed, 2 Jul 2014 17:17:33 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s62MHXvJ014740
+	for <meta-arago@arago-project.org>; Wed, 2 Jul 2014 17:17:33 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 2 Jul 2014 17:17:33 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s62MHXAL011556	for <meta-arago@arago-project.org>;
+	Wed, 2 Jul 2014 17:17:33 -0500
+Date: Wed, 2 Jul 2014 18:00:35 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <486144562.261.1404338435008.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-To: meta-arago@arago-project.org
-References: <53B44965.5050502@emagii.com>	<53B449D5.30600@emagii.com>	<20140702181315.GA15788@edge>	<53B459CC.20805@emagii.com>	<20140702191802.GB15788@edge>	<53B45C0A.60805@emagii.com>	<8F29D6B095ED194EA1980491A5E029710C6DA912@DFLE08.ent.ti.com>
-	<53B46ADA.1070400@emagii.com>
-In-Reply-To: <53B46ADA.1070400@emagii.com>
-Subject: Re: [meta-ti] Build of qtbase fails due to no OpenGL libraries, but completes after cleaning qtbase.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.06 build 2014-07-02_16-05-46
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -31,150 +36,187 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jul 2014 20:38:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 02 Jul 2014 22:17:35 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_260_64298829.1404338435007"
+
+------=_Part_260_64298829.1404338435007
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-2014-07-02 22:26, Ulf Samuelsson skrev:
-> 2014-07-02 21:34, Cooper Jr., Franklin skrev:
->>
->>> -----Original Message-----
->>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->>> bounces@arago-project.org] On Behalf Of Ulf Samuelsson
->>> Sent: Wednesday, July 02, 2014 2:23 PM
->>> To: Dmytriyenko, Denys
->>> Cc: meta-arago@arago-project.org
->>> Subject: Re: [meta-arago] Fwd: Fwd: Re: [meta-ti] Build of qtbase 
->>> fails due to
->>> no OpenGL libraries, but completes after cleaning qtbase.
->>>
->>> 2014-07-02 21:18, Denys Dmytriyenko skrev:
->>>> On Wed, Jul 02, 2014 at 09:13:16PM +0200, Ulf Samuelsson wrote:
->>>>> 2014-07-02 20:13, Denys Dmytriyenko skrev:
->>>>>> On Wed, Jul 02, 2014 at 08:05:09PM +0200, Ulf Samuelsson wrote:
->>>>>>
->>>>>>
->>>>>> On Wed, Jul 02, 2014 at 07:21:24AM +0200, Ulf Samuelsson wrote:
->>>>>>>> When I build an image with QT5 using meta-arago, qtbase fails with
->>>>>>>> a lot of error messages.
->>>>>>>> This is the wrong mailing list - meta-ti has nothing to do with 
->>>>>>>> qtbase.
->>>>>>>> Moreover, why are you still using 5.1.1? There were many fixes in
->>>>>>>> Qt5 5.2.x and 5.3.x. Also, it depends on your setup and what
->>>>>>>> layers and features you configure. Either way, it's a discussion
->>>>>>>> for a distro layer, you can use meta-arago mailing list for 
->>>>>>>> that...
->>>>>>> I looked through meta-arago and meta-qt5 about a month ago for
->>> compatability.
->>>>>>> I checked again today:
->>>>>>>
->>>>>>> meta-qt5/master    = 5.3.0
->>>>>>> meta-qt5/daisy    = 5.2.1
->>>>>>> meta-qt5/dora    = 5.1.1
->>>>>>>
->>>>>>> meta-arago/master = 5.2.0
->>>>>>> meta-arago/dora   = 5.2.0 (used to be 5.1.1)
->>>>>>> There is no meta-arago/daisy branch.
->>>>>>>
->>>>>>> The only revision I could find which was available in both was 
->>>>>>> 5.1.1.
->>>>>>> and that is why I used it.
->>>>>>>
->>>>>>> It would make sense if the qt5 related recipes in meta-arago 
->>>>>>> matched
->>> those in meta-qt5.
->>>>>>> Now meta-arago is using 5.2.0 which is not present in any branch of
->>>>>>> meta-qt5 (did not check old branches, only dora and daisy).
->>>>>>>
->>>>>>> I dont understand why the meta-arago:dora recipes for qt5 has been
->>>>>>> updated from 5.1.1 to 5.2.0, thus making it incompatible with meta-
->>> qt5:dora. Isn't this a mistake.
->>>>>> meta-qt5 for long time only had master, moreover, due to some
->>>>>> requirements, we needed latest 5.2 version of qt5, which was only
->>>>>> available from master and not from Dora, while meta-arago was
->>>>>> generally Dora based. Since then meta-qt5 was updated to 5.2.1, and
->>>>>> meta-arago has recently switched to Daisy - some cleanup is still 
->>>>>> going
->>> on...
->>>>> I think in order to clean up:
->>>>> 1) meta-arago:dora should switch back to 5.1.1
->>>>> 2) a daisy branch should be added to meta-arago (or daisy-devel)
->>>>> using 5.2.1
->>>>> 3) meta-arago:master should be 5.3.0
->>>>>
->>>>> 5.2.0 recipes should be deleted, or moved to an intermediate branch
->>>>> (daisy-rc1?)
->>>> No.
->>> So whats the plan?
->>> Does it make sense to have different version numbers in meta-arago, 
->>> than in
->>> meta-qt5?
->>>
->>> Is there a time schedule to have 5.2.1/5,3,0 support?
->> [Franklin] The way meta-qt5 and meta-arago works is indeed different 
->> compared to other layers. Meta-arago master tracks meta-qt5 master. 
->> Meta-arago dora tracks meta-arago daisy. I think we need to properly 
->> document this and even include it in the README file but of course 
->> work on daisy is still being done so it might just be on someone's 
->> short term todo list.
->>
->> Ulf,
->> Are you still having issues with Qt5 support when you use meta-qt5 
->> master?
-> I have Beaglebone Black + LCD4 (from 4D systems) running
->
-> meta-arago:dora (1 month old checkout using Qt-5.1.1)
-> meta-qt5:dora
-> linux_ti_staging-3.12.20
-Think I was to quick here. Went back and rechecked.
+<html>
+<head>
+<title>
+Status for 07/02/14
+</title>
+</head>
+<body>
 
-According to Documentation, meta-arago is not yet compatible with daisy,
-so I checked what support is available in meta-qt5:dora and this is 5.1.1.
+<h2>Status for 07/02/14</h2>
 
-I decided to use this version, and converted the existing 5.2.0 support 
-in meta-arago:dora
-to 5.1.1 and added to a "bugfix" layer which overrides meta-arago..
+<h2>BUILD_ID: build-2014-07-02_16-06-55</h2>
 
-BR
-Ulf
+<h2>Clean Build: false</h2>
 
->
-> Customer is currently developing on both AM335x and iMX6,
-> and will make final selection later this year.
->
-> Customer wants to be Yocto-1.6 compatible and is using QT 5.2.1 for 
-> the iMX6 development.
-> Would like to use the same or later for the Beaglebone Black.
->
-> Mixing dora and daisy branches, if true is not intuitive.
->
-> One issue which I need to investigate, is the colours.
-> At boot, the Penguin appears with Blue feet, and not Yellow/Orange
-> and the customer splash screen and applications also have the wrong 
-> colour.
->
-> I disabled the meta-arago psplash by
->
-> BBMASK = "meta-arago-distro/recipes-core/psplash/"
->
-> in 'local.conf' and there is no longer an '-arago' addition to the 
-> version name.
->
-> Have not had the time to study the issue further, but would appreciate 
-> ideas.
->
->
->>> BR
->>> Ulf Samuelsson
->>>
->>> _______________________________________________
->>> meta-arago mailing list
->>> meta-arago@arago-project.org
->>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.20</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.06"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_260_64298829.1404338435007--
