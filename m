@@ -1,29 +1,35 @@
-Return-Path: <denys@ti.com>
+Return-Path: <chase.maupin@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 25EB0529D5
+	by arago-project.org (Postfix) with ESMTPS id 9F33152A5D
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Jul 2014 06:05:02 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s62650jx000589
-	for <meta-arago@arago-project.org>; Wed, 2 Jul 2014 01:05:01 -0500
+	Wed,  2 Jul 2014 13:00:20 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s62D0JNd015425;
+	Wed, 2 Jul 2014 08:00:19 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s62650Z6021103
-	for <meta-arago@arago-project.org>; Wed, 2 Jul 2014 01:05:00 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 2 Jul 2014 01:05:00 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s62650Vg020179	for <meta-arago@arago-project.org>;
-	Wed, 2 Jul 2014 01:05:00 -0500
-Date: Wed, 2 Jul 2014 01:48:03 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <91624834.257.1404280083011.JavaMail.jenkins@puget>
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s62D0Ii2022571;
+	Wed, 2 Jul 2014 08:00:18 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0174.001; Wed, 2 Jul 2014 08:00:18 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, Denys Dmytriyenko
+	<denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] tisdk-image.bbclass: update for the new
+	rootfs/image infrastructure
+Thread-Index: AQHPlWGMg1tASeMrv0aWWahAN004L5uLtrVggAEIeDA=
+Date: Wed, 2 Jul 2014 13:00:17 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED1015D108C96@DLEE11.ent.ti.com>
+References: <1404242399-15206-1-git-send-email-denis@denix.org>
+	<8F29D6B095ED194EA1980491A5E029710C6D8314@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6D8314@DFLE08.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.06 build 2014-07-02_01-00-30
+Subject: Re: [PATCH] tisdk-image.bbclass: update for the new rootfs/image infrastructure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,188 +42,239 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jul 2014 06:05:02 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_256_816603773.1404280083008"
+X-List-Received-Date: Wed, 02 Jul 2014 13:00:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_256_816603773.1404280083008
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Cooper Jr., Franklin
+>Sent: Tuesday, July 01, 2014 4:10 PM
+>To: Denys Dmytriyenko; meta-arago@arago-project.org
+>Subject: Re: [meta-arago] [PATCH] tisdk-image.bbclass: update for
+>the new rootfs/image infrastructure
+>
+>Thanks for this!
+>Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
+>
+>> -----Original Message-----
+>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+>> Sent: Tuesday, July 01, 2014 2:20 PM
+>> To: meta-arago@arago-project.org
+>> Subject: [meta-arago] [PATCH] tisdk-image.bbclass: update for
+>the new
+>> rootfs/image infrastructure
+>>
+>> From: Denys Dmytriyenko <denys@ti.com>
+>>
+>> The entire rootfs/image processing infrastructure was rewritten
+>in Python for
+>> Daisy release. Since tisdk_image class is based on rootfs/image
+>base classes
+>> and uses their APIs, some adjustments are required in order for
+>it to work.
+>>
+>> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>> ---
+>>  meta-arago-distro/classes/tisdk-image.bbclass | 83
+>+++++++++++++--------------
+>>  1 file changed, 39 insertions(+), 44 deletions(-)
+>>
+>> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass
+>b/meta-arago-
+>> distro/classes/tisdk-image.bbclass
+>> index b100261..6023d6b 100644
+>> --- a/meta-arago-distro/classes/tisdk-image.bbclass
+>> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
+>> @@ -65,18 +65,18 @@ def string_set(iterable):
+>>
+>>  # Add a dependency for the do_rootfs function that will force
+>us to build  #
+>> the TARGET_IMAGES first so that they will be available for
+>packaging.
+>> -do_sdk_image[depends] +=3D "${@string_set('%s:do_rootfs' % pn for
+>pn in
+>> (d.getVar("TARGET_IMAGES", True) or "").split())}"
+>> +do_rootfs[depends] +=3D "${@string_set('%s:do_rootfs' % pn for pn
+>in
+>> (d.getVar("TARGET_IMAGES", True) or "").split())}"
+>>
+>>  # Add a dependency for the do_populate_sdk function of the
+>> TIDSK_TOOLCHAIN  # variable which will force us to build the
+>toolchain first so
+>> that it will be  # available for packaging -
+>do_sdk_image[depends] +=3D
+>> "${@string_set('%s:do_populate_sdk' % pn for pn in
+>> (d.getVar("TISDK_TOOLCHAIN", True) or "").split())}"
+>> +do_rootfs[depends] +=3D "${@string_set('%s:do_populate_sdk' % pn
+>for pn in
+>> (d.getVar("TISDK_TOOLCHAIN", True) or "").split())}"
+>>
+>> -do_sdk_image[nostamp] =3D "1"
+>> -do_sdk_image[lockfiles] +=3D "${IMAGE_ROOTFS}.lock"
+>> -do_sdk_image[cleandirs] +=3D "${S}"
+>> +do_rootfs[nostamp] =3D "1"
+>> +do_rootfs[lockfiles] +=3D "${IMAGE_ROOTFS}.lock"
+>> +do_rootfs[cleandirs] +=3D "${S}"
+>>
+>> -# Call the cleanup_host_packes to remove packages that should
+>be removed
+>> from
+>> +# Call the cleanup_host_packages to remove packages that should
+>be
+>> +removed from
+>>  # the host for various reasons.  This may include licensing
+>issues as well.
+>>  OPKG_POSTPROCESS_COMMANDS =3D "cleanup_host_packages; "
+>>
+>> @@ -92,25 +92,6 @@ cleanup_host_packages() {
+>>      fi
+>>  }
+>>
+>> -# Copy log_check from image.bbclass since the
+>rootfs_ipk_do_rootfs function
+>> -# uses it, but we are not inheriting the full image class.
+>> -log_check() {
+>> -	for target in $*
+>> -	do
+>> -		lf_path=3D"${WORKDIR}/temp/log.do_$target.${PID}"
+>> -
+>> -		echo "log_check: Using $lf_path as logfile"
+>> -
+>> -		if test -e "$lf_path"
+>> -		then
+>> -			${IMAGE_PKGTYPE}_log_check $target $lf_path
+>> -		else
+>> -			echo "Cannot find logfile [$lf_path]"
+>> -		fi
+>> -		echo "Logfile is clean"
+>> -	done
+>> -}
+>> -
+>>  # Generate the header for a TI style software manifest
+>>  sw_manifest_header() {
+>>  echo "
+>> @@ -235,7 +216,7 @@ echo "
+>>
+>>  # Create the host side toolchain components table
+>>  sw_manifest_toolchain_host() {
+>> -
+>opkg_dir=3D"${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}/sysroots/i686-*-
+>> linux/var/lib/opkg/info"
+>> +
+>opkg_dir=3D"${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}/sysroots/i686-*-
+>> linux/var/lib/opkg"
+>>
+>>  echo "
+>>  <h2><u>GPLv3 Development Host Content</u></h2> @@ -471,24
+>+452,43
+>> @@ generate_sw_manifest() {
+>>      sw_manifest_footer
+>>  }
+>>
+>> +ROOTFS_PREPROCESS_COMMAND +=3D "tisdk_image_setup; "
+>> +ROOTFS_POSTPROCESS_COMMAND +=3D "tisdk_image_build; "
+>> +IMAGE_PREPROCESS_COMMAND +=3D "tisdk_image_cleanup; "
+>> +
+>>  # Create the SDK image.  We will re-use the
+>rootfs_ipk_do_rootfs
+>> functionality  # to install a given list of packages using opkg.
+>> -do_sdk_image () {
+>> -	set -x
+>> -	rm -rf ${IMAGE_ROOTFS}
+>> -	mkdir -p ${IMAGE_ROOTFS}
+>> -	mkdir -p ${DEPLOY_DIR_IMAGE}
+>> +fakeroot python do_rootfs () {
+>> +    from oe.rootfs import create_rootfs
+>> +    from oe.image import create_image
+>> +    from oe.manifest import create_manifest
+>> +
+>> +    # generate the initial manifest
+>> +    create_manifest(d)
 
-<html>
-<head>
-<title>
-Status for 07/02/14
-</title>
-</head>
-<body>
+What about the generate_sw_manifest function?
 
-<h2>Status for 07/02/14</h2>
+Overall I think this is a step in the right direction though, so ACK for th=
+is patch.  Just curious if we should expect more.
 
-<h2>BUILD_ID: build-2014-07-02_01-01-39</h2>
+>> +
+>> +    # generate rootfs
+>> +    create_rootfs(d)
+>> +
+>> +    # generate final images
+>> +    create_image(d)
+>> +}
+>> +
+>> +tisdk_image_setup () {
+>> +    set -x
+>> +    rm -rf ${IMAGE_ROOTFS}
+>> +    mkdir -p ${IMAGE_ROOTFS}
+>> +    mkdir -p ${DEPLOY_DIR_IMAGE}
+>>
+>> -	mkdir -p ${IMAGE_ROOTFS}/etc
+>> +    mkdir -p ${IMAGE_ROOTFS}/etc
+>> +    mkdir -p ${IMAGE_ROOTFS}/var/lib/opkg
+>>
+>>      chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-
+>> ${TARGET_OS}-tisdk*
+>>
+>>      # Temporarily extract the toolchain sdk so we can read
+>license information
+>> from it.
+>>      echo "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}" |
+>> ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk*
+>> +}
+>>
+>> -    # Creat the base SDK image
+>> -	rootfs_${IMAGE_PKGTYPE}_do_rootfs
+>> -
+>> +tisdk_image_build () {
+>>      mkdir -p ${IMAGE_ROOTFS}/filesystem
+>>
+>>      # Copy the TARGET_IMAGES to the sdk image before packaging
+>@@ -
+>> 607,23 +607,18 @@ do_sdk_image () {
+>>
+>>      # Copy the opkg.conf used by the image to allow for future
+>updates
+>>      cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
+>> +}
+>>
+>> +tisdk_image_cleanup () {
+>>      # Move the var/etc directories which contains the opkg data
+>used for the
+>>      # manifest (and maybe one day for online updates) to a
+>hidden directory.
+>>      mv ${IMAGE_ROOTFS}/var ${IMAGE_ROOTFS}/.var
+>>      mv ${IMAGE_ROOTFS}/etc ${IMAGE_ROOTFS}/.etc
+>> -
+>> -    # Create the image directory symlinks
+>> -    # $ { @ get_imagecmds(d) }
+>>  }
+>>
+>>  license_create_manifest() {
+>>      :
+>>  }
+>>
+>> -rootfs_install_complementary() {
+>> -    :
+>> -}
+>> -
+>> -EXPORT_FUNCTIONS do_sdk_image
+>> -addtask sdk_image before do_build after do_install
+>> +EXPORT_FUNCTIONS do_rootfs
+>> +addtask rootfs before do_build after do_install
+>> --
+>> 2.0.0
+>>
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.20</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.06"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_256_816603773.1404280083008--
