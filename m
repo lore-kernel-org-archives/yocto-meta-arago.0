@@ -1,30 +1,29 @@
-Return-Path: <meta-arago@emagii.com>
-Received: from smtp-out21.han.skanova.net (smtp-out21.han.skanova.net
-	[195.67.226.208])
-	by arago-project.org (Postfix) with ESMTP id 0F87552A72
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 78C5F52A80
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jul 2014 06:23:44 +0000 (UTC)
-Received: from [10.175.196.23] (213.66.90.56) by smtp-out21.han.skanova.net
-	(8.5.133) (authenticated as u82406562)
-	id 53804BED00F6B5EA; Thu, 3 Jul 2014 08:23:41 +0200
-Message-ID: <53B4F6EC.6070606@emagii.com>
-Date: Thu, 03 Jul 2014 08:23:40 +0200
-From: Ulf Samuelsson <meta-arago@emagii.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	Thu,  3 Jul 2014 06:29:42 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s636Tfw2031329
+	for <meta-arago@arago-project.org>; Thu, 3 Jul 2014 01:29:41 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s636TfsT001111
+	for <meta-arago@arago-project.org>; Thu, 3 Jul 2014 01:29:41 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 3 Jul 2014 01:29:41 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s636TeXA025651	for <meta-arago@arago-project.org>;
+	Thu, 3 Jul 2014 01:29:41 -0500
+Date: Thu, 3 Jul 2014 02:12:41 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <2126051705.265.1404367961997.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>
-References: <53B44965.5050502@emagii.com>
-	<53B449D5.30600@emagii.com>	<20140702181315.GA15788@edge>
-	<53B459CC.20805@emagii.com>	<20140702191802.GB15788@edge>
-	<53B45C0A.60805@emagii.com>
-	<8F29D6B095ED194EA1980491A5E029710C6DA912@DFLE08.ent.ti.com>
-	<53B46ADA.1070400@emagii.com>
-	<8F29D6B095ED194EA1980491A5E029710C6DAA36@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6DAA36@DFLE08.ent.ti.com>
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Color output (was: Build of qtbase fails due to no OpenGL libraries, but completes after cleaning qtbase)
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.06 build 2014-07-03_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,188 +36,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jul 2014 06:23:44 -0000
-Content-Type: multipart/alternative;
-	boundary="------------070503010908030603090205"
+X-List-Received-Date: Thu, 03 Jul 2014 06:29:43 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_264_761143491.1404367961996"
 
---------------070503010908030603090205
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
-
- >> One issue which I need to investigate, is the colours.
- >> At boot, the Penguin appears with Blue feet, and not Yellow/Orange 
-and the
- >> customer splash screen and applications also have the wrong colour.
-
- > [Franklin] I believe that color issue has to-do with the am335x errata
- >    (http://www.ti.com/lit/er/sprz360f/sprz360f.pdf (page 8). )
- > The BBB is hooked up to display correctly in 16bpp mode but if you 
-use 24bpp then your colors will look messed up.
- > I recommend posting this question to e2e.ti.com and the right people 
-can help you with this.
-
-Did a posting there, yet to get a reply, so I am posting here as well.
-
-
-My custom device-tree file was based on the LCD4 device tree files. Some 
-excerpts:
-
-
-         lcdc: lcdc@0x4830e000 {
-             compatible = "ti,am33xx-tilcdc";
-             reg = <0x4830e000 0x1000>;
-             interrupt-parent = <&intc>;
-             interrupts = <36>;
-             clocks = <&lcd_gclk>;
-             clock-names = "fck";
-             ti,hwmods = "lcdc";
-             status = "okay";
-         };
-
-/* fbdev entry */
-&lcdc {
-     pinctrl-names = "default";
-     pinctrl-0 = <&bone_lcd4_cape_lcd_pins>;
-     status = "okay";
-     display-timings {
-         480x272 {
-             clock-frequency = <9000000>;
-             hactive         = <480>;
-             vactive         = <272>;
-             hfront-porch    = <9>;
-             hback-porch     = <44>;
-             hsync-len       = <5>;
-             vback-porch     = <13>;
-             vfront-porch    = <4>;
-             vsync-len       = <10>;
-             hsync-active    = <0>;
-             vsync-active    = <0>;
-         };
-     };
-};
-
-Any view on the correctness of this?
-
-"omaplfb" loads with this. Is this because it (compatible = "ti") is true?
-The "tilcdc" driver is not even compiled.
-
-Is there any documentation on device tree bindings for the "omaplfb"?
-
-Meanwhile, I am adding 'bpp = <16>;' based on other examples
-
-         lcdc: lcdc@0x4830e000 {
-             compatible = "ti,am33xx-tilcdc";
-             reg = <0x4830e000 0x1000>;
-             interrupt-parent = <&intc>;
-             interrupts = <36>;
-             bpp = <16>;
-             clocks = <&lcd_gclk>;
-             clock-names = "fck";
-             ti,hwmods = "lcdc";
-             status = "okay";
-         };
-
-BR
-Ulf Samuelsson
-
-
---------------070503010908030603090205
-Content-Type: text/html; charset=ISO-8859-1
+------=_Part_264_761143491.1404367961996
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    &gt;&gt; One issue which I need to investigate, is the colours.
-    <big><br>
-    </big>&gt;&gt; At boot, the Penguin appears with Blue feet, and not
-    Yellow/Orange and the
-    <big><br>
-    </big>&gt;&gt; customer splash screen and applications also have the
-    wrong colour.
-    <big><br>
-      <br>
-    </big>&gt; [Franklin] I believe that color issue has to-do with the
-    am335x errata <br>
-    &gt;&nbsp;&nbsp;&nbsp; (<a class="moz-txt-link-freetext" href="http://www.ti.com/lit/er/sprz360f/sprz360f.pdf">http://www.ti.com/lit/er/sprz360f/sprz360f.pdf</a> (page 8). <big>)<br>
-    </big>&gt; The BBB is hooked up to display correctly in 16bpp mode
-    but if you use 24bpp then your colors will look messed up.
-    <br>
-    &gt; I recommend posting this question to e2e.ti.com and the right
-    people can help you with this.
-    <br>
-    <br>
-    Did a posting there, yet to get a reply, so I am posting here as
-    well.<br>
-    <br>
-    <br>
-    My custom device-tree file was based on the LCD4 device tree files.
-    Some excerpts:<br>
-    <br>
-    <br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; lcdc: lcdc@0x4830e000 {<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; compatible = "ti,am33xx-tilcdc";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; reg = &lt;0x4830e000 0x1000&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; interrupt-parent = &lt;&amp;intc&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; interrupts = &lt;36&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clocks = &lt;&amp;lcd_gclk&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clock-names = "fck";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ti,hwmods = "lcdc";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; status = "okay";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; };<br>
-    <br>
-    /* fbdev entry */<br>
-    &amp;lcdc {<br>
-    &nbsp;&nbsp;&nbsp; pinctrl-names = "default";<br>
-    &nbsp;&nbsp;&nbsp; pinctrl-0 = &lt;&amp;bone_lcd4_cape_lcd_pins&gt;;<br>
-    &nbsp;&nbsp;&nbsp; status = "okay";<br>
-    &nbsp;&nbsp;&nbsp; display-timings {<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 480x272 {<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clock-frequency = &lt;9000000&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &lt;480&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &lt;272&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hfront-porch&nbsp;&nbsp;&nbsp; = &lt;9&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hback-porch&nbsp;&nbsp;&nbsp;&nbsp; = &lt;44&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hsync-len&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &lt;5&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vback-porch&nbsp;&nbsp;&nbsp;&nbsp; = &lt;13&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vfront-porch&nbsp;&nbsp;&nbsp; = &lt;4&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vsync-len&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &lt;10&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hsync-active&nbsp;&nbsp;&nbsp; = &lt;0&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vsync-active&nbsp;&nbsp;&nbsp; = &lt;0&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; };<br>
-    &nbsp;&nbsp;&nbsp; };<br>
-    };<br>
-    <br>
-    Any view on the correctness of this?<br>
-    <br>
-    "omaplfb" loads with this. Is this because it (compatible = "ti")&nbsp;
-    is true?<br>
-    The "tilcdc" driver is not even compiled.<br>
-    <br>
-    Is there any documentation on device tree bindings for the
-    "omaplfb"?<br>
-    <br>
-    Meanwhile, I am adding 'bpp = &lt;16&gt;;' based on other examples<br>
-    <br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; lcdc: lcdc@0x4830e000 {<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; compatible = "ti,am33xx-tilcdc";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; reg = &lt;0x4830e000 0x1000&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; interrupt-parent = &lt;&amp;intc&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; interrupts = &lt;36&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; bpp = &lt;16&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clocks = &lt;&amp;lcd_gclk&gt;;<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clock-names = "fck";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ti,hwmods = "lcdc";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; status = "okay";<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; };<br>
-    <br>
-    BR<br>
-    Ulf Samuelsson<br>
-    <br>
-  </body>
+<head>
+<title>
+Status for 07/03/14
+</title>
+</head>
+<body>
+
+<h2>Status for 07/03/14</h2>
+
+<h2>BUILD_ID: build-2014-07-03_01-01-46</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.20</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.06"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
 </html>
 
---------------070503010908030603090205--
+
+------=_Part_264_761143491.1404367961996--
