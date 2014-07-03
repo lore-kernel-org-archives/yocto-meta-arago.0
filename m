@@ -1,25 +1,23 @@
 Return-Path: <denis@denix.org>
 Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
 	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTP id D00C55298B
+	by arago-project.org (Postfix) with ESMTP id 26CF652A42
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jul 2014 19:41:58 +0000 (UTC)
+	Thu,  3 Jul 2014 19:41:59 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
 	by vms173021.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N85003ESIPA23J0@vms173021.mailsrvcs.net> for
+	2009)) with ESMTPA id <0N8500FGJIPAPSO0@vms173021.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 03 Jul 2014 14:41:45 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 83653201B1; Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 8039120182; Thu,
 	03 Jul 2014 15:41:34 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 03 Jul 2014 15:41:31 -0400
-Message-id: <1404416491-28788-2-git-send-email-denis@denix.org>
+Date: Thu, 03 Jul 2014 15:41:30 -0400
+Message-id: <1404416491-28788-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.0
-In-reply-to: <1404416491-28788-1-git-send-email-denis@denix.org>
-References: <1404416491-28788-1-git-send-email-denis@denix.org>
-Subject: [tisdk-build-scripts][PATCH 2/2] configs: add Core SDK 2014.08.00 config file
+Subject: [tisdk-build-scripts][PATCH 1/2] configs: add Daisy config for Puget machine
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,18 +34,28 @@ X-List-Received-Date: Thu, 03 Jul 2014 19:41:59 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+Move some wrongfully relocated files.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/coresdk/arago-core-tisdk-2014.08.00.txt | 287 ++++++++++++++++++++++++
- 1 file changed, 287 insertions(+)
- create mode 100644 configs/coresdk/arago-core-tisdk-2014.08.00.txt
+ configs/arago-core-tisdk-daisy-puget.txt           | 288 +++++++++++++++++++++
+ ...-puget.txt => arago-core-tisdk-danny-puget.txt} |   0
+ .../{coresdk => }/arago-core-tisdk-dora-puget.txt  |   0
+ .../{coresdk => }/arago-core-tisdk-dylan-puget.txt |   0
+ .../arago-core-amsdk-2013.04.01.txt                |   0
+ 5 files changed, 288 insertions(+)
+ create mode 100644 configs/arago-core-tisdk-daisy-puget.txt
+ rename configs/{coresdk/arago-core-tisdk-puget.txt => arago-core-tisdk-danny-puget.txt} (100%)
+ rename configs/{coresdk => }/arago-core-tisdk-dora-puget.txt (100%)
+ rename configs/{coresdk => }/arago-core-tisdk-dylan-puget.txt (100%)
+ rename configs/{amsdk => coresdk}/arago-core-amsdk-2013.04.01.txt (100%)
 
-diff --git a/configs/coresdk/arago-core-tisdk-2014.08.00.txt b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
+diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-core-tisdk-daisy-puget.txt
 new file mode 100644
-index 0000000..000f903
+index 0000000..c132baf
 --- /dev/null
-+++ b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-@@ -0,0 +1,287 @@
++++ b/configs/arago-core-tisdk-daisy-puget.txt
+@@ -0,0 +1,288 @@
 +################################################################################
 +#                      Core TISDK configuration file                           #
 +################################################################################
@@ -61,10 +69,10 @@ index 0000000..000f903
 +# This variable holds the SDK version you are building.  This will be picked
 +# up in the installer name if you choose to package an installer.  You can
 +# also use this in the CONFIG_FILE name below.
-+TISDK_VERSION="2014.08.00"
++TISDK_VERSION="2014.07"
 +
 +# This variable contains the list of machines to build an SDK for
-+MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
++MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm k2hk-evm"
 +
 +# These variables indicate the maximum number of parallel builds that can be
 +# done for each architecture.  Some things to note are:
@@ -79,7 +87,7 @@ index 0000000..000f903
 +#      one build building both serially rather than two parallel builds
 +#      depending on your system resources
 +NUM_ARM9_BUILDS="1"
-+NUM_CORTEX_BUILDS="2"
++NUM_CORTEX_BUILDS="1"
 +
 +# These variables contain the location of the bin directory where the toolchain
 +# for each architecture is installed.
@@ -105,7 +113,7 @@ index 0000000..000f903
 +#       - BUILD_ROOT/arm9-1/arago-tmp
 +#       - BUILD_ROOT/cortex-1/arago-tmp
 +#       - BUILD_ROOT/cortex-2/arago-tmp
-+BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
++BUILD_ROOT="/home/jenkins/tisdk-build"
 +
 +# This variable points to the base location where files will be extracted for
 +# testing purposes.  This should not be confused with the NFS root which
@@ -149,7 +157,7 @@ index 0000000..000f903
 +# for each machine to boot the target board.
 +# This directory should be configured to allow writing by the jenkins user
 +# at a minimum, although allowing writing by anyone is simple.
-+NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
++NFS_ROOT="/home/jenkins/nfs-root"
 +
 +# This variable points to the location where the sources will be checked out
 +# using the oe-layertool-setup.sh script from the following repository:
@@ -166,7 +174,7 @@ index 0000000..000f903
 +
 +# This is the configuration file to use in the oe-layertool-setup.sh script
 +# to configure the build.
-+CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2014.08.00-config.txt"
++CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"
 +
 +# This directory will contain the log files for the various parts of the build.
 +# This includes:
@@ -179,7 +187,7 @@ index 0000000..000f903
 +# This is the directory where you want to configure your build to download
 +# files to.  This is best done as a shared directory among the builds to
 +# save download time and space.
-+DL_DIR="/home/downloads"
++DL_DIR="/OE/downloads"
 +
 +# This variable points to an optional location where additional installer
 +# content can be placed to be packaged inside of any image recipe that
@@ -210,21 +218,22 @@ index 0000000..000f903
 +# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
 +# Useful on multi-homed machines with multiple interfaces, when guessing
 +# between eth0 and eth1 is not possible. Leave empty for default behavior.
-+TEST_LOCAL_IFACE=""
++TEST_LOCAL_IFACE="eth1"
 +
 +# This variable contains the tarball name for the opentest CLI which is
 +# required to do target side testing.
-+OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
++OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
 +
 +# This variable specifies the IP address of the TEE to be used with OpenTest
 +# Defaults to 128.247.105.11 if not set
-+OPENTEST_TEE_IP=""
++OPENTEST_TEE_IP="none"
 +
 +# This variable specifies the hardware capabilities to be used with OpenTest
 +# Capabilities are separated by underscores, some excamples are here:
 +# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
 +# Defaults to "linux" if not set
-+OPENTEST_HW_CAP=""
++# Limit the board selection to official TI GT farm, avoiding personal boards
++OPENTEST_HW_CAP="linux_tigt_farm"
 +
 +# This variable will allow control over whether to perform build testing or
 +# skip it.  This should usually be set to true but may be changed for
@@ -240,7 +249,7 @@ index 0000000..000f903
 +# even when the build testing fails.  This can be useful in the case of
 +# the test system being down to allow the full packaging of the SDK to
 +# continue.
-+SKIP_TEST_FAILURES="true"
++SKIP_TEST_FAILURES="false"
 +
 +# This variable indicates whether to productize the build by packaging
 +# it into an installer and web content.  This will require that
@@ -248,7 +257,7 @@ index 0000000..000f903
 +# and project file created to package it.  If not then you can use
 +# the simple SDK tarball that was created during the build as your
 +# SDK.
-+PRODUCTIZE_SDK="true"
++PRODUCTIZE_SDK="false"
 +
 +# This variable contains the command(s) that bitbake should run. Each command
 +# should be seperated by a semicolon.
@@ -287,10 +296,10 @@ index 0000000..000f903
 +# the symlink.
 +SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
 +
-+# This variable determines whether the uImage should be placed in the boot
-+# partition tarball or not.  For newer kernel and u-boot combinations the
-+# uImage is kept in the rootfs partition and placing it in the boot partition
-+# will cause confusion.
++# This variable determines whether the uImage and dtb files should be placed in
++# the boot partition tarball or not.  For newer kernel and u-boot combinations
++# the uImage and dtb files are kept in the rootfs partition and placing it in
++# the boot partition will cause confusion.
 +PACKAGE_BOOT_KERNEL_FILES="false"
 +
 +# This variable points to the directory where the webgen tool has been
@@ -317,13 +326,13 @@ index 0000000..000f903
 +# This variable specifies whether or not to copy the deploy contents to a
 +# remote web hosting server. These are unprocessed intermediate artifacts,
 +# such as images, IPK feeds etc, so may not be distributed publicly as is.
-+COPY_DEPLOY_TO_WEB="false"
++COPY_DEPLOY_TO_WEB="true"
 +
 +# This variable points to the user@webhost:<basepath> location where the
 +# deploy contents should be placed.  This is best done if you have done a
 +# key exchange between these systems so that your SCP command will not ask
 +# for a password.
-+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
++WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
 +
 +# This variable determines whether the DEPLOY_ROOT will be cleaned after
 +# the remote copy.  The reason for this is that if the files already exist
@@ -335,6 +344,22 @@ index 0000000..000f903
 +# will be copied to the given directory.  If not then they will not be
 +# copied and will be cleaned if CLEAN_AFTER_COPY is true.
 +BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-puget.txt b/configs/arago-core-tisdk-danny-puget.txt
+similarity index 100%
+rename from configs/coresdk/arago-core-tisdk-puget.txt
+rename to configs/arago-core-tisdk-danny-puget.txt
+diff --git a/configs/coresdk/arago-core-tisdk-dora-puget.txt b/configs/arago-core-tisdk-dora-puget.txt
+similarity index 100%
+rename from configs/coresdk/arago-core-tisdk-dora-puget.txt
+rename to configs/arago-core-tisdk-dora-puget.txt
+diff --git a/configs/coresdk/arago-core-tisdk-dylan-puget.txt b/configs/arago-core-tisdk-dylan-puget.txt
+similarity index 100%
+rename from configs/coresdk/arago-core-tisdk-dylan-puget.txt
+rename to configs/arago-core-tisdk-dylan-puget.txt
+diff --git a/configs/amsdk/arago-core-amsdk-2013.04.01.txt b/configs/coresdk/arago-core-amsdk-2013.04.01.txt
+similarity index 100%
+rename from configs/amsdk/arago-core-amsdk-2013.04.01.txt
+rename to configs/coresdk/arago-core-amsdk-2013.04.01.txt
 -- 
 2.0.0
 
