@@ -1,30 +1,28 @@
-Return-Path: <chase.maupin@ti.com>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 55F9952A71
+	by arago-project.org (Postfix) with ESMTPS id 74DB152977
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jul 2014 20:36:36 +0000 (UTC)
+	Fri,  4 Jul 2014 06:49:10 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s63KaZhS032401
-	for <meta-arago@arago-project.org>; Thu, 3 Jul 2014 15:36:35 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s63KaZnP018925
-	for <meta-arago@arago-project.org>; Thu, 3 Jul 2014 15:36:35 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 3 Jul 2014 15:36:35 -0500
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s63KaYsK005347;	Thu, 3 Jul 2014 15:36:34 -0500
-Received: from sdit-build04.dal.design.ti.com (sdit-build04.dal.design.ti.com
-	[10.247.66.55])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s63KaWqY017499;	Fri, 4 Jul 2014 02:06:32 +0530
-From: Chase Maupin <Chase.Maupin@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 3 Jul 2014 15:36:30 -0500
-Message-ID: <1404419790-17652-1-git-send-email-Chase.Maupin@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s646mvmD003883
+	for <meta-arago@arago-project.org>; Fri, 4 Jul 2014 01:48:57 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s646muhQ002068
+	for <meta-arago@arago-project.org>; Fri, 4 Jul 2014 01:48:56 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 4 Jul 2014 01:48:56 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s646muC8017519;	Fri, 4 Jul 2014 01:48:56 -0500
+Date: Fri, 4 Jul 2014 02:31:55 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Message-ID: <1384754010.269.1404455515959.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] ocf-linux: remove ocf-linux usage since it is deprecated
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.06 build 2014-07-04_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,71 +35,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jul 2014 20:36:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 04 Jul 2014 06:49:55 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_268_345293700.1404455515957"
 
-* remove use of depricated ocf-linux and move to cryptodev-module
-  instead.
+------=_Part_268_345293700.1404455515957
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
----
- .../openssl/openssl_1.0.1e.bbappend                |    3 +++
- .../packagegroup-arago-tisdk-crypto-sdk-target.bb  |    6 +++---
- 2 files changed, 6 insertions(+), 3 deletions(-)
+<html>
+<head>
+<title>
+Status for 07/04/14
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
-index f58edb5..86c72fe 100644
---- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
-@@ -18,6 +18,7 @@ DEPENDS_append_ti33x_class-target = " cryptodev"
- DEPENDS_append_ti43x_class-target = " cryptodev"
- DEPENDS_append_dra7xx-evm_class-target = " cryptodev"
- DEPENDS_append_am57xx-evm_class-target = " cryptodev"
-+DEPENDS_append_keystone_class-target = " cryptodev"
- 
- python __anonymous () {
-     crypdep = d.getVar("DEPENDS").replace("ocf-linux ", "")
-@@ -25,6 +26,7 @@ python __anonymous () {
-     d.setVar("DEPENDS_ti43x_class-target", crypdep)
-     d.setVar("DEPENDS_dra7xx-evm_class-target", crypdep)
-     d.setVar("DEPENDS_am57xx-evm_class-target", crypdep)
-+    d.setVar("DEPENDS_keystone_class-target", crypdep)
- }
- 
- CRYPTODEV_AFALG_PATCHES = " \
-@@ -39,6 +41,7 @@ SRC_URI_append_ti33x_class-target = "${CRYPTODEV_AFALG_PATCHES}"
- SRC_URI_append_ti43x_class-target = "${CRYPTODEV_AFALG_PATCHES}"
- SRC_URI_append_dra7xx-evm_class-target = "${CRYPTODEV_AFALG_PATCHES}"
- SRC_URI_append_am57xx-evm_class-target = "${CRYPTODEV_AFALG_PATCHES}"
-+SRC_URI_append_keystone_class-target = "${CRYPTODEV_AFALG_PATCHES}"
- 
- # Override do_configure to replace target with linux-armv4 to enable ASM code
- # optimization for ARM arch (including armv7) for extra performance
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
-index b3df987..0b4a6cd 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
-@@ -1,16 +1,16 @@
- DESCRIPTION = "Task to install crypto dev packages in SDK"
- LICENSE = "MIT"
--PR = "r3"
-+PR = "r4"
- 
- inherit packagegroup
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--CRYPTO_API = "ocf-linux-dev"
--
-+CRYPTO_API = ""
- CRYPTO_API_ti33x = "cryptodev-module-dev"
- CRYPTO_API_ti43x = "cryptodev-module-dev"
- CRYPTO_API_dra7xx = "cryptodev-module-dev"
-+CRYPTO_API_keystone = "cryptodev-module-dev"
- 
- RDEPENDS_${PN} = "\
-     openssl-dev \
--- 
-1.7.9.5
+<h2>Status for 07/04/14</h2>
+
+<h2>BUILD_ID: build-2014-07-04_01-01-54</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.20</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.06"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_268_345293700.1404455515957--
