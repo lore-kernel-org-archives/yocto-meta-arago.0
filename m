@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 906715298B
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
+	[209.85.219.54])
+	by arago-project.org (Postfix) with ESMTPS id 122AD52A2D
 	for <meta-arago@arago-project.org>;
-	Fri, 11 Jul 2014 07:23:34 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6B7NXU5001927
-	for <meta-arago@arago-project.org>; Fri, 11 Jul 2014 02:23:33 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6B7NXh7020651
-	for <meta-arago@arago-project.org>; Fri, 11 Jul 2014 02:23:33 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 11 Jul 2014 02:23:33 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s6B7NXHn000977	for <meta-arago@arago-project.org>;
-	Fri, 11 Jul 2014 02:23:33 -0500
-Date: Fri, 11 Jul 2014 03:06:21 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1431111630.297.1405062381832.JavaMail.jenkins@puget>
+	Fri, 11 Jul 2014 20:34:11 +0000 (UTC)
+Received: by mail-oa0-f54.google.com with SMTP id n16so1806477oag.27
+	for <meta-arago@arago-project.org>;
+	Fri, 11 Jul 2014 13:34:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=r+tGAZwSq+aCf3cuW2kmsWFr/f7+T2hA+kj71ILYD6Y=;
+	b=zD8H276I1khwVocRNycxrK68ZnvBJW1FblbeUyYv6lSusX9XQLciO8S7/W9ZLhVyWd
+	Id2W5VWDWdi9ZmgeNB4PO0QaNt78Ly8NT4BW3Koauc95VUBXY+lstZo3Hf6seanQB65y
+	YJZUYybocu2/YFp8PbmguXpvYniRpkPmYCA38qEx2fbKzTvedU1+zftLSUBLKbIsdawJ
+	EvPEaDKVtb9v+6ajR5qXMZlrwO28rIeJBN1p0mVIyqmgtUixng/M/vpWlkOOBHV4lGZ+
+	G8rCkotQ6QtZIX1gG0xK2FnBp0W/z3ITtIl2smyp8fL96GlZkh6pnEvvt6w91UT41uRA
+	+gXQ==
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.06 build 2014-07-11_01-00-30
+X-Received: by 10.182.142.69 with SMTP id ru5mr1887631obb.6.1405110850765;
+	Fri, 11 Jul 2014 13:34:10 -0700 (PDT)
+Received: by 10.60.145.205 with HTTP; Fri, 11 Jul 2014 13:34:10 -0700 (PDT)
+Date: Fri, 11 Jul 2014 16:34:10 -0400
+Message-ID: <CAFZh4h8Z2Hn-e1gA+EZ8UunYsSadTAjii+NDjD27ay_kR_v_NA@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: meta-arago@arago-project.org
+Subject: New Arago - am180x-evm core-image-minimal build is getting MD5 LICENSE errors in daisy
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,188 +37,132 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jul 2014 07:23:34 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_296_1475354156.1405062381831"
+X-List-Received-Date: Fri, 11 Jul 2014 20:34:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-------=_Part_296_1475354156.1405062381831
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Hi,
 
-<html>
-<head>
-<title>
-Status for 07/11/14
-</title>
-</head>
-<body>
+I haven't attempted this for a while so maybe I've missed something
+but I'm trying to build core-image-minimal for am180x-evm.
 
-<h2>Status for 07/11/14</h2>
+Did a fresh checkout of
+git://arago-project.org/git/projects/oe-layersetup.git tisdk
+ran arago-daisy-config.txt, setup my local.conf with all the stuff I
+wanted etc., and am using arago-2011.09-armv5te-linux-gnueabi
+toolchain.
 
-<h2>BUILD_ID: build-2014-07-11_01-01-49</h2>
+I've not tried to do too many OE Core type builds with an external
+toolchain so I'm still trying to figure out the special situations
+that come up using bitbake with external toolchains ... but I'm seeing
+things like:
 
-<h2>Clean Build: false</h2>
+hutch@neo:~/arago_7_11_2014_am1808/tisdk/build$ bitbake core-image-minimal
+Loading cache: 100%
+|#############################################################################################################################################################################################################################|
+ETA:  00:00:00
+Loaded 2123 entries from dependency cache.
+WARNING: Unable to get checksum for ltp-ddt-legacy SRC_URI entry
+0001-wdt_test_suite-Make-sure-to-include-generated-header.patch: file
+could not be found
+                                    | ETA:  --:--:--
+WARNING: Unable to get checksum for ltp-ddt-legacy SRC_URI entry
+0001-KERNEL_INC-in-modern-kernel-should-point-at-toplevel.patch: file
+could not be found
+Parsing recipes: 100%
+|###########################################################################################################################################################################################################################|
+Time: 00:00:01
+Parsing of 1693 .bb files complete (1690 cached, 3 parsed). 2125
+targets, 186 skipped, 0 masked, 0 errors.
+WARNING: No recipes available for:
+  /home/hutch/arago_7_11_2014_am1808/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.0.bbappend
+  /home/hutch/arago_7_11_2014_am1808/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend
+  /home/hutch/arago_7_11_2014_am1808/tisdk/sources/meta-arago/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
+NOTE: Resolving any missing task queue dependencies
+NOTE: preferred version 4.5% of gcc-crosssdk not available (for item
+virtual/i686-arago-linux-gcc-crosssdk)
+NOTE: versions of gcc-crosssdk available: 4.6.3+svnr184847 4.8.2 linaro-4.8
+NOTE: preferred version 4.5% of nativesdk-gcc-runtime not available
+(for item virtual/nativesdk-i686-arago-linux-compilerlibs)
+NOTE: versions of nativesdk-gcc-runtime available: 4.6.3+svnr184847
+4.8.2 linaro-4.8
+NOTE: preferred version 4.5% of gcc-crosssdk not available (for item
+virtual/i686-arago-linux-g++-crosssdk)
+NOTE: versions of gcc-crosssdk available: 4.6.3+svnr184847 4.8.2 linaro-4.8
+NOTE: preferred version 4.5% of nativesdk-libgcc not available (for
+item nativesdk-libgcc)
+NOTE: versions of nativesdk-libgcc available: 4.6.3+svnr184847 4.8.2 linaro-4.8
+NOTE: preferred version 4.5% of gcc-crosssdk-initial not available
+(for item virtual/i686-arago-linux-gcc-initial-crosssdk)
+NOTE: versions of gcc-crosssdk-initial available: 4.6.3+svnr184847
+4.8.2 linaro-4.8
+NOTE: preferred version 3.10 of nativesdk-linux-libc-headers not
+available (for item nativesdk-linux-libc-headers)
+NOTE: versions of nativesdk-linux-libc-headers available: 3.14
+NOTE: preferred version 4.5% of nativesdk-libgcc not available (for
+item nativesdk-libgcc)
+NOTE: versions of nativesdk-libgcc available: 4.6.3+svnr184847 4.8.2 linaro-4.8
+NOTE: preferred version 3.10 of nativesdk-linux-libc-headers not
+available (for item nativesdk-linux-libc-headers-dev)
+NOTE: versions of nativesdk-linux-libc-headers available: 3.14
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+Build Configuration:
+BB_VERSION        = "1.22.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Debian-7.4"
+TARGET_SYS        = "arm-oe-linux-gnueabi"
+MACHINE           = "am180x-evm"
+DISTRO            = "arago"
+DISTRO_VERSION    = "2014.06"
+TUNE_FEATURES     = "armv5 thumb dsp"
+TARGET_FPU        = "soft"
+meta-arago-distro
+meta-arago-extras = "master:e159553bf9ffb8ef23e6f630904db0b3f7d58e6c"
+meta-qt5          = "daisy:0137274b13a568718e441f8f1c611a653db9f2f7"
+toolchain-layer
+meta-networking
+meta-ruby
+meta-oe           = "daisy:ee24939c4c70b63a9fb7e93a58889a3231d3d367"
+meta-ti           = "daisy:c58a5d88a21613c9e4b031df9aa1e19392547f4d"
+meta-linaro-toolchain = "daisy:8a0601723c06fdb75e62aa0f0cf15fc9d7d90167"
+meta              = "daisy:348b90a8a9b32e5e4a10960194a2f622cb07a0c6"
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.20</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>dora</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: external-arago-toolchain: md5 data is not matching for
+file:///home/hutch/arago_7_11_2014_am1808/tisdk/sources/oe-core/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58
+ERROR: external-arago-toolchain: The new md5 checksum is
+4d92cd373abda3937c2bc47fbc49d690
+ERROR: external-arago-toolchain: Check if the license information has
+changed in /home/hutch/arago_7_11_2014_am1808/tisdk/sources/oe-core/LICENSE
+to verify that the LICENSE value "LGPLv2.1+" remains valid
+ERROR: Licensing Error: LIC_FILES_CHKSUM does not match, please fix
+ERROR: Function failed: do_qa_configure
+ERROR: Logfile of failure stored in:
+/home/hutch/arago_7_11_2014_am1808/tisdk/build/arago-tmp-external-arago-toolchain/work/armv5te-oe-linux-gnueabi/external-arago-toolchain/1.0-r4/temp/log.do_configure.20042
+ERROR: Task 42 (/home/hutch/arago_7_11_2014_am1808/tisdk/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb,
+do_configure) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 258 tasks of which 251 didn't need to
+be rerun and 1 failed.
+Waiting for 0 running tasks to finish:
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+Summary: 1 task failed:
+  /home/hutch/arago_7_11_2014_am1808/tisdk/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb,
+do_configure
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.06"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
+So what I did is edit
+tisdk/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb
+and replaced the LICENSE md5 with the value it calculated in the error
+above and that fixed it.  So not sure if a recipe is busted or if I
+hosed up something somehow but I thought I'd ask about it.
 
-</body>
-</html>
+So what is the story with ARM9 AM1808?  Can I use Linaro toolchain yet
+or is there still some compatibility issue that is best if I use the
+Arago 2011.09?
 
+Thanks for any ideas/pointers.
 
-------=_Part_296_1475354156.1405062381831--
+Regards,
+
+Brian
+
