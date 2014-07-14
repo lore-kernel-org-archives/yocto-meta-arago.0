@@ -1,31 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7A91C529F5
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 8D986529F5
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Jul 2014 19:35:36 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6EJZZTN011076
-	for <meta-arago@arago-project.org>; Mon, 14 Jul 2014 14:35:35 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6EJZZs3025313
-	for <meta-arago@arago-project.org>; Mon, 14 Jul 2014 14:35:35 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 14 Jul 2014 14:35:35 -0500
+	Mon, 14 Jul 2014 19:36:04 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6EJa3Wl023374
+	for <meta-arago@arago-project.org>; Mon, 14 Jul 2014 14:36:03 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6EJa3lj011545
+	for <meta-arago@arago-project.org>; Mon, 14 Jul 2014 14:36:03 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 14 Jul 2014 14:36:03 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6EJZZGd024281;
-	Mon, 14 Jul 2014 14:35:35 -0500
-Date: Mon, 14 Jul 2014 15:35:34 -0400
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6EJa36J024548;
+	Mon, 14 Jul 2014 14:36:03 -0500
+Date: Mon, 14 Jul 2014 15:36:03 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Yaniv Machani <yanivma@ti.com>
-Message-ID: <20140714193534.GQ15788@edge>
+Message-ID: <20140714193602.GR15788@edge>
 References: <1405350249-15037-1-git-send-email-yanivma@ti.com>
-	<1405350249-15037-3-git-send-email-yanivma@ti.com>
+	<1405350249-15037-4-git-send-email-yanivma@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1405350249-15037-3-git-send-email-yanivma@ti.com>
+In-Reply-To: <1405350249-15037-4-git-send-email-yanivma@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 2/5] hostap-daemon-wl18xx: Update recipe to ol_r8.a9.14 version
+Subject: Re: [PATCH 3/5] wl18xx : update to ol_r8.a9.14
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,105 +38,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jul 2014 19:35:36 -0000
+X-List-Received-Date: Mon, 14 Jul 2014 19:36:04 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Mon, Jul 14, 2014 at 06:04:06PM +0300, Yaniv Machani wrote:
+On Mon, Jul 14, 2014 at 06:04:07PM +0300, Yaniv Machani wrote:
 >     - Changed git sources to git.ti.com
->     - Updated Defconfig.
-> 
+>     - Updated to latest release.
 > Signed-off-by: Yaniv Machani <yanivma@ti.com>
 > ---
->  ...8.a8.10.bb => hostap-daemon-wl18xx_r8.a9.14.bb} |    8 ++++----
->  .../hostap/hostap-daemon/defconfig                 |    2 +-
->  .../recipes-connectivity/hostap/hostap.inc         |    7 +++----
->  3 files changed, 8 insertions(+), 9 deletions(-)
->  rename meta-arago-extras/recipes-connectivity/hostap/{hostap-daemon-wl18xx_r8.a8.10.bb => hostap-daemon-wl18xx_r8.a9.14.bb} (79%)
+>  ...are_r8.a8.10.bb => wl18xx-firmware_r8.a9.14.bb} |    9 +++++----
+>  1 files changed, 5 insertions(+), 4 deletions(-)
+>  rename meta-arago-extras/recipes-bsp/wl18xx-firmware/{wl18xx-firmware_r8.a8.10.bb => wl18xx-firmware_r8.a9.14.bb} (72%)
 >  mode change 100644 => 100755
->  mode change 100644 => 100755 meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-
-Please don't make recipes executable, i.e. don't change the mode.
-
-
-> diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
+> 
+> diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
 > old mode 100644
 > new mode 100755
-> similarity index 79%
-> rename from meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
-> rename to meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
-> index cd5d8d3..3981b78
-> --- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
-> +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
-> @@ -6,7 +6,7 @@ require hostap.inc
->  LICENSE = "GPLv2"
->  LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e"
+
+Same comment - don't change permissions.
+
+
+> similarity index 72%
+> rename from meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
+> rename to meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
+> index b59f1c4..45d4ea7
+> --- a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
+> +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
+> @@ -4,16 +4,17 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=4977a0fe767ee17765ae63c435a32a9e"
 >  
-> -PR_append = "b+gitr${SRCPV}"
-> +PR_append = "c+gitr${SRCPV}"
+>  PACKAGE_ARCH = "all"
 >  
->  FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
+> -PR = "r3+gitr${SRCPV}"
+> +PR = "r4+gitr${SRCPV}"
 >  
-> @@ -14,9 +14,9 @@ FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
->  # of hostap
->  PV = "2.0-devel-ti"
+>  PROVIDES += "wl12xx-firmware"
+>  RPROVIDES_${PN} += "wl12xx-firmware"
+>  RREPLACES_${PN} += "wl12xx-firmware"
+>  RCONFLICTS_${PN} += "wl12xx-firmware"
 >  
 > -# Tag: ol_r8.a8.10
-> -SRCREV = "257ab333aad993b4be81808524bc0d939c276058"
-> -BRANCH = "mbss_suspend"
+> -SRCREV = "89dc93a5c23fd69ebacd64c936ba5aabf173c29b"
+> -SRC_URI = "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=git;branch=mbss \
 > +# Tag: ol_r8.a9.14
-> +SRCREV = "281f5adb8eb7ee9e9220546c0227696b02aab332"
-> +BRANCH = "single_hostap_dfs_dynamic"
->  
->  PROVIDES += "hostap-daemon"
->  RPROVIDES_${PN} += "hostap-daemon"
-> diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig
-> index ccc0996..3ee35bc 100644
-> --- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig
-> +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig
-> @@ -52,7 +52,7 @@ CONFIG_LIBNL32=y
->  # This version is an experimental implementation based on IEEE 802.11w/D1.0
->  # draft and is subject to change since the standard has not yet been finalized.
->  # Driver support is also needed for IEEE 802.11w.
-> -#CONFIG_IEEE80211W=y
-> +CONFIG_IEEE80211W=y
->  
->  # Integrated EAP server
->  #CONFIG_EAP=y
-> diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-> old mode 100644
-> new mode 100755
-> index 15e82d5..180fc01
-> --- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-> +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-> @@ -1,5 +1,5 @@
->  # This is a TI specific version of the hostap-daemon recipe for use with the
-> -# wl12xx wlan and bluetooth module.
-> +# wl18xx wlan module
->  
->  HOMEPAGE = "http://hostap.epitest.fi"
->  DESCRIPTION = "User space daemon for extended IEEE 802.11 management"
-> @@ -11,15 +11,14 @@ DEPENDS = "libnl openssl"
->  # default
->  DEFAULT_PREFERENCE = "-1"
->  
-> -PR = "r5"
-> +PR = "r6"
->  
->  inherit update-rc.d
->  INITSCRIPT_NAME="hostapd"
->  
->  CONFFILES_${PN} += "${sysconfdir}/hostapd.conf"
->  
-> -SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git;branch=${BRANCH} \
-> -           file://0001-hostapd-change-conf-file-for-better-oob-startup.patch;patchdir=.. \
-
-Please also don't forget to remove the old patch, if it's no longer used.
-
-
-> +SRC_URI = "git://git.ti.com/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH} \
->             file://defconfig \
->  	       file://init"
+> +SRCREV = "2568d8f61fd509eabb112110c20ea31c088ef6b9"
+> +BRANCH = "ap_dfs"
+> +SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx_fw.git;protocol=git;branch=${BRANCH} \
+>             file://0001-Add-Makefile-for-SDK.patch \
+>            "
 >  
 > -- 
 > 1.7.9
