@@ -1,31 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 4EA2F52A78
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 10A1F529BC
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Jul 2014 20:03:15 +0000 (UTC)
+	Tue, 15 Jul 2014 06:30:57 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6EK3EG4013611
-	for <meta-arago@arago-project.org>; Mon, 14 Jul 2014 15:03:14 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6EK3EBr014239
-	for <meta-arago@arago-project.org>; Mon, 14 Jul 2014 15:03:14 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 14 Jul 2014 15:03:14 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6EK3D18007659;
-	Mon, 14 Jul 2014 15:03:14 -0500
-Date: Mon, 14 Jul 2014 16:03:13 -0400
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6F6UutZ026134
+	for <meta-arago@arago-project.org>; Tue, 15 Jul 2014 01:30:56 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6F6UuUg019107
+	for <meta-arago@arago-project.org>; Tue, 15 Jul 2014 01:30:56 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 15 Jul 2014 01:30:55 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s6F6Ut7x000860	for <meta-arago@arago-project.org>;
+	Tue, 15 Jul 2014 01:30:55 -0500
+Date: Tue, 15 Jul 2014 02:13:37 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Yaniv Machani <yanivma@ti.com>
-Message-ID: <20140714200313.GT15788@edge>
-References: <1405350249-15037-1-git-send-email-yanivma@ti.com>
-	<1405350249-15037-2-git-send-email-yanivma@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1302029290.313.1405404817646.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <1405350249-15037-2-git-send-email-yanivma@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/5] wpa-supplicant-wl18xx: Update recipe to ol_r8.a9.14 version.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.06 build 2014-07-15_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,415 +36,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jul 2014 20:03:15 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 15 Jul 2014 06:30:57 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_312_1060594770.1405404817634"
 
-On Mon, Jul 14, 2014 at 06:04:05PM +0300, Yaniv Machani wrote:
->         - Changed git sources to git.ti.com
->         - Adjust configuration to match latest package.
->         - Removed redundant files and cleanup.
+------=_Part_312_1060594770.1405404817634
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Is this recipe based on the one from oe-core? Can it be done as a bbappend 
-instead?
+<html>
+<head>
+<title>
+Status for 07/15/14
+</title>
+</head>
+<body>
+
+<h2>Status for 07/15/14</h2>
+
+<h2>BUILD_ID: build-2014-07-15_01-01-40</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.20</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>dora</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.06"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> Signed-off-by: Yaniv Machani <yanivma@ti.com>
-> ---
->  ....a8.10.bb => wpa-supplicant-wl18xx_r8.a9.14.bb} |   10 +-
->  .../wpa-supplicant/wpa-supplicant.inc              |   88 +++++++-------------
->  .../wpa-supplicant/wpa-supplicant/defaults-sane    |    8 --
->  .../defconfig                                      |   69 ++++++++++++----
->  .../fi.epitest.hostap.WPASupplicant.service        |    4 -
->  .../wpa-supplicant/fi.w1.wpa_supplicant1.service   |    4 -
->  6 files changed, 90 insertions(+), 93 deletions(-)
->  rename meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-wl18xx_r8.a8.10.bb => wpa-supplicant-wl18xx_r8.a9.14.bb} (76%)
->  mode change 100644 => 100755 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-
-mode change.
-
-
->  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defaults-sane
->  rename meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-wl18xx => wpa-supplicant}/defconfig (90%)
->  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.epitest.hostap.WPASupplicant.service
->  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
-> 
-> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-> similarity index 76%
-> rename from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
-> rename to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-> index bfe617e..203364f 100644
-> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
-> +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-> @@ -5,15 +5,15 @@ require wpa-supplicant.inc
->  
->  LICENSE = "GPLv2 | BSD"
->  LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e \
-> -                    file://../README;md5=5cb758942d25f6f61fd4ac388fd446fa \
-> +                    file://../README;md5=ba46b65db36e3c82244a3815b3738d63 \
->                      file://wpa_supplicant.c;beginline=1;endline=17;md5=8835156c8ab8cad6356ec7f39ebe3aba"
->  
->  FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
->  
-> -# Tag: ol_r8.a8.10
-> -SRCREV = "257ab333aad993b4be81808524bc0d939c276058"
-> -BRANCH = "mbss_suspend"
-> -PR_append = "b+gitr${SRCPV}"
-> +# Tag: ol_r8.a9.14
-> +SRCREV = "281f5adb8eb7ee9e9220546c0227696b02aab332"
-> +BRANCH = "single_hostap_dfs_dynamic"
-> +PR_append = "c+gitr${SRCPV}"
->  
->  # Add ti to the PV to indicate that this is a TI modify version of wpa-supplicant.
->  PV = "2.0-devel-ti"
-> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-> old mode 100644
-> new mode 100755
-> index e0bda11..dcd5b6a
-> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-> +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-> @@ -1,32 +1,27 @@
->  # This is a TI specific version of the wpa-supplicant recipe for use with the
-> -# wl12xx wlan and bluetooth module.
-> +# wl18xx wlan.
->  
-> -DESCRIPTION = "A Client for Wi-Fi Protected Access (WPA)."
-> +SUMMARY = "Client for Wi-Fi Protected Access (WPA)"
->  HOMEPAGE = "http://hostap.epitest.fi/wpa_supplicant/"
->  BUGTRACKER = "http://hostap.epitest.fi/bugz/"
->  SECTION = "network"
->  LICENSE = "GPLv2 | BSD"
->  
-> -DEPENDS = "gnutls dbus libnl openssl ${@base_contains("COMBINED_FEATURES", "madwifi", "madwifi-ng", "",d)}"
-> +DEPENDS = "gnutls dbus libnl openssl libgcrypt"
->  RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
->  
->  # To prevent users from accidently picking up this customized version of
->  # wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
->  DEFAULT_PREFERENCE = "-1"
->  
-> -PR = "r6"
-> +PR = "r7"
->  
-> -SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git;branch=${BRANCH} \
-> +SRC_URI = "git://git.ti.com/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH} \
->             file://defconfig \
-> -           file://defaults-sane \
->             file://wpa-supplicant.sh \
->             file://wpa_supplicant.conf \
->             file://p2p_supplicant.conf \
-> -           file://wpa_supplicant.conf-sane \
->             file://99_wpa_supplicant \
-> -           file://wpa_supplicant.conf \
-> -           file://fi.epitest.hostap.WPASupplicant.service \
-> -           file://fi.w1.wpa_supplicant1.service \
->            "
->  
->  S = "${WORKDIR}/git/wpa_supplicant"
-> @@ -36,12 +31,20 @@ FILES_wpa-supplicant-passphrase = "/usr/sbin/wpa_passphrase"
->  FILES_wpa-supplicant-cli = "/usr/sbin/wpa_cli"
->  FILES_${PN} += " /usr/share/dbus-1/system-services/*"
-
-I know it was like that already, but if you are changing, please also change 
-/usr/sbin to ${sbindir} and /usr/share to ${datadir}
-
-
-> -#we introduce MY_ARCH to get 'armv5te' as arch instead of the misleading 'arm' on armv5te builds
-> -MY_ARCH := "${PACKAGE_ARCH}"
-> -PACKAGE_ARCH = "${@base_contains('COMBINED_FEATURES', 'madwifi', '${MACHINE_ARCH}', '${MY_ARCH}', d)}"
-
-I don't see MY_ARCH being used anywhere else, so you could have done it in one 
-line.
-
-
-> +
-> +
-> +do_configure () {
-> +	install -m 0755 ${WORKDIR}/defconfig .config
-> +	echo "CFLAGS +=\"-I${STAGING_INCDIR}/libnl3\"" >> .config
-> +}
-> +
-> +export EXTRA_CFLAGS = "${CFLAGS}"
-> +export BINDIR = "${sbindir}"
->  do_compile () {
-> -	make
-> +	unset CFLAGS CPPFLAGS CXXFLAGS
-> +	sed -e "s:CFLAGS\ =.*:& \$(EXTRA_CFLAGS):g" -i ${S}/src/lib.rules
-> +	oe_runmake
->  }
->  
->  do_install () {
-> @@ -54,63 +57,36 @@ do_install () {
->  	install -m 644 README ${WORKDIR}/wpa_supplicant.conf ${D}${docdir}/wpa_supplicant
->  
->  	install -d ${D}${sysconfdir}/default
-> -	install -m 600 ${WORKDIR}/defaults-sane ${D}${sysconfdir}/default/wpa
-> -	install -m 600 ${WORKDIR}/wpa_supplicant.conf-sane ${D}${sysconfdir}/wpa_supplicant.conf
-> +	install -m 600 ${WORKDIR}/wpa_supplicant.conf ${D}${sysconfdir}/wpa_supplicant.conf
->  	install -m 600 ${WORKDIR}/p2p_supplicant.conf ${D}${sysconfdir}/p2p_supplicant.conf
->  
-> -	if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config || grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
-> -		install -d ${D}/${sysconfdir}/dbus-1/system.d
-> -		install -m 644 ${S}/dbus/dbus-wpa_supplicant.conf ${D}/${sysconfdir}/dbus-1/system.d
-> -		install -d ${D}/${datadir}/dbus-1/system-services
-> -		if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config; then
-> -			sed -i -e s:/sbin:${sbindir}:g ${S}/dbus/fi.epitest.hostap.WPASupplicant.service
-> -			install -m 644 ${S}/dbus/fi.epitest.hostap.WPASupplicant.service ${D}/${datadir}/dbus-1/system-services
-> -		fi
-> -		if grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
-> -			sed -i -e s:/sbin:${sbindir}:g ${S}/dbus/fi.w1.wpa_supplicant1.service
-> -			install -m 644 ${S}/dbus/fi.w1.wpa_supplicant1.service ${D}/${datadir}/dbus-1/system-services
-> -		fi
-> -	fi
-> -
->  	install -d ${D}${sysconfdir}/network/if-pre-up.d/
->  	install -d ${D}${sysconfdir}/network/if-post-down.d/
->  	install -d ${D}${sysconfdir}/network/if-down.d/
-> -	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}${sysconfdir}
->  	install -m 755 ${WORKDIR}/wpa-supplicant.sh ${D}${sysconfdir}/network/if-pre-up.d/wpa-supplicant
->  	cd ${D}${sysconfdir}/network/ && \
->  	ln -sf ../if-pre-up.d/wpa-supplicant if-post-down.d/wpa-supplicant
->  
-> +	install -d ${D}/${sysconfdir}/dbus-1/system.d
-> +	install -m 644 ${S}/dbus/dbus-wpa_supplicant.conf ${D}/${sysconfdir}/dbus-1/system.d
-> +	install -d ${D}/${datadir}/dbus-1/system-services
-> +	install -m 644 ${S}/dbus/*.service ${D}/${datadir}/dbus-1/system-services
-> +
-> +	if ${@base_contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-> +		install -d ${D}/${systemd_unitdir}/system
-> +		install -m 644 ${S}/systemd/*.service ${D}/${systemd_unitdir}/system
-> +	fi
-> +
->  	install -d ${D}/etc/default/volatiles
->  	install -m 0644 ${WORKDIR}/99_wpa_supplicant ${D}/etc/default/volatiles
-> -
-> -	install -d 2755 ${D}/usr/share/dbus-1/system-services
-> -	install -d 2755 ${D}/etc
-> -	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}/etc
-> -	install -m 644 ${WORKDIR}/fi.epitest.hostap.WPASupplicant.service ${D}/usr/share/dbus-1/system-services
-> -	install -m 644 ${WORKDIR}/fi.w1.wpa_supplicant1.service ${D}/usr/share/dbus-1/system-services
->  }
->  
->  pkg_postinst_wpa-supplicant () {
-> -	# can't do this offline
-> -	if [ "x$D" != "x" ]; then
-> -		exit 1
-> +	# If we're offline, we don't need to do this.
-> +	if [ "x$D" = "x" ]; then
-> +		killall -q -HUP dbus-daemon || true
->  	fi
-> +}
->  
-> -	DBUSPID=`pidof dbus-daemon`
->  
-> -	if [ "x$DBUSPID" != "x" ]; then
-> -		/etc/init.d/dbus-1 reload
-> -	fi
-> -}
->  
-> -do_configure () {
-> -	install -m 0755 ${WORKDIR}/defconfig .config
-> -	echo "CFLAGS += -I${STAGING_INCDIR}" >> .config
-> -	echo "CFLAGS += -I${STAGING_INCDIR}/libnl3/" >> .config
-> -	echo "LIBS += -L${STAGING_LIBDIR}" >> .config
-> -	echo "LIBS_p += -L${STAGING_LIBDIR}" >> .config
-> -	if [ "${@base_contains('COMBINED_FEATURES', 'madwifi', 1, 0, d)}" = "1" ]; then
-> -		echo "CONFIG_DRIVER_MADWIFI=y" >> .config
-> -		echo "CFLAGS += -I${STAGING_INCDIR}/madwifi-ng" >> .config
-> -	fi
-> -}
-> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defaults-sane b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defaults-sane
-> deleted file mode 100644
-> index 67c4cbd..0000000
-> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defaults-sane
-> +++ /dev/null
-> @@ -1,8 +0,0 @@
-> -# Useful flags:
-> -#  -i <ifname>          Interface (required, unless specified in config)
-> -#  -D <driver>          Wireless Driver
-> -#  -d                   Debugging (-dd for more)
-> -#  -q                   Quiet (-qq for more)
-> -
-> -CONFIG="/etc/wpa_supplicant.conf"
-> -OPTIONS="-i eth1 -D wext"
-> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defconfig
-> similarity index 90%
-> rename from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig
-> rename to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defconfig
-> index f357b79..fcbe06d 100755
-> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig
-> +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defconfig
-> @@ -176,7 +176,7 @@ CONFIG_EAP_PWD=y
->  CONFIG_EAP_LEAP=y
->  
->  # EAP-AKA (enable CONFIG_PCSC, if EAP-AKA is used)
-> -#CONFIG_EAP_AKA=y
-> +CONFIG_EAP_AKA=y
->  
->  # EAP-AKA' (enable CONFIG_PCSC, if EAP-AKA' is used).
->  # This requires CONFIG_EAP_AKA to be enabled, too.
-> @@ -201,10 +201,12 @@ CONFIG_WPS=y
->  # Enable WSC 2.0 support
->  CONFIG_WPS2=y
->  # Enable WPS external registrar functionality
-> -#CONFIG_WPS_ER=y
-> +CONFIG_WPS_ER=y
->  # Disable credentials for an open network by default when acting as a WPS
->  # registrar.
->  #CONFIG_WPS_REG_DISABLE_OPEN=y
-> +# Enable WPS support with NFC config method
-> +#CONFIG_WPS_NFC=y
->  
->  # EAP-IKEv2
->  #CONFIG_EAP_IKEV2=y
-> @@ -224,6 +226,9 @@ CONFIG_SMARTCARD=y
->  # Support HT overrides (disable HT/HT40, mask MCS rates, etc.)
->  #CONFIG_HT_OVERRIDES=y
->  
-> +# Support VHT overrides (disable VHT, mask MCS rates, etc.)
-> +#CONFIG_VHT_OVERRIDES=y
-> +
->  # Development testing
->  #CONFIG_EAPOL_TEST=y
->  
-> @@ -231,6 +236,7 @@ CONFIG_SMARTCARD=y
->  # unix = UNIX domain sockets (default for Linux/*BSD)
->  # udp = UDP sockets using localhost (127.0.0.1)
->  # named_pipe = Windows Named Pipe (default for Windows)
-> +# udp-remote = UDP sockets with remote access (only for tests systems/purpose)
->  # y = use default (backwards compatibility)
->  # If this option is commented out, control interface is not included in the
->  # build.
-> @@ -256,11 +262,6 @@ CONFIG_WPA_CLI_EDIT=y
->  # 35-50 kB in code size.
->  #CONFIG_NO_WPA=y
->  
-> -# Remove WPA2 support. This allows WPA to be used, but removes WPA2 code to
-> -# save about 1 kB in code size when building only WPA-Personal (no EAP support)
-> -# or 6 kB if building for WPA-Enterprise.
-> -#CONFIG_NO_WPA2=y
-> -
->  # Remove IEEE 802.11i/WPA-Personal ASCII passphrase support
->  # This option can be used to reduce code size by removing support for
->  # converting ASCII passphrases into PSK. If this functionality is removed, the
-> @@ -304,7 +305,6 @@ CONFIG_OS=unix
->  # Select event loop implementation
->  # eloop = select() loop (default)
->  # eloop_win = Windows events and WaitForMultipleObject() loop
-> -# eloop_none = Empty template
->  CONFIG_ELOOP=eloop
->  
->  # Should we use poll instead of select? Select is used by default.
-> @@ -322,11 +322,9 @@ CONFIG_L2_PACKET=linux
->  # PeerKey handshake for Station to Station Link (IEEE 802.11e DLS)
->  CONFIG_PEERKEY=y
->  
-> -# IEEE 802.11w (management frame protection)
-> -# This version is an experimental implementation based on IEEE 802.11w/D1.0
-> -# draft and is subject to change since the standard has not yet been finalized.
-> +# IEEE 802.11w (management frame protection), also known as PMF
->  # Driver support is also needed for IEEE 802.11w.
-> -#CONFIG_IEEE80211W=y
-> +CONFIG_IEEE80211W=y
->  
->  # Select TLS implementation
->  # openssl = OpenSSL (default)
-> @@ -404,7 +402,7 @@ CONFIG_PEERKEY=y
->  #CONFIG_DYNAMIC_EAP_METHODS=y
->  
->  # IEEE Std 802.11r-2008 (Fast BSS Transition)
-> -#CONFIG_IEEE80211R=y
-> +CONFIG_IEEE80211R=y
->  
->  # Add support for writing debug log to a file (/tmp/wpa_supplicant-log-#.txt)
->  #CONFIG_DEBUG_FILE=y
-> @@ -483,6 +481,10 @@ CONFIG_ANDROID_LOG=y
->  # IEEE 802.11n (High Throughput) support (mainly for AP mode)
->  CONFIG_IEEE80211N=y
->  
-> +# Wireless Network Management (IEEE Std 802.11v-2011)
-> +# Note: This is experimental and not complete implementation.
-> +CONFIG_WNM=y
-> +
->  # Interworking (IEEE 802.11u)
->  # This can be used to enable functionality to improve interworking with
->  # external networks (GAS/ANQP to learn more about the networks and network
-> @@ -495,12 +497,47 @@ CONFIG_HS20=y
->  # Disable roaming in wpa_supplicant
->  #CONFIG_NO_ROAMING=y
->  
-> -# Enable P2P
-> -CONFIG_P2P=y
-> +# AP mode operations with wpa_supplicant
-> +# This can be used for controlling AP mode operations with wpa_supplicant. It
-> +# should be noted that this is mainly aimed at simple cases like
-> +# WPA2-Personal while more complex configurations like WPA2-Enterprise with an
-> +# external RADIUS server can be supported with hostapd.
->  CONFIG_AP=y
->  
-> +# P2P (Wi-Fi Direct)
-> +# This can be used to enable P2P support in wpa_supplicant. See README-P2P for
-> +# more information on P2P operations.
-> +CONFIG_P2P=y
-> +
-> +# Enable TDLS support
-> +CONFIG_TDLS=y
-> +
-> +# Wi-Fi Direct
-> +# This can be used to enable Wi-Fi Direct extensions for P2P using an external
-> +# program to control the additional information exchanges in the messages.
-> +CONFIG_WIFI_DISPLAY=y
-> +
-> +# Autoscan
-> +# This can be used to enable automatic scan support in wpa_supplicant.
-> +# See wpa_supplicant.conf for more information on autoscan usage.
-> +#
-> +# Enabling directly a module will enable autoscan support.
-> +# For exponential module:
-> +#CONFIG_AUTOSCAN_EXPONENTIAL=y
-> +# For periodic module:
-> +#CONFIG_AUTOSCAN_PERIODIC=y
-> +
-> +# Password (and passphrase, etc.) backend for external storage
-> +# These optional mechanisms can be used to add support for storing passwords
-> +# and other secrets in external (to wpa_supplicant) location. This allows, for
-> +# example, operating system specific key storage to be used
-> +#
-> +# External password backend for testing purposes (developer use)
-> +#CONFIG_EXT_PASSWORD_TEST=y
-> +
-> +include $(wildcard $(LOCAL_PATH)/android_config_*.inc)
-> +
->  # bgscan
->  NEED_BGSCAN=y
->  CONFIG_BGSCAN_LEARN=y
->  CONFIG_BGSCAN_SIMPLE=y
-> -
-> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.epitest.hostap.WPASupplicant.service b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.epitest.hostap.WPASupplicant.service
-> deleted file mode 100644
-> index fb3f917..0000000
-> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.epitest.hostap.WPASupplicant.service
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -[D-BUS Service]
-> -Name=fi.epitest.hostap.WPASupplicant
-> -Exec=/usr/sbin/wpa_supplicant -d -Dnl80211 -c/etc/wpa_supplicant.conf -iwlan0 -B -u
-> -User=root
-> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
-> deleted file mode 100644
-> index 0bb1056..0000000
-> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -[D-BUS Service]
-> -Name=fi.w1.wpa_supplicant1
-> -Exec=/usr/sbin/wpa_supplicant -d -Dnl80211 -c/etc/wpa_supplicant.conf -iwlan0 -B -u
-> -User=root
-> -- 
-> 1.7.9
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_312_1060594770.1405404817634--
