@@ -1,31 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id AEE9052974
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 81CEF52974
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Jul 2014 14:13:27 +0000 (UTC)
+	Wed, 16 Jul 2014 14:19:10 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6GEDRZT030926
-	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:13:27 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6GEJ9Gv011846
+	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:19:09 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6GEDRcq014771
-	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:13:27 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 16 Jul 2014 09:13:26 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6GEDQaD001031;
-	Wed, 16 Jul 2014 09:13:26 -0500
-Date: Wed, 16 Jul 2014 10:13:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20140716141326.GK15788@edge>
-References: <1405506511-20607-1-git-send-email-yanivma@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C6E344E@DFLE08.ent.ti.com>
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6GEJ9lh019222
+	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:19:09 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0174.001; Wed, 16 Jul 2014 09:19:09 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 1/4] sourceipk: allow packaging shallow
+	git	clone
+Thread-Index: AQHPoB/1qy2iXDFnKk6HPiRAj7uidpuiv3dQ
+Date: Wed, 16 Jul 2014 14:19:08 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C6E348E@DFLE08.ent.ti.com>
+References: <1405423715-21885-1-git-send-email-Chase.Maupin@ti.com>
+	<1405423715-21885-2-git-send-email-Chase.Maupin@ti.com>
+In-Reply-To: <1405423715-21885-2-git-send-email-Chase.Maupin@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6E344E@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/5 v2] wpa-supplicant-wl18xx: Update recipe to	ol_r8.a9.14 version.
+Subject: Re: [PATCH 1/4] sourceipk: allow packaging shallow git	clone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,474 +41,192 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 14:13:27 -0000
+X-List-Received-Date: Wed, 16 Jul 2014 14:19:10 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 16, 2014 at 02:08:03PM +0000, Cooper Jr., Franklin wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Machani, Yaniv
-> > Sent: Wednesday, July 16, 2014 5:28 AM
-> > To: meta-arago@arago-project.org
-> > Subject: [meta-arago] [PATCH 1/5 v2] wpa-supplicant-wl18xx: Update recipe to
-> > ol_r8.a9.14 version.
-> > 
-> >         - Changed git sources to git.ti.com
-> >         - Adjust configuration to match latest package.
-> >         - Removed redundant files and cleanup.
-> > 
-> > Signed-off-by: Yaniv Machani <yanivma@ti.com>
-> > ---
-> > V2 Changes
-> >     - Fixed mode change
-> >     - Fixed semantics
-> > 
-> >  ....a8.10.bb => wpa-supplicant-wl18xx_r8.a9.14.bb} |   10 +-
-> >  .../wpa-supplicant/wpa-supplicant.inc              |   91 +++++++-------------
-> >  .../wpa-supplicant/wpa-supplicant/defaults-sane    |    8 --
-> >  .../defconfig                                      |   69 +++++++++++----
-> >  .../fi.epitest.hostap.WPASupplicant.service        |    4 -
-> >  .../wpa-supplicant/fi.w1.wpa_supplicant1.service   |    4 -
-> >  6 files changed, 90 insertions(+), 96 deletions(-)  rename meta-arago-
-> > extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-
-> > wl18xx_r8.a8.10.bb => wpa-supplicant-wl18xx_r8.a9.14.bb} (76%)  delete
-> > mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/defaults-sane
-> >  rename meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-
-> > supplicant-wl18xx => wpa-supplicant}/defconfig (90%)  delete mode 100644
-> > meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/fi.epitest.hostap.WPASupplicant.service
-> >  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
-> > 
-> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-> > similarity index 76%
-> > rename from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant-wl18xx_r8.a8.10.bb
-> > rename to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant-wl18xx_r8.a9.14.bb
-> > index bfe617e..203364f 100644
-> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-
-> > wl18xx_r8.a8.10.bb
-> > +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplica
-> > +++ nt-wl18xx_r8.a9.14.bb
-> > @@ -5,15 +5,15 @@ require wpa-supplicant.inc
-> > 
-> >  LICENSE = "GPLv2 | BSD"
-> >  LIC_FILES_CHKSUM =
-> > "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e \
-> > -                    file://../README;md5=5cb758942d25f6f61fd4ac388fd446fa \
-> > +
-> > + file://../README;md5=ba46b65db36e3c82244a3815b3738d63 \
-> > 
-> > file://wpa_supplicant.c;beginline=1;endline=17;md5=8835156c8ab8cad6356ec
-> > 7f39ebe3aba"
-> > 
-> >  FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
-> > 
-> > -# Tag: ol_r8.a8.10
-> > -SRCREV = "257ab333aad993b4be81808524bc0d939c276058"
-> > -BRANCH = "mbss_suspend"
-> > -PR_append = "b+gitr${SRCPV}"
-> > +# Tag: ol_r8.a9.14
-> > +SRCREV = "281f5adb8eb7ee9e9220546c0227696b02aab332"
-> > +BRANCH = "single_hostap_dfs_dynamic"
-> > +PR_append = "c+gitr${SRCPV}"
-> > 
-> >  # Add ti to the PV to indicate that this is a TI modify version of wpa-
-> > supplicant.
-> >  PV = "2.0-devel-ti"
-> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant.inc
-> > index e0bda11..c8611ea 100644
-> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant.inc
-> > +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplica
-> > +++ nt.inc
-> > @@ -1,47 +1,47 @@
-> >  # This is a TI specific version of the wpa-supplicant recipe for use with the -#
-> > wl12xx wlan and bluetooth module.
-> > +# wl18xx wlan.
-> > 
-> > -DESCRIPTION = "A Client for Wi-Fi Protected Access (WPA)."
-> > +SUMMARY = "Client for Wi-Fi Protected Access (WPA)"
-> >  HOMEPAGE = "http://hostap.epitest.fi/wpa_supplicant/"
-> >  BUGTRACKER = "http://hostap.epitest.fi/bugz/"
-> >  SECTION = "network"
-> >  LICENSE = "GPLv2 | BSD"
-> > 
-> > -DEPENDS = "gnutls dbus libnl openssl
-> > ${@base_contains("COMBINED_FEATURES", "madwifi", "madwifi-ng", "",d)}"
-> > +DEPENDS = "gnutls dbus libnl openssl libgcrypt"
-> >  RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
-> > 
-> >  # To prevent users from accidently picking up this customized version of  #
-> > wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
-> >  DEFAULT_PREFERENCE = "-1"
-> > 
-> > -PR = "r6"
-> > +PR = "r7"
-> > 
-> > -SRC_URI = "git://github.com/TI-
-> > OpenLink/hostap.git;protocol=git;branch=${BRANCH} \
-> > +SRC_URI =
-> > +"git://git.ti.com/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH}
-> > +\
-> >             file://defconfig \
-> > -           file://defaults-sane \
-> >             file://wpa-supplicant.sh \
-> >             file://wpa_supplicant.conf \
-> >             file://p2p_supplicant.conf \
-> > -           file://wpa_supplicant.conf-sane \
-> >             file://99_wpa_supplicant \
-> > -           file://wpa_supplicant.conf \
-> > -           file://fi.epitest.hostap.WPASupplicant.service \
-> > -           file://fi.w1.wpa_supplicant1.service \
-> >            "
-> > 
-> >  S = "${WORKDIR}/git/wpa_supplicant"
-> > 
-> >  PACKAGES_prepend = "wpa-supplicant-passphrase wpa-supplicant-cli "
-> [Franklin] PACKAGES_prepend = "${PN}-passphrase ${PN}-cli"
-> > -FILES_wpa-supplicant-passphrase = "/usr/sbin/wpa_passphrase"
-> > -FILES_wpa-supplicant-cli = "/usr/sbin/wpa_cli"
-> > -FILES_${PN} += " /usr/share/dbus-1/system-services/*"
-> > +FILES_wpa-supplicant-passphrase = "${sbindir}/wpa_passphrase"
-> > +FILES_wpa-supplicant-cli = "${sbindir}/wpa_cli"
-> [Franklin] You can probably just use the below
-> FILES_${PN}-passphrase ....
-> FILES_${PN}-cli .....
-> 
-> > +FILES_${PN} += "${datadir}/dbus-1/system-services/*"
-> > 
-> > -#we introduce MY_ARCH to get 'armv5te' as arch instead of the misleading
-> > 'arm' on armv5te builds -MY_ARCH := "${PACKAGE_ARCH}"
-> > -PACKAGE_ARCH = "${@base_contains('COMBINED_FEATURES', 'madwifi',
-> > '${MACHINE_ARCH}', '${MY_ARCH}', d)}"
-> > +do_configure () {
-> > +	install -m 0755 ${WORKDIR}/defconfig .config
-> > +	echo "CFLAGS +=\"-I${STAGING_INCDIR}/libnl3\"" >> .config }
-> > 
-> > +export EXTRA_CFLAGS = "${CFLAGS}"
-> > +export BINDIR = "${sbindir}"
-> >  do_compile () {
-> > -	make
-> > +	unset CFLAGS CPPFLAGS CXXFLAGS
-> > +	sed -e "s:CFLAGS\ =.*:& \$(EXTRA_CFLAGS):g" -i ${S}/src/lib.rules
-> > +	oe_runmake
-> >  }
-> > 
-> >  do_install () {
-> > @@ -54,63 +54,36 @@ do_install () {
-> >  	install -m 644 README ${WORKDIR}/wpa_supplicant.conf
-> > ${D}${docdir}/wpa_supplicant
-> > 
-> >  	install -d ${D}${sysconfdir}/default
-> > -	install -m 600 ${WORKDIR}/defaults-sane
-> > ${D}${sysconfdir}/default/wpa
-> > -	install -m 600 ${WORKDIR}/wpa_supplicant.conf-sane
-> > ${D}${sysconfdir}/wpa_supplicant.conf
-> > +	install -m 600 ${WORKDIR}/wpa_supplicant.conf
-> > +${D}${sysconfdir}/wpa_supplicant.conf
-> >  	install -m 600 ${WORKDIR}/p2p_supplicant.conf
-> > ${D}${sysconfdir}/p2p_supplicant.conf
-> > 
-> > -	if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config || grep -q
-> > ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
-> > -		install -d ${D}/${sysconfdir}/dbus-1/system.d
-> > -		install -m 644 ${S}/dbus/dbus-wpa_supplicant.conf
-> > ${D}/${sysconfdir}/dbus-1/system.d
-> > -		install -d ${D}/${datadir}/dbus-1/system-services
-> > -		if grep -q ^CONFIG_CTRL_IFACE_DBUS=y .config; then
-> > -			sed -i -e s:/sbin:${sbindir}:g
-> > ${S}/dbus/fi.epitest.hostap.WPASupplicant.service
-> > -			install -m 644
-> > ${S}/dbus/fi.epitest.hostap.WPASupplicant.service ${D}/${datadir}/dbus-
-> > 1/system-services
-> > -		fi
-> > -		if grep -q ^CONFIG_CTRL_IFACE_DBUS_NEW=y .config; then
-> > -			sed -i -e s:/sbin:${sbindir}:g
-> > ${S}/dbus/fi.w1.wpa_supplicant1.service
-> > -			install -m 644 ${S}/dbus/fi.w1.wpa_supplicant1.service
-> > ${D}/${datadir}/dbus-1/system-services
-> > -		fi
-> > -	fi
-> > -
-> >  	install -d ${D}${sysconfdir}/network/if-pre-up.d/
-> >  	install -d ${D}${sysconfdir}/network/if-post-down.d/
-> >  	install -d ${D}${sysconfdir}/network/if-down.d/
-> > -	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}${sysconfdir}
-> >  	install -m 755 ${WORKDIR}/wpa-supplicant.sh
-> > ${D}${sysconfdir}/network/if-pre-up.d/wpa-supplicant
-> >  	cd ${D}${sysconfdir}/network/ && \
-> >  	ln -sf ../if-pre-up.d/wpa-supplicant if-post-down.d/wpa-supplicant
-> > 
-> > +	install -d ${D}/${sysconfdir}/dbus-1/system.d
-> > +	install -m 644 ${S}/dbus/dbus-wpa_supplicant.conf
-> > ${D}/${sysconfdir}/dbus-1/system.d
-> > +	install -d ${D}/${datadir}/dbus-1/system-services
-> > +	install -m 644 ${S}/dbus/*.service
-> > +${D}/${datadir}/dbus-1/system-services
->  [Franklin] Any reason not to move all of the system d logic under this DISTRO_FEATURES if statement below?
-> No reason to create directories and install files used by system.d if the distro doesn't support it.
+What branch/commit is checked out by default when a user uses this shallow =
+cloned git repository?
+Also since your manually cloning this repository what happens to patches th=
+at OE applies to the git repository or files that are manually copied?
 
-I believe this code is just copied verbatim from oe-core...
+I'm not sure if it is possible but it is probably safer to reuse the git re=
+pository as is from sourceipk and see if we can make that git repository sh=
+allow so we can preserve any changes to the repo.
 
-
-> > +	if ${@base_contains('DISTRO_FEATURES','systemd','true','false',d)};
-> > then
-> > +		install -d ${D}/${systemd_unitdir}/system
-> > +		install -m 644 ${S}/systemd/*.service
-> > ${D}/${systemd_unitdir}/system
-> > +	fi
-> > +
-> >  	install -d ${D}/etc/default/volatiles
-> >  	install -m 0644 ${WORKDIR}/99_wpa_supplicant
-> > ${D}/etc/default/volatiles
-> > -
-> > -	install -d 2755 ${D}/usr/share/dbus-1/system-services
-> > -	install -d 2755 ${D}/etc
-> > -	install -m 644 ${WORKDIR}/wpa_supplicant.conf ${D}/etc
-> > -	install -m 644 ${WORKDIR}/fi.epitest.hostap.WPASupplicant.service
-> > ${D}/usr/share/dbus-1/system-services
-> > -	install -m 644 ${WORKDIR}/fi.w1.wpa_supplicant1.service
-> > ${D}/usr/share/dbus-1/system-services
-> >  }
-> > 
-> >  pkg_postinst_wpa-supplicant () {
-> > -	# can't do this offline
-> > -	if [ "x$D" != "x" ]; then
-> > -		exit 1
-> > +	# If we're offline, we don't need to do this.
-> > +	if [ "x$D" = "x" ]; then
-> > +		killall -q -HUP dbus-daemon || true
-> >  	fi
-> > +}
-> > 
-> > -	DBUSPID=`pidof dbus-daemon`
-> > 
-> > -	if [ "x$DBUSPID" != "x" ]; then
-> > -		/etc/init.d/dbus-1 reload
-> > -	fi
-> > -}
-> > 
-> > -do_configure () {
-> > -	install -m 0755 ${WORKDIR}/defconfig .config
-> > -	echo "CFLAGS += -I${STAGING_INCDIR}" >> .config
-> > -	echo "CFLAGS += -I${STAGING_INCDIR}/libnl3/" >> .config
-> > -	echo "LIBS += -L${STAGING_LIBDIR}" >> .config
-> > -	echo "LIBS_p += -L${STAGING_LIBDIR}" >> .config
-> > -	if [ "${@base_contains('COMBINED_FEATURES', 'madwifi', 1, 0, d)}" =
-> > "1" ]; then
-> > -		echo "CONFIG_DRIVER_MADWIFI=y" >> .config
-> > -		echo "CFLAGS += -I${STAGING_INCDIR}/madwifi-ng" >> .config
-> > -	fi
-> > -}
-> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/defaults-sane b/meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/defaults-sane
-> > deleted file mode 100644
-> > index 67c4cbd..0000000
-> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/defaults-sane
-> > +++ /dev/null
-> > @@ -1,8 +0,0 @@
-> > -# Useful flags:
-> > -#  -i <ifname>          Interface (required, unless specified in config)
-> > -#  -D <driver>          Wireless Driver
-> > -#  -d                   Debugging (-dd for more)
-> > -#  -q                   Quiet (-qq for more)
-> > -
-> > -CONFIG="/etc/wpa_supplicant.conf"
-> > -OPTIONS="-i eth1 -D wext"
-> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant-wl18xx/defconfig b/meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/defconfig
-> > similarity index 90%
-> > rename from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant-wl18xx/defconfig
-> > rename to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/defconfig
-> > index f357b79..fcbe06d 100755
-> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-
-> > wl18xx/defconfig
-> > +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplica
-> > +++ nt/defconfig
-> > @@ -176,7 +176,7 @@ CONFIG_EAP_PWD=y
-> >  CONFIG_EAP_LEAP=y
-> > 
-> >  # EAP-AKA (enable CONFIG_PCSC, if EAP-AKA is used) -#CONFIG_EAP_AKA=y
-> > +CONFIG_EAP_AKA=y
-> > 
-> >  # EAP-AKA' (enable CONFIG_PCSC, if EAP-AKA' is used).
-> >  # This requires CONFIG_EAP_AKA to be enabled, too.
-> > @@ -201,10 +201,12 @@ CONFIG_WPS=y
-> >  # Enable WSC 2.0 support
-> >  CONFIG_WPS2=y
-> >  # Enable WPS external registrar functionality -#CONFIG_WPS_ER=y
-> > +CONFIG_WPS_ER=y
-> >  # Disable credentials for an open network by default when acting as a WPS  #
-> > registrar.
-> >  #CONFIG_WPS_REG_DISABLE_OPEN=y
-> > +# Enable WPS support with NFC config method #CONFIG_WPS_NFC=y
-> > 
-> >  # EAP-IKEv2
-> >  #CONFIG_EAP_IKEV2=y
-> > @@ -224,6 +226,9 @@ CONFIG_SMARTCARD=y
-> >  # Support HT overrides (disable HT/HT40, mask MCS rates, etc.)
-> > #CONFIG_HT_OVERRIDES=y
-> > 
-> > +# Support VHT overrides (disable VHT, mask MCS rates, etc.)
-> > +#CONFIG_VHT_OVERRIDES=y
-> > +
-> >  # Development testing
-> >  #CONFIG_EAPOL_TEST=y
-> > 
-> > @@ -231,6 +236,7 @@ CONFIG_SMARTCARD=y
-> >  # unix = UNIX domain sockets (default for Linux/*BSD)  # udp = UDP sockets
-> > using localhost (127.0.0.1)  # named_pipe = Windows Named Pipe (default for
-> > Windows)
-> > +# udp-remote = UDP sockets with remote access (only for tests
-> > +systems/purpose)
-> >  # y = use default (backwards compatibility)  # If this option is commented
-> > out, control interface is not included in the  # build.
-> > @@ -256,11 +262,6 @@ CONFIG_WPA_CLI_EDIT=y  # 35-50 kB in code size.
-> >  #CONFIG_NO_WPA=y
-> > 
-> > -# Remove WPA2 support. This allows WPA to be used, but removes WPA2
-> > code to -# save about 1 kB in code size when building only WPA-Personal (no
-> > EAP support) -# or 6 kB if building for WPA-Enterprise.
-> > -#CONFIG_NO_WPA2=y
-> > -
-> >  # Remove IEEE 802.11i/WPA-Personal ASCII passphrase support  # This option
-> > can be used to reduce code size by removing support for  # converting ASCII
-> > passphrases into PSK. If this functionality is removed, the @@ -304,7 +305,6
-> > @@ CONFIG_OS=unix  # Select event loop implementation  # eloop = select()
-> > loop (default)  # eloop_win = Windows events and WaitForMultipleObject()
-> > loop -# eloop_none = Empty template  CONFIG_ELOOP=eloop
-> > 
-> >  # Should we use poll instead of select? Select is used by default.
-> > @@ -322,11 +322,9 @@ CONFIG_L2_PACKET=linux  # PeerKey handshake for
-> > Station to Station Link (IEEE 802.11e DLS)  CONFIG_PEERKEY=y
-> > 
-> > -# IEEE 802.11w (management frame protection) -# This version is an
-> > experimental implementation based on IEEE 802.11w/D1.0 -# draft and is
-> > subject to change since the standard has not yet been finalized.
-> > +# IEEE 802.11w (management frame protection), also known as PMF
-> >  # Driver support is also needed for IEEE 802.11w.
-> > -#CONFIG_IEEE80211W=y
-> > +CONFIG_IEEE80211W=y
-> > 
-> >  # Select TLS implementation
-> >  # openssl = OpenSSL (default)
-> > @@ -404,7 +402,7 @@ CONFIG_PEERKEY=y
-> >  #CONFIG_DYNAMIC_EAP_METHODS=y
-> > 
-> >  # IEEE Std 802.11r-2008 (Fast BSS Transition) -#CONFIG_IEEE80211R=y
-> > +CONFIG_IEEE80211R=y
-> > 
-> >  # Add support for writing debug log to a file (/tmp/wpa_supplicant-log-#.txt)
-> > #CONFIG_DEBUG_FILE=y @@ -483,6 +481,10 @@ CONFIG_ANDROID_LOG=y  #
-> > IEEE 802.11n (High Throughput) support (mainly for AP mode)
-> > CONFIG_IEEE80211N=y
-> > 
-> > +# Wireless Network Management (IEEE Std 802.11v-2011) # Note: This is
-> > +experimental and not complete implementation.
-> > +CONFIG_WNM=y
-> > +
-> >  # Interworking (IEEE 802.11u)
-> >  # This can be used to enable functionality to improve interworking with  #
-> > external networks (GAS/ANQP to learn more about the networks and network
-> > @@ -495,12 +497,47 @@ CONFIG_HS20=y  # Disable roaming in
-> > wpa_supplicant  #CONFIG_NO_ROAMING=y
-> > 
-> > -# Enable P2P
-> > -CONFIG_P2P=y
-> > +# AP mode operations with wpa_supplicant # This can be used for
-> > +controlling AP mode operations with wpa_supplicant. It # should be
-> > +noted that this is mainly aimed at simple cases like # WPA2-Personal
-> > +while more complex configurations like WPA2-Enterprise with an #
-> > +external RADIUS server can be supported with hostapd.
-> >  CONFIG_AP=y
-> > 
-> > +# P2P (Wi-Fi Direct)
-> > +# This can be used to enable P2P support in wpa_supplicant. See
-> > +README-P2P for # more information on P2P operations.
-> > +CONFIG_P2P=y
-> > +
-> > +# Enable TDLS support
-> > +CONFIG_TDLS=y
-> > +
-> > +# Wi-Fi Direct
-> > +# This can be used to enable Wi-Fi Direct extensions for P2P using an
-> > +external # program to control the additional information exchanges in the
-> > messages.
-> > +CONFIG_WIFI_DISPLAY=y
-> > +
-> > +# Autoscan
-> > +# This can be used to enable automatic scan support in wpa_supplicant.
-> > +# See wpa_supplicant.conf for more information on autoscan usage.
-> > +#
-> > +# Enabling directly a module will enable autoscan support.
-> > +# For exponential module:
-> > +#CONFIG_AUTOSCAN_EXPONENTIAL=y
-> > +# For periodic module:
-> > +#CONFIG_AUTOSCAN_PERIODIC=y
-> > +
-> > +# Password (and passphrase, etc.) backend for external storage # These
-> > +optional mechanisms can be used to add support for storing passwords #
-> > +and other secrets in external (to wpa_supplicant) location. This
-> > +allows, for # example, operating system specific key storage to be used
-> > +# # External password backend for testing purposes (developer use)
-> > +#CONFIG_EXT_PASSWORD_TEST=y
-> > +
-> > +include $(wildcard $(LOCAL_PATH)/android_config_*.inc)
-> > +
-> >  # bgscan
-> >  NEED_BGSCAN=y
-> >  CONFIG_BGSCAN_LEARN=y
-> >  CONFIG_BGSCAN_SIMPLE=y
-> > -
-> > diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/fi.epitest.hostap.WPASupplicant.service b/meta-arago-
-> > extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/fi.epitest.hostap.WPASupplicant.service
-> > deleted file mode 100644
-> > index fb3f917..0000000
-> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/fi.epitest.hostap.WPASupplicant.service
-> > +++ /dev/null
-> > @@ -1,4 +0,0 @@
-> > -[D-BUS Service]
-> > -Name=fi.epitest.hostap.WPASupplicant
-> > -Exec=/usr/sbin/wpa_supplicant -d -Dnl80211 -c/etc/wpa_supplicant.conf -
-> > iwlan0 -B -u -User=root diff --git a/meta-arago-extras/recipes-
-> > connectivity/wpa-supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
-> > b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/fi.w1.wpa_supplicant1.service
-> > deleted file mode 100644
-> > index 0bb1056..0000000
-> > --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-
-> > supplicant/fi.w1.wpa_supplicant1.service
-> > +++ /dev/null
-> > @@ -1,4 +0,0 @@
-> > -[D-BUS Service]
-> > -Name=fi.w1.wpa_supplicant1
-> > -Exec=/usr/sbin/wpa_supplicant -d -Dnl80211 -c/etc/wpa_supplicant.conf -
-> > iwlan0 -B -u -User=root
-> > --
-> > 1.7.9
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Maupin, Chase
+> Sent: Tuesday, July 15, 2014 6:29 AM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCH 1/4] sourceipk: allow packaging shallow git
+> clone
+>=20
+> * Add another flag SRCIPK_SHALLOW_CLONE that will do a shallow
+>   clone of depth 1 to reduce the size of the git history.
+>     * The full history can be fetched again using either of the
+>       following commands based on the version of git being used
+>         - git pull --unshallow (New git versions)
+>         - git pull (older git versions)
+> * Clean up some of the variable names to make it more clear what
+>   they are storing.
+> * Create a generic function to determine the fetch reporitory
+>=20
+> Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+> ---
+>  meta-arago-distro/classes/sourceipk.bbclass |  100
+> ++++++++++++++++++++++++---
+>  1 file changed, 89 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-
+> distro/classes/sourceipk.bbclass
+> index 20dda76..33878ac 100644
+> --- a/meta-arago-distro/classes/sourceipk.bbclass
+> +++ b/meta-arago-distro/classes/sourceipk.bbclass
+> @@ -61,32 +61,111 @@ SRCIPK_INCLUDE_EXTRAFILES ?=3D "1"
+>=20
+>  SRCIPK_PRESERVE_GIT ?=3D "false"
+>=20
+> -adjust_git() {
+> +# Create a shallow clone of the git repository to reduce the size of #
+> +the sourceipk SRCIPK_SHALLOW_CLONE ?=3D "false"
+> +
+> +# This function will return the fetch URL for a git repository passed
+> +as # the first parameter.
+> +get_remote() {
+> +    git_repo=3D"$1"
+> +
+> +    if [ "$git_repo" =3D=3D "" ]
+> +    then
+> +        echo "git_repo not passed to get_remote"
+> +        exit 1
+> +    fi
+> +
+> +    cd $git_repo
+> +
+> +    # Get the remote repository fetch URL
+> +    remote=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   | cut -=
+c 7- | tr -d ' '`
+> +
+> +    # Since the echo'ed value of this statment is the returned value red=
+irect
+> +    # the output of this command to /dev/null
+> +    cd - > /dev/null
+> +
+> +    # echo back the remote repository URL as the output of this function
+> +    echo $remote
+> +
+> +    return 0
+> +}
+> +
+> +# Some git repositories are very large and we do not want to ship the #
+> +full history.  Instead we want to limit history to reduce the size
+> +while # still keeping the git repository in place.  The full history
+> +can be # fetched using git pull --unshallow or just git pull # NOTE:
+> +This function depends on a git version >=3D 1.7.10.  It will work
+> +#       with older versions but the size will be larger because rather
+> +#       than just a single branch the limited history will be a depth of
+> +#       1 for all branches and tags.
+> +limit_git_history() {
+> +    # By default limit the history to 1 commit since the user can always
+> +    # use git pull --unshallow to fetch the rest of history.  The depth
+> +    # level of 1 is set to keep from tracking through all merges and
+> +    # pulling excess history
+> +    commits=3D"1"
+> +
+> +    # Temporary directory to make shallow clones in
+> +    gitshallowclone=3D"${WORKDIR}/temp-git-shallow-clone"
+> +
+> +    # Change directory to the git repository to be safe
+> +    cd $tmp_dir/${SRCIPK_INSTALL_DIR}
+> +
+> +    # Create a temporary directory to hold the shallow git clone
+> +    mkdir -p $gitshallowclone
+>=20
+> +    remote=3D`get_remote $PWD`
+> +
+> +    git clone --depth $commits --branch ${BRANCH} file://$remote
+> + $gitshallowclone
+> +
+> +    # remove original kernel clone since we will replace it with the sha=
+llow
+> +    # clone
+> +    rm -rf $tmp_dir/${SRCIPK_INSTALL_DIR}/.git
+> +
+> +    # replace the original kernel git data with the shallow clone git da=
+ta
+> +    mv $gitshallowclone/.git $tmp_dir/${SRCIPK_INSTALL_DIR}/
+> +    rm -rf $gitshallowclone
+> +
+> +    cd -
+> +}
+> +
+> +adjust_git() {
+>      orig_dir=3D"$PWD"
+>=20
+>      cd $tmp_dir/${SRCIPK_INSTALL_DIR}
+>=20
+>      if [ -d ".git" ]
+>      then
+> +        # Get the location of the local repository
+> +        local_repo=3D`get_remote $PWD`
+>=20
+> -        # Grab path to cloned local repository
+> -        old=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   | cut =
+-c 7- | tr -d ' '`
+> -
+> -        if [ -d $old -a "${SRCIPK_PRESERVE_GIT}" =3D "true" ]
+> +        if [ -d $local_repo -a "${SRCIPK_PRESERVE_GIT}" =3D "true" ]
+>          then
+> -            cd $old
+> +            cd $local_repo
+> +
+> +            # If SRCIPK_SHALLOW_CLONE is true then make a shallow copy o=
+f the
+> +            # git repository and then fix up the git URLs
+> +            if [ "${SRCIPK_SHALLOW_CLONE}" =3D=3D "true" ]
+> +            then
+> +                limit_git_history
+> +            fi
+>=20
+>              # Grab actual url used to create the repository
+> -            orig=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   |=
+ cut -c 7- | tr -d ' '`
+> +            remote_repo=3D`get_remote $PWD`
+>=20
+>              cd -
+>=20
+> -            git remote set-url origin $orig $old
+> +            git remote set-url origin $remote_repo $local_repo
+>=20
+> -            # Repackage the repository so its a proper clone of the orig=
+inal
+> (remote) git repository
+> +            # Repackage the repository so its a proper clone of the orig=
+inal
+> +            # (remote) git repository
+>              git repack -a -d
+> -            rm .git/objects/info/alternates
+> +
+> +            if [ -e .git/objects/info/alternates ]
+> +            then
+> +                rm .git/objects/info/alternates
+> +            fi
+>=20
+>          else
+>              rm -rf .git
+> @@ -95,7 +174,6 @@ adjust_git() {
+>      fi
+>=20
+>      cd $orig_dir
+> -
+>  }
+>=20
+>  # Create a README file that describes the contents of the source ipk
+> --
+> 1.7.9.5
+>=20
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
