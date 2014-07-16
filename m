@@ -1,34 +1,34 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 81CEF52974
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id D472752A2F
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Jul 2014 14:19:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6GEJ9Gv011846
-	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:19:09 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6GEJ9lh019222
-	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:19:09 -0500
+	Wed, 16 Jul 2014 14:30:58 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6GEUvG8009297
+	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:30:57 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6GEUvW1003317
+	for <meta-arago@arago-project.org>; Wed, 16 Jul 2014 09:30:57 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0174.001; Wed, 16 Jul 2014 09:19:09 -0500
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0174.001; Wed, 16 Jul 2014 09:30:57 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "Maupin, Chase" <chase.maupin@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 1/4] sourceipk: allow packaging shallow
-	git	clone
-Thread-Index: AQHPoB/1qy2iXDFnKk6HPiRAj7uidpuiv3dQ
-Date: Wed, 16 Jul 2014 14:19:08 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6E348E@DFLE08.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH 4/4] linux-ti-staging: update bbappend for
+	3.14	version
+Thread-Index: AQHPoB/2Y5IKaeU/e0OicvI5DRJBMpuiwdQg
+Date: Wed, 16 Jul 2014 14:30:56 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C6E34D4@DFLE08.ent.ti.com>
 References: <1405423715-21885-1-git-send-email-Chase.Maupin@ti.com>
-	<1405423715-21885-2-git-send-email-Chase.Maupin@ti.com>
-In-Reply-To: <1405423715-21885-2-git-send-email-Chase.Maupin@ti.com>
+	<1405423715-21885-5-git-send-email-Chase.Maupin@ti.com>
+In-Reply-To: <1405423715-21885-5-git-send-email-Chase.Maupin@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/4] sourceipk: allow packaging shallow git	clone
+Subject: Re: [PATCH 4/4] linux-ti-staging: update bbappend for 3.14	version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,189 +41,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 14:19:10 -0000
+X-List-Received-Date: Wed, 16 Jul 2014 14:30:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-What branch/commit is checked out by default when a user uses this shallow =
-cloned git repository?
-Also since your manually cloning this repository what happens to patches th=
-at OE applies to the git repository or files that are manually copied?
 
-I'm not sure if it is possible but it is probably safer to reuse the git re=
-pository as is from sourceipk and see if we can make that git repository sh=
-allow so we can preserve any changes to the repo.
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Maupin, Chase
 > Sent: Tuesday, July 15, 2014 6:29 AM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH 1/4] sourceipk: allow packaging shallow git
-> clone
+> Subject: [meta-arago] [PATCH 4/4] linux-ti-staging: update bbappend for 3=
+.14
+> version
 >=20
-> * Add another flag SRCIPK_SHALLOW_CLONE that will do a shallow
->   clone of depth 1 to reduce the size of the git history.
->     * The full history can be fetched again using either of the
->       following commands based on the version of git being used
->         - git pull --unshallow (New git versions)
->         - git pull (older git versions)
-> * Clean up some of the variable names to make it more clear what
->   they are storing.
-> * Create a generic function to determine the fetch reporitory
+> * Update the bbappend for the linux-ti-staging to work with the
+>   3.14 kernel version.
+> * Set the kernel to AUTOREV while developing the latest 3.14 kernel
 >=20
 > Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
 > ---
->  meta-arago-distro/classes/sourceipk.bbclass |  100
-> ++++++++++++++++++++++++---
->  1 file changed, 89 insertions(+), 11 deletions(-)
+>  ....12.bbappend =3D> linux-ti-staging_3.14.bbappend} |    2 ++
+>  1 file changed, 2 insertions(+)
+>  copy meta-arago-distro/recipes-kernel/linux/{linux-ti-staging_3.12.bbapp=
+end
+> =3D> linux-ti-staging_3.14.bbappend} (94%)
 >=20
-> diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-
-> distro/classes/sourceipk.bbclass
-> index 20dda76..33878ac 100644
-> --- a/meta-arago-distro/classes/sourceipk.bbclass
-> +++ b/meta-arago-distro/classes/sourceipk.bbclass
-> @@ -61,32 +61,111 @@ SRCIPK_INCLUDE_EXTRAFILES ?=3D "1"
+> diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-
+> staging_3.12.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-
+> staging_3.14.bbappend
+> similarity index 94%
+> copy from meta-arago-distro/recipes-kernel/linux/linux-ti-
+> staging_3.12.bbappend
+> copy to meta-arago-distro/recipes-kernel/linux/linux-ti-
+> staging_3.14.bbappend
+> index 2a6f090..b178b5e 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappe=
+nd
+> +++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappe=
+nd
+> @@ -6,6 +6,8 @@ require copy-defconfig.inc
 >=20
->  SRCIPK_PRESERVE_GIT ?=3D "false"
+>  KERNEL_LOCALVERSION =3D "-g${@d.getVar('SRCPV', True).partition('+')[2][=
+0:7]}"
 >=20
-> -adjust_git() {
-> +# Create a shallow clone of the git repository to reduce the size of #
-> +the sourceipk SRCIPK_SHALLOW_CLONE ?=3D "false"
+[Franklin] PR bump missing.
+> +SRCREV =3D "${AUTOREV}"
 > +
-> +# This function will return the fetch URL for a git repository passed
-> +as # the first parameter.
-> +get_remote() {
-> +    git_repo=3D"$1"
-> +
-> +    if [ "$git_repo" =3D=3D "" ]
-> +    then
-> +        echo "git_repo not passed to get_remote"
-> +        exit 1
-> +    fi
-> +
-> +    cd $git_repo
-> +
-> +    # Get the remote repository fetch URL
-> +    remote=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   | cut -=
-c 7- | tr -d ' '`
-> +
-> +    # Since the echo'ed value of this statment is the returned value red=
-irect
-> +    # the output of this command to /dev/null
-> +    cd - > /dev/null
-> +
-> +    # echo back the remote repository URL as the output of this function
-> +    echo $remote
-> +
-> +    return 0
-> +}
-> +
-> +# Some git repositories are very large and we do not want to ship the #
-> +full history.  Instead we want to limit history to reduce the size
-> +while # still keeping the git repository in place.  The full history
-> +can be # fetched using git pull --unshallow or just git pull # NOTE:
-> +This function depends on a git version >=3D 1.7.10.  It will work
-> +#       with older versions but the size will be larger because rather
-> +#       than just a single branch the limited history will be a depth of
-> +#       1 for all branches and tags.
-> +limit_git_history() {
-> +    # By default limit the history to 1 commit since the user can always
-> +    # use git pull --unshallow to fetch the rest of history.  The depth
-> +    # level of 1 is set to keep from tracking through all merges and
-> +    # pulling excess history
-> +    commits=3D"1"
-> +
-> +    # Temporary directory to make shallow clones in
-> +    gitshallowclone=3D"${WORKDIR}/temp-git-shallow-clone"
-> +
-> +    # Change directory to the git repository to be safe
-> +    cd $tmp_dir/${SRCIPK_INSTALL_DIR}
-> +
-> +    # Create a temporary directory to hold the shallow git clone
-> +    mkdir -p $gitshallowclone
->=20
-> +    remote=3D`get_remote $PWD`
-> +
-> +    git clone --depth $commits --branch ${BRANCH} file://$remote
-> + $gitshallowclone
-> +
-> +    # remove original kernel clone since we will replace it with the sha=
-llow
-> +    # clone
-> +    rm -rf $tmp_dir/${SRCIPK_INSTALL_DIR}/.git
-> +
-> +    # replace the original kernel git data with the shallow clone git da=
-ta
-> +    mv $gitshallowclone/.git $tmp_dir/${SRCIPK_INSTALL_DIR}/
-> +    rm -rf $gitshallowclone
-> +
-> +    cd -
-> +}
-> +
-> +adjust_git() {
->      orig_dir=3D"$PWD"
->=20
->      cd $tmp_dir/${SRCIPK_INSTALL_DIR}
->=20
->      if [ -d ".git" ]
+>  kernel_do_configure_prepend() {
+>      if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
 >      then
-> +        # Get the location of the local repository
-> +        local_repo=3D`get_remote $PWD`
->=20
-> -        # Grab path to cloned local repository
-> -        old=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   | cut =
--c 7- | tr -d ' '`
-> -
-> -        if [ -d $old -a "${SRCIPK_PRESERVE_GIT}" =3D "true" ]
-> +        if [ -d $local_repo -a "${SRCIPK_PRESERVE_GIT}" =3D "true" ]
->          then
-> -            cd $old
-> +            cd $local_repo
-> +
-> +            # If SRCIPK_SHALLOW_CLONE is true then make a shallow copy o=
-f the
-> +            # git repository and then fix up the git URLs
-> +            if [ "${SRCIPK_SHALLOW_CLONE}" =3D=3D "true" ]
-> +            then
-> +                limit_git_history
-> +            fi
->=20
->              # Grab actual url used to create the repository
-> -            orig=3D`git remote -v | grep "(fetch)" | cut -d ' ' -f 1   |=
- cut -c 7- | tr -d ' '`
-> +            remote_repo=3D`get_remote $PWD`
->=20
->              cd -
->=20
-> -            git remote set-url origin $orig $old
-> +            git remote set-url origin $remote_repo $local_repo
->=20
-> -            # Repackage the repository so its a proper clone of the orig=
-inal
-> (remote) git repository
-> +            # Repackage the repository so its a proper clone of the orig=
-inal
-> +            # (remote) git repository
->              git repack -a -d
-> -            rm .git/objects/info/alternates
-> +
-> +            if [ -e .git/objects/info/alternates ]
-> +            then
-> +                rm .git/objects/info/alternates
-> +            fi
->=20
->          else
->              rm -rf .git
-> @@ -95,7 +174,6 @@ adjust_git() {
->      fi
->=20
->      cd $orig_dir
-> -
->  }
->=20
->  # Create a README file that describes the contents of the source ipk
 > --
 > 1.7.9.5
 >=20
