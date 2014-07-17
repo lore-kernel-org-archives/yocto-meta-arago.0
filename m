@@ -1,29 +1,32 @@
-Return-Path: <yanivma@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 3123552974
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
+	[209.85.213.174])
+	by arago-project.org (Postfix) with ESMTPS id 274FA529DD
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jul 2014 11:28:36 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6HBSZIf000907
-	for <meta-arago@arago-project.org>; Thu, 17 Jul 2014 06:28:35 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6HBSZgr023300
-	for <meta-arago@arago-project.org>; Thu, 17 Jul 2014 06:28:35 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 17 Jul 2014 06:28:34 -0500
-Received: from mcp8x-srv.emea.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s6HBSXLU015230;	Thu, 17 Jul 2014 06:28:34 -0500
-From: Yaniv Machani <yanivma@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 17 Jul 2014 14:23:56 +0300
-Message-ID: <1405596236-22128-2-git-send-email-yanivma@ti.com>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1405596236-22128-1-git-send-email-yanivma@ti.com>
-References: <1405596236-22128-1-git-send-email-yanivma@ti.com>
+	Thu, 17 Jul 2014 13:30:13 +0000 (UTC)
+Received: by mail-ig0-f174.google.com with SMTP id c1so6099649igq.7
+	for <meta-arago@arago-project.org>;
+	Thu, 17 Jul 2014 06:30:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=HUnrNFDbO7LxBH9y8uZBsJVQafwoLR3ViizGu3F+1iE=;
+	b=riecZskgye6e/+f5+AxtRi3hW9RND5uO7jW759SWxDtDtXKZCK5z6pNVs1IpFGLBGP
+	GVxQoSDfEwNiFaRaTzvMlnAThJbP/kr8FhH8202BCk00cr+9u0VpgazpXK0jApOaTTQS
+	sU37bZbwBFqrXpvCDZ5mamCLL40RObBUiQjMM9s7IIYDo/E38tKhpoaU3dl6CkraBfee
+	bXgtskEZLd8wucL6fF9SgRDBmjXVi35u/eO5g83nHDrsWn7Kij7MCk2KVUkE4OM3+Zrd
+	Tvq/LpC08cvKh1pC3lst7/Vrcq804QaNUkm8Xos2T9+2B2etDui9lg+MQVWLqoaLtjPZ
+	Phlg==
 MIME-Version: 1.0
-Subject: [PATCH 5/5 v3] wl18xx-target-scripts : Add new WiFi related scripts
+X-Received: by 10.60.34.225 with SMTP id c1mr5150675oej.14.1405603811529; Thu,
+	17 Jul 2014 06:30:11 -0700 (PDT)
+Received: by 10.60.124.234 with HTTP; Thu, 17 Jul 2014 06:30:11 -0700 (PDT)
+In-Reply-To: <CAFZh4h8Z2Hn-e1gA+EZ8UunYsSadTAjii+NDjD27ay_kR_v_NA@mail.gmail.com>
+References: <CAFZh4h8Z2Hn-e1gA+EZ8UunYsSadTAjii+NDjD27ay_kR_v_NA@mail.gmail.com>
+Date: Thu, 17 Jul 2014 09:30:11 -0400
+Message-ID: <CAFZh4h9=Tfyh98+P-eL=fvJdfbzimi2kmJNYC0i+x4X8MsyeDA@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: meta-arago@arago-project.org
+Subject: Re: New Arago - am180x-evm core-image-minimal build is getting MD5 LICENSE errors in daisy
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,78 +39,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 11:28:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 17 Jul 2014 13:30:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-New scripts to ease the use of wifi modes-
- Start/Stop - Station, AP, P2P and Multi Role.
- Station connection scripts.
- Driver load/unload.
+No ARM9 folks on here?
 
-Signed-off-by: Yaniv Machani <yanivma@ti.com>
----
-v3 - Bumped PR
+On Fri, Jul 11, 2014 at 4:34 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
 
- .../packagegroup-arago-tisdk-connectivity.bb       |    3 +-
- .../wl18xx-target-scripts_r8.a9.14.bb              |   25 ++++++++++++++++++++
- 2 files changed, 27 insertions(+), 1 deletions(-)
- mode change 100644 => 100755 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
- create mode 100755 meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-old mode 100644
-new mode 100755
-index 7b3480c..fa82e7e
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install wireless packages into the target FS"
- LICENSE = "MIT"
--PR = "r24"
-+PR = "r25"
- 
- inherit packagegroup
- 
-@@ -24,6 +24,7 @@ WLAN_COMMON = "\
-     crda \
-     hostap-daemon-wl18xx \
-     ti-wifi-utils-wl18xx \
-+    wl18xx-target-scripts \
- "
- 
- # netperf has non-standard license, needs verifying
-diff --git a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb b/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb
-new file mode 100755
-index 0000000..8ba0092
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb
-@@ -0,0 +1,25 @@
-+DESCRIPTION = "Scripts and configuration files for TI wireless drivers"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=b8d6a0865f50159bf5c0d175d1f4a705"
-+
-+PR ="r1+gitr${SRCPV}"
-+
-+# Tag: ol_r8.a9.14
-+SRCREV = "4d9f47235501fb2c665b6336a54e0ba152e8e941"
-+BRANCH = "sitara-mbss"
-+SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx-target-scripts.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+FILES_${PN} += "${datadir}/wl18xx/"
-+
-+do_install() {
-+	install -d ${D}${datadir}/wl18xx/
-+
-+	scripts=`find ./ -type f -name "*\.sh"`
-+	for s in $scripts
-+	do
-+		install -m 0755 $s ${D}${datadir}/wl18xx/
-+	done
-+}
-+
--- 
-1.7.9
-
+> So what I did is edit
+> tisdk/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-arago-toolchain.bb
+> and replaced the LICENSE md5 with the value it calculated in the error
+> above and that fixed it.  So not sure if a recipe is busted or if I
+> hosed up something somehow but I thought I'd ask about it.
+>
+> So what is the story with ARM9 AM1808?  Can I use Linaro toolchain yet
+> or is there still some compatibility issue that is best if I use the
+> Arago 2011.09?
+>
+> Thanks for any ideas/pointers.
+>
+> Regards,
+>
+> Brian
 
