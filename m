@@ -1,29 +1,36 @@
-Return-Path: <denys@ti.com>
+Return-Path: <yanivma@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 49BF052AA9
+	by arago-project.org (Postfix) with ESMTPS id 687CF52974
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jul 2014 07:25:22 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6H7PLPK012754
-	for <meta-arago@arago-project.org>; Thu, 17 Jul 2014 02:25:21 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6H7PLGj011001
-	for <meta-arago@arago-project.org>; Thu, 17 Jul 2014 02:25:21 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 17 Jul 2014 02:25:21 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s6H7PLKD023482	for <meta-arago@arago-project.org>;
-	Thu, 17 Jul 2014 02:25:21 -0500
-Date: Thu, 17 Jul 2014 03:07:59 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1312331014.323.1405580879778.JavaMail.jenkins@puget>
+	Thu, 17 Jul 2014 10:14:05 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6HAE4gw027993
+	for <meta-arago@arago-project.org>; Thu, 17 Jul 2014 05:14:04 -0500
+Received: from DFRE70.ent.ti.com (dncmailx.itg.ti.com [10.167.188.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6HAE3SG005212
+	for <meta-arago@arago-project.org>; Thu, 17 Jul 2014 05:14:04 -0500
+Received: from DFRE01.ent.ti.com ([fe80::b027:5293:c8d8:d82a]) by
+	DFRE70.ent.ti.com ([fe80::645e:109b:13d3:dfa7%25]) with mapi id
+	14.03.0174.001; Thu, 17 Jul 2014 12:14:03 +0200
+From: "Machani, Yaniv" <yanivma@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 2/5 v2] hostap-daemon-wl18xx: Update
+	recipe to	ol_r8.a9.14 version
+Thread-Index: AQHPoP3AaxAJP56mk0yz5jGkJm0XXpukDSPA
+Date: Thu, 17 Jul 2014 10:14:02 +0000
+Message-ID: <AE1C82FB3D0EC64DB1F752C81CBD1101263AE895@DFRE01.ent.ti.com>
+References: <1405506511-20607-1-git-send-email-yanivma@ti.com>
+	<1405506511-20607-2-git-send-email-yanivma@ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C6E3429@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6E3429@DFLE08.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.188.42]
+x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.07 build 2014-07-17_01-00-30
+Subject: Re: [PATCH 2/5 v2] hostap-daemon-wl18xx: Update recipe to	ol_r8.a9.14 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,188 +43,158 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 07:25:22 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_322_1341568581.1405580879777"
+X-List-Received-Date: Thu, 17 Jul 2014 10:14:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_322_1341568581.1405580879777
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+> -----Original Message-----
+> From: Cooper Jr., Franklin
+> Sent: Wednesday, July 16, 2014 4:57 PM
+> To: Machani, Yaniv; meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [PATCH 2/5 v2] hostap-daemon-wl18xx: Update
+> recipe to ol_r8.a9.14 version
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Machani, Yaniv
+> > Sent: Wednesday, July 16, 2014 5:28 AM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCH 2/5 v2] hostap-daemon-wl18xx: Update
+> > recipe to ol_r8.a9.14 version
+> >
+> >     - Changed git sources to git.ti.com
+> >     - Updated Defconfig.
+> >
+> > Signed-off-by: Yaniv Machani <yanivma@ti.com>
+> > ---
+> > V2 Changes
+> >     - Fixed mode change
+> >
+> >  ...8.a8.10.bb =3D> hostap-daemon-wl18xx_r8.a9.14.bb} |    8 ++++----
+> >  .../hostap/hostap-daemon/defconfig                 |    2 +-
+> >  .../recipes-connectivity/hostap/hostap.inc         |    7 +++----
+> >  3 files changed, 8 insertions(+), 9 deletions(-)  rename meta-arago-
+> > extras/recipes-connectivity/hostap/{hostap-daemon-wl18xx_r8.a8.10.bb
+> > =3D> hostap-daemon-wl18xx_r8.a9.14.bb} (79%)  mode change 100644 =3D>
+> > 100755
+> >
+> [Franklin] I'm assuming this lines mean ur still changing the mode.
+> > diff --git
+> > a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-
+> > wl18xx_r8.a8.10.bb
+> > b/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> > daemon-wl18xx_r8.a9.14.bb
+> > old mode 100644
+> > new mode 100755
+> > similarity index 79%
+> > rename from
+> > meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-
+> > wl18xx_r8.a8.10.bb
+> > rename to meta-arago-extras/recipes-connectivity/hostap/hostap-
+> daemon-
+> > wl18xx_r8.a9.14.bb
+> > index cd5d8d3..3981b78
+> > --- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-
+> > wl18xx_r8.a8.10.bb
+> > +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-
+> wl18
+> > +++ xx
+> > +++ _r8.a9.14.bb
+> > @@ -6,7 +6,7 @@ require hostap.inc
+> >  LICENSE =3D "GPLv2"
+> >  LIC_FILES_CHKSUM =3D
+> > "file://../COPYING;md5=3Dab87f20cd7e8c0d0a6539b34d3791d0e"
+> >
+> > -PR_append =3D "b+gitr${SRCPV}"
+> > +PR_append =3D "c+gitr${SRCPV}"
+> >
+> >  FILESEXTRAPATHS_append :=3D "${THISDIR}/hostap-daemon:"
+> >
+> > @@ -14,9 +14,9 @@ FILESEXTRAPATHS_append :=3D "${THISDIR}/hostap-
+> > daemon:"
+> >  # of hostap
+> >  PV =3D "2.0-devel-ti"
+> >
+> > -# Tag: ol_r8.a8.10
+> > -SRCREV =3D "257ab333aad993b4be81808524bc0d939c276058"
+> > -BRANCH =3D "mbss_suspend"
+> > +# Tag: ol_r8.a9.14
+> > +SRCREV =3D "281f5adb8eb7ee9e9220546c0227696b02aab332"
+> > +BRANCH =3D "single_hostap_dfs_dynamic"
+> >
+> >  PROVIDES +=3D "hostap-daemon"
+> >  RPROVIDES_${PN} +=3D "hostap-daemon"
+> > diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> > daemon/defconfig
+> > b/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> > daemon/defconfig
+> > index ccc0996..3ee35bc 100644
+> > --- a/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> > daemon/defconfig
+> > +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-
+> daemon/defc
+> > +++ on
+> > +++ fig
+> > @@ -52,7 +52,7 @@ CONFIG_LIBNL32=3Dy
+> >  # This version is an experimental implementation based on IEEE
+> > 802.11w/D1.0  # draft and is subject to change since the standard has
+> > not yet been finalized.
+> >  # Driver support is also needed for IEEE 802.11w.
+> > -#CONFIG_IEEE80211W=3Dy
+> > +CONFIG_IEEE80211W=3Dy
+> >
+> >  # Integrated EAP server
+> >  #CONFIG_EAP=3Dy
+> > diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+> > b/meta- arago-extras/recipes-connectivity/hostap/hostap.inc
+> > index 15e82d5..180fc01 100644
+> > --- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+> > +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+> > @@ -1,5 +1,5 @@
+> >  # This is a TI specific version of the hostap-daemon recipe for use
+> > with the -# wl12xx wlan and bluetooth module.
+> > +# wl18xx wlan module
+> >
+> >  HOMEPAGE =3D "http://hostap.epitest.fi"
+> >  DESCRIPTION =3D "User space daemon for extended IEEE 802.11
+> management"
+> > @@ -11,15 +11,14 @@ DEPENDS =3D "libnl openssl"
+> >  # default
+> >  DEFAULT_PREFERENCE =3D "-1"
+> >
+> > -PR =3D "r5"
+> > +PR =3D "r6"
+> >
+> >  inherit update-rc.d
+> >  INITSCRIPT_NAME=3D"hostapd"
+> >
+> >  CONFFILES_${PN} +=3D "${sysconfdir}/hostapd.conf"
+> >
+> > -SRC_URI =3D "git://github.com/TI-
+> > OpenLink/hostap.git;protocol=3Dgit;branch=3D${BRANCH} \
+> > -           file://0001-hostapd-change-conf-file-for-better-oob-
+> > startup.patch;patchdir=3D.. \
+> [Franklin] Just reiterating Deny's comment about deleting the patch if yo=
+u no
+> longer need it.
+[Yaniv] We will keep this patch, as it changes some cosmetic values.
 
-<html>
-<head>
-<title>
-Status for 07/17/14
-</title>
-</head>
-<body>
+> > +SRC_URI =3D
+> > +"git://git.ti.com/wilink8-wlan/hostap.git;protocol=3Dgit;branch=3D${BR=
+ANC
+> > +H}
+> > +\
+> >             file://defconfig \
+> >  	       file://init"
+> >
+> > --
+> > 1.7.9
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-<h2>Status for 07/17/14</h2>
-
-<h2>BUILD_ID: build-2014-07-17_01-01-49</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.07"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_322_1341568581.1405580879777--
