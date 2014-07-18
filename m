@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 56028529D5
+	by arago-project.org (Postfix) with ESMTPS id BE179529F2
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Jul 2014 19:18:54 +0000 (UTC)
+	Fri, 18 Jul 2014 19:20:48 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6IJIrnd024625
-	for <meta-arago@arago-project.org>; Fri, 18 Jul 2014 14:18:53 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6IJIrjw008481
-	for <meta-arago@arago-project.org>; Fri, 18 Jul 2014 14:18:53 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 18 Jul 2014 14:18:53 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6IJKmmn024826
+	for <meta-arago@arago-project.org>; Fri, 18 Jul 2014 14:20:48 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6IJKm9s010251
+	for <meta-arago@arago-project.org>; Fri, 18 Jul 2014 14:20:48 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 18 Jul 2014 14:20:47 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6IJIrXv016240	for
-	<meta-arago@arago-project.org>; Fri, 18 Jul 2014 14:18:53 -0500
-Date: Fri, 18 Jul 2014 15:18:52 -0400
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6IJKl4B004296	for
+	<meta-arago@arago-project.org>; Fri, 18 Jul 2014 14:20:47 -0500
+Date: Fri, 18 Jul 2014 15:20:47 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20140718191852.GP15788@edge>
+Message-ID: <20140718192047.GQ15788@edge>
 References: <1405709522-404-1-git-send-email-denis@denix.org>
-	<1405709522-404-6-git-send-email-denis@denix.org>
+	<1405709522-404-11-git-send-email-denis@denix.org>
 MIME-Version: 1.0
-In-Reply-To: <1405709522-404-6-git-send-email-denis@denix.org>
+In-Reply-To: <1405709522-404-11-git-send-email-denis@denix.org>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [PATCH 06/11] HACK: matrix-gui: run on top of Wayland
+Subject: Re: [PATCH 11/11] arago.conf: use the new _remove override to filter out sgx feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,66 +37,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 19:18:54 -0000
+X-List-Received-Date: Fri, 18 Jul 2014 19:20:49 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Fri, Jul 18, 2014 at 02:51:57PM -0400, Denys Dmytriyenko wrote:
+On Fri, Jul 18, 2014 at 02:52:02PM -0400, Denys Dmytriyenko wrote:
 > From: Denys Dmytriyenko <denys@ti.com>
 > 
 > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 
-This would require some cleanup - exporting additional env variables should be 
-fine, but there were some problems with -qws option and chvt, so I had to drop 
-them. Of course, if we want to preserve the old behavior, this would need to 
-be done conditionally...
+I'll have to send v2 that preserves filter_out as it's used by 
+Chase's ASSUME_PROVIDED.
 
 
 > ---
->  meta-arago-extras/recipes-core/matrix/matrix-gui/init   | 7 +++++--
->  meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb | 2 +-
->  2 files changed, 6 insertions(+), 3 deletions(-)
+>  meta-arago-distro/conf/distro/arago.conf              | 2 +-
+>  meta-arago-distro/conf/distro/include/arago-prefs.inc | 4 ----
+>  2 files changed, 1 insertion(+), 5 deletions(-)
 > 
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> index dab7dc6..6286028 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> @@ -2,17 +2,20 @@
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index 2686264..3ac30ce 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -49,7 +49,7 @@ TARGET_CPPFLAGS += "-fstack-protector"
+>  require conf/distro/include/arago-prefs.inc
 >  
->  matrixgui="/usr/bin/matrix_browser"
->  ROTATION=__MATRIX_ROT__
-> -GUI_OPTS="-qws $ROTATION http://localhost:80/"
-> +GUI_OPTS="http://localhost:80/"
->  PIDFILE="/var/run/matrix-gui-2.0.pid"
+>  # Hack out sgx flag for now, as breaking on kernels >= 3.14
+> -MACHINE_FEATURES := "${@filter_out('sgx','${MACHINE_FEATURES}',d)}"
+> +MACHINE_FEATURES_remove = "sgx"
 >  
->  test -x "$matrixgui" || exit 0
->  
->  export TSLIB_TSDEVICE=/dev/input/touchscreen0
->  export QWS_MOUSE_PROTO=Auto
-> +export QT_QPA_PLATFORM=wayland
-> +export XDG_RUNTIME_DIR=/run/user/root
-> +export WAYLAND_DISPLAY=wayland-0
->  
->  case "$1" in
->    start)
-> -    chvt 4
-> +#    chvt 4
->  
->      # ARM9 devices get a lot of alignment trap errors with the current
->      # version of Qt (4.7.2) that we use.  The printing of these messages
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> index 523cfe1..16f2eeb 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
->  
->  SECTION = "multimedia"
->  
-> -PR = "r16"
-> +PR = "r17"
->  
->  INITSCRIPT_NAME = "matrix-gui-2.0"
->  INITSCRIPT_PARAMS = "defaults 97"
+>  # Allow branding on top of Arago Distro and Core TI-SDK
+>  # If ARAGO_BRAND is not set in local.conf, default to core
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> index 8261d10..650a71d 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -103,7 +103,3 @@ PREFERRED_PROVIDER_gstreamer = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gs
+>  PREFERRED_PROVIDER_gst-plugins-bad = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel', 'gst-plugins-bad', d)}"
+>  PREFERRED_PROVIDER_gst-plugins-base = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-base-mm-accel', 'gst-plugins-base', d)}"
+>  PREFERRED_PROVIDER_gst-plugins-good = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-good-mm-accel', 'gst-plugins-good', d)}"
+> -
+> -def filter_out(f, str, d):
+> -    from re import match
+> -    return " ".join(filter(lambda x: not match(f, x, 0), str.split()))
 > -- 
 > 2.0.0
 > 
