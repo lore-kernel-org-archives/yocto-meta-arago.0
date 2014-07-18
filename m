@@ -1,40 +1,29 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
-	[209.85.219.41])
-	by arago-project.org (Postfix) with ESMTPS id CA34452A32
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 0789B529C8
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Jul 2014 21:36:36 +0000 (UTC)
-Received: by mail-oa0-f41.google.com with SMTP id j17so1640452oag.28
-	for <meta-arago@arago-project.org>;
-	Thu, 17 Jul 2014 14:36:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=vaoW4hKlHOJl+JfkqayyutRVQB/3JdPT7i92EtQ4pfM=;
-	b=UJLi7o2ElkgH5ghbAFZauTaybCOwe6g0RDpHL0S43J9Uu4H7473gokWIN7ZBlzULDo
-	Ol35s2fWcmERjhgVw3eYctE8aFKWSqs2LZQ8ne1jvUtqsVmZYetKjbJMYb6bBnzAkH3f
-	SwxaQ0WzNt25SUE29mywchTs6hyJObMP/VXj2iNBqCkTUCYNf9ywJohqzgzUxHciEART
-	2R5Cevh5yQfdRdo/QC3bmmG1pyvBCqtSur09YQPXcM3xPdJGf4KjhyXlhodvcUqvTO2E
-	Ymcp8pI7trNK/Df18BeTtZDL24NbxM7TVksxKOIFmxHZqJMgI7GbFgpE88WGA4Hoi2Fl
-	L9hw==
+	Fri, 18 Jul 2014 07:03:32 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6I73W9A007058
+	for <meta-arago@arago-project.org>; Fri, 18 Jul 2014 02:03:32 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6I73Whe002280
+	for <meta-arago@arago-project.org>; Fri, 18 Jul 2014 02:03:32 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 18 Jul 2014 02:03:31 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s6I73VZI013834	for <meta-arago@arago-project.org>;
+	Fri, 18 Jul 2014 02:03:31 -0500
+Date: Fri, 18 Jul 2014 02:46:09 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1870100054.327.1405665969003.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Received: by 10.60.34.225 with SMTP id c1mr282186oej.14.1405632995941; Thu,
-	17 Jul 2014 14:36:35 -0700 (PDT)
-Received: by 10.60.124.234 with HTTP; Thu, 17 Jul 2014 14:36:35 -0700 (PDT)
-In-Reply-To: <20140717212445.GC15788@edge>
-References: <CAFZh4h8Z2Hn-e1gA+EZ8UunYsSadTAjii+NDjD27ay_kR_v_NA@mail.gmail.com>
-	<CAFZh4h9=Tfyh98+P-eL=fvJdfbzimi2kmJNYC0i+x4X8MsyeDA@mail.gmail.com>
-	<20140717205217.GW15788@edge>
-	<CAFZh4h_MTuZtV2e2C3Ctsqw=G=ynfGr-7K7gJ8A+NLhqOCTEaQ@mail.gmail.com>
-	<20140717210734.GA15788@edge>
-	<CAFZh4h8V-0THCDvDzyMZnhYu=gUW4Ofa9Rjc9jc2r62wxGbY+g@mail.gmail.com>
-	<20140717212445.GC15788@edge>
-Date: Thu, 17 Jul 2014 17:36:35 -0400
-Message-ID: <CAFZh4h8QLo2K9D9LHTPTKjdkQTFJ4Nku1v+p2O=DT4Vi2vZFKA@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: New Arago - am180x-evm core-image-minimal build is getting MD5 LICENSE errors in daisy
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.07 build 2014-07-18_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,56 +36,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 21:36:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 18 Jul 2014 07:03:33 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_326_2130089992.1405665969003"
 
-On Thu, Jul 17, 2014 at 5:24 PM, Denys Dmytriyenko <denys@ti.com> wrote:
-> On Thu, Jul 17, 2014 at 05:16:57PM -0400, Brian Hutchinson wrote:
->> On Thu, Jul 17, 2014 at 5:07 PM, Denys Dmytriyenko <denys@ti.com> wrote:
->>
->> >
->> > TOOLCHAIN_TYPE=internal will build the toolchain from sources.
->> >
->> >
->> >> I build everything using Yocto 1.5 last year and remember having
->> >> issues building 3.12 with the toolchain built by Yocto.  If I remember
->> >
->> > Hmm, not sure about the issues with the upstream toolchain. Another option
->> > would be to use Linaro toolchain - either external or internal. The only catch
->> > is that Linaro is not directly targeting or supporting ARM9 platforms. So, any
->> > support requests would have to go to upstream GCC.
->> >
->>
->> Ah, now I'm with you.  So if I set TOOLCHAIN_TYPE=internal, is it
->> building the same toolchain that would be built if I had used Yocto
->> (upstream gcc I'm assuming although I admit I never dug into it) or
->> something else?
->
-> Correct, it would build the toolchain from the sources available. Default is
-> of course OE-Core - gcc 4.9 in master and 4.8 in daisy.
-> But if you have meta-linaro-toolchain layer in your stack, you can specify
-> to build that one instead:
->
-> GCCVERSION ?= "linaro-4.8%"
-> BINUVERSION ?= "linaro-2.24%"
-> EGLIBCVERSION ?= "linaro-2.19%"
->
-> That would build the Linaro toolchain from sources.
->
->
->> Should I try again with the latest external Linaro?  Just wondering
->> what may be the best option since I've been out of the ARM9 scene for
->> a while but now have to update a bunch of our stuff for a new release.
->
-> If you use TOOLCHAIN_TYPE=external and TOOLCHAIN_BRAND=linaro (both are the
-> defaults for meta-arago), then it will use the external Linaro toolchain. We
-> are currently using 2013.03 that is gcc-4.7 based. We've had some issues with
-> 2014.03, gcc-4.8 one.
+------=_Part_326_2130089992.1405665969003
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Awesome!  Thanks guys.  I'll give some of that a try and test some
-options and see if we see any weirdness.
+<html>
+<head>
+<title>
+Status for 07/18/14
+</title>
+</head>
+<body>
 
-Regards,
+<h2>Status for 07/18/14</h2>
 
-Brian
+<h2>BUILD_ID: build-2014-07-18_01-01-48</h2>
 
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.07"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_326_2130089992.1405665969003--
