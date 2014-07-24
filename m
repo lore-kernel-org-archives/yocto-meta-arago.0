@@ -1,31 +1,23 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 1D28252A69
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id CB5A952A71
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jul 2014 14:34:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6OEY3Ja011148
-	for <meta-arago@arago-project.org>; Thu, 24 Jul 2014 09:34:03 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6OEY3Fb003504
-	for <meta-arago@arago-project.org>; Thu, 24 Jul 2014 09:34:03 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 24 Jul 2014 09:34:02 -0500
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s6OEY2q1023348;	Thu, 24 Jul 2014 09:34:02 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s6OEY0dF021826;	Thu, 24 Jul 2014 20:04:00 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 24 Jul 2014 09:33:58 -0500
-Message-ID: <1406212438-8738-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] arago-source-ipk: Update u-boot sources folder created by sourceipk
+	Thu, 24 Jul 2014 15:59:34 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173017.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N9800DBZ4EVTB00@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 24 Jul 2014 10:59:19 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id CD8A22032C; Thu,
+	24 Jul 2014 11:59:18 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 24 Jul 2014 11:59:14 -0400
+Message-id: <1406217554-27757-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.0.2
+Subject: [tisdk-build-scripts][PATCH] arago-core-tisdk-2014.08.00: use the right opentest CLI
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,34 +30,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jul 2014 14:34:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 24 Jul 2014 15:59:34 -0000
 
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
-* We no longer have any U-boot PSP recipes and instead mainline U-boot
-  recipes are now the default "u-boot" recipe.
-* Update the "u-boot" sources packaged by sourceipk to reflect this change.
+TMC IP has changed and the old CLI uses the wrong one now.
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../conf/distro/arago-source-ipk.conf              |    2 +-
+ configs/coresdk/arago-core-tisdk-2014.08.00.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index ccb6e2d..f6e1da7 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -107,7 +107,7 @@ CREATE_SRCIPK_pn-av-examples = "1"
- SRCIPK_INSTALL_DIR_pn-av-examples = "example-applications/av-examples-${PV}"
+diff --git a/configs/coresdk/arago-core-tisdk-2014.08.00.txt b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
+index 000f903..3b00504 100644
+--- a/configs/coresdk/arago-core-tisdk-2014.08.00.txt
++++ b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
+@@ -164,7 +164,7 @@ TEST_LOCAL_IFACE=""
  
- CREATE_SRCIPK_pn-u-boot = "1"
--SRCIPK_INSTALL_DIR_pn-u-boot = "board-support/u-boot-${UVER}-psp${PSPREL}"
-+SRCIPK_INSTALL_DIR_pn-u-boot = "board-support/u-boot-${PV}"
- # For beagleboard we use the git version which doesn't define UVER
- SRCIPK_INSTALL_DIR_pn-u-boot_beagleboard = "board-support/${P}"
- SRCIPK_PACKAGE_ARCH_pn-u-boot = "${MACHINE_ARCH}"
+ # This variable contains the tarball name for the opentest CLI which is
+ # required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
++OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+ 
+ # This variable specifies the IP address of the TEE to be used with OpenTest
+ # Defaults to 128.247.105.11 if not set
 -- 
-1.7.9.5
+2.0.2
 
 
