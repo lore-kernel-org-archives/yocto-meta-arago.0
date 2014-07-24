@@ -1,33 +1,34 @@
 Return-Path: <fcooper@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 513A252A31
+	by arago-project.org (Postfix) with ESMTPS id CA94952A31
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Jul 2014 16:56:43 +0000 (UTC)
+	Thu, 24 Jul 2014 16:57:44 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6OGugLE012282;
-	Thu, 24 Jul 2014 11:56:42 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6OGugWj001126;
-	Thu, 24 Jul 2014 11:56:42 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6OGvi2J012456;
+	Thu, 24 Jul 2014 11:57:44 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6OGviPN003074;
+	Thu, 24 Jul 2014 11:57:44 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Thu, 24 Jul 2014 11:56:42 -0500
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0174.001; Thu, 24 Jul 2014 11:57:43 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 01/11] qt5: update bbappends to match
-	version 5.2.1 in meta-qt5/daisy
-Thread-Index: AQHPorlzF2R1po43X0KRJKKENuYO/JuveeHQ
-Date: Thu, 24 Jul 2014 16:56:41 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6E9A60@DFLE08.ent.ti.com>
+Thread-Topic: [meta-arago] [PATCH 02/11] qtwebkit: update patches applied to
+	5.2.1 version
+Thread-Index: AQHPorl3YolLRMHrs0K6hyQG5uiWPZuvezmg
+Date: Thu, 24 Jul 2014 16:57:42 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C6E9A71@DFLE08.ent.ti.com>
 References: <1405709522-404-1-git-send-email-denis@denix.org>
-In-Reply-To: <1405709522-404-1-git-send-email-denis@denix.org>
+	<1405709522-404-2-git-send-email-denis@denix.org>
+In-Reply-To: <1405709522-404-2-git-send-email-denis@denix.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [PATCH 01/11] qt5: update bbappends to match version 5.2.1 in meta-qt5/daisy
+Subject: Re: [PATCH 02/11] qtwebkit: update patches applied to	5.2.1 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,191 +41,221 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jul 2014 16:56:43 -0000
+X-List-Received-Date: Thu, 24 Jul 2014 16:57:45 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Some reason I thought I asked this before but does not applicable mean not =
-needed or does applicable simply mean it doesn't apply?
-
-Since we are using Wayland/Weston do we still need eglfs?=20
-
-ACK on the patch since it doesn't make a difference but it would be nice to=
- know if we still have gap or not.
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
 > Sent: Friday, July 18, 2014 2:52 PM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH 01/11] qt5: update bbappends to match versio=
-n
-> 5.2.1 in meta-qt5/daisy
+> Subject: [meta-arago] [PATCH 02/11] qtwebkit: update patches applied to
+> 5.2.1 version
 >=20
 > From: Denys Dmytriyenko <denys@ti.com>
 >=20
-> qtbase patches are not applicable to 5.2.1
->=20
 > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > ---
->  .../qt5/qtbase/0001-qeglfswindow.cpp.patch         | 56 ----------------=
-------
->  .../qt5/qtbase/0002-qeglfswindow.cpp.patch         | 34 -------------
->  .../recipes-qt/qt5/qtbase_5.2.0.bbappend           |  8 ----
->  ...bkit_5.2.0.bbappend =3D> qtwebkit_5.2.1.bbappend} |  0
->  4 files changed, 98 deletions(-)
->  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-
-> qeglfswindow.cpp.patch
->  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0002-
-> qeglfswindow.cpp.patch
+>  ...update-to-use-GL_NoX-version-of-GraphicsS.patch | 29
+> ++++++++++++++++++++++  .../recipes-
+> qt/qt5/qtwebkit/OpenGLShims.cpp.patch  | 24 ------------------
+>  .../recipes-qt/qt5/qtwebkit/Target.pri.patch       | 24 ----------------=
+--
+>  .../recipes-qt/qt5/qtwebkit/features.prf.patch     | 20 ---------------
+>  .../recipes-qt/qt5/qtwebkit_5.2.1.bbappend         |  6 ++---
+>  5 files changed, 31 insertions(+), 72 deletions(-)  create mode 100644 m=
+eta-
+> arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX=
+-
+> version-of-GraphicsS.patch
 >  delete mode 100644 meta-arago-distro/recipes-
-> qt/qt5/qtbase_5.2.0.bbappend
->  rename meta-arago-distro/recipes-qt/qt5/{qtwebkit_5.2.0.bbappend =3D>
-> qtwebkit_5.2.1.bbappend} (100%)
+> qt/qt5/qtwebkit/OpenGLShims.cpp.patch
+>  delete mode 100644 meta-arago-distro/recipes-
+> qt/qt5/qtwebkit/Target.pri.patch
+>  delete mode 100644 meta-arago-distro/recipes-
+> qt/qt5/qtwebkit/features.prf.patch
 >=20
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-
-> qeglfswindow.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-
-> qeglfswindow.cpp.patch
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-up=
+date-
+> to-use-GL_NoX-version-of-GraphicsS.patch b/meta-arago-distro/recipes-
+> qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-
+> GraphicsS.patch
+> new file mode 100644
+> index 0000000..55a4c03
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-t
+> +++ o-use-GL_NoX-version-of-GraphicsS.patch
+> @@ -0,0 +1,29 @@
+> +From 90de2ab42bdd51b92dd00f700d6766ca1ffd23c0 Mon Sep 17 00:00:00
+> 2001
+> +From: Denys Dmytriyenko <denys@ti.com>
+> +Date: Thu, 17 Jul 2014 16:11:46 -0400
+> +Subject: [PATCH] Target.pri: update to use GL_NoX version of
+> +GraphicsSurface  sources
+> +
+> +Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> +---
+> + Source/WebCore/Target.pri | 4 ++++
+> + 1 file changed, 4 insertions(+)
+> +
+> +diff --git a/Source/WebCore/Target.pri b/Source/WebCore/Target.pri
+> +index e2044bc..cc9bdd4 100644
+> +--- a/Source/WebCore/Target.pri
+> ++++ b/Source/WebCore/Target.pri
+> +@@ -4283,6 +4283,10 @@ use?(GRAPHICS_SURFACE) {
+> +             platform/graphics/surfaces/glx/X11Helper.cpp \
+> +             platform/graphics/surfaces/glx/GraphicsSurfaceGLX.cpp
+> +     }
+> ++    contains(QT_CONFIG, opengles2) {
+> ++        SOURCES -=3D platform/graphics/surfaces/qt/GraphicsSurfaceGLX.c=
+pp
+> ++        SOURCES +=3D
+> platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp
+> ++    }
+> + }
+> +
+> + build?(qttestsupport) {
+> +--
+> +2.0.0
+> +
+> diff --git a/meta-arago-distro/recipes-
+> qt/qt5/qtwebkit/OpenGLShims.cpp.patch b/meta-arago-distro/recipes-
+> qt/qt5/qtwebkit/OpenGLShims.cpp.patch
 > deleted file mode 100644
-> index b95b98e..0000000
-> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qeglfswindow.cpp.patch
+> index 9261bed..0000000
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/OpenGLShims.cpp.patch
 > +++ /dev/null
-> @@ -1,56 +0,0 @@
-> ---- qtbase/src/plugins/platforms/eglfs/qeglfswindow.cpp.orig	2013-08-09
-> 23:29:18.253037952 +0530
-> -+++ qtbase/src/plugins/platforms/eglfs/qeglfswindow.cpp	2013-08-09
-> 23:41:18.509018405 +0530
-> -@@ -61,23 +61,32 @@ QEglFSWindow::QEglFSWindow(QWindow *w)
-> - #endif
+> @@ -1,24 +0,0 @@
+> ---- qtwebkit/Source/WebCore/platform/graphics/OpenGLShims.cpp.orig
+> 	2013-09-07 13:46:41.614844342 +0530
+> -+++ qtwebkit/Source/WebCore/platform/graphics/OpenGLShims.cpp	2013-
+> 09-07 13:47:39.602841796 +0530
+> -@@ -35,17 +35,20 @@ OpenGLFunctionTable* openGLFunctionTable
+> - {
+> -     static OpenGLFunctionTable table;
+> -     return &table;
 > - }
 > -
-> - QEglFSWindow::~QEglFSWindow()
+> - #if PLATFORM(QT)
+> - static void* getProcAddress(const char* procName)
 > - {
-> -     destroy();
+> --    return reinterpret_cast<void*>(QOpenGLContext::currentContext()-
+> >getProcAddress(procName));
+> -+    if(QOpenGLContext::currentContext())
+> -+        return reinterpret_cast<void*>(QOpenGLContext::currentContext()=
+-
+> >getProcAddress(procName));
+> -+    else
+> -+        return NULL;
 > - }
-> -
-> -+static EGLSurface __singleWindowSurface;
-> - void QEglFSWindow::create()
+> - #else
+> - typedef void* (*glGetProcAddressType) (const char* procName);
+> - static void* getProcAddress(const char* procName)
 > - {
-> -     if (m_window)
-> -         return;
+> -     static bool initialized =3D false;
+> -     static glGetProcAddressType getProcAddressFunction =3D 0;
 > -
-> -     setWindowState(Qt::WindowFullScreen);
-> -
-> -+    if(QEglFSHooks::hooks() && !QEglFSHooks::hooks()-
-> >hasCapability(QPlatformIntegration::Capability::MultipleWindows) &&
-> __singleWindowSurface)
-> -+    {
-> -+        m_surface =3D __singleWindowSurface; #ifdef QEGL_EXTRA_DEBUG
-> -+    qWarning("Surface recreate request, re-using %x\n", m_surface);
-> -+#endif
-> -+       return;
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/Target.pri.patch
+> b/meta-arago-distro/recipes-qt/qt5/qtwebkit/Target.pri.patch
+> deleted file mode 100644
+> index fcd7658..0000000
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/Target.pri.patch
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> ---- qtwebkit/Source/WebCore/Target.pri.orig	2013-09-07
+> 13:48:04.030840724 +0530
+> -+++ qtwebkit/Source/WebCore/Target.pri	2013-09-07
+> 13:49:01.714838191 +0530
+> -@@ -4095,16 +4095,21 @@ use?(GRAPHICS_SURFACE) {
+> -         INCLUDEPATH +=3D
+> /System/Library/Frameworks/CoreFoundation.framework/Headers
+> -     }
+> -     win32 {
+> -         SOURCES +=3D platform/graphics/surfaces/win/GraphicsSurfaceWin.=
+cpp
+> -     }
+> -     have?(XCOMPOSITE) {
+> -         SOURCES +=3D platform/graphics/surfaces/qt/GraphicsSurfaceGLX.c=
+pp
+> -     }
+> -+    contains(QT_CONFIG, opengles2) {
+> -+        SOURCES -=3D platform/graphics/surfaces/qt/GraphicsSurfaceGLX.c=
+pp
+> -+        SOURCES +=3D platform/graphics/surfaces/qt/GraphicsSurfaceGL_No=
+X.cpp
 > -+    }
-> -     if (window()->type() =3D=3D Qt::Desktop) {
-> -         QRect rect(QPoint(), QEglFSHooks::hooks()->screenSize());
-> -         QPlatformWindow::setGeometry(rect);
-> -         QWindowSystemInterface::handleGeometryChange(window(), rect);
-> -         return;
+> -+
+> - }
+> -
+> - build?(qttestsupport) {
+> -     HEADERS +=3D platform/qt/QtTestSupport.h
+> -     SOURCES +=3D platform/qt/QtTestSupport.cpp
+> - }
+> -
+> - ALL_IN_ONE_SOURCES +=3D \
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/features.prf.patch
+> b/meta-arago-distro/recipes-qt/qt5/qtwebkit/features.prf.patch
+> deleted file mode 100644
+> index 288f116..0000000
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/features.prf.patch
+> +++ /dev/null
+> @@ -1,20 +0,0 @@
+> ---- qtwebkit/Tools/qmake/mkspecs/features/features.prf.orig	2013-09-07
+> 13:49:38.210836589 +0530
+> -+++ qtwebkit/Tools/qmake/mkspecs/features/features.prf	2013-09-07
+> 13:50:13.574835036 +0530
+> -@@ -127,16 +127,17 @@ defineTest(detectFeatures) {
+> -     packagesExist(libudev): WEBKIT_CONFIG +=3D gamepad
+> -
+> -     # Support for Graphics Surface
+> -     # GraphicsSurface requires GraphicsContext3D and hence use_3d_graph=
+ics
+> -     use?(3d_graphics) {
+> -         mac: WEBKIT_CONFIG +=3D use_graphics_surface
+> -         win32:contains(QT_CONFIG, opengles2): WEBKIT_CONFIG +=3D
+> use_graphics_surface
+> -         linux-*:contains(WEBKIT_CONFIG, have_glx):contains(WEBKIT_CONFI=
+G,
+> have_xcomposite):contains(WEBKIT_CONFIG, have_xrender): WEBKIT_CONFIG
+> +=3D use_graphics_surface
+> -+        linux-*:contains(QT_CONFIG, opengles2): WEBKIT_CONFIG +=3D
+> -+ use_graphics_surface
 > -     }
 > -
-> -     EGLDisplay display =3D (static_cast<QEglFSScreen *>(window()->scree=
-n()-
-> >handle()))->display();
-> -@@ -104,16 +113,20 @@ void QEglFSWindow::resetSurface()
+> -     # Slider Touch is sensible to use when compiling WebKit2
+> -     enable?(touch_events): WEBKIT_CONFIG +=3D touch_slider
 > -
-> -     m_window =3D QEglFSHooks::hooks()-
-> >createNativeWindow(QEglFSHooks::hooks()->screenSize(), m_format);
-> -     m_surface =3D eglCreateWindowSurface(display, m_config, m_window,
-> NULL);
-> -     if (m_surface =3D=3D EGL_NO_SURFACE) {
-> -         EGLint error =3D eglGetError();
-> -         eglTerminate(display);
-> -         qFatal("EGL Error : Could not create the egl surface: error =3D=
- 0x%x\n",
-> error);
-> -     }
-> -+    if(QEglFSHooks::hooks() && !QEglFSHooks::hooks()-
-> >hasCapability(QPlatformIntegration::Capability::MultipleWindows))
-> -+    {
-> -+        __singleWindowSurface =3D m_surface;
-> -+    }
-> - }
 > -
-> - void QEglFSWindow::destroy()
-> - {
-> -     if (m_surface) {
-> -         EGLDisplay display =3D static_cast<QEglFSScreen *>(screen())->d=
-isplay();
-> -         eglDestroySurface(display, m_surface);
-> -         m_surface =3D 0;
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-
-> qeglfswindow.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0002-
-> qeglfswindow.cpp.patch
-> deleted file mode 100644
-> index 8d17348..0000000
-> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-qeglfswindow.cpp.patch
-> +++ /dev/null
-> @@ -1,34 +0,0 @@
-> ---- qtbase/src/plugins/platforms/eglfs/qeglfswindow.cpp.old	2013-09-09
-> 23:09:24.433774489 +0530
-> -+++ qtbase/src/plugins/platforms/eglfs/qeglfswindow.cpp	2013-09-09
-> 23:12:22.105766689 +0530
-> -@@ -54,30 +54,30 @@ QEglFSWindow::QEglFSWindow(QWindow *w)
-> -     , m_surface(0)
-> -     , m_window(0)
-> - {
-> -     static int serialNo =3D 0;
-> -     m_winid  =3D ++serialNo;
-> - #ifdef QEGL_EXTRA_DEBUG
-> -     qWarning("QEglWindow %p: %p 0x%x\n", this, w, uint(m_winid));
-> - #endif
-> -+    setWindowState(Qt::WindowFullScreen);
-> - }
-> -
-> - QEglFSWindow::~QEglFSWindow()
-> - {
-> -     destroy();
-> - }
-> -
-> - static EGLSurface __singleWindowSurface;
-> - void QEglFSWindow::create()
-> - {
-> -     if (m_window)
-> -         return;
-> -
-> --    setWindowState(Qt::WindowFullScreen);
-> -
-> -     if(QEglFSHooks::hooks() && !QEglFSHooks::hooks()-
-> >hasCapability(QPlatformIntegration::Capability::MultipleWindows) &&
-> __singleWindowSurface)
-> -     {
-> -         m_surface =3D __singleWindowSurface;
-> - #ifdef QEGL_EXTRA_DEBUG
-> -     qWarning("Surface recreate request, re-using %x\n", m_surface);
-> - #endif
-> -        return;
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend b/met=
-a-
-> arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend
-> deleted file mode 100644
-> index 2c0a52d..0000000
-> --- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.0.bbappend
-> +++ /dev/null
-> @@ -1,8 +0,0 @@
-> -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> -
-> -SRC_URI +=3D " \
-> -	file://0001-qeglfswindow.cpp.patch \
-> -	file://0002-qeglfswindow.cpp.patch \
-> -"
-> -
-> -PR_append =3D "-arago1"
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.0.bbappend
+> -     # Minibrowser must be able to query for QtTestSupport
+> -     build?(qttestsupport): WEBKIT_CONFIG +=3D have_qttestsupport
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.1.bbappend
 > b/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.1.bbappend
-> similarity index 100%
-> rename from meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.0.bbappend
-> rename to meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.1.bbappend
+> index e86c8a2..63461f5 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.1.bbappend
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.2.1.bbappend
+> @@ -1,14 +1,12 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+>  SRC_URI +=3D " \
+> -	file://features.prf.patch \
+>  	file://GraphicsContext3DQt.cpp.patch \
+>  	file://GraphicsSurfaceGL_NoX.cpp.patch \
+>  	file://GraphicsSurfaceToken.h.patch \
+> -	file://OpenGLShims.cpp.patch \
+>  	file://qttestbrowser.cpp.patch \
+> -	file://Target.pri.patch \
+> +	file://0001-Target.pri-update-to-use-GL_NoX-version-of-
+> GraphicsS.patch
+> +\
+>  	file://WebCore.pri.patch \
+>  "
+>=20
+> -PR_append =3D "-arago1"
+> +PR_append =3D "-arago2"
 > --
 > 2.0.0
 >=20
