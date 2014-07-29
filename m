@@ -1,27 +1,29 @@
 Return-Path: <yanivma@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 23F5652A51
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C4D1F52A51
 	for <meta-arago@arago-project.org>;
 	Tue, 29 Jul 2014 20:18:50 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6TKInUX019970
-	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 15:18:49 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6TKImq2010412
-	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 15:18:49 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 29 Jul 2014 15:18:48 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6TKIokS017304
+	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 15:18:50 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6TKIovj010424
+	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 15:18:50 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 29 Jul 2014 15:18:49 -0500
 Received: from mcp8x-srv.emea.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s6TKImIB029016;	Tue, 29 Jul 2014 15:18:48 -0500
+	s6TKImIC029016;	Tue, 29 Jul 2014 15:18:49 -0500
 From: Yaniv Machani <yanivma@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 29 Jul 2014 23:13:54 +0300
-Message-ID: <1406664835-16595-1-git-send-email-yanivma@ti.com>
+Date: Tue, 29 Jul 2014 23:13:55 +0300
+Message-ID: <1406664835-16595-2-git-send-email-yanivma@ti.com>
 X-Mailer: git-send-email 1.8.3.2
+In-Reply-To: <1406664835-16595-1-git-send-email-yanivma@ti.com>
+References: <1406664835-16595-1-git-send-email-yanivma@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/2] wl18xx-compat: version update
+Subject: [PATCH 2/2] wl18xx-wlconf: version update
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,164 +36,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jul 2014 20:18:50 -0000
+X-List-Received-Date: Tue, 29 Jul 2014 20:18:51 -0000
 Content-Type: text/plain
 
-- Update to latest version tag - ol_r8.a9.14
-- move to git.ti.com and use backports module.
-- clean some unused commands.
+    - Update to latest version tag - ol_r8.a9.14
+    - move to git.ti.com
 
 Signed-off-by: Yaniv Machani <yanivma@ti.com>
 ---
- .../packagegroup-arago-tisdk-connectivity.bb       |    1 +
- .../ti-compat-wireless-wl18xx_r8.a8.10.bb          |   61 --------------------
- .../ti-compat-wireless-wl18xx_r8.a9.14.bb          |   57 ++++++++++++++++++
- 3 files changed, 58 insertions(+), 61 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
- create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
+ .../{wlconf_r8.a8.10.bb => wlconf_r8.a9.14.bb}     |    9 +++++----
+ 1 files changed, 5 insertions(+), 4 deletions(-)
+ rename meta-arago-extras/recipes-connectivity/wlconf/{wlconf_r8.a8.10.bb => wlconf_r8.a9.14.bb} (85%)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index fa82e7e..fafffee 100755
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -31,6 +31,7 @@ WLAN_COMMON = "\
- #    netperf
+diff --git a/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb
+similarity index 85%
+rename from meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a8.10.bb
+rename to meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb
+index 5f50e88..02af7f6 100644
+--- a/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a8.10.bb
++++ b/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb
+@@ -2,12 +2,12 @@ DESCRIPTION = "Configuration utility for TI wireless drivers"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=adc05a1903d3f107f85c90328e3a9438"
  
- FIRMWARE_AND_DRIVERS = "\
-+    ti-compat-wireless-wl18xx \
-     wl18xx-firmware \
- "
+-PR ="r1"
++PR ="r2"
+ PR_append = "+gitr${SRCPV}"
  
-diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
-deleted file mode 100644
-index 0e7281a..0000000
---- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
-+++ /dev/null
-@@ -1,61 +0,0 @@
--# This is a TI specific version of the compat-wireless recipe using a
--# compat-wireless package created from the TI Systems Tested mac80211 releases.
--
--DESCRIPTION = "ti compat-wireless drivers for wl18xx"
--HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
--SECTION = "kernel/modules"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
--
--RDEPENDS_${PN} = "wireless-tools"
--
--PROVIDES += "ti-compat-wireless-wl12xx"
--RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
--RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
--RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
--
--COMPATIBLE_MACHINE = "(omap-a15)"
--
--PV = "r8.a8.08"
--inherit module
--
--PR = "${MACHINE_KERNEL_PR}"
--PR_append = "b"
--
--# Tags: ol_r8.a8.10
--SRCREV_wl18xx = "eaa1820c02dc076e6ad9254e9cb7a3bb0c17471b"
--SRCREV_compat = "5d80865281795f962e1400a95202bbd07dd763c0"
--SRCREV_compat-wireless = "23a0d62ea1a57327709a77f08d6265ec807a909f"
--
--SRCREV_FORMAT = "compat-wireless"
--
--S = "${WORKDIR}/compat-wireless"
--
--SRC_URI = "git://github.com/TI-OpenLink/compat-wireless.git;destsuffix=compat-wireless;name=compat-wireless \
--           git://github.com/TI-OpenLink/compat.git;destsuffix=compat;name=compat \
--           git://github.com/TI-OpenLink/wl18xx.git;destsuffix=wl18xx;name=wl18xx \
--"
--
--EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
--
--do_configure() {
--    cd ${S}
--    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh network
--    ./scripts/driver-select wl18xx
--
--    # Now generate the sourceipk with the properly configured sources
--    sourceipk_do_create_srcipk
--}
--
--do_configure_append() {
--    sed -i "s#@./scripts/update-initramfs## " Makefile
--}
--
--do_install() {
--    # Remove hardcoded references to host depmod
--    sed -i "s#@/sbin/depmod -a## " Makefile
--    sed -i "s#@/sbin/depmod -ae## " Makefile
--
--    # Install modules
--    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
--}
-diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
-new file mode 100644
-index 0000000..bb5e072
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
-@@ -0,0 +1,57 @@
-+# This is a TI specific version of the compat-wireless recipe using a
-+# compat-wireless package created from the TI Systems Tested mac80211 releases.
-+
-+DESCRIPTION = "ti compat-wireless drivers for wl18xx"
-+HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
-+SECTION = "kernel/modules"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
-+
-+RDEPENDS_${PN} = "wireless-tools"
-+
-+PROVIDES += "ti-compat-wireless-wl12xx"
-+RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
-+RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
-+RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
-+
-+PV = "r8.a9.14"
-+inherit module
-+
-+PR = "${MACHINE_KERNEL_PR}"
-+PR_append = "b+gitr${SRCPV}"
-+
-+# Tags: ol_r8.a9.14
-+SRCREV_wl18xx = "30048320c30e94d805b9112daca54cb854c1eda4"
-+BRANCH_wl18xx = "ap_dfs_mbss_all"
-+SRCREV_backports = "0d46f43a2f3ccdd53de19eee5b9c674bf8ef09a2"
-+BRANCH_backports = "ap_dfs_mbss_all"
-+
-+SRCREV_FORMAT = "wl18xx"
-+
-+S = "${WORKDIR}/compat-wireless"
-+
-+SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx.git;branch=${BRANCH_wl18xx};destsuffix=wl18xx;name=wl18xx \
-+           git://git.ti.com/wilink8-wlan/backports.git;branch=${BRANCH_backports};destsuffix=backports;name=backports \
-+ "
-+
-+export KLIB_BUILD="${STAGING_KERNEL_DIR}"
-+export KLIB="${D}"
-+
-+do_configure() {
-+    cd "${WORKDIR}/backports"
-+    unset CC
-+    #Generate compat-wireless
-+    python ./gentree.py --clean  "${WORKDIR}/wl18xx" "${WORKDIR}/compat-wireless"
-+
-+    cd ${S}
-+    make defconfig-wl18xx
-+
-+    # Now generate the sourceipk with the properly configured sources
-+    #  sourceipk_do_create_srcipk
-+}
-+
-+do_install() {
-+    # Install modules
-+    oe_runmake modules_install
-+}
-+
+-# Tag: ol_r8.a8.10
+-SRCREV = "c50159d66af1786414b819ebcaa8b2571ae790a1"
+-SRC_URI = "git://github.com/TI-OpenLink/18xx-ti-utils.git"
++# Tag: ol_r8.a9.14
++SRCREV = "e014b59381f04b329fccd0ec18a5f2da7fa0fd63"
++SRC_URI = "git://git.ti.com/wilink8-wlan/18xx-ti-utils.git"
+ 
+ S = "${WORKDIR}/git/wlconf"
+ 
+@@ -28,6 +28,7 @@ do_install() {
+ 	install -m 0755 README ${D}${bindir}/wlconf/
+ 	install -m 0755 example.conf ${D}${bindir}/wlconf/
+ 	install -m 0755 example.ini ${D}${bindir}/wlconf/
++	install -m 0755 configure-device.sh ${D}${bindir}/wlconf/
+ 	install -m 0755 ${S}/official_inis/* \
+ 			${D}${bindir}/wlconf/official_inis/
+ }
 -- 
 1.7.9
 
