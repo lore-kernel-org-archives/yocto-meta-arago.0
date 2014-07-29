@@ -1,28 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 8CD38529F5
+Return-Path: <yanivma@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 23F5652A51
 	for <meta-arago@arago-project.org>;
-	Tue, 29 Jul 2014 11:48:27 +0000 (UTC)
+	Tue, 29 Jul 2014 20:18:50 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6TBmQmc009253
-	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 06:48:26 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s6TKInUX019970
+	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 15:18:49 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6TBmQa2003738
-	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 06:48:26 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s6TKImq2010412
+	for <meta-arago@arago-project.org>; Tue, 29 Jul 2014 15:18:49 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 29 Jul 2014 06:48:26 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s6TBmP27002559;	Tue, 29 Jul 2014 06:48:26 -0500
-Date: Tue, 29 Jul 2014 07:30:45 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <638576990.377.1406633445457.JavaMail.jenkins@puget>
+	Tue, 29 Jul 2014 15:18:48 -0500
+Received: from mcp8x-srv.emea.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s6TKImIB029016;	Tue, 29 Jul 2014 15:18:48 -0500
+From: Yaniv Machani <yanivma@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 29 Jul 2014 23:13:54 +0300
+Message-ID: <1406664835-16595-1-git-send-email-yanivma@ti.com>
+X-Mailer: git-send-email 1.8.3.2
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.07 build 2014-07-29_01-00-30
+Subject: [PATCH 1/2] wl18xx-compat: version update
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,188 +34,165 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jul 2014 11:48:27 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_376_1873059912.1406633445452"
+X-List-Received-Date: Tue, 29 Jul 2014 20:18:50 -0000
+Content-Type: text/plain
 
-------=_Part_376_1873059912.1406633445452
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+- Update to latest version tag - ol_r8.a9.14
+- move to git.ti.com and use backports module.
+- clean some unused commands.
 
-<html>
-<head>
-<title>
-Status for 07/29/14
-</title>
-</head>
-<body>
+Signed-off-by: Yaniv Machani <yanivma@ti.com>
+---
+ .../packagegroup-arago-tisdk-connectivity.bb       |    1 +
+ .../ti-compat-wireless-wl18xx_r8.a8.10.bb          |   61 --------------------
+ .../ti-compat-wireless-wl18xx_r8.a9.14.bb          |   57 ++++++++++++++++++
+ 3 files changed, 58 insertions(+), 61 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
 
-<h2>Status for 07/29/14</h2>
-
-<h2>BUILD_ID: build-2014-07-29_01-02-05</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.07"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index fa82e7e..fafffee 100755
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -31,6 +31,7 @@ WLAN_COMMON = "\
+ #    netperf
+ 
+ FIRMWARE_AND_DRIVERS = "\
++    ti-compat-wireless-wl18xx \
+     wl18xx-firmware \
+ "
+ 
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
+deleted file mode 100644
+index 0e7281a..0000000
+--- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
++++ /dev/null
+@@ -1,61 +0,0 @@
+-# This is a TI specific version of the compat-wireless recipe using a
+-# compat-wireless package created from the TI Systems Tested mac80211 releases.
+-
+-DESCRIPTION = "ti compat-wireless drivers for wl18xx"
+-HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
+-SECTION = "kernel/modules"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+-
+-RDEPENDS_${PN} = "wireless-tools"
+-
+-PROVIDES += "ti-compat-wireless-wl12xx"
+-RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
+-RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
+-RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
+-
+-COMPATIBLE_MACHINE = "(omap-a15)"
+-
+-PV = "r8.a8.08"
+-inherit module
+-
+-PR = "${MACHINE_KERNEL_PR}"
+-PR_append = "b"
+-
+-# Tags: ol_r8.a8.10
+-SRCREV_wl18xx = "eaa1820c02dc076e6ad9254e9cb7a3bb0c17471b"
+-SRCREV_compat = "5d80865281795f962e1400a95202bbd07dd763c0"
+-SRCREV_compat-wireless = "23a0d62ea1a57327709a77f08d6265ec807a909f"
+-
+-SRCREV_FORMAT = "compat-wireless"
+-
+-S = "${WORKDIR}/compat-wireless"
+-
+-SRC_URI = "git://github.com/TI-OpenLink/compat-wireless.git;destsuffix=compat-wireless;name=compat-wireless \
+-           git://github.com/TI-OpenLink/compat.git;destsuffix=compat;name=compat \
+-           git://github.com/TI-OpenLink/wl18xx.git;destsuffix=wl18xx;name=wl18xx \
+-"
+-
+-EXTRA_OEMAKE = "KLIB_BUILD=${STAGING_KERNEL_DIR} KLIB=${D}"
+-
+-do_configure() {
+-    cd ${S}
+-    GIT_TREE="${WORKDIR}/wl18xx" GIT_COMPAT_TREE="${WORKDIR}/compat" ./scripts/admin-refresh.sh network
+-    ./scripts/driver-select wl18xx
+-
+-    # Now generate the sourceipk with the properly configured sources
+-    sourceipk_do_create_srcipk
+-}
+-
+-do_configure_append() {
+-    sed -i "s#@./scripts/update-initramfs## " Makefile
+-}
+-
+-do_install() {
+-    # Remove hardcoded references to host depmod
+-    sed -i "s#@/sbin/depmod -a## " Makefile
+-    sed -i "s#@/sbin/depmod -ae## " Makefile
+-
+-    # Install modules
+-    oe_runmake DEPMOD=echo DESTDIR="${D}" INSTALL_MOD_PATH="${D}" LDFLAGS="" install-modules
+-}
+diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
+new file mode 100644
+index 0000000..bb5e072
+--- /dev/null
++++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
+@@ -0,0 +1,57 @@
++# This is a TI specific version of the compat-wireless recipe using a
++# compat-wireless package created from the TI Systems Tested mac80211 releases.
++
++DESCRIPTION = "ti compat-wireless drivers for wl18xx"
++HOMEPAGE = "https://gforge.ti.com/gf/project/ecs_nlcp/"
++SECTION = "kernel/modules"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
++
++RDEPENDS_${PN} = "wireless-tools"
++
++PROVIDES += "ti-compat-wireless-wl12xx"
++RPROVIDES_${PN} += "ti-compat-wireless-wl12xx"
++RREPLACES_${PN} += "ti-compat-wireless-wl12xx"
++RCONFLICTS_${PN} += "ti-compat-wireless-wl12xx"
++
++PV = "r8.a9.14"
++inherit module
++
++PR = "${MACHINE_KERNEL_PR}"
++PR_append = "b+gitr${SRCPV}"
++
++# Tags: ol_r8.a9.14
++SRCREV_wl18xx = "30048320c30e94d805b9112daca54cb854c1eda4"
++BRANCH_wl18xx = "ap_dfs_mbss_all"
++SRCREV_backports = "0d46f43a2f3ccdd53de19eee5b9c674bf8ef09a2"
++BRANCH_backports = "ap_dfs_mbss_all"
++
++SRCREV_FORMAT = "wl18xx"
++
++S = "${WORKDIR}/compat-wireless"
++
++SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx.git;branch=${BRANCH_wl18xx};destsuffix=wl18xx;name=wl18xx \
++           git://git.ti.com/wilink8-wlan/backports.git;branch=${BRANCH_backports};destsuffix=backports;name=backports \
++ "
++
++export KLIB_BUILD="${STAGING_KERNEL_DIR}"
++export KLIB="${D}"
++
++do_configure() {
++    cd "${WORKDIR}/backports"
++    unset CC
++    #Generate compat-wireless
++    python ./gentree.py --clean  "${WORKDIR}/wl18xx" "${WORKDIR}/compat-wireless"
++
++    cd ${S}
++    make defconfig-wl18xx
++
++    # Now generate the sourceipk with the properly configured sources
++    #  sourceipk_do_create_srcipk
++}
++
++do_install() {
++    # Install modules
++    oe_runmake modules_install
++}
++
+-- 
+1.7.9
 
 
-------=_Part_376_1873059912.1406633445452--
