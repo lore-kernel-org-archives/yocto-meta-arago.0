@@ -1,23 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTP id 71F8C5298E
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id EDC8D52A1D
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Aug 2014 05:19:10 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [72.66.25.89])
-	by vms173021.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N9R004IUO3SPOC0@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 04 Aug 2014 00:19:05 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id A33302016D; Mon,
-	04 Aug 2014 01:19:04 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 04 Aug 2014 01:18:57 -0400
-Message-id: <1407129540-18312-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.0.4
-Subject: [dora][PATCH 1/4] udev: overlay locally init and default files with platform probe fix
+	Mon,  4 Aug 2014 06:07:26 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7467Pjj001663
+	for <meta-arago@arago-project.org>; Mon, 4 Aug 2014 01:07:26 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7467PN8030713
+	for <meta-arago@arago-project.org>; Mon, 4 Aug 2014 01:07:25 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 4 Aug 2014 01:07:25 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7467PUj029612	for <meta-arago@arago-project.org>;
+	Mon, 4 Aug 2014 01:07:25 -0500
+Date: Mon, 4 Aug 2014 01:49:35 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <907935211.403.1407131375711.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.07 build 2014-08-04_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,191 +36,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Aug 2014 05:19:10 -0000
+X-List-Received-Date: Mon, 04 Aug 2014 06:07:27 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_402_117988656.1407131375710"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_402_117988656.1407131375710
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Backported from master/daisy to allow probing of platform bus on
-subsequent boots:
-http://thread.gmane.org/gmane.comp.handhelds.openembedded.core/52443
+<html>
+<head>
+<title>
+Status for 08/04/14
+</title>
+</head>
+<body>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-core/udev/udev/init      | 138 +++++++++++++++++++++
- .../recipes-core/udev/udev/udev-cache.default      |   5 +
- .../recipes-core/udev/udev_182.bbappend            |   4 +-
- 3 files changed, 146 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-core/udev/udev/init
- create mode 100644 meta-arago-distro/recipes-core/udev/udev/udev-cache.default
+<h2>Status for 08/04/14</h2>
 
-diff --git a/meta-arago-distro/recipes-core/udev/udev/init b/meta-arago-distro/recipes-core/udev/udev/init
-new file mode 100644
-index 0000000..f2c84d5
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/udev/udev/init
-@@ -0,0 +1,138 @@
-+#!/bin/sh
-+
-+### BEGIN INIT INFO
-+# Provides:          udev
-+# Required-Start:    mountvirtfs
-+# Required-Stop:     
-+# Default-Start:     S
-+# Default-Stop:
-+# Short-Description: Start udevd, populate /dev and load drivers.
-+### END INIT INFO
-+
-+export TZ=/etc/localtime
-+
-+[ -d /sys/class ] || exit 1
-+[ -r /proc/mounts ] || exit 1
-+[ -x @UDEVD@ ] || exit 1
-+[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
-+[ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf
-+[ -f /etc/default/rcS ] && . /etc/default/rcS
-+
-+readfiles () {
-+   READDATA=""
-+   for filename in $@; do
-+	   if [ -r $filename ]; then
-+		   while read line; do
-+			   READDATA="$READDATA$line"
-+		   done < $filename
-+	   fi
-+   done
-+}
-+
-+kill_udevd () {
-+    pid=`pidof -x udevd`
-+    [ -n "$pid" ] && kill $pid
-+}
-+
-+case "$1" in
-+  start)
-+    export ACTION=add
-+    # propagate /dev from /sys
-+    echo "Starting udev"
-+
-+    # Check for requireed devtmpfs before trying to start udev and
-+    # mount a no-existant fs.
-+    if ! grep -q devtmpfs /proc/filesystems
-+    then
-+        echo "Missing devtmpfs, which is required for udev to run";
-+        echo "Halting..."
-+        halt
-+    fi
-+    # mount the devtmpfs on /dev, if not already done
-+    LANG=C awk '$2 == "/dev" && ($3 == "devtmpfs") { exit 1 }' /proc/mounts && {
-+            mount -n -o mode=0755 -t devtmpfs none "/dev"
-+    }
-+    [ -e /dev/pts ] || mkdir -m 0755 /dev/pts
-+    [ -e /dev/shm ] || mkdir -m 1777 /dev/shm
-+    # the automount rule for udev needs /tmp directory available, as /tmp is a symlink
-+    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need to make sure
-+    # /var/volatile/tmp directory to be available.
-+    mkdir -p /var/volatile/tmp
-+
-+    # Cache handling.
-+    # A list of files which are used as a criteria to judge whether the udev cache could be reused.
-+    CMP_FILE_LIST="/proc/version /proc/cmdline /proc/devices /proc/atags"
-+    if [ "$DEVCACHE" != "" ]; then
-+            if [ -e $DEVCACHE ]; then
-+		    readfiles $CMP_FILE_LIST
-+		    NEWDATA="$READDATA"
-+		    readfiles /etc/udev/cache.data
-+		    OLDDATA="$READDATA"
-+		    if [ "$OLDDATA" = "$NEWDATA" ]; then
-+                            (cd /; tar xf $DEVCACHE > /dev/null 2>&1)
-+                            not_first_boot=1
-+                            [ "$VERBOSE" != "no" ] && echo "udev: using cache file $DEVCACHE"
-+                            [ -e /dev/shm/udev.cache ] && rm -f /dev/shm/udev.cache
-+                    else
-+			    # Output detailed reason why the cached /dev is not used
-+			    if [ "$VERBOSE" != "no" ]; then
-+				    echo "udev: udev cache not used"
-+				    echo "udev: we use $CMP_FILE_LIST as criteria to judge whether the cache /dev could be resued"
-+				    echo "udev: olddata: $OLDDATA"
-+				    echo "udev: newdata: $NEWDATA"
-+			    fi
-+			    echo "$NEWDATA" > /dev/shm/udev.cache
-+                    fi
-+	    else
-+		    if [ "$ROOTFS_READ_ONLY" != "yes" ]; then
-+			    # If rootfs is not read-only, it's possible that a new udev cache would be generated;
-+			    # otherwise, we do not bother to read files.
-+			    readfiles $CMP_FILE_LIST
-+			    echo "$READDATA" > /dev/shm/udev.cache
-+		    fi
-+            fi
-+    fi
-+
-+    # make_extra_nodes
-+    kill_udevd > "/dev/null" 2>&1
-+
-+    # trigger the sorted events
-+    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug
-+    @UDEVD@ -d
-+
-+    udevadm control --env=STARTUP=1
-+    if [ "$not_first_boot" != "" ];then
-+            if [ "$PROBE_PLATFORM_BUS" != "yes" ]; then
-+                PLATFORM_BUS_NOMATCH="--subsystem-nomatch=platform"
-+            else
-+                PLATFORM_BUS_NOMATCH=""
-+            fi
-+            udevadm trigger --action=add --subsystem-nomatch=tty --subsystem-nomatch=mem --subsystem-nomatch=vc --subsystem-nomatch=vtconsole --subsystem-nomatch=misc --subsystem-nomatch=dcon --subsystem-nomatch=pci_bus --subsystem-nomatch=graphics --subsystem-nomatch=backlight --subsystem-nomatch=video4linux $PLATFORM_BUS_NOMATCH
-+            (udevadm settle --timeout=3; udevadm control --env=STARTUP=)&
-+    else
-+            udevadm trigger --action=add
-+            udevadm settle
-+    fi
-+    ;;
-+  stop)
-+    echo "Stopping udevd"
-+    start-stop-daemon --stop --name udevd --quiet
-+    ;;
-+  restart)
-+    $0 stop
-+    sleep 1
-+    $0 start
-+    ;;
-+  status)
-+    pid=`pidof -x udevd`
-+    if [ -n "$pid" ]; then
-+	echo "udevd (pid $pid) is running ..."
-+    else
-+	echo "udevd is stopped"
-+    fi
-+    ;;
-+  *)
-+    echo "Usage: $0 {start|stop|status|restart}"
-+    exit 1
-+esac
-+exit 0
-diff --git a/meta-arago-distro/recipes-core/udev/udev/udev-cache.default b/meta-arago-distro/recipes-core/udev/udev/udev-cache.default
-new file mode 100644
-index 0000000..2093336
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/udev/udev/udev-cache.default
-@@ -0,0 +1,5 @@
-+# Default for /etc/init.d/udev
-+
-+# Comment this out to disable device cache
-+DEVCACHE="/etc/dev.tar"
-+PROBE_PLATFORM_BUS="yes"
-diff --git a/meta-arago-distro/recipes-core/udev/udev_182.bbappend b/meta-arago-distro/recipes-core/udev/udev_182.bbappend
-index 838cce8..cbbac46 100644
---- a/meta-arago-distro/recipes-core/udev/udev_182.bbappend
-+++ b/meta-arago-distro/recipes-core/udev/udev_182.bbappend
-@@ -5,4 +5,6 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = "-arago2"
-+INITSCRIPT_PARAMS_udev = "start 04 S ."
-+
-+PR_append = "-arago3"
--- 
-2.0.4
+<h2>BUILD_ID: build-2014-08-04_01-01-49</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.07"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_402_117988656.1407131375710--
