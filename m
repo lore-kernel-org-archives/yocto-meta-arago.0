@@ -1,34 +1,23 @@
-Return-Path: <chase.maupin@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 1EF3852996
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTP id 473C452992
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Aug 2014 13:48:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s74DmpOV012366;
-	Mon, 4 Aug 2014 08:48:51 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s74DmoAT019095;
-	Mon, 4 Aug 2014 08:48:51 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0174.001; Mon, 4 Aug 2014 08:48:50 -0500
-From: "Maupin, Chase" <chase.maupin@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH 4/5] packagegroups, images: combine qt4e
-	and qt5 recipes to avoid confusion
-Thread-Index: AQHPr1vLICeyQEa3PkeInvLG1ojpQJvAdtgA
-Date: Mon, 4 Aug 2014 13:48:49 +0000
-Message-ID: <7D46E86EC0A8354091174257B2FED1015D198B54@DLEE11.ent.ti.com>
-References: <1407028221-9762-1-git-send-email-denis@denix.org>
-	<1407028221-9762-4-git-send-email-denis@denix.org>
-In-Reply-To: <1407028221-9762-4-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH 4/5] packagegroups, images: combine qt4e and qt5 recipes to avoid confusion
+	Mon,  4 Aug 2014 19:10:58 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.89])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N9S007JUQM62FU0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 04 Aug 2014 14:10:55 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 74FBF2016D; Mon,
+	04 Aug 2014 15:10:54 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 04 Aug 2014 15:10:52 -0400
+Message-id: <1407179452-29459-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.0.4
+Subject: [PATCH] openssl: update bbappend to new version, simplify
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,439 +30,187 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Aug 2014 13:48:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 04 Aug 2014 19:10:58 -0000
 
-Acked-by: Chase Maupin <chase.maupin@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
+Most of the customizations were incorporated upstream.
+OCF support in openssl was also removed.
 
->-----Original Message-----
->From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
->bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
->Sent: Saturday, August 02, 2014 8:10 PM
->To: meta-arago@arago-project.org
->Subject: [meta-arago] [PATCH 4/5] packagegroups, images: combine
->qt4e and qt5 recipes to avoid confusion
->
->From: Denys Dmytriyenko <denys@ti.com>
->
->It was started as a fix to prevent qt4-embedded from being pulled
->into the
->build when building qt5 and would have required creating empty
->qt5-specific
->packagegroup-arago-tisdk-qt5-sdk-host recipe. Unification was in
->order.
->
->Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->---
-> .../recipes-core/images/arago-qt5-test-image.bb    | 19 ---------
->--
-> .../recipes-core/images/tisdk-rootfs-image.bb      |  2 +-
-> .../packagegroups/packagegroup-arago-qt5.bb        | 15 ---------
-> .../packagegroups/packagegroup-arago-qte.bb        | 20 ++++++++-
->--
-> .../packagegroups/packagegroup-arago-tisdk-qt5.bb  | 18 ---------
->-
-> .../packagegroup-arago-tisdk-qte-sdk-host.bb       |  8 +++--
-> .../packagegroups/packagegroup-arago-tisdk-qte.bb  | 15 +++++++--
-> .../packagegroups/packagegroup-linaro-tc-test.bb   | 24
->+++++++++++++
-> .../packagegroup-arago-qt5-toolchain-target.bb     | 33 ---------
->---------
-> .../packagegroup-arago-qte-toolchain-target.bb     | 39
->++++++++++++++++++----
-> 10 files changed, 92 insertions(+), 101 deletions(-)
-> delete mode 100644 meta-arago-distro/recipes-core/images/arago-
->qt5-test-image.bb
-> delete mode 100644 meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-qt5.bb
-> delete mode 100644 meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-qt5.bb
-> create mode 100644 meta-arago-distro/recipes-
->core/packagegroups/packagegroup-linaro-tc-test.bb
-> delete mode 100644 meta-arago-extras/recipes-
->core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb
->
->diff --git a/meta-arago-distro/recipes-core/images/arago-qt5-test-
->image.bb b/meta-arago-distro/recipes-core/images/arago-qt5-test-
->image.bb
->deleted file mode 100644
->index 5fbbfd3..0000000
->--- a/meta-arago-distro/recipes-core/images/arago-qt5-test-
->image.bb
->+++ /dev/null
->@@ -1,19 +0,0 @@
->-# Arago Qt5 test image
->-# gives you an image with Qt5 for basic testing purposes.
->-
->-require arago-image.inc
->-inherit remove-net-rules
->-
->-IMAGE_INSTALL +=3D "\
->-    packagegroup-arago-base \
->-    packagegroup-arago-console \
->-    packagegroup-arago-base-tisdk \
->-    qtbase-plugins \
->-    qt-tstat \
->-    "
->-
->-# These are now disabled due to gles dependency
->-#    matrix-gui-browser
->-#    qtwebkit-examples-examples
->-
->-export IMAGE_BASENAME =3D "arago-qt5-test-image"
->diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-
->image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-
->image.bb
->index 649dfe3..1bc6a36 100644
->--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
->+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
->@@ -5,7 +5,7 @@ require arago-base-tisdk-image.bb
-> IMAGE_INSTALL +=3D "\
->     packagegroup-arago-test \
->     ${@base_contains('MACHINE_FEATURES','sgx','packagegroup-
->arago-tisdk-graphics','',d)} \
->-    ${@base_conditional('QT_PROVIDER','qt5','packagegroup-arago-
->tisdk-qt5','packagegroup-arago-tisdk-qte',d)} \
->+    packagegroup-arago-tisdk-qte \
->     packagegroup-arago-tisdk-addons \
->     packagegroup-arago-tisdk-connectivity \
->     packagegroup-arago-tisdk-crypto \
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-qt5.bb b/meta-arago-
->distro/recipes-core/packagegroups/packagegroup-arago-qt5.bb
->deleted file mode 100644
->index ff0f3ed..0000000
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-qt5.bb
->+++ /dev/null
->@@ -1,15 +0,0 @@
->-DESCRIPTION =3D "Task to add Qt embedded related packages"
->-LICENSE =3D "MIT"
->-PR =3D "r0"
->-
->-inherit packagegroup
->-
->-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->-
->-RDEPENDS_${PN} =3D "\
->-    qtbase-plugins \
->-    qtdeclarative-plugins \
->-    qtlocation-plugins \
->-    qtmultimedia-plugins \
->-    qtwayland-plugins \
->-"
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-
->distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
->index 0ce08db..b2dd546 100644
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-qte.bb
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-qte.bb
->@@ -1,18 +1,18 @@
-> DESCRIPTION =3D "Task to add Qt embedded related packages"
-> LICENSE =3D "MIT"
->-PR =3D "r4"
->+PR =3D "r5"
->
-> inherit packagegroup
->
-> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->
->-QT_SGX_SUPPORT =3D "\
->+QT4_SGX_SUPPORT =3D "\
->     qt4-embedded-plugin-gfxdriver-gfxpvregl \
->     libqt-embeddedopengl4 \
->     libqt-embeddedpvrqwswsegl4 \
-> "
->
->-RDEPENDS_${PN} =3D "\
->+QT4_ESSENTIALS =3D "\
->     qt4-embedded \
->     qt4-embedded-plugin-mousedriver-tslib \
->     qt4-embedded-plugin-gfxdriver-gfxtransformed \
->@@ -23,5 +23,17 @@ RDEPENDS_${PN} =3D "\
->     libqt-embeddedmultimedia4 \
->     libqt-embeddeddeclarative4 \
->     libqt-embeddedxmlpatterns4 \
->-    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
->'${QT_SGX_SUPPORT}', '', d)} \
->+    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
->'${QT4_SGX_SUPPORT}', '', d)} \
->+"
->+
->+QT5_ESSENTIALS =3D "\
->+    qtbase-plugins \
->+    qtdeclarative-plugins \
->+    qtlocation-plugins \
->+    qtmultimedia-plugins \
->+    qtwayland-plugins \
->+"
->+
->+RDEPENDS_${PN} =3D "\
->+    ${@base_conditional('QT_PROVIDER', 'qt5',
->"${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
-> "
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-qt5.bb b/meta-arago-
->distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qt5.bb
->deleted file mode 100644
->index 9ce43e6..0000000
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-qt5.bb
->+++ /dev/null
->@@ -1,18 +0,0 @@
->-DESCRIPTION =3D "Task to add Qt embedded related packages"
->-LICENSE =3D "MIT"
->-PR =3D "r0"
->-
->-inherit packagegroup
->-
->-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->-
->-QT_DEMOS =3D "\
->-    qtwayland-examples \
->-    qtwebkit-examples-examples \
->-    qt-tstat \
->-"
->-
->-RDEPENDS_${PN} =3D "\
->-    packagegroup-arago-qt5 \
->-    ${QT_DEMOS} \
->-"
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
->b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
->tisdk-qte-sdk-host.bb
->index 4cb85fe..3615cd4 100644
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-qte-sdk-host.bb
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-qte-sdk-host.bb
->@@ -1,16 +1,20 @@
-> DESCRIPTION =3D "Task to add Qt embedded related sources into the
->sdk"
-> LICENSE =3D "MIT"
->-PR =3D "r3"
->+PR =3D "r4"
->
-> inherit packagegroup
->
-> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->
->+QT4_DEMOS =3D "\
->+    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
->'quick-playground-src', '', d)} \
->+"
->+
-> QT_DEMOS =3D "\
->     qt-tstat-src \
->-    ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
->'quick-playground-src', '', d)} \
-> "
->
-> RDEPENDS_${PN} =3D "\
->+    ${@base_conditional('QT_PROVIDER', 'qt5', '', "${QT4_DEMOS}",
->d)} \
->     ${QT_DEMOS} \
-> "
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-
->distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
->index 10187a6..e745a08 100644
->--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-qte.bb
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->arago-tisdk-qte.bb
->@@ -1,19 +1,28 @@
-> DESCRIPTION =3D "Task to add Qt embedded related packages"
-> LICENSE =3D "MIT"
->-PR =3D "r4"
->+PR =3D "r5"
->
-> inherit packagegroup
->
-> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->
->-QT_DEMOS =3D "\
->+QT4_DEMOS =3D "\
->     qt4-embedded-examples \
->     qt4-embedded-demos \
->-    qt-tstat \
->     ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
->'quick-playground', '', d)} \
-> "
->
->+QT5_DEMOS =3D "\
->+    qtwayland-examples \
->+    qtwebkit-examples-examples \
->+"
->+
->+QT_DEMOS =3D "\
->+    qt-tstat \
->+"
->+
-> RDEPENDS_${PN} =3D "\
->     packagegroup-arago-qte \
->+    ${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DEMOS}",
->"${QT4_DEMOS}", d)} \
->     ${QT_DEMOS} \
-> "
->diff --git a/meta-arago-distro/recipes-
->core/packagegroups/packagegroup-linaro-tc-test.bb b/meta-arago-
->distro/recipes-core/packagegroups/packagegroup-linaro-tc-test.bb
->new file mode 100644
->index 0000000..8fd863e
->--- /dev/null
->+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
->linaro-tc-test.bb
->@@ -0,0 +1,24 @@
->+DESCRIPTION =3D "Group of packages to build with Linaro toolchain
->for testing"
->+LICENSE =3D "MIT"
->+
->+inherit packagegroup
->+
->+RDEPENDS_${PN} =3D "\
->+    virtual/kernel \
->+    u-boot \
->+    busybox \
->+    bash \
->+    coreutils \
->+    apache \
->+    wayland \
->+    weston \
->+    gstreamer \
->+    openssl \
->+    openssh \
->+    perl \
->+    python \
->+    php \
->+    qt4-embedded \
->+    qtbase \
->+    qtwebkit \
->+    "
->diff --git a/meta-arago-extras/recipes-
->core/packagegroups/packagegroup-arago-qt5-toolchain-target.bb
->b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-
->qt5-toolchain-target.bb
->deleted file mode 100644
->index 7e0d12c..0000000
->--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-
->arago-qt5-toolchain-target.bb
->+++ /dev/null
->@@ -1,33 +0,0 @@
->-DESCRIPTION =3D "Target packages for Qt5 SDK"
->-LICENSE =3D "MIT"
->-
->-PR =3D "r1"
->-
->-inherit packagegroup
->-
->-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->-
->-RDEPENDS_${PN} +=3D " \
->-        packagegroup-arago-standalone-sdk-target \
->-        libsqlite3-dev \
->-        qtbase-mkspecs \
->-        qtdeclarative-mkspecs \
->-        qtscript-mkspecs \
->-        qtwebkit-mkspecs \
->-        qt3d-mkspecs \
->-        qtlocation-mkspecs \
->-        qtsensors-mkspecs \
->-        qtsvg-mkspecs \
->-        qtjsbackend-mkspecs \
->-        qtxmlpatterns-mkspecs \
->-        qtbase-dev \
->-        qtdeclarative-dev \
->-        qtscript-dev \
->-        qtwebkit-dev \
->-        qt3d-dev \
->-        qtlocation-dev \
->-        qtsensors-dev \
->-        qtsvg-dev \
->-        qtjsbackend-dev \
->-        qtxmlpatterns-dev \
->-"
->diff --git a/meta-arago-extras/recipes-
->core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
->b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-
->qte-toolchain-target.bb
->index 796e7c3..acba6c8 100644
->--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-
->arago-qte-toolchain-target.bb
->+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-
->arago-qte-toolchain-target.bb
->@@ -1,18 +1,18 @@
-> DESCRIPTION =3D "Target packages for Qt Embedded SDK"
-> LICENSE =3D "MIT"
->
->-PR =3D "r6"
->+PR =3D "r7"
->
-> inherit packagegroup
->
-> PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->
->-QT_SGX_SUPPORT =3D "\
->-    libqt-embeddedopengl4-dev \
->-    libqt-embeddedpvrqwswsegl4-dev \
->+QT4_SGX_SUPPORT =3D "\
->+        libqt-embeddedopengl4-dev \
->+        libqt-embeddedpvrqwswsegl4-dev \
-> "
->
->-RDEPENDS_${PN} +=3D " \
->+QT4_DEV =3D " \
->         packagegroup-arago-standalone-sdk-target \
->         qt4-embedded-mkspecs \
->         libqt-embeddedmultimedia4-dev \
->@@ -38,5 +38,32 @@ RDEPENDS_${PN} +=3D " \
->         libqt-embeddedxmlpatterns4-dev \
->         libqt-embeddedmultimedia4-dev \
->         libqt-embeddeddeclarative4-dev \
->-        ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-
->gles','${QT_SGX_SUPPORT}', '', d)} \
->+        ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-
->gles','${QT4_SGX_SUPPORT}', '', d)} \
->+"
->+
->+QT5_DEV =3D " \
->+        packagegroup-arago-standalone-sdk-target \
->+        libsqlite3-dev \
->+        qtbase-mkspecs \
->+        qtdeclarative-mkspecs \
->+        qtscript-mkspecs \
->+        qtwebkit-mkspecs \
->+        qt3d-mkspecs \
->+        qtlocation-mkspecs \
->+        qtsensors-mkspecs \
->+        qtsvg-mkspecs \
->+        qtxmlpatterns-mkspecs \
->+        qtbase-dev \
->+        qtdeclarative-dev \
->+        qtscript-dev \
->+        qtwebkit-dev \
->+        qt3d-dev \
->+        qtlocation-dev \
->+        qtsensors-dev \
->+        qtsvg-dev \
->+        qtxmlpatterns-dev \
->+"
->+
->+RDEPENDS_${PN} +=3D " \
->+        ${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}",
->"${QT4_DEV}", d)} \
-> "
->--
->2.0.2
->
->_______________________________________________
->meta-arago mailing list
->meta-arago@arago-project.org
->http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../openssl/openssl_1.0.1e.bbappend                | 127 ---------------------
+ .../openssl/openssl_1.0.1g.bbappend                |  26 +++++
+ 2 files changed, 26 insertions(+), 127 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
+ create mode 100644 meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1g.bbappend
+
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
+deleted file mode 100644
+index 86c72fe..0000000
+--- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1e.bbappend
++++ /dev/null
+@@ -1,127 +0,0 @@
+-################################################################################
+-######################### TSU EXEMPTION REQUIRED ###############################
+-################################################################################
+-# Versions of openssl that are TSU Exempted:
+-# openssl-1.0.0a
+-# openssl-1.0.0d
+-#
+-# This package requires TSU exemption. Any update to the version of openssl being
+-# appended must be double checked to see if a new TSU exemption must be made.
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-PR_append = "-arago9"
+-
+-DEPENDS_append_ti33x_class-target = " cryptodev"
+-DEPENDS_append_ti43x_class-target = " cryptodev"
+-DEPENDS_append_dra7xx-evm_class-target = " cryptodev"
+-DEPENDS_append_am57xx-evm_class-target = " cryptodev"
+-DEPENDS_append_keystone_class-target = " cryptodev"
+-
+-python __anonymous () {
+-    crypdep = d.getVar("DEPENDS").replace("ocf-linux ", "")
+-    d.setVar("DEPENDS_ti33x_class-target", crypdep)
+-    d.setVar("DEPENDS_ti43x_class-target", crypdep)
+-    d.setVar("DEPENDS_dra7xx-evm_class-target", crypdep)
+-    d.setVar("DEPENDS_am57xx-evm_class-target", crypdep)
+-    d.setVar("DEPENDS_keystone_class-target", crypdep)
+-}
+-
+-CRYPTODEV_AFALG_PATCHES = " \
+-	file://0001-Add-AF_ALG-interface-support-to-OpenSSL.patch \
+-	file://0004-Sample-AF_ALG-openssl.cnf.patch \
+-	file://0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch \
+-	file://0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch \
+-	file://0011-cryptodev-Add-AES-CBC-CTR-modes-for-128-192-256-bit-.patch \
+-"
+-
+-SRC_URI_append_ti33x_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+-SRC_URI_append_ti43x_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+-SRC_URI_append_dra7xx-evm_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+-SRC_URI_append_am57xx-evm_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+-SRC_URI_append_keystone_class-target = "${CRYPTODEV_AFALG_PATCHES}"
+-
+-# Override do_configure to replace target with linux-armv4 to enable ASM code
+-# optimization for ARM arch (including armv7) for extra performance
+-do_configure () {
+-	cd util
+-	perl perlpath.pl ${STAGING_BINDIR_NATIVE}
+-	cd ..
+-	ln -sf apps/openssl.pod crypto/crypto.pod ssl/ssl.pod doc/
+-
+-	os=${HOST_OS}
+-	if [ "x$os" = "xlinux-uclibc" ]; then
+-		os=linux
+-	elif [ "x$os" = "xlinux-uclibceabi" ]; then
+-		os=linux
+-	elif [ "x$os" = "xlinux-gnueabi" ]; then
+-		os=linux
+-	fi
+-	target="$os-${HOST_ARCH}"
+-	case $target in
+-	linux-arm)
+-		# target=linux-elf-arm
+-		target=linux-armv4
+-		;;
+-	linux-armeb)
+-		target=linux-elf-armeb
+-		;;
+-	linux-sh3)
+-		target=debian-sh3
+-		;;
+-	linux-sh4)
+-		target=debian-sh4
+-		;;
+-	linux-i486)
+-		target=debian-i386-i486
+-		;;
+-	linux-i586 | linux-viac3)
+-		target=debian-i386-i586
+-		;;
+-	linux-i686)
+-		target=debian-i386-i686/cmov
+-		;;
+-	linux-gnux32-x86_64)
+-		target=linux-x32
+-		;;
+-	linux-gnu64-x86_64)
+-		target=linux-x86_64
+-		;;
+-	linux-mips)
+-		target=debian-mips
+-		;;
+-	linux-mipsel)
+-		target=debian-mipsel
+-		;;
+-	linux-*-mips64)
+-		target=linux-mips
+-		;;
+-	linux-powerpc)
+-		target=linux-ppc
+-		;;
+-	linux-gnuspe-powerpc)
+-		target=linux-ppc
+-		;;
+-	linux-powerpc64)
+-		target=linux-ppc64
+-		;;
+-	linux-supersparc)
+-		target=linux-sparcv8
+-		;;
+-	linux-sparc)
+-		target=linux-sparcv8
+-		;;
+-	darwin-i386)
+-		target=darwin-i386-cc
+-		;;
+-	esac
+-	# inject machine-specific flags
+-	sed -i -e "s|^\(\"$target\",\s*\"[^:]\+\):\([^:]\+\)|\1:${CFLAG}|g" Configure
+-	useprefix=${prefix}
+-	if [ "x$useprefix" = "x" ]; then
+-		useprefix=/
+-	fi
+-	perl ./Configure ${EXTRA_OECONF} shared --prefix=$useprefix --openssldir=${libdir}/ssl --libdir=`basename ${libdir}` $target
+-}
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1g.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1g.bbappend
+new file mode 100644
+index 0000000..b00ba90
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1g.bbappend
+@@ -0,0 +1,26 @@
++################################################################################
++######################### TSU EXEMPTION REQUIRED ###############################
++################################################################################
++# Versions of openssl that are TSU Exempted:
++# openssl-1.0.0a
++# openssl-1.0.0d
++#
++# This package requires TSU exemption. Any update to the version of openssl being
++# appended must be double checked to see if a new TSU exemption must be made.
++
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++PR_append = "-arago0"
++
++DEPENDS += "cryptodev-linux"
++RDEPENDS_${PN}_class-target += "cryptodev-module"
++
++CRYPTODEV_AFALG_PATCHES = " \
++	file://0001-Add-AF_ALG-interface-support-to-OpenSSL.patch \
++	file://0004-Sample-AF_ALG-openssl.cnf.patch \
++	file://0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch \
++	file://0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch \
++	file://0011-cryptodev-Add-AES-CBC-CTR-modes-for-128-192-256-bit-.patch \
++"
++
++SRC_URI += "${CRYPTODEV_AFALG_PATCHES}"
+-- 
+2.0.4
+
 
