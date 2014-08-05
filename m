@@ -1,29 +1,27 @@
-Return-Path: <yanivma@ti.com>
+Return-Path: <sam.nelson@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id CFC85529DD
+	by arago-project.org (Postfix) with ESMTPS id C84BC529DD
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Aug 2014 19:54:06 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s75Js6f4014031
-	for <meta-arago@arago-project.org>; Tue, 5 Aug 2014 14:54:06 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s75Js5kM023484
-	for <meta-arago@arago-project.org>; Tue, 5 Aug 2014 14:54:06 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 5 Aug 2014 14:54:05 -0500
-Received: from mcp8x-srv.emea.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s75Js24B032289;	Tue, 5 Aug 2014 14:54:05 -0500
-From: Yaniv Machani <yanivma@ti.com>
+	Tue,  5 Aug 2014 19:55:04 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s75Jt4gU014142
+	for <meta-arago@arago-project.org>; Tue, 5 Aug 2014 14:55:04 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s75Jt4fF012368
+	for <meta-arago@arago-project.org>; Tue, 5 Aug 2014 14:55:04 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 5 Aug 2014 14:55:03 -0500
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s75Jt3e7005970;	Tue, 5 Aug 2014 14:55:03 -0500
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 5 Aug 2014 22:49:02 +0300
-Message-ID: <1407268142-6229-2-git-send-email-yanivma@ti.com>
-X-Mailer: git-send-email 1.8.3.2
-In-Reply-To: <1407268142-6229-1-git-send-email-yanivma@ti.com>
-References: <1407268142-6229-1-git-send-email-yanivma@ti.com>
+Date: Tue, 5 Aug 2014 15:55:01 -0400
+Message-ID: <1407268501-31319-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH 2/2 v2] wpa-supplicant-wl18xx: configuration files update
+Subject: [oe-layersetup][PATCHv2] configs: Add release config mcsdk/mcsdk-03.01.00.03
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,65 +34,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Aug 2014 19:54:07 -0000
+X-List-Received-Date: Tue, 05 Aug 2014 19:55:05 -0000
 Content-Type: text/plain
 
-- clean non releveant configuration flags.
+- Based on release config mcsdk/mcsdk-3.1.0-config.txt
+  with updated commit ids
 
-Signed-off-by: Yaniv Machani <yanivma@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
-v2 - Bumped PR
+ configs/mcsdk/mcsdk-03.01.00.03-config.txt |   14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 configs/mcsdk/mcsdk-03.01.00.03-config.txt
 
- .../wpa-supplicant/wpa-supplicant.inc              |    2 +-
- .../wpa-supplicant/p2p_supplicant.conf             |    3 +--
- .../wpa-supplicant/wpa_supplicant.conf             |    3 ++-
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-index c8611ea..e4be180 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-@@ -14,7 +14,7 @@ RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
- # wpa-supplicant the DEFAULT_PREFERENCE will be set to -1.
- DEFAULT_PREFERENCE = "-1"
- 
--PR = "r7"
-+PR = "r8"
- 
- SRC_URI = "git://git.ti.com/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH} \
-            file://defconfig \
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/p2p_supplicant.conf b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/p2p_supplicant.conf
-index 2de8730..3bdc306 100755
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/p2p_supplicant.conf
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/p2p_supplicant.conf
-@@ -3,12 +3,11 @@ update_config=0
- device_name=TI-SITARA-P2P
- device_type=1-0050F204-1
- config_methods=virtual_push_button physical_display keypad
--p2p_go_intent=0
-+#p2p_go_intent=0
- country=US
- ##p2p_pref_chan=115:36 115:40
- driver_param=use_multi_chan_concurrent=1 use_p2p_group_interface=1
- p2p_go_max_inactivity=60
- p2p_go_ht40=1
--p2p_multi_chan=1
- disassoc_low_ack=1
- concurrent_sched_scan=1
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/wpa_supplicant.conf b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/wpa_supplicant.conf
-index f144a38..4233eb2 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/wpa_supplicant.conf
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/wpa_supplicant.conf
-@@ -59,6 +59,7 @@ driver_param=use_multi_chan_concurrent=1 use_p2p_group_interface=1
- # inactive stations.
- p2p_go_max_inactivity=60
- p2p_go_ht40=1
--p2p_multi_chan=1
- disassoc_low_ack=1
- concurrent_sched_scan=1
-+p2p_disabled=1
+diff --git a/configs/mcsdk/mcsdk-03.01.00.03-config.txt b/configs/mcsdk/mcsdk-03.01.00.03-config.txt
+new file mode 100644
+index 0000000..d68f52a
+--- /dev/null
++++ b/configs/mcsdk/mcsdk-03.01.00.03-config.txt
+@@ -0,0 +1,14 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
 +
++bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
++meta-mcsdk,git://arago-project.org/git/projects/meta-mcsdk.git,master,3bb8b1778790d5f214357a6883914f622b407bbf,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,dylan,370ed5e9f68afd0937e01f6cd69863e45ba19c1f,layers=meta-arago-distro:meta-arago-extras
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,ed05b91f137cb229e9ebababf9f72748aece1bf3,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,70ebe86f193decd17d6295bcd4d4e5589585c0cc,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
++meta-ti,git://arago-project.org/git/meta-ti.git,dylan,0056050410c1d5f8627c509490a5650eb082261c,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
++meta-java,git://github.com/woglinde/meta-java,master,ac8c0604d1ed63b1ae0e05f870f53b8241e6dda1,layers=
++oe-core,git://git.openembedded.org/openembedded-core,dylan,7ff1924674871d604f9656f3928b91dc417c7246,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago.conf.sample
 -- 
-1.7.9
+1.7.9.5
 
 
