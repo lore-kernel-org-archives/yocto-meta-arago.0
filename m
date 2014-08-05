@@ -1,49 +1,37 @@
-Return-Path: <btv1==294f11ee0bf==Matt.Schuckmann@planar.com>
-Received: from barbvt11.planar.com (mail.planar.com [199.244.172.52])
-	by arago-project.org (Postfix) with ESMTP id 8CE6852992
+Return-Path: <yanivma@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 2248B52992
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Aug 2014 18:55:12 +0000 (UTC)
-X-ASG-Debug-ID: 1407264907-04afd21682ef73d0001-NloGV9
-Received: from msxbvt03.planar.net ([172.16.0.147]) by barbvt11.planar.com
-	with ESMTP id Cln9LmjmHVRDWJGJ; Tue, 05 Aug 2014 11:55:07 -0700 (PDT)
-X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Tue, 5 Aug 2014 11:55:07 -0700
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: Denys Dmytriyenko <denys@ti.com>, "Cooper Jr., Franklin" <fcooper@ti.com>
-Date: Tue, 5 Aug 2014 11:55:06 -0700
-Thread-Topic: [meta-arago] i686 binutils failing to build for SDK 7.0 build
-X-ASG-Orig-Subj: RE: [meta-arago] i686 binutils failing to build for SDK 7.0
-	build
-Thread-Index: Ac+w3Xhr9uDj6ni3Rq+aF41twNSFOQAABrkw
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD85EA039@MSXBEBVT12.planar.net>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FD85EA011@MSXBEBVT12.planar.net>
-	<20140805180713.GC23523@edge>
-	<8F29D6B095ED194EA1980491A5E029710C6F3485@DFLE08.ent.ti.com>
-	<20140805184541.GE23523@edge>
-In-Reply-To: <20140805184541.GE23523@edge>
+	Tue,  5 Aug 2014 19:04:02 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s75J41fl031598
+	for <meta-arago@arago-project.org>; Tue, 5 Aug 2014 14:04:01 -0500
+Received: from DFRE71.ent.ti.com (dfre71.ent.ti.com [10.167.188.35])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s75J40kt019124
+	for <meta-arago@arago-project.org>; Tue, 5 Aug 2014 14:04:00 -0500
+Received: from DFRE01.ent.ti.com ([fe80::b027:5293:c8d8:d82a]) by
+	DFRE71.ent.ti.com ([fe80::1d1a:fb50:7d9b:ab68%31]) with mapi id
+	14.03.0174.001; Tue, 5 Aug 2014 21:04:00 +0200
+From: "Machani, Yaniv" <yanivma@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "Maupin, Chase"
+	<chase.maupin@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 1/2 v2] wl18xx-compat: version update
+Thread-Index: AQHPrQcWtaFmufyuF0iBha/TFZDXbpvA1y2AgAEMn4CAABjRAIAAaCHA
+Date: Tue, 5 Aug 2014 19:03:59 +0000
+Message-ID: <AE1C82FB3D0EC64DB1F752C81CBD1101263E59B5@DFRE01.ent.ti.com>
+References: <1406842115-5938-1-git-send-email-yanivma@ti.com>
+	<20140804211639.GZ15788@edge>
+	<7D46E86EC0A8354091174257B2FED1015D1A00A8@DLEE11.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C6F302E@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6F302E@DFLE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.167.188.42]
+x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[172.16.0.147]
-X-Barracuda-Start-Time: 1407264907
-X-Barracuda-URL: http://10.10.111.113:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at planar.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.4987 1.0000 0.0000
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No,
-	SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.8145
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: i686 binutils failing to build for SDK 7.0 build
+Subject: Re: [PATCH 1/2 v2] wl18xx-compat: version update
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,98 +44,296 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Aug 2014 18:55:12 -0000
+X-List-Received-Date: Tue, 05 Aug 2014 19:04:02 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
 
 
 > -----Original Message-----
-> From: Denys Dmytriyenko [mailto:denys@ti.com]
-> Sent: Tuesday, August 05, 2014 11:46 AM
-> To: Cooper Jr., Franklin
-> Cc: Matt Schuckmann; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] i686 binutils failing to build for SDK 7.0
-> build
+> From: Cooper Jr., Franklin
+> Sent: Tuesday, August 05, 2014 5:47 PM
+> To: Maupin, Chase; Dmytriyenko, Denys; Machani, Yaniv
+> Cc: meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [PATCH 1/2 v2] wl18xx-compat: version update
 >=20
-> On Tue, Aug 05, 2014 at 02:24:37PM -0400, Cooper Jr., Franklin wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Maupin, Chase
+> > Sent: Tuesday, August 05, 2014 8:18 AM
+> > To: Dmytriyenko, Denys; Machani, Yaniv
+> > Cc: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [PATCH 1/2 v2] wl18xx-compat: version update
 > >
-> >
-> > > -----Original Message-----
-> > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> > > Sent: Tuesday, August 05, 2014 1:07 PM
-> > > To: Matt Schuckmann
-> > > Cc: meta-arago@arago-project.org
-> > > Subject: Re: [meta-arago] i686 binutils failing to build for SDK
-> 7.0
-> > > build
+> > >-----Original Message-----
+> > >From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > >bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
+> > >Sent: Monday, August 04, 2014 4:17 PM
+> > >To: Machani, Yaniv
+> > >Cc: meta-arago@arago-project.org
+> > >Subject: Re: [meta-arago] [PATCH 1/2 v2] wl18xx-compat: version
+> > >update
 > > >
-> > > On Tue, Aug 05, 2014 at 10:44:28AM -0700, Matt Schuckmann wrote:
-> > > > I'm trying to build a basic image using Arago, SDK 7.0 config
-> > > > (configs/amsdk/amsdk-07.00.00.00-config.txt) and binutils 2.20.1
-> > > > is failing to compile for the i686 host system.
-> > > > I'm building on a Ubuntu 14.04 32bit VM.
-> > > >
-> > > > My bitbake command is:
-> > > > MACHINE=3Dam335x-evm;bitbake core-image-minimal
-> > > >
-> > > > The errors are:
-> > > > binutils-native/2.20.1-r9/binutils-
-> 2.20.1/bfd/doc/bfd.texinfo:326:
-> > > > unknown
-> > > command `colophon'
-> > > > binutils-native/2.20.1-r9/binutils-
-> 2.20.1/bfd/doc/bfd.texinfo:337:
-> > > > unknown
-> > > command `cygnus'
-> > > >
-> > > > It looks like this was a known problem for building binutils that
-> > > > has been fixed a long time ago and since SDK 7.0 is released code
-> > > > I would have assumed the problem was taken care for the Arago
-> > > > build so I'm a little puzzled why I'm getting this now.
+> > >On Fri, Aug 01, 2014 at 12:28:34AM +0300, Yaniv Machani wrote:
+> > >> - Update to latest version tag - ol_r8.a9.14
+> > >> - move to git.ti.com and use backports module.
+> > >> - clean some unused commands.
+> > >>
+> > >> Signed-off-by: Yaniv Machani <yanivma@ti.com>
+> > >> ---
+> > >> v2 - Updated after inputs
+> > >> changed to wl18xx, combined PR.
+> > >> format-patch didn't recognized it as renamed file.
+> > >>
+> > >>  .../packagegroup-arago-tisdk-connectivity.bb       |    1 +
+> > >>  .../ti-compat-wireless-wl18xx_r8.a8.10.bb          |   61 -----
+> > >---------------
+> > >>  .../ti-compat-wireless-wl18xx_r8.a9.14.bb          |   56
+> > >++++++++++++++++++
+> > >>  3 files changed, 57 insertions(+), 61 deletions(-)  delete mode
+> > >> 100644 meta-arago-extras/recipes-bsp/ti-compat-
+> > >wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
+> > >>  create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-
+> > >wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
+> > >>
+> > >> diff --git a/meta-arago-distro/recipes-
+> > >core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> > >b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> > >tisdk-connectivity.bb
+> > >> index fa82e7e..fafffee 100755
+> > >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> > >arago-tisdk-connectivity.bb
+> > >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> > >arago-tisdk-connectivity.bb
+> > >> @@ -31,6 +31,7 @@ WLAN_COMMON =3D "\
+> > >>  #    netperf
+> > >>
+> > >>  FIRMWARE_AND_DRIVERS =3D "\
+> > >> +    ti-compat-wireless-wl18xx \
+> > >>      wl18xx-firmware \
+> > >>  "
+> > >>
+> > >> diff --git a/meta-arago-extras/recipes-bsp/ti-compat-
+> > >wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb b/meta-arago-
+> > >extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-
+> > >wl18xx_r8.a8.10.bb
+> > >> deleted file mode 100644
+> > >> index 0e7281a..0000000
+> > >> --- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-
+> > >compat-wireless-wl18xx_r8.a8.10.bb
+> > >> +++ /dev/null
+> > >> @@ -1,61 +0,0 @@
+> > >> -# This is a TI specific version of the compat-wireless recipe
+> > >using a
+> > >> -# compat-wireless package created from the TI Systems Tested
+> > >mac80211 releases.
+> > >> -
+> > >> -DESCRIPTION =3D "ti compat-wireless drivers for wl18xx"
+> > >> -HOMEPAGE =3D "https://gforge.ti.com/gf/project/ecs_nlcp/"
+> > >> -SECTION =3D "kernel/modules"
+> > >> -LICENSE =3D "GPLv2"
+> > >> -LIC_FILES_CHKSUM =3D
+> > >"file://COPYING;md5=3Dd7810fab7487fb0aad327b76f1be7cd7"
+> > >> -
+> > >> -RDEPENDS_${PN} =3D "wireless-tools"
+> > >> -
+> > >> -PROVIDES +=3D "ti-compat-wireless-wl12xx"
+> > >> -RPROVIDES_${PN} +=3D "ti-compat-wireless-wl12xx"
+> > >> -RREPLACES_${PN} +=3D "ti-compat-wireless-wl12xx"
+> > >> -RCONFLICTS_${PN} +=3D "ti-compat-wireless-wl12xx"
+> > >> -
+> > >> -COMPATIBLE_MACHINE =3D "(omap-a15)"
+> > >> -
+> > >> -PV =3D "r8.a8.08"
+> > >> -inherit module
+> > >> -
+> > >> -PR =3D "${MACHINE_KERNEL_PR}"
+> > >> -PR_append =3D "b"
+> > >> -
+> > >> -# Tags: ol_r8.a8.10
+> > >> -SRCREV_wl18xx =3D "eaa1820c02dc076e6ad9254e9cb7a3bb0c17471b"
+> > >> -SRCREV_compat =3D "5d80865281795f962e1400a95202bbd07dd763c0"
+> > >> -SRCREV_compat-wireless =3D
+> > >"23a0d62ea1a57327709a77f08d6265ec807a909f"
+> > >> -
+> > >> -SRCREV_FORMAT =3D "compat-wireless"
+> > >> -
+> > >> -S =3D "${WORKDIR}/compat-wireless"
+> > >> -
+> > >> -SRC_URI =3D "git://github.com/TI-OpenLink/compat-
+> > >wireless.git;destsuffix=3Dcompat-wireless;name=3Dcompat-wireless \
+> > >> -           git://github.com/TI-
+> > >OpenLink/compat.git;destsuffix=3Dcompat;name=3Dcompat \
+> > >> -           git://github.com/TI-
+> > >OpenLink/wl18xx.git;destsuffix=3Dwl18xx;name=3Dwl18xx \
+> > >> -"
+> > >> -
+> > >> -EXTRA_OEMAKE =3D "KLIB_BUILD=3D${STAGING_KERNEL_DIR} KLIB=3D${D}"
+> > >> -
+> > >> -do_configure() {
+> > >> -    cd ${S}
+> > >> -    GIT_TREE=3D"${WORKDIR}/wl18xx"
+> > >GIT_COMPAT_TREE=3D"${WORKDIR}/compat" ./scripts/admin-refresh.sh
+> > network
+> > >> -    ./scripts/driver-select wl18xx
+> > >> -
+> > >> -    # Now generate the sourceipk with the properly configured
+> > >sources
+> > >> -    sourceipk_do_create_srcipk
+> > >> -}
+> > >> -
+> > >> -do_configure_append() {
+> > >> -    sed -i "s#@./scripts/update-initramfs## " Makefile
+> > >> -}
+> > >> -
+> > >> -do_install() {
+> > >> -    # Remove hardcoded references to host depmod
+> > >> -    sed -i "s#@/sbin/depmod -a## " Makefile
+> > >> -    sed -i "s#@/sbin/depmod -ae## " Makefile
+> > >> -
+> > >> -    # Install modules
+> > >> -    oe_runmake DEPMOD=3Decho DESTDIR=3D"${D}"
+> > >INSTALL_MOD_PATH=3D"${D}" LDFLAGS=3D"" install-modules
+> > >> -}
+> > >> diff --git a/meta-arago-extras/recipes-bsp/ti-compat-
+> > >wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb b/meta-arago-
+> > >extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-
+> > >wl18xx_r8.a9.14.bb
+> > >> new file mode 100644
+> > >> index 0000000..a5d5429
+> > >> --- /dev/null
+> > >> +++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-
+> > >compat-wireless-wl18xx_r8.a9.14.bb
+> > >> @@ -0,0 +1,56 @@
+> > >> +# This is a TI specific version of the compat-wireless recipe
+> > >using a
+> > >> +# compat-wireless package created from the TI Systems Tested
+> > >mac80211 releases.
+> > >> +
+> > >> +DESCRIPTION =3D "ti compat-wireless drivers for wl18xx"
+> > >> +HOMEPAGE =3D "https://git.ti.com/wilink8-wlan/wl18xx"
+> > >> +SECTION =3D "kernel/modules"
+> > >> +LICENSE =3D "GPLv2"
+> > >> +LIC_FILES_CHKSUM =3D
+> > >"file://COPYING;md5=3Dd7810fab7487fb0aad327b76f1be7cd7"
+> > >> +
+> > >> +RDEPENDS_${PN} =3D "wireless-tools"
+> > >> +
+> > >> +PROVIDES +=3D "ti-compat-wireless-wl18xx"
+> > >> +RPROVIDES_${PN} +=3D "ti-compat-wireless-wl18xx"
+> > >> +RREPLACES_${PN} +=3D "ti-compat-wireless-wl18xx"
+> > >> +RCONFLICTS_${PN} +=3D "ti-compat-wireless-wl18xx"
+> > >
+> > >Sorry, now I'm confused. I didn't understand Chase's original comment
+> > >here, but now, after the change, it doesn't make any sense - the
+> > >recipe named ti-compat-wireless-wl18xx already PROVIDES and
+> RPROVIDES
+> > >the same, plus it cannot RREPLACES and RCONFLICTS to itself. So,
+> > >what's the purpose of the above
+> > >4 lines?
+> >
+> > My comment was he was providing ti-compat-wireless-wl12xx but at the
+> > same time was adding ti-compat-wireless-wl18xx to the list of packages
+> > to install.  I guess I was thinking that he didn't need to do both.
+> [Franklin] I don't see where he was providing " ti-compat-wireless-wl12xx=
+" in
+> the new recipe but the simple answer is that these four lines aren't need=
+ed.
+> I think he was confused why PROVIDES/ RPROVIDES_${PN}/
+> RREPLACES_${PN}/ RCONFLICTS_${PN}  +=3D "ti-compat-wireless-wl12xx"  was
+> needed before and thought it needed to be updated.
 >=20
-> >  [Franklin] I'm assuming that your issue is related to Ubuntu 14.04.
-> I
-> > need  to install it eventually anyway very soon so I can give it a
-> try
-> > and  hopefully help you with your issue.
->=20
-> See the other reply talking about the specific reason 14.04 fails.
->=20
->=20
-> > > Since you are using amsdk-07.00.00.00-config.txt config, you are
-> > > building the same exact version that was released as AMSDK 7.0.
-> That
-> > > config is not being updated to pick up any latest code.
->=20
-> > [Franklin] Unless he wants something stable since has already been
-> > released
->=20
-> Again, see the other reply - I got an impression by the last paragraph
-> above that the requirement was to pull in some recent fixes for
-> binutils. That won't be done in AMSDK 7.0, as it's already released and
-> closed.
+> Yaniv,
+> Back when we supported wilink 6 and wilink 8 those lines were added so we
+> could easily switch between wilink 6 and wilink 8 for devices that suppor=
+ted
+> both by determining the PREFERRED_PROVIDER which allows you to select a
+> specific recipe among many recipes that may "provide" the same thing. In
+> that case provided Wilink support. However, since we removed wilink 6
+> support we no longer have references to " ti-compat-wireless-wl12xx"
+> beyond this recipe so those lines aren't needed here. Also you don't need=
+ to
+> update it to "ti-compat-wireless-wl18xx" since its really only used for w=
+hen
+> you want a recipe to be a replacement for a different recipe/package. Rig=
+ht
+> now you are saying you want the recipe " ti-compat-wireless-wl18xx" to
+> provide " ti-compat-wireless-wl18xx" (already the default), replace itsel=
+f and
+> that it also conflicts with itself.
 >=20
 >=20
-> > and also will be supported outside of this mailing list.
->=20
-> Just a reminder - this is the Arago development mailing list, not AMSDK
-> support mailing list. I don't mind these questions, but the assumption
-> would always be that people want the latest stuff, since it's a
-> community facing list.
+[Machani, Yaniv] Ok, so as I understand, all these lines should be removed,=
+ right ?
+I guess I'll remove the other references to wl12xx in other recipes as well=
+.
 
-It seems that a question about creating a image based on released and teste=
-d software i.e the SDK 7.0 tags in Arago is an appropriate question for thi=
-s list. If not this list then where?
-
-I really just want to know where to start and the TI websites, and document=
-ation provide a lot of options but very little guidance and it seems to ver=
-y much be a moving target. Typically a good place to start is a released ve=
-rsion but your comments seem to indicate that it's not so. I'm sorry if pos=
-ted in the wrong place it seemed like this was the best list to get an answ=
-er specific to building source from Arago.=20
-
-Matt S.=20
+> >
+> > >
+> > >
+> > >> +PV =3D "r8.a9.14"
+> > >> +inherit module
+> > >> +
+> > >> +PR =3D "${MACHINE_KERNEL_PR}+a+gitr${SRCPV}"
+> > >> +
+> > >> +# Tags: ol_r8.a9.14
+> > >> +SRCREV_wl18xx =3D "0e48c4b55cfa0d557a098cbe92b1f092f1a9ad67"
+> > >> +BRANCH_wl18xx =3D "ap_p2p"
+> > >> +SRCREV_backports =3D "0d46f43a2f3ccdd53de19eee5b9c674bf8ef09a2"
+> > >> +BRANCH_backports =3D "ap_dfs_mbss_all"
+> > >> +
+> > >> +SRCREV_FORMAT =3D "wl18xx"
+> > >> +
+> > >> +S =3D "${WORKDIR}/compat-wireless"
+> > >> +
+> > >> +SRC_URI =3D "git://git.ti.com/wilink8-
+> >
+> >wlan/wl18xx.git;branch=3D${BRANCH_wl18xx};destsuffix=3Dwl18xx;name=3Dwl1
+> > >8xx \
+> > >> +           git://git.ti.com/wilink8-
+> > >wlan/backports.git;branch=3D${BRANCH_backports};destsuffix=3Dbackports
+> > >;name=3Dbackports \
+> > >> + "
+> > >> +
+> > >> +export KLIB_BUILD=3D"${STAGING_KERNEL_DIR}"
+> > >> +export KLIB=3D"${D}"
+> > >> +
+> > >> +do_configure() {
+> > >> +    cd "${WORKDIR}/backports"
+> > >> +    unset CC
+> > >> +    #Generate compat-wireless
+> > >> +    python ./gentree.py --clean  "${WORKDIR}/wl18xx"
+> > >"${WORKDIR}/compat-wireless"
+> > >> +
+> > >> +    cd ${S}
+> > >> +    make defconfig-wl18xx
+> > >> +
+> > >> +    # Now generate the sourceipk with the properly configured
+> > >sources
+> > >> +	sourceipk_do_create_srcipk
+> > >> +}
+> > >> +
+> > >> +do_install() {
+> > >> +    # Install modules
+> > >> +    oe_runmake modules_install
+> > >> +}
+> > >> +
+> > >> --
+> > >> 1.7.9
+> > >>
+> > >> _______________________________________________
+> > >> meta-arago mailing list
+> > >> meta-arago@arago-project.org
+> > >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > >_______________________________________________
+> > >meta-arago mailing list
+> > >meta-arago@arago-project.org
+> > >http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
