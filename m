@@ -1,33 +1,31 @@
 Return-Path: <fcooper@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id CA81B52A63
+	by arago-project.org (Postfix) with ESMTPS id ACCA852972
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Aug 2014 21:38:00 +0000 (UTC)
+	Wed,  6 Aug 2014 22:09:20 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s76Lc0Kv015409
-	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 16:38:00 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76Lbxrd026097
-	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 16:38:00 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 6 Aug 2014 16:37:59 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s76M9F9k000819
+	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 17:09:15 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76M9FaW016461
+	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 17:09:15 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 6 Aug 2014 17:09:15 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
 	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s76Lbw8c020165;	Wed, 6 Aug 2014 16:37:59 -0500
+	s76M9E95006610;	Wed, 6 Aug 2014 17:09:15 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s76LbsIO022037;	Thu, 7 Aug 2014 03:07:57 +0530
+	0.8) with ESMTP id s76M9Cs8028340;	Thu, 7 Aug 2014 03:39:13 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 6 Aug 2014 16:37:47 -0500
-Message-ID: <1407361067-25558-3-git-send-email-fcooper@ti.com>
+Date: Wed, 6 Aug 2014 17:09:09 -0500
+Message-ID: <1407362950-18844-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1407361067-25558-1-git-send-email-fcooper@ti.com>
-References: <1407361067-25558-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 3/3] packagegroup-arago-tisdk-qte: Pull in more Qt 5 example applications
+Subject: [PATCH 1/2] u-boot-ti-staging: Use AM57x branch/git tree
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,39 +38,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Aug 2014 21:38:01 -0000
+X-List-Received-Date: Wed, 06 Aug 2014 22:09:27 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
+* Currently AM57x support is hosted on a separate branch and git tree that is
+  based on the latest u-boot-ti-staging integration tree.
+* Point to this branch and git tree for am57xx-evm until it is merged.
+
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-qte.bb  |    6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../u-boot/u-boot-ti-staging_2014.07.bbappend      |   13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index e745a08..c7e63ab 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r5"
-+PR = "r6"
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
+index 5b6ab64..1243058 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
+@@ -1,6 +1,17 @@
+ # Append the base 2014.07 u-boot mainline recipe to AUTOREV for now so that
+ # we can test the latest mainline
  
- inherit packagegroup
+-PR_append = "-arago1+gitr${SRCPV}"
++PR_append = "-arago2+gitr${SRCPV}"
++
++# AM57x EVM is currently on a seperate git tree/branch.
++# Once the software has been integrated to the u-boot-ti-staging
++# repository these lines can be removed.
++
++OLD_BRANCH := "${BRANCH}"
++SRC_URI_am57xx-evm := "${@oe_filter_out('git://git.ti.com/ti-u-boot/ti-u-boot.git;protocol=git;branch=${OLD_BRANCH}','${SRC_URI}', d)}"
++
++BRANCH_am57xx-evm = "beaglex15"
++
++SRC_URI_am57xx-evm += "git://github.com/felipebalbi/u-boot.git;protocol=https;branch=${BRANCH}"
  
-@@ -15,6 +15,10 @@ QT4_DEMOS = "\
- QT5_DEMOS = "\
-     qtwayland-examples \
-     qtwebkit-examples-examples \
-+    qtdeclarative-examples \
-+    qtmultimedia-examples \
-+    qtbase-examples \
-+    qt3d-examples \
- "
- 
- QT_DEMOS = "\
+ SRCREV = "${AUTOREV}"
 -- 
 1.7.9.5
 
