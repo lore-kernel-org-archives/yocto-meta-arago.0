@@ -1,30 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 4F64A529DD
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0DBA05296D
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Aug 2014 23:04:15 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s76N4EmM030025
-	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 18:04:14 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76N4EV5024776
-	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 18:04:14 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 6 Aug 2014 18:04:14 -0500
+	Wed,  6 Aug 2014 23:18:54 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s76NImWk029086
+	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 18:18:48 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76NImbS026360
+	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 18:18:48 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 6 Aug 2014 18:18:48 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76N4Efl018458;
-	Wed, 6 Aug 2014 18:04:14 -0500
-Date: Wed, 6 Aug 2014 19:04:13 -0400
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76NImrG009627;
+	Wed, 6 Aug 2014 18:18:48 -0500
+Date: Wed, 6 Aug 2014 19:18:47 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20140806230413.GK23523@edge>
+Message-ID: <20140806231847.GN23523@edge>
 References: <1407361067-25558-1-git-send-email-fcooper@ti.com>
+	<1407361067-25558-2-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1407361067-25558-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1407361067-25558-2-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/3] qtbase: Build example applications
+Subject: Re: [PATCH 2/3] packagegroup-arago-qte: Pull in Qt3D when using Qt 5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,38 +38,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Aug 2014 23:04:15 -0000
+X-List-Received-Date: Wed, 06 Aug 2014 23:19:04 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Instead of selecting specific package configurations inside the recipe itself 
-(or the corresponding bbappend), it's better to control it from a distro 
-configuration. You can add it to PACKAGECONFIG_DISTRO_pn-qtbase in arago.conf:
+Ack
 
-http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/conf/distro/arago.conf;hb=HEAD#l28
-
--- 
-Denys
-
-
-On Wed, Aug 06, 2014 at 04:37:45PM -0500, Franklin S. Cooper Jr wrote:
+On Wed, Aug 06, 2014 at 04:37:46PM -0500, Franklin S. Cooper Jr wrote:
 > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 > 
 > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 > ---
->  .../recipes-qt/qt5/qtbase_5.2.1.bbappend           |    3 +++
->  1 file changed, 3 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
+>  .../packagegroups/packagegroup-arago-qte.bb        |    3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
-> new file mode 100644
-> index 0000000..b3c05b2
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
-> @@ -0,0 +1,3 @@
-> +PR_append = "-arago0"
-> +
-> +PACKAGECONFIG += "examples"
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+> index b2dd546..7e00a55 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to add Qt embedded related packages"
+>  LICENSE = "MIT"
+> -PR = "r5"
+> +PR = "r6"
+>  
+>  inherit packagegroup
+>  
+> @@ -32,6 +32,7 @@ QT5_ESSENTIALS = "\
+>      qtlocation-plugins \
+>      qtmultimedia-plugins \
+>      qtwayland-plugins \
+> +    qt3d \
+>  "
+>  
+>  RDEPENDS_${PN} = "\
 > -- 
 > 1.7.9.5
 > 
