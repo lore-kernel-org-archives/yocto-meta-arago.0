@@ -1,33 +1,25 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id ACC515296D
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id 6F18D52A51
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Aug 2014 22:09:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s76M9HeY000831
-	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 17:09:17 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s76M9HeJ016477
-	for <meta-arago@arago-project.org>; Wed, 6 Aug 2014 17:09:17 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 6 Aug 2014 17:09:16 -0500
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s76M9Fq1018309;	Wed, 6 Aug 2014 17:09:16 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s76M9Cs9028340;	Thu, 7 Aug 2014 03:39:14 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 6 Aug 2014 17:09:10 -0500
-Message-ID: <1407362950-18844-2-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1407362950-18844-1-git-send-email-fcooper@ti.com>
-References: <1407362950-18844-1-git-send-email-fcooper@ti.com>
-MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/2] linux-ti-staging: Use AM57x branch/git tree
+	Wed,  6 Aug 2014 22:53:57 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [72.66.25.89])
+	by vms173017.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N9W00D3XQ9R24B0@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 06 Aug 2014 17:53:52 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 4661921111; Wed,
+	06 Aug 2014 18:53:51 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 06 Aug 2014 18:53:47 -0400
+Message-id: <1407365627-29059-4-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.0.4
+In-reply-to: <1407365627-29059-1-git-send-email-denis@denix.org>
+References: <1407365627-29059-1-git-send-email-denis@denix.org>
+Subject: [PATCH 4/4] arago.conf: cleanup and document additional package configuration
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,39 +32,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Aug 2014 22:09:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 06 Aug 2014 22:54:02 -0000
 
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
-* Currently AM57x support is hosted on a separate branch and git tree that is
-  based on the latest u-boot-ti-staging integration tree.
-* Point to this branch and git tree for am57xx-evm until it is merged.
-
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../linux/linux-ti-staging_3.14.bbappend           |   10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/arago.conf | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
-index b178b5e..523a088 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
-@@ -1,4 +1,12 @@
--MACHINE_KERNEL_PR_append = "-arago1"
-+MACHINE_KERNEL_PR_append = "-arago2"
-+
-+OLD_BRANCH := "${BRANCH}"
-+SRC_URI_am57xx-evm := "${@oe_filter_out('git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=${OLD_BRANCH}','${SRC_URI}', d)}"
-+
-+BRANCH_am57xx-evm = "beagle-x15-v3.14"
-+
-+SRC_URI_am57xx-evm += "git://git.ti.com/~nmenon/ti-linux-kernel/ti-linux-x15-validate.git;protocol=git;branch=${BRANCH}"
-+
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 4927fe9..0074b8b 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -19,17 +19,20 @@ NO32LIBS = "0"
+ # Set our distro features, don't forget all the standard libc ones
+ DISTRO_FEATURES = "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g ipv4 ipv6 pulseaudio ${DISTRO_FEATURES_LIBC}"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+-# Set additional distro features to enable Wayland and Weston
++# Set additional distro features
+ DISTRO_FEATURES += "opengl pam"
++
++# Set preferred Qt version
++QT_PROVIDER = "qt5"
++
++# Distro-specific package configuration
++# Weston - use fbdev compositor and provide launcher
+ PACKAGECONFIG_pn-weston = "fbdev launch"
  
+ # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
+ PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+ PACKAGECONFIG_DISTRO_pn-qtbase = "icu"
+ 
+-# Set preferred Qt version
+-QT_PROVIDER = "qt5"
+-
+ # ARM9 is not supported by the Linaro toolchain so default back to the Arago
+ # toolchain for ARM9 based SOCs.
+ TC_SANE_DEFAULT := "${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}"
 -- 
-1.7.9.5
+2.0.4
 
 
