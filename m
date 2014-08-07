@@ -1,33 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 18D9552996
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 7B0E252972
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Aug 2014 19:45:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s77Jj9Yx008119
-	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:09 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s77Jj93N008724
-	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:09 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 7 Aug 2014 14:45:09 -0500
+	Thu,  7 Aug 2014 19:45:09 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s77Jj8K7003150
+	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:08 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s77Jj8ut017844
+	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:08 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 7 Aug 2014 14:45:08 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s77Jj8hg018109;	Thu, 7 Aug 2014 14:45:08 -0500
+	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s77Jj6fK000926;	Thu, 7 Aug 2014 14:45:07 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s77Jj4IX011788;	Fri, 8 Aug 2014 01:15:07 +0530
+	0.8) with ESMTP id s77Jj4IW011788;	Fri, 8 Aug 2014 01:15:05 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 7 Aug 2014 14:45:01 -0500
-Message-ID: <1407440703-21811-2-git-send-email-fcooper@ti.com>
+Date: Thu, 7 Aug 2014 14:45:00 -0500
+Message-ID: <1407440703-21811-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1407440703-21811-1-git-send-email-fcooper@ti.com>
-References: <1407440703-21811-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/4 v2] arago-prefs: Point omap-15 SOCs to use the latest TI U-boot integration tree
+Subject: [PATCH 1/4 v2] u-boot-fw-utils: Use dra7 evm for U-boot config for am57x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,25 +43,28 @@ Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
----
- .../conf/distro/include/arago-prefs.inc            |    4 ++++
- 1 file changed, 4 insertions(+)
+* The new U-boot config for am57x evm doesn't exist in any U-boot.
+* Simply use a different config name within u-boot-fw-utils since the configs
+  are similar and doesn't matter from a utility perspective.
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 1178687..fbbf904 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -76,6 +76,10 @@ PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
- PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
- PREFERRED_PROVIDER_virtual/bootloader_am437x-evm = "u-boot-ti-staging"
- PREFERRED_PROVIDER_u-boot_am437x-evm = "u-boot-ti-staging"
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../u-boot/u-boot-fw-utils_2013.07.bbappend        |    6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend
+
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend
+new file mode 100644
+index 0000000..6d1680a
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend
+@@ -0,0 +1,6 @@
++PR_append = "-arago0+gitr${SRCPV}"
 +
-+PREFERRED_PROVIDER_virtual/bootloader_omap-a15 = "u-boot-ti-staging"
-+PREFERRED_PROVIDER_u-boot_omap-a15 = "u-boot-ti-staging"
++# The proper config doesn't currently exist anywhere in mainline U-boot.
++# For now just use a similar config which is good enough for U-boot utilities.
++UBOOT_MACHINE_am57xx-evm = "dra7xx_evm_config"
 +
- PREFERRED_VERSION_u-boot-ti-staging = "2014.07%"
- 
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
 -- 
 1.7.9.5
 
