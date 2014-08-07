@@ -1,31 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 7B0E252972
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 3B44552972
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Aug 2014 19:45:09 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s77Jj8K7003150
-	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:08 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s77Jj8ut017844
-	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:08 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 7 Aug 2014 14:45:08 -0500
+	Thu,  7 Aug 2014 19:45:11 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s77JjAqK032163
+	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:10 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s77JjAdJ008739
+	for <meta-arago@arago-project.org>; Thu, 7 Aug 2014 14:45:10 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 7 Aug 2014 14:45:10 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s77Jj6fK000926;	Thu, 7 Aug 2014 14:45:07 -0500
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s77Jj9sX003253;	Thu, 7 Aug 2014 14:45:10 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s77Jj4IW011788;	Fri, 8 Aug 2014 01:15:05 +0530
+	0.8) with ESMTP id s77Jj4IY011788;	Fri, 8 Aug 2014 01:15:08 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 7 Aug 2014 14:45:00 -0500
-Message-ID: <1407440703-21811-1-git-send-email-fcooper@ti.com>
+Date: Thu, 7 Aug 2014 14:45:02 -0500
+Message-ID: <1407440703-21811-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1407440703-21811-1-git-send-email-fcooper@ti.com>
+References: <1407440703-21811-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/4 v2] u-boot-fw-utils: Use dra7 evm for U-boot config for am57x
+Subject: [PATCH 3/4 v2] u-boot-ti-staging: Use AM57x branch/git tree
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,33 +40,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 19:45:10 -0000
+X-List-Received-Date: Thu, 07 Aug 2014 19:45:11 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* The new U-boot config for am57x evm doesn't exist in any U-boot.
-* Simply use a different config name within u-boot-fw-utils since the configs
-  are similar and doesn't matter from a utility perspective.
+* Currently AM57x support is hosted on a separate branch and git tree that is
+  based on the latest u-boot-ti-staging integration tree.
+* Point to this branch and git tree for am57xx-evm until it is merged.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../u-boot/u-boot-fw-utils_2013.07.bbappend        |    6 ++++++
- 1 file changed, 6 insertions(+)
- create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend
+ .../u-boot/u-boot-ti-staging_2014.07.bbappend      |   13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend
-new file mode 100644
-index 0000000..6d1680a
---- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2013.07.bbappend
-@@ -0,0 +1,6 @@
-+PR_append = "-arago0+gitr${SRCPV}"
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
+index 5b6ab64..1243058 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
+@@ -1,6 +1,17 @@
+ # Append the base 2014.07 u-boot mainline recipe to AUTOREV for now so that
+ # we can test the latest mainline
+ 
+-PR_append = "-arago1+gitr${SRCPV}"
++PR_append = "-arago2+gitr${SRCPV}"
 +
-+# The proper config doesn't currently exist anywhere in mainline U-boot.
-+# For now just use a similar config which is good enough for U-boot utilities.
-+UBOOT_MACHINE_am57xx-evm = "dra7xx_evm_config"
++# AM57x EVM is currently on a seperate git tree/branch.
++# Once the software has been integrated to the u-boot-ti-staging
++# repository these lines can be removed.
 +
++OLD_BRANCH := "${BRANCH}"
++SRC_URI_am57xx-evm := "${@oe_filter_out('git://git.ti.com/ti-u-boot/ti-u-boot.git;protocol=git;branch=${OLD_BRANCH}','${SRC_URI}', d)}"
++
++BRANCH_am57xx-evm = "beaglex15"
++
++SRC_URI_am57xx-evm += "git://github.com/felipebalbi/u-boot.git;protocol=https;branch=${BRANCH}"
+ 
+ SRCREV = "${AUTOREV}"
 -- 
 1.7.9.5
 
