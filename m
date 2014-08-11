@@ -1,32 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 2449E52981
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id AF15552972
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Aug 2014 20:48:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7BKmJjm020641
-	for <meta-arago@arago-project.org>; Mon, 11 Aug 2014 15:48:19 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7BKmJcr028245
-	for <meta-arago@arago-project.org>; Mon, 11 Aug 2014 15:48:19 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0174.001; Mon, 11 Aug 2014 15:48:18 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH 4/4 v2] linux-ti-staging: Use AM57x branch/git tree
-Thread-Index: AQHPsngZAPyYg7S+EkGjA2PodkilVpvL5frQ
-Date: Mon, 11 Aug 2014 20:48:18 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6F9023@DFLE08.ent.ti.com>
-References: <1407440703-21811-1-git-send-email-fcooper@ti.com>
-	<1407440703-21811-4-git-send-email-fcooper@ti.com>
-In-Reply-To: <1407440703-21811-4-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	Mon, 11 Aug 2014 22:39:08 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7BMd7Im031687
+	for <meta-arago@arago-project.org>; Mon, 11 Aug 2014 17:39:07 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7BMd6Yn003537
+	for <meta-arago@arago-project.org>; Mon, 11 Aug 2014 17:39:07 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 11 Aug 2014 17:39:06 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7BMd5xq007326;	Mon, 11 Aug 2014 17:39:06 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7BMd33j002359;	Tue, 12 Aug 2014 04:09:04 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 11 Aug 2014 17:39:01 -0500
+Message-ID: <1407796741-15786-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH 4/4 v2] linux-ti-staging: Use AM57x branch/git tree
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] qtwayland - Fix fetch breakage
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,60 +38,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Aug 2014 20:48:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Aug 2014 22:39:13 -0000
+Content-Type: text/plain
 
-You can ignore this patch since there are no longer separate kernel integra=
-tion trees for am57x evm.
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Thursday, August 07, 2014 2:45 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [PATCH 4/4 v2] linux-ti-staging: Use AM57x branch/git tree
->=20
-> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
->=20
-> * Currently AM57x support is hosted on a separate branch and git tree tha=
-t is
->   based on the latest u-boot-ti-staging integration tree.
-> * Point to this branch and git tree for am57xx-evm until it is merged.
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../linux/linux-ti-staging_3.14.bbappend           |   11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
->=20
-> diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> staging_3.14.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> staging_3.14.bbappend
-> index b178b5e..b25df8f 100644
-> --- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappe=
-nd
-> +++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-
-> staging_3.14.bbappend
-> @@ -1,4 +1,13 @@
-> -MACHINE_KERNEL_PR_append =3D "-arago1"
-> +MACHINE_KERNEL_PR_append =3D "-arago2"
-> +
-> +OLD_BRANCH :=3D "${BRANCH}"
-> +SRC_URI_am57xx-evm :=3D "${@oe_filter_out('git://git.ti.com/ti-linux-
-> kernel/ti-linux-
-> kernel.git;protocol=3Dgit;branch=3D${OLD_BRANCH}','${SRC_URI}', d)}"
-> +
-> +BRANCH_am57xx-evm =3D "beagle-x15-v3.14"
-> +
-> +SRC_URI_am57xx-evm +=3D "git://git.ti.com/~nmenon/ti-linux-kernel/ti-
-> linux-x15-validate.git;protocol=3Dgit;branch=3D${BRANCH}"
-> +
-> +KERNEL_DEVICETREE_dra7xx =3D "dra7-evm.dtb am57xx-beagle-x15.dtb"
->=20
->  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${P}:"
->=20
-> --
-> 1.7.9.5
+* By default qt5-git.inc by default points to the "stable" branch for the
+  qtwayland git repository.
+* However, this branch no longer exist and results in a fetch error.
+* This SRCREVs that qtwayland/qtwayland-native point to are found within the 5.3
+  branch.
+* So set QT_MODULE_BRANCH to "5.3".
+This patch will be submitted to upstream meta-qt5 and when accepted the appends
+can be removed.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../recipes-qt/qt5/qtwayland-native_git.bbappend   |    3 +++
+ .../recipes-qt/qt5/qtwayland_git.bbappend          |    3 +++
+ 2 files changed, 6 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-qt/qt5/qtwayland-native_git.bbappend
+ create mode 100644 meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
+
+diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland-native_git.bbappend b/meta-arago-extras/recipes-qt/qt5/qtwayland-native_git.bbappend
+new file mode 100644
+index 0000000..53c1454
+--- /dev/null
++++ b/meta-arago-extras/recipes-qt/qt5/qtwayland-native_git.bbappend
+@@ -0,0 +1,3 @@
++PR_append = "-arago0"
++
++QT_MODULE_BRANCH = "5.3"
+diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
+new file mode 100644
+index 0000000..53c1454
+--- /dev/null
++++ b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
+@@ -0,0 +1,3 @@
++PR_append = "-arago0"
++
++QT_MODULE_BRANCH = "5.3"
+-- 
+1.7.9.5
 
 
