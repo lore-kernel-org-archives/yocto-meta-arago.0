@@ -1,32 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 5EB9E52976
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id BBE8752976
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Aug 2014 23:00:09 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7CN08MG028056
-	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 18:00:08 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7CN08GK017288
-	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 18:00:08 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Tue, 12 Aug 2014 18:00:08 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] qtbase: Add touchscreen support and set wayland as the
-	default display plugin
-Thread-Index: AQHPtoDs0LdUueGv9kKzBlhorjCdDpvNlSag
-Date: Tue, 12 Aug 2014 23:00:07 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6FA29A@DFLE08.ent.ti.com>
-References: <1407884299-15652-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1407884299-15652-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	Tue, 12 Aug 2014 23:06:41 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7CN6en9018178
+	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 18:06:40 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7CN6eRm030470
+	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 18:06:40 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 12 Aug 2014 18:06:40 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7CN6dnG024783;	Tue, 12 Aug 2014 18:06:40 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7CN6bqA012506;	Wed, 13 Aug 2014 04:36:38 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 12 Aug 2014 18:06:35 -0500
+Message-ID: <1407884796-2289-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH] qtbase: Add touchscreen support and set wayland as the default display plugin
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/2] qtbase: Set wayland as the default display plugin
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,52 +38,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 23:00:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 12 Aug 2014 23:06:42 -0000
+Content-Type: text/plain
 
-Wait ignore this. I forgot about the new suggested approach for package con=
-figs
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Tuesday, August 12, 2014 5:58 PM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [PATCH] qtbase: Add touchscreen support and set wayland as the
-> default display plugin
->=20
-> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
->=20
-> * Enable touchscreen
-> * Set wayland as the default display plugin for Qt apps.
-> * Its already the default now used by Arago but this eliminates the need =
-to
-> pass
->   additional arguments for all the different Qt applications.
-> ---
->  .../recipes-qt/qt5/qtbase_5.2.1.bbappend           |    6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
-> b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
-> index c879313..5fb65bb 100644
-> --- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
-> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
-> @@ -3,4 +3,8 @@ GLES_EXTRA_DEPS_omap-a15 =3D "libdrm wayland"
->=20
->  PACKAGECONFIG[gles2] =3D "-opengl es2 -eglfs,,virtual/libgles2 virtual/e=
-gl
-> ${GLES_EXTRA_DEPS}"
->=20
-> -PR_append =3D "-arago0"
-> +PR_append =3D "-arago1"
-> +
-> +QT_CONFIG_FLAGS +=3D "-qpa wayland"
-> +
-> +PACKAGECONFIG +=3D "tslib"
-> --
-> 1.7.9.5
+* Set wayland as the default display plugin for Qt apps.
+* Its already the default now used by Arago but this eliminates the need to pass
+  additional arguments for all the different Qt applications.
+---
+ .../recipes-qt/qt5/qtbase_5.2.1.bbappend           |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
+index c879313..f5f772a 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
+@@ -3,4 +3,6 @@ GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
+ 
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
++
++QT_CONFIG_FLAGS += "-qpa wayland"
+-- 
+1.7.9.5
 
 
