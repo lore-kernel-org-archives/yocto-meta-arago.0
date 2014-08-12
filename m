@@ -1,23 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTP id 7A48252976
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id A1C2852976
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Aug 2014 16:30:32 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.18.33.160])
-	by vms173019.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0NA700B6ZCIGOX71@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 12 Aug 2014 11:30:16 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 370B72008C; Tue,
-	12 Aug 2014 12:30:16 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 12 Aug 2014 12:30:15 -0400
-Message-id: <1407861015-29693-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.0.4
-Subject: [PATCH] u-boot: switch to git for github access
+	Tue, 12 Aug 2014 22:58:29 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7CMwPQB027000
+	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 17:58:25 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7CMwPJ9023413
+	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 17:58:25 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 12 Aug 2014 17:58:24 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7CMwNnF018649;	Tue, 12 Aug 2014 17:58:24 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7CMwLYf010865;	Wed, 13 Aug 2014 04:28:22 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 12 Aug 2014 17:58:19 -0500
+Message-ID: <1407884299-15652-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] qtbase: Add touchscreen support and set wayland as the default display plugin
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,37 +38,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 16:30:33 -0000
+X-List-Received-Date: Tue, 12 Aug 2014 22:58:32 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+* Enable touchscreen
+* Set wayland as the default display plugin for Qt apps.
+* Its already the default now used by Arago but this eliminates the need to pass
+  additional arguments for all the different Qt applications.
 ---
- .../recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend             | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-qt/qt5/qtbase_5.2.1.bbappend           |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
-index 1243058..b81d74e 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
-@@ -1,7 +1,7 @@
- # Append the base 2014.07 u-boot mainline recipe to AUTOREV for now so that
- # we can test the latest mainline
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
+index c879313..5fb65bb 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.2.1.bbappend
+@@ -3,4 +3,8 @@ GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
  
--PR_append = "-arago2+gitr${SRCPV}"
-+PR_append = "-arago3+gitr${SRCPV}"
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
  
- # AM57x EVM is currently on a seperate git tree/branch.
- # Once the software has been integrated to the u-boot-ti-staging
-@@ -12,6 +12,6 @@ SRC_URI_am57xx-evm := "${@oe_filter_out('git://git.ti.com/ti-u-boot/ti-u-boot.gi
- 
- BRANCH_am57xx-evm = "beaglex15"
- 
--SRC_URI_am57xx-evm += "git://github.com/felipebalbi/u-boot.git;protocol=https;branch=${BRANCH}"
-+SRC_URI_am57xx-evm += "git://github.com/felipebalbi/u-boot.git;protocol=git;branch=${BRANCH}"
- 
- SRCREV = "${AUTOREV}"
+-PR_append = "-arago0"
++PR_append = "-arago1"
++
++QT_CONFIG_FLAGS += "-qpa wayland"
++
++PACKAGECONFIG += "tslib"
 -- 
-2.0.4
+1.7.9.5
 
 
