@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 916F352981
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id D08EC52981
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Aug 2014 19:46:24 +0000 (UTC)
+	Wed, 13 Aug 2014 19:46:25 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7DJkNj4021320
-	for <meta-arago@arago-project.org>; Wed, 13 Aug 2014 14:46:23 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7DJkNe3002346
-	for <meta-arago@arago-project.org>; Wed, 13 Aug 2014 14:46:23 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 13 Aug 2014 14:46:23 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7DJkPOP023561
+	for <meta-arago@arago-project.org>; Wed, 13 Aug 2014 14:46:25 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7DJkP6t002365
+	for <meta-arago@arago-project.org>; Wed, 13 Aug 2014 14:46:25 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 13 Aug 2014 14:46:24 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7DJkMWM005410;	Wed, 13 Aug 2014 14:46:23 -0500
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7DJkN17015861;	Wed, 13 Aug 2014 14:46:24 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s7DJkFTu012731;	Thu, 14 Aug 2014 01:16:21 +0530
+	0.8) with ESMTP id s7DJkFTv012731;	Thu, 14 Aug 2014 01:16:22 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 13 Aug 2014 14:46:11 -0500
-Message-ID: <1407959172-16985-5-git-send-email-fcooper@ti.com>
+Date: Wed, 13 Aug 2014 14:46:12 -0500
+Message-ID: <1407959172-16985-6-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1407959172-16985-1-git-send-email-fcooper@ti.com>
 References: <1407959172-16985-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 5/6] arago-qt4: Add global environment variable script
+Subject: [PATCH 6/6] ts-calibrate-init: Simplify calibrate logic
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,59 +40,76 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Aug 2014 19:46:24 -0000
+X-List-Received-Date: Wed, 13 Aug 2014 19:46:26 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* There are important Qt environment variables that needs to be set and those
-  variables are only being set within Matrix's init script.
-* This causes problems when your trying to manually run a Qt application
-  outside of Matrix since you need to manually export the proper Qt specific
-  environment variables again.
-* Override the default qte.sh to add additional Arago specific Qt env variables
----
- meta-arago-distro/recipes-qt/qt4/arago-qt4.inc |    3 ++-
- meta-arago-distro/recipes-qt/qt4/files/qte.sh  |   11 +++++++++++
- 2 files changed, 13 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-qt/qt4/files/qte.sh
+* Setting some of the tslib specific environment variable has been added to
+  tslib's /etc/profile.d script.
+* Therefore, remove unneeded logic here.
 
-diff --git a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc b/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
-index 715092e..0f5e117 100644
---- a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
-+++ b/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
-@@ -1,7 +1,7 @@
- # Common file for patches or tweaks that are needed by qt4-embedded and
- # qt4-embedded-gles
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../recipes-graphics/tslib/ts-calibrate-init/init  |   30 +++++++-------------
+ 1 file changed, 10 insertions(+), 20 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-init/init b/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-init/init
+index db5c278..cd59b5b 100644
+--- a/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-init/init
++++ b/meta-arago-extras/recipes-graphics/tslib/ts-calibrate-init/init
+@@ -10,32 +10,22 @@
+ # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
  
--PR := "${PR}-arago5"
-+PR := "${PR}-arago7"
+-tsfile=/etc/pointercal
+-export TSLIB_TSDEVICE=/dev/input/touchscreen0
+-
+ # First let's check if we even see a touchscreen device node.  If not
+ # then bail out.
+-if [ ! -e $TSLIB_TSDEVICE ]
++if [ ! -e /dev/input/touchscreen0 ]
+ then
+     exit
+ fi
  
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-@@ -16,4 +16,5 @@ LICENSE = "LGPLv2.1"
+-# Check if the SD card is mounted and the first partition is
+-# vfat.  If so let's write the pointercal file there so that if
+-# someone messes up calibration they can just delete the file from
+-# any system and reboot the board.
+-
+-#TODO how can we find the SD card and not eMMC?  can we look for a "boot"
+-# LABEL?
+-mount | grep /run/media/mmcblk0p1 | grep vfat > /dev/null 2>&1
+-if [ "$?" = "0" ]
+-then
+-    tsfile=/run/media/mmcblk0p1/pointercal
+-fi
++# Import Important System Environment Variables
++SCRIPTS=/etc/profile.d/*.sh
  
- SRC_URI += "file://0001-PATCH-make-demos-maximized-for-TISDK-use.patch \
-             file://0002-qwslock-messages.patch \
-+            file://qte.sh \
- "
-diff --git a/meta-arago-distro/recipes-qt/qt4/files/qte.sh b/meta-arago-distro/recipes-qt/qt4/files/qte.sh
-new file mode 100644
-index 0000000..3d656f3
---- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt4/files/qte.sh
-@@ -0,0 +1,11 @@
-+#!/bin/sh
-+
-+### QT Environment Variables ###
-+export QWS_MOUSE_PROTO=Auto
-+
-+
-+# Set the QWS_MOUSE_PROTO for touchscreen if it exists
-+if [ -e /dev/input/touchscreen0 ]
-+then
-+    export QWS_MOUSE_PROTO=Tslib:/dev/input/touchscreen0
-+fi
+-export TSLIB_CALIBFILE=$tsfile
++for f in $SCRIPTS
++do
++    source $f
++done
+ 
+-if [ ! -f $tsfile ] ; then
++if [ ! -f $TSLIB_CALIBFILE ] ; then
+     echo -n "Calibrating touchscreen (first time only)"
+     ts_calibrate
+     echo "."
+@@ -45,8 +35,8 @@ if [ ! -f $tsfile ] ; then
+     # that running other applications that look for /etc/pointercal and
+     # without TSLIB_CALIBFILE set will still get the right calibration.
+     # TODO: can we just globally export TSLIB_CALIBFILE?
+-    if [ ! -f /etc/pointercal -a -f $tsfile ]
++    if [ ! -f /etc/pointercal -a -f $TSLIB_CALIBFILE ]
+     then
+-        cp $tsfile /etc/pointercal
++        cp $TSLIB_CALIBFILE /etc/pointercal
+     fi
+ fi
 -- 
 1.7.9.5
 
