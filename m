@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 959E952976
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B359252981
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Aug 2014 03:50:20 +0000 (UTC)
+	Wed, 13 Aug 2014 06:15:45 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7D3oJqc000477
-	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 22:50:19 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7D3oIG4030536
-	for <meta-arago@arago-project.org>; Tue, 12 Aug 2014 22:50:19 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 12 Aug 2014 22:50:18 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7D6Fiko003623
+	for <meta-arago@arago-project.org>; Wed, 13 Aug 2014 01:15:45 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7D6FiKx010056
+	for <meta-arago@arago-project.org>; Wed, 13 Aug 2014 01:15:44 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 13 Aug 2014 01:15:44 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7D3oHBe010137	for <meta-arago@arago-project.org>;
-	Tue, 12 Aug 2014 22:50:17 -0500
-Date: Tue, 12 Aug 2014 23:32:13 -0400
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7D6FiNK000556	for <meta-arago@arago-project.org>;
+	Wed, 13 Aug 2014 01:15:44 -0500
+Date: Wed, 13 Aug 2014 01:57:39 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1180089399.445.1407900733065.JavaMail.jenkins@puget>
+Message-ID: <1189685412.447.1407909459765.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.08 build 2014-08-12_18-22-50
+Subject: [nightly] Core TISDK 2014.08 build 2014-08-13_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,27 +36,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Aug 2014 03:50:21 -0000
+X-List-Received-Date: Wed, 13 Aug 2014 06:15:46 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_444_1089592024.1407900733028"
+	boundary="----=_Part_446_1277419153.1407909459765"
 
-------=_Part_444_1089592024.1407900733028
+------=_Part_446_1277419153.1407909459765
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 08/12/14
+Status for 08/13/14
 </title>
 </head>
 <body>
 
-<h2>Status for 08/12/14</h2>
+<h2>Status for 08/13/14</h2>
 
-<h2>BUILD_ID: build-2014-08-12_18-23-52</h2>
+<h2>BUILD_ID: build-2014-08-13_01-01-53</h2>
 
-<h2>Clean Build: true</h2>
+<h2>Clean Build: false</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -188,7 +188,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
+CLEAN_BUILD="false"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -225,4 +225,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_444_1089592024.1407900733028--
+------=_Part_446_1277419153.1407909459765--
