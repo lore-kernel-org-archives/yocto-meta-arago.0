@@ -1,26 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7A014529D5
+Return-Path: <j-stiffler@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 02EAD52A1E
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Aug 2014 14:14:41 +0000 (UTC)
+	Thu, 14 Aug 2014 14:29:43 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7EEEe6o025316
-	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 09:14:40 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7EEEes8003091
-	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 09:14:40 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Thu, 14 Aug 2014 09:14:40 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Stiffler, Jacob" <j-stiffler@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7EEThe1005702
+	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 09:29:43 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7EETgsd013580
+	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 09:29:43 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0174.001; Thu, 14 Aug 2014 09:29:42 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "Dmytriyenko, Denys"
+	<denys@ti.com>
 Thread-Topic: [meta-arago] [PATCH] qtwayland - update to 5.4 branch
-Thread-Index: AQHPt8f/NKUCnQVzsEq8JL8eVNtpxJvQdO0A//+va+A=
-Date: Thu, 14 Aug 2014 14:14:39 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C6FB695@DFLE08.ent.ti.com>
+Thread-Index: AQHPt8f6xYs85ALaN0esLhEEFkB4xpvQdO0AgAADf4D//7BD8A==
+Date: Thu, 14 Aug 2014 14:29:41 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958140A1C66@DFLE09.ent.ti.com>
 References: <1408024773-17838-1-git-send-email-j-stiffler@ti.com>
 	<20140814140207.GV23523@edge>
-In-Reply-To: <20140814140207.GV23523@edge>
+	<8F29D6B095ED194EA1980491A5E029710C6FB695@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6FB695@DFLE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -40,10 +42,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Aug 2014 14:14:41 -0000
+X-List-Received-Date: Thu, 14 Aug 2014 14:29:44 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I gave that a quick try and it failed:
+
+WARNING: Failed to fetch URL git://qt.gitorious.org/qt/qtwayland.git;branch=
+=3DHEAD, attempting MIRRORS if available
+ERROR: Fetcher failure: Unable to find revision a237778666666ab77c4e8e6b501=
+cf0fbe7c9223e in branch HEAD even from upstream
+ERROR: Function failed: Fetcher failure for URL: 'git://qt.gitorious.org/qt=
+/qtwayland.git;branch=3DHEAD'. Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in: /home/a0866934local/dev/git/oe-layerse=
+tup/build/arago-tmp-external-linaro-toolchain/work/i686-linux/qtwayland-nat=
+ive/5.2.1+gitAUTOINC+a237778666-r0-arago2/temp/log.do_fetch.4461
+NOTE: recipe qtwayland-native-5.2.1+gitAUTOINC+a237778666-r0-arago2: task d=
+o_fetch: Failed
+ERROR: Task 463 (/home/a0866934local/dev/git/oe-layersetup/sources/meta-qt5=
+/recipes-qt/qt5/qtwayland-native_git.bb, do_fetch) failed with exit code '1=
+'
+
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Thursday, August 14, 2014 10:15 AM
+To: Dmytriyenko, Denys; Stiffler, Jacob
+Cc: meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH] qtwayland - update to 5.4 branch
 
 Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
@@ -53,7 +80,7 @@ at should always point to the latest branch I'm guessing.
 
 
 > -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
 > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
 > Sent: Thursday, August 14, 2014 9:02 AM
 > To: Stiffler, Jacob
@@ -63,7 +90,8 @@ at should always point to the latest branch I'm guessing.
 > Ack
 >=20
 > On Thu, Aug 14, 2014 at 09:59:32AM -0400, Jacob Stiffler wrote:
-> > * The 5.3 branch no longer exists and the SRCREV points to a commit on
+> > * The 5.3 branch no longer exists and the SRCREV points to a commit=20
+> > on
 > the 5.4 branch.
 > >
 > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
