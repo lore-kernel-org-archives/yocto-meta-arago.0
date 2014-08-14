@@ -1,35 +1,31 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 02EAD52A1E
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 5D46C529D5
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Aug 2014 14:29:43 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7EEThe1005702
-	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 09:29:43 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7EETgsd013580
-	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 09:29:43 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Thu, 14 Aug 2014 09:29:42 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "Dmytriyenko, Denys"
-	<denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] qtwayland - update to 5.4 branch
-Thread-Index: AQHPt8f6xYs85ALaN0esLhEEFkB4xpvQdO0AgAADf4D//7BD8A==
-Date: Thu, 14 Aug 2014 14:29:41 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958140A1C66@DFLE09.ent.ti.com>
-References: <1408024773-17838-1-git-send-email-j-stiffler@ti.com>
-	<20140814140207.GV23523@edge>
-	<8F29D6B095ED194EA1980491A5E029710C6FB695@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C6FB695@DFLE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Thu, 14 Aug 2014 18:19:16 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7EIJF9q018189
+	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 13:19:15 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7EIJFZn008381
+	for <meta-arago@arago-project.org>; Thu, 14 Aug 2014 13:19:15 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 14 Aug 2014 13:19:15 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7EIJEwb028833;	Thu, 14 Aug 2014 13:19:14 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7EIJCJG013320;	Thu, 14 Aug 2014 23:49:13 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 14 Aug 2014 13:19:07 -0500
+Message-ID: <1408040350-30527-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] qtwayland - update to 5.4 branch
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/4] arago-qt4: Add rotation to global environment variable script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,96 +38,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Aug 2014 14:29:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 14 Aug 2014 18:19:17 -0000
+Content-Type: text/plain
 
-I gave that a quick try and it failed:
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-WARNING: Failed to fetch URL git://qt.gitorious.org/qt/qtwayland.git;branch=
-=3DHEAD, attempting MIRRORS if available
-ERROR: Fetcher failure: Unable to find revision a237778666666ab77c4e8e6b501=
-cf0fbe7c9223e in branch HEAD even from upstream
-ERROR: Function failed: Fetcher failure for URL: 'git://qt.gitorious.org/qt=
-/qtwayland.git;branch=3DHEAD'. Unable to fetch URL from any source.
-ERROR: Logfile of failure stored in: /home/a0866934local/dev/git/oe-layerse=
-tup/build/arago-tmp-external-linaro-toolchain/work/i686-linux/qtwayland-nat=
-ive/5.2.1+gitAUTOINC+a237778666-r0-arago2/temp/log.do_fetch.4461
-NOTE: recipe qtwayland-native-5.2.1+gitAUTOINC+a237778666-r0-arago2: task d=
-o_fetch: Failed
-ERROR: Task 463 (/home/a0866934local/dev/git/oe-layersetup/sources/meta-qt5=
-/recipes-qt/qt5/qtwayland-native_git.bb, do_fetch) failed with exit code '1=
-'
+* AM37x evm requires the screen to be rotated 90 degrees to look correct.
+* Add the environment variable that changes this only for am37x evm
+---
+ meta-arago-distro/recipes-qt/qt4/arago-qt4.inc |    7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
+diff --git a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc b/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+index 0f5e117..57ced60 100644
+--- a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
++++ b/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+@@ -1,7 +1,7 @@
+ # Common file for patches or tweaks that are needed by qt4-embedded and
+ # qt4-embedded-gles
+ 
+-PR := "${PR}-arago7"
++PR := "${PR}-arago8"
+ 
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+@@ -18,3 +18,8 @@ SRC_URI += "file://0001-PATCH-make-demos-maximized-for-TISDK-use.patch \
+             file://0002-qwslock-messages.patch \
+             file://qte.sh \
+ "
++
++# Rotate the display only for am37x_evm
++do_install_prepend_am37x-evm () {
++    echo "export QWS_DISPLAY="transformed:Rot90" >> ${WORKDIR}/qte.sh
++}
+-- 
+1.7.9.5
 
------Original Message-----
-From: Cooper Jr., Franklin=20
-Sent: Thursday, August 14, 2014 10:15 AM
-To: Dmytriyenko, Denys; Stiffler, Jacob
-Cc: meta-arago@arago-project.org
-Subject: RE: [meta-arago] [PATCH] qtwayland - update to 5.4 branch
-
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
-
-Although it would be nice to see if we can set QT_MODULE_BRANCH to HEAD. Th=
-at should always point to the latest branch I'm guessing.
-
-
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
-> bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> Sent: Thursday, August 14, 2014 9:02 AM
-> To: Stiffler, Jacob
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] qtwayland - update to 5.4 branch
->=20
-> Ack
->=20
-> On Thu, Aug 14, 2014 at 09:59:32AM -0400, Jacob Stiffler wrote:
-> > * The 5.3 branch no longer exists and the SRCREV points to a commit=20
-> > on
-> the 5.4 branch.
-> >
-> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > ---
-> >  .../recipes-qt/qt5/qtwayland-native_git.bbappend   |    4 ++--
-> >  .../recipes-qt/qt5/qtwayland_git.bbappend          |    4 ++--
-> >  2 files changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland-
-> native_git.bbappend b/meta-arago-extras/recipes-qt/qt5/qtwayland-
-> native_git.bbappend
-> > index 53c1454..64de589 100644
-> > --- a/meta-arago-extras/recipes-qt/qt5/qtwayland-native_git.bbappend
-> > +++ b/meta-arago-extras/recipes-qt/qt5/qtwayland-native_git.bbappend
-> > @@ -1,3 +1,3 @@
-> > -PR_append =3D "-arago0"
-> > +PR_append =3D "-arago1"
-> >
-> > -QT_MODULE_BRANCH =3D "5.3"
-> > +QT_MODULE_BRANCH =3D "5.4"
-> > diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> > index 53c1454..64de589 100644
-> > --- a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> > +++ b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> > @@ -1,3 +1,3 @@
-> > -PR_append =3D "-arago0"
-> > +PR_append =3D "-arago1"
-> >
-> > -QT_MODULE_BRANCH =3D "5.3"
-> > +QT_MODULE_BRANCH =3D "5.4"
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
