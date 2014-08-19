@@ -1,27 +1,31 @@
-Return-Path: <yanivma@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 845765298E
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 8273752A75
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Aug 2014 12:31:16 +0000 (UTC)
+	Tue, 19 Aug 2014 16:45:58 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7JCVFXR026295
-	for <meta-arago@arago-project.org>; Tue, 19 Aug 2014 07:31:15 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7JCVFag019283
-	for <meta-arago@arago-project.org>; Tue, 19 Aug 2014 07:31:15 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 19 Aug 2014 07:31:15 -0500
-Received: from mcp8x-srv.emea.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7JCVERS029901;	Tue, 19 Aug 2014 07:31:14 -0500
-From: Yaniv Machani <yanivma@ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7JGjv2d006964
+	for <meta-arago@arago-project.org>; Tue, 19 Aug 2014 11:45:57 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7JGjvY4029785
+	for <meta-arago@arago-project.org>; Tue, 19 Aug 2014 11:45:57 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 19 Aug 2014 11:45:57 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7JGjuxb029725;	Tue, 19 Aug 2014 11:45:57 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7JGjsqG017239;	Tue, 19 Aug 2014 22:15:55 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 19 Aug 2014 15:25:57 +0300
-Message-ID: <1408451157-17268-1-git-send-email-yanivma@ti.com>
-X-Mailer: git-send-email 1.8.3.2
+Date: Tue, 19 Aug 2014 11:45:45 -0500
+Message-ID: <1408466752-4458-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] omap2+: defconfig: wlan: move configuration to fragments
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 1/8] libevdev: Add libdevdev which is a dependency for libinput
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,71 +38,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 12:31:16 -0000
+X-List-Received-Date: Tue, 19 Aug 2014 16:45:58 -0000
 Content-Type: text/plain
 
-Remove wlan modules from omap2plus_defconfig to support building with compat.
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Add wlan fragment with releveant configuration parameters.
-
-Signed-off-by: Yaniv Machani <yanivma@ti.com>
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
-To support the compat-wirelss compilation in the meta-arago build
-the modules removal is required to avoid conflicts.
+ .../recipes-devtools/libevdev/libevdev_git.bb      |   16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/libevdev/libevdev_git.bb
 
-
- arch/arm/configs/omap2plus_defconfig |    5 -----
- ti_config_fragments/wlan.cfg         |   17 +++++++++++++++++
- 2 files changed, 17 insertions(+), 5 deletions(-)
- create mode 100644 ti_config_fragments/wlan.cfg
-
-diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
-index b88bee2..c5d981b 100644
---- a/arch/arm/configs/omap2plus_defconfig
-+++ b/arch/arm/configs/omap2plus_defconfig
-@@ -79,7 +79,6 @@ CONFIG_BT_HCIUART_LL=y
- CONFIG_BT_HCIBCM203X=m
- CONFIG_BT_HCIBPA10X=m
- CONFIG_BT_WILINK=m
--CONFIG_CFG80211=m
- CONFIG_NL80211_TESTMODE=y
- CONFIG_MAC80211=m
- CONFIG_MAC80211_RC_PID=y
-@@ -133,10 +132,6 @@ CONFIG_LIBERTAS_USB=m
- CONFIG_LIBERTAS_SDIO=m
- CONFIG_LIBERTAS_DEBUG=y
- CONFIG_WL_TI=y
--CONFIG_WL12XX=m
--CONFIG_WL18XX=m
--CONFIG_WLCORE_SPI=m
--CONFIG_WLCORE_SDIO=m
- CONFIG_MWIFIEX=m
- CONFIG_MWIFIEX_SDIO=m
- CONFIG_MWIFIEX_USB=m
-diff --git a/ti_config_fragments/wlan.cfg b/ti_config_fragments/wlan.cfg
+diff --git a/meta-arago-extras/recipes-devtools/libevdev/libevdev_git.bb b/meta-arago-extras/recipes-devtools/libevdev/libevdev_git.bb
 new file mode 100644
-index 0000000..596ce9e
+index 0000000..508beb3
 --- /dev/null
-+++ b/ti_config_fragments/wlan.cfg
-@@ -0,0 +1,17 @@
-+#Base modules
-+CPTCFG_CFG80211=m
-+CPTCFG_MAC80211=m
-+CPTCFG_WLAN=y
-+CPTCFG_WL_TI=y
-+CPTCFG_WL12XX=m
-+CPTCFG_WL18XX=m
-+CPTCFG_WLCORE=m
-+CPTCFG_WLCORE_SDIO=m
++++ b/meta-arago-extras/recipes-devtools/libevdev/libevdev_git.bb
+@@ -0,0 +1,16 @@
++DESCRIPTION = "libevdev is a wrapper library for evdev devices"
++HOMEPAGE = "http://www.freedesktop.org/wiki/Software/libevdev/"
 +
-+#SOFTAP CONFIG
-+CONFIG_NF_CONNTRACK=y
-+CONFIG_NF_CONNTRACK_IPV4=y
-+CONFIG_IP_NF_IPTABLES=y
-+CONFIG_IP_NF_FILTER=y
-+CONFIG_NF_NAT_IPV4=y
-+CONFIG_IP_NF_TARGET_MASQUERADE=y
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://COPYING;md5=75aae0d38feea6fda97ca381cb9132eb"
++
++inherit autotools pkgconfig
++
++PR = "r0"
++
++BRANCH = "master"
++SRCREV = "a5f150ef57a1a5c67e94163f6f5a60687049413f"
++PV = "1.2.99.901"
++SRC_URI = "git://anongit.freedesktop.org/libevdev;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
 -- 
-1.7.9
+1.7.9.5
 
 
