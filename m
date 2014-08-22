@@ -1,33 +1,38 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 7D48E52992
+Return-Path: <aja@survision.fr>
+Received: from mo69.mail-out.ovh.net (8.mo69.mail-out.ovh.net [46.105.56.233])
+	by arago-project.org (Postfix) with ESMTP id AC99452972
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Aug 2014 02:45:01 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7M2j03X023220
-	for <meta-arago@arago-project.org>; Thu, 21 Aug 2014 21:45:00 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7M2j0re018356
-	for <meta-arago@arago-project.org>; Thu, 21 Aug 2014 21:45:00 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 21 Aug 2014 21:45:00 -0500
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7M2ixJm014447;	Thu, 21 Aug 2014 21:45:00 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s7M2iu7e012647;	Fri, 22 Aug 2014 08:14:58 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 21 Aug 2014 21:44:54 -0500
-Message-ID: <1408675495-24120-2-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1408675495-24120-1-git-send-email-fcooper@ti.com>
-References: <1408675495-24120-1-git-send-email-fcooper@ti.com>
+	Fri, 22 Aug 2014 06:41:03 +0000 (UTC)
+Received: from mail425.ha.ovh.net (gw6.ovh.net [213.251.189.206])
+	by mo69.mail-out.ovh.net (Postfix) with SMTP id 766751008B85
+	for <meta-arago@arago-project.org>;
+	Fri, 22 Aug 2014 08:41:01 +0200 (CEST)
+Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
+	by b0.ovh.net with SMTP; 22 Aug 2014 08:41:00 +0200
+Received: from laubervilliers-656-01-35-73.w217-128.abo.wanadoo.fr (HELO
+	?192.168.50.78?) (arnaud.janvier@survision.fr@217.128.91.73)
+	by ns0.ovh.net with SMTP; 22 Aug 2014 08:40:58 +0200
+Message-ID: <53F6E5F9.8000901@survision.fr>
+Date: Fri, 22 Aug 2014 08:40:57 +0200
+From: Arnaud Janvier <aja@survision.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/2] arago-core-tisdk-image: Work around SOC_FAMILY issue
+To: Matt Schuckmann <Matt.Schuckmann@planar.com>, meta-arago@arago-project.org
+References: <4B07ADD556F70043925DA2E9C5D4346D2FD85EA011@MSXBEBVT12.planar.net>
+In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FD85EA011@MSXBEBVT12.planar.net>
+X-Ovh-Tracer-Id: 16571557779322684539
+X-Ovh-Remote: 217.128.91.73
+	(laubervilliers-656-01-35-73.w217-128.abo.wanadoo.fr)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: -100
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeejfedrkeefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+X-Spam-Check: DONE|U 0.5/N
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeejfedrkeefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Subject: Re: i686 binutils failing to build for SDK 7.0 build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,33 +45,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 02:45:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 22 Aug 2014 06:41:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+On Tue, Aug 05, 2014 at 10:44:28AM -0700, Matt Schuckmann wrote:
+> I'm trying to build a basic image using Arago, SDK 7.0 config
+> (configs/amsdk/amsdk-07.00.00.00-config.txt) and binutils 2.20.1 is
+> failing to compile for the i686 host system. I'm building on a Ubuntu
+> 14.04 32bit VM.
+>
+> My bitbake command is: MACHINE=am335x-evm;bitbake core-image-minimal
+>
+> The errors are:
+> binutils-native/2.20.1-r9/binutils-2.20.1/bfd/doc/bfd.texinfo:326:
+> unknown command `colophon'
+> binutils-native/2.20.1-r9/binutils-2.20.1/bfd/doc/bfd.texinfo:337:
+> unknown command `cygnus'
+>
+> It looks like this was a known problem for building binutils that has
+> been fixed a long time ago and since SDK 7.0 is released code I would
+> have assumed the problem was taken care for the Arago build so I'm a
+> little puzzled why I'm getting this now.
+>
+> Any help would be appreciated.  Thanks, Matt S.
+>
 
-* Some reason the SOC_FAMILY dra7xx has precedences over machine overrides.
-* Change dra7xx to dra7xx-evm to avoid SOC_FAMILY override issue.
+Hello Matt,
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
- .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I have had the same issue with Dylan and have a correction proposal.
+I will send the patch to the list right after. Could you apply it and
+give us your feedback?
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 37f71d6..475c9d6 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -19,7 +19,7 @@ TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev libgnutls-extra26 libgnutls-openssl2
- DTB_FILTER = "unknown"
- DTB_FILTER_ti33x = "am335x"
- DTB_FILTER_omap5-evm = "omap5"
--DTB_FILTER_dra7xx = "dra7"
-+DTB_FILTER_dra7xx-evm = "dra7"
- DTB_FILTER_am57xx-evm = "am57xx"
- DTB_FILTER_ti43x = "am43"
- DTB_FILTER_keystone = "k2hk"
--- 
-1.7.9.5
+Thanks.
 
+Best regards,
+Arnaud Janvier
 
