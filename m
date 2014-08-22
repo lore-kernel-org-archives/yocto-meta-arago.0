@@ -1,36 +1,28 @@
-Return-Path: <aja@survision.fr>
-Received: from mo69.mail-out.ovh.net (1.mo69.mail-out.ovh.net [178.33.251.173])
-	by arago-project.org (Postfix) with ESMTP id 8828352972
+Return-Path: <karthik.ramanan@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6CA6152993
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Aug 2014 06:46:17 +0000 (UTC)
-Received: from mail425.ha.ovh.net (gw6.ovh.net [213.251.189.206])
-	by mo69.mail-out.ovh.net (Postfix) with SMTP id 58372100C0EA
-	for <meta-arago@arago-project.org>;
-	Fri, 22 Aug 2014 08:46:12 +0200 (CEST)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 22 Aug 2014 08:46:12 +0200
-Received: from laubervilliers-656-01-35-73.w217-128.abo.wanadoo.fr (HELO
-	?192.168.50.78?) (arnaud.janvier@survision.fr@217.128.91.73)
-	by ns0.ovh.net with SMTP; 22 Aug 2014 08:46:10 +0200
-Message-ID: <53F6E737.4080208@survision.fr>
-Date: Fri, 22 Aug 2014 08:46:15 +0200
-From: Arnaud Janvier <aja@survision.fr>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	Fri, 22 Aug 2014 13:28:33 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7MDSWZa025392
+	for <meta-arago@arago-project.org>; Fri, 22 Aug 2014 08:28:32 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7MDSWvb022665
+	for <meta-arago@arago-project.org>; Fri, 22 Aug 2014 08:28:32 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 22 Aug 2014 08:28:32 -0500
+Received: from zubuntu.apr.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7MDSUD0019668;	Fri, 22 Aug 2014 08:28:31 -0500
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 22 Aug 2014 18:55:21 +0530
+Message-ID: <1408713923-25284-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: meta-arago@arago-project.org
-X-Ovh-Tracer-Id: 16659377972720878787
-X-Ovh-Remote: 217.128.91.73
-	(laubervilliers-656-01-35-73.w217-128.abo.wanadoo.fr)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeejfedrkeefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-X-Spam-Check: DONE|U 0.5/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeejfedrkeefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-Subject: [PATCH] binutils: Fix documentation build error with Texinfo 5
+Cc: nikhil.nd@ti.com
+Subject: [PATCH 0/2] Adding support for Wayland for DRM backends
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,85 +35,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 06:46:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Aug 2014 13:28:33 -0000
+Content-Type: text/plain
 
-Newer versions of Texinfo have problems to build binutils documentation.
-This patch fixes the build issue seen on Ubuntu 14.04 distribution.
----
-  .../binutils-2.20.1/binutils-texinfo-5.0.patch     | 42 
-++++++++++++++++++++++
-  .../recipes-devtools/binutils/binutils_2.20.1.bb   |  1 +
-  2 files changed, 43 insertions(+)
-  create mode 100644 
-meta-arago-extras/recipes-devtools/binutils/binutils-2.20.1/binutils-texinfo-5.0.patch
+There are some issues with the current omapdrm (kernel driver) and related
+dependencies on the TI platform such as dra7xx.
 
-diff --git 
-a/meta-arago-extras/recipes-devtools/binutils/binutils-2.20.1/binutils-texinfo-5.0.patch 
-b/meta-arago-extras/recipes-devtools/binutils/binutils-2.20.1/binutils-texinfo-5.0.patch
-new file mode 100644
-index 0000000..7de8e55
---- /dev/null
-+++ 
-b/meta-arago-extras/recipes-devtools/binutils/binutils-2.20.1/binutils-texinfo-5.0.patch
-@@ -0,0 +1,42 @@
-+diff -Nru binutils-2.20.1.orig/bfd/doc/bfd.texinfo 
-binutils-2.20.1/bfd/doc/bfd.texinfo
-+--- binutils-2.20.1.orig/bfd/doc/bfd.texinfo	2009-09-02 
-09:18:38.000000000 +0200
-++++ binutils-2.20.1/bfd/doc/bfd.texinfo	2014-06-05 08:51:35.897319775 +0200
-+@@ -323,7 +323,7 @@
-+ @printindex cp
-+ + @tex
-+-% I think something like @colophon should be in texinfo.  In the
-++% I think something like @@colophon should be in texinfo.  In the
-+ % meantime:
-+ \long\def\colophon{\hbox to0pt{}\vfill
-+ \centerline{The body of this manual is set in}
-+@@ -334,7 +334,7 @@
-+ \centerline{{\sl\fontname\tensl\/}}
-+ \centerline{are used for emphasis.}\vfill}
-+ \page\colophon
-+-% Blame: doc@cygnus.com, 28mar91.
-++% Blame: doc@@cygnus.com, 28mar91.
-+ @end tex
-+ + @bye
-+diff -Nru binutils-2.20.1.orig/ld/ld.texinfo binutils-2.20.1/ld/ld.texinfo
-+--- binutils-2.20.1.orig/ld/ld.texinfo	2014-06-05 09:26:41.049356076 +0200
-++++ binutils-2.20.1/ld/ld.texinfo	2014-06-04 18:10:49.305840598 +0200
-+@@ -7521,7 +7521,7 @@
-+ @printindex cp
-+ + @tex
-+-% I think something like @colophon should be in texinfo.  In the
-++% I think something like @@colophon should be in texinfo.  In the
-+ % meantime:
-+ \long\def\colophon{\hbox to0pt{}\vfill
-+ \centerline{The body of this manual is set in}
-+@@ -7532,7 +7532,7 @@
-+ \centerline{{\sl\fontname\tensl\/}}
-+ \centerline{are used for emphasis.}\vfill}
-+ \page\colophon
-+-% Blame: doc@cygnus.com, 28mar91.
-++% Blame: doc@@cygnus.com, 28mar91.
-+ @end tex
-+ + @bye
-diff --git 
-a/meta-arago-extras/recipes-devtools/binutils/binutils_2.20.1.bb 
-b/meta-arago-extras/recipes-devtools/binutils/binutils_2.20.1.bb
-index d0f889c..dd7e640 100644
---- a/meta-arago-extras/recipes-devtools/binutils/binutils_2.20.1.bb
-+++ b/meta-arago-extras/recipes-devtools/binutils/binutils_2.20.1.bb
-@@ -34,6 +34,7 @@ SRC_URI = "\
-       file://200_elflink_%B_fixes.patch \
-       file://201_elflink_improve_noaddneeded_errors.patch \
-       file://202_elflink_noaddneeded_vs_weak.patch \
-+     file://binutils-texinfo-5.0.patch \
-       "
-   SRC_URI[md5sum] = "2b9dc8f2b7dbd5ec5992c6e29de0b764"
+Weston version 1.3.0 has been very highly tested and is currently shipping
+to customers who are using wayland with DRM backend. This patch set brings
+in support for Weston and also includes patches that help resolve some
+important issues in the Weston. These issues are specific to TI platforms
+and cannot be submitted upstream.
+
+Karthik Ramanan (2):
+  wayland: add support for version 1.3.0 for drm backend
+  wayland: adding support for weston 1.3.0 for DRM backend
+
+ ...tor-drm-Change-path-of-gbm.h-to-gbm-gbm.h.patch |   26 ++++
+ ...e-Include-option-to-search-in-include-drm.patch |   47 +++++++
+ ...urce-prevent-input-disable-during-repaint.patch |   34 +++++
+ .../0005-temp-hack-to-enable-weston-1.3.patch      |   33 +++++
+ .../0006-weston-drm-Enable-multiple-displays.patch |   43 ++++++
+ .../recipes-graphics/wayland/just-scanner.patch    |   36 +++++
+ .../recipes-graphics/wayland/pattern.png           |  Bin 0 -> 1846 bytes
+ meta-arago-extras/recipes-graphics/wayland/profile |    9 ++
+ .../recipes-graphics/wayland/terminal.png          |  Bin 0 -> 1005 bytes
+ .../recipes-graphics/wayland/wayland.inc           |    5 +
+ .../recipes-graphics/wayland/wayland_1.3.0.bb      |   34 +++++
+ .../recipes-graphics/wayland/weston.desktop        |   91 ++++++++++++
+ .../recipes-graphics/wayland/weston.png            |  147 +++++++++++++++++++
+ .../recipes-graphics/wayland/weston_1.3.0.bb       |  148 ++++++++++++++++++++
+ 14 files changed, 653 insertions(+)
+ create mode 100755 meta-arago-extras/recipes-graphics/wayland/0001-compositor-drm-Change-path-of-gbm.h-to-gbm-gbm.h.patch
+ create mode 100755 meta-arago-extras/recipes-graphics/wayland/0002-Makefile-Include-option-to-search-in-include-drm.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/0003-input-source-prevent-input-disable-during-repaint.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/0005-temp-hack-to-enable-weston-1.3.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/0006-weston-drm-Enable-multiple-displays.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/just-scanner.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/pattern.png
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/profile
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/terminal.png
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland.inc
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland_1.3.0.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston.desktop
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston.png
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston_1.3.0.bb
+
 -- 
-1.9.1
-
-
+1.7.9.5
 
 
