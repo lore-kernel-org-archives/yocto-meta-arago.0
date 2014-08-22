@@ -1,33 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id DEC3352A6D
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id ABC7852992
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Aug 2014 01:59:06 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7M1x658008989
-	for <meta-arago@arago-project.org>; Thu, 21 Aug 2014 20:59:06 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7M1x6FR023610
-	for <meta-arago@arago-project.org>; Thu, 21 Aug 2014 20:59:06 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 21 Aug 2014 20:59:05 -0500
+	Fri, 22 Aug 2014 02:45:00 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7M2ix5C016399
+	for <meta-arago@arago-project.org>; Thu, 21 Aug 2014 21:44:59 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7M2ixE0009059
+	for <meta-arago@arago-project.org>; Thu, 21 Aug 2014 21:44:59 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 21 Aug 2014 21:44:59 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7M1x5bA025612;	Thu, 21 Aug 2014 20:59:05 -0500
+	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7M2iwkU023409;	Thu, 21 Aug 2014 21:44:58 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s7M1wqCp002753;	Fri, 22 Aug 2014 07:29:03 +0530
+	0.8) with ESMTP id s7M2iu7d012647;	Fri, 22 Aug 2014 08:14:57 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 21 Aug 2014 20:58:51 -0500
-Message-ID: <1408672731-19277-9-git-send-email-fcooper@ti.com>
+Date: Thu, 21 Aug 2014 21:44:53 -0500
+Message-ID: <1408675495-24120-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1408672731-19277-1-git-send-email-fcooper@ti.com>
-References: <1408672731-19277-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 9/9] packagegroup-arago-tisdk-matrix: Remove Wifi Matrix Apps
+Subject: [PATCH 1/2] ti-tisdk-setup: Use AM57xx specific u-boot env script file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,46 +38,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 01:59:07 -0000
+X-List-Received-Date: Fri, 22 Aug 2014 02:45:00 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* Wifi Apps are no longer supported
-
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../packagegroup-arago-tisdk-matrix.bb             |    4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 8a2eb56..71f79e0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r32"
-+PR = "r33"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 3a65909..fb2cfc0 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
- inherit packagegroup
+-PR = "r19"
++PR = "r20"
  
-@@ -66,7 +66,6 @@ MATRIX_APPS_append_ti33x = "        \
-     matrix-gui-clocks               \
-     matrix-gui-pm-demos-governor    \
-                                     \
--    matrix-gui-wifi-demos           \
-     ts-calibrate-init \
- "
+ BRANCH ?= "master"
+-SRCREV = "6aa269296c4fdede74b067ee961cb20a897d21df"
++SRCREV = "bd8d4af7de7f83b1919ecf01f7ff000e399b087a"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
  
-@@ -83,7 +82,6 @@ MATRIX_APPS_append_ti43x = "        \
-     matrix-gui-generic-pm           \
-     matrix-gui-pm-demos-suspend     \
-     matrix-gui-clocks               \
--    matrix-gui-wifi-demos           \
-     matrix-gui-pm-demos-governor    \
-     ts-calibrate-init \
- "
+ S = "${WORKDIR}/git/"
+@@ -19,6 +19,7 @@ UBOOT_ENV_am180x-evm = "setup-uboot-env-am18x.sh"
+ UBOOT_ENV_ti33x = "setup-uboot-env-am335x.sh"
+ UBOOT_ENV_ti43x = "setup-uboot-env-am43x.sh"
+ UBOOT_ENV_omap5-evm = "setup-uboot-env-omap5.sh"
++UBOOT_ENV_am57xx-evm = "setup-uboot-env-am57xx-evm.sh"
+ UBOOT_ENV = "setup-uboot-unknown.sh"
+ 
+ do_install () {
 -- 
 1.7.9.5
 
