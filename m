@@ -1,27 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 3F2F752992
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTP id A458F52A6B
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Aug 2014 18:40:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7PIe91K030940
-	for <meta-arago@arago-project.org>; Mon, 25 Aug 2014 13:40:09 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7PIe960021883
-	for <meta-arago@arago-project.org>; Mon, 25 Aug 2014 13:40:09 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 25 Aug 2014 13:40:08 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7PIe8gi014300	for
-	<meta-arago@arago-project.org>; Mon, 25 Aug 2014 13:40:08 -0500
-Date: Mon, 25 Aug 2014 14:40:08 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20140825184007.GI23523@edge>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Pending patches
+	Mon, 25 Aug 2014 19:06:07 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.18.33.160])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0NAV00LEUMDPGXJ0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 25 Aug 2014 14:05:54 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 4D74D2001F; Mon,
+	25 Aug 2014 15:05:49 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 25 Aug 2014 15:05:48 -0400
+Message-id: <1408993548-4304-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.0.4
+Subject: [PATCH] tslib: fix "unable to login" issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,16 +30,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 18:40:10 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 25 Aug 2014 19:06:07 -0000
 
-All,
+From: Denys Dmytriyenko <denys@ti.com>
 
-I have not forgotten about the patches submitted last week. There are some 
-critical issues I'm investigating right and will get to the patches as soon as 
-possible. Thanks.
+Scripts in /etc/profile.d/* are being sourced, not executed, so they can't
+contain "exit" commands, otherwise the entire login session exits!
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-graphics/tslib/files/tslib.sh          | 22 ++++++++++------------
+ .../recipes-graphics/tslib/tslib_1.1.bbappend      |  2 +-
+ 2 files changed, 11 insertions(+), 13 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-graphics/tslib/files/tslib.sh b/meta-arago-distro/recipes-graphics/tslib/files/tslib.sh
+index f22ec9c..c80c946 100644
+--- a/meta-arago-distro/recipes-graphics/tslib/files/tslib.sh
++++ b/meta-arago-distro/recipes-graphics/tslib/files/tslib.sh
+@@ -2,16 +2,14 @@
+ 
+ ### Touchscreen Environment Variables ###
+ 
+-if [ ! -e /dev/input/touchscreen0 ]; then
+-    exit
+-fi
+-
+-export TSLIB_TSDEVICE=/dev/input/touchscreen0
+-
+-mount | grep /run/media/mmcblk0p1 | grep vfat > /dev/null 2>&1
+-if [ "$?" = "0" ]
+-then
+-    export TSLIB_CALIBFILE=/run/media/mmcblk0p1/pointercal
+-else
+-    export TSLIB_CALIBFILE=/etc/pointercal
++if [ -e /dev/input/touchscreen0 ]; then
++    export TSLIB_TSDEVICE=/dev/input/touchscreen0
++
++    mount | grep /run/media/mmcblk0p1 | grep vfat > /dev/null 2>&1
++    if [ "$?" = "0" ]
++    then
++        export TSLIB_CALIBFILE=/run/media/mmcblk0p1/pointercal
++    else
++        export TSLIB_CALIBFILE=/etc/pointercal
++    fi
+ fi
+diff --git a/meta-arago-distro/recipes-graphics/tslib/tslib_1.1.bbappend b/meta-arago-distro/recipes-graphics/tslib/tslib_1.1.bbappend
+index 875218d..e3b3b38 100644
+--- a/meta-arago-distro/recipes-graphics/tslib/tslib_1.1.bbappend
++++ b/meta-arago-distro/recipes-graphics/tslib/tslib_1.1.bbappend
+@@ -1,4 +1,4 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
 -- 
-Denys
+2.0.4
+
 
