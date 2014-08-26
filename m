@@ -1,31 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id EF1FD52992
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 7363E52972
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Aug 2014 22:48:09 +0000 (UTC)
+	Tue, 26 Aug 2014 00:21:26 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7PMm4si032508
-	for <meta-arago@arago-project.org>; Mon, 25 Aug 2014 17:48:04 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7Q0LPD2021791
+	for <meta-arago@arago-project.org>; Mon, 25 Aug 2014 19:21:25 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7PMm4Sf017403
-	for <meta-arago@arago-project.org>; Mon, 25 Aug 2014 17:48:04 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7Q0LPCA019392
+	for <meta-arago@arago-project.org>; Mon, 25 Aug 2014 19:21:25 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 25 Aug 2014 17:48:04 -0500
+	Mon, 25 Aug 2014 19:21:25 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7PMm47O004938	for <meta-arago@arago-project.org>;
-	Mon, 25 Aug 2014 17:48:04 -0500
-Date: Mon, 25 Aug 2014 18:29:39 -0400
+	s7Q0LOsu018743	for <meta-arago@arago-project.org>;
+	Mon, 25 Aug 2014 19:21:24 -0500
+Date: Mon, 25 Aug 2014 20:03:00 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1123642034.503.1409005779766.JavaMail.jenkins@puget>
-In-Reply-To: <360295840.501.1408995209858.JavaMail.jenkins@puget>
-References: <360295840.501.1408995209858.JavaMail.jenkins@puget>
+Message-ID: <822310773.505.1409011380365.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.08 build 2014-08-25_15-33-44
+Subject: [nightly] Core TISDK 2014.08 build 2014-08-25_18-33-52
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 22:48:15 -0000
+X-List-Received-Date: Tue, 26 Aug 2014 00:21:27 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_502_271457066.1409005779753"
+	boundary="----=_Part_504_1826629813.1409011380339"
 
-------=_Part_502_271457066.1409005779753
+------=_Part_504_1826629813.1409011380339
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -56,7 +54,7 @@ Status for 08/25/14
 
 <h2>Status for 08/25/14</h2>
 
-<h2>BUILD_ID: build-2014-08-25_15-34-47</h2>
+<h2>BUILD_ID: build-2014-08-25_18-34-54</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -130,8 +128,8 @@ Status for 08/25/14
     </tr>
     <tr>
         <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
     </tr>
     <tr>
         <td>am437x-evm</td>
@@ -150,8 +148,8 @@ Status for 08/25/14
     </tr>
     <tr>
         <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
     <tr>
         <td>am57xx-evm</td>
@@ -227,4 +225,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_502_271457066.1409005779753--
+------=_Part_504_1826629813.1409011380339--
