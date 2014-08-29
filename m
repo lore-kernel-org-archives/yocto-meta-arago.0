@@ -1,31 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 16AD352992
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id BEFB352992
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Aug 2014 17:35:37 +0000 (UTC)
+	Fri, 29 Aug 2014 17:36:01 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THZawe005968
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:35:36 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THZa6L017122
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:35:36 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 29 Aug 2014 12:35:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THZZ1O031874;
-	Fri, 29 Aug 2014 12:35:36 -0500
-Date: Fri, 29 Aug 2014 13:35:35 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20140829173535.GL18620@edge>
-References: <1408675495-24120-1-git-send-email-fcooper@ti.com>
-	<1408675495-24120-2-git-send-email-fcooper@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THa1KG002631
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:36:01 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THa0uP017330
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:36:00 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 29 Aug 2014 12:36:00 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7THZxUB004587;	Fri, 29 Aug 2014 12:36:00 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7THZv1S006445;	Fri, 29 Aug 2014 23:05:58 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 29 Aug 2014 12:35:54 -0500
+Message-ID: <1409333754-14775-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <1408675495-24120-2-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 2/2] arago-core-tisdk-image: Work around SOC_FAMILY issue
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 6/9 v2] matrix-gui: Update commit to remove border for HTML Matrix Apps
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,45 +38,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Aug 2014 17:35:37 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 29 Aug 2014 17:36:01 -0000
+Content-Type: text/plain
 
-On Thu, Aug 21, 2014 at 09:44:54PM -0500, Franklin S. Cooper Jr wrote:
-> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> 
-> * Some reason the SOC_FAMILY dra7xx has precedences over machine overrides.
-> * Change dra7xx to dra7xx-evm to avoid SOC_FAMILY override issue.
-> 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> index 37f71d6..475c9d6 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> @@ -19,7 +19,7 @@ TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev libgnutls-extra26 libgnutls-openssl2
->  DTB_FILTER = "unknown"
->  DTB_FILTER_ti33x = "am335x"
->  DTB_FILTER_omap5-evm = "omap5"
-> -DTB_FILTER_dra7xx = "dra7"
-> +DTB_FILTER_dra7xx-evm = "dra7"
->  DTB_FILTER_am57xx-evm = "am57xx"
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Are you sure you are basing your patch on master? The above entry for am57xx 
-doesn exist yet in meta-arago/master. Looks like another patch is missing or 
-your need to rebase.
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+Version 2  changes:
+Fix PR value typo
 
+ .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->  DTB_FILTER_ti43x = "am43"
->  DTB_FILTER_keystone = "k2hk"
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+index 42f0c3b..9efb24c 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
+ 
+ SECTION = "multimedia"
+ 
+-PR = "r19"
++PR = "r20"
+ 
+ INITSCRIPT_NAME = "matrix-gui-2.0"
+ INITSCRIPT_PARAMS = "defaults 97"
+@@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit update-rc.d
+ 
+ BRANCH ?= "master"
+-SRCREV = "d0fcc5ab50c9ecdf7a3cc5610807d16a6c91a850"
++SRCREV = "d65a5e1d178bb30653f16322bebf7e7ee530d613"
+ 
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
+            file://init \
+-- 
+1.7.9.5
+
 
