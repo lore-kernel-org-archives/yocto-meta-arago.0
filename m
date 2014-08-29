@@ -1,31 +1,35 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BEFB352992
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 34A7E52979
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Aug 2014 17:36:01 +0000 (UTC)
+	Fri, 29 Aug 2014 17:39:17 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THa1KG002631
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:36:01 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THdGXb007961
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:39:16 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THa0uP017330
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:36:00 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 29 Aug 2014 12:36:00 -0500
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7THZxUB004587;	Fri, 29 Aug 2014 12:36:00 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s7THZv1S006445;	Fri, 29 Aug 2014 23:05:58 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 29 Aug 2014 12:35:54 -0500
-Message-ID: <1409333754-14775-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THdGXV019908
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:39:16 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0174.001; Fri, 29 Aug 2014 12:39:16 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 2/2] arago-core-tisdk-image: Work around
+	SOC_FAMILY issue
+Thread-Index: AQHPvbMR/AvSD0RA90axMNmoVx64yZvoN7KA//+s0/A=
+Date: Fri, 29 Aug 2014 17:39:15 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C721C48@DFLE08.ent.ti.com>
+References: <1408675495-24120-1-git-send-email-fcooper@ti.com>
+	<1408675495-24120-2-git-send-email-fcooper@ti.com>
+	<20140829173535.GL18620@edge>
+In-Reply-To: <20140829173535.GL18620@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 6/9 v2] matrix-gui: Update commit to remove border for HTML Matrix Apps
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 2/2] arago-core-tisdk-image: Work around SOC_FAMILY issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,42 +42,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Aug 2014 17:36:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 29 Aug 2014 17:39:17 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-Version 2  changes:
-Fix PR value typo
 
- .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index 42f0c3b..9efb24c 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
- 
- SECTION = "multimedia"
- 
--PR = "r19"
-+PR = "r20"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- inherit update-rc.d
- 
- BRANCH ?= "master"
--SRCREV = "d0fcc5ab50c9ecdf7a3cc5610807d16a6c91a850"
-+SRCREV = "d65a5e1d178bb30653f16322bebf7e7ee530d613"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
-            file://init \
--- 
-1.7.9.5
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Friday, August 29, 2014 12:36 PM
+> To: Cooper Jr., Franklin
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH 2/2] arago-core-tisdk-image: Work
+> around SOC_FAMILY issue
+>=20
+> On Thu, Aug 21, 2014 at 09:44:54PM -0500, Franklin S. Cooper Jr wrote:
+> > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+> >
+> > * Some reason the SOC_FAMILY dra7xx has precedences over machine
+> overrides.
+> > * Change dra7xx to dra7xx-evm to avoid SOC_FAMILY override issue.
+> >
+> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > ---
+> >  .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git
+> > a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > index 37f71d6..475c9d6 100644
+> > --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > @@ -19,7 +19,7 @@ TOOLCHAIN_CLEANUP_PACKAGES =3D "libgnutls-dev
+> > libgnutls-extra26 libgnutls-openssl2  DTB_FILTER =3D "unknown"
+> >  DTB_FILTER_ti33x =3D "am335x"
+> >  DTB_FILTER_omap5-evm =3D "omap5"
+> > -DTB_FILTER_dra7xx =3D "dra7"
+> > +DTB_FILTER_dra7xx-evm =3D "dra7"
+> >  DTB_FILTER_am57xx-evm =3D "am57xx"
+>=20
+> Are you sure you are basing your patch on master? The above entry for
+> am57xx doesn exist yet in meta-arago/master. Looks like another patch is
+> missing or your need to rebase.
+[Franklin] This patch set was based on my previous patch set.  The patch fo=
+r that entry is here:
+http://arago-project.org/pipermail/meta-arago/2014-August/004042.html
+Sorry I should have been clear about the dependencies especially between pa=
+tch sets.
+>=20
+>=20
+> >  DTB_FILTER_ti43x =3D "am43"
+> >  DTB_FILTER_keystone =3D "k2hk"
+> > --
+> > 1.7.9.5
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
