@@ -1,36 +1,33 @@
-Return-Path: <devin@jd2.com>
-Received: from smtp66.ord1c.emailsrvr.com (smtp66.ord1c.emailsrvr.com
-	[108.166.43.66])
-	by arago-project.org (Postfix) with ESMTPS id 1DCD452979
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9967752979
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Aug 2014 17:42:46 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.relay.ord1c.emailsrvr.com (SMTP Server) with ESMTP id
-	5396D380416; Fri, 29 Aug 2014 13:42:45 -0400 (EDT)
-X-Virus-Scanned: OK
-Received: by smtp1.relay.ord1c.emailsrvr.com (Authenticated sender:
-	devin-AT-jd2.com) with ESMTPSA id DDA19380420; 
-	Fri, 29 Aug 2014 13:42:44 -0400 (EDT)
-X-Sender-Id: devin@jd2.com
-Received: from DEVINWIN (tn-76-5-156-138.sta.embarqhsd.net [76.5.156.138])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:465 (trex/5.2.10); Fri, 29 Aug 2014 17:42:45 GMT
-From: "Devin Hughes" <devin@jd2.com>
-To: "'Denys Dmytriyenko'" <denys@ti.com>
-References: <003101cfc132$d793d8b0$86bb8a10$@jd2.com>
-	<20140826142126.GN23523@edge>
-	<003f01cfc397$28a0ab50$79e201f0$@jd2.com>
-	<8F29D6B095ED194EA1980491A5E029710C721666@DFLE08.ent.ti.com>
-	<000501cfc3a2$080ad680$18208380$@jd2.com>
-	<20140829164537.GH18620@edge>
-In-Reply-To: <20140829164537.GH18620@edge>
-Date: Fri, 29 Aug 2014 13:42:38 -0400
-Message-ID: <000901cfc3b0$a075f860$e161e920$@jd2.com>
+	Fri, 29 Aug 2014 17:43:45 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THhid9021876
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:43:44 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THhinr007397
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:43:44 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 29 Aug 2014 12:43:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THhir2009707;
+	Fri, 29 Aug 2014 12:43:44 -0500
+Date: Fri, 29 Aug 2014 13:43:43 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20140829174343.GM18620@edge>
+References: <1408675495-24120-1-git-send-email-fcooper@ti.com>
+	<1408675495-24120-2-git-send-email-fcooper@ti.com>
+	<20140829173535.GL18620@edge>
+	<8F29D6B095ED194EA1980491A5E029710C721C48@DFLE08.ent.ti.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQFbvSfBAj06lxCpg4PnJP1Mmrf/iAKX9m2kAcx67cwBsvx8FQHVE/YQATiz076chryboA==
-Cc: meta-arago@arago-project.org, "'Cooper Jr., Franklin'" <fcooper@ti.com>
-Subject: Re: Building meta-arago daisy
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C721C48@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 2/2] arago-core-tisdk-image: Work around SOC_FAMILY issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,73 +40,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Aug 2014 17:42:46 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Fri, 29 Aug 2014 17:43:45 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
+On Fri, Aug 29, 2014 at 01:39:15PM -0400, Cooper Jr., Franklin wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Friday, August 29, 2014 12:36 PM
+> > To: Cooper Jr., Franklin
+> > Cc: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [PATCH 2/2] arago-core-tisdk-image: Work
+> > around SOC_FAMILY issue
+> > 
+> > On Thu, Aug 21, 2014 at 09:44:54PM -0500, Franklin S. Cooper Jr wrote:
+> > > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+> > >
+> > > * Some reason the SOC_FAMILY dra7xx has precedences over machine
+> > overrides.
+> > > * Change dra7xx to dra7xx-evm to avoid SOC_FAMILY override issue.
+> > >
+> > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > > ---
+> > >  .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git
+> > > a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > > b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > > index 37f71d6..475c9d6 100644
+> > > --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > > +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+> > > @@ -19,7 +19,7 @@ TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev
+> > > libgnutls-extra26 libgnutls-openssl2  DTB_FILTER = "unknown"
+> > >  DTB_FILTER_ti33x = "am335x"
+> > >  DTB_FILTER_omap5-evm = "omap5"
+> > > -DTB_FILTER_dra7xx = "dra7"
+> > > +DTB_FILTER_dra7xx-evm = "dra7"
+> > >  DTB_FILTER_am57xx-evm = "am57xx"
+> > 
+> > Are you sure you are basing your patch on master? The above entry for
+> > am57xx doesn exist yet in meta-arago/master. Looks like another patch is
+> > missing or your need to rebase.
+> [Franklin] This patch set was based on my previous patch set.  The patch for that entry is here:
+> http://arago-project.org/pipermail/meta-arago/2014-August/004042.html
+> Sorry I should have been clear about the dependencies especially between patch sets.
 
+Right, and I was trying to skip that patchset due to other comments. But now 
+it's in, so it should satisfy the dependency. And I knew I saw the entry for 
+am57xx someplace, just forgot it was the first patch from the previous series 
+:)
 
-> -----Original Message-----
-> From: Denys Dmytriyenko [mailto:denys@ti.com]
-> Sent: Friday, August 29, 2014 12:46 PM
-> To: Devin Hughes
-> Cc: 'Cooper Jr., Franklin'; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] Building meta-arago daisy
-> 
-> On Fri, Aug 29, 2014 at 11:58:09AM -0400, Devin Hughes wrote:
-> > > > [Devin Hughes] Is the daisy configured build stable? I rebuilt the
-> > > > image yesterday after the servers returned and it seems to run
-> > > > unexpectedly. No boot errors, but the touchscreen and application
-> > > > performance seem worse than the SDK release.
-> > > [Franklin] Can you explain what you mean in terms of application
-> > performance
-> > > issues?
-> > [Devin Hughes] Performance was the wrong choice of words now that I
-> > know about the touchscreen trouble. It's more the permanent title bar
-> > and lack of screen updates after closing an application. For instance,
-> > after running one of the 3d demos in matrix gui, the title bar shows
-> > the last opengl rendering on the top of the lcd.
-> 
-> 3D demos don't talk to Wayland stack and they take over fbdev completely
-and
-> previously Qt4-based refresh-screen app was used to update the screen
-> afterwards.
-> 
-[Devin Hughes] This makes sense. 
-> 
-> > > I am going to build a customized image as a test next,
-> > > > and I was thinking arago-base from daisy would be a good starting
-> > > > point since I would like qt 5.2 or greater.
-> > > [Franklin] So by default we are using Wayland/Weston and for Qt 5 we
-> > > are
-> > using
-> > > the Wayland compositor. However, there are several touch screen
-> > > related
-> > bugs
-> > > in Weston and Qt 5 that we are working with the Qt 5 and Weston team
-> > > to address. It will take some time to fix so if acceptable I would
-> > > recommend
-> > just
-> > > using a usb mouse as a work around for now if your running into
-> > > those
-> > problems
-> > > also.
-> > [Devin Hughes] USB mouse would be fine for me, but libusb is failing
-> > to initialize. In dmesg I can see musb_init_controller failures, and
-> > the platform driver reports a deferred probe. The only similar
-> > information I can find on google describes improperly configured
-> > device tree sources, but the fixes are already included in the daisy
-> > referenced kernel.
-> 
-> Hmm, you said that is with 335x SK, right? I haven't seen this on
-BeagleBone
-> Black or 335x EVM. I'll try to see if I can reproduce it with SK...
-[Devin Hughes] Yes, it's the 335x SK, and a vanilla arago-daisy conf with
-gcc-4.7. No custom layers have been added yet.
-> 
-> --
-> Denys
+-- 
+Denys
+
 
 
