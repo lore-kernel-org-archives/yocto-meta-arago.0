@@ -1,33 +1,31 @@
-Return-Path: <denys@ti.com>
+Return-Path: <fcooper@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 9967752979
+	by arago-project.org (Postfix) with ESMTPS id 9B07152A3B
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Aug 2014 17:43:45 +0000 (UTC)
+	Fri, 29 Aug 2014 17:58:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THhid9021876
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:43:44 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THhinr007397
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:43:44 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 29 Aug 2014 12:43:44 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THhir2009707;
-	Fri, 29 Aug 2014 12:43:44 -0500
-Date: Fri, 29 Aug 2014 13:43:43 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20140829174343.GM18620@edge>
-References: <1408675495-24120-1-git-send-email-fcooper@ti.com>
-	<1408675495-24120-2-git-send-email-fcooper@ti.com>
-	<20140829173535.GL18620@edge>
-	<8F29D6B095ED194EA1980491A5E029710C721C48@DFLE08.ent.ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7THwUuj023171
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:58:30 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7THwUrA016807
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 12:58:30 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 29 Aug 2014 12:58:30 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7THwTkS021568;	Fri, 29 Aug 2014 12:58:30 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s7THwRp0011262;	Fri, 29 Aug 2014 23:28:28 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 29 Aug 2014 12:58:25 -0500
+Message-ID: <1409335105-18290-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C721C48@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/2] arago-core-tisdk-image: Work around SOC_FAMILY issue
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] matrix-gui-qt5-demos: Add Qt5 Matrix demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,61 +38,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Aug 2014 17:43:45 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 29 Aug 2014 17:58:31 -0000
+Content-Type: text/plain
 
-On Fri, Aug 29, 2014 at 01:39:15PM -0400, Cooper Jr., Franklin wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Friday, August 29, 2014 12:36 PM
-> > To: Cooper Jr., Franklin
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 2/2] arago-core-tisdk-image: Work
-> > around SOC_FAMILY issue
-> > 
-> > On Thu, Aug 21, 2014 at 09:44:54PM -0500, Franklin S. Cooper Jr wrote:
-> > > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> > >
-> > > * Some reason the SOC_FAMILY dra7xx has precedences over machine
-> > overrides.
-> > > * Change dra7xx to dra7xx-evm to avoid SOC_FAMILY override issue.
-> > >
-> > > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > > ---
-> > >  .../recipes-core/images/arago-core-tisdk-image.inc |    2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git
-> > > a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> > > b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> > > index 37f71d6..475c9d6 100644
-> > > --- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> > > +++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-> > > @@ -19,7 +19,7 @@ TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev
-> > > libgnutls-extra26 libgnutls-openssl2  DTB_FILTER = "unknown"
-> > >  DTB_FILTER_ti33x = "am335x"
-> > >  DTB_FILTER_omap5-evm = "omap5"
-> > > -DTB_FILTER_dra7xx = "dra7"
-> > > +DTB_FILTER_dra7xx-evm = "dra7"
-> > >  DTB_FILTER_am57xx-evm = "am57xx"
-> > 
-> > Are you sure you are basing your patch on master? The above entry for
-> > am57xx doesn exist yet in meta-arago/master. Looks like another patch is
-> > missing or your need to rebase.
-> [Franklin] This patch set was based on my previous patch set.  The patch for that entry is here:
-> http://arago-project.org/pipermail/meta-arago/2014-August/004042.html
-> Sorry I should have been clear about the dependencies especially between patch sets.
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Right, and I was trying to skip that patchset due to other comments. But now 
-it's in, so it should satisfy the dependency. And I knew I saw the entry for 
-am57xx someplace, just forgot it was the first patch from the previous series 
-:)
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../matrix/matrix-gui-qt5-demos_2.0.bb             |   22 ++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
 
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
+new file mode 100644
+index 0000000..0ed3707
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
+@@ -0,0 +1,22 @@
++DESCRIPTION = "Qt5 demo descriptions for Matrix v2"
++HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
++
++require matrix-gui-apps-git.inc
++
++PR = "${INC_PR}.0"
++
++inherit allarch
++
++S = "${WORKDIR}/git/qt5_apps"
++
++do_install_prepend(){
++   install -d ${D}${bindir}
++   install -m 0755 ${S}/read_system_env.sh ${D}${bindir}/
++}
++
++
++# Make sure qt5 submenu and app images has been installed
++RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-qt5"
++
++FILES_${PN} += "${MATRIX_BASE_DIR}/* \
++                ${bindir}/read_system_env.sh"
 -- 
-Denys
-
+1.7.9.5
 
 
