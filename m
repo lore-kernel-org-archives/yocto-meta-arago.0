@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 53B7C52A3B
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 8A85D52A3B
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Aug 2014 21:57:42 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7TLvfOK010230
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 16:57:41 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7TLvfN2022611
-	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 16:57:41 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 29 Aug 2014 16:57:41 -0500
+	Fri, 29 Aug 2014 21:57:44 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7TLvhvD025698
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 16:57:43 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7TLvhpt022574
+	for <meta-arago@arago-project.org>; Fri, 29 Aug 2014 16:57:43 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 29 Aug 2014 16:57:43 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7TLvdDH020723;	Fri, 29 Aug 2014 16:57:40 -0500
+	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7TLvghT018433;	Fri, 29 Aug 2014 16:57:42 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id s7TLvXE6031426;	Sat, 30 Aug 2014 03:27:38 +0530
+	0.8) with ESMTP id s7TLvXE7031426;	Sat, 30 Aug 2014 03:27:40 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Aug 2014 16:57:19 -0500
-Message-ID: <1409349440-20871-2-git-send-email-fcooper@ti.com>
+Date: Fri, 29 Aug 2014 16:57:20 -0500
+Message-ID: <1409349440-20871-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1409349440-20871-1-git-send-email-fcooper@ti.com>
 References: <1409349440-20871-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/3] qtwayland: Add Touch issue fix
+Subject: [PATCH 3/3] packagegroup-arago-*: Conditionally include tslib
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,122 +40,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Aug 2014 21:57:42 -0000
+X-List-Received-Date: Fri, 29 Aug 2014 21:57:44 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* Currently Qt 5 when using Wayland only properly recognizes one touchup,
-  touchmove and touch down event.
-* Any further touch events are not properly recognized.
-* Apparently this is a bug in how Weston handles touch events.
-* Use a patch provided by Digia to work around this issue.
-* More testing is required to verify that this is a valid fix.
-
-Qt Bug Report link:
-https://bugreports.qt-project.org/browse/QTBUG-36602
+* Weston handles input so no reason to include both Weston and tslib.
+* Having both can possibly cause issues or even hide issues.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../qt5/qtwayland/0001-Fix-touch-with-Weston.patch |   74 ++++++++++++++++++++
- .../recipes-qt/qt5/qtwayland_git.bbappend          |    7 +-
- 2 files changed, 80 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
+ .../packagegroups/packagegroup-arago-console.bb    |    4 ++--
+ .../packagegroup-arago-standalone-sdk-target.bb    |    4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch b/meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
-new file mode 100644
-index 0000000..df564bb
---- /dev/null
-+++ b/meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
-@@ -0,0 +1,74 @@
-+From 797fd02ed6bb26f30899e117d6ab8119b7a24f95 Mon Sep 17 00:00:00 2001
-+From: Laszlo Agocs <laszlo.agocs@digia.com>
-+Date: Fri, 29 Aug 2014 20:43:20 +0200
-+Subject: [PATCH] Fix touch with Weston
-+
-+Work around the missing touch_frame after the last touch_up.
-+
-+Task-number: QTBUG-36602
-+Change-Id: Iccb03bdc8b430c7cefc097c3c84e50be676c7fe7
-+---
-+ src/client/qwaylandinputdevice.cpp |   26 +++++++++++++++++++-------
-+ 1 file changed, 19 insertions(+), 7 deletions(-)
-+
-+diff --git a/src/client/qwaylandinputdevice.cpp b/src/client/qwaylandinputdevice.cpp
-+index 6c13201..a520c79 100644
-+--- a/src/client/qwaylandinputdevice.cpp
-++++ b/src/client/qwaylandinputdevice.cpp
-+@@ -220,6 +220,8 @@ public:
-+     void touch_frame() Q_DECL_OVERRIDE;
-+     void touch_cancel() Q_DECL_OVERRIDE;
-+ 
-++    bool allTouchPointsReleased();
-++
-+     QWaylandInputDevice *mParent;
-+     QWaylandWindow *mFocus;
-+     QList<QWindowSystemInterface::TouchPoint> mTouchPoints;
-+@@ -863,6 +865,13 @@ void QWaylandInputDevice::Touch::touch_up(uint32_t serial, uint32_t time, int32_
-+     Q_UNUSED(time);
-+     mFocus = 0;
-+     mParent->handleTouchPoint(id, 0, 0, Qt::TouchPointReleased);
-++
-++    // As of Weston 1.5.90 there is no touch_frame after the last touch_up
-++    // (i.e. when the last finger is released). To accomodate for this, issue a
-++    // touch_frame. This cannot hurt since it is safe to call the touch_frame
-++    // handler multiple times when there are no points left.
-++    if (allTouchPointsReleased())
-++        touch_frame();
-+ }
-+ 
-+ void QWaylandInputDevice::Touch::touch_motion(uint32_t time, int32_t id, wl_fixed_t x, wl_fixed_t y)
-+@@ -921,6 +930,15 @@ void QWaylandInputDevice::handleTouchPoint(int id, double x, double y, Qt::Touch
-+     mTouch->mTouchPoints.append(tp);
-+ }
-+ 
-++bool QWaylandInputDevice::Touch::allTouchPointsReleased()
-++{
-++    for (int i = 0; i < mTouchPoints.count(); ++i)
-++        if (mTouchPoints.at(i).state != Qt::TouchPointReleased)
-++            return false;
-++
-++    return true;
-++}
-++
-+ void QWaylandInputDevice::Touch::touch_frame()
-+ {
-+     // Copy all points, that are in the previous but not in the current list, as stationary.
-+@@ -950,13 +968,7 @@ void QWaylandInputDevice::Touch::touch_frame()
-+ 
-+     QWindowSystemInterface::handleTouchEvent(window, mParent->mTouchDevice, mTouchPoints);
-+ 
-+-    bool allReleased = true;
-+-    for (int i = 0; i < mTouchPoints.count(); ++i)
-+-        if (mTouchPoints.at(i).state != Qt::TouchPointReleased) {
-+-            allReleased = false;
-+-            break;
-+-        }
-+-
-++    const bool allReleased = allTouchPointsReleased();
-+     mPrevTouchPoints = mTouchPoints;
-+     mTouchPoints.clear();
-+ 
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-index 64de589..dca1710 100644
---- a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-+++ b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-@@ -1,3 +1,8 @@
--PR_append = "-arago1"
-+PR_append = "-arago2"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI += "file://0001-Fix-touch-with-Weston.patch"
-+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
+index 8d65cac..f756d90 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Extended task to get more basic and console apps"
+ LICENSE = "MIT"
+-PR = "r6"
++PR = "r7"
  
- QT_MODULE_BRANCH = "5.4"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -67,7 +67,7 @@ ARAGO_SDK_PREREQ = "\
+ 
+ ARAGO_CONSOLE = "\
+     ${ARAGO_ALSA_EXTRA} \
+-    ${ARAGO_TSLIB} \
++    ${@base_conditional('DISTRO_FEATURES', 'weston', '', '${ARAGO_TSLIB}', d)}  \
+     ${ARAGO_NCURSES} \
+     ${ARAGO_FSTOOLS} \
+     ${ARAGO_UTILS} \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+index 687de9e..f3882d7 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+@@ -1,5 +1,5 @@
+ DESCRIPTION = "Target packages for the standalone SDK"
+-PR = "r5"
++PR = "r6"
+ LICENSE = "MIT"
+ 
+ inherit packagegroup
+@@ -25,7 +25,7 @@ RDEPENDS_${PN} = "\
+     libopkg-dev \
+     libpng-dev \
+     readline-dev \
+-    tslib-dev \
++    ${@base_conditional('DISTRO_FEATURES', 'weston', '', 'tslib-dev', d)}  \
+     libusb-compat-dev \
+     libusb1-dev \
+     zlib-dev \
 -- 
 1.7.9.5
 
