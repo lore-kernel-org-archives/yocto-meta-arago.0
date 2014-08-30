@@ -1,43 +1,29 @@
-Return-Path: <btv1==3195c5a2816==Matt.Schuckmann@planar.com>
-Received: from barbvt11.planar.com (mail.planar.com [199.244.172.52])
-	by arago-project.org (Postfix) with ESMTP id 3616352A3B
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 13D8452A06
 	for <meta-arago@arago-project.org>;
-	Sat, 30 Aug 2014 00:31:08 +0000 (UTC)
-X-ASG-Debug-ID: 1409358663-04afd2135f265120001-NloGV9
-Received: from msxbvt03.planar.net (msxbvt03.planar.net [172.16.0.147]) by
-	barbvt11.planar.com with ESMTP id 2MuR17o3QHF8X5km for
-	<meta-arago@arago-project.org>; Fri, 29 Aug 2014 17:31:03 -0700 (PDT)
-X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Fri, 29 Aug 2014 17:31:03 -0700
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Date: Fri, 29 Aug 2014 17:31:02 -0700
-Thread-Topic: I'm confused about distributions, machines, and images
-X-ASG-Orig-Subj: I'm confused about distributions, machines, and images
-Thread-Index: Ac/D6a2btFyB6NMVRt6mxPkJxMeDaA==
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD86C6135@MSXBEBVT12.planar.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	Sat, 30 Aug 2014 07:02:04 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7U723cM025134
+	for <meta-arago@arago-project.org>; Sat, 30 Aug 2014 02:02:03 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7U722dO008054
+	for <meta-arago@arago-project.org>; Sat, 30 Aug 2014 02:02:03 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Sat, 30 Aug 2014 02:02:02 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s7U722r6016484	for <meta-arago@arago-project.org>;
+	Sat, 30 Aug 2014 02:02:02 -0500
+Date: Sat, 30 Aug 2014 02:43:30 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1647776385.533.1409381010988.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Barracuda-Connect: msxbvt03.planar.net[172.16.0.147]
-X-Barracuda-Start-Time: 1409358663
-X-Barracuda-URL: http://10.10.111.113:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at planar.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.4998 1.0000 0.0000
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No,
-	SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.8971
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-Subject: I'm confused about distributions, machines, and images
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.08 build 2014-08-30_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,50 +36,193 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Aug 2014 00:31:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 30 Aug 2014 07:02:04 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_532_1803744091.1409381010962"
 
-I feel like I keep going around in circles on this and I'm looking for some=
- wisdom and direction. I hope that I am posting this in the correct place.
+------=_Part_532_1803744091.1409381010962
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I'm trying to get a Linux image setup for my custom board based on the AM33=
-5x.
-I assume that I want to use the meta-arago layer because it has all the lat=
-est tested stuff. Correct?
+<html>
+<head>
+<title>
+Status for 08/30/14
+</title>
+</head>
+<body>
 
-Our board will not have any sound, screen, usbgadget, or video support so I=
- assume that I'll want to create a new MACHINE, probably based on meta-arag=
-o/meta-arago-distro/conf/machine/arago-armv7.conf (correct?) but with a dif=
-ferent definition for MACHINE_FEATURES. Is this the correct thing to do? Do=
- I start with a completely scratch machine definition coping bits and piece=
-s from the arago machine definitions, or do somehow inherit or include the =
-definitions from the arago files and somehow override or filter out stuff t=
-hat I don't want?
+<h2>Status for 08/30/14</h2>
 
-Next, I don't understand if I need to create a new distribution. It doesn't=
- seem like I should, but I can see that meta-argo/meta-argo-distro/conf/dis=
-tro/arago.conf defines DISTRO_FEATURES to include many things that my syste=
-m won't need, including alsa, pcmcia, usbgadget, wifi, etc. I can't seem to=
- find a complete description for what DISTRO_FEATURES does (same goes for M=
-ACHINE_FEATURES and IMAGE_FEATURES), does it mean that all of the things li=
-sted will be included in images based on the distribution or? Ultimately th=
-e question is: do I need to create a new distribution? And if I do how best=
- to go about it.
+<h2>BUILD_ID: build-2014-08-30_01-01-31</h2>
 
-Finally, I think that I need to create a new image that only includes the p=
-ackages that I want, I would think that I would want to base it on one of t=
-he arago images (i.e. include something like arago-base-image.bb in my imag=
-e). However when I look at arago-base-image.bb I see that it includes packa=
-gegroup-arago-base which RDEPENDS on alsa-lib and alsa-utils-aplay both of =
-which I don't think are needed since my board doesn't support sound. Does t=
-his mean that I shouldn't base my image on an arago-base-image or is there =
-a way to filter these packages out?=20
+<h2>Clean Build: false</h2>
 
-I really appreciate any help, and I really need some direction, I feel like=
- I'm starting to learn how to get around the open-embedded stack but there =
-is still a lot that I have to learn.=20
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-Matt S.=20
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
 
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.08"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_532_1803744091.1409381010962--
