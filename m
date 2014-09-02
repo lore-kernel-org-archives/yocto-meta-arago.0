@@ -1,29 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C5BC352AC0
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id B8FE652AC1
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Sep 2014 10:55:13 +0000 (UTC)
+	Tue,  2 Sep 2014 10:55:15 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s82AtD7v019884
-	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 05:55:13 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82AtD2e032104
-	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 05:55:13 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 2 Sep 2014 05:55:12 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s82AtFMG017418
+	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 05:55:15 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82AtF5H032110
+	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 05:55:15 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 2 Sep 2014 05:55:14 -0500
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82AsrZH026077;
-	Tue, 2 Sep 2014 05:55:11 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82AsrZI026077;
+	Tue, 2 Sep 2014 05:55:13 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 2 Sep 2014 16:24:36 +0530
-Message-ID: <1409655283-4899-6-git-send-email-a0393906@ti.com>
+Date: Tue, 2 Sep 2014 16:24:37 +0530
+Message-ID: <1409655283-4899-7-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 2.0.1
 In-Reply-To: <1409655283-4899-1-git-send-email-a0393906@ti.com>
 References: <1409655283-4899-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 05/12] hostap-daemon-wl18xx: Update recipe to ol_r8.a9.14 version
+Subject: [PATCH 06/12] wl18xx : update to ol_r8.a9.14
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,128 +36,97 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Sep 2014 10:55:14 -0000
+X-List-Received-Date: Tue, 02 Sep 2014 10:55:16 -0000
 Content-Type: text/plain
 
 From: Yaniv Machani <yanivma@ti.com>
 
 - Changed git sources to git.ti.com
-    - Updated Defconfig.
-
+    - Updated to latest release.
 Signed-off-by: Yaniv Machani <yanivma@ti.com>
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 Tested-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../hostap/hostap-daemon-wl18xx_r8.a8.10.bb        | 24 ----------------------
- .../hostap/hostap-daemon-wl18xx_r8.a9.14.bb        | 24 ++++++++++++++++++++++
- .../hostap/hostap-daemon/defconfig                 |  2 +-
- .../recipes-connectivity/hostap/hostap.inc         |  7 +++----
- 4 files changed, 28 insertions(+), 29 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
- create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
+ .../wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb    | 30 ---------------------
+ .../wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb    | 31 ++++++++++++++++++++++
+ 2 files changed, 31 insertions(+), 30 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
+diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
 deleted file mode 100644
-index cd5d8d3..0000000
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
+index b59f1c4..0000000
+--- a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
 +++ /dev/null
-@@ -1,24 +0,0 @@
--# This is a TI specific version of the hostap-daemon recipe for use with the
--# wl18xx wlan and bluetooth module.
+@@ -1,30 +0,0 @@
+-DESCRIPTION = "Firmware files for use with TI wl18xx"
+-LICENSE = "TI-TSPA"
+-LIC_FILES_CHKSUM = "file://LICENCE;md5=4977a0fe767ee17765ae63c435a32a9e"
 -
--require hostap.inc
+-PACKAGE_ARCH = "all"
 -
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e"
+-PR = "r3+gitr${SRCPV}"
 -
--PR_append = "b+gitr${SRCPV}"
--
--FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
--
--# Add TI to the end to make it clear that this is a TI customized version
--# of hostap
--PV = "2.0-devel-ti"
+-PROVIDES += "wl12xx-firmware"
+-RPROVIDES_${PN} += "wl12xx-firmware"
+-RREPLACES_${PN} += "wl12xx-firmware"
+-RCONFLICTS_${PN} += "wl12xx-firmware"
 -
 -# Tag: ol_r8.a8.10
--SRCREV = "257ab333aad993b4be81808524bc0d939c276058"
--BRANCH = "mbss_suspend"
+-SRCREV = "89dc93a5c23fd69ebacd64c936ba5aabf173c29b"
+-SRC_URI = "git://github.com/TI-OpenLink/wl18xx_fw.git;protocol=git;branch=mbss \
+-           file://0001-Add-Makefile-for-SDK.patch \
+-          "
 -
--PROVIDES += "hostap-daemon"
--RPROVIDES_${PN} += "hostap-daemon"
--RREPLACES_${PN} += "hostap-daemon"
--RCONFLICTS_${PN} += "hostap-daemon"
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
+-S = "${WORKDIR}/git"
+-
+-do_compile() {
+-    :
+-}
+-
+-do_install() {
+-    oe_runmake 'DEST_DIR=${D}' install
+-}
+-
+-FILES_${PN} = "/lib/firmware/ti-connectivity/*"
+diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
 new file mode 100644
-index 0000000..3981b78
+index 0000000..45d4ea7
 --- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
-@@ -0,0 +1,24 @@
-+# This is a TI specific version of the hostap-daemon recipe for use with the
-+# wl18xx wlan and bluetooth module.
++++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
+@@ -0,0 +1,31 @@
++DESCRIPTION = "Firmware files for use with TI wl18xx"
++LICENSE = "TI-TSPA"
++LIC_FILES_CHKSUM = "file://LICENCE;md5=4977a0fe767ee17765ae63c435a32a9e"
 +
-+require hostap.inc
++PACKAGE_ARCH = "all"
 +
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e"
++PR = "r4+gitr${SRCPV}"
 +
-+PR_append = "c+gitr${SRCPV}"
-+
-+FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
-+
-+# Add TI to the end to make it clear that this is a TI customized version
-+# of hostap
-+PV = "2.0-devel-ti"
++PROVIDES += "wl12xx-firmware"
++RPROVIDES_${PN} += "wl12xx-firmware"
++RREPLACES_${PN} += "wl12xx-firmware"
++RCONFLICTS_${PN} += "wl12xx-firmware"
 +
 +# Tag: ol_r8.a9.14
-+SRCREV = "281f5adb8eb7ee9e9220546c0227696b02aab332"
-+BRANCH = "single_hostap_dfs_dynamic"
++SRCREV = "2568d8f61fd509eabb112110c20ea31c088ef6b9"
++BRANCH = "ap_dfs"
++SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx_fw.git;protocol=git;branch=${BRANCH} \
++           file://0001-Add-Makefile-for-SDK.patch \
++          "
 +
-+PROVIDES += "hostap-daemon"
-+RPROVIDES_${PN} += "hostap-daemon"
-+RREPLACES_${PN} += "hostap-daemon"
-+RCONFLICTS_${PN} += "hostap-daemon"
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig
-index ccc0996..3ee35bc 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon/defconfig
-@@ -52,7 +52,7 @@ CONFIG_LIBNL32=y
- # This version is an experimental implementation based on IEEE 802.11w/D1.0
- # draft and is subject to change since the standard has not yet been finalized.
- # Driver support is also needed for IEEE 802.11w.
--#CONFIG_IEEE80211W=y
-+CONFIG_IEEE80211W=y
- 
- # Integrated EAP server
- #CONFIG_EAP=y
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-index 15e82d5..180fc01 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-@@ -1,5 +1,5 @@
- # This is a TI specific version of the hostap-daemon recipe for use with the
--# wl12xx wlan and bluetooth module.
-+# wl18xx wlan module
- 
- HOMEPAGE = "http://hostap.epitest.fi"
- DESCRIPTION = "User space daemon for extended IEEE 802.11 management"
-@@ -11,15 +11,14 @@ DEPENDS = "libnl openssl"
- # default
- DEFAULT_PREFERENCE = "-1"
- 
--PR = "r5"
-+PR = "r6"
- 
- inherit update-rc.d
- INITSCRIPT_NAME="hostapd"
- 
- CONFFILES_${PN} += "${sysconfdir}/hostapd.conf"
- 
--SRC_URI = "git://github.com/TI-OpenLink/hostap.git;protocol=git;branch=${BRANCH} \
--           file://0001-hostapd-change-conf-file-for-better-oob-startup.patch;patchdir=.. \
-+SRC_URI = "git://git.ti.com/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH} \
-            file://defconfig \
- 	       file://init"
- 
++S = "${WORKDIR}/git"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    oe_runmake 'DEST_DIR=${D}' install
++}
++
++FILES_${PN} = "/lib/firmware/ti-connectivity/*"
 -- 
 2.0.1
 
