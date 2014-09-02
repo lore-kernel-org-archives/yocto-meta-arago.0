@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B8ECE52007
+Return-Path: <karthik.ramanan@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id E2C4A52A26
 	for <meta-arago@arago-project.org>;
-	Sun, 31 Aug 2014 07:20:36 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s7V7KZEh001555
-	for <meta-arago@arago-project.org>; Sun, 31 Aug 2014 02:20:35 -0500
+	Tue,  2 Sep 2014 10:54:56 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s82AstTQ019847
+	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 05:54:55 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s7V7KZGc008492
-	for <meta-arago@arago-project.org>; Sun, 31 Aug 2014 02:20:35 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82AstCi031860
+	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 05:54:55 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Sun, 31 Aug 2014 02:20:35 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s7V7KZ6o026729	for <meta-arago@arago-project.org>;
-	Sun, 31 Aug 2014 02:20:35 -0500
-Date: Sun, 31 Aug 2014 03:02:02 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	Tue, 2 Sep 2014 05:54:55 -0500
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82AsrZC026077;
+	Tue, 2 Sep 2014 05:54:54 -0500
+From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1186941685.537.1409468522165.JavaMail.jenkins@puget>
+Date: Tue, 2 Sep 2014 16:24:31 +0530
+Message-ID: <1409655283-4899-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 2.0.1
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.08 build 2014-08-31_01-00-30
+Subject: [PATCH 00/12] Enabling WL8 R8.4 on dora
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,193 +34,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Aug 2014 07:20:37 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_536_1436624358.1409468522140"
+X-List-Received-Date: Tue, 02 Sep 2014 10:54:57 -0000
+Content-Type: text/plain
 
-------=_Part_536_1436624358.1409468522140
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+This patch set contains the set of patches that are required to
+get the latest Wilink firmware on the dora branch.
+Most of the patches here are cherry picked from the master 
+branch. A few of them needed minor rework.
 
-<html>
-<head>
-<title>
-Status for 08/31/14
-</title>
-</head>
-<body>
+Note that this has been tested on the GLSDK 6.10 release line for
+dra7xx-evm as the target.
 
-<h2>Status for 08/31/14</h2>
+Denys Dmytriyenko (4):
+  wl18xx-firmware: specify the branch being used for this version
+  hostap-daemon: specify the branch being used for this version
+  wpa-supplicant: specify the branch being used for this version
+  recipes-connectivity: remove remaining unnecessary exec permissions
 
-<h2>BUILD_ID: build-2014-08-31_01-01-32</h2>
+Yaniv Machani (8):
+  wpa-supplicant-wl18xx: Update recipe to ol_r8.a9.14 version.
+  hostap-daemon-wl18xx: Update recipe to ol_r8.a9.14 version
+  wl18xx : update to ol_r8.a9.14
+  Wl18xx : recipes update - tag changed to ol_r8.a9.14
+  wl18xx-target-scripts : Add new WiFi related scripts
+  wl18xx-compat: version update
+  wl18xx-wlconf: version update
+  wpa-supplicant-wl18xx: configuration files update
 
-<h2>Clean Build: false</h2>
+ ...synchronization-between-bluetoothd-and-dr.patch |   0
+ .../0001-obexd-make-OPP-push-timeout-longer.patch  |   0
+ .../packagegroup-arago-tisdk-connectivity.bb       |   4 +-
+ .../ti-compat-wireless-wl18xx_r8.a8.10.bb          |  61 ---
+ .../ti-compat-wireless-wl18xx_r8.a9.14.bb          |  51 ++
+ .../wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb    |  30 --
+ .../wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb    |  31 ++
+ .../hostap/hostap-daemon-wl18xx_r8.a8.10.bb        |  23 -
+ .../hostap/hostap-daemon-wl18xx_r8.a9.14.bb        |  24 +
+ .../hostap/hostap-daemon/defconfig                 |   2 +-
+ .../recipes-connectivity/hostap/hostap.inc         |   7 +-
+ .../wl18xx-target-scripts_r8.a9.14.bb              |  25 +
+ .../recipes-connectivity/wlconf/wlconf_r8.a8.10.bb |  41 --
+ .../recipes-connectivity/wlconf/wlconf_r8.a9.14.bb |  42 ++
+ .../wpa-supplicant/wpa-supplicant-wl18xx/defconfig | 506 -------------------
+ .../wpa-supplicant-wl18xx_r8.a8.10.bb              |  24 -
+ .../wpa-supplicant-wl18xx_r8.a9.14.bb              |  25 +
+ .../wpa-supplicant/wpa-supplicant.inc              |  91 ++--
+ .../wpa-supplicant/wpa-supplicant/defaults-sane    |   8 -
+ .../wpa-supplicant/wpa-supplicant/defconfig        | 543 +++++++++++++++++++++
+ .../fi.epitest.hostap.WPASupplicant.service        |   4 -
+ .../wpa-supplicant/fi.w1.wpa_supplicant1.service   |   4 -
+ .../wpa-supplicant/p2p_supplicant.conf             |   3 +-
+ .../wpa-supplicant/wpa_supplicant.conf             |   3 +-
+ .../ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a8.10.bb |  31 --
+ .../ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a9.14.bb |  31 ++
+ 26 files changed, 814 insertions(+), 800 deletions(-)
+ mode change 100755 => 100644 meta-arago-distro/recipes-connectivity/bluez/bluez4/bluez4-fix-synchronization-between-bluetoothd-and-dr.patch
+ mode change 100755 => 100644 meta-arago-distro/recipes-connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-longer.patch
+ mode change 100644 => 100755 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+ delete mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
+ delete mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
+ delete mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
+ create mode 100644 meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb
+ delete mode 100755 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx/defconfig
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defaults-sane
+ create mode 100755 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/defconfig
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.epitest.hostap.WPASupplicant.service
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
+ delete mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a8.10.bb
+ create mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a9.14.bb
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.08"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+-- 
+2.0.1
 
 
-------=_Part_536_1436624358.1409468522140--
