@@ -1,23 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 279AA52A26
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id DA4BB52976
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Sep 2014 15:31:29 +0000 (UTC)
-Received: from gandalf.denix.org ([unknown] [108.18.33.160])
-	by vms173023.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0NBA0095L5RA6U00@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 02 Sep 2014 10:30:57 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 98FC12011D; Tue,
-	02 Sep 2014 11:30:46 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 02 Sep 2014 11:30:45 -0400
-Message-id: <1409671845-31432-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.0.4
-Subject: [PATCH] packagegroup-arago-test: add perf package for performance analysis
+	Tue,  2 Sep 2014 19:07:28 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s82J7SpD007270
+	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 14:07:28 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s82J7RDf031125
+	for <meta-arago@arago-project.org>; Tue, 2 Sep 2014 14:07:28 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 2 Sep 2014 14:07:27 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s82J7Qmi007602;	Tue, 2 Sep 2014 14:07:27 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s82J7OcT001691;	Wed, 3 Sep 2014 00:37:25 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 2 Sep 2014 14:07:17 -0500
+Message-ID: <1409684841-19677-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 0/4] New patchset
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,51 +38,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Sep 2014 15:31:29 -0000
+X-List-Received-Date: Tue, 02 Sep 2014 19:07:29 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf                               | 3 +++
- .../recipes-core/packagegroups/packagegroup-arago-test.bb              | 3 ++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+Please completely ignore the previous patchset and focus only on this patchset.
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index c86b255..2841790 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -33,6 +33,9 @@ PACKAGECONFIG_pn-weston = "fbdev launch"
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
- PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples tslib"
- 
-+# Enable UI and scripting for perf
-+PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
-+
- # ARM9 is not supported by the Linaro toolchain so default back to the Arago
- # toolchain for ARM9 based SOCs.
- TC_SANE_DEFAULT := "${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 0f3d01e..9077c96 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r20"
-+PR = "r21"
- 
- inherit packagegroup
- 
-@@ -21,6 +21,7 @@ ARAGO_TEST = "\
-     stress \
-     yavta \
-     rng-tools \
-+    perf \
-     "
- 
- ARAGO_TI_TEST_am57xx-evm = ""
+Franklin S. Cooper Jr (4):
+  arago.conf: Disable TSLIB in Qt 5
+  qtwayland: Add Touch issue fix
+  packagegroup-arago-*: Conditionally include tslib
+  qtbase: Remove references of TSLIB
+
+ meta-arago-distro/conf/distro/arago.conf           |    2 +-
+ .../packagegroups/packagegroup-arago-console.bb    |    4 +-
+ meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh  |    7 --
+ .../recipes-qt/qt5/qtbase_5.2.1.bbappend           |    2 +-
+ .../packagegroup-arago-standalone-sdk-target.bb    |    4 +-
+ .../qt5/qtwayland/0001-Fix-touch-with-Weston.patch |   74 ++++++++++++++++++++
+ .../recipes-qt/qt5/qtwayland_git.bbappend          |    7 +-
+ 7 files changed, 86 insertions(+), 14 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
+
 -- 
-2.0.4
+1.7.9.5
 
 
