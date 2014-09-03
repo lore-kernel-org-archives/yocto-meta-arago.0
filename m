@@ -1,41 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C57F152A75
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 48BD052A6B
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Sep 2014 19:40:20 +0000 (UTC)
+	Wed,  3 Sep 2014 20:28:12 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s83JeKXi026387
-	for <meta-arago@arago-project.org>; Wed, 3 Sep 2014 14:40:20 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s83JeJXf027072
-	for <meta-arago@arago-project.org>; Wed, 3 Sep 2014 14:40:19 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0174.001; Wed, 3 Sep 2014 14:40:19 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [for dora] [PATCH v2 01/12] wl18xx-firmware:
-	specify	the branch being used for this version
-Thread-Index: AQHPx3RwApAa+1DUGEK0cvo121pC6Jvve7JwgABUg4D//+hF4IAAX/UA//+tS5CAAFd/AP//sG+w
-Date: Wed, 3 Sep 2014 19:40:19 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C727913@DFLE08.ent.ti.com>
-References: <1409748091-12617-1-git-send-email-a0393906@ti.com>
-	<1409748091-12617-2-git-send-email-a0393906@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C726FE9@DFLE08.ent.ti.com>
-	<20140903144505.GQ18620@edge>
-	<8F29D6B095ED194EA1980491A5E029710C72778E@DFLE08.ent.ti.com>
-	<20140903190336.GW18620@edge>
-	<8F29D6B095ED194EA1980491A5E029710C727881@DFLE08.ent.ti.com>
-	<20140903192043.GX18620@edge>
-In-Reply-To: <20140903192043.GX18620@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s83KSBTO001810
+	for <meta-arago@arago-project.org>; Wed, 3 Sep 2014 15:28:11 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s83KSBBs029950
+	for <meta-arago@arago-project.org>; Wed, 3 Sep 2014 15:28:11 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 3 Sep 2014 15:28:10 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s83KSAwO016319	for <meta-arago@arago-project.org>;
+	Wed, 3 Sep 2014 15:28:10 -0500
+Date: Wed, 3 Sep 2014 16:09:32 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1741396441.539.1409774972101.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "R,
-	Karthik" <karthik.ramanan@ti.com>
-Subject: Re: [for dora] [PATCH v2 01/12] wl18xx-firmware: specify	the branch being used for this version
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: FAILURE
+Subject: [nightly] Core TISDK 2014.08 build 2014-09-03_16-09-31
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,153 +36,193 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Sep 2014 19:40:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 03 Sep 2014 20:28:12 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_538_1302239974.1409774972002"
+
+------=_Part_538_1302239974.1409774972002
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 09/01/14
+</title>
+</head>
+<body>
+
+<h2>Status for 09/01/14</h2>
+
+<h2>BUILD_ID: build-2014-09-01_01-01-31</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.08"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, September 03, 2014 2:21 PM
-> To: Cooper Jr., Franklin
-> Cc: R, Karthik; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [for dora] [PATCH v2 01/12] wl18xx-firmware:
-> specify the branch being used for this version
->=20
-> On Wed, Sep 03, 2014 at 03:13:24PM -0400, Cooper Jr., Franklin wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Dmytriyenko, Denys
-> > > Sent: Wednesday, September 03, 2014 2:04 PM
-> > > To: Cooper Jr., Franklin
-> > > Cc: R, Karthik; meta-arago@arago-project.org
-> > > Subject: Re: [meta-arago] [for dora] [PATCH v2 01/12] wl18xx-firmware=
-:
-> > > specify the branch being used for this version
-> > >
-> > > On Wed, Sep 03, 2014 at 02:23:43PM -0400, Cooper Jr., Franklin wrote:
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Dmytriyenko, Denys
-> > > > > Sent: Wednesday, September 03, 2014 9:45 AM
-> > > > > To: Cooper Jr., Franklin
-> > > > > Cc: R, Karthik; meta-arago@arago-project.org
-> > > > > Subject: Re: [meta-arago] [for dora] [PATCH v2 01/12] wl18xx-
-> firmware:
-> > > > > specify the branch being used for this version
-> > > > >
-> > > > > On Wed, Sep 03, 2014 at 02:42:45PM +0000, Cooper Jr., Franklin
-> wrote:
-> > > > > > Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
-> > > > >
-> > > > > Do you use Dora?
-> > >
-> > > > [Franklin] I'm not sure if I understand your question. I try to
-> > > > review patches no matter what branch it is for if I have time.
-> > >
-> > > I was just curious if you had any specific interest in these patches
-> > > for the old branch, that's all.
-> > >
-> > > Don't get me wrong. I do appreciate your help with the review
-> > > process! And I'm very grateful for your support!
-> > >
-> > > But these patches are just backports from master and were previously
-> > > reviewed and Acked already, so I was just wondering why would you
-> > > spend your time on them and skip all my recent patches I had submitte=
-d:
->=20
-> > [Franklin] Just making sure that backports were done right since there
-> > are always room for error. For AMSDK SDK 7.0 users I still recommend
-> > that they use dora if they can't use the SDK config. So I am
-> > interested in making sure things that are pulled in to dora isn't
-> > breaking things for am335x and am437x.
->=20
-> I thought AMSDK 7.0 was Dylan based... I don't think we ever productized
-> Dora, so GLSDK will be the first one, while we already switched to Daisy.
-[Franklin] Your right :). That was atleast my incorrect reasoning when I wa=
-s reviewing them in the morning. =20
->=20
->=20
-> > > http://thread.gmane.org/gmane.linux.embedded.yocto.meta-
-> arago/2958
-> > > http://thread.gmane.org/gmane.linux.embedded.yocto.meta-
-> arago/2960
-> > > http://thread.gmane.org/gmane.linux.embedded.yocto.meta-
-> arago/3005
-> > > http://thread.gmane.org/gmane.linux.embedded.yocto.meta-
-> arago/3022
-> > >
-> > > I was just wondering about the selection process... If it's just a ma=
-tter of
-> > > time availability, that is fine with me too - not an issue at all.
->=20
-> > [Franklin] Honest answer is time and an equally bad answer is sometimes=
- I
-> > miss things when scanning my inbox.
->=20
-> No big deal, thanks.
->=20
->=20
-> > > > > > > -----Original Message-----
-> > > > > > > From: meta-arago-bounces@arago-project.org [mailto:meta-
-> arago-
-> > > > > > > bounces@arago-project.org] On Behalf Of R, Karthik
-> > > > > > > Sent: Wednesday, September 03, 2014 7:41 AM
-> > > > > > > To: meta-arago@arago-project.org
-> > > > > > > Subject: [meta-arago] [for dora] [PATCH v2 01/12] wl18xx-
-> firmware:
-> > > > > > > specify the branch being used for this version
-> > > > > > >
-> > > > > > > From: Denys Dmytriyenko <denys@ti.com>
-> > > > > > >
-> > > > > > > Bitbake fetcher now requires the branch to be specified when
-> SRCREV
-> > > > > > > is not on master
-> > > > > > >
-> > > > > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > > > > > Acked-by: Chase Maupin <chase.maupin@ti.com>
-> > > > > > > Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
-> > > > > > > Tested-by: Karthik Ramanan <a0393906@ti.com>
-> > > > > > > ---
-> > > > > > >  .../recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb
-> > > | 2
-> > > > > +-
-> > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > >
-> > > > > > > diff --git a/meta-arago-extras/recipes-bsp/wl18xx-
-> firmware/wl18xx-
-> > > > > > > firmware_r8.a8.10.bb b/meta-arago-extras/recipes-bsp/wl18xx-
-> > > > > > > firmware/wl18xx-firmware_r8.a8.10.bb
-> > > > > > > index 5db1c99..b59f1c4 100644
-> > > > > > > --- a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
-> > > > > > > firmware_r8.a8.10.bb
-> > > > > > > +++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-
-> > > > > > > firmware_r8.a8.10.bb
-> > > > > > > @@ -13,7 +13,7 @@ RCONFLICTS_${PN} +=3D "wl12xx-firmware"
-> > > > > > >
-> > > > > > >  # Tag: ol_r8.a8.10
-> > > > > > >  SRCREV =3D "89dc93a5c23fd69ebacd64c936ba5aabf173c29b"
-> > > > > > > -SRC_URI =3D "git://github.com/TI-
-> > > OpenLink/wl18xx_fw.git;protocol=3Dgit
-> > > > > > > \
-> > > > > > > +SRC_URI =3D "git://github.com/TI-
-> > > > > > > OpenLink/wl18xx_fw.git;protocol=3Dgit;branch=3Dmbss \
-> > > > > > >             file://0001-Add-Makefile-for-SDK.patch \
-> > > > > > >            "
-> > > > > > >
-> > > > > > > --
-> > > > > > > 2.0.1
-> > > > > > >
-> > > > > > > _______________________________________________
-> > > > > > > meta-arago mailing list
-> > > > > > > meta-arago@arago-project.org
-> > > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > > > > > _______________________________________________
-> > > > > > meta-arago mailing list
-> > > > > > meta-arago@arago-project.org
-> > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_538_1302239974.1409774972002--
