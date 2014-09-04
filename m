@@ -1,34 +1,35 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 4C4BA529D5
+Return-Path: <j-stiffler@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 073DF529D5
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Sep 2014 17:54:38 +0000 (UTC)
+	Thu,  4 Sep 2014 17:56:12 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84Hsbjs004272
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:54:37 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84Hsb4r013032
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:54:37 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0174.001; Thu, 4 Sep 2014 12:54:36 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84HuCDW016498
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:56:12 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HuCdo014072
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:56:12 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0174.001; Thu, 4 Sep 2014 12:56:11 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/3] qtwayland: Fix windows margin issue
-	when using touch events.
-Thread-Index: AQHPyGao/OVeIGnFu0WwYsKZFngaBZvxky8A//+tX5A=
-Date: Thu, 4 Sep 2014 17:54:35 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C728A89@DFLE08.ent.ti.com>
-References: <1409852140-13616-1-git-send-email-fcooper@ti.com>
-	<20140904174558.GN18620@edge>
-In-Reply-To: <20140904174558.GN18620@edge>
+Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 2/4] package-sdks:
+	Add configuration parameter to specify the installer prefix.
+Thread-Index: AQHPyGYFXMj3Apr5Ck2n8Wkuuyj4aZvxkJkA//+xZnA=
+Date: Thu, 4 Sep 2014 17:56:10 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958140B1094@DFLE09.ent.ti.com>
+References: <1409851868-7389-1-git-send-email-j-stiffler@ti.com>
+	<1409851868-7389-2-git-send-email-j-stiffler@ti.com>
+	<20140904173642.GK18620@edge>
+In-Reply-To: <20140904173642.GK18620@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/3] qtwayland: Fix windows margin issue when using touch events.
+Subject: Re: [tisdk-build-scripts][PATCH 2/4] package-sdks: Add configuration parameter to specify the installer prefix.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,125 +42,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 17:54:38 -0000
+X-List-Received-Date: Thu, 04 Sep 2014 17:56:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+I have been using "processor-linux-sdk" for the prefix.
 
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Thursday, September 04, 2014 12:46 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/3] qtwayland: Fix windows margin issue
-> when using touch events.
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Thursday, September 04, 2014 1:37 PM
+To: Stiffler, Jacob
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [tisdk-build-scripts][PATCH 2/4] package-sdks: Ad=
+d configuration parameter to specify the installer prefix.
+
+Just a quick question - what do you plan to use instead of "ti-sdk" prefix?
+
+
+On Thu, Sep 04, 2014 at 01:31:06PM -0400, Jacob Stiffler wrote:
+> * The configuration parameter INSTALLER_PREFIX is used to set the prefix =
+of the i
+>   installer filename and the default installation directory.
+> * This parameter must be set when PRODUCTIZE_SDK=3D"true"
 >=20
-> Franklin,
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  lib/oesdk/package-sdks |    6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >=20
-> Thanks! Have you tested these patches? Are there any other
-> touch/qt5/weston issues remaining? What about that Weston restart one?
-[Franklin] Yep tested for the initial issue which was touch not working wit=
-h Qt 5.
-
-What is still broken is that you can interact with the window's decoration.=
- So you can use the title bar to move a window around, you can't interact w=
-ith the menu bar and you can't minimize, maximize, and close a window via t=
-he icons on the top right. Some might consider this a new bug but I plan on=
- updating the current Qt bug report.
-
-This is different than the restart Weston via init script issue and I haven=
-'t looked into that one.
-
-
+> diff --git a/lib/oesdk/package-sdks b/lib/oesdk/package-sdks index=20
+> d6b01f7..9bfd887 100644
+> --- a/lib/oesdk/package-sdks
+> +++ b/lib/oesdk/package-sdks
+> @@ -109,7 +109,7 @@ create_sd_card_content() {
+>      cd $start_here_root
+> =20
+>      # Copy the installer
+> -    cp $DEPLOY_ROOT/$m/$BUILD_ID/ti-sdk-$m* $start_here_root/
+> +    cp $DEPLOY_ROOT/$m/$BUILD_ID/${INSTALLER_PREFIX}-$m*=20
+> + $start_here_root/
+> =20
+>      if [ "$?" !=3D "0" ]
+>      then
+> @@ -184,7 +184,7 @@ create_sdk_installer() {
+> =20
+>      $INSTALL_BUILDER/builder build $INSTALL_BUILDER_PROJECT linux --setv=
+ars \
+>          sdk_loc=3D"$installer_root/" \
+> -        sdk_name_prefix=3D"ti-sdk"                  \
+> +        sdk_name_prefix=3D"${INSTALLER_PREFIX}"                  \
+>          sdk_tar_name=3D$sdk_tar                     \
+>          output_dir=3D"$deploy_root"                 \
+>          platform=3D"$m"                             \
+> @@ -277,7 +277,7 @@ package_web_content() {
+>      fi
+> =20
+>      # Move the installer into the exports directory
+> -    mv $deploy_root/ti-sdk-$m* $exports_root/
+> +    mv $deploy_root/${INSTALLER_PREFIX}-$m* $exports_root/
+> =20
+>      # Create the md5sum file
+>      cd $exports_root
+> --
+> 1.7.9.5
 >=20
->=20
-> On Thu, Sep 04, 2014 at 12:35:38PM -0500, Franklin S. Cooper Jr wrote:
-> > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> >
-> > * This is another QtWayland bug that was discussed in the Qt bug report=
-:
-> >   https://bugreports.qt-project.org/browse/QTBUG-36602
-> > * Patch link:
-> >     https://codereview.qt-project.org/#/c/93664/
-> >
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../0001-Wayland-correct-touch-location.patch      |   31
-> ++++++++++++++++++++
-> >  .../recipes-qt/qt5/qtwayland_git.bbappend          |    5 ++--
-> >  2 files changed, 34 insertions(+), 2 deletions(-)
-> >  create mode 100644 meta-arago-extras/recipes-qt/qt5/qtwayland/0001-
-> Wayland-correct-touch-location.patch
-> >
-> > diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Wayland-
-> correct-touch-location.patch b/meta-arago-extras/recipes-
-> qt/qt5/qtwayland/0001-Wayland-correct-touch-location.patch
-> > new file mode 100644
-> > index 0000000..caa6dff
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-qt/qt5/qtwayland/0001-Wayland-
-> correct-touch-location.patch
-> > @@ -0,0 +1,31 @@
-> > +From ae54be549e6ebeef829d5c1089d5307d00d0b791 Mon Sep 17
-> 00:00:00 2001
-> > +From: Shawn Rutledge <shawn.rutledge@digia.com>
-> > +Date: Mon, 1 Sep 2014 15:30:42 +0200
-> > +Subject: [PATCH] Wayland: correct touch location
-> > +
-> > +The window margins were offsetting the touch point in the wrong
-> > +direction.
-> > +
-> > +Task-number: QTBUG-36602
-> > +Change-Id: Id8b31d2de4051f36d3ff4e088bbc9bd7cc84ca13
-> > +Reviewed-by: Laszlo Agocs <laszlo.agocs@digia.com>
-> > +---
-> > + src/client/qwaylandinputdevice.cpp |    2 +-
-> > + 1 file changed, 1 insertion(+), 1 deletion(-)
-> > +
-> > +diff --git a/src/client/qwaylandinputdevice.cpp
-> b/src/client/qwaylandinputdevice.cpp
-> > +index 4a100f7..014303f 100644
-> > +--- a/src/client/qwaylandinputdevice.cpp
-> > ++++ b/src/client/qwaylandinputdevice.cpp
-> > +@@ -921,7 +921,7 @@ void QWaylandInputDevice::handleTouchPoint(int
-> id, double x, double y, Qt::Touch
-> > +
-> > +         tp.area =3D QRectF(0, 0, 8, 8);
-> > +         QMargins margins =3D win->frameMargins();
-> > +-        tp.area.moveCenter(win->window()-
-> >mapToGlobal(QPoint(x+margins.left(), y+margins.top())));
-> > ++        tp.area.moveCenter(win->window()->mapToGlobal(QPoint(x -
-> margins.left(), y - margins.top())));
-> > +     }
-> > +
-> > +     tp.state =3D state;
-> > +--
-> > +1.7.9.5
-> > +
-> > diff --git a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> > index dca1710..336484b 100644
-> > --- a/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> > +++ b/meta-arago-extras/recipes-qt/qt5/qtwayland_git.bbappend
-> > @@ -1,8 +1,9 @@
-> > -PR_append =3D "-arago2"
-> > +PR_append =3D "-arago3"
-> >
-> >  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> >
-> > -SRC_URI +=3D "file://0001-Fix-touch-with-Weston.patch"
-> > +SRC_URI +=3D "file://0001-Fix-touch-with-Weston.patch \
-> > +            file://0001-Wayland-correct-touch-location.patch"
-> >
-> >
-> >  QT_MODULE_BRANCH =3D "5.4"
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
