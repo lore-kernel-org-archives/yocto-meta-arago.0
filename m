@@ -1,36 +1,27 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 348E752A6B
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id D8EA252A72
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Sep 2014 04:18:07 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s844I5IG001006
-	for <meta-arago@arago-project.org>; Wed, 3 Sep 2014 23:18:05 -0500
-Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s844I20e029860
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 09:48:03 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.03.0174.001; Thu, 4 Sep 2014 09:48:01 +0530
-From: "R, Karthik" <karthik.ramanan@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 00/12] Enabling WL8 R8.4 on dora
-Thread-Index: AQHPxpxWUranj4WF4kOkbagu3OmKo5vuBVUAgAFWdsD////ogIABA3EQ
-Date: Thu, 4 Sep 2014 04:18:02 +0000
-Message-ID: <24B88602B5904F49971CAF899152529B80B747@DBDE04.ent.ti.com>
-References: <1409655283-4899-1-git-send-email-a0393906@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C7262FB@DFLE08.ent.ti.com>
-	<24B88602B5904F49971CAF899152529B80AEA8@DBDE04.ent.ti.com>
-	<20140903181203.GV18620@edge>
-In-Reply-To: <20140903181203.GV18620@edge>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
+	Thu,  4 Sep 2014 15:21:44 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84FLifJ006177
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 10:21:44 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84FLilR019995
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 10:21:44 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 4 Sep 2014 10:21:43 -0500
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84FLfTZ019403;
+	Thu, 4 Sep 2014 10:21:42 -0500
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 4 Sep 2014 20:51:35 +0530
+Message-ID: <1409844098-16836-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 2.0.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
-	Franklin" <fcooper@ti.com>
-Subject: Re: [PATCH 00/12] Enabling WL8 R8.4 on dora
+Subject: [for dora] [PATCH 0/3] Wilink R8.4 enablement for dra7xx
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,215 +34,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 04:18:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Sep 2014 15:21:45 -0000
+Content-Type: text/plain
 
-Hi Denys,
+The connectivity packagegroup and bt-firmware recipes were
+missing some support for omap-a15 based targets. 
 
-Thanks to you and Franklin for giving me these pointers.
-I will take care of these recommendations for the next patches.=20
+This has been validated on the dra7xx target and the 
+patches have been reviewed with ECS team.
 
-Checked the dora branch this morning and see that you have merged the patch=
-es probably from the v1 of the patch set.
-I have a few more patches with respect to the connectivity, will send them =
-out today.
+Karthik Ramanan (3):
+  tisdk-connectivity: Add support for omap-a15 based targets
+  bt-firmware: Add support for omap-a15 based targets
+  bt-firmware: Override Makefile to handle UNKNOWN platform
 
-Regards
-Karthik
+ .../packagegroup-arago-tisdk-connectivity.bb       |  9 ++++-
+ ...-Remove-platform-check-and-install-defaul.patch | 41 ++++++++++++++++++++++
+ .../recipes-bsp/bt-firmware/bt-firmware_git.bb     | 11 +++---
+ 3 files changed, 55 insertions(+), 6 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Wednesday, September 03, 2014 11:42 PM
-To: R, Karthik
-Cc: Cooper Jr., Franklin; meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH 00/12] Enabling WL8 R8.4 on dora
+-- 
+2.0.1
 
-On Wed, Sep 03, 2014 at 12:46:11PM +0000, R, Karthik wrote:
-> Hi Franklin,
->=20
-> Thanks for your inputs. I did some reading about these suggestions and=20
-> I fully understand your intent behind it.
-> I have regenerated the patches sent out the version 2 of this patch=20
-> set for review. Please review them if you find it in order.
-> If you need more details about the patches do let me know.
->=20
-> I read a note in the git help that said that the patches generated by=20
-> using the options that make the differences minimal like the -D option=20
-> will result in patches that cannot be applied by git am.
-> So from a review point its fine, but I don't understand how it will=20
-> get merged into the repo?
-> Could you please help me understand the flow of the patches?
-
-Karthik,
-
-So, the recommendation is to use options -C, -M and --find-copies-harder (t=
-he last one applies to either -C or -M, if you don't want to specify their =
-values directly)
-
-Please don't use -D option as it does indeed make patches un-applicable. E.=
-g.=20
-your second set cannot be applies as is now. It may make patches with whole=
- file being deleted smaller and easier to review though, but whole-file del=
-etions are easy to see and skip anyway, so the small benefit doesn't outwei=
-gh the pain of not being able to apply the patch.
-
-The workflow I use is to review the patches on the list (prefer -C and -M t=
-o be used) and let our internal Patchwork capture everything. Then I apply =
-the accepted patches directly from Patchwork the way they were submitted an=
-d Acked and push them in sets of small batches. The review process is usual=
-ly given a few days on the list, unless the patch is critical and has to be=
- pushed ASAP.
-
---=20
-Denys
-
-
-> -----Original Message-----
-> From: Cooper Jr., Franklin=20
-> Sent: Wednesday, September 03, 2014 3:17 AM
-> To: R, Karthik; meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH 00/12] Enabling WL8 R8.4 on dora
->=20
-> If you can resend using --find-copies-harder it will make it a lot easier=
- to=20
-> review. You might also need to play with the -M option to make sure your=
-=20
-> only sending as little deltas as possible.
->=20
-> Also it would be nice in each of the patches if you add [for dora] to the=
-=20
-> patch subject. I know you indicated that in the cover letter but it just=
-=20
-> makes things easier and a good habit in case you don't always send cover=
-=20
-> letters.
->=20
-> I always use git send-email --annotate and manually add things like that =
-to=20
-> each patch before I send it. A bit of a hassle for the sender but makes t=
-he=20
-> reviewer's life easier :)
->=20
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
-> > bounces@arago-project.org] On Behalf Of R, Karthik
-> > Sent: Tuesday, September 02, 2014 5:55 AM
-> > To: meta-arago@arago-project.org
-> > Subject: [meta-arago] [PATCH 00/12] Enabling WL8 R8.4 on dora
-> >=20
-> > This patch set contains the set of patches that are required to get=20
-> > the latest Wilink firmware on the dora branch.
-> > Most of the patches here are cherry picked from the master branch. A=20
-> > few of them needed minor rework.
-> >=20
-> > Note that this has been tested on the GLSDK 6.10 release line for=20
-> > dra7xx-evm as the target.
-> >=20
-> > Denys Dmytriyenko (4):
-> >   wl18xx-firmware: specify the branch being used for this version
-> >   hostap-daemon: specify the branch being used for this version
-> >   wpa-supplicant: specify the branch being used for this version
-> >   recipes-connectivity: remove remaining unnecessary exec permissions
-> >=20
-> > Yaniv Machani (8):
-> >   wpa-supplicant-wl18xx: Update recipe to ol_r8.a9.14 version.
-> >   hostap-daemon-wl18xx: Update recipe to ol_r8.a9.14 version
-> >   wl18xx : update to ol_r8.a9.14
-> >   Wl18xx : recipes update - tag changed to ol_r8.a9.14
-> >   wl18xx-target-scripts : Add new WiFi related scripts
-> >   wl18xx-compat: version update
-> >   wl18xx-wlconf: version update
-> >   wpa-supplicant-wl18xx: configuration files update
-> >=20
-> >  ...synchronization-between-bluetoothd-and-dr.patch |   0
-> >  .../0001-obexd-make-OPP-push-timeout-longer.patch  |   0
-> >  .../packagegroup-arago-tisdk-connectivity.bb       |   4 +-
-> >  .../ti-compat-wireless-wl18xx_r8.a8.10.bb          |  61 ---
-> >  .../ti-compat-wireless-wl18xx_r8.a9.14.bb          |  51 ++
-> >  .../wl18xx-firmware/wl18xx-firmware_r8.a8.10.bb    |  30 --
-> >  .../wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb    |  31 ++
-> >  .../hostap/hostap-daemon-wl18xx_r8.a8.10.bb        |  23 -
-> >  .../hostap/hostap-daemon-wl18xx_r8.a9.14.bb        |  24 +
-> >  .../hostap/hostap-daemon/defconfig                 |   2 +-
-> >  .../recipes-connectivity/hostap/hostap.inc         |   7 +-
-> >  .../wl18xx-target-scripts_r8.a9.14.bb              |  25 +
-> >  .../recipes-connectivity/wlconf/wlconf_r8.a8.10.bb |  41 -- =20
-> > .../recipes- connectivity/wlconf/wlconf_r8.a9.14.bb |  42 ++ =20
-> > .../wpa-supplicant/wpa- supplicant-wl18xx/defconfig | 506 -------------=
-------
-> >  .../wpa-supplicant-wl18xx_r8.a8.10.bb              |  24 -
-> >  .../wpa-supplicant-wl18xx_r8.a9.14.bb              |  25 +
-> >  .../wpa-supplicant/wpa-supplicant.inc              |  91 ++--
-> >  .../wpa-supplicant/wpa-supplicant/defaults-sane    |   8 -
-> >  .../wpa-supplicant/wpa-supplicant/defconfig        | 543
-> > +++++++++++++++++++++
-> >  .../fi.epitest.hostap.WPASupplicant.service        |   4 -
-> >  .../wpa-supplicant/fi.w1.wpa_supplicant1.service   |   4 -
-> >  .../wpa-supplicant/p2p_supplicant.conf             |   3 +-
-> >  .../wpa-supplicant/wpa_supplicant.conf             |   3 +-
-> >  .../ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a8.10.bb |  31 -- =20
-> > .../ti-wifi-utils/ti-wifi- utils-wl18xx_r8.a9.14.bb |  31 ++
-> >  26 files changed, 814 insertions(+), 800 deletions(-)  mode change=20
-> > 100755 =3D>
-> > 100644 meta-arago-distro/recipes-connectivity/bluez/bluez4/bluez4-fix-
-> > synchronization-between-bluetoothd-and-dr.patch
-> >  mode change 100755 =3D> 100644 meta-arago-distro/recipes-
-> > connectivity/obexd/obexd-0.34/0001-obexd-make-OPP-push-timeout-
-> > longer.patch
-> >  mode change 100644 =3D> 100755 meta-arago-distro/recipes-=20
-> > core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >  delete mode 100644=20
-> > meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-
-> > compat-wireless-wl18xx_r8.a8.10.bb
-> >  create mode 100644=20
-> > meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-
-> > compat-wireless-wl18xx_r8.a9.14.bb
-> >  delete mode 100644 meta-arago-extras/recipes-bsp/wl18xx-
-> > firmware/wl18xx-firmware_r8.a8.10.bb
-> >  create mode 100644 meta-arago-extras/recipes-bsp/wl18xx-
-> > firmware/wl18xx-firmware_r8.a9.14.bb
-> >  delete mode 100644 meta-arago-extras/recipes-=20
-> > connectivity/hostap/hostap-daemon-wl18xx_r8.a8.10.bb
-> >  create mode 100644 meta-arago-extras/recipes-=20
-> > connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
-> >  create mode 100644 meta-arago-extras/recipes-connectivity/wl18xx-
-> > target-scripts/wl18xx-target-scripts_r8.a9.14.bb
-> >  delete mode 100644 meta-arago-extras/recipes-=20
-> > connectivity/wlconf/wlconf_r8.a8.10.bb
-> >  create mode 100644 meta-arago-extras/recipes-=20
-> > connectivity/wlconf/wlconf_r8.a9.14.bb
-> >  delete mode 100755 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant-wl18xx/defconfig
-> >  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant-wl18xx_r8.a8.10.bb
-> >  create mode 100644 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-> >  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/defaults-sane
-> >  create mode 100755 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/defconfig
-> >  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/fi.epitest.hostap.WPASupplicant.service
-> >  delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-
-> > supplicant/wpa-supplicant/fi.w1.wpa_supplicant1.service
-> >  delete mode 100644=20
-> > meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-
-> > wifi-utils-wl18xx_r8.a8.10.bb
-> >  create mode 100644=20
-> > meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-
-> > wifi-utils-wl18xx_r8.a9.14.bb
-> >=20
-> > --
-> > 2.0.1
-> >=20
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
