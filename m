@@ -1,35 +1,36 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 073DF529D5
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9061752A9A
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Sep 2014 17:56:12 +0000 (UTC)
+	Thu,  4 Sep 2014 18:05:02 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84HuCDW016498
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:56:12 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HuCdo014072
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:56:12 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84I51ZW022703
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 13:05:01 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84I505R021558
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 13:05:01 -0500
 Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0174.001; Thu, 4 Sep 2014 12:56:11 -0500
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0174.001; Thu, 4 Sep 2014 13:05:01 -0500
 From: "Stiffler, Jacob" <j-stiffler@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 2/4] package-sdks:
-	Add configuration parameter to specify the installer prefix.
-Thread-Index: AQHPyGYFXMj3Apr5Ck2n8Wkuuyj4aZvxkJkA//+xZnA=
-Date: Thu, 4 Sep 2014 17:56:10 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958140B1094@DFLE09.ent.ti.com>
+Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 3/4]
+	bitbake-test-sdk-image: Add support to control verbosity of build
+	logging.
+Thread-Index: AQHPyGYGrwOk/Cu2W0GWNA4bCtGmZ5vxkSgA//+xFJA=
+Date: Thu, 4 Sep 2014 18:05:01 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958140B10AE@DFLE09.ent.ti.com>
 References: <1409851868-7389-1-git-send-email-j-stiffler@ti.com>
-	<1409851868-7389-2-git-send-email-j-stiffler@ti.com>
-	<20140904173642.GK18620@edge>
-In-Reply-To: <20140904173642.GK18620@edge>
+	<1409851868-7389-3-git-send-email-j-stiffler@ti.com>
+	<20140904173842.GL18620@edge>
+In-Reply-To: <20140904173842.GL18620@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [tisdk-build-scripts][PATCH 2/4] package-sdks: Add configuration parameter to specify the installer prefix.
+Subject: Re: [tisdk-build-scripts][PATCH 3/4] bitbake-test-sdk-image: Add support to control verbosity of build logging.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,69 +43,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 17:56:13 -0000
+X-List-Received-Date: Thu, 04 Sep 2014 18:05:02 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I have been using "processor-linux-sdk" for the prefix.
+This change is to capture stderr and stdout to a file. I could not find any=
+where that the stderr and stdout of the bitbake command was logged.  From w=
+hat I see, results.html only shows the configuration parameters. In the log=
+ directory, the $m-build-log.txt only contains a single line: " executing b=
+itbake command arago-amsdk-image for machine am57xx-evm".=20
+
+Without this, the only place I can find the complete log is the Jenkins con=
+sole in a browser window. Here is an example of what I would like to enable=
+ with this change: http://158.218.103.230/nightly_builds/mcsdk-8.0.x/75-201=
+4-09-03_13-16-59/artifacts/logs/log-files/am57xx-evm-build-log.txt=20
+
 
 
 -----Original Message-----
 From: Dmytriyenko, Denys=20
-Sent: Thursday, September 04, 2014 1:37 PM
+Sent: Thursday, September 04, 2014 1:39 PM
 To: Stiffler, Jacob
 Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [tisdk-build-scripts][PATCH 2/4] package-sdks: Ad=
-d configuration parameter to specify the installer prefix.
+Subject: Re: [meta-arago] [tisdk-build-scripts][PATCH 3/4] bitbake-test-sdk=
+-image: Add support to control verbosity of build logging.
 
-Just a quick question - what do you plan to use instead of "ti-sdk" prefix?
+Can you please elaborate on this change? You don't seem to be increasing Bi=
+tbake's verbosity level, just enabling capturing stdout and stderr into a f=
+ile, which gets captured by results.html anyway. What's the purpose?
 
 
-On Thu, Sep 04, 2014 at 01:31:06PM -0400, Jacob Stiffler wrote:
-> * The configuration parameter INSTALLER_PREFIX is used to set the prefix =
-of the i
->   installer filename and the default installation directory.
-> * This parameter must be set when PRODUCTIZE_SDK=3D"true"
+On Thu, Sep 04, 2014 at 01:31:07PM -0400, Jacob Stiffler wrote:
+> * Setting BUILD_LOG_VERBOSE=3D"true" (case sensitive) will enable logging=
+ stdout
+>   and stderr for the bitbake command to the build log.
 >=20
 > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  lib/oesdk/package-sdks |    6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  lib/oesdk/bitbake-test-sdk-image |    8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/lib/oesdk/package-sdks b/lib/oesdk/package-sdks index=20
-> d6b01f7..9bfd887 100644
-> --- a/lib/oesdk/package-sdks
-> +++ b/lib/oesdk/package-sdks
-> @@ -109,7 +109,7 @@ create_sd_card_content() {
->      cd $start_here_root
+> diff --git a/lib/oesdk/bitbake-test-sdk-image=20
+> b/lib/oesdk/bitbake-test-sdk-image
+> index cff86e4..7d8d093 100644
+> --- a/lib/oesdk/bitbake-test-sdk-image
+> +++ b/lib/oesdk/bitbake-test-sdk-image
+> @@ -375,12 +375,16 @@ bitbake_sdk_images(){
+>          for c in "${bitbake_command_list[@]}"
+>          do
+>              log $machine_build_log echo "executing bitbake command $c fo=
+r machine $m"
+> -            MACHINE=3D$m EXTRA_TISDK_FILES=3D"${INSTALLER_EXTRAS_ROOT}/$=
+{MACHINE}" TISDK_VERSION=3D"${TISDK_VERSION}" bitbake $c
+> +            if [ "${BUILD_LOG_VERBOSE}" =3D "true" ]; then
+> +                MACHINE=3D$m EXTRA_TISDK_FILES=3D"${INSTALLER_EXTRAS_ROO=
+T}/${MACHINE}" TISDK_VERSION=3D"${TISDK_VERSION}" bitbake $c 2>&1 | eval te=
+e -a $machine_build_log
+> +            else
+> +                MACHINE=3D$m EXTRA_TISDK_FILES=3D"${INSTALLER_EXTRAS_ROO=
+T}/${MACHINE}" TISDK_VERSION=3D"${TISDK_VERSION}" bitbake $c
+> +            fi
 > =20
->      # Copy the installer
-> -    cp $DEPLOY_ROOT/$m/$BUILD_ID/ti-sdk-$m* $start_here_root/
-> +    cp $DEPLOY_ROOT/$m/$BUILD_ID/${INSTALLER_PREFIX}-$m*=20
-> + $start_here_root/
-> =20
->      if [ "$?" !=3D "0" ]
->      then
-> @@ -184,7 +184,7 @@ create_sdk_installer() {
-> =20
->      $INSTALL_BUILDER/builder build $INSTALL_BUILDER_PROJECT linux --setv=
-ars \
->          sdk_loc=3D"$installer_root/" \
-> -        sdk_name_prefix=3D"ti-sdk"                  \
-> +        sdk_name_prefix=3D"${INSTALLER_PREFIX}"                  \
->          sdk_tar_name=3D$sdk_tar                     \
->          output_dir=3D"$deploy_root"                 \
->          platform=3D"$m"                             \
-> @@ -277,7 +277,7 @@ package_web_content() {
->      fi
-> =20
->      # Move the installer into the exports directory
-> -    mv $deploy_root/ti-sdk-$m* $exports_root/
-> +    mv $deploy_root/${INSTALLER_PREFIX}-$m* $exports_root/
-> =20
->      # Create the md5sum file
->      cd $exports_root
+>              # Check the return status of the build process.  If the buil=
+d returned
+>              # a non-zero exit value then log the failure and continue (w=
+ithout
+>              # testing).  A lack of a test file will indicate a test skip
+> -            if [ "$?" !=3D "0" ]
+> +            if [ "${PIPESTATUS[0]}" !=3D "0" ]
+>              then
+>                  echo "FAILED" > $LOG_DIR/$m-build-result.txt
+>                  build_status=3D"fail"
 > --
 > 1.7.9.5
 >=20
