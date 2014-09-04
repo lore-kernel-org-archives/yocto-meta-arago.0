@@ -1,32 +1,33 @@
-Return-Path: <a0866934local@udb0866934>
+Return-Path: <fcooper@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 94E3652ABC
+	by arago-project.org (Postfix) with ESMTPS id CF1D952A9B
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Sep 2014 17:31:17 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84HVHm2009016
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:31:17 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HVGvr029546
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:31:16 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 4 Sep 2014 12:31:16 -0500
-Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HVGeT019828;
-	Thu, 4 Sep 2014 12:31:16 -0500
-Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1XPasO-0001vs-48;
-	Thu, 04 Sep 2014 13:31:16 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Thu,  4 Sep 2014 17:35:47 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84HZkh3011626
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:35:47 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HZkoL021930
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:35:46 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 4 Sep 2014 12:35:46 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s84HZj8p023146;	Thu, 4 Sep 2014 12:35:46 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id s84HZgk1032659;	Thu, 4 Sep 2014 23:05:44 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 4 Sep 2014 13:31:08 -0400
-Message-ID: <1409851868-7389-4-git-send-email-j-stiffler@ti.com>
+Date: Thu, 4 Sep 2014 12:35:39 -0500
+Message-ID: <1409852140-13616-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1409851868-7389-1-git-send-email-j-stiffler@ti.com>
-References: <1409851868-7389-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1409852140-13616-1-git-send-email-fcooper@ti.com>
+References: <1409852140-13616-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Subject: [tisdk-build-scripts][PATCH 4/4] configs: Add new configuration parameters
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 2/3] weston: Fix touch calibration issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,941 +40,190 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 17:31:19 -0000
+X-List-Received-Date: Thu, 04 Sep 2014 17:35:49 -0000
 Content-Type: text/plain
 
-* SOURCE_MIRROR_URL
-* INSTALLER_PREFIX
-* BUILD_LOG_VERBOSE
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+* Libinput and Weston have a calibration problem when using resistive touch
+  screens.
+* Bug report and additional information can be found here:
+    https://bugs.freedesktop.org/show_bug.cgi?id=82742
+* This patch is part of the fix to resolve the calibration issue.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- configs/amsdk/amsdk-config-05.06.00.00.txt      |   20 +++++++++++++++++++-
- configs/amsdk/amsdk-config-05.07.00.00.txt      |   20 +++++++++++++++++++-
- configs/amsdk/amsdk-config-06.00.00.00.txt      |   20 +++++++++++++++++++-
- configs/amsdk/amsdk-config-07.00.00.00.txt      |   20 +++++++++++++++++++-
- configs/amsdk/amsdk-config-07.01.00.00.txt      |   20 +++++++++++++++++++-
- configs/amsdk/amsdk-config-08.00.00.00.txt      |   20 +++++++++++++++++++-
- configs/arago-core-tisdk-daisy-puget.txt        |   18 ++++++++++++++++++
- configs/arago-core-tisdk-danny-puget.txt        |   18 ++++++++++++++++++
- configs/arago-core-tisdk-dora-puget.txt         |   18 ++++++++++++++++++
- configs/arago-core-tisdk-dylan-puget.txt        |   18 ++++++++++++++++++
- configs/coresdk/arago-core-amsdk-2013.04.01.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2013.04.00.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2013.04.01.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2013.04.02.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2013.10.00.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2013.12.00.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2013.12.01.txt |   20 +++++++++++++++++++-
- configs/coresdk/arago-core-tisdk-2014.08.00.txt |   20 +++++++++++++++++++-
- configs/distroless-meta-ti-puget.txt            |   18 ++++++++++++++++++
- 19 files changed, 356 insertions(+), 14 deletions(-)
+ .../wayland/weston/normalize-WL_CALIBRATION.patch  |  139 ++++++++++++++++++++
+ .../recipes-graphics/wayland/weston_1.5.0.bbappend |    3 +-
+ 2 files changed, 141 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/normalize-WL_CALIBRATION.patch
 
-diff --git a/configs/amsdk/amsdk-config-05.06.00.00.txt b/configs/amsdk/amsdk-config-05.06.00.00.txt
-index 5c459e8..ca4ac43 100644
---- a/configs/amsdk/amsdk-config-05.06.00.00.txt
-+++ b/configs/amsdk/amsdk-config-05.06.00.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-05.06.00.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/normalize-WL_CALIBRATION.patch b/meta-arago-distro/recipes-graphics/wayland/weston/normalize-WL_CALIBRATION.patch
+new file mode 100644
+index 0000000..054d4de
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/wayland/weston/normalize-WL_CALIBRATION.patch
+@@ -0,0 +1,139 @@
++Subject: [PATCH weston] libinput: normalize WL_CALIBRATION before passing it
++ to libinput
++In-Reply-To: <1409113902-4180-1-git-send-email-peter.hutterer@who-t.net>
++References: <1409113902-4180-1-git-send-email-peter.hutterer@who-t.net>
++Message-ID: <1409113902-4180-2-git-send-email-peter.hutterer@who-t.net>
 +
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
++WL_CALIBRATION, introduced in weston-1.1, requires the translation component
++of the calibration matrix to be in screen coordinates. libinput does not have
++access to this and it's not a very generic way to do this anyway. So with
++the libinput backend, WL_CALIBRATION support is currently broken (#82742).
++This cannot be fixed in libinput without changing its API for this specific
++use-case.
 +
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -207,6 +215,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
++This patch lets weston take care of WL_CALIBRATION. It takes the original
++format and normalizes it before passing it to libinput. This way libinput
++still does the coordinate transformation, weston just needs to provide the
++initial configuration.
 +
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/amsdk/amsdk-config-05.07.00.00.txt b/configs/amsdk/amsdk-config-05.07.00.00.txt
-index 0f39da1..5424320 100644
---- a/configs/amsdk/amsdk-config-05.07.00.00.txt
-+++ b/configs/amsdk/amsdk-config-05.07.00.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-05.07.00.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
++Note that this needs an updated libinput, otherwise libinput will try to
++transform coordinates as well.
++---
++ src/libinput-device.c | 87 +++++++++++++++++++++++++++++++++++++++++++++++++++
++ 1 file changed, 87 insertions(+)
 +
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
++diff --git a/src/libinput-device.c b/src/libinput-device.c
++index 6e50eeb..96fe2f2 100644
++--- a/src/libinput-device.c
+++++ b/src/libinput-device.c
++@@ -282,6 +282,90 @@ notify_output_destroy(struct wl_listener *listener, void *data)
++ 	}
++ }
++ 
+++/**
+++ * The WL_CALIBRATION property requires a pixel-specific matrix to be
+++ * applied after scaling device coordinates to screen coordinates. libinput
+++ * can't do that, so we need to convert the calibration to the normalized
+++ * format libinput expects.
+++ */
+++static void
+++evdev_device_set_calibration(struct evdev_device *device)
+++{
+++	struct udev *udev;
+++	struct udev_device *udev_device = NULL;
+++	const char *sysname = libinput_device_get_sysname(device->device);
+++	const char *calibration_values;
+++	uint32_t width, height;
+++	float calibration[6];
+++	enum libinput_config_status status;
+++
+++	if (!device->output)
+++		return;
+++
+++	width = device->output->width;
+++	height = device->output->height;
+++	if (width == 0 || height == 0)
+++		return;
+++
+++	/* If libinput has a pre-set calibration matrix, don't override it */
+++	if (!libinput_device_config_calibration_has_matrix(device->device) ||
+++	    libinput_device_config_calibration_get_default_matrix(
+++							  device->device,
+++							  calibration) != 0)
+++		return;
+++
+++	udev = udev_new();
+++	if (!udev)
+++		return;
+++
+++	udev_device = udev_device_new_from_subsystem_sysname(udev,
+++							     "input",
+++							     sysname);
+++	if (!udev_device)
+++		goto out;
+++
+++	calibration_values =
+++	udev_device_get_property_value(udev_device,
+++				       "WL_CALIBRATION");
+++
+++	if (!calibration_values || sscanf(calibration_values,
+++					  "%f %f %f %f %f %f",
+++					  &calibration[0],
+++					  &calibration[1],
+++					  &calibration[2],
+++					  &calibration[3],
+++					  &calibration[4],
+++					  &calibration[5]) != 6)
+++		goto out;
+++
+++	weston_log("Applying calibration: %f %f %f %f %f %f "
+++		   "(normalized %f %f)\n",
+++		    calibration[0],
+++		    calibration[1],
+++		    calibration[2],
+++		    calibration[3],
+++		    calibration[4],
+++		    calibration[5],
+++		    calibration[2]/width,
+++		    calibration[5]/height);
+++
+++	/* normalize to a format libinput can use. There is a chance of
+++	   this being wrong if the width/height don't match the device
+++	   width/height but I'm not sure how to fix that */
+++	calibration[2] /= width;
+++	calibration[5] /= height;
+++
+++	status = libinput_device_config_calibration_set_matrix(device->device,
+++							       calibration);
+++	if (status != LIBINPUT_CONFIG_STATUS_SUCCESS)
+++		weston_log("Failed to apply calibration.\n");
+++
+++out:
+++	if (udev_device)
+++		udev_device_unref(udev_device);
+++	udev_unref(udev);
+++}
+++
++ void
++ evdev_device_set_output(struct evdev_device *device,
++ 			struct weston_output *output)
++@@ -295,6 +379,7 @@ evdev_device_set_output(struct evdev_device *device,
++ 	device->output_destroy_listener.notify = notify_output_destroy;
++ 	wl_signal_add(&output->destroy_signal,
++ 		      &device->output_destroy_listener);
+++	evdev_device_set_calibration(device);
++ }
++ 
++ static void
++@@ -318,6 +403,8 @@ configure_device(struct evdev_device *device)
++ 		libinput_device_config_tap_set_enabled(device->device,
++ 						       enable_tap);
++ 	}
+++
+++	evdev_device_set_calibration(device);
++ }
++ 
++ struct evdev_device *
++-- 
++1.9.3
 +
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -222,6 +230,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/amsdk/amsdk-config-06.00.00.00.txt b/configs/amsdk/amsdk-config-06.00.00.00.txt
-index 8684a6a..228761c 100644
---- a/configs/amsdk/amsdk-config-06.00.00.00.txt
-+++ b/configs/amsdk/amsdk-config-06.00.00.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-06.00.00.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/amsdk/amsdk-config-07.00.00.00.txt b/configs/amsdk/amsdk-config-07.00.00.00.txt
-index 8f65d39..d967cbb 100644
---- a/configs/amsdk/amsdk-config-07.00.00.00.txt
-+++ b/configs/amsdk/amsdk-config-07.00.00.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-07.00.00.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/amsdk/amsdk-config-07.01.00.00.txt b/configs/amsdk/amsdk-config-07.01.00.00.txt
-index 9dbcc73..3e4774e 100644
---- a/configs/amsdk/amsdk-config-07.01.00.00.txt
-+++ b/configs/amsdk/amsdk-config-07.01.00.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-07.01.00.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/amsdk/amsdk-config-08.00.00.00.txt b/configs/amsdk/amsdk-config-08.00.00.00.txt
-index ff724e9..b4d98bb 100644
---- a/configs/amsdk/amsdk-config-08.00.00.00.txt
-+++ b/configs/amsdk/amsdk-config-08.00.00.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-08.00.00.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-core-tisdk-daisy-puget.txt
-index c132baf..4e2422a 100644
---- a/configs/arago-core-tisdk-daisy-puget.txt
-+++ b/configs/arago-core-tisdk-daisy-puget.txt
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/OE/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -229,6 +237,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/arago-core-tisdk-danny-puget.txt b/configs/arago-core-tisdk-danny-puget.txt
-index be54fb0..1aa3e46 100644
---- a/configs/arago-core-tisdk-danny-puget.txt
-+++ b/configs/arago-core-tisdk-danny-puget.txt
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/OE/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -229,6 +237,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/arago-core-tisdk-dora-puget.txt b/configs/arago-core-tisdk-dora-puget.txt
-index 6ac968c..623817b 100644
---- a/configs/arago-core-tisdk-dora-puget.txt
-+++ b/configs/arago-core-tisdk-dora-puget.txt
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/OE/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -229,6 +237,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/arago-core-tisdk-dylan-puget.txt b/configs/arago-core-tisdk-dylan-puget.txt
-index e71fe7d..595212f 100644
---- a/configs/arago-core-tisdk-dylan-puget.txt
-+++ b/configs/arago-core-tisdk-dylan-puget.txt
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/OE/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -229,6 +237,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-amsdk-2013.04.01.txt b/configs/coresdk/arago-core-amsdk-2013.04.01.txt
-index 2cc7686..cb85f35 100644
---- a/configs/coresdk/arago-core-amsdk-2013.04.01.txt
-+++ b/configs/coresdk/arago-core-amsdk-2013.04.01.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.01-amsdk-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -230,6 +238,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2013.04.00.txt b/configs/coresdk/arago-core-tisdk-2013.04.00.txt
-index ccd9e19..c6466a4 100644
---- a/configs/coresdk/arago-core-tisdk-2013.04.00.txt
-+++ b/configs/coresdk/arago-core-tisdk-2013.04.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -230,6 +238,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2013.04.01.txt b/configs/coresdk/arago-core-tisdk-2013.04.01.txt
-index 303597d..7b7fac5 100644
---- a/configs/coresdk/arago-core-tisdk-2013.04.01.txt
-+++ b/configs/coresdk/arago-core-tisdk-2013.04.01.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.01-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -230,6 +238,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2013.04.02.txt b/configs/coresdk/arago-core-tisdk-2013.04.02.txt
-index 0bfb29d..a8f0a11 100644
---- a/configs/coresdk/arago-core-tisdk-2013.04.02.txt
-+++ b/configs/coresdk/arago-core-tisdk-2013.04.02.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.02-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -230,6 +238,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2013.10.00.txt b/configs/coresdk/arago-core-tisdk-2013.10.00.txt
-index 0af3398..c05ffa7 100644
---- a/configs/coresdk/arago-core-tisdk-2013.10.00.txt
-+++ b/configs/coresdk/arago-core-tisdk-2013.10.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2013.12.00.txt b/configs/coresdk/arago-core-tisdk-2013.12.00.txt
-index 51b7be6..2f855c6 100644
---- a/configs/coresdk/arago-core-tisdk-2013.12.00.txt
-+++ b/configs/coresdk/arago-core-tisdk-2013.12.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.12.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2013.12.01.txt b/configs/coresdk/arago-core-tisdk-2013.12.01.txt
-index a7ff529..0fc905f 100644
---- a/configs/coresdk/arago-core-tisdk-2013.12.01.txt
-+++ b/configs/coresdk/arago-core-tisdk-2013.12.01.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.12.01-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/coresdk/arago-core-tisdk-2014.08.00.txt b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-index 1a5e20c..b616732 100644
---- a/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-+++ b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-@@ -6,7 +6,7 @@
- # that MUST be set to a value.  Failure to set these variables could
- # lead to corruption of the host system or the build script not
- # executing properly
--MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
- 
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
-@@ -126,11 +126,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2014.08.00-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/home/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -228,6 +236,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
-diff --git a/configs/distroless-meta-ti-puget.txt b/configs/distroless-meta-ti-puget.txt
-index 917b125..bc9f783 100644
---- a/configs/distroless-meta-ti-puget.txt
-+++ b/configs/distroless-meta-ti-puget.txt
-@@ -112,11 +112,19 @@ CONFIG_FILE="${BUILD_ROOT}/configs/distroless-meta-ti-config.txt"
- #   4. Packaging logs for individual machines
- LOG_DIR="${BUILD_ROOT}/log-files"
- 
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+#BUILD_LOG_VERBOSE="true"
-+
- # This is the directory where you want to configure your build to download
- # files to.  This is best done as a shared directory among the builds to
- # save download time and space.
- DL_DIR="/OE/downloads"
- 
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
-+
- # This variable points to an optional location where additional installer
- # content can be placed to be packaged inside of any image recipe that
- # inherits the tisdk-image class.  It is expected that the directory
-@@ -215,6 +223,16 @@ INSTALLER_ROOT="$BUILD_ROOT/installer"
- # installer
- INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
- 
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
- # This variable points to a directory where additional SD card content
- # is located.  In general this directory should have a structure like
- #   - <machine>/boot - holds extra boot partition content
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.5.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.5.0.bbappend
+index 4a1e313..dfbda15 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.5.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.5.0.bbappend
+@@ -1,7 +1,7 @@
+ # When configured for fbdev compositor, make it the default
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -9,6 +9,7 @@ DEPENDS += "libinput"
+ 
+ SRC_URI += "file://wayland_env.sh \
+             file://weston.ini \
++            file://normalize-WL_CALIBRATION.patch \
+ "
+ 
+ SRCREV = "e67118c80ad411ac46b7096aae2635510c80ea6d"
 -- 
 1.7.9.5
 
