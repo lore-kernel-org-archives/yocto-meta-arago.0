@@ -1,29 +1,30 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id E3EA752AB8
+Return-Path: <a0866934local@udb0866934>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 859F352A78
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Sep 2014 15:34:26 +0000 (UTC)
+	Thu,  4 Sep 2014 17:31:12 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84FYQsO007805
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 10:34:26 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84FYQXo030179
-	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 10:34:26 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 4 Sep 2014 10:34:25 -0500
-Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84FYFkd029950;
-	Thu, 4 Sep 2014 10:34:24 -0500
-From: Karthik Ramanan <a0393906@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s84HVBI2009006
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:31:11 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HVBgc019156
+	for <meta-arago@arago-project.org>; Thu, 4 Sep 2014 12:31:11 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 4 Sep 2014 12:31:11 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id s84HVBgT005946;
+	Thu, 4 Sep 2014 12:31:11 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1XPasI-0001vj-R7;
+	Thu, 04 Sep 2014 13:31:10 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 4 Sep 2014 21:04:14 +0530
-Message-ID: <1409844854-17247-4-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 2.0.1
-In-Reply-To: <1409844854-17247-1-git-send-email-a0393906@ti.com>
-References: <1409844854-17247-1-git-send-email-a0393906@ti.com>
+Date: Thu, 4 Sep 2014 13:31:05 -0400
+Message-ID: <1409851868-7389-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [for master] [PATCH 3/3] bt-firmware: Override Makefile to handle UNKNOWN platform
+Subject: [tisdk-build-scripts][PATCH 1/4] config-build-env: Add support for adding a source mirror
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,88 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 15:34:27 -0000
+X-List-Received-Date: Thu, 04 Sep 2014 17:31:12 -0000
 Content-Type: text/plain
 
-* By default the Makefile supports only am335x targets
-* This is required to support dra7xx and other devices
+* Source mirrors may be used by setting the SOURCE_MIRROR_URL parameter in the
+  configuration file.
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- ...-Remove-platform-check-and-install-defaul.patch | 41 ++++++++++++++++++++++
- .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |  5 +--
- 2 files changed, 44 insertions(+), 2 deletions(-)
- create mode 100644 meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
+ lib/oesdk/config-build-env |    5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
-new file mode 100644
-index 0000000..4ad457e
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware/0001-bt-firmware-Remove-platform-check-and-install-defaul.patch
-@@ -0,0 +1,41 @@
-+From 40bb43c136ec8001d35f6077e5de5f8ac72f4da0 Mon Sep 17 00:00:00 2001
-+From: Roger Monk <r-monk@ti.com>
-+Date: Thu, 3 Oct 2013 02:59:54 +0100
-+Subject: [PATCH] bt-firmware:  Remove platform check and install default
-+ firmware
+diff --git a/lib/oesdk/config-build-env b/lib/oesdk/config-build-env
+index 655a7eb..cace93f 100644
+--- a/lib/oesdk/config-build-env
++++ b/lib/oesdk/config-build-env
+@@ -74,5 +74,10 @@ config_build_dir() {
+     sed -i "s+^SSTATE_DIR =.*+STATE_DIR = \"$BUILD_ROOT/sstate-cache\"+" local.conf
+     sed -i "s+^TMPDIR =.*+TMPDIR = \"$BUILD_ROOT/$build_dir/arago-tmp\"+" local.conf
+     sed -i "s+^export BUILDDIR=.*+export BUILDDIR=\"$BUILD_ROOT/$build_dir\"+" setenv
 +
-+   * For undefined plaforms, install default firmware
-+   * Remove configuration of 'unknown' so that install picks
-+     firmware from root directory (default)
-+
-+Signed-off-by: Roger Monk <r-monk@ti.com>
-+---
-+ Makefile |    6 +++---
-+ 1 file changed, 3 insertions(+), 3 deletions(-)
-+
-+diff --git a/Makefile b/Makefile
-+index bd94881..ca8280a 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -5,8 +5,8 @@
-+ # If KERNEL_DIR is not set then use the default in Rules.make
-+ DEST_DIR ?= ${DESTDIR}
-+ 
-+-PLATFORM ?= "unknown"
-+-MACHINE_NAME ?= "unknown"
-++#PLATFORM ?= "unknown"
-++#MACHINE_NAME ?= "unknown"
-+ 
-+ ifeq ($(PLATFORM), am335x-evm)
-+     MACHINE_NAME := am335x
-+@@ -23,6 +23,6 @@ endif
-+ 
-+ install:
-+ 	install -d $(DEST_DIR)${BASE_LIB_DIR}/firmware
-+-	cp -f ./${MACHINE_NAME}/* $(DEST_DIR)${BASE_LIB_DIR}/firmware
-++	cp -f ./${MACHINE_NAME}/*.bts $(DEST_DIR)${BASE_LIB_DIR}/firmware
-+ 
-+ 
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-index 780519b..aa99686 100644
---- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-@@ -11,13 +11,14 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- RCONFLICTS_${PN} = "linux-firmware-wl12xx"
- RREPLACES_${PN}  = "linux-firmware-wl12xx"
- 
--PR = "r5+gitr${SRCPV}"
-+PR = "r6+gitr${SRCPV}"
- 
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
- 
- SRCREV = "e08f59b41b6145b6baf1cb68bca018233ab5e93a"
- SRC_URI = "git://github.com/TI-ECS/bt-firmware.git;protocol=git \
--           file://0001-Makefile-allow-building-within-the-OE.patch"
-+           file://0001-Makefile-allow-building-within-the-OE.patch \
-+           file://0001-bt-firmware-Remove-platform-check-and-install-defaul.patch"
- 
- PLATFORM = "unknown"
- PLATFORM_ti33x = "am335x-evm"
++    if [ ! -z "$SOURCE_MIRROR_URL" ]; then
++      echo "SOURCE_MIRROR_URL = \"$SOURCE_MIRROR_URL\"" >> local.conf
++      echo "INHERIT += \"own-mirrors\"" >> local.conf
++    fi
+     cd - > /dev/null 2>&1
+ }
 -- 
-2.0.1
+1.7.9.5
 
 
