@@ -1,31 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 55CB152A49
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 0D95B52A04
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Sep 2014 16:29:56 +0000 (UTC)
+	Fri,  5 Sep 2014 20:18:02 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s85GTtCO012199
-	for <meta-arago@arago-project.org>; Fri, 5 Sep 2014 11:29:55 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s85GTtfG025961
-	for <meta-arago@arago-project.org>; Fri, 5 Sep 2014 11:29:55 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 5 Sep 2014 11:29:55 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s85KI2xc031991
+	for <meta-arago@arago-project.org>; Fri, 5 Sep 2014 15:18:02 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s85KI27E006838
+	for <meta-arago@arago-project.org>; Fri, 5 Sep 2014 15:18:02 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 5 Sep 2014 15:18:01 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s85GTqFZ008065	for <meta-arago@arago-project.org>;
-	Fri, 5 Sep 2014 11:29:53 -0500
-Date: Fri, 5 Sep 2014 12:11:09 -0400
+	s85KI10H009363	for <meta-arago@arago-project.org>;
+	Fri, 5 Sep 2014 15:18:01 -0500
+Date: Fri, 5 Sep 2014 15:59:19 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1275772166.551.1409933469809.JavaMail.jenkins@puget>
-In-Reply-To: <1376289410.549.1409922342035.JavaMail.jenkins@puget>
-References: <1376289410.549.1409922342035.JavaMail.jenkins@puget>
+Message-ID: <334756916.553.1409947159959.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.08 build 2014-09-05_09-05-53
+Subject: [nightly] Core TISDK 2014.09 build 2014-09-05_13-21-42
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Sep 2014 16:29:56 -0000
+X-List-Received-Date: Fri, 05 Sep 2014 20:18:03 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_550_1601457031.1409933469775"
+	boundary="----=_Part_552_1055809611.1409947159949"
 
-------=_Part_550_1601457031.1409933469775
+------=_Part_552_1055809611.1409947159949
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -56,9 +54,9 @@ Status for 09/05/14
 
 <h2>Status for 09/05/14</h2>
 
-<h2>BUILD_ID: build-2014-09-05_09-06-54</h2>
+<h2>BUILD_ID: build-2014-09-05_13-22-44</h2>
 
-<h2>Clean Build: false</h2>
+<h2>Clean Build: true</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -130,13 +128,13 @@ Status for 09/05/14
     </tr>
     <tr>
         <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am437x-evm</td>
         <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
     <tr>
         <td>omap5-evm</td>
@@ -150,8 +148,8 @@ Status for 09/05/14
     </tr>
     <tr>
         <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am57xx-evm</td>
@@ -172,7 +170,7 @@ The configuration file passed to this script had the contents:
 </p>
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.08"<br>
+TISDK_VERSION="2014.09"<br>
 MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
@@ -190,7 +188,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
+CLEAN_BUILD="true"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -227,4 +225,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_550_1601457031.1409933469775--
+------=_Part_552_1055809611.1409947159949--
