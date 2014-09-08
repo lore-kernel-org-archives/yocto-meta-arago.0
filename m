@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 67368529DD
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 158DD529DD
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Sep 2014 21:39:32 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s88LdV22024276;
-	Mon, 8 Sep 2014 16:39:31 -0500
+	Mon,  8 Sep 2014 21:40:13 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s88LeCYu017147;
+	Mon, 8 Sep 2014 16:40:12 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s88LdV0q026628;
-	Mon, 8 Sep 2014 16:39:31 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s88LeCl3007352;
+	Mon, 8 Sep 2014 16:40:12 -0500
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
 	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Mon, 8 Sep 2014 16:39:31 -0500
+	14.03.0174.001; Mon, 8 Sep 2014 16:40:12 -0500
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [tisdk-build-scripts][PATCH 1/2] run-opentest:
-	only pass u-boot and spl/uart when enabled in config
-Thread-Index: AQHPy55Zl/yqFRpxmUKILCVjVA4Z4Zv3wz2A
-Date: Mon, 8 Sep 2014 21:39:29 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C72C4DB@DFLE08.ent.ti.com>
-References: <1410205737-7590-1-git-send-email-denis@denix.org>
-In-Reply-To: <1410205737-7590-1-git-send-email-denis@denix.org>
+Thread-Topic: [meta-arago] [PATCH] ti-tisdk-makefile: add additional DTBs
+	for am437 SK, J6Eco and am57x
+Thread-Index: AQHPy57Q9OBl5gyXE0yfN6bm+Fh4K5v3w6Ug
+Date: Mon, 8 Sep 2014 21:40:11 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C72C4EB@DFLE08.ent.ti.com>
+References: <1410206069-12634-1-git-send-email-denis@denix.org>
+In-Reply-To: <1410206069-12634-1-git-send-email-denis@denix.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Subject: Re: [tisdk-build-scripts][PATCH 1/2] run-opentest: only pass u-boot and spl/uart when enabled in config
+Subject: Re: [PATCH] ti-tisdk-makefile: add additional DTBs for am437 SK, J6Eco and am57x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,94 +40,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 21:39:32 -0000
+X-List-Received-Date: Mon, 08 Sep 2014 21:40:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Should we make this variable specific to am335x some how then?
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
 > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> Sent: Monday, September 08, 2014 2:49 PM
+> Sent: Monday, September 08, 2014 2:54 PM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [tisdk-build-scripts][PATCH 1/2] run-opentest: only
-> pass u-boot and spl/uart when enabled in config
+> Subject: [meta-arago] [PATCH] ti-tisdk-makefile: add additional DTBs for
+> am437 SK, J6Eco and am57x
 >=20
 > From: Denys Dmytriyenko <denys@ti.com>
 >=20
-> Introduce new variable OPENTEST_BOOTLOADERS to control it, but defaults
-> to false.
-> This never worked as expected, since SPL/UART is only supported by am335x
-> and on other platforms it causes OpenTest to miss the escape window and i=
-t
-> can't stop boot sequence to configure the necessary parameters.
->=20
 > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > ---
->  configs/arago-core-tisdk-daisy-puget.txt |  4 ++++
->  lib/run-opentest                         | 17 ++++++++++-------
->  2 files changed, 14 insertions(+), 7 deletions(-)
+>  .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb        | 6 =
++++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >=20
-> diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-cor=
-e-
-> tisdk-daisy-puget.txt
-> index c132baf..f8bfb7a 100644
-> --- a/configs/arago-core-tisdk-daisy-puget.txt
-> +++ b/configs/arago-core-tisdk-daisy-puget.txt
-> @@ -177,6 +177,10 @@ OPENTEST_TEE_IP=3D"none"
->  # Limit the board selection to official TI GT farm, avoiding personal bo=
-ards
-> OPENTEST_HW_CAP=3D"linux_tigt_farm"
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
+> makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-ti=
+sdk-
+> makefile_1.0.bb
+> index 336f5cb..0077223 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
+> makefile_1.0.bb
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefil
+> +++ e_1.0.bb
+> @@ -36,7 +36,7 @@ SRC_URI =3D "\
+>      file://Makefile_cryptodev \
+>  "
 >=20
-> +# Determine whether SPL/UART and U-boot binaries are passed to
-> OpenTest
-> +for # testing. Otherwise uses existing bootloaders on the board (SD,
-> +NAND, etc) OPENTEST_BOOTLOADERS=3D"false"
-> +
->  # This variable will allow control over whether to perform build testing=
- or  #
-> skip it.  This should usually be set to true but may be changed for  #
-> prototyping.
-> diff --git a/lib/run-opentest b/lib/run-opentest index a64e4cc..1a71ae8
-> 100644
-> --- a/lib/run-opentest
-> +++ b/lib/run-opentest
-> @@ -206,15 +206,18 @@ run_target_side_test() {
->      fi
+> -PR =3D "r34"
+> +PR =3D "r35"
 >=20
->      uboot=3D""
-> -    if [ -f $test_dir/temp/board-support/prebuilt-images/u-boot-$m.* ]
-> -    then
-> -        uboot=3D"~secondary_bootloader=3D$(ls $test_dir/temp/board-
-> support/prebuilt-images/u-boot-$m.*)"
-> -    fi
-> -
->      spluart=3D""
-> -    if [ -f $test_dir/temp/board-support/prebuilt-images/u-boot-spl.bin-=
-$m ]
-> +    if [ "$OPENTEST_BOOTLOADERS" =3D=3D "true" ]
->      then
-> -        spluart=3D"~primary_bootloader=3D$(ls $test_dir/temp/board-
-> support/prebuilt-images/u-boot-spl.bin-$m)"
-> +        if [ -f $test_dir/temp/board-support/prebuilt-images/u-boot-$m.*=
- ]
-> +        then
-> +            uboot=3D"~secondary_bootloader=3D$(ls $test_dir/temp/board-
-> support/prebuilt-images/u-boot-$m.*)"
-> +        fi
-> +
-> +        if [ -f $test_dir/temp/board-support/prebuilt-images/u-boot-spl.=
-bin-$m
-> ]
-> +        then
-> +            spluart=3D"~primary_bootloader=3D$(ls $test_dir/temp/board-
-> support/prebuilt-images/u-boot-spl.bin-$m)"
-> +        fi
->      fi
+>  MAKEFILES_COMMON =3D "linux \
+>                      matrix-gui \
+> @@ -98,10 +98,10 @@ PLATFORM_ARCH_omapl138 =3D "armv5te"
+>  KERNEL_BUILD_CMDS =3D
+> "${@base_conditional('KERNEL_IMAGETYPE','uImage','LOADADDR=3D${UBOO
+> T_LOADADDRESS} uImage','zImage',d)}"
 >=20
->      # Start the STAF process if not already started
+>  KERNEL_DEVICETREE_ti33x =3D "am335x-evm.dtb am335x-evmsk.dtb
+> am335x-bone.dtb am335x-boneblack.dtb"
+> -KERNEL_DEVICETREE_ti43x =3D "am43x-epos-evm.dtb am437x-gp-evm.dtb"
+> +KERNEL_DEVICETREE_ti43x =3D "am43x-epos-evm.dtb am437x-gp-evm.dtb
+> am437x-sk-evm.dtb"
+>  KERNEL_DEVICETREE_beaglebone =3D "am335x-bone.dtb am335x-
+> boneblack.dtb"
+>  KERNEL_DEVICETREE_omap5-evm =3D "omap5-uevm.dtb"
+> -KERNEL_DEVICETREE_dra7xx =3D "dra7-evm.dtb"
+> +KERNEL_DEVICETREE_dra7xx =3D "dra7-evm.dtb dra72-evm.dtb am57xx-
+> beagle-x15.dtb"
+>=20
+>  # This step will stitch together the final Makefile based on the support=
+ed  #
+> make targets.
 > --
 > 2.0.4
 >=20
