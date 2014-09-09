@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 5A2545298E
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id E4E2E52976
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Sep 2014 07:43:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s897hC2w006396
-	for <meta-arago@arago-project.org>; Tue, 9 Sep 2014 02:43:12 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s897hCkf005053
-	for <meta-arago@arago-project.org>; Tue, 9 Sep 2014 02:43:12 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 9 Sep 2014 02:43:12 -0500
+	Tue,  9 Sep 2014 22:43:55 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s89MhpCL025415
+	for <meta-arago@arago-project.org>; Tue, 9 Sep 2014 17:43:51 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s89Mhpe9006627
+	for <meta-arago@arago-project.org>; Tue, 9 Sep 2014 17:43:51 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 9 Sep 2014 17:43:51 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s897hCwC010875	for <meta-arago@arago-project.org>;
-	Tue, 9 Sep 2014 02:43:12 -0500
-Date: Tue, 9 Sep 2014 03:24:24 -0400
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s89Mhpuh013559	for <meta-arago@arago-project.org>;
+	Tue, 9 Sep 2014 17:43:51 -0500
+Date: Tue, 9 Sep 2014 18:24:55 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1284668043.573.1410247464730.JavaMail.jenkins@puget>
+Message-ID: <81811132.575.1410301502878.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.09 build 2014-09-09_01-00-30
+Subject: [nightly] Core TISDK 2014.09 build 2014-09-09_16-39-12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Sep 2014 07:43:13 -0000
+X-List-Received-Date: Tue, 09 Sep 2014 22:44:02 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_572_442682693.1410247464702"
+	boundary="----=_Part_574_1664279019.1410301495742"
 
-------=_Part_572_442682693.1410247464702
+------=_Part_574_1664279019.1410301495742
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +54,7 @@ Status for 09/09/14
 
 <h2>Status for 09/09/14</h2>
 
-<h2>BUILD_ID: build-2014-09-09_01-01-32</h2>
+<h2>BUILD_ID: build-2014-09-09_16-40-12</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -192,6 +192,7 @@ CLEAN_BUILD="false"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
 DL_DIR="/OE/downloads"<br>
 INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
 TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
@@ -200,6 +201,7 @@ TEST_LOCAL_IFACE="eth1"<br>
 OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
 OPENTEST_TEE_IP="none"<br>
 OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
 RUN_BUILD_TESTS="true"<br>
 STAF_ROOT="/usr/local/staf"<br>
 SKIP_TEST_FAILURES="false"<br>
@@ -209,6 +211,7 @@ RESULTS_CONFIG_COMMENTS="false"<br>
 INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
 INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
 INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
 SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
 PACKAGE_BOOT_KERNEL_FILES="false"<br>
 WEBGEN_ROOT="/home/jenkins/webgen"<br>
@@ -225,4 +228,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_572_442682693.1410247464702--
+------=_Part_574_1664279019.1410301495742--
