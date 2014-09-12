@@ -1,33 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 680BF52972
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 10F3B52995
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Sep 2014 23:22:10 +0000 (UTC)
+	Fri, 12 Sep 2014 07:18:30 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8BNM9l6014547;
-	Thu, 11 Sep 2014 18:22:09 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8BNM9Q2018411;
-	Thu, 11 Sep 2014 18:22:09 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Thu, 11 Sep 2014 18:22:09 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v2 1/2] run-opentest: only pass u-boot and
-	spl/uart for am335x paltforms when enabled in config
-Thread-Index: AQHPzhaXLvzLXXNwSEW018YcC4Kp+Zv8khhw
-Date: Thu, 11 Sep 2014 23:22:07 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C72FA06@DFLE08.ent.ti.com>
-References: <1410477436-16291-1-git-send-email-denis@denix.org>
-In-Reply-To: <1410477436-16291-1-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8C7ITGl020827
+	for <meta-arago@arago-project.org>; Fri, 12 Sep 2014 02:18:29 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8C7ISvs011310
+	for <meta-arago@arago-project.org>; Fri, 12 Sep 2014 02:18:29 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 12 Sep 2014 02:18:28 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s8C7IShq029080	for <meta-arago@arago-project.org>;
+	Fri, 12 Sep 2014 02:18:28 -0500
+Date: Fri, 12 Sep 2014 02:59:36 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1530319862.599.1410505176274.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/2] run-opentest: only pass u-boot and spl/uart for am335x paltforms when enabled in config
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.09 build 2014-09-12_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,195 +36,196 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Sep 2014 23:22:10 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 12 Sep 2014 07:18:30 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_598_1385407748.1410505176218"
 
-Thanks!
+------=_Part_598_1385407748.1410505176218
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
+<html>
+<head>
+<title>
+Status for 09/12/14
+</title>
+</head>
+<body>
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> Sent: Thursday, September 11, 2014 6:17 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH v2 1/2] run-opentest: only pass u-boot and
-> spl/uart for am335x paltforms when enabled in config
->=20
-> From: Denys Dmytriyenko <denys@ti.com>
->=20
-> * Introduce new variable OPENTEST_BOOTLOADERS to control it, which
-> defaults to true.
-> * Since SPL/UART is only supported by am335x, check for the platform
-> before passing it
->   to OpenTest.
-> * On other platforms it causes OpenTest to miss the escape window and it
-> can't stop
->   boot sequence to configure the necessary parameters.
->=20
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
-> v2 - do machine check, switch the default to "true" as before
->=20
->  configs/amsdk/amsdk-config-08.00.00.00.txt      |  4 ++++
->  configs/arago-core-tisdk-daisy-puget.txt        |  4 ++++
->  configs/coresdk/arago-core-tisdk-2014.08.00.txt |  4 ++++
->  configs/distroless-meta-ti-puget.txt            |  4 ++++
->  lib/run-opentest                                | 26 +++++++++++++++++--=
-------
->  5 files changed, 34 insertions(+), 8 deletions(-)
->=20
-> diff --git a/configs/amsdk/amsdk-config-08.00.00.00.txt
-> b/configs/amsdk/amsdk-config-08.00.00.00.txt
-> index ff724e9..07d3024 100644
-> --- a/configs/amsdk/amsdk-config-08.00.00.00.txt
-> +++ b/configs/amsdk/amsdk-config-08.00.00.00.txt
-> @@ -176,6 +176,10 @@ OPENTEST_TEE_IP=3D"none"
->  # Defaults to "linux" if not set
->  OPENTEST_HW_CAP=3D"linux_tid_farm"
->=20
-> +# Determine whether SPL/UART and U-boot binaries are passed to
-> OpenTest
-> +for # testing. Otherwise uses existing bootloaders on the board (SD,
-> +NAND, etc) OPENTEST_BOOTLOADERS=3D"true"
-> +
->  # This variable will allow control over whether to perform build testing=
- or  #
-> skip it.  This should usually be set to true but may be changed for  #
-> prototyping.
-> diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-cor=
-e-
-> tisdk-daisy-puget.txt
-> index c132baf..f8bfb7a 100644
-> --- a/configs/arago-core-tisdk-daisy-puget.txt
-> +++ b/configs/arago-core-tisdk-daisy-puget.txt
-> @@ -177,6 +177,10 @@ OPENTEST_TEE_IP=3D"none"
->  # Limit the board selection to official TI GT farm, avoiding personal bo=
-ards
-> OPENTEST_HW_CAP=3D"linux_tigt_farm"
->=20
-> +# Determine whether SPL/UART and U-boot binaries are passed to
-> OpenTest
-> +for # testing. Otherwise uses existing bootloaders on the board (SD,
-> +NAND, etc) OPENTEST_BOOTLOADERS=3D"false"
-> +
->  # This variable will allow control over whether to perform build testing=
- or  #
-> skip it.  This should usually be set to true but may be changed for  #
-> prototyping.
-> diff --git a/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-> b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-> index 1a5e20c..f0ff41c 100644
-> --- a/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-> +++ b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
-> @@ -176,6 +176,10 @@ OPENTEST_TEE_IP=3D"none"
->  # Defaults to "linux" if not set
->  OPENTEST_HW_CAP=3D"linux_tid_farm"
->=20
-> +# Determine whether SPL/UART and U-boot binaries are passed to
-> OpenTest
-> +for # testing. Otherwise uses existing bootloaders on the board (SD,
-> +NAND, etc) OPENTEST_BOOTLOADERS=3D"false"
-> +
->  # This variable will allow control over whether to perform build testing=
- or  #
-> skip it.  This should usually be set to true but may be changed for  #
-> prototyping.
-> diff --git a/configs/distroless-meta-ti-puget.txt b/configs/distroless-me=
-ta-ti-
-> puget.txt
-> index 917b125..d08d0b1 100644
-> --- a/configs/distroless-meta-ti-puget.txt
-> +++ b/configs/distroless-meta-ti-puget.txt
-> @@ -163,6 +163,10 @@ OPENTEST_TEE_IP=3D"none"
->  # Limit the board selection to official TI GT farm, avoiding personal bo=
-ards
-> OPENTEST_HW_CAP=3D"linux_tigt_farm"
->=20
-> +# Determine whether SPL/UART and U-boot binaries are passed to
-> OpenTest
-> +for # testing. Otherwise uses existing bootloaders on the board (SD,
-> +NAND, etc) OPENTEST_BOOTLOADERS=3D"false"
-> +
->  # This variable will allow control over whether to perform build testing=
- or  #
-> skip it.  This should usually be set to true but may be changed for  #
-> prototyping.
-> diff --git a/lib/run-opentest b/lib/run-opentest index a64e4cc..4d8d2b0
-> 100644
-> --- a/lib/run-opentest
-> +++ b/lib/run-opentest
-> @@ -5,7 +5,7 @@ set_opentest_platform() {
->      machine=3D"$1"
->=20
->      case $machine in
-> -        am37x-evm|am180x-evm|am3517-evm|da850-omapl138-
-> evm|beagleboard|am335x-evm|omap5-evm|dra7xx-evm )
-> +
-> + am37x-evm|am180x-evm|am3517-evm|da850-omapl138-
-> evm|beagleboard|beagleb
-> + one|am335x-evm|omap5-evm|dra7xx-evm )
->              oplatform=3D$machine
->              ;;
->          am437x-evm )
-> @@ -28,6 +28,9 @@ set_opentest_dtb() {
->          am335x-evm )
->              odtb=3D"am335x-evm.dtb"
->              ;;
-> +        beaglebone )
-> +            odtb=3D"am335x-boneblack.dtb"
-> +            ;;
->          am437x-evm )
->              odtb=3D"am43x-epos-evm.dtb"
->              ;;
-> @@ -206,15 +209,22 @@ run_target_side_test() {
->      fi
->=20
->      uboot=3D""
-> -    if [ -f $test_dir/temp/board-support/prebuilt-images/u-boot-$m.* ]
-> -    then
-> -        uboot=3D"~secondary_bootloader=3D$(ls $test_dir/temp/board-
-> support/prebuilt-images/u-boot-$m.*)"
-> -    fi
-> -
->      spluart=3D""
-> -    if [ -f $test_dir/temp/board-support/prebuilt-images/u-boot-spl.bin-=
-$m ]
-> +    if [ "$OPENTEST_BOOTLOADERS" !=3D "false" ]
->      then
-> -        spluart=3D"~primary_bootloader=3D$(ls $test_dir/temp/board-
-> support/prebuilt-images/u-boot-spl.bin-$m)"
-> +        case $m in
-> +            am335x-evm|beaglebone )
-> +                if [ -f $test_dir/temp/board-support/prebuilt-images/u-b=
-oot-$m.*
-> ]
-> +                then
-> +                    uboot=3D"~secondary_bootloader=3D$(ls $test_dir/temp=
-/board-
-> support/prebuilt-images/u-boot-$m.*)"
-> +                fi
-> +
-> +                if [ -f $test_dir/temp/board-support/prebuilt-images/u-b=
-oot-
-> spl.bin-$m ]
-> +                then
-> +                    spluart=3D"~primary_bootloader=3D$(ls $test_dir/temp=
-/board-
-> support/prebuilt-images/u-boot-spl.bin-$m)"
-> +                fi
-> +                ;;
-> +        esac
->      fi
->=20
->      # Start the STAF process if not already started
-> --
-> 2.0.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<h2>Status for 09/12/14</h2>
 
+<h2>BUILD_ID: build-2014-09-12_01-01-30</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.09"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_598_1385407748.1410505176218--
