@@ -1,48 +1,29 @@
-Return-Path: <btv1==335dcc7ca33==Matt.Schuckmann@planar.com>
-Received: from barbvt10.planar.com (mail.planar.com [199.244.172.52])
-	by arago-project.org (Postfix) with ESMTP id 56CEB52972
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id D09315296D
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Sep 2014 18:15:14 +0000 (UTC)
-X-ASG-Debug-ID: 1410804910-04b02b738333cae0001-NloGV9
-Received: from msxbvt03.planar.net ([172.16.0.147]) by barbvt10.planar.com
-	with ESMTP id Hnzpkyr7TLwtxxAK for <meta-arago@arago-project.org>;
-	Mon, 15 Sep 2014 11:15:10 -0700 (PDT)
-X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Mon, 15 Sep 2014 11:15:10 -0700
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Date: Mon, 15 Sep 2014 11:15:09 -0700
-Thread-Topic: [meta-arago] I'm confused about distributions, machines, and
-	images
-X-ASG-Orig-Subj: RE: [meta-arago] I'm confused about distributions, machines,
-	and images
-Thread-Index: Ac/OEeEZn9oBOg0VRQaGgtBsEiA6CAC+HI1g
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD8727C52@MSXBEBVT12.planar.net>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FD86C6135@MSXBEBVT12.planar.net>
-	<20140911224352.GM18620@edge>
-In-Reply-To: <20140911224352.GM18620@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	Tue, 16 Sep 2014 07:09:44 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8G79iY9002796
+	for <meta-arago@arago-project.org>; Tue, 16 Sep 2014 02:09:44 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8G79iWF017290
+	for <meta-arago@arago-project.org>; Tue, 16 Sep 2014 02:09:44 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 16 Sep 2014 02:09:43 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s8G79hmf032529	for <meta-arago@arago-project.org>;
+	Tue, 16 Sep 2014 02:09:43 -0500
+Date: Tue, 16 Sep 2014 02:50:44 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <21531051.615.1410850244970.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[172.16.0.147]
-X-Barracuda-Start-Time: 1410804910
-X-Barracuda-URL: http://10.10.111.112:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at planar.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.0001 1.0000 -2.0204
-X-Barracuda-Spam-Score: -2.02
-X-Barracuda-Spam-Status: No,
-	SCORE=-2.02 using per-user scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.9517
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-Subject: Re: I'm confused about distributions, machines, and images
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.09 build 2014-09-16_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,180 +36,196 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Sep 2014 18:15:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 16 Sep 2014 07:09:45 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_614_1423522154.1410850244916"
 
-Deny's=20
+------=_Part_614_1423522154.1410850244916
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Thank you very much for the reply, I'm sorry that you find my questions too=
- generic, as a new user generic is often where you start. I tried to focus =
-on the IMAGE, DISTRIBUTION and MACHINE aspects and pose specific questions =
-on what I should do. Try to think about my questions from the perspective o=
-f a new user with the task I outlined. I know that there are a lot of thing=
-s that can be done but what would you as an expert do?=20
+<html>
+<head>
+<title>
+Status for 09/16/14
+</title>
+</head>
+<body>
 
-For instance given that it's a custom board with no sound, display, or atta=
-ched UI would you use the Arago, Anstrom, or Poky distributions directly? T=
-hey all seem like over kill to me.=20
+<h2>Status for 09/16/14</h2>
+
+<h2>BUILD_ID: build-2014-09-16_01-01-30</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.09"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> -----Original Message-----
-> From: Denys Dmytriyenko [mailto:denys@ti.com]
-> Sent: Thursday, September 11, 2014 3:44 PM
-> To: Matt Schuckmann
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] I'm confused about distributions, machines,
-> and images
->=20
-> Matt,
->=20
-> Sorry for the delay - unfortunately, your questions were too generic
-> and there was no simple answer to them...
->=20
->=20
-> On Fri, Aug 29, 2014 at 05:31:02PM -0700, Matt Schuckmann wrote:
-> > I feel like I keep going around in circles on this and I'm looking
-> for some
-> > wisdom and direction. I hope that I am posting this in the correct
-> place.
-> >
-> > I'm trying to get a Linux image setup for my custom board based on
-> the AM335x.
-> > I assume that I want to use the meta-arago layer because it has all
-> the
-> > latest tested stuff. Correct?
->=20
-> Well, meta-ti as a BSP layer, while meta-arago is a Distro layer. You
-> should
-> probably start with a basic BSP first.
-
-By "start with a basic BSP first" do you mean defining a new BSP layer?=20
-Does this include defining a new MACHINE type? Do I somehow inherit and ove=
-rride from the stuff in the meta-ti layer or do I just copy and edit to cre=
-ate my own?=20
-
->=20
->=20
-> > Our board will not have any sound, screen, usbgadget, or video
-> support so I
-> > assume that I'll want to create a new MACHINE, probably based on
-> > meta-arago/meta-arago-distro/conf/machine/arago-armv7.conf (correct?)
-> but
->=20
-> Incorrect. Per above, meta-ti is the BSP layer that defines all the
-> machines,
-> such as am335x-evm one, while meta-arago doesn't define any machines.
-> Those
-> arago-armv7 and arago-armv5 files in meta-arago are not the actual
-> machines
-> and are used for special purposes.
->=20
-
-Yes I realized my mistake shortly after posting the post. It is very confus=
-ing to someone just learning a system to have dummy files like this with no=
- comments identifying them as such.=20
-
->=20
-> > with a different definition for MACHINE_FEATURES. Is this the correct
-> thing
-> > to do? Do I start with a completely scratch machine definition coping
-> bits
-> > and pieces from the arago machine definitions, or do somehow inherit
-> or
-> > include the definitions from the arago files and somehow override or
-> filter
-> > out stuff that I don't want?
-> >
-> > Next, I don't understand if I need to create a new distribution. It
-> doesn't
->=20
-> Distribution is something that defines all the software components that
-> you
-> use in a system. You can start with one of the existing distributions,
-> such as
-> Poky, or Arago, or even Angstrom. There are some ways to do simple
-> customizations in the existing distros, if all you want is to add few
-> additional components. You only need your own distro if you are looking
-> into
-> completely redefining the system and it's behavior.
-
-I don't know really know what the differences between Poky, Arago, and Angs=
-trom are or even what their respective intended behavior is so it is diffic=
-ult to determine what should be done. Is there anything that compares and c=
-ontrasts them in a way that can help one see the differences and decide?=20
-In general they all "seem" to include a fairly complete system including gr=
-aphics, sound, USB, etc. As I said my system won't have much of this.
-
->=20
->=20
-> > seem like I should, but I can see that
-> > meta-argo/meta-argo-distro/conf/distro/arago.conf defines
-> DISTRO_FEATURES to
-> > include many things that my system won't need, including alsa,
-> pcmcia,
-> > usbgadget, wifi, etc. I can't seem to find a complete description for
-> what
-> > DISTRO_FEATURES does (same goes for MACHINE_FEATURES and
-> IMAGE_FEATURES),
-> > does it mean that all of the things listed will be included in images
-> based
-> > on the distribution or? Ultimately the question is: do I need to
-> create a
-> > new distribution? And if I do how best to go about it.
->=20
-> You should probably read the Yocto Project documentation.
->=20
-
-I've read "a lot" of documentation for the Yocto Project and otherwise and =
-I still have questions. I understand that you understand the system and tha=
-t you think the documentation is relatively complete but as new user there =
-is a lot left out.=20
-How about a concrete example of how one would remove a feature (lets say AL=
-SA) from all of these?
-How about a concrete example of the impact of adding a feature to any one o=
-f these?=20
-Why is there so much overlap in the features that can be specified in DISTO=
-_FEATURES and MACHINE_FEATURES?=20
-
->=20
-> > Finally, I think that I need to create a new image that only includes
-> the
-> > packages that I want, I would think that I would want to base it on
-> one of
-> > the arago images (i.e. include something like arago-base-image.bb in
-> my
-> > image). However when I look at arago-base-image.bb I see that it
-> includes
-> > packagegroup-arago-base which RDEPENDS on alsa-lib and alsa-utils-
-> aplay both
-> > of which I don't think are needed since my board doesn't support
-> sound. Does
-> > this mean that I shouldn't base my image on an arago-base-image or is
-> there
-> > a way to filter these packages out?
->=20
-> There are ways to filter out packages, but only you can determine if
-> it's
-> easier than creating a completely new image.
-
-Can you tell me about some of those ways to filter things out of packages? =
-Or point me to specific places in the documentation.
-How about how to remove things from RDEPENDS?
-
->=20
->=20
-> > I really appreciate any help, and I really need some direction, I
-> feel like
-> > I'm starting to learn how to get around the open-embedded stack but
-> there is
-> > still a lot that I have to learn.
->=20
-> As I said above, your questions are way too generic and the best answer
-> would
-> be to point you to a corresponding documentation...
->=20
-> --
-> Denys
-
+------=_Part_614_1423522154.1410850244916--
