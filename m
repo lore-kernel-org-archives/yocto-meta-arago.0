@@ -1,34 +1,29 @@
-Return-Path: <michele.portolan@imag.fr>
-Received: from shiva.imag.fr (mx1.imag.fr [129.88.30.5])
-	by arago-project.org (Postfix) with ESMTPS id 61BF75296D
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id E98925298D
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Sep 2014 06:19:44 +0000 (UTC)
-Received: from manolette.imag.fr (manolette.imag.fr [129.88.34.201])
-	by shiva.imag.fr (8.13.8/8.13.8) with ESMTP id s8I6Jeme020712
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <meta-arago@arago-project.org>; Thu, 18 Sep 2014 08:19:40 +0200
-Received: from [192.168.0.13] (lns-bzn-61-82-250-83-61.adsl.proxad.net
-	[82.250.83.61])
-	by manolette.imag.fr (8.13.8/8.13.8) with ESMTP id s8I6JegZ010184
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
-	for <meta-arago@arago-project.org>; Thu, 18 Sep 2014 08:19:41 +0200
-Message-ID: <541A797C.304@imag.fr>
-Date: Thu, 18 Sep 2014 08:19:40 +0200
-From: Michele Portolan <michele.portolan@imag.fr>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130911 Thunderbird/17.0.9
+	Thu, 18 Sep 2014 08:35:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8I8Zo5X005164
+	for <meta-arago@arago-project.org>; Thu, 18 Sep 2014 03:35:50 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8I8Zoga011990
+	for <meta-arago@arago-project.org>; Thu, 18 Sep 2014 03:35:50 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 18 Sep 2014 03:35:50 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s8I8Znsk009816	for <meta-arago@arago-project.org>;
+	Thu, 18 Sep 2014 03:35:49 -0500
+Date: Thu, 18 Sep 2014 04:16:47 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1115375190.623.1411028207925.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-To: meta-arago@arago-project.org
-X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.0.1
-	(shiva.imag.fr [129.88.30.5]);
-	Thu, 18 Sep 2014 08:19:40 +0200 (CEST)
-X-IMAG-MailScanner-Information: Please contact MI2S MIM  for more information
-X-MailScanner-ID: s8I6Jeme020712
-X-IMAG-MailScanner: Found to be clean
-X-IMAG-MailScanner-SpamCheck: 
-X-IMAG-MailScanner-From: michele.portolan@imag.fr
-MailScanner-NULL-Check: 1411625982.05954@Pa6+VPpe0SsatplVjXp7aw
-Subject: Make boots partition
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.09 build 2014-09-18_01-00-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,80 +36,196 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Sep 2014 06:19:45 -0000
-X-Groupsio-MsgNum: 4278
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms000501010000030604080203"
+X-List-Received-Date: Thu, 18 Sep 2014 08:35:52 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_622_489437600.1411028207857"
 
---------------ms000501010000030604080203
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+------=_Part_622_489437600.1411028207857
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello,
+<html>
+<head>
+<title>
+Status for 09/18/14
+</title>
+</head>
+<body>
 
-is it possible to have arago create a boot.tar.gz with the contents of=20
-the boot parition? As of now I have the files created in the "deploy"=20
-repository, but the "create-sdcard.sh" script given by TI asks for a=20
-compressed image....or can I just make a regular tar from the file?
+<h2>Status for 09/18/14</h2>
 
-Thanks,
+<h2>BUILD_ID: build-2014-09-18_01-01-30</h2>
 
-Michele
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.09"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
---------------ms000501010000030604080203
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: Signature cryptographique S/MIME
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIH8zCCA7Yw
-ggKeoAMCAQICAQMwDQYJKoZIhvcNAQEFBQAwLDELMAkGA1UEBhMCRlIxDTALBgNVBAoTBENOUlMx
-DjAMBgNVBAMTBUNOUlMyMB4XDTA5MDEyMTA5MDM1MloXDTI5MDEyMDA5MDM1MlowNTELMAkGA1UE
-BhMCRlIxDTALBgNVBAoTBENOUlMxFzAVBgNVBAMTDkNOUlMyLVN0YW5kYXJkMIIBIjANBgkqhkiG
-9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnKlkarQHIxnDvggIxOIqXe3UKN7+P6DtkkRrFkc1EzeNdKn1
-TYPkBRuPCGFM3ndb16n/u2Wdyaw8D/GJe5MioEcPXwa+jnigC3nXQmVhcmOSQIpbZxD61ic+2HdN
-Hnnbb0sSAFJY4thCBbIzN3fgjWwdvPj28pRYJfeC2YbZXPPYLs39cIkEh+850SrYkoxpLxxSZfpg
-jxB/zI/5XC4U7UyL4J03uNI8lMpQ/UF63vY87K7svVwW3bDwc5l6gf87M9IAnk2Mxls4LjPDdobK
-clTbLeIQ/ZJQaJOE7XepiWlRhevglKP5lwgRjCTwD7o4tCzW12xOY/60MZ/vj6ZapQIDAQABo4HZ
-MIHWMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFBHj2dFSRxtZsTwbeGZr9KGI7QpbMFQGA1Ud
-IwRNMEuAFFCXtg33rDMXr/EdRjxrO/8AoOXloTCkLjAsMQswCQYDVQQGEwJGUjENMAsGA1UEChME
-Q05SUzEOMAwGA1UEAxMFQ05SUzKCAQAwDgYDVR0PAQH/BAQDAgEGMD4GA1UdHwQ3MDUwM6AxoC+G
-LWh0dHA6Ly9jcmxzLnNlcnZpY2VzLmNucnMuZnIvQ05SUzIvZ2V0ZGVyLmNybDANBgkqhkiG9w0B
-AQUFAAOCAQEAT+njF+ZMJ/UXalBV6u7PTKq97izddj5ZoC8LaInaQ9AeHSxrEvlnE55lK6SE0jHP
-gqDK7yLoEGzpzxd8rK2HhUyK4dV7TObZDrKh5CmeIK8PPnu5fyRMMuCI/nrarBZgoXWuiZyKZp2U
-un6rDiAj7ffHhF2CSBTexNSwxU4sh9SNAxEvNtUpb66ZZxkMjW1aIN/Rn8bLr1XuC8qxWw/vXHT0
-80aJY0d+LM6/yDANAEb2GOZsPzB+kG4QjR85Sc+TaevInsJnc69Ki/Z8Qijdpd3tr8lVG2Q/VLxh
-JhDrkdXp9+7Q9gsL+qaQ3WD0QJ0Lp5z4zi8hOP6rBr/aDXf6ZzCCBDUwggMdoAMCAQICAm+kMA0G
-CSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAkZSMQ0wCwYDVQQKEwRDTlJTMRcwFQYDVQQDEw5DTlJT
-Mi1TdGFuZGFyZDAeFw0xMzA5MTMwODUyMjBaFw0xNTA5MTMwODUyMjBaMHIxCzAJBgNVBAYTAkZS
-MQ0wCwYDVQQKEwRDTlJTMRAwDgYDVQQLEwdVTVI1MTU5MRkwFwYDVQQDExBNaWNoZWxlIFBvcnRv
-bGFuMScwJQYJKoZIhvcNAQkBFhhNaWNoZWxlLlBvcnRvbGFuQGltYWcuZnIwgZ8wDQYJKoZIhvcN
-AQEBBQADgY0AMIGJAoGBAKdnGVX790MhE9jF/9by7PIE4ygndWYyHVoo33a8hAUwjsP6k8TfYMLi
-IEtDJ2xLun7mketwyhTZDBLCAdO1H6eRrSaP+m60qkp6sxMR/sa3tMN26dT/GPq+nR+Mn9V4H09p
-YcO80RkdKugR/Hdhn+N4D4/JkKC9XVheOO2y5Ip7AgMBAAGjggGUMIIBkDAMBgNVHRMBAf8EAjAA
-MBEGCWCGSAGG+EIBAQQEAwIEsDAOBgNVHQ8BAf8EBAMCBeAwegYJYIZIAYb4QgENBG0Wa0NlcnRp
-ZmljYXQgQ05SUzItU3RhbmRhcmQuIFBvdXIgdG91dGUgaW5mb3JtYXRpb24gc2UgcmVwb3J0ZXIg
-4CBodHRwOi8vaWdjLnNlcnZpY2VzLmNucnMuZnIvQ05SUzItU3RhbmRhcmQvMB0GA1UdDgQWBBSP
-FnrNlp+J0dXdWi3pjvl2oaunmjBUBgNVHSMETTBLgBQR49nRUkcbWbE8G3hma/ShiO0KW6EwpC4w
-LDELMAkGA1UEBhMCRlIxDTALBgNVBAoTBENOUlMxDjAMBgNVBAMTBUNOUlMyggEDMCMGA1UdEQQc
-MBqBGE1pY2hlbGUuUG9ydG9sYW5AaW1hZy5mcjBHBgNVHR8EQDA+MDygOqA4hjZodHRwOi8vY3Js
-cy5zZXJ2aWNlcy5jbnJzLmZyL0NOUlMyLVN0YW5kYXJkL2dldGRlci5jcmwwDQYJKoZIhvcNAQEF
-BQADggEBAFP+yKWkJpQDBE+6sGjH9CqMko6xSWlcW2n7Qm0YbpVbfGhfGOf0WsMrlsRMJVEknxEv
-yeQrcGPCnvUl5BkCVcg0Y7XBPHpRGsfPbegBZnY6qZJ/zNLGyE6tLHJb/HLJrcex+E5l9G1jBFzf
-7qif2R4AVH2bbBqU52RwIZxMjh+1TJxsBYJayRLzyeQg/FpnQpp4HtUoQkZuq7gm2sd4czwyWl91
-jtYY3aGl0YAgwJOvmVNUvJkuTi2qaf2XOrbw8JD+y46/p00CVdgwMohjZ18KWBKi/U0F78uUnuI2
-r+nniSwFad/EZQGOQujXUnN6b7yXyrDVCXT0Bl+3pejDo38xggJKMIICRgIBATA7MDUxCzAJBgNV
-BAYTAkZSMQ0wCwYDVQQKEwRDTlJTMRcwFQYDVQQDEw5DTlJTMi1TdGFuZGFyZAICb6QwCQYFKw4D
-AhoFAKCCAWUwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTQwOTE4
-MDYxOTQwWjAjBgkqhkiG9w0BCQQxFgQUyDdW0Ob9IPBw/mpvaYx9moqSMRQwSgYJKwYBBAGCNxAE
-MT0wOzA1MQswCQYDVQQGEwJGUjENMAsGA1UEChMEQ05SUzEXMBUGA1UEAxMOQ05SUzItU3RhbmRh
-cmQCAm+kMEwGCyqGSIb3DQEJEAILMT2gOzA1MQswCQYDVQQGEwJGUjENMAsGA1UEChMEQ05SUzEX
-MBUGA1UEAxMOQ05SUzItU3RhbmRhcmQCAm+kMGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
-MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
-BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEgYAqbS4B7oZ+fdfEWhA2lqrc
-zuJqqPGYshmLNlS1mFG1mM5CpbUvTP9INLe0VhqcOXGGbl0XmTKupjcBzkdw5YwizzwRUfCCXl70
-IIk+J/yM2bSn8qSoYZHF9ksVjjnJBDicaB/ykHRKOD/gy6TnGROayWvt7m4bmlXl91jK+kmkTQAA
-AAAAAA==
-
---------------ms000501010000030604080203--
+------=_Part_622_489437600.1411028207857--
