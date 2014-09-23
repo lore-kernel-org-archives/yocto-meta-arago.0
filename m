@@ -1,33 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id DB26F529C2
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9C0FB52A7E
 	for <meta-arago@arago-project.org>;
-	Tue, 23 Sep 2014 20:40:38 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8NKebre001626;
-	Tue, 23 Sep 2014 15:40:37 -0500
+	Tue, 23 Sep 2014 21:00:16 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8NL0Flb029177
+	for <meta-arago@arago-project.org>; Tue, 23 Sep 2014 16:00:15 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8NKebfh031593;
-	Tue, 23 Sep 2014 15:40:37 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0174.001; Tue, 23 Sep 2014 15:40:37 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] libdrm: patch modetest for indefinite
-	test	execution
-Thread-Index: AQHP12nlxW4+myAOr0aPYR/oW2sEj5wPLmnw
-Date: Tue, 23 Sep 2014 20:40:36 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C73BC9D@DFLE08.ent.ti.com>
-References: <1411502780-6569-1-git-send-email-denis@denix.org>
-In-Reply-To: <1411502780-6569-1-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8NL0Fjg016740
+	for <meta-arago@arago-project.org>; Tue, 23 Sep 2014 16:00:15 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 23 Sep 2014 16:00:15 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	s8NL0Ffh005443;	Tue, 23 Sep 2014 16:00:15 -0500
+Date: Tue, 23 Sep 2014 16:41:04 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Message-ID: <1894699200.647.1411504864668.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: Re: [PATCH] libdrm: patch modetest for indefinite test	execution
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.09 build 2014-09-23_14-14-03
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,143 +35,198 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Sep 2014 20:40:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 23 Sep 2014 21:00:16 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_646_1532454163.1411504864626"
 
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
+------=_Part_646_1532454163.1411504864626
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> Sent: Tuesday, September 23, 2014 3:06 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] libdrm: patch modetest for indefinite test
-> execution
->=20
-> From: Denys Dmytriyenko <denys@ti.com>
->=20
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  ...001-Add-option-to-run-a-test-indefinitely.patch | 77
-> ++++++++++++++++++++++
->  .../recipes-graphics/drm/libdrm_2.4.52.bbappend    |  5 ++
->  2 files changed, 82 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-graphics/drm/libdrm/0001-
-> Add-option-to-run-a-test-indefinitely.patch
->  create mode 100644 meta-arago-distro/recipes-
-> graphics/drm/libdrm_2.4.52.bbappend
->=20
-> diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-
-> option-to-run-a-test-indefinitely.patch b/meta-arago-distro/recipes-
-> graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
-> new file mode 100644
-> index 0000000..5aba3ed
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-r
-> +++ un-a-test-indefinitely.patch
-> @@ -0,0 +1,77 @@
-> +From 73c1849ac1492cd527263e9ef5033601018f52bf Mon Sep 17 00:00:00
-> 2001
-> +From: Alejandro Hernandez <ajhernandez@ti.com>
-> +Date: Tue, 23 Sep 2014 09:30:24 -0400
-> +Subject: [PATCH] Add option to run a test indefinitely
-> +
-> +This patch adds option -t to the modetest cli. When this option is
-> +speficied modetest will not stop on stdin input. This patch allows
-> +using modetest within ltp-ddt, before this patch modetest was not able
-> +to run in ltp-ddt because ltp-ddt sends data to stdin when a test is
-> +run
-> +
-> +Signed-off-by: Alejandro Hernandez <ajhernandez@ti.com>
-> +---
-> + tests/modetest/modetest.c | 12 ++++++++----
-> + 1 file changed, 8 insertions(+), 4 deletions(-)
-> +
-> +diff --git a/tests/modetest/modetest.c b/tests/modetest/modetest.c
-> +index bc9c998..d847508 100644
-> +--- a/tests/modetest/modetest.c
-> ++++ b/tests/modetest/modetest.c
-> +@@ -1104,7 +1104,7 @@ static void set_planes(struct device *dev, struct
-> plane_arg *p, unsigned int cou
-> + 			return;
-> + }
-> +
-> +-static void test_page_flip(struct device *dev, struct pipe_arg *pipes,
-> +unsigned int count)
-> ++static void test_page_flip(struct device *dev, struct pipe_arg *pipes,
-> ++unsigned int count, int dont_stop)
-> + {
-> + 	uint32_t handles[4], pitches[4], offsets[4] =3D {0}; /* we only use [0=
-] */
-> + 	unsigned int other_fb_id;
-> +@@ -1182,7 +1182,7 @@ static void test_page_flip(struct device *dev,
-> struct pipe_arg *pipes, unsigned
-> + 			fprintf(stderr, "select timed out or error (ret %d)\n",
-> + 				ret);
-> + 			continue;
-> +-		} else if (FD_ISSET(0, &fds)) {
-> ++		} else if (!dont_stop && FD_ISSET(0, &fds)) {
-> + 			break;
-> + 		}
-> + #endif
-> +@@ -1376,7 +1376,7 @@ static int page_flipping_supported(void)  #endif
-> +}
-> +
-> +-static char optstr[] =3D "cdD:efM:P:ps:vw:";
-> ++static char optstr[] =3D "cdD:efM:P:ps:vw:t";
-> +
-> + int main(int argc, char **argv)
-> + {
-> +@@ -1391,6 +1391,7 @@ int main(int argc, char **argv)
-> + 	char *module =3D NULL;
-> + 	unsigned int i;
-> + 	int count =3D 0, plane_count =3D 0;
-> ++  int dont_stop=3D 0;
-> + 	unsigned int prop_count =3D 0;
-> + 	struct pipe_arg *pipe_args =3D NULL;
-> + 	struct plane_arg *plane_args =3D NULL;
-> +@@ -1472,6 +1473,9 @@ int main(int argc, char **argv)
-> +
-> + 			prop_count++;
-> + 			break;
-> ++    case 't':
-> ++      dont_stop =3D 1;
-> ++      break;
-> + 		default:
-> + 			usage(argv[0]);
-> + 			break;
-> +@@ -1547,7 +1551,7 @@ int main(int argc, char **argv)
-> + 			set_planes(&dev, plane_args, plane_count);
-> +
-> + 		if (test_vsync)
-> +-			test_page_flip(&dev, pipe_args, count);
-> ++			test_page_flip(&dev, pipe_args, count, dont_stop);
-> +
-> + 		if (drop_master)
-> + 			drmDropMaster(dev.fd);
-> +--
-> +1.9.1
-> +
-> diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm_2.4.52.bbappen=
-d
-> b/meta-arago-distro/recipes-graphics/drm/libdrm_2.4.52.bbappend
-> new file mode 100644
-> index 0000000..f593fb9
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/drm/libdrm_2.4.52.bbappend
-> @@ -0,0 +1,5 @@
-> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> +
-> +SRC_URI +=3D "file://0001-Add-option-to-run-a-test-indefinitely.patch"
-> +
-> +PR_append =3D "-arago0"
-> --
-> 2.0.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<html>
+<head>
+<title>
+Status for 09/23/14
+</title>
+</head>
+<body>
 
+<h2>Status for 09/23/14</h2>
+
+<h2>BUILD_ID: build-2014-09-23_14-15-06</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.09"<br>
+MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_646_1532454163.1411504864626--
