@@ -1,23 +1,25 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTP id 1C18952A72
+	by arago-project.org (Postfix) with ESMTP id 5865252A76
 	for <meta-arago@arago-project.org>;
 	Fri, 26 Sep 2014 15:41:18 +0000 (UTC)
 Received: from gandalf.denix.org ([unknown] [108.18.33.160])
 	by vms173023.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0NCI005SSM7ZMJ60@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 26 Sep 2014 10:41:02 -0500 (CDT)
+	2009)) with ESMTPA id <0NCI005PHM833060@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 26 Sep 2014 10:41:04 -0500 (CDT)
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 009D02008D; Fri,
-	26 Sep 2014 11:40:46 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 78C492018E; Fri,
+	26 Sep 2014 11:40:51 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 26 Sep 2014 11:40:32 -0400
-Message-id: <1411746038-21612-1-git-send-email-denis@denix.org>
+Date: Fri, 26 Sep 2014 11:40:34 -0400
+Message-id: <1411746038-21612-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.0.4
-Subject: [PATCH 1/7] libinput: update to 0.6.0
+In-reply-to: <1411746038-21612-1-git-send-email-denis@denix.org>
+References: <1411746038-21612-1-git-send-email-denis@denix.org>
+Subject: [PATCH 3/7] weston: update to version 1.6.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -30,50 +32,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Sep 2014 15:41:18 -0000
+X-List-Received-Date: Fri, 26 Sep 2014 15:41:19 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../wayland/{libinput_git.bb => libinput_0.6.0.bb}     | 18 ++++++------------
- 1 file changed, 6 insertions(+), 12 deletions(-)
- rename meta-arago-extras/recipes-graphics/wayland/{libinput_git.bb => libinput_0.6.0.bb} (42%)
+ .../wayland/{weston_1.5.0.bb => weston_1.6.0.bb}              | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+ rename meta-arago-extras/recipes-graphics/wayland/{weston_1.5.0.bb => weston_1.6.0.bb} (91%)
 
-diff --git a/meta-arago-extras/recipes-graphics/wayland/libinput_git.bb b/meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb
-similarity index 42%
-rename from meta-arago-extras/recipes-graphics/wayland/libinput_git.bb
-rename to meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb
-index 6635e7d..c3bbb7b 100644
---- a/meta-arago-extras/recipes-graphics/wayland/libinput_git.bb
-+++ b/meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb
-@@ -1,20 +1,14 @@
--DESCRIPTION = "libinput is a library to handle input devices in Wayland compositors"
-+SUMMARY = "Library to handle input devices in Wayland compositors"
- HOMEPAGE = "http://www.freedesktop.org/wiki/Software/libinput/"
-+SECTION = "libs"
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.5.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+similarity index 91%
+rename from meta-arago-extras/recipes-graphics/wayland/weston_1.5.0.bb
+rename to meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+index e1ff61b..efbbbe0 100644
+--- a/meta-arago-extras/recipes-graphics/wayland/weston_1.5.0.bb
++++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+@@ -5,18 +5,15 @@ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
+                     file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
  
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://COPYING;md5=673e626420c7f859fbe2be3a9c13632d"
- 
--inherit autotools pkgconfig
--
- DEPENDS = "libevdev udev mtdev"
- 
--PR = "r2"
--
 -BRANCH = "master"
--SRCREV = "0647574c46e5e930063ace7b35385213dca33dc1"
-+SRC_URI = "http://www.freedesktop.org/software/${BPN}/${BP}.tar.xz"
-+SRC_URI[md5sum] = "3afaf9f66d8796323a79edb879c10ba3"
-+SRC_URI[sha256sum] = "30b555771e7cb921ccb9430c4a86940aa3938d05506e81d2417c03e30451bfbc"
- 
--PV = "0.5.0"
+-SRCREV = "880193622024d7dc2b36421251d97b08da324570"
 -
--SRC_URI = "git://anongit.freedesktop.org/wayland/libinput;protocol=git;branch=${BRANCH}"
+-SRC_URI = "git://anongit.freedesktop.org/wayland/weston;protocol=git;branch=${BRANCH} \
++SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
+            file://weston.png \
+            file://weston.desktop \
+            file://disable-wayland-scanner-pkg-check.patch \
+            file://make-lcms-explicitly-configurable.patch \
+            file://make-libwebp-explicitly-configurable.patch \
+ "
 -
 -S = "${WORKDIR}/git"
-+inherit autotools pkgconfig
++SRC_URI[md5sum] = "c60ce9dde99a089db0539d8f6b557827"
++SRC_URI[sha256sum] = "dc3ea5d13bbf025fabc006216c5ddc0d80d5f4ebe778912b8c4d1d4acaaa614d"
+ 
+ inherit autotools pkgconfig useradd
+ 
+@@ -63,6 +60,8 @@ PACKAGECONFIG[cairo-glesv2] = "--with-cairo-glesv2,--with-cairo=image,cairo"
+ PACKAGECONFIG[lcms] = "--enable-lcms,--disable-lcms,lcms"
+ # Weston with webp support
+ PACKAGECONFIG[webp] = "--enable-webp,--disable-webp,libwebp"
++# Weston with libinput backend
++PACKAGECONFIG[libinput] = "--enable-libinput-backend,--disable-libinput-backend,libinput"
+ 
+ do_install_append() {
+ 	# Weston doesn't need the .la files to load modules, so wipe them
 -- 
 2.0.4
 
