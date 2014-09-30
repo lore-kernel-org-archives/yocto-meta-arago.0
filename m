@@ -1,29 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 89B3552A5D
+Return-Path: <karthik.ramanan@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 3EC1852972
 	for <meta-arago@arago-project.org>;
-	Tue, 30 Sep 2014 07:01:29 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8U71SeM014796
-	for <meta-arago@arago-project.org>; Tue, 30 Sep 2014 02:01:28 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8U71RPL004518
-	for <meta-arago@arago-project.org>; Tue, 30 Sep 2014 02:01:27 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 30 Sep 2014 02:01:23 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s8U71Ndv007091	for <meta-arago@arago-project.org>;
-	Tue, 30 Sep 2014 02:01:23 -0500
-Date: Tue, 30 Sep 2014 02:42:02 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1741194893.677.1412059322479.JavaMail.jenkins@puget>
+	Tue, 30 Sep 2014 11:17:17 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id s8UBHEp6005402
+	for <meta-arago@arago-project.org>; Tue, 30 Sep 2014 06:17:15 -0500
+Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s8UBHCPH012430
+	for <meta-arago@arago-project.org>; Tue, 30 Sep 2014 16:47:13 +0530
+Received: from [172.24.159.120] (172.24.159.120) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.174.1;
+	Tue, 30 Sep 2014 16:47:11 +0530
+Message-ID: <542A9137.3030802@ti.com>
+Date: Tue, 30 Sep 2014 16:47:11 +0530
+From: Karthik Ramanan <a0393906@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.09 build 2014-09-30_01-00-31
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1409928767-11517-1-git-send-email-a0393906@ti.com>
+	<1409928767-11517-2-git-send-email-a0393906@ti.com>
+	<20140926184634.GK2480@denix.org>
+In-Reply-To: <20140926184634.GK2480@denix.org>
+X-Originating-IP: [172.24.159.120]
+Cc: meta-arago@arago-project.org
+Subject: Re: [for master] [PATCH v2 1/4] wayland: upgrade to 1.3.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,198 +38,101 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Sep 2014 07:01:29 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_676_1620267379.1412059322460"
-
-------=_Part_676_1620267379.1412059322460
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Tue, 30 Sep 2014 11:17:18 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html>
-<head>
-<title>
-Status for 09/30/14
-</title>
-</head>
-<body>
+On 27-Sep-14 12:16 AM, Denys Dmytriyenko wrote:
+> On Fri, Sep 05, 2014 at 08:22:44PM +0530, Karthik Ramanan wrote:
+>> From: Ross Burton <ross.burton@intel.com>
+>>
+>> wayland-scanner now uses pkg-config instead of hard-coding paths, so edit the
+>> script to use pkg-config-native.
+>>
+>> Based on work by Ewan Le Bideau-Canevet <Ewan.LEBIDEAU-CANEVET@eurogiciel.fr>.
+>>
+>> Signed-off-by: Ross Burton <ross.burton@intel.com>
+>> Signed-off-by: Saul Wold <sgw@linux.intel.com>
+>> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+>
+> First of all, you ended up copying all those people above. It is rarelly a
+> good idea to use an existing commit for overlaying the recipe locally...
 
-<h2>Status for 09/30/14</h2>
+Denys,
 
-<h2>BUILD_ID: build-2014-09-30_01-01-34</h2>
+On the kernel tree, atleast in the past, when we pulled in patches from 
+other branch it was encouraged to preserve authorship and try to bring 
+in the patch as it is.
 
-<h2>Clean Build: false</h2>
+So if I understand correctly and also look at some recently submitted 
+patches, like the wayland/weston 1.5.0 submission it seems like we can 
+simply copy the patch and not worry about the authorship. So I will take 
+care of this from the next time.
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+Sorry about the fact that there was a deviation, I was not aware of that 
+the simpler approach of simply copying the files was allowed.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
+Would you be merging this if its acceptable to you?
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+Regards
+Karthik
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.09"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+>
+>
+>> ---
+>>   .../recipes-graphics/wayland/wayland_1.3.0.bb      | 36 ++++++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>>   create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland_1.3.0.bb
+>>
+>> diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland_1.3.0.bb b/meta-arago-extras/recipes-graphics/wayland/wayland_1.3.0.bb
+>> new file mode 100644
+>> index 0000000..212e08a
+>> --- /dev/null
+>> +++ b/meta-arago-extras/recipes-graphics/wayland/wayland_1.3.0.bb
+>> @@ -0,0 +1,36 @@
+>> +SUMMARY = "Wayland, a protocol between a compositor and clients"
+>> +DESCRIPTION = "Wayland is a protocol for a compositor to talk to its clients \
+>> +as well as a C library implementation of that protocol. The compositor can be \
+>> +a standalone display server running on Linux kernel modesetting and evdev \
+>> +input devices, an X application, or a wayland client itself. The clients can \
+>> +be traditional applications, X servers (rootless or fullscreen) or other \
+>> +display servers."
+>> +HOMEPAGE = "http://wayland.freedesktop.org"
+>> +LICENSE = "MIT"
+>> +LIC_FILES_CHKSUM = "file://COPYING;md5=1d4476a7d98dd5691c53d4d43a510c72 \
+>> +                    file://src/wayland-server.c;endline=21;md5=079ae21dbf98ada52ec23744851b0a5c"
+>> +
+>> +SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz"
+>> +SRC_URI[md5sum] = "d16d27081e0871de82d08840c2f133fc"
+>> +SRC_URI[sha256sum] = "2e817685f68a26acd19964d69ddbc4549ba5412114ad95e1a9f5934cce470d6e"
+>> +
+>> +SRC_URI_append_class-native = " file://just-scanner.patch"
+>> +
+>> +inherit autotools pkgconfig
+>> +
+>> +# We need wayland-native for the wayland-scanner utility
+>> +BBCLASSEXTEND = "native"
+>> +
+>> +DEPENDS_virtclass-native = "expat-native libffi-native"
+>> +DEPENDS = "expat libffi wayland-native"
+>> +
+>> +EXTRA_OECONF_virtclass-native = "--disable-documentation"
+>> +EXTRA_OECONF = "--disable-documentation --disable-scanner"
+>> +
+>> +# Wayland installs a M4 macro for other projects to use, which uses the target
+>> +# pkg-config to find files.  Replace pkg-config with pkg-config-native.
+>> +do_install_append_class-native() {
+>> +  sed -e 's,PKG_CHECK_MODULES(.*),,g' \
+>> +      -e 's,$PKG_CONFIG,pkg-config-native,g' \
+>> +      -i ${D}/${datadir}/aclocal/wayland-scanner.m4
+>> +}
+>> --
+>> 2.0.1
+>>
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>>
 
 
-------=_Part_676_1620267379.1412059322460--
