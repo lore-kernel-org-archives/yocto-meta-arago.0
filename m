@@ -1,29 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 90F7E529CF
+Return-Path: <karthik.ramanan@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C3CBA529DD
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Oct 2014 19:39:11 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s93JdAOG029971
-	for <meta-arago@arago-project.org>; Fri, 3 Oct 2014 14:39:10 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s93JdADR002754
-	for <meta-arago@arago-project.org>; Fri, 3 Oct 2014 14:39:10 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 3 Oct 2014 14:39:10 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s93Jd9bs015610	for <meta-arago@arago-project.org>;
-	Fri, 3 Oct 2014 14:39:10 -0500
-Date: Fri, 3 Oct 2014 15:19:42 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <381478297.7.1412363982370.JavaMail.jenkins@puget>
+	Mon,  6 Oct 2014 13:13:25 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id s96DDN6t005025
+	for <meta-arago@arago-project.org>; Mon, 6 Oct 2014 08:13:24 -0500
+Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id s96DDKmq011592
+	for <meta-arago@arago-project.org>; Mon, 6 Oct 2014 18:43:21 +0530
+Received: from [172.24.159.120] (172.24.159.120) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.174.1;
+	Mon, 6 Oct 2014 18:43:19 +0530
+Message-ID: <5432956F.9020703@ti.com>
+Date: Mon, 6 Oct 2014 18:43:19 +0530
+From: Karthik Ramanan <a0393906@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.09 build 2014-10-03_14-03-57
+To: Yaniv Machani <yanivma@ti.com>
+References: <1409844854-17247-1-git-send-email-a0393906@ti.com>
+	<1409844854-17247-2-git-send-email-a0393906@ti.com>
+	<20140911222951.GL18620@edge> <20140930212359.GU6303@edge>
+	<542BA771.6080409@ti.com>
+In-Reply-To: <542BA771.6080409@ti.com>
+X-Originating-IP: [172.24.159.120]
+Cc: meta-arago@arago-project.org
+Subject: Re: [for master] [PATCH 1/3] tisdk-connectivity: Add support for omap-a15 based targets
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,197 +39,115 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Oct 2014 19:39:11 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_6_380854216.1412363982340"
-
-------=_Part_6_380854216.1412363982340
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Mon, 06 Oct 2014 13:13:26 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html>
-<head>
-<title>
-Status for 10/03/14
-</title>
-</head>
-<body>
 
-<h2>Status for 10/03/14</h2>
+Yaniv,
 
-<h2>BUILD_ID: build-2014-10-03_14-04-58</h2>
+Could you please comment on the below question?
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.09"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+Regards
+Karthik
 
 
-------=_Part_6_380854216.1412363982340--
+On 01-Oct-14 12:34 PM, Karthik Ramanan wrote:
+> On 01-Oct-14 2:53 AM, Denys Dmytriyenko wrote:
+>> On Thu, Sep 11, 2014 at 06:29:51PM -0400, Denys Dmytriyenko wrote:
+>>> On Thu, Sep 04, 2014 at 09:04:12PM +0530, Karthik Ramanan wrote:
+>>>> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>>>> ---
+>>>>   .../packagegroups/packagegroup-arago-tisdk-connectivity.bb       |
+>>>> 9 ++++++++-
+>>>>   1 file changed, 8 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git
+>>>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+>>>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+>>>>
+>>>> index f6c8660..7c5c565 100644
+>>>> ---
+>>>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+>>>>
+>>>> +++
+>>>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+>>>>
+>>>> @@ -1,6 +1,6 @@
+>>>>   DESCRIPTION = "Task to install wireless packages into the target FS"
+>>>>   LICENSE = "MIT"
+>>>> -PR = "r29"
+>>>> +PR = "r30"
+>>>>
+>>>>   inherit packagegroup
+>>>>
+>>>> @@ -63,6 +63,13 @@ CONNECTIVITY_RDEPENDS_ti43x = "\
+>>>>       ${FIRMWARE_AND_DRIVERS} \
+>>>>   "
+>>>>
+>>>> +CONNECTIVITY_RDEPENDS_omap-a15 = "\
+>>>> +    ${WLAN_COMMON} \
+>>>> +    ${BLUETOOTH_STACK} \
+>>>> +
+>>>> ${@base_contains('ARAGO_BRAND','glsdk','${FIRMWARE_AND_DRIVERS}','',d)}
+>>>> \
+>>>> +    bt-firmware \
+>>>
+>>> So, I see that wlan and by components are added to omap-a15 SOC, while
+>>> firmware and drivers are only enabled when built for GLSDK. I'm
+>>> wondering if
+>>> that will affect negatively other platforms based on the same SOC,
+>>> including
+>>> am57x... And wasn't BT support completely dropped by Sitara? Is it
+>>> still the
+>>> case?
+>>
+>> Ping on this one - this will re-enable BT for the entire SOC family,
+>> that will
+>> affect DRA7xx as well AM57x. I'm not sure that is intended for other SDK
+>> products. Should those be conditional on ARAGO_BRAND set to glsdk as
+>> well?
+>>
+>
+> I will take Yaniv's help here because I am not aware of what is required
+> for the other SoC families.
+>
+> Yaniv,
+>
+> If you recall, during the previous GLSDK releases we made this change as
+> conditional to GLSDK. There was also a check for amsdk.
+>
+> Here is the link to the older version of this file:
+> http://arago-project.org/git/projects/meta-arago-glsdk.git?p=projects/meta-arago-glsdk.git;a=blob;f=meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb;h=00460683ce31ba5c32c60b94fc4aa94ed11b682b;hb=a0c23900703dd66bf28760cbdaf6bdec97c9bd72
+>
+>
+> Would you be able to comment/suggest on what is needed here?
+>
+> Regards
+> Karthik
+>
+>
+>>
+>>>> +"
+>>>> +
+>>>>   RDEPENDS_${PN} = "\
+>>>>       ${CONNECTIVITY_RDEPENDS} \
+>>>>   "
+>>>> --
+>>>> 2.0.1
+>>>>
+>>>> _______________________________________________
+>>>> meta-arago mailing list
+>>>> meta-arago@arago-project.org
+>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>>> _______________________________________________
+>>> meta-arago mailing list
+>>> meta-arago@arago-project.org
+>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+
