@@ -1,29 +1,26 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 40E8952981
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTP id D0F2152973
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Oct 2014 09:03:08 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id s97937k4031258
-	for <meta-arago@arago-project.org>; Tue, 7 Oct 2014 04:03:07 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id s979378I022405
-	for <meta-arago@arago-project.org>; Tue, 7 Oct 2014 04:03:07 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 7 Oct 2014 04:03:06 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s97936CO017811	for <meta-arago@arago-project.org>;
-	Tue, 7 Oct 2014 04:03:07 -0500
-Date: Tue, 7 Oct 2014 04:43:40 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1786510599.5.1412671420304.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.09 build 2014-10-07_03-00-10
+	Tue,  7 Oct 2014 21:11:14 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.18.33.160])
+	by vms173021.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0ND300F11EU18LK3@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 07 Oct 2014 16:10:59 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id E2A1B20261; Tue,
+	07 Oct 2014 17:10:48 -0400 (EDT)
+Date: Tue, 07 Oct 2014 17:10:48 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Manuel Torres <manuel.torres.fernandez@gmail.com>
+Message-id: <20141007211048.GH25997@denix.org>
+References: <CAF+2n7Ssaq3OwRiY6kicGdh+N8z0o2OPNJcd8MGbEvTTfioYDA@mail.gmail.com>
+MIME-version: 1.0
+In-reply-to: <CAF+2n7Ssaq3OwRiY6kicGdh+N8z0o2OPNJcd8MGbEvTTfioYDA@mail.gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: Video encoding on OMAP 4430
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,197 +33,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Oct 2014 09:03:08 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_4_95041760.1412671420286"
+X-List-Received-Date: Tue, 07 Oct 2014 21:11:14 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-------=_Part_4_95041760.1412671420286
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Sorry for the delay.
 
-<html>
-<head>
-<title>
-Status for 10/07/14
-</title>
-</head>
-<body>
+Hmm, it appears the toolchain configuration from meta-arago-distro is still 
+somewhat required to use meta-arago-extras... I need to look into that and fix 
+this part, so meta-arago-extras can be used separately.
 
-<h2>Status for 10/07/14</h2>
-
-<h2>BUILD_ID: build-2014-10-07_03-01-12</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.09"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+-- 
+Denys
 
 
-------=_Part_4_95041760.1412671420286--
+On Fri, Sep 26, 2014 at 10:35:30AM +0200, Manuel Torres wrote:
+> Hello everyone,
+> 
+> I am trying to encode video using the OMAP 4430 video encoding capabilites
+> with a Gumstix Duovero Zephyr board. I have been told that the
+> gst-plugins-ducati recipe of the meta-arago-extras layer might work
+> although it has also been noted that it is intended for OMAP5.
+> 
+> This is as far as I got:
+> 
+> I included the meta-arago-extras layer, ran "bitbake-layers show-recipes"
+> and got this error:
+> 
+> Parsing recipes..ERROR: ExpansionError during parsing
+> /home/mtorres/Development/
+> Gumstix/yocto/poky/meta-arago-extras/meta-arago-extras/recipes-core/meta/
+> external-arago-toolchain.bb: Failure expanding variable ARG_VER_MAIN[:=],
+> expression was ${@arg_get_main_version(d)} which triggered exception
+> TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+> Traceback (most recent call last):
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/bin/bitbake-layers",
+> line 726, in <module>
+>     sys.exit(main(sys.argv[1:]) or 0)
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/bin/bitbake-layers",
+> line 50, in main
+>     cmds.onecmd(' '.join(args))
+>   File "/usr/lib/python2.7/cmd.py", line 221, in onecmd
+>     return func(arg)
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/bin/bitbake-layers",
+> line 212, in do_show_recipes
+>     self.init_bbhandler()
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/bin/bitbake-layers",
+> line 67, in init_bbhandler
+>     self.bbhandler.prepare(config_only)
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/lib/bb/tinfoil.py",
+> line 82, in prepare
+>     self.parseRecipes()
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/lib/bb/tinfoil.py",
+> line 65, in parseRecipes
+>     self.cooker.updateCache()
+>   File
+> "/home/mtorres/Development/Gumstix/yocto/poky/bitbake/lib/bb/cooker.py",
+> line 1309, in updateCache
+>     raise bb.BBHandledException()
+> bb.BBHandledException
+> 
+> Any help will be greatly appreciated.
+
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+
