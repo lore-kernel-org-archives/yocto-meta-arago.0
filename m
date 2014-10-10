@@ -1,29 +1,23 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 2E0D652A5D
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTP id 2394752A08
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Oct 2014 14:53:19 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id s9AErImI018219
-	for <meta-arago@arago-project.org>; Fri, 10 Oct 2014 09:53:18 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id s9AErIQS011766
-	for <meta-arago@arago-project.org>; Fri, 10 Oct 2014 09:53:18 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 10 Oct 2014 09:53:17 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	s9AErHaV032516	for <meta-arago@arago-project.org>;
-	Fri, 10 Oct 2014 09:53:17 -0500
-Date: Fri, 10 Oct 2014 10:33:43 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1174542850.23.1412951623448.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.10 build 2014-10-10_01-01-10
+	Fri, 10 Oct 2014 18:14:18 +0000 (UTC)
+Received: from gandalf.denix.org ([unknown] [108.18.33.160])
+	by vms173017.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0ND800DATQMUUM10@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 10 Oct 2014 13:13:58 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id C365E20088; Fri,
+	10 Oct 2014 14:13:42 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 10 Oct 2014 14:13:42 -0400
+Message-id: <1412964822-11881-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.1.2
+Subject: [PATCH] meta-toolchain-arago*: fix breakage of linux-devkit due to API changes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,197 +30,240 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Oct 2014 14:53:19 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_22_417400814.1412951623410"
+X-List-Received-Date: Fri, 10 Oct 2014 18:14:18 -0000
 
-------=_Part_22_417400814.1412951623410
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 10/10/14
-</title>
-</head>
-<body>
+Similar to tisdk-image.bbclass, some SDK generating code has been moved to
+corresponding Python lib code, breaking APIs used in meta-toolchain-arago*
+recipes. Adjust the code for the new API and align with the way linux-devkit
+was historically made.
+Some Qt5 specifics also changed lately, adjust accordingly, but trying not
+to break backward compatibility with Qt4.
 
-<h2>Status for 10/10/14</h2>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../meta/meta-toolchain-arago-tisdk.bb             |  4 +-
+ .../recipes-core/meta/meta-toolchain-arago-qte.bb  |  9 +--
+ .../recipes-core/meta/meta-toolchain-arago.bb      | 80 +++++++++++++++++-----
+ 3 files changed, 71 insertions(+), 22 deletions(-)
 
-<h2>BUILD_ID: build-2014-10-10_01-02-12</h2>
+diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+index 68df1bf..6768ac8 100644
+--- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
++++ b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+@@ -1,10 +1,10 @@
+ TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-toolchain-tisdk-target"
+ TOOLCHAIN_SUFFIX ?= "-tisdk"
+-TOOLCHAIN_CLEANUP_PACKAGES ?= "libgnutls-dev libgnutls-extra26 libgnutls-openssl27 libtasn1-dev"
++TOOLCHAIN_CLEANUP_PACKAGES ?= "libgnutls-dev libgnutls-extra26 libgnutls-openssl27 libtasn1-dev coreutils"
+ 
+ require recipes-core/meta/meta-toolchain-arago-qte.bb
+ 
+-PR = "r3"
++PR = "r4"
+ 
+ toolchain_create_sdk_env_script_append() {
+     echo -e 'export PS1="\[\\e[32;1m\][linux-devkit]\[\\e[0m\]:\w> "' >> $script
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+index 25d5641..9aa29ca 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+@@ -5,13 +5,14 @@ TOOLCHAIN_SUFFIX ?= "-qte-sdk"
+ 
+ require meta-toolchain-arago.bb
+ 
+-PR = "r18"
++PR = "r19"
+ 
+ # There could be qt5, qt4e and qt4x11 providers, but we don't support qt4x11 for now
+ QT_DIR_NAME = "${@base_conditional('QT_PROVIDER', 'qt5', 'qt5', 'qtopia', d)}"
+ QT_BIN_PREFIX = "${@base_conditional('QT_PROVIDER', 'qt5', "${QT_DIR_NAME}/", '', d)}"
+ QT_BIN_SUFFIX = "${@base_conditional('QT_PROVIDER', 'qt5', '', '4', d)}"
+ QT_MKSPECS_LOCATION = "${@base_conditional('QT_PROVIDER', 'qt5', "${libdir}", "${datadir}", d)}"
++QT_MKSPECS_DIR = "${@base_conditional('QT_PROVIDER', 'qt5', "linux-oe-g++", "linux-gnueabi-oe-g++", d)}"
+ 
+ toolchain_create_sdk_env_script_append() {
+ 	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_DIR_NAME}:$PATH' >> $script
+@@ -33,7 +34,7 @@ toolchain_create_sdk_env_script_append() {
+ 	echo 'export OE_QMAKE_QDBUSXML2CPP=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbusxml2cpp${QT_BIN_SUFFIX}' >> $script
+ 	echo 'export OE_QMAKE_QT_CONFIG=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/qconfig.pri' >> $script
+ 	echo 'export OE_QMAKE_STRIP="echo"' >> $script
+-	echo 'export QMAKESPEC=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/linux-gnueabi-oe-g++' >> $script
++	echo 'export QMAKESPEC=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/${QT_MKSPECS_DIR}' >> $script
+ 	echo 'export QMAKE_DEFAULT_LIBDIRS=${QT_QMAKE_LIBDIR_QT}' >> $script
+ 	echo 'export QMAKE_DEFAULT_INCDIRS=${QT_QMAKE_INCDIR_QT}' >> $script
+ 
+@@ -49,7 +50,7 @@ toolchain_create_sdk_env_script_append() {
+ 	echo 'HostPrefix = $(SDK_PATH_NATIVE)' >> $qt_conf
+ 	echo 'HostBinaries = $(OE_QMAKE_HOST_BINDIR_QT)' >> $qt_conf
+ 
+-	# make a symbolic link to mkspecs for compatibility with Nokia's SDK
+-	# and QTCreator
++	# make a symbolic link to mkspecs for compatibility with Qt SDK and QTCreator
+ 	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
++	(cd ${SDK_OUTPUT}/${SDKPATHNATIVE}; ln -sf ../${REAL_MULTIMACH_TARGET_SYS}${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+ }
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index ff74a95..9359e92 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -4,13 +4,11 @@ TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-standalone-sdk-target"
+ TOOLCHAIN_SUFFIX ?= "-sdk"
+ TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}"
+ TOOLCHAIN_CLEANUP_PACKAGES ?= ""
++SDKIMAGE_FEATURES = ""
+ 
+ require recipes-core/meta/meta-toolchain.bb
+ 
+-# Add in linux-libc-headers version so that is taken into consideration
+-REAL_MULTIMACH_TARGET_SYS = "${TUNE_PKGARCH}-${PREFERRED_VERSION_linux-libc-headers}${TARGET_VENDOR}-${TARGET_OS}"
+-
+-PR = "r28"
++PR = "r29"
+ 
+ # This function creates an environment-setup-script for use in a deployable SDK
+ toolchain_create_sdk_env_script () {
+@@ -64,7 +62,9 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
+ }
+ 
+-populate_sdk_ipk_append () {
++SDK_POSTPROCESS_COMMAND += "arago_sdk_fixup; "
++
++arago_sdk_fixup () {
+ 	# Remove broken .la files
+ 	for i in `find ${SDK_OUTPUT}/${SDKPATH} -name \*.la`; do
+ 		rm -f $i
+@@ -122,7 +122,7 @@ cleanup_toolchain_packages() {
+ 	then
+ 		# Clean up the native side of the toolchain
+ 		opkg_dir="${SDK_OUTPUT}/${SDKPATHNATIVE}"
+-		opkg_conf="${opkg_dir}/etc/opkg-sdk.conf"
++		opkg_conf="${SDK_OUTPUT}/etc/opkg-sdk.conf"
+ 		opkg-cl -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
+ 
+ 		# Clean up the target side of the toolchain
+@@ -162,7 +162,10 @@ TMPSDKPATH="${SDKPATH}"
+ SUDO_EXEC=""
+ target_sdk_dir=""
+ answer=""
+-while getopts ":yd:" OPT; do
++relocate=1
++savescripts=0
++verbose=0
++while getopts ":yd:DRS" OPT; do
+ 	case $OPT in
+ 	y)
+ 		answer="Y"
+@@ -171,15 +174,33 @@ while getopts ":yd:" OPT; do
+ 	d)
+ 		target_sdk_dir=$OPTARG
+ 		;;
++	D)
++		verbose=1
++		;;
++	R)
++		relocate=0
++		savescripts=1
++		;;
++	S)
++		savescripts=1
++		;;
+ 	*)
+ 		echo "Usage: $(basename $0) [-y] [-d <dir>]"
+ 		echo "  -y         Automatic yes to all prompts"
+ 		echo "  -d <dir>   Install the SDK to <dir>"
++		echo "======== Advanced DEBUGGING ONLY OPTIONS ========"
++		echo "  -S         Save relocation scripts"
++		echo "  -R         Do not relocate executables"
++		echo "  -D         use set -x to see what is going on"
+ 		exit 1
+ 		;;
+ 	esac
+ done
+ 
++if [ $verbose = 1 ] ; then
++	set -x
++fi
++
+ printf "Enter target directory for SDK (default: $DEFAULT_INSTALL_DIR): "
+ if [ "$target_sdk_dir" = "" ]; then
+ 	read target_sdk_dir
+@@ -188,11 +209,16 @@ else
+ 	echo "$target_sdk_dir"
+ fi
+ 
+-eval target_sdk_dir=$target_sdk_dir
+-if [ -d $target_sdk_dir ]; then
+-	target_sdk_dir=$(cd $target_sdk_dir; pwd)
++eval target_sdk_dir=$(echo "$target_sdk_dir"|sed 's/ /\\ /g')
++if [ -d "$target_sdk_dir" ]; then
++	target_sdk_dir=$(cd "$target_sdk_dir"; pwd)
+ else
+-	target_sdk_dir=$(readlink -m $target_sdk_dir)
++	target_sdk_dir=$(readlink -m "$target_sdk_dir")
++fi
++
++if [ -n "$(echo $target_sdk_dir|grep ' ')" ]; then
++	echo "The target directory path ($target_sdk_dir) contains spaces. Abort!"
++	exit 1
+ fi
+ 
+ if [ -e "$target_sdk_dir/environment-setup*" ]; then
+@@ -256,12 +282,25 @@ if [ "$dl_path" = "" ] ; then
+ 	echo "SDK could not be set up. Relocate script unable to find ld-linux.so. Abort!"
+ 	exit 1
+ fi
+-executable_files=$($SUDO_EXEC find $native_sysroot -type f -executable)
+-$SUDO_EXEC ${env_setup_script%/*}/relocate_sdk.py $target_sdk_dir $dl_path $executable_files
+-if [ $? -ne 0 ]; then
+-	echo "SDK could not be set up. Relocate script failed. Abort!"
++executable_files=$($SUDO_EXEC find $native_sysroot -type f -perm /111 -exec file '{}' \;| grep "\(executable\|dynamically linked\)" | cut -f 1 -d ':')
++
++tdir=`mktemp -d`
++if [ x$tdir = x ] ; then
++	echo "SDK relocate failed, could not create a temporary directory"
+ 	exit 1
+ fi
++echo "#!/bin/bash" > $tdir/relocate_sdk.sh
++echo exec ${env_setup_script%/*}/relocate_sdk.py $target_sdk_dir $dl_path $executable_files >> $tdir/relocate_sdk.sh
++$SUDO_EXEC mv $tdir/relocate_sdk.sh ${env_setup_script%/*}/relocate_sdk.sh
++$SUDO_EXEC chmod 755 ${env_setup_script%/*}/relocate_sdk.sh
++rm -rf $tdir
++if [ $relocate = 1 ] ; then
++	$SUDO_EXEC ${env_setup_script%/*}/relocate_sdk.sh
++	if [ $? -ne 0 ]; then
++		echo "SDK could not be set up. Relocate script failed. Abort!"
++		exit 1
++	fi
++fi
+ 
+ # replace ${SDKPATH} with the new prefix in all text files: configs/scripts/etc
+ $SUDO_EXEC find $native_sysroot -type f -exec file '{}' \;|grep ":.*\(ASCII\|script\|source\).*text"|cut -d':' -f1|$SUDO_EXEC xargs sed -i -e "s:$TMPSDKPATH:$target_sdk_dir:g"
+@@ -271,11 +310,20 @@ for l in $($SUDO_EXEC find $native_sysroot -type l); do
+ 	$SUDO_EXEC ln -sfn $(readlink $l|$SUDO_EXEC sed -e "s:$TMPSDKPATH:$target_sdk_dir:") $l
+ done
+ 
++# find out all perl scripts in $native_sysroot and modify them replacing the
++# host perl with SDK perl.
++for perl_script in $($SUDO_EXEC find $native_sysroot -type f -exec grep "^#!.*perl" -l '{}' \;); do
++	$SUDO_EXEC sed -i -e "s:^#! */usr/bin/perl.*:#! /usr/bin/env perl:g" -e \
++		"s: /usr/bin/perl: /usr/bin/env perl:g" $perl_script
++done
++
+ echo done
+ 
+ # delete the relocating script, so that user is forced to re-run the installer
+ # if he/she wants another location for the sdk
+-$SUDO_EXEC rm ${env_setup_script%/*}/relocate_sdk.py
++if [ $savescripts = 0 ] ; then
++	$SUDO_EXEC rm ${env_setup_script%/*}/relocate_sdk.py ${env_setup_script%/*}/relocate_sdk.sh
++fi
+ 
+ echo "SDK has been successfully set up and is ready to be used."
+ 
+-- 
+2.1.2
 
-<h2>Clean Build: false</h2>
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.10"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_22_417400814.1412951623410--
