@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0BEB15298D
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 3E0B652AD1
 	for <meta-arago@arago-project.org>;
-	Mon,  3 Nov 2014 07:29:30 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sA37TTjw024770
-	for <meta-arago@arago-project.org>; Mon, 3 Nov 2014 01:29:29 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id sA37TTc7013665
-	for <meta-arago@arago-project.org>; Mon, 3 Nov 2014 01:29:29 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 3 Nov 2014 01:29:29 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sA37TRrg005750	for <meta-arago@arago-project.org>;
-	Mon, 3 Nov 2014 01:29:28 -0600
-Date: Mon, 3 Nov 2014 02:08:57 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1628220594.123.1414998537975.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.10 build 2014-11-03_01-01-10
+	Mon,  3 Nov 2014 18:51:38 +0000 (UTC)
+Received: from gandalf.denix.org ([108.18.33.160]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NEH00MC88DBLI00@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 03 Nov 2014 12:51:27 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=HrPBwPXX c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=sozttTNsAAAA:8
+	a=cBzh1a_p2s0fqdiWbYgA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 3FCD520086;	Mon,
+	3 Nov 2014 13:51:10 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 03 Nov 2014 13:51:08 -0500
+Message-id: <1415040669-16780-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.1.2
+Subject: [PATCH 1/2] packagegroup*: fix recipes for machine-specific requirement
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,198 +34,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Nov 2014 07:29:30 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_122_984844689.1414998537913"
+X-List-Received-Date: Mon, 03 Nov 2014 18:51:38 -0000
 
-------=_Part_122_984844689.1414998537913
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 11/03/14
-</title>
-</head>
-<body>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb       | 4 +---
+ .../recipes-core/packagegroups/packagegroup-arago-gst.bb              | 4 +++-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-<h2>Status for 11/03/14</h2>
-
-<h2>BUILD_ID: build-2014-11-03_01-02-12</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.10"<br>
-MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+index 16b5df1..704e840 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+@@ -1,11 +1,9 @@
+ DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+ LICENSE = "MIT"
+-PR = "r13"
++PR = "r14"
+ 
+ inherit packagegroup
+ 
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+ RDEPENDS_${PN} = "\
+     dbus \
+     expat \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+index a5367ea..b12687f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+@@ -1,9 +1,11 @@
+ DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
+ LICENSE = "MIT"
+-PR = "r8"
++PR = "r9"
+ 
+ inherit packagegroup
+ 
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
+ GSTREAMER = " \
+     gstreamer \
+     gst-plugins-base \
+-- 
+2.1.2
 
 
-------=_Part_122_984844689.1414998537913--
