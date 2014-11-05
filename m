@@ -1,29 +1,29 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 04ADE529D9
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 45DB9529D9
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Nov 2014 19:12:41 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id sA5JCf8M011365
-	for <meta-arago@arago-project.org>; Wed, 5 Nov 2014 13:12:41 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id sA5JCfvm001997
-	for <meta-arago@arago-project.org>; Wed, 5 Nov 2014 13:12:41 -0600
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Wed, 5 Nov 2014 13:12:41 -0600
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: matrix-gui-browser: do_compile failure
-Thread-Index: Ac/5LACYNxbe6KFjQB+I6UGiIMkMjw==
-Date: Wed, 5 Nov 2014 19:12:40 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958140B815F@DFLE09.ent.ti.com>
+	Wed,  5 Nov 2014 19:22:25 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id sA5JMOx7031000
+	for <meta-arago@arago-project.org>; Wed, 5 Nov 2014 13:22:24 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sA5JMOoT015698
+	for <meta-arago@arago-project.org>; Wed, 5 Nov 2014 13:22:24 -0600
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0174.001; Wed, 5 Nov 2014 13:22:24 -0600
+From: "Dmytriyenko, Denys" <denys@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Thread-Topic: [meta-arago] matrix-gui-browser: do_compile failure
+Thread-Index: Ac/5LdPbeQwZLLRhR4OtDXg96Vmlrw==
+Date: Wed, 5 Nov 2014 19:22:24 +0000
+Message-ID: <B0581B5571079145BA1CD78C126DBDE73215210D@DLEE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: matrix-gui-browser: do_compile failure
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: matrix-gui-browser: do_compile failure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,480 +36,322 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Nov 2014 19:12:42 -0000
+X-List-Received-Date: Wed, 05 Nov 2014 19:22:25 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4B26FB5A64EBA14C87266869E037F958140B815FDFLE09entticom_"
+	boundary="_000_B0581B5571079145BA1CD78C126DBDE73215210DDLEE08entticom_"
 
---_000_4B26FB5A64EBA14C87266869E037F958140B815FDFLE09entticom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_B0581B5571079145BA1CD78C126DBDE73215210DDLEE08entticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
+WWVzLCBJIHNlZSBpdCBoZXJlIHRvby4gSSdsbCBmaXggaXQgd2hlbiBJIGdldCBiYWNrLg0KDQot
+LQ0KRGVueXMNCg0KT24gTm92IDUsIDIwMTQgMToxMyBQTSwgIlN0aWZmbGVyLCBKYWNvYiIgPGot
+c3RpZmZsZXJAdGkuY29tPiB3cm90ZToNCg0KSGkgYWxsLA0KDQoNCg0KV2l0aCB0aGUgbGF0ZXN0
+IHBhdGNoZXMsIHRoZSDigJxtYXRyaXgtZ3VpLWJyb3dzZXLigJ0gcmVjaXBlIGlzIGZhaWxpbmcg
+dG8gY29tcGlsZS4gQW55IGhlbHAgd291bGQgYmUgYXBwcmVjaWF0ZWQuDQoNCg0KDQpNeSBidWls
+ZCBjb25maWd1cmF0aW9uIGlzIGFzIGZvbGxvd3M6DQoNCg0KDQrDmCAgT2UtbGF5ZXJzZXR1cCBj
+b25maWcgZmlsZTogYXJhZ28tZGFpc3ktY29uZmlnLnR4dA0KDQrDmCAgTUFDSElORT1kcmE3eHgt
+ZXZtDQoNCsOYICBCSVRCQUtFIFRhcmdldDogYXJhZ28tYW1zZGstaW1hZ2UNCg0KDQoNCg0KDQpM
+ZXQgbWUga25vdyBpZiB0aGVyZSBpcyBhbnkgb3RoZXIgaW5mb3JtYXRpb24gdGhhdCBJIG5lZWQg
+dG8gcHJvdmlkZS4gVGhlIGVycm9yIGxvZyBpcyBwcm92aWRlZCBiZWxvdy4NCg0KDQoNClRoYW5r
+IHlvdSwNCg0KSmFrZQ0KDQoNCg0KDQoNCg0KDQpERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0
+aW9uIGRvX2NvbXBpbGUNCg0KTk9URTogbWFrZSAtaiAxNiBNQUtFRkxBR1M9LWogMTYgT0VfUU1B
+S0VfQ09NUElMRVI9YXJtLWxpbnV4LWdudWVhYmloZi1nY2MgIC1tYXJjaD1hcm12Ny1hIC1tYXJt
+IC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhhcmQgLW1mcHU9bmVvbiAtbXR1bmU9Y29y
+dGV4LWExNSAtLXN5c3Jvb3Q9L2hvbWUvZ3RibGRhZG0vdGkvb2UtbGF5ZXJzZXR1cC9idWlsZC1D
+T1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi9zeXNyb290cy9kcmE3
+eHgtZXZtIE9FX1FNQUtFX0NDPWFybS1saW51eC1nbnVlYWJpaGYtZ2NjICAtbWFyY2g9YXJtdjct
+YSAtbWFybSAtbXRodW1iLWludGVyd29yayAtbWZsb2F0LWFiaT1oYXJkIC1tZnB1PW5lb24gLW10
+dW5lPWNvcnRleC1hMTUgLS1zeXNyb290PS9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVyc2V0dXAv
+YnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vc3lzcm9v
+dHMvZHJhN3h4LWV2bSBPRV9RTUFLRV9DWFg9YXJtLWxpbnV4LWdudWVhYmloZi1nKysgIC1tYXJj
+aD1hcm12Ny1hIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhhcmQgLW1mcHU9
+bmVvbiAtbXR1bmU9Y29ydGV4LWExNSAtLXN5c3Jvb3Q9L2hvbWUvZ3RibGRhZG0vdGkvb2UtbGF5
+ZXJzZXR1cC9idWlsZC1DT1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFp
+bi9zeXNyb290cy9kcmE3eHgtZXZtIE9FX1FNQUtFX0NGTEFHUz0gLWlzeXN0ZW0vb3B0L2xpbmFy
+by0yMDEzLjAzL2FybS1saW51eC1nbnVlYWJpaGYvaW5jbHVkZSAgLWZzdGFjay1wcm90ZWN0b3Ig
+LU8yIC1waXBlIC1nIC1mZWxpbWluYXRlLXVudXNlZC1kZWJ1Zy10eXBlcyBPRV9RTUFLRV9DWFhG
+TEFHUz0gLWlzeXN0ZW0vb3B0L2xpbmFyby0yMDEzLjAzL2FybS1saW51eC1nbnVlYWJpaGYvaW5j
+bHVkZSAgLWZzdGFjay1wcm90ZWN0b3IgLU8yIC1waXBlIC1nIC1mZWxpbWluYXRlLXVudXNlZC1k
+ZWJ1Zy10eXBlcyBPRV9RTUFLRV9MSU5LPWFybS1saW51eC1nbnVlYWJpaGYtZysrICAtbWFyY2g9
+YXJtdjctYSAtbWFybSAtbXRodW1iLWludGVyd29yayAtbWZsb2F0LWFiaT1oYXJkIC1tZnB1PW5l
+b24gLW10dW5lPWNvcnRleC1hMTUgLS1zeXNyb290PS9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVy
+c2V0dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4v
+c3lzcm9vdHMvZHJhN3h4LWV2bSBPRV9RTUFLRV9MREZMQUdTPSAtTC9vcHQvbGluYXJvLTIwMTMu
+MDMvYXJtLWxpbnV4LWdudWVhYmloZi9saWIgLVdsLC1ycGF0aC1saW5rLC9vcHQvbGluYXJvLTIw
+MTMuMDMvYXJtLWxpbnV4LWdudWVhYmloZi9saWIgLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdu
+dSBPRV9RTUFLRV9BUj1hcm0tbGludXgtZ251ZWFiaWhmLWFyIE9FX1FNQUtFX1NUUklQPWVjaG8g
+T0VfUU1BS0VfV0FZTEFORF9TQ0FOTkVSPS9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVyc2V0dXAv
+YnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vc3lzcm9v
+dHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vd2F5bGFuZC1zY2FubmVyDQoNCmFybS1saW51eC1nbnVl
+YWJpaGYtZysrICAtbWFyY2g9YXJtdjctYSAtbWFybSAtbXRodW1iLWludGVyd29yayAtbWZsb2F0
+LWFiaT1oYXJkIC1tZnB1PW5lb24gLW10dW5lPWNvcnRleC1hMTUgLS1zeXNyb290PS9ob21lL2d0
+YmxkYWRtL3RpL29lLWxheWVyc2V0dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFs
+LWxpbmFyby10b29sY2hhaW4vc3lzcm9vdHMvZHJhN3h4LWV2bSAtYyAtcGlwZSAtaXN5c3RlbS9v
+cHQvbGluYXJvLTIwMTMuMDMvYXJtLWxpbnV4LWdudWVhYmloZi9pbmNsdWRlICAtZnN0YWNrLXBy
+b3RlY3RvciAtTzIgLXBpcGUgLWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzIC1PMiAt
+V2FsbCAtVyAtRF9SRUVOVFJBTlQgLWZQSUUgLURRVF9OT19ERUJVRyAtRFFUX1dFQktJVFdJREdF
+VFNfTElCIC1EUVRfUVVJQ0tfTElCIC1EUVRfT1BFTkdMX0xJQiAtRFFUX1BSSU5UU1VQUE9SVF9M
+SUIgLURRVF9XRUJLSVRfTElCIC1EUVRfUU1MX0xJQiAtRFFUX1dJREdFVFNfTElCIC1EUVRfTkVU
+V09SS19MSUIgLURRVF9QT1NJVElPTklOR19MSUIgLURRVF9TRU5TT1JTX0xJQiAtRFFUX0dVSV9M
+SUIgLURRVF9DT1JFX0xJQiAtSS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNy
+L2xpYi9xdDUvbWtzcGVjcy9saW51eC1vZS1nKysgLUkuLi9naXQgLUkuLi9naXQgLUkuLi8uLi8u
+Li8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NSAtSS4uLy4uLy4uLy4u
+Ly4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0V2ViS2l0V2lkZ2V0cyAt
+SS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0UXVp
+Y2sgLUkuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9R
+dE9wZW5HTCAtSS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUv
+cXQ1L1F0UHJpbnRTdXBwb3J0IC1JLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2bS91
+c3IvaW5jbHVkZS9xdDUvUXRXZWJLaXQgLUkuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgt
+ZXZtL3Vzci9pbmNsdWRlL3F0NS9RdFFtbCAtSS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4
+eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0V2lkZ2V0cyAtSS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3Rz
+L2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0TmV0d29yayAtSS4uLy4uLy4uLy4uLy4uL3N5
+c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0UG9zaXRpb25pbmcgLUkuLi8uLi8u
+Li8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdFNlbnNvcnMgLUku
+Li8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdEd1aSAt
+SS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0Q29y
+ZSAtSS4gLUkuIC1vIG1haW4ubyAuLi9naXQvbWFpbi5jcHANCg0KLi4vZ2l0L21haW4uY3BwOiBJ
+biBmdW5jdGlvbiAnaW50IG1haW4oaW50LCBjaGFyKiopJzoNCg0KLi4vZ2l0L21haW4uY3BwOjUw
+OjY3OiB3YXJuaW5nOiB0aGUgYWRkcmVzcyBvZiAnUVRleHRTdHJlYW0mIGVuZGwoUVRleHRTdHJl
+YW0mKScgd2lsbCBhbHdheXMgZXZhbHVhdGUgYXMgJ3RydWUnIFstV2FkZHJlc3NdDQoNCkluIGZp
+bGUgaW5jbHVkZWQgZnJvbSAuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9p
+bmNsdWRlL3F0NS9RdENvcmUvcW9iamVjdC5oOjQ5OjAsDQoNCiAgICAgICAgICAgICAgICAgZnJv
+bSAuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdENv
+cmUvcWFic3RyYWN0YW5pbWF0aW9uLmg6NDUsDQoNCiAgICAgICAgICAgICAgICAgZnJvbSAuLi8u
+Li8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdENvcmUvUXRD
+b3JlOjQsDQoNCiAgICAgICAgICAgICAgICAgZnJvbSAuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9h
+bTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdFdpZGdldHMvUXRXaWRnZXRzRGVwZW5kczoyLA0K
+DQogICAgICAgICAgICAgICAgIGZyb20gLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2
+bS91c3IvaW5jbHVkZS9xdDUvUXRXaWRnZXRzL1F0V2lkZ2V0czozLA0KDQogICAgICAgICAgICAg
+ICAgIGZyb20gLi4vZ2l0L21haW4uY3BwOjM5Og0KDQouLi8uLi8uLi8uLi8uLi9zeXNyb290cy9h
+bTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdENvcmUvcXN0cmluZy5oOiBBdCBnbG9iYWwgc2Nv
+cGU6DQoNCi4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1
+L1F0Q29yZS9xc3RyaW5nLmg6MzA1OjE0OiBub3RlOiB0aGUgbWFuZ2xpbmcgb2YgJ3ZhX2xpc3Qn
+IGhhcyBjaGFuZ2VkIGluIEdDQyA0LjQNCg0KYXJtLWxpbnV4LWdudWVhYmloZi1nKysgIC1tYXJj
+aD1hcm12Ny1hIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhhcmQgLW1mcHU9
+bmVvbiAtbXR1bmU9Y29ydGV4LWExNSAtLXN5c3Jvb3Q9L2hvbWUvZ3RibGRhZG0vdGkvb2UtbGF5
+ZXJzZXR1cC9idWlsZC1DT1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFp
+bi9zeXNyb290cy9kcmE3eHgtZXZtIC1ML29wdC9saW5hcm8tMjAxMy4wMy9hcm0tbGludXgtZ251
+ZWFiaWhmL2xpYiAtV2wsLXJwYXRoLWxpbmssL29wdC9saW5hcm8tMjAxMy4wMy9hcm0tbGludXgt
+Z251ZWFiaWhmL2xpYiAtV2wsLU8xIC1XbCwtLWhhc2gtc3R5bGU9Z251IC1XbCwtTzEgLVdsLC1y
+cGF0aC1saW5rLC9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVyc2V0dXAvYnVpbGQtQ09SVEVYXzEv
+YXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vc3lzcm9vdHMvYW01N3h4LWV2bS91
+c3IvbGliIC1vIG1hdHJpeF9icm93c2VyIG1haW4ubyAgIC1sUXQ1V2ViS2l0V2lkZ2V0cyAtbHhz
+bHQgLWx6IC1sbSAtbGdpby0yLjAgLWxnc3RhcHAtMC4xMCAtbGdzdGludGVyZmFjZXMtMC4xMCAt
+bGdzdHBidXRpbHMtMC4xMCAtbGdzdHZpZGVvLTAuMTAgLWxnc3RiYXNlLTAuMTAgLWxnc3RyZWFt
+ZXItMC4xMCAtbGdvYmplY3QtMi4wIC1sZ21vZHVsZS0yLjAgLWxndGhyZWFkLTIuMCAtcHRocmVh
+ZCAtbHJ0IC1sZ2xpYi0yLjAgLWx4bWwyIC1sc3FsaXRlMyAtbGljdWkxOG4gLWxpY3V1YyAtbGlj
+dWRhdGEgLWxRdDVTcWwgLWxRdDVRdWljayAtbFF0NU9wZW5HTCAtbFF0NVByaW50U3VwcG9ydCAt
+bFF0NVdlYktpdCAtbFF0NVFtbCAtbFF0NVdpZGdldHMgLWxRdDVOZXR3b3JrIC1sUXQ1UG9zaXRp
+b25pbmcgLWxRdDVTZW5zb3JzIC1sUXQ1R3VpIC1sUXQ1Q29yZSAtbEdMRVN2MiAtbHB0aHJlYWQN
+Cg0KL29wdC9saW5hcm8tMjAxMy4wMy9iaW4vLi4vbGliL2djYy9hcm0tbGludXgtZ251ZWFiaWhm
+LzQuNy4zLy4uLy4uLy4uLy4uL2FybS1saW51eC1nbnVlYWJpaGYvYmluL2xkOiBjYW5ub3QgZmlu
+ZCAtbFF0NVdlYktpdFdpZGdldHMNCg0KL29wdC9saW5hcm8tMjAxMy4wMy9iaW4vLi4vbGliL2dj
+Yy9hcm0tbGludXgtZ251ZWFiaWhmLzQuNy4zLy4uLy4uLy4uLy4uL2FybS1saW51eC1nbnVlYWJp
+aGYvYmluL2xkOiBjYW5ub3QgZmluZCAtbFF0NVdlYktpdA0KDQpjb2xsZWN0MjogZXJyb3I6IGxk
+IHJldHVybmVkIDEgZXhpdCBzdGF0dXMNCg0KbWFrZTogKioqIFttYXRyaXhfYnJvd3Nlcl0gRXJy
+b3IgMQ0KDQpFUlJPUjogb2VfcnVubWFrZSBmYWlsZWQNCg0KV0FSTklORzogL2hvbWUvZ3RibGRh
+ZG0vdGkvb2UtbGF5ZXJzZXR1cC9idWlsZC1DT1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGlu
+YXJvLXRvb2xjaGFpbi93b3JrL2NvcnRleGExNXQyaGYtdmZwLW5lb24tb2UtbGludXgtZ251ZWFi
+aS9tYXRyaXgtZ3VpLWJyb3dzZXIvMi4wLXI3L3RlbXAvcnVuLmRvX2NvbXBpbGUuMTYyMjU6MSBl
+eGl0IDEgZnJvbQ0KDQogIGV4aXQgMQ0KDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19jb21w
+aWxlIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVyc2V0
+dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29y
+ay9jb3J0ZXhhMTV0MmhmLXZmcC1uZW9uLW9lLWxpbnV4LWdudWVhYmkvbWF0cml4LWd1aS1icm93
+c2VyLzIuMC1yNy90ZW1wL2xvZy5kb19jb21waWxlLjE2MjI1KQ0KDQoNCg==
 
-With the latest patches, the "matrix-gui-browser" recipe is failing to comp=
-ile. Any help would be appreciated.
+--_000_B0581B5571079145BA1CD78C126DBDE73215210DDLEE08entticom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <91B3498B7A557542A0D9E85E382D2C8E@owa.mail.ti.com>
+Content-Transfer-Encoding: base64
 
-My build configuration is as follows:
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHAgZGlyPSJsdHIi
+PlllcywgSSBzZWUgaXQgaGVyZSB0b28uIEknbGwgZml4IGl0IHdoZW4gSSBnZXQgYmFjay48L3A+
+DQo8cCBkaXI9Imx0ciI+LS0gPGJyPg0KRGVueXM8L3A+DQo8ZGl2IGNsYXNzPSJnbWFpbF9xdW90
+ZSI+T24gTm92IDUsIDIwMTQgMToxMyBQTSwgJnF1b3Q7U3RpZmZsZXIsIEphY29iJnF1b3Q7ICZs
+dDtqLXN0aWZmbGVyQHRpLmNvbSZndDsgd3JvdGU6PGJyIHR5cGU9ImF0dHJpYnV0aW9uIj4NCjxi
+bG9ja3F1b3RlIGNsYXNzPSJxdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRlci1s
+ZWZ0OjFweCAjY2NjIHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj4NCjxkaXY+DQo8cD48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+SGkg
+YWxsLDwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1p
+bHk6J2NvdXJpZXIgbmV3JyI+Jm5ic3A7PC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj5XaXRoIHRoZSBsYXRlc3QgcGF0
+Y2hlcywgdGhlIOKAnG1hdHJpeC1ndWktYnJvd3NlcuKAnSByZWNpcGUgaXMgZmFpbGluZyB0byBj
+b21waWxlLiBBbnkgaGVscCB3b3VsZCBiZSBhcHByZWNpYXRlZC48L3NwYW4+PC9wPg0KPHA+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5ldyciPiZuYnNw
+Ozwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6
+J2NvdXJpZXIgbmV3JyI+TXkgYnVpbGQgY29uZmlndXJhdGlvbiBpcyBhcyBmb2xsb3dzOjwvc3Bh
+bj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJp
+ZXIgbmV3JyI+Jm5ic3A7PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJ0ZXh0LWluZGVudDotMC4yNWlu
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J3dpbmdkaW5ncyciPsOY
+PHNwYW4gc3R5bGU9ImZvbnQ6N3B0ICd0aW1lcyBuZXcgcm9tYW4nIj4mbmJzcDsNCjwvc3Bhbj48
+L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5l
+dyciPk9lLWxheWVyc2V0dXAgY29uZmlnIGZpbGU6IGFyYWdvLWRhaXN5LWNvbmZpZy50eHQ8L3Nw
+YW4+PC9wPg0KPHAgc3R5bGU9InRleHQtaW5kZW50Oi0wLjI1aW4iPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTBwdDtmb250LWZhbWlseTond2luZ2RpbmdzJyI+w5g8c3BhbiBzdHlsZT0iZm9udDo3
+cHQgJ3RpbWVzIG5ldyByb21hbiciPiZuYnNwOw0KPC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+TUFDSElORT1kcmE3eHgt
+ZXZtPC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJ0ZXh0LWluZGVudDotMC4yNWluIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J3dpbmdkaW5ncyciPsOYPHNwYW4gc3R5bGU9
+ImZvbnQ6N3B0ICd0aW1lcyBuZXcgcm9tYW4nIj4mbmJzcDsNCjwvc3Bhbj48L3NwYW4+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5ldyciPkJJVEJBS0Ug
+VGFyZ2V0OiBhcmFnby1hbXNkay1pbWFnZTwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+Jm5ic3A7PC9zcGFuPjwvcD4N
+CjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcn
+Ij4mbmJzcDs8L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQt
+ZmFtaWx5Oidjb3VyaWVyIG5ldyciPkxldCBtZSBrbm93IGlmIHRoZXJlIGlzIGFueSBvdGhlciBp
+bmZvcm1hdGlvbiB0aGF0IEkgbmVlZCB0byBwcm92aWRlLiBUaGUgZXJyb3IgbG9nIGlzIHByb3Zp
+ZGVkIGJlbG93Ljwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9u
+dC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+Jm5ic3A7PC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj5UaGFuayB5b3UsPC9z
+cGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291
+cmllciBuZXcnIj5KYWtlPC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBw
+dDtmb250LWZhbWlseTonY291cmllciBuZXcnIj4mbmJzcDs8L3NwYW4+PC9wPg0KPHA+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5ldyciPiZuYnNwOzwv
+c3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2Nv
+dXJpZXIgbmV3JyI+Jm5ic3A7PC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj5ERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1
+bmN0aW9uIGRvX2NvbXBpbGU8L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5ldyciPk5PVEU6IG1ha2UgLWogMTYgTUFLRUZMQUdT
+PS1qIDE2IE9FX1FNQUtFX0NPTVBJTEVSPWFybS1saW51eC1nbnVlYWJpaGYtZ2NjJm5ic3A7IC1t
+YXJjaD1hcm12Ny1hIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhhcmQgLW1m
+cHU9bmVvbiAtbXR1bmU9Y29ydGV4LWExNSAtLXN5c3Jvb3Q9L2hvbWUvZ3RibGRhZG0vdGkvb2Ut
+bGF5ZXJzZXR1cC9idWlsZC1DT1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xj
+aGFpbi9zeXNyb290cy9kcmE3eHgtZXZtDQogT0VfUU1BS0VfQ0M9YXJtLWxpbnV4LWdudWVhYmlo
+Zi1nY2MmbmJzcDsgLW1hcmNoPWFybXY3LWEgLW1hcm0gLW10aHVtYi1pbnRlcndvcmsgLW1mbG9h
+dC1hYmk9aGFyZCAtbWZwdT1uZW9uIC1tdHVuZT1jb3J0ZXgtYTE1IC0tc3lzcm9vdD0vaG9tZS9n
+dGJsZGFkbS90aS9vZS1sYXllcnNldHVwL2J1aWxkLUNPUlRFWF8xL2FyYWdvLXRtcC1leHRlcm5h
+bC1saW5hcm8tdG9vbGNoYWluL3N5c3Jvb3RzL2RyYTd4eC1ldm0gT0VfUU1BS0VfQ1hYPWFybS1s
+aW51eC1nbnVlYWJpaGYtZyYjNDM7JiM0MzsmbmJzcDsNCiAtbWFyY2g9YXJtdjctYSAtbWFybSAt
+bXRodW1iLWludGVyd29yayAtbWZsb2F0LWFiaT1oYXJkIC1tZnB1PW5lb24gLW10dW5lPWNvcnRl
+eC1hMTUgLS1zeXNyb290PS9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVyc2V0dXAvYnVpbGQtQ09S
+VEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vc3lzcm9vdHMvZHJhN3h4
+LWV2bSBPRV9RTUFLRV9DRkxBR1M9IC1pc3lzdGVtL29wdC9saW5hcm8tMjAxMy4wMy9hcm0tbGlu
+dXgtZ251ZWFiaWhmL2luY2x1ZGUmbmJzcDsNCiAtZnN0YWNrLXByb3RlY3RvciAtTzIgLXBpcGUg
+LWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzIE9FX1FNQUtFX0NYWEZMQUdTPSAtaXN5
+c3RlbS9vcHQvbGluYXJvLTIwMTMuMDMvYXJtLWxpbnV4LWdudWVhYmloZi9pbmNsdWRlJm5ic3A7
+IC1mc3RhY2stcHJvdGVjdG9yIC1PMiAtcGlwZSAtZyAtZmVsaW1pbmF0ZS11bnVzZWQtZGVidWct
+dHlwZXMgT0VfUU1BS0VfTElOSz1hcm0tbGludXgtZ251ZWFiaWhmLWcmIzQzOyYjNDM7Jm5ic3A7
+IC1tYXJjaD1hcm12Ny1hIC1tYXJtDQogLW10aHVtYi1pbnRlcndvcmsgLW1mbG9hdC1hYmk9aGFy
+ZCAtbWZwdT1uZW9uIC1tdHVuZT1jb3J0ZXgtYTE1IC0tc3lzcm9vdD0vaG9tZS9ndGJsZGFkbS90
+aS9vZS1sYXllcnNldHVwL2J1aWxkLUNPUlRFWF8xL2FyYWdvLXRtcC1leHRlcm5hbC1saW5hcm8t
+dG9vbGNoYWluL3N5c3Jvb3RzL2RyYTd4eC1ldm0gT0VfUU1BS0VfTERGTEFHUz0gLUwvb3B0L2xp
+bmFyby0yMDEzLjAzL2FybS1saW51eC1nbnVlYWJpaGYvbGliIC1XbCwtcnBhdGgtbGluaywvb3B0
+L2xpbmFyby0yMDEzLjAzL2FybS1saW51eC1nbnVlYWJpaGYvbGliDQogLVdsLC1PMSAtV2wsLS1o
+YXNoLXN0eWxlPWdudSBPRV9RTUFLRV9BUj1hcm0tbGludXgtZ251ZWFiaWhmLWFyIE9FX1FNQUtF
+X1NUUklQPWVjaG8gT0VfUU1BS0VfV0FZTEFORF9TQ0FOTkVSPS9ob21lL2d0YmxkYWRtL3RpL29l
+LWxheWVyc2V0dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29s
+Y2hhaW4vc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vd2F5bGFuZC1zY2FubmVyPC9zcGFu
+PjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmll
+ciBuZXcnIj5hcm0tbGludXgtZ251ZWFiaWhmLWcmIzQzOyYjNDM7Jm5ic3A7IC1tYXJjaD1hcm12
+Ny1hIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhhcmQgLW1mcHU9bmVvbiAt
+bXR1bmU9Y29ydGV4LWExNSAtLXN5c3Jvb3Q9L2hvbWUvZ3RibGRhZG0vdGkvb2UtbGF5ZXJzZXR1
+cC9idWlsZC1DT1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi9zeXNy
+b290cy9kcmE3eHgtZXZtDQogLWMgLXBpcGUgLWlzeXN0ZW0vb3B0L2xpbmFyby0yMDEzLjAzL2Fy
+bS1saW51eC1nbnVlYWJpaGYvaW5jbHVkZSZuYnNwOyAtZnN0YWNrLXByb3RlY3RvciAtTzIgLXBp
+cGUgLWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzIC1PMiAtV2FsbCAtVyAtRF9SRUVO
+VFJBTlQgLWZQSUUgLURRVF9OT19ERUJVRyAtRFFUX1dFQktJVFdJREdFVFNfTElCIC1EUVRfUVVJ
+Q0tfTElCIC1EUVRfT1BFTkdMX0xJQiAtRFFUX1BSSU5UU1VQUE9SVF9MSUIgLURRVF9XRUJLSVRf
+TElCDQogLURRVF9RTUxfTElCIC1EUVRfV0lER0VUU19MSUIgLURRVF9ORVRXT1JLX0xJQiAtRFFU
+X1BPU0lUSU9OSU5HX0xJQiAtRFFUX1NFTlNPUlNfTElCIC1EUVRfR1VJX0xJQiAtRFFUX0NPUkVf
+TElCIC1JLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2bS91c3IvbGliL3F0NS9ta3Nw
+ZWNzL2xpbnV4LW9lLWcmIzQzOyYjNDM7IC1JLi4vZ2l0IC1JLi4vZ2l0IC1JLi4vLi4vLi4vLi4v
+Li4vc3lzcm9vdHMvYW01N3h4LWV2bS91c3IvaW5jbHVkZS9xdDUgLUkuLi8uLi8uLi8uLi8uLi9z
+eXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdFdlYktpdFdpZGdldHMNCiAtSS4u
+Ly4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0UXVpY2sg
+LUkuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdE9w
+ZW5HTCAtSS4uLy4uLy4uLy4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1
+L1F0UHJpbnRTdXBwb3J0IC1JLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2bS91c3Iv
+aW5jbHVkZS9xdDUvUXRXZWJLaXQgLUkuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZt
+L3Vzci9pbmNsdWRlL3F0NS9RdFFtbA0KIC1JLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4
+LWV2bS91c3IvaW5jbHVkZS9xdDUvUXRXaWRnZXRzIC1JLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMv
+YW01N3h4LWV2bS91c3IvaW5jbHVkZS9xdDUvUXROZXR3b3JrIC1JLi4vLi4vLi4vLi4vLi4vc3lz
+cm9vdHMvYW01N3h4LWV2bS91c3IvaW5jbHVkZS9xdDUvUXRQb3NpdGlvbmluZyAtSS4uLy4uLy4u
+Ly4uLy4uL3N5c3Jvb3RzL2FtNTd4eC1ldm0vdXNyL2luY2x1ZGUvcXQ1L1F0U2Vuc29ycw0KIC1J
+Li4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2bS91c3IvaW5jbHVkZS9xdDUvUXRHdWkg
+LUkuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdENv
+cmUgLUkuIC1JLiAtbyBtYWluLm8gLi4vZ2l0L21haW4uY3BwPC9zcGFuPjwvcD4NCjxwPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj4uLi9naXQv
+bWFpbi5jcHA6IEluIGZ1bmN0aW9uICdpbnQgbWFpbihpbnQsIGNoYXIqKiknOjwvc3Bhbj48L3A+
+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3
+JyI+Li4vZ2l0L21haW4uY3BwOjUwOjY3OiB3YXJuaW5nOiB0aGUgYWRkcmVzcyBvZiAnUVRleHRT
+dHJlYW0mYW1wOyBlbmRsKFFUZXh0U3RyZWFtJmFtcDspJyB3aWxsIGFsd2F5cyBldmFsdWF0ZSBh
+cyAndHJ1ZScgWy1XYWRkcmVzc108L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5ldyciPkluIGZpbGUgaW5jbHVkZWQgZnJvbSAu
+Li8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdENvcmUv
+cW9iamVjdC5oOjQ5OjAsPC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBw
+dDtmb250LWZhbWlseTonY291cmllciBuZXcnIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgZnJvbSAuLi8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9p
+bmNsdWRlL3F0NS9RdENvcmUvcWFic3RyYWN0YW5pbWF0aW9uLmg6NDUsPC9zcGFuPjwvcD4NCjxw
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj4m
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgZnJvbSAuLi8uLi8uLi8uLi8u
+Li9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdENvcmUvUXRDb3JlOjQsPC9z
+cGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291
+cmllciBuZXcnIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgZnJvbSAu
+Li8uLi8uLi8uLi8uLi9zeXNyb290cy9hbTU3eHgtZXZtL3Vzci9pbmNsdWRlL3F0NS9RdFdpZGdl
+dHMvUXRXaWRnZXRzRGVwZW5kczoyLDwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGZyb20gLi4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2
+bS91c3IvaW5jbHVkZS9xdDUvUXRXaWRnZXRzL1F0V2lkZ2V0czozLDwvc3Bhbj48L3A+DQo8cD48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGZyb20gLi4vZ2l0L21haW4uY3Bw
+OjM5Ojwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1p
+bHk6J2NvdXJpZXIgbmV3JyI+Li4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2bS91c3Iv
+aW5jbHVkZS9xdDUvUXRDb3JlL3FzdHJpbmcuaDogQXQgZ2xvYmFsIHNjb3BlOjwvc3Bhbj48L3A+
+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3
+JyI+Li4vLi4vLi4vLi4vLi4vc3lzcm9vdHMvYW01N3h4LWV2bS91c3IvaW5jbHVkZS9xdDUvUXRD
+b3JlL3FzdHJpbmcuaDozMDU6MTQ6IG5vdGU6IHRoZSBtYW5nbGluZyBvZiAndmFfbGlzdCcgaGFz
+IGNoYW5nZWQgaW4gR0NDIDQuNDwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+YXJtLWxpbnV4LWdudWVhYmloZi1nJiM0
+MzsmIzQzOyZuYnNwOyAtbWFyY2g9YXJtdjctYSAtbWFybSAtbXRodW1iLWludGVyd29yayAtbWZs
+b2F0LWFiaT1oYXJkIC1tZnB1PW5lb24gLW10dW5lPWNvcnRleC1hMTUgLS1zeXNyb290PS9ob21l
+L2d0YmxkYWRtL3RpL29lLWxheWVyc2V0dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVy
+bmFsLWxpbmFyby10b29sY2hhaW4vc3lzcm9vdHMvZHJhN3h4LWV2bQ0KIC1ML29wdC9saW5hcm8t
+MjAxMy4wMy9hcm0tbGludXgtZ251ZWFiaWhmL2xpYiAtV2wsLXJwYXRoLWxpbmssL29wdC9saW5h
+cm8tMjAxMy4wMy9hcm0tbGludXgtZ251ZWFiaWhmL2xpYiAtV2wsLU8xIC1XbCwtLWhhc2gtc3R5
+bGU9Z251IC1XbCwtTzEgLVdsLC1ycGF0aC1saW5rLC9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVy
+c2V0dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4v
+c3lzcm9vdHMvYW01N3h4LWV2bS91c3IvbGliDQogLW8gbWF0cml4X2Jyb3dzZXIgbWFpbi5vJm5i
+c3A7Jm5ic3A7IC1sUXQ1V2ViS2l0V2lkZ2V0cyAtbHhzbHQgLWx6IC1sbSAtbGdpby0yLjAgLWxn
+c3RhcHAtMC4xMCAtbGdzdGludGVyZmFjZXMtMC4xMCAtbGdzdHBidXRpbHMtMC4xMCAtbGdzdHZp
+ZGVvLTAuMTAgLWxnc3RiYXNlLTAuMTAgLWxnc3RyZWFtZXItMC4xMCAtbGdvYmplY3QtMi4wIC1s
+Z21vZHVsZS0yLjAgLWxndGhyZWFkLTIuMCAtcHRocmVhZCAtbHJ0IC1sZ2xpYi0yLjAgLWx4bWwy
+IC1sc3FsaXRlMw0KIC1saWN1aTE4biAtbGljdXVjIC1saWN1ZGF0YSAtbFF0NVNxbCAtbFF0NVF1
+aWNrIC1sUXQ1T3BlbkdMIC1sUXQ1UHJpbnRTdXBwb3J0IC1sUXQ1V2ViS2l0IC1sUXQ1UW1sIC1s
+UXQ1V2lkZ2V0cyAtbFF0NU5ldHdvcmsgLWxRdDVQb3NpdGlvbmluZyAtbFF0NVNlbnNvcnMgLWxR
+dDVHdWkgLWxRdDVDb3JlIC1sR0xFU3YyIC1scHRocmVhZA0KPC9zcGFuPjwvcD4NCjxwPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj4vb3B0L2xp
+bmFyby0yMDEzLjAzL2Jpbi8uLi9saWIvZ2NjL2FybS1saW51eC1nbnVlYWJpaGYvNC43LjMvLi4v
+Li4vLi4vLi4vYXJtLWxpbnV4LWdudWVhYmloZi9iaW4vbGQ6IGNhbm5vdCBmaW5kIC1sUXQ1V2Vi
+S2l0V2lkZ2V0czwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9u
+dC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+L29wdC9saW5hcm8tMjAxMy4wMy9iaW4vLi4vbGliL2dj
+Yy9hcm0tbGludXgtZ251ZWFiaWhmLzQuNy4zLy4uLy4uLy4uLy4uL2FybS1saW51eC1nbnVlYWJp
+aGYvYmluL2xkOiBjYW5ub3QgZmluZCAtbFF0NVdlYktpdDwvc3Bhbj48L3A+DQo8cD48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6J2NvdXJpZXIgbmV3JyI+Y29sbGVjdDI6
+IGVycm9yOiBsZCByZXR1cm5lZCAxIGV4aXQgc3RhdHVzPC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj5tYWtlOiAqKiog
+W21hdHJpeF9icm93c2VyXSBFcnJvciAxPC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTBwdDtmb250LWZhbWlseTonY291cmllciBuZXcnIj5FUlJPUjogb2VfcnVubWFrZSBm
+YWlsZWQ8L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFt
+aWx5Oidjb3VyaWVyIG5ldyciPldBUk5JTkc6IC9ob21lL2d0YmxkYWRtL3RpL29lLWxheWVyc2V0
+dXAvYnVpbGQtQ09SVEVYXzEvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29y
+ay9jb3J0ZXhhMTV0MmhmLXZmcC1uZW9uLW9lLWxpbnV4LWdudWVhYmkvbWF0cml4LWd1aS1icm93
+c2VyLzIuMC1yNy90ZW1wL3J1bi5kb19jb21waWxlLjE2MjI1OjEgZXhpdCAxIGZyb208L3NwYW4+
+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVy
+IG5ldyciPiZuYnNwOyBleGl0IDE8L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMHB0O2ZvbnQtZmFtaWx5Oidjb3VyaWVyIG5ldyciPkVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6
+IGRvX2NvbXBpbGUgKGxvZyBmaWxlIGlzIGxvY2F0ZWQgYXQgL2hvbWUvZ3RibGRhZG0vdGkvb2Ut
+bGF5ZXJzZXR1cC9idWlsZC1DT1JURVhfMS9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xj
+aGFpbi93b3JrL2NvcnRleGExNXQyaGYtdmZwLW5lb24tb2UtbGludXgtZ251ZWFiaS9tYXRyaXgt
+Z3VpLWJyb3dzZXIvMi4wLXI3L3RlbXAvbG9nLmRvX2NvbXBpbGUuMTYyMjUpPC9zcGFuPjwvcD4N
+CjxwPiZuYnNwOzwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwv
+Ym9keT4NCjwvaHRtbD4NCg==
 
-
-=D8  Oe-layersetup config file: arago-daisy-config.txt
-
-=D8  MACHINE=3Ddra7xx-evm
-
-=D8  BITBAKE Target: arago-amsdk-image
-
-
-Let me know if there is any other information that I need to provide. The e=
-rror log is provided below.
-
-Thank you,
-Jake
-
-
-
-DEBUG: Executing shell function do_compile
-NOTE: make -j 16 MAKEFLAGS=3D-j 16 OE_QMAKE_COMPILER=3Darm-linux-gnueabihf-=
-gcc  -march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dne=
-on -mtune=3Dcortex-a15 --sysroot=3D/home/gtbldadm/ti/oe-layersetup/build-CO=
-RTEX_1/arago-tmp-external-linaro-toolchain/sysroots/dra7xx-evm OE_QMAKE_CC=
-=3Darm-linux-gnueabihf-gcc  -march=3Darmv7-a -marm -mthumb-interwork -mfloa=
-t-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sysroot=3D/home/gtbldadm/ti=
-/oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/=
-dra7xx-evm OE_QMAKE_CXX=3Darm-linux-gnueabihf-g++  -march=3Darmv7-a -marm -=
-mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sysr=
-oot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-lin=
-aro-toolchain/sysroots/dra7xx-evm OE_QMAKE_CFLAGS=3D -isystem/opt/linaro-20=
-13.03/arm-linux-gnueabihf/include  -fstack-protector -O2 -pipe -g -felimina=
-te-unused-debug-types OE_QMAKE_CXXFLAGS=3D -isystem/opt/linaro-2013.03/arm-=
-linux-gnueabihf/include  -fstack-protector -O2 -pipe -g -feliminate-unused-=
-debug-types OE_QMAKE_LINK=3Darm-linux-gnueabihf-g++  -march=3Darmv7-a -marm=
- -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sy=
-sroot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-l=
-inaro-toolchain/sysroots/dra7xx-evm OE_QMAKE_LDFLAGS=3D -L/opt/linaro-2013.=
-03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gn=
-ueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu OE_QMAKE_AR=3Darm-linux-gnueabih=
-f-ar OE_QMAKE_STRIP=3Decho OE_QMAKE_WAYLAND_SCANNER=3D/home/gtbldadm/ti/oe-=
-layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/x86_=
-64-linux/usr/bin/wayland-scanner
-arm-linux-gnueabihf-g++  -march=3Darmv7-a -marm -mthumb-interwork -mfloat-a=
-bi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sysroot=3D/home/gtbldadm/ti/oe=
--layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/dra=
-7xx-evm -c -pipe -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include  -=
-fstack-protector -O2 -pipe -g -feliminate-unused-debug-types -O2 -Wall -W -=
-D_REENTRANT -fPIE -DQT_NO_DEBUG -DQT_WEBKITWIDGETS_LIB -DQT_QUICK_LIB -DQT_=
-OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WEBKIT_LIB -DQT_QML_LIB -DQT_WIDGETS_=
-LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_SENSORS_LIB -DQT_GUI_LIB -DQ=
-T_CORE_LIB -I../../../../../sysroots/am57xx-evm/usr/lib/qt5/mkspecs/linux-o=
-e-g++ -I../git -I../git -I../../../../../sysroots/am57xx-evm/usr/include/qt=
-5 -I../../../../../sysroots/am57xx-evm/usr/include/qt5/QtWebKitWidgets -I..=
-/../../../../sysroots/am57xx-evm/usr/include/qt5/QtQuick -I../../../../../s=
-ysroots/am57xx-evm/usr/include/qt5/QtOpenGL -I../../../../../sysroots/am57x=
-x-evm/usr/include/qt5/QtPrintSupport -I../../../../../sysroots/am57xx-evm/u=
-sr/include/qt5/QtWebKit -I../../../../../sysroots/am57xx-evm/usr/include/qt=
-5/QtQml -I../../../../../sysroots/am57xx-evm/usr/include/qt5/QtWidgets -I..=
-/../../../../sysroots/am57xx-evm/usr/include/qt5/QtNetwork -I../../../../..=
-/sysroots/am57xx-evm/usr/include/qt5/QtPositioning -I../../../../../sysroot=
-s/am57xx-evm/usr/include/qt5/QtSensors -I../../../../../sysroots/am57xx-evm=
-/usr/include/qt5/QtGui -I../../../../../sysroots/am57xx-evm/usr/include/qt5=
-/QtCore -I. -I. -o main.o ../git/main.cpp
-../git/main.cpp: In function 'int main(int, char**)':
-../git/main.cpp:50:67: warning: the address of 'QTextStream& endl(QTextStre=
-am&)' will always evaluate as 'true' [-Waddress]
-In file included from ../../../../../sysroots/am57xx-evm/usr/include/qt5/Qt=
-Core/qobject.h:49:0,
-                 from ../../../../../sysroots/am57xx-evm/usr/include/qt5/Qt=
-Core/qabstractanimation.h:45,
-                 from ../../../../../sysroots/am57xx-evm/usr/include/qt5/Qt=
-Core/QtCore:4,
-                 from ../../../../../sysroots/am57xx-evm/usr/include/qt5/Qt=
-Widgets/QtWidgetsDepends:2,
-                 from ../../../../../sysroots/am57xx-evm/usr/include/qt5/Qt=
-Widgets/QtWidgets:3,
-                 from ../git/main.cpp:39:
-../../../../../sysroots/am57xx-evm/usr/include/qt5/QtCore/qstring.h: At glo=
-bal scope:
-../../../../../sysroots/am57xx-evm/usr/include/qt5/QtCore/qstring.h:305:14:=
- note: the mangling of 'va_list' has changed in GCC 4.4
-arm-linux-gnueabihf-g++  -march=3Darmv7-a -marm -mthumb-interwork -mfloat-a=
-bi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sysroot=3D/home/gtbldadm/ti/oe=
--layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/dra=
-7xx-evm -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/=
-linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,-=
-O1 -Wl,-rpath-link,/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp=
--external-linaro-toolchain/sysroots/am57xx-evm/usr/lib -o matrix_browser ma=
-in.o   -lQt5WebKitWidgets -lxslt -lz -lm -lgio-2.0 -lgstapp-0.10 -lgstinter=
-faces-0.10 -lgstpbutils-0.10 -lgstvideo-0.10 -lgstbase-0.10 -lgstreamer-0.1=
-0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -pthread -lrt -lglib-2.0 -lxml2=
- -lsqlite3 -licui18n -licuuc -licudata -lQt5Sql -lQt5Quick -lQt5OpenGL -lQt=
-5PrintSupport -lQt5WebKit -lQt5Qml -lQt5Widgets -lQt5Network -lQt5Positioni=
-ng -lQt5Sensors -lQt5Gui -lQt5Core -lGLESv2 -lpthread
-/opt/linaro-2013.03/bin/../lib/gcc/arm-linux-gnueabihf/4.7.3/../../../../ar=
-m-linux-gnueabihf/bin/ld: cannot find -lQt5WebKitWidgets
-/opt/linaro-2013.03/bin/../lib/gcc/arm-linux-gnueabihf/4.7.3/../../../../ar=
-m-linux-gnueabihf/bin/ld: cannot find -lQt5WebKit
-collect2: error: ld returned 1 exit status
-make: *** [matrix_browser] Error 1
-ERROR: oe_runmake failed
-WARNING: /home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-=
-linaro-toolchain/work/cortexa15t2hf-vfp-neon-oe-linux-gnueabi/matrix-gui-br=
-owser/2.0-r7/temp/run.do_compile.16225:1 exit 1 from
-  exit 1
-ERROR: Function failed: do_compile (log file is located at /home/gtbldadm/t=
-i/oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/cor=
-texa15t2hf-vfp-neon-oe-linux-gnueabi/matrix-gui-browser/2.0-r7/temp/log.do_=
-compile.16225)
-
-
---_000_4B26FB5A64EBA14C87266869E037F958140B815FDFLE09entticom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:207881370;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1364481002 -2009037132 67698691 67698693 67698689 67=
-698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0D8;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;
-	mso-fareast-font-family:"Times New Roman";
-	mso-bidi-font-family:"Courier New";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Hi all,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">With the latest patches, the &#8220;matrix-gui-browser&#82=
-21; recipe is failing to compile. Any help would be appreciated.<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">My build configuration is as follows:<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Wi=
-ngdings"><span style=3D"mso-list:Ignore">=D8<span style=3D"font:7.0pt &quot=
-;Times New Roman&quot;">&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:10.0pt;font-family:=
-&quot;Courier New&quot;">Oe-layersetup config file: arago-daisy-config.txt<=
-o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Wi=
-ngdings"><span style=3D"mso-list:Ignore">=D8<span style=3D"font:7.0pt &quot=
-;Times New Roman&quot;">&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:10.0pt;font-family:=
-&quot;Courier New&quot;">MACHINE=3Ddra7xx-evm<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Wi=
-ngdings"><span style=3D"mso-list:Ignore">=D8<span style=3D"font:7.0pt &quot=
-;Times New Roman&quot;">&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:10.0pt;font-family:=
-&quot;Courier New&quot;">BITBAKE Target: arago-amsdk-image<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Let me know if there is any other information that I need =
-to provide. The error log is provided below.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Thank you,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Jake<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">DEBUG: Executing shell function do_compile<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">NOTE: make -j 16 MAKEFLAGS=3D-j 16 OE_QMAKE_COMPILER=3Darm=
--linux-gnueabihf-gcc&nbsp; -march=3Darmv7-a -marm -mthumb-interwork -mfloat=
--abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sysroot=3D/home/gtbldadm/ti/=
-oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/d=
-ra7xx-evm
- OE_QMAKE_CC=3Darm-linux-gnueabihf-gcc&nbsp; -march=3Darmv7-a -marm -mthumb=
--interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sysroot=3D=
-/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-to=
-olchain/sysroots/dra7xx-evm OE_QMAKE_CXX=3Darm-linux-gnueabihf-g&#43;&#43;&=
-nbsp;
- -march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -=
-mtune=3Dcortex-a15 --sysroot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX=
-_1/arago-tmp-external-linaro-toolchain/sysroots/dra7xx-evm OE_QMAKE_CFLAGS=
-=3D -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp;
- -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types OE_QMAKE_CXX=
-FLAGS=3D -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp; -fst=
-ack-protector -O2 -pipe -g -feliminate-unused-debug-types OE_QMAKE_LINK=3Da=
-rm-linux-gnueabihf-g&#43;&#43;&nbsp; -march=3Darmv7-a -marm
- -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --sy=
-sroot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-l=
-inaro-toolchain/sysroots/dra7xx-evm OE_QMAKE_LDFLAGS=3D -L/opt/linaro-2013.=
-03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gn=
-ueabihf/lib
- -Wl,-O1 -Wl,--hash-style=3Dgnu OE_QMAKE_AR=3Darm-linux-gnueabihf-ar OE_QMA=
-KE_STRIP=3Decho OE_QMAKE_WAYLAND_SCANNER=3D/home/gtbldadm/ti/oe-layersetup/=
-build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/x86_64-linux/us=
-r/bin/wayland-scanner<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">arm-linux-gnueabihf-g&#43;&#43;&nbsp; -march=3Darmv7-a -ma=
-rm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --=
-sysroot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external=
--linaro-toolchain/sysroots/dra7xx-evm
- -c -pipe -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp; -fs=
-tack-protector -O2 -pipe -g -feliminate-unused-debug-types -O2 -Wall -W -D_=
-REENTRANT -fPIE -DQT_NO_DEBUG -DQT_WEBKITWIDGETS_LIB -DQT_QUICK_LIB -DQT_OP=
-ENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WEBKIT_LIB
- -DQT_QML_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_S=
-ENSORS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I../../../../../sysroots/am57xx-evm/=
-usr/lib/qt5/mkspecs/linux-oe-g&#43;&#43; -I../git -I../git -I../../../../..=
-/sysroots/am57xx-evm/usr/include/qt5 -I../../../../../sysroots/am57xx-evm/u=
-sr/include/qt5/QtWebKitWidgets
- -I../../../../../sysroots/am57xx-evm/usr/include/qt5/QtQuick -I../../../..=
-/../sysroots/am57xx-evm/usr/include/qt5/QtOpenGL -I../../../../../sysroots/=
-am57xx-evm/usr/include/qt5/QtPrintSupport -I../../../../../sysroots/am57xx-=
-evm/usr/include/qt5/QtWebKit -I../../../../../sysroots/am57xx-evm/usr/inclu=
-de/qt5/QtQml
- -I../../../../../sysroots/am57xx-evm/usr/include/qt5/QtWidgets -I../../../=
-../../sysroots/am57xx-evm/usr/include/qt5/QtNetwork -I../../../../../sysroo=
-ts/am57xx-evm/usr/include/qt5/QtPositioning -I../../../../../sysroots/am57x=
-x-evm/usr/include/qt5/QtSensors
- -I../../../../../sysroots/am57xx-evm/usr/include/qt5/QtGui -I../../../../.=
-./sysroots/am57xx-evm/usr/include/qt5/QtCore -I. -I. -o main.o ../git/main.=
-cpp<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">../git/main.cpp: In function 'int main(int, char**)':<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">../git/main.cpp:50:67: warning: the address of 'QTextStrea=
-m&amp; endl(QTextStream&amp;)' will always evaluate as 'true' [-Waddress]<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">In file included from ../../../../../sysroots/am57xx-evm/u=
-sr/include/qt5/QtCore/qobject.h:49:0,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ../../../../../sysroots/am57xx-=
-evm/usr/include/qt5/QtCore/qabstractanimation.h:45,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ../../../../../sysroots/am57xx-=
-evm/usr/include/qt5/QtCore/QtCore:4,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ../../../../../sysroots/am57xx-=
-evm/usr/include/qt5/QtWidgets/QtWidgetsDepends:2,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ../../../../../sysroots/am57xx-=
-evm/usr/include/qt5/QtWidgets/QtWidgets:3,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ../git/main.cpp:39:<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">../../../../../sysroots/am57xx-evm/usr/include/qt5/QtCore/=
-qstring.h: At global scope:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">../../../../../sysroots/am57xx-evm/usr/include/qt5/QtCore/=
-qstring.h:305:14: note: the mangling of 'va_list' has changed in GCC 4.4<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">arm-linux-gnueabihf-g&#43;&#43;&nbsp; -march=3Darmv7-a -ma=
-rm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 --=
-sysroot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external=
--linaro-toolchain/sysroots/dra7xx-evm
- -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-=
-2013.03/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,-O1 -Wl,=
--rpath-link,/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-extern=
-al-linaro-toolchain/sysroots/am57xx-evm/usr/lib
- -o matrix_browser main.o&nbsp;&nbsp; -lQt5WebKitWidgets -lxslt -lz -lm -lg=
-io-2.0 -lgstapp-0.10 -lgstinterfaces-0.10 -lgstpbutils-0.10 -lgstvideo-0.10=
- -lgstbase-0.10 -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 =
--pthread -lrt -lglib-2.0 -lxml2 -lsqlite3
- -licui18n -licuuc -licudata -lQt5Sql -lQt5Quick -lQt5OpenGL -lQt5PrintSupp=
-ort -lQt5WebKit -lQt5Qml -lQt5Widgets -lQt5Network -lQt5Positioning -lQt5Se=
-nsors -lQt5Gui -lQt5Core -lGLESv2 -lpthread
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">/opt/linaro-2013.03/bin/../lib/gcc/arm-linux-gnueabihf/4.7=
-.3/../../../../arm-linux-gnueabihf/bin/ld: cannot find -lQt5WebKitWidgets<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">/opt/linaro-2013.03/bin/../lib/gcc/arm-linux-gnueabihf/4.7=
-.3/../../../../arm-linux-gnueabihf/bin/ld: cannot find -lQt5WebKit<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">collect2: error: ld returned 1 exit status<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">make: *** [matrix_browser] Error 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ERROR: oe_runmake failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">WARNING: /home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/ar=
-ago-tmp-external-linaro-toolchain/work/cortexa15t2hf-vfp-neon-oe-linux-gnue=
-abi/matrix-gui-browser/2.0-r7/temp/run.do_compile.16225:1
- exit 1 from<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; exit 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ERROR: Function failed: do_compile (log file is located at=
- /home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-t=
-oolchain/work/cortexa15t2hf-vfp-neon-oe-linux-gnueabi/matrix-gui-browser/2.=
-0-r7/temp/log.do_compile.16225)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_4B26FB5A64EBA14C87266869E037F958140B815FDFLE09entticom_--
+--_000_B0581B5571079145BA1CD78C126DBDE73215210DDLEE08entticom_--
