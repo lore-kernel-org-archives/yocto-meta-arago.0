@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6664952A31
+	by arago-project.org (Postfix) with ESMTPS id 4E6A552A31
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Nov 2014 00:32:47 +0000 (UTC)
+	Thu, 13 Nov 2014 07:45:42 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sAD0WksS023524
-	for <meta-arago@arago-project.org>; Wed, 12 Nov 2014 18:32:46 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sAD0WkhF026609
-	for <meta-arago@arago-project.org>; Wed, 12 Nov 2014 18:32:46 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 12 Nov 2014 18:32:46 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sAD7je4T014922
+	for <meta-arago@arago-project.org>; Thu, 13 Nov 2014 01:45:40 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sAD7jdfm018959
+	for <meta-arago@arago-project.org>; Thu, 13 Nov 2014 01:45:39 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 13 Nov 2014 01:45:39 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sAD0WkQB015048	for <meta-arago@arago-project.org>;
-	Wed, 12 Nov 2014 18:32:46 -0600
-Date: Wed, 12 Nov 2014 19:11:54 -0500
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	sAD7jdBu001041	for <meta-arago@arago-project.org>;
+	Thu, 13 Nov 2014 01:45:39 -0600
+Date: Thu, 13 Nov 2014 02:24:47 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <608267613.161.1415837514916.JavaMail.jenkins@puget>
+Message-ID: <1176253638.165.1415863487332.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.11 build 2014-11-12_14-43-45
+Subject: [nightly] Core TISDK 2014.10 build 2014-11-13_01-01-10
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,27 +36,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 00:32:48 -0000
+X-List-Received-Date: Thu, 13 Nov 2014 07:45:45 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_160_1120479108.1415837514563"
+	boundary="----=_Part_164_1175327592.1415863487239"
 
-------=_Part_160_1120479108.1415837514563
+------=_Part_164_1175327592.1415863487239
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 11/12/14
+Status for 11/13/14
 </title>
 </head>
 <body>
 
-<h2>Status for 11/12/14</h2>
+<h2>Status for 11/13/14</h2>
 
-<h2>BUILD_ID: build-2014-11-12_14-44-46</h2>
+<h2>BUILD_ID: build-2014-11-13_01-02-13</h2>
 
-<h2>Clean Build: true</h2>
+<h2>Clean Build: false</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -170,7 +170,7 @@ The configuration file passed to this script had the contents:
 </p>
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.11"<br>
+TISDK_VERSION="2014.10"<br>
 MACHINES="am335x-evm am437x-evm omap5-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
@@ -188,7 +188,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
+CLEAN_BUILD="false"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
@@ -230,4 +230,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_160_1120479108.1415837514563--
+------=_Part_164_1175327592.1415863487239--
