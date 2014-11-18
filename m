@@ -1,29 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 28D815298E
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 9646852A6D
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Nov 2014 06:34:38 +0000 (UTC)
+	Tue, 18 Nov 2014 07:19:55 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id sAH6YbRq018071
-	for <meta-arago@arago-project.org>; Mon, 17 Nov 2014 00:34:37 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sAH6Yb0h022310
-	for <meta-arago@arago-project.org>; Mon, 17 Nov 2014 00:34:37 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 17 Nov 2014 00:34:36 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sAI7Js82010705
+	for <meta-arago@arago-project.org>; Tue, 18 Nov 2014 01:19:54 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sAI7Jsgo032396
+	for <meta-arago@arago-project.org>; Tue, 18 Nov 2014 01:19:54 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 18 Nov 2014 01:19:54 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sAH6YacT008068	for <meta-arago@arago-project.org>;
-	Mon, 17 Nov 2014 00:34:36 -0600
-Date: Mon, 17 Nov 2014 01:13:35 -0500
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	sAI7Jso8004891;	Tue, 18 Nov 2014 01:19:54 -0600
+Date: Tue, 18 Nov 2014 01:58:50 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1164406499.183.1416204815735.JavaMail.jenkins@puget>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Message-ID: <1764118934.187.1416293930806.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.10 build 2014-11-17_01-01-10
+Subject: [nightly] Core TISDK 2014.10 build 2014-11-18_01-01-10
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +35,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Nov 2014 06:34:38 -0000
+X-List-Received-Date: Tue, 18 Nov 2014 07:19:56 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_182_1774966368.1416204815733"
+	boundary="----=_Part_186_854020992.1416293930735"
 
-------=_Part_182_1774966368.1416204815733
+------=_Part_186_854020992.1416293930735
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 11/17/14
+Status for 11/18/14
 </title>
 </head>
 <body>
 
-<h2>Status for 11/17/14</h2>
+<h2>Status for 11/18/14</h2>
 
-<h2>BUILD_ID: build-2014-11-17_01-02-11</h2>
+<h2>BUILD_ID: build-2014-11-18_01-02-13</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -221,7 +220,7 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
 WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
 COPY_TO_WEB="true"<br>
 COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin02.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
 CLEAN_AFTER_COPY="true"<br>
 BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </p>
@@ -230,4 +229,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_182_1774966368.1416204815733--
+------=_Part_186_854020992.1416293930735--
