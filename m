@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 42C8A529A4
+Return-Path: <sujith.h@gmail.com>
+Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
+	[209.85.216.42])
+	by arago-project.org (Postfix) with ESMTPS id E5E955298D
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Dec 2014 07:36:30 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sB37aTWG010748
-	for <meta-arago@arago-project.org>; Wed, 3 Dec 2014 01:36:29 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB37aT8K004294
-	for <meta-arago@arago-project.org>; Wed, 3 Dec 2014 01:36:29 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 3 Dec 2014 01:36:28 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sB37aSYn026818	for <meta-arago@arago-project.org>;
-	Wed, 3 Dec 2014 01:36:28 -0600
-Date: Wed, 3 Dec 2014 02:16:07 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1108937119.27.1417590967644.JavaMail.jenkins@puget>
+	Wed,  3 Dec 2014 10:09:12 +0000 (UTC)
+Received: by mail-qa0-f42.google.com with SMTP id j7so10276566qaq.29
+	for <meta-arago@arago-project.org>;
+	Wed, 03 Dec 2014 02:09:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=vbQpYL4NIhrIIOV4Q+Gcr8O5Yyyka2oSGZJCVaZKl/I=;
+	b=OYOMDEiNWVB6yAOJ0jI9P/SY/o07rgB5JVDpTK5ghDcEM2R+p0p1RZNXI00eMcpv31
+	JdlfTvpeM/j0pF2Cqw4DbvGN2UB1xVedODyQ+eTfgDg7JbzDsZxjhWHNmgjKdUDCHlHc
+	VGPNFFtltg8g6Fk344N8vHwbjFvy8XZp+zeLuyHdTRXOtQbqhKSdcz6bt/17DKEjdhCb
+	ScZe5Q1GT5jG/Blu+QlFx8mP638VgsrrSxHXcPlSWWYNzRZhSBXCMwgDl3N31+AE1VrP
+	gaS1uKTPN2H40pkynzyrmPer6WA8CTQvX5frLWzSDxQuhWCGgpvx3oA2b1eiYWDBWxv3
+	w1mA==
+X-Received: by 10.224.67.7 with SMTP id p7mr6576472qai.97.1417601352117; Wed,
+	03 Dec 2014 02:09:12 -0800 (PST)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.11 build 2014-12-03_01-00-57
+Received: by 10.140.18.114 with HTTP; Wed, 3 Dec 2014 02:08:51 -0800 (PST)
+From: sujith h <sujith.h@gmail.com>
+Date: Wed, 3 Dec 2014 15:38:51 +0530
+Message-ID: <CADyYWL=GZC866S5QWnYj-n1orTMjkeZn0YFak_GJ5PPiAiZDyw@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Problem while building omap3-sgx-modules-x11_4.09.00.01 recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,192 +37,237 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Dec 2014 07:36:31 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_26_606094120.1417590967603"
+X-List-Received-Date: Wed, 03 Dec 2014 10:09:13 -0000
+Content-Type: multipart/alternative; boundary=001a11c3daa406b48705094d0985
 
-------=_Part_26_606094120.1417590967603
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a11c3daa406b48705094d0985
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<title>
-Status for 12/03/14
-</title>
-</head>
-<body>
+Hi,
 
-<h2>Status for 12/03/14</h2>
+When I try to build omap3-sgx-modules-x11_4.09.00.01.bb for core-image-sato
+image,
 
-<h2>BUILD_ID: build-2014-12-03_01-01-59</h2>
+I am getting an error:
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.11"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+DEBUG: Executing shell function do_compile
+cp: cannot stat
+`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
+ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
+9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/Kbuild_3.3':
+No such
+file or directory
+NOTE: make -j16 -e MAKEFLAGS=3D BUILD=3Drelease TI_PLATFORM=3Dti335x
+SUPPORT_XORG=3D1
+make -C
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-bone=
+black/usr/src/kernel
+M=3D`pwd`
+make[1]: Entering directory
+`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-bon=
+eblack/usr/src/kernel'
+  LD
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/built-in.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/bc_cat.o
+  LD [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/bufferclass_ti.o
+  LD
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/built-in.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/pvr_drm_stubs.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_auth.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_bufs.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_cache.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_context.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_dma.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_drv.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_fops.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_gem.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_ioctl.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_irq.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_lock.o
+  CC [M]
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_memory.o
+make[3]: *** No rule to make target
+`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
+ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
+9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_proc.o',
+needed by
+`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
+ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
+9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm.o'.
+Stop.
+make[2]: ***
+[/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
+ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
+9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm]
+Error 2
+make[1]: ***
+[_module_/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x=
+_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics=
+_SDK_4_09_00_01/GFX_Linux_KM]
+Error 2
+make[1]: Leaving directory
+`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-bon=
+eblack/usr/src/kernel'
+make: *** [all] Error 2
+ERROR: oe_runmake failed
 
 
-------=_Part_26_606094120.1417590967603--
+The kernel version that I use is 3.14.25. Is this recipe valid for kernel
+version 3.14? Any helping hand would be much appreciated.
+
+Thanks,
+Sujith H
+
+--=20
+=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=
+=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D
+Bangalore
+<Project>Contributor to KDE project
+http://fci.wikia.com/wiki/Anti-DRM-Campaign
+<Blog> http://sujithh.info
+
+--001a11c3daa406b48705094d0985
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hi,<br><br></div>When I try to build <a href=3D"=
+http://omap3-sgx-modules-x11_4.09.00.01.bb">omap3-sgx-modules-x11_4.09.00.0=
+1.bb</a> for core-image-sato image, <br><br>I am getting an error:<br><br>D=
+EBUG: Executing shell function do_compile<br>cp: cannot stat `/home/sujith/=
+MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-linux-g=
+nueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Li=
+nux_KM/services4/3rdparty/linux_drm/Kbuild_3.3&#39;: No such <br>file or di=
+rectory<br>NOTE: make -j16 -e MAKEFLAGS=3D BUILD=3Drelease TI_PLATFORM=3Dti=
+335x SUPPORT_XORG=3D1<br>make -C /home/sujith/MEL7/masterbranch/boneblack-b=
+uild/tmp/sysroots/mel-am335x-boneblack/usr/src/kernel M=3D`pwd` <br>make[1]=
+: Entering directory `/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sy=
+sroots/mel-am335x-boneblack/usr/src/kernel&#39;<br>=C2=A0 LD=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel=
+_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/G=
+raphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/built=
+-in.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build=
+/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09=
+.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/bufferc=
+lass_ti/bc_cat.o<br>=C2=A0 LD [M]=C2=A0 /home/sujith/MEL7/masterbranch/bone=
+black-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modul=
+es-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdpa=
+rty/bufferclass_ti/bufferclass_ti.o<br>=C2=A0 LD=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bone=
+black-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_=
+4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/built-in.o<br>=C2=A0 C=
+C [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am3=
+35x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graph=
+ics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/pvr_drm_stubs.=
+o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp=
+/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.=
+01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/d=
+rm_auth.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-b=
+uild/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/=
+4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/lin=
+ux_drm/drm_bufs.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/bon=
+eblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modu=
+les-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdp=
+arty/linux_drm/drm_cache.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterb=
+ranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3=
+-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/servi=
+ces4/3rdparty/linux_drm/drm_context.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/M=
+EL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gn=
+ueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Lin=
+ux_KM/services4/3rdparty/linux_drm/drm_dma.o<br>=C2=A0 CC [M]=C2=A0 /home/s=
+ujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-l=
+inux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/=
+GFX_Linux_KM/services4/3rdparty/linux_drm/drm_drv.o<br>=C2=A0 CC [M]=C2=A0 =
+/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
+k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
+_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_fops.o<br>=C2=A0 CC [M=
+]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_=
+boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_=
+SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_gem.o<br>=C2=
+=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/me=
+l_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/=
+Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_ioctl=
+.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tm=
+p/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00=
+.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/=
+drm_irq.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-b=
+uild/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/=
+4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/lin=
+ux_drm/drm_lock.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/bon=
+eblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modu=
+les-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdp=
+arty/linux_drm/drm_memory.o<br>make[3]: *** No rule to make target `/home/s=
+ujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-l=
+inux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/=
+GFX_Linux_KM/services4/3rdparty/linux_drm/drm_proc.o&#39;, needed by `/home=
+/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel=
+-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_0=
+1/GFX_Linux_KM/services4/3rdparty/linux_drm/drm.o&#39;.=C2=A0 Stop.<br>make=
+[2]: *** [/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335=
+x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphic=
+s_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm] Error 2<br>make=
+[1]: *** [_module_/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/m=
+el_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d=
+/Graphics_SDK_4_09_00_01/GFX_Linux_KM] Error 2<br>make[1]: Leaving director=
+y `/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-b=
+oneblack/usr/src/kernel&#39;<br>make: *** [all] Error 2<br>ERROR: oe_runmak=
+e failed<br><br><br></div>The kernel version that I use is 3.14.25. Is this=
+ recipe valid for kernel version 3.14? Any helping hand would be much appre=
+ciated.<br><br>Thanks,<br>Sujith H<br clear=3D"all"><div><div><div><br>-- <=
+br><div class=3D"gmail_signature">=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=
+=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=
+=B4=A8=E0=B5=8D<br>Bangalore<br>&lt;Project&gt;Contributor to KDE project<b=
+r><a href=3D"http://fci.wikia.com/wiki/Anti-DRM-Campaign" target=3D"_blank"=
+>http://fci.wikia.com/wiki/Anti-DRM-Campaign</a><br>&lt;Blog&gt; <a href=3D=
+"http://sujithh.info" target=3D"_blank">http://sujithh.info</a><br></div>
+</div></div></div></div>
+
+--001a11c3daa406b48705094d0985--
