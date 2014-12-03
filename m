@@ -1,30 +1,30 @@
-Return-Path: <sujith.h@gmail.com>
-Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
-	[209.85.216.42])
-	by arago-project.org (Postfix) with ESMTPS id E5E955298D
+Return-Path: <a0866934local@udb0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id F3790529A4
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Dec 2014 10:09:12 +0000 (UTC)
-Received: by mail-qa0-f42.google.com with SMTP id j7so10276566qaq.29
-	for <meta-arago@arago-project.org>;
-	Wed, 03 Dec 2014 02:09:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=vbQpYL4NIhrIIOV4Q+Gcr8O5Yyyka2oSGZJCVaZKl/I=;
-	b=OYOMDEiNWVB6yAOJ0jI9P/SY/o07rgB5JVDpTK5ghDcEM2R+p0p1RZNXI00eMcpv31
-	JdlfTvpeM/j0pF2Cqw4DbvGN2UB1xVedODyQ+eTfgDg7JbzDsZxjhWHNmgjKdUDCHlHc
-	VGPNFFtltg8g6Fk344N8vHwbjFvy8XZp+zeLuyHdTRXOtQbqhKSdcz6bt/17DKEjdhCb
-	ScZe5Q1GT5jG/Blu+QlFx8mP638VgsrrSxHXcPlSWWYNzRZhSBXCMwgDl3N31+AE1VrP
-	gaS1uKTPN2H40pkynzyrmPer6WA8CTQvX5frLWzSDxQuhWCGgpvx3oA2b1eiYWDBWxv3
-	w1mA==
-X-Received: by 10.224.67.7 with SMTP id p7mr6576472qai.97.1417601352117; Wed,
-	03 Dec 2014 02:09:12 -0800 (PST)
+	Wed,  3 Dec 2014 13:06:05 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id sB3D65Cc021638
+	for <meta-arago@arago-project.org>; Wed, 3 Dec 2014 07:06:05 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB3D65nJ014323
+	for <meta-arago@arago-project.org>; Wed, 3 Dec 2014 07:06:05 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 3 Dec 2014 07:06:04 -0600
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB3D64Ed011596;
+	Wed, 3 Dec 2014 07:06:04 -0600
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1Xw9d6-0005OO-F1;
+	Wed, 03 Dec 2014 08:06:04 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 3 Dec 2014 08:05:53 -0500
+Message-ID: <1417611953-20698-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Received: by 10.140.18.114 with HTTP; Wed, 3 Dec 2014 02:08:51 -0800 (PST)
-From: sujith h <sujith.h@gmail.com>
-Date: Wed, 3 Dec 2014 15:38:51 +0530
-Message-ID: <CADyYWL=GZC866S5QWnYj-n1orTMjkeZn0YFak_GJ5PPiAiZDyw@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: Problem while building omap3-sgx-modules-x11_4.09.00.01 recipe
+Subject: [PATCH] gst-plugins: Use 'gitsm' fetcher for submodule support.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,237 +37,97 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Dec 2014 10:09:13 -0000
-Content-Type: multipart/alternative; boundary=001a11c3daa406b48705094d0985
+X-List-Received-Date: Wed, 03 Dec 2014 13:06:06 -0000
+Content-Type: text/plain
 
---001a11c3daa406b48705094d0985
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb  |    3 +--
+ .../gstreamer/gst-plugins-base-mm-accel_0.10.36.bb |    3 +--
+ .../gstreamer/gst-plugins-good-mm-accel_0.10.31.bb |    3 +--
+ .../gstreamer/gstreamer-mm-accel_0.10.36.bb        |    3 +--
+ 4 files changed, 4 insertions(+), 8 deletions(-)
 
-Hi,
-
-When I try to build omap3-sgx-modules-x11_4.09.00.01.bb for core-image-sato
-image,
-
-I am getting an error:
-
-DEBUG: Executing shell function do_compile
-cp: cannot stat
-`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
-ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
-9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/Kbuild_3.3':
-No such
-file or directory
-NOTE: make -j16 -e MAKEFLAGS=3D BUILD=3Drelease TI_PLATFORM=3Dti335x
-SUPPORT_XORG=3D1
-make -C
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-bone=
-black/usr/src/kernel
-M=3D`pwd`
-make[1]: Entering directory
-`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-bon=
-eblack/usr/src/kernel'
-  LD
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/built-in.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/bc_cat.o
-  LD [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/bufferclass_ti.o
-  LD
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/built-in.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/pvr_drm_stubs.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_auth.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_bufs.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_cache.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_context.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_dma.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_drv.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_fops.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_gem.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_ioctl.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_irq.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_lock.o
-  CC [M]
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_memory.o
-make[3]: *** No rule to make target
-`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
-ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
-9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_proc.o',
-needed by
-`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
-ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
-9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm.o'.
-Stop.
-make[2]: ***
-[/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bonebla=
-ck-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_0=
-9_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm]
-Error 2
-make[1]: ***
-[_module_/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x=
-_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics=
-_SDK_4_09_00_01/GFX_Linux_KM]
-Error 2
-make[1]: Leaving directory
-`/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-bon=
-eblack/usr/src/kernel'
-make: *** [all] Error 2
-ERROR: oe_runmake failed
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+index 6eb7bc1..e00e919 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+@@ -26,14 +26,13 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ DEPENDS += "omap5-sgx-ddk-um-linux libdce libdrm wayland"
+ 
+ SRCREV = "a9510bef52331fee9a23a5c955dbf76ac210056a"
+-SRC_URI = "git://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
++SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
+ 
+ S = "${WORKDIR}/git"
+ 
+ EXTRA_OECONF += " --disable-pvr"
+ 
+ do_configure_prepend() {
+-	git submodule init && git submodule update
+ 	autopoint -f
+ }
+ 
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+index 1de5e6c..33f82b0 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+@@ -23,13 +23,12 @@ RCONFLICTS_${PN}-meta += "gst-plugins-base-meta"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-SRC_URI = "git://git.ti.com/glsdk/gst-plugins-base0-10.git;protocol=git"
++SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-base0-10.git;protocol=git"
+ SRCREV = "3427e885daa749275e07339d3633b83c717aa419"
+ 
+ S = "${WORKDIR}/git"
+ 
+ do_configure_prepend() {
+-	git submodule init && git submodule update
+ 	autopoint -f
+ }
+ 
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+index 31456af..ad071ec 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+@@ -23,7 +23,7 @@ RCONFLICTS_${PN}-meta += "gst-plugins-good-meta"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-SRC_URI = "git://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
++SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
+ SRCREV = "a44097d542f2bf219ac9dc3ef2372e58d769a8f9"
+ 
+ # Fix compile errors with recent kernels
+@@ -33,7 +33,6 @@ SRC_URI_append = " file://0001-v4l2-fix-build-with-recent-kernels-the-v4l2_buffe
+ S = "${WORKDIR}/git"
+ 
+ do_configure_prepend() {
+-	git submodule init && git submodule update
+ 	autopoint -f
+ }
+ 
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+index d3db41e..8cfbd05 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+@@ -21,13 +21,12 @@ RCONFLICTS_${PN}-dbg += "gstreamer-dbg"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-SRC_URI = "git://git.ti.com/glsdk/gstreamer0-10.git;protocol=git"
++SRC_URI = "gitsm://git.ti.com/glsdk/gstreamer0-10.git;protocol=git"
+ SRCREV = "e505f4a2ceee3b0328eb2efddb9ec1281d3fd60a"
+ 
+ S = "${WORKDIR}/git"
+ 
+ do_configure_prepend() {
+-	git submodule init && git submodule update
+ 	autopoint -f
+ }
+ 
+-- 
+1.7.9.5
 
 
-The kernel version that I use is 3.14.25. Is this recipe valid for kernel
-version 3.14? Any helping hand would be much appreciated.
-
-Thanks,
-Sujith H
-
---=20
-=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=
-=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D
-Bangalore
-<Project>Contributor to KDE project
-http://fci.wikia.com/wiki/Anti-DRM-Campaign
-<Blog> http://sujithh.info
-
---001a11c3daa406b48705094d0985
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Hi,<br><br></div>When I try to build <a href=3D"=
-http://omap3-sgx-modules-x11_4.09.00.01.bb">omap3-sgx-modules-x11_4.09.00.0=
-1.bb</a> for core-image-sato image, <br><br>I am getting an error:<br><br>D=
-EBUG: Executing shell function do_compile<br>cp: cannot stat `/home/sujith/=
-MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-linux-g=
-nueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Li=
-nux_KM/services4/3rdparty/linux_drm/Kbuild_3.3&#39;: No such <br>file or di=
-rectory<br>NOTE: make -j16 -e MAKEFLAGS=3D BUILD=3Drelease TI_PLATFORM=3Dti=
-335x SUPPORT_XORG=3D1<br>make -C /home/sujith/MEL7/masterbranch/boneblack-b=
-uild/tmp/sysroots/mel-am335x-boneblack/usr/src/kernel M=3D`pwd` <br>make[1]=
-: Entering directory `/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sy=
-sroots/mel-am335x-boneblack/usr/src/kernel&#39;<br>=C2=A0 LD=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel=
-_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/G=
-raphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/bufferclass_ti/built=
--in.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build=
-/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09=
-.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/bufferc=
-lass_ti/bc_cat.o<br>=C2=A0 LD [M]=C2=A0 /home/sujith/MEL7/masterbranch/bone=
-black-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modul=
-es-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdpa=
-rty/bufferclass_ti/bufferclass_ti.o<br>=C2=A0 LD=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_bone=
-black-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_=
-4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/built-in.o<br>=C2=A0 C=
-C [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am3=
-35x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graph=
-ics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/pvr_drm_stubs.=
-o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp=
-/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.=
-01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/d=
-rm_auth.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-b=
-uild/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/=
-4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/lin=
-ux_drm/drm_bufs.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/bon=
-eblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modu=
-les-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdp=
-arty/linux_drm/drm_cache.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterb=
-ranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3=
--sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/servi=
-ces4/3rdparty/linux_drm/drm_context.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/M=
-EL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gn=
-ueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Lin=
-ux_KM/services4/3rdparty/linux_drm/drm_dma.o<br>=C2=A0 CC [M]=C2=A0 /home/s=
-ujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-l=
-inux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/=
-GFX_Linux_KM/services4/3rdparty/linux_drm/drm_drv.o<br>=C2=A0 CC [M]=C2=A0 =
-/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblac=
-k-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09=
-_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_fops.o<br>=C2=A0 CC [M=
-]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_=
-boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_=
-SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_gem.o<br>=C2=
-=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/me=
-l_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/=
-Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/drm_ioctl=
-.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-build/tm=
-p/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00=
-.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm/=
-drm_irq.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/boneblack-b=
-uild/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/=
-4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/lin=
-ux_drm/drm_lock.o<br>=C2=A0 CC [M]=C2=A0 /home/sujith/MEL7/masterbranch/bon=
-eblack-build/tmp/work/mel_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modu=
-les-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdp=
-arty/linux_drm/drm_memory.o<br>make[3]: *** No rule to make target `/home/s=
-ujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel-l=
-inux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_01/=
-GFX_Linux_KM/services4/3rdparty/linux_drm/drm_proc.o&#39;, needed by `/home=
-/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335x_boneblack-mel=
--linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphics_SDK_4_09_00_0=
-1/GFX_Linux_KM/services4/3rdparty/linux_drm/drm.o&#39;.=C2=A0 Stop.<br>make=
-[2]: *** [/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/mel_am335=
-x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d/Graphic=
-s_SDK_4_09_00_01/GFX_Linux_KM/services4/3rdparty/linux_drm] Error 2<br>make=
-[1]: *** [_module_/home/sujith/MEL7/masterbranch/boneblack-build/tmp/work/m=
-el_am335x_boneblack-mel-linux-gnueabi/omap3-sgx-modules-x11/4.09.00.01-r22d=
-/Graphics_SDK_4_09_00_01/GFX_Linux_KM] Error 2<br>make[1]: Leaving director=
-y `/home/sujith/MEL7/masterbranch/boneblack-build/tmp/sysroots/mel-am335x-b=
-oneblack/usr/src/kernel&#39;<br>make: *** [all] Error 2<br>ERROR: oe_runmak=
-e failed<br><br><br></div>The kernel version that I use is 3.14.25. Is this=
- recipe valid for kernel version 3.14? Any helping hand would be much appre=
-ciated.<br><br>Thanks,<br>Sujith H<br clear=3D"all"><div><div><div><br>-- <=
-br><div class=3D"gmail_signature">=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=
-=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=
-=B4=A8=E0=B5=8D<br>Bangalore<br>&lt;Project&gt;Contributor to KDE project<b=
-r><a href=3D"http://fci.wikia.com/wiki/Anti-DRM-Campaign" target=3D"_blank"=
->http://fci.wikia.com/wiki/Anti-DRM-Campaign</a><br>&lt;Blog&gt; <a href=3D=
-"http://sujithh.info" target=3D"_blank">http://sujithh.info</a><br></div>
-</div></div></div></div>
-
---001a11c3daa406b48705094d0985--
