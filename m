@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 44EDF529D3
+	by arago-project.org (Postfix) with ESMTPS id B72FB529DD
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Dec 2014 22:23:34 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sB4MNXlv014974;
-	Thu, 4 Dec 2014 16:23:33 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB4MNXbg025358;
-	Thu, 4 Dec 2014 16:23:33 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 4 Dec 2014 16:23:32 -0600
+	Thu,  4 Dec 2014 22:41:57 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sB4MfvgJ025674
+	for <meta-arago@arago-project.org>; Thu, 4 Dec 2014 16:41:57 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB4MfudB015010
+	for <meta-arago@arago-project.org>; Thu, 4 Dec 2014 16:41:56 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 4 Dec 2014 16:41:56 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB4MNWwB009004;
-	Thu, 4 Dec 2014 16:23:32 -0600
-Date: Thu, 4 Dec 2014 17:23:32 -0500
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB4MfueB018675;
+	Thu, 4 Dec 2014 16:41:56 -0600
+Date: Thu, 4 Dec 2014 17:41:56 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: sujith h <sujith.h@gmail.com>
-Message-ID: <20141204222332.GD5113@edge>
-References: <CADyYWL=GZC866S5QWnYj-n1orTMjkeZn0YFak_GJ5PPiAiZDyw@mail.gmail.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20141204224155.GF5113@edge>
+References: <1417611953-20698-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <CADyYWL=GZC866S5QWnYj-n1orTMjkeZn0YFak_GJ5PPiAiZDyw@mail.gmail.com>
+In-Reply-To: <1417611953-20698-1-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: Problem while building omap3-sgx-modules-x11_4.09.00.01 recipe
+Subject: Re: [PATCH] gst-plugins: Use 'gitsm' fetcher for submodule support.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,22 +37,109 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Dec 2014 22:23:35 -0000
+X-List-Received-Date: Thu, 04 Dec 2014 22:41:58 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Dec 03, 2014 at 03:38:51PM +0530, sujith h wrote:
-> Hi,
-> 
-> When I try to build omap3-sgx-modules-x11_4.09.00.01.bb for core-image-sato
-> image,
-> 
-> The kernel version that I use is 3.14.25. Is this recipe valid for kernel
-> version 3.14? Any helping hand would be much appreciated.
+Jake,
 
-No, that version is too old for kernel 3.14. You'd need to use 5.1.1.1 as 
-there were some fixes specifically for 3.14 kernel API changes.
+Thanks!
+Can I assume this was thoroughly tested with and w/o mirror setup? :)
 
--- 
-Denys
+
+On Wed, Dec 03, 2014 at 08:05:53AM -0500, Jacob Stiffler wrote:
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  .../gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb  |    3 +--
+>  .../gstreamer/gst-plugins-base-mm-accel_0.10.36.bb |    3 +--
+>  .../gstreamer/gst-plugins-good-mm-accel_0.10.31.bb |    3 +--
+>  .../gstreamer/gstreamer-mm-accel_0.10.36.bb        |    3 +--
+>  4 files changed, 4 insertions(+), 8 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+> index 6eb7bc1..e00e919 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+> @@ -26,14 +26,13 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  DEPENDS += "omap5-sgx-ddk-um-linux libdce libdrm wayland"
+>  
+>  SRCREV = "a9510bef52331fee9a23a5c955dbf76ac210056a"
+> -SRC_URI = "git://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
+> +SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
+>  
+>  S = "${WORKDIR}/git"
+>  
+>  EXTRA_OECONF += " --disable-pvr"
+>  
+>  do_configure_prepend() {
+> -	git submodule init && git submodule update
+>  	autopoint -f
+>  }
+>  
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+> index 1de5e6c..33f82b0 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+> @@ -23,13 +23,12 @@ RCONFLICTS_${PN}-meta += "gst-plugins-base-meta"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> -SRC_URI = "git://git.ti.com/glsdk/gst-plugins-base0-10.git;protocol=git"
+> +SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-base0-10.git;protocol=git"
+>  SRCREV = "3427e885daa749275e07339d3633b83c717aa419"
+>  
+>  S = "${WORKDIR}/git"
+>  
+>  do_configure_prepend() {
+> -	git submodule init && git submodule update
+>  	autopoint -f
+>  }
+>  
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+> index 31456af..ad071ec 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+> @@ -23,7 +23,7 @@ RCONFLICTS_${PN}-meta += "gst-plugins-good-meta"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> -SRC_URI = "git://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
+> +SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
+>  SRCREV = "a44097d542f2bf219ac9dc3ef2372e58d769a8f9"
+>  
+>  # Fix compile errors with recent kernels
+> @@ -33,7 +33,6 @@ SRC_URI_append = " file://0001-v4l2-fix-build-with-recent-kernels-the-v4l2_buffe
+>  S = "${WORKDIR}/git"
+>  
+>  do_configure_prepend() {
+> -	git submodule init && git submodule update
+>  	autopoint -f
+>  }
+>  
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+> index d3db41e..8cfbd05 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+> @@ -21,13 +21,12 @@ RCONFLICTS_${PN}-dbg += "gstreamer-dbg"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> -SRC_URI = "git://git.ti.com/glsdk/gstreamer0-10.git;protocol=git"
+> +SRC_URI = "gitsm://git.ti.com/glsdk/gstreamer0-10.git;protocol=git"
+>  SRCREV = "e505f4a2ceee3b0328eb2efddb9ec1281d3fd60a"
+>  
+>  S = "${WORKDIR}/git"
+>  
+>  do_configure_prepend() {
+> -	git submodule init && git submodule update
+>  	autopoint -f
+>  }
+>  
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
