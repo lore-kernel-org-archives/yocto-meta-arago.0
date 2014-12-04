@@ -1,30 +1,29 @@
-Return-Path: <a0866934local@udb0866934>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id F3790529A4
+	by arago-project.org (Postfix) with ESMTPS id 621B75298D
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Dec 2014 13:06:05 +0000 (UTC)
+	Thu,  4 Dec 2014 08:19:17 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id sB3D65Cc021638
-	for <meta-arago@arago-project.org>; Wed, 3 Dec 2014 07:06:05 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB3D65nJ014323
-	for <meta-arago@arago-project.org>; Wed, 3 Dec 2014 07:06:05 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 3 Dec 2014 07:06:04 -0600
-Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB3D64Ed011596;
-	Wed, 3 Dec 2014 07:06:04 -0600
-Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1Xw9d6-0005OO-F1;
-	Wed, 03 Dec 2014 08:06:04 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id sB48JGEO030940
+	for <meta-arago@arago-project.org>; Thu, 4 Dec 2014 02:19:16 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sB48JGBo007719
+	for <meta-arago@arago-project.org>; Thu, 4 Dec 2014 02:19:16 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 4 Dec 2014 02:19:16 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	sB48JFHv002479	for <meta-arago@arago-project.org>;
+	Thu, 4 Dec 2014 02:19:16 -0600
+Date: Thu, 4 Dec 2014 02:58:51 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 3 Dec 2014 08:05:53 -0500
-Message-ID: <1417611953-20698-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Message-ID: <709285737.31.1417679931931.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] gst-plugins: Use 'gitsm' fetcher for submodule support.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.11 build 2014-12-04_01-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,97 +36,193 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Dec 2014 13:06:06 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 04 Dec 2014 08:19:17 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_30_2106254490.1417679931206"
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb  |    3 +--
- .../gstreamer/gst-plugins-base-mm-accel_0.10.36.bb |    3 +--
- .../gstreamer/gst-plugins-good-mm-accel_0.10.31.bb |    3 +--
- .../gstreamer/gstreamer-mm-accel_0.10.36.bb        |    3 +--
- 4 files changed, 4 insertions(+), 8 deletions(-)
+------=_Part_30_2106254490.1417679931206
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
-index 6eb7bc1..e00e919 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
-@@ -26,14 +26,13 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- DEPENDS += "omap5-sgx-ddk-um-linux libdce libdrm wayland"
- 
- SRCREV = "a9510bef52331fee9a23a5c955dbf76ac210056a"
--SRC_URI = "git://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
-+SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
- 
- S = "${WORKDIR}/git"
- 
- EXTRA_OECONF += " --disable-pvr"
- 
- do_configure_prepend() {
--	git submodule init && git submodule update
- 	autopoint -f
- }
- 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
-index 1de5e6c..33f82b0 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
-@@ -23,13 +23,12 @@ RCONFLICTS_${PN}-meta += "gst-plugins-base-meta"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRC_URI = "git://git.ti.com/glsdk/gst-plugins-base0-10.git;protocol=git"
-+SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-base0-10.git;protocol=git"
- SRCREV = "3427e885daa749275e07339d3633b83c717aa419"
- 
- S = "${WORKDIR}/git"
- 
- do_configure_prepend() {
--	git submodule init && git submodule update
- 	autopoint -f
- }
- 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
-index 31456af..ad071ec 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
-@@ -23,7 +23,7 @@ RCONFLICTS_${PN}-meta += "gst-plugins-good-meta"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRC_URI = "git://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
-+SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
- SRCREV = "a44097d542f2bf219ac9dc3ef2372e58d769a8f9"
- 
- # Fix compile errors with recent kernels
-@@ -33,7 +33,6 @@ SRC_URI_append = " file://0001-v4l2-fix-build-with-recent-kernels-the-v4l2_buffe
- S = "${WORKDIR}/git"
- 
- do_configure_prepend() {
--	git submodule init && git submodule update
- 	autopoint -f
- }
- 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
-index d3db41e..8cfbd05 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
-@@ -21,13 +21,12 @@ RCONFLICTS_${PN}-dbg += "gstreamer-dbg"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRC_URI = "git://git.ti.com/glsdk/gstreamer0-10.git;protocol=git"
-+SRC_URI = "gitsm://git.ti.com/glsdk/gstreamer0-10.git;protocol=git"
- SRCREV = "e505f4a2ceee3b0328eb2efddb9ec1281d3fd60a"
- 
- S = "${WORKDIR}/git"
- 
- do_configure_prepend() {
--	git submodule init && git submodule update
- 	autopoint -f
- }
- 
--- 
-1.7.9.5
+<html>
+<head>
+<title>
+Status for 12/04/14
+</title>
+</head>
+<body>
+
+<h2>Status for 12/04/14</h2>
+
+<h2>BUILD_ID: build-2014-12-04_01-02-01</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.11"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm k2hk-evm am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_30_2106254490.1417679931206--
