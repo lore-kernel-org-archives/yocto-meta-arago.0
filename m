@@ -1,35 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id E15E0529DE
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id CC25F52AA0
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Dec 2014 20:22:30 +0000 (UTC)
+	Wed, 10 Dec 2014 20:45:31 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBAKMToA004387;
-	Wed, 10 Dec 2014 14:22:29 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBAKMTYx013071;
-	Wed, 10 Dec 2014 14:22:29 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0174.001; Wed, 10 Dec 2014 14:22:29 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: sujith h <sujith.h@gmail.com>, "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [meta-ti-amsdk] Query regarding
-	libgles-omap3/5.01.01.01
-Thread-Index: AQHQFFvX9hde56IgZ0S8dQu8uERsV5yJRNxQ
-Date: Wed, 10 Dec 2014 20:22:29 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C7AB423@DFLE08.ent.ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBAKjVYO015184;
+	Wed, 10 Dec 2014 14:45:31 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBAKjVki031709;
+	Wed, 10 Dec 2014 14:45:31 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 10 Dec 2014 14:45:30 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBAKjUUV004562;
+	Wed, 10 Dec 2014 14:45:30 -0600
+Date: Wed, 10 Dec 2014 15:45:30 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
+Message-ID: <20141210204530.GL5113@edge>
 References: <CADyYWLnXG+AeQL2OSdrjUQV9W4Q-s4qkBwa+tfRV8KWLhL-E=A@mail.gmail.com>
 	<20141204225606.GG5113@edge>
 	<CADyYWLkJj7Ft1dUNJkTn6Nf-r_Hgv9+Mcup6H-SdzYcS231w0Q@mail.gmail.com>
-In-Reply-To: <CADyYWLkJj7Ft1dUNJkTn6Nf-r_Hgv9+Mcup6H-SdzYcS231w0Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	<8F29D6B095ED194EA1980491A5E029710C7AB423@DFLE08.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C7AB423@DFLE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [meta-ti-amsdk] Query regarding	libgles-omap3/5.01.01.01
+Subject: Re: [meta-ti-amsdk] Query regarding libgles-omap3/5.01.01.01
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,190 +40,110 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 20:22:31 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_8F29D6B095ED194EA1980491A5E029710C7AB423DFLE08entticom_"
+X-List-Received-Date: Wed, 10 Dec 2014 20:45:32 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
---_000_8F29D6B095ED194EA1980491A5E029710C7AB423DFLE08entticom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Yes, it was giving some drm-related build issues with recent kernels. But X11 
+support wasn't specifically removed, it was just never tested or even used 
+lately. That's what I was trying to say in the original email.
 
-WDExIGlzbuKAmXQgc3VwcG9zZSB0byBiZSBzdXBwb3J0ZWQgaW4gdGhlIGxhc3QgR3JhcGhpY3Mg
-cGFja2FnZSBhbmQgaG9uZXN0bHkgSSB0aG91Z2h0IGl0IGhhc27igJl0IGJlZW4gc3VwcG9ydGVk
-IGZvciBzZXZlcmFsIHJlbGVhc2VzLg0KDQpodHRwOi8vcHJvY2Vzc29ycy53aWtpLnRpLmNvbS9p
-bmRleC5waHAvUk5fNV8wMV8wMV8wMSNXaGF0X2lzX25vdF9zdXBwb3J0ZWQNCg0KSSB0aG91Z2h0
-IGl0IHdhcyB0byB0aGUgcG9pbnQgdGhhdCB0cnlpbmcgdG8gYnVpbGQgd2l0aCBYMTEgc3VwcG9y
-dCB3aWxsIHRocm93IGVycm9ycy4NCg0KRnJvbTogbWV0YS1hcmFnby1ib3VuY2VzQGFyYWdvLXBy
-b2plY3Qub3JnIFttYWlsdG86bWV0YS1hcmFnby1ib3VuY2VzQGFyYWdvLXByb2plY3Qub3JnXSBP
-biBCZWhhbGYgT2Ygc3VqaXRoIGgNClNlbnQ6IFdlZG5lc2RheSwgRGVjZW1iZXIgMTAsIDIwMTQg
-MzoyOSBBTQ0KVG86IERteXRyaXllbmtvLCBEZW55cw0KQ2M6IG1ldGEtYXJhZ29AYXJhZ28tcHJv
-amVjdC5vcmcNClN1YmplY3Q6IFJlOiBbbWV0YS1hcmFnb10gW21ldGEtdGktYW1zZGtdIFF1ZXJ5
-IHJlZ2FyZGluZyBsaWJnbGVzLW9tYXAzLzUuMDEuMDEuMDENCg0KDQoNCk9uIEZyaSwgRGVjIDUs
-IDIwMTQgYXQgNDoyNiBBTSwgRGVueXMgRG15dHJpeWVua28gPGRlbnlzQHRpLmNvbTxtYWlsdG86
-ZGVueXNAdGkuY29tPj4gd3JvdGU6DQpPbiBUdWUsIERlYyAwMiwgMjAxNCBhdCAwODoyNDo0NFBN
-ICswNTMwLCBzdWppdGggaCB3cm90ZToNCj4gSGksDQo+DQo+IEkgYW0gdXNpbmcgdGhlIGxpZ2Js
-ZXMtb21hcDMvNS4wMS4wMS4wMTxodHRwOi8vNS4wMS4wMS4wMT4gZm9yIGNvcmUtaW1hZ2Utc2F0
-byBmb3IgdGhlIG1hY2hpbmUNCj4gU2l0YXJhIFhBTTMzNTlBWkNaMTAwIENvcnRleCBBOCBBUk0g
-cHJvY2Vzc29yLiBBbmQgSSBnb3QgUXQ1IGJ1aWx0IGZvciB0aGUNCj4gbWFjaGluZSAoIHRha2Vu
-IGZyb20gbWV0YS1xdDUpLiBJIGFtIG5vdCBhYmxlIHRvIHJ1biBvcGVuZ2wgZXhhbXBsZXMgb2Yg
-UXQ1DQo+IGFuZCBoZW5jZSBhcyBhIHJlc3VsdCB0aGUgZXhhbXBsZXMgZnJvbSBxdGRlY2xhcmF0
-aXZlIGFyZSBhbHNvIGZhaWxpbmcuIFRoZQ0KPiBlcnJvciBJIGdldCBoZXJlIGlzOg0KPg0KPiBy
-b290QG1lbC1hbTMzNXgtYm9uZWJsYWNrOi91c3Ivc2hhcmUvcXQ1L2V4YW1wbGVzIw0KPiAuL29w
-ZW5nbC9oZWxsb3dpbmRvdy9oZWxsb3dpbmRvdyAtcGxhdGZvcm0geGNiIFF0IFdhcm5pbmc6IENv
-dWxkIG5vdCBmaW5kIGENCj4gbG9jYXRpb24gb2YgdGhlIHN5c3RlbSdzIENvbXBvc2UgZmlsZXMu
-IENvbnNpZGVyIHNldHRpbmcgdGhlIFFUQ09NUE9TRQ0KPiBlbnZpcm9ubWVudCB2YXJpYWJsZS4g
-UXQgV2FybmluZzogQ291bGQgbm90IGZpbmQgYSBsb2NhdGlvbiBvZiB0aGUgc3lzdGVtJ3MNCj4g
-Q29tcG9zZSBmaWxlcy4gQ29uc2lkZXIgc2V0dGluZyB0aGUgUVRDT01QT1NFIGVudmlyb25tZW50
-IHZhcmlhYmxlLiBDYW50DQo+IGZpbmQgRUdMQ29uZmlnLCByZXR1cm5pbmcgbnVsbCBjb25maWcg
-Q2FudCBmaW5kIEVHTENvbmZpZywgcmV0dXJuaW5nIG51bGwNCj4gY29uZmlnIEVHTCBkaWQgbm90
-IHN1Z2dlc3QgYSBWaXN1YWxJRCAoRUdMX05BVElWRV9WSVNVQUxfSUQgd2FzIHplcm8pIGZvcg0K
-PiBFR0xDb25maWcgMCBVbmFibGUgdG8gZmluZCBhbiBYMTEgdmlzdWFsIHdoaWNoIG1hdGNoZXMg
-RUdMIGNvbmZpZyAwIENvdWxkDQo+IG5vdCBpbml0aWFsaXplIEVHTCBBYm9ydGVkIHJvb3RAbWVs
-LWFtMzM1eC1ib25lYmxhY2s6L3Vzci9zaGFyZS9xdDUvZXhhbXBsZXMjDQo+DQo+DQo+IE1heSBJ
-IGtub3cgaWYgdGhlIGxpYmdsZXMtb21hcDMgNS4wMS4wMS4wMSBjYW4gYmUgdXNlZCB3aXRoIFgx
-MSBvciBub3Q/IE9yDQo+IGFueSBoZWxwZXJzIHdoYXQgY291bGQgYmUgd3JvbmcgaGVyZT8gSWYg
-YW55IG1vcmUgaW5wdXRzIGFyZSBuZWVkZWQgcGxlYXNlDQo+IGxldCBtZSBrbm93Lg0KDQpYMTEg
-aXMgc3VwcG9zZWQgdG8gYmUgc3VwcG9ydGVkIGJ5IDUuMS4xLjEgZ3JhcGhpY3Mgc3RhY2ssIGJ1
-dCBpdCBoYXNuJ3QgYmVlbg0KdGVzdGVkLCBlc3BlY2lhbGx5IHRoZSBEUk0gcGFydC4gV2UndmUg
-c3dpdGNoZWQgZnJvbSBSYXcgZnJhbWVidWZmZXIgdXNlIGNhc2UNCmRpcmVjdGx5IHRvIFdheWxh
-bmQgb25lIGluIG91ciBTREsgcHJvZHVjdHMsIHNvIG5vIFgxMSBleHBvc3VyZSBoZXJlLg0KDQpJ
-ZiBYMTEgaXMgc3VwcG9ydGVkIGluIDUuMS4xLjEgaXRzIGEgZ29vZCBuZXdzLiBCdXQgSSBhbSB3
-b3JyaWVkIGlmIG9wZW5nbCBleGFtcGxlcyBmcm9tIFF0NSAoIDUuMy4yIHZlcnNpb24gdGFrZW4g
-ZnJvbQ0KbWV0YS1xdDUgbGF5ZXIpICBkb24ndCB3b3JrLCB0aGVuIFFNTCB3b24ndCB3b3JrIGZv
-ciB0aGUgYmVhZ2xlYm9uZSBibGFjayBib2FyZC4gQW55IGhpbnQgb3Igc3VnZ2VzdGlvbnM/DQoN
-ClRoYW5rcyAmIHJlZ2FyZHMsDQpTdWppdGggSA0KDQotLQ0K4LS44LWB4LSc4LS/4LSk4LWNIOC0
-ueC0sOC0v+C0puC0vuC0uOC0qOC1jQ0KQmFuZ2Fsb3JlDQo8UHJvamVjdD5Db250cmlidXRvciB0
-byBLREUgcHJvamVjdA0KaHR0cDovL2ZjaS53aWtpYS5jb20vd2lraS9BbnRpLURSTS1DYW1wYWln
-bg0KPEJsb2c+IGh0dHA6Ly9zdWppdGhoLmluZm8NCg==
+-- 
+Denys
 
---_000_8F29D6B095ED194EA1980491A5E029710C7AB423DFLE08entticom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpA
-Zm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkthcnRpa2E7DQoJcGFub3NlLTE6MiAyIDUgMyAzIDQg
-NCA2IDIgMzt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05v
-cm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFw
-dDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJz
-ZXJpZiI7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6
-OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRl
-ZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJ
-Y29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0
-eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJ
-e21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fu
-cy1zZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1h
-cmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6
-V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpz
-aGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5k
-aWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRp
-dCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48
-L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVl
-IiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+WDEx
-IGlzbuKAmXQgc3VwcG9zZSB0byBiZSBzdXBwb3J0ZWQgaW4gdGhlIGxhc3QgR3JhcGhpY3MgcGFj
-a2FnZSBhbmQgaG9uZXN0bHkgSSB0aG91Z2h0IGl0IGhhc27igJl0IGJlZW4gc3VwcG9ydGVkIGZv
-ciBzZXZlcmFsIHJlbGVhc2VzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PGEgaHJlZj0iaHR0cDovL3Byb2Nlc3NvcnMu
-d2lraS50aS5jb20vaW5kZXgucGhwL1JOXzVfMDFfMDFfMDEjV2hhdF9pc19ub3Rfc3VwcG9ydGVk
-Ij5odHRwOi8vcHJvY2Vzc29ycy53aWtpLnRpLmNvbS9pbmRleC5waHAvUk5fNV8wMV8wMV8wMSNX
-aGF0X2lzX25vdF9zdXBwb3J0ZWQ8L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5JIHRob3VnaHQgaXQgd2FzIHRvIHRo
-ZSBwb2ludCB0aGF0IHRyeWluZyB0byBidWlsZCB3aXRoIFgxMSBzdXBwb3J0IHdpbGwgdGhyb3cg
-ZXJyb3JzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVl
-IDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJv
-cmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBp
-biAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBtZXRh
-LWFyYWdvLWJvdW5jZXNAYXJhZ28tcHJvamVjdC5vcmcgW21haWx0bzptZXRhLWFyYWdvLWJvdW5j
-ZXNAYXJhZ28tcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPnN1aml0aCBoPGJyPg0K
-PGI+U2VudDo8L2I+IFdlZG5lc2RheSwgRGVjZW1iZXIgMTAsIDIwMTQgMzoyOSBBTTxicj4NCjxi
-PlRvOjwvYj4gRG15dHJpeWVua28sIERlbnlzPGJyPg0KPGI+Q2M6PC9iPiBtZXRhLWFyYWdvQGFy
-YWdvLXByb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbbWV0YS1hcmFnb10gW21l
-dGEtdGktYW1zZGtdIFF1ZXJ5IHJlZ2FyZGluZyBsaWJnbGVzLW9tYXAzLzUuMDEuMDEuMDE8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gRnJpLCBEZWMgNSwgMjAx
-NCBhdCA0OjI2IEFNLCBEZW55cyBEbXl0cml5ZW5rbyAmbHQ7PGEgaHJlZj0ibWFpbHRvOmRlbnlz
-QHRpLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmRlbnlzQHRpLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVHVlLCBEZWMgMDIsIDIwMTQgYXQg
-MDg6MjQ6NDRQTSAmIzQzOzA1MzAsIHN1aml0aCBoIHdyb3RlOjxicj4NCiZndDsgSGksPGJyPg0K
-Jmd0Ozxicj4NCiZndDsgSSBhbSB1c2luZyB0aGUgbGlnYmxlcy1vbWFwMy88YSBocmVmPSJodHRw
-Oi8vNS4wMS4wMS4wMSIgdGFyZ2V0PSJfYmxhbmsiPjUuMDEuMDEuMDE8L2E+IGZvciBjb3JlLWlt
-YWdlLXNhdG8gZm9yIHRoZSBtYWNoaW5lPGJyPg0KJmd0OyBTaXRhcmEgWEFNMzM1OUFaQ1oxMDAg
-Q29ydGV4IEE4IEFSTSBwcm9jZXNzb3IuIEFuZCBJIGdvdCBRdDUgYnVpbHQgZm9yIHRoZTxicj4N
-CiZndDsgbWFjaGluZSAoIHRha2VuIGZyb20gbWV0YS1xdDUpLiBJIGFtIG5vdCBhYmxlIHRvIHJ1
-biBvcGVuZ2wgZXhhbXBsZXMgb2YgUXQ1PGJyPg0KJmd0OyBhbmQgaGVuY2UgYXMgYSByZXN1bHQg
-dGhlIGV4YW1wbGVzIGZyb20gcXRkZWNsYXJhdGl2ZSBhcmUgYWxzbyBmYWlsaW5nLiBUaGU8YnI+
-DQomZ3Q7IGVycm9yIEkgZ2V0IGhlcmUgaXM6PGJyPg0KJmd0Ozxicj4NCiZndDsgcm9vdEBtZWwt
-YW0zMzV4LWJvbmVibGFjazovdXNyL3NoYXJlL3F0NS9leGFtcGxlcyM8YnI+DQomZ3Q7IC4vb3Bl
-bmdsL2hlbGxvd2luZG93L2hlbGxvd2luZG93IC1wbGF0Zm9ybSB4Y2IgUXQgV2FybmluZzogQ291
-bGQgbm90IGZpbmQgYTxicj4NCiZndDsgbG9jYXRpb24gb2YgdGhlIHN5c3RlbSdzIENvbXBvc2Ug
-ZmlsZXMuIENvbnNpZGVyIHNldHRpbmcgdGhlIFFUQ09NUE9TRTxicj4NCiZndDsgZW52aXJvbm1l
-bnQgdmFyaWFibGUuIFF0IFdhcm5pbmc6IENvdWxkIG5vdCBmaW5kIGEgbG9jYXRpb24gb2YgdGhl
-IHN5c3RlbSdzPGJyPg0KJmd0OyBDb21wb3NlIGZpbGVzLiBDb25zaWRlciBzZXR0aW5nIHRoZSBR
-VENPTVBPU0UgZW52aXJvbm1lbnQgdmFyaWFibGUuIENhbnQ8YnI+DQomZ3Q7IGZpbmQgRUdMQ29u
-ZmlnLCByZXR1cm5pbmcgbnVsbCBjb25maWcgQ2FudCBmaW5kIEVHTENvbmZpZywgcmV0dXJuaW5n
-IG51bGw8YnI+DQomZ3Q7IGNvbmZpZyBFR0wgZGlkIG5vdCBzdWdnZXN0IGEgVmlzdWFsSUQgKEVH
-TF9OQVRJVkVfVklTVUFMX0lEIHdhcyB6ZXJvKSBmb3I8YnI+DQomZ3Q7IEVHTENvbmZpZyAwIFVu
-YWJsZSB0byBmaW5kIGFuIFgxMSB2aXN1YWwgd2hpY2ggbWF0Y2hlcyBFR0wgY29uZmlnIDAgQ291
-bGQ8YnI+DQomZ3Q7IG5vdCBpbml0aWFsaXplIEVHTCBBYm9ydGVkIHJvb3RAbWVsLWFtMzM1eC1i
-b25lYmxhY2s6L3Vzci9zaGFyZS9xdDUvZXhhbXBsZXMjPGJyPg0KJmd0Ozxicj4NCiZndDs8YnI+
-DQomZ3Q7IE1heSBJIGtub3cgaWYgdGhlIGxpYmdsZXMtb21hcDMgNS4wMS4wMS4wMSBjYW4gYmUg
-dXNlZCB3aXRoIFgxMSBvciBub3Q/IE9yPGJyPg0KJmd0OyBhbnkgaGVscGVycyB3aGF0IGNvdWxk
-IGJlIHdyb25nIGhlcmU/IElmIGFueSBtb3JlIGlucHV0cyBhcmUgbmVlZGVkIHBsZWFzZTxicj4N
-CiZndDsgbGV0IG1lIGtub3cuPGJyPg0KPGJyPg0KWDExIGlzIHN1cHBvc2VkIHRvIGJlIHN1cHBv
-cnRlZCBieSA1LjEuMS4xIGdyYXBoaWNzIHN0YWNrLCBidXQgaXQgaGFzbid0IGJlZW48YnI+DQp0
-ZXN0ZWQsIGVzcGVjaWFsbHkgdGhlIERSTSBwYXJ0LiBXZSd2ZSBzd2l0Y2hlZCBmcm9tIFJhdyBm
-cmFtZWJ1ZmZlciB1c2UgY2FzZTxicj4NCmRpcmVjdGx5IHRvIFdheWxhbmQgb25lIGluIG91ciBT
-REsgcHJvZHVjdHMsIHNvIG5vIFgxMSBleHBvc3VyZSBoZXJlLjxvOnA+PC9vOnA+PC9wPg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SWYgWDExIGlzIHN1cHBvcnRlZCBpbiA1LjEuMS4x
-IGl0cyBhIGdvb2QgbmV3cy4gQnV0IEkgYW0gd29ycmllZCBpZiBvcGVuZ2wgZXhhbXBsZXMgZnJv
-bSBRdDUgKCA1LjMuMiB2ZXJzaW9uIHRha2VuIGZyb208bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+
-bWV0YS1xdDUgbGF5ZXIpJm5ic3A7IGRvbid0IHdvcmssIHRoZW4gUU1MIHdvbid0IHdvcmsgZm9y
-IHRoZSBiZWFnbGVib25lIGJsYWNrIGJvYXJkLiBBbnkgaGludCBvciBzdWdnZXN0aW9ucz88bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5UaGFua3MgJmFtcDsgcmVnYXJkcyw8bzpwPjwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlN1aml0aCBIPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KLS0gPG86
-cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OiZxdW90O0thcnRpa2EmcXVvdDssJnF1b3Q7c2VyaWYmcXVvdDsiPuC0uOC1geC0
-nOC0v+C0pOC1jTwvc3Bhbj4gPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0thcnRpa2Em
-cXVvdDssJnF1b3Q7c2VyaWYmcXVvdDsiPg0K4LS54LSw4LS/4LSm4LS+4LS44LSo4LWNPC9zcGFu
-Pjxicj4NCkJhbmdhbG9yZTxicj4NCiZsdDtQcm9qZWN0Jmd0O0NvbnRyaWJ1dG9yIHRvIEtERSBw
-cm9qZWN0PGJyPg0KPGEgaHJlZj0iaHR0cDovL2ZjaS53aWtpYS5jb20vd2lraS9BbnRpLURSTS1D
-YW1wYWlnbiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6Ly9mY2kud2lraWEuY29tL3dpa2kvQW50aS1E
-Uk0tQ2FtcGFpZ248L2E+PGJyPg0KJmx0O0Jsb2cmZ3Q7IDxhIGhyZWY9Imh0dHA6Ly9zdWppdGho
-LmluZm8iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vc3VqaXRoaC5pbmZvPC9hPjxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
+On Wed, Dec 10, 2014 at 03:22:29PM -0500, Cooper Jr., Franklin wrote:
+>    X11 isn't suppose to be supported in the last Graphics package and
+>    honestly I thought it hasn't been supported for several releases.
+> 
+>     
+> 
+>    http://processors.wiki.ti.com/index.php/RN_5_01_01_01#What_is_not_supported
+> 
+>     
+> 
+>    I thought it was to the point that trying to build with X11 support will
+>    throw errors.
+> 
+>     
+> 
+>    From: meta-arago-bounces@arago-project.org
+>    [mailto:meta-arago-bounces@arago-project.org] On Behalf Of sujith h
+>    Sent: Wednesday, December 10, 2014 3:29 AM
+>    To: Dmytriyenko, Denys
+>    Cc: meta-arago@arago-project.org
+>    Subject: Re: [meta-arago] [meta-ti-amsdk] Query regarding
+>    libgles-omap3/5.01.01.01
+> 
+>     
+> 
+>     
+> 
+>     
+> 
+>    On Fri, Dec 5, 2014 at 4:26 AM, Denys Dmytriyenko <denys@ti.com> wrote:
+> 
+>    On Tue, Dec 02, 2014 at 08:24:44PM +0530, sujith h wrote:
+>    > Hi,
+>    >
+>    > I am using the ligbles-omap3/5.01.01.01 for core-image-sato for the
+>    machine
+>    > Sitara XAM3359AZCZ100 Cortex A8 ARM processor. And I got Qt5 built for
+>    the
+>    > machine ( taken from meta-qt5). I am not able to run opengl examples of
+>    Qt5
+>    > and hence as a result the examples from qtdeclarative are also failing.
+>    The
+>    > error I get here is:
+>    >
+>    > root@mel-am335x-boneblack:/usr/share/qt5/examples#
+>    > ./opengl/hellowindow/hellowindow -platform xcb Qt Warning: Could not
+>    find a
+>    > location of the system's Compose files. Consider setting the QTCOMPOSE
+>    > environment variable. Qt Warning: Could not find a location of the
+>    system's
+>    > Compose files. Consider setting the QTCOMPOSE environment variable. Cant
+>    > find EGLConfig, returning null config Cant find EGLConfig, returning
+>    null
+>    > config EGL did not suggest a VisualID (EGL_NATIVE_VISUAL_ID was zero)
+>    for
+>    > EGLConfig 0 Unable to find an X11 visual which matches EGL config 0
+>    Could
+>    > not initialize EGL Aborted
+>    root@mel-am335x-boneblack:/usr/share/qt5/examples#
+>    >
+>    >
+>    > May I know if the libgles-omap3 5.01.01.01 can be used with X11 or not?
+>    Or
+>    > any helpers what could be wrong here? If any more inputs are needed
+>    please
+>    > let me know.
+> 
+>    X11 is supposed to be supported by 5.1.1.1 graphics stack, but it hasn't
+>    been
+>    tested, especially the DRM part. We've switched from Raw framebuffer use
+>    case
+>    directly to Wayland one in our SDK products, so no X11 exposure here.
+> 
+>     
+> 
+>    If X11 is supported in 5.1.1.1 its a good news. But I am worried if opengl
+>    examples from Qt5 ( 5.3.2 version taken from
+> 
+>    meta-qt5 layer)  don't work, then QML won't work for the beaglebone black
+>    board. Any hint or suggestions?
+> 
+>     
+> 
+>    Thanks & regards,
+> 
+>    Sujith H
+> 
+>    --
+> 
+>    ****************** ************************
+>    Bangalore
+>    <Project>Contributor to KDE project
+>    http://fci.wikia.com/wiki/Anti-DRM-Campaign
+>    <Blog> http://sujithh.info
 
---_000_8F29D6B095ED194EA1980491A5E029710C7AB423DFLE08entticom_--
