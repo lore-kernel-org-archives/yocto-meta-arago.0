@@ -1,35 +1,29 @@
-Return-Path: <sujith.h@gmail.com>
-Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
-	[209.85.192.42])
-	by arago-project.org (Postfix) with ESMTPS id 00129529DE
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id A69C1529F7
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Dec 2014 09:29:38 +0000 (UTC)
-Received: by mail-qg0-f42.google.com with SMTP id z107so1806191qgd.15
-	for <meta-arago@arago-project.org>;
-	Wed, 10 Dec 2014 01:29:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=blBpQTpwkPVuljXfbsbGDxk1skH5lTw67ylsqpaL1QM=;
-	b=NJ+JV9Au0PTC13c8P86Tqsjke0m/4iptL4n81owvj1NtElmT7kLuWMEfgsd7nH1nJt
-	UTJgjP+fTMCqzQLS9itdKIlxwwM3y7NOD2CTgrKd0yJ5I3Jg5cqw/6PLuhM2pziZFZY/
-	ieiWYR3IJjaJo4L82blIvwu8A4tghEfbfGp42760VXQbKlOWmHZ1bQ/Z/6lBDRpek3DV
-	6EkNHzEc53SBwERhbIvBPxeUUBjy+QTsc8dCIEszWFZQ/2dztRKFZTx2x8FMAweyTnFt
-	2PLR4HZ+gusnGwRIsu9u8t8RtzDiSCCfU3e4i8GZR6SPTvcsUjiMuJitVivOqlB2RVBb
-	ugsg==
-X-Received: by 10.140.96.101 with SMTP id j92mr5888341qge.87.1418203777954;
-	Wed, 10 Dec 2014 01:29:37 -0800 (PST)
+	Wed, 10 Dec 2014 09:49:46 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBA9njSx029433
+	for <meta-arago@arago-project.org>; Wed, 10 Dec 2014 03:49:45 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBA9njiV018284
+	for <meta-arago@arago-project.org>; Wed, 10 Dec 2014 03:49:45 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 10 Dec 2014 03:49:45 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	sBA9njkJ005167	for <meta-arago@arago-project.org>;
+	Wed, 10 Dec 2014 03:49:45 -0600
+Date: Wed, 10 Dec 2014 04:29:07 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <862927534.57.1418203747517.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.140.18.114 with HTTP; Wed, 10 Dec 2014 01:29:16 -0800 (PST)
-In-Reply-To: <20141204225606.GG5113@edge>
-References: <CADyYWLnXG+AeQL2OSdrjUQV9W4Q-s4qkBwa+tfRV8KWLhL-E=A@mail.gmail.com>
-	<20141204225606.GG5113@edge>
-From: sujith h <sujith.h@gmail.com>
-Date: Wed, 10 Dec 2014 14:59:16 +0530
-Message-ID: <CADyYWLkJj7Ft1dUNJkTn6Nf-r_Hgv9+Mcup6H-SdzYcS231w0Q@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-ti-amsdk] Query regarding libgles-omap3/5.01.01.01
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2014.12 build 2014-12-09_22-30-58
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,141 +36,193 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 09:29:39 -0000
-Content-Type: multipart/alternative; boundary=001a113a9d8a677bc70509d94c0e
+X-List-Received-Date: Wed, 10 Dec 2014 09:49:47 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_56_2116230564.1418203747327"
 
---001a113a9d8a677bc70509d94c0e
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+------=_Part_56_2116230564.1418203747327
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 5, 2014 at 4:26 AM, Denys Dmytriyenko <denys@ti.com> wrote:
+<html>
+<head>
+<title>
+Status for 12/10/14
+</title>
+</head>
+<body>
 
-> On Tue, Dec 02, 2014 at 08:24:44PM +0530, sujith h wrote:
-> > Hi,
-> >
-> > I am using the ligbles-omap3/5.01.01.01 for core-image-sato for the
-> machine
-> > Sitara XAM3359AZCZ100 Cortex A8 ARM processor. And I got Qt5 built for
-> the
-> > machine ( taken from meta-qt5). I am not able to run opengl examples of
-> Qt5
-> > and hence as a result the examples from qtdeclarative are also failing.
-> The
-> > error I get here is:
-> >
-> > root@mel-am335x-boneblack:/usr/share/qt5/examples#
-> > ./opengl/hellowindow/hellowindow -platform xcb Qt Warning: Could not
-> find a
-> > location of the system's Compose files. Consider setting the QTCOMPOSE
-> > environment variable. Qt Warning: Could not find a location of the
-> system's
-> > Compose files. Consider setting the QTCOMPOSE environment variable. Can=
-t
-> > find EGLConfig, returning null config Cant find EGLConfig, returning nu=
-ll
-> > config EGL did not suggest a VisualID (EGL_NATIVE_VISUAL_ID was zero) f=
-or
-> > EGLConfig 0 Unable to find an X11 visual which matches EGL config 0 Cou=
-ld
-> > not initialize EGL Aborted root@mel-am335x-boneblack
-> :/usr/share/qt5/examples#
-> >
-> >
-> > May I know if the libgles-omap3 5.01.01.01 can be used with X11 or not?
-> Or
-> > any helpers what could be wrong here? If any more inputs are needed
-> please
-> > let me know.
->
-> X11 is supposed to be supported by 5.1.1.1 graphics stack, but it hasn't
-> been
-> tested, especially the DRM part. We've switched from Raw framebuffer use
-> case
-> directly to Wayland one in our SDK products, so no X11 exposure here.
->
+<h2>Status for 12/10/14</h2>
 
-If X11 is supported in 5.1.1.1 its a good news. But I am worried if opengl
-examples from Qt5 ( 5.3.2 version taken from
-meta-qt5 layer)  don't work, then QML won't work for the beaglebone black
-board. Any hint or suggestions?
+<h2>BUILD_ID: build-2014-12-09_22-31-59</h2>
+
+<h2>Clean Build: true</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2014.12"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-Thanks & regards,
-
-Sujith H
-
---=20
-=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=
-=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D
-Bangalore
-<Project>Contributor to KDE project
-http://fci.wikia.com/wiki/Anti-DRM-Campaign
-<Blog> http://sujithh.info
-
---001a113a9d8a677bc70509d94c0e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Fri, Dec 5, 2014 at 4:26 AM, Denys Dmytriyenko <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:denys@ti.com" target=3D"_blank">denys@ti.com</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Tue, Dec 0=
-2, 2014 at 08:24:44PM +0530, sujith h wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I am using the ligbles-omap3/<a href=3D"http://5.01.01.01" target=3D"_=
-blank">5.01.01.01</a> for core-image-sato for the machine<br>
-&gt; Sitara XAM3359AZCZ100 Cortex A8 ARM processor. And I got Qt5 built for=
- the<br>
-&gt; machine ( taken from meta-qt5). I am not able to run opengl examples o=
-f Qt5<br>
-&gt; and hence as a result the examples from qtdeclarative are also failing=
-. The<br>
-&gt; error I get here is:<br>
-&gt;<br>
-&gt; root@mel-am335x-boneblack:/usr/share/qt5/examples#<br>
-&gt; ./opengl/hellowindow/hellowindow -platform xcb Qt Warning: Could not f=
-ind a<br>
-&gt; location of the system&#39;s Compose files. Consider setting the QTCOM=
-POSE<br>
-&gt; environment variable. Qt Warning: Could not find a location of the sys=
-tem&#39;s<br>
-&gt; Compose files. Consider setting the QTCOMPOSE environment variable. Ca=
-nt<br>
-&gt; find EGLConfig, returning null config Cant find EGLConfig, returning n=
-ull<br>
-&gt; config EGL did not suggest a VisualID (EGL_NATIVE_VISUAL_ID was zero) =
-for<br>
-&gt; EGLConfig 0 Unable to find an X11 visual which matches EGL config 0 Co=
-uld<br>
-&gt; not initialize EGL Aborted root@mel-am335x-boneblack:/usr/share/qt5/ex=
-amples#<br>
-&gt;<br>
-&gt;<br>
-&gt; May I know if the libgles-omap3 5.01.01.01 can be used with X11 or not=
-? Or<br>
-&gt; any helpers what could be wrong here? If any more inputs are needed pl=
-ease<br>
-&gt; let me know.<br>
-<br>
-</span>X11 is supposed to be supported by 5.1.1.1 graphics stack, but it ha=
-sn&#39;t been<br>
-tested, especially the DRM part. We&#39;ve switched from Raw framebuffer us=
-e case<br>
-directly to Wayland one in our SDK products, so no X11 exposure here.<br></=
-blockquote><div><br></div><div>If X11 is supported in 5.1.1.1 its a good ne=
-ws. But I am worried if opengl examples from Qt5 ( 5.3.2 version taken from=
-<br></div><div>meta-qt5 layer)=C2=A0 don&#39;t work, then QML won&#39;t wor=
-k for the beaglebone black board. Any hint or suggestions?<br><br></div><di=
-v><br></div><div>Thanks &amp; regards,<br><br></div><div>Sujith H<br></div>=
-</div><br>-- <br><div class=3D"gmail_signature">=E0=B4=B8=E0=B5=81=E0=B4=9C=
-=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=E0=B4=BF=E0=B4=A6=E0=B4=BE=
-=E0=B4=B8=E0=B4=A8=E0=B5=8D<br>Bangalore<br>&lt;Project&gt;Contributor to K=
-DE project<br><a href=3D"http://fci.wikia.com/wiki/Anti-DRM-Campaign" targe=
-t=3D"_blank">http://fci.wikia.com/wiki/Anti-DRM-Campaign</a><br>&lt;Blog&gt=
-; <a href=3D"http://sujithh.info" target=3D"_blank">http://sujithh.info</a>=
-<br></div>
-</div></div>
-
---001a113a9d8a677bc70509d94c0e--
+------=_Part_56_2116230564.1418203747327--
