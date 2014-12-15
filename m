@@ -1,29 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 014A052A6A
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 182B652079
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Dec 2014 21:23:32 +0000 (UTC)
-Received: from gandalf.denix.org ([108.18.33.160]) by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NGN003FW7ED5V30@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 15 Dec 2014 15:23:14 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=D9vw8UVm c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=A92cGCtB03wA:10
-	a=sozttTNsAAAA:8 a=lRxpQPx1AAAA:8	a=1pZ7qDjGxu2JMB1SyOkA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 57951200F4;	Mon,
-	15 Dec 2014 16:23:01 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 15 Dec 2014 16:22:59 -0500
-Message-id: <1418678579-22938-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-In-reply-to: <1418678579-22938-1-git-send-email-denis@denix.org>
+	Mon, 15 Dec 2014 21:43:43 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBFLhg8C003227;
+	Mon, 15 Dec 2014 15:43:42 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBFLhgsX025251;
+	Mon, 15 Dec 2014 15:43:42 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0174.001; Mon, 15 Dec 2014 15:43:42 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 1/2] refresh-screen: patch Makefile.build
+	to	work with Qt5
+Thread-Index: AQHQGK1d6iK4lKdxP0GsO0aoQP1/eJyRLsxg
+Date: Mon, 15 Dec 2014 21:43:41 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C7B6F00@DFLE08.ent.ti.com>
 References: <1418678579-22938-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] matrix-gui-browser: patch Makefile.build to work with Qt5
+In-Reply-To: <1418678579-22938-1-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
+MIME-Version: 1.0
+Subject: Re: [PATCH 1/2] refresh-screen: patch Makefile.build to	work with Qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,85 +40,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Dec 2014 21:23:32 -0000
+X-List-Received-Date: Mon, 15 Dec 2014 21:43:43 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Denys Dmytriyenko <denys@ti.com>
+I was simply going to do a sed replace instead of creating a new makefile b=
+ut either way is fine.
 
-Makefile.build is only used when building from within SDK through a
-top-level SDK Makefile.
+Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 ++++++++++++++++++++
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb  |   10 +++++--
- 2 files changed, 39 insertions(+), 2 deletions(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
-
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
-new file mode 100644
-index 0000000..42cfc23
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
-@@ -0,0 +1,31 @@
-+From 155da553d7a5d4d84babb94fb0ecac073680c1cd Mon Sep 17 00:00:00 2001
-+From: Denys Dmytriyenko <denys@ti.com>
-+Date: Mon, 15 Dec 2014 15:51:59 -0500
-+Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
-+
-+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-+---
-+ Makefile.build |    4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/Makefile.build b/Makefile.build
-+index 192c6f6..79b55f5 100644
-+--- a/Makefile.build
-++++ b/Makefile.build
-+@@ -8,11 +8,11 @@ all: release
-+ .PHONY: qmake
-+ qmake : matrix_browser.pro
-+ 	@. ${ENV_SETUP}; \
-+-	qmake2 CONFIG+=release matrix_browser.pro
-++	qmake CONFIG+=release matrix_browser.pro
-+ 
-+ qmake_debug : matrix_browser.pro
-+ 	@. ${ENV_SETUP}; \
-+-	qmake2 CONFIG+=debug matrix_browser.pro
-++	qmake CONFIG+=debug matrix_browser.pro
-+ 
-+ debug : qmake_debug
-+ 	@. ${ENV_SETUP}; \
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index afd5aa3..cc73456 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -11,14 +11,20 @@ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
- 
- DEPENDS += "${QT_DEPENDS_WEBKIT}"
- 
--PR = "r7"
-+PR = "r8"
- 
- SRCREV = "7f5dccfb5b1b68a3f9162f6ee072eef0e0ba06fe"
- BRANCH ?= "master"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
- 
--SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', 'file://qt5-webkit.patch file://qt5-gui-widgets-move.patch', '', d)}"
-+QT5_DIFF = " \
-+	file://qt5-webkit.patch \
-+	file://qt5-gui-widgets-move.patch \
-+	file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
-+"
-+
-+SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '', d)}"
- 
- S = "${WORKDIR}/git"
- 
--- 
-1.7.9.5
-
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> Sent: Monday, December 15, 2014 3:23 PM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCH 1/2] refresh-screen: patch Makefile.build to
+> work with Qt5
+>=20
+> From: Denys Dmytriyenko <denys@ti.com>
+>=20
+> Makefile.build is only used when building from within SDK through a top-l=
+evel
+> SDK Makefile.
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+>  ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31
+> ++++++++++++++++++++
+>  .../recipes-core/matrix/refresh-screen_2.0.bb      |    3 +-
+>  2 files changed, 33 insertions(+), 1 deletion(-)  create mode 100644 met=
+a-
+> arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-
+> Qt5-use-qmake-available-in-PATH.patch
+>=20
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-
+> Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-
+> extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-
+> use-qmake-available-in-PATH.patch
+> new file mode 100644
+> index 0000000..726b9ea
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile
+> +++ .build-with-Qt5-use-qmake-available-in-PATH.patch
+> @@ -0,0 +1,31 @@
+> +From 394eacf80efaacc719e69179c7c709016d21b707 Mon Sep 17 00:00:00
+> 2001
+> +From: Denys Dmytriyenko <denys@ti.com>
+> +Date: Mon, 15 Dec 2014 15:46:08 -0500
+> +Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
+> +
+> +Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> +---
+> + Makefile.build |    4 ++--
+> + 1 file changed, 2 insertions(+), 2 deletions(-)
+> +
+> +diff --git a/Makefile.build b/Makefile.build index a0ceaad..e6cb010
+> +100644
+> +--- a/Makefile.build
+> ++++ b/Makefile.build
+> +@@ -8,11 +8,11 @@ all: release
+> + .PHONY: qmake
+> + qmake : refresh_screen.pro
+> + 	@. ${ENV_SETUP}; \
+> +-	qmake2 CONFIG+=3Drelease refresh_screen.pro
+> ++	qmake CONFIG+=3Drelease refresh_screen.pro
+> +
+> + qmake_debug : refresh_screen.pro
+> + 	@. ${ENV_SETUP}; \
+> +-	qmake2 CONFIG+=3Ddebug refresh_screen.pro
+> ++	qmake CONFIG+=3Ddebug refresh_screen.pro
+> +
+> + debug : qmake_debug
+> + 	@. ${ENV_SETUP}; \
+> +--
+> +1.7.9.5
+> +
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> index 50d95fc..6c2c72e 100644
+> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> @@ -9,7 +9,7 @@ inherit qt-provider
+>  # Make sure that QT font libraries have been installed  RDEPENDS_${PN} +=
+=3D
+> "${QT_RDEPENDS_FONTS}"
+>=20
+> -PR =3D "r6"
+> +PR =3D "r7"
+>=20
+>  SRCREV =3D "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
+>  BRANCH ?=3D "master"
+> @@ -19,6 +19,7 @@ SRC_URI =3D "git://gitorious.org/matrix-gui-v2/refresh-
+> screen.git;protocol=3Dgit;bra
+>  QT5_DIFF =3D " \
+>  file://0001-refresh-screen.pro-add-widgets-module-to-the-project.patch \
+> file://0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch \
+> +file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
+>  "
+>=20
+>  SRC_URI +=3D "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '=
+',
+> d)}"
+> --
+> 1.7.9.5
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
