@@ -1,27 +1,27 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5385F52079
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id F12DD52079
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Dec 2014 15:46:46 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBGFkjXL029040
-	for <meta-arago@arago-project.org>; Tue, 16 Dec 2014 09:46:45 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBGFkjoW018168
-	for <meta-arago@arago-project.org>; Tue, 16 Dec 2014 09:46:45 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 16 Dec 2014 09:46:45 -0600
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sBGFkjAL014330;	Tue, 16 Dec 2014 09:46:45 -0600
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 16 Dec 2014 10:46:43 -0500
-Message-ID: <1418744803-20385-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH v2] lksctp-tools: Add new recipe for lksctp tools: library and utilities
+	Tue, 16 Dec 2014 16:11:33 +0000 (UTC)
+Received: from gandalf.denix.org ([108.18.33.160]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NGO0093ANMOPZ40@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 16 Dec 2014 10:11:18 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=CoYIqc8G c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=A92cGCtB03wA:10
+	a=sozttTNsAAAA:8	a=yfdpQ_a0ETaoHcK2ZQAA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 65333200F0;	Tue,
+	16 Dec 2014 11:11:11 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 16 Dec 2014 11:11:10 -0500
+Message-id: <1418746270-18779-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] arago-prefs: set wpa-supplicant provider for dra7xx
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,78 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Dec 2014 15:46:46 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 16 Dec 2014 16:11:34 -0000
 
-- Stream Control Transmission Protocol (SCTP) is a reliable, message-oriented,
-  multihomed transport protocol. Developed by the IETF SIGTRAN working group
-  to transport SS7 over IP, it is now the third general-purpose transport developed
-  by the IETF.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
-- Added new package -withsctp to include withsctp libraries
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 1 +
+ 1 file changed, 1 insertion(+)
 
----
----
- .../lksctp-tools/lksctp-tools_1.0.16.bb            |   46 ++++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100755 meta-arago-extras/recipes-connectivity/lksctp-tools/lksctp-tools_1.0.16.bb
-
-diff --git a/meta-arago-extras/recipes-connectivity/lksctp-tools/lksctp-tools_1.0.16.bb b/meta-arago-extras/recipes-connectivity/lksctp-tools/lksctp-tools_1.0.16.bb
-new file mode 100755
-index 0000000..b08eaa5
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/lksctp-tools/lksctp-tools_1.0.16.bb
-@@ -0,0 +1,46 @@
-+DESCRIPTION = "The Linux Kernel Stream Control Transmission Protocol (lksctp) project"
-+SECTION = "libs"
-+PRIORITY = "optional"
-+LICENSE = "LGPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=0c56db0143f4f80c369ee3af7425af6e"
-+
-+PR = "r0"
-+
-+SRC_URI = "${SOURCEFORGE_MIRROR}/lksctp/lksctp-tools-${PV}.tar.gz"
-+
-+SRC_URI[md5sum] = "708bb0b5a6806ad6e8d13c55b067518e"
-+SRC_URI[sha256sum] = "0903dd526b7f30a89d5031aa2c82757612becc38ed7bc6e4f972f8deae351f26"
-+
-+BBCLASSEXTEND = "native"
-+
-+inherit autotools pkgconfig binconfig
-+
-+RREPLACES_${PN} = "lksctp"
-+
-+PACKAGES =+ "${PN}-withsctp ${PN}-utils"
-+
-+FILES_${PN} = "${libexecdir}/* ${libdir}/lib*${SOLIBS} \
-+            ${sysconfdir} ${sharedstatedir} ${localstatedir} \
-+            ${base_libdir}/*${SOLIBS}"
-+
-+FILES_${PN}-withsctp = "${libdir}/lksctp-tools/lib*${SOLIBS}"
-+
-+FILES_${PN}-dev += " \
-+  ${datadir}/lksctp-tools/checksctp.c \
-+  ${datadir}/lksctp-tools/sctp_socket.c \
-+  ${datadir}/lksctp-tools/sctp_bind.c \
-+  ${datadir}/lksctp-tools/sctp_darn.c \
-+  ${datadir}/lksctp-tools/sctp_load_libs.c \
-+  ${datadir}/lksctp-tools/sctp_sockopt.c \
-+  ${datadir}/lksctp-tools/sctp_socket.h \
-+  ${datadir}/lksctp-tools/sctp_test.c \
-+  ${datadir}/lksctp-tools/sctp_darn.h \
-+  ${datadir}/lksctp-tools/sctp_status.c \
-+  ${libdir}/lksctp-tools/lib*.so"
-+
-+FILES_${PN}-utils = " \
-+  ${bindir}/sctp_test \
-+  ${bindir}/sctp_darn \
-+  ${bindir}/checksctp \
-+  ${bindir}/withsctp \
-+  ${bindir}/sctp_status"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 5e36740..ac8cbf8 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -109,6 +109,7 @@ PREFERRED_VERSION_gettext = "0.16.1"
+ PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
+ PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
+ PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
++PREFERRED_PROVIDER_wpa-supplicant_dra7xx-evm = "wpa-supplicant-wl18xx"
+ 
+ PREFERRED_PROVIDER_gstreamer = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel', 'gstreamer', d)}"
+ PREFERRED_PROVIDER_gstreamer-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel-dev', 'gstreamer-dev', d)}"
 -- 
-1.7.9.5
+2.2.0
 
 
