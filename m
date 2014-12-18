@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 8581B529DE
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 5D17D52079
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Dec 2014 06:54:57 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBI6suZe007219
-	for <meta-arago@arago-project.org>; Thu, 18 Dec 2014 00:54:56 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBI6sumk023693
-	for <meta-arago@arago-project.org>; Thu, 18 Dec 2014 00:54:56 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 18 Dec 2014 00:54:56 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sBI6suKn009615	for <meta-arago@arago-project.org>;
-	Thu, 18 Dec 2014 00:54:56 -0600
-Date: Thu, 18 Dec 2014 01:33:59 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1232989349.97.1418884440001.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.12 build 2014-12-17_22-00-57
+	Thu, 18 Dec 2014 23:48:33 +0000 (UTC)
+Received: from gandalf.denix.org ([108.18.33.160]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NGS00DSRY4FNT50@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 18 Dec 2014 17:48:18 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=CoYIqc8G c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=A92cGCtB03wA:10
+	a=sozttTNsAAAA:8	a=bEYIsxH5p_7uDo8BHR0A:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id EAE42200F0;	Thu,
+	18 Dec 2014 18:48:14 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 18 Dec 2014 18:48:14 -0500
+Message-id: <1418946494-12775-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] gst*-mm-accel: unify naming so dependant libs don't need be machine-specific
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,198 +34,193 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Dec 2014 06:54:57 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_96_1994101433.1418884439882"
+X-List-Received-Date: Thu, 18 Dec 2014 23:48:38 -0000
 
-------=_Part_96_1994101433.1418884439882
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 12/18/14
-</title>
-</head>
-<body>
+Since both mainline gstreamer and mm-accel versions are ABI compatible, it
+should be possible to avoid making dependant libraries machine-specific by
+unifying the gst names.
 
-<h2>Status for 12/18/14</h2>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend     |  4 +---
+ .../gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb            | 12 ++++++++++--
+ .../gstreamer/gst-plugins-base-mm-accel_0.10.36.bb           | 10 +++++++++-
+ .../gstreamer/gst-plugins-good-mm-accel_0.10.31.bb           | 10 +++++++++-
+ .../gstreamer/gst-plugins-package-mm-accel.inc               |  2 +-
+ .../gstreamer/gstreamer-mm-accel_0.10.36.bb                  |  8 ++++++++
+ 6 files changed, 38 insertions(+), 8 deletions(-)
 
-<h2>BUILD_ID: build-2014-12-17_22-02-00</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.12"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend
+index 9f75d92..26bda41 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend
+@@ -1,7 +1,5 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+ SRC_URI += " \
+ 	file://GraphicsSurfaceGL_NoX.cpp.patch \
+ 	file://GraphicsSurfaceToken.h.patch \
+@@ -9,4 +7,4 @@ SRC_URI += " \
+ 	file://WebCore.pri.patch \
+ "
+ 
+-PR_append = "-arago3"
++PR_append = "-arago4"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+index e00e919..e8fa1be 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+@@ -3,11 +3,14 @@
+ require recipes-multimedia/gstreamer/gst-plugins-bad_${PV}.bb
+ 
+ require gstreamer-mm-accel.inc
+-require gst-plugins-package-mm-accel.inc
++#require gst-plugins-package-mm-accel.inc
+ 
+ DESCRIPTION = "GStreamer bad plugins that use multimedia accelerators found on \
+                TI devices"
+ 
++PN = "gst-plugins-bad"
++B = "${S}"
++
+ # Set PROVIDES and RPROVIDES values so that the base recipe names can still
+ # be used and PREFERRED_PROVIDER can be used to pick between them.
+ PROVIDES += "gst-plugins-bad"
+@@ -23,7 +26,7 @@ RCONFLICTS_${PN}-meta += "gst-plugins-bad-meta"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-DEPENDS += "omap5-sgx-ddk-um-linux libdce libdrm wayland"
++DEPENDS += "virtual/libgles2 virtual/egl libdce libdrm wayland"
+ 
+ SRCREV = "a9510bef52331fee9a23a5c955dbf76ac210056a"
+ SRC_URI = "gitsm://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
+@@ -33,7 +36,12 @@ S = "${WORKDIR}/git"
+ EXTRA_OECONF += " --disable-pvr"
+ 
+ do_configure_prepend() {
++	cd ${S}
+ 	autopoint -f
+ }
+ 
++do_install_prepend() {
++	cd ${S}
++}
++
+ FILESPATH .= ":${COREBASE}/meta/recipes-multimedia/gstreamer/gst-plugins-bad-${PV}"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+index 33f82b0..0748a58 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+@@ -3,11 +3,14 @@
+ require recipes-multimedia/gstreamer/gst-plugins-base_${PV}.bb
+ 
+ require gstreamer-mm-accel.inc
+-require gst-plugins-package-mm-accel.inc
++#require gst-plugins-package-mm-accel.inc
+ 
+ DESCRIPTION = "GStreamer base plugins that use multimedia accelerators found \
+                on TI devices"
+ 
++PN = "gst-plugins-base"
++B = "${S}"
++
+ # Set PROVIDES and RPROVIDES values so that the base recipe names can still
+ # be used and PREFERRED_PROVIDER can be used to pick between them.
+ PROVIDES += "gst-plugins-base"
+@@ -29,9 +32,14 @@ SRCREV = "3427e885daa749275e07339d3633b83c717aa419"
+ S = "${WORKDIR}/git"
+ 
+ do_configure_prepend() {
++	cd ${S}
+ 	autopoint -f
+ }
+ 
++do_install_prepend() {
++	cd ${S}
++}
++
+ EXTRA_OECONF +="--disable-ivorbis "
+ 
+ FILESPATH .= ":${COREBASE}/meta/recipes-multimedia/gstreamer/gst-plugins-base-${PV}"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+index ad071ec..dcce5fd 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+@@ -3,11 +3,14 @@
+ require recipes-multimedia/gstreamer/gst-plugins-good_${PV}.bb
+ 
+ require gstreamer-mm-accel.inc
+-require gst-plugins-package-mm-accel.inc
++#require gst-plugins-package-mm-accel.inc
+ 
+ DESCRIPTION = "GStreamer good plugins that use multimedia accelerators found \
+                on TI devices"
+ 
++PN = "gst-plugins-good"
++B = "${S}"
++
+ # Set PROVIDES and RPROVIDES values so that the base recipe names can still
+ # be used and PREFERRED_PROVIDER can be used to pick between them.
+ PROVIDES += "gst-plugins-good"
+@@ -33,7 +36,12 @@ SRC_URI_append = " file://0001-v4l2-fix-build-with-recent-kernels-the-v4l2_buffe
+ S = "${WORKDIR}/git"
+ 
+ do_configure_prepend() {
++	cd ${S}
+ 	autopoint -f
+ }
+ 
++do_install_prepend() {
++	cd ${S}
++}
++
+ FILESPATH .= ":${COREBASE}/meta/recipes-multimedia/gstreamer/gst-plugins-good-${PV}"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-package-mm-accel.inc b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-package-mm-accel.inc
+index a1c81f3..b7b5a50 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-package-mm-accel.inc
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-package-mm-accel.inc
+@@ -10,7 +10,7 @@ python split_gstreamer10_packages () {
+     postinst = d.getVar('plugin_postinst', True)
+     glibdir = d.getVar('libdir', True)
+ 
+-    do_split_packages(d, glibdir, '^lib(.*)\.so\.*', 'lib%s-mm-accel', 'gstreamer %s library', extra_depends='', allow_links=True, hook=gst_lib_hook)
++    do_split_packages(d, glibdir, '^lib(.*)\.so\.*', 'lib%s', 'gstreamer %s library', extra_depends='', allow_links=True, hook=gst_lib_hook)
+     do_split_packages(d, gst_libdir, 'libgst(.*)\.so$', d.expand('${PN}-%s'), 'GStreamer plugin for %s', postinst=postinst, extra_depends=d.expand('${PN}'))
+     do_split_packages(d, gst_libdir, 'libgst(.*)\.la$', d.expand('${PN}-%s-dev'), 'GStreamer plugin for %s (development files)', extra_depends=d.expand('${PN}-dev'))
+     do_split_packages(d, gst_libdir, 'libgst(.*)\.a$', d.expand('${PN}-%s-staticdev'), 'GStreamer plugin for %s (static development files)', extra_depends=d.expand('${PN}-staticdev'))
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+index 8cfbd05..f50d0a3 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+@@ -6,6 +6,9 @@ require recipes-multimedia/gstreamer/gstreamer_${PV}.bb
+ 
+ DESCRIPTION = "GStreamer that use multimedia accelerators found on TI devices"
+ 
++PN = "gstreamer"
++B = "${S}"
++
+ # Set PROVIDES and RPROVIDES values so that the base recipe names can still
+ # be used and PREFERRED_PROVIDER can be used to pick between them.
+ PROVIDES += "gstreamer"
+@@ -27,7 +30,12 @@ SRCREV = "e505f4a2ceee3b0328eb2efddb9ec1281d3fd60a"
+ S = "${WORKDIR}/git"
+ 
+ do_configure_prepend() {
++	cd ${S}
+ 	autopoint -f
+ }
+ 
++do_install_prepend() {
++	cd ${S}
++}
++
+ FILESPATH .= ":${COREBASE}/meta/recipes-multimedia/gstreamer/gstreamer-${PV}"
+-- 
+2.2.0
 
 
-------=_Part_96_1994101433.1418884439882--
