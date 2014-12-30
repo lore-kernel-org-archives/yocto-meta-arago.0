@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C9307529BE
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id A386352090
 	for <meta-arago@arago-project.org>;
-	Mon, 29 Dec 2014 03:59:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBT3xpYM015553
-	for <meta-arago@arago-project.org>; Sun, 28 Dec 2014 21:59:51 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBT3xpOY003228
-	for <meta-arago@arago-project.org>; Sun, 28 Dec 2014 21:59:51 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Sun, 28 Dec 2014 21:59:51 -0600
+	Tue, 30 Dec 2014 04:00:05 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id sBU404Sg025237
+	for <meta-arago@arago-project.org>; Mon, 29 Dec 2014 22:00:04 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id sBU403Lv023703
+	for <meta-arago@arago-project.org>; Mon, 29 Dec 2014 22:00:04 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 29 Dec 2014 22:00:01 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	sBT3xpEn015887	for <meta-arago@arago-project.org>;
-	Sun, 28 Dec 2014 21:59:51 -0600
-Date: Sun, 28 Dec 2014 22:38:29 -0500
+	sBU401PK021428	for <meta-arago@arago-project.org>;
+	Mon, 29 Dec 2014 22:00:02 -0600
+Date: Mon, 29 Dec 2014 22:38:37 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <328351299.147.1419824309395.JavaMail.jenkins@puget>
+Message-ID: <691159453.151.1419910718016.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.12 build 2014-12-28_22-00-57
+Subject: [nightly] Core TISDK 2014.12 build 2014-12-29_22-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Dec 2014 03:59:53 -0000
+X-List-Received-Date: Tue, 30 Dec 2014 04:00:06 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_146_354717853.1419824309375"
+	boundary="----=_Part_150_772174382.1419910717979"
 
-------=_Part_146_354717853.1419824309375
+------=_Part_150_772174382.1419910717979
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 12/28/14
+Status for 12/29/14
 </title>
 </head>
 <body>
 
-<h2>Status for 12/28/14</h2>
+<h2>Status for 12/29/14</h2>
 
-<h2>BUILD_ID: build-2014-12-28_22-02-00</h2>
+<h2>BUILD_ID: build-2014-12-29_22-02-00</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -230,4 +230,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_146_354717853.1419824309375--
+------=_Part_150_772174382.1419910717979--
