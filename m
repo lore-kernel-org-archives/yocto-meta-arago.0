@@ -1,29 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 2E8E7529E0
+Return-Path: <a0866934local@udb0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 1EE5B529EB
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Jan 2015 04:01:03 +0000 (UTC)
+	Mon,  5 Jan 2015 15:51:05 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t05411Uk029538
-	for <meta-arago@arago-project.org>; Sun, 4 Jan 2015 22:01:01 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05411sY016337
-	for <meta-arago@arago-project.org>; Sun, 4 Jan 2015 22:01:01 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Sun, 4 Jan 2015 22:01:01 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t054111C025697	for <meta-arago@arago-project.org>;
-	Sun, 4 Jan 2015 22:01:01 -0600
-Date: Sun, 4 Jan 2015 22:39:23 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t05Fp4nR026074
+	for <meta-arago@arago-project.org>; Mon, 5 Jan 2015 09:51:04 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05Fp3df010403
+	for <meta-arago@arago-project.org>; Mon, 5 Jan 2015 09:51:04 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 5 Jan 2015 09:51:03 -0600
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05Fp3YU009127;
+	Mon, 5 Jan 2015 09:51:03 -0600
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1Y89vr-0004GO-Fp;
+	Mon, 05 Jan 2015 10:51:03 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1655928686.175.1420429163463.JavaMail.jenkins@puget>
+Date: Mon, 5 Jan 2015 10:51:01 -0500
+Message-ID: <1420473061-16355-2-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1420473061-16355-1-git-send-email-j-stiffler@ti.com>
+References: <1420473061-16355-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2014.12 build 2015-01-04_22-00-57
+Subject: [tisdk-build-scripts][PATCH v2 2/2] configs: Add BB_GENERATE_MIRROR_TARBALLS and EXPORT_ARAGO_SRC config params.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,198 +39,548 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jan 2015 04:01:03 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_174_1553820258.1420429163432"
+X-List-Received-Date: Mon, 05 Jan 2015 15:51:06 -0000
+Content-Type: text/plain
 
-------=_Part_174_1553820258.1420429163432
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+* By default, these are set to "0" (disabled)
 
-<html>
-<head>
-<title>
-Status for 01/04/15
-</title>
-</head>
-<body>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ configs/amsdk/amsdk-config-05.06.00.00.txt      |    9 +++++++++
+ configs/amsdk/amsdk-config-05.07.00.00.txt      |    9 +++++++++
+ configs/amsdk/amsdk-config-06.00.00.00.txt      |    9 +++++++++
+ configs/amsdk/amsdk-config-07.00.00.00.txt      |    9 +++++++++
+ configs/amsdk/amsdk-config-07.01.00.00.txt      |    9 +++++++++
+ configs/amsdk/amsdk-config-08.00.00.00.txt      |    9 +++++++++
+ configs/arago-core-tisdk-daisy-puget.txt        |    9 +++++++++
+ configs/arago-core-tisdk-danny-puget.txt        |    9 +++++++++
+ configs/arago-core-tisdk-dora-puget.txt         |    9 +++++++++
+ configs/arago-core-tisdk-dylan-puget.txt        |    9 +++++++++
+ configs/coresdk/arago-core-amsdk-2013.04.01.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2013.04.00.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2013.04.01.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2013.04.02.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2013.10.00.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2013.12.00.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2013.12.01.txt |    9 +++++++++
+ configs/coresdk/arago-core-tisdk-2014.08.00.txt |    9 +++++++++
+ configs/distroless-meta-ti-puget.txt            |    9 +++++++++
+ 19 files changed, 171 insertions(+)
 
-<h2>Status for 01/04/15</h2>
+diff --git a/configs/amsdk/amsdk-config-05.06.00.00.txt b/configs/amsdk/amsdk-config-05.06.00.00.txt
+index ca4ac43..5f2c879 100644
+--- a/configs/amsdk/amsdk-config-05.06.00.00.txt
++++ b/configs/amsdk/amsdk-config-05.06.00.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -257,6 +261,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/amsdk/amsdk-config-05.07.00.00.txt b/configs/amsdk/amsdk-config-05.07.00.00.txt
+index 5424320..3057689 100644
+--- a/configs/amsdk/amsdk-config-05.07.00.00.txt
++++ b/configs/amsdk/amsdk-config-05.07.00.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -272,6 +276,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/amsdk/amsdk-config-06.00.00.00.txt b/configs/amsdk/amsdk-config-06.00.00.00.txt
+index 228761c..5854f25 100644
+--- a/configs/amsdk/amsdk-config-06.00.00.00.txt
++++ b/configs/amsdk/amsdk-config-06.00.00.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -278,6 +282,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/amsdk/amsdk-config-07.00.00.00.txt b/configs/amsdk/amsdk-config-07.00.00.00.txt
+index d967cbb..5c75d32 100644
+--- a/configs/amsdk/amsdk-config-07.00.00.00.txt
++++ b/configs/amsdk/amsdk-config-07.00.00.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -278,6 +282,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/amsdk/amsdk-config-07.01.00.00.txt b/configs/amsdk/amsdk-config-07.01.00.00.txt
+index 3e4774e..a2af353 100644
+--- a/configs/amsdk/amsdk-config-07.01.00.00.txt
++++ b/configs/amsdk/amsdk-config-07.01.00.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -278,6 +282,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/amsdk/amsdk-config-08.00.00.00.txt b/configs/amsdk/amsdk-config-08.00.00.00.txt
+index 44d75c7..67e8857 100644
+--- a/configs/amsdk/amsdk-config-08.00.00.00.txt
++++ b/configs/amsdk/amsdk-config-08.00.00.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -282,6 +286,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-core-tisdk-daisy-puget.txt
+index 740f967..f595ed6 100644
+--- a/configs/arago-core-tisdk-daisy-puget.txt
++++ b/configs/arago-core-tisdk-daisy-puget.txt
+@@ -139,6 +139,10 @@ DL_DIR="/OE/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -289,6 +293,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/arago-core-tisdk-danny-puget.txt b/configs/arago-core-tisdk-danny-puget.txt
+index 3480ea8..73449e9 100644
+--- a/configs/arago-core-tisdk-danny-puget.txt
++++ b/configs/arago-core-tisdk-danny-puget.txt
+@@ -139,6 +139,10 @@ DL_DIR="/OE/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -279,6 +283,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/arago-core-tisdk-dora-puget.txt b/configs/arago-core-tisdk-dora-puget.txt
+index 591d8f2..8d1c95c 100644
+--- a/configs/arago-core-tisdk-dora-puget.txt
++++ b/configs/arago-core-tisdk-dora-puget.txt
+@@ -139,6 +139,10 @@ DL_DIR="/OE/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -279,6 +283,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/arago-core-tisdk-dylan-puget.txt b/configs/arago-core-tisdk-dylan-puget.txt
+index 0fd8161..4a3d1c9 100644
+--- a/configs/arago-core-tisdk-dylan-puget.txt
++++ b/configs/arago-core-tisdk-dylan-puget.txt
+@@ -139,6 +139,10 @@ DL_DIR="/OE/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -279,6 +283,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-amsdk-2013.04.01.txt b/configs/coresdk/arago-core-amsdk-2013.04.01.txt
+index d6cc83a..0203553 100644
+--- a/configs/coresdk/arago-core-amsdk-2013.04.01.txt
++++ b/configs/coresdk/arago-core-amsdk-2013.04.01.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -280,6 +284,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2013.04.00.txt b/configs/coresdk/arago-core-tisdk-2013.04.00.txt
+index 158d388..3435335 100644
+--- a/configs/coresdk/arago-core-tisdk-2013.04.00.txt
++++ b/configs/coresdk/arago-core-tisdk-2013.04.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -280,6 +284,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2013.04.01.txt b/configs/coresdk/arago-core-tisdk-2013.04.01.txt
+index 00e413f..b2b583b 100644
+--- a/configs/coresdk/arago-core-tisdk-2013.04.01.txt
++++ b/configs/coresdk/arago-core-tisdk-2013.04.01.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -280,6 +284,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2013.04.02.txt b/configs/coresdk/arago-core-tisdk-2013.04.02.txt
+index 1054e7c..8536021 100644
+--- a/configs/coresdk/arago-core-tisdk-2013.04.02.txt
++++ b/configs/coresdk/arago-core-tisdk-2013.04.02.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -280,6 +284,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2013.10.00.txt b/configs/coresdk/arago-core-tisdk-2013.10.00.txt
+index 1eb8397..cb65f40 100644
+--- a/configs/coresdk/arago-core-tisdk-2013.10.00.txt
++++ b/configs/coresdk/arago-core-tisdk-2013.10.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -278,6 +282,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2013.12.00.txt b/configs/coresdk/arago-core-tisdk-2013.12.00.txt
+index 6a90b05..b0bbff4 100644
+--- a/configs/coresdk/arago-core-tisdk-2013.12.00.txt
++++ b/configs/coresdk/arago-core-tisdk-2013.12.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -278,6 +282,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2013.12.01.txt b/configs/coresdk/arago-core-tisdk-2013.12.01.txt
+index 4118467..e9dff89 100644
+--- a/configs/coresdk/arago-core-tisdk-2013.12.01.txt
++++ b/configs/coresdk/arago-core-tisdk-2013.12.01.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -278,6 +282,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/coresdk/arago-core-tisdk-2014.08.00.txt b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
+index a5be245..8cefd0a 100644
+--- a/configs/coresdk/arago-core-tisdk-2014.08.00.txt
++++ b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
+@@ -139,6 +139,10 @@ DL_DIR="/home/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -282,6 +286,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+diff --git a/configs/distroless-meta-ti-puget.txt b/configs/distroless-meta-ti-puget.txt
+index a789850..71d156b 100644
+--- a/configs/distroless-meta-ti-puget.txt
++++ b/configs/distroless-meta-ti-puget.txt
+@@ -125,6 +125,10 @@ DL_DIR="/OE/downloads"
+ # obtain the build sources.
+ #SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+ 
++# Seeting this variable to "1" configures the build to generate mirror tarballs
++# of the source repos.
++BB_GENERATE_MIRROR_TARBALLS="0"
++
+ # This variable points to an optional location where additional installer
+ # content can be placed to be packaged inside of any image recipe that
+ # inherits the tisdk-image class.  It is expected that the directory
+@@ -269,6 +273,11 @@ WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+ #   - WEBGEN_MAK_ROOT/$TISDK_VERSION/<machine>/webgen.mak
+ WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data"
+ 
++# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
++# to the webgen exports directory. Setting this variable to "1" will override
++# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
++EXPORT_ARAGO_SRC="0"
++
+ # This variable specifies whether or not to copy the build contents to
+ # a remote web hosting server.
+ COPY_TO_WEB="true"
+-- 
+1.7.9.5
 
-<h2>BUILD_ID: build-2015-01-04_22-02-00</h2>
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2014.12"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_174_1553820258.1420429163432--
