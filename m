@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 6F255529E0
+	by arago-project.org (Postfix) with ESMTPS id 62AD3529E0
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Jan 2015 18:17:31 +0000 (UTC)
+	Tue,  6 Jan 2015 18:18:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t06IHU7c019968
-	for <meta-arago@arago-project.org>; Tue, 6 Jan 2015 12:17:30 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t06IHUFC016373
-	for <meta-arago@arago-project.org>; Tue, 6 Jan 2015 12:17:30 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 6 Jan 2015 12:17:30 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t06IIvp2020029
+	for <meta-arago@arago-project.org>; Tue, 6 Jan 2015 12:18:57 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t06IIvkN017241
+	for <meta-arago@arago-project.org>; Tue, 6 Jan 2015 12:18:57 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 6 Jan 2015 12:18:56 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t06IHUCk003427;
-	Tue, 6 Jan 2015 12:17:30 -0600
-Date: Tue, 6 Jan 2015 13:17:30 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t06IIuZC020668;
+	Tue, 6 Jan 2015 12:18:57 -0600
+Date: Tue, 6 Jan 2015 13:18:56 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150106181729.GX4759@edge>
-References: <1420555480-20038-1-git-send-email-j-stiffler@ti.com>
+Message-ID: <20150106181856.GY4759@edge>
+References: <1420556002-20165-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1420555480-20038-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1420556002-20165-1-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] tisdk-image: Hide lib directory in image.
+Subject: Re: [PATCH] packagegroup-arago-tisdk-multimedia: Remove dspdce-fw from dra7xx-evm.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,38 +37,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Jan 2015 18:17:31 -0000
+X-List-Received-Date: Tue, 06 Jan 2015 18:18:58 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Ack
+So, this will break MM for dra7xx-evm, but we still don't have OpenCL enabled 
+by default. Should this be more conditional, if both of those can't co-exist?
 
-On Tue, Jan 06, 2015 at 09:44:40AM -0500, Jacob Stiffler wrote:
+
+On Tue, Jan 06, 2015 at 09:53:22AM -0500, Jacob Stiffler wrote:
+> * This is to avoid conflict with OpenCL firmware.
+> 
 > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  meta-arago-distro/classes/tisdk-image.bbclass |    2 ++
->  1 file changed, 2 insertions(+)
+>  .../packagegroup-arago-tisdk-multimedia.bb         |    3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-> index 6023d6b..3030a38 100644
-> --- a/meta-arago-distro/classes/tisdk-image.bbclass
-> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
-> @@ -481,6 +481,7 @@ tisdk_image_setup () {
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+> index 81d5ee1..c51a02c 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to add multimedia related packages"
+>  LICENSE = "MIT"
+> -PR = "r10"
+> +PR = "r11"
 >  
->      mkdir -p ${IMAGE_ROOTFS}/etc
->      mkdir -p ${IMAGE_ROOTFS}/var/lib/opkg
-> +    mkdir -p ${IMAGE_ROOTFS}/lib
+>  inherit packagegroup
 >  
->      chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-tisdk*
+> @@ -49,7 +49,6 @@ ACCEL_FW_append_omap5-evm = " \
 >  
-> @@ -614,6 +615,7 @@ tisdk_image_cleanup () {
->      # manifest (and maybe one day for online updates) to a hidden directory.
->      mv ${IMAGE_ROOTFS}/var ${IMAGE_ROOTFS}/.var
->      mv ${IMAGE_ROOTFS}/etc ${IMAGE_ROOTFS}/.etc
-> +    mv ${IMAGE_ROOTFS}/lib ${IMAGE_ROOTFS}/.lib
->  }
+>  ACCEL_FW_append_dra7xx-evm = " \
+>      ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw', '', d)} \
+> -    dspdce-fw \
+>      vis \
+>      "
 >  
->  license_create_manifest() {
 > -- 
 > 1.7.9.5
 > 
