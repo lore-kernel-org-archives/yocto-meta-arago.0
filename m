@@ -1,31 +1,32 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 06364529E0
+Return-Path: <karthik.ramanan@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 2C5C1529EB
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Jan 2015 12:15:55 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t07CFs5W001278
-	for <meta-arago@arago-project.org>; Wed, 7 Jan 2015 06:15:54 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t07CFsW6020802
-	for <meta-arago@arago-project.org>; Wed, 7 Jan 2015 06:15:54 -0600
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0174.001; Wed, 7 Jan 2015 06:15:54 -0600
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "R, Karthik" <karthik.ramanan@ti.com>
+	Wed,  7 Jan 2015 12:31:47 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t07CVi4Z019309
+	for <meta-arago@arago-project.org>; Wed, 7 Jan 2015 06:31:45 -0600
+Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t07CVgVv000445
+	for <meta-arago@arago-project.org>; Wed, 7 Jan 2015 18:01:43 +0530
+Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
+	DBDE72.ent.ti.com ([fe80::bd56:32bf:87fd:2763%27]) with mapi id
+	14.03.0174.001; Wed, 7 Jan 2015 18:01:41 +0530
+From: "R, Karthik" <karthik.ramanan@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
 Thread-Topic: [meta-arago] [PATCH] packagegroup-arago-tisdk-multimedia:
 	Remove dspdce-fw from dra7xx-evm.
-Thread-Index: AQHQKcCGrXoc2xLroUKaGL8oN0nFs5yzy4sAgACZzQCAAC2wIA==
-Date: Wed, 7 Jan 2015 12:15:53 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958140D1B9A@DFLE09.ent.ti.com>
+Thread-Index: AQHQKd1AYjGBFoZUGUiv8XFIhrPO5Jy0AIkAgAA25YCAAF+k4A==
+Date: Wed, 7 Jan 2015 12:31:41 +0000
+Message-ID: <24B88602B5904F49971CAF899152529B34B91375@DBDE04.ent.ti.com>
 References: <1420556002-20165-1-git-send-email-j-stiffler@ti.com>
 	<20150106181856.GY4759@edge> <54ACA814.7040105@ti.com>
-In-Reply-To: <54ACA814.7040105@ti.com>
-Accept-Language: en-US
+	<4B26FB5A64EBA14C87266869E037F958140D1B9A@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F958140D1B9A@DFLE09.ent.ti.com>
+Accept-Language: en-IN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+x-originating-ip: [172.24.170.142]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] packagegroup-arago-tisdk-multimedia: Remove dspdce-fw from dra7xx-evm.
@@ -41,10 +42,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jan 2015 12:15:56 -0000
+X-List-Received-Date: Wed, 07 Jan 2015 12:31:47 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Jake,
+
+ACK for this patch.
+
+Ok. I understand.=20
+
+But then we would need the specific SDKs to add either add the "opencl" or =
+"dspdce-fw" into the respective packagegroups as per their need.
+I just confirmed that the arago-glsdk-multimedia-image includes the dspdce-=
+fw explicity.
+
+Regards
+Karthik
+
+-----Original Message-----
+From: Stiffler, Jacob=20
+Sent: Wednesday, January 07, 2015 5:46 PM
+To: R, Karthik
+Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH] packagegroup-arago-tisdk-multimedia: Remo=
+ve dspdce-fw from dra7xx-evm.
 
 Karthik,
 
@@ -58,7 +81,7 @@ Thanks,
 Jake
 
 -----Original Message-----
-From: R, Karthik=20
+From: R, Karthik
 Sent: Tuesday, January 06, 2015 10:29 PM
 To: Stiffler, Jacob
 Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
@@ -89,13 +112,13 @@ Karthik
 >>   .../packagegroup-arago-tisdk-multimedia.bb         |    3 +--
 >>   1 file changed, 1 insertion(+), 2 deletions(-)
 >>
->> diff --git=20
+>> diff --git
 >> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis
->> dk-multimedia.bb=20
+>> dk-multimedia.bb
 >> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis
 >> dk-multimedia.bb
 >> index 81d5ee1..c51a02c 100644
->> ---=20
+>> ---
 >> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis
 >> dk-multimedia.bb
 >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago
