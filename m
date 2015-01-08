@@ -1,29 +1,33 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E4A9352A6C
+Return-Path: <eyalr@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 550AA52ABA
 	for <meta-arago@arago-project.org>;
-	Thu,  8 Jan 2015 12:07:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t08C7PlO020403
-	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 06:07:25 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t08C7PlQ032593
-	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 06:07:25 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 8 Jan 2015 06:07:24 -0600
-Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t08C7KK0028785;
-	Thu, 8 Jan 2015 06:07:24 -0600
-From: Karthik Ramanan <a0393906@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 8 Jan 2015 17:37:19 +0530
-Message-ID: <1420718839-32155-3-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1420718839-32155-1-git-send-email-a0393906@ti.com>
+	Thu,  8 Jan 2015 12:11:46 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t08CBjDD009757
+	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 06:11:45 -0600
+Received: from DFRE70.ent.ti.com (dfre70.ent.ti.com [10.167.188.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t08CBjNX032091
+	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 06:11:45 -0600
+Received: from DFRE01.ent.ti.com ([fe80::b027:5293:c8d8:d82a]) by
+	DFRE70.ent.ti.com ([fe80::645e:109b:13d3:dfa7%25]) with mapi id
+	14.03.0174.001; Thu, 8 Jan 2015 13:11:44 +0100
+From: "Reizer, Eyal" <eyalr@ti.com>
+To: "R, Karthik" <karthik.ramanan@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [v3 WILINK R8.5 0/2] Integration of R8.5
+Thread-Index: AQHQKzutUj78m2/RWECvRPGrRhICR5y2IY8Q
+Date: Thu, 8 Jan 2015 12:11:43 +0000
+Message-ID: <8665E2433BC68541A24DFFCA87B70F5B235DE005@DFRE01.ent.ti.com>
 References: <1420718839-32155-1-git-send-email-a0393906@ti.com>
+In-Reply-To: <1420718839-32155-1-git-send-email-a0393906@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.188.42]
+x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-Subject: [v3 WILINK R8.5 2/2] wl18xx, bt-firmware: Update to R8.5
+Subject: Re: [v3 WILINK R8.5 0/2] Integration of R8.5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,219 +40,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Jan 2015 12:07:26 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 08 Jan 2015 12:11:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Update tools, firmware and scripts to the R8.5 release
+Hi Karthik,
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
----
- .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |    4 ++--
- ...xx_r8.a9.14.bb => ti-compat-wireless-wl18xx.bb} |    6 +++---
- ...8xx-firmware_r8.a9.14.bb => wl18xx-firmware.bb} |    8 +++++---
- ...-wl18xx_r8.a9.14.bb => hostap-daemon-wl18xx.bb} |    8 ++++----
- ...cripts_r8.a9.14.bb => wl18xx-target-scripts.bb} |    8 +++++---
- .../wlconf/{wlconf_r8.a9.14.bb => wlconf.bb}       |    8 +++++---
- ...wl18xx_r8.a9.14.bb => wpa-supplicant-wl18xx.bb} |    8 ++++----
- ...-wl18xx_r8.a9.14.bb => ti-wifi-utils-wl18xx.bb} |    8 +++++---
- 8 files changed, 33 insertions(+), 25 deletions(-)
- rename meta-arago-extras/recipes-bsp/ti-compat-wireless/{ti-compat-wireless-wl18xx_r8.a9.14.bb => ti-compat-wireless-wl18xx.bb} (93%)
- rename meta-arago-extras/recipes-bsp/wl18xx-firmware/{wl18xx-firmware_r8.a9.14.bb => wl18xx-firmware.bb} (86%)
- rename meta-arago-extras/recipes-connectivity/hostap/{hostap-daemon-wl18xx_r8.a9.14.bb => hostap-daemon-wl18xx.bb} (80%)
- rename meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/{wl18xx-target-scripts_r8.a9.14.bb => wl18xx-target-scripts.bb} (83%)
- rename meta-arago-extras/recipes-connectivity/wlconf/{wlconf_r8.a9.14.bb => wlconf.bb} (93%)
- rename meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-wl18xx_r8.a9.14.bb => wpa-supplicant-wl18xx.bb} (86%)
- rename meta-arago-extras/recipes-devtools/ti-wifi-utils/{ti-wifi-utils-wl18xx_r8.a9.14.bb => ti-wifi-utils-wl18xx.bb} (88%)
+ACK. v3 Looks good to me.
 
-diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-index 20db8da..f458b63 100644
---- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-@@ -11,11 +11,11 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- RCONFLICTS_${PN} = "linux-firmware-wl12xx"
- RREPLACES_${PN}  = "linux-firmware-wl12xx"
- 
--PR = "r6+gitr${SRCPV}"
-+PR = "r7+gitr${SRCPV}"
- 
- COMPATIBLE_MACHINE = "ti33x|ti43x|dra7xx-evm"
- 
--SRCREV = "fbcab22449ce930a4192ffeb470c168f4e85e0c6"
-+SRCREV = "46f6a1d0087bd9aac6e6cbae58ed9ee236e5f1b1"
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/wilink8-bt/ti-bt-firmware.git;branch=${BRANCH} \
-            file://0001-Makefile-allow-building-within-the-OE.patch \
-diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb
-similarity index 93%
-rename from meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
-rename to meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb
-index fd1b914..b21fca4 100644
---- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb
-@@ -9,13 +9,13 @@ LIC_FILES_CHKSUM = "file://../backports/COPYING;md5=d7810fab7487fb0aad327b76f1be
- 
- RDEPENDS_${PN} = "wireless-tools"
- 
--PV = "r8.a9.14"
-+PV = "R8.5"
- inherit module
- 
- PR = "${MACHINE_KERNEL_PR}+e+gitr${SRCPV}"
- 
--# Tags: ol_r8.a9.14
--SRCREV_wl18xx = "3ccf4f9ff3fd5607f4d6e32fd84e2b3783532033"
-+# Tags: R8.5
-+SRCREV_wl18xx = "cb51164c672b1ecadef339b9f9b39e29ab706723"
- BRANCH_wl18xx = "ap_p2p"
- SRCREV_backports = "0d46f43a2f3ccdd53de19eee5b9c674bf8ef09a2"
- BRANCH_backports = "ap_dfs_mbss_all"
-diff --git a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware.bb
-similarity index 86%
-rename from meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
-rename to meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware.bb
-index 45d4ea7..664782b 100644
---- a/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware.bb
-@@ -4,15 +4,17 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=4977a0fe767ee17765ae63c435a32a9e"
- 
- PACKAGE_ARCH = "all"
- 
--PR = "r4+gitr${SRCPV}"
-+PV = "R8.5"
-+
-+PR = "r5+gitr${SRCPV}"
- 
- PROVIDES += "wl12xx-firmware"
- RPROVIDES_${PN} += "wl12xx-firmware"
- RREPLACES_${PN} += "wl12xx-firmware"
- RCONFLICTS_${PN} += "wl12xx-firmware"
- 
--# Tag: ol_r8.a9.14
--SRCREV = "2568d8f61fd509eabb112110c20ea31c088ef6b9"
-+# Tag: R8.5
-+SRCREV = "02df01f8b9557b2cf920d14bdaaabde2373e3d7e"
- BRANCH = "ap_dfs"
- SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx_fw.git;protocol=git;branch=${BRANCH} \
-            file://0001-Add-Makefile-for-SDK.patch \
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-similarity index 80%
-rename from meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
-rename to meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-index 3981b78..d67bf53 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-@@ -12,11 +12,11 @@ FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
- 
- # Add TI to the end to make it clear that this is a TI customized version
- # of hostap
--PV = "2.0-devel-ti"
-+PV = "R8.5-devel-ti"
- 
--# Tag: ol_r8.a9.14
--SRCREV = "281f5adb8eb7ee9e9220546c0227696b02aab332"
--BRANCH = "single_hostap_dfs_dynamic"
-+# Tag: R8.5
-+SRCREV = "2710d0ae31fa2dc31f653f346a985268d8d7795c"
-+BRANCH = "ap_p2p"
- 
- PROVIDES += "hostap-daemon"
- RPROVIDES_${PN} += "hostap-daemon"
-diff --git a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb b/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
-similarity index 83%
-rename from meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb
-rename to meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
-index cdd8d16..89433e7 100644
---- a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
-@@ -2,10 +2,12 @@ DESCRIPTION = "Scripts and configuration files for TI wireless drivers"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=b8d6a0865f50159bf5c0d175d1f4a705"
- 
--PR ="r4+gitr${SRCPV}"
-+PV = "R8.5"
- 
--# Tag: ol_r8.a9.14
--SRCREV = "f6c66162e75c6a31fa7142530534e4df8f1a7bed"
-+PR ="r6+gitr${SRCPV}"
-+
-+# Tag: Almost R8.5
-+SRCREV = "0e64b3096c3c05a53465cf4e09fa0a1c8cf54c60"
- BRANCH = "sitara-mbss"
- SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx-target-scripts.git;protocol=git;branch=${BRANCH}"
- 
-diff --git a/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb b/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
-similarity index 93%
-rename from meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb
-rename to meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
-index 02af7f6..71f191f 100644
---- a/meta-arago-extras/recipes-connectivity/wlconf/wlconf_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
-@@ -2,11 +2,13 @@ DESCRIPTION = "Configuration utility for TI wireless drivers"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=adc05a1903d3f107f85c90328e3a9438"
- 
--PR ="r2"
-+PV = "R8.5"
-+
-+PR ="r3"
- PR_append = "+gitr${SRCPV}"
- 
--# Tag: ol_r8.a9.14
--SRCREV = "e014b59381f04b329fccd0ec18a5f2da7fa0fd63"
-+# Tag: R8.5
-+SRCREV = "dcf0800f30ba449cd7f3a20f8b3f4853dc829652"
- SRC_URI = "git://git.ti.com/wilink8-wlan/18xx-ti-utils.git"
- 
- S = "${WORKDIR}/git/wlconf"
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
-similarity index 86%
-rename from meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-rename to meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
-index 203364f..efdf0d0 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
-@@ -10,13 +10,13 @@ LIC_FILES_CHKSUM = "file://../COPYING;md5=ab87f20cd7e8c0d0a6539b34d3791d0e \
- 
- FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
- 
--# Tag: ol_r8.a9.14
--SRCREV = "281f5adb8eb7ee9e9220546c0227696b02aab332"
--BRANCH = "single_hostap_dfs_dynamic"
-+# Tag: R8.5
-+SRCREV = "2710d0ae31fa2dc31f653f346a985268d8d7795c"
-+BRANCH = "ap_p2p"
- PR_append = "c+gitr${SRCPV}"
- 
- # Add ti to the PV to indicate that this is a TI modify version of wpa-supplicant.
--PV = "2.0-devel-ti"
-+PV = "R8.5-devel-ti"
- 
- PROVIDES += "wpa-supplicant"
- RPROVIDES_${PN}  += "wpa-supplicant"
-diff --git a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a9.14.bb b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx.bb
-similarity index 88%
-rename from meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a9.14.bb
-rename to meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx.bb
-index f74c2f9..b6aee3f 100644
---- a/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx_r8.a9.14.bb
-+++ b/meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx.bb
-@@ -5,10 +5,12 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=4725015cb0be7be389cf06deeae3683d"
- DEPENDS = "libnl"
- RDEPENDS_${PN} = "wl18xx-firmware"
- 
--PR ="r2+gitr${SRCPV}"
-+PV = "R8.5"
- 
--#Tag: ol_r8.a9.14
--SRCREV = "e014b59381f04b329fccd0ec18a5f2da7fa0fd63"
-+PR ="r3+gitr${SRCPV}"
-+
-+#Tag: R8.5
-+SRCREV = "dcf0800f30ba449cd7f3a20f8b3f4853dc829652"
- SRC_URI = "git://git.ti.com/wilink8-wlan/18xx-ti-utils.git \
- "
- 
--- 
-1.7.9.5
+Best Regards,
+Eyal
 
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of R, Karthik
+> Sent: Thursday, January 08, 2015 2:07 PM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [v3 WILINK R8.5 0/2] Integration of R8.5
+>=20
+> This patch set integrates R8.5 Wilink release along with the required
+> dependencies.
+>=20
+> Changes from v2:
+>  * Fixed an offline comment from Eyal/Yaniv to move the
+>    commit of wl18xx-target-scripts to a few commits below
+>    R8.5 tag. This addresses the issue with running the
+>    script /usr/share/wl18xx/ap_start.sh
+>=20
+> Changes from v1:
+>  * Added PV for all the recipes
+>  * Verified with the latest kernel that includes the probe
+>    deferral fix
+>=20
+>=20
+> Karthik Ramanan (2):
+>   packagegroup-*-connectivity: Include iptables package
+>   wl18xx, bt-firmware: Update to R8.5
+>=20
+>  .../packagegroup-arago-tisdk-connectivity.bb       |    3 ++-
+>  .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |    4 ++--
+>  ...xx_r8.a9.14.bb =3D> ti-compat-wireless-wl18xx.bb} |    6 +++---
+>  ...8xx-firmware_r8.a9.14.bb =3D> wl18xx-firmware.bb} |    8 +++++---
+>  ...-wl18xx_r8.a9.14.bb =3D> hostap-daemon-wl18xx.bb} |    8 ++++----
+>  ...cripts_r8.a9.14.bb =3D> wl18xx-target-scripts.bb} |    8 +++++---
+>  .../wlconf/{wlconf_r8.a9.14.bb =3D> wlconf.bb}       |    8 +++++---
+>  ...wl18xx_r8.a9.14.bb =3D> wpa-supplicant-wl18xx.bb} |    8 ++++----
+>  ...-wl18xx_r8.a9.14.bb =3D> ti-wifi-utils-wl18xx.bb} |    8 +++++---
+>  9 files changed, 35 insertions(+), 26 deletions(-)  rename meta-arago-
+> extras/recipes-bsp/ti-compat-wireless/{ti-compat-wireless-
+> wl18xx_r8.a9.14.bb =3D> ti-compat-wireless-wl18xx.bb} (93%)  rename meta-
+> arago-extras/recipes-bsp/wl18xx-firmware/{wl18xx-firmware_r8.a9.14.bb =3D=
+>
+> wl18xx-firmware.bb} (86%)  rename meta-arago-extras/recipes-
+> connectivity/hostap/{hostap-daemon-wl18xx_r8.a9.14.bb =3D> hostap-daemon-
+> wl18xx.bb} (80%)  rename meta-arago-extras/recipes-connectivity/wl18xx-
+> target-scripts/{wl18xx-target-scripts_r8.a9.14.bb =3D> wl18xx-target-scri=
+pts.bb}
+> (83%)  rename meta-arago-extras/recipes-
+> connectivity/wlconf/{wlconf_r8.a9.14.bb =3D> wlconf.bb} (93%)  rename met=
+a-
+> arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-
+> wl18xx_r8.a9.14.bb =3D> wpa-supplicant-wl18xx.bb} (86%)  rename meta-arag=
+o-
+> extras/recipes-devtools/ti-wifi-utils/{ti-wifi-utils-wl18xx_r8.a9.14.bb =
+=3D> ti-wifi-
+> utils-wl18xx.bb} (88%)
+>=20
+> --
+> 1.7.9.5
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
