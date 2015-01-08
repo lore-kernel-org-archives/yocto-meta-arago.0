@@ -1,34 +1,27 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id A5977529EB
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B32E0529E0
 	for <meta-arago@arago-project.org>;
-	Thu,  8 Jan 2015 06:34:27 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t086YPBq025468
-	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 00:34:25 -0600
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t086YMsY019856
-	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 12:04:24 +0530
-Received: from [172.24.159.162] (172.24.159.162) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.174.1;
-	Thu, 8 Jan 2015 12:04:21 +0530
-Message-ID: <54AE24ED.6000509@ti.com>
-Date: Thu, 8 Jan 2015 12:04:21 +0530
+	Thu,  8 Jan 2015 11:23:30 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t08BNTnK015742
+	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 05:23:29 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t08BNTSV032507
+	for <meta-arago@arago-project.org>; Thu, 8 Jan 2015 05:23:29 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 8 Jan 2015 05:23:29 -0600
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t08BNRFf009579;
+	Thu, 8 Jan 2015 05:23:28 -0600
 From: Karthik Ramanan <a0393906@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
+To: <meta-arago@arago-project.org>
+Date: Thu, 8 Jan 2015 16:53:23 +0530
+Message-ID: <1420716205-24905-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1420556002-20165-1-git-send-email-j-stiffler@ti.com>
-	<20150106181856.GY4759@edge> <54ACA814.7040105@ti.com>
-	<4B26FB5A64EBA14C87266869E037F958140D1B9A@DFLE09.ent.ti.com>
-	<24B88602B5904F49971CAF899152529B34B91375@DBDE04.ent.ti.com>
-	<20150107181231.GC4759@edge>
-In-Reply-To: <20150107181231.GC4759@edge>
-X-Originating-IP: [172.24.159.162]
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "R,
-	Karthik" <karthik.ramanan@ti.com>
-Subject: Re: [PATCH] packagegroup-arago-tisdk-multimedia: Remove dspdce-fw from dra7xx-evm.
+Subject: [v2 WILINK R8.5 0/2] Integration of R8.5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,38 +34,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Jan 2015 06:34:29 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 08 Jan 2015 11:23:32 -0000
+Content-Type: text/plain
 
-On 07-Jan-15 11:42 PM, Denys Dmytriyenko wrote:
-> On Wed, Jan 07, 2015 at 07:31:41AM -0500, R, Karthik wrote:
->> Jake,
->>
->> ACK for this patch.
->>
->> Ok. I understand.
->>
->> But then we would need the specific SDKs to add either add the "opencl" or
->> "dspdce-fw" into the respective packagegroups as per their need.
->
->> I just confirmed that the arago-glsdk-multimedia-image includes the
->> dspdce-fw explicity.
->
-> What do you mean includes it explicitly?
->
-> So, this comes back to the original suggestion to include either of the 2 FW
-> images conditionally - do you mean to handle this by SDK branding?
->
+This patch set integrates R8.5 Wilink release along with the
+required dependencies.
 
-Denys,
+Changes from v1:
+ * Added PV for all the recipes
+ * Verified with the latest kernel that includes the probe
+   deferral fix
 
-This patch removes dspdce-fw from packagegroup-arago-tisdk-multimedia.bb
+Karthik Ramanan (2):
+  packagegroup-*-connectivity: Include iptables package
+  wl18xx, bt-firmware: Update to R8.5
 
-So for SDK's that are including this packagegroup, they will miss the 
-dspdce-fw and so it will have to be added explicitly in some other 
-packagegroup that is SDK specific.
+ .../packagegroup-arago-tisdk-connectivity.bb       |    3 ++-
+ .../recipes-bsp/bt-firmware/bt-firmware_git.bb     |    4 ++--
+ ...xx_r8.a9.14.bb => ti-compat-wireless-wl18xx.bb} |    6 +++---
+ ...8xx-firmware_r8.a9.14.bb => wl18xx-firmware.bb} |    8 +++++---
+ ...-wl18xx_r8.a9.14.bb => hostap-daemon-wl18xx.bb} |    8 ++++----
+ ...cripts_r8.a9.14.bb => wl18xx-target-scripts.bb} |    8 +++++---
+ .../wlconf/{wlconf_r8.a9.14.bb => wlconf.bb}       |    8 +++++---
+ ...wl18xx_r8.a9.14.bb => wpa-supplicant-wl18xx.bb} |    8 ++++----
+ ...-wl18xx_r8.a9.14.bb => ti-wifi-utils-wl18xx.bb} |    8 +++++---
+ 9 files changed, 35 insertions(+), 26 deletions(-)
+ rename meta-arago-extras/recipes-bsp/ti-compat-wireless/{ti-compat-wireless-wl18xx_r8.a9.14.bb => ti-compat-wireless-wl18xx.bb} (93%)
+ rename meta-arago-extras/recipes-bsp/wl18xx-firmware/{wl18xx-firmware_r8.a9.14.bb => wl18xx-firmware.bb} (86%)
+ rename meta-arago-extras/recipes-connectivity/hostap/{hostap-daemon-wl18xx_r8.a9.14.bb => hostap-daemon-wl18xx.bb} (80%)
+ rename meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/{wl18xx-target-scripts_r8.a9.14.bb => wl18xx-target-scripts.bb} (84%)
+ rename meta-arago-extras/recipes-connectivity/wlconf/{wlconf_r8.a9.14.bb => wlconf.bb} (93%)
+ rename meta-arago-extras/recipes-connectivity/wpa-supplicant/{wpa-supplicant-wl18xx_r8.a9.14.bb => wpa-supplicant-wl18xx.bb} (86%)
+ rename meta-arago-extras/recipes-devtools/ti-wifi-utils/{ti-wifi-utils-wl18xx_r8.a9.14.bb => ti-wifi-utils-wl18xx.bb} (88%)
 
-Regards
-Karthik
+-- 
+1.7.9.5
+
 
