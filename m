@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 6D22C529DD
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 98F26529DD
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Jan 2015 21:26:33 +0000 (UTC)
+	Tue, 13 Jan 2015 21:26:34 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0DLQWu3004426
-	for <meta-arago@arago-project.org>; Tue, 13 Jan 2015 15:26:32 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0DLQWif001451
-	for <meta-arago@arago-project.org>; Tue, 13 Jan 2015 15:26:32 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 13 Jan 2015 15:26:32 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0DLQXiR020410
+	for <meta-arago@arago-project.org>; Tue, 13 Jan 2015 15:26:33 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0DLQXD4001467
+	for <meta-arago@arago-project.org>; Tue, 13 Jan 2015 15:26:33 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 13 Jan 2015 15:26:33 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t0DLQVoE016029;	Tue, 13 Jan 2015 15:26:31 -0600
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0DLQWNO028603;	Tue, 13 Jan 2015 15:26:33 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t0DLQRbk027265;	Wed, 14 Jan 2015 02:56:30 +0530
+	0.8) with ESMTP id t0DLQRbl027265;	Wed, 14 Jan 2015 02:56:31 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 13 Jan 2015 15:26:23 -0600
-Message-ID: <1421184385-21751-2-git-send-email-fcooper@ti.com>
+Date: Tue, 13 Jan 2015 15:26:24 -0600
+Message-ID: <1421184385-21751-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1421184385-21751-1-git-send-email-fcooper@ti.com>
 References: <1421184385-21751-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/4] arago.conf: Allow QT_PROVIDER to be overridden in branding files
+Subject: [PATCH 3/4] packagegroup-arago-tisdk-graphics: Exclude Weston in a Qt 4 based filesystem
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,29 +40,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jan 2015 21:26:33 -0000
+X-List-Received-Date: Tue, 13 Jan 2015 21:26:34 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../packagegroup-arago-tisdk-graphics.bb           |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 12f29a5..387667b 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -23,7 +23,7 @@ DISTRO_FEATURES = "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbh
- DISTRO_FEATURES += "pam"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index 9ec8cb7..f854596 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install graphics binaries"
+ LICENSE = "MIT"
+-PR = "r6"
++PR = "r7"
  
- # Set preferred Qt version
--QT_PROVIDER = "qt5"
-+QT_PROVIDER ?= "qt5"
- #QT5_VERSION = "5.4.0%"
+ inherit packagegroup
  
- # Distro-specific package configuration
+@@ -48,7 +48,7 @@ GRAPHICS_BLTSVILLE_omap-a15 = " \
+     "
+ 
+ RDEPENDS_${PN} = "\
+-    ${GRAPHICS_WESTON} \
++    ${@base_conditional('QT_PROVIDER', 'qt4e', "", "${GRAPHICS_WESTON}", d)} \
+     ${GRAPHICS_RDEPENDS} \
+     ${GRAPHICS_BLTSVILLE} \
+ "
 -- 
 1.7.9.5
 
