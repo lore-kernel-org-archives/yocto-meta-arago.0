@@ -1,27 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 33FED529B7
+Return-Path: <sam.nelson@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 89F3D52981
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Jan 2015 02:38:52 +0000 (UTC)
-Received: from gandalf.denix.org ([108.18.33.160]) by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NI900GGH0ODMF80@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 15 Jan 2015 20:38:50 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Kc1larcG c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=YNv0rlydsVwA:10
-	a=sozttTNsAAAA:8	a=L4KRGednc56-NswOTHYA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 02B4020150;	Thu,
-	15 Jan 2015 21:38:37 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 15 Jan 2015 21:38:36 -0500
-Message-id: <1421375916-26315-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] switch-config: update the revision
+	Fri, 16 Jan 2015 02:58:52 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0G2wpdM021658
+	for <meta-arago@arago-project.org>; Thu, 15 Jan 2015 20:58:51 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0G2wphb006979
+	for <meta-arago@arago-project.org>; Thu, 15 Jan 2015 20:58:51 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 15 Jan 2015 20:58:51 -0600
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0G2wpd2026463;	Thu, 15 Jan 2015 20:58:51 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 15 Jan 2015 21:58:48 -0500
+Message-ID: <1421377128-14295-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH] demo-image-proc: Add recipe for TI Image processing demo for keystone 2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,32 +34,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jan 2015 02:38:53 -0000
+X-List-Received-Date: Fri, 16 Jan 2015 02:58:52 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+- Provides Binaries for Image processing demo
+- Demo Plugs into Matrix gui
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../demo-image-proc/demo-image-proc_git.bb         |   32 ++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
 
-diff --git a/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb b/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-index 7df63ae..23db121 100644
---- a/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-+++ b/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-@@ -4,8 +4,10 @@ LIC_FILES_CHKSUM = "file://switch-config.c;beginline=1;endline=14;md5=659ff9658c
- 
- DEPENDS = "virtual/kernel"
- 
-+PV = "1.1"
+diff --git a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+new file mode 100644
+index 0000000..60b5d17
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+@@ -0,0 +1,32 @@
++DESCRIPTION = "TI Image Processing Demo for KeyStone 2"
++HOMEPAGE = "http://git.ti.com/cgit/cgit.cgi/keystone-demos/image-proc.git"
++LICENSE = "BSD & MIT"
++LIC_FILES_CHKSUM = "file://Makefile;beginline=1;endline=29;md5=ada2acff673fad7c53cbfd2598525f2a"
++SECTION = "console"
++COMPATIBLE_MACHINE = "keystone"
 +
- BRANCH ?= "master"
--SRCREV = "4323e6c3a575a845e19378ccb06ab9a3b4825b88"
-+SRCREV = "75791ba7f835530f2a10c889977d92e9175faa34"
- 
- SRC_URI = "git://git.ti.com/switch-config/switch-config.git;protocol=git;branch=${BRANCH} \
-            file://0001-switch-config.c-include-stdbool.h-to-define-bool-typ.patch"
++DEPENDS = "ti-ipc"
++
++BRANCH = "master"
++SRC_URI = "git://git.ti.com/keystone-demos/image-proc.git;protocol=git;branch=${BRANCH}"
++#Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.01
++SRCREV = "1745725128929f6d57a3e8e8ed0ca02fe4b28b51"
++PV = "1.0.0.1"
++
++S = "${WORKDIR}/git"
++
++MATRIX_BASE_DIR = "${datadir}/matrix-gui-2.0"
++MATRIX_WEB_DIR = "${MATRIX_BASE_DIR}"
++MATRIX_APP_DIR = "${MATRIX_WEB_DIR}/apps"
++MATRIX_IPD_DIR = "${MATRIX_APP_DIR}/demo_imageproc"
++MATRIX_CGI_DIR = "${MATRIX_IPD_DIR}/cgi-bin"
++
++FILES_${PN} = "${MATRIX_IPD_DIR}/demo_imageproc.html"
++FILES_${PN} += "${MATRIX_CGI_DIR}/image_processing_master.out"
++
++do_install() {
++	install -d ${D}${MATRIX_IPD_DIR}
++	install -d ${D}${MATRIX_CGI_DIR}
++	install -c -m 755 ${S}/ipc/master/image_processing_master.out ${D}${MATRIX_CGI_DIR}
++	install -c -m 755 ${S}/webpage/demo_imageproc.html ${D}${MATRIX_IPD_DIR}
++}
 -- 
-2.2.0
+1.7.9.5
 
 
