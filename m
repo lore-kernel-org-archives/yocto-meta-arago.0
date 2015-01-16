@@ -1,27 +1,30 @@
-Return-Path: <sam.nelson@ti.com>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 89F3D52981
+	by arago-project.org (Postfix) with ESMTPS id 3B30652ABA
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Jan 2015 02:58:52 +0000 (UTC)
+	Fri, 16 Jan 2015 03:06:18 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0G2wpdM021658
-	for <meta-arago@arago-project.org>; Thu, 15 Jan 2015 20:58:51 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0G2wphb006979
-	for <meta-arago@arago-project.org>; Thu, 15 Jan 2015 20:58:51 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 15 Jan 2015 20:58:51 -0600
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t0G2wpd2026463;	Thu, 15 Jan 2015 20:58:51 -0600
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 15 Jan 2015 21:58:48 -0500
-Message-ID: <1421377128-14295-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0G36H7k022337
+	for <meta-arago@arago-project.org>; Thu, 15 Jan 2015 21:06:17 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0G36HdX013038
+	for <meta-arago@arago-project.org>; Thu, 15 Jan 2015 21:06:17 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 15 Jan 2015 21:06:17 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0G36GrT001577;
+	Thu, 15 Jan 2015 21:06:17 -0600
+Date: Thu, 15 Jan 2015 22:06:16 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20150116030616.GA4759@edge>
+References: <1421373703-13583-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH] demo-image-proc: Add recipe for TI Image processing demo for keystone 2
+In-Reply-To: <1421373703-13583-1-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] parse-ip: Add support for keystone platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,57 +37,112 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jan 2015 02:58:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 16 Jan 2015 03:06:18 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-- Provides Binaries for Image processing demo
-- Demo Plugs into Matrix gui
+On Thu, Jan 15, 2015 at 09:01:43PM -0500, Sam Nelson wrote:
+> - Added separate script for keystone platforms
+> - Script parses ip and sends to uart, picked up by BMC and display on LCD screen
+> 
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> ---
+>  .../recipes-tisdk/parse-ip/parse-ip.bb             |   12 ++++---
+>  .../recipes-tisdk/parse-ip/parse-ip/init.keystone  |   37 ++++++++++++++++++++
+>  2 files changed, 45 insertions(+), 4 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init.keystone
+> 
+> diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
+> index f20db31..5353ac6 100644
+> --- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
+> +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
+> @@ -2,23 +2,27 @@ DESCRIPTION = "Script to parse ip address during boot and make it available to t
+>  LICENSE = "BSD"
+>  LIC_FILES_CHKSUM = "file://init;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+>  
+> -COMPATIBLE_MACHINE = "ti33x|ti43x"
+> +COMPATIBLE_MACHINE = "ti33x|ti43x|keystone"
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> -SRC_URI = "file://init"
+> +SRC_URI = "file://init \
+> +	   file://init.keystone"
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
----
- .../demo-image-proc/demo-image-proc_git.bb         |   32 ++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+I don't remember if SOC_FAMILY was added to file overrides, but have you tried 
+placing your specific init under recipes-tisdk/parse-ip/parse-ip/keystone/init?
 
-diff --git a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
-new file mode 100644
-index 0000000..60b5d17
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
-@@ -0,0 +1,32 @@
-+DESCRIPTION = "TI Image Processing Demo for KeyStone 2"
-+HOMEPAGE = "http://git.ti.com/cgit/cgit.cgi/keystone-demos/image-proc.git"
-+LICENSE = "BSD & MIT"
-+LIC_FILES_CHKSUM = "file://Makefile;beginline=1;endline=29;md5=ada2acff673fad7c53cbfd2598525f2a"
-+SECTION = "console"
-+COMPATIBLE_MACHINE = "keystone"
-+
-+DEPENDS = "ti-ipc"
-+
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/keystone-demos/image-proc.git;protocol=git;branch=${BRANCH}"
-+#Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.01
-+SRCREV = "1745725128929f6d57a3e8e8ed0ca02fe4b28b51"
-+PV = "1.0.0.1"
-+
-+S = "${WORKDIR}/git"
-+
-+MATRIX_BASE_DIR = "${datadir}/matrix-gui-2.0"
-+MATRIX_WEB_DIR = "${MATRIX_BASE_DIR}"
-+MATRIX_APP_DIR = "${MATRIX_WEB_DIR}/apps"
-+MATRIX_IPD_DIR = "${MATRIX_APP_DIR}/demo_imageproc"
-+MATRIX_CGI_DIR = "${MATRIX_IPD_DIR}/cgi-bin"
-+
-+FILES_${PN} = "${MATRIX_IPD_DIR}/demo_imageproc.html"
-+FILES_${PN} += "${MATRIX_CGI_DIR}/image_processing_master.out"
-+
-+do_install() {
-+	install -d ${D}${MATRIX_IPD_DIR}
-+	install -d ${D}${MATRIX_CGI_DIR}
-+	install -c -m 755 ${S}/ipc/master/image_processing_master.out ${D}${MATRIX_CGI_DIR}
-+	install -c -m 755 ${S}/webpage/demo_imageproc.html ${D}${MATRIX_IPD_DIR}
-+}
--- 
-1.7.9.5
+That way you don't need to make changes to the recipe itself, it should pick 
+up your keystone-specific version of the file automatically.
 
+
+> -PR = "r2"
+> +PR = "r3"
+>  
+>  S = "${WORKDIR}"
+>  
+>  INITSCRIPT_NAME = "parse-ip"
+>  INITSCRIPT_PARAMS = "defaults 98"
+> +INITSCRIPT_FILENAME = "init"
+> +
+> +INITSCRIPT_FILENAME_keystone = "init.keystone"
+>  
+>  inherit update-rc.d
+>  
+>  do_install() {
+>      install -d ${D}${sysconfdir}/init.d
+> -    install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/parse-ip
+> +    install -m 0755 ${WORKDIR}/${INITSCRIPT_FILENAME} ${D}${sysconfdir}/init.d/parse-ip
+>  }
+>  
+>  FILES_${PN} = "${sysconfdir}"
+> diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init.keystone b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init.keystone
+> new file mode 100644
+> index 0000000..7ea199e
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init.keystone
+> @@ -0,0 +1,37 @@
+> +#*
+> +#* Copyright (C) 2012-2014 Texas Instruments Incorporated - http://www.ti.com/
+> +#*
+> +#*
+> +#*  Redistribution and use in source and binary forms, with or without
+> +#*  modification, are permitted provided that the following conditions
+> +#*  are met:
+> +#*
+> +#*    Redistributions of source code must retain the above copyright
+> +#*    notice, this list of conditions and the following disclaimer.
+> +#*
+> +#*    Redistributions in binary form must reproduce the above copyright
+> +#*    notice, this list of conditions and the following disclaimer in the
+> +#*    documentation and/or other materials provided with the
+> +#*    distribution.
+> +#*
+> +#*    Neither the name of Texas Instruments Incorporated nor the names of
+> +#*    its contributors may be used to endorse or promote products derived
+> +#*    from this software without specific prior written permission.
+> +#*
+> +
+> +#! /bin/sh
+> +
+> +case "$1" in
+> +    start )
+> +        echo '#>>>>> LCD 12' > ipaddr
+> +        echo 'IP Address:' >> ipaddr
+> +        cat ipaddr
+> +
+> +        echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` > ipaddr
+> +        cat ipaddr
+> +
+> +        sleep 1
+> +    ;;
+> +    stop )
+> +        exit 0;;
+> +esac
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
