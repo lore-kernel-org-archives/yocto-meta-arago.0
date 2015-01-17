@@ -1,34 +1,28 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 16FA452090
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 756C452981
 	for <meta-arago@arago-project.org>;
-	Sat, 17 Jan 2015 04:18:53 +0000 (UTC)
+	Sat, 17 Jan 2015 04:35:55 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0H4IqAh028889
-	for <meta-arago@arago-project.org>; Fri, 16 Jan 2015 22:18:52 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0H4IqBW019842
-	for <meta-arago@arago-project.org>; Fri, 16 Jan 2015 22:18:52 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0174.001; Fri, 16 Jan 2015 22:18:51 -0600
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH v3] parse-ip: Add support for keystone
-	platforms
-Thread-Index: AQHQMUFMTNts6fyzqkym3+0/Yj/EcJzEEYeA//+lL4A=
-Date: Sat, 17 Jan 2015 04:18:49 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F490580F9C2D@DLEE11.ent.ti.com>
-References: <1421380969-17405-1-git-send-email-sam.nelson@ti.com>
-	<20150117034316.GE4759@edge>
-In-Reply-To: <20150117034316.GE4759@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0H4ZsA3024055
+	for <meta-arago@arago-project.org>; Fri, 16 Jan 2015 22:35:54 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0H4ZsHT030813
+	for <meta-arago@arago-project.org>; Fri, 16 Jan 2015 22:35:54 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 16 Jan 2015 22:35:54 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0H4ZsT2010170;	Fri, 16 Jan 2015 22:35:54 -0600
+Date: Fri, 16 Jan 2015 23:13:48 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Message-ID: <856772684.225.1421468028212.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v3] parse-ip: Add support for keystone platforms
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.01 build 2015-01-16_22-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,116 +35,200 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Jan 2015 04:18:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 17 Jan 2015 04:35:55 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_224_2011528362.1421468028200"
 
-Yes.  I have tested on k2 platform.
-Sam
+------=_Part_224_2011528362.1421468028200
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Friday, January 16, 2015 10:43 PM
-> To: Nelson, Sam
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH v3] parse-ip: Add support for keystone
-> platforms
->=20
-> This looks good now! I take it that you've tested it yourself :)
->=20
-> --
-> Denys
->=20
->=20
-> On Thu, Jan 15, 2015 at 11:02:49PM -0500, Sam Nelson wrote:
-> > - Added separate script for keystone platforms
-> > - Script parses ip and sends to uart, picked up by BMC and display on L=
-CD
-> screen
-> >
-> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> >
-> > ---
-> > Changes from previous patch
-> > - Removed keystene/init from SRC URI
-> > ---
-> > ---
-> >  .../recipes-tisdk/parse-ip/parse-ip.bb             |    4 ++--
-> >  .../parse-ip/parse-ip/{ =3D> keystone}/init          |   16 ++++++++--=
-------
-> >  2 files changed, 10 insertions(+), 10 deletions(-)
-> >  copy meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/{ =3D> keystone=
-}/init
-> (87%)
-> >
-> > diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb b/met=
-a-
-> arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-> > index f20db31..2cfc675 100644
-> > --- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-> > +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-> > @@ -2,12 +2,12 @@ DESCRIPTION =3D "Script to parse ip address during
-> boot and make it available to t
-> >  LICENSE =3D "BSD"
-> >  LIC_FILES_CHKSUM =3D
-> "file://init;beginline=3D3;endline=3D31;md5=3Dfc4b04a33df6d892c9f4d4a9d92=
-b94
-> 5e"
-> >
-> > -COMPATIBLE_MACHINE =3D "ti33x|ti43x"
-> > +COMPATIBLE_MACHINE =3D "ti33x|ti43x|keystone"
-> >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> >
-> >  SRC_URI =3D "file://init"
-> >
-> > -PR =3D "r2"
-> > +PR =3D "r3"
-> >
-> >  S =3D "${WORKDIR}"
-> >
-> > diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init b/m=
-eta-
-> arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
-> > similarity index 87%
-> > copy from meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init
-> > copy to meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
-> > index 4050efb..7f260fb 100644
-> > --- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init
-> > +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
-> > @@ -32,15 +32,15 @@
-> >
-> >  case "$1" in
-> >      start )
-> > -        if [ -e /run/media/mmcblk0p1 ]
-> > -        then
-> > -            echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' |=
- cut -d: -f2 |
-> awk '{print $1}'` > /run/media/mmcblk0p1/.ipaddr
-> > -            sync
-> > -	    sync
-> > -	fi
-> > +        echo '#>>>>> LCD 12' > ipaddr
-> > +        echo 'IP Address:' >> ipaddr
-> > +        cat ipaddr
-> > +
-> > +        echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut=
- -d: -f2 | awk
-> '{print $1}'` > ipaddr
-> > +        cat ipaddr
-> > +
-> > +        sleep 1
-> >      ;;
-> >      stop )
-> >          exit 0;;
-> >  esac
-> > -
-> > -exit 0
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<html>
+<head>
+<title>
+Status for 01/16/15
+</title>
+</head>
+<body>
 
+<h2>Status for 01/16/15</h2>
+
+<h2>BUILD_ID: build-2015-01-16_22-02-03</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.01"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_224_2011528362.1421468028200--
