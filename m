@@ -1,29 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 9D774529D3
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 8D4ED52A19
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Jan 2015 22:49:49 +0000 (UTC)
-Received: from gandalf.denix.org ([108.18.33.160]) by vms173025.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NIA0027NKQKW2X1@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 16 Jan 2015 16:49:33 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=LrklEcZZ c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=YNv0rlydsVwA:10
-	a=sozttTNsAAAA:8	a=mQqlHbLLSkHUAnz_5GAA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id BF8A12018E;	Fri,
-	16 Jan 2015 17:49:32 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 16 Jan 2015 17:49:29 -0500
-Message-id: <1421448569-27179-3-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-In-reply-to: <1421448569-27179-1-git-send-email-denis@denix.org>
-References: <1421448569-27179-1-git-send-email-denis@denix.org>
-Subject: [PATCH 3/3] arago.conf: bump distro version
+	Sat, 17 Jan 2015 03:43:19 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0H3hIag029202
+	for <meta-arago@arago-project.org>; Fri, 16 Jan 2015 21:43:18 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0H3hIbi028066
+	for <meta-arago@arago-project.org>; Fri, 16 Jan 2015 21:43:18 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Fri, 16 Jan 2015 21:43:17 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0H3hHPc015668;
+	Fri, 16 Jan 2015 21:43:17 -0600
+Date: Fri, 16 Jan 2015 22:43:17 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20150117034316.GE4759@edge>
+References: <1421380969-17405-1-git-send-email-sam.nelson@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1421380969-17405-1-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v3] parse-ip: Add support for keystone platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,28 +37,87 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jan 2015 22:49:49 -0000
+X-List-Received-Date: Sat, 17 Jan 2015 03:43:19 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+This looks good now! I take it that you've tested it yourself :)
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 387667b..936e0ac 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -1,6 +1,6 @@
- # Name and version of the distribution
- DISTRO_NAME = "Arago"
--DISTRO_VERSION = "2014.12"
-+DISTRO_VERSION = "2015.01"
- 
- # SDK paths and names
- SDK_NAME_PREFIX = "arago"
 -- 
-2.2.0
+Denys
 
+
+On Thu, Jan 15, 2015 at 11:02:49PM -0500, Sam Nelson wrote:
+> - Added separate script for keystone platforms
+> - Script parses ip and sends to uart, picked up by BMC and display on LCD screen
+> 
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> 
+> ---
+> Changes from previous patch
+> - Removed keystene/init from SRC URI
+> ---
+> ---
+>  .../recipes-tisdk/parse-ip/parse-ip.bb             |    4 ++--
+>  .../parse-ip/parse-ip/{ => keystone}/init          |   16 ++++++++--------
+>  2 files changed, 10 insertions(+), 10 deletions(-)
+>  copy meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/{ => keystone}/init (87%)
+> 
+> diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
+> index f20db31..2cfc675 100644
+> --- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
+> +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
+> @@ -2,12 +2,12 @@ DESCRIPTION = "Script to parse ip address during boot and make it available to t
+>  LICENSE = "BSD"
+>  LIC_FILES_CHKSUM = "file://init;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+>  
+> -COMPATIBLE_MACHINE = "ti33x|ti43x"
+> +COMPATIBLE_MACHINE = "ti33x|ti43x|keystone"
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+>  SRC_URI = "file://init"
+>  
+> -PR = "r2"
+> +PR = "r3"
+>  
+>  S = "${WORKDIR}"
+>  
+> diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
+> similarity index 87%
+> copy from meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init
+> copy to meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
+> index 4050efb..7f260fb 100644
+> --- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/init
+> +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
+> @@ -32,15 +32,15 @@
+>  
+>  case "$1" in
+>      start )
+> -        if [ -e /run/media/mmcblk0p1 ]
+> -        then
+> -            echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` > /run/media/mmcblk0p1/.ipaddr
+> -            sync
+> -	    sync
+> -	fi
+> +        echo '#>>>>> LCD 12' > ipaddr
+> +        echo 'IP Address:' >> ipaddr
+> +        cat ipaddr
+> +
+> +        echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` > ipaddr
+> +        cat ipaddr
+> +
+> +        sleep 1
+>      ;;
+>      stop )
+>          exit 0;;
+>  esac
+> -
+> -exit 0
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
