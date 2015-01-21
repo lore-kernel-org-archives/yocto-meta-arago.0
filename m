@@ -1,29 +1,31 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0C89552978
+Return-Path: <fcooper@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 3115852099
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Jan 2015 05:09:43 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0L59giZ028799
-	for <meta-arago@arago-project.org>; Tue, 20 Jan 2015 23:09:42 -0600
+	Wed, 21 Jan 2015 16:29:48 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0LGTlG2023191
+	for <meta-arago@arago-project.org>; Wed, 21 Jan 2015 10:29:47 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0L59gIf009069
-	for <meta-arago@arago-project.org>; Tue, 20 Jan 2015 23:09:42 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0LGTlnm031318
+	for <meta-arago@arago-project.org>; Wed, 21 Jan 2015 10:29:47 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 20 Jan 2015 23:09:41 -0600
-Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0L59dmd007070;
-	Tue, 20 Jan 2015 23:09:41 -0600
-From: Karthik Ramanan <a0393906@ti.com>
+	Wed, 21 Jan 2015 10:29:46 -0600
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0LGTjFU012142;	Wed, 21 Jan 2015 10:29:46 -0600
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id t0LGThuF003199;	Wed, 21 Jan 2015 21:59:44 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 21 Jan 2015 10:39:37 +0530
-Message-ID: <1421816977-26680-2-git-send-email-a0393906@ti.com>
+Date: Wed, 21 Jan 2015 10:29:41 -0600
+Message-ID: <1421857781-32763-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1421816977-26680-1-git-send-email-a0393906@ti.com>
-References: <1421816977-26680-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [RFC PATCH] dra7xx-evm: ubifs: Increase "max_leb_cnt"
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] nativesdk-qt4-tools: Add -no-pch to configure to fix build errors
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,31 +38,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jan 2015 05:09:43 -0000
+X-List-Received-Date: Wed, 21 Jan 2015 16:29:48 -0000
 Content-Type: text/plain
 
-    * This is need to allow some room for customers to build on top
-      of the filesystem that we support 
-    * This is needed for larger filesystem size to support dev image.
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+* Nativesdk-qt4-tools has been failing with many errors similar to the ones
+  below :
+
+  <long path>/stdc-predef.h:59:1: error: use -Winvalid-pch for more information
+  <long path>/stdc-predef.h:59:1: fatal error:
+                .pch/release-static-emb-auto/QtCore: No such file or directory
+
+* Based on http://qt-project.org/forums/viewthread/26781 and looking at the
+  main Qt 4 recipe this error can be fixed by disabling pch by passing -no-pch
+  to configure.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- conf/machine/dra7xx-evm.conf |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../qt4/nativesdk-qt4-tools_4.8.5.bbappend         |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/conf/machine/dra7xx-evm.conf b/conf/machine/dra7xx-evm.conf
-index 175450f..3b88668 100644
---- a/conf/machine/dra7xx-evm.conf
-+++ b/conf/machine/dra7xx-evm.conf
-@@ -23,7 +23,7 @@ UBOOT_MACHINE = "dra7xx_evm_config"
- # UBI: logical eraseblock size:    126976 bytes
- # from ubiattach stdout:
- # UBI device number 0, total 1988 LEBs
--MKUBIFS_ARGS = "-F -m 2048 -e 126976 -c 4352"
-+MKUBIFS_ARGS = "-F -m 2048 -e 126976 -c 5120"
+diff --git a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.5.bbappend b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.5.bbappend
+index 6296fbe..8391cdd 100644
+--- a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.5.bbappend
++++ b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.5.bbappend
+@@ -1,7 +1,9 @@
+-PR_append = "-arago2"
++PR_append = "-arago3"
  
- # do ubiattach /dev/ubi_ctrl -m 7 -O 2048
- # from dmesg:
+ # Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+ # For our distribution purposes we only use LGPLv2.1
+ LICENSE = "LGPLv2.1"
+ 
+ DEPENDS := "${@oe_filter_out('nativesdk-libx11', '${DEPENDS}', d)}"
++
++EXTRA_OECONF += " -no-pch"
 -- 
 1.7.9.5
 
