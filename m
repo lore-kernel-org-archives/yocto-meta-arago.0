@@ -1,27 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 483C452978
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 0C89552978
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Jan 2015 05:09:42 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0L59f0n029198
-	for <meta-arago@arago-project.org>; Tue, 20 Jan 2015 23:09:41 -0600
+	Wed, 21 Jan 2015 05:09:43 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0L59giZ028799
+	for <meta-arago@arago-project.org>; Tue, 20 Jan 2015 23:09:42 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0L59fDZ013486
-	for <meta-arago@arago-project.org>; Tue, 20 Jan 2015 23:09:41 -0600
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0L59gIf009069
+	for <meta-arago@arago-project.org>; Tue, 20 Jan 2015 23:09:42 -0600
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 20 Jan 2015 23:09:40 -0600
+	Tue, 20 Jan 2015 23:09:41 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0L59dmc007070;
-	Tue, 20 Jan 2015 23:09:40 -0600
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0L59dmd007070;
+	Tue, 20 Jan 2015 23:09:41 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 21 Jan 2015 10:39:36 +0530
-Message-ID: <1421816977-26680-1-git-send-email-a0393906@ti.com>
+Date: Wed, 21 Jan 2015 10:39:37 +0530
+Message-ID: <1421816977-26680-2-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1421816977-26680-1-git-send-email-a0393906@ti.com>
+References: <1421816977-26680-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [RFC PATCH] Increasing the max_leb_count
+Subject: [RFC PATCH] dra7xx-evm: ubifs: Increase "max_leb_cnt"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,33 +36,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jan 2015 05:09:42 -0000
+X-List-Received-Date: Wed, 21 Jan 2015 05:09:43 -0000
 Content-Type: text/plain
 
-Background:
+    * This is need to allow some room for customers to build on top
+      of the filesystem that we support 
+    * This is needed for larger filesystem size to support dev image.
 
-* GLSDK brings in a lot of multimedia and graphics
-  enabling components as well as example applications.
-* Customers are going to add more software layers on top 
-  of this to enable more feature rich graphics and multimedia. 
-* There are two configurations that are used internally:
-   ** Release filesystem
-   ** Debug filesystem - (Release + GDB + dbg-pkgs)
-      dbg-pkgs is basically the EXTRA_MACHINE_FEATURES in 
-      the local.conf that brings in the sources and debug
-      symbols to allow gdb debugging.
-
-With the current leb_count it is not possible to support 
-the above usecases. And to allow for enough room for the 
-customer to add their components and not hit the space 
-issue, it is proposed to make this change.
-
-Karthik Ramanan (1):
-  dra7xx-evm: ubifs: Increase "max_leb_cnt"
-
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
  conf/machine/dra7xx-evm.conf |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/conf/machine/dra7xx-evm.conf b/conf/machine/dra7xx-evm.conf
+index 175450f..3b88668 100644
+--- a/conf/machine/dra7xx-evm.conf
++++ b/conf/machine/dra7xx-evm.conf
+@@ -23,7 +23,7 @@ UBOOT_MACHINE = "dra7xx_evm_config"
+ # UBI: logical eraseblock size:    126976 bytes
+ # from ubiattach stdout:
+ # UBI device number 0, total 1988 LEBs
+-MKUBIFS_ARGS = "-F -m 2048 -e 126976 -c 4352"
++MKUBIFS_ARGS = "-F -m 2048 -e 126976 -c 5120"
+ 
+ # do ubiattach /dev/ubi_ctrl -m 7 -O 2048
+ # from dmesg:
 -- 
 1.7.9.5
 
