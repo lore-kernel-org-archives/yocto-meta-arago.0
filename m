@@ -1,31 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BE403529E0
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id BB54C52978
 	for <meta-arago@arago-project.org>;
 	Thu, 22 Jan 2015 16:42:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0MGgnHd003895
-	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:49 -0600
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0MGgpjt004013
+	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:51 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0MGglwk017258
-	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:47 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0MGgoWL024758
+	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:50 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 22 Jan 2015 10:42:47 -0600
+	Thu, 22 Jan 2015 10:42:49 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t0MGgkDM008290;	Thu, 22 Jan 2015 10:42:47 -0600
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0MGgmQo004230;	Thu, 22 Jan 2015 10:42:49 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t0MGgiaC021460;	Thu, 22 Jan 2015 22:12:45 +0530
+	0.8) with ESMTP id t0MGgiaE021460;	Thu, 22 Jan 2015 22:12:47 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Jan 2015 10:42:37 -0600
-Message-ID: <1421944962-32315-1-git-send-email-fcooper@ti.com>
+Date: Thu, 22 Jan 2015 10:42:39 -0600
+Message-ID: <1421944962-32315-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1421944962-32315-1-git-send-email-fcooper@ti.com>
+References: <1421944962-32315-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/5] ti-tisdk-setup: Update commit to add support for Ubuntu 14.04
+Subject: [PATCH 3/5] matrix-gui-helper-scripts: Add script that will be useful to other matrix apps
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,27 +45,37 @@ Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
----
- .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+* For now this recipe simply adds the optimize-benchmark script
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index fb2cfc0..cc69e14 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
- 
--PR = "r20"
-+PR = "r21"
- 
- BRANCH ?= "master"
--SRCREV = "bd8d4af7de7f83b1919ecf01f7ff000e399b087a"
-+SRCREV = "e1ed2178043e097b7a8b2ea073473db732494845"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+ .../matrix/matrix-gui-helper-scripts.bb            |   17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-helper-scripts.bb
+
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-helper-scripts.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-helper-scripts.bb
+new file mode 100644
+index 0000000..9f96be1
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-helper-scripts.bb
+@@ -0,0 +1,17 @@
++DESCRIPTION = "Demo helper scripts for Matrix v2"
++HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
++
++require matrix-gui-apps-git.inc
++
++PR = "${INC_PR}.0"
++
++inherit allarch
++
++S = "${WORKDIR}/git/scripts"
++
++do_install_append(){
++    install -d ${D}${bindir}
++    install -m 0755 ${S}/optimize-benchmark.sh ${D}${bindir}/ 
++}
++
++FILES_${PN} += "{bindir}/*"
 -- 
 1.7.9.5
 
