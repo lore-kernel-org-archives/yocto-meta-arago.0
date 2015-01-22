@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id A671152A24
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id B4C3952A36
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Jan 2015 16:42:53 +0000 (UTC)
+	Thu, 22 Jan 2015 16:42:54 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0MGgq4Q007798
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0MGgrnF004019
+	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:53 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0MGgqJv017296
 	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:52 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0MGgpvb017281
-	for <meta-arago@arago-project.org>; Thu, 22 Jan 2015 10:42:51 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 22 Jan 2015 10:42:50 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 22 Jan 2015 10:42:52 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t0MGgoBo003094;	Thu, 22 Jan 2015 10:42:50 -0600
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0MGgpIV008329;	Thu, 22 Jan 2015 10:42:52 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t0MGgiaF021460;	Thu, 22 Jan 2015 22:12:48 +0530
+	0.8) with ESMTP id t0MGgiaG021460;	Thu, 22 Jan 2015 22:12:50 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Jan 2015 10:42:40 -0600
-Message-ID: <1421944962-32315-4-git-send-email-fcooper@ti.com>
+Date: Thu, 22 Jan 2015 10:42:41 -0600
+Message-ID: <1421944962-32315-5-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1421944962-32315-1-git-send-email-fcooper@ti.com>
 References: <1421944962-32315-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 4/5] matrix-gui-pm-demos: Use static set PM governor application
+Subject: [PATCH 5/5] matrix-gui-*: Add dependency on matrix-gui-helper-scripts
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,61 +45,79 @@ Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* Switch from dynamic PM governor applications to static version.
-* By default the kernel list only governors that are builtin but your still able
-  to request a governor module by asking for it.
-* Therefore, depending on the available governor list is miss leading since you
-  may actually use governors that aren't on this list.
-* So instead of dynamically listing what governors you have, simply create
-  Matrix static apps for governors you know you have.
+* These apps now use the optimize-benchmark script. Therefore, depend on
+  matrix-gui-helper-scripts to insure that the script is on the filesystem.
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-pm-demos_2.0.bb |   19 +++----------------
- 1 file changed, 3 insertions(+), 16 deletions(-)
+ .../matrix/matrix-gui-armbenchmarks-demos_2.0.bb   |    4 ++--
+ .../matrix/matrix-gui-crypto-demos_2.0.bb          |    4 ++--
+ .../matrix/matrix-gui-usb-demos_2.0.bb             |    4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
-index 8aefde6..f0fad03 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
-@@ -3,25 +3,12 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb
+index 7aa185d..7ab29fa 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
  
  require matrix-gui-apps-git.inc
  
--PR = "${INC_PR}.3"
-+PR = "${INC_PR}.4"
+-PR = "${INC_PR}.5"
++PR = "${INC_PR}.6"
  
  inherit allarch
  
- S = "${WORKDIR}/git/power_apps"
+@@ -13,6 +13,6 @@ S = "${WORKDIR}/git/arm_apps"
+ RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-arm"
  
--
--do_install_prepend(){
--   install -d ${D}${MATRIX_BASE_DIR}/html-apps/
--
--   cp -rf ${S}/set_governor/power-set-governor ${D}${MATRIX_BASE_DIR}/html-apps/
--
--}
--
--do_install_append(){
--    rm ${D}${MATRIX_APP_DIR}/set_governor/set-governor.php
--}
--
--
- # Make sure power submenu and app images has been installed
- RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-power matrix-gui-generic-pm"
+ # Make sure the benchmarks have been installed
+-RDEPENDS_${PN} += "arm-benchmarks lmbench nbench-byte"
++RDEPENDS_${PN} += "arm-benchmarks lmbench nbench-byte matrix-gui-helper-scripts"
  
-@@ -36,8 +23,8 @@ FILES_${PN}-dump-reg += "${MATRIX_APP_DIR}/pm_dump_reg/*"
- FILES_${PN}-snapshot1 += "${MATRIX_APP_DIR}/pm_snapshot_1/*"
- FILES_${PN}-snapshot2 += "${MATRIX_APP_DIR}/pm_snapshot_2/*"
- FILES_${PN}-suspend += "${MATRIX_APP_DIR}/pm_suspend/*"
--FILES_${PN}-governor += "${MATRIX_APP_DIR}/set_governor/* \
--                         ${MATRIX_BASE_DIR}/html-apps/power-set-governor/*"
-+FILES_${PN}-governor += "${MATRIX_APP_DIR}/pm_userspace_governor/* \
-+                         ${MATRIX_APP_DIR}/pm_ondemand_governor/*"
+ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+index 04b0825..36e26bc 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
  
- # Split the ${bindir} files by PM app
- FILES_${PN}-count += "${bindir}/pm_count.sh"
+ require matrix-gui-apps-git.inc
+ 
+-PR = "${INC_PR}.8"
++PR = "${INC_PR}.9"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -17,7 +17,7 @@ SRC_URI += "file://0001-openssl_perf.sh-remove-module-manipulation.patch;striple
+ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+ 
+ # Make sure crypto submenu and app images has been installed. Also make sure openssl is available
+-RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl"
++RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl matrix-gui-helper-scripts"
+ 
+ RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
+ RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-usb-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-usb-demos_2.0.bb
+index 6a1ecc8..80b0b27 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-usb-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-usb-demos_2.0.bb
+@@ -3,13 +3,13 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+ 
+ require matrix-gui-apps-git.inc
+ 
+-PR = "${INC_PR}.1"
++PR = "${INC_PR}.2"
+ 
+ inherit allarch
+ 
+ S = "${WORKDIR}/git/usb_apps"
+ 
+ # Make sure usb submenu and app images has been installed
+-RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-usb bonnie++"
++RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-usb bonnie++ matrix-gui-helper-scripts"
+ 
+ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
 -- 
 1.7.9.5
 
