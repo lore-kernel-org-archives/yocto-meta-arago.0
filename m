@@ -1,27 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id D73CC52090
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D055B52A23
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Jan 2015 17:22:15 +0000 (UTC)
-Received: from gandalf.denix.org ([108.18.33.160]) by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NIS005V7O8GBB60@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 26 Jan 2015 11:21:58 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=D9vw8UVm c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=YNv0rlydsVwA:10
-	a=sozttTNsAAAA:8	a=tl4s_Cw27ytDOlbxzY4A:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 5301D201B9;	Mon,
-	26 Jan 2015 12:21:52 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 26 Jan 2015 12:21:52 -0500
-Message-id: <1422292912-18025-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] branding-core: re-enable AUTOREV after the release
+	Mon, 26 Jan 2015 19:22:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0QJMa7D028781
+	for <meta-arago@arago-project.org>; Mon, 26 Jan 2015 13:22:36 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0QJMZIh003464
+	for <meta-arago@arago-project.org>; Mon, 26 Jan 2015 13:22:35 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 26 Jan 2015 13:22:34 -0600
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0QJMXxm031029;	Mon, 26 Jan 2015 13:22:34 -0600
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id t0QJMVRi004719;	Tue, 27 Jan 2015 00:52:32 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 26 Jan 2015 13:22:29 -0600
+Message-ID: <1422300149-1152-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] branding-amsdk: Avoid picking up auto rev kernel and u-boot
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,30 +38,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jan 2015 17:22:16 -0000
+X-List-Received-Date: Mon, 26 Jan 2015 19:22:37 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+* Until AMSDK 8 is released the kernel, u-boot and ltp-ddt will stay at its
+  current commit. Therefore, avoid picking up branding-core to avoid the
+  autorev.
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-core.inc | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../conf/distro/include/branding-amsdk.inc         |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index 311998b..b759469 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -6,6 +6,6 @@
- # hence this file is mostly empty and used as a template
+diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+index 348a896..0884077 100644
+--- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+@@ -1,4 +1,4 @@
+-require branding-core.inc
++
+ QT_PROVIDER := "${@bb.utils.contains('SOC_FAMILY','omap-a15:dra7xx','qt5','qt4e',d)}"
  
- # Auto rev important packages to pick up latest
--#SRCREV_pn-linux-ti-staging = "${AUTOREV}"
--#SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
--#SRCREV_pn-ltp-ddt = "${AUTOREV}"
-+SRCREV_pn-linux-ti-staging = "${AUTOREV}"
-+SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
-+SRCREV_pn-ltp-ddt = "${AUTOREV}"
+ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
 -- 
-2.2.0
+1.7.9.5
 
 
