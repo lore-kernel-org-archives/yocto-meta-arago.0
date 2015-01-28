@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 62584529B3
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id 0FB3252B39
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Jan 2015 21:27:53 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0RLRqu7022174
-	for <meta-arago@arago-project.org>; Tue, 27 Jan 2015 15:27:52 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0RLRpud003852
-	for <meta-arago@arago-project.org>; Tue, 27 Jan 2015 15:27:51 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 27 Jan 2015 15:27:51 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0RLRpAG015213;
-	Tue, 27 Jan 2015 15:27:51 -0600
-Date: Tue, 27 Jan 2015 16:27:50 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Carlos Hernandez <ceh@ti.com>
-Message-ID: <20150127212750.GO21328@edge>
-References: <1422392812-16627-1-git-send-email-ceh@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1422392812-16627-1-git-send-email-ceh@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] Update linaro-pm-qa-utils package version
+	Wed, 28 Jan 2015 01:33:26 +0000 (UTC)
+Received: from gandalf.denix.org ([108.18.33.160]) by vms173017.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NIV00MW25MO8UA0@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 27 Jan 2015 19:32:49 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Kc1larcG c=1 sm=1 tr=0	a=A8KAnipHuDHkz1LiHkTZyg==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=YNv0rlydsVwA:10
+	a=sozttTNsAAAA:8	a=6lOFTim3ljhF90GePSsA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id BA0A4200DD;	Tue,
+	27 Jan 2015 20:32:48 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 27 Jan 2015 20:32:48 -0500
+Message-id: <1422408768-26587-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] gst-plugins-*-mm-accel: sync up on customizations between gst plugins
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,46 +34,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 21:27:53 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 28 Jan 2015 01:33:27 -0000
 
-On Tue, Jan 27, 2015 at 04:06:52PM -0500, Carlos Hernandez wrote:
-> The old version contains bugs, such as false negatives on cpuidle
-> tests, so update to latest version that contains this on other
-> fixes.
-> 
-> Signed-off-by: Carlos Hernandez <ceh@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
-Acked-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../gstreamer/gst-plugins-bad-mm-accel_0.10.23.bbappend          | 9 +++++++++
+ .../gstreamer/gst-plugins-good-mm-accel_0.10.31.bbappend         | 6 ++++++
+ 2 files changed, 15 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bbappend
+ create mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bbappend
 
+diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bbappend
+new file mode 100644
+index 0000000..e6d72ba
+--- /dev/null
++++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bbappend
+@@ -0,0 +1,9 @@
++PR_append = "-arago0"
++
++PACKAGECONFIG = "bzip curl faad"
++
++# Disable features that have potential commercial licensing restrictions
++EXTRA_OECONF += "\
++    --disable-mpeg2enc \
++    --disable-acm \
++"
+diff --git a/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bbappend b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bbappend
+new file mode 100644
+index 0000000..4cb0608
+--- /dev/null
++++ b/meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bbappend
+@@ -0,0 +1,6 @@
++PR_append = "-arago0"
++
++DEPENDS := "${@oe_filter_out('gconf','${DEPENDS}', d)}"
++DEPENDS := "${@oe_filter_out('gconf-native','${DEPENDS}', d)}"
++
++EXTRA_OECONF += "--disable-gconftool --disable-gconf"
+-- 
+2.2.0
 
-> ---
->  .../recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb           | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb b/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb
-> index a836a8d..9768a46 100644
-> --- a/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb
-> +++ b/meta-arago-extras/recipes-devtools/linaro-pm-qa/linaro-pm-qa-utils_git.bb
-> @@ -5,10 +5,10 @@ LICENSE = "GPLv2"
->  LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
->  
->  PV = "0.4.4"
-> -PR = "r2"
-> +PR = "r3"
->  
->  BRANCH ?= "master"
-> -SRCREV = "fbc2762359b863dfbf4fd0bab1e8abd2a6125ed4"
-> +SRCREV = "bdd94ec9204151ba845e9c057de92360c63bbffb"
->  
->  SRC_URI = "git://git.linaro.org/tools/pm-qa.git;protocol=git;branch=${BRANCH}"
->  
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
