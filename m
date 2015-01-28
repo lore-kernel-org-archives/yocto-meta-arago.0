@@ -1,33 +1,30 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id EB30152A4B
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id EAF1152A4B
 	for <meta-arago@arago-project.org>;
-	Wed, 28 Jan 2015 06:34:28 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0S6YRf8011872
-	for <meta-arago@arago-project.org>; Wed, 28 Jan 2015 00:34:27 -0600
-Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0S6YM0Y021487
-	for <meta-arago@arago-project.org>; Wed, 28 Jan 2015 12:04:24 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.03.0224.002; Wed, 28 Jan 2015 12:04:22 +0530
-From: "Devshatwar, Nikhil" <nikhil.nd@ti.com>
-To: "Devshatwar, Nikhil" <nikhil.nd@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [PATCH] packagegroup-arago-test: Update vpdma-fw and vpe-tests
-	packages
-Thread-Index: AQHQOsQYyv7DA1HJxEeHHtZ3GnUY2JzVErfQ
-Date: Wed, 28 Jan 2015 06:34:21 +0000
-Message-ID: <E60A9E1B4132A24DB80BD56ABC92684735043FCF@DBDE04.ent.ti.com>
-References: <1422426701-26910-1-git-send-email-nikhil.nd@ti.com>
-In-Reply-To: <1422426701-26910-1-git-send-email-nikhil.nd@ti.com>
+	Wed, 28 Jan 2015 06:38:04 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0S6c4sP020418
+	for <meta-arago@arago-project.org>; Wed, 28 Jan 2015 00:38:04 -0600
+Received: from DFLE51.ent.ti.com (dfle51.ent.ti.com [10.64.6.12])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0S6c3pw015710
+	for <meta-arago@arago-project.org>; Wed, 28 Jan 2015 00:38:03 -0600
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DFLE51.ent.ti.com ([fe80::f88a:66e:ad57:ae4a%17]) with mapi id
+	14.03.0224.002; Wed, 28 Jan 2015 00:38:02 -0600
+From: "Dmytriyenko, Denys" <denys@ti.com>
+To: "Devshatwar, Nikhil" <nikhil.nd@ti.com>
+Thread-Topic: [meta-arago] [PATCH] packagegroup-arago-test: Update vpdma-fw
+	and vpe-tests packages
+Thread-Index: AdA6xPawxIfSm/eywkecNSJimts7Qw==
+Date: Wed, 28 Jan 2015 06:38:02 +0000
+Message-ID: <B0581B5571079145BA1CD78C126DBDE7321FC3CA@DLEE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
 MIME-Version: 1.0
-Cc: "R, Karthik" <karthik.ramanan@ti.com>
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "R,
+	Karthik" <karthik.ramanan@ti.com>
 Subject: Re: [PATCH] packagegroup-arago-test: Update vpdma-fw and vpe-tests packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -41,53 +38,99 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 06:34:29 -0000
+X-List-Received-Date: Wed, 28 Jan 2015 06:38:05 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_B0581B5571079145BA1CD78C126DBDE7321FC3CADLEE08entticom_"
 
-Hi,
-The patch http://dflvsu0004.dal.design.ti.com/patch/12353/ in meta-ti
-Splits the vpdma-fw and vpe-tests recipes
-This patch is needed to update the package group in meta-arago correspondin=
-gly
+--_000_B0581B5571079145BA1CD78C126DBDE7321FC3CADLEE08entticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+VGhhbmtzLiBJIGhhdmUgYWxyZWFkeSBub3RpY2VkIHRoZSBidWlsZCBicmVha2luZyB0b25pZ2h0
+IGZvciBEUkE3eCBkdWUgdG8gdGhpcy4uLg0KDQotLQ0KRGVueXMNCg0KT24gSmFuIDI4LCAyMDE1
+IDE6MzQgQU0sICJEZXZzaGF0d2FyLCBOaWtoaWwiIDxuaWtoaWwubmRAdGkuY29tPiB3cm90ZToN
+CkhpLA0KVGhlIHBhdGNoIGh0dHA6Ly9kZmx2c3UwMDA0LmRhbC5kZXNpZ24udGkuY29tL3BhdGNo
+LzEyMzUzLyBpbiBtZXRhLXRpDQpTcGxpdHMgdGhlIHZwZG1hLWZ3IGFuZCB2cGUtdGVzdHMgcmVj
+aXBlcw0KVGhpcyBwYXRjaCBpcyBuZWVkZWQgdG8gdXBkYXRlIHRoZSBwYWNrYWdlIGdyb3VwIGlu
+IG1ldGEtYXJhZ28gY29ycmVzcG9uZGluZ2x5DQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KPiBGcm9tOiBEZXZzaGF0d2FyLCBOaWtoaWwNCj4gU2VudDogV2VkbmVzZGF5LCBKYW51
+YXJ5IDI4LCAyMDE1IDEyOjAyIFBNDQo+IFRvOiBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3Jn
+DQo+IENjOiBSLCBLYXJ0aGlrOyBEZXZzaGF0d2FyLCBOaWtoaWwNCj4gU3ViamVjdDogW1BBVENI
+XSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGVzdDogVXBkYXRlIHZwZG1hLWZ3IGFuZCB2cGUtdGVzdHMN
+Cj4gcGFja2FnZXMNCj4NCj4gVGhlIHZwZG1hLWZ3IGFuZCB2cGUtdGVzdHMgYXJlIGluZGVwZW5k
+ZW50IHBhY2thZ2VzIG5vdy4NCj4gQWRkaW5nIHRoZW0gYm90aCBpbiB0aGUgcGFja2FnZWdyb3Vw
+Lg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBOaWtoaWwgRGV2c2hhdHdhciA8bmlraGlsLm5kQHRpLmNv
+bT4NCj4gLS0tDQo+ICAuLi4vcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tdGVzdC5i
+YiAgICAgICB8ICAgIDMgKystDQo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAx
+IGRlbGV0aW9uKC0pDQo+DQo+IGRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVz
+LWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtDQo+IGFyYWdvLXRlc3QuYmIgYi9tZXRh
+LWFyYWdvLWRpc3Ryby9yZWNpcGVzLQ0KPiBjb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3Vw
+LWFyYWdvLXRlc3QuYmINCj4gaW5kZXggNmFmMTMyMS4uODNiYTIwZSAxMDA2NDQNCj4gLS0tIGEv
+bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3Vw
+LWFyYWdvLQ0KPiB0ZXN0LmJiDQo+ICsrKyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29y
+ZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby0NCj4gdGVzdC5iYg0KPiBAQCAtNDQs
+NyArNDQsOCBAQCBBUkFHT19USV9URVNUX2FwcGVuZF9vbWFwLWExNSA9ICIgXA0KPiAgICAgICIN
+Cj4NCj4gIEFSQUdPX1RJX1RFU1RfYXBwZW5kX2RyYTd4eCA9ICIgXA0KPiAtICAgIHZwZS12cGRt
+YSBcDQo+ICsgICAgdnBkbWEtZncgXA0KPiArICAgIHZwZS10ZXN0cyBcDQo+ICAgICAgIg0KPg0K
+PiAgUkRFUEVORFNfJHtQTn0gPSAiXA0KPiAtLQ0KPiAxLjcuOS41DQoNCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQptZXRhLWFyYWdvIG1haWxpbmcgbGlz
+dA0KbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KaHR0cDovL2FyYWdvLXByb2plY3Qub3Jn
+L2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdvDQo=
 
-> -----Original Message-----
-> From: Devshatwar, Nikhil
-> Sent: Wednesday, January 28, 2015 12:02 PM
-> To: meta-arago@arago-project.org
-> Cc: R, Karthik; Devshatwar, Nikhil
-> Subject: [PATCH] packagegroup-arago-test: Update vpdma-fw and vpe-tests
-> packages
->=20
-> The vpdma-fw and vpe-tests are independent packages now.
-> Adding them both in the packagegroup.
->=20
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-test.bb       |    3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-test.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-test.bb
-> index 6af1321..83ba20e 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> test.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> test.bb
-> @@ -44,7 +44,8 @@ ARAGO_TI_TEST_append_omap-a15 =3D " \
->      "
->=20
->  ARAGO_TI_TEST_append_dra7xx =3D " \
-> -    vpe-vpdma \
-> +    vpdma-fw \
-> +    vpe-tests \
->      "
->=20
->  RDEPENDS_${PN} =3D "\
-> --
-> 1.7.9.5
+--_000_B0581B5571079145BA1CD78C126DBDE7321FC3CADLEE08entticom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <09489E54201B0646B86C23C5008D8B33@owa.mail.ti.com>
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHAgZGlyPSJsdHIi
+PlRoYW5rcy4gSSBoYXZlIGFscmVhZHkgbm90aWNlZCB0aGUgYnVpbGQgYnJlYWtpbmcgdG9uaWdo
+dCBmb3IgRFJBN3ggZHVlIHRvIHRoaXMuLi48L3A+DQo8cCBkaXI9Imx0ciI+LS0gPGJyPg0KRGVu
+eXM8L3A+DQo8ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gSmFuIDI4LCAyMDE1IDE6MzQgQU0s
+ICZxdW90O0RldnNoYXR3YXIsIE5pa2hpbCZxdW90OyAmbHQ7bmlraGlsLm5kQHRpLmNvbSZndDsg
+d3JvdGU6PGJyIHR5cGU9ImF0dHJpYnV0aW9uIj4NCjxibG9ja3F1b3RlIGNsYXNzPSJxdW90ZSIg
+c3R5bGU9Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2NjIHNvbGlkO3BhZGRp
+bmctbGVmdDoxZXgiPg0KPGRpdj48Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjEwcHQiPjwvc3Bhbj48L2ZvbnQ+DQo8ZGl2PkhpLDxicj4NClRoZSBwYXRjaCA8YSBocmVmPSJo
+dHRwOi8vZGZsdnN1MDAwNC5kYWwuZGVzaWduLnRpLmNvbS9wYXRjaC8xMjM1My8iPmh0dHA6Ly9k
+Zmx2c3UwMDA0LmRhbC5kZXNpZ24udGkuY29tL3BhdGNoLzEyMzUzLzwvYT4gaW4gbWV0YS10aTxi
+cj4NClNwbGl0cyB0aGUgdnBkbWEtZncgYW5kIHZwZS10ZXN0cyByZWNpcGVzPGJyPg0KVGhpcyBw
+YXRjaCBpcyBuZWVkZWQgdG8gdXBkYXRlIHRoZSBwYWNrYWdlIGdyb3VwIGluIG1ldGEtYXJhZ28g
+Y29ycmVzcG9uZGluZ2x5PGJyPg0KPGJyPg0KPGJyPg0KJmd0OyAtLS0tLU9yaWdpbmFsIE1lc3Nh
+Z2UtLS0tLTxicj4NCiZndDsgRnJvbTogRGV2c2hhdHdhciwgTmlraGlsPGJyPg0KJmd0OyBTZW50
+OiBXZWRuZXNkYXksIEphbnVhcnkgMjgsIDIwMTUgMTI6MDIgUE08YnI+DQomZ3Q7IFRvOiBtZXRh
+LWFyYWdvQGFyYWdvLXByb2plY3Qub3JnPGJyPg0KJmd0OyBDYzogUiwgS2FydGhpazsgRGV2c2hh
+dHdhciwgTmlraGlsPGJyPg0KJmd0OyBTdWJqZWN0OiBbUEFUQ0hdIHBhY2thZ2Vncm91cC1hcmFn
+by10ZXN0OiBVcGRhdGUgdnBkbWEtZncgYW5kIHZwZS10ZXN0czxicj4NCiZndDsgcGFja2FnZXM8
+YnI+DQomZ3Q7IDxicj4NCiZndDsgVGhlIHZwZG1hLWZ3IGFuZCB2cGUtdGVzdHMgYXJlIGluZGVw
+ZW5kZW50IHBhY2thZ2VzIG5vdy48YnI+DQomZ3Q7IEFkZGluZyB0aGVtIGJvdGggaW4gdGhlIHBh
+Y2thZ2Vncm91cC48YnI+DQomZ3Q7IDxicj4NCiZndDsgU2lnbmVkLW9mZi1ieTogTmlraGlsIERl
+dnNoYXR3YXIgJmx0O25pa2hpbC5uZEB0aS5jb20mZ3Q7PGJyPg0KJmd0OyAtLS08YnI+DQomZ3Q7
+Jm5ic3A7IC4uLi9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10ZXN0LmJiJm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHwmbmJzcDsmbmJzcDsmbmJzcDsgMyAmIzQz
+OyYjNDM7LTxicj4NCiZndDsmbmJzcDsgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygmIzQz
+OyksIDEgZGVsZXRpb24oLSk8YnI+DQomZ3Q7IDxicj4NCiZndDsgZGlmZiAtLWdpdCBhL21ldGEt
+YXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC08YnI+
+DQomZ3Q7IGFyYWdvLXRlc3QuYmIgYi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLTxicj4NCiZn
+dDsgY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10ZXN0LmJiPGJyPg0KJmd0
+OyBpbmRleCA2YWYxMzIxLi44M2JhMjBlIDEwMDY0NDxicj4NCiZndDsgLS0tIGEvbWV0YS1hcmFn
+by1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLTxi
+cj4NCiZndDsgdGVzdC5iYjxicj4NCiZndDsgJiM0MzsmIzQzOyYjNDM7IGIvbWV0YS1hcmFnby1k
+aXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLTxicj4N
+CiZndDsgdGVzdC5iYjxicj4NCiZndDsgQEAgLTQ0LDcgJiM0Mzs0NCw4IEBAIEFSQUdPX1RJX1RF
+U1RfYXBwZW5kX29tYXAtYTE1ID0gJnF1b3Q7IFw8YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7ICZxdW90Ozxicj4NCiZndDsgPGJyPg0KJmd0OyZuYnNwOyBBUkFHT19USV9U
+RVNUX2FwcGVuZF9kcmE3eHggPSAmcXVvdDsgXDxicj4NCiZndDsgLSZuYnNwOyZuYnNwOyZuYnNw
+OyB2cGUtdnBkbWEgXDxicj4NCiZndDsgJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsgdnBkbWEtZncg
+XDxicj4NCiZndDsgJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsgdnBlLXRlc3RzIFw8YnI+DQomZ3Q7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZxdW90Ozxicj4NCiZndDsgPGJyPg0KJmd0
+OyZuYnNwOyBSREVQRU5EU18ke1BOfSA9ICZxdW90O1w8YnI+DQomZ3Q7IC0tPGJyPg0KJmd0OyAx
+LjcuOS41PGJyPg0KPGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX188YnI+DQptZXRhLWFyYWdvIG1haWxpbmcgbGlzdDxicj4NCm1ldGEtYXJhZ29AYXJh
+Z28tcHJvamVjdC5vcmc8YnI+DQo8YSBocmVmPSJodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dp
+LWJpbi9tYWlsbWFuL2xpc3RpbmZvL21ldGEtYXJhZ28iPmh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9y
+Zy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbzwvYT48YnI+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
+--_000_B0581B5571079145BA1CD78C126DBDE7321FC3CADLEE08entticom_--
