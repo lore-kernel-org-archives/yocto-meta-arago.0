@@ -1,32 +1,27 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <karthik.ramanan@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7AD3D52090
+	by arago-project.org (Postfix) with ESMTPS id D845552A23
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Jan 2015 13:21:03 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0TDL2wi015176
-	for <meta-arago@arago-project.org>; Thu, 29 Jan 2015 07:21:03 -0600
+	Thu, 29 Jan 2015 14:31:30 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0TEVTac023129
+	for <meta-arago@arago-project.org>; Thu, 29 Jan 2015 08:31:29 -0600
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0TDL17M022113
-	for <meta-arago@arago-project.org>; Thu, 29 Jan 2015 07:21:01 -0600
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Thu, 29 Jan 2015 07:21:01 -0600
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "R, Karthik" <karthik.ramanan@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] crda: Fix issue with upstream repository
-Thread-Index: AQHQO8UU/U2whhjFv0miv/85Nj4a4pzXFLoA
-Date: Thu, 29 Jan 2015 13:21:01 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958140E7C45@DFLE09.ent.ti.com>
-References: <1422537068-15904-1-git-send-email-a0393906@ti.com>
-In-Reply-To: <1422537068-15904-1-git-send-email-a0393906@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0TEVSjj006733
+	for <meta-arago@arago-project.org>; Thu, 29 Jan 2015 08:31:28 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 29 Jan 2015 08:31:28 -0600
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0TEVQ53018082;
+	Thu, 29 Jan 2015 08:31:27 -0600
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 29 Jan 2015 20:01:25 +0530
+Message-ID: <1422541885-5800-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH] crda: Fix issue with upstream repository
+Subject: [RFC PATCH] base-files: Increase /var/volatile size
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,64 +34,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jan 2015 13:21:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 29 Jan 2015 14:31:32 -0000
+Content-Type: text/plain
 
-ACK.
-
-I also ran into this issue and tested a similar patch last night.=20
-
------Original Message-----
-From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
--project.org] On Behalf Of R, Karthik
-Sent: Thursday, January 29, 2015 8:11 AM
-To: meta-arago@arago-project.org
-Subject: [meta-arago] [PATCH] crda: Fix issue with upstream repository
-
-* The download from wireless.kernel.org is not working.
-* Pointing to an alternate source
-* Adapted to the new way of picking up the required
-  version of the regulatory.bin
+* Weston applications allocate memory from tmpfs, need to 
+  increase the tmpfs area to atleast 50M. Can this be 
+  increased more - what are the pros/cons?
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../recipes-connectivity/crda/crda_1.1.3.bbappend  |   15 +++++++++++++++
- 1 file changed, 15 insertions(+)
- create mode 100644 meta-arago-extras/recipes-connectivity/crda/crda_1.1.3.=
-bbappend
+ .../recipes-core/base-files/base-files/fstab       |    2 +-
+ .../base-files/base-files_3.0.14.bbappend          |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/crda/crda_1.1.3.bbappen=
-d b/meta-arago-extras/recipes-connectivity/crda/crda_1.1.3.bbappend
-new file mode 100644
-index 0000000..6dd888a
---- /dev/null
-+++ b/meta-arago-extras/recipes-connectivity/crda/crda_1.1.3.bbappend
-@@ -0,0 +1,15 @@
-+SRC_URI =3D "ftp://www.kernel.org/pub/software/network/crda/${BP}.tar.bz2;=
-name=3Dcrda \
-+          =20
-+ftp://www.kernel.org/pub/software/network/wireless-regdb/wireless-regdb-20=
-13.01.11.tar.gz;name=3Dbin \ "
-+
-+SRC_URI[bin.md5sum] =3D "57f2d4c2cdfa2d20c859bca202dd6ece"
-+SRC_URI[bin.sha256sum] =3D "608c2fea6ca840a51bc1a8c35c53ca4c20a78d4f78c3bc=
-7cbdcd53dee0cc0cf8"
-+
-+
-+do_install() {
-+    oe_runmake SBINDIR=3D${sbindir}/ install
-+
-+    install -d ${D}${libdir}/crda/
-+
-+    install -m 0644 ${WORKDIR}/wireless-regdb-2013.01.11/regulatory.bin=20
-+${D}${libdir}/crda/regulatory.bin }
---
+diff --git a/meta-arago-distro/recipes-core/base-files/base-files/fstab b/meta-arago-distro/recipes-core/base-files/base-files/fstab
+index 9ed6f33..8ddadd9 100644
+--- a/meta-arago-distro/recipes-core/base-files/base-files/fstab
++++ b/meta-arago-distro/recipes-core/base-files/base-files/fstab
+@@ -5,7 +5,7 @@ proc                 /proc                proc       defaults              0  0
+ devpts               /dev/pts             devpts     mode=0620,gid=5       0  0
+ usbdevfs             /proc/bus/usb        usbdevfs   noauto                0  0
+ tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
+-tmpfs                /var/volatile        tmpfs      defaults,size=16M     0  0
++tmpfs                /var/volatile        tmpfs      defaults,size=50M     0  0
+ tmpfs                /media/ram           tmpfs      defaults,size=16M     0  0
+ 
+ # uncomment this if your device has a SD/MMC/Transflash slot
+diff --git a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
+index 40b7722..956a057 100644
+--- a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
++++ b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
+@@ -1,4 +1,4 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago3"
++PR_append = "-arago4"
+-- 
 1.7.9.5
 
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
