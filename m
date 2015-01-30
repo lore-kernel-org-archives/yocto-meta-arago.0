@@ -1,31 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5F1A852090
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 213AE529B3
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Jan 2015 22:31:46 +0000 (UTC)
+	Fri, 30 Jan 2015 22:31:48 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0UMVjx1009282
-	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 16:31:45 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0UMViuJ006941
-	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 16:31:44 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 30 Jan 2015 16:31:43 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0UMVlwD021657
+	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 16:31:47 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0UMVkTl006958
+	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 16:31:46 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 30 Jan 2015 16:31:46 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t0UMVh9e017926;	Fri, 30 Jan 2015 16:31:44 -0600
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t0UMVjVh008237;	Fri, 30 Jan 2015 16:31:45 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t0UMVf1m007326;	Sat, 31 Jan 2015 04:01:42 +0530
+	0.8) with ESMTP id t0UMVf1n007326;	Sat, 31 Jan 2015 04:01:43 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 30 Jan 2015 16:31:34 -0600
-Message-ID: <1422657099-15544-1-git-send-email-fcooper@ti.com>
+Date: Fri, 30 Jan 2015 16:31:35 -0600
+Message-ID: <1422657099-15544-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1422657099-15544-1-git-send-email-fcooper@ti.com>
+References: <1422657099-15544-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/6] ti-tisdk-makefile: Allow the defconfig name to be customized
+Subject: [PATCH 2/6] busybox: Add mpstat utility which is useful for multicore devices.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,84 +40,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jan 2015 22:31:46 -0000
+X-List-Received-Date: Fri, 30 Jan 2015 22:31:48 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* Sitara-linux-ti-staging_3.14 used with the AMSDK branding doesn't use the
-  tisdk defconfig.
-* Therefore,  change the tisdk-makefiles to use the "right" defconfig.
-* For other brandings the same tisdk_${MACHINE}_defconfig will be used.
-
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_linux               |    2 +-
- .../ti-tisdk-makefile/ti-tisdk-makefile/Rules.make |    3 +++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    9 ++++++++-
- 3 files changed, 12 insertions(+), 2 deletions(-)
+ .../recipes-core/busybox/busybox/defconfig         |    2 +-
+ .../recipes-core/busybox/busybox_1.22.1.bbappend   |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux
-index 07d56b1..145e27c 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux
-@@ -3,7 +3,7 @@ linux: __DTB_DEPEND__
- 	@echo =================================
- 	@echo     Building the Linux Kernel
- 	@echo =================================
--	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) tisdk_$(PLATFORM)_defconfig
-+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) $(DEFCONFIG)
- 	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) __KERNEL_BUILD_CMDS__
- 	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) modules
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+index 69d7e5f..173a9c8 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+@@ -877,7 +877,7 @@ CONFIG_FEATURE_MIME_CHARSET=""
+ # Process Utilities
+ #
+ # CONFIG_IOSTAT is not set
+-# CONFIG_MPSTAT is not set
++CONFIG_MPSTAT=y
+ # CONFIG_NMETER is not set
+ # CONFIG_PMAP is not set
+ # CONFIG_POWERTOP is not set
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.22.1.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_1.22.1.bbappend
+index 0f49e64..a01a880 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_1.22.1.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_1.22.1.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-index b2dbf64..9070781 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-@@ -1,6 +1,9 @@
- #platform
- PLATFORM=__PLATFORM__
+-PR_append = "-arago13"
++PR_append = "-arago14"
  
-+#defconfig
-+DEFCONFIG=__DEFCONFIG__
-+
- #Architecture
- ARCH=__ARCH__
- 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index e371307..ce6e557 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -36,7 +36,7 @@ SRC_URI = "\
-     file://Makefile_cryptodev \
- "
- 
--PR = "r36"
-+PR = "r37"
- 
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -101,6 +101,12 @@ KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb"
- KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
- KERNEL_DEVICETREE_dra7xx = "dra7-evm.dtb dra72-evm.dtb am57xx-beagle-x15.dtb"
- 
-+DEFCONFIG = "tisdk_${MACHINE}_defconfig"
-+
-+AMSDK_DEFCONFIG = "singlecore-omap2plus_defconfig"
-+
-+DEFCONFIG := "${@base_conditional('ARAGO_BRAND','core','${DEFCONFIG}','${AMSDK_DEFCONFIG}',d)}"
-+
- # This step will stitch together the final Makefile based on the supported
- # make targets.
- do_install () {
-@@ -159,6 +165,7 @@ do_install () {
- 
-     # fixup Rules.make values
-     sed -i -e "s/__PLATFORM__/${MACHINE}/" ${D}/Rules.make
-+    sed -i -e "s/__DEFCONFIG__/${DEFCONFIG}/" ${D}/Rules.make
-     sed -i -e "s/__ARCH__/${PLATFORM_ARCH}/" ${D}/Rules.make
-     sed -i -e "s/__TOOLCHAIN_PREFIX__/${TOOLCHAIN_SYS}-/" ${D}/Rules.make
-     sed -i -e "s/__UBOOT_MACHINE__/${UBOOT_MACHINE}/" ${D}/Rules.make
+ SRC_URI += " \
+ 	file://inetd \
 -- 
 1.7.9.5
 
