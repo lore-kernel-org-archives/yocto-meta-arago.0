@@ -1,29 +1,31 @@
-Return-Path: <sam.nelson@ti.com>
+Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 3127A52AB4
+	by arago-project.org (Postfix) with ESMTPS id 104CA529DD
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Jan 2015 23:19:39 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0UNJcZQ026116
-	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 17:19:38 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0UNJbRP012401
-	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 17:19:37 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 30 Jan 2015 17:19:36 -0600
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t0UNJZlR017443;	Fri, 30 Jan 2015 17:19:36 -0600
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 30 Jan 2015 18:19:34 -0500
-Message-ID: <1422659974-29180-2-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1422659974-29180-1-git-send-email-sam.nelson@ti.com>
-References: <1422659974-29180-1-git-send-email-sam.nelson@ti.com>
+	Sat, 31 Jan 2015 02:52:46 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t0V2qibp007763
+	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 20:52:44 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0V2qh6A016375
+	for <meta-arago@arago-project.org>; Fri, 30 Jan 2015 20:52:43 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 30 Jan 2015 20:52:43 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t0V2qgCP026131;
+	Fri, 30 Jan 2015 20:52:42 -0600
+Date: Fri, 30 Jan 2015 21:52:42 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20150131025242.GA2883@edge>
+References: <1422657099-15544-1-git-send-email-fcooper@ti.com>
+	<1422657099-15544-6-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/2] libnl-xfrm: Add recipe for libnl-xfrm
+In-Reply-To: <1422657099-15544-6-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 6/6] sitara-linux-ti-staging: Simply package up the sources don't copy the defconfig
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,64 +38,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jan 2015 23:19:39 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 31 Jan 2015 02:52:47 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-- Provides libnl extension for XFRM support
+On Fri, Jan 30, 2015 at 04:31:39PM -0600, Franklin S. Cooper Jr wrote:
+> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+> 
+> * Avoid creating a "new" defconfig when the one used by the recipe
+>   gives the same exact result.
+> * This also avoids the confusion people have when seeing a defconfig that
+>   doesn't exist in any other git tree.
+> * Doing this only makes sense if the defconfig is intree and not being patched.
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
----
- .../recipes-support/libnl-xfrm/libnl-xfrm_git.bb   |   40 ++++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb
+Do you use config fragments in your kernel?
 
-diff --git a/meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb b/meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb
-new file mode 100644
-index 0000000..74733f0
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb
-@@ -0,0 +1,40 @@
-+DESCRIPTION = "Libnl extension for XFRM support"
-+PROVIDES = "libnl-xfrm"
-+SECTION = "net"
-+LICENSE = "BSD-3-Clause"
-+
-+COMPATIBLE_MACHINE = "keystone"
-+
-+LIC_FILES_CHKSUM = "file://include/xfrm_pvt.h;beginline=1;endline=33;md5=fe068af290f274f2a86a867bbd7cc61c"
-+
-+DEPENDS = "libnl"
-+
-+BRANCH="hawking_dev"
-+# The following commit correspond to DEV.LIBNL-XFRM.03.01.00.00A
-+SRCREV = "2a5ee7c4f41398c07c593e81af7b71c7720e6de8"
-+SRC_URI = "git://arago-project.org/git/projects/libnl-xfrm.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+LIBNL_XFRM_LIB = "lib/libnl-xfrm.a"
-+
-+CFLAGS += "-I${STAGING_INCDIR} -I${STAGING_INCDIR}/libnl3 -fPIC -DPIC "
-+
-+do_compile() {
-+	mkdir -p ${S}/lib
-+	make clean
-+	make all
-+}
-+
-+do_install_append() {
-+	install -d ${D}${libdir}/
-+	install -d ${D}${includedir}/
-+	install -d ${D}${includedir}/libnl3/netlink/
-+	install -d ${D}${includedir}/libnl3/netlink/xfrm/
-+	install -c -m 755 ${S}/${LIBNL_XFRM_LIB} ${D}${libdir}/
-+	install -c -m 755 ${S}/include/netlink/xfrm/*.h ${D}${includedir}/libnl3/netlink/xfrm/
-+	install -c -m 755 ${S}/lib/libnl-xfrm.so ${D}${libdir}/libnl-xfrm.so.1.0.0
-+	cd ${D}${libdir}/
-+	ln -s libnl-xfrm.so.1.0.0 libnl-xfrm.so.1
-+	ln -s libnl-xfrm.so.1.0.0 libnl-xfrm.so
-+}
--- 
-1.7.9.5
 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+>  .../linux/sitara-linux-ti-staging_3.14.bbappend    |    4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-kernel/linux/sitara-linux-ti-staging_3.14.bbappend b/meta-arago-distro/recipes-kernel/linux/sitara-linux-ti-staging_3.14.bbappend
+> index b0b1df2..7e8eaf2 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/sitara-linux-ti-staging_3.14.bbappend
+> +++ b/meta-arago-distro/recipes-kernel/linux/sitara-linux-ti-staging_3.14.bbappend
+> @@ -1,9 +1,7 @@
+> -MACHINE_KERNEL_PR_append = "-arago0"
+> +MACHINE_KERNEL_PR_append = "-arago1"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+>  
+> -require copy-defconfig.inc
+> -
+>  KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
+>  
+>  kernel_do_configure_prepend() {
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
