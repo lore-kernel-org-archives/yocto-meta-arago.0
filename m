@@ -1,27 +1,29 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B86F55299B
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id A5B7E529E3
 	for <meta-arago@arago-project.org>;
-	Sun,  1 Feb 2015 02:46:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t112kFrX010320
+	Sun,  1 Feb 2015 02:46:17 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t112kGLk024235
+	for <meta-arago@arago-project.org>; Sat, 31 Jan 2015 20:46:16 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t112kFS2008166
 	for <meta-arago@arago-project.org>; Sat, 31 Jan 2015 20:46:15 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t112kEqA001661
-	for <meta-arago@arago-project.org>; Sat, 31 Jan 2015 20:46:14 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Sat, 31 Jan 2015 20:46:14 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 31 Jan 2015 20:46:15 -0600
 Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t112kDrj020485;	Sat, 31 Jan 2015 20:46:13 -0600
+	t112kDrk020485;	Sat, 31 Jan 2015 20:46:15 -0600
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sat, 31 Jan 2015 21:46:10 -0500
-Message-ID: <1422758771-21253-1-git-send-email-sam.nelson@ti.com>
+Date: Sat, 31 Jan 2015 21:46:11 -0500
+Message-ID: <1422758771-21253-2-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1422758771-21253-1-git-send-email-sam.nelson@ti.com>
+References: <1422758771-21253-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2 1/2] arago-prefs: Update PREFERRED_VERSION of libnl for keystone
+Subject: [PATCH v2 2/2] libnl-xfrm: Add recipe for libnl-xfrm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,25 +39,60 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Sun, 01 Feb 2015 02:46:18 -0000
 Content-Type: text/plain
 
-- Updating libnl version to 3.2.24 for keystone platform
+- Provides libnl extension for XFRM support
 
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../conf/distro/include/arago-prefs.inc            |    1 +
- 1 file changed, 1 insertion(+)
+ .../recipes-support/libnl-xfrm/libnl-xfrm_git.bb   |   40 ++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 3421a7d..5092b25 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -107,6 +107,7 @@ PREFERRED_VERSION_readline-native = "5.2"
- PREFERRED_VERSION_readline-nativesdk = "5.2"
- 
- PREFERRED_VERSION_libnl = "3.2.22"
-+PREFERRED_VERSION_libnl_keystone = "3.2.24"
- PREFERRED_VERSION_crda = "1.1.3"
- PREFERRED_VERSION_obex = "0.34"
- PREFERRED_VERSION_bash = "3.2.48"
+diff --git a/meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb b/meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb
+new file mode 100644
+index 0000000..74733f0
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/libnl-xfrm/libnl-xfrm_git.bb
+@@ -0,0 +1,40 @@
++DESCRIPTION = "Libnl extension for XFRM support"
++PROVIDES = "libnl-xfrm"
++SECTION = "net"
++LICENSE = "BSD-3-Clause"
++
++COMPATIBLE_MACHINE = "keystone"
++
++LIC_FILES_CHKSUM = "file://include/xfrm_pvt.h;beginline=1;endline=33;md5=fe068af290f274f2a86a867bbd7cc61c"
++
++DEPENDS = "libnl"
++
++BRANCH="hawking_dev"
++# The following commit correspond to DEV.LIBNL-XFRM.03.01.00.00A
++SRCREV = "2a5ee7c4f41398c07c593e81af7b71c7720e6de8"
++SRC_URI = "git://arago-project.org/git/projects/libnl-xfrm.git;protocol=git;branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
++
++LIBNL_XFRM_LIB = "lib/libnl-xfrm.a"
++
++CFLAGS += "-I${STAGING_INCDIR} -I${STAGING_INCDIR}/libnl3 -fPIC -DPIC "
++
++do_compile() {
++	mkdir -p ${S}/lib
++	make clean
++	make all
++}
++
++do_install_append() {
++	install -d ${D}${libdir}/
++	install -d ${D}${includedir}/
++	install -d ${D}${includedir}/libnl3/netlink/
++	install -d ${D}${includedir}/libnl3/netlink/xfrm/
++	install -c -m 755 ${S}/${LIBNL_XFRM_LIB} ${D}${libdir}/
++	install -c -m 755 ${S}/include/netlink/xfrm/*.h ${D}${includedir}/libnl3/netlink/xfrm/
++	install -c -m 755 ${S}/lib/libnl-xfrm.so ${D}${libdir}/libnl-xfrm.so.1.0.0
++	cd ${D}${libdir}/
++	ln -s libnl-xfrm.so.1.0.0 libnl-xfrm.so.1
++	ln -s libnl-xfrm.so.1.0.0 libnl-xfrm.so
++}
 -- 
 1.7.9.5
 
