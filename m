@@ -1,35 +1,27 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id AB9B8529AF
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id 80A83529AF
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Feb 2015 21:09:49 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t12L9mug015986
-	for <meta-arago@arago-project.org>; Mon, 2 Feb 2015 15:09:48 -0600
-Received: from DFLE51.ent.ti.com (dfle51.ent.ti.com [10.64.6.12])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t12L9lXt023007
-	for <meta-arago@arago-project.org>; Mon, 2 Feb 2015 15:09:47 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE51.ent.ti.com ([fe80::f88a:66e:ad57:ae4a%17]) with mapi id
-	14.03.0224.002; Mon, 2 Feb 2015 15:09:47 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 4/6] sourceipk: Fix issue with git fetch
-	when shallow clone is used
-Thread-Index: AQHQPNyJUZL5GdsnskuAvwoTwBvOSJzeQoSA//+cvNA=
-Date: Mon, 2 Feb 2015 21:09:46 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C7F4477@DFLE08.ent.ti.com>
-References: <1422657099-15544-1-git-send-email-fcooper@ti.com>
-	<1422657099-15544-4-git-send-email-fcooper@ti.com>
-	<20150202210427.GB6257@edge>
-In-Reply-To: <20150202210427.GB6257@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 4/6] sourceipk: Fix issue with git fetch when shallow clone is used
+	Tue,  3 Feb 2015 02:55:36 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.89.130]) by vms173017.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NJ6009S5DG3CY40@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 02 Feb 2015 20:55:16 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=AptZB15K c=1 sm=1 tr=0	a=ckUr7rGttv+NBxkAVUaaIw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=0HtSIViG9nkA:10
+	a=sozttTNsAAAA:8	a=c030iWq4bqIvYAb913kA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 656C5200F4;	Mon,
+	2 Feb 2015 21:55:14 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 02 Feb 2015 21:55:13 -0500
+Message-id: <1422932113-15891-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] Implement "golden" images that passed run-time testing.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,73 +34,112 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 21:09:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Feb 2015 02:55:36 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ build-oesdk.sh                           |  7 +++++++
+ configs/arago-core-tisdk-daisy-puget.txt |  4 ++++
+ lib/oesdk/bitbake-test-sdk-image         | 35 ++++++++++++++++++++++++++++++++
+ 3 files changed, 46 insertions(+)
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Monday, February 02, 2015 3:04 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 4/6] sourceipk: Fix issue with git fetch
-> when shallow clone is used
->=20
-> On Fri, Jan 30, 2015 at 04:31:37PM -0600, Franklin S. Cooper Jr wrote:
-> > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> >
-> > * When shallow clone is used for some reason running git fetch on the
-> repository
-> >   didn't end up making it completely whole (fetch all commits).
-> > * Even worse the copied repository didn't have a proper way to referenc=
-e
-> or
-> >   fetch remote branches or tags.
-> > * For some reason deleting the origin and seeing it back to the correct
-> value
-> >   fixed these problems.
->=20
-> That all sounds like some kind of voodoo... :) What version of git were y=
-ou
-> using?
->=20
-[Franklin] 1.7.9.5 that's the version used with Ubuntu 12.04.
+diff --git a/build-oesdk.sh b/build-oesdk.sh
+index 968fb12..0eb5fec 100755
+--- a/build-oesdk.sh
++++ b/build-oesdk.sh
+@@ -218,4 +218,11 @@ then
+     rsync -az --delete $BUILD_ROOT/build-*/arago-tmp*/deploy/ $WEB_HOST/deploy/
+ fi
+ 
++echo "Copying golden/ directory"
++# If COPY_GOLDEN_TO_WEB is set then copy to the WEB_HOST.
++if [ "$COPY_GOLDEN_TO_WEB" == "true" ]
++then
++    rsync -az --delete $BUILD_ROOT/build-*/arago-tmp*/golden/ $WEB_HOST/golden/
++fi
++
+ echo "Build Finished"
+diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-core-tisdk-daisy-puget.txt
+index f595ed6..957d594 100644
+--- a/configs/arago-core-tisdk-daisy-puget.txt
++++ b/configs/arago-core-tisdk-daisy-puget.txt
+@@ -307,6 +307,10 @@ COPY_TO_WEB="true"
+ # such as images, IPK feeds etc, so may not be distributed publicly as is.
+ COPY_DEPLOY_TO_WEB="true"
+ 
++# This variable specifies whether or not to copy the "golden" contents to a
++# remote web hosting server. These are images that passed run-time tests.
++COPY_GOLDEN_TO_WEB="true"
++
+ # This variable points to the user@webhost:<basepath> location where the
+ # deploy contents should be placed.  This is best done if you have done a
+ # key exchange between these systems so that your SCP command will not ask
+diff --git a/lib/oesdk/bitbake-test-sdk-image b/lib/oesdk/bitbake-test-sdk-image
+index f6f91fa..8964912 100644
+--- a/lib/oesdk/bitbake-test-sdk-image
++++ b/lib/oesdk/bitbake-test-sdk-image
+@@ -271,9 +271,38 @@ copy_files_to_package_root() {
+     cp $test_dir/temp/filesystem/$FS_FILTER*.$FS_IMAGE_TYPE $root_partition/rootfs_partition.$FS_IMAGE_TYPE
+ }
+ 
++copy_golden_image() {
++    # Set m for logging purposes
++    m=$1
++
++    arago_tmp=`ls | grep "arago-tmp-*"`
++
++    # This is a critical failure and will not be able to be skipped
++    if [ "$arago_tmp" == "" ]
++    then
++        echo "Could not find the arago-tmp directory"
++        return 1
++    fi
++
++    img_path="$arago_tmp/deploy/images/$m"
++
++    # check that the img_path exists
++    if [ ! -d $img_path ]
++    then
++        echo "Images directory for machine $m is missing from arago-tmp"
++        return 1
++    fi
++
++    dest_path="$arago_tmp/golden/"
++    rm -rf $dest_path/$m
++
++    cp -a $img_path $dest_path
++}
++
+ test_sdk_image() {
+     # Set m for logging purposes
+     m="$1"
++    test_passed="false"
+ 
+     # Create a temporary directory to extract the build files to for
+     # testing.  If the directory already exists then delete the old
+@@ -319,6 +348,7 @@ test_sdk_image() {
+             fi
+         else
+             echo "PASSED" > $LOG_DIR/$m-test-result.txt
++            test_passed="true"
+         fi
+ 
+     else
+@@ -334,6 +364,11 @@ test_sdk_image() {
+     then
+         copy_files_to_package_root $m
+     fi
++
++    if [ "$test_passed" == "true" -a $COPY_GOLDEN_TO_WEB == "true" ]
++    then
++        copy_golden_image $m
++    fi
+ }
+ 
+ # This function receives a comma separated list of machines to build and test.
+-- 
+2.2.0
 
->=20
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  meta-arago-distro/classes/sourceipk.bbclass |    6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-
-> distro/classes/sourceipk.bbclass
-> > index 6b16657..6895378 100644
-> > --- a/meta-arago-distro/classes/sourceipk.bbclass
-> > +++ b/meta-arago-distro/classes/sourceipk.bbclass
-> > @@ -157,7 +157,11 @@ adjust_git() {
-> >
-> >              cd -
-> >
-> > -            git remote set-url origin $remote_repo $local_repo
-> > +            # Some crazy reason I need to add these two lines when doi=
-ng a
-> > +            # shallow copy. Otherwise, I had problems where git fetch =
-wasn't
-> > +            # properly fetching all the commits and extra remotes.
-> > +            git remote rm origin
-> > +            git remote add origin $remote_repo
-> >
-> >              # Repackage the repository so its a proper clone of the or=
-iginal
-> >              # (remote) git repository
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
