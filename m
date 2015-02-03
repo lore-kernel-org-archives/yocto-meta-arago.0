@@ -1,31 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 11EF5529D9
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 5321B529D9
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Feb 2015 16:12:55 +0000 (UTC)
+	Tue,  3 Feb 2015 16:12:56 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t13GCrtd003463
-	for <meta-arago@arago-project.org>; Tue, 3 Feb 2015 10:12:53 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t13GCqaS002716
-	for <meta-arago@arago-project.org>; Tue, 3 Feb 2015 10:12:52 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t13GCtQr009407
+	for <meta-arago@arago-project.org>; Tue, 3 Feb 2015 10:12:55 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t13GCsCi002729
+	for <meta-arago@arago-project.org>; Tue, 3 Feb 2015 10:12:54 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 3 Feb 2015 10:12:52 -0600
+	Tue, 3 Feb 2015 10:12:53 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t13GCpUE017173;	Tue, 3 Feb 2015 10:12:52 -0600
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t13GCqsG021492;	Tue, 3 Feb 2015 10:12:53 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t13GCnTK018196;	Tue, 3 Feb 2015 21:42:50 +0530
+	0.8) with ESMTP id t13GCnTL018196;	Tue, 3 Feb 2015 21:42:51 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Feb 2015 10:12:46 -0600
-Message-ID: <1422979967-19687-1-git-send-email-fcooper@ti.com>
+Date: Tue, 3 Feb 2015 10:12:47 -0600
+Message-ID: <1422979967-19687-2-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1422979967-19687-1-git-send-email-fcooper@ti.com>
+References: <1422979967-19687-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 1/2] sourceipk: When preserving git repository optionally create local branch
+Subject: [PATCH 2/2] branding-amsdk: Add "local" branch name and commit message used by sourceipk
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,81 +40,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Feb 2015 16:12:55 -0000
+X-List-Received-Date: Tue, 03 Feb 2015 16:12:56 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* Previously if you saved the git repository with sourceipk and did a git status
-  you would see "# Not currently on any branch." since when checking out a git
-  repository OE will use a commit id.
-* Also since SDKs tend to depend on git repositories based on a tag there is
-  generally no SDK branch that can refer people to which means they end up
-  creating their own SDK branch.
-* This patch adds several variables that creates a local branch based on the
-  commit the recipe uses. A variable is also used to specify a "commit"
-  message that can be used to explain the purpose of the branch.
-
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- meta-arago-distro/classes/sourceipk.bbclass |   37 +++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ .../conf/distro/include/branding-amsdk.inc         |   24 ++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
-index 6895378..26d3922 100644
---- a/meta-arago-distro/classes/sourceipk.bbclass
-+++ b/meta-arago-distro/classes/sourceipk.bbclass
-@@ -61,6 +61,16 @@ SRCIPK_INCLUDE_EXTRAFILES ?= "1"
- 
- SRCIPK_PRESERVE_GIT ?= "false"
- 
-+# Git commit message that explains the purpose of the custom git branch
-+SRCIPK_CUSTOM_GIT_MESSAGE ?= ""
+diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+index 0884077..27d651d 100644
+--- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
+@@ -4,3 +4,27 @@ QT_PROVIDER := "${@bb.utils.contains('SOC_FAMILY','omap-a15:dra7xx','qt5','qt4e'
+ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
+ PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
+ PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
 +
-+# File that will store the same information as the commit message but is also
-+# used to add something to insure a commit can be committed.
-+SRCIPK_SDK_README ?= "TISDK-README"
++# To create newlines in the message \n is used and the slash must be escaped
++# to function properly
 +
-+# Name used when creating the custom branch
-+SRCIPK_CUSTOM_GIT_BRANCH ?= ""
++SRCIPK_GIT_COMMIT_MESSAGE = "\
++Create local branch\\n\
++\\n\
++The below commit is used for this local branch and is the one used by this sdk:\\n\
++${SRCREV}."
 +
- # Create a shallow clone of the git repository to reduce the size of
- # the sourceipk
- SRCIPK_SHALLOW_CLONE ?= "false"
-@@ -167,6 +177,33 @@ adjust_git() {
-             # (remote) git repository
-             git repack -a -d
- 
++SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE ="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
++To save on installer space only a portion of the commit history has been\\n\
++preserved. Also links to remote branches and tags do not exist in this\\n\
++copy of the repository. To fix this please run:\\n\
++git fetch\\n\
++\\n\
++This may take a couple of minutes but you will then have a full copy of\\n\
++the git repository.\\n"
 +
-+            if [ "${SRCIPK_CUSTOM_GIT_BRANCH}" != "" -a "${SRCIPK_CUSTOM_GIT_MESSAGE}" != "" ]
-+            then
++SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "amsdk-8.0"
++SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
 +
-+                # Create local git config settings to create commit
-+                git config user.email "<>"
-+                git config user.name "Texas Instruments SDK Builder"
-+
-+                # For recipes like the kernel which may end up running
-+                # sourceipk more than once.
-+                branch_exist=`git branch | grep ${SRCIPK_CUSTOM_GIT_BRANCH}` || echo ""
-+                if [ "$branch_exist" != "" -a -f ${SRCIPK_SDK_README} ]
-+                then
-+                    git add -A
-+                    git commit --amend
-+                else
-+                    echo -e ${SRCIPK_CUSTOM_GIT_MESSAGE} > ${SRCIPK_SDK_README}
-+                    git add -A
-+                    git commit -F ${SRCIPK_SDK_README}
-+                    git checkout -b "${SRCIPK_CUSTOM_GIT_BRANCH}"
-+                fi
-+
-+                # Delete local git config settings
-+                rm .gitconfig .git/config > /dev/null 2>&1 || echo ""
-+
-+            fi
-+
-             rm -f .git/objects/info/alternates
- 
-         else
++SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "amsdk-8.0"
++SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
 -- 
 1.7.9.5
 
