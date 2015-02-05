@@ -1,34 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C75F9529A7
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 6B7DD529A7
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Feb 2015 16:48:37 +0000 (UTC)
+	Thu,  5 Feb 2015 16:52:40 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t15Gmb5i002590
-	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 10:48:37 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15GmZEC015169
-	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 10:48:35 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 5 Feb 2015 10:48:35 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t15Gqdau023556
+	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 10:52:39 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15GqcjI017855
+	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 10:52:38 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 5 Feb 2015 10:52:38 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15GmZGK007373;
-	Thu, 5 Feb 2015 10:48:35 -0600
-Date: Thu, 5 Feb 2015 11:48:35 -0500
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15Gqc9S012374;
+	Thu, 5 Feb 2015 10:52:38 -0600
+Date: Thu, 5 Feb 2015 11:52:38 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20150205164835.GI9943@edge>
-References: <1423148553-1225-1-git-send-email-ceh@ti.com>
-	<20150205151353.GC9943@edge>
-	<D03ED281-CA31-45D5-8623-3B6CDAD42EC8@ti.com>
-	<20150205155225.GH9943@edge>
-	<3F32BBC6-B86C-4BF0-9F1C-F3CBD996E665@ti.com>
+Message-ID: <20150205165237.GJ9943@edge>
+References: <1423152936-3396-1-git-send-email-sam.nelson@ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C7F91C3@DFLE08.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <3F32BBC6-B86C-4BF0-9F1C-F3CBD996E665@ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C7F91C3@DFLE08.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] busybox/defconfig: Enable options required by LAVA
+Subject: Re: [PATCH] sysvinit: Changing default setting to add HWCLOCKACCESS=no
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,89 +38,105 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Feb 2015 16:48:37 -0000
+X-List-Received-Date: Thu, 05 Feb 2015 16:52:40 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Thu, Feb 05, 2015 at 10:59:24AM -0500, Cooper Jr., Franklin wrote:
-> > On Feb 5, 2015, at 9:52 AM, Dmytriyenko, Denys <denys@ti.com> wrote:
-> >> On Thu, Feb 05, 2015 at 10:47:16AM -0500, Cooper Jr., Franklin wrote:
-> >>>> On Feb 5, 2015, at 9:14 AM, Dmytriyenko, Denys <denys@ti.com> wrote:
-> >>>> 
-> >>>> On Thu, Feb 05, 2015 at 10:02:33AM -0500, Carlos Hernandez wrote:
-> >>>> Linaro's Test Framework (LAVA) requires httpd and other options
-> >>>> enabled in busybox. Enable them so LAVA tests can be run on Arago
-> >>>> images.
-> >>> 
-> >>> Looks good. The only concern I have is below.
-> >> 
-> >> Carlos,
-> >> Do we really need another web server?
-> >> We have lighttpd and thttpd already. Can either of those be reused 
-> >> especially thttpd since it's already a light weight web server.
+This was supposed to be an RFC, by the way...
+
+
+On Thu, Feb 05, 2015 at 04:45:43PM +0000, Cooper Jr., Franklin wrote:
+> I see references to several boards that have enabled rtc in its dts file. I 
+> didn't check all the boards we support in meta-ti but additional boards may 
+> use it. So we shouldn't disable it for these boards.
+
+Exactly, so the proposal was to disable it by default and enable through 
+machine overrides for those boards that have it.
+
+
+> Honestly if the error is harmless I would say just ignore it.
+
+That was my initial response - the error is harmless, just ignore it. Not good 
+for OOB experience, I guess :)
+
+
+> Use some variable that will 
+> conditional add that string depending on the machine if you want to disable 
+> it for the machines you care about.
+
+Just use machine overrides directly, no need to invent another variable...
+
+
+> Honestly creating a file just to cat it's value to another file I feel is a 
+> bit of an overkill especially since that file isn't generic and is meant for 
+> hwclock. So just using echoing something would probably be better.
+> 
+> DISABLE_RTC = ""
+> DISABLE_<machine> = "yes"
+> ....
+> 
+> do_install_append() {
+> 	if [ "${DISABLE_RTC}" = "yes" ]
+> 	then
+> 		echo "#This is to indicate hwclock is not supported" >> ${D}${sysconfdir}/default/rcS
+> 		echo "HWCLOCKACCESS=no"
+> 	fi
+> }
+> 
+> 
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Nelson, Sam
+> > Sent: Thursday, February 05, 2015 10:16 AM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCH] sysvinit: Changing default setting to add
+> > HWCLOCKACCESS=no
 > > 
-> > I guess this question would need to be directed to LAVA guys. Not sure if 
-> > their build includes any of those other http servers, hence they enabled the 
-> > simplest one.
+> > - realtime clock is not commonly present and hence adding
+> >   HWCLOCKACCESS=no
+> > - Avoids error message if rc device not present
 > > 
-> > We do indeed already have 2 http servers, and yes it would be nice to re-use 
-> > one of them instead of enabling 3rd one. But the question is - who will 
-> > validate and, if needed, update corresponding LAVA pieces to work with thttpd?
-
-> Let me check how we currently use thttpd. I wouldn't mind replacing it with 
-> httpd if possible instead of adding a third web server.
-
-I don't believe we actively use thttpd any more. It was added way back to 
-Classic Arago to support DVSDK and running cgi scripts as root:
-
-http://arago-project.org/git/?p=arago.git;a=commit;h=f8bf614c85f435f53a78a0151b239341643f6a13
-
-I'd vote to kill it.
-
-
-> >>>> Signed-off-by: Carlos Hernandez <ceh@ti.com>
-> >>>> ---
-> >>>> meta-arago-distro/recipes-core/busybox/busybox/defconfig | 12 ++++++------
-> >>>> 1 file changed, 6 insertions(+), 6 deletions(-)
-> >>>> 
-> >>>> -# CONFIG_HTTPD is not set
-> >>>> +CONFIG_HTTPD=y
-> >>>> # CONFIG_FEATURE_HTTPD_RANGES is not set
-> >>>> # CONFIG_FEATURE_HTTPD_USE_SENDFILE is not set
-> >>>> # CONFIG_FEATURE_HTTPD_SETUID is not set
-> >>>> @@ -845,7 +845,7 @@ CONFIG_UDHCP_DEBUG=0
-> >>>> # CONFIG_FEATURE_UDHCP_8021Q is not set
-> >>>> CONFIG_UDHCPC_DEFAULT_SCRIPT="/usr/share/udhcpc/default.script"
-> >>>> CONFIG_UDHCPC_SLACK_FOR_BUGGY_SERVERS=80
-> >>>> -CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n"
-> >>>> +CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -b"
-> >>> 
-> >>> This supposedly changes udhcp behavior to go into background when waiting for 
-> >>> an IP address, if not received right away, instead of exiting with an error.
-> >>> I personally don't have an issue with this, but will it affect SDK OOB 
-> >>> experience in any way? Guys?
+> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> > ---
+> >  .../recipes-core/sysvinit/files/hwclock.rcS        |    2 ++
+> >  .../sysvinit/sysvinit_2.88dsf.bbappend             |    9 +++++++++
+> >  2 files changed, 11 insertions(+)
+> >  create mode 100644 meta-arago-distro/recipes-core/sysvinit/files/hwclock.rcS
+> >  create mode 100644 meta-arago-distro/recipes-
+> > core/sysvinit/sysvinit_2.88dsf.bbappend
 > > 
-> >> I'll double check but why instead of changing the default behavior simply 
-> >> add &? I'm assuming you will get the same result but won't have to worry 
-> >> about breaking anything.
+> > diff --git a/meta-arago-distro/recipes-core/sysvinit/files/hwclock.rcS b/meta-
+> > arago-distro/recipes-core/sysvinit/files/hwclock.rcS
+> > new file mode 100644
+> > index 0000000..3e26c20
+> > --- /dev/null
+> > +++ b/meta-arago-distro/recipes-core/sysvinit/files/hwclock.rcS
+> > @@ -0,0 +1,2 @@
+> > +# This is to indicate hwclock is not supported HWCLOCKACCESS=no
+> > diff --git a/meta-arago-distro/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+> > b/meta-arago-distro/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+> > new file mode 100644
+> > index 0000000..6e08c83
+> > --- /dev/null
+> > +++ b/meta-arago-distro/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+> > @@ -0,0 +1,9 @@
+> > +PR_append = "-arago0"
+> > +
+> > +# look for files in this layer first
+> > +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> > +SRC_URI += "file://hwclock.rcS"
+> > +do_install_append () {
+> > +# Add hwclock configuration
+> > +	cat ${WORKDIR}/hwclock.rcS >> ${D}${sysconfdir}/default/rcS }
+> > --
+> > 1.7.9.5
 > > 
-> > That's still not the same - with -n flag udhcp will time out soon if not 
-> > received IP address, while with -b it will go into background and will wait 
-> > for IP address there. So, if you add & at the end of command with -n it will 
-> > go into background, but exit soon after, which is not the same.
-> > 
-> So it sits indefinitely and assigns ip's whenever it can? If so I would 
-> actual prefer that. I still need to check.
-
-Yes, it is my understanding that it will keep on pinging the server with 
-request-IP periodically in the background, until it gets one.
-
-The current behaviour is it tries 3 times and if it can't get an IP, it exits 
-with error.
-
-In both cases, once the IP is acquired, the client has to stay in the 
-background for renewing the lease. The difference is the initial acquision.
-
--- 
-Denys
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
