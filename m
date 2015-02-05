@@ -1,31 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 06ABE52A5F
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 2096852A5F
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Feb 2015 15:16:04 +0000 (UTC)
+	Thu,  5 Feb 2015 15:16:55 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t15FG4b0012666
-	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 09:16:04 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15FG3h6009979
-	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 09:16:03 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 5 Feb 2015 09:16:02 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t15FGsph011908
+	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 09:16:54 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15FGrZu010517
+	for <meta-arago@arago-project.org>; Thu, 5 Feb 2015 09:16:53 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 5 Feb 2015 09:16:53 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15FG2df017790;
-	Thu, 5 Feb 2015 09:16:02 -0600
-Date: Thu, 5 Feb 2015 10:16:02 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t15FGqSa023104;
+	Thu, 5 Feb 2015 09:16:53 -0600
+Date: Thu, 5 Feb 2015 10:16:52 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20150205151601.GE9943@edge>
-References: <1423099193-20065-1-git-send-email-fcooper@ti.com>
-	<1423099193-20065-2-git-send-email-fcooper@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20150205151652.GF9943@edge>
+References: <1423057901-5767-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1423099193-20065-2-git-send-email-fcooper@ti.com>
+In-Reply-To: <1423057901-5767-1-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 2/3] packagegroup-arago-tisdk-matrix: Remove dual camera and image-gallery
+Subject: Re: [PATCH v2] perl-native: Fix for when shebang is too many characters.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,51 +37,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Feb 2015 15:16:05 -0000
+X-List-Received-Date: Thu, 05 Feb 2015 15:16:55 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Feb 04, 2015 at 07:19:52PM -0600, Franklin S. Cooper Jr wrote:
-> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> 
-> * Remove image gallery and dual camera since they aren't support on 3.14 kernel
+On Wed, Feb 04, 2015 at 08:51:41AM -0500, Jacob Stiffler wrote:
+> * Currently perl-native is installing perl scripts with the
+>   absolute path to the native  perl interpreter in the shebang.
+> * Due to the directory structure of Yocto, this path may exceed
+>   the shebang character limit in bash.
+> * This is a workaround to get the correct perl interpreter from
+>   the environment.
+> * This solution has been obtained from:
+>   http://patchwork.openembedded.org/patch/79251/
+> * This may be dropped after migrating to dizzy as this has been
+>   upstreamed: http://cgit.openembedded.org/openembedded-core/commit/?id=83dec26849a120d0f1de64e63025354fa7108491
 
-Do you want to remove it completely or will it be fixed soon?
+Looks good, thanks.
 
 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  .../packagegroup-arago-tisdk-matrix.bb             |    4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../perl/perl-native_5.14.3.bbappend               |    9 +++++++++
+>  1 file changed, 9 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-devtools/perl/perl-native_5.14.3.bbappend
 > 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> index 0fe7bc5..9e00619 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to include Matrix v2"
->  LICENSE = "MIT"
-> -PR = "r34"
-> +PR = "r35"
->  
->  inherit packagegroup
->  
-> @@ -77,7 +77,6 @@ MATRIX_APPS_append_ti43x = "        \
->      matrix-multimedia-demo-mpeg4aacdec \
->      matrix-multimedia-demo-mpeg4dec \
->                                      \
-> -    ${@base_conditional('QT_PROVIDER', 'qt5', '', 'matrix-gui-apps-dual-camera matrix-gui-apps-image-gallery', d)} \
->                                      \
->      matrix-gui-generic-pm           \
->      matrix-gui-pm-demos-suspend     \
-> @@ -85,6 +84,7 @@ MATRIX_APPS_append_ti43x = "        \
->      matrix-gui-pm-demos-governor    \
->      ${@base_conditional('QT_PROVIDER', 'qt5', '', 'ts-calibrate-init', d)} \
->  "
-> +# ${@base_conditional('QT_PROVIDER', 'qt5', '', 'matrix-gui-apps-dual-camera matrix-gui-apps-image-gallery', d)}
->  
->  MATRIX_APPS_append_omap-a15 = "     \
->      matrix-multimedia-demo-aac      \
+> diff --git a/meta-arago-extras/recipes-devtools/perl/perl-native_5.14.3.bbappend b/meta-arago-extras/recipes-devtools/perl/perl-native_5.14.3.bbappend
+> new file mode 100644
+> index 0000000..2b16416
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-devtools/perl/perl-native_5.14.3.bbappend
+> @@ -0,0 +1,9 @@
+> +
+> +PR_append = "a"
+> +
+> +do_install_append() {
+> +	for f in `grep -Il '#! *${bindir}/perl' ${D}/${bindir}/*`; do
+> +		sed -i -e 's|${bindir}/perl|/usr/bin/env nativeperl|' $f
+> +	done
+> +}
+> +
 > -- 
 > 1.7.9.5
 > 
