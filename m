@@ -1,39 +1,29 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C3D8252AB4
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 8DC8952A2B
 	for <meta-arago@arago-project.org>;
-	Sat,  7 Feb 2015 02:29:55 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t172Toma006505
-	for <meta-arago@arago-project.org>; Fri, 6 Feb 2015 20:29:51 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t172TnEv020459
-	for <meta-arago@arago-project.org>; Fri, 6 Feb 2015 20:29:49 -0600
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Fri, 6 Feb 2015 20:29:49 -0600
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "Dmytriyenko, Denys"
-	<denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] branding-mcsdk: Adding MCSDK branding
-	include file
-Thread-Index: AQHQQj5oxV3jcGOO7EiH0WzU8m+KOpzkXkAA//+puWCAAHA8AIAAAsyAgAAG7oD///UekA==
-Date: Sat, 7 Feb 2015 02:29:48 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49058110B5F@DLEE11.ent.ti.com>
-References: <1423248896-20699-1-git-send-email-sam.nelson@ti.com>
-	<20150206185948.GA12366@edge>
-	<4F9216F96E5DF9428610502835A9F4905811091D@DLEE11.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C7FB1BB@DFLE08.ent.ti.com>
-	<20150206204243.GD12366@edge>
-	<8F29D6B095ED194EA1980491A5E029710C7FB287@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C7FB287@DFLE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Sat,  7 Feb 2015 09:06:44 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1796hck030803
+	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 03:06:43 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1796gVN004843
+	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 03:06:42 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 7 Feb 2015 03:06:42 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t1796g0G009231	for <meta-arago@arago-project.org>;
+	Sat, 7 Feb 2015 03:06:42 -0600
+Date: Sat, 7 Feb 2015 03:43:47 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <728275685.319.1423298627573.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] branding-mcsdk: Adding MCSDK branding include file
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.02 build 2015-02-06_22-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,147 +36,200 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Feb 2015 02:29:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 07 Feb 2015 09:06:44 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_318_1786567777.1423298627410"
+
+------=_Part_318_1786567777.1423298627410
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 02/07/15
+</title>
+</head>
+<body>
+
+<h2>Status for 02/07/15</h2>
+
+<h2>BUILD_ID: build-2015-02-06_22-02-02</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.22</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.02"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Friday, February 06, 2015 4:08 PM
-> To: Dmytriyenko, Denys
-> Cc: Nelson, Sam; meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH] branding-mcsdk: Adding MCSDK branding
-> include file
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Friday, February 06, 2015 2:43 PM
-> > To: Cooper Jr., Franklin
-> > Cc: Nelson, Sam; meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH] branding-mcsdk: Adding MCSDK
-> branding
-> > include file
-> >
-> > On Fri, Feb 06, 2015 at 03:32:42PM -0500, Cooper Jr., Franklin wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > > > bounces@arago-project.org] On Behalf Of Nelson, Sam
-> > > > Sent: Friday, February 06, 2015 1:51 PM
-> > > > To: Dmytriyenko, Denys
-> > > > Cc: meta-arago@arago-project.org
-> > > > Subject: Re: [meta-arago] [PATCH] branding-mcsdk: Adding MCSDK
-> > > > branding include file
-> > > >
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Dmytriyenko, Denys
-> > > > > Sent: Friday, February 06, 2015 2:00 PM
-> > > > > To: Nelson, Sam
-> > > > > Cc: meta-arago@arago-project.org
-> > > > > Subject: Re: [meta-arago] [PATCH] branding-mcsdk: Adding MCSDK
-> > > > > branding include file
-> > > > >
-> > > > > On Fri, Feb 06, 2015 at 01:54:56PM -0500, Sam Nelson wrote:
-> > > > > > - To control preferred version and providers for MCSDK
-> > > > > >
-> > > > > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > > > > > ---
-> > > > > >  .../conf/distro/include/branding-mcsdk.inc         |   20
-> > > > > ++++++++++++++++++++
-> > > > > >  1 file changed, 20 insertions(+)  create mode 100644
-> > > > > > meta-arago-distro/conf/distro/include/branding-
-> > > > > mcsdk.inc
-> > > > > >
-> > > > > > diff --git
-> > > > > > a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
-> > > > > b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
-> > > > > > new file mode 100644
-> > > > > > index 0000000..d023b67
-> > > > > > --- /dev/null
-> > > > > > +++ b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
-> > > > > > @@ -0,0 +1,20 @@
-> > > > > > +# MCSDK branding configuration
-> > > > > > +
-> > > > > > +# Use the MCSDK supported versions PREFERRED_VERSION_libnl =3D
-> > > > > > +"3.2.24"
-> > > > > > +
-> > > > > > +DISTRO_FEATURES +=3D "x11 opengl"
-> > > > >
-> > > > > I assume x11 is to make Java happy? I don't think you have x11 en=
-v...
-> > > > >
-> > > > [Sam] Yes it was to make Java happy.
-> > > [Franklin] I thought I remembered that the mcsdk were meant for headl=
-ess
-> > devices.
-> > > If so I would recommend taking a look at the discussion here:
-> > > https://github.com/woglinde/meta-java/issues/45
-> > >
-> > > Pulling in x11 and gtk seems painful especially since you're not usin=
-g it.
-> > > Anyway it's something to look into if it is indeed meant for headless
-> devices.
-> > > But its ur branding file so my above comments aren't meant to block t=
-his
-> > patch from being accepted.
-> >
-> > Well, as explained in that tracker link you provided, pulling X libs fo=
-r the
-> build
-> > doesn't necessary mean you'll end up with X component on the target.
-> > Yes, disabling AWT is a nice touch, hopefully it gets integrated into m=
-eta-
-> java
-> [Franklin] Maybe for the very specific x11 recipes but pulling the generi=
-c gtk+
-> package I'm not sure things will end up being as lucky. The changes
-> mentioned in the link specifically drops the gtk dependency. Also adding =
-X11
-> to your distro features I'm assuming will affect quite a bit of recipes t=
-hat may
-> pull in additional x11 dependencies that they may have avoided otherwise.
->=20
-> Anyway I was making assumptions so if that isn't occurring in their curre=
-nt
-> builds feel free to ignore my crazy rambling :)
-[Sam] I tried the patch mentioned in tracker link. But I see libxt libxiner=
-ama libxrender all depend on x11.
-So not giving anything useful.
-> >
-> >
-> > > > > > +# Java preferences.
-> > > > > > +#PREFERRED_VERSION_openjdk-7-jre =3D "25b30-2.3.12"
-> > > > > > +PREFERRED_VERSION_icedtea7-native =3D "2.1.3"
-> > > > > > +PREFERRED_PROVIDER_openjdk-7-jre =3D "openjdk-7-jre"
-> > > > > > +
-> > > > > > +PREFERRED_PROVIDER_virtual/java-initial =3D "cacao-initial"
-> > > > > > +
-> > > > > > +PREFERRED_PROVIDER_virtual/java-native =3D "jamvm-native"
-> > > > > > +PREFERRED_PROVIDER_virtual/javac-native =3D "ecj-bootstrap-nat=
-ive"
-> > > > > > +
-> > > > > > +PREFERRED_PROVIDER_jpeg-native =3D "jpeg-native"
-> > > > > > +#PREFERRED_PROVIDER_jpeg-native =3D "libjpeg-turbo-native"
-> > > > > > +PREFERRED_PROVIDER_glibc-gconv-iso8859-1 =3D "nativesdk-eglibc=
--
-> > locale"
-> > > > > > --
-> > > > > > 1.7.9.5
-> > > > > >
-> > > > > > _______________________________________________
-> > > > > > meta-arago mailing list
-> > > > > > meta-arago@arago-project.org
-> > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > > > _______________________________________________
-> > > > meta-arago mailing list
-> > > > meta-arago@arago-project.org
-> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_318_1786567777.1423298627410--
