@@ -1,24 +1,24 @@
 Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2C2A3529A4
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 23702529A4
 	for <meta-arago@arago-project.org>;
-	Sat,  7 Feb 2015 01:40:17 +0000 (UTC)
+	Sat,  7 Feb 2015 01:40:22 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t171eFTq004106
-	for <meta-arago@arago-project.org>; Fri, 6 Feb 2015 19:40:15 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t171eEen022642
-	for <meta-arago@arago-project.org>; Fri, 6 Feb 2015 19:40:14 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t171eL5E011581
+	for <meta-arago@arago-project.org>; Fri, 6 Feb 2015 19:40:21 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t171eKD4022668
+	for <meta-arago@arago-project.org>; Fri, 6 Feb 2015 19:40:20 -0600
 Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Fri, 6 Feb 2015 19:40:14 -0600
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0224.002; Fri, 6 Feb 2015 19:40:19 -0600
 From: "Cooper Jr., Franklin" <fcooper@ti.com>
 To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Thread-Topic: [PATCH 1/3] matrix-gui-apps: Update latest commit to pull in
 	Matrix apps description changes
-Thread-Index: AQHQQOHbViY+6vji6kGpK9I5itNJFpzkbB5w
-Date: Sat, 7 Feb 2015 01:40:14 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C7FB6D0@DFLE08.ent.ti.com>
+Thread-Index: AQHQQOHbViY+6vji6kGpK9I5itNJFpzkbGVw
+Date: Sat, 7 Feb 2015 01:40:19 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C7FB6D7@DFLE08.ent.ti.com>
 References: <1423099193-20065-1-git-send-email-fcooper@ti.com>
 In-Reply-To: <1423099193-20065-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
@@ -39,7 +39,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Feb 2015 01:40:19 -0000
+X-List-Received-Date: Sat, 07 Feb 2015 01:40:22 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
