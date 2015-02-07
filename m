@@ -1,33 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2F24452099
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 98D1852093
 	for <meta-arago@arago-project.org>;
-	Sat,  7 Feb 2015 23:53:06 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t17Nr5Kw031750
-	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 17:53:05 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t17Nr48N015370
+	Sat,  7 Feb 2015 23:53:05 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t17Nr4gd026813
 	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 17:53:04 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t17Nr2xN029174
+	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 17:53:02 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Sat, 7 Feb 2015 17:53:04 -0600
+	Sat, 7 Feb 2015 17:53:02 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t17Nr3vO012140;	Sat, 7 Feb 2015 17:53:03 -0600
+	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t17Nr1bj007690;	Sat, 7 Feb 2015 17:53:02 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t17NqxIb010769;	Sun, 8 Feb 2015 05:23:01 +0530
+	0.8) with ESMTP id t17NqxIa010769;	Sun, 8 Feb 2015 05:23:00 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sat, 7 Feb 2015 17:52:50 -0600
-Message-ID: <1423353177-8325-2-git-send-email-fcooper@ti.com>
+Date: Sat, 7 Feb 2015 17:52:49 -0600
+Message-ID: <1423353177-8325-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1423353177-8325-1-git-send-email-fcooper@ti.com>
-References: <1423353177-8325-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/9 v2] gadget-init: Remove COMPATIBLE_MACHINE
+Subject: [PATCH 1/9 v2] ti-tisdk-setup: Update commit to pull in various improvements
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,32 +43,35 @@ Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* There is really nothing machine specific about this recipe.
-* Since this script is useful for am437x SK remove the compat field.
+* Fixed create sd card script bug
+* Updated am335x boards to use save U-boot env to FAT
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
 v2 changes:
-None
- .../recipes-tisdk/gadget-init/gadget-init.bb       |    5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Using newer commit id
+Updated commit title and message to reflect additional changes
 
-diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-index 3f69c53..b13befe 100644
---- a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-+++ b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-@@ -3,10 +3,7 @@ DESCRIPTION = "Scripts to initialize usb gadgets"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index cc69e14..d41d111 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
--COMPATIBLE_MACHINE = "ti33x"
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--PR = "r2"
-+PR = "r3"
+-PR = "r21"
++PR = "r22"
  
- SRC_URI = "file://init"
+ BRANCH ?= "master"
+-SRCREV = "e1ed2178043e097b7a8b2ea073473db732494845"
++SRCREV = "64ba5b41b0423fd743c86a26b98a791d0ebf1169"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
  
+ S = "${WORKDIR}/git/"
 -- 
 1.7.9.5
 
