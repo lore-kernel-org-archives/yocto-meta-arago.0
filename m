@@ -1,32 +1,27 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <sam.nelson@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8471652093
+	by arago-project.org (Postfix) with ESMTPS id D8A2752093
 	for <meta-arago@arago-project.org>;
-	Sat,  7 Feb 2015 23:53:47 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t17NrklT004394
-	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 17:53:46 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t17NrjUP029656
-	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 17:53:45 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Sat, 7 Feb 2015 17:53:45 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH] ti-tisdk-setup: Update commit to pull in create sd
-	card script bug fix
-Thread-Index: AQHQP9Eit/YrZJjX4kaddWKm9BSKhZzl4wiw
-Date: Sat, 7 Feb 2015 23:53:45 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C7FBC57@DFLE08.ent.ti.com>
-References: <1422982059-8319-1-git-send-email-fcooper@ti.com>
-In-Reply-To: <1422982059-8319-1-git-send-email-fcooper@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Sun,  8 Feb 2015 01:39:37 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t181da21030389
+	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 19:39:36 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t181dZ71021183
+	for <meta-arago@arago-project.org>; Sat, 7 Feb 2015 19:39:35 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 7 Feb 2015 19:39:35 -0600
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t181dYG6005641;	Sat, 7 Feb 2015 19:39:34 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Sat, 7 Feb 2015 20:39:32 -0500
+Message-ID: <1423359573-24792-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH] ti-tisdk-setup: Update commit to pull in create sd card script bug fix
+Subject: [PATCH v2] branding-mcsdk: Adding MCSDK branding include file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,54 +34,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Feb 2015 23:53:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 08 Feb 2015 01:39:39 -0000
+Content-Type: text/plain
 
-Ignore this patch.
+- To control preferred version and providers for MCSDK
 
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Tuesday, February 03, 2015 10:48 AM
-> To: meta-arago@arago-project.org
-> Cc: Cooper Jr., Franklin
-> Subject: [PATCH] ti-tisdk-setup: Update commit to pull in create sd card =
-script
-> bug fix
->=20
-> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
->=20
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
->  .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |    4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setu=
-p.bb
-> b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-> index cc69e14..c9181ae 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-> @@ -2,10 +2,10 @@ DESCRIPTION =3D "Package containing scripts to setup th=
-e
-> development host and targ  LICENSE =3D "BSD"
->  LIC_FILES_CHKSUM =3D
-> "file://setup.sh;beginline=3D3;endline=3D31;md5=3Dfc4b04a33df6d892c9f4d4a=
-9d92b9
-> 45e"
->=20
-> -PR =3D "r21"
-> +PR =3D "r22"
->=20
->  BRANCH ?=3D "master"
-> -SRCREV =3D "e1ed2178043e097b7a8b2ea073473db732494845"
-> +SRCREV =3D "6123d91f076e2fd5bb523032908cc92dca49b0c1"
->  SRC_URI =3D "git://arago-project.org/git/projects/tisdk-setup-
-> scripts.git;protocol=3Dgit;branch=3D${BRANCH}"
->=20
->  S =3D "${WORKDIR}/git/"
-> --
-> 1.7.9.5
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+
+---
+Update from previous patch
+- Removed commented lines
+- removed opengl
+- Changed PREFERRED_PROVIDER_glibc-gconv-iso8859-1 to "eglibc-locale
+---
+---
+ .../conf/distro/include/branding-mcsdk.inc         |   18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+
+diff --git a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+new file mode 100644
+index 0000000..9fca5af
+--- /dev/null
++++ b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+@@ -0,0 +1,18 @@
++# MCSDK branding configuration
++
++# Use the MCSDK supported versions
++PREFERRED_VERSION_libnl = "3.2.24"
++
++DISTRO_FEATURES += "x11"
++
++# Java preferences.
++PREFERRED_VERSION_icedtea7-native = "2.1.3"
++PREFERRED_PROVIDER_openjdk-7-jre = "openjdk-7-jre"
++
++PREFERRED_PROVIDER_virtual/java-initial = "cacao-initial"
++
++PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
++PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
++
++PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
++PREFERRED_PROVIDER_glibc-gconv-iso8859-1 = "eglibc-locale"
+-- 
+1.7.9.5
 
 
