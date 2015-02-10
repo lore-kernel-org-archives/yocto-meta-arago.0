@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 0047852A43
+Return-Path: <sam.nelson@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id DEBB952A65
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Feb 2015 21:55:27 +0000 (UTC)
+	Tue, 10 Feb 2015 22:08:40 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1ALtRBB009116
-	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 15:55:27 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1AM8eCU017666
+	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 16:08:40 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1ALtPwp015693
-	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 15:55:26 -0600
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1AM8d5A027073
+	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 16:08:39 -0600
 Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 10 Feb 2015 15:55:25 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1ALtP9n008546;
-	Tue, 10 Feb 2015 15:55:25 -0600
-Date: Tue, 10 Feb 2015 16:55:24 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Message-ID: <20150210215524.GQ13231@edge>
-References: <1423605146-29186-1-git-send-email-fcooper@ti.com>
+	Tue, 10 Feb 2015 16:08:38 -0600
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t1AM8bCU026278;	Tue, 10 Feb 2015 16:08:38 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 10 Feb 2015 17:08:36 -0500
+Message-ID: <1423606116-1967-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <1423605146-29186-1-git-send-email-fcooper@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 3/9 v2] packagegroup-arago-tisdk-amsdk: Remove gadget-init
+Subject: [PATCH] ipsecmgr: Add recipes for ipsec manager kernel module and libraries
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,52 +34,98 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Feb 2015 21:55:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 10 Feb 2015 22:08:41 -0000
+Content-Type: text/plain
 
-On Tue, Feb 10, 2015 at 03:52:25PM -0600, Franklin S. Cooper Jr wrote:
-> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> 
-> * Now that saving U-boot to FAT is supported by AM335x and AM437x mounting the
->   boot partition is no longer needed as part of setup-script magic.
-> 
-> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> ---
-> V2 Changes:
-> Instead of adding the package to am437x simply remove it from am335x and am437x.
+- Provides module and libraries to offload IPSec security
+ policy & associated security association to NETCP for
+ crypto operations
 
-Nice turnaround! :)
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../recipes-support/ipsecmgr/ipsecmgr-mod_git.bb   |   20 +++++++++++++
+ .../recipes-support/ipsecmgr/ipsecmgr.inc          |    6 ++++
+ .../recipes-support/ipsecmgr/ipsecmgr_git.bb       |   30 ++++++++++++++++++++
+ 3 files changed, 56 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb
+ create mode 100644 meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
+ create mode 100644 meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb
 
+diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb
+new file mode 100644
+index 0000000..b00da58
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb
+@@ -0,0 +1,20 @@
++SUMMARY = "IPSec Manager kernel module"
++DESCRIPTION = "Provides Module to offload IPSec security policy & associated security association to NETCP for crypto operations"
++
++LIC_FILES_CHKSUM = "file://../../ipsecmgr_snoop.h;beginline=1;endline=33;md5=f7eadca4fb5599f508dc11fa1e752919"
++
++include ipsecmgr.inc
++
++MACHINE_KERNEL_PR_append = "a+gitr${SRCPV}"
++PR = "${MACHINE_KERNEL_PR}"
++
++EXTRA_OEMAKE += "KDIR="${STAGING_KERNEL_DIR}""
++
++inherit module
++
++S = "${WORKDIR}/git/src/module"
++
++do_install() {
++# Install kernel module
++	oe_runmake INSTALL_MOD_PATH="${D}" install
++}
+diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
+new file mode 100644
+index 0000000..2aafa57
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
+@@ -0,0 +1,6 @@
++LICENSE = "BSD-3-Clause"
++BRANCH="master"
++SRC_URI = "git://arago-project.org/git/projects/ipsecmgr.git;protocol=git;branch=${BRANCH}"
++#Commit ID corresponding to DEV.IPSECMGR.01.01.00.03
++SRCREV = "1ea8355ae9142311901c842c97a58d2846b308e6"
++PV     = "01.01.00.03"
+diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb
+new file mode 100644
+index 0000000..790f7cb
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb
+@@ -0,0 +1,30 @@
++SUMMARY = "IPSec Manager libraries"
++DESCRIPTION = "Provides library to offload IPSec security policy & associated security association to NETCP for crypto operations"
++
++LIC_FILES_CHKSUM = "file://../ipsecmgr_snoop.h;beginline=1;endline=33;md5=f7eadca4fb5599f508dc11fa1e752919"
++
++include ipsecmgr.inc
++
++DEPENDS = "libnl-xfrm"
++
++CFLAGS += "-I${STAGING_INCDIR}/libnl3"
++
++S = "${WORKDIR}/git/build"
++LIB_INC_DIR = "${S}/.."
++UTILS_LIB_INC_DIR = "${S}/../utils/iface/"
++
++do_compile() {
++# Compile the library
++	make clean
++	make all
++}
++do_install() {
++# Install libraries
++	install -d ${D}${libdir}/
++	install -c -m 666 libipsecmgr_snoop.a ${D}${libdir}/
++	install -c -m 666 libipsecmgr_ipc.a ${D}${libdir}/
++	install -c -m 666 libipsecmgr_syslog.a ${D}${libdir}/
++	install -d ${D}${includedir}/
++	install -c -m 666 ${LIB_INC_DIR}/*.h ${D}${includedir}/
++	install -c -m 666 ${UTILS_LIB_INC_DIR}/*.h ${D}${includedir}/
++}
+-- 
+1.7.9.5
 
->  .../packagegroup-arago-tisdk-amsdk.bb              |    3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb
-> index c2eb72b..a239e64 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to install additional packages only used in the Arago SDK"
->  LICENSE = "MIT"
-> -PR = "r9"
-> +PR = "r10"
->  
->  inherit packagegroup
->  
-> @@ -10,7 +10,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
->  OOBE = ""
->  
->  OOBE_ti33x += "\
-> -    gadget-init \
->      parse-ip \
->  "
->  
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
