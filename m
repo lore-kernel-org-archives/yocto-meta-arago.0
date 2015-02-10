@@ -1,34 +1,34 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B485A529B3
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 67CE6529B3
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Feb 2015 16:20:25 +0000 (UTC)
+	Tue, 10 Feb 2015 16:30:59 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1AGKPWa003278
-	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 10:20:25 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1AGKNQt017547
-	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 10:20:23 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1AGUwOo012024
+	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 10:30:58 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1AGUvg3027563
+	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 10:30:57 -0600
 Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Tue, 10 Feb 2015 10:20:23 -0600
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Tue, 10 Feb 2015 10:30:57 -0600
 From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
 Thread-Topic: [meta-arago] [PATCH] packagegroup-arago-base-tisdk: Make
-	psplash conditional with splash feature
-Thread-Index: AQHQRUrNFd/v5qsR9U68oP7pkpUVtZzqc7sA//+cfwA=
-Date: Tue, 10 Feb 2015 16:20:22 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49058111610@DLEE11.ent.ti.com>
+	psplash	conditional with splash feature
+Thread-Index: AQHQRUznhfw48FDGlk6EVb9m4bMh7pzqEZ+A
+Date: Tue, 10 Feb 2015 16:30:57 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F49058111635@DLEE11.ent.ti.com>
 References: <1423584075-30606-1-git-send-email-sam.nelson@ti.com>
-	<20150210161603.GD13231@edge>
-In-Reply-To: <20150210161603.GD13231@edge>
+	<8F29D6B095ED194EA1980491A5E029710C7FE138@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C7FE138@DFLE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] packagegroup-arago-base-tisdk: Make psplash conditional with splash feature
+Subject: Re: [PATCH] packagegroup-arago-base-tisdk: Make psplash	conditional with splash feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Feb 2015 16:20:25 -0000
+X-List-Received-Date: Tue, 10 Feb 2015 16:30:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -49,14 +49,43 @@ Content-Transfer-Encoding: quoted-printable
 
 
 > -----Original Message-----
-> From: Dmytriyenko, Denys
+> From: Cooper Jr., Franklin
 > Sent: Tuesday, February 10, 2015 11:16 AM
-> To: Nelson, Sam
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] packagegroup-arago-base-tisdk: Make
+> To: Nelson, Sam; meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [PATCH] packagegroup-arago-base-tisdk: Make
 > psplash conditional with splash feature
 >=20
-> On Tue, Feb 10, 2015 at 11:01:15AM -0500, Sam Nelson wrote:
+> Splash is not a distro feature we use so this will essentially remove it =
+from all
+> devices.
+>=20
+> You can either put this in a packagegroup that isn't included for headles=
+s
+> filesystems. But pick one that makes sense.
+> You can conditional include or not include psplash depending on machines.
+> You can use machine features and check for touchscreen. Although some kin=
+d
+> of generic "display" machine feature would be better. But it currently do=
+esn't
+> exist.
+> Or you can add splash as a distro feature for the various branding files
+> excluding yours.
+[Sam] Do you see any issues using the "IMAGE_FEATURES" instead? Core-image-=
+base include splash by default ( so all products will include psplash). And=
+ I am thinking of removing it for Keystone using branding file and can be d=
+one for any other headless distribution similarly.
+
+>=20
+>=20
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Nelson, Sam
+> > Sent: Tuesday, February 10, 2015 10:01 AM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCH] packagegroup-arago-base-tisdk: Make pspla=
+sh
+> > conditional with splash feature
+> >
 > > - This is meant to avoid error message with headless distribution
 > >
 > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
@@ -65,17 +94,17 @@ Content-Transfer-Encoding: quoted-printable
 > >  1 file changed, 2 insertions(+), 2 deletions(-)
 > >
 > > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-base-tisdk.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-base-tisdk.bb
+> > arago-base-tisdk.bb b/meta-arago-distro/recipes-
+> > core/packagegroups/packagegroup-arago-base-tisdk.bb
 > > index 7652622..7b71aa4 100644
 > > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> base-tisdk.bb
+> > base-tisdk.bb
 > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> base-tisdk.bb
+> > base-tisdk.bb
 > > @@ -1,6 +1,6 @@
 > >  DESCRIPTION =3D "Additional packages beyond console packages shared by=
  TI
-> SDKs"
+> > SDKs"
 > >  LICENSE =3D "MIT"
 > > -PR =3D "r15"
 > > +PR =3D "r16"
@@ -88,13 +117,6 @@ Content-Transfer-Encoding: quoted-printable
 > >      iperf \
 > > -    psplash \
 > > +    ${@base_contains('DISTRO_FEATURES', 'splash', 'psplash', '',d)} \
->=20
-> There's no "splash" in DISTRO_FEATURES. There is one in IMAGE_FEATURES
-> though,
-> which we don't use, but probably should.
-[Sam] Thanks. I will make it depend on IMAGE_FEATURES.
->=20
->=20
 > >      arago-gpl-notice \
 > >      arago-feed-config \
 > >      nfs-utils-client \
