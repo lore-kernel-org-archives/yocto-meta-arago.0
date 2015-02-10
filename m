@@ -1,27 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 823EB52AA6
+Return-Path: <sam.nelson@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 10E9A52ABB
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Feb 2015 19:58:19 +0000 (UTC)
-Received: from gandalf.denix.org ([108.28.89.130]) by vms173021.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NJK008L0NGFGJ60@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 10 Feb 2015 13:57:52 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=PYxIXZlY c=1 sm=1 tr=0	a=ckUr7rGttv+NBxkAVUaaIw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=0HtSIViG9nkA:10
-	a=sozttTNsAAAA:8	a=0uncoVMVup48fduu7eAA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 4318A20030;	Tue,
-	10 Feb 2015 14:57:51 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 10 Feb 2015 14:57:50 -0500
-Message-id: <1423598270-30922-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH v2] arago-image, packagegroup-arago-base-tisdk: move psplash to IMAGE_FEATURES, sans server
+	Tue, 10 Feb 2015 20:04:00 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1AK3xpZ004032
+	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 14:03:59 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1AK3wu3001173
+	for <meta-arago@arago-project.org>; Tue, 10 Feb 2015 14:03:58 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 10 Feb 2015 14:03:57 -0600
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t1AK3sDu007199;	Tue, 10 Feb 2015 14:03:55 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 10 Feb 2015 15:03:52 -0500
+Message-ID: <1423598632-4802-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH v2] packagegroup-arago-tisdk-addons: Keep switch-config only for ti33x, ti43x & omap-a15
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,66 +34,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Feb 2015 19:58:19 -0000
+X-List-Received-Date: Tue, 10 Feb 2015 20:04:00 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+- with kernel version 3.10.10 switch-config doesnot compile
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+
 ---
-v2 - rebase against recent master
+Changes from previous version of patch
+- Modified to avoid use of _remove
+---
+---
+ .../packagegroup-arago-tisdk-addons.bb             |    5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
- meta-arago-distro/recipes-core/images/arago-image.inc                  | 2 +-
- meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb     | 2 ++
- .../recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb        | 3 +--
- 3 files changed, 4 insertions(+), 3 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
-index 98af6c3..977ce8f 100644
---- a/meta-arago-distro/recipes-core/images/arago-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-image.inc
-@@ -3,7 +3,7 @@
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index a8d3efb..6d98ba6 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -18,7 +18,6 @@ UTILS = " \
+     openssh-sftp-server \
+     ptpd \
+     libdrm-kms \
+-    switch-config \
+     ${@base_contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
+ "
  
--IMAGE_FEATURES += "package-management"
-+IMAGE_FEATURES += "package-management splash"
+@@ -39,6 +38,10 @@ UTILS_append_ti43x = " canutils"
+ UTILS_append_dra7xx = " canutils"
+ UTILS_append_omap-a15 = " parted"
  
- # 4KB per 1 inode should be enough
- EXTRA_IMAGECMD_ext2.gz += "-i 4096"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-index e5ce2b5..908325f 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-@@ -3,6 +3,8 @@ COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|keystone"
- 
- require arago-image.inc
- 
-+SPLASH = ""
++UTILS_append_ti33x = " switch-config"
++UTILS_append_ti43x = " switch-config"
++UTILS_append_omap-a15 = " switch-config"
 +
- IMAGE_INSTALL += "\
-     packagegroup-arago-base \
-     packagegroup-arago-console \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
-index 7652622..0e8960f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
- LICENSE = "MIT"
--PR = "r15"
-+PR = "r16"
- 
- inherit packagegroup
- 
-@@ -12,7 +12,6 @@ RDEPENDS_${PN} = "\
-     libpcre \
-     iptables \
-     iperf \
--    psplash \
-     arago-gpl-notice \
-     arago-feed-config \
-     nfs-utils-client \
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
+     ${UTILS_UBOOT_FW} \
 -- 
-2.2.0
+1.7.9.5
 
 
