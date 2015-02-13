@@ -1,28 +1,31 @@
-Return-Path: <denys@ti.com>
+Return-Path: <karthik.ramanan@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 63143529B3
+	by arago-project.org (Postfix) with ESMTPS id 3BA495297F
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Feb 2015 00:48:22 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1D0mLHP017549
-	for <meta-arago@arago-project.org>; Thu, 12 Feb 2015 18:48:21 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1D0mKM6002856
-	for <meta-arago@arago-project.org>; Thu, 12 Feb 2015 18:48:20 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Feb 2015 18:48:20 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t1D0mKhC029691;	Thu, 12 Feb 2015 18:48:20 -0600
-Date: Thu, 12 Feb 2015 19:48:19 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <1784752776.341.1423788499877.JavaMail.jenkins@puget>
+	Fri, 13 Feb 2015 04:17:42 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1D4Hedw008516
+	for <meta-arago@arago-project.org>; Thu, 12 Feb 2015 22:17:40 -0600
+Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1D4HZG2000523
+	for <meta-arago@arago-project.org>; Fri, 13 Feb 2015 09:47:38 +0530
+Received: from [172.24.159.175] (172.24.159.175) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Fri, 13 Feb 2015 09:47:34 +0530
+Message-ID: <54DD7ADF.6020701@ti.com>
+Date: Fri, 13 Feb 2015 09:47:35 +0530
+From: Karthik Ramanan <a0393906@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.02 build 2015-02-12_11-03-43
+To: Denys Dmytriyenko <denys@ti.com>, "R, Karthik" <karthik.ramanan@ti.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+References: <1422541885-5800-1-git-send-email-a0393906@ti.com>
+	<B0581B5571079145BA1CD78C126DBDE7321FCD18@DLEE08.ent.ti.com>
+	<20150212210914.GC20106@edge>
+In-Reply-To: <20150212210914.GC20106@edge>
+X-Originating-IP: [172.24.159.175]
+Subject: Re: [RFC PATCH] base-files: Increase /var/volatile size
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,201 +38,90 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Feb 2015 00:48:22 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_340_1638352491.1423788499578"
-
-------=_Part_340_1638352491.1423788499578
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Fri, 13 Feb 2015 04:17:42 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html>
-<head>
-<title>
-Status for 02/12/15
-</title>
-</head>
-<body>
+I thought we all agreed on this.
 
-<h2>Status for 02/12/15</h2>
+Franklin mentioned that he didn't have a problem with bumping this to 50MB.
 
-<h2>BUILD_ID: build-2015-02-12_11-04-47</h2>
+And just to add, I have been overlaying this patch on our nightly builds 
+and its been well tested for the last two weeks. This size looks good to 
+me atleast for now and satisfies all our usecase requirements.
 
-<h2>Clean Build: true</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.22</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.02"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+Regards
+Karthik
 
 
-------=_Part_340_1638352491.1423788499578--
+On 13-Feb-15 2:39 AM, Denys Dmytriyenko wrote:
+> Ping. Have we come to any agreement on this one?
+>
+>
+> On Thu, Jan 29, 2015 at 03:19:08PM +0000, Dmytriyenko, Denys wrote:
+>> Karthik,
+>>
+>> The reason it was limited to 16MB in early days is because we had platforms
+>> with only 32MB of RAM and letting tmpfs fill up uncontrollable was dangerous
+>> and was making the system very unstable.
+>>
+>> One of the options is to have per-machine RAM/tmpfs setting, which can get
+>> propagated to /etc/fstab accordingly - e.g. 32/64 for am335x/am437 and
+>> 64/128 for dra7xx, etc.
+>>
+>> --
+>> Denys
+>>
+>>
+>> -----Original Message-----
+>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of R, Karthik
+>> Sent: Thursday, January 29, 2015 9:31 AM
+>> To: meta-arago@arago-project.org
+>> Subject: [meta-arago] [RFC PATCH] base-files: Increase /var/volatile size
+>>
+>> * Weston applications allocate memory from tmpfs, need to
+>>    increase the tmpfs area to atleast 50M. Can this be
+>>    increased more - what are the pros/cons?
+>>
+>> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>> ---
+>>   .../recipes-core/base-files/base-files/fstab       |    2 +-
+>>   .../base-files/base-files_3.0.14.bbappend          |    2 +-
+>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/meta-arago-distro/recipes-core/base-files/base-files/fstab b/meta-arago-distro/recipes-core/base-files/base-files/fstab
+>> index 9ed6f33..8ddadd9 100644
+>> --- a/meta-arago-distro/recipes-core/base-files/base-files/fstab
+>> +++ b/meta-arago-distro/recipes-core/base-files/base-files/fstab
+>> @@ -5,7 +5,7 @@ proc                 /proc                proc       defaults              0  0
+>>   devpts               /dev/pts             devpts     mode=0620,gid=5       0  0
+>>   usbdevfs             /proc/bus/usb        usbdevfs   noauto                0  0
+>>   tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
+>> -tmpfs                /var/volatile        tmpfs      defaults,size=16M     0  0
+>> +tmpfs                /var/volatile        tmpfs      defaults,size=50M     0  0
+>>   tmpfs                /media/ram           tmpfs      defaults,size=16M     0  0
+>>
+>>   # uncomment this if your device has a SD/MMC/Transflash slot diff --git a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
+>> index 40b7722..956a057 100644
+>> --- a/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappend
+>> +++ b/meta-arago-distro/recipes-core/base-files/base-files_3.0.14.bbappe
+>> +++ nd
+>> @@ -1,4 +1,4 @@
+>>   # look for files in this layer first
+>>   FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>
+>> -PR_append = "-arago3"
+>> +PR_append = "-arago4"
+>> --
+>> 1.7.9.5
+>>
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+
