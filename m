@@ -1,27 +1,27 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5B9F952A31
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 3119752A31
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Feb 2015 09:21:14 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1G9LDBn016816
-	for <meta-arago@arago-project.org>; Mon, 16 Feb 2015 03:21:13 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1G9LCcc028721
-	for <meta-arago@arago-project.org>; Mon, 16 Feb 2015 03:21:12 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 16 Feb 2015 03:21:12 -0600
+	Mon, 16 Feb 2015 09:32:19 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1G9WIiU004484
+	for <meta-arago@arago-project.org>; Mon, 16 Feb 2015 03:32:18 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1G9WHtk032306
+	for <meta-arago@arago-project.org>; Mon, 16 Feb 2015 03:32:17 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 16 Feb 2015 03:32:16 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1G9L9B6016555;
-	Mon, 16 Feb 2015 03:21:11 -0600
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1G9WFcb015843;
+	Mon, 16 Feb 2015 03:32:16 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 16 Feb 2015 14:51:08 +0530
-Message-ID: <1424078468-481-1-git-send-email-a0393906@ti.com>
+Date: Mon, 16 Feb 2015 15:02:14 +0530
+Message-ID: <1424079134-2421-1-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: libdce: Update to latest IPC 3.30.03.14
+Subject: omapdrmtest: Updated applications for GLSDK 7.00EA
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,39 +34,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Feb 2015 09:21:14 -0000
+X-List-Received-Date: Mon, 16 Feb 2015 09:32:19 -0000
 Content-Type: text/plain
 
-Other fixes:
- * Mutex protection for dce_buf_lock/unlock
- * Multiplanar encode support
- * Fix multithread client indexing logic
+ * dmabuftest: Use single planar buffers
+ * capturevpedisplay: Request interlaced capture and pass field ids
+ * v4l2: Add latency measurement
+ * dmabuftest: Return from thread if streamon fails
+ * dmabuftest: Remove switch thread logic
+ * display-kmscube: Render full video buffer
+ * display-kmscube: Render multiple videos on cube faces
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../recipes-multimedia/libdce/libdce_git.bb        |    4 ++--
+ .../omapdrmtest/omapdrmtest_1.0.0.bb               |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/libdce/libdce_git.bb b/meta-arago-extras/recipes-multimedia/libdce/libdce_git.bb
-index 308eadf..1512e47 100644
---- a/meta-arago-extras/recipes-multimedia/libdce/libdce_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/libdce/libdce_git.bb
-@@ -4,13 +4,13 @@ LIC_FILES_CHKSUM = "file://libdce.h;beginline=1;endline=31;md5=0a398cf815b8b5f31
+diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+index 04fc2e7..1c878c3 100644
+--- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+@@ -6,8 +6,8 @@ DEPENDS += "libav libdce libdrm libgbm omap5-sgx-ddk-um-linux"
  
  inherit autotools pkgconfig
  
--PR = "r1+gitr${SRCPV}"
-+PR = "r2+gitr${SRCPV}"
- PV = "2.0"
+-PR = "r4"
+-SRCREV = "04da689692ec7cd3ef0f315c9c00d9051cefdd10"
++PR = "r5"
++SRCREV = "a2f483ef833ce7a6f3e0b975d9e49267960b288e"
  
- DEPENDS = "libdrm ti-ipc"
+ SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git"
  
- SRC_URI = "git://git.omapzoom.org/repo/libdce.git;protocol=git"
--SRCREV = "1916cfef94c4ee41c2beedc9cd87b8916ad29895"
-+SRCREV = "bb5786d7ce8ab452ab1edc867e4456d1abf08428"
- 
- S = "${WORKDIR}/git"
- EXTRA_OECONF += "IPC_HEADERS=${STAGING_INCDIR}/ti/ipc/mm"
 -- 
 1.7.9.5
 
