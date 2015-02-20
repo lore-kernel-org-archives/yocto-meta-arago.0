@@ -1,30 +1,37 @@
 Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5EDC752A3F
+	by arago-project.org (Postfix) with ESMTPS id 7629D52A3F
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Feb 2015 02:52:00 +0000 (UTC)
+	Fri, 20 Feb 2015 02:56:00 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1K2pxhC030785
-	for <meta-arago@arago-project.org>; Thu, 19 Feb 2015 20:51:59 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1K2pwq7031522
-	for <meta-arago@arago-project.org>; Thu, 19 Feb 2015 20:51:58 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 19 Feb 2015 20:51:58 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1K2tx5l000667
+	for <meta-arago@arago-project.org>; Thu, 19 Feb 2015 20:55:59 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1K2twnp001497
+	for <meta-arago@arago-project.org>; Thu, 19 Feb 2015 20:55:58 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 19 Feb 2015 20:55:58 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1K2pwhF009751;
-	Thu, 19 Feb 2015 20:51:58 -0600
-Date: Thu, 19 Feb 2015 21:51:57 -0500
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1K2twJn022151;
+	Thu, 19 Feb 2015 20:55:58 -0600
+Date: Thu, 19 Feb 2015 21:55:58 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20150220025157.GF31287@edge>
-References: <1424400404-29489-1-git-send-email-sam.nelson@ti.com>
+To: "Nelson, Sam" <sam.nelson@ti.com>
+Message-ID: <20150220025557.GG31287@edge>
+References: <1423248896-20699-1-git-send-email-sam.nelson@ti.com>
+	<20150206185948.GA12366@edge>
+	<4F9216F96E5DF9428610502835A9F4905811091D@DLEE11.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C7FB1BB@DFLE08.ent.ti.com>
+	<20150206204243.GD12366@edge>
+	<8F29D6B095ED194EA1980491A5E029710C7FB287@DFLE08.ent.ti.com>
+	<4F9216F96E5DF9428610502835A9F49058110B5F@DLEE11.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1424400404-29489-1-git-send-email-sam.nelson@ti.com>
+In-Reply-To: <4F9216F96E5DF9428610502835A9F49058110B5F@DLEE11.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] ipsecmgr: Add recipes for ipsec manager kernel module and libraries
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
+	Franklin" <fcooper@ti.com>
+Subject: Re: [PATCH] branding-mcsdk: Adding MCSDK branding include file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,112 +44,101 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Feb 2015 02:52:00 -0000
+X-List-Received-Date: Fri, 20 Feb 2015 02:56:00 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Looks good. I'll take it, probably apply tomorrow. Thanks.
+Coming back to this discussion...
 
 
-On Thu, Feb 19, 2015 at 09:46:44PM -0500, Sam Nelson wrote:
-> - Provides module and libraries to offload IPSec security
->  policy & associated security association to NETCP for
->  crypto operations
-> 
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> 
-> ---
-> Changes from previous version of patch
-> - Adjusted path wrt WORKDIR
-> ---
-> ---
->  .../recipes-support/ipsecmgr/ipsecmgr-mod_git.bb   |   20 +++++++++++++
->  .../recipes-support/ipsecmgr/ipsecmgr.inc          |    6 ++++
->  .../recipes-support/ipsecmgr/ipsecmgr_git.bb       |   30 ++++++++++++++++++++
->  3 files changed, 56 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb
->  create mode 100644 meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
->  create mode 100644 meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb
-> 
-> diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb
-> new file mode 100644
-> index 0000000..b00da58
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr-mod_git.bb
-> @@ -0,0 +1,20 @@
-> +SUMMARY = "IPSec Manager kernel module"
-> +DESCRIPTION = "Provides Module to offload IPSec security policy & associated security association to NETCP for crypto operations"
-> +
-> +LIC_FILES_CHKSUM = "file://../../ipsecmgr_snoop.h;beginline=1;endline=33;md5=f7eadca4fb5599f508dc11fa1e752919"
-> +
-> +include ipsecmgr.inc
-> +
-> +MACHINE_KERNEL_PR_append = "a+gitr${SRCPV}"
-> +PR = "${MACHINE_KERNEL_PR}"
-> +
-> +EXTRA_OEMAKE += "KDIR="${STAGING_KERNEL_DIR}""
-> +
-> +inherit module
-> +
-> +S = "${WORKDIR}/git/src/module"
-> +
-> +do_install() {
-> +# Install kernel module
-> +	oe_runmake INSTALL_MOD_PATH="${D}" install
-> +}
-> diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
-> new file mode 100644
-> index 0000000..2aafa57
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
-> @@ -0,0 +1,6 @@
-> +LICENSE = "BSD-3-Clause"
-> +BRANCH="master"
-> +SRC_URI = "git://arago-project.org/git/projects/ipsecmgr.git;protocol=git;branch=${BRANCH}"
-> +#Commit ID corresponding to DEV.IPSECMGR.01.01.00.03
-> +SRCREV = "1ea8355ae9142311901c842c97a58d2846b308e6"
-> +PV     = "01.01.00.03"
-> diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb
-> new file mode 100644
-> index 0000000..d134baf
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr_git.bb
-> @@ -0,0 +1,30 @@
-> +SUMMARY = "IPSec Manager libraries"
-> +DESCRIPTION = "Provides library to offload IPSec security policy & associated security association to NETCP for crypto operations"
-> +
-> +LIC_FILES_CHKSUM = "file://../ipsecmgr_snoop.h;beginline=1;endline=33;md5=f7eadca4fb5599f508dc11fa1e752919"
-> +
-> +include ipsecmgr.inc
-> +
-> +DEPENDS = "libnl-xfrm"
-> +
-> +CFLAGS += "-I${STAGING_INCDIR}/libnl3"
-> +
-> +S = "${WORKDIR}/git/build"
-> +LIB_INC_DIR = "${WORKDIR}/git"
-> +UTILS_LIB_INC_DIR = "${WORKDIR}/git/utils/iface/"
-> +
-> +do_compile() {
-> +# Compile the library
-> +	make clean
-> +	make all
-> +}
-> +do_install() {
-> +# Install libraries
-> +	install -d ${D}${libdir}/
-> +	install -c -m 666 libipsecmgr_snoop.a ${D}${libdir}/
-> +	install -c -m 666 libipsecmgr_ipc.a ${D}${libdir}/
-> +	install -c -m 666 libipsecmgr_syslog.a ${D}${libdir}/
-> +	install -d ${D}${includedir}/
-> +	install -c -m 666 ${LIB_INC_DIR}/*.h ${D}${includedir}/
-> +	install -c -m 666 ${UTILS_LIB_INC_DIR}/*.h ${D}${includedir}/
-> +}
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+On Fri, Feb 06, 2015 at 09:29:48PM -0500, Nelson, Sam wrote:
+> > > > > > > - To control preferred version and providers for MCSDK
+> > > > > > >
+> > > > > > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> > > > > > > ---
+> > > > > > >  .../conf/distro/include/branding-mcsdk.inc         |   20
+> > > > > > ++++++++++++++++++++
+> > > > > > >  1 file changed, 20 insertions(+)  create mode 100644
+> > > > > > > meta-arago-distro/conf/distro/include/branding-
+> > > > > > mcsdk.inc
+> > > > > > >
+> > > > > > > diff --git
+> > > > > > > a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+> > > > > > b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+> > > > > > > new file mode 100644
+> > > > > > > index 0000000..d023b67
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+> > > > > > > @@ -0,0 +1,20 @@
+> > > > > > > +# MCSDK branding configuration
+> > > > > > > +
+> > > > > > > +# Use the MCSDK supported versions PREFERRED_VERSION_libnl =
+> > > > > > > +"3.2.24"
+> > > > > > > +
+> > > > > > > +DISTRO_FEATURES += "x11 opengl"
+> > > > > >
+> > > > > > I assume x11 is to make Java happy? I don't think you have x11 env...
+> > > > > >
+> > > > > [Sam] Yes it was to make Java happy.
+> > > > [Franklin] I thought I remembered that the mcsdk were meant for headless
+> > > devices.
+> > > > If so I would recommend taking a look at the discussion here:
+> > > > https://github.com/woglinde/meta-java/issues/45
+> > > >
+> > > > Pulling in x11 and gtk seems painful especially since you're not using it.
+> > > > Anyway it's something to look into if it is indeed meant for headless
+> > devices.
+> > > > But its ur branding file so my above comments aren't meant to block this
+> > > patch from being accepted.
+> > >
+> > > Well, as explained in that tracker link you provided, pulling X libs for the
+> > build
+> > > doesn't necessary mean you'll end up with X component on the target.
+> > > Yes, disabling AWT is a nice touch, hopefully it gets integrated into meta-
+> > java
+> > [Franklin] Maybe for the very specific x11 recipes but pulling the generic gtk+
+> > package I'm not sure things will end up being as lucky. The changes
+> > mentioned in the link specifically drops the gtk dependency. Also adding X11
+> > to your distro features I'm assuming will affect quite a bit of recipes that may
+> > pull in additional x11 dependencies that they may have avoided otherwise.
+> > 
+> > Anyway I was making assumptions so if that isn't occurring in their current
+> > builds feel free to ignore my crazy rambling :)
+
+> [Sam] I tried the patch mentioned in tracker link. But I see libxt 
+> libxinerama libxrender all depend on x11.
+> So not giving anything useful.
+
+But according to the comments, it skips building AWT and removes GTK 
+dependencies. Plus the build is faster. Do you want to include it?
+
+I'm wondering if libxt, libxinerama and libxrender require 
+DISTRO_FEATURES += "x11"...
+
+
+> > > > > > > +# Java preferences.
+> > > > > > > +#PREFERRED_VERSION_openjdk-7-jre = "25b30-2.3.12"
+> > > > > > > +PREFERRED_VERSION_icedtea7-native = "2.1.3"
+> > > > > > > +PREFERRED_PROVIDER_openjdk-7-jre = "openjdk-7-jre"
+> > > > > > > +
+> > > > > > > +PREFERRED_PROVIDER_virtual/java-initial = "cacao-initial"
+> > > > > > > +
+> > > > > > > +PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+> > > > > > > +PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+> > > > > > > +
+> > > > > > > +PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
+> > > > > > > +#PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
+> > > > > > > +PREFERRED_PROVIDER_glibc-gconv-iso8859-1 = "nativesdk-eglibc-
+> > > locale"
+> > > > > > > --
+> > > > > > > 1.7.9.5
+> > > > > > >
+> > > > > > > _______________________________________________
+> > > > > > > meta-arago mailing list
+> > > > > > > meta-arago@arago-project.org
+> > > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > > > > _______________________________________________
+> > > > > meta-arago mailing list
+> > > > > meta-arago@arago-project.org
+> > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
