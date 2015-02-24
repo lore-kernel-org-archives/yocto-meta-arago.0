@@ -1,33 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 6CD2E52A30
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 44C50529D9
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Feb 2015 20:53:05 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1OKr4o5004406
-	for <meta-arago@arago-project.org>; Tue, 24 Feb 2015 14:53:04 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1OKr3GG023520
-	for <meta-arago@arago-project.org>; Tue, 24 Feb 2015 14:53:03 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 24 Feb 2015 14:53:02 -0600
+	Tue, 24 Feb 2015 21:13:18 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1OLDHLV024722
+	for <meta-arago@arago-project.org>; Tue, 24 Feb 2015 15:13:17 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1OLDGDo020906
+	for <meta-arago@arago-project.org>; Tue, 24 Feb 2015 15:13:16 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 24 Feb 2015 15:13:16 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1OKr3YM022888;
-	Tue, 24 Feb 2015 14:53:03 -0600
-Date: Tue, 24 Feb 2015 15:53:02 -0500
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1OLDGvw003395;
+	Tue, 24 Feb 2015 15:13:16 -0600
+Date: Tue, 24 Feb 2015 16:13:15 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20150224205302.GC4338@edge>
-References: <1424472995-22977-1-git-send-email-fcooper@ti.com>
-	<1424472995-22977-2-git-send-email-fcooper@ti.com>
-	<20150223211729.GM31287@edge>
-	<B64B75BC-B319-4E9C-B1CA-C9F3E4560F37@ti.com>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <20150224211315.GE4338@edge>
+References: <1423823436-21007-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <B64B75BC-B319-4E9C-B1CA-C9F3E4560F37@ti.com>
+In-Reply-To: <1423823436-21007-1-git-send-email-a0393906@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/4] packagegroup-arago-tisdk-*: Add back dual camera demo that supports Qt and 3.14
+Cc: meta-arago@arago-project.org
+Subject: Re: [RFC PATCH - USB DRD] udev: Add rules for DRD usecase
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,124 +37,86 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Feb 2015 20:53:05 -0000
+X-List-Received-Date: Tue, 24 Feb 2015 21:13:18 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-In general, it's not advised to pull in library dependencies explicitly, when 
-they can be resolved implicitly. Even when installing a package that depends 
-on a library not currently installed, it will be pulled in and installed 
-automatically as a dependency by opkg.
+On Fri, Feb 13, 2015 at 04:00:36PM +0530, Karthik Ramanan wrote:
+> For the DRD usecase when switching from host to device mode
+> some commands have to be executed manually. These script
+> additions facilatate this to happen automatically.
 
-An exception can be made when the library is expected to be used by a 3rd 
-party application or demo that has no recipe and is not installed as an IPK 
-binary package... So, I'm fine with this case, I guess.
-
--- 
-Denys
+The patch seems fine, but why do you add an extra line at the end of every 
+file?
 
 
-On Mon, Feb 23, 2015 at 04:25:47PM -0500, Cooper Jr., Franklin wrote:
-> Devices like am57 should include those packages even though they aren't 
-> supported by the dual camera demo.
+> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+> ---
+>  .../recipes-core/udev/udev/local.rules             |    2 ++
+>  .../recipes-core/udev/udev/usb1-rules.sh           |    4 ++++
+>  .../recipes-core/udev/udev/usb2-rules.sh           |    4 ++++
+>  .../recipes-core/udev/udev_182.bbappend            |   14 +++++++++++++-
+>  4 files changed, 23 insertions(+), 1 deletion(-)
+>  create mode 100755 meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh
+>  create mode 100755 meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh
 > 
-> And for am437 it's just to insure those libraries r included incase the demo 
-> is unused for what ever reason in the future.
+> diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules b/meta-arago-distro/recipes-core/udev/udev/local.rules
+> index 45c3a46..689e093 100644
+> --- a/meta-arago-distro/recipes-core/udev/udev/local.rules
+> +++ b/meta-arago-distro/recipes-core/udev/udev/local.rules
+> @@ -22,3 +22,5 @@ SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLI
+>  # Auto-mount any SD cards
+>  ACTION=="add", KERNEL=="mmcblk[0-9]p[0-9]", SUBSYSTEM=="block", RUN+="/etc/udev/scripts/mount.sh"
+>  ACTION=="remove", KERNEL=="mmcblk[0-9]p[0-9]", SUBSYSTEM=="block", RUN+="/etc/udev/scripts/mount.sh"
+> +ACTION=="add", DEVPATH=="/devices/44000000\.ocp/48880000\.omap_dwc3_1/48890000\.usb/udc*", RUN+="/usr/bin/usb1-rules.sh"
+> +ACTION=="add", DEVPATH=="/devices/44000000\.ocp/488c0000\.omap_dwc3_2/488d0000\.usb/udc*", RUN+="/usr/bin/usb2-rules.sh"
+> diff --git a/meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh b/meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh
+> new file mode 100755
+> index 0000000..8a49cf1
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh
+> @@ -0,0 +1,4 @@
+> +#!bin/sh
+> +/sbin/modprobe g_ncm -r
+> +/sbin/modprobe g_ncm
+> +
+> diff --git a/meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh b/meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh
+> new file mode 100755
+> index 0000000..38a8894
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh
+> @@ -0,0 +1,4 @@
+> +#!bin/sh
+> +/sbin/modprobe g_zero -r
+> +/sbin/modprobe g_zero
+> +
+> diff --git a/meta-arago-distro/recipes-core/udev/udev_182.bbappend b/meta-arago-distro/recipes-core/udev/udev_182.bbappend
+> index 838cce8..684f501 100644
+> --- a/meta-arago-distro/recipes-core/udev/udev_182.bbappend
+> +++ b/meta-arago-distro/recipes-core/udev/udev_182.bbappend
+> @@ -5,4 +5,16 @@
+>  # look for files in this layer first
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+> -PR_append = "-arago2"
+> +PR_append = "-arago3"
+> +
+> +SRC_URI_append = " \
+> +                  file://usb1-rules.sh \
+> +                  file://usb2-rules.sh"
+> +
+> +do_install_append() {
+> +    install -d ${D}/${bindir}
+> +
+> +    install -m 0755 ${WORKDIR}/usb1-rules.sh ${D}${bindir}/usb1-rules.sh
+> +    install -m 0755 ${WORKDIR}/usb2-rules.sh ${D}${bindir}/usb2-rules.sh
+> +}
+> +
+> -- 
+> 1.7.9.5
 > 
-> 
-> > On Feb 23, 2015, at 3:17 PM, Dmytriyenko, Denys <denys@ti.com> wrote:
-> > 
-> >> On Fri, Feb 20, 2015 at 04:56:33PM -0600, Franklin S. Cooper Jr wrote:
-> >> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> >> 
-> >> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> >> ---
-> >> .../packagegroup-arago-tisdk-addons.bb             |    6 +++---
-> >> ...packagegroup-arago-tisdk-multimedia-sdk-host.bb |    7 +++++--
-> >> .../packagegroup-arago-tisdk-multimedia.bb         |    6 +++---
-> >> 3 files changed, 11 insertions(+), 8 deletions(-)
-> >> 
-> >> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> >> index 6d98ba6..c6b07a9 100644
-> >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> >> @@ -1,6 +1,6 @@
-> >> DESCRIPTION = "Task to install additional utilities/demos for SDKs"
-> >> LICENSE = "MIT"
-> >> -PR = "r19"
-> >> +PR = "r20"
-> >> 
-> >> inherit packagegroup
-> >> 
-> >> @@ -39,8 +39,8 @@ UTILS_append_dra7xx = " canutils"
-> >> UTILS_append_omap-a15 = " parted"
-> >> 
-> >> UTILS_append_ti33x = " switch-config"
-> >> -UTILS_append_ti43x = " switch-config"
-> >> -UTILS_append_omap-a15 = " switch-config"
-> >> +UTILS_append_ti43x = " switch-config libdrm-omap"
-> >> +UTILS_append_omap-a15 = " switch-config libdrm-omap"
-> > 
-> > Any particular reason to add libdrm dependency in this packagegroup? It should 
-> > be taken care of by DEPENDS and RDEPENDS of the actual package - i.e. dual-cam
-> > 
-> > 
-> >> RDEPENDS_${PN} = "\
-> >>     ${UTILS} \
-> >> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-> >> index 94fd786..8f7c4fe 100644
-> >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-> >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-> >> @@ -1,6 +1,6 @@
-> >> DESCRIPTION = "Task to add multimedia related sources into the SDK"
-> >> LICENSE = "MIT"
-> >> -PR = "r6"
-> >> +PR = "r7"
-> >> 
-> >> inherit packagegroup
-> >> 
-> >> @@ -16,7 +16,10 @@ MULTIMEDIA_append_am3517-evm = " \
-> >>     av-examples-src \
-> >> "
-> >> 
-> >> -MULTIMEDIA_append_ti43x = ""
-> >> +MULTIMEDIA_append_ti43x = " \
-> >> +    dual-camera-demo-src \
-> >> +    image-gallery-src \
-> >> +"
-> >> 
-> >> #Demo doesn't work on 3.14
-> >> # ${@base_conditional('QT_PROVIDER', 'qt5', '', 'dual-camera-demo-src image-gallery-src', d)}
-> >> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> >> index 81d5ee1..dd495f8 100644
-> >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> >> @@ -1,6 +1,6 @@
-> >> DESCRIPTION = "Task to add multimedia related packages"
-> >> LICENSE = "MIT"
-> >> -PR = "r10"
-> >> +PR = "r11"
-> >> 
-> >> inherit packagegroup
-> >> 
-> >> @@ -17,10 +17,10 @@ MULTIMEDIA_append_ti33x = " \
-> >> "
-> >> 
-> >> MULTIMEDIA_append_ti43x = " \
-> >> +    dual-camera-demo \
-> >> +    image-gallery \
-> >>     amsdk-av-files \
-> >> "
-> >> -# demo doesn't work on 3.14
-> >> -# ${@base_conditional('QT_PROVIDER', 'qt5', '', 'dual-camera-demo image-gallery', d)}
-> >> 
-> >> MULTIMEDIA_append_omap-a15 = " \
-> >>     amsdk-av-files \
-> >> -- 
-> >> 1.7.9.5
-> >> 
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
