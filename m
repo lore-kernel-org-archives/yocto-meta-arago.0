@@ -1,29 +1,27 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id CB11B529A7
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id AE7E2529D9
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Feb 2015 20:42:45 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1QKgjN1011137
-	for <meta-arago@arago-project.org>; Thu, 26 Feb 2015 14:42:45 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1QKghJ7006756
-	for <meta-arago@arago-project.org>; Thu, 26 Feb 2015 14:42:43 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 26 Feb 2015 14:42:43 -0600
+	Thu, 26 Feb 2015 23:35:24 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1QNZNw8002464
+	for <meta-arago@arago-project.org>; Thu, 26 Feb 2015 17:35:23 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1QNZLi6012487
+	for <meta-arago@arago-project.org>; Thu, 26 Feb 2015 17:35:22 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 26 Feb 2015 17:35:21 -0600
 Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t1QKgg85029374;	Thu, 26 Feb 2015 14:42:43 -0600
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t1QNZJmV012338;	Thu, 26 Feb 2015 17:35:20 -0600
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 26 Feb 2015 15:42:40 -0500
-Message-ID: <1424983360-32134-2-git-send-email-sam.nelson@ti.com>
+Date: Thu, 26 Feb 2015 18:35:17 -0500
+Message-ID: <1424993717-21323-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1424983360-32134-1-git-send-email-sam.nelson@ti.com>
-References: <1424983360-32134-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v3 2/2] packagegroup-arago-mcsdk-toolchain-target: Add package group for mcsdk toolchain
+Subject: [RFC PATCH] packagegroup-arago-test-addons: Add keystone specific test packages and other test packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,117 +34,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Feb 2015 20:42:46 -0000
+X-List-Received-Date: Thu, 26 Feb 2015 23:35:25 -0000
 Content-Type: text/plain
-
-- Adds ti dev packages, platform specific packages and other additional packages
 
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../packagegroup-arago-mcsdk-toolchain-target.bb   |   94 ++++++++++++++++++++
- 1 file changed, 94 insertions(+)
- create mode 100644 meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-mcsdk-toolchain-target.bb
+ .../packagegroup-arago-test-addons.bb              |   34 ++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-mcsdk-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-mcsdk-toolchain-target.bb
-new file mode 100644
-index 0000000..9265a8c
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-mcsdk-toolchain-target.bb
-@@ -0,0 +1,94 @@
-+DESCRIPTION = "Target dev packages for MCSDK SDK"
-+LICENSE = "BSD-3-Clause"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+index 925f157..f577c76 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+@@ -7,9 +7,43 @@ inherit packagegroup
+ 
+ TEST_ADDONS = " \
+     bridge-utils \
++    linuxptp \
++    openntpd \
++    strongswan \
++    gdb \
+     "
+ 
+ TEST_ADDONS_TI = " \
++    cmem-test \
++    "
++TEST_ADDONS_TI_append_keystone = " \
++    qmss-lld-test \
++    pa-lld-test \
++    cppi-lld-test \
++    hyplnk-lld-test \
++    edma3-lld-test \
++    mmap-lld-test \
++    rm-lld \
++    rm-lld-test \
++    sa-lld \
++    sa-lld-test \
++    traceframework-test \
++    multiprocmgr-test \
++    hplib-test \
++    hyplnk-lld-test \
++    nwal-lld \
++    nwal-lld-test \
++    udma-test \
++    mpm-transport-test \
++    "
 +
-+PR = "r0"
++TEST_ADDONS_TI_append_k2hk-evm = " \
++    srio-lld-test \
++    "
 +
-+inherit packagegroup
-+
-+TI_PKGS_DEV = "\
-+	cmem-dev \
-+	cmem-staticdev \
-+	"
-+TI_SECURE_STORAGE_DEV = "\
-+	ti-softhsmv2-dev \
-+	libp11-dev \
-+	libp11-staticdev \
-+	"
-+
-+TI_PKGS_DEV_append_keystone = "\
-+	${TI_SECURE_STORAGE_DEV} \
-+	udma-dev \
-+	udma-staticdev \
-+	traceframework-dev \
-+	traceframework-staticdev \
-+	cuia-dev \
-+	cuia-staticdev \
-+	common-csl-ip-dev \
-+	cppi-lld-dev \
-+	cppi-lld-staticdev \
-+	qmss-lld-dev \
-+	qmss-lld-staticdev \
-+	pa-lld-dev \
-+	pa-lld-staticdev \
-+	rm-lld-dev \
-+	rm-lld-staticdev \
-+	hyplnk-lld-dev \
-+	hyplnk-lld-staticdev \
-+	sa-lld-dev \
-+	sa-lld-staticdev \
-+	hplib-dev \
-+	hplib-staticdev \
-+	nwal-lld-dev \
-+	nwal-lld-staticdev \
-+	pktlib-dev \
-+	pktlib-staticdev \
-+	mmap-lld \
-+	mmap-lld-staticdev \
-+	netapi-dev \
-+	netapi-staticdev \
-+	ipsecmgr-dev \
-+	ipsecmgr-staticdev \
-+	libnl-xfrm-dev \
-+	libnl-xfrm-staticdev \
-+	libnl-dev \
-+	libnl-staticdev \
-+	ti-ipc-dev \
-+	ti-ipc-staticdev \
-+	multiprocmgr-dev \
-+	multiprocmgr-staticdev \
-+	mpm-transport-dev \
-+	mpm-transport-staticdev \
-+	edma3-lld-dev \
-+	edma3-lld-staticdev \
-+	lksctp-tools-dev \
-+	lksctp-tools-staticdev \
-+	"
-+
-+TI_PKGS_DEV_append_k2l-evm = "\
-+	dfe-lld-dev \
-+	dfe-lld-staticdev \
-+	iqn2-lld-dev \
-+	iqn2-lld-staticdev \
-+	"
-+
-+TI_PKGS_DEV_append_k2hk-evm = "\
-+	srio-lld-dev \
-+	srio-lld-staticdev \
-+	"
-+
-+RDEPENDS_${PN} += " \
-+	packagegroup-arago-standalone-sdk-target \
-+	kernel-dev \
-+	${TI_PKGS_DEV} \
-+	libdnet-dev \
-+	libdnet-staticdev \
-+	binutils-dev \
-+	binutils-staticdev \
-+	elfutils-dev \
-+	elfutils-staticdev \
-+	libbz2-dev \
-+	libbz2-staticdev \
-+	libgl-mesa-dev \
-+	boost-dev \
-+	libsdl-dev \
-+	"
++TEST_ADDONS_TI_append_k2l-evm = " \
++    dfe-lld-test \
++    iqn2-lld-test \
+     "
+ 
+ RDEPENDS_${PN} = "\
 -- 
 1.7.9.5
 
