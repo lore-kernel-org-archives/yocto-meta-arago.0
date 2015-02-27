@@ -1,32 +1,27 @@
-Return-Path: <a0850405@a0850405-off1>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8D70052983
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 555E0529A7
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Feb 2015 20:55:44 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1RKthDT019763
-	for <meta-arago@arago-project.org>; Fri, 27 Feb 2015 14:55:43 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1RKtgqS016563
-	for <meta-arago@arago-project.org>; Fri, 27 Feb 2015 14:55:42 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 27 Feb 2015 14:55:42 -0600
-Received: from a0850405-off1 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1RKtg9V019047;
-	Fri, 27 Feb 2015 14:55:42 -0600
-Received: from a0850405 by a0850405-off1 with local (Exim 4.82)	(envelope-from
-	<a0850405@a0850405-off1>)	id 1YRRwk-00086i-0R;
-	Fri, 27 Feb 2015 15:55:42 -0500
-From: Carlos Hernandez <ceh@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 27 Feb 2015 15:55:13 -0500
-Message-ID: <1425070513-31101-3-git-send-email-ceh@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1425070513-31101-1-git-send-email-ceh@ti.com>
-References: <1425070513-31101-1-git-send-email-ceh@ti.com>
-MIME-Version: 1.0
-Subject: [PATCH 3/3] ltp-ddt: Add runtime dependency to serialcheck
+	Fri, 27 Feb 2015 22:24:03 +0000 (UTC)
+Received: from gandalf.denix.org ([108.18.33.236]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NKG008CSBJMRMF0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 27 Feb 2015 16:23:47 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=OYkv1aXd c=1 sm=1 tr=0	a=SSUdfGXV8XCffJJ8+gLrig==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=0HtSIViG9nkA:10
+	a=sozttTNsAAAA:8	a=6YGfpRQ_WjbJymZHyf0A:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id AACE920030;	Fri,
+	27 Feb 2015 17:23:46 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 27 Feb 2015 17:23:46 -0500
+Message-id: <1425075826-11665-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] arago-prefs: pin keystone kernel version to 3.10 as the default
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,30 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Feb 2015 20:55:44 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 27 Feb 2015 22:24:03 -0000
 
-New uart tests on ltp-ddt depends on serialcheck utility, so add
-serialcheck as runtime dependency to ltp-ddt.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Carlos Hernandez <ceh@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-index 43660ae..9afc2fc 100644
---- a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-+++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_0.0.4.bbappend
-@@ -1,6 +1,6 @@
- PR_append = "-arago10+gitr${SRCPV}"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 5092b25..e689f8b 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -68,6 +68,7 @@ PREFERRED_VERSION_u-boot = "2014.07"
+ # Use latest TI staging kernel and u-boot trees
+ PREFERRED_PROVIDER_virtual/bootloader_keystone = "u-boot-keystone"
+ PREFERRED_PROVIDER_u-boot_keystone = "u-boot-keystone"
++PREFERRED_VERSION_linux-keystone = "3.10%"
  
--RDEPENDS_${PN} += "linaro-pm-qa-utils"
-+RDEPENDS_${PN} += "linaro-pm-qa-utils serialcheck"
- 
- SRC_URI_remove = "file://0001-KERNEL_INC-in-modern-kernel-should-point-at-toplevel.patch"
- 
+ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-ti-staging"
+ PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "linux-ti-staging"
 -- 
-1.9.1
+2.2.0
 
 
