@@ -1,30 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 1776B529D9
+	by arago-project.org (Postfix) with ESMTPS id 85D8052983
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Feb 2015 22:34:39 +0000 (UTC)
+	Sat, 28 Feb 2015 09:20:29 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1RMYcP4024491
-	for <meta-arago@arago-project.org>; Fri, 27 Feb 2015 16:34:38 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t1S9KSjt016486
+	for <meta-arago@arago-project.org>; Sat, 28 Feb 2015 03:20:28 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1RMYbx3029829
-	for <meta-arago@arago-project.org>; Fri, 27 Feb 2015 16:34:37 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1S9KRs8025176
+	for <meta-arago@arago-project.org>; Sat, 28 Feb 2015 03:20:27 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 27 Feb 2015 16:34:36 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t1RMYaw0012448;
-	Fri, 27 Feb 2015 16:34:36 -0600
-Date: Fri, 27 Feb 2015 17:34:36 -0500
+	Sat, 28 Feb 2015 03:20:27 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t1S9KRdR015150	for <meta-arago@arago-project.org>;
+	Sat, 28 Feb 2015 03:20:27 -0600
+Date: Sat, 28 Feb 2015 04:20:27 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: Carlos Hernandez <ceh@ti.com>
-Message-ID: <20150227223435.GM6052@edge>
-References: <1425070513-31101-1-git-send-email-ceh@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1953365367.407.1425115227215.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <1425070513-31101-1-git-send-email-ceh@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/3] meta-arago-distro/recipes-devtools: serialcheck recipe
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.02 build 2015-02-27_22-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,204 +36,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Feb 2015 22:34:39 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 28 Feb 2015 09:20:29 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_406_1367416902.1425115227049"
 
-This patch has trailing whitespaces at the end of the files, which git am 
-complains about. Can you fix those? Thanks.
+------=_Part_406_1367416902.1425115227049
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 02/28/15
+</title>
+</head>
+<body>
+
+<h2>Status for 02/28/15</h2>
+
+<h2>BUILD_ID: build-2015-02-27_22-02-02</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.02"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-On Fri, Feb 27, 2015 at 03:55:11PM -0500, Carlos Hernandez wrote:
-> Serialcheck is a simple utility to verify serial ports functionality.
-> It supports all "standard" bauds listed in
-> include/uapi/asm-generic/termbits.h
-> 
-> Signed-off-by: Carlos Hernandez <ceh@ti.com>
-> ---
->  ...01-Add-option-to-enable-internal-loopback.patch | 81 ++++++++++++++++++++++
->  .../0002-Restore-original-loopback-config.patch    | 49 +++++++++++++
->  .../serialcheck/serialcheck_1.0.0.bb               | 22 ++++++
->  3 files changed, 152 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
->  create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
->  create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
-> 
-> diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
-> new file mode 100644
-> index 0000000..c351fd3
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
-> @@ -0,0 +1,81 @@
-> +From 059d5512e840fe68e2bb37add6c9208fa9c34d15 Mon Sep 17 00:00:00 2001
-> +From: Sekhar Nori <nsekhar@ti.com>
-> +Date: Tue, 24 Feb 2015 22:16:37 +0530
-> +Subject: [PATCH 1/2] Add option to enable internal loopback
-> +
-> +---
-> + serialcheck.c | 23 +++++++++++++++++++++++
-> + 1 file changed, 23 insertions(+)
-> +
-> +diff --git a/serialcheck.c b/serialcheck.c
-> +index 4f5b747..4100c37 100644
-> +--- a/serialcheck.c
-> ++++ b/serialcheck.c
-> +@@ -12,6 +12,8 @@
-> + #include <sys/ioctl.h>
-> + #include <linux/serial.h>
-> + 
-> ++#define TIOCM_LOOP	0x8000
-> ++
-> + #define __same_type(a, b)	__builtin_types_compatible_p(typeof(a), typeof(b))
-> + #define BUILD_BUG_ON_ZERO(e)	(sizeof(struct { int:-!!(e); }))
-> + #define __must_be_array(a)	BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
-> +@@ -40,6 +42,7 @@ struct g_opt {
-> + 	unsigned char hflow;
-> + 	unsigned char do_termios;
-> + 	unsigned char *cmp_buff;
-> ++	unsigned char loopback;
-> + };
-> + 
-> + /* name, key, arg, flags, doc, group */
-> +@@ -51,6 +54,7 @@ static struct argp_option options[] = {
-> + 	{"mode",	'm', "M",    0, "transfer mode (d = duplex, t = send r = receive)", 0},
-> + 	{"loops",	'l', "NUM",  0, "loops to perform (0 => wait fot CTRL-C", 0},
-> + 	{"no-termios",	'n', NULL,   0, "No termios change (baud rate etc. remains unchanged)", 0},
-> ++	{"loopback",	'k', NULL,   0, "loopback mode", 0},
-> + 	{NULL, 0, NULL, 0, NULL, 0}
-> + };
-> + 
-> +@@ -67,6 +71,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
-> + 		go->baudrate = 115200;
-> + 		go->loops = UINT_MAX;
-> + 		go->do_termios = 1;
-> ++		go->loopback = 0;
-> + 		break;
-> + 	case ARGP_KEY_ARG:
-> + 		ret =  ARGP_ERR_UNKNOWN;
-> +@@ -113,6 +118,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
-> + 		} else
-> + 			go->loops = num;
-> + 		break;
-> ++	case 'k':
-> ++		go->loopback = 1;
-> ++		break;
-> + 	default:
-> + 		ret = ARGP_ERR_UNKNOWN;
-> + 	}
-> +@@ -487,6 +495,21 @@ int main(int argc, char *argv[])
-> + 			die("tcflush failed: %m\n");
-> + 	}
-> + 
-> ++	if (opts.loopback) {
-> ++		unsigned int mcr;
-> ++
-> ++		ret = ioctl(fd, TIOCMGET, &mcr);
-> ++		if (ret < 0)
-> ++			die("mcr get failed: %m\n");
-> ++
-> ++		mcr |= TIOCM_LOOP;
-> ++
-> ++		ret = ioctl(fd, TIOCMSET, &mcr);
-> ++		if (ret < 0)
-> ++			die ("mcr set failed: %m\n");
-> ++		
-> ++	}
-> ++
-> + 	ret = fcntl(fd, F_SETFL, 0);
-> + 	if (ret)
-> + 		printf("Failed to remove nonblock mode\n");
-> +-- 
-> +1.9.1
-> +
-> diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
-> new file mode 100644
-> index 0000000..ea03578
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
-> @@ -0,0 +1,49 @@
-> +From a6e5813d2f8402bf3a311c8bcda02623bfb76882 Mon Sep 17 00:00:00 2001
-> +From: Carlos Hernandez <ceh@ti.com>
-> +Date: Tue, 24 Feb 2015 16:00:34 -0500
-> +Subject: [PATCH 2/2] Restore original loopback config
-> +
-> +If loopback option is enabled. Disabled it at the end of the test.
-> +
-> +Signed-off-by: Carlos Hernandez <ceh@ti.com>
-> +---
-> + serialcheck.c | 9 +++++++--
-> + 1 file changed, 7 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/serialcheck.c b/serialcheck.c
-> +index 4100c37..06470f7 100644
-> +--- a/serialcheck.c
-> ++++ b/serialcheck.c
-> +@@ -427,6 +427,7 @@ int main(int argc, char *argv[])
-> + 	unsigned char *data;
-> + 	unsigned int open_mode;
-> + 	off_t data_len;
-> ++	unsigned int mcr;
-> + 
-> + 	argp_parse(&argp, argc, argv, 0, NULL, &opts);
-> + 	if (!opts.file_trans)
-> +@@ -496,8 +497,6 @@ int main(int argc, char *argv[])
-> + 	}
-> + 
-> + 	if (opts.loopback) {
-> +-		unsigned int mcr;
-> +-
-> + 		ret = ioctl(fd, TIOCMGET, &mcr);
-> + 		if (ret < 0)
-> + 			die("mcr get failed: %m\n");
-> +@@ -535,6 +534,12 @@ int main(int argc, char *argv[])
-> + 	ret = tcsetattr(fd, TCSAFLUSH, &old_term);
-> + 	if (ret)
-> + 		printf("tcsetattr() of old ones failed: %m\n");
-> ++    if (opts.loopback) {
-> ++		mcr &= ~(TIOCM_LOOP);
-> ++		ret = ioctl(fd, TIOCMSET, &mcr);
-> ++    }
-> ++    if (ret)
-> ++		printf("disabling loopback failed: %m\n");
-> + 
-> + 	close(fd);
-> + 	return status;
-> +-- 
-> +1.9.1
-> +
-> diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
-> new file mode 100644
-> index 0000000..83b4798
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
-> @@ -0,0 +1,22 @@
-> +SUMMARY = "Application to verify operation of serial ports"
-> +HOMEPAGE = "git://git.breakpoint.cc/bigeasy/serialcheck.git"
-> +LICENSE = "GPLv2"
-> +
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-> +SRC_URI = "git://git.breakpoint.cc/bigeasy/serialcheck.git"
-> +
-> +SRC_URI_append = " file://0001-Add-option-to-enable-internal-loopback.patch \
-> +                   file://0002-Restore-original-loopback-config.patch "
-> +
-> +SRCREV = "63854a2d0c0129efab132ec328a75279e013fb84"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +CFLAGS_prepend = "-Wall -Wextra -Wno-sign-compare -Wno-pointer-sign "
-> +
-> +do_install() {
-> +    install -d ${D}${base_bindir}
-> +    install ${S}/serialcheck  ${D}${base_bindir}/serialcheck
-> +}
-> +
-> +
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_406_1367416902.1425115227049--
