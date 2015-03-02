@@ -1,32 +1,32 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 99F1452A62
+Return-Path: <a0850405@a0850405-off1>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 2BC2552A62
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Mar 2015 15:46:12 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t22FkBPE013663
-	for <meta-arago@arago-project.org>; Mon, 2 Mar 2015 09:46:11 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t22FkAVB019498
-	for <meta-arago@arago-project.org>; Mon, 2 Mar 2015 09:46:10 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 2 Mar 2015 09:46:10 -0600
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t22FkAFG009892;	Mon, 2 Mar 2015 09:46:10 -0600
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YSSXp-0000Bj-V1;
-	Mon, 02 Mar 2015 10:46:10 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Mon,  2 Mar 2015 16:03:47 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t22G3jgD022731
+	for <meta-arago@arago-project.org>; Mon, 2 Mar 2015 10:03:45 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t22G3irw006441
+	for <meta-arago@arago-project.org>; Mon, 2 Mar 2015 10:03:44 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 2 Mar 2015 10:03:44 -0600
+Received: from a0850405-off1 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t22G3ieF015963;
+	Mon, 2 Mar 2015 10:03:44 -0600
+Received: from a0850405 by a0850405-off1 with local (Exim 4.82)	(envelope-from
+	<a0850405@a0850405-off1>)	id 1YSSop-0002PM-RM;
+	Mon, 02 Mar 2015 11:03:43 -0500
+From: Carlos Hernandez <ceh@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 2 Mar 2015 10:46:07 -0500
-Message-ID: <1425311167-690-2-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1425311167-690-1-git-send-email-j-stiffler@ti.com>
-References: <1425311167-690-1-git-send-email-j-stiffler@ti.com>
+Date: Mon, 2 Mar 2015 11:03:28 -0500
+Message-ID: <1425312208-9221-1-git-send-email-ceh@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <20150227223435.GM6052@edge>
+References: <20150227223435.GM6052@edge>
 MIME-Version: 1.0
-Subject: [PATCH 2/2] ti-tisdk-makefile: Add wl18xx driver targets.
+Subject: [PATCH 1/3 v2] meta-arago-distro/recipes-devtools: serialcheck recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,78 +39,190 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Mar 2015 15:46:12 -0000
+X-List-Received-Date: Mon, 02 Mar 2015 16:03:48 -0000
 Content-Type: text/plain
 
-From: Jake Stiffler <j-stiffler@ti.com>
+Serialcheck is a simple utility to verify serial ports functionality.
+It supports all "standard" bauds listed in
+include/uapi/asm-generic/termbits.h
 
-* Enables the wl18xx drivers to be built from the SDK Makefile.
-
-Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
+Signed-off-by: Carlos Hernandez <ceh@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_wireless            |   33 +++++++++++++++++---
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
- 2 files changed, 30 insertions(+), 5 deletions(-)
+ ...01-Add-option-to-enable-internal-loopback.patch | 80 ++++++++++++++++++++++
+ .../0002-Restore-original-loopback-config.patch    | 48 +++++++++++++
+ .../serialcheck/serialcheck_1.0.0.bb               | 20 ++++++
+ 3 files changed, 148 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
+ create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
+ create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless
-index a3c7463..00a1931 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless
-@@ -1,7 +1,6 @@
--# Wireless build targets
--wireless: wifi-firmware
--wireless_install: wifi-firmware_install
--wireless_clean: wifi-firmware_clean
-+wireless: wifi-firmware compat-modules
-+wireless_install: wifi-firmware_install compat-modules_install
-+wireless_clean: wifi-firmware_clean compat-modules_clean
- 
- wifi-firmware:
- 	@echo ================================
-@@ -22,3 +21,29 @@ wifi-firmware_clean:
- 	@echo      Cleaning wifi firmware
- 	@echo ================================
- 	@echo "Nothing to do" 
+diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
+new file mode 100644
+index 0000000..fc387d7
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
+@@ -0,0 +1,80 @@
++From 059d5512e840fe68e2bb37add6c9208fa9c34d15 Mon Sep 17 00:00:00 2001
++From: Sekhar Nori <nsekhar@ti.com>
++Date: Tue, 24 Feb 2015 22:16:37 +0530
++Subject: [PATCH 1/2] Add option to enable internal loopback
 +
-+compat-modules: linux
-+	@echo ================================
-+	@echo      Building compat-modules
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "*compat-wireless*"`; \
-+	make KLIB_BUILD=${LINUXKERNEL_INSTALL_DIR} KLIB=${DESTDIR} CC="cc" defconfig-wl18xx; \
-+	make KLIB_BUILD=${LINUXKERNEL_INSTALL_DIR} KLIB=${DESTDIR} CROSS_COMPILE=${CROSS_COMPILE} ARCH=arm
++---
++ serialcheck.c | 23 +++++++++++++++++++++++
++ 1 file changed, 23 insertions(+)
 +
-+compat-modules_install:
-+	@echo ================================
-+	@echo      Installing compat-modules
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "*compat-wireless*"`; \
-+	make DEPMOD=echo DESTDIR=${DESTDIR} KLIB_BUILD=${LINUXKERNEL_INSTALL_DIR} KLIB=${DESTDIR} INSTALL_MOD_PATH=${DESTDIR} CROSS_COMPILE=${CROSS_COMPILE} ARCH=arm modules_install
++diff --git a/serialcheck.c b/serialcheck.c
++index 4f5b747..4100c37 100644
++--- a/serialcheck.c
+++++ b/serialcheck.c
++@@ -12,6 +12,8 @@
++ #include <sys/ioctl.h>
++ #include <linux/serial.h>
 +
-+compat-modules_clean:
-+	@echo ================================
-+	@echo      Cleaning compat-modules
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "*compat-wireless*"`; \
-+	make KLIB_BUILD=${LINUXKERNEL_INSTALL_DIR} KLIB=${DESTDIR} CROSS_COMPILE=${CROSS_COMPILE} ARCH=arm clean
+++#define TIOCM_LOOP	0x8000
+++
++ #define __same_type(a, b)	__builtin_types_compatible_p(typeof(a), typeof(b))
++ #define BUILD_BUG_ON_ZERO(e)	(sizeof(struct { int:-!!(e); }))
++ #define __must_be_array(a)	BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
++@@ -40,6 +42,7 @@ struct g_opt {
++	unsigned char hflow;
++	unsigned char do_termios;
++	unsigned char *cmp_buff;
+++	unsigned char loopback;
++ };
 +
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 578dcf3..a39f7db 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -36,7 +36,7 @@ SRC_URI = "\
-     file://Makefile_cryptodev \
- "
- 
--PR = "r39"
-+PR = "r40"
- 
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
++ /* name, key, arg, flags, doc, group */
++@@ -51,6 +54,7 @@ static struct argp_option options[] = {
++	{"mode",	'm', "M",    0, "transfer mode (d = duplex, t = send r = receive)", 0},
++	{"loops",	'l', "NUM",  0, "loops to perform (0 => wait fot CTRL-C", 0},
++	{"no-termios",	'n', NULL,   0, "No termios change (baud rate etc. remains unchanged)", 0},
+++	{"loopback",	'k', NULL,   0, "loopback mode", 0},
++	{NULL, 0, NULL, 0, NULL, 0}
++ };
++
++@@ -67,6 +71,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
++		go->baudrate = 115200;
++		go->loops = UINT_MAX;
++		go->do_termios = 1;
+++		go->loopback = 0;
++		break;
++	case ARGP_KEY_ARG:
++		ret =  ARGP_ERR_UNKNOWN;
++@@ -113,6 +118,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
++		} else
++			go->loops = num;
++		break;
+++	case 'k':
+++		go->loopback = 1;
+++		break;
++	default:
++		ret = ARGP_ERR_UNKNOWN;
++	}
++@@ -487,6 +495,21 @@ int main(int argc, char *argv[])
++			die("tcflush failed: %m\n");
++	}
++
+++	if (opts.loopback) {
+++		unsigned int mcr;
+++
+++		ret = ioctl(fd, TIOCMGET, &mcr);
+++		if (ret < 0)
+++			die("mcr get failed: %m\n");
+++
+++		mcr |= TIOCM_LOOP;
+++
+++		ret = ioctl(fd, TIOCMSET, &mcr);
+++		if (ret < 0)
+++			die ("mcr set failed: %m\n");
+++
+++	}
+++
++	ret = fcntl(fd, F_SETFL, 0);
++	if (ret)
++		printf("Failed to remove nonblock mode\n");
++--
++1.9.1
+diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
+new file mode 100644
+index 0000000..c9478fc
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
+@@ -0,0 +1,48 @@
++From a6e5813d2f8402bf3a311c8bcda02623bfb76882 Mon Sep 17 00:00:00 2001
++From: Carlos Hernandez <ceh@ti.com>
++Date: Tue, 24 Feb 2015 16:00:34 -0500
++Subject: [PATCH 2/2] Restore original loopback config
++
++If loopback option is enabled. Disabled it at the end of the test.
++
++Signed-off-by: Carlos Hernandez <ceh@ti.com>
++---
++ serialcheck.c | 9 +++++++--
++ 1 file changed, 7 insertions(+), 2 deletions(-)
++
++diff --git a/serialcheck.c b/serialcheck.c
++index 4100c37..06470f7 100644
++--- a/serialcheck.c
+++++ b/serialcheck.c
++@@ -427,6 +427,7 @@ int main(int argc, char *argv[])
++	unsigned char *data;
++	unsigned int open_mode;
++	off_t data_len;
+++	unsigned int mcr;
++
++	argp_parse(&argp, argc, argv, 0, NULL, &opts);
++	if (!opts.file_trans)
++@@ -496,8 +497,6 @@ int main(int argc, char *argv[])
++	}
++
++	if (opts.loopback) {
++-		unsigned int mcr;
++-
++		ret = ioctl(fd, TIOCMGET, &mcr);
++		if (ret < 0)
++			die("mcr get failed: %m\n");
++@@ -535,6 +534,12 @@ int main(int argc, char *argv[])
++	ret = tcsetattr(fd, TCSAFLUSH, &old_term);
++	if (ret)
++		printf("tcsetattr() of old ones failed: %m\n");
+++    if (opts.loopback) {
+++		mcr &= ~(TIOCM_LOOP);
+++		ret = ioctl(fd, TIOCMSET, &mcr);
+++    }
+++    if (ret)
+++		printf("disabling loopback failed: %m\n");
++
++	close(fd);
++	return status;
++--
++1.9.1
+diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
+new file mode 100644
+index 0000000..6929ffc
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
+@@ -0,0 +1,20 @@
++SUMMARY = "Application to verify operation of serial ports"
++HOMEPAGE = "git://git.breakpoint.cc/bigeasy/serialcheck.git"
++LICENSE = "GPLv2"
++
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++SRC_URI = "git://git.breakpoint.cc/bigeasy/serialcheck.git"
++
++SRC_URI_append = " file://0001-Add-option-to-enable-internal-loopback.patch \
++                   file://0002-Restore-original-loopback-config.patch "
++
++SRCREV = "63854a2d0c0129efab132ec328a75279e013fb84"
++
++S = "${WORKDIR}/git"
++
++CFLAGS_prepend = "-Wall -Wextra -Wno-sign-compare -Wno-pointer-sign "
++
++do_install() {
++    install -d ${D}${base_bindir}
++    install ${S}/serialcheck  ${D}${base_bindir}/serialcheck
++}
 -- 
-1.7.9.5
+1.9.1
 
 
