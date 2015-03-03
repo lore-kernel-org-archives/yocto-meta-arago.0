@@ -1,29 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B574752A62
+	by arago-project.org (Postfix) with ESMTPS id 0E73252A62
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Mar 2015 15:59:34 +0000 (UTC)
+	Tue,  3 Mar 2015 15:59:36 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxYJI016082
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxZA7016088
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:35 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxYgY021642
 	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:34 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxX2i021630
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:33 -0600
 Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 3 Mar 2015 09:59:32 -0600
+	Tue, 3 Mar 2015 09:59:34 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoI010022;
-	Tue, 3 Mar 2015 09:59:32 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoJ010022;
+	Tue, 3 Mar 2015 09:59:33 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Mar 2015 21:29:22 +0530
-Message-ID: <1425398366-6614-2-git-send-email-a0393906@ti.com>
+Date: Tue, 3 Mar 2015 21:29:23 +0530
+Message-ID: <1425398366-6614-3-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1425398366-6614-1-git-send-email-a0393906@ti.com>
 References: <1425398366-6614-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [meta-arago 1/4] gstreamer1.0-plugins-base: Add DMA Buf support
+Subject: [meta-arago 2/4] gstreamer1.0-plugins-good: Add DMABuf support v4l2src
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,479 +36,331 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 15:59:35 -0000
+X-List-Received-Date: Tue, 03 Mar 2015 15:59:36 -0000
 Content-Type: text/plain
-
-This patch adds the DMA Buf functionality into the
-GST Base. This is required for all the TI specific
-GST plugins and also for a certain good and bad
-plugins.
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../0001-Added-GstMetaDmaBuf-features.patch        |  441 ++++++++++++++++++++
- .../gstreamer1.0-plugins-base_1.2.3.bbappend       |    8 +
- 2 files changed, 449 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+ ...ST_V4L2_IO_DMABUF-mode-support-in-capture.patch |  298 ++++++++++++++++++++
+ .../gstreamer1.0-plugins-good_1.2.3.bbappend       |    8 +
+ 2 files changed, 306 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
 new file mode 100644
-index 0000000..ff1d471
+index 0000000..3913208
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
-@@ -0,0 +1,441 @@
-+From e6c027962e2415439571b96ee148934827430a2b Mon Sep 17 00:00:00 2001
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
+@@ -0,0 +1,298 @@
++From 25936e8f703ebe99c00e083cec317231b17d503b Mon Sep 17 00:00:00 2001
 +From: Pooja Prajod <a0132412@ti.com>
-+Date: Wed, 10 Dec 2014 14:05:35 +0530
-+Subject: [PATCH] Added GstMetaDmaBuf features
++Date: Thu, 29 Jan 2015 21:10:49 +0530
++Subject: [PATCH 1/2] Adds GST_V4L2_IO_DMABUF mode support in capture
 +
-+GstMetaDmaBuf metadata can be attached to a buffer
-+for storing file descriptor value as a metadata.
-+The support function enables adding the metadata to buffer,
-+retrieving the metadata from buffer and
-+retrieving file descriptor from a GstMetaDmaBuf metadata.
++Enables v4l2src to accept pool from peer and allocate buffers from
++them in GST_V4L2_IO_DMABUF mode.
 +---
-+ configure.ac                                       |    3 +
-+ gst-libs/gst/Makefile.am                           |    1 +
-+ gst-libs/gst/dmabuf/Makefile.am                    |   21 +++
-+ gst-libs/gst/dmabuf/dmabuf.c                       |  184 ++++++++++++++++++++
-+ gst-libs/gst/dmabuf/dmabuf.h                       |   58 ++++++
-+ pkgconfig/Makefile.am                              |    3 +
-+ pkgconfig/gstreamer-dmabuf-uninstalled.pc.in       |   16 ++
-+ pkgconfig/gstreamer-dmabuf.pc.in                   |   16 ++
-+ pkgconfig/gstreamer-plugins-base-uninstalled.pc.in |    4 +-
-+ pkgconfig/gstreamer-plugins-base.pc.in             |    2 +-
-+ 10 files changed, 305 insertions(+), 3 deletions(-)
-+ create mode 100644 gst-libs/gst/dmabuf/Makefile.am
-+ create mode 100644 gst-libs/gst/dmabuf/dmabuf.c
-+ create mode 100644 gst-libs/gst/dmabuf/dmabuf.h
-+ create mode 100644 pkgconfig/gstreamer-dmabuf-uninstalled.pc.in
-+ create mode 100644 pkgconfig/gstreamer-dmabuf.pc.in
++ sys/v4l2/Makefile.am         |    1 +
++ sys/v4l2/gstv4l2bufferpool.c |   93 +++++++++++++++++++++++++++++++++++-------
++ sys/v4l2/gstv4l2object.h     |    1 +
++ sys/v4l2/gstv4l2src.c        |   13 ++++--
++ 4 files changed, 90 insertions(+), 18 deletions(-)
 +
-+diff --git a/configure.ac b/configure.ac
-+index cb29045..7eeca12 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -868,6 +868,7 @@ gst-libs/gst/tag/Makefile
-+ gst-libs/gst/pbutils/Makefile
-+ gst-libs/gst/pbutils/gstpluginsbaseversion.h
-+ gst-libs/gst/video/Makefile
-++gst-libs/gst/dmabuf/Makefile
-+ tools/Makefile
-+ pkgconfig/Makefile
-+ pkgconfig/gstreamer-allocators.pc
-+@@ -876,6 +877,8 @@ pkgconfig/gstreamer-audio.pc
-+ pkgconfig/gstreamer-audio-uninstalled.pc
-+ pkgconfig/gstreamer-app.pc
-+ pkgconfig/gstreamer-app-uninstalled.pc
-++pkgconfig/gstreamer-dmabuf.pc
-++pkgconfig/gstreamer-dmabuf-uninstalled.pc
-+ pkgconfig/gstreamer-fft.pc
-+ pkgconfig/gstreamer-fft-uninstalled.pc
-+ pkgconfig/gstreamer-pbutils.pc
-+diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
-+index 0634d15..383e62f 100644
-+--- a/gst-libs/gst/Makefile.am
-++++ b/gst-libs/gst/Makefile.am
-+@@ -5,6 +5,7 @@ SUBDIRS = \
-+ 	sdp \
-+ 	rtsp \
-+ 	video \
-++        dmabuf\
-+ 	audio \
-+ 	pbutils \
-+ 	riff \
-+diff --git a/gst-libs/gst/dmabuf/Makefile.am b/gst-libs/gst/dmabuf/Makefile.am
-+new file mode 100644
-+index 0000000..dbac1e4
-+--- /dev/null
-++++ b/gst-libs/gst/dmabuf/Makefile.am
-+@@ -0,0 +1,21 @@
-++lib_LTLIBRARIES = libgstdmabuf-@GST_API_VERSION@.la
++diff --git a/sys/v4l2/Makefile.am b/sys/v4l2/Makefile.am
++index da138ae..6ff4e18 100644
++--- a/sys/v4l2/Makefile.am
+++++ b/sys/v4l2/Makefile.am
++@@ -37,6 +37,7 @@ libgstvideo4linux2_la_LIBTOOLFLAGS = $(GST_PLUGIN_LIBTOOLFLAGS)
++ libgstvideo4linux2_la_LIBADD =   $(GST_PLUGINS_BASE_LIBS) \
++ 				 -lgstallocators-$(GST_API_VERSION) \
++ 				 -lgstvideo-$(GST_API_VERSION) \
+++				 -lgstdmabuf-$(GST_API_VERSION) \
++ 				 $(GST_BASE_LIBS) \
++ 				 $(GST_LIBS) \
++ 				 $(xv_libs) \
++diff --git a/sys/v4l2/gstv4l2bufferpool.c b/sys/v4l2/gstv4l2bufferpool.c
++index 463dd44..5a108eb 100644
++--- a/sys/v4l2/gstv4l2bufferpool.c
+++++ b/sys/v4l2/gstv4l2bufferpool.c
++@@ -41,6 +41,7 @@
++ #include "gst/video/gstvideometa.h"
++ #include "gst/video/gstvideopool.h"
++ #include "gst/allocators/gstdmabuf.h"
+++#include <gst/dmabuf/dmabuf.h>
++ 
++ #include <gstv4l2bufferpool.h>
++ 
++@@ -112,7 +113,16 @@ gst_v4l2_buffer_pool_free_buffer (GstBufferPool * bpool, GstBuffer * buffer)
++   switch (obj->mode) {
++     case GST_V4L2_IO_RW:
++     case GST_V4L2_IO_DMABUF:
+++    {
+++      GstV4l2Meta *meta;
+++      gint index;
 ++
-++libgstdmabuf_@GST_API_VERSION@_la_SOURCES = \
-++	dmabuf.c
-++libgstdmabuf_@GST_API_VERSION@includedir = $(includedir)/gstreamer-@GST_API_VERSION@/gst/dmabuf
-++libgstdmabuf_@GST_API_VERSION@include_HEADERS = \
-++	dmabuf.h
-++
-++libgstdmabuf_@GST_API_VERSION@_la_CFLAGS = \
-++	$(GST_PLUGINS_BASE_CFLAGS)\
-++	$(GST_BASE_CFLAGS) \
-++	$(GST_CFLAGS)
-++
-++libgstdmabuf_@GST_API_VERSION@_la_LIBADD = $(GST_BASE_LIBS) \
-++	$(GST_LIBS)
-++
-++libgstdmabuf_@GST_API_VERSION@_la_LDFLAGS = \
-++	$(GST_LIB_LDFLAGS) \
-++	$(GST_ALL_LDFLAGS) \
-++	$(GST_LT_LDFLAGS)
-++
-+diff --git a/gst-libs/gst/dmabuf/dmabuf.c b/gst-libs/gst/dmabuf/dmabuf.c
-+new file mode 100644
-+index 0000000..583740e
-+--- /dev/null
-++++ b/gst-libs/gst/dmabuf/dmabuf.c
-+@@ -0,0 +1,184 @@
-++/* GStreamer dmabuf
-++ *
-++ * Copyright (c) 2012, Texas Instruments Incorporated
-++ *
-++ * This library is free software; you can redistribute it and/or
-++ * modify it under the terms of the GNU Library General Public
-++ * License as published by the Free Software Foundation; either
-++ * version 2 of the License, or (at your option) any later version.
-++ *
-++ * This library is distributed in the hope that it will be useful,
-++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-++ * Library General Public License for more details.
-++ *
-++ * You should have received a copy of the GNU Library General Public
-++ * License along with this library; if not, write to the
-++ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-++ * Boston, MA 02111-1307, USA.
-++ */
-++
-++/**
-++ * SECTION:gstdmabuf
-++ * @short_description: GStreamer dmabuf metadata support
-++ *
-++ * Since: 1.2.?
-++ */
-++
-++#ifdef HAVE_CONFIG_H
-++#include "config.h"
-++#endif
-++
-++#include <unistd.h>
-++
-++#include "dmabuf.h"
-++
-++
-++static GType gst_meta_dma_buf_api_get_type (void);
-++#define GST_META_DMA_BUF_API_TYPE (gst_meta_dma_buf_api_get_type())
-++
-++static const GstMetaInfo *gst_meta_dma_buf_get_info (void);
-++#define GST_META_DMA_BUF_INFO (gst_meta_dma_buf_get_info())
-++
-++#define GST_META_DMA_BUF_GET(buf) ((GstMetaDmaBuf *)gst_buffer_get_meta(buf,GST_META_DMA_BUF_API_TYPE))
-++#define GST_META_DMA_BUF_ADD(buf) ((GstMetaDmaBuf *)gst_buffer_add_meta(buf,GST_META_DMA_BUF_INFO,NULL))
-++
-++
-++static gboolean
-++dmabuf_init_func (GstMeta * meta, gpointer params, GstBuffer * buffer)
-++{
-++   GST_DEBUG ("init called on buffer %p, meta %p", buffer, meta);
-++  /* nothing to init really, the init function is mostly for allocating
-++   * additional memory or doing special setup as part of adding the metadata to
-++   * the buffer*/
-++  return TRUE;
-++}
-++
-++static void
-++dmabuf_free_func (GstMeta * meta, GstBuffer * buffer)
-++{
-++   /* close the file descriptor associated with the buffer, 
-++    * that is stored as metadata*/
-++   GstMetaDmaBuf *dmabuf = (GstMetaDmaBuf *) meta;
-++   GST_DEBUG ("free called on buffer %p, meta %p", buffer, meta);
-++   close (dmabuf->fd);
-++}
-++
-++static gboolean
-++dmabuf_transform_func (GstBuffer * transbuf, GstMeta * meta,
-++    GstBuffer * buffer, GQuark type, gpointer data)
-++{
-++  GstMetaDmaBuf *transmeta, *tmeta = (GstMetaDmaBuf *) meta;
-++
-++  GST_DEBUG ("transform %s called from buffer %p to %p, meta %p",
-++     g_quark_to_string (type), buffer, transbuf, meta);
-++
-++  if (GST_META_TRANSFORM_IS_COPY (type)) {
-++    GstMetaTransformCopy *copy_data = data;
-++    
-++    if (!copy_data->region){
-++    /* only copy if the complete data is copied as well */
-++       transmeta = GST_META_DMA_BUF_ADD (transbuf);
-++       if(!transmeta) {
-++          return FALSE;
-++       }
-++    /* create a copy of the file descriptor*/
-++       transmeta->fd = dup(tmeta->fd);
+++      meta = GST_V4L2_META_GET (buffer);
+++      g_assert (meta != NULL);
+++      index = meta->vbuffer.index;
+++      pool->buffers[index] = NULL;
++       break;
 ++    }
-++  }
-++  return TRUE;
-++}
-++
-++static GType
-++gst_meta_dma_buf_api_get_type (void)
-++{
-++  static volatile GType type;
-++  static const gchar *tags[] = { "dmabuf", NULL };
-++
-++  if (g_once_init_enter (&type)) {
-++    GType _type = gst_meta_api_type_register ("GstMetaDmaBufAPI", tags);
-++    g_once_init_leave (&type, _type);
-++  }
-++  return type;
-++}
-++
-++static const GstMetaInfo *
-++gst_meta_dma_buf_get_info (void)
-++{
-++  static const GstMetaInfo *meta_dma_buf_info = NULL;
-++
-++  if (g_once_init_enter (&meta_dma_buf_info)) {
-++    const GstMetaInfo *mi = gst_meta_register (GST_META_DMA_BUF_API_TYPE,
-++        "GstMetaDmaBuf",
-++        sizeof (GstMetaDmaBuf),
-++        dmabuf_init_func, dmabuf_free_func, dmabuf_transform_func);
-++    g_once_init_leave (&meta_dma_buf_info, mi);
-++  }
-++  return meta_dma_buf_info;
-++}
-++
-++
-++
-++/**
-++ * gst_buffer_add_dma_buf_meta:
-++ * @buf: a #GstBuffer
-++ * @fd: the associated file descriptor to be added as metadata
-++ *
-++ * Adds a GstMetaDmaBuf metadata to the buffer. The @fd is also set in the metadata added 
-++ * 
-++ * Returns: the #GstMetaDmaBuf on @buf
-++ *
-++ * Since: 1.2.?
-++ */
-++
-++GstMetaDmaBuf *
-++gst_buffer_add_dma_buf_meta (GstBuffer * buf, int fd)
-++{
++     case GST_V4L2_IO_MMAP:
++     {
++       GstV4l2Meta *meta;
++@@ -147,6 +157,7 @@ gst_v4l2_buffer_pool_alloc_buffer (GstBufferPool * bpool, GstBuffer ** buffer,
++   GstV4l2Meta *meta;
++   GstV4l2Object *obj;
++   GstVideoInfo *info;
 ++  GstMetaDmaBuf *dmabuf;
-++  dmabuf = GST_META_DMA_BUF_ADD (buf);
-++  if (dmabuf) 
-++     dmabuf->fd = fd;
-++  return dmabuf;
-++}
++   guint index;
++ 
++   obj = pool->obj;
++@@ -168,7 +179,12 @@ gst_v4l2_buffer_pool_alloc_buffer (GstBufferPool * bpool, GstBuffer ** buffer,
++ 
++         memset (&create_bufs, 0, sizeof (struct v4l2_create_buffers));
++         create_bufs.count = 1;
++-        create_bufs.memory = V4L2_MEMORY_MMAP;
+++        if (obj->mode == GST_V4L2_IO_MMAP)
+++          create_bufs.memory = V4L2_MEMORY_MMAP;
 ++
-++/**
-++ * gst_buffer_get_dma_buf_meta:
-++ * @buf: a #GstBuffer
-++ *
-++ * Get the GstMetaDmaBuf metadata that has previously been attached to a buffer
-++ * with gst_buffer_add_dma_buf_meta(), usually by another element
-++ * upstream.
-++ *
-++ * Returns: the #GstMetaDmaBuf attached to @buf
-++ *
-++ * Since: 1.2.?
-++ */
-++GstMetaDmaBuf *
-++gst_buffer_get_dma_buf_meta (GstBuffer * buf)
-++{
-++  GstMetaDmaBuf * dmabuf;
-++  dmabuf = GST_META_DMA_BUF_GET (buf);
-++  return dmabuf;
-++}
+++        if (obj->mode == GST_V4L2_IO_DMABUF)
+++          create_bufs.memory = V4L2_MEMORY_DMABUF;
 ++
++         create_bufs.format.type = obj->type;
++ 
++         if (v4l2_ioctl (pool->video_fd, VIDIOC_G_FMT, &create_bufs.format) < 0)
++@@ -184,7 +200,24 @@ gst_v4l2_buffer_pool_alloc_buffer (GstBufferPool * bpool, GstBuffer ** buffer,
++         pool->buffers[pool->num_buffers - 1] = NULL;
++       }
++ #endif
++-      newbuf = gst_buffer_new ();
+++      if (obj->externalpool && obj->mode==GST_V4L2_IO_DMABUF) {
+++         GstFlowReturn ret = gst_buffer_pool_acquire_buffer (GST_BUFFER_POOL (obj->externalpool), &newbuf,
+++           NULL);
+++         if (ret != GST_FLOW_OK)
+++           goto external_acquire_failed;
+++         dmabuf = gst_buffer_get_dma_buf_meta (newbuf);
 ++
-++/**
-++ * gst_dma_buf_meta_get_fd:
-++ * @dmabuf: a #GstMetaDmaBuf
-++ *
-++ * Returns: the file descriptor set as GstMetaDmaBuf metadata 
-++ * that has previously been attached to a buffer
-++ * with gst_buffer_add_dma_buf_meta()
-++ *
-++ * Since: 1.2.?
-++ */
-++int
-++gst_dma_buf_meta_get_fd (GstMetaDmaBuf * dmabuf)
-++{
-++  if(dmabuf) {
-++    return dmabuf->fd;
-++  } else {
-++    GST_DEBUG("Received Null parameter for GstMetaDmaBuf ");
-++    return 0;
+++        /* if it isn't a dmabuf buffer that we can import, then there
+++         * is nothing we can do with it:
+++         */
+++         if (!dmabuf) {
+++             GST_DEBUG_OBJECT (pool, "not importing non dmabuf buffer");
+++             return GST_FLOW_ERROR;
+++          }
+++
+++      } else {
+++        newbuf = gst_buffer_new ();
+++      }
++       meta = GST_V4L2_META_ADD (newbuf);
++ 
++       index = pool->num_allocated;
++@@ -194,8 +227,12 @@ gst_v4l2_buffer_pool_alloc_buffer (GstBufferPool * bpool, GstBuffer ** buffer,
++       memset (&meta->vbuffer, 0x0, sizeof (struct v4l2_buffer));
++       meta->vbuffer.index = index;
++       meta->vbuffer.type = obj->type;
++-      meta->vbuffer.memory = V4L2_MEMORY_MMAP;
++-
+++      if (obj->mode == GST_V4L2_IO_MMAP)
+++         meta->vbuffer.memory = V4L2_MEMORY_MMAP;
+++      if (obj->mode == GST_V4L2_IO_DMABUF) {
+++         meta->vbuffer.memory = V4L2_MEMORY_DMABUF;
+++         meta->vbuffer.m.fd = gst_dma_buf_meta_get_fd (dmabuf);
+++      }
++       if (v4l2_ioctl (pool->video_fd, VIDIOC_QUERYBUF, &meta->vbuffer) < 0)
++         goto querybuf_failed;
++ 
++@@ -220,6 +257,11 @@ gst_v4l2_buffer_pool_alloc_buffer (GstBufferPool * bpool, GstBuffer ** buffer,
++                 meta->mem, meta->vbuffer.length, 0, meta->vbuffer.length, NULL,
++                 NULL));
++       }
+++     if (obj->externalpool && obj->mode==GST_V4L2_IO_DMABUF) {
+++        meta->vbuffer.memory = V4L2_MEMORY_DMABUF;
+++        meta->vbuffer.m.fd = gst_dma_buf_meta_get_fd (dmabuf);
+++        goto skipped_native_dmabuf;
+++     }
++ #if HAVE_DECL_V4L2_MEMORY_DMABUF
++       if (obj->mode == GST_V4L2_IO_DMABUF) {
++         struct v4l2_exportbuffer expbuf;
++@@ -237,6 +279,8 @@ gst_v4l2_buffer_pool_alloc_buffer (GstBufferPool * bpool, GstBuffer ** buffer,
++                 meta->vbuffer.length));
++       }
++ #endif
+++
+++skipped_native_dmabuf:
++       /* add metadata to raw video buffers */
++       if (pool->add_videometa && info->finfo) {
++         const GstVideoFormatInfo *finfo = info->finfo;
++@@ -328,6 +372,11 @@ mmap_failed:
++     errno = errnosave;
++     return GST_FLOW_ERROR;
++   }
+++external_acquire_failed:
+++  {
+++    GST_WARNING ("External pool acquire failed ");
+++    return GST_FLOW_ERROR;
 ++  }
-++}
-+diff --git a/gst-libs/gst/dmabuf/dmabuf.h b/gst-libs/gst/dmabuf/dmabuf.h
-+new file mode 100644
-+index 0000000..d49042e
-+--- /dev/null
-++++ b/gst-libs/gst/dmabuf/dmabuf.h
-+@@ -0,0 +1,58 @@
-++/* GStreamer dmabuf
-++ *
-++ * Copyright (c) 2012, Texas Instruments Incorporated
-++ *
-++ * This library is free software; you can redistribute it and/or
-++ * modify it under the terms of the GNU Library General Public
-++ * License as published by the Free Software Foundation; either
-++ * version 2 of the License, or (at your option) any later version.
-++ *
-++ * This library is distributed in the hope that it will be useful,
-++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-++ * Library General Public License for more details.
-++ *
-++ * You should have received a copy of the GNU Library General Public
-++ * License along with this library; if not, write to the
-++ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-++ * Boston, MA 02111-1307, USA.
-++ */
++ #if HAVE_DECL_V4L2_MEMORY_DMABUF
++ expbuf_failed:
++   {
++@@ -407,7 +456,11 @@ gst_v4l2_buffer_pool_set_config (GstBufferPool * bpool, GstStructure * config)
++       memset (&breq, 0, sizeof (struct v4l2_requestbuffers));
++       breq.type = obj->type;
++       breq.count = num_buffers;
++-      breq.memory = V4L2_MEMORY_MMAP;
+++      if (obj->mode == GST_V4L2_IO_MMAP)
+++         breq.memory = V4L2_MEMORY_MMAP;
 ++
-++#ifndef __GST_DMA_BUF_H__
-++#define __GST_DMA_BUF_H__
-++
-++#include <gst/gst.h>
-++
-++
-++G_BEGIN_DECLS
-++
-++/**
-++ * GstMetaDmaBuf:
-++ *
-++ * A structure that enables setting file descriptor as a metadata on a buffer.
-++ *
-++ * Since: 1.2.?
-++ */
-++
-++
-++typedef struct
-++{
-++  GstMeta meta;
-++
-++  int fd;
-++} GstMetaDmaBuf;
-++
-++
-++
-++/* attach GstMetaDmaBuf metadata to buffers */
-++GstMetaDmaBuf * gst_buffer_add_dma_buf_meta (GstBuffer * buf, int fd);
-++
-++/* retrieve GstMetaDmaBuf metadata from buffers */
-++GstMetaDmaBuf * gst_buffer_get_dma_buf_meta (GstBuffer * buf);
-++
-++/* retrieve file descriptor value from a GstMetaDmaBuf metadata */
-++int gst_dma_buf_meta_get_fd (GstMetaDmaBuf * buf);
-++
-++G_END_DECLS
-++
-++#endif /* __GST_DMA_BUF_H__ */
-+diff --git a/pkgconfig/Makefile.am b/pkgconfig/Makefile.am
-+index 9976f95..c68d492 100644
-+--- a/pkgconfig/Makefile.am
-++++ b/pkgconfig/Makefile.am
-+@@ -3,6 +3,7 @@ pcverfiles =  \
-+ 	gstreamer-allocators-@GST_API_VERSION@.pc \
-+ 	gstreamer-audio-@GST_API_VERSION@.pc \
-+ 	gstreamer-app-@GST_API_VERSION@.pc \
-++	gstreamer-dmabuf-@GST_API_VERSION@.pc \
-+ 	gstreamer-fft-@GST_API_VERSION@.pc \
-+ 	gstreamer-pbutils-@GST_API_VERSION@.pc \
-+ 	gstreamer-riff-@GST_API_VERSION@.pc \
-+@@ -16,6 +17,7 @@ pcverfiles_uninstalled = \
-+ 	gstreamer-allocators-@GST_API_VERSION@-uninstalled.pc \
-+ 	gstreamer-audio-@GST_API_VERSION@-uninstalled.pc \
-+ 	gstreamer-app-@GST_API_VERSION@-uninstalled.pc \
-++	gstreamer-dmabuf-@GST_API_VERSION@-uninstalled.pc \
-+ 	gstreamer-fft-@GST_API_VERSION@-uninstalled.pc \
-+ 	gstreamer-pbutils-@GST_API_VERSION@-uninstalled.pc \
-+ 	gstreamer-riff-@GST_API_VERSION@-uninstalled.pc \
-+@@ -46,6 +48,7 @@ pcinfiles = \
-+ 		   gstreamer-allocators.pc.in gstreamer-allocators-uninstalled.pc.in \
-+            gstreamer-audio.pc.in gstreamer-audio-uninstalled.pc.in \
-+            gstreamer-app.pc.in gstreamer-app-uninstalled.pc.in \
-++           gstreamer-dmabuf.pc.in gstreamer-dmabuf-uninstalled.pc.in \
-+            gstreamer-fft.pc.in gstreamer-fft-uninstalled.pc.in \
-+            gstreamer-pbutils.pc.in gstreamer-pbutils-uninstalled.pc.in \
-+            gstreamer-riff.pc.in gstreamer-riff-uninstalled.pc.in \
-+diff --git a/pkgconfig/gstreamer-dmabuf-uninstalled.pc.in b/pkgconfig/gstreamer-dmabuf-uninstalled.pc.in
-+new file mode 100644
-+index 0000000..863175f
-+--- /dev/null
-++++ b/pkgconfig/gstreamer-dmabuf-uninstalled.pc.in
-+@@ -0,0 +1,16 @@
-++# the standard variables don't make sense for an uninstalled copy
-++prefix=
-++exec_prefix=
-++libdir=
-++# includedir is builddir because it is used to find gstconfig.h in places
-++includedir=@abs_top_builddir@/gst-libs
-++girdir=@abs_top_builddir@/gst-libs/gst/video
-++typelibdir=@abs_top_builddir@/gst-libs/gst/video
-++
-++Name: GStreamer DMA-BUF Library, Uninstalled
-++Description: Video base classes and helper functions, uninstalled
-++Version: @VERSION@
-++Requires: gstreamer-@GST_API_VERSION@ gstreamer-base-@GST_API_VERSION@
-++Libs: @abs_top_builddir@/gst-libs/gst/dmabuf/libgstdmabuf-@GST_API_VERSION@.la
-++Cflags: -I@abs_top_srcdir@/gst-libs -I@abs_top_builddir@/gst-libs
-++
-+diff --git a/pkgconfig/gstreamer-dmabuf.pc.in b/pkgconfig/gstreamer-dmabuf.pc.in
-+new file mode 100644
-+index 0000000..1a44f19
-+--- /dev/null
-++++ b/pkgconfig/gstreamer-dmabuf.pc.in
-+@@ -0,0 +1,16 @@
-++prefix=@prefix@
-++exec_prefix=@exec_prefix@
-++libdir=@libdir@
-++includedir=@includedir@/gstreamer-@GST_API_VERSION@
-++datarootdir=${prefix}/share
-++datadir=${datarootdir}
-++girdir=${datadir}/gir-1.0
-++typelibdir=${libdir}/girepository-1.0
-++
-++Name: GStreamer DMA-BUF Library
-++Description: Video base classes and helper functions
-++Requires: gstreamer-@GST_API_VERSION@ gstreamer-base-@GST_API_VERSION@
-++Version: @VERSION@
-++Libs: -L${libdir} -lgstdmabuf-@GST_API_VERSION@
-++Cflags: -I${includedir}
-++
-+diff --git a/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in b/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in
-+index 970c051..ebf2be6 100644
-+--- a/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in
-++++ b/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in
-+@@ -10,7 +10,7 @@ Name: GStreamer Base Plugins Libraries, Uninstalled
-+ Description: Streaming media framework, base plugins libraries, uninstalled
-+ Version: @VERSION@
-+ Requires: gstreamer-@GST_API_VERSION@
-+-Libs: -L@abs_top_builddir@/gst-libs/gst/allocators -L@abs_top_builddir@/gst-libs/gst/app -L@abs_top_builddir@/gst-libs/gst/audio -L@abs_top_builddir@/gst-libs/gst/fft -L@abs_top_builddir@/gst-libs/gst/pbutils -L@abs_top_builddir@/gst-libs/gst/riff -L@abs_top_builddir@/gst-libs/gst/rtp -L@abs_top_builddir@/gst-libs/gst/rtsp -L@abs_top_builddir@/gst-libs/gst/sdp -L@abs_top_builddir@/gst-libs/gst/tag -L@abs_top_builddir@/gst-libs/gst/video
-++Libs: -L@abs_top_builddir@/gst-libs/gst/allocators -L@abs_top_builddir@/gst-libs/gst/app -L@abs_top_builddir@/gst-libs/gst/audio -L@abs_top_builddir@/gst-libs/gst/dmabuf -L@abs_top_builddir@/gst-libs/gst/fft -L@abs_top_builddir@/gst-libs/gst/pbutils -L@abs_top_builddir@/gst-libs/gst/riff -L@abs_top_builddir@/gst-libs/gst/rtp -L@abs_top_builddir@/gst-libs/gst/rtsp -L@abs_top_builddir@/gst-libs/gst/sdp -L@abs_top_builddir@/gst-libs/gst/tag -L@abs_top_builddir@/gst-libs/gst/video
-+ Cflags: -I@abs_top_srcdir@/gst-libs -I@abs_top_builddir@/gst-libs
+++      if (obj->mode == GST_V4L2_IO_DMABUF)
+++         breq.memory = V4L2_MEMORY_DMABUF;
 + 
-+-libraries=allocators app audio fft pbutils riff rtp rtsp sdp tag video
-++libraries=allocators app audio dmabuf fft pbutils riff rtp rtsp sdp tag video
-+diff --git a/pkgconfig/gstreamer-plugins-base.pc.in b/pkgconfig/gstreamer-plugins-base.pc.in
-+index e817746..3d3bc94 100644
-+--- a/pkgconfig/gstreamer-plugins-base.pc.in
-++++ b/pkgconfig/gstreamer-plugins-base.pc.in
-+@@ -11,4 +11,4 @@ Version: @VERSION@
-+ Libs: -L${libdir}
-+ Cflags: -I${includedir}
++       if (v4l2_ioctl (pool->video_fd, VIDIOC_REQBUFS, &breq) < 0)
++         goto reqbufs_failed;
++@@ -566,7 +619,11 @@ gst_v4l2_buffer_pool_free_buffers (GstV4l2BufferPool * pool)
++     memset (&breq, 0, sizeof (struct v4l2_requestbuffers));
++     breq.type = pool->obj->type;
++     breq.count = 0;
++-    breq.memory = V4L2_MEMORY_MMAP;
+++    if (pool->obj->mode == GST_V4L2_IO_MMAP)
+++      breq.memory = V4L2_MEMORY_MMAP;
+++
+++    if (pool->obj->mode == GST_V4L2_IO_DMABUF)
+++      breq.memory = V4L2_MEMORY_DMABUF;
++     if (v4l2_ioctl (pool->video_fd, VIDIOC_REQBUFS, &breq) < 0) {
++       GST_ERROR_OBJECT (pool, "error releasing buffers: %s",
++           g_strerror (errno));
++@@ -732,12 +789,12 @@ gst_v4l2_buffer_pool_dqbuf (GstV4l2BufferPool * pool, GstBuffer ** buffer)
 + 
-+-libraries=allocators app audio fft pbutils riff rtp rtsp sdp tag video
-++libraries=allocators app audio dmabuf fft pbutils riff rtp rtsp sdp tag video
++   memset (&vbuffer, 0x00, sizeof (vbuffer));
++   vbuffer.type = obj->type;
++-#if HAVE_DECL_V4L2_MEMORY_DMABUF
+++
+++  if (obj->mode == GST_V4L2_IO_MMAP)
+++    vbuffer.memory = V4L2_MEMORY_MMAP;
+++
++   if (obj->mode == GST_V4L2_IO_DMABUF)
++     vbuffer.memory = V4L2_MEMORY_DMABUF;
++-  else
++-#endif
++-    vbuffer.memory = V4L2_MEMORY_MMAP;
++ 
++   GST_LOG_OBJECT (pool, "doing DQBUF");
++   if (v4l2_ioctl (pool->video_fd, VIDIOC_DQBUF, &vbuffer) < 0)
++@@ -779,10 +836,14 @@ gst_v4l2_buffer_pool_dqbuf (GstV4l2BufferPool * pool, GstBuffer ** buffer)
++    * no share, so if it's not there, it's not used at all.
++    */
++   if (obj->type == V4L2_BUF_TYPE_VIDEO_CAPTURE) {
++-    gst_buffer_remove_all_memory (outbuf);
++-    gst_buffer_append_memory (outbuf,
++-        gst_memory_new_wrapped (GST_MEMORY_FLAG_NO_SHARE,
++-            meta->mem, vbuffer.length, 0, vbuffer.bytesused, NULL, NULL));
+++    if (obj->mode == GST_V4L2_IO_DMABUF) {
+++      GST_LOG_OBJECT (pool, " Assuming size doesn't change");
+++    } else {
+++      gst_buffer_remove_all_memory (outbuf);
+++      gst_buffer_append_memory (outbuf,
+++          gst_memory_new_wrapped (GST_MEMORY_FLAG_NO_SHARE,
+++              meta->mem, vbuffer.length, 0, vbuffer.bytesused, NULL, NULL));
+++    }
++   }
++ 
++   GST_BUFFER_TIMESTAMP (outbuf) = timestamp;
++@@ -1207,6 +1268,10 @@ gst_v4l2_buffer_pool_process (GstV4l2BufferPool * pool, GstBuffer * buf)
++           /* capture into the buffer */
++           ret = gst_v4l2_do_read (pool, buf);
++           break;
+++        case GST_V4L2_IO_DMABUF:
+++            /* nothing, data was inside the buffer when we did _acquire() */
+++          if (buf->pool == obj->externalpool)
+++            goto done;
++ 
++         case GST_V4L2_IO_MMAP:
++         {
++diff --git a/sys/v4l2/gstv4l2object.h b/sys/v4l2/gstv4l2object.h
++index fbfff92..645e016 100644
++--- a/sys/v4l2/gstv4l2object.h
+++++ b/sys/v4l2/gstv4l2object.h
++@@ -127,6 +127,7 @@ struct _GstV4l2Object {
++ 
++   /* optional pool */
++   GstBufferPool *pool;
+++  GstBufferPool *externalpool;
++ 
++   /* the video device's capabilities */
++   struct v4l2_capability vcap;
++diff --git a/sys/v4l2/gstv4l2src.c b/sys/v4l2/gstv4l2src.c
++index 8e1b754..7a19e5f 100644
++--- a/sys/v4l2/gstv4l2src.c
+++++ b/sys/v4l2/gstv4l2src.c
++@@ -467,6 +467,7 @@ gst_v4l2src_decide_allocation (GstBaseSrc * bsrc, GstQuery * query)
++   GstV4l2Src *src;
++   GstV4l2Object *obj;
++   GstBufferPool *pool;
+++  GstBufferPool *externalpool;
++   guint size, min, max;
++   gboolean update;
++ 
++@@ -474,17 +475,17 @@ gst_v4l2src_decide_allocation (GstBaseSrc * bsrc, GstQuery * query)
++   obj = src->v4l2object;
++ 
++   if (gst_query_get_n_allocation_pools (query) > 0) {
++-    gst_query_parse_nth_allocation_pool (query, 0, &pool, &size, &min, &max);
+++    gst_query_parse_nth_allocation_pool (query, 0, &externalpool, &size, &min, &max);
++     update = TRUE;
++   } else {
++-    pool = NULL;
+++    externalpool = NULL;
++     min = max = 0;
++     size = 0;
++     update = FALSE;
++   }
++ 
++   GST_DEBUG_OBJECT (src, "allocation: size:%u min:%u max:%u pool:%"
++-      GST_PTR_FORMAT, size, min, max, pool);
+++      GST_PTR_FORMAT, size, min, max, externalpool);
++ 
++   if (min != 0) {
++     /* if there is a min-buffers suggestion, use it. We add 1 because we need 1
++@@ -497,7 +498,7 @@ gst_v4l2src_decide_allocation (GstBaseSrc * bsrc, GstQuery * query)
++   /* select a pool */
++   switch (obj->mode) {
++     case GST_V4L2_IO_RW:
++-      if (pool == NULL) {
+++      if (externalpool == NULL) {
++         /* no downstream pool, use our own then */
++         GST_DEBUG_OBJECT (src,
++             "read/write mode: no downstream pool, using our own");
++@@ -510,12 +511,16 @@ gst_v4l2src_decide_allocation (GstBaseSrc * bsrc, GstQuery * query)
++         /* use the bigest size, when we use our own pool we can't really do any
++          * other size than what the hardware gives us but for downstream pools
++          * we can try */
+++        pool = externalpool;
++         size = MAX (size, obj->sizeimage);
++       }
++       break;
++     case GST_V4L2_IO_MMAP:
++     case GST_V4L2_IO_USERPTR:
++     case GST_V4L2_IO_DMABUF:
+++      if (externalpool) {
+++           obj->externalpool =  GST_BUFFER_POOL_CAST (externalpool);
+++      }
++       /* in streaming mode, prefer our own pool */
++       pool = GST_BUFFER_POOL_CAST (obj->pool);
++       size = obj->sizeimage;
 +-- 
 +1.7.9.5
 +
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
 new file mode 100644
-index 0000000..c76cb20
+index 0000000..1d6ceb4
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
 @@ -0,0 +1,8 @@
 +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 +
 +SRC_URI_append = " \
-+        file://0001-Added-GstMetaDmaBuf-features.patch"
++        file://0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch"
 +
 +PR = "r2"
 +
