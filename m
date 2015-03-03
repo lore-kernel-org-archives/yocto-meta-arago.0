@@ -1,29 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 45EDB52A67
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 5F23952A6D
 	for <meta-arago@arago-project.org>;
 	Tue,  3 Mar 2015 08:19:34 +0000 (UTC)
-Received: from gandalf.denix.org ([108.18.33.236]) by vms173021.mailsrvcs.net
+Received: from gandalf.denix.org ([108.18.33.236]) by vms173025.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NKM009PGN435X70@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 03 Mar 2015 02:19:15 -0600 (CST)
+	with ESMTPSA id <0NKM000Y8N43UK70@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 03 Mar 2015 02:19:16 -0600 (CST)
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.1 cv=QtXpBu2Y c=1 sm=1 tr=0	a=SSUdfGXV8XCffJJ8+gLrig==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=emO1SXQWCLwA:10
-	a=sozttTNsAAAA:8	a=G89pKIJ8sAmKoO9xxUcA:9
+	a=sozttTNsAAAA:8	a=JFCdW3A0tfpWilNXZIoA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id EF88020142;	Tue,
+	by gandalf.denix.org (Postfix) with ESMTP id E15B72010D;	Tue,
 	3 Mar 2015 03:19:14 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 03 Mar 2015 03:19:14 -0500
-Message-id: <1425370754-22484-2-git-send-email-denis@denix.org>
+Date: Tue, 03 Mar 2015 03:19:13 -0500
+Message-id: <1425370754-22484-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1425370754-22484-1-git-send-email-denis@denix.org>
-References: <1425370754-22484-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] packagegroup-*-qte: update to include remaining qt5 modules and dependencies
+Subject: [PATCH 1/2] qt5: rename bbappends for the new 5.4.1 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,72 +40,20 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-qte.bb     | 11 ++++++++---
- .../packagegroups/packagegroup-arago-tisdk-qte.bb            | 12 +++++++-----
- 2 files changed, 15 insertions(+), 8 deletions(-)
+ .../recipes-qt/qt5/{qtbase_5.4.0.bbappend => qtbase_5.4.1.bbappend}       | 0
+ .../recipes-qt/qt5/{qtwebkit_5.4.0.bbappend => qtwebkit_5.4.1.bbappend}   | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename meta-arago-distro/recipes-qt/qt5/{qtbase_5.4.0.bbappend => qtbase_5.4.1.bbappend} (100%)
+ rename meta-arago-distro/recipes-qt/qt5/{qtwebkit_5.4.0.bbappend => qtwebkit_5.4.1.bbappend} (100%)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-index 48fdb01..9618de5 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r7"
-+PR = "r8"
- 
- inherit packagegroup
- 
-@@ -29,11 +29,16 @@ QT4_ESSENTIALS = "\
- QT5_ESSENTIALS = "\
-     qtbase-plugins \
-     qtdeclarative-plugins \
-+    qtdeclarative-qmlplugins \
-     qtlocation-plugins \
-+    qtlocation-qmlplugins \
-     qtmultimedia-plugins \
-+    qtmultimedia-qmlplugins \
-     qtwayland-plugins \
--    qt3d \
--    qtquick1 \
-+    qt3d-qmlplugins \
-+    qtwebkit-qmlplugins \
-+    qtquick1-plugins \
-+    qtquick1-qmlplugins \
- "
- 
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index a95a9cd..495247e 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r9"
-+PR = "r10"
- 
- inherit packagegroup
- 
-@@ -14,12 +14,14 @@ QT4_DEMOS = "\
- "
- 
- QT5_DEMOS = "\
--    qtwayland-examples \
--    qtwebkit-examples-examples \
-+    qt3d-examples \
-+    qtbase-examples \
-     qtdeclarative-examples \
-+    qtlocation-examples \
-     qtmultimedia-examples \
--    qtbase-examples \
--    qt3d-examples \
-+    qtscript-examples \
-+    qtwayland-examples \
-+    qtwebkit-examples-examples \
-     qtquick1-examples \
- "
- 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+similarity index 100%
+rename from meta-arago-distro/recipes-qt/qt5/qtbase_5.4.0.bbappend
+rename to meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.1.bbappend
+similarity index 100%
+rename from meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.0.bbappend
+rename to meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.1.bbappend
 -- 
 2.2.0
 
