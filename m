@@ -1,35 +1,21 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 95D6952A9C
+Return-Path: <pierluigi.passaro@phoenixsoftware.it>
+Received: from smtpcmd01229.aruba.it (smtpcmd01229.aruba.it [62.149.158.229])
+	by arago-project.org (Postfix) with ESMTP id EEE19529BD
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Mar 2015 11:37:59 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23Bbwkn009222
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 05:37:58 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23BbvKp008438
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 05:37:57 -0600
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Tue, 3 Mar 2015 05:37:57 -0600
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2]
-	packagegroup-arago-tisdk-connectivity-sdk-host: Add
-	ti-compat-wireless-wl18xx-src.
-Thread-Index: AQHQVQAAe1Ea489hXEqeIEYt5sAosZ0KsYgA///xZ0A=
-Date: Tue, 3 Mar 2015 11:37:56 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F95814103B7F@DFLE09.ent.ti.com>
-References: <1425311167-690-1-git-send-email-j-stiffler@ti.com>
-	<20150303062959.GR6052@edge>
-In-Reply-To: <20150303062959.GR6052@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	Tue,  3 Mar 2015 11:52:42 +0000 (UTC)
+Received: from phoenixsoftware.it ([62.149.158.90])
+	by smtpcmd01.ad.aruba.it with bizsmtp
+	id yzsg1p0271xJdJu01zsgPL; Tue, 03 Mar 2015 12:52:41 +0100
+Date: Tue,  3 Mar 2015 12:52:40 +0100
+Message-Id: <NKMWZS$94E5E748F875A98FA60773BAEEF601E6@phoenixsoftware.it>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] packagegroup-arago-tisdk-connectivity-sdk-host: Add ti-compat-wireless-wl18xx-src.
+X-Sensitivity: 3
+From: "Pierluigi Passaro" <pierluigi.passaro@phoenixsoftware.it>
+To: "meta-arago" <meta-arago@arago-project.org>
+X-XaM3-API-Version: V3(R2)
+X-notifreq: 123
+X-SenderIP: 94.33.39.20
+Subject: Compile ti-compat-wireless-wl18xx with Linaro GCC 4.9-2014.09
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,65 +28,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 11:38:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 03 Mar 2015 11:52:43 -0000
+X-Groupsio-MsgNum: 4946
+Content-Type: multipart/mixed;
+	boundary="_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474"
+
+--_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-I do not have any history on this...
+Hi all,=0AGCC 4.9 complains about using __TIMESTAMP__ defines in source c=
+ode.=0A=0AAttached you can find the patch I used to fix the problem.=0APl=
+ease fill free to commit it, if fine.=0A=0ARegards=0APierluigi
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Tuesday, March 03, 2015 1:30 AM
-To: Stiffler, Jacob
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH 1/2] packagegroup-arago-tisdk-connectivity=
--sdk-host: Add ti-compat-wireless-wl18xx-src.
+--_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474
+Content-Type: application/octet-stream;
+	name="=?utf-8?Q?ti-compat-wireless-wl18xx.patch?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="=?utf-8?Q?ti-compat-wireless-wl18xx.patch?="
 
-The patch is fine, but have we found out what is the deal with in-tree and =
-compat mopules?
+ZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtYnNwL3RpLWNvbXBhdC13aXJl
+bGVzcy90aS1jb21wYXQtd2lyZWxlc3Mtd2wxOHh4LmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVj
+aXBlcy1ic3AvdGktY29tcGF0LXdpcmVsZXNzL3RpLWNvbXBhdC13aXJlbGVzcy13bDE4eHguYmIK
+aW5kZXggYjIxZmNhNC4uMzFmZTBiMSAxMDA2NDQKLS0tIGEvbWV0YS1hcmFnby1leHRyYXMvcmVj
+aXBlcy1ic3AvdGktY29tcGF0LXdpcmVsZXNzL3RpLWNvbXBhdC13aXJlbGVzcy13bDE4eHguYmIK
+KysrIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1ic3AvdGktY29tcGF0LXdpcmVsZXNzL3Rp
+LWNvbXBhdC13aXJlbGVzcy13bDE4eHguYmIKQEAgLTMyLDYgKzMyLDExIEBAIGV4cG9ydCBLTElC
+X0JVSUxEPSIke1NUQUdJTkdfS0VSTkVMX0RJUn0iCiBleHBvcnQgS0xJQj0iJHtEfSIKIAogZG9f
+Y29uZmlndXJlKCkgeworICAgIGNkICIke1dPUktESVJ9L3dsMTh4eCIKKyAgICBleHBvcnQgR0lU
+U1RBTVA9JChnaXQgbG9nIC0xIC0tZm9ybWF0PSVjZCkKKyAgICBzZWQgLWkgInMvX19USU1FU1RB
+TVBfXy9cIiRHSVRTVEFNUFwiLyIgZHJpdmVycy9uZXQvd2lyZWxlc3MvdGkvd2xjb3JlL01ha2Vm
+aWxlCisgICAgc2VkIC1pICJzL19fVElNRVNUQU1QX18vXCIkR0lUU1RBTVBcIi8iIGRyaXZlcnMv
+bmV0L3dpcmVsZXNzL3RpL3dsY29yZS9yZWxlYXNlX3ZlcnNpb24uaAorCiAgICAgY2QgIiR7V09S
+S0RJUn0vYmFja3BvcnRzIgogICAgIHVuc2V0IENDCiAgICAgI0dlbmVyYXRlIGNvbXBhdC13aXJl
+bGVzcwo=
 
-
-On Mon, Mar 02, 2015 at 10:46:06AM -0500, Jacob Stiffler wrote:
-> From: Jake Stiffler <j-stiffler@ti.com>
->=20
-> * Add out of tree wl18xx driver sources to the SDK.
->=20
-> Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
-> ---
->  ...ckagegroup-arago-tisdk-connectivity-sdk-host.bb |    3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-core/package=
-groups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
-> index e367c28..3862816 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
-dk-connectivity-sdk-host.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
-dk-connectivity-sdk-host.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION =3D "Task to install wlan and bluetooth sources into the SDK=
-"
->  LICENSE =3D "MIT"
-> -PR =3D "r9"
-> +PR =3D "r10"
-> =20
->  inherit packagegroup
-> =20
-> @@ -8,6 +8,7 @@ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> =20
->  FIRMWARE_AND_DRIVERS_SRC =3D "\
->      wl18xx-firmware-src \
-> +    ti-compat-wireless-wl18xx-src \
->  "
-> =20
->  CONNECTIVITY_RDEPENDS =3D ""
-> --=20
-> 1.7.9.5
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+--_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474--
