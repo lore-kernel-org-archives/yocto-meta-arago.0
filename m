@@ -1,30 +1,30 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 6574A529A9
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 0282A52ABA
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Mar 2015 10:53:48 +0000 (UTC)
+	Tue,  3 Mar 2015 15:59:37 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t22ArlQH020960
-	for <meta-arago@arago-project.org>; Mon, 2 Mar 2015 04:53:47 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t22ArkXK012387
-	for <meta-arago@arago-project.org>; Mon, 2 Mar 2015 04:53:46 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 2 Mar 2015 04:53:46 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxaBJ000613
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:36 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxZC8021656
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:35 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 3 Mar 2015 09:59:35 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t22ArVrf022266;
-	Mon, 2 Mar 2015 04:53:45 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoK010022;
+	Tue, 3 Mar 2015 09:59:34 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 2 Mar 2015 16:23:27 +0530
-Message-ID: <1425293607-5918-3-git-send-email-a0393906@ti.com>
+Date: Tue, 3 Mar 2015 21:29:24 +0530
+Message-ID: <1425398366-6614-4-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1425293607-5918-1-git-send-email-a0393906@ti.com>
-References: <1425293607-5918-1-git-send-email-a0393906@ti.com>
+In-Reply-To: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+References: <1425398366-6614-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Wed, 04 Mar 2015 00:46:54 +0000
-Subject: [meta-arago 3/3] gstreamer1.0-plugins-bad: Add various features
+Subject: [meta-arago 3/4] gstreamer1.0-plugins-bad: Add various features
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,7 +37,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Mar 2015 10:53:48 -0000
+X-List-Received-Date: Tue, 03 Mar 2015 15:59:38 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
@@ -59,8 +59,8 @@ Signed-off-by: Karthik Ramanan <a0393906@ti.com>
  .../0003-Added-KMSsink-support.patch               | 1457 ++++++++++++++++++++
  ...04-waylandsink-Removed-dependency-on-dri2.patch |   26 +
  ...vc1parse-and-jpegparse-Fixes-plugin-ranks.patch |   54 +
- .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   12 +
- 6 files changed, 3340 insertions(+)
+ .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   14 +
+ 6 files changed, 3342 insertions(+)
  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
@@ -3428,10 +3428,10 @@ index 0000000..8ae79b5
 +
 diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
 new file mode 100644
-index 0000000..77e8b16
+index 0000000..33b0048
 --- /dev/null
 +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-@@ -0,0 +1,12 @@
+@@ -0,0 +1,14 @@
 +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 +
 +PACKAGECONFIG = "faad wayland"
@@ -3444,6 +3444,8 @@ index 0000000..77e8b16
 +        file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch"
 +
 +PR = "r9"
++
++FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
 -- 
 1.7.9.5
 
