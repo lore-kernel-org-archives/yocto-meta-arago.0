@@ -1,27 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id ABDBC52A62
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B574752A62
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Mar 2015 15:59:33 +0000 (UTC)
+	Tue,  3 Mar 2015 15:59:34 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxWeN000422
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:32 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxVM5021624
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:31 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 3 Mar 2015 09:59:31 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxYJI016082
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:34 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxX2i021630
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:33 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 3 Mar 2015 09:59:32 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoH010022;
-	Tue, 3 Mar 2015 09:59:30 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoI010022;
+	Tue, 3 Mar 2015 09:59:32 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Mar 2015 21:29:21 +0530
-Message-ID: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+Date: Tue, 3 Mar 2015 21:29:22 +0530
+Message-ID: <1425398366-6614-2-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+References: <1425398366-6614-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [meta-arago 0/4] GStreamer 1.0 adapatations for TI Platforms
+Subject: [meta-arago 1/4] gstreamer1.0-plugins-base: Add DMA Buf support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,48 +36,483 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 15:59:33 -0000
+X-List-Received-Date: Tue, 03 Mar 2015 15:59:35 -0000
 Content-Type: text/plain
 
-Difference from v1:
- * Add gst-plugins-ducati for GST 1.x
- * Add gst-plugins-vpe for GST 1.x
- * Add FILES_PN explicitly for all GST 1.x recipes
+This patch adds the DMA Buf functionality into the
+GST Base. This is required for all the TI specific
+GST plugins and also for a certain good and bad
+plugins.
 
-Karthik Ramanan (4):
-  gstreamer1.0-plugins-base: Add DMA Buf support
-  gstreamer1.0-plugins-good: Add DMABuf support v4l2src
-  gstreamer1.0-plugins-bad: Add various features
-  gstreamer1.0-plugins-ti: Add ducati and vpe GST plugins
-
- .../gstreamer1.0-plugins-ducati_git.bb             |   10 +
- .../gst-plugins-ti/gstreamer1.0-plugins-ti.inc     |   19 +
- .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |   11 +
- .../0001-Added-GstDRMBufferPool-support.patch      |  774 +++++++++++
- ...odified-waylandsink-to-accept-NV12-format.patch | 1017 ++++++++++++++
- .../0003-Added-KMSsink-support.patch               | 1457 ++++++++++++++++++++
- ...04-waylandsink-Removed-dependency-on-dri2.patch |   26 +
- ...vc1parse-and-jpegparse-Fixes-plugin-ranks.patch |   54 +
- .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   14 +
- .../0001-Added-GstMetaDmaBuf-features.patch        |  441 ++++++
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
+ .../0001-Added-GstMetaDmaBuf-features.patch        |  441 ++++++++++++++++++++
  .../gstreamer1.0-plugins-base_1.2.3.bbappend       |    8 +
- ...ST_V4L2_IO_DMABUF-mode-support-in-capture.patch |  298 ++++
- .../gstreamer1.0-plugins-good_1.2.3.bbappend       |    8 +
- 13 files changed, 4137 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+ 2 files changed, 449 insertions(+)
  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
 
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
+new file mode 100644
+index 0000000..ff1d471
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
+@@ -0,0 +1,441 @@
++From e6c027962e2415439571b96ee148934827430a2b Mon Sep 17 00:00:00 2001
++From: Pooja Prajod <a0132412@ti.com>
++Date: Wed, 10 Dec 2014 14:05:35 +0530
++Subject: [PATCH] Added GstMetaDmaBuf features
++
++GstMetaDmaBuf metadata can be attached to a buffer
++for storing file descriptor value as a metadata.
++The support function enables adding the metadata to buffer,
++retrieving the metadata from buffer and
++retrieving file descriptor from a GstMetaDmaBuf metadata.
++---
++ configure.ac                                       |    3 +
++ gst-libs/gst/Makefile.am                           |    1 +
++ gst-libs/gst/dmabuf/Makefile.am                    |   21 +++
++ gst-libs/gst/dmabuf/dmabuf.c                       |  184 ++++++++++++++++++++
++ gst-libs/gst/dmabuf/dmabuf.h                       |   58 ++++++
++ pkgconfig/Makefile.am                              |    3 +
++ pkgconfig/gstreamer-dmabuf-uninstalled.pc.in       |   16 ++
++ pkgconfig/gstreamer-dmabuf.pc.in                   |   16 ++
++ pkgconfig/gstreamer-plugins-base-uninstalled.pc.in |    4 +-
++ pkgconfig/gstreamer-plugins-base.pc.in             |    2 +-
++ 10 files changed, 305 insertions(+), 3 deletions(-)
++ create mode 100644 gst-libs/gst/dmabuf/Makefile.am
++ create mode 100644 gst-libs/gst/dmabuf/dmabuf.c
++ create mode 100644 gst-libs/gst/dmabuf/dmabuf.h
++ create mode 100644 pkgconfig/gstreamer-dmabuf-uninstalled.pc.in
++ create mode 100644 pkgconfig/gstreamer-dmabuf.pc.in
++
++diff --git a/configure.ac b/configure.ac
++index cb29045..7eeca12 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -868,6 +868,7 @@ gst-libs/gst/tag/Makefile
++ gst-libs/gst/pbutils/Makefile
++ gst-libs/gst/pbutils/gstpluginsbaseversion.h
++ gst-libs/gst/video/Makefile
+++gst-libs/gst/dmabuf/Makefile
++ tools/Makefile
++ pkgconfig/Makefile
++ pkgconfig/gstreamer-allocators.pc
++@@ -876,6 +877,8 @@ pkgconfig/gstreamer-audio.pc
++ pkgconfig/gstreamer-audio-uninstalled.pc
++ pkgconfig/gstreamer-app.pc
++ pkgconfig/gstreamer-app-uninstalled.pc
+++pkgconfig/gstreamer-dmabuf.pc
+++pkgconfig/gstreamer-dmabuf-uninstalled.pc
++ pkgconfig/gstreamer-fft.pc
++ pkgconfig/gstreamer-fft-uninstalled.pc
++ pkgconfig/gstreamer-pbutils.pc
++diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
++index 0634d15..383e62f 100644
++--- a/gst-libs/gst/Makefile.am
+++++ b/gst-libs/gst/Makefile.am
++@@ -5,6 +5,7 @@ SUBDIRS = \
++ 	sdp \
++ 	rtsp \
++ 	video \
+++        dmabuf\
++ 	audio \
++ 	pbutils \
++ 	riff \
++diff --git a/gst-libs/gst/dmabuf/Makefile.am b/gst-libs/gst/dmabuf/Makefile.am
++new file mode 100644
++index 0000000..dbac1e4
++--- /dev/null
+++++ b/gst-libs/gst/dmabuf/Makefile.am
++@@ -0,0 +1,21 @@
+++lib_LTLIBRARIES = libgstdmabuf-@GST_API_VERSION@.la
+++
+++libgstdmabuf_@GST_API_VERSION@_la_SOURCES = \
+++	dmabuf.c
+++libgstdmabuf_@GST_API_VERSION@includedir = $(includedir)/gstreamer-@GST_API_VERSION@/gst/dmabuf
+++libgstdmabuf_@GST_API_VERSION@include_HEADERS = \
+++	dmabuf.h
+++
+++libgstdmabuf_@GST_API_VERSION@_la_CFLAGS = \
+++	$(GST_PLUGINS_BASE_CFLAGS)\
+++	$(GST_BASE_CFLAGS) \
+++	$(GST_CFLAGS)
+++
+++libgstdmabuf_@GST_API_VERSION@_la_LIBADD = $(GST_BASE_LIBS) \
+++	$(GST_LIBS)
+++
+++libgstdmabuf_@GST_API_VERSION@_la_LDFLAGS = \
+++	$(GST_LIB_LDFLAGS) \
+++	$(GST_ALL_LDFLAGS) \
+++	$(GST_LT_LDFLAGS)
+++
++diff --git a/gst-libs/gst/dmabuf/dmabuf.c b/gst-libs/gst/dmabuf/dmabuf.c
++new file mode 100644
++index 0000000..583740e
++--- /dev/null
+++++ b/gst-libs/gst/dmabuf/dmabuf.c
++@@ -0,0 +1,184 @@
+++/* GStreamer dmabuf
+++ *
+++ * Copyright (c) 2012, Texas Instruments Incorporated
+++ *
+++ * This library is free software; you can redistribute it and/or
+++ * modify it under the terms of the GNU Library General Public
+++ * License as published by the Free Software Foundation; either
+++ * version 2 of the License, or (at your option) any later version.
+++ *
+++ * This library is distributed in the hope that it will be useful,
+++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+++ * Library General Public License for more details.
+++ *
+++ * You should have received a copy of the GNU Library General Public
+++ * License along with this library; if not, write to the
+++ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+++ * Boston, MA 02111-1307, USA.
+++ */
+++
+++/**
+++ * SECTION:gstdmabuf
+++ * @short_description: GStreamer dmabuf metadata support
+++ *
+++ * Since: 1.2.?
+++ */
+++
+++#ifdef HAVE_CONFIG_H
+++#include "config.h"
+++#endif
+++
+++#include <unistd.h>
+++
+++#include "dmabuf.h"
+++
+++
+++static GType gst_meta_dma_buf_api_get_type (void);
+++#define GST_META_DMA_BUF_API_TYPE (gst_meta_dma_buf_api_get_type())
+++
+++static const GstMetaInfo *gst_meta_dma_buf_get_info (void);
+++#define GST_META_DMA_BUF_INFO (gst_meta_dma_buf_get_info())
+++
+++#define GST_META_DMA_BUF_GET(buf) ((GstMetaDmaBuf *)gst_buffer_get_meta(buf,GST_META_DMA_BUF_API_TYPE))
+++#define GST_META_DMA_BUF_ADD(buf) ((GstMetaDmaBuf *)gst_buffer_add_meta(buf,GST_META_DMA_BUF_INFO,NULL))
+++
+++
+++static gboolean
+++dmabuf_init_func (GstMeta * meta, gpointer params, GstBuffer * buffer)
+++{
+++   GST_DEBUG ("init called on buffer %p, meta %p", buffer, meta);
+++  /* nothing to init really, the init function is mostly for allocating
+++   * additional memory or doing special setup as part of adding the metadata to
+++   * the buffer*/
+++  return TRUE;
+++}
+++
+++static void
+++dmabuf_free_func (GstMeta * meta, GstBuffer * buffer)
+++{
+++   /* close the file descriptor associated with the buffer, 
+++    * that is stored as metadata*/
+++   GstMetaDmaBuf *dmabuf = (GstMetaDmaBuf *) meta;
+++   GST_DEBUG ("free called on buffer %p, meta %p", buffer, meta);
+++   close (dmabuf->fd);
+++}
+++
+++static gboolean
+++dmabuf_transform_func (GstBuffer * transbuf, GstMeta * meta,
+++    GstBuffer * buffer, GQuark type, gpointer data)
+++{
+++  GstMetaDmaBuf *transmeta, *tmeta = (GstMetaDmaBuf *) meta;
+++
+++  GST_DEBUG ("transform %s called from buffer %p to %p, meta %p",
+++     g_quark_to_string (type), buffer, transbuf, meta);
+++
+++  if (GST_META_TRANSFORM_IS_COPY (type)) {
+++    GstMetaTransformCopy *copy_data = data;
+++    
+++    if (!copy_data->region){
+++    /* only copy if the complete data is copied as well */
+++       transmeta = GST_META_DMA_BUF_ADD (transbuf);
+++       if(!transmeta) {
+++          return FALSE;
+++       }
+++    /* create a copy of the file descriptor*/
+++       transmeta->fd = dup(tmeta->fd);
+++    }
+++  }
+++  return TRUE;
+++}
+++
+++static GType
+++gst_meta_dma_buf_api_get_type (void)
+++{
+++  static volatile GType type;
+++  static const gchar *tags[] = { "dmabuf", NULL };
+++
+++  if (g_once_init_enter (&type)) {
+++    GType _type = gst_meta_api_type_register ("GstMetaDmaBufAPI", tags);
+++    g_once_init_leave (&type, _type);
+++  }
+++  return type;
+++}
+++
+++static const GstMetaInfo *
+++gst_meta_dma_buf_get_info (void)
+++{
+++  static const GstMetaInfo *meta_dma_buf_info = NULL;
+++
+++  if (g_once_init_enter (&meta_dma_buf_info)) {
+++    const GstMetaInfo *mi = gst_meta_register (GST_META_DMA_BUF_API_TYPE,
+++        "GstMetaDmaBuf",
+++        sizeof (GstMetaDmaBuf),
+++        dmabuf_init_func, dmabuf_free_func, dmabuf_transform_func);
+++    g_once_init_leave (&meta_dma_buf_info, mi);
+++  }
+++  return meta_dma_buf_info;
+++}
+++
+++
+++
+++/**
+++ * gst_buffer_add_dma_buf_meta:
+++ * @buf: a #GstBuffer
+++ * @fd: the associated file descriptor to be added as metadata
+++ *
+++ * Adds a GstMetaDmaBuf metadata to the buffer. The @fd is also set in the metadata added 
+++ * 
+++ * Returns: the #GstMetaDmaBuf on @buf
+++ *
+++ * Since: 1.2.?
+++ */
+++
+++GstMetaDmaBuf *
+++gst_buffer_add_dma_buf_meta (GstBuffer * buf, int fd)
+++{
+++  GstMetaDmaBuf *dmabuf;
+++  dmabuf = GST_META_DMA_BUF_ADD (buf);
+++  if (dmabuf) 
+++     dmabuf->fd = fd;
+++  return dmabuf;
+++}
+++
+++/**
+++ * gst_buffer_get_dma_buf_meta:
+++ * @buf: a #GstBuffer
+++ *
+++ * Get the GstMetaDmaBuf metadata that has previously been attached to a buffer
+++ * with gst_buffer_add_dma_buf_meta(), usually by another element
+++ * upstream.
+++ *
+++ * Returns: the #GstMetaDmaBuf attached to @buf
+++ *
+++ * Since: 1.2.?
+++ */
+++GstMetaDmaBuf *
+++gst_buffer_get_dma_buf_meta (GstBuffer * buf)
+++{
+++  GstMetaDmaBuf * dmabuf;
+++  dmabuf = GST_META_DMA_BUF_GET (buf);
+++  return dmabuf;
+++}
+++
+++
+++/**
+++ * gst_dma_buf_meta_get_fd:
+++ * @dmabuf: a #GstMetaDmaBuf
+++ *
+++ * Returns: the file descriptor set as GstMetaDmaBuf metadata 
+++ * that has previously been attached to a buffer
+++ * with gst_buffer_add_dma_buf_meta()
+++ *
+++ * Since: 1.2.?
+++ */
+++int
+++gst_dma_buf_meta_get_fd (GstMetaDmaBuf * dmabuf)
+++{
+++  if(dmabuf) {
+++    return dmabuf->fd;
+++  } else {
+++    GST_DEBUG("Received Null parameter for GstMetaDmaBuf ");
+++    return 0;
+++  }
+++}
++diff --git a/gst-libs/gst/dmabuf/dmabuf.h b/gst-libs/gst/dmabuf/dmabuf.h
++new file mode 100644
++index 0000000..d49042e
++--- /dev/null
+++++ b/gst-libs/gst/dmabuf/dmabuf.h
++@@ -0,0 +1,58 @@
+++/* GStreamer dmabuf
+++ *
+++ * Copyright (c) 2012, Texas Instruments Incorporated
+++ *
+++ * This library is free software; you can redistribute it and/or
+++ * modify it under the terms of the GNU Library General Public
+++ * License as published by the Free Software Foundation; either
+++ * version 2 of the License, or (at your option) any later version.
+++ *
+++ * This library is distributed in the hope that it will be useful,
+++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+++ * Library General Public License for more details.
+++ *
+++ * You should have received a copy of the GNU Library General Public
+++ * License along with this library; if not, write to the
+++ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+++ * Boston, MA 02111-1307, USA.
+++ */
+++
+++#ifndef __GST_DMA_BUF_H__
+++#define __GST_DMA_BUF_H__
+++
+++#include <gst/gst.h>
+++
+++
+++G_BEGIN_DECLS
+++
+++/**
+++ * GstMetaDmaBuf:
+++ *
+++ * A structure that enables setting file descriptor as a metadata on a buffer.
+++ *
+++ * Since: 1.2.?
+++ */
+++
+++
+++typedef struct
+++{
+++  GstMeta meta;
+++
+++  int fd;
+++} GstMetaDmaBuf;
+++
+++
+++
+++/* attach GstMetaDmaBuf metadata to buffers */
+++GstMetaDmaBuf * gst_buffer_add_dma_buf_meta (GstBuffer * buf, int fd);
+++
+++/* retrieve GstMetaDmaBuf metadata from buffers */
+++GstMetaDmaBuf * gst_buffer_get_dma_buf_meta (GstBuffer * buf);
+++
+++/* retrieve file descriptor value from a GstMetaDmaBuf metadata */
+++int gst_dma_buf_meta_get_fd (GstMetaDmaBuf * buf);
+++
+++G_END_DECLS
+++
+++#endif /* __GST_DMA_BUF_H__ */
++diff --git a/pkgconfig/Makefile.am b/pkgconfig/Makefile.am
++index 9976f95..c68d492 100644
++--- a/pkgconfig/Makefile.am
+++++ b/pkgconfig/Makefile.am
++@@ -3,6 +3,7 @@ pcverfiles =  \
++ 	gstreamer-allocators-@GST_API_VERSION@.pc \
++ 	gstreamer-audio-@GST_API_VERSION@.pc \
++ 	gstreamer-app-@GST_API_VERSION@.pc \
+++	gstreamer-dmabuf-@GST_API_VERSION@.pc \
++ 	gstreamer-fft-@GST_API_VERSION@.pc \
++ 	gstreamer-pbutils-@GST_API_VERSION@.pc \
++ 	gstreamer-riff-@GST_API_VERSION@.pc \
++@@ -16,6 +17,7 @@ pcverfiles_uninstalled = \
++ 	gstreamer-allocators-@GST_API_VERSION@-uninstalled.pc \
++ 	gstreamer-audio-@GST_API_VERSION@-uninstalled.pc \
++ 	gstreamer-app-@GST_API_VERSION@-uninstalled.pc \
+++	gstreamer-dmabuf-@GST_API_VERSION@-uninstalled.pc \
++ 	gstreamer-fft-@GST_API_VERSION@-uninstalled.pc \
++ 	gstreamer-pbutils-@GST_API_VERSION@-uninstalled.pc \
++ 	gstreamer-riff-@GST_API_VERSION@-uninstalled.pc \
++@@ -46,6 +48,7 @@ pcinfiles = \
++ 		   gstreamer-allocators.pc.in gstreamer-allocators-uninstalled.pc.in \
++            gstreamer-audio.pc.in gstreamer-audio-uninstalled.pc.in \
++            gstreamer-app.pc.in gstreamer-app-uninstalled.pc.in \
+++           gstreamer-dmabuf.pc.in gstreamer-dmabuf-uninstalled.pc.in \
++            gstreamer-fft.pc.in gstreamer-fft-uninstalled.pc.in \
++            gstreamer-pbutils.pc.in gstreamer-pbutils-uninstalled.pc.in \
++            gstreamer-riff.pc.in gstreamer-riff-uninstalled.pc.in \
++diff --git a/pkgconfig/gstreamer-dmabuf-uninstalled.pc.in b/pkgconfig/gstreamer-dmabuf-uninstalled.pc.in
++new file mode 100644
++index 0000000..863175f
++--- /dev/null
+++++ b/pkgconfig/gstreamer-dmabuf-uninstalled.pc.in
++@@ -0,0 +1,16 @@
+++# the standard variables don't make sense for an uninstalled copy
+++prefix=
+++exec_prefix=
+++libdir=
+++# includedir is builddir because it is used to find gstconfig.h in places
+++includedir=@abs_top_builddir@/gst-libs
+++girdir=@abs_top_builddir@/gst-libs/gst/video
+++typelibdir=@abs_top_builddir@/gst-libs/gst/video
+++
+++Name: GStreamer DMA-BUF Library, Uninstalled
+++Description: Video base classes and helper functions, uninstalled
+++Version: @VERSION@
+++Requires: gstreamer-@GST_API_VERSION@ gstreamer-base-@GST_API_VERSION@
+++Libs: @abs_top_builddir@/gst-libs/gst/dmabuf/libgstdmabuf-@GST_API_VERSION@.la
+++Cflags: -I@abs_top_srcdir@/gst-libs -I@abs_top_builddir@/gst-libs
+++
++diff --git a/pkgconfig/gstreamer-dmabuf.pc.in b/pkgconfig/gstreamer-dmabuf.pc.in
++new file mode 100644
++index 0000000..1a44f19
++--- /dev/null
+++++ b/pkgconfig/gstreamer-dmabuf.pc.in
++@@ -0,0 +1,16 @@
+++prefix=@prefix@
+++exec_prefix=@exec_prefix@
+++libdir=@libdir@
+++includedir=@includedir@/gstreamer-@GST_API_VERSION@
+++datarootdir=${prefix}/share
+++datadir=${datarootdir}
+++girdir=${datadir}/gir-1.0
+++typelibdir=${libdir}/girepository-1.0
+++
+++Name: GStreamer DMA-BUF Library
+++Description: Video base classes and helper functions
+++Requires: gstreamer-@GST_API_VERSION@ gstreamer-base-@GST_API_VERSION@
+++Version: @VERSION@
+++Libs: -L${libdir} -lgstdmabuf-@GST_API_VERSION@
+++Cflags: -I${includedir}
+++
++diff --git a/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in b/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in
++index 970c051..ebf2be6 100644
++--- a/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in
+++++ b/pkgconfig/gstreamer-plugins-base-uninstalled.pc.in
++@@ -10,7 +10,7 @@ Name: GStreamer Base Plugins Libraries, Uninstalled
++ Description: Streaming media framework, base plugins libraries, uninstalled
++ Version: @VERSION@
++ Requires: gstreamer-@GST_API_VERSION@
++-Libs: -L@abs_top_builddir@/gst-libs/gst/allocators -L@abs_top_builddir@/gst-libs/gst/app -L@abs_top_builddir@/gst-libs/gst/audio -L@abs_top_builddir@/gst-libs/gst/fft -L@abs_top_builddir@/gst-libs/gst/pbutils -L@abs_top_builddir@/gst-libs/gst/riff -L@abs_top_builddir@/gst-libs/gst/rtp -L@abs_top_builddir@/gst-libs/gst/rtsp -L@abs_top_builddir@/gst-libs/gst/sdp -L@abs_top_builddir@/gst-libs/gst/tag -L@abs_top_builddir@/gst-libs/gst/video
+++Libs: -L@abs_top_builddir@/gst-libs/gst/allocators -L@abs_top_builddir@/gst-libs/gst/app -L@abs_top_builddir@/gst-libs/gst/audio -L@abs_top_builddir@/gst-libs/gst/dmabuf -L@abs_top_builddir@/gst-libs/gst/fft -L@abs_top_builddir@/gst-libs/gst/pbutils -L@abs_top_builddir@/gst-libs/gst/riff -L@abs_top_builddir@/gst-libs/gst/rtp -L@abs_top_builddir@/gst-libs/gst/rtsp -L@abs_top_builddir@/gst-libs/gst/sdp -L@abs_top_builddir@/gst-libs/gst/tag -L@abs_top_builddir@/gst-libs/gst/video
++ Cflags: -I@abs_top_srcdir@/gst-libs -I@abs_top_builddir@/gst-libs
++ 
++-libraries=allocators app audio fft pbutils riff rtp rtsp sdp tag video
+++libraries=allocators app audio dmabuf fft pbutils riff rtp rtsp sdp tag video
++diff --git a/pkgconfig/gstreamer-plugins-base.pc.in b/pkgconfig/gstreamer-plugins-base.pc.in
++index e817746..3d3bc94 100644
++--- a/pkgconfig/gstreamer-plugins-base.pc.in
+++++ b/pkgconfig/gstreamer-plugins-base.pc.in
++@@ -11,4 +11,4 @@ Version: @VERSION@
++ Libs: -L${libdir}
++ Cflags: -I${includedir}
++ 
++-libraries=allocators app audio fft pbutils riff rtp rtsp sdp tag video
+++libraries=allocators app audio dmabuf fft pbutils riff rtp rtsp sdp tag video
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+new file mode 100644
+index 0000000..c76cb20
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI_append = " \
++        file://0001-Added-GstMetaDmaBuf-features.patch"
++
++PR = "r2"
++
++FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
 -- 
 1.7.9.5
 
