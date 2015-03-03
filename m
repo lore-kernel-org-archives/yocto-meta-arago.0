@@ -1,21 +1,33 @@
-Return-Path: <pierluigi.passaro@phoenixsoftware.it>
-Received: from smtpcmd01229.aruba.it (smtpcmd01229.aruba.it [62.149.158.229])
-	by arago-project.org (Postfix) with ESMTP id EEE19529BD
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id B776452A62
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Mar 2015 11:52:42 +0000 (UTC)
-Received: from phoenixsoftware.it ([62.149.158.90])
-	by smtpcmd01.ad.aruba.it with bizsmtp
-	id yzsg1p0271xJdJu01zsgPL; Tue, 03 Mar 2015 12:52:41 +0100
-Date: Tue,  3 Mar 2015 12:52:40 +0100
-Message-Id: <NKMWZS$94E5E748F875A98FA60773BAEEF601E6@phoenixsoftware.it>
+	Tue,  3 Mar 2015 15:07:56 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23F7txa001849;
+	Tue, 3 Mar 2015 09:07:55 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23F7sct029884;
+	Tue, 3 Mar 2015 09:07:54 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Tue, 3 Mar 2015 09:07:54 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Thread-Topic: [meta-arago] [PATCH 2/2] packagegroup-*-qte: update to include
+	remaining qt5 modules and dependencies
+Thread-Index: AQHQVYrMRqEMBMt7U0qT4i8JGAJPKp0K3JCA
+Date: Tue, 3 Mar 2015 15:07:53 +0000
+Message-ID: <E5C7A8C9-4F73-48AD-8918-20A21CCC71AE@ti.com>
+References: <1425370754-22484-1-git-send-email-denis@denix.org>,
+	<1425370754-22484-2-git-send-email-denis@denix.org>
+In-Reply-To: <1425370754-22484-2-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-X-Sensitivity: 3
-From: "Pierluigi Passaro" <pierluigi.passaro@phoenixsoftware.it>
-To: "meta-arago" <meta-arago@arago-project.org>
-X-XaM3-API-Version: V3(R2)
-X-notifreq: 123
-X-SenderIP: 94.33.39.20
-Subject: Compile ti-compat-wireless-wl18xx with Linaro GCC 4.9-2014.09
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 2/2] packagegroup-*-qte: update to include remaining qt5 modules and dependencies
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -28,39 +40,102 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 11:52:43 -0000
-X-Groupsio-MsgNum: 4946
-Content-Type: multipart/mixed;
-	boundary="_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474"
-
---_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Tue, 03 Mar 2015 15:07:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,=0AGCC 4.9 complains about using __TIMESTAMP__ defines in source c=
-ode.=0A=0AAttached you can find the patch I used to fix the problem.=0APl=
-ease fill free to commit it, if fine.=0A=0ARegards=0APierluigi
+Are there any dev packages for these packages that you added that should al=
+so be added to Linux-devkit?
 
---_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474
-Content-Type: application/octet-stream;
-	name="=?utf-8?Q?ti-compat-wireless-wl18xx.patch?="
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="=?utf-8?Q?ti-compat-wireless-wl18xx.patch?="
 
-ZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtYnNwL3RpLWNvbXBhdC13aXJl
-bGVzcy90aS1jb21wYXQtd2lyZWxlc3Mtd2wxOHh4LmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVj
-aXBlcy1ic3AvdGktY29tcGF0LXdpcmVsZXNzL3RpLWNvbXBhdC13aXJlbGVzcy13bDE4eHguYmIK
-aW5kZXggYjIxZmNhNC4uMzFmZTBiMSAxMDA2NDQKLS0tIGEvbWV0YS1hcmFnby1leHRyYXMvcmVj
-aXBlcy1ic3AvdGktY29tcGF0LXdpcmVsZXNzL3RpLWNvbXBhdC13aXJlbGVzcy13bDE4eHguYmIK
-KysrIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1ic3AvdGktY29tcGF0LXdpcmVsZXNzL3Rp
-LWNvbXBhdC13aXJlbGVzcy13bDE4eHguYmIKQEAgLTMyLDYgKzMyLDExIEBAIGV4cG9ydCBLTElC
-X0JVSUxEPSIke1NUQUdJTkdfS0VSTkVMX0RJUn0iCiBleHBvcnQgS0xJQj0iJHtEfSIKIAogZG9f
-Y29uZmlndXJlKCkgeworICAgIGNkICIke1dPUktESVJ9L3dsMTh4eCIKKyAgICBleHBvcnQgR0lU
-U1RBTVA9JChnaXQgbG9nIC0xIC0tZm9ybWF0PSVjZCkKKyAgICBzZWQgLWkgInMvX19USU1FU1RB
-TVBfXy9cIiRHSVRTVEFNUFwiLyIgZHJpdmVycy9uZXQvd2lyZWxlc3MvdGkvd2xjb3JlL01ha2Vm
-aWxlCisgICAgc2VkIC1pICJzL19fVElNRVNUQU1QX18vXCIkR0lUU1RBTVBcIi8iIGRyaXZlcnMv
-bmV0L3dpcmVsZXNzL3RpL3dsY29yZS9yZWxlYXNlX3ZlcnNpb24uaAorCiAgICAgY2QgIiR7V09S
-S0RJUn0vYmFja3BvcnRzIgogICAgIHVuc2V0IENDCiAgICAgI0dlbmVyYXRlIGNvbXBhdC13aXJl
-bGVzcwo=
+> On Mar 3, 2015, at 2:19 AM, Denys Dmytriyenko <denis@denix.org> wrote:
+>=20
+> From: Denys Dmytriyenko <denys@ti.com>
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+> .../recipes-core/packagegroups/packagegroup-arago-qte.bb     | 11 +++++++=
++---
+> .../packagegroups/packagegroup-arago-tisdk-qte.bb            | 12 +++++++=
+-----
+> 2 files changed, 15 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
+o-qte.bb
+> index 48fdb01..9618de5 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte=
+.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte=
+.bb
+> @@ -1,6 +1,6 @@
+> DESCRIPTION =3D "Task to add Qt embedded related packages"
+> LICENSE =3D "MIT"
+> -PR =3D "r7"
+> +PR =3D "r8"
+>=20
+> inherit packagegroup
+>=20
+> @@ -29,11 +29,16 @@ QT4_ESSENTIALS =3D "\
+> QT5_ESSENTIALS =3D "\
+>     qtbase-plugins \
+>     qtdeclarative-plugins \
+> +    qtdeclarative-qmlplugins \
+>     qtlocation-plugins \
+> +    qtlocation-qmlplugins \
+>     qtmultimedia-plugins \
+> +    qtmultimedia-qmlplugins \
+>     qtwayland-plugins \
+> -    qt3d \
+> -    qtquick1 \
+> +    qt3d-qmlplugins \
+> +    qtwebkit-qmlplugins \
+> +    qtquick1-plugins \
+> +    qtquick1-qmlplugins \
+> "
+>=20
+> RDEPENDS_${PN} =3D "\
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegrou=
+p-arago-tisdk-qte.bb
+> index a95a9cd..495247e 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-qte.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-qte.bb
+> @@ -1,6 +1,6 @@
+> DESCRIPTION =3D "Task to add Qt embedded related packages"
+> LICENSE =3D "MIT"
+> -PR =3D "r9"
+> +PR =3D "r10"
+>=20
+> inherit packagegroup
+>=20
+> @@ -14,12 +14,14 @@ QT4_DEMOS =3D "\
+> "
+>=20
+> QT5_DEMOS =3D "\
+> -    qtwayland-examples \
+> -    qtwebkit-examples-examples \
+> +    qt3d-examples \
+> +    qtbase-examples \
+>     qtdeclarative-examples \
+> +    qtlocation-examples \
+>     qtmultimedia-examples \
+> -    qtbase-examples \
+> -    qt3d-examples \
+> +    qtscript-examples \
+> +    qtwayland-examples \
+> +    qtwebkit-examples-examples \
+>     qtquick1-examples \
+> "
+>=20
+> --=20
+> 2.2.0
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
---_=__=_XaM3_.1425383560.2A.723764.42.26670.52.42.007.1579815474--
