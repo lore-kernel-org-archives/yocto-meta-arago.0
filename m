@@ -1,36 +1,27 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0B491529BD
+Return-Path: <karthik.ramanan@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id ABDBC52A62
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Mar 2015 15:52:14 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FqEN8011646;
-	Tue, 3 Mar 2015 09:52:14 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FqD7X000306;
-	Tue, 3 Mar 2015 09:52:13 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Tue, 3 Mar 2015 09:52:13 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 2/2] packagegroup-*-qte: update to include
-	remaining qt5 modules and dependencies
-Thread-Index: AQHQVYrMRqEMBMt7U0qT4i8JGAJPKp0K3JCAgABudwD//53G0A==
-Date: Tue, 3 Mar 2015 15:52:11 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C8335B5@DFLE08.ent.ti.com>
-References: <1425370754-22484-1-git-send-email-denis@denix.org>
-	<1425370754-22484-2-git-send-email-denis@denix.org>
-	<E5C7A8C9-4F73-48AD-8918-20A21CCC71AE@ti.com>
-	<20150303154316.GS6052@edge>
-In-Reply-To: <20150303154316.GS6052@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Tue,  3 Mar 2015 15:59:33 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxWeN000422
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:32 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxVM5021624
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:31 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 3 Mar 2015 09:59:31 -0600
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoH010022;
+	Tue, 3 Mar 2015 09:59:30 -0600
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 3 Mar 2015 21:29:21 +0530
+Message-ID: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/2] packagegroup-*-qte: update to include remaining qt5 modules and dependencies
+Subject: [meta-arago 0/4] GStreamer 1.0 adapatations for TI Platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,126 +34,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 15:52:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Mar 2015 15:59:33 -0000
+Content-Type: text/plain
 
+Difference from v1:
+ * Add gst-plugins-ducati for GST 1.x
+ * Add gst-plugins-vpe for GST 1.x
+ * Add FILES_PN explicitly for all GST 1.x recipes
 
+Karthik Ramanan (4):
+  gstreamer1.0-plugins-base: Add DMA Buf support
+  gstreamer1.0-plugins-good: Add DMABuf support v4l2src
+  gstreamer1.0-plugins-bad: Add various features
+  gstreamer1.0-plugins-ti: Add ducati and vpe GST plugins
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Tuesday, March 03, 2015 9:43 AM
-> To: Cooper Jr., Franklin
-> Cc: Denys Dmytriyenko; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 2/2] packagegroup-*-qte: update to
-> include remaining qt5 modules and dependencies
->=20
-> On Tue, Mar 03, 2015 at 03:07:53PM +0000, Cooper Jr., Franklin wrote:
-> > Are there any dev packages for these packages that you added that
-> > should also be added to Linux-devkit?
->=20
-> No new modules were added, just extra plugins and examples. All the
-> corresponding -dev are already listed.
-[Franklin] Alright thanks
+ .../gstreamer1.0-plugins-ducati_git.bb             |   10 +
+ .../gst-plugins-ti/gstreamer1.0-plugins-ti.inc     |   19 +
+ .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |   11 +
+ .../0001-Added-GstDRMBufferPool-support.patch      |  774 +++++++++++
+ ...odified-waylandsink-to-accept-NV12-format.patch | 1017 ++++++++++++++
+ .../0003-Added-KMSsink-support.patch               | 1457 ++++++++++++++++++++
+ ...04-waylandsink-Removed-dependency-on-dri2.patch |   26 +
+ ...vc1parse-and-jpegparse-Fixes-plugin-ranks.patch |   54 +
+ .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   14 +
+ .../0001-Added-GstMetaDmaBuf-features.patch        |  441 ++++++
+ .../gstreamer1.0-plugins-base_1.2.3.bbappend       |    8 +
+ ...ST_V4L2_IO_DMABUF-mode-support-in-capture.patch |  298 ++++
+ .../gstreamer1.0-plugins-good_1.2.3.bbappend       |    8 +
+ 13 files changed, 4137 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
 
-Acked-by: Franklin Cooper Jr. <fcooper@ti.com>
+-- 
+1.7.9.5
 
->=20
->=20
-> > > On Mar 3, 2015, at 2:19 AM, Denys Dmytriyenko <denis@denix.org>
-> wrote:
-> > >
-> > > From: Denys Dmytriyenko <denys@ti.com>
-> > >
-> > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > ---
-> > > .../recipes-core/packagegroups/packagegroup-arago-qte.bb     | 11
-> ++++++++---
-> > > .../packagegroups/packagegroup-arago-tisdk-qte.bb            | 12 +++=
-++++-
-> ----
-> > > 2 files changed, 15 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-
-> distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> > > index 48fdb01..9618de5 100644
-> > > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-qte.bb
-> > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-qte.bb
-> > > @@ -1,6 +1,6 @@
-> > > DESCRIPTION =3D "Task to add Qt embedded related packages"
-> > > LICENSE =3D "MIT"
-> > > -PR =3D "r7"
-> > > +PR =3D "r8"
-> > >
-> > > inherit packagegroup
-> > >
-> > > @@ -29,11 +29,16 @@ QT4_ESSENTIALS =3D "\
-> > > QT5_ESSENTIALS =3D "\
-> > >     qtbase-plugins \
-> > >     qtdeclarative-plugins \
-> > > +    qtdeclarative-qmlplugins \
-> > >     qtlocation-plugins \
-> > > +    qtlocation-qmlplugins \
-> > >     qtmultimedia-plugins \
-> > > +    qtmultimedia-qmlplugins \
-> > >     qtwayland-plugins \
-> > > -    qt3d \
-> > > -    qtquick1 \
-> > > +    qt3d-qmlplugins \
-> > > +    qtwebkit-qmlplugins \
-> > > +    qtquick1-plugins \
-> > > +    qtquick1-qmlplugins \
-> > > "
-> > >
-> > > RDEPENDS_${PN} =3D "\
-> > > diff --git a/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-
-> distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> > > index a95a9cd..495247e 100644
-> > > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-qte.bb
-> > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-qte.bb
-> > > @@ -1,6 +1,6 @@
-> > > DESCRIPTION =3D "Task to add Qt embedded related packages"
-> > > LICENSE =3D "MIT"
-> > > -PR =3D "r9"
-> > > +PR =3D "r10"
-> > >
-> > > inherit packagegroup
-> > >
-> > > @@ -14,12 +14,14 @@ QT4_DEMOS =3D "\
-> > > "
-> > >
-> > > QT5_DEMOS =3D "\
-> > > -    qtwayland-examples \
-> > > -    qtwebkit-examples-examples \
-> > > +    qt3d-examples \
-> > > +    qtbase-examples \
-> > >     qtdeclarative-examples \
-> > > +    qtlocation-examples \
-> > >     qtmultimedia-examples \
-> > > -    qtbase-examples \
-> > > -    qt3d-examples \
-> > > +    qtscript-examples \
-> > > +    qtwayland-examples \
-> > > +    qtwebkit-examples-examples \
-> > >     qtquick1-examples \
-> > > "
-> > >
-> > > --
-> > > 2.2.0
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
