@@ -1,27 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id 1E83A52A62
+Return-Path: <jake@ubuntu-quadshannondemopc5>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id D88A152A78
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Mar 2015 17:37:39 +0000 (UTC)
-Received: from gandalf.denix.org ([108.18.33.236]) by vms173019.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NKP00EBT7LWV170@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 04 Mar 2015 11:37:09 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=OqT4EJ7o c=1 sm=1 tr=0	a=SSUdfGXV8XCffJJ8+gLrig==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=emO1SXQWCLwA:10
-	a=sozttTNsAAAA:8	a=XD00Z0aV6b7OoIlCOWMA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 90598200EB;	Wed,
-	4 Mar 2015 12:37:08 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 04 Mar 2015 12:37:08 -0500
-Message-id: <1425490628-23974-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] packagegroup-*-qte: add some qml and gl tools to TISDK
+	Wed,  4 Mar 2015 19:44:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24Jih7J012790
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 13:44:43 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24JifYV007670
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 13:44:42 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 Mar 2015 13:44:41 -0600
+Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t24JifMm019995;	Wed, 4 Mar 2015 13:44:41 -0600
+Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YTFDl-0005th-4L;
+	Wed, 04 Mar 2015 14:44:41 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 4 Mar 2015 14:44:38 -0500
+Message-ID: <1425498278-22639-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH] dual-camera-demo: patch Makefile.build to work with Qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,39 +37,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 17:37:39 -0000
+X-List-Received-Date: Wed, 04 Mar 2015 19:44:44 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Makefile.build is only used when building from within SDK through a
+top-level SDK Makefile.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb        | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 ++++++++++++++++++++
+ .../dual-camera-demo/dual-camera-demo_1.0.bb       |    3 +-
+ 2 files changed, 33 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index 495247e..eeb32fb 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r10"
-+PR = "r11"
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+new file mode 100644
+index 0000000..a544c87
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+@@ -0,0 +1,31 @@
++From 42653f94bbaff15d04ec527add6eeb3082ab4873 Mon Sep 17 00:00:00 2001
++From: Jacob Stiffler <j-stiffler@ti.com>
++Date: Wed, 4 Mar 2015 12:00:45 -0500
++Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
++
++Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
++---
++ Makefile.build |    4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/Makefile.build b/Makefile.build
++index d715722..fdea3d8 100644
++--- a/Makefile.build
+++++ b/Makefile.build
++@@ -9,11 +9,11 @@ all: release
++ .PHONY: qmake
++ qmake : dual_camera.pro
++ 	@. ${ENV_SETUP}; \
++-	qmake2 CONFIG+=release dual_camera.pro
+++	qmake CONFIG+=release dual_camera.pro
++ 
++ qmake_debug : dual_camera.pro
++ 	@. ${ENV_SETUP}; \
++-	qmake2 CONFIG+=debug dual_camera.pro
+++	qmake CONFIG+=debug dual_camera.pro
++ 
++ debug : qmake_debug
++ 	@. ${ENV_SETUP}; \
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+index 7893d01..f1e6e79 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
+ DEPENDS += "libdrm"
+ require recipes-core/matrix/matrix-gui-paths.inc
  
- inherit packagegroup
+-PR = "r6"
++PR = "r7"
  
-@@ -15,8 +15,10 @@ QT4_DEMOS = "\
+ BRANCH = "drm"
+ SRCREV = "0c48cb66cc995420dfec2f1fd620c8977f0170aa"
+@@ -17,6 +17,7 @@ SRC_URI = "git://gitorious.org/dual-camera-demo/dual-camera-demo.git;protocol=gi
+            file://dual_camera_qt5.sh \
+            file://dual_camera_qt4.sh \
+            file://dual-camera.desktop \
++           file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
+ "
  
- QT5_DEMOS = "\
-     qt3d-examples \
-+    qt3d-tools \
-     qtbase-examples \
-     qtdeclarative-examples \
-+    qtdeclarative-tools \
-     qtlocation-examples \
-     qtmultimedia-examples \
-     qtscript-examples \
+ S = "${WORKDIR}/git"
 -- 
-2.2.0
+1.7.9.5
 
 
