@@ -1,30 +1,30 @@
-Return-Path: <denys@ti.com>
+Return-Path: <jake@ubuntu-quadshannondemopc5>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 10E7152A52
+	by arago-project.org (Postfix) with ESMTPS id AFE0752A52
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Mar 2015 20:22:18 +0000 (UTC)
+	Wed,  4 Mar 2015 20:23:08 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24KMHIc007236
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:22:17 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KMGC7026811
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:22:16 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 Mar 2015 14:22:15 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KMFwV027982;
-	Wed, 4 Mar 2015 14:22:15 -0600
-Date: Wed, 4 Mar 2015 15:22:15 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20150304202215.GL6052@edge>
-References: <1425457659-11042-1-git-send-email-a0393906@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24KN7rW007304
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:23:07 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KN6Jc027474
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:23:06 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 Mar 2015 14:23:06 -0600
+Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t24KN64f012060;	Wed, 4 Mar 2015 14:23:06 -0600
+Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YTFow-0000W6-8f;
+	Wed, 04 Mar 2015 15:23:06 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 4 Mar 2015 15:22:59 -0500
+Message-ID: <1425500579-1954-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <1425457659-11042-1-git-send-email-a0393906@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: weston: Add support for multiple display and DRM backend
+Subject: [PATCH v2] dual-camera-demo: patch Makefile.build to work with Qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,142 +37,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 20:22:18 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 04 Mar 2015 20:23:08 -0000
+Content-Type: text/plain
 
-This should go to meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
+Makefile.build is only used when building from within SDK through a
+top-level SDK Makefile.
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 ++++++++++++++++++++
+ .../dual-camera-demo/dual-camera-demo_1.0.bb       |    8 ++++-
+ 2 files changed, 38 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
 
-On Wed, Mar 04, 2015 at 01:57:39PM +0530, Karthik Ramanan wrote:
-> On devices where the backend is chosen as DRM, as in the case of dra7xx,
-> we need some additional patches that are specific to the omapdrm
-> which are needed for basic functionality. This includes some bug fixes
-> too.
-> 
-> This will fully enable
-> * multiple display support
-> * Handle screensavers more efficiently
-> * Be compatible with libgbm, TI adaptation of libgbm
-> 
-> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-> ---
->  ...abling-DRM-backend-with-multiple-displays.patch |   60 ++++++++++++++++++++
->  .../recipes-graphics/wayland/weston_1.6.0.bb       |   15 +++--
->  2 files changed, 70 insertions(+), 5 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
-> 
-> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
-> new file mode 100644
-> index 0000000..2f215c9
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
-> @@ -0,0 +1,60 @@
-> +From b1829ce962aa4e13d737edb54130bdce05f068f0 Mon Sep 17 00:00:00 2001
-> +From: Karthik Ramanan <a0393906@ti.com>
-> +Date: Wed, 17 Dec 2014 09:21:49 +0530
-> +Subject: [PATCH] weston: Enabling DRM backend with multiple displays
-> +
-> +There are three main issues that this patch tries to address
-> +
-> + 1. Black screen when running weston
-> + 2. Support for multiple displays
-> + 3. Handling missing VBlanks
-> +
-> +There is an issue with missing VBlanks for LCD and
-> +HDMI connectors which leads to display not getting refreshed.
-> +This patch can be considered as a workaround.
-> +
-> +Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-> +---
-> + src/compositor-drm.c |   10 ++++++++--
-> + 1 files changed, 8 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/src/compositor-drm.c b/src/compositor-drm.c
-> +index e4496e7..3b22aa3 100644
-> +--- a/src/compositor-drm.c
-> ++++ b/src/compositor-drm.c
-> +@@ -646,7 +646,7 @@ drm_output_repaint(struct weston_output *output_base,
-> + 			.request.sequence = 1,
-> + 		};
-> + 
-> +-		if ((!s->current && !s->next) ||
-> ++		if ((!s->current && !s->next) &&
-> + 		    !drm_sprite_crtc_supported(output_base, s->possible_crtcs))
-> + 			continue;
-> + 
-> +@@ -757,6 +757,7 @@ page_flip_handler(int fd, unsigned int frame,
-> + {
-> + 	struct drm_output *output = (struct drm_output *) data;
-> + 	uint32_t msecs;
-> ++	uint32_t bail;
-> + 
-> + 	/* We don't set page_flip_pending on start_repaint_loop, in that case
-> + 	 * we just want to page flip to the current buffer to get an accurate
-> +@@ -769,9 +770,14 @@ page_flip_handler(int fd, unsigned int frame,
-> + 
-> + 	output->page_flip_pending = 0;
-> + 
-> ++	if(output->vblank_pending) {
-> ++		weston_log("VBlank is pending for connector = %d, frame = %d\n", output->connector_id, frame);
-> ++		bail = 1;
-> ++	}
-> ++
-> + 	if (output->destroy_pending)
-> + 		drm_output_destroy(&output->base);
-> +-	else if (!output->vblank_pending) {
-> ++	else if (!output->vblank_pending || bail ) {
-> + 		msecs = sec * 1000 + usec / 1000;
-> + 		weston_output_finish_frame(&output->base, msecs);
-> + 
-> +-- 
-> +1.7.9.5
-> +
-> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
-> index efbbbe0..0d1962b 100644
-> --- a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
-> +++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
-> @@ -5,15 +5,20 @@ LICENSE = "MIT"
->  LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
->                      file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
->  
-> -SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
-> +SRC_URI = "git://anongit.freedesktop.org/wayland/weston;protocol=git \
->             file://weston.png \
->             file://weston.desktop \
->             file://disable-wayland-scanner-pkg-check.patch \
->             file://make-lcms-explicitly-configurable.patch \
->             file://make-libwebp-explicitly-configurable.patch \
-> +           file://0001-weston-Enabling-DRM-backend-with-multiple-displays.patch \
->  "
-> -SRC_URI[md5sum] = "c60ce9dde99a089db0539d8f6b557827"
-> -SRC_URI[sha256sum] = "dc3ea5d13bbf025fabc006216c5ddc0d80d5f4ebe778912b8c4d1d4acaaa614d"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +SRCREV = "2858cc2a50854685b44eee72994dea57f5aa4246"
-> +
-> +PR = "r2"
->  
->  inherit autotools pkgconfig useradd
->  
-> @@ -39,9 +44,9 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'kms fbdev
->  # Compositor choices
->  #
->  # Weston on KMS
-> -PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev virtual/mesa mtdev"
-> +PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
->  # Weston on Wayland (nested Weston)
-> -PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,virtual/mesa"
-> +PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,libgbm"
->  # Weston on X11
->  PACKAGECONFIG[x11] = "--enable-x11-compositor,--disable-x11-compositor,virtual/libx11 libxcb libxcb libxcursor cairo"
->  # Headless Weston
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+new file mode 100644
+index 0000000..a544c87
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+@@ -0,0 +1,31 @@
++From 42653f94bbaff15d04ec527add6eeb3082ab4873 Mon Sep 17 00:00:00 2001
++From: Jacob Stiffler <j-stiffler@ti.com>
++Date: Wed, 4 Mar 2015 12:00:45 -0500
++Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
++
++Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
++---
++ Makefile.build |    4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/Makefile.build b/Makefile.build
++index d715722..fdea3d8 100644
++--- a/Makefile.build
+++++ b/Makefile.build
++@@ -9,11 +9,11 @@ all: release
++ .PHONY: qmake
++ qmake : dual_camera.pro
++ 	@. ${ENV_SETUP}; \
++-	qmake2 CONFIG+=release dual_camera.pro
+++	qmake CONFIG+=release dual_camera.pro
++ 
++ qmake_debug : dual_camera.pro
++ 	@. ${ENV_SETUP}; \
++-	qmake2 CONFIG+=debug dual_camera.pro
+++	qmake CONFIG+=debug dual_camera.pro
++ 
++ debug : qmake_debug
++ 	@. ${ENV_SETUP}; \
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+index 7893d01..4f7d835 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
+ DEPENDS += "libdrm"
+ require recipes-core/matrix/matrix-gui-paths.inc
+ 
+-PR = "r6"
++PR = "r7"
+ 
+ BRANCH = "drm"
+ SRCREV = "0c48cb66cc995420dfec2f1fd620c8977f0170aa"
+@@ -19,6 +19,12 @@ SRC_URI = "git://gitorious.org/dual-camera-demo/dual-camera-demo.git;protocol=gi
+            file://dual-camera.desktop \
+ "
+ 
++QT5_DIFF = " \
++    file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
++"
++
++SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '', d)}"
++
+ S = "${WORKDIR}/git"
+ 
+ DEMO_SCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', 'dual_camera_qt5.sh', 'dual_camera_qt4.sh', d)}"
+-- 
+1.7.9.5
+
 
