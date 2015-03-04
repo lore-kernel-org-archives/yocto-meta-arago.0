@@ -1,35 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 028AA52A77
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id E82A3529BD
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Mar 2015 20:35:57 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24KZvxv010274
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:35:57 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KZuxr018957
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:35:56 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Wed, 4 Mar 2015 14:35:56 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 2/3] stream: Add append for TISDK
-	customizations
-Thread-Index: AQHQVraNzHu+1nr+DEusTq28FUmTgZ0NKHQA//+fKaA=
-Date: Wed, 4 Mar 2015 20:35:55 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C83579A@DFLE08.ent.ti.com>
-References: <1425499517-11576-1-git-send-email-fcooper@ti.com>
-	<1425499517-11576-2-git-send-email-fcooper@ti.com>
-	<20150304202026.GK6052@edge>
-In-Reply-To: <20150304202026.GK6052@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	Wed,  4 Mar 2015 20:48:24 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24KmObd021900
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:48:24 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KmNJl014429
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:48:23 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 Mar 2015 14:48:22 -0600
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t24KmL5V009233;	Wed, 4 Mar 2015 14:48:22 -0600
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id t24KmJQQ008745;	Thu, 5 Mar 2015 02:18:20 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 4 Mar 2015 14:48:18 -0600
+Message-ID: <1425502098-15001-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/3] stream: Add append for TISDK customizations
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH 2/3 v2] stream: Add append for TISDK customizations
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,67 +38,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 20:35:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 04 Mar 2015 20:48:25 -0000
+Content-Type: text/plain
 
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
+* Use an SDK branch that slightly tweaks the makefile to include generic
+  optimizations that should be used by all TI platforms.
+* Also manually set certain variables to insure no additional/unexpected
+  compiler optimization are pulled in.
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, March 04, 2015 2:20 PM
-> To: Cooper Jr., Franklin
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 2/3] stream: Add append for TISDK
-> customizations
->=20
-> On Wed, Mar 04, 2015 at 02:05:15PM -0600, Franklin S. Cooper Jr wrote:
-> > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-> >
-> > * Use an SDK branch that slightly tweaks the makefile to include generi=
-c
-> >   optimizations that should be used by all TI platforms.
-> > * Also manually set certain variables to insure no additional/unexpecte=
-d
-> >   compiler optimization are pulled in.
-> >
-> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-> > ---
-> >  .../recipes-benchmark/stream/stream_git.bbappend   |   10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >  create mode 100644
-> > meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
-> >
-> > diff --git
-> > a/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
-> > b/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
-> > new file mode 100644
-> > index 0000000..83adfb6
-> > --- /dev/null
-> > +++ b/meta-arago-distro/recipes-
-> benchmark/stream/stream_git.bbappend
-> > @@ -0,0 +1,10 @@
-> > +PR_append =3D "-arago0"
-> > +
-> > +BRANCH =3D "sdk"
-> > +SRCREV =3D "cfd73a33c0ceef1f8532ce6a71de3bcf9435f6a2"
-> > +
-> > +do_compile_prepend() {
-> > +    #Explicitly set some variables to insure no unexpected optimizatio=
-ns are
-> being passed in.
-> > +    export CFLAGS=3D"-
-> isystem${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/include"
-> > +    export LDFLAGS=3D"-L${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/lib -
-> Wl,-rpath-link,${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/lib"
->=20
-> NAK, this assumes external Linaro toolchain. Can you make it more generic=
-?
-> Why can't you use the sysroots?
-[Franklin] Oops didn't notice that. I simply looked at the bitbake env vari=
-ables and stripped away what I didn't need from CFLAGS and LDFLAGS. I'll se=
-nd a v2 shortly.
-> --
-> Denys
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+v2 changes:
+Unset CFLAGS and LDFLAGS variable. Those variables aren't providing anything
+useful and CC provides everything needed to compile
+
+ .../recipes-benchmark/stream/stream_git.bbappend   |   10 ++++++++++
+ 1 file changed, 10 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+
+diff --git a/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend b/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+new file mode 100644
+index 0000000..9dc244b
+--- /dev/null
++++ b/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+@@ -0,0 +1,10 @@
++PR_append = "-arago0"
++
++BRANCH = "sdk"
++SRCREV = "cfd73a33c0ceef1f8532ce6a71de3bcf9435f6a2"
++
++do_compile_prepend() {
++    #Explicitly clear some variables to insure no unexpected optimizations are being passed in.
++    unset CFLAGS
++    unset LDFLAGS
++}
+-- 
+1.7.9.5
+
 
