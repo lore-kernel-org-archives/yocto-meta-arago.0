@@ -1,29 +1,31 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 04B5B52A62
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id DCC8B52A62
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Mar 2015 15:59:38 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t23FxcIS000437
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:38 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23Fxalo021669
-	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 09:59:36 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 3 Mar 2015 09:59:36 -0600
-Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t23FxUoL010022;
-	Tue, 3 Mar 2015 09:59:36 -0600
-From: Karthik Ramanan <a0393906@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 3 Mar 2015 21:29:25 +0530
-Message-ID: <1425398366-6614-5-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1425398366-6614-1-git-send-email-a0393906@ti.com>
-References: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+	Wed,  4 Mar 2015 00:37:52 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t240bpUF013462
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 18:37:51 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t240boLJ017737
+	for <meta-arago@arago-project.org>; Tue, 3 Mar 2015 18:37:50 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 3 Mar 2015 18:37:50 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t240bnhg020852;
+	Tue, 3 Mar 2015 18:37:49 -0600
+Date: Tue, 3 Mar 2015 19:37:48 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Carlos Hernandez <ceh@ti.com>
+Message-ID: <20150304003748.GA6052@edge>
+References: <20150227223435.GM6052@edge>
+	<1425312208-9221-1-git-send-email-ceh@ti.com>
 MIME-Version: 1.0
-Subject: [meta-arago 4/4] gstreamer1.0-plugins-ti: Add ducati and vpe GST plugins
+In-Reply-To: <1425312208-9221-1-git-send-email-ceh@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 1/3 v2] meta-arago-distro/recipes-devtools: serialcheck recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,78 +38,200 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 15:59:39 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 04 Mar 2015 00:37:54 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
----
- .../gstreamer1.0-plugins-ducati_git.bb             |   10 ++++++++++
- .../gst-plugins-ti/gstreamer1.0-plugins-ti.inc     |   19 +++++++++++++++++++
- .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |   11 +++++++++++
- 3 files changed, 40 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
- create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+On Mon, Mar 02, 2015 at 11:03:28AM -0500, Carlos Hernandez wrote:
+> Serialcheck is a simple utility to verify serial ports functionality.
+> It supports all "standard" bauds listed in
+> include/uapi/asm-generic/termbits.h
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-new file mode 100644
-index 0000000..7f65284
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-@@ -0,0 +1,10 @@
-+DESCRIPTION = "GStreamer elements to use the multimedia accelerators available on some TI parts"
-+LICENSE = "LGPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
-+
-+require gstreamer1.0-plugins-ti.inc
-+
-+PR = "${INC_PR}.1"
-+SRCREV = "59fb5be20da72a2f5fb4f25587be668532a90c3b"
-+
-+SRC_URI = "git://git.ti.com/glsdk/gst-plugin-ducati.git;protocol=git"
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
-new file mode 100644
-index 0000000..b5bb501
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
-@@ -0,0 +1,19 @@
-+# Include file for common build settings for TI GStreamer plugins
-+DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad libdrm libdce"
-+
-+inherit autotools pkgconfig gettext
-+
-+INC_PR = "r0"
-+
-+S = "${WORKDIR}/git"
-+
-+do_configure() {
-+	cd ${S}
-+	chmod +x autogen.sh
-+	./autogen.sh --host=arm-linux --with-libtool-sysroot=${STAGING_DIR_TARGET} --prefix=/usr
-+}
-+
-+EXTRA_OECONF += "--enable-maintainer-mode"
-+EXTRA_OEMAKE += "'ERROR_CFLAGS=-Wno-deprecated-declarations'"
-+
-+FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-new file mode 100644
-index 0000000..74d5c77
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-@@ -0,0 +1,11 @@
-+DESCRIPTION = "GStreamer elements to use the Video Processing Engine (VPE) found on some TI devices"
-+
-+LICENSE = "LGPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
-+
-+require gstreamer1.0-plugins-ti.inc
-+
-+PR = "${INC_PR}.1"
-+SRCREV = "6083aeb7d2caedb57cd62ab34c2ab0cd59664da5"
-+
-+SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git"
--- 
-1.7.9.5
+Looks good, thanks. Just a small clarification - I see you install it in /bin 
+instead of more standard /usr/bin. Is there any special reason for that?
 
+
+> Signed-off-by: Carlos Hernandez <ceh@ti.com>
+> ---
+>  ...01-Add-option-to-enable-internal-loopback.patch | 80 ++++++++++++++++++++++
+>  .../0002-Restore-original-loopback-config.patch    | 48 +++++++++++++
+>  .../serialcheck/serialcheck_1.0.0.bb               | 20 ++++++
+>  3 files changed, 148 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
+>  create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
+>  create mode 100644 meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
+> 
+> diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
+> new file mode 100644
+> index 0000000..fc387d7
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0001-Add-option-to-enable-internal-loopback.patch
+> @@ -0,0 +1,80 @@
+> +From 059d5512e840fe68e2bb37add6c9208fa9c34d15 Mon Sep 17 00:00:00 2001
+> +From: Sekhar Nori <nsekhar@ti.com>
+> +Date: Tue, 24 Feb 2015 22:16:37 +0530
+> +Subject: [PATCH 1/2] Add option to enable internal loopback
+> +
+> +---
+> + serialcheck.c | 23 +++++++++++++++++++++++
+> + 1 file changed, 23 insertions(+)
+> +
+> +diff --git a/serialcheck.c b/serialcheck.c
+> +index 4f5b747..4100c37 100644
+> +--- a/serialcheck.c
+> ++++ b/serialcheck.c
+> +@@ -12,6 +12,8 @@
+> + #include <sys/ioctl.h>
+> + #include <linux/serial.h>
+> +
+> ++#define TIOCM_LOOP	0x8000
+> ++
+> + #define __same_type(a, b)	__builtin_types_compatible_p(typeof(a), typeof(b))
+> + #define BUILD_BUG_ON_ZERO(e)	(sizeof(struct { int:-!!(e); }))
+> + #define __must_be_array(a)	BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
+> +@@ -40,6 +42,7 @@ struct g_opt {
+> +	unsigned char hflow;
+> +	unsigned char do_termios;
+> +	unsigned char *cmp_buff;
+> ++	unsigned char loopback;
+> + };
+> +
+> + /* name, key, arg, flags, doc, group */
+> +@@ -51,6 +54,7 @@ static struct argp_option options[] = {
+> +	{"mode",	'm', "M",    0, "transfer mode (d = duplex, t = send r = receive)", 0},
+> +	{"loops",	'l', "NUM",  0, "loops to perform (0 => wait fot CTRL-C", 0},
+> +	{"no-termios",	'n', NULL,   0, "No termios change (baud rate etc. remains unchanged)", 0},
+> ++	{"loopback",	'k', NULL,   0, "loopback mode", 0},
+> +	{NULL, 0, NULL, 0, NULL, 0}
+> + };
+> +
+> +@@ -67,6 +71,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
+> +		go->baudrate = 115200;
+> +		go->loops = UINT_MAX;
+> +		go->do_termios = 1;
+> ++		go->loopback = 0;
+> +		break;
+> +	case ARGP_KEY_ARG:
+> +		ret =  ARGP_ERR_UNKNOWN;
+> +@@ -113,6 +118,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
+> +		} else
+> +			go->loops = num;
+> +		break;
+> ++	case 'k':
+> ++		go->loopback = 1;
+> ++		break;
+> +	default:
+> +		ret = ARGP_ERR_UNKNOWN;
+> +	}
+> +@@ -487,6 +495,21 @@ int main(int argc, char *argv[])
+> +			die("tcflush failed: %m\n");
+> +	}
+> +
+> ++	if (opts.loopback) {
+> ++		unsigned int mcr;
+> ++
+> ++		ret = ioctl(fd, TIOCMGET, &mcr);
+> ++		if (ret < 0)
+> ++			die("mcr get failed: %m\n");
+> ++
+> ++		mcr |= TIOCM_LOOP;
+> ++
+> ++		ret = ioctl(fd, TIOCMSET, &mcr);
+> ++		if (ret < 0)
+> ++			die ("mcr set failed: %m\n");
+> ++
+> ++	}
+> ++
+> +	ret = fcntl(fd, F_SETFL, 0);
+> +	if (ret)
+> +		printf("Failed to remove nonblock mode\n");
+> +--
+> +1.9.1
+> diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
+> new file mode 100644
+> index 0000000..c9478fc
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck/0002-Restore-original-loopback-config.patch
+> @@ -0,0 +1,48 @@
+> +From a6e5813d2f8402bf3a311c8bcda02623bfb76882 Mon Sep 17 00:00:00 2001
+> +From: Carlos Hernandez <ceh@ti.com>
+> +Date: Tue, 24 Feb 2015 16:00:34 -0500
+> +Subject: [PATCH 2/2] Restore original loopback config
+> +
+> +If loopback option is enabled. Disabled it at the end of the test.
+> +
+> +Signed-off-by: Carlos Hernandez <ceh@ti.com>
+> +---
+> + serialcheck.c | 9 +++++++--
+> + 1 file changed, 7 insertions(+), 2 deletions(-)
+> +
+> +diff --git a/serialcheck.c b/serialcheck.c
+> +index 4100c37..06470f7 100644
+> +--- a/serialcheck.c
+> ++++ b/serialcheck.c
+> +@@ -427,6 +427,7 @@ int main(int argc, char *argv[])
+> +	unsigned char *data;
+> +	unsigned int open_mode;
+> +	off_t data_len;
+> ++	unsigned int mcr;
+> +
+> +	argp_parse(&argp, argc, argv, 0, NULL, &opts);
+> +	if (!opts.file_trans)
+> +@@ -496,8 +497,6 @@ int main(int argc, char *argv[])
+> +	}
+> +
+> +	if (opts.loopback) {
+> +-		unsigned int mcr;
+> +-
+> +		ret = ioctl(fd, TIOCMGET, &mcr);
+> +		if (ret < 0)
+> +			die("mcr get failed: %m\n");
+> +@@ -535,6 +534,12 @@ int main(int argc, char *argv[])
+> +	ret = tcsetattr(fd, TCSAFLUSH, &old_term);
+> +	if (ret)
+> +		printf("tcsetattr() of old ones failed: %m\n");
+> ++    if (opts.loopback) {
+> ++		mcr &= ~(TIOCM_LOOP);
+> ++		ret = ioctl(fd, TIOCMSET, &mcr);
+> ++    }
+> ++    if (ret)
+> ++		printf("disabling loopback failed: %m\n");
+> +
+> +	close(fd);
+> +	return status;
+> +--
+> +1.9.1
+> diff --git a/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
+> new file mode 100644
+> index 0000000..6929ffc
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
+> @@ -0,0 +1,20 @@
+> +SUMMARY = "Application to verify operation of serial ports"
+> +HOMEPAGE = "git://git.breakpoint.cc/bigeasy/serialcheck.git"
+> +LICENSE = "GPLv2"
+> +
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+> +SRC_URI = "git://git.breakpoint.cc/bigeasy/serialcheck.git"
+> +
+> +SRC_URI_append = " file://0001-Add-option-to-enable-internal-loopback.patch \
+> +                   file://0002-Restore-original-loopback-config.patch "
+> +
+> +SRCREV = "63854a2d0c0129efab132ec328a75279e013fb84"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +CFLAGS_prepend = "-Wall -Wextra -Wno-sign-compare -Wno-pointer-sign "
+> +
+> +do_install() {
+> +    install -d ${D}${base_bindir}
+> +    install ${S}/serialcheck  ${D}${base_bindir}/serialcheck
+> +}
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
