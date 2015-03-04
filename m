@@ -1,33 +1,33 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 79C4D52A8C
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D099E52A8C
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Mar 2015 20:05:26 +0000 (UTC)
+	Wed,  4 Mar 2015 20:05:27 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24K5PoF024948
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:05:25 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24K5OOf026217
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:05:24 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 Mar 2015 14:05:24 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24K5RYm020176
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:05:27 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24K5Pae026242
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:05:26 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 Mar 2015 14:05:25 -0600
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t24K5NxY012968;	Wed, 4 Mar 2015 14:05:24 -0600
+	[172.24.162.206])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t24K5ONk005984;	Wed, 4 Mar 2015 14:05:25 -0600
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t24K5J7W032494;	Thu, 5 Mar 2015 01:35:21 +0530
+	0.8) with ESMTP id t24K5J7X032494;	Thu, 5 Mar 2015 01:35:23 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 4 Mar 2015 14:05:15 -0600
-Message-ID: <1425499517-11576-2-git-send-email-fcooper@ti.com>
+Date: Wed, 4 Mar 2015 14:05:16 -0600
+Message-ID: <1425499517-11576-3-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1425499517-11576-1-git-send-email-fcooper@ti.com>
 References: <1425499517-11576-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH 2/3] stream: Add append for TISDK customizations
+Subject: [PATCH 3/3] packagegroup-arago-tisdk-addons: Add stream benchmark
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,38 +40,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 20:05:26 -0000
+X-List-Received-Date: Wed, 04 Mar 2015 20:05:28 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-* Use an SDK branch that slightly tweaks the makefile to include generic
-  optimizations that should be used by all TI platforms.
-* Also manually set certain variables to insure no additional/unexpected
-  compiler optimization are pulled in.
-
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-benchmark/stream/stream_git.bbappend   |   10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+ .../packagegroup-arago-tisdk-addons.bb             |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend b/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
-new file mode 100644
-index 0000000..83adfb6
---- /dev/null
-+++ b/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
-@@ -0,0 +1,10 @@
-+PR_append = "-arago0"
-+
-+BRANCH = "sdk"
-+SRCREV = "cfd73a33c0ceef1f8532ce6a71de3bcf9435f6a2"
-+
-+do_compile_prepend() {
-+    #Explicitly set some variables to insure no unexpected optimizations are being passed in.
-+    export CFLAGS="-isystem${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/include"
-+    export LDFLAGS="-L${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/lib -Wl,-rpath-link,${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/lib"
-+}
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index c6b07a9..b08b0aa 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r20"
++PR = "r21"
+ 
+ inherit packagegroup
+ 
+@@ -19,6 +19,7 @@ UTILS = " \
+     ptpd \
+     libdrm-kms \
+     ${@base_contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
++    stream \
+ "
+ 
+ UTILS_UBOOT_FW = "u-boot-fw-utils"
 -- 
 1.7.9.5
 
