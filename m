@@ -1,31 +1,33 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5D7F0529BD
+	by arago-project.org (Postfix) with ESMTPS id 67D72529BD
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Mar 2015 22:35:19 +0000 (UTC)
+	Wed,  4 Mar 2015 23:43:28 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24MZINV020242
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 16:35:18 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24MZH5G021766
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 16:35:17 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 Mar 2015 16:35:17 -0600
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t24MZGYR027033;	Wed, 4 Mar 2015 16:35:16 -0600
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t24MZE8W030188;	Thu, 5 Mar 2015 04:05:15 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 4 Mar 2015 16:35:12 -0600
-Message-ID: <1425508512-21867-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24NhO1H026632;
+	Wed, 4 Mar 2015 17:43:24 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24NhNFp009654;
+	Wed, 4 Mar 2015 17:43:23 -0600
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0224.002; Wed, 4 Mar 2015 17:43:21 -0600
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] packagegroup-*-connectivity: enable
+	wlan/bt on dra7xx soc unconditionally
+Thread-Index: AQHQVpzC11P+pYgx7keL8btsmhboDp0M/Ciw
+Date: Wed, 4 Mar 2015 23:43:21 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958141042CF@DFLE09.ent.ti.com>
+References: <1425488420-16525-1-git-send-email-denis@denix.org>
+In-Reply-To: <1425488420-16525-1-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] lmbench: Add SDK Makefile customizations
+Subject: Re: [PATCH] packagegroup-*-connectivity: enable wlan/bt on dra7xx soc unconditionally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,124 +40,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 22:35:19 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 04 Mar 2015 23:43:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+This is breaking am57xx-evm builds. From " meta-arago-extras/recipes-bsp/bt=
+-firmware/bt-firmware_git.bb ":
 
-* Tweak the makefile and how the sources are built to insure that the standard
-  approached used for TI benchmarking is taken.
+COMPATIBLE_MACHINE =3D "ti33x|ti43x|dra7xx-evm"
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+- Jake
+
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Denys Dmytriyenko
+Sent: Wednesday, March 04, 2015 12:00 PM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] [PATCH] packagegroup-*-connectivity: enable wlan/bt o=
+n dra7xx soc unconditionally
+
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../0001-Makefile-Add-TI-SDK-Modifications.patch   |   75 ++++++++++++++++++++
- .../lmbench/lmbench_3.0-a9.bbappend                |   14 ++++
- 2 files changed, 89 insertions(+)
- create mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench/0001-Makefile-Add-TI-SDK-Modifications.patch
- create mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench_3.0-a9.bbappend
-
-diff --git a/meta-arago-distro/recipes-benchmark/lmbench/lmbench/0001-Makefile-Add-TI-SDK-Modifications.patch b/meta-arago-distro/recipes-benchmark/lmbench/lmbench/0001-Makefile-Add-TI-SDK-Modifications.patch
-new file mode 100644
-index 0000000..39bcaf8
---- /dev/null
-+++ b/meta-arago-distro/recipes-benchmark/lmbench/lmbench/0001-Makefile-Add-TI-SDK-Modifications.patch
-@@ -0,0 +1,75 @@
-+From 3ed56a3eebce30e1387435eca15c7c82e8f1ed02 Mon Sep 17 00:00:00 2001
-+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-+Date: Wed, 4 Mar 2015 15:49:34 -0600
-+Subject: [PATCH] Makefile: Add TI SDK Modifications
-+
-+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb          | 6 ++=
 +---
-+ src/Makefile |   24 +++++++++++++++---------
-+ 1 file changed, 15 insertions(+), 9 deletions(-)
-+
-+diff --git a/src/Makefile b/src/Makefile
-+index c7e4e3c..0133db8 100644
-+--- a/src/Makefile
-++++ b/src/Makefile
-+@@ -34,11 +34,17 @@
-+ # I finally know why Larry Wall's Makefile says "Grrrr".
-+ SHELL=/bin/sh
-+ 
-+-CC=`../scripts/compiler`
-++CC?=`../scripts/compiler`
-+ MAKE=`../scripts/make`
-+-AR=ar
-++AR?=ar
-+ ARCREATE=cr
-+-RANLIB=ranlib
-++RANLIB?=ranlib
-++
-++OPTIMIZATIONS = -O3 -ffast-math -ftree-vectorize -funsafe-math-optimizations -fprefetch-loop-arrays
-++
-++CFLAGS ?=
-++CFLAGS += $(OPTIMIZATIONS)
-++
-+ 
-+ # base of installation location
-+ BASE=/usr/local
-+@@ -112,8 +118,8 @@ LIBOBJS= $O/lib_tcp.o $O/lib_udp.o $O/lib_unix.o $O/lib_timing.o 	\
-+ 	$O/lib_sched.o
-+ 
-+ lmbench: $(UTILS)
-+-	@env CFLAGS=-O MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="$(CC)" OS="$(OS)" ../scripts/build all
-+-	-@env CFLAGS=-O MAKE="$(MAKE)" MAKEFLAGS="k$(MAKEFLAGS)" CC="$(CC)" OS="$(OS)" ../scripts/build opt
-++	@env CFLAGS="$(CFLAGS)" MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="$(CC)" OS="$(OS)" ../scripts/build all
-++	-@env CFLAGS="$(CFLAGS)" MAKE="$(MAKE)" MAKEFLAGS="k$(MAKEFLAGS)" CC="$(CC)" OS="$(OS)" ../scripts/build opt
-+ 
-+ results: lmbench
-+ 	@env OS="${OS}" ../scripts/config-run
-+@@ -137,7 +143,7 @@ os: lmbench
-+ 	@env OS="${OS}" BENCHMARK_HARDWARE=NO  BENCHMARK_OS=YES ../scripts/results
-+ 
-+ install: lmbench
-+-	@env CFLAGS=-O MAKE="$(MAKE)"  MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build install-target
-++	@env MAKE="$(MAKE)"  MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build install-target
-+ 
-+ install-target:
-+ 	if [ ! -d $(BASE) ]; then mkdir $(BASE); fi
-+@@ -158,13 +164,13 @@ $(ASMS):
-+ 	$(CC) -S $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ `basename $@ .s`.c
-+ 
-+ Wall:
-+-	@env CFLAGS="-g -O -Wall" MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build all opt
-++	@env CFLAGS+=-Wall  MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build all opt
-+ 
-+ debug:
-+-	@env CFLAGS="-g -O -DDEBUG" MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build all opt
-++	@env CFLAGS+=-DDEBUG MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build all opt
-+ 
-+ assembler:
-+-	@env CFLAGS=-O MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build asm
-++	@env MAKE="$(MAKE)" MAKEFLAGS="$(MAKEFLAGS)" CC="${CC}" OS="${OS}" ../scripts/build asm
-+ 
-+ 
-+ tag:
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-distro/recipes-benchmark/lmbench/lmbench_3.0-a9.bbappend b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_3.0-a9.bbappend
-new file mode 100644
-index 0000000..3fa38f6
---- /dev/null
-+++ b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_3.0-a9.bbappend
-@@ -0,0 +1,14 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+PR_append = "-arago0"
-+
-+SRC_URI += "file://0001-Makefile-Add-TI-SDK-Modifications.patch"
-+
-+EXTRA_OEMAKE = ""
-+
-+do_compile () {
-+    unset CFLAGS
-+    unset LDFLAGS
-+    unset CPPFLAGS
-+    oe_runmake -C src
-+}
--- 
-1.7.9.5
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
+o-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/pack=
+agegroup-arago-tisdk-connectivity.bb
+index 08d2a4a..f157676 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
+-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
+-connectivity.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION =3D "Task to install wireless packages into the target FS"
+ LICENSE =3D "MIT"
+-PR =3D "r31"
++PR =3D "r32"
+=20
+ inherit packagegroup
+=20
+@@ -64,10 +64,10 @@ CONNECTIVITY_RDEPENDS_ti43x =3D "\
+     ${FIRMWARE_AND_DRIVERS} \
+ "
+=20
+-CONNECTIVITY_RDEPENDS_dra7xx-evm =3D "\
++CONNECTIVITY_RDEPENDS_dra7xx =3D "\
+     ${WLAN_COMMON} \
+     ${BLUETOOTH_STACK} \
+-    ${@base_contains('ARAGO_BRAND','glsdk','${FIRMWARE_AND_DRIVERS}','',d)=
+} \
++    ${FIRMWARE_AND_DRIVERS} \
+     bt-firmware \
+ "
+=20
+--=20
+2.2.0
+
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
