@@ -1,30 +1,35 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 37D3552A52
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 028AA52A77
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Mar 2015 20:23:50 +0000 (UTC)
+	Wed,  4 Mar 2015 20:35:57 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24KNn6W021876
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:23:49 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KNmma008685
-	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:23:48 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 Mar 2015 14:23:48 -0600
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t24KNm49030119;	Wed, 4 Mar 2015 14:23:48 -0600
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YTFpb-0000Wq-Ru;
-	Wed, 04 Mar 2015 15:23:47 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 4 Mar 2015 15:23:44 -0500
-Message-ID: <1425500624-2002-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t24KZvxv010274
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:35:57 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t24KZuxr018957
+	for <meta-arago@arago-project.org>; Wed, 4 Mar 2015 14:35:56 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0224.002; Wed, 4 Mar 2015 14:35:56 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 2/3] stream: Add append for TISDK
+	customizations
+Thread-Index: AQHQVraNzHu+1nr+DEusTq28FUmTgZ0NKHQA//+fKaA=
+Date: Wed, 4 Mar 2015 20:35:55 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C83579A@DFLE08.ent.ti.com>
+References: <1425499517-11576-1-git-send-email-fcooper@ti.com>
+	<1425499517-11576-2-git-send-email-fcooper@ti.com>
+	<20150304202026.GK6052@edge>
+In-Reply-To: <20150304202026.GK6052@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: [PATCH v2] image-gallery: patch Makefile.build to work with Qt5
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH 2/3] stream: Add append for TISDK customizations
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,82 +42,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 20:23:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 04 Mar 2015 20:35:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Makefile.build is only used when building from within SDK through a
-top-level SDK Makefile.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 ++++++++++++++++++++
- .../recipes-qt/qt-apps/image-gallery_git.bb        |    8 ++++-
- 2 files changed, 38 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-qt/qt-apps/image-gallery/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
 
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/image-gallery/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/recipes-qt/qt-apps/image-gallery/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
-new file mode 100644
-index 0000000..0963797
---- /dev/null
-+++ b/meta-arago-extras/recipes-qt/qt-apps/image-gallery/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
-@@ -0,0 +1,31 @@
-+From 6b6a4b55c7ec53384fbbb8a9b0ba95350e7118b7 Mon Sep 17 00:00:00 2001
-+From: Jacob Stiffler <j-stiffler@ti.com>
-+Date: Wed, 4 Mar 2015 11:59:53 -0500
-+Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
-+
-+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-+---
-+ Makefile.build |    4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/Makefile.build b/Makefile.build
-+index fc3f14c..0afe5c0 100644
-+--- a/Makefile.build
-++++ b/Makefile.build
-+@@ -9,11 +9,11 @@ all: release
-+ .PHONY: qmake
-+ qmake : image-gallery.pro
-+ 	@. ${ENV_SETUP}; \
-+-	qmake2 CONFIG+=release image-gallery.pro
-++	qmake CONFIG+=release image-gallery.pro
-+ 
-+ qmake_debug : image-gallery.pro
-+ 	@. ${ENV_SETUP}; \
-+-	qmake2 CONFIG+=debug image-gallery.pro
-++	qmake CONFIG+=debug image-gallery.pro
-+ 
-+ debug : qmake_debug
-+ 	@. ${ENV_SETUP}; \
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
-index 72c9389..ad10de9 100644
---- a/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
-+++ b/meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb
-@@ -8,13 +8,19 @@ require recipes-core/matrix/matrix-gui-paths.inc
- 
- inherit qt-provider
- 
--PR = "r2"
-+PR = "r3"
- 
- BRANCH = "master"
- SRCREV = "1f89d5e6c160e87e73a9c06933e50c3981bbf41d"
- 
- SRC_URI = "git://gitorious.org/image-gallery/image-gallery.git;protocol=git;branch=${BRANCH}"
- 
-+QT5_DIFF = " \
-+    file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
-+"
-+
-+SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '', d)}"
-+
- S = "${WORKDIR}/git/"
- 
- do_install() {
--- 
-1.7.9.5
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Wednesday, March 04, 2015 2:20 PM
+> To: Cooper Jr., Franklin
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH 2/3] stream: Add append for TISDK
+> customizations
+>=20
+> On Wed, Mar 04, 2015 at 02:05:15PM -0600, Franklin S. Cooper Jr wrote:
+> > From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+> >
+> > * Use an SDK branch that slightly tweaks the makefile to include generi=
+c
+> >   optimizations that should be used by all TI platforms.
+> > * Also manually set certain variables to insure no additional/unexpecte=
+d
+> >   compiler optimization are pulled in.
+> >
+> > Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> > ---
+> >  .../recipes-benchmark/stream/stream_git.bbappend   |   10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >  create mode 100644
+> > meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+> >
+> > diff --git
+> > a/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+> > b/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+> > new file mode 100644
+> > index 0000000..83adfb6
+> > --- /dev/null
+> > +++ b/meta-arago-distro/recipes-
+> benchmark/stream/stream_git.bbappend
+> > @@ -0,0 +1,10 @@
+> > +PR_append =3D "-arago0"
+> > +
+> > +BRANCH =3D "sdk"
+> > +SRCREV =3D "cfd73a33c0ceef1f8532ce6a71de3bcf9435f6a2"
+> > +
+> > +do_compile_prepend() {
+> > +    #Explicitly set some variables to insure no unexpected optimizatio=
+ns are
+> being passed in.
+> > +    export CFLAGS=3D"-
+> isystem${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/include"
+> > +    export LDFLAGS=3D"-L${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/lib -
+> Wl,-rpath-link,${EXTERNAL_TOOLCHAIN}/${ELT_TARGET_SYS}/lib"
+>=20
+> NAK, this assumes external Linaro toolchain. Can you make it more generic=
+?
+> Why can't you use the sysroots?
+[Franklin] Oops didn't notice that. I simply looked at the bitbake env vari=
+ables and stripped away what I didn't need from CFLAGS and LDFLAGS. I'll se=
+nd a v2 shortly.
+> --
+> Denys
 
