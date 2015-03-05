@@ -1,32 +1,31 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
+Return-Path: <fcooper@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5F11952A8C
+	by arago-project.org (Postfix) with ESMTPS id B394C52A52
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Mar 2015 18:31:53 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t25IVqJf005717
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 12:31:52 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t25IVpBC005339
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 12:31:51 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 5 Mar 2015 12:31:51 -0600
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t25IVpki023854;	Thu, 5 Mar 2015 12:31:51 -0600
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YTaYp-0005CA-3c;
-	Thu, 05 Mar 2015 13:31:51 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 5 Mar 2015 13:31:43 -0500
-Message-ID: <1425580304-19919-5-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1425580304-19919-1-git-send-email-j-stiffler@ti.com>
+	Thu,  5 Mar 2015 18:43:19 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t25IhJjD012328
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 12:43:19 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t25IhHQA016908
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 12:43:18 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0224.002; Thu, 5 Mar 2015 12:43:17 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Thread-Topic: [meta-arago] [RFC v2 0/4] Add WAYLAND_SUPPORT flag.
+Thread-Index: AQHQV3KozFzVQOVEiUyLNWnbwHBn050OOZgp
+Date: Thu, 5 Mar 2015 18:43:17 +0000
+Message-ID: <3D6F3E0F-5161-4F3A-884E-7E93C9D098CD@ti.com>
 References: <1425580304-19919-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1425580304-19919-1-git-send-email-j-stiffler@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-Subject: [RFC v2 4/4] branding-processor-sdk: Add processor-sdk brand.
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [RFC v2 0/4] Add WAYLAND_SUPPORT flag.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,59 +38,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Mar 2015 18:31:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 05 Mar 2015 18:43:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* For now, use sitara-linux-ti-staging
-* and disable wayland support for ti33x and ti43x soc families.
+Patchset looks good.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../conf/distro/include/branding-processor-sdk.inc |   34 ++++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+Personally I would use true/false instead of 0/1 to make things more obviou=
+s.
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-new file mode 100644
-index 0000000..39f0bf0
---- /dev/null
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -0,0 +1,34 @@
-+
-+# Override QT Platform with eglfs
-+WAYLAND_SUPPORT_ti33x = "0"
-+WAYLAND_SUPPORT_ti43x = "0"
-+
-+PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
-+PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
-+PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
-+
-+# To create newlines in the message \n is used and the slash must be escaped
-+# to function properly
-+
-+SRCIPK_GIT_COMMIT_MESSAGE = "\
-+Create local branch\\n\
-+\\n\
-+The below commit is used for this local branch and is the one used by\\n\
-+this sdk:\\n\
-+${SRCREV}."
-+
-+SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE ="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
-+To reduce the size of the SDK installer only a portion of the git commit\\n\
-+history has been preserved. Also links to remote branches and tags do\\n\
-+not exist in this copy of the repository.\\n\
-+To fix this please run the unshallow-repositories.sh\\n\
-+script located in the sdk\'s bin directory\\n\
-+\\n\
-+The script may take several minutes but you will then have a full copy of\\n\
-+the git repository including its entire git history.\\n"
-+
-+SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
-+SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
-+
-+SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "processor-sdk-1.0"
-+SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
--- 
-1.7.9.5
+Unless someone else has a problem with it then I'll leave it up to you.
 
+
+> On Mar 5, 2015, at 12:31 PM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
+>=20
+> * This falg may be used to exclude wayland/weston from the file system.
+> * QT platform will be set based on this value.
+> * Add processor-sdk band to disable wayland for ti33x and ti43x.
+>=20
+>=20
+>=20
+> Jacob Stiffler (4):
+>  arago-prefs: Add WAYLAND_SUPPORT flag.
+>  packagegroups: Implement WAYLAND_SUPPORT flag.
+>  qtbase: Set qpa based in WAYLAND_SUPPORT flag.
+>  branding-processor-sdk: Add processor-sdk brand.
+>=20
+> .../conf/distro/include/arago-prefs.inc            |    2 ++
+> .../conf/distro/include/branding-processor-sdk.inc |   34 +++++++++++++++=
++++++
+> .../packagegroups/packagegroup-arago-qte.bb        |    4 +--
+> .../packagegroup-arago-tisdk-graphics.bb           |    4 +--
+> .../packagegroups/packagegroup-arago-tisdk-qte.bb  |    4 +--
+> .../packagegroups/packagegroup-linaro-tc-test.bb   |    5 +--
+> meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh  |    1 -
+> .../recipes-qt/qt5/qtbase_5.4.1.bbappend           |    9 ++++--
+> 8 files changed, 51 insertions(+), 12 deletions(-)
+> create mode 100644 meta-arago-distro/conf/distro/include/branding-process=
+or-sdk.inc
+>=20
+> --=20
+> 1.7.9.5
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
