@@ -1,31 +1,31 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7DD9D52A62
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 7AE1D52A62
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Mar 2015 19:38:28 +0000 (UTC)
+	Thu,  5 Mar 2015 19:39:33 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t25JcRex031784
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 13:38:27 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t25JcQIO023892
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 13:38:26 -0600
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0224.002; Thu, 5 Mar 2015 13:38:26 -0600
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Cooper Jr., Franklin"
-	<fcooper@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t25JdWfj011772
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 13:39:32 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t25JdVnG024713
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 13:39:31 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Thu, 5 Mar 2015 13:39:31 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
 Thread-Topic: process
-Thread-Index: AdBXe4Q+lAQvqIrgSq6vcEPWSYCrmA==
-Date: Thu, 5 Mar 2015 19:38:26 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958141056F9@DFLE09.ent.ti.com>
+Thread-Index: AdBXe4Q+lAQvqIrgSq6vcEPWSYCrmAAAJUmJ
+Date: Thu, 5 Mar 2015 19:39:30 +0000
+Message-ID: <599676C5-FC42-4194-888A-9E96A84395C1@ti.com>
+References: <4B26FB5A64EBA14C87266869E037F958141056F9@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F958141056F9@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: process
+Subject: Re: process
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,19 +38,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Mar 2015 19:38:28 -0000
+X-List-Received-Date: Thu, 05 Mar 2015 19:39:33 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4B26FB5A64EBA14C87266869E037F958141056F9DFLE09entticom_"
+	boundary="_000_599676C5FC424194888A9E96A84395C1ticom_"
 
---_000_4B26FB5A64EBA14C87266869E037F958141056F9DFLE09entticom_
-Content-Type: text/plain; charset="us-ascii"
+--_000_599676C5FC424194888A9E96A84395C1ticom_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+
+I thought u were just going to rename the recipe?
+
+And yes
+
+On Mar 5, 2015, at 1:38 PM, Stiffler, Jacob <j-stiffler@ti.com<mailto:j-sti=
+ffler@ti.com>> wrote:
 
 Denys, Franklin,
 
-Soon, I am going to be submitting a patch to a the 'processor-sdk-linux-ima=
-ge' image. This will be based off of the 'arago-amsdk-image'.
+Soon, I am going to be submitting a patch to a the =91processor-sdk-linux-i=
+mage=92 image. This will be based off of the =91arago-amsdk-image=92.
 
 One question I have, as I am not aware of the history, is for the following=
  line:
@@ -64,18 +72,28 @@ image?
 Thank you,
 Jake
 
---_000_4B26FB5A64EBA14C87266869E037F958141056F9DFLE09entticom_
-Content-Type: text/html; charset="us-ascii"
+--_000_599676C5FC424194888A9E96A84395C1ticom_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body dir=3D"auto">
+<div><br>
+I thought u were just going to rename the recipe?</div>
+<div><br>
+</div>
+<div>And yes</div>
+<div><br>
+On Mar 5, 2015, at 1:38 PM, Stiffler, Jacob &lt;<a href=3D"mailto:j-stiffle=
+r@ti.com">j-stiffler@ti.com</a>&gt; wrote:<br>
+<br>
+</div>
+<blockquote type=3D"cite">
+<div>
 <meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -114,14 +132,12 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Denys, Franklin,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Soon, I am going to be submitting a patch to a the &=
-#8216;processor-sdk-linux-image&#8217; image. This will be based off of the=
- &#8216;arago-amsdk-image&#8217;.<o:p></o:p></p>
+<p class=3D"MsoNormal">Soon, I am going to be submitting a patch to a the =
+=91processor-sdk-linux-image=92 image. This will be based off of the =91ara=
+go-amsdk-image=92.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">One question I have, as I am not aware of the histor=
 y, is for the following line:<o:p></o:p></p>
@@ -136,7 +152,9 @@ he processor-sdk-linux-image?<o:p></o:p></p>
 <p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
 <p class=3D"MsoNormal">Jake<o:p></o:p></p>
 </div>
+</div>
+</blockquote>
 </body>
 </html>
 
---_000_4B26FB5A64EBA14C87266869E037F958141056F9DFLE09entticom_--
+--_000_599676C5FC424194888A9E96A84395C1ticom_--
