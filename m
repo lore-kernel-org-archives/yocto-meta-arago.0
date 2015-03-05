@@ -1,32 +1,32 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 5C27152A8C
+Return-Path: <fcooper@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id AC0405299E
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Mar 2015 13:33:57 +0000 (UTC)
+	Thu,  5 Mar 2015 13:58:07 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t25DXujA014464
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 07:33:56 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t25DXtOe018536
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 07:33:55 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 5 Mar 2015 07:33:55 -0600
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t25DXtcK007678;	Thu, 5 Mar 2015 07:33:55 -0600
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YTVuV-0003pN-11;
-	Thu, 05 Mar 2015 08:33:55 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 5 Mar 2015 08:33:29 -0500
-Message-ID: <1425562410-19688-5-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1425562410-19688-1-git-send-email-j-stiffler@ti.com>
-References: <1425562410-19688-1-git-send-email-j-stiffler@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t25Dw6pn008788
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 07:58:07 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t25Dw5SI007371
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2015 07:58:05 -0600
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0224.002; Thu, 5 Mar 2015 07:58:05 -0600
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Thread-Topic: [meta-arago] [RFC 1/4] arago-prefs: Add ARAGO_QT_PLATFORM.
+Thread-Index: AQHQV0kGTo1ZZ0m7BUqZjcUC1ha/ap0N6jyj
+Date: Thu, 5 Mar 2015 13:58:05 +0000
+Message-ID: <9B999005-42AE-42BD-A9E4-290CBFA93E76@ti.com>
+References: <1425562410-19688-1-git-send-email-j-stiffler@ti.com>,
+	<1425562410-19688-2-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1425562410-19688-2-git-send-email-j-stiffler@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-Subject: [RFC 4/4] branding-processor-sdk: Add processor-sdk branding.
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [RFC 1/4] arago-prefs: Add ARAGO_QT_PLATFORM.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,56 +39,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Mar 2015 13:33:58 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 05 Mar 2015 13:58:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../conf/distro/include/branding-processor-sdk.inc |   34 ++++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-new file mode 100644
-index 0000000..d2e674e
---- /dev/null
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -0,0 +1,34 @@
-+
-+# Override QT Platform with eglfs
-+ARAGO_QT_PLATFORM_ti33x = "eglfs"
-+ARAGO_QT_PLATFORM_ti43x = "eglfs"
-+
-+PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
-+PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
-+PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
-+
-+# To create newlines in the message \n is used and the slash must be escaped
-+# to function properly
-+
-+SRCIPK_GIT_COMMIT_MESSAGE = "\
-+Create local branch\\n\
-+\\n\
-+The below commit is used for this local branch and is the one used by\\n\
-+this sdk:\\n\
-+${SRCREV}."
-+
-+SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE ="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
-+To reduce the size of the SDK installer only a portion of the git commit\\n\
-+history has been preserved. Also links to remote branches and tags do\\n\
-+not exist in this copy of the repository.\\n\
-+To fix this please run the unshallow-repositories.sh\\n\
-+script located in the sdk\'s bin directory\\n\
-+\\n\
-+The script may take several minutes but you will then have a full copy of\\n\
-+the git repository including its entire git history.\\n"
-+
-+SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
-+SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
-+
-+SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "processor-sdk-1.0"
-+SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
--- 
-1.7.9.5
 
+
+> On Mar 5, 2015, at 7:33 AM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
+>=20
+> * Currently supports either "wayland" of "eglfs"
+>=20
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+> .../conf/distro/include/arago-prefs.inc            |    2 ++
+> 1 file changed, 2 insertions(+)
+>=20
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta=
+-arago-distro/conf/distro/include/arago-prefs.inc
+> index e689f8b..96d84b8 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -28,6 +28,8 @@ PREFERRED_PROVIDER_virtual/gettext =3D "gettext"
+> ARAGO_QT_PROVIDER =3D "${@base_conditional('QT_PROVIDER','qt5','',base_co=
+ntains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d),d)}"
+> PREFERRED_PROVIDER_qt4-embedded =3D "${ARAGO_QT_PROVIDER}"
+>=20
+> +ARAGO_QT_PLATFORM =3D "wayland"
+I would abstract this from Qt and simply name it  along the line of Wayland=
+_supported.
+
+The reason why is you don't want to include Wayland if your using Qt4 so yo=
+u should set the value of this variable globally based on if Qt5 is being u=
+sed or not.
+> +
+> PREFERRED_VERSION_qt4-embedded =3D "4.8.5"
+> PREFERRED_VERSION_qt4-native =3D "4.8.5"
+> PREFERRED_VERSION_nativesdk-qt4-tools =3D "4.8.5"
+> --=20
+> 1.7.9.5
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
