@@ -1,32 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id C62E452A63
+Return-Path: <j-stiffler@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 4606C52972
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2015 19:38:14 +0000 (UTC)
+	Fri,  6 Mar 2015 19:45:13 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t26JcDES018177
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 13:38:14 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t26JjCxF003958
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 13:45:12 -0600
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26JcC5H009294
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 13:38:12 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26JjBJ8014224
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 13:45:11 -0600
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
 	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Fri, 6 Mar 2015 13:38:12 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
+	14.03.0224.002; Fri, 6 Mar 2015 13:45:11 -0600
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [meta-arago] [PATCH v2] tisdk-image: Fix manifest generation
 	for nativesdk.
-Thread-Index: AQHQWENv7+SOppA4DEC61GEJOPfHGZ0P2Dow
-Date: Fri, 6 Mar 2015 19:38:12 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C838EAA@DFLE08.ent.ti.com>
+Thread-Index: AQHQWEUVFw1+2yFfLEypSHg6R5EVup0P22jw
+Date: Fri, 6 Mar 2015 19:45:11 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95814106A64@DFLE09.ent.ti.com>
 References: <1425652463-30312-1-git-send-email-j-stiffler@ti.com>
 	<4B26FB5A64EBA14C87266869E037F95814106A1B@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814106A1B@DFLE09.ent.ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C838EAA@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C838EAA@DFLE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Subject: Re: [PATCH v2] tisdk-image: Fix manifest generation	for nativesdk.
 X-BeenThere: meta-arago@arago-project.org
@@ -41,10 +42,20 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2015 19:38:15 -0000
+X-List-Received-Date: Fri, 06 Mar 2015 19:45:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I ran into this issue in December. Denys also reported seeing the same issu=
+e.
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Friday, March 06, 2015 2:38 PM
+To: Stiffler, Jacob; meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH v2] tisdk-image: Fix manifest generation f=
+or nativesdk.
 
 Don't know what the issue is especially since your saying that the problem =
 is on the build machine and not your local setup.
@@ -59,20 +70,20 @@ nes.
 So it seems like the issue points to your build machine.
 
 > -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
 > bounces@arago-project.org] On Behalf Of Stiffler, Jacob
 > Sent: Friday, March 06, 2015 1:26 PM
 > To: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH v2] tisdk-image: Fix manifest generation
-> for nativesdk.
+> Subject: Re: [meta-arago] [PATCH v2] tisdk-image: Fix manifest=20
+> generation for nativesdk.
 >=20
-> I also need to revoke this patch. I forgot I am not able to recreate this=
- issue
-> on my local setup, and I have only seen it on the build machine.
+> I also need to revoke this patch. I forgot I am not able to recreate=20
+> this issue on my local setup, and I have only seen it on the build machin=
+e.
 >=20
-> This patch will cause a build failure if any of the oe* package indexes a=
-re
-> empty, as the " grep -n "^Package" $pkg_idx" will return an error.
+> This patch will cause a build failure if any of the oe* package=20
+> indexes are empty, as the " grep -n "^Package" $pkg_idx" will return an e=
+rror.
 >=20
 > Are there any other comments which I may address in the v3?
 >=20
@@ -102,8 +113,8 @@ re
 > +++++++++++++++++++++++++
 >  1 file changed, 37 insertions(+)
 >=20
-> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-
-> distro/classes/tisdk-image.bbclass
+> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass=20
+> b/meta-arago- distro/classes/tisdk-image.bbclass
 > index 3030a38..b9d86af 100644
 > --- a/meta-arago-distro/classes/tisdk-image.bbclass
 > +++ b/meta-arago-distro/classes/tisdk-image.bbclass
@@ -139,8 +150,8 @@ re
 > +                    continue
 > +                fi
 > +                cnt=3D$[$cnt+1]
-> +                head -n $[$end - 1] $pkg_idx | tail -n $[$end - $begin] =
->
+> +                head -n $[$end - 1] $pkg_idx | tail -n $[$end -=20
+> + $begin] >
 > ${control_dir}/${pkg_name// /}.control
 > +
 > +                pkg_name=3D`echo $pkg | cut -d: -f3`
