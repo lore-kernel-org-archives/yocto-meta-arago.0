@@ -1,33 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5A588529AF
+Return-Path: <a0866934local@udb0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id AFF4452A63
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2015 20:12:56 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t26KCt8e019457
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 14:12:55 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26KCsDo020981
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 14:12:54 -0600
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Fri, 6 Mar 2015 14:12:54 -0600
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] packagegroup-arago-tisdk-matrix: Add
-	dual-camera-demo.
-Thread-Index: AQHQWEhJ8lFfZdNrIEm82r2UNJngNZ0P4zoQ
-Date: Fri, 6 Mar 2015 20:12:53 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C839010@DFLE08.ent.ti.com>
-References: <1425672057-643-1-git-send-email-j-stiffler@ti.com>
-In-Reply-To: <1425672057-643-1-git-send-email-j-stiffler@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	Fri,  6 Mar 2015 20:17:21 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t26KHLmv003786
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 14:17:21 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26KHJwB006744
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 14:17:20 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 6 Mar 2015 14:17:19 -0600
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26KHJOC016229;
+	Fri, 6 Mar 2015 14:17:19 -0600
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YTygR-0000Ek-Fa;
+	Fri, 06 Mar 2015 15:17:19 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 6 Mar 2015 15:17:18 -0500
+Message-ID: <1425673038-871-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH] packagegroup-arago-tisdk-matrix: Add	dual-camera-demo.
+Subject: [PATCH v2] packagegroup-arago-tisdk-matrix: Add dual-camera-demo.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,53 +37,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2015 20:12:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 06 Mar 2015 20:17:21 -0000
+Content-Type: text/plain
 
-Thank and u probably want to bump the PR.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+v2: Bump PR
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> Sent: Friday, March 06, 2015 2:01 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] packagegroup-arago-tisdk-matrix: Add dual-
-> camera-demo.
->=20
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../packagegroup-arago-tisdk-matrix.bb             |    3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-matrix.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> index 9e00619..228a91a 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> tisdk-matrix.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> ti
-> +++ sdk-matrix.bb
-> @@ -82,9 +82,10 @@ MATRIX_APPS_append_ti43x =3D "        \
->      matrix-gui-pm-demos-suspend     \
->      matrix-gui-clocks               \
->      matrix-gui-pm-demos-governor    \
-> +    matrix-gui-apps-dual-camera     \
-> +    matrix-gui-apps-image-gallery   \
->      ${@base_conditional('QT_PROVIDER', 'qt5', '', 'ts-calibrate-init', d=
-)} \  "
-> -# ${@base_conditional('QT_PROVIDER', 'qt5', '', 'matrix-gui-apps-dual-
-> camera matrix-gui-apps-image-gallery', d)}
->=20
->  MATRIX_APPS_append_omap-a15 =3D "     \
->      matrix-multimedia-demo-aac      \
-> --
-> 1.7.9.5
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+ .../packagegroup-arago-tisdk-matrix.bb             |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index 9e00619..d8386f5 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r35"
++PR = "r36"
+ 
+ inherit packagegroup
+ 
+@@ -82,9 +82,10 @@ MATRIX_APPS_append_ti43x = "        \
+     matrix-gui-pm-demos-suspend     \
+     matrix-gui-clocks               \
+     matrix-gui-pm-demos-governor    \
++    matrix-gui-apps-dual-camera     \
++    matrix-gui-apps-image-gallery   \
+     ${@base_conditional('QT_PROVIDER', 'qt5', '', 'ts-calibrate-init', d)} \
+ "
+-# ${@base_conditional('QT_PROVIDER', 'qt5', '', 'matrix-gui-apps-dual-camera matrix-gui-apps-image-gallery', d)}
+ 
+ MATRIX_APPS_append_omap-a15 = "     \
+     matrix-multimedia-demo-aac      \
+-- 
+1.7.9.5
+
 
