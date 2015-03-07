@@ -1,34 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 63F1652972
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 7EE38529AF
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2015 22:48:21 +0000 (UTC)
+	Sat,  7 Mar 2015 06:20:39 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t26MmKxM025627
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 16:48:20 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26MmJ8Y013863
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2015 16:48:19 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 6 Mar 2015 16:48:19 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t26MmIYM020613;
-	Fri, 6 Mar 2015 16:48:19 -0600
-Date: Fri, 6 Mar 2015 17:48:18 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t276KcwJ028142
+	for <meta-arago@arago-project.org>; Sat, 7 Mar 2015 00:20:38 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t276KbY2003327
+	for <meta-arago@arago-project.org>; Sat, 7 Mar 2015 00:20:37 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 7 Mar 2015 00:20:37 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t276KaFu005459	for <meta-arago@arago-project.org>;
+	Sat, 7 Mar 2015 00:20:37 -0600
+Date: Sat, 7 Mar 2015 01:20:36 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20150306224818.GZ6052@edge>
-References: <1425652463-30312-1-git-send-email-j-stiffler@ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814106A1B@DFLE09.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C838EAA@DFLE08.ent.ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814106A64@DFLE09.ent.ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C8390E1@DFLE08.ent.ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <483988532.443.1425709236712.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C8390E1@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v2] tisdk-image: Fix manifest generation for nativesdk.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.03 build 2015-03-06_22-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,148 +36,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2015 22:48:21 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 07 Mar 2015 06:20:39 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_442_1910620989.1425709236623"
 
-Jake,
+------=_Part_442_1910620989.1425709236623
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Can you please refresh my mind with more details of the problem? Thanks.
+<html>
+<head>
+<title>
+Status for 03/06/15
+</title>
+</head>
+<body>
+
+<h2>Status for 03/06/15</h2>
+
+<h2>BUILD_ID: build-2015-03-06_22-02-02</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.03"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-On Fri, Mar 06, 2015 at 08:49:10PM +0000, Cooper Jr., Franklin wrote:
-> Ah I'm not aware of that since I never ran into the issue.
-> 
-> > -----Original Message-----
-> > From: Stiffler, Jacob
-> > Sent: Friday, March 06, 2015 1:45 PM
-> > To: Cooper Jr., Franklin; meta-arago@arago-project.org
-> > Subject: RE: [meta-arago] [PATCH v2] tisdk-image: Fix manifest generation
-> > for nativesdk.
-> > 
-> > I ran into this issue in December. Denys also reported seeing the same issue.
-> > 
-> > -----Original Message-----
-> > From: Cooper Jr., Franklin
-> > Sent: Friday, March 06, 2015 2:38 PM
-> > To: Stiffler, Jacob; meta-arago@arago-project.org
-> > Subject: RE: [meta-arago] [PATCH v2] tisdk-image: Fix manifest generation
-> > for nativesdk.
-> > 
-> > Don't know what the issue is especially since your saying that the problem is
-> > on the build machine and not your local setup.
-> > 
-> > I just made a release a little less than a month ago and haven't had a problem
-> > on my local or build machine. Nothing important has changed within oe-core
-> > in the last several months and nothing has changed within oe-core within the
-> > last several months. Denys did change the version of bitbake used by default
-> > but that wouldn't explain the different behavior between your machines.
-> > 
-> > So it seems like the issue points to your build machine.
-> > 
-> > > -----Original Message-----
-> > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > > bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> > > Sent: Friday, March 06, 2015 1:26 PM
-> > > To: meta-arago@arago-project.org
-> > > Subject: Re: [meta-arago] [PATCH v2] tisdk-image: Fix manifest
-> > > generation for nativesdk.
-> > >
-> > > I also need to revoke this patch. I forgot I am not able to recreate
-> > > this issue on my local setup, and I have only seen it on the build machine.
-> > >
-> > > This patch will cause a build failure if any of the oe* package
-> > > indexes are empty, as the " grep -n "^Package" $pkg_idx" will return an
-> > error.
-> > >
-> > > Are there any other comments which I may address in the v3?
-> > >
-> > > Thanks,
-> > > Jake
-> > >
-> > > -----Original Message-----
-> > > From: Stiffler, Jacob
-> > > Sent: Friday, March 06, 2015 9:34 AM
-> > > To: meta-arago@arago-project.org
-> > > Cc: Stiffler, Jacob
-> > > Subject: [PATCH v2] tisdk-image: Fix manifest generation for nativesdk.
-> > >
-> > > * The manifest is automatically generated based on *.control
-> > >   files found within the various images.
-> > > * The control files for the nativesdk image have gone missing.
-> > > * Work around this by regenerating the control files from the
-> > >   package index.
-> > >
-> > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > > ---
-> > > v2 changes:
-> > > Parse all "oe*" package indexes instead of only "oe-*-nativesdk" indexes.
-> > >
-> > >
-> > >  meta-arago-distro/classes/tisdk-image.bbclass |   37
-> > > +++++++++++++++++++++++++
-> > >  1 file changed, 37 insertions(+)
-> > >
-> > > diff --git a/meta-arago-distro/classes/tisdk-image.bbclass
-> > > b/meta-arago- distro/classes/tisdk-image.bbclass
-> > > index 3030a38..b9d86af 100644
-> > > --- a/meta-arago-distro/classes/tisdk-image.bbclass
-> > > +++ b/meta-arago-distro/classes/tisdk-image.bbclass
-> > > @@ -353,6 +353,43 @@ echo "
-> > >  </tr>
-> > >  " >> ${SW_MANIFEST_FILE}
-> > >
-> > > +    control_files_there=0
-> > > +    for possible_control_file in $control_dir/*.control
-> > > +    do
-> > > +        if [ -f $possible_control_file ]
-> > > +        then
-> > > +            control_files_there=1
-> > > +            break
-> > > +        fi
-> > > +    done
-> > > +
-> > > +    if [ $control_files_there -eq 0 ]
-> > > +    then
-> > > +        for pkg_idx in $control_dir/oe*; do
-> > > +            package_start=`grep -n "^Package" $pkg_idx`
-> > > +
-> > > +            IFS_OLD=${IFS}
-> > > +            IFS="
-> > > +"
-> > > +
-> > > +            for pkg in ${package_start}; do
-> > > +                end=`echo $pkg | cut -d: -f1`
-> > > +
-> > > +                if [ -z $begin ]; then
-> > > +                    pkg_name=`echo $pkg | cut -d: -f3`
-> > > +                    begin=`echo $pkg | cut -d: -f1`
-> > > +                    continue
-> > > +                fi
-> > > +                cnt=$[$cnt+1]
-> > > +                head -n $[$end - 1] $pkg_idx | tail -n $[$end -
-> > > + $begin] >
-> > > ${control_dir}/${pkg_name// /}.control
-> > > +
-> > > +                pkg_name=`echo $pkg | cut -d: -f3`
-> > > +                begin=$end
-> > > +            done
-> > > +            IFS=${IFS_OLD}
-> > > +        done
-> > > +    fi
-> > > +
-> > >      for i in $control_dir/*.control
-> > >      do
-> > >          package="`cat $i | grep Package: | awk {'print $2'}`"
-> > > --
-> > > 1.7.9.5
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_442_1910620989.1425709236623--
