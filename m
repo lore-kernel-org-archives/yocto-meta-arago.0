@@ -1,38 +1,30 @@
-Return-Path: <meta-arago@emagii.com>
-Received: from mxf3.bahnhof.se (mxf3.bahnhof.se [213.80.101.27])
-	by arago-project.org (Postfix) with ESMTP id E529152093
+Return-Path: <a0866934local@udb0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id E7E95529AF
 	for <meta-arago@arago-project.org>;
-	Sun,  8 Mar 2015 20:19:32 +0000 (UTC)
-Received: from localhost (mxf3.local [127.0.0.1])
-	by mxf3-reinject (Postfix) with ESMTP id 077735E4C73
-	for <meta-arago@arago-project.org>;
-	Sun,  8 Mar 2015 21:19:32 +0100 (CET)
-X-Virus-Scanned: by amavisd-new using ClamAV at bahnhof.se (MXF1)
-X-Spam-Score: 0.306
-X-Spam-Level: 
-X-Spam-Status: No, score=0.306 tagged_above=-99 required=5
-	tests=[DNS_FROM_AHBL_RHSBL=0.306]
-Received: from mxf3.bahnhof.se ([127.0.0.1])
-	by localhost (mxf3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t1CSOmir-jfe for <meta-arago@arago-project.org>;
-	Sun,  8 Mar 2015 21:19:24 +0100 (CET)
-Received: from smtp-auth2.bahnhof.se (smtp-auth.bahnhof.se [213.136.33.6])
-	by mxf3.bahnhof.se (Postfix) with ESMTP id 207A95E4E9E
-	for <meta-arago@arago-project.org>;
-	Sun,  8 Mar 2015 21:19:23 +0100 (CET)
-Received: from [10.175.196.199] (h-169-18.a454.priv.bahnhof.se [37.123.169.18])
-	(Authenticated sender: mb782575)
-	by smtp-auth2.bahnhof.se (Postfix) with ESMTPA id DCE7D2886B
-	for <meta-arago@arago-project.org>;
-	Sun,  8 Mar 2015 21:19:23 +0100 (CET)
-Message-ID: <54FCAECB.7020005@emagii.com>
-Date: Sun, 08 Mar 2015 21:19:23 +0100
-From: Ulf Samuelsson <meta-arago@emagii.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	Mon,  9 Mar 2015 13:02:25 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t29D2P8V017592
+	for <meta-arago@arago-project.org>; Mon, 9 Mar 2015 08:02:25 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t29D2OlJ022322
+	for <meta-arago@arago-project.org>; Mon, 9 Mar 2015 08:02:24 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 9 Mar 2015 08:02:23 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t29D2NHb016613;
+	Mon, 9 Mar 2015 08:02:23 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YUxKB-0001S6-HG;
+	Mon, 09 Mar 2015 09:02:23 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 9 Mar 2015 09:02:17 -0400
+Message-ID: <1425906138-5552-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: meta-arago@arago-project.org
-Subject: Example Device Tree files when building AM335x/OpenGL support
+Subject: [PATCH 1/2] amsdk-av-files: Upgrade to latest version with HEVC content.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,26 +37,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Mar 2015 20:19:33 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Mar 2015 13:02:26 -0000
+Content-Type: text/plain
 
-Are there any examples of Device-Trees files which are compatible with 
-the "omaplfb" driver for OpenGL
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../amsdk-av-files/amsdk-av-files_1.2.bb           |   44 ++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb
 
-Running a Beaglebone derivative using AM3359.
-
-
-Did this for the Beaglebone + LCD4 but when I do the same changes for 
-another LCD the screen does not come up.
-The fix enabled some clocks, and replaced the tilcdc compatible panel 
-with an &lcdc entry.
-
-
-
-
-BR
-Ulf Samuelsson
-
+diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb
+new file mode 100644
+index 0000000..258c7b4
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb
+@@ -0,0 +1,44 @@
++DESCRIPTION = "AMSDK multimedia support files"
++HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
++LICENSE = "CC-BY-NC-ND-3.0 & CC-BY-3.0"
++SECTION = "multimedia"
++LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=9254447a504d2179d83a6bc9e2c28142"
++PR = "r0"
++
++COMPATIBLE_MACHINE = "(omap3evm|am37x-evm|am3517-evm|am389x-evm|beagleboard|am335x-evm|ti43x|omap-a15)"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++VIDEO_FILES = "video_480p "
++VIDEO_FILES_append_am37x-evm   = "video_vga_r"
++VIDEO_FILES_append_beagleboard = "video_vga"
++VIDEO_FILES_append_am3517-evm  = "video_wqvga"
++VIDEO_FILES_append_am335x-evm  = "video_wvga \
++				                  video_wqvga"
++VIDEO_FILES_append_dra7xx  = "video_wvga \
++                                                  video_1080p \
++                                                  video_720p \
++                                                  video_yuv"
++ 
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1251/7520/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
++
++S = "${WORKDIR}/amsdk-av-files"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    install -d ${D}${datadir}/ti \
++       ${D}${datadir}/ti/audio \
++       ${D}${datadir}/ti/video
++    install -m 0644 ${S}/audio/* ${D}${datadir}/ti/audio/
++    for file in ${VIDEO_FILES}; do
++	install -m 0644 ${S}/${file}/* ${D}${datadir}/ti/video/
++    done
++}
++
++FILES_${PN} += "${datadir}/ti/*"
++
++SRC_URI[avfilestarball.md5sum] = "c4c849cf6c16e4898869264bbd05fd5d"
++SRC_URI[avfilestarball.sha256sum] = "287cc95a68befa594b8b9a8514c57240620d535b2b99c6d3e1f91bc278ef37ef"
++
+-- 
+1.7.9.5
 
 
