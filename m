@@ -1,36 +1,29 @@
-Return-Path: <fcooper@ti.com>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 6A2DD529AF
+	by arago-project.org (Postfix) with ESMTPS id 76FEE529F8
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Mar 2015 19:41:14 +0000 (UTC)
+	Mon,  9 Mar 2015 22:16:09 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t29JfDBo029697
-	for <meta-arago@arago-project.org>; Mon, 9 Mar 2015 14:41:13 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t29JfCoW002302
-	for <meta-arago@arago-project.org>; Mon, 9 Mar 2015 14:41:12 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0224.002; Mon, 9 Mar 2015 14:41:12 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [RFC v2 0/4] Add WAYLAND_SUPPORT flag.
-Thread-Index: AQHQV3KozFzVQOVEiUyLNWnbwHBn050OolaAgAAAjAD//51xi4AAZyeA//+fIuyABkx8hw==
-Date: Mon, 9 Mar 2015 19:41:11 +0000
-Message-ID: <6648718D-F6C7-42F8-BD01-0FB69075F7CC@ti.com>
-References: <1425580304-19919-1-git-send-email-j-stiffler@ti.com>
-	<20150305185809.GV6052@edge>
-	<4B26FB5A64EBA14C87266869E037F958141056AF@DFLE09.ent.ti.com>
-	<DC215853-3726-4509-A47D-6EA9F3F1D771@ti.com>,
-	<20150305191635.GX6052@edge>,
-	<6026593C-9773-46B9-93E9-FEA1C6B9EA3E@ti.com>
-In-Reply-To: <6026593C-9773-46B9-93E9-FEA1C6B9EA3E@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t29MG8B9022587
+	for <meta-arago@arago-project.org>; Mon, 9 Mar 2015 17:16:08 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t29MG7N1026648
+	for <meta-arago@arago-project.org>; Mon, 9 Mar 2015 17:16:07 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 9 Mar 2015 17:16:07 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t29MG7nE005118	for <meta-arago@arago-project.org>;
+	Mon, 9 Mar 2015 17:16:07 -0500
+Date: Mon, 9 Mar 2015 18:16:07 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1232618075.449.1425939367133.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [RFC v2 0/4] Add WAYLAND_SUPPORT flag.
+X-Jenkins-Job: arago-core-tisdk-am57x
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.03 build 2015-03-09_16-42-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,111 +36,176 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 19:41:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 09 Mar 2015 22:16:09 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_448_1218773823.1425939367093"
 
-FYI I know this patch set says RFC but if it looks good then I think it's r=
-eady to be committed whenever.
+------=_Part_448_1218773823.1425939367093
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 03/09/15
+</title>
+</head>
+<body>
+
+<h2>Status for 03/09/15</h2>
+
+<h2>BUILD_ID: build-2015-03-09_16-43-31</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.03"<br>
+MACHINES="am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-am57x"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly/am57x"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-am57x/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-> On Mar 5, 2015, at 1:30 PM, Cooper Jr., Franklin <fcooper@ti.com> wrote:
->=20
->=20
->=20
->=20
->>> On Mar 5, 2015, at 1:16 PM, Dmytriyenko, Denys <denys@ti.com> wrote:
->>>=20
->>> On Thu, Mar 05, 2015 at 02:07:21PM -0500, Cooper Jr., Franklin wrote:
->>>=20
->>>=20
->>>=20
->>>> On Mar 5, 2015, at 1:00 PM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->>>>=20
->>>> This is needed to the dual-camera-demo, though I'm not sure why exactl=
-y.=20
->>>>=20
->>>> Franklin can you comment on this?
->>=20
->>> It's not needed for the dual camera demo it is needed since we don't ha=
-ve a=20
->>> version of the Graphics SDK for 335x and am437x that works with=20
->>> Wayland/Qtwayland.
->>>=20
->>> Sometime "this year" we will have a graphics package for all devices th=
-at=20
->>> supports Wayland.
->>=20
->> Ok, that makes sense. Although there was some experimentation with WSEGL=
-=20
->> plugin, but that wasn't very clean and incomplete...
-> I agree not my decision....
->>=20
->> So, if this is a temporary workaround, I'd like to be less invasive, if=
-=20
->> possible. From a higher level configuration, do you plan to stick to Qt5=
-, but=20
->> switch it to eglfs backend, instead of wayland?
-> Yes.
->> When GFX for AM3/4 catches up=20
->> and wayland is turned back on, will eglfs stay as an option?
-> Yes and No. No one will purposely break it but it won't be tested or apar=
-t of any sdk once we get the Wayland support we need.
->=20
-> It would be good for your team to stick with Wayland which is why we limi=
-ted he change inside of our branding file. We then can still flesh out thos=
-e touch issues and insure it's in a good place when we get the proper graph=
-ics sdk.
->>=20
->> --=20
->> Denys
->>=20
->>=20
->>>> -----Original Message-----
->>>> From: Dmytriyenko, Denys=20
->>>> Sent: Thursday, March 05, 2015 1:58 PM
->>>> To: Stiffler, Jacob
->>>> Cc: meta-arago@arago-project.org
->>>> Subject: Re: [meta-arago] [RFC v2 0/4] Add WAYLAND_SUPPORT flag.
->>>>=20
->>>>> On Thu, Mar 05, 2015 at 01:31:39PM -0500, Jacob Stiffler wrote:
->>>>> * This falg may be used to exclude wayland/weston from the file syste=
-m.
->>>>> * QT platform will be set based on this value.
->>>>> * Add processor-sdk band to disable wayland for ti33x and ti43x.
->>>>=20
->>>> So, what's the future of wayland in SDKs, then?
->>>>=20
->>>>=20
->>>>> Jacob Stiffler (4):
->>>>> arago-prefs: Add WAYLAND_SUPPORT flag.
->>>>> packagegroups: Implement WAYLAND_SUPPORT flag.
->>>>> qtbase: Set qpa based in WAYLAND_SUPPORT flag.
->>>>> branding-processor-sdk: Add processor-sdk brand.
->>>>>=20
->>>>> .../conf/distro/include/arago-prefs.inc            |    2 ++
->>>>> .../conf/distro/include/branding-processor-sdk.inc |   34 +++++++++++=
-+++++++++
->>>>> .../packagegroups/packagegroup-arago-qte.bb        |    4 +--
->>>>> .../packagegroup-arago-tisdk-graphics.bb           |    4 +--
->>>>> .../packagegroups/packagegroup-arago-tisdk-qte.bb  |    4 +--
->>>>> .../packagegroups/packagegroup-linaro-tc-test.bb   |    5 +--
->>>>> meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh  |    1 -
->>>>> .../recipes-qt/qt5/qtbase_5.4.1.bbappend           |    9 ++++--
->>>>> 8 files changed, 51 insertions(+), 12 deletions(-)  create mode=20
->>>>> 100644=20
->>>>> meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
->>>>>=20
->>>>> --
->>>>> 1.7.9.5
->>>>>=20
->>>>> _______________________________________________
->>>>> meta-arago mailing list
->>>>> meta-arago@arago-project.org
->>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_448_1218773823.1425939367093--
