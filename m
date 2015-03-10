@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 28A6452A6D
+Return-Path: <karthik.ramanan@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 0936C529F8
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Mar 2015 17:04:57 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AH4uYO021803
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 12:04:56 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AH4tC0002009
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 12:04:55 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 10 Mar 2015 12:04:55 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t2AH4svR019446	for <meta-arago@arago-project.org>;
-	Tue, 10 Mar 2015 12:04:55 -0500
-Date: Tue, 10 Mar 2015 13:04:54 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1578994849.461.1426007094827.JavaMail.jenkins@puget>
+	Tue, 10 Mar 2015 18:13:44 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AIDhfu009633
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 13:13:43 -0500
+Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AIDdJ5015667
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 23:43:40 +0530
+Received: from [172.22.216.123] (172.22.216.123) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Tue, 10 Mar 2015 23:43:39 +0530
+Message-ID: <54FF3453.1010109@ti.com>
+Date: Tue, 10 Mar 2015 23:43:39 +0530
+From: Karthik Ramanan <a0393906@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-am57x
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.03 build 2015-03-10_05-00-57
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1425457659-11042-1-git-send-email-a0393906@ti.com>
+	<20150304202215.GL6052@edge> <20150310163311.GE21244@edge>
+In-Reply-To: <20150310163311.GE21244@edge>
+X-Originating-IP: [172.22.216.123]
+Cc: meta-arago@arago-project.org
+Subject: Re: weston: Add support for multiple display and DRM backend
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,176 +37,172 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 17:04:57 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_460_1994888659.1426007094817"
-
-------=_Part_460_1994888659.1426007094817
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Tue, 10 Mar 2015 18:13:45 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html>
-<head>
-<title>
-Status for 03/10/15
-</title>
-</head>
-<body>
+On 10-Mar-15 10:03 PM, Denys Dmytriyenko wrote:
+> Ping
+>
+>
+> On Wed, Mar 04, 2015 at 03:22:15PM -0500, Denys Dmytriyenko wrote:
+>> This should go to meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
 
-<h2>Status for 03/10/15</h2>
+Denys,
 
-<h2>BUILD_ID: build-2015-03-10_05-01-59</h2>
+Sorry, I thought I replied to this.
 
-<h2>Clean Build: false</h2>
+I tried to analyze your input and what I find is that
+meta-arago-distro/.../weston_1.6.0.bbappend already has some additions 
+that probably needs some rework. I will need to start a discussion on 
+that topic and reach an alignment because it doesn't work well with 
+GLSDK. But we have taken care of it by overridding this for now.
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+In my opinion, this patch can be present in the current form and it will 
+not affect the other SDKs that are using the bbappend in the 
+meta-arago-distro and it will choose the fbdev backend. All dra7xx 
+family SoCs will most likely use the DRM backend and it will be 
+applicable for these cases.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.24</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-</table>
+Regards
+Karthik
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.03"<br>
-MACHINES="am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-am57x"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly/am57x"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-am57x/workspace"<br>
-</p>
-
-</body>
-</html>
+>>
+>>
+>> On Wed, Mar 04, 2015 at 01:57:39PM +0530, Karthik Ramanan wrote:
+>>> On devices where the backend is chosen as DRM, as in the case of dra7xx,
+>>> we need some additional patches that are specific to the omapdrm
+>>> which are needed for basic functionality. This includes some bug fixes
+>>> too.
+>>>
+>>> This will fully enable
+>>> * multiple display support
+>>> * Handle screensavers more efficiently
+>>> * Be compatible with libgbm, TI adaptation of libgbm
+>>>
+>>> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>>> ---
+>>>   ...abling-DRM-backend-with-multiple-displays.patch |   60 ++++++++++++++++++++
+>>>   .../recipes-graphics/wayland/weston_1.6.0.bb       |   15 +++--
+>>>   2 files changed, 70 insertions(+), 5 deletions(-)
+>>>   create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
+>>>
+>>> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
+>>> new file mode 100644
+>>> index 0000000..2f215c9
+>>> --- /dev/null
+>>> +++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
+>>> @@ -0,0 +1,60 @@
+>>> +From b1829ce962aa4e13d737edb54130bdce05f068f0 Mon Sep 17 00:00:00 2001
+>>> +From: Karthik Ramanan <a0393906@ti.com>
+>>> +Date: Wed, 17 Dec 2014 09:21:49 +0530
+>>> +Subject: [PATCH] weston: Enabling DRM backend with multiple displays
+>>> +
+>>> +There are three main issues that this patch tries to address
+>>> +
+>>> + 1. Black screen when running weston
+>>> + 2. Support for multiple displays
+>>> + 3. Handling missing VBlanks
+>>> +
+>>> +There is an issue with missing VBlanks for LCD and
+>>> +HDMI connectors which leads to display not getting refreshed.
+>>> +This patch can be considered as a workaround.
+>>> +
+>>> +Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>>> +---
+>>> + src/compositor-drm.c |   10 ++++++++--
+>>> + 1 files changed, 8 insertions(+), 2 deletions(-)
+>>> +
+>>> +diff --git a/src/compositor-drm.c b/src/compositor-drm.c
+>>> +index e4496e7..3b22aa3 100644
+>>> +--- a/src/compositor-drm.c
+>>> ++++ b/src/compositor-drm.c
+>>> +@@ -646,7 +646,7 @@ drm_output_repaint(struct weston_output *output_base,
+>>> + 			.request.sequence = 1,
+>>> + 		};
+>>> +
+>>> +-		if ((!s->current && !s->next) ||
+>>> ++		if ((!s->current && !s->next) &&
+>>> + 		    !drm_sprite_crtc_supported(output_base, s->possible_crtcs))
+>>> + 			continue;
+>>> +
+>>> +@@ -757,6 +757,7 @@ page_flip_handler(int fd, unsigned int frame,
+>>> + {
+>>> + 	struct drm_output *output = (struct drm_output *) data;
+>>> + 	uint32_t msecs;
+>>> ++	uint32_t bail;
+>>> +
+>>> + 	/* We don't set page_flip_pending on start_repaint_loop, in that case
+>>> + 	 * we just want to page flip to the current buffer to get an accurate
+>>> +@@ -769,9 +770,14 @@ page_flip_handler(int fd, unsigned int frame,
+>>> +
+>>> + 	output->page_flip_pending = 0;
+>>> +
+>>> ++	if(output->vblank_pending) {
+>>> ++		weston_log("VBlank is pending for connector = %d, frame = %d\n", output->connector_id, frame);
+>>> ++		bail = 1;
+>>> ++	}
+>>> ++
+>>> + 	if (output->destroy_pending)
+>>> + 		drm_output_destroy(&output->base);
+>>> +-	else if (!output->vblank_pending) {
+>>> ++	else if (!output->vblank_pending || bail ) {
+>>> + 		msecs = sec * 1000 + usec / 1000;
+>>> + 		weston_output_finish_frame(&output->base, msecs);
+>>> +
+>>> +--
+>>> +1.7.9.5
+>>> +
+>>> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+>>> index efbbbe0..0d1962b 100644
+>>> --- a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+>>> +++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+>>> @@ -5,15 +5,20 @@ LICENSE = "MIT"
+>>>   LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
+>>>                       file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
+>>>
+>>> -SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
+>>> +SRC_URI = "git://anongit.freedesktop.org/wayland/weston;protocol=git \
+>>>              file://weston.png \
+>>>              file://weston.desktop \
+>>>              file://disable-wayland-scanner-pkg-check.patch \
+>>>              file://make-lcms-explicitly-configurable.patch \
+>>>              file://make-libwebp-explicitly-configurable.patch \
+>>> +           file://0001-weston-Enabling-DRM-backend-with-multiple-displays.patch \
+>>>   "
+>>> -SRC_URI[md5sum] = "c60ce9dde99a089db0539d8f6b557827"
+>>> -SRC_URI[sha256sum] = "dc3ea5d13bbf025fabc006216c5ddc0d80d5f4ebe778912b8c4d1d4acaaa614d"
+>>> +
+>>> +S = "${WORKDIR}/git"
+>>> +
+>>> +SRCREV = "2858cc2a50854685b44eee72994dea57f5aa4246"
+>>> +
+>>> +PR = "r2"
+>>>
+>>>   inherit autotools pkgconfig useradd
+>>>
+>>> @@ -39,9 +44,9 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'kms fbdev
+>>>   # Compositor choices
+>>>   #
+>>>   # Weston on KMS
+>>> -PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev virtual/mesa mtdev"
+>>> +PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+>>>   # Weston on Wayland (nested Weston)
+>>> -PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,virtual/mesa"
+>>> +PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,libgbm"
+>>>   # Weston on X11
+>>>   PACKAGECONFIG[x11] = "--enable-x11-compositor,--disable-x11-compositor,virtual/libx11 libxcb libxcb libxcursor cairo"
+>>>   # Headless Weston
+>>> --
+>>> 1.7.9.5
+>>>
+>>> _______________________________________________
+>>> meta-arago mailing list
+>>> meta-arago@arago-project.org
+>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
 
-------=_Part_460_1994888659.1426007094817--
