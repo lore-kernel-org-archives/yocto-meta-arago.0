@@ -1,31 +1,31 @@
 Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 7D7A952A6D
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id AD4B852A7E
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Mar 2015 22:18:01 +0000 (UTC)
+	Tue, 10 Mar 2015 22:19:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AMI0Pt005549
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 17:18:00 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AMHxJi029720
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 17:17:59 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 10 Mar 2015 17:17:59 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AMJUnZ020728
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 17:19:31 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AMJTrR030683
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 17:19:29 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 10 Mar 2015 17:19:29 -0500
 Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
 	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t2AMHwrJ029248;	Tue, 10 Mar 2015 17:17:58 -0500
+	t2AMJSKn030963;	Tue, 10 Mar 2015 17:19:29 -0500
 Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
 	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t2AMHtDI014976;	Wed, 11 Mar 2015 03:47:56 +0530
+	0.8) with ESMTP id t2AMJQsr015294;	Wed, 11 Mar 2015 03:49:27 +0530
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Mar 2015 17:17:54 -0500
-Message-ID: <1426025874-9430-1-git-send-email-fcooper@ti.com>
+Date: Tue, 10 Mar 2015 17:19:25 -0500
+Message-ID: <1426025965-9482-1-git-send-email-fcooper@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH] refresh-screen: Add commandline parameter to set background-color to black
+Subject: [PATCH v2] refresh-screen: Add commandline parameter to set background-color to black
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,15 +38,19 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 22:18:01 -0000
+X-List-Received-Date: Tue, 10 Mar 2015 22:19:31 -0000
 Content-Type: text/plain
 
 From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
 * This is to work around an issue seen when using Qt 5 EGLFS
+* Also pull in the changes from the Qt 5 patches into the git repository itself
 
 Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
+V2 Changes:
+Added the reason why the various patches are being deleted.
+
  ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 --------------------
  ...een.pro-add-widgets-module-to-the-project.patch |   26 ----------------
  ...place-QtGui-header-with-QtWidgets-for-Qt5.patch |   26 ----------------
