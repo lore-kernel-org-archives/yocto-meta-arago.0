@@ -1,32 +1,31 @@
-Return-Path: <a0850405@a0850405-off1>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C8BAF52A31
+Return-Path: <fcooper@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 7D7A952A6D
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Mar 2015 20:49:18 +0000 (UTC)
+	Tue, 10 Mar 2015 22:18:01 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AKnIi2001998
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 15:49:18 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AKnG9J028243
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 15:49:17 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 10 Mar 2015 15:49:16 -0500
-Received: from a0850405-off1 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AKnGPU027405;
-	Tue, 10 Mar 2015 15:49:16 -0500
-Received: from a0850405 by a0850405-off1 with local (Exim 4.82)	(envelope-from
-	<a0850405@a0850405-off1>)	id 1YVR5X-0001ff-Vm;
-	Tue, 10 Mar 2015 16:49:16 -0400
-From: Carlos Hernandez <ceh@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AMI0Pt005549
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 17:18:00 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AMHxJi029720
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 17:17:59 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 10 Mar 2015 17:17:59 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t2AMHwrJ029248;	Tue, 10 Mar 2015 17:17:58 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id t2AMHtDI014976;	Wed, 11 Mar 2015 03:47:56 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Mar 2015 16:48:59 -0400
-Message-ID: <1426020539-6389-1-git-send-email-ceh@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <20150310161952.GB21244@edge>
-References: <20150310161952.GB21244@edge>
+Date: Tue, 10 Mar 2015 17:17:54 -0500
+Message-ID: <1426025874-9430-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH v2] recipes-devtools: New ltp-ddt_1.0.0 recipe
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH] refresh-screen: Add commandline parameter to set background-color to black
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,109 +38,152 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 20:49:19 -0000
+X-List-Received-Date: Tue, 10 Mar 2015 22:18:01 -0000
 Content-Type: text/plain
 
-Latest ltp release was recently merge to ltp-ddt and there is a new
-way to configure and compile ltp-ddt.
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
-Signed-off-by: Carlos Hernandez <ceh@ti.com>
+* This is to work around an issue seen when using Qt 5 EGLFS
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      | 84 ++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
- create mode 100644 meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+ ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 --------------------
+ ...een.pro-add-widgets-module-to-the-project.patch |   26 ----------------
+ ...place-QtGui-header-with-QtWidgets-for-Qt5.patch |   26 ----------------
+ .../recipes-core/matrix/refresh-screen_2.0.bb      |   10 ++-----
+ 4 files changed, 2 insertions(+), 91 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+ delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
+ delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
 
-diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-new file mode 100644
-index 0000000..db66ed4
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-@@ -0,0 +1,84 @@
-+SUMMARY = "Embedded Linux Device Driver Tests based on Linux Test Project"
-+HOMEPAGE = "http://arago-project.org/git/projects/test-automation/ltp-ddt.git"
-+SECTION = "console/utils"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
-+
-+PROVIDES += "ltp"
-+DEPENDS += "zip-native virtual/kernel alsa-lib"
-+RDEPENDS_${PN} += "linaro-pm-qa-utils serialcheck"
-+
-+inherit autotools module-base kernel-module-split
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+SRCREV = "eef6281052f36f6fe41059eadcf3b4a94f0d85ea"
-+BRANCH ?= "master"
-+PR = "r1-arago10+gitr${SRCPV}"
-+
-+SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
-+          "
-+
-+S = "${WORKDIR}/git"
-+
-+LTPROOT = "/opt/ltp"
-+
-+EXTRA_OEMAKE_append = " \
-+    prefix=${LTPROOT} \
-+    CROSS_COMPILE=${HOST_PREFIX} \
-+    SKIP_IDCHECK=1 \
-+    KERNEL_INC=${STAGING_KERNEL_DIR} \
-+    KERNEL_USR_INC=${STAGING_INCDIR} \
-+    ALSA_INCPATH=${STAGING_INCDIR} \
-+    ALSA_LIBPATH=${STAGING_LIBDIR} \
-+    PLATFORM=${MACHINE} \
-+    RANLIB=${RANLIB} \
-+    KERNEL_PATH=${STAGING_KERNEL_DIR} \
-+"
-+
-+TARGET_CC_ARCH += "${LDFLAGS}"
-+
-+FILES_${PN}-dbg += " \
-+    ${LTPROOT}/.debug \
-+    ${LTPROOT}/bin/.debug \
-+    ${LTPROOT}/runtest/.debug \
-+    ${LTPROOT}/testcases/bin/.debug \
-+    ${LTPROOT}/testcases/bin/*/bin/.debug \
-+    ${LTPROOT}/testcases/bin/*/test/.debug \
-+    ${LTPROOT}/testcases/bin/ddt/.debug \
-+    ${LTPROOT}/testcases/bin/ddt/*/bin/.debug \
-+    ${LTPROOT}/testcases/bin/ddt/*/test/.debug \
-+    ${LTPROOT}/testcases/realtime/*/*/.debug \
-+"
-+
-+FILES_${PN}-staticdev += "${LTPROOT}/lib"
-+FILES_${PN} += "${LTPROOT}/*"
-+
-+KERNEL_MODULES_META_PACKAGE = "${PN}"
-+
-+kmoddir = "/lib/modules/${KERNEL_VERSION}/kernel/drivers/ddt"
-+
-+# ltp doesn't regenerate ffsb-6.0-rc2 configure and hardcode configure call.
-+# we explicitly force regeneration of that directory and pass configure options.
-+do_configure_append() {
-+    (cd utils/ffsb-6.0-rc2; autoreconf -fvi; ./configure ${CONFIGUREOPTS})
-+}
-+
-+
-+do_compile_append () {
-+    unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
-+    oe_runmake KERNEL_CC="${KERNEL_CC}" DESTDIR=${D} modules
-+}
-+
-+do_install() {
-+    oe_runmake DESTDIR=${D} install
-+    install -d ${D}${datadir}
-+    install -d ${D}${kmoddir}
-+    mv ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
-+}
-+
-+
-+# do_make_scripts should be a separate task for the lock to work
-+addtask make_scripts before do_compile
-+do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
-+do_make_scripts[deptask] = "do_populate_sysroot"
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+deleted file mode 100644
+index 726b9ea..0000000
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
++++ /dev/null
+@@ -1,31 +0,0 @@
+-From 394eacf80efaacc719e69179c7c709016d21b707 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Mon, 15 Dec 2014 15:46:08 -0500
+-Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- Makefile.build |    4 ++--
+- 1 file changed, 2 insertions(+), 2 deletions(-)
+-
+-diff --git a/Makefile.build b/Makefile.build
+-index a0ceaad..e6cb010 100644
+---- a/Makefile.build
+-+++ b/Makefile.build
+-@@ -8,11 +8,11 @@ all: release
+- .PHONY: qmake
+- qmake : refresh_screen.pro
+- 	@. ${ENV_SETUP}; \
+--	qmake2 CONFIG+=release refresh_screen.pro
+-+	qmake CONFIG+=release refresh_screen.pro
+- 
+- qmake_debug : refresh_screen.pro
+- 	@. ${ENV_SETUP}; \
+--	qmake2 CONFIG+=debug refresh_screen.pro
+-+	qmake CONFIG+=debug refresh_screen.pro
+- 
+- debug : qmake_debug
+- 	@. ${ENV_SETUP}; \
+--- 
+-1.7.9.5
+-
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch b/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
+deleted file mode 100644
+index b9a1f80..0000000
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From 3969a5b06cfa28e531080cfdb12ea69ada870f36 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Mon, 12 May 2014 21:07:32 -0400
+-Subject: [PATCH] refresh-screen.pro: add widgets module to the project for Qt5
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- refresh_screen.pro | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/refresh_screen.pro b/refresh_screen.pro
+-index afe5c25..a79abd0 100644
+---- a/refresh_screen.pro
+-+++ b/refresh_screen.pro
+-@@ -4,7 +4,7 @@
+- #
+- #-------------------------------------------------
+- 
+--QT       += core gui
+-+QT       += core gui widgets
+- 
+- TARGET = refresh_screen
+- TEMPLATE = app
+--- 
+-1.9.2
+-
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch b/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
+deleted file mode 100644
+index 66c002d..0000000
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From 60a8e6c8ea763ed88442f16509cae99d8e43918e Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Mon, 12 May 2014 21:01:57 -0400
+-Subject: [PATCH] Replace QtGui header with QtWidgets for Qt5
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- main.cpp | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/main.cpp b/main.cpp
+-index c5744d8..5a61904 100644
+---- a/main.cpp
+-+++ b/main.cpp
+-@@ -36,7 +36,7 @@
+-  *
+- */
+- 
+--#include <QtGui/QApplication>
+-+#include <QtWidgets/QApplication>
+- #include "mainwindow.h"
+- 
+- int main(int argc, char *argv[])
+--- 
+-1.9.2
+-
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+index 6c2c72e..53be987 100644
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+@@ -9,19 +9,13 @@ inherit qt-provider
+ # Make sure that QT font libraries have been installed
+ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
+ 
+-PR = "r7"
++PR = "r8"
+ 
+-SRCREV = "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
++SRCREV = "1c9af693ad91e7449358836fd0382d7b6a04c967"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/refresh-screen.git;protocol=git;branch=${BRANCH}"
+ 
+-QT5_DIFF = " \
+-file://0001-refresh-screen.pro-add-widgets-module-to-the-project.patch \
+-file://0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch \
+-file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
+-"
+-
+ SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '', d)}"
+ 
+ S = "${WORKDIR}/git"
 -- 
-1.9.1
+1.7.9.5
 
 
