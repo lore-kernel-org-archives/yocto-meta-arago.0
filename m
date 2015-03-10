@@ -1,30 +1,30 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0936C529F8
+Return-Path: <a0866934local@udb0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 7E451529F8
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Mar 2015 18:13:44 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AIDhfu009633
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 13:13:43 -0500
-Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AIDdJ5015667
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 23:43:40 +0530
-Received: from [172.22.216.123] (172.22.216.123) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Tue, 10 Mar 2015 23:43:39 +0530
-Message-ID: <54FF3453.1010109@ti.com>
-Date: Tue, 10 Mar 2015 23:43:39 +0530
-From: Karthik Ramanan <a0393906@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+	Tue, 10 Mar 2015 18:50:48 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2AIolwl027283
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 13:50:47 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AIoknE019246
+	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 13:50:46 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 10 Mar 2015 13:50:45 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2AIojOI013880;
+	Tue, 10 Mar 2015 13:50:45 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YVPEr-0003CN-EF;
+	Tue, 10 Mar 2015 14:50:45 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 10 Mar 2015 14:50:41 -0400
+Message-ID: <1426013441-12265-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1425457659-11042-1-git-send-email-a0393906@ti.com>
-	<20150304202215.GL6052@edge> <20150310163311.GE21244@edge>
-In-Reply-To: <20150310163311.GE21244@edge>
-X-Originating-IP: [172.22.216.123]
-Cc: meta-arago@arago-project.org
-Subject: Re: weston: Add support for multiple display and DRM backend
+Subject: [PATCH] ti-tisdk-makefile, wireless: Clean via 'mrproper' target.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,172 +37,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 18:13:45 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Mar 2015 18:50:49 -0000
+Content-Type: text/plain
 
-On 10-Mar-15 10:03 PM, Denys Dmytriyenko wrote:
-> Ping
->
->
-> On Wed, Mar 04, 2015 at 03:22:15PM -0500, Denys Dmytriyenko wrote:
->> This should go to meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
+* A simple 'make clean' requires that the linux kernel is built,
+  and thus breaks the top-level SDK 'make clean', since the kernel
+  is the first package cleaned.
+* 'make mrproper' does not depend on the built kernel headers.
+* One side effect is that 'make mrproper' will also remove any
+  configuration, returning the sources to their original state.
 
-Denys,
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../ti-tisdk-makefile/Makefile_wireless            |    2 +-
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Sorry, I thought I replied to this.
-
-I tried to analyze your input and what I find is that
-meta-arago-distro/.../weston_1.6.0.bbappend already has some additions 
-that probably needs some rework. I will need to start a discussion on 
-that topic and reach an alignment because it doesn't work well with 
-GLSDK. But we have taken care of it by overridding this for now.
-
-In my opinion, this patch can be present in the current form and it will 
-not affect the other SDKs that are using the bbappend in the 
-meta-arago-distro and it will choose the fbdev backend. All dra7xx 
-family SoCs will most likely use the DRM backend and it will be 
-applicable for these cases.
-
-Regards
-Karthik
-
->>
->>
->> On Wed, Mar 04, 2015 at 01:57:39PM +0530, Karthik Ramanan wrote:
->>> On devices where the backend is chosen as DRM, as in the case of dra7xx,
->>> we need some additional patches that are specific to the omapdrm
->>> which are needed for basic functionality. This includes some bug fixes
->>> too.
->>>
->>> This will fully enable
->>> * multiple display support
->>> * Handle screensavers more efficiently
->>> * Be compatible with libgbm, TI adaptation of libgbm
->>>
->>> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
->>> ---
->>>   ...abling-DRM-backend-with-multiple-displays.patch |   60 ++++++++++++++++++++
->>>   .../recipes-graphics/wayland/weston_1.6.0.bb       |   15 +++--
->>>   2 files changed, 70 insertions(+), 5 deletions(-)
->>>   create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
->>>
->>> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
->>> new file mode 100644
->>> index 0000000..2f215c9
->>> --- /dev/null
->>> +++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-weston-Enabling-DRM-backend-with-multiple-displays.patch
->>> @@ -0,0 +1,60 @@
->>> +From b1829ce962aa4e13d737edb54130bdce05f068f0 Mon Sep 17 00:00:00 2001
->>> +From: Karthik Ramanan <a0393906@ti.com>
->>> +Date: Wed, 17 Dec 2014 09:21:49 +0530
->>> +Subject: [PATCH] weston: Enabling DRM backend with multiple displays
->>> +
->>> +There are three main issues that this patch tries to address
->>> +
->>> + 1. Black screen when running weston
->>> + 2. Support for multiple displays
->>> + 3. Handling missing VBlanks
->>> +
->>> +There is an issue with missing VBlanks for LCD and
->>> +HDMI connectors which leads to display not getting refreshed.
->>> +This patch can be considered as a workaround.
->>> +
->>> +Signed-off-by: Karthik Ramanan <a0393906@ti.com>
->>> +---
->>> + src/compositor-drm.c |   10 ++++++++--
->>> + 1 files changed, 8 insertions(+), 2 deletions(-)
->>> +
->>> +diff --git a/src/compositor-drm.c b/src/compositor-drm.c
->>> +index e4496e7..3b22aa3 100644
->>> +--- a/src/compositor-drm.c
->>> ++++ b/src/compositor-drm.c
->>> +@@ -646,7 +646,7 @@ drm_output_repaint(struct weston_output *output_base,
->>> + 			.request.sequence = 1,
->>> + 		};
->>> +
->>> +-		if ((!s->current && !s->next) ||
->>> ++		if ((!s->current && !s->next) &&
->>> + 		    !drm_sprite_crtc_supported(output_base, s->possible_crtcs))
->>> + 			continue;
->>> +
->>> +@@ -757,6 +757,7 @@ page_flip_handler(int fd, unsigned int frame,
->>> + {
->>> + 	struct drm_output *output = (struct drm_output *) data;
->>> + 	uint32_t msecs;
->>> ++	uint32_t bail;
->>> +
->>> + 	/* We don't set page_flip_pending on start_repaint_loop, in that case
->>> + 	 * we just want to page flip to the current buffer to get an accurate
->>> +@@ -769,9 +770,14 @@ page_flip_handler(int fd, unsigned int frame,
->>> +
->>> + 	output->page_flip_pending = 0;
->>> +
->>> ++	if(output->vblank_pending) {
->>> ++		weston_log("VBlank is pending for connector = %d, frame = %d\n", output->connector_id, frame);
->>> ++		bail = 1;
->>> ++	}
->>> ++
->>> + 	if (output->destroy_pending)
->>> + 		drm_output_destroy(&output->base);
->>> +-	else if (!output->vblank_pending) {
->>> ++	else if (!output->vblank_pending || bail ) {
->>> + 		msecs = sec * 1000 + usec / 1000;
->>> + 		weston_output_finish_frame(&output->base, msecs);
->>> +
->>> +--
->>> +1.7.9.5
->>> +
->>> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
->>> index efbbbe0..0d1962b 100644
->>> --- a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
->>> +++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
->>> @@ -5,15 +5,20 @@ LICENSE = "MIT"
->>>   LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
->>>                       file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
->>>
->>> -SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
->>> +SRC_URI = "git://anongit.freedesktop.org/wayland/weston;protocol=git \
->>>              file://weston.png \
->>>              file://weston.desktop \
->>>              file://disable-wayland-scanner-pkg-check.patch \
->>>              file://make-lcms-explicitly-configurable.patch \
->>>              file://make-libwebp-explicitly-configurable.patch \
->>> +           file://0001-weston-Enabling-DRM-backend-with-multiple-displays.patch \
->>>   "
->>> -SRC_URI[md5sum] = "c60ce9dde99a089db0539d8f6b557827"
->>> -SRC_URI[sha256sum] = "dc3ea5d13bbf025fabc006216c5ddc0d80d5f4ebe778912b8c4d1d4acaaa614d"
->>> +
->>> +S = "${WORKDIR}/git"
->>> +
->>> +SRCREV = "2858cc2a50854685b44eee72994dea57f5aa4246"
->>> +
->>> +PR = "r2"
->>>
->>>   inherit autotools pkgconfig useradd
->>>
->>> @@ -39,9 +44,9 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'kms fbdev
->>>   # Compositor choices
->>>   #
->>>   # Weston on KMS
->>> -PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev virtual/mesa mtdev"
->>> +PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
->>>   # Weston on Wayland (nested Weston)
->>> -PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,virtual/mesa"
->>> +PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor,libgbm"
->>>   # Weston on X11
->>>   PACKAGECONFIG[x11] = "--enable-x11-compositor,--disable-x11-compositor,virtual/libx11 libxcb libxcb libxcursor cairo"
->>>   # Headless Weston
->>> --
->>> 1.7.9.5
->>>
->>> _______________________________________________
->>> meta-arago mailing list
->>> meta-arago@arago-project.org
->>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless
+index 00a1931..5d7267e 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_wireless
+@@ -45,5 +45,5 @@ compat-modules_clean:
+ 	@echo ================================
+ 	@cd board-support/extra-drivers; \
+ 	cd `find . -maxdepth 1 -name "*compat-wireless*"`; \
+-	make KLIB_BUILD=${LINUXKERNEL_INSTALL_DIR} KLIB=${DESTDIR} CROSS_COMPILE=${CROSS_COMPILE} ARCH=arm clean
++	make KLIB_BUILD=${LINUXKERNEL_INSTALL_DIR} KLIB=${DESTDIR} CROSS_COMPILE=${CROSS_COMPILE} ARCH=arm mrproper
+ 
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index a39f7db..ffedd4c 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -36,7 +36,7 @@ SRC_URI = "\
+     file://Makefile_cryptodev \
+ "
+ 
+-PR = "r40"
++PR = "r41"
+ 
+ MAKEFILES_COMMON = "linux \
+                     matrix-gui \
+-- 
+1.7.9.5
 
 
