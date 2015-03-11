@@ -1,27 +1,40 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0AA9252A62
+Return-Path: <meta-arago@emagii.com>
+Received: from mxf3.bahnhof.se (mxf3.bahnhof.se [213.80.101.27])
+	by arago-project.org (Postfix) with ESMTP id 007CB52A43
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Mar 2015 18:07:32 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2BI7VDM009314
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 13:07:31 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2BI7UOO010207
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 13:07:30 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 11 Mar 2015 13:07:29 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2BI7TBv012683	for
-	<meta-arago@arago-project.org>; Wed, 11 Mar 2015 13:07:29 -0500
-Date: Wed, 11 Mar 2015 14:07:29 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20150311180729.GA23587@edge>
+	Wed, 11 Mar 2015 19:26:55 +0000 (UTC)
+Received: from localhost (mxf3.local [127.0.0.1])
+	by mxf3-reinject (Postfix) with ESMTP id 066545E74A3
+	for <meta-arago@arago-project.org>;
+	Wed, 11 Mar 2015 20:26:55 +0100 (CET)
+X-Virus-Scanned: by amavisd-new using ClamAV at bahnhof.se (MXF1)
+X-Spam-Score: 0.306
+X-Spam-Level: 
+X-Spam-Status: No, score=0.306 tagged_above=-99 required=5
+	tests=[DNS_FROM_AHBL_RHSBL=0.306]
+Received: from mxf3.bahnhof.se ([127.0.0.1])
+	by localhost (mxf3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ypn60ENUE9u1 for <meta-arago@arago-project.org>;
+	Wed, 11 Mar 2015 20:26:45 +0100 (CET)
+Received: from smtp-auth2.bahnhof.se (smtp-auth.bahnhof.se [213.136.33.6])
+	by mxf3.bahnhof.se (Postfix) with ESMTP id 97F745E74BF
+	for <meta-arago@arago-project.org>;
+	Wed, 11 Mar 2015 20:26:45 +0100 (CET)
+Received: from [10.175.196.199] (h-169-18.a454.priv.bahnhof.se [37.123.169.18])
+	(Authenticated sender: mb782575)
+	by smtp-auth2.bahnhof.se (Postfix) with ESMTPA id 3121328801
+	for <meta-arago@arago-project.org>;
+	Wed, 11 Mar 2015 20:26:45 +0100 (CET)
+Message-ID: <550096F5.8080700@emagii.com>
+Date: Wed, 11 Mar 2015 20:26:45 +0100
+From: Ulf Samuelsson <meta-arago@emagii.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: gitorious.org status
+To: meta-arago@arago-project.org
+References: <54FCAECB.7020005@emagii.com>
+In-Reply-To: <54FCAECB.7020005@emagii.com>
+Subject: Re: Example Device Tree files when building AM335x/OpenGL support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,63 +47,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 18:07:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 11 Mar 2015 19:26:56 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-So, it appears gitorious.org has disabled "git" access across the board, 
-probably to enforce read-only state and prevent people from updating their 
-repos further, forcing them to migrate to gitlab...
+Den 2015-03-08 21:19, Ulf Samuelsson skrev:
+> Are there any examples of Device-Trees files which are compatible with 
+> the "omaplfb" driver for OpenGL
+>
+> Running a Beaglebone derivative using AM3359.
+>
+>
+> Did this for the Beaglebone + LCD4 but when I do the same changes for 
+> another LCD the screen does not come up.
+> The fix enabled some clocks, and replaced the tilcdc compatible panel 
+> with an &lcdc entry.
 
-There are patches for meta-qt5 to switch SRC_URIs to code.qt.io - that will 
-take care of Qt5 recipes, once commited to meta-qt5/master, which we track.
+No answers...
+Noone knows about openlfb on this mailing list?
 
-We would need to take care of our own repositories (qt-apps, matrix, uim, 
-etc.) and decide where to move them over to. Franklin, most of those repos are 
-owned by you or your tem. What are your plans?
+>
+>
+> BR
+> Ulf Samuelsson
+>
+>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-meta-arago-extras/recipes-connectivity/uim/uim_git.bb:SRC_URI = "git://gitorious.org/uim/uim.git \
-meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb:HOMEPAGE = "https://gitorious.org/image-gallery"
-meta-arago-extras/recipes-qt/qt-apps/image-gallery_git.bb:SRC_URI = "git://gitorious.org/image-gallery/image-gallery.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb:HOMEPAGE = "https://gitorious.org/thermostat-demo"
-meta-arago-extras/recipes-qt/qt-apps/qt-tstat_2.0.bb:   git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git \
-meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb:SRC_URI = "git://gitorious.org/am_sysinfo/am_sysinfo.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb:HOMEPAGE = "https://gitorious.org/oprofile-example"
-meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb:SRC_URI = "git://gitorious.org/oprofile-example/oprofile-example.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix_browser"
-meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb:SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-core/matrix/matrix-gui-clocks_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-armbenchmarks-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-qt4-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-generic-pm_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-settings-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-v4l2-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc:SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/refresh-screen"
-meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb:SRC_URI = "git://gitorious.org/matrix-gui-v2/refresh-screen.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-core/matrix/matrix-gui-pru-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-apps-images_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-oprofile-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-helper-scripts.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb:SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
-meta-arago-extras/recipes-core/matrix/matrix-gui-wifi-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-display-control_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-usb-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-ethernet-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-camera-loopback_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb:HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb:HOMEPAGE = "https://gitorious.org/screenshot"
-meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb:SRC_URI = "git://gitorious.org/screenshot/screenshot.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb:SRC_URI = "git://gitorious.org/arm_benchmarks/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb:SRC_URI = "git://gitorious.org/av_examples/av_examples.git;protocol=git;branch=${BRANCH}"
-meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb:HOMEPAGE = "https://gitorious.org/dual-camera-demo/"
-meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb:SRC_URI = "git://gitorious.org/dual-camera-demo/dual-camera-demo.git;protocol=git;branch=${BRANCH} \
-
--- 
-Denys
 
