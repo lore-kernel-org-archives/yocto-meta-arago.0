@@ -1,30 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0C0A252A29
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 08C5052A59
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Mar 2015 03:19:49 +0000 (UTC)
+	Wed, 11 Mar 2015 09:02:50 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2B3Jm1V002723
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 22:19:49 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2B3JljQ021416
-	for <meta-arago@arago-project.org>; Tue, 10 Mar 2015 22:19:47 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Tue, 10 Mar 2015 22:19:47 -0500
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "Hernandez, Carlos" <ceh@ti.com>
-Thread-Topic: [meta-arago] [PATCH v2] recipes-devtools: New ltp-ddt_1.0.0
-	recipe
-Thread-Index: AdBbqjnzfFrjHEgKPU6gdQMiDJwF9Q==
-Date: Wed, 11 Mar 2015 03:19:47 +0000
-Message-ID: <B0581B5571079145BA1CD78C126DBDE7322241C4@DLEE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2B92oFV007366
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 04:02:50 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2B92nUU028246
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 04:02:49 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 11 Mar 2015 04:02:48 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t2B92mgS026467	for <meta-arago@arago-project.org>;
+	Wed, 11 Mar 2015 04:02:48 -0500
+Date: Wed, 11 Mar 2015 05:02:48 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1330230728.467.1426064568565.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v2] recipes-devtools: New ltp-ddt_1.0.0 recipe
+X-Jenkins-Job: arago-core-tisdk-am57x
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.03 build 2015-03-11_05-00-57
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,191 +36,176 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 03:19:50 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B0581B5571079145BA1CD78C126DBDE7322241C4DLEE08entticom_"
+X-List-Received-Date: Wed, 11 Mar 2015 09:02:51 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_466_857692656.1426064568562"
 
---_000_B0581B5571079145BA1CD78C126DBDE7322241C4DLEE08entticom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+------=_Part_466_857692656.1426064568562
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-VGhhbmtzLiBNb3N0bHkgZ29vZCwgYnV0IEknZCBsaWtlIHRvIGZpeCBjb3VwbGUgbW9yZSBtaW5v
-ciB0aGluZ3MgLSBJJ2xsIHNlbmQgYSBmaXhlZCB2ZXJzaW9uIHRvbW9ycm93LiBJZiB5b3UgaGF2
-ZW4ndCBzZW50IGl0IHRvIG1ldGEtb2UgeWV0LCBwbGVhc2Ugd2FpdC4NCg0KLS0NCkRlbnlzDQoN
-Ck9uIE1hciAxMCwgMjAxNSA0OjQ5IFBNLCAiSGVybmFuZGV6LCBDYXJsb3MiIDxjZWhAdGkuY29t
-PiB3cm90ZToNCkxhdGVzdCBsdHAgcmVsZWFzZSB3YXMgcmVjZW50bHkgbWVyZ2UgdG8gbHRwLWRk
-dCBhbmQgdGhlcmUgaXMgYSBuZXcNCndheSB0byBjb25maWd1cmUgYW5kIGNvbXBpbGUgbHRwLWRk
-dC4NCg0KU2lnbmVkLW9mZi1ieTogQ2FybG9zIEhlcm5hbmRleiA8Y2VoQHRpLmNvbT4NCi0tLQ0K
-IC4uLi9yZWNpcGVzLWRldnRvb2xzL2x0cC1kZHQvbHRwLWRkdF8xLjAuMC5iYiAgICAgIHwgODQg
-KysrKysrKysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCA4NCBpbnNlcnRpb25zKCsp
-DQogY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZGV2dG9vbHMv
-bHRwLWRkdC9sdHAtZGR0XzEuMC4wLmJiDQoNCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWRpc3Ry
-by9yZWNpcGVzLWRldnRvb2xzL2x0cC1kZHQvbHRwLWRkdF8xLjAuMC5iYiBiL21ldGEtYXJhZ28t
-ZGlzdHJvL3JlY2lwZXMtZGV2dG9vbHMvbHRwLWRkdC9sdHAtZGR0XzEuMC4wLmJiDQpuZXcgZmls
-ZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uZGI2NmVkNA0KLS0tIC9kZXYvbnVsbA0KKysr
-IGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1kZXZ0b29scy9sdHAtZGR0L2x0cC1kZHRfMS4w
-LjAuYmINCkBAIC0wLDAgKzEsODQgQEANCitTVU1NQVJZID0gIkVtYmVkZGVkIExpbnV4IERldmlj
-ZSBEcml2ZXIgVGVzdHMgYmFzZWQgb24gTGludXggVGVzdCBQcm9qZWN0Ig0KK0hPTUVQQUdFID0g
-Imh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9naXQvcHJvamVjdHMvdGVzdC1hdXRvbWF0aW9uL2x0
-cC1kZHQuZ2l0Ig0KK1NFQ1RJT04gPSAiY29uc29sZS91dGlscyINCitMSUNFTlNFID0gIkdQTHYy
-Ig0KK0xJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL0NPUFlJTkc7bWQ1PTA2MzZlNzNmZjAyMTVl
-OGQ2NzJkYzRjMzJjMzE3YmIzIg0KKw0KK1BST1ZJREVTICs9ICJsdHAiDQorREVQRU5EUyArPSAi
-emlwLW5hdGl2ZSB2aXJ0dWFsL2tlcm5lbCBhbHNhLWxpYiINCitSREVQRU5EU18ke1BOfSArPSAi
-bGluYXJvLXBtLXFhLXV0aWxzIHNlcmlhbGNoZWNrIg0KKw0KK2luaGVyaXQgYXV0b3Rvb2xzIG1v
-ZHVsZS1iYXNlIGtlcm5lbC1tb2R1bGUtc3BsaXQNCisNCitQQUNLQUdFX0FSQ0ggPSAiJHtNQUNI
-SU5FX0FSQ0h9Ig0KKw0KK1NSQ1JFViA9ICJlZWY2MjgxMDUyZjM2ZjZmZTQxMDU5ZWFkY2YzYjRh
-OTRmMGQ4NWVhIg0KK0JSQU5DSCA/PSAibWFzdGVyIg0KK1BSID0gInIxLWFyYWdvMTArZ2l0ciR7
-U1JDUFZ9Ig0KKw0KK1NSQ19VUkkgPSAiZ2l0Oi8vYXJhZ28tcHJvamVjdC5vcmcvZ2l0L3Byb2pl
-Y3RzL3Rlc3QtYXV0b21hdGlvbi9sdHAtZGR0LmdpdDticmFuY2g9JHtCUkFOQ0h9IFwNCisgICAg
-ICAgICAgIg0KKw0KK1MgPSAiJHtXT1JLRElSfS9naXQiDQorDQorTFRQUk9PVCA9ICIvb3B0L2x0
-cCINCisNCitFWFRSQV9PRU1BS0VfYXBwZW5kID0gIiBcDQorICAgIHByZWZpeD0ke0xUUFJPT1R9
-IFwNCisgICAgQ1JPU1NfQ09NUElMRT0ke0hPU1RfUFJFRklYfSBcDQorICAgIFNLSVBfSURDSEVD
-Sz0xIFwNCisgICAgS0VSTkVMX0lOQz0ke1NUQUdJTkdfS0VSTkVMX0RJUn0gXA0KKyAgICBLRVJO
-RUxfVVNSX0lOQz0ke1NUQUdJTkdfSU5DRElSfSBcDQorICAgIEFMU0FfSU5DUEFUSD0ke1NUQUdJ
-TkdfSU5DRElSfSBcDQorICAgIEFMU0FfTElCUEFUSD0ke1NUQUdJTkdfTElCRElSfSBcDQorICAg
-IFBMQVRGT1JNPSR7TUFDSElORX0gXA0KKyAgICBSQU5MSUI9JHtSQU5MSUJ9IFwNCisgICAgS0VS
-TkVMX1BBVEg9JHtTVEFHSU5HX0tFUk5FTF9ESVJ9IFwNCisiDQorDQorVEFSR0VUX0NDX0FSQ0gg
-Kz0gIiR7TERGTEFHU30iDQorDQorRklMRVNfJHtQTn0tZGJnICs9ICIgXA0KKyAgICAke0xUUFJP
-T1R9Ly5kZWJ1ZyBcDQorICAgICR7TFRQUk9PVH0vYmluLy5kZWJ1ZyBcDQorICAgICR7TFRQUk9P
-VH0vcnVudGVzdC8uZGVidWcgXA0KKyAgICAke0xUUFJPT1R9L3Rlc3RjYXNlcy9iaW4vLmRlYnVn
-IFwNCisgICAgJHtMVFBST09UfS90ZXN0Y2FzZXMvYmluLyovYmluLy5kZWJ1ZyBcDQorICAgICR7
-TFRQUk9PVH0vdGVzdGNhc2VzL2Jpbi8qL3Rlc3QvLmRlYnVnIFwNCisgICAgJHtMVFBST09UfS90
-ZXN0Y2FzZXMvYmluL2RkdC8uZGVidWcgXA0KKyAgICAke0xUUFJPT1R9L3Rlc3RjYXNlcy9iaW4v
-ZGR0LyovYmluLy5kZWJ1ZyBcDQorICAgICR7TFRQUk9PVH0vdGVzdGNhc2VzL2Jpbi9kZHQvKi90
-ZXN0Ly5kZWJ1ZyBcDQorICAgICR7TFRQUk9PVH0vdGVzdGNhc2VzL3JlYWx0aW1lLyovKi8uZGVi
-dWcgXA0KKyINCisNCitGSUxFU18ke1BOfS1zdGF0aWNkZXYgKz0gIiR7TFRQUk9PVH0vbGliIg0K
-K0ZJTEVTXyR7UE59ICs9ICIke0xUUFJPT1R9LyoiDQorDQorS0VSTkVMX01PRFVMRVNfTUVUQV9Q
-QUNLQUdFID0gIiR7UE59Ig0KKw0KK2ttb2RkaXIgPSAiL2xpYi9tb2R1bGVzLyR7S0VSTkVMX1ZF
-UlNJT059L2tlcm5lbC9kcml2ZXJzL2RkdCINCisNCisjIGx0cCBkb2Vzbid0IHJlZ2VuZXJhdGUg
-ZmZzYi02LjAtcmMyIGNvbmZpZ3VyZSBhbmQgaGFyZGNvZGUgY29uZmlndXJlIGNhbGwuDQorIyB3
-ZSBleHBsaWNpdGx5IGZvcmNlIHJlZ2VuZXJhdGlvbiBvZiB0aGF0IGRpcmVjdG9yeSBhbmQgcGFz
-cyBjb25maWd1cmUgb3B0aW9ucy4NCitkb19jb25maWd1cmVfYXBwZW5kKCkgew0KKyAgICAoY2Qg
-dXRpbHMvZmZzYi02LjAtcmMyOyBhdXRvcmVjb25mIC1mdmk7IC4vY29uZmlndXJlICR7Q09ORklH
-VVJFT1BUU30pDQorfQ0KKw0KKw0KK2RvX2NvbXBpbGVfYXBwZW5kICgpIHsNCisgICAgdW5zZXQg
-Q0ZMQUdTIENQUEZMQUdTIENYWEZMQUdTIExERkxBR1MNCisgICAgb2VfcnVubWFrZSBLRVJORUxf
-Q0M9IiR7S0VSTkVMX0NDfSIgREVTVERJUj0ke0R9IG1vZHVsZXMNCit9DQorDQorZG9faW5zdGFs
-bCgpIHsNCisgICAgb2VfcnVubWFrZSBERVNURElSPSR7RH0gaW5zdGFsbA0KKyAgICBpbnN0YWxs
-IC1kICR7RH0ke2RhdGFkaXJ9DQorICAgIGluc3RhbGwgLWQgJHtEfSR7a21vZGRpcn0NCisgICAg
-bXYgJHtEfSR7TFRQUk9PVH0vdGVzdGNhc2VzL2Jpbi9kZHQvKi5rbyAke0R9JHtrbW9kZGlyfQ0K
-K30NCisNCisNCisjIGRvX21ha2Vfc2NyaXB0cyBzaG91bGQgYmUgYSBzZXBhcmF0ZSB0YXNrIGZv
-ciB0aGUgbG9jayB0byB3b3JrDQorYWRkdGFzayBtYWtlX3NjcmlwdHMgYmVmb3JlIGRvX2NvbXBp
-bGUNCitkb19tYWtlX3NjcmlwdHNbbG9ja2ZpbGVzXSA9ICIke1RNUERJUn0va2VybmVsLXNjcmlw
-dHMubG9jayINCitkb19tYWtlX3NjcmlwdHNbZGVwdGFza10gPSAiZG9fcG9wdWxhdGVfc3lzcm9v
-dCINCi0tDQoxLjkuMQ0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXw0KbWV0YS1hcmFnbyBtYWlsaW5nIGxpc3QNCm1ldGEtYXJhZ29AYXJhZ28tcHJvamVj
-dC5vcmcNCmh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8v
-bWV0YS1hcmFnbw0K
+<html>
+<head>
+<title>
+Status for 03/11/15
+</title>
+</head>
+<body>
 
---_000_B0581B5571079145BA1CD78C126DBDE7322241C4DLEE08entticom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <9E7674261D6A334397364E961F4E324A@owa.mail.ti.com>
-Content-Transfer-Encoding: base64
+<h2>Status for 03/11/15</h2>
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHAgZGlyPSJsdHIi
-PlRoYW5rcy4gTW9zdGx5IGdvb2QsIGJ1dCBJJ2QgbGlrZSB0byBmaXggY291cGxlIG1vcmUgbWlu
-b3IgdGhpbmdzIC0gSSdsbCBzZW5kIGEgZml4ZWQgdmVyc2lvbiB0b21vcnJvdy4gSWYgeW91IGhh
-dmVuJ3Qgc2VudCBpdCB0byBtZXRhLW9lIHlldCwgcGxlYXNlIHdhaXQuPC9wPg0KPHAgZGlyPSJs
-dHIiPi0tIDxicj4NCkRlbnlzPC9wPg0KPGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPk9uIE1hciAx
-MCwgMjAxNSA0OjQ5IFBNLCAmcXVvdDtIZXJuYW5kZXosIENhcmxvcyZxdW90OyAmbHQ7Y2VoQHRp
-LmNvbSZndDsgd3JvdGU6PGJyIHR5cGU9ImF0dHJpYnV0aW9uIj4NCjxibG9ja3F1b3RlIGNsYXNz
-PSJxdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2NjIHNv
-bGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj48Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjEwcHQiPjwvc3Bhbj48L2ZvbnQ+DQo8ZGl2PkxhdGVzdCBsdHAgcmVsZWFzZSB3
-YXMgcmVjZW50bHkgbWVyZ2UgdG8gbHRwLWRkdCBhbmQgdGhlcmUgaXMgYSBuZXc8YnI+DQp3YXkg
-dG8gY29uZmlndXJlIGFuZCBjb21waWxlIGx0cC1kZHQuPGJyPg0KPGJyPg0KU2lnbmVkLW9mZi1i
-eTogQ2FybG9zIEhlcm5hbmRleiAmbHQ7Y2VoQHRpLmNvbSZndDs8YnI+DQotLS08YnI+DQombmJz
-cDsuLi4vcmVjaXBlcy1kZXZ0b29scy9sdHAtZGR0L2x0cC1kZHRfMS4wLjAuYmImbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsgfCA4NCAmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0Mzsm
-IzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0
-MzsmIzQzOyYjNDM7JiM0MzsmIzQzOzxicj4NCiZuYnNwOzEgZmlsZSBjaGFuZ2VkLCA4NCBpbnNl
-cnRpb25zKCYjNDM7KTxicj4NCiZuYnNwO2NyZWF0ZSBtb2RlIDEwMDY0NCBtZXRhLWFyYWdvLWRp
-c3Ryby9yZWNpcGVzLWRldnRvb2xzL2x0cC1kZHQvbHRwLWRkdF8xLjAuMC5iYjxicj4NCjxicj4N
-CmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWRldnRvb2xzL2x0cC1kZHQv
-bHRwLWRkdF8xLjAuMC5iYiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZGV2dG9vbHMvbHRw
-LWRkdC9sdHAtZGR0XzEuMC4wLmJiPGJyPg0KbmV3IGZpbGUgbW9kZSAxMDA2NDQ8YnI+DQppbmRl
-eCAwMDAwMDAwLi5kYjY2ZWQ0PGJyPg0KLS0tIC9kZXYvbnVsbDxicj4NCiYjNDM7JiM0MzsmIzQz
-OyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZGV2dG9vbHMvbHRwLWRkdC9sdHAtZGR0XzEu
-MC4wLmJiPGJyPg0KQEAgLTAsMCAmIzQzOzEsODQgQEA8YnI+DQomIzQzO1NVTU1BUlkgPSAmcXVv
-dDtFbWJlZGRlZCBMaW51eCBEZXZpY2UgRHJpdmVyIFRlc3RzIGJhc2VkIG9uIExpbnV4IFRlc3Qg
-UHJvamVjdCZxdW90Ozxicj4NCiYjNDM7SE9NRVBBR0UgPSAmcXVvdDs8YSBocmVmPSJodHRwOi8v
-YXJhZ28tcHJvamVjdC5vcmcvZ2l0L3Byb2plY3RzL3Rlc3QtYXV0b21hdGlvbi9sdHAtZGR0Lmdp
-dCI+aHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2dpdC9wcm9qZWN0cy90ZXN0LWF1dG9tYXRpb24v
-bHRwLWRkdC5naXQ8L2E+JnF1b3Q7PGJyPg0KJiM0MztTRUNUSU9OID0gJnF1b3Q7Y29uc29sZS91
-dGlscyZxdW90Ozxicj4NCiYjNDM7TElDRU5TRSA9ICZxdW90O0dQTHYyJnF1b3Q7PGJyPg0KJiM0
-MztMSUNfRklMRVNfQ0hLU1VNID0gJnF1b3Q7PGEgaHJlZj0iICAiPmZpbGU6Ly9DT1BZSU5HO21k
-NT0wNjM2ZTczZmYwMjE1ZThkNjcyZGM0YzMyYzMxN2JiMzwvYT4mcXVvdDs8YnI+DQomIzQzOzxi
-cj4NCiYjNDM7UFJPVklERVMgJiM0Mzs9ICZxdW90O2x0cCZxdW90Ozxicj4NCiYjNDM7REVQRU5E
-UyAmIzQzOz0gJnF1b3Q7emlwLW5hdGl2ZSB2aXJ0dWFsL2tlcm5lbCBhbHNhLWxpYiZxdW90Ozxi
-cj4NCiYjNDM7UkRFUEVORFNfJHtQTn0gJiM0Mzs9ICZxdW90O2xpbmFyby1wbS1xYS11dGlscyBz
-ZXJpYWxjaGVjayZxdW90Ozxicj4NCiYjNDM7PGJyPg0KJiM0Mztpbmhlcml0IGF1dG90b29scyBt
-b2R1bGUtYmFzZSBrZXJuZWwtbW9kdWxlLXNwbGl0PGJyPg0KJiM0Mzs8YnI+DQomIzQzO1BBQ0tB
-R0VfQVJDSCA9ICZxdW90OyR7TUFDSElORV9BUkNIfSZxdW90Ozxicj4NCiYjNDM7PGJyPg0KJiM0
-MztTUkNSRVYgPSAmcXVvdDtlZWY2MjgxMDUyZjM2ZjZmZTQxMDU5ZWFkY2YzYjRhOTRmMGQ4NWVh
-JnF1b3Q7PGJyPg0KJiM0MztCUkFOQ0ggPz0gJnF1b3Q7bWFzdGVyJnF1b3Q7PGJyPg0KJiM0MztQ
-UiA9ICZxdW90O3IxLWFyYWdvMTAmIzQzO2dpdHIke1NSQ1BWfSZxdW90Ozxicj4NCiYjNDM7PGJy
-Pg0KJiM0MztTUkNfVVJJID0gJnF1b3Q7Z2l0Oi8vYXJhZ28tcHJvamVjdC5vcmcvZ2l0L3Byb2pl
-Y3RzL3Rlc3QtYXV0b21hdGlvbi9sdHAtZGR0LmdpdDticmFuY2g9JHtCUkFOQ0h9IFw8YnI+DQom
-IzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyAmcXVvdDs8YnI+DQomIzQzOzxicj4NCiYjNDM7UyA9ICZxdW90OyR7V09SS0RJUn0vZ2l0JnF1
-b3Q7PGJyPg0KJiM0Mzs8YnI+DQomIzQzO0xUUFJPT1QgPSAmcXVvdDsvb3B0L2x0cCZxdW90Ozxi
-cj4NCiYjNDM7PGJyPg0KJiM0MztFWFRSQV9PRU1BS0VfYXBwZW5kID0gJnF1b3Q7IFw8YnI+DQom
-IzQzOyZuYnNwOyZuYnNwOyZuYnNwOyBwcmVmaXg9JHtMVFBST09UfSBcPGJyPg0KJiM0MzsmbmJz
-cDsmbmJzcDsmbmJzcDsgQ1JPU1NfQ09NUElMRT0ke0hPU1RfUFJFRklYfSBcPGJyPg0KJiM0Mzsm
-bmJzcDsmbmJzcDsmbmJzcDsgU0tJUF9JRENIRUNLPTEgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IEtFUk5FTF9JTkM9JHtTVEFHSU5HX0tFUk5FTF9ESVJ9IFw8YnI+DQomIzQzOyZuYnNw
-OyZuYnNwOyZuYnNwOyBLRVJORUxfVVNSX0lOQz0ke1NUQUdJTkdfSU5DRElSfSBcPGJyPg0KJiM0
-MzsmbmJzcDsmbmJzcDsmbmJzcDsgQUxTQV9JTkNQQVRIPSR7U1RBR0lOR19JTkNESVJ9IFw8YnI+
-DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyBBTFNBX0xJQlBBVEg9JHtTVEFHSU5HX0xJQkRJUn0g
-XDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFBMQVRGT1JNPSR7TUFDSElORX0gXDxicj4N
-CiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFJBTkxJQj0ke1JBTkxJQn0gXDxicj4NCiYjNDM7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7IEtFUk5FTF9QQVRIPSR7U1RBR0lOR19LRVJORUxfRElSfSBcPGJyPg0K
-JiM0MzsmcXVvdDs8YnI+DQomIzQzOzxicj4NCiYjNDM7VEFSR0VUX0NDX0FSQ0ggJiM0Mzs9ICZx
-dW90OyR7TERGTEFHU30mcXVvdDs8YnI+DQomIzQzOzxicj4NCiYjNDM7RklMRVNfJHtQTn0tZGJn
-ICYjNDM7PSAmcXVvdDsgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7TFRQUk9PVH0v
-LmRlYnVnIFw8YnI+DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyAke0xUUFJPT1R9L2Jpbi8uZGVi
-dWcgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7TFRQUk9PVH0vcnVudGVzdC8uZGVi
-dWcgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7TFRQUk9PVH0vdGVzdGNhc2VzL2Jp
-bi8uZGVidWcgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7TFRQUk9PVH0vdGVzdGNh
-c2VzL2Jpbi8qL2Jpbi8uZGVidWcgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7TFRQ
-Uk9PVH0vdGVzdGNhc2VzL2Jpbi8qL3Rlc3QvLmRlYnVnIFw8YnI+DQomIzQzOyZuYnNwOyZuYnNw
-OyZuYnNwOyAke0xUUFJPT1R9L3Rlc3RjYXNlcy9iaW4vZGR0Ly5kZWJ1ZyBcPGJyPg0KJiM0Mzsm
-bmJzcDsmbmJzcDsmbmJzcDsgJHtMVFBST09UfS90ZXN0Y2FzZXMvYmluL2RkdC8qL2Jpbi8uZGVi
-dWcgXDxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7TFRQUk9PVH0vdGVzdGNhc2VzL2Jp
-bi9kZHQvKi90ZXN0Ly5kZWJ1ZyBcPGJyPg0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsgJHtMVFBS
-T09UfS90ZXN0Y2FzZXMvcmVhbHRpbWUvKi8qLy5kZWJ1ZyBcPGJyPg0KJiM0MzsmcXVvdDs8YnI+
-DQomIzQzOzxicj4NCiYjNDM7RklMRVNfJHtQTn0tc3RhdGljZGV2ICYjNDM7PSAmcXVvdDske0xU
-UFJPT1R9L2xpYiZxdW90Ozxicj4NCiYjNDM7RklMRVNfJHtQTn0gJiM0Mzs9ICZxdW90OyR7TFRQ
-Uk9PVH0vKiZxdW90Ozxicj4NCiYjNDM7PGJyPg0KJiM0MztLRVJORUxfTU9EVUxFU19NRVRBX1BB
-Q0tBR0UgPSAmcXVvdDske1BOfSZxdW90Ozxicj4NCiYjNDM7PGJyPg0KJiM0MztrbW9kZGlyID0g
-JnF1b3Q7L2xpYi9tb2R1bGVzLyR7S0VSTkVMX1ZFUlNJT059L2tlcm5lbC9kcml2ZXJzL2RkdCZx
-dW90Ozxicj4NCiYjNDM7PGJyPg0KJiM0MzsjIGx0cCBkb2Vzbid0IHJlZ2VuZXJhdGUgZmZzYi02
-LjAtcmMyIGNvbmZpZ3VyZSBhbmQgaGFyZGNvZGUgY29uZmlndXJlIGNhbGwuPGJyPg0KJiM0Mzsj
-IHdlIGV4cGxpY2l0bHkgZm9yY2UgcmVnZW5lcmF0aW9uIG9mIHRoYXQgZGlyZWN0b3J5IGFuZCBw
-YXNzIGNvbmZpZ3VyZSBvcHRpb25zLjxicj4NCiYjNDM7ZG9fY29uZmlndXJlX2FwcGVuZCgpIHs8
-YnI+DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyAoY2QgdXRpbHMvZmZzYi02LjAtcmMyOyBhdXRv
-cmVjb25mIC1mdmk7IC4vY29uZmlndXJlICR7Q09ORklHVVJFT1BUU30pPGJyPg0KJiM0Mzt9PGJy
-Pg0KJiM0Mzs8YnI+DQomIzQzOzxicj4NCiYjNDM7ZG9fY29tcGlsZV9hcHBlbmQgKCkgezxicj4N
-CiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHVuc2V0IENGTEFHUyBDUFBGTEFHUyBDWFhGTEFHUyBM
-REZMQUdTPGJyPg0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsgb2VfcnVubWFrZSBLRVJORUxfQ0M9
-JnF1b3Q7JHtLRVJORUxfQ0N9JnF1b3Q7IERFU1RESVI9JHtEfSBtb2R1bGVzPGJyPg0KJiM0Mzt9
-PGJyPg0KJiM0Mzs8YnI+DQomIzQzO2RvX2luc3RhbGwoKSB7PGJyPg0KJiM0MzsmbmJzcDsmbmJz
-cDsmbmJzcDsgb2VfcnVubWFrZSBERVNURElSPSR7RH0gaW5zdGFsbDxicj4NCiYjNDM7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgJHtEfSR7ZGF0YWRpcn08YnI+DQomIzQzOyZuYnNwOyZu
-YnNwOyZuYnNwOyBpbnN0YWxsIC1kICR7RH0ke2ttb2RkaXJ9PGJyPg0KJiM0MzsmbmJzcDsmbmJz
-cDsmbmJzcDsgbXYgJHtEfSR7TFRQUk9PVH0vdGVzdGNhc2VzL2Jpbi9kZHQvKi5rbyAke0R9JHtr
-bW9kZGlyfTxicj4NCiYjNDM7fTxicj4NCiYjNDM7PGJyPg0KJiM0Mzs8YnI+DQomIzQzOyMgZG9f
-bWFrZV9zY3JpcHRzIHNob3VsZCBiZSBhIHNlcGFyYXRlIHRhc2sgZm9yIHRoZSBsb2NrIHRvIHdv
-cms8YnI+DQomIzQzO2FkZHRhc2sgbWFrZV9zY3JpcHRzIGJlZm9yZSBkb19jb21waWxlPGJyPg0K
-JiM0Mztkb19tYWtlX3NjcmlwdHNbbG9ja2ZpbGVzXSA9ICZxdW90OyR7VE1QRElSfS9rZXJuZWwt
-c2NyaXB0cy5sb2NrJnF1b3Q7PGJyPg0KJiM0Mztkb19tYWtlX3NjcmlwdHNbZGVwdGFza10gPSAm
-cXVvdDtkb19wb3B1bGF0ZV9zeXNyb290JnF1b3Q7PGJyPg0KLS0gPGJyPg0KMS45LjE8YnI+DQo8
-YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4N
-Cm1ldGEtYXJhZ28gbWFpbGluZyBsaXN0PGJyPg0KbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9y
-Zzxicj4NCjxhIGhyZWY9Imh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4v
-bGlzdGluZm8vbWV0YS1hcmFnbyI+aHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFp
-bG1hbi9saXN0aW5mby9tZXRhLWFyYWdvPC9hPjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2Nr
-cXVvdGU+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+<h2>BUILD_ID: build-2015-03-11_05-01-59</h2>
 
---_000_B0581B5571079145BA1CD78C126DBDE7322241C4DLEE08entticom_--
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.03"<br>
+MACHINES="am57xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-am57x"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly/am57x"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-am57x/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_466_857692656.1426064568562--
