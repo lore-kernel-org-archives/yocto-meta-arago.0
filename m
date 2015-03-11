@@ -1,30 +1,32 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id D874C52A59
+Return-Path: <j-stiffler@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 7B6D052A29
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Mar 2015 15:00:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2BF0DiT028556
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 10:00:13 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2BF0BX2014544
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 10:00:12 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0224.002; Wed, 11 Mar 2015 10:00:11 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
+	Wed, 11 Mar 2015 15:09:25 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2BF9Oga026937
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 10:09:24 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2BF9NUK025922
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 10:09:23 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0224.002; Wed, 11 Mar 2015 10:09:23 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
 Thread-Topic: [meta-arago] [PATCH v2] refresh-screen: Add commandline
 	parameter	to set background-color to black
-Thread-Index: AQHQXAiQp+vFEBrjbEiVatYz4XrXDJ0XYBN4
-Date: Wed, 11 Mar 2015 15:00:11 +0000
-Message-ID: <9C95DDB1-DFD2-4E47-B172-93DBCECD5E99@ti.com>
+Thread-Index: AQHQW4BLRHbOt9dgNku76uVifXuMtJ0XWeXQgABbEID//66eYA==
+Date: Wed, 11 Mar 2015 15:09:22 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95814107886@DFLE09.ent.ti.com>
 References: <1426025965-9482-1-git-send-email-fcooper@ti.com>,
 	<4B26FB5A64EBA14C87266869E037F9581410786D@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581410786D@DFLE09.ent.ti.com>
+	<9C95DDB1-DFD2-4E47-B172-93DBCECD5E99@ti.com>
+In-Reply-To: <9C95DDB1-DFD2-4E47-B172-93DBCECD5E99@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH v2] refresh-screen: Add commandline parameter	to set background-color to black
@@ -40,10 +42,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 15:00:14 -0000
+X-List-Received-Date: Wed, 11 Mar 2015 15:09:25 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Locally, I was able to switch the git protocol to 'https' and proceed.
+
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Wednesday, March 11, 2015 11:00 AM
+To: Stiffler, Jacob
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH v2] refresh-screen: Add commandline parame=
+ter to set background-color to black
 
 Yeah I won't be able to test this until gitorious starts working. I forgot =
 to add it to my notes but once it works I'll test it out.
