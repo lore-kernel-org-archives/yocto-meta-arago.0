@@ -1,37 +1,33 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 7D82E52A29
+Return-Path: <j-stiffler@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id DF65552A43
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Mar 2015 13:58:50 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2BDwnDP016866
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 08:58:49 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2BDwm0S031876
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 08:58:48 -0500
-Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Wed, 11 Mar 2015 08:58:48 -0500
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2]
-	packagegroup-arago-mcsdk-toolchain-target:	Add package group for mcsdk
-	toolchain
-Thread-Index: AQHQUUBaUKFyBBBE40ahsM90plmfEp0CFhAwgALBsACAEox/AA==
-Date: Wed, 11 Mar 2015 13:58:48 +0000
-Message-ID: <4F9216F96E5DF9428610502835A9F49058148C45@DLEE11.ent.ti.com>
-References: <1424897759-23944-1-git-send-email-sam.nelson@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C81E357@DLEE08.ent.ti.com>,
-	<4F9216F96E5DF9428610502835A9F49058122FE9@DLEE11.ent.ti.com>
-	<DA8DA1A1-E75F-4150-88B3-A39AF80EE6F8@ti.com>
-In-Reply-To: <DA8DA1A1-E75F-4150-88B3-A39AF80EE6F8@ti.com>
+	Wed, 11 Mar 2015 14:35:06 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2BEZ6hi013791
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 09:35:06 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2BEZ46d028618
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 09:35:05 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Wed, 11 Mar 2015 09:35:04 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH v2] refresh-screen: Add commandline
+	parameter	to set background-color to black
+Thread-Index: AQHQW4BLRHbOt9dgNku76uVifXuMtJ0XWeXQ
+Date: Wed, 11 Mar 2015 14:35:04 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F9581410786D@DFLE09.ent.ti.com>
+References: <1426025965-9482-1-git-send-email-fcooper@ti.com>
+In-Reply-To: <1426025965-9482-1-git-send-email-fcooper@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] packagegroup-arago-mcsdk-toolchain-target:	Add package group for mcsdk toolchain
+Subject: Re: [PATCH v2] refresh-screen: Add commandline parameter	to set background-color to black
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,183 +40,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 13:58:50 -0000
+X-List-Received-Date: Wed, 11 Mar 2015 14:35:07 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+There appears to be fundamental issues with this patch. I tried applying th=
+is patch locally and ran into the following issues.
 
+1) Patch does not apply.
+2) There are syntax errors in the patched recipe.
+3) License checksum mismatch
+4) Compilation failure of main.cpp
 
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Friday, February 27, 2015 7:42 AM
-> To: Nelson, Sam
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/2] packagegroup-arago-mcsdk-toolchain-
-> target: Add package group for mcsdk toolchain
->=20
->=20
->=20
->=20
-> > On Feb 25, 2015, at 6:39 PM, Nelson, Sam <sam.nelson@ti.com> wrote:
-> >
-> > I think the intention was to allow users to choose either static or sha=
-red
-> library based on their preference.
-> > If we have to decide on one, not sure what is the criteria to be used.
-> If that's is best for the user then that's fine.
->=20
-> Also I thought I remember some software licenses have a restriction regar=
-ding
-> using static libraries (ex Qt?)  but if that isn't a concern for the soft=
-ware your
-> including then that should be fine.
-[Sam] I am not aware of any issue with static libraries for MCSDK.
->=20
-> > Sam
-> >
-> >> -----Original Message-----
-> >> From: Cooper Jr., Franklin
-> >> Sent: Wednesday, February 25, 2015 4:17 PM
-> >> To: Nelson, Sam; meta-arago@arago-project.org
-> >> Subject: RE: [meta-arago] [PATCH 1/2] packagegroup-arago-mcsdk-
-> toolchain-
-> >> target: Add package group for mcsdk toolchain
-> >>
-> >> Do you really need both shared libraries and static libraries? Usually=
- I've
-> seen
-> >> people just include one or the other.
-> >>
-> >>> -----Original Message-----
-> >>> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> >>> bounces@arago-project.org] On Behalf Of Nelson, Sam
-> >>> Sent: Wednesday, February 25, 2015 2:56 PM
-> >>> To: meta-arago@arago-project.org
-> >>> Subject: [meta-arago] [PATCH 1/2] packagegroup-arago-mcsdk-toolchain-
-> >>> target: Add package group for mcsdk toolchain
-> >>>
-> >>> - Adds ti dev packages, platform specific packages and other addition=
-al
-> >>> packages
-> >>>
-> >>> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> >>> ---
-> >>> .../packagegroup-arago-mcsdk-toolchain-target.bb   |   94
-> >>> ++++++++++++++++++++
-> >>> 1 file changed, 94 insertions(+)
-> >>> create mode 100644 meta-arago-extras/recipes-
-> >>> core/packagegroups/packagegroup-arago-mcsdk-toolchain-target.bb
-> >>>
-> >>> diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegrou=
-p-
-> >>> arago-mcsdk-toolchain-target.bb b/meta-arago-extras/recipes-
-> >>> core/packagegroups/packagegroup-arago-mcsdk-toolchain-target.bb
-> >>> new file mode 100644
-> >>> index 0000000..9265a8c
-> >>> --- /dev/null
-> >>> +++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-
-> >>> arago-mcsdk-toolchain-target.bb
-> >>> @@ -0,0 +1,94 @@
-> >>> +DESCRIPTION =3D "Target dev packages for MCSDK SDK"
-> >>> +LICENSE =3D "BSD-3-Clause"
-> >>> +
-> >>> +PR =3D "r0"
-> >>> +
-> >>> +inherit packagegroup
-> >>> +
-> >>> +TI_PKGS_DEV =3D "\
-> >>> +    cmem-dev \
-> >>> +    cmem-staticdev \
-> >>> +    "
-> >>> +TI_SECURE_STORAGE_DEV =3D "\
-> >>> +    ti-softhsmv2-dev \
-> >>> +    libp11-dev \
-> >>> +    libp11-staticdev \
-> >>> +    "
-> >>> +
-> >>> +TI_PKGS_DEV_append_keystone =3D "\
-> >>> +    ${TI_SECURE_STORAGE_DEV} \
-> >>> +    udma-dev \
-> >>> +    udma-staticdev \
-> >>> +    traceframework-dev \
-> >>> +    traceframework-staticdev \
-> >>> +    cuia-dev \
-> >>> +    cuia-staticdev \
-> >>> +    common-csl-ip-dev \
-> >>> +    cppi-lld-dev \
-> >>> +    cppi-lld-staticdev \
-> >>> +    qmss-lld-dev \
-> >>> +    qmss-lld-staticdev \
-> >>> +    pa-lld-dev \
-> >>> +    pa-lld-staticdev \
-> >>> +    rm-lld-dev \
-> >>> +    rm-lld-staticdev \
-> >>> +    hyplnk-lld-dev \
-> >>> +    hyplnk-lld-staticdev \
-> >>> +    sa-lld-dev \
-> >>> +    sa-lld-staticdev \
-> >>> +    hplib-dev \
-> >>> +    hplib-staticdev \
-> >>> +    nwal-lld-dev \
-> >>> +    nwal-lld-staticdev \
-> >>> +    pktlib-dev \
-> >>> +    pktlib-staticdev \
-> >>> +    mmap-lld \
-> >>> +    mmap-lld-staticdev \
-> >>> +    netapi-dev \
-> >>> +    netapi-staticdev \
-> >>> +    ipsecmgr-dev \
-> >>> +    ipsecmgr-staticdev \
-> >>> +    libnl-xfrm-dev \
-> >>> +    libnl-xfrm-staticdev \
-> >>> +    libnl-dev \
-> >>> +    libnl-staticdev \
-> >>> +    ti-ipc-dev \
-> >>> +    ti-ipc-staticdev \
-> >>> +    multiprocmgr-dev \
-> >>> +    multiprocmgr-staticdev \
-> >>> +    mpm-transport-dev \
-> >>> +    mpm-transport-staticdev \
-> >>> +    edma3-lld-dev \
-> >>> +    edma3-lld-staticdev \
-> >>> +    lksctp-tools-dev \
-> >>> +    lksctp-tools-staticdev \
-> >>> +    "
-> >>> +
-> >>> +TI_PKGS_DEV_append_k2l-evm =3D "\
-> >>> +    dfe-lld-dev \
-> >>> +    dfe-lld-staticdev \
-> >>> +    iqn2-lld-dev \
-> >>> +    iqn2-lld-staticdev \
-> >>> +    "
-> >>> +
-> >>> +TI_PKGS_DEV_append_k2hk-evm =3D "\
-> >>> +    srio-lld-dev \
-> >>> +    srio-lld-staticdev \
-> >>> +    "
-> >>> +
-> >>> +RDEPENDS_${PN} +=3D " \
-> >>> +    packagegroup-arago-standalone-sdk-target \
-> >>> +    kernel-dev \
-> >>> +    ${TI_PKGS_DEV} \
-> >>> +    libdnet-dev \
-> >>> +    libdnet-staticdev \
-> >>> +    binutils-dev \
-> >>> +    binutils-staticdev \
-> >>> +    elfutils-dev \
-> >>> +    elfutils-staticdev \
-> >>> +    libbz2-dev \
-> >>> +    libbz2-staticdev \
-> >>> +    libgl-mesa-dev \
-> >>> +    boost-dev \
-> >>> +    libsdl-dev \
-> >>> +    "
-> >>> --
-> >>> 1.7.9.5
-> >>>
-> >>> _______________________________________________
-> >>> meta-arago mailing list
-> >>> meta-arago@arago-project.org
-> >>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+- Jake
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Cooper Jr., Franklin
+Sent: Tuesday, March 10, 2015 6:19 PM
+To: meta-arago@arago-project.org
+Cc: Cooper Jr., Franklin
+Subject: [meta-arago] [PATCH v2] refresh-screen: Add commandline parameter =
+to set background-color to black
+
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+
+* This is to work around an issue seen when using Qt 5 EGLFS
+* Also pull in the changes from the Qt 5 patches into the git repository it=
+self
+
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+V2 Changes:
+Added the reason why the various patches are being deleted.
+
+ ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 ----------------=
+----
+ ...een.pro-add-widgets-module-to-the-project.patch |   26 ----------------
+ ...place-QtGui-header-with-QtWidgets-for-Qt5.patch |   26 ----------------
+ .../recipes-core/matrix/refresh-screen_2.0.bb      |   10 ++-----
+ 4 files changed, 2 insertions(+), 91 deletions(-)  delete mode 100644 meta=
+-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Q=
+t5-use-qmake-available-in-PATH.patch
+ delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/00=
+01-refresh-screen.pro-add-widgets-module-to-the-project.patch
+ delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/00=
+02-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
+
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Make=
+file.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/r=
+ecipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-av=
+ailable-in-PATH.patch
+deleted file mode 100644
+index 726b9ea..0000000
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.bu=
+ild-with-Qt5-use-qmake-available-in-PATH.patch
++++ /dev/null
+@@ -1,31 +0,0 @@
+-From 394eacf80efaacc719e69179c7c709016d21b707 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Mon, 15 Dec 2014 15:46:08 -0500
+-Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- Makefile.build |    4 ++--
+- 1 file changed, 2 insertions(+), 2 deletions(-)
+-
+-diff --git a/Makefile.build b/Makefile.build -index a0ceaad..e6cb010 10064=
+4
+---- a/Makefile.build
+-+++ b/Makefile.build
+-@@ -8,11 +8,11 @@ all: release
+- .PHONY: qmake
+- qmake : refresh_screen.pro
+- 	@. ${ENV_SETUP}; \
+--	qmake2 CONFIG+=3Drelease refresh_screen.pro
+-+	qmake CONFIG+=3Drelease refresh_screen.pro
+-
+- qmake_debug : refresh_screen.pro
+- 	@. ${ENV_SETUP}; \
+--	qmake2 CONFIG+=3Ddebug refresh_screen.pro
+-+	qmake CONFIG+=3Ddebug refresh_screen.pro
+-
+- debug : qmake_debug
+- 	@. ${ENV_SETUP}; \
+---
+-1.7.9.5
+-
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refr=
+esh-screen.pro-add-widgets-module-to-the-project.patch b/meta-arago-extras/=
+recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-modu=
+le-to-the-project.patch
+deleted file mode 100644
+index b9a1f80..0000000
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-scr=
+een.pro-add-widgets-module-to-the-project.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From 3969a5b06cfa28e531080cfdb12ea69ada870f36 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Mon, 12 May 2014 21:07:32 -0400
+-Subject: [PATCH] refresh-screen.pro: add widgets module to the project for=
+ Qt5
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- refresh_screen.pro | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/refresh_screen.pro b/refresh_screen.pro -index afe5c25..a79ab=
+d0 100644
+---- a/refresh_screen.pro
+-+++ b/refresh_screen.pro
+-@@ -4,7 +4,7 @@
+- #
+- #-------------------------------------------------
+-=20
+--QT       +=3D core gui
+-+QT       +=3D core gui widgets
+-
+- TARGET =3D refresh_screen
+- TEMPLATE =3D app
+---
+-1.9.2
+-
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Repl=
+ace-QtGui-header-with-QtWidgets-for-Qt5.patch b/meta-arago-extras/recipes-c=
+ore/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.=
+patch
+deleted file mode 100644
+index 66c002d..0000000
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtG=
+ui-header-with-QtWidgets-for-Qt5.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From 60a8e6c8ea763ed88442f16509cae99d8e43918e Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Mon, 12 May 2014 21:01:57 -0400
+-Subject: [PATCH] Replace QtGui header with QtWidgets for Qt5
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- main.cpp | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/main.cpp b/main.cpp
+-index c5744d8..5a61904 100644
+---- a/main.cpp
+-+++ b/main.cpp
+-@@ -36,7 +36,7 @@
+-  *
+- */
+-
+--#include <QtGui/QApplication>
+-+#include <QtWidgets/QApplication>
+- #include "mainwindow.h"
+-
+- int main(int argc, char *argv[])
+---
+-1.9.2
+-
+diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb b/=
+meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+index 6c2c72e..53be987 100644
+--- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+@@ -9,19 +9,13 @@ inherit qt-provider
+ # Make sure that QT font libraries have been installed  RDEPENDS_${PN} +=
+=3D "${QT_RDEPENDS_FONTS}"
+=20
+-PR =3D "r7"
++PR =3D "r8"
+=20
+-SRCREV =3D "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
++SRCREV =3D "1c9af693ad91e7449358836fd0382d7b6a04c967"
+ BRANCH ?=3D "master"
+=20
+ SRC_URI =3D "git://gitorious.org/matrix-gui-v2/refresh-screen.git;protocol=
+=3Dgit;branch=3D${BRANCH}"
+=20
+-QT5_DIFF =3D " \
+-file://0001-refresh-screen.pro-add-widgets-module-to-the-project.patch \ -=
+file://0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch \ -file://000=
+1-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \ -"
+-
+ SRC_URI +=3D "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '',=
+ d)}"
+=20
+ S =3D "${WORKDIR}/git"
+--
+1.7.9.5
+
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
