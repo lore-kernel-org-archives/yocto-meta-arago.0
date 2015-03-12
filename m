@@ -1,24 +1,24 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 722E152A83
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 22CD652A83
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 17:29:09 +0000 (UTC)
+	Thu, 12 Mar 2015 17:34:15 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CHT8tK020343
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 12:29:08 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CHYEhs021681
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 12:34:14 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CHT7to027850
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 12:29:07 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Thu, 12 Mar 2015 12:29:07 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add
-	processor-sdk brand.
-Thread-Index: AQHQXMPl+PTibaNGEEaABpIDaxT/cp0ZMwOA//+svQCAAFnNAP//rS5AgABVywD//8OzMA==
-Date: Thu, 12 Mar 2015 17:29:06 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F95814107FB7@DFLE09.ent.ti.com>
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CHYC2f032577
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 12:34:12 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 12 Mar 2015 12:34:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CHYCMB022177;
+	Thu, 12 Mar 2015 12:34:12 -0500
+Date: Thu, 12 Mar 2015 13:34:12 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Message-ID: <20150312173412.GN24885@edge>
 References: <1426164957-22030-1-git-send-email-j-stiffler@ti.com>
 	<1426164957-22030-5-git-send-email-j-stiffler@ti.com>
 	<20150312135639.GC24885@edge>
@@ -26,12 +26,10 @@ References: <1426164957-22030-1-git-send-email-j-stiffler@ti.com>
 	<20150312142004.GF24885@edge>
 	<4B26FB5A64EBA14C87266869E037F95814107E3E@DFLE09.ent.ti.com>
 	<20150312143042.GI24885@edge>
-In-Reply-To: <20150312143042.GI24885@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	<4B26FB5A64EBA14C87266869E037F95814107FB7@DFLE09.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107FB7@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
 X-BeenThere: meta-arago@arago-project.org
@@ -46,135 +44,125 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 17:29:09 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 12 Mar 2015 17:34:15 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-It appears that doing 'DISTRO_FEATURES_remove_ti43x =3D "wayland"' will wor=
-k.=20
-
-Do you suspect any issues with this?
-
-Thanks,
-Jake
+That's a better approach anyway.
 
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Thursday, March 12, 2015 10:31 AM
-To: Stiffler, Jacob
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor=
--sdk brand.
-
-On Thu, Mar 12, 2015 at 10:25:43AM -0400, Stiffler, Jacob wrote:
-> I've been testing the patches since submitting the patches (wanted to=20
-> get these comments as soon as I could). It seems that this=20
-> oe_filter_out method is not working as expected...
-
-Try using :=3D when doing filter_out()...
-
-
+On Thu, Mar 12, 2015 at 01:29:06PM -0400, Stiffler, Jacob wrote:
+> It appears that doing 'DISTRO_FEATURES_remove_ti43x = "wayland"' will work. 
+> 
+> Do you suspect any issues with this?
+> 
+> Thanks,
+> Jake
+> 
+> 
 > -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Thursday, March 12, 2015 10:20 AM
+> From: Dmytriyenko, Denys 
+> Sent: Thursday, March 12, 2015 10:31 AM
 > To: Stiffler, Jacob
 > Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add process=
-or-sdk brand.
->=20
-> On Thu, Mar 12, 2015 at 10:00:35AM -0400, Stiffler, Jacob wrote:
-> > What would you suggest? That wayland be controlled as a feature from=20
-> > each branding file? Or a new variable introduced that arago.conf can=20
-> > check to decide if wayland should be added to the DISTRO_FEATURES?
->=20
-> Leave it like that for now - we'll see if we get any problems...
->=20
->=20
+> Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
+> 
+> On Thu, Mar 12, 2015 at 10:25:43AM -0400, Stiffler, Jacob wrote:
+> > I've been testing the patches since submitting the patches (wanted to 
+> > get these comments as soon as I could). It seems that this 
+> > oe_filter_out method is not working as expected...
+> 
+> Try using := when doing filter_out()...
+> 
+> 
 > > -----Original Message-----
 > > From: Dmytriyenko, Denys
-> > Sent: Thursday, March 12, 2015 9:57 AM
+> > Sent: Thursday, March 12, 2015 10:20 AM
 > > To: Stiffler, Jacob
 > > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add proce=
-ssor-sdk brand.
-> >=20
-> > On Thu, Mar 12, 2015 at 08:55:57AM -0400, Jacob Stiffler wrote:
-> > > * Set ARAGO_TISDK_IMAGE to "processor-sdk-linux-image"
-> > > * For now, use sitara-linux-ti-staging
-> > > * and remove wayland feature for ti33x and ti43x soc families.
-> > >=20
-> > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > > ---
-> > >  .../conf/distro/include/branding-processor-sdk.inc |   35 ++++++++++=
-++++++++++
-> > >  1 file changed, 35 insertions(+)
-> > >  create mode 100644
-> > > meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > >=20
-> > > diff --git
-> > > a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > > b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > > new file mode 100644
-> > > index 0000000..5eab952
-> > > --- /dev/null
-> > > +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk
-> > > +++ .i
-> > > +++ nc
-> > > @@ -0,0 +1,35 @@
-> > > +ARAGO_TISDK_IMAGE =3D "processor-sdk-linux-image"
-> > > +
-> > > +# Remove wayland from ti33x and ti43x DISTRO_FEATURES.
-> > > +DIRSTO_FEATURES_ti33x =3D "${@oe_filter_out('DISTRO_FEATURES', 'wayl=
-and', d)}"
-> > > +DIRSTO_FEATURES_ti43x =3D "${@oe_filter_out('DISTRO_FEATURES', 'wayl=
-and', d)}"
-> >=20
-> > Usually you want immediate assignment here. But I have my doubts it=20
-> > will work reliably either way, when done like that...
-> >=20
-> >=20
-> > > +PREFERRED_PROVIDER_virtual/kernel_am335x-evm =3D "sitara-linux-ti-st=
-aging"
-> > > +PREFERRED_PROVIDER_virtual/kernel_am437x-evm =3D "sitara-linux-ti-st=
-aging"
-> > > +PREFERRED_VERSION_sitara-linux-ti-staging =3D "3.14%"
-> > > +
-> > > +# To create newlines in the message \n is used and the slash must=20
-> > > +be escaped # to function properly
-> > > +
-> > > +SRCIPK_GIT_COMMIT_MESSAGE =3D "\
-> > > +Create local branch\\n\
-> > > +\\n\
-> > > +The below commit is used for this local branch and is the one=20
-> > > +used by\\n\ this sdk:\\n\ ${SRCREV}."
-> > > +
-> > > +SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE
-> > > +=3D"${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
-> > > +To reduce the size of the SDK installer only a portion of the git=20
-> > > +commit\\n\ history has been preserved. Also links to remote=20
-> > > +branches and tags do\\n\ not exist in this copy of the=20
-> > > +repository.\\n\ To fix this please run the=20
-> > > +unshallow-repositories.sh\\n\ script located in the sdk\'s bin=20
-> > > +directory\\n\ \\n\ The script may take several minutes but you=20
-> > > +will then have a full copy of\\n\ the git repository including=20
-> > > +its entire git history.\\n"
-> > > +
-> > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging =3D "processor-s=
-dk-1.0"
-> > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging =3D "${SRCIPK_S=
-HALLOW_GIT_COMMIT_MESSAGE}"
-> > > +
-> > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging =3D "processor-sdk-1.0=
-"
-> > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging =3D "${SRCIPK_GIT_COM=
-MIT_MESSAGE}"
-> > > --
-> > > 1.7.9.5
-> > >=20
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
+> > 
+> > On Thu, Mar 12, 2015 at 10:00:35AM -0400, Stiffler, Jacob wrote:
+> > > What would you suggest? That wayland be controlled as a feature from 
+> > > each branding file? Or a new variable introduced that arago.conf can 
+> > > check to decide if wayland should be added to the DISTRO_FEATURES?
+> > 
+> > Leave it like that for now - we'll see if we get any problems...
+> > 
+> > 
+> > > -----Original Message-----
+> > > From: Dmytriyenko, Denys
+> > > Sent: Thursday, March 12, 2015 9:57 AM
+> > > To: Stiffler, Jacob
+> > > Cc: meta-arago@arago-project.org
+> > > Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
+> > > 
+> > > On Thu, Mar 12, 2015 at 08:55:57AM -0400, Jacob Stiffler wrote:
+> > > > * Set ARAGO_TISDK_IMAGE to "processor-sdk-linux-image"
+> > > > * For now, use sitara-linux-ti-staging
+> > > > * and remove wayland feature for ti33x and ti43x soc families.
+> > > > 
+> > > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> > > > ---
+> > > >  .../conf/distro/include/branding-processor-sdk.inc |   35 ++++++++++++++++++++
+> > > >  1 file changed, 35 insertions(+)
+> > > >  create mode 100644
+> > > > meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > > > 
+> > > > diff --git
+> > > > a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > > > b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > > > new file mode 100644
+> > > > index 0000000..5eab952
+> > > > --- /dev/null
+> > > > +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk
+> > > > +++ .i
+> > > > +++ nc
+> > > > @@ -0,0 +1,35 @@
+> > > > +ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
+> > > > +
+> > > > +# Remove wayland from ti33x and ti43x DISTRO_FEATURES.
+> > > > +DIRSTO_FEATURES_ti33x = "${@oe_filter_out('DISTRO_FEATURES', 'wayland', d)}"
+> > > > +DIRSTO_FEATURES_ti43x = "${@oe_filter_out('DISTRO_FEATURES', 'wayland', d)}"
+> > > 
+> > > Usually you want immediate assignment here. But I have my doubts it 
+> > > will work reliably either way, when done like that...
+> > > 
+> > > 
+> > > > +PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
+> > > > +PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
+> > > > +PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
+> > > > +
+> > > > +# To create newlines in the message \n is used and the slash must 
+> > > > +be escaped # to function properly
+> > > > +
+> > > > +SRCIPK_GIT_COMMIT_MESSAGE = "\
+> > > > +Create local branch\\n\
+> > > > +\\n\
+> > > > +The below commit is used for this local branch and is the one 
+> > > > +used by\\n\ this sdk:\\n\ ${SRCREV}."
+> > > > +
+> > > > +SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE
+> > > > +="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
+> > > > +To reduce the size of the SDK installer only a portion of the git 
+> > > > +commit\\n\ history has been preserved. Also links to remote 
+> > > > +branches and tags do\\n\ not exist in this copy of the 
+> > > > +repository.\\n\ To fix this please run the 
+> > > > +unshallow-repositories.sh\\n\ script located in the sdk\'s bin 
+> > > > +directory\\n\ \\n\ The script may take several minutes but you 
+> > > > +will then have a full copy of\\n\ the git repository including 
+> > > > +its entire git history.\\n"
+> > > > +
+> > > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
+> > > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
+> > > > +
+> > > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "processor-sdk-1.0"
+> > > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
+> > > > --
+> > > > 1.7.9.5
+> > > > 
+> > > > _______________________________________________
+> > > > meta-arago mailing list
+> > > > meta-arago@arago-project.org
+> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
