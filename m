@@ -1,33 +1,34 @@
-Return-Path: <denys@ti.com>
+Return-Path: <karthik.ramanan@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 1876452A59
+	by arago-project.org (Postfix) with ESMTPS id 7729652A80
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 04:05:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2C45FgJ028469
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 23:05:15 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C45EoX005355
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 23:05:14 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 11 Mar 2015 23:05:14 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C45DYL011883;
-	Wed, 11 Mar 2015 23:05:14 -0500
-Date: Thu, 12 Mar 2015 00:05:13 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Hernandez, Carlos" <ceh@ti.com>
-Message-ID: <20150312040513.GI23587@edge>
-References: <1425993213-13246-1-git-send-email-ceh@ti.com>
-	<20150311235329.GD23587@edge>
-	<32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
-	<20150312004722.GE23587@edge>
+	Thu, 12 Mar 2015 05:51:06 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2C5p4Xf019483
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 00:51:05 -0500
+Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C5p0ii029218
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 11:21:02 +0530
+Received: from [172.24.159.122] (172.24.159.122) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Thu, 12 Mar 2015 11:21:00 +0530
+Message-ID: <55012944.2040403@ti.com>
+Date: Thu, 12 Mar 2015 11:21:00 +0530
+From: Karthik Ramanan <a0393906@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-In-Reply-To: <20150312004722.GE23587@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+To: "Balagopalakrishnan, Anand" <anandb@ti.com>, "Chengalvala, Vivek"
+	<vchengalvala@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>, "R, Karthik"
+	<karthik.ramanan@ti.com>
+References: <1426074538-21653-1-git-send-email-a0393906@ti.com>
+	<20150311234718.GC23587@edge>,
+	<FCB36D0BED1F0D4EA8E6242507E4245B0C8827C7@DFLE08.ent.ti.com>
+	<05CF4794C98B244ABDC620C10903762272FB05A7@DBDE04.ent.ti.com>
+In-Reply-To: <05CF4794C98B244ABDC620C10903762272FB05A7@DBDE04.ent.ti.com>
+X-Originating-IP: [172.24.159.122]
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+Subject: Re: [meta-arago 1/2] packagegroup-*-graphics: Add omapdrm-pvr
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,248 +41,101 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 04:05:16 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 12 Mar 2015 05:51:06 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Doesn't help. It still fails for am57xx-evm. It seems to build fine for am335x-evm...
+All,
 
-Besides the undefined yylex error (which might be non-fatal), I also see 
-these:
+I think we will have to defer this particular patch for a later 
+submission. The required kernel config and the SGX adaptation has to 
+come in before we can make this change. This was missed out in my checks 
+because I primarily validated this for J6/J6Eco.
 
-| clock_gettime03.c:141:4: error: '__NR_clock_gettime' undeclared (first use in this function)
+Vivek,
 
-| clock_gettime03.c:168:31: error: 'cleanup' undeclared (first use in this function)
+You can use this patch as a reference to take it through the validation 
+on the AM platforms once the required dependencies come in.
 
-| faccessat01.c:70:21: error: '__NR_faccessat' undeclared (first use in this function)
-
--- 
-Denys
+Regards
+Karthik
 
 
-On Wed, Mar 11, 2015 at 08:47:22PM -0400, Denys Dmytriyenko wrote:
-> No, it wasn't a clean build. I'll try that next, but I think I need to drop 
-> "share" part I've added first...
-> 
-> 
-> On Wed, Mar 11, 2015 at 08:44:53PM -0400, Hernandez, Carlos wrote:
-> >    Did you do a clean ltp-ddt build? The v2 patch ran successfully for me.
-> >    Carlos
-> > 
-> >    Sent from my Android phone using TouchDown (www.nitrodesk.com)
-> > 
-> >    -----Original Message-----
-> >    From: Dmytriyenko, Denys [denys@ti.com]
-> >    Received: Wednesday, 11 Mar 2015, 7:53PM
-> >    To: Hernandez, Carlos [ceh@ti.com]
-> >    CC: meta-arago@arago-project.org [meta-arago@arago-project.org]
-> >    Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0
-> >    recipe
-> > 
-> >    Carlos,
-> > 
-> >    ltp-ddt 1.0 fails to build now:
-> > 
-> >    | arm-linux-gnueabihf-gcc  -march=armv7-a -marm -mthumb-interwork
-> >    -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
-> >    -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-li
-> >    nk,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1
-> >    -Wl,--hash-style=gnu
-> >    --sysroot=/home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots
-> >    /am335x-evm -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include 
-> >    -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types -g -O2
-> >    -fno-strict-aliasing -pipe -Wall
-> >    -W  -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include 
-> >    -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types
-> >    -Wold-style-definition -isystem/opt/linaro-2013.
-> >    03/arm-linux-gnueabihf/include  -fstack-protector -D_FORTIFY_SOURCE=2
-> >    -I/home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/am335x_evm-oe-lin
-> >    ux-gnueabi/ltp-ddt/1.0.0-r0/git/testcases/kernel/include -D_GNU_SOURCE
-> >    -I/home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/am335x_evm-oe-li
-> >    nux-gnueabi/ltp-ddt/1.0.0-r0/git/testcases/kernel/timers/timer_create/../include
-> >    -I../../../../include -I../../../../include
-> >    -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib
-> >    -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1
-> >    -Wl,--hash-style=gnu  -L../../../../lib  timer_create02.c   -lltp
-> >    -lpthread -lrt -o timer_create02
-> >    |
-> >    /home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm/usr/lib/libfl.so:
-> >    undefined reference to `yylex'
-> >    | collect2: error: ld returned 1 exit status
-> >    | make[1]: *** [ltp-bump] Error 1
-> > 
-> >    Looks like flex doesn't have the right symbol - is it wrong version?
-> > 
-> >    --
-> >    Denys
-> > 
-> >    On Tue, Mar 10, 2015 at 09:13:33AM -0400, Carlos Hernandez wrote:
-> >    > Latest ltp release was recently merge to ltp-ddt and there is a new
-> >    > way to configure and compile ltp-ddt.
-> >    >
-> >    > Signed-off-by: Carlos Hernandez <ceh@ti.com>
-> >    > ---
-> >    >  ...ite-Make-sure-to-include-generated-header.patch | 33 ++++++++
-> >    >  .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      | 87
-> >    ++++++++++++++++++++++
-> >    >  2 files changed, 120 insertions(+)
-> >    >  create mode 100644
-> >    meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
-> >    >  create mode 100644
-> >    meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-> >    >
-> >    > diff --git
-> >    a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
-> >    b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
-> >    > new file mode 100644
-> >    > index 0000000..31df16d
-> >    > --- /dev/null
-> >    > +++
-> >    b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
-> >    > @@ -0,0 +1,33 @@
-> >    > +From 4a8f24892514cd5e4d11b9105c843db49eea921b Mon Sep 17 00:00:00 2001
-> >    > +From: Khem Raj <raj.khem@gmail.com>
-> >    > +Date: Wed, 19 Feb 2014 19:41:33 -0800
-> >    > +Subject: [PATCH] wdt_test_suite: Make sure to include generated headers
-> >    > +
-> >    > +This makes sure that its using the generated headers
-> >    > +and not the raw headers from kernel, generated headers
-> >    > +are built for the given machine already when kernel is
-> >    > +built and are available in configured/compiled kernel tree
-> >    > +already
-> >    > +
-> >    > +Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> >    > +---
-> >    > + testcases/ddt/wdt_test_suite/Makefile | 4 ++--
-> >    > + 1 file changed, 2 insertions(+), 2 deletions(-)
-> >    > +
-> >    > +diff --git a/testcases/ddt/wdt_test_suite/Makefile
-> >    b/testcases/ddt/wdt_test_suite/Makefile
-> >    > +index 90a6a90..22a1cfd 100644
-> >    > +--- a/testcases/ddt/wdt_test_suite/Makefile
-> >    > ++++ b/testcases/ddt/wdt_test_suite/Makefile
-> >    > +@@ -20,8 +20,8 @@ INCLUDES        = -I $(KERNEL_INC) -I
-> >    src/interface/common -I ../utils/user
-> >    > + INCLUDES        = -I src/parser \
-> >    > +                   -I src/interface/common \
-> >    > +                   -I ../utils/user \
-> >    > +-                  -I $(KERNEL_INC)/include \
-> >    > +-                  -I $(KERNEL_INC)/arch/arm/include
-> >    > ++                  -I $(KERNEL_INC)/include/generated \
-> >    > ++                  -I $(KERNEL_INC)/arch/arm/include/generated \
-> >    > +
-> >    > +#List of source files- Update this on adding a new C file
-> >    > + SOURCES := \
-> >    > +--
-> >    > +1.9.0
-> >    > diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-> >    b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-> >    > new file mode 100644
-> >    > index 0000000..c321242
-> >    > --- /dev/null
-> >    > +++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-> >    > @@ -0,0 +1,87 @@
-> >    > +SUMMARY = "Embedded Linux Device Driver Tests based on Linux Test
-> >    Project"
-> >    > +HOMEPAGE =
-> >    "http://arago-project.org/git/projects/test-automation/ltp-ddt.git"
-> >    > +SECTION = "console/utils"
-> >    > +LICENSE = "GPLv2"
-> >    > +LIC_FILES_CHKSUM =
-> >    "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
-> >    > +PR = "r1"
-> >    > +
-> >    > +PROVIDES += "ltp"
-> >    > +DEPENDS += "zip-native virtual/kernel alsa-lib"
-> >    > +
-> >    > +inherit autotools module-base kernel-module-split
-> >    > +
-> >    > +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> >    > +
-> >    > +SRCREV = "ltp-ddt_1.0.0"
-> >    > +BRANCH ?= "master"
-> >    > +
-> >    > +SRC_URI =
-> >    "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}
-> >    \
-> >    > +          
-> >    file://0001-wdt_test_suite-Make-sure-to-include-generated-header.patch \
-> >    > +          "
-> >    > +
-> >    > +S = "${WORKDIR}/git"
-> >    > +
-> >    > +LTPROOT = "/opt/ltp"
-> >    > +
-> >    > +EXTRA_OEMAKE_append = " \
-> >    > +    prefix=${LTPROOT} \
-> >    > +    CROSS_COMPILE=${HOST_PREFIX} \
-> >    > +    SKIP_IDCHECK=1 \
-> >    > +    KERNEL_INC=${STAGING_KERNEL_DIR} \
-> >    > +    KERNEL_USR_INC=${STAGING_INCDIR} \
-> >    > +    ALSA_INCPATH=${STAGING_INCDIR} \
-> >    > +    ALSA_LIBPATH=${STAGING_LIBDIR} \
-> >    > +    PLATFORM=${MACHINE} \
-> >    > +    RANLIB=${RANLIB} \
-> >    > +"
-> >    > +
-> >    > +TARGET_CC_ARCH += "${LDFLAGS}"
-> >    > +
-> >    > +FILES_${PN}-dbg += " \
-> >    > +    ${LTPROOT}/.debug \
-> >    > +    ${LTPROOT}/bin/.debug \
-> >    > +    ${LTPROOT}/runtest/.debug \
-> >    > +    ${LTPROOT}/testcases/bin/.debug \
-> >    > +    ${LTPROOT}/testcases/bin/*/bin/.debug \
-> >    > +    ${LTPROOT}/testcases/bin/*/test/.debug \
-> >    > +    ${LTPROOT}/testcases/bin/ddt/.debug \
-> >    > +    ${LTPROOT}/testcases/bin/ddt/*/bin/.debug \
-> >    > +    ${LTPROOT}/testcases/bin/ddt/*/test/.debug \
-> >    > +    ${LTPROOT}/testcases/realtime/*/*/.debug \
-> >    > +"
-> >    > +
-> >    > +FILES_${PN}-staticdev += "${LTPROOT}/lib"
-> >    > +FILES_${PN} += "${LTPROOT}/*"
-> >    > +
-> >    > +# ltp doesn't regenerate ffsb-6.0-rc2 configure and hardcode configure
-> >    call.
-> >    > +# we explicitly force regeneration of that directory and pass configure
-> >    options.
-> >    > +do_configure_append() {
-> >    > +    (cd utils/ffsb-6.0-rc2; autoreconf -fvi; ./configure
-> >    ${CONFIGUREOPTS})
-> >    > +}
-> >    > +
-> >    > +kmoddir = "/lib/modules/${KERNEL_VERSION}/kernel/drivers/ddt"
-> >    > +
-> >    > +do_compile_append () {
-> >    > +    unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
-> >    > +    oe_runmake KERNEL_CC="${KERNEL_CC}" DESTDIR=${D} modules
-> >    > +}
-> >    > +
-> >    > +do_install() {
-> >    > +    oe_runmake DESTDIR=${D} install
-> >    > +    install -d ${D}${datadir}
-> >    > +    install -d ${D}${kmoddir}
-> >    > +    mv ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
-> >    > +}
-> >    > +
-> >    > +PR_append = "-arago10+gitr${SRCPV}"
-> >    > +
-> >    > +RDEPENDS_${PN} += "linaro-pm-qa-utils serialcheck"
-> >    > +
-> >    > +EXTRA_OEMAKE += "KERNEL_PATH="${STAGING_KERNEL_DIR}""
-> >    > +
-> >    > +KERNEL_MODULES_META_PACKAGE = "${PN}"
-> >    > +
-> >    > +# do_make_scripts should be a separate task for the lock to work
-> >    > +addtask make_scripts before do_compile
-> >    > +do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
-> >    > +do_make_scripts[deptask] = "do_populate_sysroot"
-> >    > --
-> >    > 1.9.1
-> >    >
-> >    > _______________________________________________
-> >    > meta-arago mailing list
-> >    > meta-arago@arago-project.org
-> >    > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+On 12-Mar-15 11:15 AM, Balagopalakrishnan, Anand wrote:
+> I believe the second message is because kernel has not been built before omapdrm-pvr.
+>
+> The first message is due to config_preempt. Nevertheless, the current version/recipe in meta-arago also requires config_preempt. I am not sure how the current version has been accepted.
+>
+> As Vivek said, I am looking at enabling SGX for config_preempt_voluntary.
+>
+> Regards,
+> Anand
+> ________________________________________
+> From: Chengalvala, Vivek
+> Sent: Thursday, March 12, 2015 7:19 AM
+> To: Dmytriyenko, Denys; R, Karthik
+> Cc: meta-arago@arago-project.org; Balagopalakrishnan, Anand
+> Subject: RE: [meta-arago] [meta-arago 1/2] packagegroup-*-graphics: Add omapdrm-pvr
+>
+> +Anand
+>
+> Anand is trying to get Graphics to work with CONFIG_PREEMPT voluntary.
+>
+>
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
+> Sent: Wednesday, March 11, 2015 7:47 PM
+> To: R, Karthik
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [meta-arago 1/2] packagegroup-*-graphics: Add omapdrm-pvr
+>
+> This doesn't work:
+>
+> | /home/jenkins/tisdk-build-am57x/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/am57xx_evm-oe-linux-gnueabi/omapdrm-pvr/1.9.2253347-r6c/git/eurasia_km/eurasiacon/binary2_omap5430_linux_release/target/kbuild/services4/srvkm/env/linux/osfunc.c:116:2: error: #error "A preemptible Linux kernel is required when using workqueues"
+>
+>
+> Also I see these messages, but I don't think they are fatal:
+>
+> | ../config/core.mk:419: $(KERNELDIR)/vmlinux does not exist. Kbuild may fail.
+> | /bin/sh: dos2unix: command not found
+>
+> --
+> Denys
+>
+>
+> On Wed, Mar 11, 2015 at 05:18:57PM +0530, Karthik Ramanan wrote:
+>> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>> ---
+>>   .../packagegroup-arago-tisdk-graphics.bb           |    3 +--
+>>   1 file changed, 1 insertion(+), 2 deletions(-)
+>>
+>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+>> index f854596..1043ce5 100644
+>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+>> @@ -38,9 +38,8 @@ GRAPHICS_RDEPENDS_omap3 = "\
+>>   GRAPHICS_RDEPENDS_omap-a15 = "\
+>>       libgbm \
+>>       omap5-sgx-ddk-um-linux \
+>> +    omapdrm-pvr \
+>>       "
+>> -# Put this back when compile issues are fixed against 3.14
+>> -#    omapdrm-pvr
+>>
+>>   GRAPHICS_BLTSVILLE = ""
+>>   GRAPHICS_BLTSVILLE_omap-a15 = " \
+>> --
+>> 1.7.9.5
+>>
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
+
 
