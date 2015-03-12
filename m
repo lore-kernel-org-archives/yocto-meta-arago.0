@@ -1,37 +1,39 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D287052A77
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 722E152A83
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 15:04:32 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CF4WwT005697
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 10:04:32 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CF4VB7000399
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 10:04:31 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 10:04:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CF4UBU026501;
-	Thu, 12 Mar 2015 10:04:30 -0500
-Date: Thu, 12 Mar 2015 11:04:30 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20150312150430.GM24885@edge>
-References: <20150312040513.GI23587@edge> <5501902A.4060206@ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814107D47@DFLE09.ent.ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814107E1F@DFLE09.ent.ti.com>
-	<5501A4E0.2050107@ti.com> <20150312144215.GJ24885@edge>
-	<4B26FB5A64EBA14C87266869E037F95814107E91@DFLE09.ent.ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814107EAA@DFLE09.ent.ti.com>
-	<5501A903.7030306@ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814107EC9@DFLE09.ent.ti.com>
+	Thu, 12 Mar 2015 17:29:09 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CHT8tK020343
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 12:29:08 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CHT7to027850
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 12:29:07 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Thu, 12 Mar 2015 12:29:07 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add
+	processor-sdk brand.
+Thread-Index: AQHQXMPl+PTibaNGEEaABpIDaxT/cp0ZMwOA//+svQCAAFnNAP//rS5AgABVywD//8OzMA==
+Date: Thu, 12 Mar 2015 17:29:06 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95814107FB7@DFLE09.ent.ti.com>
+References: <1426164957-22030-1-git-send-email-j-stiffler@ti.com>
+	<1426164957-22030-5-git-send-email-j-stiffler@ti.com>
+	<20150312135639.GC24885@edge>
+	<4B26FB5A64EBA14C87266869E037F95814107DDB@DFLE09.ent.ti.com>
+	<20150312142004.GF24885@edge>
+	<4B26FB5A64EBA14C87266869E037F95814107E3E@DFLE09.ent.ti.com>
+	<20150312143042.GI24885@edge>
+In-Reply-To: <20150312143042.GI24885@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107EC9@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+Subject: Re: [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,104 +46,135 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 15:04:33 -0000
+X-List-Received-Date: Thu, 12 Mar 2015 17:29:09 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Heh, and now my build passed the yylex() issue due to LEXLIB being 
-magically empty this time around, but failed due to all __NR_* issues...
+It appears that doing 'DISTRO_FEATURES_remove_ti43x =3D "wayland"' will wor=
+k.=20
+
+Do you suspect any issues with this?
+
+Thanks,
+Jake
 
 
-On Thu, Mar 12, 2015 at 10:57:46AM -0400, Stiffler, Jacob wrote:
-> I get something different:
-> 
-> work/am437x_evm-oe-linux-gnueabi/ltp-ddt/1.0.0-r0/git$ cat config.log | grep LEXLIB
-> LEXLIB='-lfl'
-> 
-> 
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Thursday, March 12, 2015 10:31 AM
+To: Stiffler, Jacob
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor=
+-sdk brand.
+
+On Thu, Mar 12, 2015 at 10:25:43AM -0400, Stiffler, Jacob wrote:
+> I've been testing the patches since submitting the patches (wanted to=20
+> get these comments as soon as I could). It seems that this=20
+> oe_filter_out method is not working as expected...
+
+Try using :=3D when doing filter_out()...
+
+
 > -----Original Message-----
-> From: Hernandez, Carlos 
-> Sent: Thursday, March 12, 2015 10:56 AM
-> To: Stiffler, Jacob; Dmytriyenko, Denys
+> From: Dmytriyenko, Denys
+> Sent: Thursday, March 12, 2015 10:20 AM
+> To: Stiffler, Jacob
 > Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
-> 
-> configure does set LEXLIB to blank.
-> 
-> $ cat 1.0.0-r1-arago10+gitrAUTOINC+91a8baa2f8/git/config.log | grep LEXLIB LEXLIB=''
-> 
-> 
-> On 03/12/2015 10:50 AM, Stiffler, Jacob wrote:
-> > The file ./include/mk/config.mk.default makes sure that LEXLIB is undefined.
-> >
-> > The meta-oe version of the recipe for v 0.0.4 has a custom configure stage to make sure that ./include/mk/config.mk.default is the config.mk used:
-> >
-> > do_configure() {
-> >      cp ${S}/include/config.h.default ${S}/include/config.h
-> >      cp ${S}/include/mk/config.mk.default ${S}/include/mk/config.mk
-> >      cp ${S}/include/mk/features.mk.default ${S}/include/mk/features.mk
-> >      echo "${TAG}" > ${S}/ChangeLog
-> > }
-> >
-> >
-> >
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org 
-> > [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Stiffler, 
-> > Jacob
-> > Sent: Thursday, March 12, 2015 10:44 AM
-> > To: Dmytriyenko, Denys; Hernandez, Carlos
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 
-> > recipe
-> >
-> > The warning implies that LEXLIB is not defined. Therefore LEXLIB should not be linked for all targets in pan/Makefile, only ltp-scanner.
-> >
+> Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add process=
+or-sdk brand.
+>=20
+> On Thu, Mar 12, 2015 at 10:00:35AM -0400, Stiffler, Jacob wrote:
+> > What would you suggest? That wayland be controlled as a feature from=20
+> > each branding file? Or a new variable introduced that arago.conf can=20
+> > check to decide if wayland should be added to the DISTRO_FEATURES?
+>=20
+> Leave it like that for now - we'll see if we get any problems...
+>=20
+>=20
 > > -----Original Message-----
 > > From: Dmytriyenko, Denys
-> > Sent: Thursday, March 12, 2015 10:42 AM
-> > To: Hernandez, Carlos
-> > Cc: Stiffler, Jacob; meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 
-> > recipe
-> >
-> > The successful build doesn't have -lfl after the ltp-scanner skip warning.
-> >
-> >
-> > On Thu, Mar 12, 2015 at 10:38:24AM -0400, Carlos Hernandez wrote:
-> >> On 03/12/2015 10:21 AM, Stiffler, Jacob wrote:
-> >>> The symbol 'yylex' comes from a flex generated file. Not sure how this isn't being seen in all builds... This will need to link with a flex generated file. In this case, all I can see is scan.c, which is generated from scan.l. So should ltp_bump link with scan.o? If not, then why would ltp-bump need to link with libfl.so?
-> >>>
-> >>> Can you find the log for linking 'ltp-bump' in one of the successful builds?
-> >> *14:59:13*  make[1]: Entering directory `/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-ddt/pan'
-> >> *14:59:13*  
-> >> /scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-dd
-> >> t/pan/Makefile:43: ltp-scanner will not be built because a working 
-> >> copy of lex was not found
-> >> *14:59:13*  
-> >> /home/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/integrati
-> >> on/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc -g -O2 -g -O2 
-> >> -fno-strict-aliasing -pipe -Wall -W -g -O2 -Wold-style-definition 
-> >> -D_FORTIFY_SOURCE=2 -Wno-error 
-> >> -I/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-
-> >> ddt/pan -I../include -I../include  -c -o ltp-bump.o ltp-bump.c
-> >> *14:59:13*  /home/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/integration/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc -g -O2 -g -O2 -fno-strict-aliasing -pipe -Wall -W -g -O2 -Wold-style-definition -D_FORTIFY_SOURCE=2 -Wno-error -I/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-ddt/pan -I../include -I../include  -c -o zoolib.o zoolib.c
-> >> *14:59:13*  /home/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/integration/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc   -L../lib  ltp-bump.o zoolib.o   -lm  -o ltp-bump
-> >> *14:59:13*  
-> >> /home/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/integrati
-> >> on/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc -g -O2 -g -O2 
-> >> -fno-strict-aliasing -pipe -Wall -W -g -O2 -Wold-style-definition 
-> >> -D_FORTIFY_SOURCE=2 -Wno-error 
-> >> -I/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-
-> >> ddt/pan -I../include -I../include  -c -o ltp-pan.o ltp-pan.c
-> >> *14:59:14*  /home/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/integration/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc -g -O2 -g -O2 -fno-strict-aliasing -pipe -Wall -W -g -O2 -Wold-style-definition -D_FORTIFY_SOURCE=2 -Wno-error -I/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-ddt/pan -I../include -I../include  -c -o splitstr.o splitstr.c
-> >> *14:59:14*  /home/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/integration/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc   -L../lib  ltp-pan.o zoolib.o splitstr.o   -lm  -o ltp-pan
-> >> *14:59:14*  make[1]: Leaving directory `/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-ddt/pan'
-> >>
-> >>
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+> > Sent: Thursday, March 12, 2015 9:57 AM
+> > To: Stiffler, Jacob
+> > Cc: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add proce=
+ssor-sdk brand.
+> >=20
+> > On Thu, Mar 12, 2015 at 08:55:57AM -0400, Jacob Stiffler wrote:
+> > > * Set ARAGO_TISDK_IMAGE to "processor-sdk-linux-image"
+> > > * For now, use sitara-linux-ti-staging
+> > > * and remove wayland feature for ti33x and ti43x soc families.
+> > >=20
+> > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> > > ---
+> > >  .../conf/distro/include/branding-processor-sdk.inc |   35 ++++++++++=
+++++++++++
+> > >  1 file changed, 35 insertions(+)
+> > >  create mode 100644
+> > > meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > >=20
+> > > diff --git
+> > > a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > > b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > > new file mode 100644
+> > > index 0000000..5eab952
+> > > --- /dev/null
+> > > +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk
+> > > +++ .i
+> > > +++ nc
+> > > @@ -0,0 +1,35 @@
+> > > +ARAGO_TISDK_IMAGE =3D "processor-sdk-linux-image"
+> > > +
+> > > +# Remove wayland from ti33x and ti43x DISTRO_FEATURES.
+> > > +DIRSTO_FEATURES_ti33x =3D "${@oe_filter_out('DISTRO_FEATURES', 'wayl=
+and', d)}"
+> > > +DIRSTO_FEATURES_ti43x =3D "${@oe_filter_out('DISTRO_FEATURES', 'wayl=
+and', d)}"
+> >=20
+> > Usually you want immediate assignment here. But I have my doubts it=20
+> > will work reliably either way, when done like that...
+> >=20
+> >=20
+> > > +PREFERRED_PROVIDER_virtual/kernel_am335x-evm =3D "sitara-linux-ti-st=
+aging"
+> > > +PREFERRED_PROVIDER_virtual/kernel_am437x-evm =3D "sitara-linux-ti-st=
+aging"
+> > > +PREFERRED_VERSION_sitara-linux-ti-staging =3D "3.14%"
+> > > +
+> > > +# To create newlines in the message \n is used and the slash must=20
+> > > +be escaped # to function properly
+> > > +
+> > > +SRCIPK_GIT_COMMIT_MESSAGE =3D "\
+> > > +Create local branch\\n\
+> > > +\\n\
+> > > +The below commit is used for this local branch and is the one=20
+> > > +used by\\n\ this sdk:\\n\ ${SRCREV}."
+> > > +
+> > > +SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE
+> > > +=3D"${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
+> > > +To reduce the size of the SDK installer only a portion of the git=20
+> > > +commit\\n\ history has been preserved. Also links to remote=20
+> > > +branches and tags do\\n\ not exist in this copy of the=20
+> > > +repository.\\n\ To fix this please run the=20
+> > > +unshallow-repositories.sh\\n\ script located in the sdk\'s bin=20
+> > > +directory\\n\ \\n\ The script may take several minutes but you=20
+> > > +will then have a full copy of\\n\ the git repository including=20
+> > > +its entire git history.\\n"
+> > > +
+> > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging =3D "processor-s=
+dk-1.0"
+> > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging =3D "${SRCIPK_S=
+HALLOW_GIT_COMMIT_MESSAGE}"
+> > > +
+> > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging =3D "processor-sdk-1.0=
+"
+> > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging =3D "${SRCIPK_GIT_COM=
+MIT_MESSAGE}"
+> > > --
+> > > 1.7.9.5
+> > >=20
+> > > _______________________________________________
+> > > meta-arago mailing list
+> > > meta-arago@arago-project.org
+> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
