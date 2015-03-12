@@ -1,23 +1,23 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 06006529B3
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id D0A43529B3
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 14:43:57 +0000 (UTC)
+	Thu, 12 Mar 2015 14:50:45 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CEhviX015080
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:43:57 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CEojOs021160
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:50:45 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEhu5S028381
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:43:56 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEohfZ001891
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:50:44 -0500
 Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
 	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Thu, 12 Mar 2015 09:43:56 -0500
+	14.03.0224.002; Thu, 12 Mar 2015 09:50:43 -0500
 From: "Stiffler, Jacob" <j-stiffler@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>, "Hernandez, Carlos" <ceh@ti.com>
 Thread-Topic: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
-Thread-Index: AQHQWzQO+VOPk3+2OEmUSaboahin5p0YSo6AgAAOXYCAAACxAIAAN0iAgACYOAD//650YIAADnHQgABbywCAAAEUgP//rElg
-Date: Thu, 12 Mar 2015 14:43:56 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F95814107E91@DFLE09.ent.ti.com>
+Thread-Index: AQHQWzQO+VOPk3+2OEmUSaboahin5p0YSo6AgAAOXYCAAACxAIAAN0iAgACYOAD//650YIAADnHQgABbywCAAAEUgP//rElggAABl1A=
+Date: Thu, 12 Mar 2015 14:50:43 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95814107EAA@DFLE09.ent.ti.com>
 References: <1425993213-13246-1-git-send-email-ceh@ti.com>
 	<20150311235329.GD23587@edge>
 	<32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
@@ -26,7 +26,8 @@ References: <1425993213-13246-1-git-send-email-ceh@ti.com>
 	<4B26FB5A64EBA14C87266869E037F95814107D47@DFLE09.ent.ti.com>
 	<4B26FB5A64EBA14C87266869E037F95814107E1F@DFLE09.ent.ti.com>
 	<5501A4E0.2050107@ti.com> <20150312144215.GJ24885@edge>
-In-Reply-To: <20150312144215.GJ24885@edge>
+	<4B26FB5A64EBA14C87266869E037F95814107E91@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107E91@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -46,10 +47,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 14:43:58 -0000
+X-List-Received-Date: Thu, 12 Mar 2015 14:50:46 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+The file ./include/mk/config.mk.default makes sure that LEXLIB is undefined=
+.=20
+
+The meta-oe version of the recipe for v 0.0.4 has a custom configure stage =
+to make sure that ./include/mk/config.mk.default is the config.mk used:
+
+do_configure() {
+    cp ${S}/include/config.h.default ${S}/include/config.h
+    cp ${S}/include/mk/config.mk.default ${S}/include/mk/config.mk
+    cp ${S}/include/mk/features.mk.default ${S}/include/mk/features.mk
+    echo "${TAG}" > ${S}/ChangeLog
+}
+
+
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Stiffler, Jacob
+Sent: Thursday, March 12, 2015 10:44 AM
+To: Dmytriyenko, Denys; Hernandez, Carlos
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recip=
+e
 
 The warning implies that LEXLIB is not defined. Therefore LEXLIB should not=
  be linked for all targets in pan/Makefile, only ltp-scanner.
@@ -114,4 +139,8 @@ ntegration/toolchain/linaro-4.7/bin/arm-linux-gnueabihf-gcc   -L../lib  ltp=
 pace/start-ltp-ddt-next-build/ltp-ddt/pan'
 >=20
 >=20
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
