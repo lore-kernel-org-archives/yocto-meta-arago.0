@@ -1,31 +1,29 @@
-Return-Path: <denys@ti.com>
+Return-Path: <sam.nelson@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 47D91529F8
+	by arago-project.org (Postfix) with ESMTPS id 010C652A43
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 02:02:31 +0000 (UTC)
+	Thu, 12 Mar 2015 02:23:42 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2C22Thv020005
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 21:02:29 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C22SJh017398
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 21:02:28 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 11 Mar 2015 21:02:28 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C22SYd002799;
-	Wed, 11 Mar 2015 21:02:28 -0500
-Date: Wed, 11 Mar 2015 22:02:27 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150312020227.GG23587@edge>
-References: <1425580304-19919-1-git-send-email-j-stiffler@ti.com>
-	<1425580304-19919-2-git-send-email-j-stiffler@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2C2Ngii021882
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 21:23:42 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C2Nf96030048
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 21:23:41 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 11 Mar 2015 21:23:41 -0500
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t2C2NcZm013371;	Wed, 11 Mar 2015 21:23:41 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 11 Mar 2015 22:23:33 -0400
+Message-ID: <1426127016-21527-2-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1426127016-21527-1-git-send-email-sam.nelson@ti.com>
+References: <1426127016-21527-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1425580304-19919-2-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [RFC v2 1/4] arago-prefs: Add WAYLAND_SUPPORT flag.
+Subject: [PATCH 2/5] makedumpfile: Add makedumpfile tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,42 +36,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 02:02:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 12 Mar 2015 02:23:43 -0000
+Content-Type: text/plain
 
-On Thu, Mar 05, 2015 at 01:31:40PM -0500, Jacob Stiffler wrote:
-> * Default to "1" if QT_PROVIDER is not "qt4e".
-> 
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../conf/distro/include/arago-prefs.inc            |    2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> index e689f8b..a566437 100644
-> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> @@ -28,6 +28,8 @@ PREFERRED_PROVIDER_virtual/gettext = "gettext"
->  ARAGO_QT_PROVIDER = "${@base_conditional('QT_PROVIDER','qt5','',base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d),d)}"
->  PREFERRED_PROVIDER_qt4-embedded = "${ARAGO_QT_PROVIDER}"
->  
-> +WAYLAND_SUPPORT ?= "${@base_conditional('QT_PROVIDER', 'qt4e', '0', '1', d)}"
+From: Hao Zhang <hzhang@ti.com>
 
-So, as I mentioned on the call today, we should use "wayland" 
-in DISTRO_FEATURES instead:
+- Add makedumpfile tool to shorten the dumpfile of kdump.
 
-${@base_contains('DISTRO_FEATURES', 'wayland', 'deps-for-wayland', 'deps-for-eglfs', d)}
+Signed-off-by: Hao Zhang <hzhang@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../makedumpfile/makedumpfile_1.5.0.bb             |   18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb
 
+diff --git a/meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb b/meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb
+new file mode 100644
+index 0000000..59dbaba
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb
+@@ -0,0 +1,18 @@
++DESCRIPTION = "Make dump file utility"
++LICENSE = "GPLv2"
++
++LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
++
++SRC_URI = "http://sourceforge.net/projects/makedumpfile/files/makedumpfile/1.5.0/makedumpfile-${PV}.tar.gz;name=makedumpfile"
++
++SRC_URI[makedumpfile.md5sum] = "e22277d77752c71525a79eab148abf55"
++SRC_URI[makedumpfile.sha256sum] = "8a771a22c6ba79dc505e55727f0cfd357ccb3c97defe21cefd5a67b64452fca7"
++
++DEPENDS = "zlib elfutils bzip2"
++
++EXTRA_OEMAKE = "TARGET=${TARGET_ARCH}"
++
++do_install() {
++	install -d ${D}${bindir}/
++	install -c -m 755 ${S}/makedumpfile ${D}${bindir}/
++}
+-- 
+1.7.9.5
 
->  PREFERRED_VERSION_qt4-embedded = "4.8.5"
->  PREFERRED_VERSION_qt4-native = "4.8.5"
->  PREFERRED_VERSION_nativesdk-qt4-tools = "4.8.5"
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
