@@ -1,35 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2B23A52A78
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 4CA8152A78
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 14:23:14 +0000 (UTC)
+	Thu, 12 Mar 2015 14:24:51 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CENDm7002774
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:23:13 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CENCMY013075
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:23:12 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 09:23:12 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CEOoJi000800
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:24:50 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEOnPG014077
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:24:49 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 12 Mar 2015 09:24:49 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CENCVM029186;
-	Thu, 12 Mar 2015 09:23:12 -0500
-Date: Thu, 12 Mar 2015 10:23:11 -0400
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEOnWN011193;
+	Thu, 12 Mar 2015 09:24:49 -0500
+Date: Thu, 12 Mar 2015 10:24:48 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20150312142311.GG24885@edge>
-References: <1425993213-13246-1-git-send-email-ceh@ti.com>
-	<20150311235329.GD23587@edge>
-	<32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
-	<20150312004722.GE23587@edge> <20150312040513.GI23587@edge>
-	<5501902A.4060206@ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814107D47@DFLE09.ent.ti.com>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20150312142448.GH24885@edge>
+References: <1426168407-5506-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107D47@DFLE09.ent.ti.com>
+In-Reply-To: <1426168407-5506-1-git-send-email-fcooper@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v2] packagegroup-arago-standalone-sdk-target: Include libgomp into toolchain SDK
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,168 +37,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 14:23:14 -0000
+X-List-Received-Date: Thu, 12 Mar 2015 14:24:51 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-There's definitely some implicit dependency going on there - just repeating a 
-failed build of ltp-ddt makes it work the second time. It might be something 
-internal to ltp-ddt, but I'm looking for any missing external deps for now...
+Ack
 
-
-On Thu, Mar 12, 2015 at 09:19:53AM -0400, Stiffler, Jacob wrote:
-> Sounds like a missing dependency issue if an initial clean build fails, then 
-> cleaning ltp-ddt before continuing the build allows it to succeed in some 
-> cases.
+On Thu, Mar 12, 2015 at 08:53:27AM -0500, Franklin S. Cooper Jr wrote:
+> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 > 
-> - Jake
+> * When compiling an application with the -fopenmp flag an error is given since
+>   libgomp isn't apart of the toolchain SDK.
+> * Since this package comes from the toolchain only include it when using the
+>   external linaro toolchain since it isn't included in the arago toolchain.
 > 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Hernandez, Carlos
-> Sent: Thursday, March 12, 2015 9:10 AM
-> To: Dmytriyenko, Denys
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+> v2 changes:
+> Depend on TCMODE instead of TCLIBC
+> Only pull in libgomp-dev since libgomp will end up being pulled in automatically
 > 
-> On 03/12/2015 12:05 AM, Denys Dmytriyenko wrote:
-> > Doesn't help. It still fails for am57xx-evm. It seems to build fine for am335x-evm...
-> >
-> > Besides the undefined yylex error (which might be non-fatal), I also 
-> > see
-> > these:
-> >
-> > | clock_gettime03.c:141:4: error: '__NR_clock_gettime' undeclared 
-> > | (first use in this function)
-> >
-> > | clock_gettime03.c:168:31: error: 'cleanup' undeclared (first use in 
-> > | this function)
-> >
-> > | faccessat01.c:70:21: error: '__NR_faccessat' undeclared (first use 
-> > | in this function)
-> >
+>  .../packagegroup-arago-standalone-sdk-target.bb    |    3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> I saw that error but it went away after cleaning ltp-ddt and rebuilding. 
-> See log below.
-> 
-> a0850405@a0850405-off1:~/code/tisdk/build$ MACHINE=dra7xx-evm bitbake ltp-ddt -c clean Loading cache: 100% 
-> |#######################################################################
-> |#######################################################################
-> |#####################################################|
-> ETA:  00:00:00
-> Loaded 2194 entries from dependency cache.
-> Parsing recipes: 100% 
-> |#######################################################################
-> |#######################################################################
-> |###################################################|
-> Time: 00:00:02
-> Parsing of 1766 .bb files complete (1758 cached, 8 parsed). 2201 targets, 199 skipped, 0 masked, 0 errors.
-> WARNING: No recipes available for:
-> /home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend 
-> 
-> /home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.1.bbappend 
-> 
-> NOTE: Resolving any missing task queue dependencies
-> 
-> Build Configuration:
-> BB_VERSION        = "1.22.0"
-> BUILD_SYS         = "i686-linux"
-> NATIVELSBSTRING   = "Ubuntu-14.04"
-> TARGET_SYS        = "arm-oe-linux-gnueabi"
-> MACHINE           = "dra7xx-evm"
-> DISTRO            = "arago"
-> DISTRO_VERSION    = "2015.02"
-> TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa15"
-> TARGET_FPU        = "vfp-neon"
-> meta-arago-distro
-> meta-arago-extras = "master:7362ca23ba513bc8af251da6b8b8a7a029aeafca"
-> meta-qt5          = "master:adeaa6128b665920eb98eb7c064f4aacbd74b873"
-> toolchain-layer
-> meta-networking
-> meta-ruby
-> meta-oe           = "daisy:91dbdff2e1a0ca3dae72dfe0aaa022fc28974314"
-> meta-ti           = "daisy:a47fe3573ec2c7662eb385049807dea4f81fa284"
-> meta-linaro-toolchain = "daisy:bc63e777ad2748b8bfa7fa70ffd74700fa21a567"
-> meta              = "daisy:f34de2175f1d6a443f219b8ceaaf796cfbc6efd5"
-> 
-> NOTE: Preparing runqueue
-> NOTE: Executing RunQueue Tasks
-> NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn't need to be rerun and all succeeded.
-> 
-> Summary: There was 1 WARNING message shown.
-> 
-> 
-> a0850405@a0850405-off1:~/code/tisdk/build$ MACHINE=dra7xx-evm bitbake ltp-ddt Loading cache: 100% 
-> |#######################################################################
-> |#######################################################################
-> |#####################################################|
-> ETA:  00:00:00
-> Loaded 2194 entries from dependency cache.
-> Parsing recipes: 100% 
-> |#######################################################################
-> |#######################################################################
-> |###################################################|
-> Time: 00:00:01
-> Parsing of 1766 .bb files complete (1758 cached, 8 parsed). 2201 targets, 199 skipped, 0 masked, 0 errors.
-> WARNING: No recipes available for:
-> /home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend 
-> 
-> /home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/qt5/qtwebkit_5.4.1.bbappend 
-> 
-> NOTE: Resolving any missing task queue dependencies
-> 
-> Build Configuration:
-> BB_VERSION        = "1.22.0"
-> BUILD_SYS         = "i686-linux"
-> NATIVELSBSTRING   = "Ubuntu-14.04"
-> TARGET_SYS        = "arm-oe-linux-gnueabi"
-> MACHINE           = "dra7xx-evm"
-> DISTRO            = "arago"
-> DISTRO_VERSION    = "2015.02"
-> TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa15"
-> TARGET_FPU        = "vfp-neon"
-> meta-arago-distro
-> meta-arago-extras = "master:7362ca23ba513bc8af251da6b8b8a7a029aeafca"
-> meta-qt5          = "master:adeaa6128b665920eb98eb7c064f4aacbd74b873"
-> toolchain-layer
-> meta-networking
-> meta-ruby
-> meta-oe           = "daisy:91dbdff2e1a0ca3dae72dfe0aaa022fc28974314"
-> meta-ti           = "daisy:a47fe3573ec2c7662eb385049807dea4f81fa284"
-> meta-linaro-toolchain = "daisy:bc63e777ad2748b8bfa7fa70ffd74700fa21a567"
-> meta              = "daisy:f34de2175f1d6a443f219b8ceaaf796cfbc6efd5"
-> 
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> NOTE: Tasks Summary: Attempted 465 tasks of which 452 didn't need to be rerun and all succeeded.
-> 
-> Summary: There was 1 WARNING message shown.
-> 
-> 
-> a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-toolchain/
-> abi_version     buildstats/     cache/          deploy/ log/            
-> qa.log          saved_tmpdir    sstate-control/ stamps/         
-> sysroots/       work/
-> a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-toolchain/deploy/
-> images/   ipk/      licenses/
-> a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-toolchain/deploy/ipk/
-> all/                    cortexa15t2hf-vfp-neon/ dra7xx_evm/
-> a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-toolchain/deploy/ipk/dra7xx_evm/ -ltr ...
-> ...
-> -rw-r--r-- 2 a0850405 a0850405  38745494 Mar 10 16:32 ltp-ddt-dbg_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405       952 Mar 10 16:32 
-> ltp-ddt-dev_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405     26224 Mar 10 16:32 
-> ltp-ddt-doc_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405  12129096 Mar 10 16:32 ltp-ddt_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405      3822 Mar 10 16:32 
-> kernel-module-coproc-devfreq_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405      3132 Mar 10 16:32 
-> kernel-module-gpio-test_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405      2452 Mar 10 16:32 
-> kernel-module-kst-timer_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
-> -rw-r--r-- 2 a0850405 a0850405      2828 Mar 10 16:32 
-> kernel-module-rpmsg-client-sample_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
+> diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+> index d4a5072..5696dec 100644
+> --- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+> +++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+> @@ -1,5 +1,5 @@
+>  DESCRIPTION = "Target packages for the standalone SDK"
+> -PR = "r6"
+> +PR = "r7"
+>  LICENSE = "MIT"
+>  
+>  inherit packagegroup
+> @@ -33,4 +33,5 @@ RDEPENDS_${PN} = "\
+>      opkg-dev \
+>      sysvinit-dev \
+>      util-linux-dev \
+> +    ${@base_conditional('TCMODE', 'external-linaro', 'libgomp-dev', '', d)} \
+>      "
+> -- 
+> 1.7.9.5
 > 
 > _______________________________________________
 > meta-arago mailing list
