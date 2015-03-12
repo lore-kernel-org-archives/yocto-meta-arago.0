@@ -1,32 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7B89152A29
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 92A9D52A43
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 00:47:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2C0lOFU011126
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 19:47:24 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C0lN2R029749
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 19:47:23 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	Thu, 12 Mar 2015 01:06:00 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2C15xx4019796
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 20:05:59 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C15wBZ014275
+	for <meta-arago@arago-project.org>; Wed, 11 Mar 2015 20:05:58 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 11 Mar 2015 19:47:23 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2C0lNUg004731;
-	Wed, 11 Mar 2015 19:47:23 -0500
-Date: Wed, 11 Mar 2015 20:47:22 -0400
+	Wed, 11 Mar 2015 20:05:58 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t2C15whR003546	for <meta-arago@arago-project.org>;
+	Wed, 11 Mar 2015 20:05:58 -0500
+Date: Wed, 11 Mar 2015 21:05:58 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Hernandez, Carlos" <ceh@ti.com>
-Message-ID: <20150312004722.GE23587@edge>
-References: <1425993213-13246-1-git-send-email-ceh@ti.com>
-	<20150311235329.GD23587@edge>
-	<32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <312089298.475.1426122358216.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.03 build 2015-03-11_18-04-18
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,232 +36,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 00:47:25 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 12 Mar 2015 01:06:00 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_474_821600044.1426122358175"
 
-No, it wasn't a clean build. I'll try that next, but I think I need to drop 
-"share" part I've added first...
+------=_Part_474_821600044.1426122358175
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 03/11/15
+</title>
+</head>
+<body>
+
+<h2>Status for 03/11/15</h2>
+
+<h2>BUILD_ID: build-2015-03-11_18-05-19</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.03"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-On Wed, Mar 11, 2015 at 08:44:53PM -0400, Hernandez, Carlos wrote:
->    Did you do a clean ltp-ddt build? The v2 patch ran successfully for me.
->    Carlos
-> 
->    Sent from my Android phone using TouchDown (www.nitrodesk.com)
-> 
->    -----Original Message-----
->    From: Dmytriyenko, Denys [denys@ti.com]
->    Received: Wednesday, 11 Mar 2015, 7:53PM
->    To: Hernandez, Carlos [ceh@ti.com]
->    CC: meta-arago@arago-project.org [meta-arago@arago-project.org]
->    Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0
->    recipe
-> 
->    Carlos,
-> 
->    ltp-ddt 1.0 fails to build now:
-> 
->    | arm-linux-gnueabihf-gcc  -march=armv7-a -marm -mthumb-interwork
->    -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
->    -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-li
->    nk,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1
->    -Wl,--hash-style=gnu
->    --sysroot=/home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots
->    /am335x-evm -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include 
->    -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types -g -O2
->    -fno-strict-aliasing -pipe -Wall
->    -W  -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include 
->    -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types
->    -Wold-style-definition -isystem/opt/linaro-2013.
->    03/arm-linux-gnueabihf/include  -fstack-protector -D_FORTIFY_SOURCE=2
->    -I/home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/am335x_evm-oe-lin
->    ux-gnueabi/ltp-ddt/1.0.0-r0/git/testcases/kernel/include -D_GNU_SOURCE
->    -I/home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/am335x_evm-oe-li
->    nux-gnueabi/ltp-ddt/1.0.0-r0/git/testcases/kernel/timers/timer_create/../include
->    -I../../../../include -I../../../../include
->    -L/opt/linaro-2013.03/arm-linux-gnueabihf/lib
->    -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-O1
->    -Wl,--hash-style=gnu  -L../../../../lib  timer_create02.c   -lltp
->    -lpthread -lrt -o timer_create02
->    |
->    /home/jenkins/tisdk-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm/usr/lib/libfl.so:
->    undefined reference to `yylex'
->    | collect2: error: ld returned 1 exit status
->    | make[1]: *** [ltp-bump] Error 1
-> 
->    Looks like flex doesn't have the right symbol - is it wrong version?
-> 
->    --
->    Denys
-> 
->    On Tue, Mar 10, 2015 at 09:13:33AM -0400, Carlos Hernandez wrote:
->    > Latest ltp release was recently merge to ltp-ddt and there is a new
->    > way to configure and compile ltp-ddt.
->    >
->    > Signed-off-by: Carlos Hernandez <ceh@ti.com>
->    > ---
->    >  ...ite-Make-sure-to-include-generated-header.patch | 33 ++++++++
->    >  .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      | 87
->    ++++++++++++++++++++++
->    >  2 files changed, 120 insertions(+)
->    >  create mode 100644
->    meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
->    >  create mode 100644
->    meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
->    >
->    > diff --git
->    a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
->    b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
->    > new file mode 100644
->    > index 0000000..31df16d
->    > --- /dev/null
->    > +++
->    b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt/0001-wdt_test_suite-Make-sure-to-include-generated-header.patch
->    > @@ -0,0 +1,33 @@
->    > +From 4a8f24892514cd5e4d11b9105c843db49eea921b Mon Sep 17 00:00:00 2001
->    > +From: Khem Raj <raj.khem@gmail.com>
->    > +Date: Wed, 19 Feb 2014 19:41:33 -0800
->    > +Subject: [PATCH] wdt_test_suite: Make sure to include generated headers
->    > +
->    > +This makes sure that its using the generated headers
->    > +and not the raw headers from kernel, generated headers
->    > +are built for the given machine already when kernel is
->    > +built and are available in configured/compiled kernel tree
->    > +already
->    > +
->    > +Signed-off-by: Khem Raj <raj.khem@gmail.com>
->    > +---
->    > + testcases/ddt/wdt_test_suite/Makefile | 4 ++--
->    > + 1 file changed, 2 insertions(+), 2 deletions(-)
->    > +
->    > +diff --git a/testcases/ddt/wdt_test_suite/Makefile
->    b/testcases/ddt/wdt_test_suite/Makefile
->    > +index 90a6a90..22a1cfd 100644
->    > +--- a/testcases/ddt/wdt_test_suite/Makefile
->    > ++++ b/testcases/ddt/wdt_test_suite/Makefile
->    > +@@ -20,8 +20,8 @@ INCLUDES        = -I $(KERNEL_INC) -I
->    src/interface/common -I ../utils/user
->    > + INCLUDES        = -I src/parser \
->    > +                   -I src/interface/common \
->    > +                   -I ../utils/user \
->    > +-                  -I $(KERNEL_INC)/include \
->    > +-                  -I $(KERNEL_INC)/arch/arm/include
->    > ++                  -I $(KERNEL_INC)/include/generated \
->    > ++                  -I $(KERNEL_INC)/arch/arm/include/generated \
->    > +
->    > +#List of source files- Update this on adding a new C file
->    > + SOURCES := \
->    > +--
->    > +1.9.0
->    > diff --git a/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
->    b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
->    > new file mode 100644
->    > index 0000000..c321242
->    > --- /dev/null
->    > +++ b/meta-arago-distro/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
->    > @@ -0,0 +1,87 @@
->    > +SUMMARY = "Embedded Linux Device Driver Tests based on Linux Test
->    Project"
->    > +HOMEPAGE =
->    "http://arago-project.org/git/projects/test-automation/ltp-ddt.git"
->    > +SECTION = "console/utils"
->    > +LICENSE = "GPLv2"
->    > +LIC_FILES_CHKSUM =
->    "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
->    > +PR = "r1"
->    > +
->    > +PROVIDES += "ltp"
->    > +DEPENDS += "zip-native virtual/kernel alsa-lib"
->    > +
->    > +inherit autotools module-base kernel-module-split
->    > +
->    > +PACKAGE_ARCH = "${MACHINE_ARCH}"
->    > +
->    > +SRCREV = "ltp-ddt_1.0.0"
->    > +BRANCH ?= "master"
->    > +
->    > +SRC_URI =
->    "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}
->    \
->    > +          
->    file://0001-wdt_test_suite-Make-sure-to-include-generated-header.patch \
->    > +          "
->    > +
->    > +S = "${WORKDIR}/git"
->    > +
->    > +LTPROOT = "/opt/ltp"
->    > +
->    > +EXTRA_OEMAKE_append = " \
->    > +    prefix=${LTPROOT} \
->    > +    CROSS_COMPILE=${HOST_PREFIX} \
->    > +    SKIP_IDCHECK=1 \
->    > +    KERNEL_INC=${STAGING_KERNEL_DIR} \
->    > +    KERNEL_USR_INC=${STAGING_INCDIR} \
->    > +    ALSA_INCPATH=${STAGING_INCDIR} \
->    > +    ALSA_LIBPATH=${STAGING_LIBDIR} \
->    > +    PLATFORM=${MACHINE} \
->    > +    RANLIB=${RANLIB} \
->    > +"
->    > +
->    > +TARGET_CC_ARCH += "${LDFLAGS}"
->    > +
->    > +FILES_${PN}-dbg += " \
->    > +    ${LTPROOT}/.debug \
->    > +    ${LTPROOT}/bin/.debug \
->    > +    ${LTPROOT}/runtest/.debug \
->    > +    ${LTPROOT}/testcases/bin/.debug \
->    > +    ${LTPROOT}/testcases/bin/*/bin/.debug \
->    > +    ${LTPROOT}/testcases/bin/*/test/.debug \
->    > +    ${LTPROOT}/testcases/bin/ddt/.debug \
->    > +    ${LTPROOT}/testcases/bin/ddt/*/bin/.debug \
->    > +    ${LTPROOT}/testcases/bin/ddt/*/test/.debug \
->    > +    ${LTPROOT}/testcases/realtime/*/*/.debug \
->    > +"
->    > +
->    > +FILES_${PN}-staticdev += "${LTPROOT}/lib"
->    > +FILES_${PN} += "${LTPROOT}/*"
->    > +
->    > +# ltp doesn't regenerate ffsb-6.0-rc2 configure and hardcode configure
->    call.
->    > +# we explicitly force regeneration of that directory and pass configure
->    options.
->    > +do_configure_append() {
->    > +    (cd utils/ffsb-6.0-rc2; autoreconf -fvi; ./configure
->    ${CONFIGUREOPTS})
->    > +}
->    > +
->    > +kmoddir = "/lib/modules/${KERNEL_VERSION}/kernel/drivers/ddt"
->    > +
->    > +do_compile_append () {
->    > +    unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
->    > +    oe_runmake KERNEL_CC="${KERNEL_CC}" DESTDIR=${D} modules
->    > +}
->    > +
->    > +do_install() {
->    > +    oe_runmake DESTDIR=${D} install
->    > +    install -d ${D}${datadir}
->    > +    install -d ${D}${kmoddir}
->    > +    mv ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
->    > +}
->    > +
->    > +PR_append = "-arago10+gitr${SRCPV}"
->    > +
->    > +RDEPENDS_${PN} += "linaro-pm-qa-utils serialcheck"
->    > +
->    > +EXTRA_OEMAKE += "KERNEL_PATH="${STAGING_KERNEL_DIR}""
->    > +
->    > +KERNEL_MODULES_META_PACKAGE = "${PN}"
->    > +
->    > +# do_make_scripts should be a separate task for the lock to work
->    > +addtask make_scripts before do_compile
->    > +do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
->    > +do_make_scripts[deptask] = "do_populate_sysroot"
->    > --
->    > 1.9.1
->    >
->    > _______________________________________________
->    > meta-arago mailing list
->    > meta-arago@arago-project.org
->    > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_474_821600044.1426122358175--
