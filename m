@@ -1,32 +1,30 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 1F00D52A7E
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 36C80529B3
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 19:46:33 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CJkWsd001052
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 14:46:32 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CJkVdo001458
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 14:46:31 -0500
+	Thu, 12 Mar 2015 19:54:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CJsMRb000673
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 14:54:22 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CJsKBf004549
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 14:54:21 -0500
 Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 14:46:30 -0500
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t2CJkUjh007965;	Thu, 12 Mar 2015 14:46:30 -0500
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YW93t-0002wF-Lu;
-	Thu, 12 Mar 2015 15:46:29 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 12 Mar 2015 15:46:22 -0400
-Message-ID: <1426189582-16812-5-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1426189582-16812-1-git-send-email-j-stiffler@ti.com>
+	Thu, 12 Mar 2015 14:54:20 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CJsJ7E016700;
+	Thu, 12 Mar 2015 14:54:20 -0500
+Date: Thu, 12 Mar 2015 15:54:16 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20150312195415.GP24885@edge>
 References: <1426189582-16812-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2 4/4] branding-processor-sdk: Add processor-sdk brand.
+In-Reply-To: <1426189582-16812-1-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v2 0/4] Implment the wayland DISTRO_FEATURE.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,63 +37,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 19:46:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 12 Mar 2015 19:54:23 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Set ARAGO_TISDK_IMAGE to "processor-sdk-linux-image"
-* For now, use sitara-linux-ti-staging
-* and remove wayland feature for ti33x and ti43x soc families.
+Looks good, thanks.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
-v2: Use DISTRO_FEATURES_remove_<machine> instead of oe_filter_out.
-
- .../conf/distro/include/branding-processor-sdk.inc |   35 ++++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-new file mode 100644
-index 0000000..d277aac
---- /dev/null
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -0,0 +1,35 @@
-+ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
-+
-+# Remove wayland from ti33x and ti43x DISTRO_FEATURES.
-+DISTRO_FEATURES_remove_ti33x = "wayland"
-+DISTRO_FEATURES_remove_ti43x = "wayland"
-+
-+PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
-+PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
-+PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
-+
-+# To create newlines in the message \n is used and the slash must be escaped
-+# to function properly
-+
-+SRCIPK_GIT_COMMIT_MESSAGE = "\
-+Create local branch\\n\
-+\\n\
-+The below commit is used for this local branch and is the one used by\\n\
-+this sdk:\\n\
-+${SRCREV}."
-+
-+SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE ="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
-+To reduce the size of the SDK installer only a portion of the git commit\\n\
-+history has been preserved. Also links to remote branches and tags do\\n\
-+not exist in this copy of the repository.\\n\
-+To fix this please run the unshallow-repositories.sh\\n\
-+script located in the sdk\'s bin directory\\n\
-+\\n\
-+The script may take several minutes but you will then have a full copy of\\n\
-+the git repository including its entire git history.\\n"
-+
-+SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
-+SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
-+
-+SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "processor-sdk-1.0"
-+SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
--- 
-1.7.9.5
-
+On Thu, Mar 12, 2015 at 03:46:18PM -0400, Jacob Stiffler wrote:
+> * Only include wayland, weston, and example packages if 'wayland' is a
+>   DISTRO_FEATURE.
+> * By default, if 'screen' is a MACHINE_FEATURE, then add 'wayland' as a
+>   DISTRO_FEATURE.
+> * Configure qt5 to use wayland if it is a DISTRO_FEATURE, otherwise use eglfs.
+> * Add processor-sdk brand to remove wayland from DISTRO_EFATURES for the ti33x
+>   and ti43x soc families.
+> 
+> 
+> Jacob Stiffler (4):
+>   arago.conf: Include wayland in DISTRO_FEATURES by default.
+>   packagegroup-*: Include wayland/weston if specified in
+>     DISTRO_FEATURES.
+>   qtbase: Use DISTRO_FEATURES to set appropriate qpa.
+>   branding-processor-sdk: Add processor-sdk brand.
+> 
+>  meta-arago-distro/conf/distro/arago.conf           |    2 +-
+>  .../conf/distro/include/branding-processor-sdk.inc |   35 ++++++++++++++++++++
+>  .../packagegroups/packagegroup-arago-qte.bb        |    4 +--
+>  .../packagegroup-arago-tisdk-graphics.bb           |    4 +--
+>  .../packagegroups/packagegroup-arago-tisdk-qte.bb  |    4 +--
+>  .../packagegroups/packagegroup-linaro-tc-test.bb   |    5 +--
+>  meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh  |    1 -
+>  .../recipes-qt/qt5/qtbase_5.4.1.bbappend           |    4 +--
+>  8 files changed, 47 insertions(+), 12 deletions(-)
+>  create mode 100644 meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> 
+> -- 
+> v2: Change order of patches.
+> 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
