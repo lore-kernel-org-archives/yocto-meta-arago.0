@@ -1,31 +1,31 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id B5BE752A77
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6B9D952A77
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 13:53:34 +0000 (UTC)
+	Thu, 12 Mar 2015 13:55:57 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CDrXIs029691
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:53:33 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CDrWr5003644
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:53:32 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 08:53:32 -0500
-Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
-	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t2CDrVBF023236;	Thu, 12 Mar 2015 08:53:32 -0500
-Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
-	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
-	0.8) with ESMTP id t2CDrT81028478;	Thu, 12 Mar 2015 19:23:30 +0530
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 12 Mar 2015 08:53:27 -0500
-Message-ID: <1426168407-5506-1-git-send-email-fcooper@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CDtuMa018712
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:55:56 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CDttMS005915
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:55:55 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 12 Mar 2015 08:55:55 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CDttfh007059;
+	Thu, 12 Mar 2015 08:55:55 -0500
+Date: Thu, 12 Mar 2015 09:55:54 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20150312135554.GB24885@edge>
+References: <1426164957-22030-1-git-send-email-j-stiffler@ti.com>
+	<1426164957-22030-3-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [PATCH v2] packagegroup-arago-standalone-sdk-target: Include libgomp into toolchain SDK
+In-Reply-To: <1426164957-22030-3-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 2/4] qtbase: Use DISTRO_FEATURES to set appropriate qpa.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,43 +38,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 13:53:35 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 12 Mar 2015 13:55:57 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+On Thu, Mar 12, 2015 at 08:55:55AM -0400, Jacob Stiffler wrote:
+> * If wayland is in DISTRO_FEATURES, then configure '-qpa wayland'
+> * Otherwise configure '-qpa eglfs'
+> 
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh  |    1 -
+>  .../recipes-qt/qt5/qtbase_5.4.1.bbappend           |    9 ++++++---
+>  2 files changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh
+> index 1e8c196..f888d50 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh
+> @@ -2,4 +2,3 @@
+>  
+>  ### QT Environment Variables ###
+>  export QT_QPA_GENERIC_PLUGINS=Auto
+> -export QT_QPA_PLATFORM=wayland
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+> index a466581..5a00800 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+> @@ -1,13 +1,16 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+>  GLES_EXTRA_DEPS = ""
+> -GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
+> +GLES_EXTRA_DEPS_omap-a15 = " \
+> +    libdrm \
+> +    ${@base_contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
+> +"
 
-* When compiling an application with the -fopenmp flag an error is given since
-  libgomp isn't apart of the toolchain SDK.
-* Since this package comes from the toolchain only include it when using the
-  external linaro toolchain since it isn't included in the arago toolchain.
+I meant to comment to the previous revision about this part above ^^^
+I don't think it will work (not that it will be tested) - the way OMAP5 GFX is 
+built, it has hardcoded dependency on wayland libs, hence it's added above...
+That said, I'm not sure you can get eglfs on OMAP5 platforms working cleanly 
+w/o any wayland libs. But aren't you only doing it for AM3/4 anyway?
 
-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
----
-v2 changes:
-Depend on TCMODE instead of TCLIBC
-Only pull in libgomp-dev since libgomp will end up being pulled in automatically
 
- .../packagegroup-arago-standalone-sdk-target.bb    |    3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
-index d4a5072..5696dec 100644
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
-@@ -1,5 +1,5 @@
- DESCRIPTION = "Target packages for the standalone SDK"
--PR = "r6"
-+PR = "r7"
- LICENSE = "MIT"
- 
- inherit packagegroup
-@@ -33,4 +33,5 @@ RDEPENDS_${PN} = "\
-     opkg-dev \
-     sysvinit-dev \
-     util-linux-dev \
-+    ${@base_conditional('TCMODE', 'external-linaro', 'libgomp-dev', '', d)} \
-     "
--- 
-1.7.9.5
-
+>  PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+>  
+> -PR_append = "-arago3"
+> +PR_append = "-arago4"
+>  
+> -QT_CONFIG_FLAGS += "-qpa wayland"
+> +QT_CONFIG_FLAGS += "-qpa ${@base_contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+>  
+>  SRC_URI += "file://qt_env.sh"
+>  
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
