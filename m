@@ -1,35 +1,38 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 6DF5C52A78
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 6DAAB52A78
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 14:30:45 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CEUiP5001753
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:30:44 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEUh7C005428
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:30:43 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 09:30:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEUhq1004986;
-	Thu, 12 Mar 2015 09:30:43 -0500
-Date: Thu, 12 Mar 2015 10:30:42 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20150312143042.GI24885@edge>
-References: <1426164957-22030-1-git-send-email-j-stiffler@ti.com>
-	<1426164957-22030-5-git-send-email-j-stiffler@ti.com>
-	<20150312135639.GC24885@edge>
-	<4B26FB5A64EBA14C87266869E037F95814107DDB@DFLE09.ent.ti.com>
-	<20150312142004.GF24885@edge>
-	<4B26FB5A64EBA14C87266869E037F95814107E3E@DFLE09.ent.ti.com>
+	Thu, 12 Mar 2015 14:37:14 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CEbDFs002097
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:37:13 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEbCrF024200
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:37:12 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0224.002; Thu, 12 Mar 2015 09:37:12 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Hernandez, Carlos" <ceh@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+Thread-Index: AQHQWzQO+VOPk3+2OEmUSaboahin5p0YSo6AgAAOXYCAAACxAIAAN0iAgACYOAD//650YIAADnHQgAAHHoA=
+Date: Thu, 12 Mar 2015 14:37:11 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95814107E6C@DFLE09.ent.ti.com>
+References: <1425993213-13246-1-git-send-email-ceh@ti.com>
+	<20150311235329.GD23587@edge>
+	<32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
+	<20150312004722.GE23587@edge> <20150312040513.GI23587@edge>
+	<5501902A.4060206@ti.com>
+	<4B26FB5A64EBA14C87266869E037F95814107D47@DFLE09.ent.ti.com>
+	<4B26FB5A64EBA14C87266869E037F95814107E1F@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107E1F@DFLE09.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107E3E@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
+Subject: Re: [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,105 +45,274 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 14:30:45 -0000
+X-List-Received-Date: Thu, 12 Mar 2015 14:37:14 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 12, 2015 at 10:25:43AM -0400, Stiffler, Jacob wrote:
-> I've been testing the patches since submitting the patches (wanted to get 
-> these comments as soon as I could). It seems that this oe_filter_out method 
-> is not working as expected...
-
-Try using := when doing filter_out()...
+The issue appears to be in pan/Makfile. All targets link with $(LEXLIB), bu=
+t only ltp-scanner should require it, and scan is the only lex file. Was th=
+is that old issue with parallel make?
 
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Thursday, March 12, 2015 10:20 AM
-> To: Stiffler, Jacob
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
-> 
-> On Thu, Mar 12, 2015 at 10:00:35AM -0400, Stiffler, Jacob wrote:
-> > What would you suggest? That wayland be controlled as a feature from 
-> > each branding file? Or a new variable introduced that arago.conf can 
-> > check to decide if wayland should be added to the DISTRO_FEATURES?
-> 
-> Leave it like that for now - we'll see if we get any problems...
-> 
-> 
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Thursday, March 12, 2015 9:57 AM
-> > To: Stiffler, Jacob
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 4/4] branding-processor-sdk: Add processor-sdk brand.
-> > 
-> > On Thu, Mar 12, 2015 at 08:55:57AM -0400, Jacob Stiffler wrote:
-> > > * Set ARAGO_TISDK_IMAGE to "processor-sdk-linux-image"
-> > > * For now, use sitara-linux-ti-staging
-> > > * and remove wayland feature for ti33x and ti43x soc families.
-> > > 
-> > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > > ---
-> > >  .../conf/distro/include/branding-processor-sdk.inc |   35 ++++++++++++++++++++
-> > >  1 file changed, 35 insertions(+)
-> > >  create mode 100644
-> > > meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > > 
-> > > diff --git
-> > > a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > > b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > > new file mode 100644
-> > > index 0000000..5eab952
-> > > --- /dev/null
-> > > +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.i
-> > > +++ nc
-> > > @@ -0,0 +1,35 @@
-> > > +ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
-> > > +
-> > > +# Remove wayland from ti33x and ti43x DISTRO_FEATURES.
-> > > +DIRSTO_FEATURES_ti33x = "${@oe_filter_out('DISTRO_FEATURES', 'wayland', d)}"
-> > > +DIRSTO_FEATURES_ti43x = "${@oe_filter_out('DISTRO_FEATURES', 'wayland', d)}"
-> > 
-> > Usually you want immediate assignment here. But I have my doubts it will 
-> > work reliably either way, when done like that...
-> > 
-> > 
-> > > +PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
-> > > +PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
-> > > +PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
-> > > +
-> > > +# To create newlines in the message \n is used and the slash must 
-> > > +be escaped # to function properly
-> > > +
-> > > +SRCIPK_GIT_COMMIT_MESSAGE = "\
-> > > +Create local branch\\n\
-> > > +\\n\
-> > > +The below commit is used for this local branch and is the one used 
-> > > +by\\n\ this sdk:\\n\ ${SRCREV}."
-> > > +
-> > > +SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE 
-> > > +="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
-> > > +To reduce the size of the SDK installer only a portion of the git 
-> > > +commit\\n\ history has been preserved. Also links to remote 
-> > > +branches and tags do\\n\ not exist in this copy of the 
-> > > +repository.\\n\ To fix this please run the 
-> > > +unshallow-repositories.sh\\n\ script located in the sdk\'s bin 
-> > > +directory\\n\ \\n\ The script may take several minutes but you will 
-> > > +then have a full copy of\\n\ the git repository including its 
-> > > +entire git history.\\n"
-> > > +
-> > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
-> > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
-> > > +
-> > > +SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "processor-sdk-1.0"
-> > > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
-> > > --
-> > > 1.7.9.5
-> > > 
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+LDLIBS                  +=3D -lm $(LEXLIB)
+
+LFLAGS                  +=3D -l
+
+INSTALL_DIR             :=3D bin
+
+MAKE_TARGETS            :=3D ltp-bump ltp-pan
+
+ifeq ($(strip $(LEXLIB)),)
+$(warning ltp-scanner will not be built because a working copy of lex was n=
+ot found)
+else
+MAKE_TARGETS            +=3D ltp-scanner
+endif
+
+ltp-bump: ltp-bump.o zoolib.o
+
+ltp-pan: ltp-pan.o zoolib.o splitstr.o
+
+ltp-scanner: scan.o ltp-scanner.o reporter.o tag_report.o symbol.o splitstr=
+.o debug.o
+
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Stiffler, Jacob
+Sent: Thursday, March 12, 2015 10:22 AM
+To: Hernandez, Carlos; Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recip=
+e
+
+I've done some more research since this is breaking all of my builds. Here =
+is the command causing the error:
+
+arm-linux-gnueabihf-gcc  -march=3Darmv7-a -marm -mthumb-interwork -mfloat-a=
+bi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a9  -L/opt/linaro-2013.03/arm-linux-=
+gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/arm-linux-gnueabihf/lib -=
+Wl,-O1 -Wl,--hash-style=3Dgnu --sysroot=3D/home/gtbldadm/ti/oe-layersetup/b=
+uild-CORTEX_1/arago-tmp-external-linaro-toolchain/sysroots/am437x-evm -L/op=
+t/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.0=
+3/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu  -L../lib  ltp-bum=
+p.o zoolib.o   -lm -lfl -o ltp-bump
+/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-to=
+olchain/sysroots/am437x-evm/usr/lib/libfl.so: undefined reference to `yylex=
+'
+collect2: error: ld returned 1 exit status
+make[1]: *** [ltp-bump] Error 1
+make[1]: *** Waiting for unfinished jobs....
+
+
+The symbol 'yylex' comes from a flex generated file. Not sure how this isn'=
+t being seen in all builds... This will need to link with a flex generated =
+file. In this case, all I can see is scan.c, which is generated from scan.l=
+. So should ltp_bump link with scan.o? If not, then why would ltp-bump need=
+ to link with libfl.so?
+
+Can you find the log for linking 'ltp-bump' in one of the successful builds=
+?
+
+
+
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Stiffler, Jacob
+Sent: Thursday, March 12, 2015 9:20 AM
+To: Hernandez, Carlos; Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recip=
+e
+
+Sounds like a missing dependency issue if an initial clean build fails, the=
+n cleaning ltp-ddt before continuing the build allows it to succeed in some=
+ cases.
+
+- Jake
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Hernandez, Carlos
+Sent: Thursday, March 12, 2015 9:10 AM
+To: Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recip=
+e
+
+On 03/12/2015 12:05 AM, Denys Dmytriyenko wrote:
+> Doesn't help. It still fails for am57xx-evm. It seems to build fine for a=
+m335x-evm...
+>
+> Besides the undefined yylex error (which might be non-fatal), I also=20
+> see
+> these:
+>
+> | clock_gettime03.c:141:4: error: '__NR_clock_gettime' undeclared=20
+> | (first use in this function)
+>
+> | clock_gettime03.c:168:31: error: 'cleanup' undeclared (first use in=20
+> | this function)
+>
+> | faccessat01.c:70:21: error: '__NR_faccessat' undeclared (first use=20
+> | in this function)
+>
+
+I saw that error but it went away after cleaning ltp-ddt and rebuilding.=20
+See log below.
+
+a0850405@a0850405-off1:~/code/tisdk/build$ MACHINE=3Ddra7xx-evm bitbake ltp=
+-ddt -c clean Loading cache: 100%=20
+|#######################################################################
+|#######################################################################
+|#####################################################|
+ETA:  00:00:00
+Loaded 2194 entries from dependency cache.
+Parsing recipes: 100%=20
+|#######################################################################
+|#######################################################################
+|###################################################|
+Time: 00:00:02
+Parsing of 1766 .bb files complete (1758 cached, 8 parsed). 2201 targets, 1=
+99 skipped, 0 masked, 0 errors.
+WARNING: No recipes available for:
+/home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/q=
+t5/qtbase_5.4.1.bbappend=20
+
+/home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/q=
+t5/qtwebkit_5.4.1.bbappend=20
+
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        =3D "1.22.0"
+BUILD_SYS         =3D "i686-linux"
+NATIVELSBSTRING   =3D "Ubuntu-14.04"
+TARGET_SYS        =3D "arm-oe-linux-gnueabi"
+MACHINE           =3D "dra7xx-evm"
+DISTRO            =3D "arago"
+DISTRO_VERSION    =3D "2015.02"
+TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa15"
+TARGET_FPU        =3D "vfp-neon"
+meta-arago-distro
+meta-arago-extras =3D "master:7362ca23ba513bc8af251da6b8b8a7a029aeafca"
+meta-qt5          =3D "master:adeaa6128b665920eb98eb7c064f4aacbd74b873"
+toolchain-layer
+meta-networking
+meta-ruby
+meta-oe           =3D "daisy:91dbdff2e1a0ca3dae72dfe0aaa022fc28974314"
+meta-ti           =3D "daisy:a47fe3573ec2c7662eb385049807dea4f81fa284"
+meta-linaro-toolchain =3D "daisy:bc63e777ad2748b8bfa7fa70ffd74700fa21a567"
+meta              =3D "daisy:f34de2175f1d6a443f219b8ceaaf796cfbc6efd5"
+
+NOTE: Preparing runqueue
+NOTE: Executing RunQueue Tasks
+NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn't need to be rerun a=
+nd all succeeded.
+
+Summary: There was 1 WARNING message shown.
+
+
+a0850405@a0850405-off1:~/code/tisdk/build$ MACHINE=3Ddra7xx-evm bitbake ltp=
+-ddt Loading cache: 100%=20
+|#######################################################################
+|#######################################################################
+|#####################################################|
+ETA:  00:00:00
+Loaded 2194 entries from dependency cache.
+Parsing recipes: 100%=20
+|#######################################################################
+|#######################################################################
+|###################################################|
+Time: 00:00:01
+Parsing of 1766 .bb files complete (1758 cached, 8 parsed). 2201 targets, 1=
+99 skipped, 0 masked, 0 errors.
+WARNING: No recipes available for:
+/home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/q=
+t5/qtbase_5.4.1.bbappend=20
+
+/home/a0850405/code/tisdk/sources/meta-arago/meta-arago-distro/recipes-qt/q=
+t5/qtwebkit_5.4.1.bbappend=20
+
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        =3D "1.22.0"
+BUILD_SYS         =3D "i686-linux"
+NATIVELSBSTRING   =3D "Ubuntu-14.04"
+TARGET_SYS        =3D "arm-oe-linux-gnueabi"
+MACHINE           =3D "dra7xx-evm"
+DISTRO            =3D "arago"
+DISTRO_VERSION    =3D "2015.02"
+TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa15"
+TARGET_FPU        =3D "vfp-neon"
+meta-arago-distro
+meta-arago-extras =3D "master:7362ca23ba513bc8af251da6b8b8a7a029aeafca"
+meta-qt5          =3D "master:adeaa6128b665920eb98eb7c064f4aacbd74b873"
+toolchain-layer
+meta-networking
+meta-ruby
+meta-oe           =3D "daisy:91dbdff2e1a0ca3dae72dfe0aaa022fc28974314"
+meta-ti           =3D "daisy:a47fe3573ec2c7662eb385049807dea4f81fa284"
+meta-linaro-toolchain =3D "daisy:bc63e777ad2748b8bfa7fa70ffd74700fa21a567"
+meta              =3D "daisy:f34de2175f1d6a443f219b8ceaaf796cfbc6efd5"
+
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Tasks Summary: Attempted 465 tasks of which 452 didn't need to be rer=
+un and all succeeded.
+
+Summary: There was 1 WARNING message shown.
+
+
+a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-too=
+lchain/
+abi_version     buildstats/     cache/          deploy/ log/           =20
+qa.log          saved_tmpdir    sstate-control/ stamps/        =20
+sysroots/       work/
+a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-too=
+lchain/deploy/
+images/   ipk/      licenses/
+a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-too=
+lchain/deploy/ipk/
+all/                    cortexa15t2hf-vfp-neon/ dra7xx_evm/
+a0850405@a0850405-off1:~/code/tisdk/build$ ls arago-tmp-external-linaro-too=
+lchain/deploy/ipk/dra7xx_evm/ -ltr ...
+...
+-rw-r--r-- 2 a0850405 a0850405  38745494 Mar 10 16:32 ltp-ddt-dbg_1.0.0-r1-=
+arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
+-rw-r--r-- 2 a0850405 a0850405       952 Mar 10 16:32=20
+ltp-ddt-dev_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
+-rw-r--r-- 2 a0850405 a0850405     26224 Mar 10 16:32=20
+ltp-ddt-doc_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
+-rw-r--r-- 2 a0850405 a0850405  12129096 Mar 10 16:32 ltp-ddt_1.0.0-r1-arag=
+o10+gitrAUTOINC+eef6281052_dra7xx_evm.ipk
+-rw-r--r-- 2 a0850405 a0850405      3822 Mar 10 16:32=20
+kernel-module-coproc-devfreq_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx=
+_evm.ipk
+-rw-r--r-- 2 a0850405 a0850405      3132 Mar 10 16:32=20
+kernel-module-gpio-test_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.=
+ipk
+-rw-r--r-- 2 a0850405 a0850405      2452 Mar 10 16:32=20
+kernel-module-kst-timer_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_dra7xx_evm.=
+ipk
+-rw-r--r-- 2 a0850405 a0850405      2828 Mar 10 16:32=20
+kernel-module-rpmsg-client-sample_1.0.0-r1-arago10+gitrAUTOINC+eef6281052_d=
+ra7xx_evm.ipk
+
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
