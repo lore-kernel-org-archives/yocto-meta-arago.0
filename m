@@ -1,34 +1,31 @@
 Return-Path: <fcooper@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D9AA8529B3
+	by arago-project.org (Postfix) with ESMTPS id B5BE752A77
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 13:24:59 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CDOxLY026727
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:24:59 -0500
+	Thu, 12 Mar 2015 13:53:34 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CDrXIs029691
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:53:33 -0500
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CDOwIV031264
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:24:58 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Thu, 12 Mar 2015 08:24:57 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Thread-Topic: [meta-arago] [PATCH 3/4] arago.conf: Include wayland	in
-	DISTRO_FEATURES by default.
-Thread-Index: AQHQXMdL+I25N9zhf0G8JBmu7PtIqJ0Y1k+Z
-Date: Thu, 12 Mar 2015 13:24:56 +0000
-Message-ID: <E0139233-A002-4982-BF64-4BF6F56B2B5A@ti.com>
-References: <1426164957-22030-1-git-send-email-j-stiffler@ti.com>,
-	<1426164957-22030-4-git-send-email-j-stiffler@ti.com>,
-	<A2A3AF03-C549-41C8-B3A8-21E46E7BA19C@ti.com>
-In-Reply-To: <A2A3AF03-C549-41C8-B3A8-21E46E7BA19C@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CDrWr5003644
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 08:53:32 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 12 Mar 2015 08:53:32 -0500
+Received: from dbdmail01.india.ti.com (dbdmail01.india.ti.com
+	[172.24.162.206])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t2CDrVBF023236;	Thu, 12 Mar 2015 08:53:32 -0500
+Received: from sdit-build02.dal.design.ti.com (sdit-build02.dal.design.ti.com
+	[10.247.66.5])	by dbdmail01.india.ti.com (8.14.3/8.14.3/SuSE Linux
+	0.8) with ESMTP id t2CDrT81028478;	Thu, 12 Mar 2015 19:23:30 +0530
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 12 Mar 2015 08:53:27 -0500
+Message-ID: <1426168407-5506-1-git-send-email-fcooper@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 3/4] arago.conf: Include wayland	in	DISTRO_FEATURES by default.
+Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Subject: [PATCH v2] packagegroup-arago-standalone-sdk-target: Include libgomp into toolchain SDK
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,67 +38,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 13:25:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 12 Mar 2015 13:53:35 -0000
+Content-Type: text/plain
 
-Also this patch really should have been the first one in your patchset. Sin=
-ce based on the patch order your temporarily preventing any machine from in=
-cluding Wayland and Weston. This patch fixes it but you generally want to a=
-void the issue at all.
+From: "Franklin S. Cooper Jr" <fcooper@ti.com>
 
+* When compiling an application with the -fopenmp flag an error is given since
+  libgomp isn't apart of the toolchain SDK.
+* Since this package comes from the toolchain only include it when using the
+  external linaro toolchain since it isn't included in the arago toolchain.
 
-> On Mar 12, 2015, at 8:20 AM, Cooper Jr., Franklin <fcooper@ti.com> wrote:
->=20
-> Honestly there is nothing technically wrong with depending on the screen =
-but I feel that it should be removed from this patchset.=20
->=20
-> As of now the machines that doesn't have the screen machine feature set a=
-lready avoids all the packagegroups that would end up Wayland and Weston.
->=20
-> If we want to universally pull in graphical packages based on the screen =
-machine feature then I think it would make sense to do it then when it is a=
-ctually going to do something.
->=20
->=20
->=20
->=20
->> On Mar 12, 2015, at 7:56 AM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->>=20
->> * This is done conditional depending if 'screen' is a MACHINE_FEATURE.
->>=20
->> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
->> ---
->> meta-arago-distro/conf/distro/arago.conf |    2 +-
->> 1 file changed, 1 insertion(+), 1 deletion(-)
->>=20
->> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distr=
-o/conf/distro/arago.conf
->> index 338d41b..1c14e6f 100644
->> --- a/meta-arago-distro/conf/distro/arago.conf
->> +++ b/meta-arago-distro/conf/distro/arago.conf
->> @@ -22,7 +22,7 @@ NO32LIBS =3D "0"
->> DISTRO_FEATURES =3D "alsa argp bluetooth ext2 irda largefile pcmcia usbg=
-adget usbhost wifi xattr nfs zeroconf pci 3g ipv4 ipv6 pulseaudio ${DISTRO_=
-FEATURES_LIBC}"
->>=20
->> # Set additional distro features
->> -DISTRO_FEATURES +=3D "pam"
->> +DISTRO_FEATURES +=3D "pam ${@base_contains('MACHINE_FEATURES', 'screen'=
-, 'wayland', '', d)}"
->>=20
->> # Set preferred Qt version
->> QT_PROVIDER ?=3D "qt5"
->> --=20
->> 1.7.9.5
->>=20
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+---
+v2 changes:
+Depend on TCMODE instead of TCLIBC
+Only pull in libgomp-dev since libgomp will end up being pulled in automatically
+
+ .../packagegroup-arago-standalone-sdk-target.bb    |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+index d4a5072..5696dec 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+@@ -1,5 +1,5 @@
+ DESCRIPTION = "Target packages for the standalone SDK"
+-PR = "r6"
++PR = "r7"
+ LICENSE = "MIT"
+ 
+ inherit packagegroup
+@@ -33,4 +33,5 @@ RDEPENDS_${PN} = "\
+     opkg-dev \
+     sysvinit-dev \
+     util-linux-dev \
++    ${@base_conditional('TCMODE', 'external-linaro', 'libgomp-dev', '', d)} \
+     "
+-- 
+1.7.9.5
+
 
