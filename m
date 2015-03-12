@@ -1,34 +1,34 @@
 Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BAC28529B3
+	by arago-project.org (Postfix) with ESMTPS id 550C2529B3
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Mar 2015 14:50:52 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CEoqoJ021425
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:50:52 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEoo2l021976
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:50:51 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 09:50:50 -0500
+	Thu, 12 Mar 2015 14:53:18 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2CErHpv022696
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:53:17 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CErGjT003520
+	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 09:53:16 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 12 Mar 2015 09:53:16 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CEooJE018693;
-	Thu, 12 Mar 2015 09:50:50 -0500
-Date: Thu, 12 Mar 2015 10:50:50 -0400
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2CErGkf013737;
+	Thu, 12 Mar 2015 09:53:16 -0500
+Date: Thu, 12 Mar 2015 10:53:16 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20150312145049.GK24885@edge>
-References: <20150311235329.GD23587@edge>
-	<32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
+Message-ID: <20150312145316.GL24885@edge>
+References: <32B5D12402BE454796026F6AC58AA86E33115ACC@DLEE08.ent.ti.com>
 	<20150312004722.GE23587@edge> <20150312040513.GI23587@edge>
 	<5501902A.4060206@ti.com>
 	<4B26FB5A64EBA14C87266869E037F95814107D47@DFLE09.ent.ti.com>
 	<4B26FB5A64EBA14C87266869E037F95814107E1F@DFLE09.ent.ti.com>
 	<5501A4E0.2050107@ti.com> <20150312144215.GJ24885@edge>
 	<4B26FB5A64EBA14C87266869E037F95814107E91@DFLE09.ent.ti.com>
+	<4B26FB5A64EBA14C87266869E037F95814107EAA@DFLE09.ent.ti.com>
 MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107E91@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814107EAA@DFLE09.ent.ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
@@ -44,22 +44,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 14:50:52 -0000
+X-List-Received-Date: Thu, 12 Mar 2015 14:53:18 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Yes, I understand that. The question is why LEXLIB is not defined and is it 
-needed along with ltp-scanner?
+I'm fine putting those lines back - I didn't know if those were still 
+required, as they were missing from Carlos' version.
 
-Now, libfl library provides a standard main() stub that calls yylex() 
-externally, which you have to provide for lexical analyser. And since only 
-scan.c provides yylex(), that compile line should be the only one to link 
-against libfl.
+But, again, that will skip ltp-scanner - is that needed at all?
 
 
-On Thu, Mar 12, 2015 at 10:43:56AM -0400, Stiffler, Jacob wrote:
-> The warning implies that LEXLIB is not defined. Therefore LEXLIB should not 
-> be linked for all targets in pan/Makefile, only ltp-scanner.
+On Thu, Mar 12, 2015 at 10:50:43AM -0400, Stiffler, Jacob wrote:
+> The file ./include/mk/config.mk.default makes sure that LEXLIB is undefined. 
+> 
+> The meta-oe version of the recipe for v 0.0.4 has a custom configure stage 
+> to make sure that ./include/mk/config.mk.default is the config.mk used:
+> 
+> do_configure() {
+>     cp ${S}/include/config.h.default ${S}/include/config.h
+>     cp ${S}/include/mk/config.mk.default ${S}/include/mk/config.mk
+>     cp ${S}/include/mk/features.mk.default ${S}/include/mk/features.mk
+>     echo "${TAG}" > ${S}/ChangeLog
+> }
+> 
+> 
+> 
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Stiffler, Jacob
+> Sent: Thursday, March 12, 2015 10:44 AM
+> To: Dmytriyenko, Denys; Hernandez, Carlos
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] recipes-devtools: New ltp-ddt_1.0.0 recipe
+> 
+> The warning implies that LEXLIB is not defined. Therefore LEXLIB should not be linked for all targets in pan/Makefile, only ltp-scanner.
 > 
 > -----Original Message-----
 > From: Dmytriyenko, Denys 
@@ -88,4 +105,8 @@ On Thu, Mar 12, 2015 at 10:43:56AM -0400, Stiffler, Jacob wrote:
 > > *14:59:14*  make[1]: Leaving directory `/scratch/lcpdbld/jenkins_ws/workspace/start-ltp-ddt-next-build/ltp-ddt/pan'
 > > 
 > > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
