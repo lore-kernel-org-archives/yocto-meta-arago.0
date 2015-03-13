@@ -1,32 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 8FC615297F
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 71D9E5297F
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Mar 2015 12:39:59 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DCdws3001974
-	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 07:39:58 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DCdv6O016420
-	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 07:39:57 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 13 Mar 2015 07:39:57 -0500
+	Fri, 13 Mar 2015 13:49:16 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DDnCu0009157
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 08:49:13 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DDnBsa003542
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 08:49:11 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 13 Mar 2015 08:49:11 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DCduW2024332;
-	Fri, 13 Mar 2015 07:39:57 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DDnBHB010231;
+	Fri, 13 Mar 2015 08:49:11 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YWOse-0007U9-DQ;
-	Fri, 13 Mar 2015 08:39:56 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YWPxf-0007Xp-6p;
+	Fri, 13 Mar 2015 09:49:11 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 13 Mar 2015 08:39:52 -0400
-Message-ID: <1426250392-28716-2-git-send-email-j-stiffler@ti.com>
+Date: Fri, 13 Mar 2015 09:49:04 -0400
+Message-ID: <1426254544-28971-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1426250392-28716-1-git-send-email-j-stiffler@ti.com>
-References: <1426250392-28716-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2 2/2] amsdk-av-files: Remove older version.
+Subject: [tisdk-setup-scripts][PATCH] create-sdcard: Change SDK install prefix from ti-sdk to processor-sdk.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,65 +37,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 12:39:59 -0000
+X-List-Received-Date: Fri, 13 Mar 2015 13:49:17 -0000
 Content-Type: text/plain
-
-* Old version is a subset of the latest version.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
-v2: No change.
+ create-sdcard.sh |   14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
- .../amsdk-av-files/amsdk-av-files_1.1.bb           |   40 --------------------
- 1 file changed, 40 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb
-
-diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb
-deleted file mode 100644
-index e23fdf3..0000000
---- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.1.bb
-+++ /dev/null
-@@ -1,40 +0,0 @@
--DESCRIPTION = "AMSDK multimedia support files"
--HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
--LICENSE = "CC-BY-NC-ND-3.0"
--SECTION = "multimedia"
--LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=5f25f2753d6294d6b3ecac61d2f64146"
--PR = "r2"
--
--COMPATIBLE_MACHINE = "(omap3evm|am37x-evm|am3517-evm|am389x-evm|beagleboard|am335x-evm|ti43x|omap-a15)"
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--VIDEO_FILES = "video_480p "
--VIDEO_FILES_append_am37x-evm   = "video_vga_r"
--VIDEO_FILES_append_beagleboard = "video_vga"
--VIDEO_FILES_append_am3517-evm  = "video_wqvga"
--VIDEO_FILES_append_am335x-evm  = "video_wvga \
--				                  video_wqvga"
--VIDEO_FILES_append_dra7xx  = "video_wvga"
--
--SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/564/5179/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
--
--S = "${WORKDIR}/amsdk-av-files"
--
--do_compile() {
--    :
--}
--
--do_install() {
--    install -d ${D}${datadir}/ti \
--       ${D}${datadir}/ti/audio \
--       ${D}${datadir}/ti/video
--    install -m 0644 ${S}/audio/* ${D}${datadir}/ti/audio/
--    for file in ${VIDEO_FILES}; do
--	install -m 0644 ${S}/${file}/* ${D}${datadir}/ti/video/
--    done
--}
--
--FILES_${PN} += "${datadir}/ti/*"
--
--SRC_URI[avfilestarball.md5sum] = "19d254541f7c050d6220bd11249c1e8c"
--SRC_URI[avfilestarball.sha256sum] = "5b81f49a305c3c88a6e33834d30561e8c16a534f9dcd10d31b348fd0031b2a74"
+diff --git a/create-sdcard.sh b/create-sdcard.sh
+index ca02ad2..17ae564 100644
+--- a/create-sdcard.sh
++++ b/create-sdcard.sh
+@@ -74,7 +74,7 @@ if [ "$AMIROOT" != "root" ] ; then
+ fi
+ 
+ THEPWD=$EXEPATH
+-PARSEPATH=`echo $THEPWD | grep -o '.*ti-sdk.*.[0-9]/'`
++PARSEPATH=`echo $THEPWD | grep -o '.*processor-sdk.*.[0-9]/'`
+ 
+ if [ "$PARSEPATH" != "" ] ; then
+ PATHVALID=1
+@@ -703,7 +703,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+ 
+ 	#check that in the right directory
+ 
+-	THEEVMSDK=`echo $PARSEPATH | grep -o 'ti-sdk-.*[0-9]'`
++	THEEVMSDK=`echo $PARSEPATH | grep -o 'processor-sdk-.*[0-9]'`
+ 
+ 	if [ $PATHVALID -eq 1 ]; then
+ 	echo "now installing:  $THEEVMSDK"
+@@ -720,7 +720,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+ 			then
+ 				echo "Directory exists"
+ 				echo ""
+-				PARSEPATH=`echo $SDKFILEPATH | grep -o '.*ti-sdk.*.[0-9]/'`
++				PARSEPATH=`echo $SDKFILEPATH | grep -o '.*processor-sdk.*.[0-9]/'`
+ 				#echo $PARSEPATH
+ 
+ 				if [ "$PARSEPATH" != "" ] ; then
+@@ -731,7 +731,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+ 				#echo $PATHVALID
+ 				if [ $PATHVALID -eq 1 ] ; then
+ 
+-				THEEVMSDK=`echo $SDKFILEPATH | grep -o 'ti-sdk-.*[0-9]'`
++				THEEVMSDK=`echo $SDKFILEPATH | grep -o 'processor-sdk-.*[0-9]'`
+ 				echo "Is this the correct SDK: $THEEVMSDK"
+ 				echo ""
+ 				read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
+@@ -741,7 +741,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+ 					*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
+ 					esac
+ 				else
+-				echo "Invalid SDK path make sure to include ti-sdk-xxxx"
++				echo "Invalid SDK path make sure to include processor-sdk-xxxx"
+ 				ENTERCORRECTLY=0
+ 				fi
+ 
+@@ -804,7 +804,7 @@ cat << EOM
+       e.x. $:  /home/user/MyCustomTars/boot.tar.gz
+ 
+   If files are located in a directory write the directory path
+-      e.x. $: /ti-sdk/board-support/prebuilt-images/
++      e.x. $: /processor-sdk/board-support/prebuilt-images/
+ 
+   NOTE: Not all platforms will have an MLO file and this file can
+         be ignored for platforms that do not support an MLO.
+@@ -937,7 +937,7 @@ cat << EOM
+       e.x. $:  /home/user/MyCustomTars/rootfs.tar.gz
+ 
+   If files are located in a directory write the directory path
+-      e.x. $: /ti-sdk/targetNFS/
++      e.x. $: /processor-sdk/targetNFS/
+ 
+ ################################################################################
+ 
 -- 
 1.7.9.5
 
