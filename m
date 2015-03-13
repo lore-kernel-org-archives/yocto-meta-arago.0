@@ -1,30 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7E72E5297F
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 769985297F
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Mar 2015 12:13:05 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DCD5E5019202
-	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 07:13:05 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DCD3cv022915
-	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 07:13:03 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 13 Mar 2015 07:13:03 -0500
+	Fri, 13 Mar 2015 12:39:58 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DCdvYR013185
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 07:39:57 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DCduZu016411
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 07:39:56 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 13 Mar 2015 07:39:56 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DCD3Th024671;
-	Fri, 13 Mar 2015 07:13:03 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DCdtT5023589;
+	Fri, 13 Mar 2015 07:39:56 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YWOSd-0007Ra-Dr;
-	Fri, 13 Mar 2015 08:13:03 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YWOsc-0007U6-PX;
+	Fri, 13 Mar 2015 08:39:54 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 13 Mar 2015 08:12:58 -0400
-Message-ID: <1426248778-28584-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 13 Mar 2015 08:39:51 -0400
+Message-ID: <1426250392-28716-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui-qt5-demos: Remove read_system_env.sh
+Subject: [PATCH v2 1/2] amsdk-av-files: Upgrade to latest version with HEVC content.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,54 +37,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 12:13:05 -0000
+X-List-Received-Date: Fri, 13 Mar 2015 12:39:58 -0000
 Content-Type: text/plain
-
-* This script is not needed since the matrix init script sets up the
-  appropriate environment.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-apps-git.inc    |    4 ++--
- .../matrix/matrix-gui-qt5-demos_2.0.bb             |    9 +--------
- 2 files changed, 3 insertions(+), 10 deletions(-)
+v2 changes:
+* Consolidate COMPATIBLE_MACHINE.
+* Remove extra line.
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 6692520..8cef18a 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
- 
- SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "7bf902f71af751e879bd1b67dc5197683cdf0e1e"
-+SRCREV = "e8edfa25cee38f17523c845607c5de5fdd6d1a50"
- BRANCH = "master"
--INC_PR = "r27"
-+INC_PR = "r28"
- 
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-index 0ed3707..2dfeba3 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-@@ -9,14 +9,7 @@ inherit allarch
- 
- S = "${WORKDIR}/git/qt5_apps"
- 
--do_install_prepend(){
--   install -d ${D}${bindir}
--   install -m 0755 ${S}/read_system_env.sh ${D}${bindir}/
--}
--
--
- # Make sure qt5 submenu and app images has been installed
- RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-qt5"
- 
--FILES_${PN} += "${MATRIX_BASE_DIR}/* \
--                ${bindir}/read_system_env.sh"
-+FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+ .../amsdk-av-files/amsdk-av-files_1.2.bb           |   44 ++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb
+
+diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb
+new file mode 100644
+index 0000000..9d38ec1
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.2.bb
+@@ -0,0 +1,44 @@
++DESCRIPTION = "AMSDK multimedia support files"
++HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
++LICENSE = "CC-BY-NC-ND-3.0 & CC-BY-3.0"
++SECTION = "multimedia"
++LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=9254447a504d2179d83a6bc9e2c28142"
++PR = "r0"
++
++COMPATIBLE_MACHINE = "(omap3|ti33x|ti43x|omap-a15)"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++VIDEO_FILES = "video_480p "
++
++VIDEO_FILES_append_am37x-evm   = "video_vga_r"
++VIDEO_FILES_append_beagleboard = "video_vga"
++VIDEO_FILES_append_am3517-evm  = "video_wqvga"
++VIDEO_FILES_append_ti33x       = "video_wvga \
++                                  video_wqvga"
++VIDEO_FILES_append_dra7xx      = "video_wvga \
++                                  video_1080p \
++                                  video_720p \
++                                  video_yuv"
++ 
++SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1251/7520/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
++
++S = "${WORKDIR}/amsdk-av-files"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    install -d ${D}${datadir}/ti \
++       ${D}${datadir}/ti/audio \
++       ${D}${datadir}/ti/video
++    install -m 0644 ${S}/audio/* ${D}${datadir}/ti/audio/
++    for file in ${VIDEO_FILES}; do
++	install -m 0644 ${S}/${file}/* ${D}${datadir}/ti/video/
++    done
++}
++
++FILES_${PN} += "${datadir}/ti/*"
++
++SRC_URI[avfilestarball.md5sum] = "c4c849cf6c16e4898869264bbd05fd5d"
++SRC_URI[avfilestarball.sha256sum] = "287cc95a68befa594b8b9a8514c57240620d535b2b99c6d3e1f91bc278ef37ef"
 -- 
 1.7.9.5
 
