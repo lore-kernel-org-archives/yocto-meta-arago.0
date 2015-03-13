@@ -1,31 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id EBA9C5297F
+Return-Path: <j-stiffler@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B9EB5529B3
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Mar 2015 14:43:07 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DEh7u3020603
-	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 09:43:07 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DEh6Ba022037
-	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 09:43:06 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Fri, 13 Mar 2015 09:43:05 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
+	Fri, 13 Mar 2015 17:06:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DH6oLG027474
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 12:06:50 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DH6mia027004
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 12:06:49 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Fri, 13 Mar 2015 12:06:48 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
 Thread-Topic: [meta-arago] [tisdk-setup-scripts][PATCH] create-sdcard:
 	Change SDK install prefix from ti-sdk to processor-sdk.
-Thread-Index: AQHQXZWzwbHxvDF2LkmMCoE6Bz+MHJ0axVOA//+3iIE=
-Date: Fri, 13 Mar 2015 14:43:05 +0000
-Message-ID: <3EBFF9EC-8235-48BC-B224-08BA0A431701@ti.com>
+Thread-Index: AQHQXZR8QVrQ8c+DGkuBCnCKZm5PnJ0axAeA//+smBCAAGAQgP//1B9g
+Date: Fri, 13 Mar 2015 17:06:48 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95814108A9C@DFLE09.ent.ti.com>
 References: <1426254544-28971-1-git-send-email-j-stiffler@ti.com>
 	<20150313135747.GS24885@edge>,
 	<4B26FB5A64EBA14C87266869E037F958141089C4@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F958141089C4@DFLE09.ent.ti.com>
+	<3EBFF9EC-8235-48BC-B224-08BA0A431701@ti.com>
+In-Reply-To: <3EBFF9EC-8235-48BC-B224-08BA0A431701@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [tisdk-setup-scripts][PATCH] create-sdcard: Change SDK install prefix from ti-sdk to processor-sdk.
@@ -41,10 +43,20 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 14:43:08 -0000
+X-List-Received-Date: Fri, 13 Mar 2015 17:06:51 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Yes, but there is a lot of extra logic which would not be needed.
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Friday, March 13, 2015 10:43 AM
+To: Stiffler, Jacob
+Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
+Subject: Re: [meta-arago] [tisdk-setup-scripts][PATCH] create-sdcard: Chang=
+e SDK install prefix from ti-sdk to processor-sdk.
 
 Well I guess Denys is right and we should play nice with others.
 
@@ -75,7 +87,7 @@ et the explicit directory within the script, but it appears this would take=
 > -  Jake
 >=20
 > -----Original Message-----
-> From: Dmytriyenko, Denys=20
+> From: Dmytriyenko, Denys
 > Sent: Friday, March 13, 2015 9:58 AM
 > To: Stiffler, Jacob
 > Cc: meta-arago@arago-project.org
@@ -92,12 +104,11 @@ nge SDK install prefix from ti-sdk to processor-sdk.
 >> create-sdcard.sh |   14 +++++++-------
 >> 1 file changed, 7 insertions(+), 7 deletions(-)
 >>=20
->> diff --git a/create-sdcard.sh b/create-sdcard.sh
->> index ca02ad2..17ae564 100644
+>> diff --git a/create-sdcard.sh b/create-sdcard.sh index=20
+>> ca02ad2..17ae564 100644
 >> --- a/create-sdcard.sh
 >> +++ b/create-sdcard.sh
->> @@ -74,7 +74,7 @@ if [ "$AMIROOT" !=3D "root" ] ; then
->> fi
+>> @@ -74,7 +74,7 @@ if [ "$AMIROOT" !=3D "root" ] ; then fi
 >>=20
 >> THEPWD=3D$EXEPATH
 >> -PARSEPATH=3D`echo $THEPWD | grep -o '.*ti-sdk.*.[0-9]/'`
@@ -120,23 +131,23 @@ nge SDK install prefix from ti-sdk to processor-sdk.
 >>                echo ""
 >> -                PARSEPATH=3D`echo $SDKFILEPATH | grep -o '.*ti-sdk.*.[0=
 -9]/'`
->> +                PARSEPATH=3D`echo $SDKFILEPATH | grep -o '.*processor-s=
-dk.*.[0-9]/'`
+>> +                PARSEPATH=3D`echo $SDKFILEPATH | grep -o=20
+>> + '.*processor-sdk.*.[0-9]/'`
 >>                #echo $PARSEPATH
 >>=20
->>                if [ "$PARSEPATH" !=3D "" ] ; then
->> @@ -731,7 +731,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+>>                if [ "$PARSEPATH" !=3D "" ] ; then @@ -731,7 +731,7 @@=20
+>> if [ $FILEPATHOPTION -eq 1 ] ; then
 >>                #echo $PATHVALID
 >>                if [ $PATHVALID -eq 1 ] ; then
 >>=20
 >> -                THEEVMSDK=3D`echo $SDKFILEPATH | grep -o 'ti-sdk-.*[0-9=
 ]'`
->> +                THEEVMSDK=3D`echo $SDKFILEPATH | grep -o 'processor-sdk=
--.*[0-9]'`
+>> +                THEEVMSDK=3D`echo $SDKFILEPATH | grep -o=20
+>> + 'processor-sdk-.*[0-9]'`
 >>                echo "Is this the correct SDK: $THEEVMSDK"
 >>                echo ""
->>                read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
->> @@ -741,7 +741,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+>>                read -p 'Is this correct? [y/n] : ' ISRIGHTPATH @@=20
+>> -741,7 +741,7 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
 >>                    *)  echo "Please enter y or n";ENTERCORRECTLY=3D0;;
 >>                    esac
 >>                else
@@ -163,10 +174,10 @@ dk-xxxx"
 >> -      e.x. $: /ti-sdk/targetNFS/
 >> +      e.x. $: /processor-sdk/targetNFS/
 >>=20
->> ########################################################################=
-########
+>> #####################################################################
+>> ###########
 >>=20
->> --=20
+>> --
 >> 1.7.9.5
 >>=20
 >> _______________________________________________
