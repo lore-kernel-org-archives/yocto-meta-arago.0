@@ -1,32 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 1676D52A77
+Return-Path: <j-stiffler@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 12B675297F
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Mar 2015 03:01:31 +0000 (UTC)
+	Fri, 13 Mar 2015 10:47:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2D31T1Y018549
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 22:01:29 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2D31SXv016010
-	for <meta-arago@arago-project.org>; Thu, 12 Mar 2015 22:01:28 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Mar 2015 22:01:28 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2D31R8F030614;
-	Thu, 12 Mar 2015 22:01:28 -0500
-Date: Thu, 12 Mar 2015 23:01:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>
-Message-ID: <20150313030125.GR24885@edge>
-References: <1426189582-16812-1-git-send-email-j-stiffler@ti.com>
-	<20150312195415.GP24885@edge>
-	<8F29D6B095ED194EA1980491A5E029710C843A24@DFLE08.ent.ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2DAlUbP014551
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 05:47:30 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2DAlSpe032107
+	for <meta-arago@arago-project.org>; Fri, 13 Mar 2015 05:47:29 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0224.002; Fri, 13 Mar 2015 05:47:28 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [PATCH v3] tisdk-image: Fix manifest generation for nativesdk.
+Thread-Index: AQHQWpIvnQ97qoV2/Ueo1thvV/4TL50aQNCg
+Date: Fri, 13 Mar 2015 10:47:28 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958141088E7@DFLE09.ent.ti.com>
+References: <1425923703-6810-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1425923703-6810-1-git-send-email-j-stiffler@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C843A24@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v2 0/4] Implment the wayland DISTRO_FEATURE.
+Subject: Re: [PATCH v3] tisdk-image: Fix manifest generation for nativesdk.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,74 +38,124 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 03:01:32 -0000
+X-List-Received-Date: Fri, 13 Mar 2015 10:47:31 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 12, 2015 at 04:20:02PM -0400, Cooper Jr., Franklin wrote:
-> The patch set looks great.
-> 
-> The only issue I see is what happens when a user wants to use Qt 4. I don't 
-> think Qt 4 and wayland works together so we should have a check to not 
-> include Wayland if Qt 4 is being used. Thoughts?
+Ping.=20
 
-Yeah, we may need an additional check, but it won't block this set.
+Anything preventing this from being committed? I have another patch on top =
+of this to also support the text format.
 
+Thanks,
+Jake
 
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Dmytriyenko, Denys
-> > Sent: Thursday, March 12, 2015 2:54 PM
-> > To: Stiffler, Jacob
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH v2 0/4] Implment the wayland
-> > DISTRO_FEATURE.
-> > 
-> > Looks good, thanks.
-> > 
-> > On Thu, Mar 12, 2015 at 03:46:18PM -0400, Jacob Stiffler wrote:
-> > > * Only include wayland, weston, and example packages if 'wayland' is a
-> > >   DISTRO_FEATURE.
-> > > * By default, if 'screen' is a MACHINE_FEATURE, then add 'wayland' as a
-> > >   DISTRO_FEATURE.
-> > > * Configure qt5 to use wayland if it is a DISTRO_FEATURE, otherwise use
-> > eglfs.
-> > > * Add processor-sdk brand to remove wayland from DISTRO_EFATURES for
-> > the ti33x
-> > >   and ti43x soc families.
-> > >
-> > >
-> > > Jacob Stiffler (4):
-> > >   arago.conf: Include wayland in DISTRO_FEATURES by default.
-> > >   packagegroup-*: Include wayland/weston if specified in
-> > >     DISTRO_FEATURES.
-> > >   qtbase: Use DISTRO_FEATURES to set appropriate qpa.
-> > >   branding-processor-sdk: Add processor-sdk brand.
-> > >
-> > >  meta-arago-distro/conf/distro/arago.conf           |    2 +-
-> > >  .../conf/distro/include/branding-processor-sdk.inc |   35
-> > ++++++++++++++++++++
-> > >  .../packagegroups/packagegroup-arago-qte.bb        |    4 +--
-> > >  .../packagegroup-arago-tisdk-graphics.bb           |    4 +--
-> > >  .../packagegroups/packagegroup-arago-tisdk-qte.bb  |    4 +--
-> > >  .../packagegroups/packagegroup-linaro-tc-test.bb   |    5 +--
-> > >  meta-arago-distro/recipes-qt/qt5/qtbase/qt_env.sh  |    1 -
-> > >  .../recipes-qt/qt5/qtbase_5.4.1.bbappend           |    4 +--
-> > >  8 files changed, 47 insertions(+), 12 deletions(-)  create mode
-> > > 100644
-> > > meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> > >
-> > > --
-> > > v2: Change order of patches.
-> > >
-> > > 1.7.9.5
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+-----Original Message-----
+From: Stiffler, Jacob=20
+Sent: Monday, March 09, 2015 1:55 PM
+To: meta-arago@arago-project.org
+Cc: Stiffler, Jacob
+Subject: [PATCH v3] tisdk-image: Fix manifest generation for nativesdk.
+
+The software manifest is created by parsing the *.control files in the imag=
+es /var/lib/opkg directory. For the nativesdk sysroot, there are some cases=
+ where the control files are not present. The reason for this and the speci=
+fic circumstances of when this occurs has not yet been root caused.
+
+When this does happen, the "Development Host Content" tables of the manifes=
+t are not valid. However, the package indexes are present. These contain al=
+l of the information in the control files, only concatenated together in a =
+large file. This patch will split up these package indexes into individual =
+control files which will allow the previous parsing to produce a valid outp=
+ut.
+
+Here is an example of the invalid output when the control files are not pre=
+sent:
+
+<h2><u>Development Host Content</u></h2> <p>This table describes any softwa=
+re being delivered that is expected to run on a Development Host, instead o=
+f the target device.  Some of this software may be licensed under GPLv3 but=
+ it is not expected to be shipped as a product.</p>
+
+<table border=3D1 cellspacing=3D1 cellpadding=3D1 width=3D80%> <tr bgcolor=
+=3D#c0c0c0  color=3Dwhite>
+    <td><b>Software Name</b></td>
+    <td><b>Version</b></td>
+    <td><b>License</b></td>
+    <td><b>Location</b></td>
+    <td><b>Delivered As</b></td>
+    <td><b>Modified by TI</b></td>
+    <td><b>Obtained from</b></td>
+</tr>
+
+<tr>
+    <td> </td>
+    <td></td>
+    <td ></td>
+    <td>__.ipk</td>
+    <td>Binary</td>
+    <td>No</td>
+    <td></td>
+</tr>
+
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-distro/classes/tisdk-image.bbclass |   37 +++++++++++++++++++++=
+++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-dis=
+tro/classes/tisdk-image.bbclass
+index 3030a38..747670f 100644
+--- a/meta-arago-distro/classes/tisdk-image.bbclass
++++ b/meta-arago-distro/classes/tisdk-image.bbclass
+@@ -353,6 +353,43 @@ echo "
+ </tr>
+ " >> ${SW_MANIFEST_FILE}
+=20
++    control_files_there=3D0
++    for possible_control_file in $control_dir/*.control
++    do
++        if [ -f $possible_control_file ]
++        then
++            control_files_there=3D1
++            break
++        fi
++    done
++
++    if [ $control_files_there -eq 0 ]
++    then
++        for pkg_idx in $control_dir/oe*; do
++            package_start=3D`grep -n "^Package" $pkg_idx || true`
++
++            IFS_OLD=3D${IFS}
++            IFS=3D"
++"
++
++            for pkg in ${package_start}; do
++                end=3D`echo $pkg | cut -d: -f1`
++
++                if [ -z $begin ]; then
++                    pkg_name=3D`echo $pkg | cut -d: -f3`
++                    begin=3D`echo $pkg | cut -d: -f1`
++                    continue
++                fi
++                cnt=3D$[$cnt+1]
++                head -n $[$end - 1] $pkg_idx | tail -n $[$end - $begin]=20
++ > ${control_dir}/${pkg_name// /}.control
++
++                pkg_name=3D`echo $pkg | cut -d: -f3`
++                begin=3D$end
++            done
++            IFS=3D${IFS_OLD}
++        done
++    fi
++
+     for i in $control_dir/*.control
+     do
+         package=3D"`cat $i | grep Package: | awk {'print $2'}`"
+--
+1.7.9.5
+
 
