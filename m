@@ -1,31 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BE97652099
+Return-Path: <a0866934local@udb0866934>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 8AC6852A3F
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Mar 2015 15:32:39 +0000 (UTC)
+	Mon, 16 Mar 2015 17:05:02 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2GFWcIp019907;
-	Mon, 16 Mar 2015 10:32:38 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2GFWbJ8027909;
-	Mon, 16 Mar 2015 10:32:37 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 16 Mar 2015 10:32:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2GFWTmp023562;
-	Mon, 16 Mar 2015 10:32:33 -0500
-Date: Mon, 16 Mar 2015 11:32:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Ulf Samuelsson <meta-arago@emagii.com>
-Message-ID: <20150316153221.GF4669@edge>
-References: <54FCAECB.7020005@emagii.com>
- <550096F5.8080700@emagii.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2GH512a004583
+	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 12:05:01 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2GH50NH008981
+	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 12:05:00 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 16 Mar 2015 12:05:00 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2GH500X004259;
+	Mon, 16 Mar 2015 12:05:00 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YXYRo-000147-1y;
+	Mon, 16 Mar 2015 13:05:00 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 16 Mar 2015 13:04:58 -0400
+Message-ID: <1426525498-4063-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <550096F5.8080700@emagii.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: Example Device Tree files when building AM335x/OpenGL support
+Subject: [PATCH v2 2/2] packagegroup-arago-tisdk-matrix: Change conditions for including ts-calibrate-init.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,28 +37,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Mar 2015 15:32:40 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 16 Mar 2015 17:05:02 -0000
+Content-Type: text/plain
 
-On Wed, Mar 11, 2015 at 08:26:45PM +0100, Ulf Samuelsson wrote:
-> Den 2015-03-08 21:19, Ulf Samuelsson skrev:
-> >Are there any examples of Device-Trees files which are compatible
-> >with the "omaplfb" driver for OpenGL
-> >
-> >Running a Beaglebone derivative using AM3359.
-> >
-> >
-> >Did this for the Beaglebone + LCD4 but when I do the same changes
-> >for another LCD the screen does not come up.
-> >The fix enabled some clocks, and replaced the tilcdc compatible
-> >panel with an &lcdc entry.
-> 
-> No answers...
-> Noone knows about openlfb on this mailing list?
+* Include if wayland not a DISTRO_FEATURE.
 
-You'd better off asking this on e2e forums...
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+v2: Fix checking DISTRO_FEATURES for all occurences of ts-calibrate-init.
 
+ .../packagegroup-arago-tisdk-matrix.bb             |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index d8386f5..a006c52 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r36"
++PR = "r37"
+ 
+ inherit packagegroup
+ 
+@@ -49,7 +49,7 @@ MATRIX_APPS_append_omap3 = "        \
+     matrix-multimedia-demo-h264dec      \
+     matrix-multimedia-demo-mpeg4aacdec   \
+     matrix-multimedia-demo-mpeg4dec     \
+-    ${@base_conditional('QT_PROVIDER', 'qt5', '', 'ts-calibrate-init', d)} \
++    ${@base_contains('DISTRO_FEATURES', 'wayland', '', 'ts-calibrate-init', d)} \
+ "
+ 
+ MATRIX_APPS_append_ti33x = "        \
+@@ -66,7 +66,7 @@ MATRIX_APPS_append_ti33x = "        \
+     matrix-gui-clocks               \
+     matrix-gui-pm-demos-governor    \
+                                     \
+-    ${@base_conditional('QT_PROVIDER', 'qt5', '', 'ts-calibrate-init', d)} \
++    ${@base_conditional('DISTRO_FEATURES', 'wayland', '', 'ts-calibrate-init', d)} \
+ "
+ 
+ MATRIX_APPS_append_ti43x = "        \
+@@ -84,7 +84,7 @@ MATRIX_APPS_append_ti43x = "        \
+     matrix-gui-pm-demos-governor    \
+     matrix-gui-apps-dual-camera     \
+     matrix-gui-apps-image-gallery   \
+-    ${@base_conditional('QT_PROVIDER', 'qt5', '', 'ts-calibrate-init', d)} \
++    ${@base_conditional('DISTRO_FEATURES', 'wayland', '', 'ts-calibrate-init', d)} \
+ "
+ 
+ MATRIX_APPS_append_omap-a15 = "     \
 -- 
-Denys
+1.7.9.5
+
 
