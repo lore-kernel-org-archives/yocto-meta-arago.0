@@ -1,29 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5131752099
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id A8807529F1
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Mar 2015 09:42:41 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2G9geYc008273
-	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 04:42:40 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2G9gdWu032735
-	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 04:42:39 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 16 Mar 2015 04:42:38 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t2G9gchM009762	for <meta-arago@arago-project.org>;
-	Mon, 16 Mar 2015 04:42:38 -0500
-Date: Mon, 16 Mar 2015 05:42:38 -0400
+	Mon, 16 Mar 2015 14:54:13 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2GEsCAO024194
+	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 09:54:12 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2GEsB19029165
+	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 09:54:11 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 16 Mar 2015 09:54:11 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2GEsBb3005891;
+	Mon, 16 Mar 2015 09:54:11 -0500
+Date: Mon, 16 Mar 2015 10:54:10 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <502495564.19.1426498958639.JavaMail.jenkins@puget>
+To: "Franklin S. Cooper Jr" <fcooper@ti.com>
+Message-ID: <20150316145410.GC4669@edge>
+References: <1426086710-22993-1-git-send-email-fcooper@ti.com>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-am57x
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.03 build 2015-03-16_05-00-51
+In-Reply-To: <1426086710-22993-1-git-send-email-fcooper@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v3] refresh-screen: Add commandline parameter to set background-color to black
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,175 +37,188 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Mar 2015 09:42:41 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_18_62127658.1426498958633"
+X-List-Received-Date: Mon, 16 Mar 2015 14:54:14 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-------=_Part_18_62127658.1426498958633
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Looks like v3 still cannot be applied... And I think I know why - there are 
+Windows newlines in the patch (because the original sources had them!) and 
+when those send over the email, those get lost and the patch can no longer be 
+applied... Gotta do some manual tinkering with it.
 
-<html>
-<head>
-<title>
-Status for 03/16/15
-</title>
-</head>
-<body>
-
-<h2>Status for 03/16/15</h2>
-
-<h2>BUILD_ID: build-2015-03-16_05-01-53</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.24</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.03"<br>
-MACHINES="am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-am57x"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly/am57x"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-am57x/workspace"<br>
-</p>
-
-</body>
-</html>
+-- 
+Denys
 
 
-------=_Part_18_62127658.1426498958633--
+On Wed, Mar 11, 2015 at 10:11:50AM -0500, Franklin S. Cooper Jr wrote:
+> From: "Franklin S. Cooper Jr" <fcooper@ti.com>
+> 
+> * This is to work around an issue seen when using Qt 5 EGLFS
+> * Also pull in the changes from the Qt 5 patches into the git repository itself
+> 
+> Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+> ---
+> v3 changes:
+> Fix issues related to the patch. Tested by switching to https locally.
+> * Fix checksum
+> * Remove base_conditional statement since it isn't needed.
+> * Updated commit id
+> 
+> v2 changes:
+> Added the reason why the various patches are being deleted.
+> 
+>  ...uild-with-Qt5-use-qmake-available-in-PATH.patch |   31 --------------------
+>  ...een.pro-add-widgets-module-to-the-project.patch |   26 ----------------
+>  ...place-QtGui-header-with-QtWidgets-for-Qt5.patch |   26 ----------------
+>  .../recipes-core/matrix/refresh-screen_2.0.bb      |   14 ++-------
+>  4 files changed, 3 insertions(+), 94 deletions(-)
+>  delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+>  delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
+>  delete mode 100644 meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch b/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+> deleted file mode 100644
+> index 726b9ea..0000000
+> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -From 394eacf80efaacc719e69179c7c709016d21b707 Mon Sep 17 00:00:00 2001
+> -From: Denys Dmytriyenko <denys@ti.com>
+> -Date: Mon, 15 Dec 2014 15:46:08 -0500
+> -Subject: [PATCH] Makefile.build: with Qt5 use qmake available in PATH
+> -
+> -Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ----
+> - Makefile.build |    4 ++--
+> - 1 file changed, 2 insertions(+), 2 deletions(-)
+> -
+> -diff --git a/Makefile.build b/Makefile.build
+> -index a0ceaad..e6cb010 100644
+> ---- a/Makefile.build
+> -+++ b/Makefile.build
+> -@@ -8,11 +8,11 @@ all: release
+> - .PHONY: qmake
+> - qmake : refresh_screen.pro
+> - 	@. ${ENV_SETUP}; \
+> --	qmake2 CONFIG+=release refresh_screen.pro
+> -+	qmake CONFIG+=release refresh_screen.pro
+> - 
+> - qmake_debug : refresh_screen.pro
+> - 	@. ${ENV_SETUP}; \
+> --	qmake2 CONFIG+=debug refresh_screen.pro
+> -+	qmake CONFIG+=debug refresh_screen.pro
+> - 
+> - debug : qmake_debug
+> - 	@. ${ENV_SETUP}; \
+> --- 
+> -1.7.9.5
+> -
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch b/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
+> deleted file mode 100644
+> index b9a1f80..0000000
+> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0001-refresh-screen.pro-add-widgets-module-to-the-project.patch
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -From 3969a5b06cfa28e531080cfdb12ea69ada870f36 Mon Sep 17 00:00:00 2001
+> -From: Denys Dmytriyenko <denys@ti.com>
+> -Date: Mon, 12 May 2014 21:07:32 -0400
+> -Subject: [PATCH] refresh-screen.pro: add widgets module to the project for Qt5
+> -
+> -Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ----
+> - refresh_screen.pro | 2 +-
+> - 1 file changed, 1 insertion(+), 1 deletion(-)
+> -
+> -diff --git a/refresh_screen.pro b/refresh_screen.pro
+> -index afe5c25..a79abd0 100644
+> ---- a/refresh_screen.pro
+> -+++ b/refresh_screen.pro
+> -@@ -4,7 +4,7 @@
+> - #
+> - #-------------------------------------------------
+> - 
+> --QT       += core gui
+> -+QT       += core gui widgets
+> - 
+> - TARGET = refresh_screen
+> - TEMPLATE = app
+> --- 
+> -1.9.2
+> -
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch b/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
+> deleted file mode 100644
+> index 66c002d..0000000
+> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen/0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -From 60a8e6c8ea763ed88442f16509cae99d8e43918e Mon Sep 17 00:00:00 2001
+> -From: Denys Dmytriyenko <denys@ti.com>
+> -Date: Mon, 12 May 2014 21:01:57 -0400
+> -Subject: [PATCH] Replace QtGui header with QtWidgets for Qt5
+> -
+> -Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ----
+> - main.cpp | 2 +-
+> - 1 file changed, 1 insertion(+), 1 deletion(-)
+> -
+> -diff --git a/main.cpp b/main.cpp
+> -index c5744d8..5a61904 100644
+> ---- a/main.cpp
+> -+++ b/main.cpp
+> -@@ -36,7 +36,7 @@
+> -  *
+> - */
+> - 
+> --#include <QtGui/QApplication>
+> -+#include <QtWidgets/QApplication>
+> - #include "mainwindow.h"
+> - 
+> - int main(int argc, char *argv[])
+> --- 
+> -1.9.2
+> -
+> diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> index 6c2c72e..8c36433 100644
+> --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
+> @@ -1,7 +1,7 @@
+>  DESCRIPTION = "Simple Application to force a screen refresh"
+>  HOMEPAGE = "https://gitorious.org/matrix-gui-v2/refresh-screen"
+>  LICENSE = "BSD"
+> -LIC_FILES_CHKSUM = "file://main.cpp;beginline=9;endline=37;md5=884b90f5bf0d711fe32c4f04b5276496"
+> +LIC_FILES_CHKSUM = "file://main.cpp;beginline=9;endline=37;md5=75a9adc782a6df0d3a5419743e9a9f18"
+>  SECTION = "multimedia"
+>  
+>  inherit qt-provider
+> @@ -9,21 +9,13 @@ inherit qt-provider
+>  # Make sure that QT font libraries have been installed
+>  RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
+>  
+> -PR = "r7"
+> +PR = "r8"
+>  
+> -SRCREV = "ad3835b250c8b2b55ae65ffa19c2b85e412826b0"
+> +SRCREV = "4c8817e28ceed2dd886761e3ec1971b11436ba33"
+>  BRANCH ?= "master"
+>  
+>  SRC_URI = "git://gitorious.org/matrix-gui-v2/refresh-screen.git;protocol=git;branch=${BRANCH}"
+>  
+> -QT5_DIFF = " \
+> -file://0001-refresh-screen.pro-add-widgets-module-to-the-project.patch \
+> -file://0002-Replace-QtGui-header-with-QtWidgets-for-Qt5.patch \
+> -file://0001-Makefile.build-with-Qt5-use-qmake-available-in-PATH.patch \
+> -"
+> -
+> -SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DIFF}", '', d)}"
+> -
+>  S = "${WORKDIR}/git"
+>  
+>  do_install() {
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
