@@ -1,30 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6A22652099
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id B047952099
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Mar 2015 14:39:26 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2HEdPSf013631
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 09:39:25 -0500
+	Tue, 17 Mar 2015 14:58:17 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2HEwGCI021566
+	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 09:58:16 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HEdO63026463
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 09:39:24 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HEwFTv025486
+	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 09:58:15 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 17 Mar 2015 09:39:24 -0500
+	Tue, 17 Mar 2015 09:58:15 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HEdOXb006559;
-	Tue, 17 Mar 2015 09:39:24 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HEwFS8002968;
+	Tue, 17 Mar 2015 09:58:15 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YXseR-000316-Dp;
-	Tue, 17 Mar 2015 10:39:23 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YXswh-00033P-3b;
+	Tue, 17 Mar 2015 10:58:15 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 17 Mar 2015 10:39:21 -0400
-Message-ID: <1426603161-11566-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 17 Mar 2015 10:58:12 -0400
+Message-ID: <1426604292-11709-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui: Clear background when starting and stopping matrix.
+Subject: [PATCH] branding-processor-sdk: Set more preferences
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,88 +37,63 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Mar 2015 14:39:26 -0000
+X-List-Received-Date: Tue, 17 Mar 2015 14:58:18 -0000
 Content-Type: text/plain
 
-* Clearing the background is done by calling refresh_screen with the
-  "background-black" argument.
-* Always switch virtual terminals so that command prompt will be visible
-  upon exiting matrix.
-* Disable blinking cursor while matrix is running, re-enable when stopping
-  matrix.
-    - When using qt over eglfs, the blinking cursor will show through the
-      gui.
+* AUTOREV linux-ti-staging and u-boot-ti-staging for omap-a15
+* Freeze u-boot for am335x-evm and am437x-evm.
+* Add commit message for linux-ti-staging.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui/init            |   10 +++++++++-
- .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 +---
- 2 files changed, 10 insertions(+), 4 deletions(-)
+ .../conf/distro/include/branding-processor-sdk.inc |   23 ++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-index 3ec0a55..9f0507f 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-@@ -16,7 +16,7 @@ test -x "$matrixgui" || exit 0
+diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+index d277aac..c2327fa 100644
+--- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+@@ -4,10 +4,30 @@ ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
+ DISTRO_FEATURES_remove_ti33x = "wayland"
+ DISTRO_FEATURES_remove_ti43x = "wayland"
  
- case "$1" in
-   start)
--    __SWITCH_FOREGROUND_VT__
-+    chvt 4
++# Set preferred providers and srcrevs
+ PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
+ PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
+ PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
  
-     #Clear out the the tmp and lock directory
-     cd __MATRIX_WEB_DIR__
-@@ -34,6 +34,9 @@ case "$1" in
-       fi
-     fi
- 
-+    echo 0 > /sys/class/graphics/fbcon/cursor_blink
-+    refresh_screen "background-black"
++# Auto rev important packages to pick up latest
++SRCREV_pn-u-boot-ti-staging_omap-a15 = "${AUTOREV}"
++SRCREV_pn-ltp-ddt_omap-a15 = "${AUTOREV}"
 +
-     echo -n "Starting Matrix GUI application"
-     start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE --exec $matrixgui -- $GUI_OPTS
-     echo "."
-@@ -42,6 +45,11 @@ case "$1" in
-   stop)
-     echo -n "Stopping Matrix GUI application"
-     start-stop-daemon --stop --quiet --pidfile $PIDFILE
++# am3 and am4 use sitara-linux-ti-staging, so this only applies to omap-a15
++SRCREV_pn-linux-ti-staging = "${AUTOREV}"
 +
-+    refresh_screen "background-black"
-+    echo 1 > /sys/class/graphics/fbcon/cursor_blink
-+    chvt 1
++# Freeze am3 and am4 u-boot
++PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
++PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
++PREFERRED_VERSION_u-boot-ti-staging_am335x-evm = "2014.07%"
++SRCREV_pn-u-boot-ti-staging_am335x-evm = "7e537bfdd261bf8bf444f3ac4d1be3db4ee124e8"
 +
-     echo "."
-     ;;
-   *)
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index 1b61ff1..b4161ff 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
++PREFERRED_PROVIDER_virtual/bootloader_am437x-evm = "u-boot-ti-staging"
++PREFERRED_PROVIDER_u-boot_am437x-evm = "u-boot-ti-staging"
++PREFERRED_VERSION_u-boot-ti-staging_am437x-evm = "2014.07%"
++SRCREV_pn-u-boot-ti-staging_am437x-evm = "7e537bfdd261bf8bf444f3ac4d1be3db4ee124e8"
++
++
+ # To create newlines in the message \n is used and the slash must be escaped
+ # to function properly
  
- SECTION = "multimedia"
+@@ -28,6 +48,9 @@ script located in the sdk\'s bin directory\\n\
+ The script may take several minutes but you will then have a full copy of\\n\
+ the git repository including its entire git history.\\n"
  
--PR = "r21"
-+PR = "r22"
++SRCIPK_CUSTOM_GIT_BRANCH_pn-linux-ti-staging = "processor-sdk-1.0"
++SRCIPK_CUSTOM_GIT_MESSAGE_pn-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
++
+ SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
+ SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
  
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -27,7 +27,6 @@ require matrix-gui-paths.inc
- S = "${WORKDIR}/git"
- 
- MATRIX_FLAGS = "${@base_conditional('QT_PROVIDER','qt5','','-qws',d)}"
--SWITCH_FOREGROUND_VT = "${@base_conditional('QT_PROVIDER','qt5','','chvt 4',d)}"
- do_install(){
- 	install -d ${D}${MATRIX_BASE_DIR}
- 	install -d ${D}${MATRIX_WEB_DIR}
-@@ -39,7 +38,6 @@ do_install(){
- 	# Set the proper path in the init script
- 	sed -i -e s=__MATRIX_WEB_DIR__=${MATRIX_WEB_DIR}= ${WORKDIR}/init
- 	sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${WORKDIR}/init
--	sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${WORKDIR}/init
- 
- 	# Install the init script
- 	# TODO: replace init script with systemd files
 -- 
 1.7.9.5
 
