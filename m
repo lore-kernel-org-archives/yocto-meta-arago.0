@@ -1,29 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id E2B4652A0B
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id A677752A0B
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Mar 2015 02:28:34 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2H2SW4M003755
-	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 21:28:32 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2H2SVxm013259
-	for <meta-arago@arago-project.org>; Mon, 16 Mar 2015 21:28:31 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 16 Mar 2015 21:28:30 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t2H2SUXd010780	for <meta-arago@arago-project.org>;
-	Mon, 16 Mar 2015 21:28:30 -0500
-Date: Mon, 16 Mar 2015 22:28:30 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1149263510.21.1426559310647.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.03 build 2015-03-16_22-00-51
+	Tue, 17 Mar 2015 03:28:44 +0000 (UTC)
+Received: from gandalf.denix.org ([108.18.33.236]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NLC009406ZGM180@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 16 Mar 2015 22:28:28 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Pd9IXZlY c=1 sm=1 tr=0	a=SSUdfGXV8XCffJJ8+gLrig==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=emO1SXQWCLwA:10
+	a=sozttTNsAAAA:8 a=Sv4y0yS6AAAA:8	a=VwQbUJbxAAAA:8 a=GqZI9gvVAAAA:8
+	a=Idv6Z6YtAAAA:8 a=1hj8veolAAAA:8	a=KNf54dlo5iEyTmQCxMkA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 0C387200EC;	Mon,
+	16 Mar 2015 23:28:28 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 16 Mar 2015 23:28:27 -0400
+Message-id: <1426562907-7728-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] ethtool: temporarily overlay 3.16 from master, as daisy provides 3.13
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,200 +35,151 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Mar 2015 02:28:40 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_20_377127001.1426559310622"
+X-List-Received-Date: Tue, 17 Mar 2015 03:28:44 -0000
 
-------=_Part_20_377127001.1426559310622
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 03/16/15
-</title>
-</head>
-<body>
+Need 3.14+ for switch config options.
 
-<h2>Status for 03/16/15</h2>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../ethtool/ethtool/avoid_parallel_tests.patch     | 19 ++++++++
+ .../ethtool/ethtool/ethtool-uint.patch             | 50 ++++++++++++++++++++++
+ .../recipes-extended/ethtool/ethtool/run-ptest     |  2 +
+ .../recipes-extended/ethtool/ethtool_3.16.bb       | 31 ++++++++++++++
+ 4 files changed, 102 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-extended/ethtool/ethtool/avoid_parallel_tests.patch
+ create mode 100644 meta-arago-extras/recipes-extended/ethtool/ethtool/ethtool-uint.patch
+ create mode 100644 meta-arago-extras/recipes-extended/ethtool/ethtool/run-ptest
+ create mode 100644 meta-arago-extras/recipes-extended/ethtool/ethtool_3.16.bb
 
-<h2>BUILD_ID: build-2015-03-16_22-01-58</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.24</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.03"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-extras/recipes-extended/ethtool/ethtool/avoid_parallel_tests.patch b/meta-arago-extras/recipes-extended/ethtool/ethtool/avoid_parallel_tests.patch
+new file mode 100644
+index 0000000..bf66267
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/ethtool/ethtool/avoid_parallel_tests.patch
+@@ -0,0 +1,19 @@
++ptest needs buildtest-TESTS and runtest-TESTS targets.
++serial-tests is required to generate those targets.
++
++Signed-off-by: Tudor Florea <tudor.florea@enea.com>
++Upstream-Status: Inappropriate
++(default automake behavior incompatible with ptest)
++
++diff -ruN a/configure.ac b/configure.ac
++--- a/configure.ac	2014-05-28 18:19:13.513980977 +0200
+++++ b/configure.ac	2014-05-28 18:19:21.129660215 +0200
++@@ -2,7 +2,7 @@
++ AC_INIT(ethtool, 3.14, netdev@vger.kernel.org)
++ AC_PREREQ(2.52)
++ AC_CONFIG_SRCDIR([ethtool.c])
++-AM_INIT_AUTOMAKE([gnu])
+++AM_INIT_AUTOMAKE([gnu serial-tests])
++ AC_CONFIG_HEADERS([ethtool-config.h])
++ 
++ AM_MAINTAINER_MODE
+diff --git a/meta-arago-extras/recipes-extended/ethtool/ethtool/ethtool-uint.patch b/meta-arago-extras/recipes-extended/ethtool/ethtool/ethtool-uint.patch
+new file mode 100644
+index 0000000..bb96a18
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/ethtool/ethtool/ethtool-uint.patch
+@@ -0,0 +1,50 @@
++Fix build with musl by using correct uint type names.
++
++This patch is taken from Sabotage Linux, the license statement for patches and
++build scripts in Sabotage Linux says:
++
++    To the extent possible under law, Christian Neukirchen has waived
++    all copyright and related or neighboring rights to this work.
++
++    http://creativecommons.org/publicdomain/zero/1.0/
++
++Therefore this should be good to include in OpenEmbedded.
++
++Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
++
++Upstream-status: Pending
++
++diff -u ethtool-3.14.org/internal.h ethtool-3.14/internal.h
++--- ethtool-3.14.org/internal.h
+++++ ethtool-3.14/internal.h
++@@ -7,6 +7,7 @@
++ #include "ethtool-config.h"
++ #endif
++ #include <stdio.h>
+++#include <stdint.h>
++ #include <stdlib.h>
++ #include <string.h>
++ #include <sys/types.h>
++@@ -17,16 +18,16 @@
++ 
++ /* ethtool.h expects these to be defined by <linux/types.h> */
++ #ifndef HAVE_BE_TYPES
++-typedef __uint16_t __be16;
++-typedef __uint32_t __be32;
+++typedef uint16_t __be16;
+++typedef uint32_t __be32;
++ typedef unsigned long long __be64;
++ #endif
++ 
++ typedef unsigned long long u64;
++-typedef __uint32_t u32;
++-typedef __uint16_t u16;
++-typedef __uint8_t u8;
++-typedef __int32_t s32;
+++typedef uint32_t u32;
+++typedef uint16_t u16;
+++typedef uint8_t u8;
+++typedef int32_t s32;
++ 
++ #include "ethtool-copy.h"
++ #include "net_tstamp-copy.h"
+diff --git a/meta-arago-extras/recipes-extended/ethtool/ethtool/run-ptest b/meta-arago-extras/recipes-extended/ethtool/ethtool/run-ptest
+new file mode 100644
+index 0000000..1e245da
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/ethtool/ethtool/run-ptest
+@@ -0,0 +1,2 @@
++#!/bin/sh
++make -k runtest-TESTS
+diff --git a/meta-arago-extras/recipes-extended/ethtool/ethtool_3.16.bb b/meta-arago-extras/recipes-extended/ethtool/ethtool_3.16.bb
+new file mode 100644
+index 0000000..92a0704
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/ethtool/ethtool_3.16.bb
+@@ -0,0 +1,31 @@
++SUMMARY = "Display or change ethernet card settings"
++DESCRIPTION = "A small utility for examining and tuning the settings of your ethernet-based network interfaces."
++HOMEPAGE = "http://www.kernel.org/pub/software/network/ethtool/"
++SECTION = "console/network"
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
++                    file://ethtool.c;beginline=4;endline=17;md5=c19b30548c582577fc6b443626fc1216"
++
++SRC_URI = "${KERNELORG_MIRROR}/software/network/ethtool/ethtool-${PV}.tar.gz \
++           file://run-ptest \
++           file://avoid_parallel_tests.patch \
++           file://ethtool-uint.patch \
++           "
++
++SRC_URI[md5sum] = "3806bae34c153e2b9e2859e85c54788d"
++SRC_URI[sha256sum] = "a6f1433824af7b390ed4e66dfc7cee047d6d1f56dbb8ceef9fe905d63aef5275"
++
++inherit autotools ptest
++RDEPENDS_${PN}-ptest += "make"
++
++do_compile_ptest() {
++   oe_runmake buildtest-TESTS
++}
++
++do_install_ptest () {
++   cp ${B}/Makefile                 ${D}${PTEST_PATH}
++   install ${B}/test-cmdline        ${D}${PTEST_PATH}
++   install ${B}/test-features       ${D}${PTEST_PATH}
++   install ${B}/ethtool             ${D}${PTEST_PATH}/ethtool
++   sed -i 's/^Makefile/_Makefile/'  ${D}${PTEST_PATH}/Makefile
++}
+-- 
+2.2.0
 
 
-------=_Part_20_377127001.1426559310622--
