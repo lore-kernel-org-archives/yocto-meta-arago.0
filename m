@@ -1,33 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 08E4552A0B
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id B155852A0B
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Mar 2015 15:43:26 +0000 (UTC)
+	Tue, 17 Mar 2015 15:45:25 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2HFhQRX002781
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:43:26 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HFhOT9013244
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:43:25 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Tue, 17 Mar 2015 10:43:24 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] matrix-gui: Clear background when
-	starting and	stopping matrix.
-Thread-Index: AQHQYMA+PdcwhuW2fEqsLR+YCLSIFp0gzjQw
-Date: Tue, 17 Mar 2015 15:43:23 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C848EA5@DFLE08.ent.ti.com>
-References: <1426603161-11566-1-git-send-email-j-stiffler@ti.com>
-In-Reply-To: <1426603161-11566-1-git-send-email-j-stiffler@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2HFjOWx018024
+	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:45:24 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HFjNHF015504
+	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:45:23 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 17 Mar 2015 10:45:23 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HFjNEi017949;
+	Tue, 17 Mar 2015 10:45:23 -0500
+Date: Tue, 17 Mar 2015 11:45:23 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <20150317154522.GI4669@edge>
+References: <1425398366-6614-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH] matrix-gui: Clear background when starting and	stopping matrix.
+In-Reply-To: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago 0/4] GStreamer 1.0 adapatations for TI Platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,129 +37,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Mar 2015 15:43:27 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 17 Mar 2015 15:45:25 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Overall by modifying this init script your making changes that are only nee=
-ded for Qt 5 eglfs users. Users can use Qt 4 and Qt 5 Wayland which this pa=
-tch may cause problems for.
+Ok, I'm fine with these patches, except one thing:
 
-Honestly your probably better off duplicating this init script and making a=
- Qt 5 eglfs variant since there seems to be a significant amount of tweaks.=
- Then select which init you want based on if Qt 5 is being used and if Wayl=
-and is being used.
+FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
+
+What is the specific reason for this? I'm going to drop it when applying 
+these patches later today...
 
 
-Additional comments below.
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> Sent: Tuesday, March 17, 2015 9:39 AM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] matrix-gui: Clear background when starting
-> and stopping matrix.
->=20
-> * Clearing the background is done by calling refresh_screen with the
->   "background-black" argument.
-> * Always switch virtual terminals so that command prompt will be visible
->   upon exiting matrix.
-> * Disable blinking cursor while matrix is running, re-enable when stoppin=
-g
->   matrix.
->     - When using qt over eglfs, the blinking cursor will show through the
->       gui.
->=20
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../recipes-core/matrix/matrix-gui/init            |   10 +++++++++-
->  .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 +---
->  2 files changed, 10 insertions(+), 4 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init b/meta=
--
-> arago-extras/recipes-core/matrix/matrix-gui/init
-> index 3ec0a55..9f0507f 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> @@ -16,7 +16,7 @@ test -x "$matrixgui" || exit 0
->=20
->  case "$1" in
->    start)
-> -    __SWITCH_FOREGROUND_VT__
-> +    chvt 4
-[Franklin] I don't understand why you're getting rid of __SWITCH_FOREGROUND=
-_VT__ when its sole purpose is to give you the flexibility. Your hard codin=
-g rather than using the variable which can end up causing problems for Wayl=
-and. Just use the variable.
->=20
->      #Clear out the the tmp and lock directory
->      cd __MATRIX_WEB_DIR__
-> @@ -34,6 +34,9 @@ case "$1" in
->        fi
->      fi
->=20
-> +    echo 0 > /sys/class/graphics/fbcon/cursor_blink
-> +    refresh_screen "background-black"
-[Franklin] This isn't needed. Matrix GUI gets displayed full screen so ther=
-e is no need for refresh screen.
-> +
->      echo -n "Starting Matrix GUI application"
->      start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE=
- --exec
-> $matrixgui -- $GUI_OPTS
->      echo "."
-> @@ -42,6 +45,11 @@ case "$1" in
->    stop)
->      echo -n "Stopping Matrix GUI application"
->      start-stop-daemon --stop --quiet --pidfile $PIDFILE
-> +
-> +    refresh_screen "background-black"
-> +    echo 1 > /sys/class/graphics/fbcon/cursor_blink
-> +    chvt 1
-> +
->      echo "."
->      ;;
->    *)
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> index 1b61ff1..b4161ff 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM =3D
-> "file://LICENSE;md5=3Da886c9ef769b2d8271115d2502512e5d"
->=20
->  SECTION =3D "multimedia"
->=20
-> -PR =3D "r21"
-> +PR =3D "r22"
->=20
->  INITSCRIPT_NAME =3D "matrix-gui-2.0"
->  INITSCRIPT_PARAMS =3D "defaults 97"
-> @@ -27,7 +27,6 @@ require matrix-gui-paths.inc  S =3D "${WORKDIR}/git"
->=20
->  MATRIX_FLAGS =3D "${@base_conditional('QT_PROVIDER','qt5','','-qws',d)}"
-> -SWITCH_FOREGROUND_VT =3D
-> "${@base_conditional('QT_PROVIDER','qt5','','chvt 4',d)}"
->  do_install(){
->  	install -d ${D}${MATRIX_BASE_DIR}
->  	install -d ${D}${MATRIX_WEB_DIR}
-> @@ -39,7 +38,6 @@ do_install(){
->  	# Set the proper path in the init script
->  	sed -i -e s=3D__MATRIX_WEB_DIR__=3D${MATRIX_WEB_DIR}=3D
-> ${WORKDIR}/init
->  	sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/"
-> ${WORKDIR}/init
-> -	sed -i -e
-> "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/"
-> ${WORKDIR}/init
->=20
->  	# Install the init script
->  	# TODO: replace init script with systemd files
-> --
+On Tue, Mar 03, 2015 at 09:29:21PM +0530, Karthik Ramanan wrote:
+> Difference from v1:
+>  * Add gst-plugins-ducati for GST 1.x
+>  * Add gst-plugins-vpe for GST 1.x
+>  * Add FILES_PN explicitly for all GST 1.x recipes
+> 
+> Karthik Ramanan (4):
+>   gstreamer1.0-plugins-base: Add DMA Buf support
+>   gstreamer1.0-plugins-good: Add DMABuf support v4l2src
+>   gstreamer1.0-plugins-bad: Add various features
+>   gstreamer1.0-plugins-ti: Add ducati and vpe GST plugins
+> 
+>  .../gstreamer1.0-plugins-ducati_git.bb             |   10 +
+>  .../gst-plugins-ti/gstreamer1.0-plugins-ti.inc     |   19 +
+>  .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |   11 +
+>  .../0001-Added-GstDRMBufferPool-support.patch      |  774 +++++++++++
+>  ...odified-waylandsink-to-accept-NV12-format.patch | 1017 ++++++++++++++
+>  .../0003-Added-KMSsink-support.patch               | 1457 ++++++++++++++++++++
+>  ...04-waylandsink-Removed-dependency-on-dri2.patch |   26 +
+>  ...vc1parse-and-jpegparse-Fixes-plugin-ranks.patch |   54 +
+>  .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   14 +
+>  .../0001-Added-GstMetaDmaBuf-features.patch        |  441 ++++++
+>  .../gstreamer1.0-plugins-base_1.2.3.bbappend       |    8 +
+>  ...ST_V4L2_IO_DMABUF-mode-support-in-capture.patch |  298 ++++
+>  .../gstreamer1.0-plugins-good_1.2.3.bbappend       |    8 +
+>  13 files changed, 4137 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
+> 
+> -- 
 > 1.7.9.5
->=20
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
