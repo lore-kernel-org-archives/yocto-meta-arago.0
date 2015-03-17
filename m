@@ -1,30 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id B155852A0B
+Return-Path: <fcooper@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id B0FD552A0B
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Mar 2015 15:45:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2HFjOWx018024
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:45:24 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HFjNHF015504
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:45:23 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 17 Mar 2015 10:45:23 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HFjNEi017949;
-	Tue, 17 Mar 2015 10:45:23 -0500
-Date: Tue, 17 Mar 2015 11:45:23 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20150317154522.GI4669@edge>
-References: <1425398366-6614-1-git-send-email-a0393906@ti.com>
+	Tue, 17 Mar 2015 15:46:44 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2HFkiXu027275
+	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:46:44 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2HFkhGD030279
+	for <meta-arago@arago-project.org>; Tue, 17 Mar 2015 10:46:43 -0500
+Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Tue, 17 Mar 2015 10:46:42 -0500
+From: "Cooper Jr., Franklin" <fcooper@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] branding-processor-sdk: Set more preferences
+Thread-Index: AQHQYMLR6P8xctnuJkSNgK3WMGPZ1p0hGLEAgAAKUYD//64oIA==
+Date: Tue, 17 Mar 2015 15:46:42 +0000
+Message-ID: <8F29D6B095ED194EA1980491A5E029710C848F16@DFLE08.ent.ti.com>
+References: <1426604292-11709-1-git-send-email-j-stiffler@ti.com>
+	<20150317150108.GH4669@edge>
+	<4B26FB5A64EBA14C87266869E037F9581410F4DD@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581410F4DD@DFLE09.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-In-Reply-To: <1425398366-6614-1-git-send-email-a0393906@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago 0/4] GStreamer 1.0 adapatations for TI Platforms
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] branding-processor-sdk: Set more preferences
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,61 +41,111 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Mar 2015 15:45:25 -0000
+X-List-Received-Date: Tue, 17 Mar 2015 15:46:44 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ok, I'm fine with these patches, except one thing:
+Well based on your last comment you should be setting the preferred provide=
+r and version for U-boot and Linux for omap-a15.
 
-FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
-
-What is the specific reason for this? I'm going to drop it when applying 
-these patches later today...
-
-
-On Tue, Mar 03, 2015 at 09:29:21PM +0530, Karthik Ramanan wrote:
-> Difference from v1:
->  * Add gst-plugins-ducati for GST 1.x
->  * Add gst-plugins-vpe for GST 1.x
->  * Add FILES_PN explicitly for all GST 1.x recipes
-> 
-> Karthik Ramanan (4):
->   gstreamer1.0-plugins-base: Add DMA Buf support
->   gstreamer1.0-plugins-good: Add DMABuf support v4l2src
->   gstreamer1.0-plugins-bad: Add various features
->   gstreamer1.0-plugins-ti: Add ducati and vpe GST plugins
-> 
->  .../gstreamer1.0-plugins-ducati_git.bb             |   10 +
->  .../gst-plugins-ti/gstreamer1.0-plugins-ti.inc     |   19 +
->  .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |   11 +
->  .../0001-Added-GstDRMBufferPool-support.patch      |  774 +++++++++++
->  ...odified-waylandsink-to-accept-NV12-format.patch | 1017 ++++++++++++++
->  .../0003-Added-KMSsink-support.patch               | 1457 ++++++++++++++++++++
->  ...04-waylandsink-Removed-dependency-on-dri2.patch |   26 +
->  ...vc1parse-and-jpegparse-Fixes-plugin-ranks.patch |   54 +
->  .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   14 +
->  .../0001-Added-GstMetaDmaBuf-features.patch        |  441 ++++++
->  .../gstreamer1.0-plugins-base_1.2.3.bbappend       |    8 +
->  ...ST_V4L2_IO_DMABUF-mode-support-in-capture.patch |  298 ++++
->  .../gstreamer1.0-plugins-good_1.2.3.bbappend       |    8 +
->  13 files changed, 4137 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
->  create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
->  create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-Added-GstMetaDmaBuf-features.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adds-GST_V4L2_IO_DMABUF-mode-support-in-capture.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.2.3.bbappend
-> 
-> -- 
-> 1.7.9.5
-> 
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Stiffler, Jacob
+> Sent: Tuesday, March 17, 2015 10:38 AM
+> To: Dmytriyenko, Denys
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] branding-processor-sdk: Set more
+> preferences
+>=20
+> Yes. But I wanted to have this here for our release in case it may change=
+ in
+> the future.
+>=20
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Tuesday, March 17, 2015 11:01 AM
+> To: Stiffler, Jacob
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] branding-processor-sdk: Set more
+> preferences
+>=20
+> Isn't u-boot-ti-staging-2014.07% already a default for am3/4?
+>=20
+> On Tue, Mar 17, 2015 at 10:58:12AM -0400, Jacob Stiffler wrote:
+> > * AUTOREV linux-ti-staging and u-boot-ti-staging for omap-a15
+> > * Freeze u-boot for am335x-evm and am437x-evm.
+> > * Add commit message for linux-ti-staging.
+> >
+> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> > ---
+> >  .../conf/distro/include/branding-processor-sdk.inc |   23
+> ++++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> >
+> > diff --git
+> > a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > index d277aac..c2327fa 100644
+> > --- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > @@ -4,10 +4,30 @@ ARAGO_TISDK_IMAGE =3D "processor-sdk-linux-image"
+> >  DISTRO_FEATURES_remove_ti33x =3D "wayland"
+> >  DISTRO_FEATURES_remove_ti43x =3D "wayland"
+> >
+> > +# Set preferred providers and srcrevs
+> >  PREFERRED_PROVIDER_virtual/kernel_am335x-evm =3D "sitara-linux-ti-
+> staging"
+> >  PREFERRED_PROVIDER_virtual/kernel_am437x-evm =3D "sitara-linux-ti-
+> staging"
+> >  PREFERRED_VERSION_sitara-linux-ti-staging =3D "3.14%"
+> >
+> > +# Auto rev important packages to pick up latest
+> > +SRCREV_pn-u-boot-ti-staging_omap-a15 =3D "${AUTOREV}"
+> > +SRCREV_pn-ltp-ddt_omap-a15 =3D "${AUTOREV}"
+> > +
+> > +# am3 and am4 use sitara-linux-ti-staging, so this only applies to
+> > +omap-a15 SRCREV_pn-linux-ti-staging =3D "${AUTOREV}"
+> > +
+> > +# Freeze am3 and am4 u-boot
+> > +PREFERRED_PROVIDER_virtual/bootloader_am335x-evm =3D "u-boot-ti-
+> staging"
+> > +PREFERRED_PROVIDER_u-boot_am335x-evm =3D "u-boot-ti-staging"
+> > +PREFERRED_VERSION_u-boot-ti-staging_am335x-evm =3D "2014.07%"
+> > +SRCREV_pn-u-boot-ti-staging_am335x-evm =3D
+> "7e537bfdd261bf8bf444f3ac4d1be3db4ee124e8"
+> > +
+> > +PREFERRED_PROVIDER_virtual/bootloader_am437x-evm =3D "u-boot-ti-
+> staging"
+> > +PREFERRED_PROVIDER_u-boot_am437x-evm =3D "u-boot-ti-staging"
+> > +PREFERRED_VERSION_u-boot-ti-staging_am437x-evm =3D "2014.07%"
+> > +SRCREV_pn-u-boot-ti-staging_am437x-evm =3D
+> "7e537bfdd261bf8bf444f3ac4d1be3db4ee124e8"
+> > +
+> > +
+> >  # To create newlines in the message \n is used and the slash must be
+> > escaped  # to function properly
+> >
+> > @@ -28,6 +48,9 @@ script located in the sdk\'s bin directory\\n\  The
+> > script may take several minutes but you will then have a full copy
+> > of\\n\  the git repository including its entire git history.\\n"
+> >
+> > +SRCIPK_CUSTOM_GIT_BRANCH_pn-linux-ti-staging =3D "processor-sdk-1.0"
+> > +SRCIPK_CUSTOM_GIT_MESSAGE_pn-linux-ti-staging =3D
+> "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
+> > +
+> >  SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging =3D "processor-
+> sdk-1.0"
+> >  SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging =3D
+> "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
+> >
+> > --
+> > 1.7.9.5
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
