@@ -1,32 +1,30 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 24BFD52099
+Return-Path: <a0866934local@udb0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 3361352A43
 	for <meta-arago@arago-project.org>;
-	Thu, 19 Mar 2015 17:43:44 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2JHhhSW018258
-	for <meta-arago@arago-project.org>; Thu, 19 Mar 2015 12:43:43 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2JHhg4a019474
-	for <meta-arago@arago-project.org>; Thu, 19 Mar 2015 12:43:42 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Thu, 19 Mar 2015 12:43:42 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Thread-Topic: [meta-arago] [PATCH v3] matrix-gui: Clear background when
-	starting	and stopping matrix.
-Thread-Index: AQHQYmrECqoUPlHHgkaMbAFLo3lRq50kE6Rk
-Date: Thu, 19 Mar 2015 17:43:41 +0000
-Message-ID: <E0CD4CEE-9B0A-4CAD-B9ED-399CFE11D77B@ti.com>
-References: <1426786378-23165-1-git-send-email-j-stiffler@ti.com>
-In-Reply-To: <1426786378-23165-1-git-send-email-j-stiffler@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	Thu, 19 Mar 2015 18:30:54 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2JIUrkU008496
+	for <meta-arago@arago-project.org>; Thu, 19 Mar 2015 13:30:53 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2JIUqdD017578
+	for <meta-arago@arago-project.org>; Thu, 19 Mar 2015 13:30:52 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 19 Mar 2015 13:30:51 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2JIUpke026651;
+	Thu, 19 Mar 2015 13:30:51 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YYfDX-000648-Cu;
+	Thu, 19 Mar 2015 14:30:51 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 19 Mar 2015 14:30:49 -0400
+Message-ID: <1426789849-23284-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH v3] matrix-gui: Clear background when starting	and stopping matrix.
+Subject: [PATCH v4] matrix-gui: Clear background when starting and stopping matrix.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,168 +37,139 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Mar 2015 17:43:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 19 Mar 2015 18:30:55 -0000
+Content-Type: text/plain
 
-Wait why did you remove refresh screen during Matrix stop?  The issue in th=
-e first place is wanting to clear Matrix when shutting it off.
+* Clearing the background is done by calling refresh_screen with the
+  "background-black" argument.
+* Switch virtual terminals so that command prompt will be visible upon
+  exiting matrix.
+* Disable blinking cursor while matrix is running, re-enable when stopping
+  matrix.
+    - When using qt over eglfs, the blinking cursor will show through the
+      gui.
 
-Clearing the buffer when starting Matrix isn't doing anything=20
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+v2: Create a seperate init script when using qt5 without wayland.
+v3: Remove refresh_screen since it is unnecessary.
+v4: Re-introduce refresh_screen when stopping matrix.
 
+ .../recipes-core/matrix/matrix-gui/init.eglfs      |   59 ++++++++++++++++++++
+ .../recipes-core/matrix/matrix-gui_2.0.bb          |   14 +++--
+ 2 files changed, 67 insertions(+), 6 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
 
-> On Mar 19, 2015, at 12:33 PM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->=20
-> * Clearing the background is done by calling refresh_screen with the
->  "background-black" argument.
-> * Switch virtual terminals so that command prompt will be visible upon
->  exiting matrix.
-> * Disable blinking cursor while matrix is running, re-enable when stoppin=
-g
->  matrix.
->    - When using qt over eglfs, the blinking cursor will show through the
->      gui.
->=20
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
-> v2: Create a seperate init script when using qt5 without wayland.
-> v3: Remove refresh_screen since it is unnecessary.
->=20
-> .../recipes-core/matrix/matrix-gui/init.eglfs      |   58 +++++++++++++++=
-+++++
-> .../recipes-core/matrix/matrix-gui_2.0.bb          |   14 +++--
-> 2 files changed, 66 insertions(+), 6 deletions(-)
-> create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui/init.=
-eglfs
->=20
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs =
-b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> new file mode 100644
-> index 0000000..e60b3c7
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> @@ -0,0 +1,58 @@
-> +#! /bin/sh
-> +
-> +matrixgui=3D"/usr/bin/matrix_browser"
-> +GUI_OPTS=3D"http://localhost:80/ __MATRIX_FLAGS__"
-> +PIDFILE=3D"/var/run/matrix-gui-2.0.pid"
-> +
-> +# Important System Environment Variables
-> +SCRIPTS=3D/etc/profile.d/*.sh
-> +
-> +for f in $SCRIPTS
-> +do
-> +    source $f
-> +done
-> +
-> +test -x "$matrixgui" || exit 0
-> +
-> +case "$1" in
-> +  start)
-> +    chvt 4
-> +
-> +    #Clear out the the tmp and lock directory
-> +    cd __MATRIX_WEB_DIR__
-> +    rm -rf tmp/*
-> +    rm -rf lock/*
-> +    cd -
-> +
-> +    if [ -e $PIDFILE ]; then
-> +      PIDDIR=3D/proc/$(cat $PIDFILE)
-> +      if [ -d ${PIDDIR} -a  "$(readlink -f ${PIDDIR}/exe)" =3D "${matrix=
-gui}" ]; then
-> +        echo "$DESC already started; not starting."
-> +      else
-> +        echo "Removing stale PID file $PIDFILE."
-> +        rm -f $PIDFILE
-> +      fi
-> +    fi
-> +
-> +    echo 0 > /sys/class/graphics/fbcon/cursor_blink
-> +
-> +    echo -n "Starting Matrix GUI application"
-> +    start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE=
- --exec $matrixgui -- $GUI_OPTS
-> +    echo "."
-> +    ;;
-> +
-> +  stop)
-> +    echo -n "Stopping Matrix GUI application"
-> +    start-stop-daemon --stop --quiet --pidfile $PIDFILE
-> +
-> +    echo 1 > /sys/class/graphics/fbcon/cursor_blink
-> +    chvt 1
-> +
-> +    echo "."
-> +    ;;
-> +  *)
-> +    echo "Usage: /etc/init.d/matrix-gui-2.0 {start|stop}"
-> +    exit 1
-> +esac
-> +
-> +exit 0
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/me=
-ta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> index 8843521..27cf9c0 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Da886c9ef769b2d=
-8271115d2502512e5d"
->=20
-> SECTION =3D "multimedia"
->=20
-> -PR =3D "r22"
-> +PR =3D "r23"
->=20
-> INITSCRIPT_NAME =3D "matrix-gui-2.0"
-> INITSCRIPT_PARAMS =3D "defaults 97"
-> @@ -18,8 +18,10 @@ inherit update-rc.d
-> BRANCH ?=3D "master"
-> SRCREV =3D "d65a5e1d178bb30653f16322bebf7e7ee530d613"
->=20
-> +MATRIX_INITSCRIPT =3D "${@base_conditional('QT_PROVIDER', 'qt5', base_co=
-ntains('DISTRO_FEATURES', 'wayland', 'init', 'init.eglfs', d), 'init', d)}"
-> +
-> SRC_URI =3D "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=
-=3Dhttp;branch=3D${BRANCH} \
-> -           file://init \
-> +           file://${MATRIX_INITSCRIPT} \
->            file://php.ini"
->=20
-> require matrix-gui-paths.inc
-> @@ -37,14 +39,14 @@ do_install(){
->    install -m 0644 ${WORKDIR}/php.ini ${D}${MATRIX_BASE_DIR}/
->=20
->    # Set the proper path in the init script
-> -    sed -i -e s=3D__MATRIX_WEB_DIR__=3D${MATRIX_WEB_DIR}=3D ${WORKDIR}/i=
-nit
-> -    sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${WORKDIR}/init
-> -    sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${WO=
-RKDIR}/init
-> +    sed -i -e s=3D__MATRIX_WEB_DIR__=3D${MATRIX_WEB_DIR}=3D ${WORKDIR}/$=
-{MATRIX_INITSCRIPT}
-> +    sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${WORKDIR}/${MAT=
-RIX_INITSCRIPT}
-> +    sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${WO=
-RKDIR}/${MATRIX_INITSCRIPT}
->=20
->    # Install the init script
->    # TODO: replace init script with systemd files
->    install -d ${D}${sysconfdir}/init.d
-> -    install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/matrix-gui-=
-2.0
-> +    install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${sysconfdir}/in=
-it.d/matrix-gui-2.0
-> }
->=20
-> GUIDEPS =3D "matrix-gui-browser refresh-screen"
-> --=20
-> 1.7.9.5
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
+new file mode 100644
+index 0000000..10748c4
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
+@@ -0,0 +1,59 @@
++#! /bin/sh
++
++matrixgui="/usr/bin/matrix_browser"
++GUI_OPTS="http://localhost:80/ __MATRIX_FLAGS__"
++PIDFILE="/var/run/matrix-gui-2.0.pid"
++
++# Important System Environment Variables
++SCRIPTS=/etc/profile.d/*.sh
++
++for f in $SCRIPTS
++do
++    source $f
++done
++
++test -x "$matrixgui" || exit 0
++
++case "$1" in
++  start)
++    chvt 4
++
++    #Clear out the the tmp and lock directory
++    cd __MATRIX_WEB_DIR__
++    rm -rf tmp/*
++    rm -rf lock/*
++    cd -
++
++	if [ -e $PIDFILE ]; then
++      PIDDIR=/proc/$(cat $PIDFILE)
++      if [ -d ${PIDDIR} -a  "$(readlink -f ${PIDDIR}/exe)" = "${matrixgui}" ]; then
++        echo "$DESC already started; not starting."
++      else
++        echo "Removing stale PID file $PIDFILE."
++        rm -f $PIDFILE
++      fi
++    fi
++
++    echo 0 > /sys/class/graphics/fbcon/cursor_blink
++
++    echo -n "Starting Matrix GUI application"
++    start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE --exec $matrixgui -- $GUI_OPTS
++    echo "."
++    ;;
++
++  stop)
++    echo -n "Stopping Matrix GUI application"
++    start-stop-daemon --stop --quiet --pidfile $PIDFILE
++
++    refresh_screen "background-black"
++    echo 1 > /sys/class/graphics/fbcon/cursor_blink
++    chvt 1
++
++    echo "."
++    ;;
++  *)
++    echo "Usage: /etc/init.d/matrix-gui-2.0 {start|stop}"
++    exit 1
++esac
++
++exit 0
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+index 8843521..27cf9c0 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
+ 
+ SECTION = "multimedia"
+ 
+-PR = "r22"
++PR = "r23"
+ 
+ INITSCRIPT_NAME = "matrix-gui-2.0"
+ INITSCRIPT_PARAMS = "defaults 97"
+@@ -18,8 +18,10 @@ inherit update-rc.d
+ BRANCH ?= "master"
+ SRCREV = "d65a5e1d178bb30653f16322bebf7e7ee530d613"
+ 
++MATRIX_INITSCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', base_contains('DISTRO_FEATURES', 'wayland', 'init', 'init.eglfs', d), 'init', d)}"
++
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=http;branch=${BRANCH} \
+-           file://init \
++           file://${MATRIX_INITSCRIPT} \
+            file://php.ini"
+ 
+ require matrix-gui-paths.inc
+@@ -37,14 +39,14 @@ do_install(){
+ 	install -m 0644 ${WORKDIR}/php.ini ${D}${MATRIX_BASE_DIR}/
+ 
+ 	# Set the proper path in the init script
+-	sed -i -e s=__MATRIX_WEB_DIR__=${MATRIX_WEB_DIR}= ${WORKDIR}/init
+-	sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${WORKDIR}/init
+-	sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${WORKDIR}/init
++	sed -i -e s=__MATRIX_WEB_DIR__=${MATRIX_WEB_DIR}= ${WORKDIR}/${MATRIX_INITSCRIPT}
++	sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${WORKDIR}/${MATRIX_INITSCRIPT}
++	sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${WORKDIR}/${MATRIX_INITSCRIPT}
+ 
+ 	# Install the init script
+ 	# TODO: replace init script with systemd files
+ 	install -d ${D}${sysconfdir}/init.d
+-	install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/matrix-gui-2.0
++	install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${sysconfdir}/init.d/matrix-gui-2.0
+ }
+ 
+ GUIDEPS = "matrix-gui-browser refresh-screen"
+-- 
+1.7.9.5
+
 
