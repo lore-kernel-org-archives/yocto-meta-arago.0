@@ -1,24 +1,24 @@
-Return-Path: <denys@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 91E8B52A29
+	by arago-project.org (Postfix) with ESMTPS id 2847452A29
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Mar 2015 18:36:44 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2KIahGO017037
-	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 13:36:43 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KIage9000418
-	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 13:36:42 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 20 Mar 2015 13:36:42 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KIag6o018791;
-	Fri, 20 Mar 2015 13:36:42 -0500
-Date: Fri, 20 Mar 2015 14:36:41 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20150320183641.GJ11557@edge>
+	Fri, 20 Mar 2015 18:38:35 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2KIcYNE017193
+	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 13:38:34 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KIcXVc021892
+	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 13:38:33 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0224.002; Fri, 20 Mar 2015 13:38:33 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] gstreamer1.0-plugins-bad: add DEPENDS on
+	libdrm and libdce due to KMSsink
+Thread-Index: AQHQYovfAYVpT0KB/kuEWTxVKSDJSp0kuQUAgAB51GCAACdNUIAAWZMA//+ua6CAAFh0gIAASFQAgAABoID//61PIIAAVnyA//+sU2A=
+Date: Fri, 20 Mar 2015 18:38:32 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958141104C0@DFLE09.ent.ti.com>
 References: <1426800578-7496-1-git-send-email-denis@denix.org>
 	<20150319223632.GH11557@edge>
 	<4B26FB5A64EBA14C87266869E037F958141102CB@DFLE09.ent.ti.com>
@@ -28,9 +28,13 @@ References: <1426800578-7496-1-git-send-email-denis@denix.org>
 	<FCB36D0BED1F0D4EA8E6242507E4245B0C8940CA@DFLE08.ent.ti.com>
 	<20150320182307.GI11557@edge>
 	<4B26FB5A64EBA14C87266869E037F9581411049F@DFLE09.ent.ti.com>
+	<20150320183641.GJ11557@edge>
+In-Reply-To: <20150320183641.GJ11557@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581411049F@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
 	"Balagopalakrishnan, Anand" <anandb@ti.com>, "Cooper Jr.,
 	Franklin" <fcooper@ti.com>
@@ -47,16 +51,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Mar 2015 18:36:44 -0000
+X-List-Received-Date: Fri, 20 Mar 2015 18:38:35 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+
+No it is not in the tree, hence the header is not found. It succeeds on am4=
+ since it is pulled in by one of the packagegroups.
+
+
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Friday, March 20, 2015 2:37 PM
+To: Stiffler, Jacob
+Cc: Chengalvala, Vivek; Cooper Jr., Franklin; meta-arago@arago-project.org;=
+ Balagopalakrishnan, Anand
+Subject: Re: [meta-arago] [PATCH] gstreamer1.0-plugins-bad: add DEPENDS on =
+libdrm and libdce due to KMSsink
 
 Jake,
 
 libdrm should not be pulled for am3 builds - that was the question for this=
-=20
-patch, which should not be applied... Do you have it in your tree?
+ patch, which should not be applied... Do you have it in your tree?
 
 
 On Fri, Mar 20, 2015 at 02:27:17PM -0400, Stiffler, Jacob wrote:
@@ -333,7 +349,8 @@ nux-gnueabi/gstreamer1.0-plugins-bad/1.2.3-r0-arago0/gst-plugins-bad-1.2.3'
 > >=20
 > > >> Sent: Thursday, March 19, 2015 6:37 PM
 > >=20
-> > >> To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org>
+> > >> To: meta-arago@arago-project.org<mailto:meta-arago@arago-project.org=
+>
 > >=20
 > > >> Subject: Re: [meta-arago] [PATCH] gstreamer1.0-plugins-bad: add DEPE=
 NDS on libdrm and libdce due to KMSsink
@@ -364,7 +381,8 @@ ld break non dce platforms. Can you please elaborate on that a bit? Thanks.
 > >=20
 > > >>>
 > >=20
-> > >>> Signed-off-by: Denys Dmytriyenko <denys@ti.com<mailto:denys@ti.com>>
+> > >>> Signed-off-by: Denys Dmytriyenko <denys@ti.com<mailto:denys@ti.com>=
+>
 > >=20
 > > >>> ---
 > >=20
