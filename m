@@ -1,31 +1,33 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 75564529DA
+Return-Path: <j-stiffler@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 4BAD652093
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Mar 2015 13:33:52 +0000 (UTC)
+	Fri, 20 Mar 2015 13:42:48 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2KDXp4B020617
-	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 08:33:51 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KDXoh7029148
-	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 08:33:50 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0224.002; Fri, 20 Mar 2015 08:33:50 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2KDglhv031032
+	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 08:42:47 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KDgkOW003753
+	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 08:42:46 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0224.002; Fri, 20 Mar 2015 08:42:46 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
 Thread-Topic: [meta-arago] [PATCH] gstreamer1.0-plugins-bad: add DEPENDS on
 	libdrm and libdce due to KMSsink
-Thread-Index: AQHQYovfRtJY28FBuUSUEYaPgD6O+50kuQUAgAB51GCAACdNUIAABcLM
-Date: Fri, 20 Mar 2015 13:33:50 +0000
-Message-ID: <2E478A96-8197-4C5A-90C1-8A4ABA78F000@ti.com>
+Thread-Index: AQHQYovfAYVpT0KB/kuEWTxVKSDJSp0kuQUAgAB51GCAACdNUIAAWZMA//+ua6A=
+Date: Fri, 20 Mar 2015 13:42:46 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F9581411031E@DFLE09.ent.ti.com>
 References: <1426800578-7496-1-git-send-email-denis@denix.org>
 	<20150319223632.GH11557@edge>
 	,<4B26FB5A64EBA14C87266869E037F958141102CB@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F958141102CB@DFLE09.ent.ti.com>
+	<2E478A96-8197-4C5A-90C1-8A4ABA78F000@ti.com>
+In-Reply-To: <2E478A96-8197-4C5A-90C1-8A4ABA78F000@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] gstreamer1.0-plugins-bad: add DEPENDS on libdrm and libdce due to KMSsink
@@ -41,10 +43,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Mar 2015 13:33:52 -0000
+X-List-Received-Date: Fri, 20 Mar 2015 13:42:48 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I ran the demo while running "top". It appears that CPU is near 100%. Howev=
+er, this demo was working fine with gstreamer 0.10.
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Friday, March 20, 2015 9:34 AM
+To: Stiffler, Jacob
+Cc: Dmytriyenko, Denys; meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] gstreamer1.0-plugins-bad: add DEPENDS on =
+libdrm and libdce due to KMSsink
 
 
 
