@@ -1,30 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 68BC6529BD
+	by arago-project.org (Postfix) with ESMTPS id ABD4D529BD
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Mar 2015 11:05:53 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2KB5qiI023391
-	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 06:05:52 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KB5pNv018315
-	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 06:05:51 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 20 Mar 2015 06:05:51 -0500
+	Fri, 20 Mar 2015 11:12:20 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2KBCKf2023838
+	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 06:12:20 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KBCJZH011361
+	for <meta-arago@arago-project.org>; Fri, 20 Mar 2015 06:12:19 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 20 Mar 2015 06:12:18 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KB5pJX011141;
-	Fri, 20 Mar 2015 06:05:51 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2KBCIfe005357;
+	Fri, 20 Mar 2015 06:12:18 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YYukQ-0006Xi-NB;
-	Fri, 20 Mar 2015 07:05:50 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YYuqg-0006Yp-D6;
+	Fri, 20 Mar 2015 07:12:18 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 20 Mar 2015 07:05:49 -0400
-Message-ID: <1426849549-25118-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 20 Mar 2015 07:12:17 -0400
+Message-ID: <1426849937-25187-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH v2] qtbase-examples: Add exit buttons when not using wayland.
+Subject: [PATCH v3] qtbase-examples: Add exit buttons when not using wayland.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,7 +37,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Mar 2015 11:05:53 -0000
+X-List-Received-Date: Fri, 20 Mar 2015 11:12:21 -0000
 Content-Type: text/plain
 
 * Only the examples which are exposed in matrix are patched.
@@ -46,13 +46,16 @@ Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
 v2: Removed quit.png from qtbase patches as this does not get applied during 
     the build.
+v3: Add back image file for meta-arago patch.
 
  ...Add-exit-button-for-non-window-environmen.patch |   60 +++++++++++++++
  ...es-Add-exit-button-for-non-window-environ.patch |   81 ++++++++++++++++++++
+ meta-arago-distro/recipes-qt/qt5/qtbase/quit.png   |  Bin 0 -> 645 bytes
  .../recipes-qt/qt5/qtbase_5.4.1.bbappend           |   23 +++++-
- 3 files changed, 162 insertions(+), 2 deletions(-)
+ 4 files changed, 162 insertions(+), 2 deletions(-)
  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch
  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-exit-button-for-non-window-environ.patch
+ create mode 100755 meta-arago-distro/recipes-qt/qt5/qtbase/quit.png
 
 diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch
 new file mode 100644
@@ -207,6 +210,27 @@ index 0000000..7b7ab3c
 +-- 
 +1.7.9.5
 +
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/quit.png b/meta-arago-distro/recipes-qt/qt5/qtbase/quit.png
+new file mode 100755
+index 0000000000000000000000000000000000000000..b9eb270c97306679f991669992d18a5f37e4ce22
+GIT binary patch
+literal 645
+zcmeAS@N?(olHy`uVBq!ia0vp^DIm<j0wiy}j=c}0SkfJR9T^xl_H+M9WCijSl0AZa
+z85pY67#JE_7#My5g&JNkFq9fFFuY1&V6d9Oz#v{QXIG#NP=YDR+ueoXe|!I#{XiaP
+zfk$L90|Vb-5N14{zXE6%W4EV^V@SoVx3i+xF)Q*ox4)}DU&4IYN6u`^wDaMiFVzZ<
+zwk8zC9+OD!F$57Jk4qT6)7BlEGa;p*qbFgTzu^y`Ke6F%9X%7uHWfW_Shq`H+LYZZ
+z9xUDJ>}8qc&k=R1*5uW?(0<3RdAd#NOC>GincTgsvz9XK5pg&YRkcRMW6R=`6DPjn
+zW(sC_!*02IQ=|8m?YF;hHU3*Z_qN%=>iGW}t3_GvA38thWQ()tW%Z|Ai@&h_mbMGp
+z-nP5?IM))>xgNp~_j)`sWq93YBkr~L?1J36r5o>fOCFqmDyFXSrlebR2$zZZal;-D
+z#`Ltv`T0Q)Dl6sQO%`zqTPC@8lGDkXrZ4K)^w+lWc*W)K_m%u`CoeF_=-;|bk<7=g
+zdSOc8v4Wo+kMIc@zHreA78H(t66yG4q5G4UzE2E8o>WGqBsiqBIH#;|OF7e7bNqE`
+zhjdAeWOUV9S)*$+PaK{p<DbK_uaWEF%(Y8Tgeu;d_-W%09t{oK)qDv>d`D`T|4BdS
+z`z8$yS<92+A6>FNSfU-gfN`Z-;u=wsl30>zm0Xkxq!^403{7<njCBnyLktbA49%>J
+pjI|96tqctMnb}UEXvob^$xN%nt>ItXzA~T&22WQ%mvv4FO#o;X_JaTb
+
+literal 0
+HcmV?d00001
+
 diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
 index 4af0582..210d23f 100644
 --- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
