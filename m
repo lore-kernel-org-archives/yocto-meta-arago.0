@@ -1,30 +1,32 @@
 Return-Path: <a0866934local@udb0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 76DB3529A9
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 8D56E52A5A
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Mar 2015 19:28:24 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2PJSNQi013086
-	for <meta-arago@arago-project.org>; Wed, 25 Mar 2015 14:28:23 -0500
+	Wed, 25 Mar 2015 19:28:26 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2PJSPNd021059
+	for <meta-arago@arago-project.org>; Wed, 25 Mar 2015 14:28:25 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2PJSMYZ007916
-	for <meta-arago@arago-project.org>; Wed, 25 Mar 2015 14:28:22 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2PJSOUw024589
+	for <meta-arago@arago-project.org>; Wed, 25 Mar 2015 14:28:24 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 25 Mar 2015 14:28:22 -0500
+	Wed, 25 Mar 2015 14:28:24 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2PJSMHo031164;
-	Wed, 25 Mar 2015 14:28:22 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2PJSOQG031251;
+	Wed, 25 Mar 2015 14:28:24 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YaqyT-0005R9-Tt;
-	Wed, 25 Mar 2015 15:28:22 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YaqyW-0005RC-3X;
+	Wed, 25 Mar 2015 15:28:24 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 25 Mar 2015 15:28:19 -0400
-Message-ID: <1427311700-20869-1-git-send-email-j-stiffler@ti.com>
+Date: Wed, 25 Mar 2015 15:28:20 -0400
+Message-ID: <1427311700-20869-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1427311700-20869-1-git-send-email-j-stiffler@ti.com>
+References: <1427311700-20869-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
+Subject: [PATCH 2/2] packagegroup-arago-tisdk-graphics-sdk-host: Create for graphics modules.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,123 +39,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Mar 2015 19:28:24 -0000
+X-List-Received-Date: Wed, 25 Mar 2015 19:28:26 -0000
 Content-Type: text/plain
 
-* omap3-sgx-modules provides out-of-tree drivers which are required for
-  graphics.
-* These sources need to be provided so that whenever there is a kernel
-  modification, the user can easily rebuild these moduels to reenable graphics.
+* Provides sources for out-of-tree graphics drivers.
+* Add to arago-core-tisdk-image.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../conf/distro/arago-source-ipk.conf              |    3 ++
- .../ti-tisdk-makefile/Makefile_omap3-sgx-modules   |   29 ++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |   11 +++++++-
- 3 files changed, 42 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omap3-sgx-modules
+ .../recipes-core/images/arago-core-tisdk-image.inc |    1 +
+ .../packagegroup-arago-tisdk-graphics-sdk-host.bb  |   16 ++++++++++++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index b457504..40c7058 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -94,6 +94,9 @@ SRCIPK_INSTALL_DIR_pn-ti-pru-sw-examples = "example-applications/pru-${PV}"
- CREATE_SRCIPK_pn-ti-ocf-crypto-module = "1"
- SRCIPK_INSTALL_DIR_pn-ti-ocf-crypto-module = "board-support/extra-drivers/${PN}-${PV}"
- 
-+CREATE_SRCIPK_pn-omap3-sgx-modules = "1"
-+SRCIPK_INSTALL_DIR_pn-omap3-sgx-modules = "board-support/extra-drivers/${PN}-${PV}"
-+
- CREATE_SRCIPK_pn-ti-compat-wireless-wl18xx = "1"
- SRCIPK_INSTALL_DIR_pn-ti-compat-wireless-wl18xx = "board-support/extra-drivers/${PN}-${PV}"
- 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omap3-sgx-modules b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omap3-sgx-modules
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index 649ef97..efd45e9 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -44,6 +44,7 @@ IMAGE_INSTALL = "\
+     packagegroup-arago-tisdk-addons-sdk-host \
+     packagegroup-arago-tisdk-connectivity-sdk-host \
+     packagegroup-arago-tisdk-crypto-sdk-host \
++    packagegroup-arago-tisdk-graphics-sdk-host \
+     packagegroup-arago-tisdk-matrix-sdk-host \
+     packagegroup-arago-tisdk-multimedia-sdk-host \
+     packagegroup-arago-tisdk-amsdk-sdk-host \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
 new file mode 100644
-index 0000000..2bc0ba5
+index 0000000..1ea3cf6
 --- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omap3-sgx-modules
-@@ -0,0 +1,29 @@
-+omap3-sgx-modules: linux
-+	@echo =====================================
-+	@echo      Building omap3-sgx-modules
-+	@echo =====================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
-+	make ARCH=arm KERNELDIR=$(LINUXKERNEL_INSTALL_DIR) BUILD=release TI_PLATFORM=__PLATFORM_SGX__ SUPPORT_XORG=0
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
+@@ -0,0 +1,16 @@
++DESCRIPTION = "Task to install graphics sources in SDK"
++LICENSE = "MIT"
++PR = "r0"
 +
-+omap3-sgx-modules_clean:
-+	@echo =====================================
-+	@echo      Cleaning omap3-sgx-modules
-+	@echo =====================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
-+	make ARCH=arm KERNELDIR=$(LINUXKERNEL_INSTALL_DIR) clean
++inherit packagegroup
 +
-+omap3-sgx-modules_install:
-+	@echo =====================================
-+	@echo      Installing omap3-sgx-modules
-+	@echo =====================================
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
-+	make -C $(LINUXKERNEL_INSTALL_DIR) SUBDIRS=`pwd` INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) modules_install
++PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index ffedd4c..a31bb69 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -34,9 +34,10 @@ SRC_URI = "\
-     file://Makefile_dual-camera-demo \
-     file://Makefile_image-gallery \
-     file://Makefile_cryptodev \
-+    file://Makefile_omap3-sgx-modules \
- "
- 
--PR = "r41"
-+PR = "r42"
- 
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -69,6 +70,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
-                            linux-dtbs \
-                            wireless \
-                            cryptodev \
-+                           omap3-sgx-modules \
- "
- MAKEFILES_append_ti43x = " u-boot-spl \
-                            ${QUICK_PLAYGROUND} \
-@@ -76,6 +78,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
-                            linux-dtbs \
-                            wireless \
-                            cryptodev \
-+                           omap3-sgx-modules \
-                            dual-camera-demo \
-                            image-gallery \
- "
-@@ -95,6 +98,10 @@ MAKEFILES_append_am180x-evm = " pru \
- PLATFORM_ARCH = "armv7-a"
- PLATFORM_ARCH_omapl138 = "armv5te"
- 
-+PLATFORM_SGX = ""
-+PLATFORM_SGX_ti33x = "ti335x"
-+PLATFORM_SGX_ti43x = "ti43xx"
++GRAPHICS_RDEPENDS = ""
 +
- KERNEL_BUILD_CMDS = "${@base_conditional('KERNEL_IMAGETYPE','uImage','LOADADDR=${UBOOT_LOADADDRESS} uImage','zImage',d)}"
- 
- KERNEL_DEVICETREE_ti33x = "am335x-evm.dtb am335x-evmsk.dtb am335x-bone.dtb am335x-boneblack.dtb"
-@@ -150,6 +157,8 @@ do_install () {
- 
-     sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
- 
-+    sed -i -e "s/__PLATFORM_SGX__/${PLATFORM_SGX}/" ${D}/Makefile
++GRAPHICS_RDEPENDS_append_ti33x = " omap3-sgx-modules-src"
++GRAPHICS_RDEPENDS_append_ti43x = " omap3-sgx-modules-src"
 +
-     cat ${D}/Makefile | grep "__DTB_DEPEND__" > /dev/null
- 
-     if [ "$?" == "0" ]
++RDEPENDS_${PN} = "\
++    ${GRAPHICS_RDEPENDS} \
++"
 -- 
 1.7.9.5
 
