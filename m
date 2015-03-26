@@ -1,34 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id CDD8A52093
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id F356752A0B
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Mar 2015 13:39:34 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2QDdYb4003871
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 08:39:34 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2QDdXRC013878
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 08:39:33 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Thu, 26 Mar 2015 08:39:32 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
-Thread-Index: AQHQZzHfL84s45vDt0+zjBxImP4dSZ0tro52gAAA+Y6AAUJcAP//1E0y
-Date: Thu, 26 Mar 2015 13:39:31 +0000
-Message-ID: <6204FCC2-801E-4308-8244-1AE1E6516747@ti.com>
-References: <1427311700-20869-1-git-send-email-j-stiffler@ti.com>,
-	<C38133F3-91EC-4F10-AE0A-CA8281A929E5@ti.com>
-	<28FF0448-3D50-477E-9EE2-ABFE6F42B8F5@ti.com>,
-	<4B26FB5A64EBA14C87266869E037F9581411B5BF@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581411B5BF@DFLE09.ent.ti.com>
+	Thu, 26 Mar 2015 15:18:21 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2QFIKgq008003
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 10:18:20 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2QFIJse002847
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 10:18:19 -0500
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0224.002; Thu, 26 Mar 2015 10:18:19 -0500
+From: "Dmytriyenko, Denys" <denys@ti.com>
+To: "R, Karthik" <karthik.ramanan@ti.com>
+Thread-Topic: [meta-arago]  weston: Add .profile into the targetfs
+Thread-Index: AdBn2BbMTxdwPoJN9EC9NqGsuhXL/Q==
+Date: Thu, 26 Mar 2015 15:18:18 +0000
+Message-ID: <B0581B5571079145BA1CD78C126DBDE73222E644@DLEE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
+Subject: Re: weston: Add .profile into the targetfs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,246 +36,164 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Mar 2015 13:39:35 -0000
+X-List-Received-Date: Thu, 26 Mar 2015 15:18:23 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_B0581B5571079145BA1CD78C126DBDE73222E644DLEE08entticom_"
 
-From another email I saw are you saying that a user needs to run clean and =
-then compile and install via the top level makefile?
+--_000_B0581B5571079145BA1CD78C126DBDE73222E644DLEE08entticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Something isn't right since ANY sources included in the SDK board support s=
-houldn't have anything prebuilt. They should be clean sources that simply n=
-eeds to be compiled by the user=20
+VGhpcyBkb2Vzbid0IHNvdW5kIG5vciBsb29rIHJpZ2h0LiBXaHkgY2FuJ3QgeW91IHJldXNlIHdl
+c3Rvbi5pbmk/DQpBbHNvLCBwYWNrYWdlcyBhcmUgbm90IGFsbG93ZWQgdG8gbWFuZ2xlIHVzZXIg
+aG9tZSBkaXJlY3Rvcmllcy4NCg0KLS0NCkRlbnlzDQoNCk9uIE1hciAyNiwgMjAxNSAwNjoxNSwg
+IlIsIEthcnRoaWsiIDxrYXJ0aGlrLnJhbWFuYW5AdGkuY29tPiB3cm90ZToNClRoZXJlIGFyZSBk
+aWZmZXJlbnQgc2V0IG9mIHJlcXVpcmVtZW50cyBvbiB0aGUgYm9vdHVwIGJlaGF2aW9yDQphY3Jv
+c3MgZGlmZmVyZW50IHBsYXRmb3Jtcy4gVG8gbmFtZSBhIGZldzoNCiAqIEo2LCB0aGUgcmVxdWly
+ZWQgYmVoYXZpb3IgaXMgY29uc29sZS9jb21tYW5kIHByb21wdA0KICogQU01N3h4LCBpdCB3aWxs
+IGJlIHRoZSBtYXRyaXgtZ3VpIChRVDUgb24gV2F5bGFuZCkNCg0Kd2VzdG9uLWluaXQgcmVjaXBl
+IGFkZHJlc3NlcyB0aGUgbmVlZHMgb2YgQU01N3h4Lg0KVGhpcyBwYXRjaCBpcyBuZWVkZWQgZm9y
+IEo2L0o2LUVjbyBldGMuDQoNCk5vdGUgdGhhdCBpZiB0aGVyZSBhcmUgY3VzdG9tZXJzIG9uIEFN
+NTd4eCB3aG8gbmVlZCB0aGUgZGVmYXVsdCBiZWhhdmlvcg0KdG8gYmUgY29uc29sZS9jb21tYW5k
+IHByb21wdCwgdGhpcyBwYXRjaCB3aWxsIGFkZHJlc3MgdGhvc2UgbmVlZHMuDQpJdCBkb2VzIG5v
+dCBjb25mbGljdCB3aXRoIHdlc3Rvbi1pbml0Lg0KDQpTaWduZWQtb2ZmLWJ5OiBLYXJ0aGlrIFJh
+bWFuYW4gPGEwMzkzOTA2QHRpLmNvbT4NCi0tLQ0KIC4uLi9yZWNpcGVzLWdyYXBoaWNzL3dheWxh
+bmQvd2VzdG9uL3Byb2ZpbGUgICAgICAgIHwgICAgOCArKysrKysrKw0KIC4uLi9yZWNpcGVzLWdy
+YXBoaWNzL3dheWxhbmQvd2VzdG9uXzEuNi4wLmJiYXBwZW5kIHwgICAgNyArKysrKy0tDQogMiBm
+aWxlcyBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBtZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2Vz
+dG9uL3Byb2ZpbGUNCg0KZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZ3Jh
+cGhpY3Mvd2F5bGFuZC93ZXN0b24vcHJvZmlsZSBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMt
+Z3JhcGhpY3Mvd2F5bGFuZC93ZXN0b24vcHJvZmlsZQ0KbmV3IGZpbGUgbW9kZSAxMDA2NDQNCmlu
+ZGV4IDAwMDAwMDAuLjA4NDhjMTgNCi0tLSAvZGV2L251bGwNCisrKyBiL21ldGEtYXJhZ28tZGlz
+dHJvL3JlY2lwZXMtZ3JhcGhpY3Mvd2F5bGFuZC93ZXN0b24vcHJvZmlsZQ0KQEAgLTAsMCArMSw4
+IEBADQoraWYgdGVzdCAteiAiJHtYREdfUlVOVElNRV9ESVJ9IjsgdGhlbg0KKyAgICAgICBleHBv
+cnQgWERHX1JVTlRJTUVfRElSPS90bXAvJHtVSUR9LXJ1bnRpbWUtZGlyDQorZmkNCisNCitpZiAh
+IHRlc3QgLWQgIiR7WERHX1JVTlRJTUVfRElSfSI7IHRoZW4NCisgICAgICAgbWtkaXIgLXAgIiR7
+WERHX1JVTlRJTUVfRElSfSINCisgICAgICAgY2htb2QgMDcwMCAiJHtYREdfUlVOVElNRV9ESVJ9
+Ig0KK2ZpDQpkaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1ncmFwaGljcy93
+YXlsYW5kL3dlc3Rvbl8xLjYuMC5iYmFwcGVuZCBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMt
+Z3JhcGhpY3Mvd2F5bGFuZC93ZXN0b25fMS42LjAuYmJhcHBlbmQNCmluZGV4IDRlOTkwMWQuLjc4
+MjZjNjUgMTAwNjQ0DQotLS0gYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWdyYXBoaWNzL3dh
+eWxhbmQvd2VzdG9uXzEuNi4wLmJiYXBwZW5kDQorKysgYi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNp
+cGVzLWdyYXBoaWNzL3dheWxhbmQvd2VzdG9uXzEuNi4wLmJiYXBwZW5kDQpAQCAtNSwyMyArNSwy
+NiBAQCBQQUNLQUdFQ09ORklHW3dheWxhbmRdID0gIi0tZW5hYmxlLXdheWxhbmQtY29tcG9zaXRv
+ciBXRVNUT05fTkFUSVZFX0JBQ0tFTkQ9ImRybQ0KICMgV2hlbiBjb25maWd1cmVkIGZvciBmYmRl
+diBjb21wb3NpdG9yLCBtYWtlIGl0IHRoZSBkZWZhdWx0DQogUEFDS0FHRUNPTkZJR1tmYmRldl0g
+PSAiLS1lbmFibGUtZmJkZXYtY29tcG9zaXRvciBXRVNUT05fTkFUSVZFX0JBQ0tFTkQ9ImZiZGV2
+LWJhY2tlbmQuc28iLC0tZGlzYWJsZS1mYmRldi1jb21wb3NpdG9yLHVkZXYgbXRkZXYiDQoNCi1Q
+Ul9hcHBlbmQgPSAiLWFyYWdvMiINCitQUl9hcHBlbmQgPSAiLWFyYWdvMyINCg0KIEZJTEVTRVhU
+UkFQQVRIU19wcmVwZW5kIDo9ICIke1RISVNESVJ9LyR7UE59OiINCg0KIFNSQ19VUkkgKz0gImZp
+bGU6Ly93YXlsYW5kX2Vudi5zaCBcDQogICAgICAgICAgICAgZmlsZTovL3dlc3Rvbi5pbmkgXA0K
+ICAgICAgICAgICAgIGZpbGU6Ly8wMDAxLXdlc3Rvbi1FbmFibGluZy1EUk0tYmFja2VuZC13aXRo
+LW11bHRpcGxlLWRpc3BsYXlzLnBhdGNoIFwNCisgICAgICAgICAgICBmaWxlOi8vcHJvZmlsZSBc
+DQogIg0KDQogIyBBZGQgY3VzdG9tIEFyYWdvIFdheWxhbmQgRW52aXJvbm1lbnQgc2NyaXB0IGZp
+bGUNCiBkb19pbnN0YWxsX2FwcGVuZCAoKSB7DQogICAgIGluc3RhbGwgLWQgJHtEfSR7c3lzY29u
+ZmRpcn0vcHJvZmlsZS5kDQorICAgIGluc3RhbGwgLWQgJHtEfS9ob21lL3Jvb3QNCiAgICAgaW5z
+dGFsbCAtbSAwNjQ0ICR7V09SS0RJUn0vd2VzdG9uLmluaSAke0R9JHtzeXNjb25mZGlyfQ0KICAg
+ICBpbnN0YWxsIC1tIDA2NDQgJHtXT1JLRElSfS93YXlsYW5kX2Vudi5zaCAke0R9JHtzeXNjb25m
+ZGlyfS9wcm9maWxlLmQvDQorICAgIGluc3RhbGwgLW0gMDY0NCAke1dPUktESVJ9L3Byb2ZpbGUg
+JHtEfS9ob21lL3Jvb3QvLnByb2ZpbGUNCiB9DQoNCiBQQUNLQUdFUyArPSAiJHtQTn0tY29uZiIN
+Cg0KLUZJTEVTXyR7UE59LWNvbmYgKz0gIiR7c3lzY29uZmRpcn0vcHJvZmlsZS5kLyogJHtzeXNj
+b25mZGlyfS93ZXN0b24uaW5pIg0KK0ZJTEVTXyR7UE59LWNvbmYgKz0gIiR7c3lzY29uZmRpcn0v
+cHJvZmlsZS5kLyogJHtzeXNjb25mZGlyfS93ZXN0b24uaW5pICAvaG9tZS9yb290Ly5wcm9maWxl
+Ig0KIFJERVBFTkRTXyR7UE59ICs9ICIke1BOfS1jb25mIg0KLS0NCjEuNy45LjUNCg0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCm1ldGEtYXJhZ28gbWFp
+bGluZyBsaXN0DQptZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQpodHRwOi8vYXJhZ28tcHJv
+amVjdC5vcmcvY2dpLWJpbi9tYWlsbWFuL2xpc3RpbmZvL21ldGEtYXJhZ28NCg==
 
-more below
+--_000_B0581B5571079145BA1CD78C126DBDE73222E644DLEE08entticom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <7248A8C034F3BA4DA5131D7C56CD4938@owa.mail.ti.com>
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHAgZGlyPSJsdHIi
+PlRoaXMgZG9lc24ndCBzb3VuZCBub3IgbG9vayByaWdodC4gV2h5IGNhbid0IHlvdSByZXVzZSB3
+ZXN0b24uaW5pPzxicj4NCkFsc28sIHBhY2thZ2VzIGFyZSBub3QgYWxsb3dlZCB0byBtYW5nbGUg
+dXNlciBob21lIGRpcmVjdG9yaWVzLjwvcD4NCjxwIGRpcj0ibHRyIj4tLSA8YnI+DQpEZW55czwv
+cD4NCjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj5PbiBNYXIgMjYsIDIwMTUgMDY6MTUsICZxdW90
+O1IsIEthcnRoaWsmcXVvdDsgJmx0O2thcnRoaWsucmFtYW5hbkB0aS5jb20mZ3Q7IHdyb3RlOjxi
+ciB0eXBlPSJhdHRyaWJ1dGlvbiI+DQo8YmxvY2txdW90ZSBjbGFzcz0icXVvdGUiIHN0eWxlPSJt
+YXJnaW46MCAwIDAgLjhleDtib3JkZXItbGVmdDoxcHggI2NjYyBzb2xpZDtwYWRkaW5nLWxlZnQ6
+MWV4Ij4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0Ij48
+L3NwYW4+PC9mb250Pg0KPGRpdj5UaGVyZSBhcmUgZGlmZmVyZW50IHNldCBvZiByZXF1aXJlbWVu
+dHMgb24gdGhlIGJvb3R1cCBiZWhhdmlvcjxicj4NCmFjcm9zcyBkaWZmZXJlbnQgcGxhdGZvcm1z
+LiBUbyBuYW1lIGEgZmV3Ojxicj4NCiZuYnNwOyogSjYsIHRoZSByZXF1aXJlZCBiZWhhdmlvciBp
+cyBjb25zb2xlL2NvbW1hbmQgcHJvbXB0PGJyPg0KJm5ic3A7KiBBTTU3eHgsIGl0IHdpbGwgYmUg
+dGhlIG1hdHJpeC1ndWkgKFFUNSBvbiBXYXlsYW5kKTxicj4NCjxicj4NCndlc3Rvbi1pbml0IHJl
+Y2lwZSBhZGRyZXNzZXMgdGhlIG5lZWRzIG9mIEFNNTd4eC48YnI+DQpUaGlzIHBhdGNoIGlzIG5l
+ZWRlZCBmb3IgSjYvSjYtRWNvIGV0Yy48YnI+DQo8YnI+DQpOb3RlIHRoYXQgaWYgdGhlcmUgYXJl
+IGN1c3RvbWVycyBvbiBBTTU3eHggd2hvIG5lZWQgdGhlIGRlZmF1bHQgYmVoYXZpb3I8YnI+DQp0
+byBiZSBjb25zb2xlL2NvbW1hbmQgcHJvbXB0LCB0aGlzIHBhdGNoIHdpbGwgYWRkcmVzcyB0aG9z
+ZSBuZWVkcy48YnI+DQpJdCBkb2VzIG5vdCBjb25mbGljdCB3aXRoIHdlc3Rvbi1pbml0Ljxicj4N
+Cjxicj4NClNpZ25lZC1vZmYtYnk6IEthcnRoaWsgUmFtYW5hbiAmbHQ7YTAzOTM5MDZAdGkuY29t
+Jmd0Ozxicj4NCi0tLTxicj4NCiZuYnNwOy4uLi9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2Vz
+dG9uL3Byb2ZpbGUmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgfCZu
+YnNwOyZuYnNwOyZuYnNwOyA4ICYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0
+Mzs8YnI+DQombmJzcDsuLi4vcmVjaXBlcy1ncmFwaGljcy93YXlsYW5kL3dlc3Rvbl8xLjYuMC5i
+YmFwcGVuZCB8Jm5ic3A7Jm5ic3A7Jm5ic3A7IDcgJiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOy0t
+PGJyPg0KJm5ic3A7MiBmaWxlcyBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCYjNDM7KSwgMiBkZWxl
+dGlvbnMoLSk8YnI+DQombmJzcDtjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1kaXN0cm8v
+cmVjaXBlcy1ncmFwaGljcy93YXlsYW5kL3dlc3Rvbi9wcm9maWxlPGJyPg0KPGJyPg0KZGlmZiAt
+LWdpdCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZ3JhcGhpY3Mvd2F5bGFuZC93ZXN0b24v
+cHJvZmlsZSBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZ3JhcGhpY3Mvd2F5bGFuZC93ZXN0
+b24vcHJvZmlsZTxicj4NCm5ldyBmaWxlIG1vZGUgMTAwNjQ0PGJyPg0KaW5kZXggMDAwMDAwMC4u
+MDg0OGMxODxicj4NCi0tLSAvZGV2L251bGw8YnI+DQomIzQzOyYjNDM7JiM0MzsgYi9tZXRhLWFy
+YWdvLWRpc3Ryby9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2VzdG9uL3Byb2ZpbGU8YnI+DQpA
+QCAtMCwwICYjNDM7MSw4IEBAPGJyPg0KJiM0MztpZiB0ZXN0IC16ICZxdW90OyR7WERHX1JVTlRJ
+TUVfRElSfSZxdW90OzsgdGhlbjxicj4NCiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IGV4cG9ydCBYREdfUlVOVElNRV9ESVI9L3RtcC8ke1VJRH0tcnVudGltZS1kaXI8
+YnI+DQomIzQzO2ZpPGJyPg0KJiM0Mzs8YnI+DQomIzQzO2lmICEgdGVzdCAtZCAmcXVvdDske1hE
+R19SVU5USU1FX0RJUn0mcXVvdDs7IHRoZW48YnI+DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyBta2RpciAtcCAmcXVvdDske1hER19SVU5USU1FX0RJUn0mcXVvdDs8
+YnI+DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBjaG1vZCAwNzAw
+ICZxdW90OyR7WERHX1JVTlRJTUVfRElSfSZxdW90Ozxicj4NCiYjNDM7Zmk8YnI+DQpkaWZmIC0t
+Z2l0IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1ncmFwaGljcy93YXlsYW5kL3dlc3Rvbl8x
+LjYuMC5iYmFwcGVuZCBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZ3JhcGhpY3Mvd2F5bGFu
+ZC93ZXN0b25fMS42LjAuYmJhcHBlbmQ8YnI+DQppbmRleCA0ZTk5MDFkLi43ODI2YzY1IDEwMDY0
+NDxicj4NCi0tLSBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtZ3JhcGhpY3Mvd2F5bGFuZC93
+ZXN0b25fMS42LjAuYmJhcHBlbmQ8YnI+DQomIzQzOyYjNDM7JiM0MzsgYi9tZXRhLWFyYWdvLWRp
+c3Ryby9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2VzdG9uXzEuNi4wLmJiYXBwZW5kPGJyPg0K
+QEAgLTUsMjMgJiM0Mzs1LDI2IEBAIFBBQ0tBR0VDT05GSUdbd2F5bGFuZF0gPSAmcXVvdDstLWVu
+YWJsZS13YXlsYW5kLWNvbXBvc2l0b3IgV0VTVE9OX05BVElWRV9CQUNLRU5EPSZxdW90O2RybTxi
+cj4NCiZuYnNwOyMgV2hlbiBjb25maWd1cmVkIGZvciBmYmRldiBjb21wb3NpdG9yLCBtYWtlIGl0
+IHRoZSBkZWZhdWx0PGJyPg0KJm5ic3A7UEFDS0FHRUNPTkZJR1tmYmRldl0gPSAmcXVvdDstLWVu
+YWJsZS1mYmRldi1jb21wb3NpdG9yIFdFU1RPTl9OQVRJVkVfQkFDS0VORD0mcXVvdDtmYmRldi1i
+YWNrZW5kLnNvJnF1b3Q7LC0tZGlzYWJsZS1mYmRldi1jb21wb3NpdG9yLHVkZXYgbXRkZXYmcXVv
+dDs8YnI+DQombmJzcDs8YnI+DQotUFJfYXBwZW5kID0gJnF1b3Q7LWFyYWdvMiZxdW90Ozxicj4N
+CiYjNDM7UFJfYXBwZW5kID0gJnF1b3Q7LWFyYWdvMyZxdW90Ozxicj4NCiZuYnNwOzxicj4NCiZu
+YnNwO0ZJTEVTRVhUUkFQQVRIU19wcmVwZW5kIDo9ICZxdW90OyR7VEhJU0RJUn0vJHtQTn06JnF1
+b3Q7PGJyPg0KJm5ic3A7PGJyPg0KJm5ic3A7U1JDX1VSSSAmIzQzOz0gJnF1b3Q7PGEgaHJlZj0i
+ICAiPjwvYT5maWxlOi8vd2F5bGFuZF9lbnYuc2ggXDxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBmaWxl
+Oi8vd2VzdG9uLmluaSBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGZpbGU6Ly8wMDAxLXdlc3Rvbi1F
+bmFibGluZy1EUk0tYmFja2VuZC13aXRoLW11bHRpcGxlLWRpc3BsYXlzLnBhdGNoIFw8YnI+DQom
+IzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyBmaWxlOi8vcHJvZmlsZSBcPGJyPg0KJm5ic3A7JnF1b3Q7PGJyPg0KJm5i
+c3A7PGJyPg0KJm5ic3A7IyBBZGQgY3VzdG9tIEFyYWdvIFdheWxhbmQgRW52aXJvbm1lbnQgc2Ny
+aXB0IGZpbGU8YnI+DQombmJzcDtkb19pbnN0YWxsX2FwcGVuZCAoKSB7PGJyPg0KJm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgJHtEfSR7c3lzY29uZmRpcn0vcHJvZmlsZS5kPGJy
+Pg0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtZCAke0R9L2hvbWUvcm9vdDxicj4N
+CiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0YWxsIC1tIDA2NDQgJHtXT1JLRElSfS93ZXN0
+b24uaW5pICR7RH0ke3N5c2NvbmZkaXJ9PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGlu
+c3RhbGwgLW0gMDY0NCAke1dPUktESVJ9L3dheWxhbmRfZW52LnNoICR7RH0ke3N5c2NvbmZkaXJ9
+L3Byb2ZpbGUuZC88YnI+DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0YWxsIC1tIDA2NDQg
+JHtXT1JLRElSfS9wcm9maWxlICR7RH0vaG9tZS9yb290Ly5wcm9maWxlPGJyPg0KJm5ic3A7fTxi
+cj4NCiZuYnNwOzxicj4NCiZuYnNwO1BBQ0tBR0VTICYjNDM7PSAmcXVvdDske1BOfS1jb25mJnF1
+b3Q7PGJyPg0KJm5ic3A7PGJyPg0KLUZJTEVTXyR7UE59LWNvbmYgJiM0Mzs9ICZxdW90OyR7c3lz
+Y29uZmRpcn0vcHJvZmlsZS5kLyogJHtzeXNjb25mZGlyfS93ZXN0b24uaW5pJnF1b3Q7PGJyPg0K
+JiM0MztGSUxFU18ke1BOfS1jb25mICYjNDM7PSAmcXVvdDske3N5c2NvbmZkaXJ9L3Byb2ZpbGUu
+ZC8qICR7c3lzY29uZmRpcn0vd2VzdG9uLmluaSZuYnNwOyAvaG9tZS9yb290Ly5wcm9maWxlJnF1
+b3Q7PGJyPg0KJm5ic3A7UkRFUEVORFNfJHtQTn0gJiM0Mzs9ICZxdW90OyR7UE59LWNvbmYmcXVv
+dDs8YnI+DQotLSA8YnI+DQoxLjcuOS41PGJyPg0KPGJyPg0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQptZXRhLWFyYWdvIG1haWxpbmcgbGlzdDxi
+cj4NCm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc8YnI+DQo8YSBocmVmPSJodHRwOi8vYXJh
+Z28tcHJvamVjdC5vcmcvY2dpLWJpbi9tYWlsbWFuL2xpc3RpbmZvL21ldGEtYXJhZ28iPmh0dHA6
+Ly9hcmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbzwv
+YT48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2JvZHk+DQo8
+L2h0bWw+DQo=
 
-> On Mar 26, 2015, at 6:15 AM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->=20
-> I have tested this patch locally and in our nightly builds.=20
->=20
-> See my response to your comments below.
->=20
-> -----Original Message-----
-> From: Cooper Jr., Franklin=20
-> Sent: Wednesday, March 25, 2015 5:02 PM
-> To: Stiffler, Jacob
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to SD=
-K.
->=20
->=20
->=20
->=20
->> On Mar 25, 2015, at 3:58 PM, Cooper Jr., Franklin <fcooper@ti.com> wrote=
-:
->>=20
->> Overall this needs more testing. additional comments below
->>=20
->>> On Mar 25, 2015, at 2:28 PM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->>>=20
->>> * omap3-sgx-modules provides out-of-tree drivers which are required=20
->>> for graphics.
->>> * These sources need to be provided so that whenever there is a=20
->>> kernel modification, the user can easily rebuild these moduels to reena=
-ble graphics.
->>>=20
->>> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
->>> ---
->>> .../conf/distro/arago-source-ipk.conf              |    3 ++
->>> .../ti-tisdk-makefile/Makefile_omap3-sgx-modules   |   29 +++++++++++++=
-+++++++
->>> .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |   11 +++++++-
->>> 3 files changed, 42 insertions(+), 1 deletion(-) create mode 100644=20
->>> meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/M
->>> akefile_omap3-sgx-modules
->>>=20
->>> diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf=20
->>> b/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>> index b457504..40c7058 100644
->>> --- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>> +++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>> @@ -94,6 +94,9 @@ SRCIPK_INSTALL_DIR_pn-ti-pru-sw-examples =3D "example=
--applications/pru-${PV}"
->>> CREATE_SRCIPK_pn-ti-ocf-crypto-module =3D "1"
->>> SRCIPK_INSTALL_DIR_pn-ti-ocf-crypto-module =3D "board-support/extra-dri=
-vers/${PN}-${PV}"
->>>=20
->>> +CREATE_SRCIPK_pn-omap3-sgx-modules =3D "1"
->>> +SRCIPK_INSTALL_DIR_pn-omap3-sgx-modules =3D "board-support/extra-drive=
-rs/${PN}-${PV}"
->>> +
->> We shouldn't call it omap3-sgx-modules since that name has no meaning wi=
-thin the Graphics SDK nor anywhere outside of OE. Plus omap3 part is confus=
-ing from an SDK perspective.
-> What would you suggest?
-Idk naming it in a way people will recognize wat it is and wat it is for.
->>=20
->> Now when you do sourceipk is it only including a certain portion of the =
-graphics SdK or is it packaging the entire contents of the graphics Sdk.
->>=20
->> You may need to be careful but I though when you installed the graphics =
-SDK that it puts installation paths inside its various make files. This can=
- cause a problem since these paths will be from your build machine.
-> This is only the module source, as specified in the recipe:=20
-> TI_BIN_UNPK_WDEXT=3D"/Graphics_SDK_${SGXPV}"
-> S =3D "${WORKDIR}${TI_BIN_UNPK_WDEXT}/GFX_Linux_KM"
-Can u do a grep and confirm no paths are included?
->>=20
->>> CREATE_SRCIPK_pn-ti-compat-wireless-wl18xx =3D "1"
->>> SRCIPK_INSTALL_DIR_pn-ti-compat-wireless-wl18xx =3D "board-support/extr=
-a-drivers/${PN}-${PV}"
->>>=20
->>> diff --git=20
->>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
->>> /Makefile_omap3-sgx-modules=20
->>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
->>> /Makefile_omap3-sgx-modules
->>> new file mode 100644
->>> index 0000000..2bc0ba5
->>> --- /dev/null
->>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-make
->>> +++ file/Makefile_omap3-sgx-modules
->>> @@ -0,0 +1,29 @@
->>> +omap3-sgx-modules: linux
->>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>> +    @echo      Building omap3-sgx-modules
->>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>> +    @cd board-support/extra-drivers; \
->>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>> +    make ARCH=3Darm KERNELDIR=3D$(LINUXKERNEL_INSTALL_DIR) BUILD=3Drel=
-ease=20
->>> +TI_PLATFORM=3D__PLATFORM_SGX__ SUPPORT_XORG=3D0
->> Make sure you test this and compare against how we build the recipe in O=
-E. I remembered in the past you needed a special flag passed in to insure P=
-M runtime worked.
-> I got the make options directly from the recipe.
->>=20
->> So really you need to test this by removing all the sgx modules from the=
- SDK and let the make install run on ur filesystem and see if everything  s=
-till works. This includes suspend and resume while an sgx demo is running.
-> How do you  test this?
-http://processors.wiki.ti.com/index.php/Linux_Core_Power_Management_User%27=
-s_Guide#Suspend.2FResume
->>> +
->>> +omap3-sgx-modules_clean:
->>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>> +    @echo      Cleaning omap3-sgx-modules
->>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>> +    @cd board-support/extra-drivers; \
->>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>> +    make ARCH=3Darm KERNELDIR=3D$(LINUXKERNEL_INSTALL_DIR) clean
->>> +
->>> +omap3-sgx-modules_install:
->>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>> +    @echo      Installing omap3-sgx-modules
->>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>> +    @if [ ! -d $(DESTDIR) ] ; then \
->>> +        echo "The extracted target filesystem directory doesn't exist.=
-"; \
->>> +        echo "Please run setup.sh in the SDK's root directory and then=
- try again."; \
->>> +        exit 1; \
->>> +    fi
->>> +    @cd board-support/extra-drivers; \
->>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>> +    make -C $(LINUXKERNEL_INSTALL_DIR) SUBDIRS=3D`pwd`=20
->>> +INSTALL_MOD_PATH=3D$(DESTDIR) PREFIX=3D$(SDK_PATH_TARGET)=20
->>> +modules_install
->> This will cause problems as is. The graphics recipe for reasons I never =
-installs the graphics modules differently then the graphics SDK.
->> Typing from my phone. *reasons I never liked=20
->> So you will end with two versions of the graphics SDK in ur fs and both =
-will try to load and maybe possibly fail.
->>=20
->> So either update the OE recipe to use the makefile install or update thi=
-s part to mimic the OE way it built things.
->> *built and installs things
-> It seems that the recipe tries to fake that these modules are not out-of-=
-tree, and I guess yocto can hide this by updating the necessary /lib/module=
-s/<k_ver>/modules.* files. Without installing it like this, then the module=
-s cannot be found by "modprobe".
-If this is the case then how did this work for u?
-Did you try modifying the kernel and using the rebuilt kernel and modules t=
-o verify that this works.
->>> +
->>> diff --git=20
->>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
->>> _1.0.bb=20
->>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
->>> _1.0.bb
->>> index ffedd4c..a31bb69 100644
->>> ---=20
->>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
->>> _1.0.bb
->>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-make
->>> +++ file_1.0.bb
->>> @@ -34,9 +34,10 @@ SRC_URI =3D "\
->>>   file://Makefile_dual-camera-demo \
->>>   file://Makefile_image-gallery \
->>>   file://Makefile_cryptodev \
->>> +    file://Makefile_omap3-sgx-modules \
->>> "
->>>=20
->>> -PR =3D "r41"
->>> +PR =3D "r42"
->>>=20
->>> MAKEFILES_COMMON =3D "linux \
->>>                   matrix-gui \
->>> @@ -69,6 +70,7 @@ MAKEFILES_append_ti33x =3D " u-boot-spl \
->>>                          linux-dtbs \
->>>                          wireless \
->>>                          cryptodev \
->>> +                           omap3-sgx-modules \
->>> "
->>> MAKEFILES_append_ti43x =3D " u-boot-spl \
->>>                          ${QUICK_PLAYGROUND} \ @@ -76,6 +78,7 @@=20
->>> MAKEFILES_append_ti43x =3D " u-boot-spl \
->>>                          linux-dtbs \
->>>                          wireless \
->>>                          cryptodev \
->>> +                           omap3-sgx-modules \
->>>                          dual-camera-demo \
->>>                          image-gallery \ "
->>> @@ -95,6 +98,10 @@ MAKEFILES_append_am180x-evm =3D " pru \=20
->>> PLATFORM_ARCH =3D "armv7-a"
->>> PLATFORM_ARCH_omapl138 =3D "armv5te"
->>>=20
->>> +PLATFORM_SGX =3D ""
->>> +PLATFORM_SGX_ti33x =3D "ti335x"
->>> +PLATFORM_SGX_ti43x =3D "ti43xx"
->>> +
->>> KERNEL_BUILD_CMDS =3D "${@base_conditional('KERNEL_IMAGETYPE','uImage',=
-'LOADADDR=3D${UBOOT_LOADADDRESS} uImage','zImage',d)}"
->>>=20
->>> KERNEL_DEVICETREE_ti33x =3D "am335x-evm.dtb am335x-evmsk.dtb am335x-bon=
-e.dtb am335x-boneblack.dtb"
->>> @@ -150,6 +157,8 @@ do_install () {
->>>=20
->>>   sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/"=20
->>> ${D}/Makefile
->>>=20
->>> +    sed -i -e "s/__PLATFORM_SGX__/${PLATFORM_SGX}/" ${D}/Makefile
->>> +
->>>   cat ${D}/Makefile | grep "__DTB_DEPEND__" > /dev/null
->>>=20
->>>   if [ "$?" =3D=3D "0" ]
->>> --
->>> 1.7.9.5
->>>=20
->>> _______________________________________________
->>> meta-arago mailing list
->>> meta-arago@arago-project.org
->>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+--_000_B0581B5571079145BA1CD78C126DBDE73222E644DLEE08entticom_--
