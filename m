@@ -1,33 +1,35 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 140E1529D2
+Return-Path: <j-stiffler@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id A250E52A0B
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Mar 2015 12:49:17 +0000 (UTC)
+	Fri, 27 Mar 2015 13:15:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2RCnGFm009880
-	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 07:49:16 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2RCnFCV016829
-	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 07:49:15 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Fri, 27 Mar 2015 07:49:15 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2RDFvEC005000
+	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 08:15:57 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2RDFulE007284
+	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 08:15:56 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Fri, 27 Mar 2015 08:15:56 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>
 Thread-Topic: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
-Thread-Index: AQHQZzHfL84s45vDt0+zjBxImP4dSZ0tro52gAAA+Y6AAUJcAP//1E0ygAHS74D//7FZig==
-Date: Fri, 27 Mar 2015 12:49:14 +0000
-Message-ID: <FCA7ACD8-5C23-4E8E-928B-D6C2693989CE@ti.com>
+Thread-Index: AQHQZzHbJ4SipVjcEUa+VRt3gj1U750uAl4AgAAA+YCAAJmiQIAAfQiA//+6fnCAAcnKAP//st1A
+Date: Fri, 27 Mar 2015 13:15:56 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F9581411B938@DFLE09.ent.ti.com>
 References: <1427311700-20869-1-git-send-email-j-stiffler@ti.com>,
 	<C38133F3-91EC-4F10-AE0A-CA8281A929E5@ti.com>
 	<28FF0448-3D50-477E-9EE2-ABFE6F42B8F5@ti.com>,
 	<4B26FB5A64EBA14C87266869E037F9581411B5BF@DFLE09.ent.ti.com>
 	<6204FCC2-801E-4308-8244-1AE1E6516747@ti.com>,
 	<4B26FB5A64EBA14C87266869E037F9581411B902@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581411B902@DFLE09.ent.ti.com>
+	<FCA7ACD8-5C23-4E8E-928B-D6C2693989CE@ti.com>
+In-Reply-To: <FCA7ACD8-5C23-4E8E-928B-D6C2693989CE@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
@@ -43,10 +45,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Mar 2015 12:49:17 -0000
+X-List-Received-Date: Fri, 27 Mar 2015 13:15:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Before I resubmit this patch, what is your opinion on using "sgx-modules-${=
+PV}" for the directory name nad "sgx-modules" for the Makefile target?
+
+Also, I am currently testing changing the recipe installation to match the =
+makefile, and will prepend this to the patch set once I have verified the c=
+hange.
+
+Thanks,
+Jake=20
+
+
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Friday, March 27, 2015 8:49 AM
+To: Stiffler, Jacob
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
 
 
 
@@ -65,7 +86,7 @@ at's left. It's the same reason why sitara-linux-ti-staging and linux-ti-st=
 aging recipes are simply set to linux-${PV}
 >=20
 > -----Original Message-----
-> From: Cooper Jr., Franklin=20
+> From: Cooper Jr., Franklin
 > Sent: Thursday, March 26, 2015 9:40 AM
 > To: Stiffler, Jacob
 > Cc: meta-arago@arago-project.org
@@ -75,9 +96,9 @@ K.
 > From another email I saw are you saying that a user needs to run clean an=
 d then compile and install via the top level makefile?
 >=20
-> Something isn't right since ANY sources included in the SDK board support=
- shouldn't have anything prebuilt. They should be clean sources that simply=
- needs to be compiled by the user=20
+> Something isn't right since ANY sources included in the SDK board=20
+> support shouldn't have anything prebuilt. They should be clean sources=20
+> that simply needs to be compiled by the user
 >=20
 > more below
 >=20
@@ -120,7 +141,8 @@ able graphics.
 ++++++++
 >>>> .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |   11 +++++++-
 >>>> 3 files changed, 42 insertions(+), 1 deletion(-) create mode 100644=20
->>>> meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/
+>>>> meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
+>>>> /
 >>>> M
 >>>> akefile_omap3-sgx-modules
 >>>>=20
@@ -161,16 +183,19 @@ n cause a problem since these paths will be from your build machine.
 ra-drivers/${PN}-${PV}"
 >>>>=20
 >>>> diff --git
->>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefil
+>>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
+>>>> l
 >>>> e
 >>>> /Makefile_omap3-sgx-modules
->>>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefil
+>>>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
+>>>> l
 >>>> e
 >>>> /Makefile_omap3-sgx-modules
 >>>> new file mode 100644
 >>>> index 0000000..2bc0ba5
 >>>> --- /dev/null
->>>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-mak
+>>>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-ma
+>>>> +++ k
 >>>> +++ e
 >>>> +++ file/Makefile_omap3-sgx-modules
 >>>> @@ -0,0 +1,29 @@
@@ -182,7 +207,7 @@ ra-drivers/${PN}-${PV}"
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 >>>> +    @cd board-support/extra-drivers; \
 >>>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>>> +    make ARCH=3Darm KERNELDIR=3D$(LINUXKERNEL_INSTALL_DIR)=20
+>>>> +    make ARCH=3Darm KERNELDIR=3D$(LINUXKERNEL_INSTALL_DIR)
 >>>> +BUILD=3Drelease TI_PLATFORM=3D__PLATFORM_SGX__ SUPPORT_XORG=3D0
 >>> Make sure you test this and compare against how we build the recipe in =
 OE. I remembered in the past you needed a special flag passed in to insure =
@@ -193,8 +218,8 @@ PM runtime worked.
 e SDK and let the make install run on ur filesystem and see if everything  =
 still works. This includes suspend and resume while an sgx demo is running.
 >> How do you  test this?
-> http://processors.wiki.ti.com/index.php/Linux_Core_Power_Management_User%=
-27s_Guide#Suspend.2FResume
+> http://processors.wiki.ti.com/index.php/Linux_Core_Power_Management_Us
+> er%27s_Guide#Suspend.2FResume
 >>>> +
 >>>> +omap3-sgx-modules_clean:
 >>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
@@ -226,9 +251,9 @@ n try again."; \
 >>>> +modules_install
 >>> This will cause problems as is. The graphics recipe for reasons I never=
  installs the graphics modules differently then the graphics SDK.
->>> Typing from my phone. *reasons I never liked So you will end with two=20
->>> versions of the graphics SDK in ur fs and both will try to load and may=
-be possibly fail.
+>>> Typing from my phone. *reasons I never liked So you will end with=20
+>>> two versions of the graphics SDK in ur fs and both will try to load and=
+ maybe possibly fail.
 >>>=20
 >>> So either update the OE recipe to use the makefile install or update th=
 is part to mimic the OE way it built things.
@@ -242,24 +267,27 @@ es cannot be found by "modprobe".
  to verify that this works.
 >>>> +
 >>>> diff --git
->>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefil
+>>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
+>>>> l
 >>>> e
 >>>> _1.0.bb
->>>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefil
+>>>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
+>>>> l
 >>>> e
 >>>> _1.0.bb
 >>>> index ffedd4c..a31bb69 100644
 >>>> ---
->>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefil
+>>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
+>>>> l
 >>>> e
 >>>> _1.0.bb
->>>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-mak
+>>>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-ma
+>>>> +++ k
 >>>> +++ e
 >>>> +++ file_1.0.bb
 >>>> @@ -34,9 +34,10 @@ SRC_URI =3D "\
->>>>  file://Makefile_dual-camera-demo \
->>>>  file://Makefile_image-gallery \
->>>>  file://Makefile_cryptodev \
+>>>>  file://Makefile_dual-camera-demo \  file://Makefile_image-gallery=20
+>>>> \  file://Makefile_cryptodev \
 >>>> +    file://Makefile_omap3-sgx-modules \
 >>>> "
 >>>>=20
