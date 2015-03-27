@@ -1,27 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 19B8C52A0B
+Return-Path: <karthik.ramanan@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 72676529A9
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Mar 2015 15:21:47 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2QFLkLa032162
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 10:21:46 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2QFLj2q029011
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 10:21:45 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0224.002; Thu, 26 Mar 2015 10:21:45 -0500
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "R, Karthik" <karthik.ramanan@ti.com>
-Thread-Topic: [meta-arago]  gstreamer1.0-plugins-bad: Update DEPENDS
-Thread-Index: AdBn2JGdJOqvFFgRQUuPKowZl9bJug==
-Date: Thu, 26 Mar 2015 15:21:44 +0000
-Message-ID: <B0581B5571079145BA1CD78C126DBDE73222E69C@DLEE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	Fri, 27 Mar 2015 04:45:47 +0000 (UTC)
+Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2R4jj1c012651
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2015 23:45:46 -0500
+Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2R4jgLQ008474
+	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 10:15:43 +0530
+Received: from [172.24.159.217] (172.24.159.217) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Fri, 27 Mar 2015 10:15:41 +0530
+Message-ID: <5514E075.6070200@ti.com>
+Date: Fri, 27 Mar 2015 10:15:41 +0530
+From: Karthik Ramanan <a0393906@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
+To: "Dmytriyenko, Denys" <denys@ti.com>, "R, Karthik" <karthik.ramanan@ti.com>
+References: <B0581B5571079145BA1CD78C126DBDE73222E69C@DLEE08.ent.ti.com>
+In-Reply-To: <B0581B5571079145BA1CD78C126DBDE73222E69C@DLEE08.ent.ti.com>
+X-Originating-IP: [172.24.159.217]
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: gstreamer1.0-plugins-bad: Update DEPENDS
 X-BeenThere: meta-arago@arago-project.org
@@ -36,97 +36,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Mar 2015 15:21:47 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B0581B5571079145BA1CD78C126DBDE73222E69CDLEE08entticom_"
+X-List-Received-Date: Fri, 27 Mar 2015 04:45:47 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_B0581B5571079145BA1CD78C126DBDE73222E69CDLEE08entticom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Denys,
 
-VW5mb3J0dW5hdGVseSwgdGhhdCB3aWxsIG1ha2UgdGhlIHJlc3VsdGluZyBwYWNrYWdlcyBtYWNo
-aW5lIHNwZWNpZmljLCB3aGljaCBJIHdhbnQgdG8gYXZvaWQgZHVlIHRvIGJ1aWxkIGlzc3VlcyB3
-ZSd2ZSBoYWQgd2l0aCBnc3QgMC4xMC4uLg0KDQotLQ0KRGVueXMNCg0KT24gTWFyIDI2LCAyMDE1
-IDA1OjU5LCAiUiwgS2FydGhpayIgPGthcnRoaWsucmFtYW5hbkB0aS5jb20+IHdyb3RlOg0KKiBN
-YWtlIHRoZSBmZWF0dXJlIGFkZGl0aW9ucyBzcGVjaWZpYyB0byBkcmE3eHggZHVlDQogICB0byB0
-aGUgZGVwZW5kZW5jaWVzDQoNClNpZ25lZC1vZmYtYnk6IEthcnRoaWsgUmFtYW5hbiA8YTAzOTM5
-MDZAdGkuY29tPg0KLS0tDQogLi4uL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZF8xLjIuMy5iYmFw
-cGVuZCAgICAgICAgfCAgICA2ICsrKystLQ0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMo
-KyksIDIgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNp
-cGVzLW11bHRpbWVkaWEvZ3N0cmVhbWVyL2dzdHJlYW1lcjEuMC1wbHVnaW5zLWJhZF8xLjIuMy5i
-YmFwcGVuZCBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9nc3RyZWFtZXIv
-Z3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkXzEuMi4zLmJiYXBwZW5kDQppbmRleCBiMWNhY2FjLi43
-MmU2N2Y1IDEwMDY0NA0KLS0tIGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1lZGlh
-L2dzdHJlYW1lci9nc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWRfMS4yLjMuYmJhcHBlbmQNCisrKyBi
-L21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9nc3RyZWFtZXIvZ3N0cmVhbWVy
-MS4wLXBsdWdpbnMtYmFkXzEuMi4zLmJiYXBwZW5kDQpAQCAtMiwxMSArMiwxMyBAQCBGSUxFU0VY
-VFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQoNCiBQQUNLQUdFQ09ORklH
-ID0gImZhYWQgd2F5bGFuZCINCg0KLVNSQ19VUklfYXBwZW5kID0gIiBcDQorREVQRU5EU18ke1BO
-fV9hcHBlbmRfZHJhN3h4ID0gIiBsaWJkY2UgbGliZHJtIg0KKw0KK1NSQ19VUklfYXBwZW5kX2Ry
-YTd4eCA9ICIgXA0KICAgICAgICAgZmlsZTovLzAwMDEtQWRkZWQtR3N0RFJNQnVmZmVyUG9vbC1z
-dXBwb3J0LnBhdGNoIFwNCiAgICAgICAgIGZpbGU6Ly8wMDAyLU1vZGlmaWVkLXdheWxhbmRzaW5r
-LXRvLWFjY2VwdC1OVjEyLWZvcm1hdC5wYXRjaCBcDQogICAgICAgICBmaWxlOi8vMDAwMy1BZGRl
-ZC1LTVNzaW5rLXN1cHBvcnQucGF0Y2ggXA0KICAgICAgICAgZmlsZTovLzAwMDQtd2F5bGFuZHNp
-bmstUmVtb3ZlZC1kZXBlbmRlbmN5LW9uLWRyaTIucGF0Y2ggXA0KICAgICAgICAgZmlsZTovLzAw
-MDUtdmMxcGFyc2UtYW5kLWpwZWdwYXJzZS1GaXhlcy1wbHVnaW4tcmFua3MucGF0Y2giDQoNCi1Q
-Ul9hcHBlbmQgPSAiLWFyYWdvMCINCitQUl9hcHBlbmQgPSAiLWFyYWdvMSINCi0tDQoxLjcuOS41
-DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQptZXRh
-LWFyYWdvIG1haWxpbmcgbGlzdA0KbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KaHR0cDov
-L2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdvDQo=
+With respect to the this package (GST plugins bad for 1.x), we have 
+added support for KMS Sink, Wayland sink and GST DMA buffer pool support.
 
---_000_B0581B5571079145BA1CD78C126DBDE73222E69CDLEE08entticom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <E091E6C4BB084449BE3503BEDA44FE5B@owa.mail.ti.com>
-Content-Transfer-Encoding: base64
+These inclusions have a dependency with libdrm and libdce.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHAgZGlyPSJsdHIi
-PlVuZm9ydHVuYXRlbHksIHRoYXQgd2lsbCBtYWtlIHRoZSByZXN1bHRpbmcgcGFja2FnZXMgbWFj
-aGluZSBzcGVjaWZpYywgd2hpY2ggSSB3YW50IHRvIGF2b2lkIGR1ZSB0byBidWlsZCBpc3N1ZXMg
-d2UndmUgaGFkIHdpdGggZ3N0IDAuMTAuLi48L3A+DQo8cCBkaXI9Imx0ciI+LS0gPGJyPg0KRGVu
-eXM8L3A+DQo8ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gTWFyIDI2LCAyMDE1IDA1OjU5LCAm
-cXVvdDtSLCBLYXJ0aGlrJnF1b3Q7ICZsdDtrYXJ0aGlrLnJhbWFuYW5AdGkuY29tJmd0OyB3cm90
-ZTo8YnIgdHlwZT0iYXR0cmlidXRpb24iPg0KPGJsb2NrcXVvdGUgY2xhc3M9InF1b3RlIiBzdHls
-ZT0ibWFyZ2luOjAgMCAwIC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1s
-ZWZ0OjFleCI+DQo8ZGl2Pjxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBw
-dCI+PC9zcGFuPjwvZm9udD4NCjxkaXY+KiBNYWtlIHRoZSBmZWF0dXJlIGFkZGl0aW9ucyBzcGVj
-aWZpYyB0byBkcmE3eHggZHVlPGJyPg0KJm5ic3A7Jm5ic3A7IHRvIHRoZSBkZXBlbmRlbmNpZXM8
-YnI+DQo8YnI+DQpTaWduZWQtb2ZmLWJ5OiBLYXJ0aGlrIFJhbWFuYW4gJmx0O2EwMzkzOTA2QHRp
-LmNvbSZndDs8YnI+DQotLS08YnI+DQombmJzcDsuLi4vZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFk
-XzEuMi4zLmJiYXBwZW5kJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-IHwmbmJzcDsmbmJzcDsmbmJzcDsgNiAmIzQzOyYjNDM7JiM0MzsmIzQzOy0tPGJyPg0KJm5ic3A7
-MSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygmIzQzOyksIDIgZGVsZXRpb25zKC0pPGJyPg0K
-PGJyPg0KZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9n
-c3RyZWFtZXIvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkXzEuMi4zLmJiYXBwZW5kIGIvbWV0YS1h
-cmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1lZGlhL2dzdHJlYW1lci9nc3RyZWFtZXIxLjAtcGx1
-Z2lucy1iYWRfMS4yLjMuYmJhcHBlbmQ8YnI+DQppbmRleCBiMWNhY2FjLi43MmU2N2Y1IDEwMDY0
-NDxicj4NCi0tLSBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9nc3RyZWFt
-ZXIvZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkXzEuMi4zLmJiYXBwZW5kPGJyPg0KJiM0MzsmIzQz
-OyYjNDM7IGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1lZGlhL2dzdHJlYW1lci9n
-c3RyZWFtZXIxLjAtcGx1Z2lucy1iYWRfMS4yLjMuYmJhcHBlbmQ8YnI+DQpAQCAtMiwxMSAmIzQz
-OzIsMTMgQEAgRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gJnF1b3Q7JHtUSElTRElSfS8ke1BO
-fTomcXVvdDs8YnI+DQombmJzcDs8YnI+DQombmJzcDtQQUNLQUdFQ09ORklHID0gJnF1b3Q7ZmFh
-ZCB3YXlsYW5kJnF1b3Q7PGJyPg0KJm5ic3A7PGJyPg0KLVNSQ19VUklfYXBwZW5kID0gJnF1b3Q7
-IFw8YnI+DQomIzQzO0RFUEVORFNfJHtQTn1fYXBwZW5kX2RyYTd4eCA9ICZxdW90OyBsaWJkY2Ug
-bGliZHJtJnF1b3Q7PGJyPg0KJiM0Mzs8YnI+DQomIzQzO1NSQ19VUklfYXBwZW5kX2RyYTd4eCA9
-ICZxdW90OyBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IGZpbGU6Ly8wMDAxLUFkZGVkLUdzdERSTUJ1ZmZlclBvb2wtc3VwcG9ydC5wYXRjaCBc
-PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGZp
-bGU6Ly8wMDAyLU1vZGlmaWVkLXdheWxhbmRzaW5rLXRvLWFjY2VwdC1OVjEyLWZvcm1hdC5wYXRj
-aCBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-IGZpbGU6Ly8wMDAzLUFkZGVkLUtNU3Npbmstc3VwcG9ydC5wYXRjaCBcPGJyPg0KJm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGZpbGU6Ly8wMDA0LXdheWxh
-bmRzaW5rLVJlbW92ZWQtZGVwZW5kZW5jeS1vbi1kcmkyLnBhdGNoIFw8YnI+DQombmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgZmlsZTovLzAwMDUtdmMxcGFy
-c2UtYW5kLWpwZWdwYXJzZS1GaXhlcy1wbHVnaW4tcmFua3MucGF0Y2gmcXVvdDs8YnI+DQombmJz
-cDs8YnI+DQotUFJfYXBwZW5kID0gJnF1b3Q7LWFyYWdvMCZxdW90Ozxicj4NCiYjNDM7UFJfYXBw
-ZW5kID0gJnF1b3Q7LWFyYWdvMSZxdW90Ozxicj4NCi0tIDxicj4NCjEuNy45LjU8YnI+DQo8YnI+
-DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NCm1l
-dGEtYXJhZ28gbWFpbGluZyBsaXN0PGJyPg0KbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZzxi
-cj4NCjxhIGhyZWY9Imh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlz
-dGluZm8vbWV0YS1hcmFnbyI+aHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1h
-bi9saXN0aW5mby9tZXRhLWFyYWdvPC9hPjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVv
-dGU+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+I'm given to understand that for the AM3 and AM4, there is no libdrm 
+support and there is no need for libdce as it is required to communicate 
+with ipumm-fw. If we want to include the GST 1.x in the 
+arago-tisdk-multimedia packagegroup then this change will help in making 
+it buildable across all platforms (hopefully).
 
---_000_B0581B5571079145BA1CD78C126DBDE73222E69CDLEE08entticom_--
+I referred to another recipe 
+meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.5.bb which was 
+doing something similar.
+
+If this is not the preferred approach, I have an alternative in mind but 
+I'm not sure if that will work - can we have a bbappend that is specific 
+to a certain machine type?
+
+Regards
+Karthik
+
+On 26-Mar-15 8:51 PM, Dmytriyenko, Denys wrote:
+> Unfortunately, that will make the resulting packages machine specific,
+> which I want to avoid due to build issues we've had with gst 0.10...
+>
+> --
+> Denys
+>
+> On Mar 26, 2015 05:59, "R, Karthik" <karthik.ramanan@ti.com> wrote:
+>
+>     * Make the feature additions specific to dra7xx due
+>         to the dependencies
+>
+>     Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>     ---
+>       .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |    6 ++++--
+>       1 file changed, 4 insertions(+), 2 deletions(-)
+>
+>     diff --git
+>     a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     index b1cacac..72e67f5 100644
+>     ---
+>     a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     +++
+>     b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     @@ -2,11 +2,13 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>
+>       PACKAGECONFIG = "faad wayland"
+>
+>     -SRC_URI_append = " \
+>     +DEPENDS_${PN}_append_dra7xx = " libdce libdrm"
+>     +
+>     +SRC_URI_append_dra7xx = " \
+>               file://0001-Added-GstDRMBufferPool-support.patch \
+>               file://0002-Modified-waylandsink-to-accept-NV12-format.patch \
+>               file://0003-Added-KMSsink-support.patch \
+>               file://0004-waylandsink-Removed-dependency-on-dri2.patch \
+>               file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch"
+>
+>     -PR_append = "-arago0"
+>     +PR_append = "-arago1"
+>     --
+>     1.7.9.5
+>
+>     _______________________________________________
+>     meta-arago mailing list
+>     meta-arago@arago-project.org
+>     http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
+
+
