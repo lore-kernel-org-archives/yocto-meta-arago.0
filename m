@@ -1,38 +1,29 @@
-Return-Path: <fcooper@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 9F1AA52A0B
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id E7A34529D2
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Mar 2015 13:30:50 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2RDUnGl001733
-	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 08:30:49 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2RDUmr5018455
-	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 08:30:48 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0224.002; Fri, 27 Mar 2015 08:30:48 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Thread-Topic: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
-Thread-Index: AQHQZzHfL84s45vDt0+zjBxImP4dSZ0tro52gAAA+Y6AAUJcAP//1E0ygAHS74D//7FZioAAW0cA//+wVvc=
-Date: Fri, 27 Mar 2015 13:30:48 +0000
-Message-ID: <25F6AB55-48B3-4F7A-808F-419FFC4F4977@ti.com>
-References: <1427311700-20869-1-git-send-email-j-stiffler@ti.com>,
-	<C38133F3-91EC-4F10-AE0A-CA8281A929E5@ti.com>
-	<28FF0448-3D50-477E-9EE2-ABFE6F42B8F5@ti.com>,
-	<4B26FB5A64EBA14C87266869E037F9581411B5BF@DFLE09.ent.ti.com>
-	<6204FCC2-801E-4308-8244-1AE1E6516747@ti.com>,
-	<4B26FB5A64EBA14C87266869E037F9581411B902@DFLE09.ent.ti.com>
-	<FCA7ACD8-5C23-4E8E-928B-D6C2693989CE@ti.com>,
-	<4B26FB5A64EBA14C87266869E037F9581411B938@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581411B938@DFLE09.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	Fri, 27 Mar 2015 20:07:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t2RK7aMm011740
+	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 15:07:36 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t2RK7ZJY017558
+	for <meta-arago@arago-project.org>; Fri, 27 Mar 2015 15:07:35 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 27 Mar 2015 15:07:34 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t2RK7YTO018240	for <meta-arago@arago-project.org>;
+	Fri, 27 Mar 2015 15:07:34 -0500
+Date: Fri, 27 Mar 2015 16:07:34 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1247676070.81.1427486854528.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 1/2] omap3-sgx-modules: Add source to SDK.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.03 build 2015-03-27_12-52-38
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,312 +36,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Mar 2015 13:30:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 27 Mar 2015 20:07:37 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_80_1274100501.1427486854480"
+
+------=_Part_80_1274100501.1427486854480
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<title>
+Status for 03/27/15
+</title>
+</head>
+<body>
+
+<h2>Status for 03/27/15</h2>
+
+<h2>BUILD_ID: build-2015-03-27_12-53-45</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.03"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-
-
-> On Mar 27, 2015, at 8:15 AM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->=20
-> Before I resubmit this patch, what is your opinion on using "sgx-modules-=
-${PV}" for the directory name nad "sgx-modules" for the Makefile target?
->=20
-> Also, I am currently testing changing the recipe installation to match th=
-e makefile, and will prepend this to the patch set once I have verified the=
- change.
-Sounds good
->=20
-> Thanks,
-> Jake=20
->=20
->=20
->=20
-> -----Original Message-----
-> From: Cooper Jr., Franklin=20
-> Sent: Friday, March 27, 2015 8:49 AM
-> To: Stiffler, Jacob
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to SD=
-K.
->=20
->=20
->=20
->=20
->> On Mar 27, 2015, at 7:30 AM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->>=20
->> 1) I checked, no prebuilt binaries are provided, and the clean is unnece=
-ssary.=20
->> 2) No build system paths are included.
->> 3) suspend and resume were functional while running the sgx 3D demos.
->> 4) The kernel is automatically built with a different version due to the=
- creation of a sdk branch in the git repo.
-> Awesome. Just renaming the directory containing the modules is all think =
-that's left. It's the same reason why sitara-linux-ti-staging and linux-ti-=
-staging recipes are simply set to linux-${PV}
->>=20
->> -----Original Message-----
->> From: Cooper Jr., Franklin
->> Sent: Thursday, March 26, 2015 9:40 AM
->> To: Stiffler, Jacob
->> Cc: meta-arago@arago-project.org
->> Subject: Re: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to S=
-DK.
->>=20
->> From another email I saw are you saying that a user needs to run clean a=
-nd then compile and install via the top level makefile?
->>=20
->> Something isn't right since ANY sources included in the SDK board=20
->> support shouldn't have anything prebuilt. They should be clean sources=20
->> that simply needs to be compiled by the user
->>=20
->> more below
->>=20
->>=20
->>> On Mar 26, 2015, at 6:15 AM, Stiffler, Jacob <j-stiffler@ti.com> wrote:
->>>=20
->>> I have tested this patch locally and in our nightly builds.=20
->>>=20
->>> See my response to your comments below.
->>>=20
->>> -----Original Message-----
->>> From: Cooper Jr., Franklin
->>> Sent: Wednesday, March 25, 2015 5:02 PM
->>> To: Stiffler, Jacob
->>> Cc: meta-arago@arago-project.org
->>> Subject: Re: [meta-arago] [PATCH 1/2] omap3-sgx-modules: Add source to =
-SDK.
->>>=20
->>>=20
->>>=20
->>>=20
->>>> On Mar 25, 2015, at 3:58 PM, Cooper Jr., Franklin <fcooper@ti.com> wro=
-te:
->>>>=20
->>>> Overall this needs more testing. additional comments below
->>>>=20
->>>>> On Mar 25, 2015, at 2:28 PM, Stiffler, Jacob <j-stiffler@ti.com> wrot=
-e:
->>>>>=20
->>>>> * omap3-sgx-modules provides out-of-tree drivers which are required=20
->>>>> for graphics.
->>>>> * These sources need to be provided so that whenever there is a=20
->>>>> kernel modification, the user can easily rebuild these moduels to ree=
-nable graphics.
->>>>>=20
->>>>> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
->>>>> ---
->>>>> .../conf/distro/arago-source-ipk.conf              |    3 ++
->>>>> .../ti-tisdk-makefile/Makefile_omap3-sgx-modules   |   29 +++++++++++=
-+++++++++
->>>>> .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |   11 +++++++-
->>>>> 3 files changed, 42 insertions(+), 1 deletion(-) create mode 100644=20
->>>>> meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile
->>>>> /
->>>>> M
->>>>> akefile_omap3-sgx-modules
->>>>>=20
->>>>> diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>>>> b/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>>>> index b457504..40c7058 100644
->>>>> --- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>>>> +++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
->>>>> @@ -94,6 +94,9 @@ SRCIPK_INSTALL_DIR_pn-ti-pru-sw-examples =3D "examp=
-le-applications/pru-${PV}"
->>>>> CREATE_SRCIPK_pn-ti-ocf-crypto-module =3D "1"
->>>>> SRCIPK_INSTALL_DIR_pn-ti-ocf-crypto-module =3D "board-support/extra-d=
-rivers/${PN}-${PV}"
->>>>>=20
->>>>> +CREATE_SRCIPK_pn-omap3-sgx-modules =3D "1"
->>>>> +SRCIPK_INSTALL_DIR_pn-omap3-sgx-modules =3D "board-support/extra-dri=
-vers/${PN}-${PV}"
->>>>> +
->>>> We shouldn't call it omap3-sgx-modules since that name has no meaning =
-within the Graphics SDK nor anywhere outside of OE. Plus omap3 part is conf=
-using from an SDK perspective.
->>> What would you suggest?
->> Idk naming it in a way people will recognize wat it is and wat it is for=
-.
->>>>=20
->>>> Now when you do sourceipk is it only including a certain portion of th=
-e graphics SdK or is it packaging the entire contents of the graphics Sdk.
->>>>=20
->>>> You may need to be careful but I though when you installed the graphic=
-s SDK that it puts installation paths inside its various make files. This c=
-an cause a problem since these paths will be from your build machine.
->>> This is only the module source, as specified in the recipe:=20
->>> TI_BIN_UNPK_WDEXT=3D"/Graphics_SDK_${SGXPV}"
->>> S =3D "${WORKDIR}${TI_BIN_UNPK_WDEXT}/GFX_Linux_KM"
->> Can u do a grep and confirm no paths are included?
->>>>=20
->>>>> CREATE_SRCIPK_pn-ti-compat-wireless-wl18xx =3D "1"
->>>>> SRCIPK_INSTALL_DIR_pn-ti-compat-wireless-wl18xx =3D "board-support/ex=
-tra-drivers/${PN}-${PV}"
->>>>>=20
->>>>> diff --git
->>>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
->>>>> l
->>>>> e
->>>>> /Makefile_omap3-sgx-modules
->>>>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
->>>>> l
->>>>> e
->>>>> /Makefile_omap3-sgx-modules
->>>>> new file mode 100644
->>>>> index 0000000..2bc0ba5
->>>>> --- /dev/null
->>>>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-ma
->>>>> +++ k
->>>>> +++ e
->>>>> +++ file/Makefile_omap3-sgx-modules
->>>>> @@ -0,0 +1,29 @@
->>>>> +omap3-sgx-modules: linux
->>>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>> +    @echo      Building omap3-sgx-modules
->>>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>> +    @cd board-support/extra-drivers; \
->>>>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>>>> +    make ARCH=3Darm KERNELDIR=3D$(LINUXKERNEL_INSTALL_DIR)
->>>>> +BUILD=3Drelease TI_PLATFORM=3D__PLATFORM_SGX__ SUPPORT_XORG=3D0
->>>> Make sure you test this and compare against how we build the recipe in=
- OE. I remembered in the past you needed a special flag passed in to insure=
- PM runtime worked.
->>> I got the make options directly from the recipe.
->>>>=20
->>>> So really you need to test this by removing all the sgx modules from t=
-he SDK and let the make install run on ur filesystem and see if everything =
- still works. This includes suspend and resume while an sgx demo is running=
-.
->>> How do you  test this?
->> http://processors.wiki.ti.com/index.php/Linux_Core_Power_Management_Us
->> er%27s_Guide#Suspend.2FResume
->>>>> +
->>>>> +omap3-sgx-modules_clean:
->>>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>> +    @echo      Cleaning omap3-sgx-modules
->>>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>> +    @cd board-support/extra-drivers; \
->>>>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>>>> +    make ARCH=3Darm KERNELDIR=3D$(LINUXKERNEL_INSTALL_DIR) clean
->>>>> +
->>>>> +omap3-sgx-modules_install:
->>>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>> +    @echo      Installing omap3-sgx-modules
->>>>> +    @echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>> +    @if [ ! -d $(DESTDIR) ] ; then \
->>>>> +        echo "The extracted target filesystem directory doesn't exis=
-t."; \
->>>>> +        echo "Please run setup.sh in the SDK's root directory and th=
-en try again."; \
->>>>> +        exit 1; \
->>>>> +    fi
->>>>> +    @cd board-support/extra-drivers; \
->>>>> +    cd `find . -maxdepth 1 -name "omap3-sgx-modules*"`; \
->>>>> +    make -C $(LINUXKERNEL_INSTALL_DIR) SUBDIRS=3D`pwd`
->>>>> +INSTALL_MOD_PATH=3D$(DESTDIR) PREFIX=3D$(SDK_PATH_TARGET)=20
->>>>> +modules_install
->>>> This will cause problems as is. The graphics recipe for reasons I neve=
-r installs the graphics modules differently then the graphics SDK.
->>>> Typing from my phone. *reasons I never liked So you will end with=20
->>>> two versions of the graphics SDK in ur fs and both will try to load an=
-d maybe possibly fail.
->>>>=20
->>>> So either update the OE recipe to use the makefile install or update t=
-his part to mimic the OE way it built things.
->>>> *built and installs things
->>> It seems that the recipe tries to fake that these modules are not out-o=
-f-tree, and I guess yocto can hide this by updating the necessary /lib/modu=
-les/<k_ver>/modules.* files. Without installing it like this, then the modu=
-les cannot be found by "modprobe".
->> If this is the case then how did this work for u?
->> Did you try modifying the kernel and using the rebuilt kernel and module=
-s to verify that this works.
->>>>> +
->>>>> diff --git
->>>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
->>>>> l
->>>>> e
->>>>> _1.0.bb
->>>>> b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
->>>>> l
->>>>> e
->>>>> _1.0.bb
->>>>> index ffedd4c..a31bb69 100644
->>>>> ---
->>>>> a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefi
->>>>> l
->>>>> e
->>>>> _1.0.bb
->>>>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-ma
->>>>> +++ k
->>>>> +++ e
->>>>> +++ file_1.0.bb
->>>>> @@ -34,9 +34,10 @@ SRC_URI =3D "\
->>>>> file://Makefile_dual-camera-demo \  file://Makefile_image-gallery=20
->>>>> \  file://Makefile_cryptodev \
->>>>> +    file://Makefile_omap3-sgx-modules \
->>>>> "
->>>>>=20
->>>>> -PR =3D "r41"
->>>>> +PR =3D "r42"
->>>>>=20
->>>>> MAKEFILES_COMMON =3D "linux \
->>>>>                 matrix-gui \
->>>>> @@ -69,6 +70,7 @@ MAKEFILES_append_ti33x =3D " u-boot-spl \
->>>>>                        linux-dtbs \
->>>>>                        wireless \
->>>>>                        cryptodev \
->>>>> +                           omap3-sgx-modules \
->>>>> "
->>>>> MAKEFILES_append_ti43x =3D " u-boot-spl \
->>>>>                        ${QUICK_PLAYGROUND} \ @@ -76,6 +78,7 @@=20
->>>>> MAKEFILES_append_ti43x =3D " u-boot-spl \
->>>>>                        linux-dtbs \
->>>>>                        wireless \
->>>>>                        cryptodev \
->>>>> +                           omap3-sgx-modules \
->>>>>                        dual-camera-demo \
->>>>>                        image-gallery \ "
->>>>> @@ -95,6 +98,10 @@ MAKEFILES_append_am180x-evm =3D " pru \=20
->>>>> PLATFORM_ARCH =3D "armv7-a"
->>>>> PLATFORM_ARCH_omapl138 =3D "armv5te"
->>>>>=20
->>>>> +PLATFORM_SGX =3D ""
->>>>> +PLATFORM_SGX_ti33x =3D "ti335x"
->>>>> +PLATFORM_SGX_ti43x =3D "ti43xx"
->>>>> +
->>>>> KERNEL_BUILD_CMDS =3D "${@base_conditional('KERNEL_IMAGETYPE','uImage=
-','LOADADDR=3D${UBOOT_LOADADDRESS} uImage','zImage',d)}"
->>>>>=20
->>>>> KERNEL_DEVICETREE_ti33x =3D "am335x-evm.dtb am335x-evmsk.dtb am335x-b=
-one.dtb am335x-boneblack.dtb"
->>>>> @@ -150,6 +157,8 @@ do_install () {
->>>>>=20
->>>>> sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/"=20
->>>>> ${D}/Makefile
->>>>>=20
->>>>> +    sed -i -e "s/__PLATFORM_SGX__/${PLATFORM_SGX}/" ${D}/Makefile
->>>>> +
->>>>> cat ${D}/Makefile | grep "__DTB_DEPEND__" > /dev/null
->>>>>=20
->>>>> if [ "$?" =3D=3D "0" ]
->>>>> --
->>>>> 1.7.9.5
->>>>>=20
->>>>> _______________________________________________
->>>>> meta-arago mailing list
->>>>> meta-arago@arago-project.org
->>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->>>> _______________________________________________
->>>> meta-arago mailing list
->>>> meta-arago@arago-project.org
->>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_80_1274100501.1427486854480--
