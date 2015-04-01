@@ -1,27 +1,30 @@
-Return-Path: <sam.nelson@ti.com>
+Return-Path: <a0866934local@udb0866934>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 4579E529AE
+	by arago-project.org (Postfix) with ESMTPS id D596952099
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Apr 2015 14:31:08 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t31EV7N3008037
-	for <meta-arago@arago-project.org>; Wed, 1 Apr 2015 09:31:07 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t31EV4kU021393
-	for <meta-arago@arago-project.org>; Wed, 1 Apr 2015 09:31:05 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	Wed,  1 Apr 2015 17:08:17 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t31H8GA3016786
+	for <meta-arago@arago-project.org>; Wed, 1 Apr 2015 12:08:16 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t31H8FGU002393
+	for <meta-arago@arago-project.org>; Wed, 1 Apr 2015 12:08:15 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 1 Apr 2015 09:31:04 -0500
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t31EV4g7008587;	Wed, 1 Apr 2015 09:31:04 -0500
-From: Sam Nelson <sam.nelson@ti.com>
+	Wed, 1 Apr 2015 12:08:15 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t31H8FdZ012508;
+	Wed, 1 Apr 2015 12:08:15 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YdM7j-0004OA-5p;
+	Wed, 01 Apr 2015 13:08:15 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 1 Apr 2015 10:31:02 -0400
-Message-ID: <1427898663-13390-1-git-send-email-sam.nelson@ti.com>
+Date: Wed, 1 Apr 2015 13:08:09 -0400
+Message-ID: <1427908089-16838-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH] configs: Add release config mcsdk/mcsdk-03.01.03.06
+Subject: [PATCH] packagegroup-arago-tisdk-matrix: Remove dual-camera-demo and image-gallery
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,38 +37,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 14:31:08 -0000
+X-List-Received-Date: Wed, 01 Apr 2015 17:08:18 -0000
 Content-Type: text/plain
 
-- Based on release config mcsdk/mcsdk-3.1.0-config.txt
-  with updated commit id for mcsdk release 3.1.3
+* dual-camera-demo requires some polishing before it can be presented
+  in matrix.
+* image-gallery is not useful without dual-camera-demo.
+* Demo binaries will remain in filesystem and sources wil remain in
+  SDK.
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- configs/mcsdk/mcsdk-03.01.03.06-config.txt |   14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/mcsdk/mcsdk-03.01.03.06-config.txt
+ .../packagegroup-arago-tisdk-matrix.bb             |    4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/configs/mcsdk/mcsdk-03.01.03.06-config.txt b/configs/mcsdk/mcsdk-03.01.03.06-config.txt
-new file mode 100644
-index 0000000..17f4b33
---- /dev/null
-+++ b/configs/mcsdk/mcsdk-03.01.03.06-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
-+meta-mcsdk,git://arago-project.org/git/projects/meta-mcsdk.git,master,bafae2df01b979fb1ac7c1cbe9d8698b9409e952,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,dylan,370ed5e9f68afd0937e01f6cd69863e45ba19c1f,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,ed05b91f137cb229e9ebababf9f72748aece1bf3,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,70ebe86f193decd17d6295bcd4d4e5589585c0cc,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,dylan,0056050410c1d5f8627c509490a5650eb082261c,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
-+meta-java,git://github.com/woglinde/meta-java,master,ac8c0604d1ed63b1ae0e05f870f53b8241e6dda1,layers=
-+oe-core,git://git.openembedded.org/openembedded-core,dylan,7ff1924674871d604f9656f3928b91dc417c7246,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index a006c52..d724f00 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r37"
++PR = "r38"
+ 
+ inherit packagegroup
+ 
+@@ -82,8 +82,6 @@ MATRIX_APPS_append_ti43x = "        \
+     matrix-gui-pm-demos-suspend     \
+     matrix-gui-clocks               \
+     matrix-gui-pm-demos-governor    \
+-    matrix-gui-apps-dual-camera     \
+-    matrix-gui-apps-image-gallery   \
+     ${@base_conditional('DISTRO_FEATURES', 'wayland', '', 'ts-calibrate-init', d)} \
+ "
+ 
 -- 
 1.7.9.5
 
