@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C5BCF52093
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 300C252093
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Apr 2015 16:16:31 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t36GGUfn028868
-	for <meta-arago@arago-project.org>; Mon, 6 Apr 2015 11:16:30 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t36GGTfa009146
-	for <meta-arago@arago-project.org>; Mon, 6 Apr 2015 11:16:29 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 6 Apr 2015 11:16:29 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t36GGTJo010992;
-	Mon, 6 Apr 2015 11:16:29 -0500
-Date: Mon, 6 Apr 2015 12:16:28 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150406161628.GB21023@edge>
-References: <1428325163-27099-1-git-send-email-j-stiffler@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1428325163-27099-1-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] matrix-gui: Disable terminal blanking while running matrix.
+	Mon,  6 Apr 2015 16:35:13 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NME00J008PYHZH0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 06 Apr 2015 11:34:57 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=e7Wxkht6 c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
+	a=sozttTNsAAAA:8	a=tl4s_Cw27ytDOlbxzY4A:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 5E4D6200F4;	Mon,
+	6 Apr 2015 12:34:46 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 06 Apr 2015 12:34:46 -0400
+Message-id: <1428338086-29373-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] branding-core: re-enable AUTOREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,80 +34,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Apr 2015 16:16:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 06 Apr 2015 16:35:13 -0000
 
-On Mon, Apr 06, 2015 at 08:59:23AM -0400, Jacob Stiffler wrote:
-> * When running qt over eglfs, matrix may blank out after 10 minutes of
->   inactivity.
-> * When this occurs, the matrix is not recoverable and muyst be manuallyi
->   restarted.
-> * This occurs because virtual terminal in which matrix is running will blank
->   due to kernel configuration.
-> * Writing certain special characters into the virtual terminal device can
->   disable the blanking.
-> * The utils-linux package contains the "setterm" utility which may obtain the
->   same results with the command "setterm -blank 0 -powerdown 0", however,
->   utils-linux is not present on the filesystem.
+From: Denys Dmytriyenko <denys@ti.com>
 
-I'm fine with this patch in general, but as of util-linux - I've heard other 
-requests for some util-linux apps before, maybe we should consider pulling it 
-in? Unfortunately, besides the 3 specific apps separated into own packages, 
-the rest of them are just dumped into util-linux*.ipk main package, so it's 
-rather all or nothing...
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/include/branding-core.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index 311998b..b759469 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -6,6 +6,6 @@
+ # hence this file is mostly empty and used as a template
+ 
+ # Auto rev important packages to pick up latest
+-#SRCREV_pn-linux-ti-staging = "${AUTOREV}"
+-#SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
+-#SRCREV_pn-ltp-ddt = "${AUTOREV}"
++SRCREV_pn-linux-ti-staging = "${AUTOREV}"
++SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
++SRCREV_pn-ltp-ddt = "${AUTOREV}"
 -- 
-Denys
+2.2.0
 
-
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../recipes-core/matrix/matrix-gui/init.eglfs      |    4 ++++
->  .../recipes-core/matrix/matrix-gui_2.0.bb          |    2 +-
->  2 files changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> index 10748c4..213f859 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> @@ -35,6 +35,7 @@ case "$1" in
->      fi
->  
->      echo 0 > /sys/class/graphics/fbcon/cursor_blink
-> +    echo -ne "\033[9;0]\033[14;0]" > /dev/tty4
->  
->      echo -n "Starting Matrix GUI application"
->      start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE --exec $matrixgui -- $GUI_OPTS
-> @@ -46,7 +47,10 @@ case "$1" in
->      start-stop-daemon --stop --quiet --pidfile $PIDFILE
->  
->      refresh_screen "background-black"
-> +
-> +    echo -ne "\033[9;10]\033[14;10]" > /dev/tty4
->      echo 1 > /sys/class/graphics/fbcon/cursor_blink
-> +
->      chvt 1
->  
->      echo "."
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> index 27cf9c0..0d62367 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
->  
->  SECTION = "multimedia"
->  
-> -PR = "r23"
-> +PR = "r24"
->  
->  INITSCRIPT_NAME = "matrix-gui-2.0"
->  INITSCRIPT_PARAMS = "defaults 97"
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
