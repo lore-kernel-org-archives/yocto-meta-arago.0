@@ -1,28 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 297AA52093
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 4D3085297F
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Apr 2015 16:31:00 +0000 (UTC)
-Received: from gandalf.denix.org ([108.28.31.169]) by vms173025.mailsrvcs.net
+	Tue,  7 Apr 2015 16:44:36 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NMG00GIG377M0C0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 07 Apr 2015 11:30:44 -0500 (CDT)
+	with ESMTPSA id <0NMG008IT3TNWQ20@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 07 Apr 2015 11:44:17 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=OqT4EJ7o c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+X-CMAE-Analysis: v=2.1 cv=WpCc6mbq c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
-	a=sozttTNsAAAA:8 a=lRxpQPx1AAAA:8	a=G2C_r1Sr8SgMHurvGWIA:9
-	a=DhHmIanE33uLQeu_:21 a=EMXDimDGSJJCCXM_:21
+	a=sozttTNsAAAA:8	a=hgL4W-0D6vCOvmqqXSwA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 838D3200F4;	Tue,
-	7 Apr 2015 12:30:43 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 81AF4200DD;	Tue,
+	7 Apr 2015 12:44:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 07 Apr 2015 12:30:43 -0400
-Message-id: <1428424243-23102-1-git-send-email-denis@denix.org>
+Date: Tue, 07 Apr 2015 12:44:11 -0400
+Message-id: <1428425051-31976-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] uim: moved to meta-ti
+Subject: [PATCH] packagegroup-arago-test: add rwmem tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,235 +34,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Apr 2015 16:31:00 -0000
+X-List-Received-Date: Tue, 07 Apr 2015 16:44:36 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...mand-line-args-for-passing-sysfs-node-pat.patch | 135 ---------------------
- .../recipes-connectivity/uim/files/uim-sysfs       |  33 -----
- .../recipes-connectivity/uim/uim_git.bb            |  29 -----
- 3 files changed, 197 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
- delete mode 100755 meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
- delete mode 100644 meta-arago-extras/recipes-connectivity/uim/uim_git.bb
+ .../recipes-core/packagegroups/packagegroup-arago-test.bb              | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch b/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
-deleted file mode 100644
-index ad6f95f..0000000
---- a/meta-arago-extras/recipes-connectivity/uim/files/0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch
-+++ /dev/null
-@@ -1,135 +0,0 @@
--From 0df5f6766722a844162e96777980feee146a3c86 Mon Sep 17 00:00:00 2001
--From: Roger Monk <r-monk@ti.com>
--Date: Tue, 1 Oct 2013 17:17:25 +0100
--Subject: [PATCH] uim:  Add command line args for passing sysfs node path
--
--   * pass -f <sysfs path> and/or -b <bd address>
--   * re-mapped DEFINEs to strings
--      * minimal code changes for minimal instrusion
--      * could be rewritten for cleaner implementation in the future
--   * default path (no args) remains the same
--   * users passing bd address via uim <addr> will need to add -b
--
--Signed-off-by: Roger Monk <r-monk@ti.com>
-----
-- uim.c |   61 +++++++++++++++++++++++++++++++++++++++++++++++++++++--------
-- uim.h |   10 +++++-----
-- 2 files changed, 58 insertions(+), 13 deletions(-)
--
--diff --git a/uim.c b/uim.c
--index 3775dda..4dfdbd7 100644
----- a/uim.c
--+++ b/uim.c
--@@ -38,6 +38,11 @@ static int exiting;
-- static int line_discipline;
-- static int dev_fd;
-- 
--+static char install_sysfs_entry[48];
--+static char dev_name_sysfs[48];
--+static char baud_rate_sysfs[48];
--+static char flow_cntrl_sysfs[48];
--+
-- /* BD address as string and a pointer to array of hex bytes */
-- char uim_bd_address[BD_ADDR_LEN];
-- bdaddr_t *bd_addr;
--@@ -455,9 +460,17 @@ bdaddr_t *strtoba(const char *str)
--         return (bdaddr_t *) ba;
-- }
-- 
--+void usage(void)
--+{
--+	UIM_ERR("Invalid arguments");
--+	UIM_ERR("Usage: uim [ -f <path-to-sysfs-kim> ] [ -b <bd address XX:XX:XX:XX:XX:XX> ]");
--+}
--+
-- /*****************************************************************************/
-- int main(int argc, char *argv[])
-- {
--+	int opt;
--+	char *arg_kim_path = NULL, *arg_bd_addr = NULL, *temp_path = KIM_SYSFS_BASE;
-- 	int st_fd, err;
-- 	unsigned char install;
-- 	struct pollfd 	p;
--@@ -466,18 +479,50 @@ int main(int argc, char *argv[])
-- 	err = 0;
-- 
-- 	/* Parse the user input */
---	if ((argc > 2)) {
---		UIM_ERR("Invalid arguements");
---		UIM_ERR("Usage: uim <bd address>");
---		return -1;
--+	while ((opt = getopt (argc, argv, "f:b:")) != -1) {
--+		switch (opt) {
--+			case 'f':
--+				arg_kim_path = optarg;
--+				break;
--+			case 'b':
--+				arg_bd_addr = optarg;
--+				break;
--+			default:
--+				usage();
--+				return -1;
--+		}
--+	}
--+
--+	if (arg_kim_path != NULL) {
--+		temp_path = arg_kim_path;
--+		if( strlen(temp_path) > (sizeof(install_sysfs_entry)-10) ) {
--+			UIM_ERR("Path to sysfs node too long");
--+			return -1;
--+		}
-- 	}
---	if (argc == 2) {
---		if (strlen(argv[2]) != BD_ADDR_LEN) {
---			UIM_ERR("Usage: uim XX:XX:XX:XX:XX:XX");
--+	strcpy(install_sysfs_entry, temp_path);
--+	strcpy(dev_name_sysfs, temp_path);
--+	strcpy(baud_rate_sysfs, temp_path);
--+	strcpy(flow_cntrl_sysfs, temp_path);
--+
--+	strcat(install_sysfs_entry, "/install");
--+	strcat(dev_name_sysfs, "/dev_name");
--+	strcat(baud_rate_sysfs, "/baud_rate");
--+	strcat(flow_cntrl_sysfs, "/flow_cntrl");
--+
--+	UIM_DBG("install = %s", install_sysfs_entry);
--+	UIM_DBG("dev_name = %s", dev_name_sysfs);
--+	UIM_DBG("baud_rate = %s", baud_rate_sysfs);
--+	UIM_DBG("flow_cntrl = %s", flow_cntrl_sysfs);
--+
--+	if (arg_bd_addr != NULL) {
--+		if (strlen(arg_bd_addr) != BD_ADDR_LEN) {
--+			usage();
-- 			return -1;
-- 		}
--+		UIM_DBG("Address = %s", arg_bd_addr);
-- 		/* BD address passed as string in xx:xx:xx:xx:xx:xx format */
---		strncpy(uim_bd_address, argv[2], sizeof(uim_bd_address));
--+		strncpy(uim_bd_address, arg_bd_addr, sizeof(uim_bd_address));
-- 		bd_addr = strtoba(uim_bd_address);
-- 	}
-- 
--diff --git a/uim.h b/uim.h
--index a8ef699..32a8fe0 100644
----- a/uim.h
--+++ b/uim.h
--@@ -65,11 +65,11 @@
-- /* the sysfs entries with device configuration set by
--  * shared transport driver
--  */
---#define INSTALL_SYSFS_ENTRY "/sys/devices/platform/kim/install"
---#define DEV_NAME_SYSFS "/sys/devices/platform/kim/dev_name"
---#define BAUD_RATE_SYSFS "/sys/devices/platform/kim/baud_rate"
---#define FLOW_CTRL_SYSFS "/sys/devices/platform/kim/flow_cntrl"
---
--+#define KIM_SYSFS_BASE		"/sys/devices/platform/kim"
--+#define INSTALL_SYSFS_ENTRY	install_sysfs_entry
--+#define DEV_NAME_SYSFS		dev_name_sysfs
--+#define BAUD_RATE_SYSFS		baud_rate_sysfs
--+#define FLOW_CTRL_SYSFS		flow_cntrl_sysfs
-- 
-- #define VERBOSE
-- /*Debug logs*/
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs b/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
-deleted file mode 100755
-index 0891768..0000000
---- a/meta-arago-extras/recipes-connectivity/uim/files/uim-sysfs
-+++ /dev/null
-@@ -1,33 +0,0 @@
--#! /bin/sh
--
--NODE=`cd /sys; find . | grep kim | grep install`
--if [ $NODE ]
--then
--    echo UIM SYSFS Node Found at /sys/$NODE
--else
--    echo UIM SYSFS Node Not Found 
--    exit 0
--fi 
--
--uim="/usr/bin/uim"
--uim_args="-f `dirname /sys/$NODE`"
--
--test -x "$uim" || exit 0
--
--case "$1" in
--  start)
--    echo -n "Starting uim-sysfs daemon"
--    start-stop-daemon --start --quiet --pidfile /var/run/uim.pid --make-pidfile --exec $uim -- $uim_args & 
--    echo "."
--    ;;
--  stop)
--    echo -n "Stopping uim-sysfs daemon"
--    start-stop-daemon --stop --quiet --pidfile /var/run/uim.pid
--    echo "."
--    ;;
--  *)
--    echo "Usage: /etc/init.d/uim-sysfs.sh {start|stop}"
--    exit 1
--esac
--
--exit 0
-diff --git a/meta-arago-extras/recipes-connectivity/uim/uim_git.bb b/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
-deleted file mode 100644
-index 31bb9cb..0000000
---- a/meta-arago-extras/recipes-connectivity/uim/uim_git.bb
-+++ /dev/null
-@@ -1,29 +0,0 @@
--DESCRIPTION = "Shared Transport Line Discipline User Mode initialisation Manager Daemon"
--LICENSE = "GPLv2+"
--LIC_FILES_CHKSUM = "file://uim.c;beginline=1;endline=18;md5=9f0bbfbc10c67689e81a523e2976c31e"
--
--PV = "1.0"
--PR ="r2"
--PR_append = "+gitr${SRCPV}"
--
--INITSCRIPT_NAME = "uim-sysfs"
--INITSCRIPT_PARAMS = "defaults 03"
--
--inherit update-rc.d
--
--SRCREV = "c73894456df5def97111cb33d2106b684b8b7959"
--SRC_URI = "git://gitorious.org/uim/uim.git;protocol=http;branch=${BRANCH} \
--	   file://0001-uim-Add-command-line-args-for-passing-sysfs-node-pat.patch \
--	   file://uim-sysfs \
--"
--
--S = "${WORKDIR}/git"
--
--EXTRA_OEMAKE = "CC=${TARGET_PREFIX}gcc"
--
--do_install() {
--	install -d ${D}${bindir}
--	install -m 0755 uim ${D}${bindir}
--	install -d ${D}${sysconfdir}/init.d
--	install -m 0755 ${WORKDIR}/uim-sysfs ${D}${sysconfdir}/init.d
--}
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index 8c0e9b3..c4d7b61 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Extended task to get System Test specific apps"
+ LICENSE = "MIT"
+-PR = "r25"
++PR = "r26"
+ 
+ inherit packagegroup
+ 
+@@ -24,6 +24,7 @@ ARAGO_TEST = "\
+     perf \
+     v4l-utils \
+     smcroute \
++    rwmem \
+     "
+ 
+ ARAGO_TI_TEST = "\
 -- 
 2.2.0
 
