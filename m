@@ -1,27 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2069052A0D
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id BCD88529CB
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Apr 2015 19:38:30 +0000 (UTC)
+	Wed,  8 Apr 2015 19:41:34 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t38JcTMv001921
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:38:29 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t38JfYoU009955
+	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:41:34 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38JcSs3026206
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:38:28 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38JfXIQ028601
+	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:41:33 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
 	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Wed, 8 Apr 2015 14:38:28 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
+	14.03.0224.002; Wed, 8 Apr 2015 14:41:32 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
 	optional.
-Thread-Index: AQHQcjKu0Z1lCrCnHU+X09MALButb51DgUyA
-Date: Wed, 8 Apr 2015 19:38:27 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C869430@DFLE08.ent.ti.com>
+Thread-Index: AQHQcjOW+t7M9i2xyEiNrEPj/h4D7Z1Dg0Ig
+Date: Wed, 8 Apr 2015 19:41:32 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F9581411DA2A@DFLE09.ent.ti.com>
 References: <1428521510-1792-1-git-send-email-j-stiffler@ti.com>
-In-Reply-To: <1428521510-1792-1-git-send-email-j-stiffler@ti.com>
+	<8F29D6B095ED194EA1980491A5E029710C869430@DFLE08.ent.ti.com>
+In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C869430@DFLE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -40,10 +41,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2015 19:38:30 -0000
+X-List-Received-Date: Wed, 08 Apr 2015 19:41:34 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+This is included now because for ti33xx and ti43xx, tisdk-readme is include=
+d if the brand is not amsdk.
+
+Should this package be removed completely for all brands?
+
+
+-----Original Message-----
+From: Cooper Jr., Franklin=20
+Sent: Wednesday, April 08, 2015 3:38 PM
+To: Stiffler, Jacob; meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is op=
+tional.
 
 I still don't understand the need to include this especially since it was n=
 ever included before and all this information is documented.
@@ -53,11 +67,11 @@ But anyway the wording needs to be updated. Remove all the parts that says =
 not uImage.
 
 > -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
 > bounces@arago-project.org] On Behalf Of Stiffler, Jacob
 > Sent: Wednesday, April 08, 2015 2:32 PM
 > To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
+> Subject: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is=20
 > optional.
 >=20
 > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
@@ -66,7 +80,8 @@ not uImage.
 >  .../recipes-tisdk/tisdk-readme/tisdk-readme/README |    2 +-
 >  2 files changed, 2 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
+> diff --git=20
+> a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
 > b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
 > index 6fdcaff..4ee3ec4 100644
 > --- a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
