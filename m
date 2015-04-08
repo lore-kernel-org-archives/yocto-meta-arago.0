@@ -1,35 +1,28 @@
-Return-Path: <fcooper@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D9252529CB
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 1FAF852A81
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Apr 2015 19:45:52 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t38JjqsP010304
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:45:52 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38Jjm3T001649
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:45:50 -0500
-Received: from DFLE08.ent.ti.com ([fe80::187f:8c86:2b7:ef9f]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0224.002; Wed, 8 Apr 2015 14:45:49 -0500
-From: "Cooper Jr., Franklin" <fcooper@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
-	optional.
-Thread-Index: AQHQcjKu0Z1lCrCnHU+X09MALButb51DgUyAgABWJwD//6xt8A==
-Date: Wed, 8 Apr 2015 19:45:48 +0000
-Message-ID: <8F29D6B095ED194EA1980491A5E029710C86952A@DFLE08.ent.ti.com>
-References: <1428521510-1792-1-git-send-email-j-stiffler@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C869430@DFLE08.ent.ti.com>
-	<4B26FB5A64EBA14C87266869E037F9581411DA2A@DFLE09.ent.ti.com>
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581411DA2A@DFLE09.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
-MIME-Version: 1.0
-Subject: Re: [PATCH] tisdk-readme: Specify that uEnv.txt is	optional.
+	Wed,  8 Apr 2015 20:20:09 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NMI00EPZ8H3GT10@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 08 Apr 2015 15:19:52 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpCc6mbq c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
+	a=sozttTNsAAAA:8 a=kP6i_H-9AAAA:8	a=DX_STfnTiOZ5PKkjnRIA:9
+	a=ka_Bsb4LX1YA:10
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id CD131200F0;	Wed,
+	8 Apr 2015 16:19:51 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 08 Apr 2015 16:19:50 -0400
+Message-id: <1428524390-6848-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] stream: use proper version, cleanup license and QA issues
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,107 +35,102 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2015 19:45:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 08 Apr 2015 20:20:09 -0000
 
-I would just include it for omap5-evm which is the only user of the customi=
-zed uEnv.txt.
-I don't see anyone else using it.
+From: Denys Dmytriyenko <denys@ti.com>
 
-> -----Original Message-----
-> From: Stiffler, Jacob
-> Sent: Wednesday, April 08, 2015 2:42 PM
-> To: Cooper Jr., Franklin; meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
-> optional.
->=20
-> This is included now because for ti33xx and ti43xx, tisdk-readme is inclu=
-ded if
-> the brand is not amsdk.
->=20
-> Should this package be removed completely for all brands?
->=20
->=20
-> -----Original Message-----
-> From: Cooper Jr., Franklin
-> Sent: Wednesday, April 08, 2015 3:38 PM
-> To: Stiffler, Jacob; meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
-> optional.
->=20
-> I still don't understand the need to include this especially since it was=
- never
-> included before and all this information is documented.
->=20
-> But anyway the wording needs to be updated. Remove all the parts that say=
-s
-> "usually called" since that's what it is called. ZImage should be used an=
-d not
-> uImage.
->=20
-> > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> > Sent: Wednesday, April 08, 2015 2:32 PM
-> > To: meta-arago@arago-project.org
-> > Subject: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
-> > optional.
-> >
-> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > ---
-> >  .../recipes-tisdk/tisdk-readme/tisdk-readme.bb     |    2 +-
-> >  .../recipes-tisdk/tisdk-readme/tisdk-readme/README |    2 +-
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git
-> > a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> > b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> > index 6fdcaff..4ee3ec4 100644
-> > --- a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> > +++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> > @@ -6,7 +6,7 @@ SRC_URI =3D "\
-> >      file://README \
-> >  "
-> >
-> > -PR =3D "r0"
-> > +PR =3D "r1"
-> >  PV =3D "1.0"
-> >
-> >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> > diff --git a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> > readme/README b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> > readme/README
-> > index 873d1e8..b9aeefe 100644
-> > --- a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> readme/README
-> > +++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> > readme/README
-> > @@ -11,7 +11,7 @@ By default these locations are:
-> >
-> >
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >  |    MLO           | boot partition
-> >  |    u-boot.img    | boot partition
-> > -|    uEnv.txt      | boot partition
-> > +|    uEnv.txt      | boot partition (optional)
-> >  |    uImage        | /boot directory of the rootfs partition
-> >  |    *.dtb         | /boot directory of the rootfs partition
-> >
-> >
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > --
-> > 1.7.9.5
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../{stream_git.bbappend => stream_5.10.bbappend}  |  3 ++
+ meta-arago-extras/conf/layer.conf                  |  2 ++
+ .../licenses/Stream_Benchmark_License              | 34 ++++++++++++++++++++++
+ .../stream/{stream_git.bb => stream_5.10.bb}       |  2 +-
+ 4 files changed, 40 insertions(+), 1 deletion(-)
+ rename meta-arago-distro/recipes-benchmark/stream/{stream_git.bbappend => stream_5.10.bbappend} (77%)
+ create mode 100644 meta-arago-extras/licenses/Stream_Benchmark_License
+ rename meta-arago-extras/recipes-benchmark/stream/{stream_git.bb => stream_5.10.bb} (98%)
+
+diff --git a/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend b/meta-arago-distro/recipes-benchmark/stream/stream_5.10.bbappend
+similarity index 77%
+rename from meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
+rename to meta-arago-distro/recipes-benchmark/stream/stream_5.10.bbappend
+index 0f93e02..6418ff4 100644
+--- a/meta-arago-distro/recipes-benchmark/stream/stream_git.bbappend
++++ b/meta-arago-distro/recipes-benchmark/stream/stream_5.10.bbappend
+@@ -1,3 +1,6 @@
++INSANE_SKIP_${PN} += "ldflags"
++INSANE_SKIP_${PN}-openmp += "ldflags"
++
+ PR_append = "-arago1"
+ 
+ BRANCH = "sdk"
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+index db98224..d3064e5 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -10,3 +10,5 @@ BBFILE_PRIORITY_meta-arago-extras = "10"
+ 
+ # Set a variable to get to the top of the metadata location
+ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
++
++LICENSE_PATH += "${LAYERDIR}/licenses"
+diff --git a/meta-arago-extras/licenses/Stream_Benchmark_License b/meta-arago-extras/licenses/Stream_Benchmark_License
+new file mode 100644
+index 0000000..cf1c8e0
+--- /dev/null
++++ b/meta-arago-extras/licenses/Stream_Benchmark_License
+@@ -0,0 +1,34 @@
++*=======================================================================
++*-----------------------------------------------------------------------
++* Copyright 1991-2003: John D. McCalpin
++*-----------------------------------------------------------------------
++* License:
++*  1. You are free to use this program and/or to redistribute
++*     this program.
++*  2. You are free to modify this program for your own use,
++*     including commercial use, subject to the publication
++*     restrictions in item 3.
++*  3. You are free to publish results obtained from running this
++*     program, or from works that you derive from this program,
++*     with the following limitations:
++*     3a. In order to be referred to as "STREAM benchmark results",
++*         published results must be in conformance to the STREAM
++*         Run Rules, (briefly reviewed below) published at
++*         http://www.cs.virginia.edu/stream/ref.html
++*         and incorporated herein by reference.
++*         As the copyright holder, John McCalpin retains the
++*         right to determine conformity with the Run Rules.
++*     3b. Results based on modified source code or on runs not in
++*         accordance with the STREAM Run Rules must be clearly
++*         labelled whenever they are published.  Examples of
++*         proper labelling include:
++*         "tuned STREAM benchmark results" 
++*         "based on a variant of the STREAM benchmark code"
++*         Other comparable, clear and reasonable labelling is
++*         acceptable.
++*     3c. Submission of results to the STREAM benchmark web site
++*         is encouraged, but not required.
++*  4. Use of this program or creation of derived works based on this
++*     program constitutes acceptance of these licensing restrictions.
++*  5. Absolutely no warranty is expressed or implied.
++*-----------------------------------------------------------------------
+diff --git a/meta-arago-extras/recipes-benchmark/stream/stream_git.bb b/meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb
+similarity index 98%
+rename from meta-arago-extras/recipes-benchmark/stream/stream_git.bb
+rename to meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb
+index 6a86dc9..7661722 100644
+--- a/meta-arago-extras/recipes-benchmark/stream/stream_git.bb
++++ b/meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb
+@@ -4,7 +4,7 @@ LICENSE = "Stream_Benchmark_License"
+ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=bca8cbe07976fe64c8946378d08314b0"
+ SECTION = "system"
+ 
+-PR = "r2"
++PR = "r0"
+ 
+ BRANCH ?= "master"
+ SRCREV = "b66f2bab5d6d0b35732ef8406ae03873725a3306"
+-- 
+2.2.0
+
 
