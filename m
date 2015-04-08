@@ -1,34 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id BCD88529CB
+Return-Path: <a0866934local@udb0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 11C0D529CB
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Apr 2015 19:41:34 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t38JfYoU009955
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:41:34 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38JfXIQ028601
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:41:33 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Wed, 8 Apr 2015 14:41:32 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Cooper Jr., Franklin" <fcooper@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is
-	optional.
-Thread-Index: AQHQcjOW+t7M9i2xyEiNrEPj/h4D7Z1Dg0Ig
-Date: Wed, 8 Apr 2015 19:41:32 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F9581411DA2A@DFLE09.ent.ti.com>
-References: <1428521510-1792-1-git-send-email-j-stiffler@ti.com>
-	<8F29D6B095ED194EA1980491A5E029710C869430@DFLE08.ent.ti.com>
-In-Reply-To: <8F29D6B095ED194EA1980491A5E029710C869430@DFLE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Wed,  8 Apr 2015 19:43:37 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t38JhaO8002436
+	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:43:36 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38JhUwq032007
+	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 14:43:34 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 8 Apr 2015 14:43:32 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38JhWYj007539;
+	Wed, 8 Apr 2015 14:43:32 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1Yfvsp-0000YL-Ow;
+	Wed, 08 Apr 2015 15:43:31 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 8 Apr 2015 15:43:27 -0400
+Message-ID: <1428522207-2077-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH] tisdk-readme: Specify that uEnv.txt is	optional.
+Subject: [PATCH v2] matrix-gui: Fix QT5/eglfs conflict when matrix and gui demo run concurrently.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,89 +37,140 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2015 19:41:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 08 Apr 2015 19:43:37 -0000
+Content-Type: text/plain
 
-This is included now because for ti33xx and ti43xx, tisdk-readme is include=
-d if the brand is not amsdk.
+* With QT over EGLFS, the all running QT apps will write to the
+  framebuffer whenever they have updates.
+* This can cause the following undesired behavior:
+  - flickering when both applications try to write updates at the
+    same time. For example, if a mouse is used for control, both QT
+    apps will update the mouse cursor, causing flickering between both
+    apps.
+  - Failure for a temporary background app (e.g. matrix) to come to
+    the foreground when demo exits. For example, when launching a qt
+    app via remote Matrix, the demo app will persist on the target's
+    display.
+* To work around this, stop matrix before launching a GUI demo, and
+  restart once the demo has completed.
 
-Should this package be removed completely for all brands?
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+v2:
+  * Fix typo with including the patch file.
+  * Clear background after stopping matrix.
 
+ ...mmand-Stop-matrix-when-running-a-GUI-demo.patch |   84 ++++++++++++++++++++
+ .../recipes-core/matrix/matrix-gui_2.0.bb          |    4 +-
+ 2 files changed, 87 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-Stop-matrix-when-running-a-GUI-demo.patch
 
------Original Message-----
-From: Cooper Jr., Franklin=20
-Sent: Wednesday, April 08, 2015 3:38 PM
-To: Stiffler, Jacob; meta-arago@arago-project.org
-Subject: RE: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is op=
-tional.
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-Stop-matrix-when-running-a-GUI-demo.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-Stop-matrix-when-running-a-GUI-demo.patch
+new file mode 100644
+index 0000000..718f6d3
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-Stop-matrix-when-running-a-GUI-demo.patch
+@@ -0,0 +1,84 @@
++From 7cbf63222897de4e9b021d8d007cca74be4ca56f Mon Sep 17 00:00:00 2001
++From: Jacob Stiffler <j-stiffler@ti.com>
++Date: Wed, 8 Apr 2015 07:34:22 -0400
++Subject: [PATCH] execute_command: Stop matrix when running a GUI demo.
++
++* With QT over EGLFS, all running QT apps will write to the
++  framebuffer whenever they have updates.
++* This can cause the following undesired behavior:
++  - flickering when both applications try to write updates at the
++    same time. For example, if a mouse is used for control, both QT
++    apps will update the mouse cursor, causing flickering between both
++    apps.
++  - Failure for a temporary background app (e.g. matrix) to come to
++    the foreground when demo exits. For example, when launching a qt
++    app via remote Matrix, the demo app will persist on the target's
++    display.
++* To work around this, stop matrix before launching a GUI demo, and
++  restart once the demo has completed.
++
++Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
++---
++ execute_command.sh |   21 +++++++++++++++++++++
++ run_script.php     |    2 +-
++ 2 files changed, 22 insertions(+), 1 deletion(-)
++
++diff --git a/execute_command.sh b/execute_command.sh
++index 018c632..c636b92 100755
++--- a/execute_command.sh
+++++ b/execute_command.sh
++@@ -59,6 +59,11 @@ do
++ 	outputfilename=$item 
++   fi
++ 
+++  if [ $i -eq 2 ]
+++  then
+++    program_type=$item
+++  fi
+++
++   if [ $i -gt 1 ]
++   then
++     touch "lock/"$item
++@@ -68,10 +73,26 @@ do
++ 
++ done
++ 
+++if [ $program_type == gui ]
+++then
+++    /etc/init.d/matrix-gui-2.0 stop
+++
+++    chvt 4
+++    echo 0 > /sys/class/graphics/fbcon/cursor_blink
+++    echo -ne "\033[9;0]\033[14;0]" > /dev/tty4
+++
+++    refresh_screen background-black
+++fi
+++
++ echo "Filename:"$filename
++ echo "Output:"$outputfilename
++ eval $filename > "tmp/"$outputfilename 2>&1
++ 
+++if [ $program_type == gui ]
+++then
+++    /etc/init.d/matrix-gui-2.0 start
+++fi
+++
++ #Using a more unique string to detect if the script is completed
++ echo "_?!!MATRIX_SCRIPT_COMPLETED!!?_" >> "tmp/"$outputfilename
++ 
++diff --git a/run_script.php b/run_script.php
++index 9dd7a10..5b8351b 100644
++--- a/run_script.php
+++++ b/run_script.php
++@@ -91,7 +91,7 @@ if($currently_locked==false)
++ 	$random_string = strval(rand());
++ 	$random_string .= strval(rand());
++ 
++-	$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt ".$lock_list;
+++	$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt \"".$found_app["ProgramType"]."\" ".$lock_list;
++ 
++ 	$last_line = system($script_command." > /dev/null 2>/dev/null & ", $retval);
++ }
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+index 162340e..7cfc65e 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -22,7 +22,9 @@ MATRIX_INITSCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', base_contains('DI
+ 
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2.git;protocol=http;branch=${BRANCH} \
+            file://${MATRIX_INITSCRIPT} \
+-           file://php.ini"
++           file://php.ini \
++           ${@base_conditional('QT_PROVIDER', 'qt5', base_contains('DISTRO_FEATURES', 'wayland', '', 'file://0001-execute_command-Stop-matrix-when-running-a-GUI-demo.patch', d), '', d)} \
++"
+ 
+ require matrix-gui-paths.inc
+ 
+-- 
+1.7.9.5
 
-I still don't understand the need to include this especially since it was n=
-ever included before and all this information is documented.
-
-But anyway the wording needs to be updated. Remove all the parts that says =
-"usually called" since that's what it is called. ZImage should be used and =
-not uImage.
-
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
-> bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> Sent: Wednesday, April 08, 2015 2:32 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [PATCH] tisdk-readme: Specify that uEnv.txt is=20
-> optional.
->=20
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../recipes-tisdk/tisdk-readme/tisdk-readme.bb     |    2 +-
->  .../recipes-tisdk/tisdk-readme/tisdk-readme/README |    2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git=20
-> a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> index 6fdcaff..4ee3ec4 100644
-> --- a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> +++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
-> @@ -6,7 +6,7 @@ SRC_URI =3D "\
->      file://README \
->  "
->=20
-> -PR =3D "r0"
-> +PR =3D "r1"
->  PV =3D "1.0"
->=20
->  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> diff --git a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> readme/README b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> readme/README
-> index 873d1e8..b9aeefe 100644
-> --- a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/README
-> +++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-
-> readme/README
-> @@ -11,7 +11,7 @@ By default these locations are:
->=20
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->  |    MLO           | boot partition
->  |    u-boot.img    | boot partition
-> -|    uEnv.txt      | boot partition
-> +|    uEnv.txt      | boot partition (optional)
->  |    uImage        | /boot directory of the rootfs partition
->  |    *.dtb         | /boot directory of the rootfs partition
->=20
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> --
-> 1.7.9.5
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
