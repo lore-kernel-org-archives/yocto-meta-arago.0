@@ -1,30 +1,28 @@
-Return-Path: <a0866934local@udb0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7D73B529E0
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id D1DE2529E0
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Apr 2015 17:29:49 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t38HTmvL026527
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 12:29:48 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38HTlEe024406
-	for <meta-arago@arago-project.org>; Wed, 8 Apr 2015 12:29:47 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 8 Apr 2015 12:29:47 -0500
-Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t38HTjQE003639;
-	Wed, 8 Apr 2015 12:29:46 -0500
-Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YftnN-0000GP-8M;
-	Wed, 08 Apr 2015 13:29:45 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 8 Apr 2015 13:29:41 -0400
-Message-ID: <1428514181-971-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH] branding-processor-sdk: Disable AUTOREV of kernel and u-boot.
+	Wed,  8 Apr 2015 17:33:32 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NMI0099Z0RO6PV0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 08 Apr 2015 12:33:30 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=OqT4EJ7o c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
+	a=sozttTNsAAAA:8 a=lRxpQPx1AAAA:8	a=GiYyvGnSGGSvNIL3xwcA:9
+	a=m2m2x1Mms-QA:10
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id A5450200DD;	Wed,
+	8 Apr 2015 13:33:24 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 08 Apr 2015 13:33:24 -0400
+Message-id: <1428514404-5400-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] matrix: depend on ca-certificates-native for gitorious/http access
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +35,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2015 17:29:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 08 Apr 2015 17:33:33 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Can be removed, once repos are moved out from gitorious.org
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../conf/distro/include/branding-processor-sdk.inc |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 +++-
+ meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb       | 4 +++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-index c2327fa..3bb724d 100644
---- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -10,11 +10,11 @@ PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
- PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 23cb5f7..0d2d8c2 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -3,10 +3,12 @@ LICENSE = "CC-BY-SA-3.0"
+ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
- # Auto rev important packages to pick up latest
--SRCREV_pn-u-boot-ti-staging_omap-a15 = "${AUTOREV}"
--SRCREV_pn-ltp-ddt_omap-a15 = "${AUTOREV}"
-+#SRCREV_pn-u-boot-ti-staging_omap-a15 = "${AUTOREV}"
-+#SRCREV_pn-ltp-ddt_omap-a15 = "${AUTOREV}"
++DEPENDS += "ca-certificates-native"
++
+ SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=http;branch=${BRANCH}"
+ SRCREV = "200426006a3ae68bde9d7eb6a864da51fe07298c"
+ BRANCH = "master"
+-INC_PR = "r30"
++INC_PR = "r31"
  
- # am3 and am4 use sitara-linux-ti-staging, so this only applies to omap-a15
--SRCREV_pn-linux-ti-staging = "${AUTOREV}"
-+#SRCREV_pn-linux-ti-staging = "${AUTOREV}"
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+index 162340e..1110900 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -6,7 +6,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
  
- # Freeze am3 and am4 u-boot
- PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
+ SECTION = "multimedia"
+ 
+-PR = "r25"
++DEPENDS += "ca-certificates-native"
++
++PR = "r26"
+ 
+ INITSCRIPT_NAME = "matrix-gui-2.0"
+ INITSCRIPT_PARAMS = "defaults 97"
 -- 
-1.7.9.5
+2.2.0
 
 
