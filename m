@@ -1,30 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A1608529C6
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 1A266529A9
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Apr 2015 12:59:23 +0000 (UTC)
+	Thu,  9 Apr 2015 14:53:20 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t39CxMch022132
-	for <meta-arago@arago-project.org>; Thu, 9 Apr 2015 07:59:23 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t39CxLC3005078
-	for <meta-arago@arago-project.org>; Thu, 9 Apr 2015 07:59:21 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 9 Apr 2015 07:59:21 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t39ErJgX026872
+	for <meta-arago@arago-project.org>; Thu, 9 Apr 2015 09:53:19 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t39ErIDj029655
+	for <meta-arago@arago-project.org>; Thu, 9 Apr 2015 09:53:18 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 9 Apr 2015 09:53:17 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t39CxLsH003989;
-	Thu, 9 Apr 2015 07:59:21 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t39ErHFp029537;
+	Thu, 9 Apr 2015 09:53:17 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YgC3F-00012U-7n;
-	Thu, 09 Apr 2015 08:59:21 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YgDpV-0006cI-8K;
+	Thu, 09 Apr 2015 10:53:17 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 9 Apr 2015 08:59:19 -0400
-Message-ID: <1428584359-3964-1-git-send-email-j-stiffler@ti.com>
+Date: Thu, 9 Apr 2015 10:53:11 -0400
+Message-ID: <1428591191-25404-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] packagegroup-arago-tisdk-amsdk-sdk-host: Remove tisdk-readme.
+Subject: [tisdk-setup-scripts][PATCH] create-sdcard: Fix issue when root is not mounted on /dev/sda.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,38 +37,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Apr 2015 12:59:23 -0000
+X-List-Received-Date: Thu, 09 Apr 2015 14:53:20 -0000
 Content-Type: text/plain
 
-* Remove for ti33x and ti43x devices since this information is kept up
-  to date on the wiki.
+* The drive from which the rootfs is mounted is correctly filtered out
+  when giving the sd card device options, but this is ignored when
+  actually setting up the sd card.
+* This can cause the users option to point to the incorrect device.
+* This filters out the auto-detected root drive from all operations.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |    4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ create-sdcard.sh |   10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index 61886ff..22bdf36 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional scripts and applications into the SDK"
- LICENSE = "MIT"
--PR = "r20"
-+PR = "r21"
+diff --git a/create-sdcard.sh b/create-sdcard.sh
+index ca02ad2..018487a 100644
+--- a/create-sdcard.sh
++++ b/create-sdcard.sh
+@@ -298,11 +298,11 @@ do
+                continue
+         fi
  
- inherit packagegroup
+-	DEVICEDRIVENAME=`cat /proc/partitions | grep -v 'sda' | grep '\<sd.\>\|\<mmcblk.\>' | grep -n '' | grep "${DEVICEDRIVENUMBER}:" | awk '{print $5}'`
++	DEVICEDRIVENAME=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n '' | grep "${DEVICEDRIVENUMBER}:" | awk '{print $5}'`
+ 	if [ -n "$DEVICEDRIVENAME" ]
+ 	then
+ 	        DRIVE=/dev/$DEVICEDRIVENAME
+-	        DEVICESIZE=`cat /proc/partitions | grep -v 'sda' | grep '\<sd.\>\|\<mmcblk.\>' | grep -n '' | grep "${DEVICEDRIVENUMBER}:" | awk '{print $4}'`
++	        DEVICESIZE=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n '' | grep "${DEVICEDRIVENUMBER}:" | awk '{print $4}'`
+ 		break
+ 	else
+ 		echo -e "Invalid selection!"
+@@ -379,17 +379,17 @@ fi
  
-@@ -23,8 +23,6 @@ TOOLS_append_am3517-evm = " flash-utility"
+ # Refresh this variable as the device may not be mounted at script instantiation time
+ # This will always return one more then needed
+-NUM_OF_PARTS=`cat /proc/partitions | grep -v 'sda' | grep -c $DEVICEDRIVENAME`
++NUM_OF_PARTS=`cat /proc/partitions | grep -v $ROOTDRIVE | grep -c $DEVICEDRIVENAME`
+ for ((c=1; c<"$NUM_OF_PARTS"; c++ ))
+ do
+-        SIZE=`cat /proc/partitions | grep -v 'sda' | grep '\<'$DEVICEDRIVENAME$P$c'\>'  | awk '{print $3}'`
++        SIZE=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<'$DEVICEDRIVENAME$P$c'\>'  | awk '{print $3}'`
+         echo "Current size of $DEVICEDRIVENAME$P$c $SIZE bytes"
+ done
  
- EXTRA_FILES = ""
- EXTRA_FILES_omap-a15 = "tisdk-readme tisdk-uenv"
--EXTRA_FILES_ti33x = "${@base_conditional('ARAGO_BRAND','amsdk','','tisdk-readme',d)}"
--EXTRA_FILES_ti43x = "${@base_conditional('ARAGO_BRAND','amsdk','','tisdk-readme',d)}"
+ # check to see if the device is already partitioned
+ for ((  c=1; c<5; c++ ))
+ do
+-	eval "SIZE$c=`cat /proc/partitions | grep -v 'sda' | grep '\<'$DEVICEDRIVENAME$P$c'\>'  | awk '{print $3}'`"
++	eval "SIZE$c=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<'$DEVICEDRIVENAME$P$c'\>'  | awk '{print $3}'`"
+ done
  
- RDEPENDS_${PN} = "\
-     ${TOOLS} \
+ PARTITION="0"
 -- 
 1.7.9.5
 
