@@ -1,30 +1,27 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2275E529A9
+Return-Path: <sam.nelson@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 00A7A52A6D
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Apr 2015 12:52:55 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3ACqqdc027291
-	for <meta-arago@arago-project.org>; Fri, 10 Apr 2015 07:52:53 -0500
-Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3ACqnUa027427
-	for <meta-arago@arago-project.org>; Fri, 10 Apr 2015 18:22:50 +0530
-Received: from [172.24.158.135] (172.24.158.135) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Fri, 10 Apr 2015 18:22:49 +0530
-Message-ID: <5527C7A0.80700@ti.com>
-Date: Fri, 10 Apr 2015 18:22:48 +0530
-From: Karthik Ramanan <a0393906@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+	Fri, 10 Apr 2015 15:28:30 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3AFSUwf007112
+	for <meta-arago@arago-project.org>; Fri, 10 Apr 2015 10:28:30 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3AFSTuY024469
+	for <meta-arago@arago-project.org>; Fri, 10 Apr 2015 10:28:29 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 10 Apr 2015 10:28:28 -0500
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t3AFSSge029502;	Fri, 10 Apr 2015 10:28:28 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 10 Apr 2015 11:28:26 -0400
+Message-ID: <1428679706-21061-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1428582873-438-1-git-send-email-a0393906@ti.com>
-	<20150409211614.GB6414@edge>
-In-Reply-To: <20150409211614.GB6414@edge>
-X-Originating-IP: [172.24.158.135]
-Cc: meta-arago@arago-project.org
-Subject: Re: weston: Add custom profile into targetfs
+Subject: [PATCH] demo-image-proc: Update to new version 1.0.0.2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,25 +34,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Apr 2015 12:52:55 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 10 Apr 2015 15:28:31 -0000
+Content-Type: text/plain
 
-On 10-Apr-15 2:46 AM, Denys Dmytriyenko wrote:
-> Karthik,
->
-> Looks better. Now, can you just merge the existing wayland_env and the new
-> profile you are adding? Both of them are installed in /etc/profile.d and get
-> sourced on every login. Just add the mkdir and chmod part to the end of
-> existing wayland_env.sh and that's it. Also, since you are changing wayldn_env
-> file anyway, set XDG_RUNTIME_DIR to the same value of /tmp/${UID}-runtime-dir?
->
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../demo-image-proc/demo-image-proc_git.bb         |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Denys,
+diff --git a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+index 60b5d17..963abbd 100644
+--- a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
++++ b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+@@ -9,9 +9,9 @@ DEPENDS = "ti-ipc"
+ 
+ BRANCH = "master"
+ SRC_URI = "git://git.ti.com/keystone-demos/image-proc.git;protocol=git;branch=${BRANCH}"
+-#Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.01
+-SRCREV = "1745725128929f6d57a3e8e8ed0ca02fe4b28b51"
+-PV = "1.0.0.1"
++#Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.02B
++SRCREV = "08d69947cea192328213bb91d52c43b403d3a36f"
++PV = "1.0.0.2"
+ 
+ S = "${WORKDIR}/git"
+ 
+-- 
+1.7.9.5
 
-Thanks for the feedback. I have incorporated all the suggestions in 
-PATCH v3.
-
-Regards
-Karthik
 
