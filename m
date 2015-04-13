@@ -1,29 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id CB3D0529CB
+Return-Path: <a0866934local@udb0866934>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 91EBA529C6
 	for <meta-arago@arago-project.org>;
-	Mon, 13 Apr 2015 11:07:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3DB7ExV015524
-	for <meta-arago@arago-project.org>; Mon, 13 Apr 2015 06:07:14 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3DB7Cf7029417
-	for <meta-arago@arago-project.org>; Mon, 13 Apr 2015 06:07:12 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Mon, 13 Apr 2015 06:07:12 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: bitbake: Latest 1.24 commit
-Thread-Index: AdB12Uo5P9VKiQx8TDCM/KUdDTI4zw==
-Date: Mon, 13 Apr 2015 11:07:12 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F9581411EAC3@DFLE09.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Mon, 13 Apr 2015 14:31:31 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3DEVScv001496
+	for <meta-arago@arago-project.org>; Mon, 13 Apr 2015 09:31:30 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3DEVRQZ004258
+	for <meta-arago@arago-project.org>; Mon, 13 Apr 2015 09:31:27 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 13 Apr 2015 09:31:27 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3DEVRAC003645;
+	Mon, 13 Apr 2015 09:31:27 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YhfOY-0002mh-Th;
+	Mon, 13 Apr 2015 10:31:27 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 13 Apr 2015 10:31:21 -0400
+Message-ID: <1428935481-10673-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: bitbake: Latest 1.24 commit
+Subject: [tisdk-setup-scripts][PATCH] setup-uboot-env-am43x: Set devtype to mmc to boot from SD card.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,149 +37,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Apr 2015 11:07:15 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4B26FB5A64EBA14C87266869E037F9581411EAC3DFLE09entticom_"
+X-List-Received-Date: Mon, 13 Apr 2015 14:31:31 -0000
+Content-Type: text/plain
 
---_000_4B26FB5A64EBA14C87266869E037F9581411EAC3DFLE09entticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+* The 'loadimage' u-boot routine for am43x requires that the variable
+  'devtype' is set to the device from which to load the kernel image.
+* In the case of booting from the sdcard, devtype should be 'mmc'.
 
-It looks like the latest bitbake commit (http://git.openembedded.org/bitbak=
-e/commit/?h=3D1.24&id=3D34226a9e02f319a7547967bbdaca3ca918927dd1) on the 1.=
-24 branch is breaking at least one recipe (oe-core/meta/recipes-kernel/powe=
-rtop/powertop_2.5.bb).
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ setup-uboot-env-am43x.sh |    2 ++
+ 1 file changed, 2 insertions(+)
 
-With this latest bitbake, the do_configure stage will fail with the followi=
-ng error:
+diff --git a/setup-uboot-env-am43x.sh b/setup-uboot-env-am43x.sh
+index 282ffc1..ab65eb5 100644
+--- a/setup-uboot-env-am43x.sh
++++ b/setup-uboot-env-am43x.sh
+@@ -152,6 +152,7 @@ else
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run loadimage; run findfdt; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
+@@ -159,6 +160,7 @@ else
+ 		#SD and SD boot.
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'mmc rescan; run loadimage; run findfdt; run loadfdt; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
+-- 
+1.7.9.5
 
-configure:4168: checking whether the C compiler works
-configure:4190: arm-linux-gnueabihf-gcc  -march=3Darmv7-a -marm -mthumb-int=
-erwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a9 --sysroot=3D/home=
-/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-external-linaro-toolcha=
-in/sysroots/am437x-evm  -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/inc=
-lude  -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types  -isyst=
-em/opt/linaro-2013.03/arm-linux-gnueabihf/include  -fstack-protector  -L/op=
-t/linaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.0=
-3/arm-linux-gnueabihf/lib -Wl,-O1 -Wl,--hash-style=3Dgnu ${EXTRA_LDFLAGS} c=
-onftest.c  >&5
-arm-linux-gnueabihf-gcc: error: ${EXTRA_LDFLAGS}: No such file or directory
-configure:4194: $? =3D 1
-configure:4232: result: no
 
-
-Any help on a solution to this this would be appreciated.
-
-Thanks,
-Jake
-
---_000_4B26FB5A64EBA14C87266869E037F9581411EAC3DFLE09entticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">It looks like the latest bitbake commit (<a href=3D"=
-http://git.openembedded.org/bitbake/commit/?h=3D1.24&amp;id=3D34226a9e02f31=
-9a7547967bbdaca3ca918927dd1">http://git.openembedded.org/bitbake/commit/?h=
-=3D1.24&amp;id=3D34226a9e02f319a7547967bbdaca3ca918927dd1</a>)
- on the 1.24 branch is breaking at least one recipe (oe-core/meta/recipes-k=
-ernel/powertop/powertop_2.5.bb).
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">With this latest bitbake, the do_configure stage wil=
-l fail with the following error:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">configure:4168: checking whether the C compiler works<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">configure:4190: arm-linux-gnueabihf-gcc&nbsp; -march=3Darm=
-v7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcorte=
-x-a9 --sysroot=3D/home/gtbldadm/ti/oe-layersetup/build-CORTEX_1/arago-tmp-e=
-xternal-linaro-toolchain/sysroots/am437x-evm&nbsp;
- -isystem/opt/linaro-2013.03/arm-linux-gnueabihf/include&nbsp; -fstack-prot=
-ector -O2 -pipe -g -feliminate-unused-debug-types&nbsp; -isystem/opt/linaro=
--2013.03/arm-linux-gnueabihf/include&nbsp; -fstack-protector&nbsp; -L/opt/l=
-inaro-2013.03/arm-linux-gnueabihf/lib -Wl,-rpath-link,/opt/linaro-2013.03/a=
-rm-linux-gnueabihf/lib
- -Wl,-O1 -Wl,--hash-style=3Dgnu ${EXTRA_LDFLAGS} conftest.c&nbsp; &gt;&amp;=
-5<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">arm-linux-gnueabihf-gcc: error: ${EXTRA_LDFLAGS}: No such =
-file or directory<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">configure:4194: $? =3D 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">configure:4232: result: no<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any help on a solution to this this would be appreci=
-ated.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jake<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_4B26FB5A64EBA14C87266869E037F9581411EAC3DFLE09entticom_--
