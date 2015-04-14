@@ -1,30 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id E52BC5298F
+	by arago-project.org (Postfix) with ESMTPS id D0F9052A6C
 	for <meta-arago@arago-project.org>;
-	Tue, 14 Apr 2015 11:39:57 +0000 (UTC)
+	Tue, 14 Apr 2015 13:47:18 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3EBdvPW003692
-	for <meta-arago@arago-project.org>; Tue, 14 Apr 2015 06:39:57 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3EBdunv003981
-	for <meta-arago@arago-project.org>; Tue, 14 Apr 2015 06:39:56 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 14 Apr 2015 06:39:55 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3EDlIJ4015333
+	for <meta-arago@arago-project.org>; Tue, 14 Apr 2015 08:47:18 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3EDlGur012557
+	for <meta-arago@arago-project.org>; Tue, 14 Apr 2015 08:47:17 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 14 Apr 2015 08:47:16 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3EBdtlZ003029;
-	Tue, 14 Apr 2015 06:39:55 -0500
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3EDlGY6009245;
+	Tue, 14 Apr 2015 08:47:16 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YhzC7-0003Wk-DQ;
-	Tue, 14 Apr 2015 07:39:55 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1Yi1BM-0003y3-9n;
+	Tue, 14 Apr 2015 09:47:16 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 14 Apr 2015 07:39:54 -0400
-Message-ID: <1429011594-13528-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 14 Apr 2015 09:47:07 -0400
+Message-ID: <1429019232-15216-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] libloki: Add recipe for version 0.1.7
+Subject: [PATCH 0/5] CMEM: Add package to SDK.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,45 +37,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Apr 2015 11:39:58 -0000
+X-List-Received-Date: Tue, 14 Apr 2015 13:47:19 -0000
 Content-Type: text/plain
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../recipes-support/loki/libloki_0.1.7.bb          |   24 ++++++++++++++++++++
- 1 file changed, 24 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb
+* This patch set adds cmem and cmem module to the SDK for the omap-a15
+  platform family.
+* Since CMEM is an out-of-tree kernel module, the module sources are
+  also provided in the SDK.
 
-diff --git a/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb b/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb
-new file mode 100644
-index 0000000..2d48561
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb
-@@ -0,0 +1,24 @@
-+DESCRIPTION = "Loki C++ Library"
-+HOMEPAGE = "http://sourceforge.net/projects/loki-lib/"
-+LICENSE = "MIT"
-+
-+LIC_FILES_CHKSUM = "file://README;md5=5f7c1a2bebe34fc290234984d5845b03"
-+
-+SRC_URI="http://libloki.sourcearchive.com/downloads/${PV}-3/${PN}_${PV}.orig.tar.gz;name=libloki"
-+
-+SRC_URI[libloki.md5sum] = "af532c24a7f2e12d0829be8201934d92"
-+SRC_URI[libloki.sha256sum] = "0c2094ce916b106731c8be61c32f538a22e1c0f8398bd5d6295b13d08e0c41a3"
-+
-+S = "${WORKDIR}/${PN}-${PV}.orig"
-+
-+do_configure () {
-+    sed -i -e 's|^prefix.*$|prefix := ${D}${prefix}|g' ${S}/Makefile.common
-+}
-+
-+do_compile () {
-+    oe_runmake
-+}
-+
-+do_install () {
-+    oe_runmake install
-+}
+Jacob Stiffler (5):
+  packagegroup-arago-tisdk-addons: Add cmem to target filesystem.
+  packagegroup-arago-tisdk-addons-sdk-target: Add cmem-dev.
+  arago-source-ipk: Enable cmem-mod source IPK.
+  packagegroup-arago-tisdk-addons-sdk-host: Add cmem-mod-src to SDK.
+  ti-tisdk-makefile: Add cmem-mod makfile fragment.
+
+ .../conf/distro/arago-source-ipk.conf              |    4 +++
+ .../packagegroup-arago-tisdk-addons-sdk-host.bb    |    6 +++-
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb  |    6 +++-
+ .../packagegroup-arago-tisdk-addons.bb             |    6 +++-
+ .../ti-tisdk-makefile/Makefile_cmem-mod            |   33 ++++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |    4 ++-
+ 6 files changed, 55 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cmem-mod
+
 -- 
 1.7.9.5
 
