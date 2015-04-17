@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id EAA4B52A88
+	by arago-project.org (Postfix) with ESMTPS id 693EC52099
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Apr 2015 06:37:47 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3H6blMo008372
-	for <meta-arago@arago-project.org>; Fri, 17 Apr 2015 01:37:47 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3H6bksN020221
-	for <meta-arago@arago-project.org>; Fri, 17 Apr 2015 01:37:46 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 17 Apr 2015 01:37:45 -0500
+	Fri, 17 Apr 2015 11:02:23 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3HB2MQr031349
+	for <meta-arago@arago-project.org>; Fri, 17 Apr 2015 06:02:22 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3HB2L1a001587
+	for <meta-arago@arago-project.org>; Fri, 17 Apr 2015 06:02:21 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 17 Apr 2015 06:02:20 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t3H6bj4A027460	for <meta-arago@arago-project.org>;
-	Fri, 17 Apr 2015 01:37:45 -0500
-Date: Fri, 17 Apr 2015 02:37:45 -0400
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t3HB2K28005142	for <meta-arago@arago-project.org>;
+	Fri, 17 Apr 2015 06:02:20 -0500
+Date: Fri, 17 Apr 2015 07:02:20 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <2110858388.213.1429252665378.JavaMail.jenkins@puget>
+Message-ID: <1124649714.215.1429268540601.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Job: arago-core-tisdk-am57x
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.04 build 2015-04-16_22-00-51
+Subject: [nightly] Core TISDK 2015.04 build 2015-04-17_06-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Apr 2015 06:37:48 -0000
+X-List-Received-Date: Fri, 17 Apr 2015 11:02:23 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_212_1428246301.1429252665334"
+	boundary="----=_Part_214_120045921.1429268540511"
 
-------=_Part_212_1428246301.1429252665334
+------=_Part_214_120045921.1429268540511
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +54,7 @@ Status for 04/17/15
 
 <h2>Status for 04/17/15</h2>
 
-<h2>BUILD_ID: build-2015-04-16_22-01-56</h2>
+<h2>BUILD_ID: build-2015-04-17_06-01-54</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -127,34 +127,9 @@ Status for 04/17/15
         <th>Target Test Result</th>
     </tr>
     <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
         <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=red>FAILED</td>
     </tr>
 </table>
 
@@ -171,14 +146,14 @@ The configuration file passed to this script had the contents:
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
 TISDK_VERSION="2015.04"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+MACHINES="am57xx-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
 TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
 BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
 SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-am57x"<br>
 TEST_ROOT="$BUILD_ROOT/testing"<br>
 PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
 DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
@@ -224,13 +199,13 @@ EXPORT_ARAGO_SRC="0"<br>
 COPY_TO_WEB="true"<br>
 COPY_DEPLOY_TO_WEB="true"<br>
 COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly/am57x"<br>
 CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-am57x/workspace"<br>
 </p>
 
 </body>
 </html>
 
 
-------=_Part_212_1428246301.1429252665334--
+------=_Part_214_120045921.1429268540511--
