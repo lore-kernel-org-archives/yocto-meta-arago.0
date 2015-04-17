@@ -1,29 +1,29 @@
-Return-Path: <hzhang@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id ED51852A60
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id EAA4B52A88
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Apr 2015 17:59:10 +0000 (UTC)
+	Fri, 17 Apr 2015 06:37:47 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3GHxAlW014506
-	for <meta-arago@arago-project.org>; Thu, 16 Apr 2015 12:59:10 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3GHx9rD008988
-	for <meta-arago@arago-project.org>; Thu, 16 Apr 2015 12:59:09 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 16 Apr 2015 12:59:08 -0500
-Received: from ares-ubuntu (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3GHx8U2024431;
-	Thu, 16 Apr 2015 12:59:08 -0500
-Received: from a0868496 by ares-ubuntu with local (Exim 4.76)	(envelope-from
-	<hzhang@ti.com>)	id 1Yio4C-00071H-AR; Thu, 16 Apr 2015 13:59:08 -0400
-From: <hzhang@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3H6blMo008372
+	for <meta-arago@arago-project.org>; Fri, 17 Apr 2015 01:37:47 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3H6bksN020221
+	for <meta-arago@arago-project.org>; Fri, 17 Apr 2015 01:37:46 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 17 Apr 2015 01:37:45 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t3H6bj4A027460	for <meta-arago@arago-project.org>;
+	Fri, 17 Apr 2015 01:37:45 -0500
+Date: Fri, 17 Apr 2015 02:37:45 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 16 Apr 2015 13:59:04 -0400
-Message-ID: <1429207144-26952-1-git-send-email-hzhang@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Message-ID: <2110858388.213.1429252665378.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui-apps: add utilities demo apps for Keystone devices
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.04 build 2015-04-16_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,99 +36,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 17:59:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 17 Apr 2015 06:37:48 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_212_1428246301.1429252665334"
 
-From: Hao Zhang <hzhang@ti.com>
+------=_Part_212_1428246301.1429252665334
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The utilities demo includes PHP based utility apps to read/write I2C
-EEPROM and Nand Flash, write root filesystem, and display SoC specific
-info and statistics.
+<html>
+<head>
+<title>
+Status for 04/17/15
+</title>
+</head>
+<body>
 
-Signed-off-by: Hao Zhang <hzhang@ti.com>
----
- .../packagegroup-arago-tisdk-matrix.bb             |    4 ++++
- .../recipes-core/matrix/matrix-gui-apps-git.inc    |   13 ++++++++++---
- .../recipes-core/matrix/matrix-gui-submenus_2.0.bb |    7 ++++---
- 3 files changed, 18 insertions(+), 6 deletions(-)
+<h2>Status for 04/17/15</h2>
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index a006c52..6c58b6f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -125,6 +125,10 @@ MATRIX_APPS_append_am180x-evm = "   \
-     matrix-gui-pru-demos            \
- "
- 
-+MATRIX_APPS_append_keystone = " \
-+    matrix-gui-utility-demos	\
-+"
-+
- RDEPENDS_${PN} = "        \
-     ${MATRIX_ESSENTIALS}  \
-     ${MATRIX_GUI}         \
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 0d2d8c2..a060b1b 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -5,10 +5,17 @@ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
- 
- DEPENDS += "ca-certificates-native"
- 
--SRC_URI = "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=http;branch=${BRANCH}"
--SRCREV = "200426006a3ae68bde9d7eb6a864da51fe07298c"
-+SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
-+SRCREV = "84ff9dee7923fd973f18a959174ce7d185a35e16"
- BRANCH = "master"
--INC_PR = "r31"
-+INC_PR = "r32"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/matrix-patches:"
-+SRC_URI += " \
-+        file://0001-Keystone-utilities-apps-add-utilities-demo-app-for-K.patch;patchdir=${WORKDIR}/git \
-+"
-+
-+
- 
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-index 787a934..250694d 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-@@ -7,7 +7,7 @@ require matrix-gui-apps-git.inc
- # reset the LIC_FILES_CHKSUM setting from the matrix-gui-apps-git.inc file
- LIC_FILES_CHKSUM = "file://LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- 
--PR = "${INC_PR}.11"
-+PR = "${INC_PR}.12"
- 
- # These packages make submenus in matrix and are not architecture specific
- inherit allarch
-@@ -15,7 +15,7 @@ inherit allarch
- S = "${WORKDIR}/git"
- 
- # List of submenus to build packages for
--SUBMENUS = "arm_submenu 3d_submenu cryptos_submenu display_submenu ethernet_submenu multimedia_submenu power_submenu pru_submenu qt4_submenu settings_submenu usb_submenu wifi_submenu oprofile_submenu"
-+SUBMENUS = "arm_submenu 3d_submenu cryptos_submenu display_submenu ethernet_submenu multimedia_submenu power_submenu pru_submenu qt4_submenu settings_submenu usb_submenu wifi_submenu oprofile_submenu utilities_submenu"
- 
- do_install(){
-     install -d ${D}${MATRIX_APP_DIR}
-@@ -26,7 +26,7 @@ do_install(){
-     done
- }
- 
--PACKAGES += "${PN}-arm ${PN}-3d ${PN}-cryptos ${PN}-display ${PN}-ethernet ${PN}-multimedia ${PN}-power ${PN}-pru ${PN}-qt4 ${PN}-qt5 ${PN}-settings ${PN}-usb ${PN}-wifi ${PN}-oprofile ${PN}-camera"
-+PACKAGES += "${PN}-arm ${PN}-3d ${PN}-cryptos ${PN}-display ${PN}-ethernet ${PN}-multimedia ${PN}-power ${PN}-pru ${PN}-qt4 ${PN}-qt5 ${PN}-settings ${PN}-usb ${PN}-wifi ${PN}-oprofile ${PN}-camera  ${PN}-utility"
- 
- # Make sure app images has been installed
- RDEPENDS_${PN} += "matrix-gui-apps-images"
-@@ -47,3 +47,4 @@ FILES_${PN}-usb = "${MATRIX_APP_DIR}/usb_submenu/*"
- FILES_${PN}-wifi = "${MATRIX_APP_DIR}/wifi_submenu/*"
- FILES_${PN}-oprofile = "${MATRIX_APP_DIR}/oprofile_submenu/*"
- FILES_${PN}-camera = "${MATRIX_APP_DIR}/camera_submenu/*"
-+FILES_${PN}-utility = "${MATRIX_APP_DIR}/utilities_submenu/*"
--- 
-1.7.9.5
+<h2>BUILD_ID: build-2015-04-16_22-01-56</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.04"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_212_1428246301.1429252665334--
