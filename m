@@ -1,30 +1,30 @@
-Return-Path: <a0866934local@udb0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B01F65297F
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 530D352099
 	for <meta-arago@arago-project.org>;
-	Mon, 20 Apr 2015 12:46:04 +0000 (UTC)
+	Mon, 20 Apr 2015 18:41:24 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3KCk41b002661
-	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 07:46:04 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3KCk3aD031851
-	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 07:46:03 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 20 Apr 2015 07:46:02 -0500
-Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3KCk2SI017213;
-	Mon, 20 Apr 2015 07:46:02 -0500
-Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YkB5O-0007iH-Eh;
-	Mon, 20 Apr 2015 08:46:02 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 20 Apr 2015 08:45:58 -0400
-Message-ID: <1429533958-29619-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3KIfNSN010058
+	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 13:41:23 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3KIfMsX009337
+	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 13:41:22 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 20 Apr 2015 13:41:22 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3KIfMcE006112;
+	Mon, 20 Apr 2015 13:41:22 -0500
+Date: Mon, 20 Apr 2015 14:41:21 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20150420184121.GA23723@edge>
+References: <1429302346-9926-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH] powertop: Fix build for !uclibc
+In-Reply-To: <1429302346-9926-1-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] ltp-ddt: Skip mv of kernel files if no files found
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,32 +37,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Apr 2015 12:46:05 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 20 Apr 2015 18:41:24 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Recent bitbake 1.24 commits have broken powertop recipe on daisy.
+On Fri, Apr 17, 2015 at 04:25:46PM -0400, Sam Nelson wrote:
+> - Install was failing if there are no modules for certain platforms
+> 
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> ---
+>  .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      |    2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> index 68e1a3c..609b344 100644
+> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> @@ -87,7 +87,7 @@ do_install() {
+>      oe_runmake install
+>      install -d ${D}${datadir}
+>      install -d ${D}${kmoddir}
+> -    mv ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
+> +    find ${D}${LTPROOT}/testcases/bin/ddt/*.ko && mv ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
 
-* EXTRA_LDFLAGS isn't defined for !uclibc and configure fails
+Should probably do "mv || true" instead...
 
-- Fix was obtained from the upstream oe-core patch at:
-https://github.com/openembedded/openembedded-core/commit/a3e9b391e1024d6d2e256b75c214d34e6693e332
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../recipes-kernel/powertop/powertop_2.5.bbappend  |    3 +++
- 1 file changed, 3 insertions(+)
- create mode 100644 meta-arago-distro/recipes-kernel/powertop/powertop_2.5.bbappend
-
-diff --git a/meta-arago-distro/recipes-kernel/powertop/powertop_2.5.bbappend b/meta-arago-distro/recipes-kernel/powertop/powertop_2.5.bbappend
-new file mode 100644
-index 0000000..1a46b13
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/powertop/powertop_2.5.bbappend
-@@ -0,0 +1,3 @@
-+PR_append = "-arago0"
-+
-+EXTRA_LDFLAGS ?= ""
--- 
-1.7.9.5
-
+>  }
+>  
+>  # do_make_scripts should be a separate task for the lock to work
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
