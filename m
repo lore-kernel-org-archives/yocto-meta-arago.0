@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 8FC1552A86
+Return-Path: <a0866934local@udb0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 1C06152A86
 	for <meta-arago@arago-project.org>;
-	Tue, 21 Apr 2015 11:45:18 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3LBjHP4004621
-	for <meta-arago@arago-project.org>; Tue, 21 Apr 2015 06:45:17 -0500
+	Tue, 21 Apr 2015 11:59:07 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3LBx6sk019447
+	for <meta-arago@arago-project.org>; Tue, 21 Apr 2015 06:59:06 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3LBjG2w029599
-	for <meta-arago@arago-project.org>; Tue, 21 Apr 2015 06:45:16 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3LBx42U000780
+	for <meta-arago@arago-project.org>; Tue, 21 Apr 2015 06:59:05 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 21 Apr 2015 06:45:16 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t3LBjF3J025484	for <meta-arago@arago-project.org>;
-	Tue, 21 Apr 2015 06:45:16 -0500
-Date: Tue, 21 Apr 2015 07:45:15 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	Tue, 21 Apr 2015 06:59:04 -0500
+Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3LBx4qr014954;
+	Tue, 21 Apr 2015 06:59:04 -0500
+Received: from a0866934local by udb0866934 with local (Exim 4.76)
+	(envelope-from <a0866934local@udb0866934>)	id 1YkWpU-0001JR-2o;
+	Tue, 21 Apr 2015 07:59:04 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1679829934.241.1429616715714.JavaMail.jenkins@puget>
+Date: Tue, 21 Apr 2015 07:58:57 -0400
+Message-ID: <1429617539-5015-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-am57x
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.04 build 2015-04-21_06-00-51
+Subject: [oe-layersetup][PATCH 1/2] configs: Add processor-sdk configs.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,176 +37,211 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Apr 2015 11:45:19 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_240_304327863.1429616715505"
+X-List-Received-Date: Tue, 21 Apr 2015 11:59:07 -0000
+Content-Type: text/plain
 
-------=_Part_240_304327863.1429616715505
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+* Add daisy config
+* and local-processor-sdk.conf.sample to set ARAGO_BRAND.
 
-<html>
-<head>
-<title>
-Status for 04/21/15
-</title>
-</head>
-<body>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../processor-sdk/processor-sdk-daisy-config.txt   |   13 ++
+ sample-files/local-processor-sdk.conf.sample       |  165 ++++++++++++++++++++
+ 2 files changed, 178 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-daisy-config.txt
+ create mode 100644 sample-files/local-processor-sdk.conf.sample
 
-<h2>Status for 04/21/15</h2>
+diff --git a/configs/processor-sdk/processor-sdk-daisy-config.txt b/configs/processor-sdk/processor-sdk-daisy-config.txt
+new file mode 100644
+index 0000000..ffd8e0f
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-daisy-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.24,HEAD,layers=
++meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,HEAD,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
++meta-ti,git://arago-project.org/git/meta-ti.git,daisy,HEAD,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,daisy,HEAD,layers=meta-linaro-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,daisy,HEAD,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk.conf.sample
+diff --git a/sample-files/local-processor-sdk.conf.sample b/sample-files/local-processor-sdk.conf.sample
+new file mode 100644
+index 0000000..d5af93a
+--- /dev/null
++++ b/sample-files/local-processor-sdk.conf.sample
+@@ -0,0 +1,165 @@
++# CONF_VERSION is increased each time build/conf/ changes incompatibly
++CONF_VERSION = "1"
++
++#
++# Where to place downloads
++#
++# During a first build the system will download many different source code
++# tarballs from various upstream projects. This can take a while, particularly
++# if your network connection is slow. These are all stored in DL_DIR. When
++# wiping and rebuilding you can preserve this directory to speed up this part
++# of subsequent builds. This directory is safe to share between multiple builds
++# on the same machine too.
++DL_DIR = "${OEBASE}/downloads"
++
++#
++# Where to place shared-state files
++#
++# BitBake has the capability to accelerate builds based on previously built
++# output. This is done using "shared state" files which can be thought of as
++# cache objects and this option determines where those files are placed.
++#
++# You can wipe out TMPDIR leaving this directory intact and the build would
++# regenerate from these files if no changes were made to the configuration.
++# If changes were made to the configuration, only shared state files where the
++# state was still valid would be used (done using checksums).
++SSTATE_DIR = "${OEBASE}/build/sstate-cache"
++
++#
++# Shared-state files from other locations
++#
++# As mentioned above, shared state files are prebuilt cache data objects which
++# can be used to accelerate build time. This variable can be used to configure
++# the system to search other mirror locations for these objects before it
++# builds the data itself.
++#
++# This can be a filesystem directory, or a remote url such as http or ftp.
++# These would contain the sstate-cache results from previous builds (possibly
++# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
++# and points to the cache locations to check for the shared objects.
++#SSTATE_MIRRORS ?= "\
++#file://.* http://someserver.tld/share/sstate/ \n \
++#file://.* file:///some/local/dir/sstate/"
++
++#
++# Where to place the build output
++#
++# This option specifies where the bulk of the building work should be done and
++# where BitBake should place its temporary files and output. Keep in mind that
++# this includes the extraction and compilation of many applications and the toolchain
++# which can use Gigabytes of hard disk space.
++TMPDIR = "${OEBASE}/build/arago-tmp"
++
++#
++# Machine Selection
++#
++# You need to select a specific machine to target the build with. There are a selection
++# of emulated machines available which can boot and run in the QEMU emulator:
++#
++MACHINE ?= "arago"
++
++#
++# Package Management configuration
++#
++# This variable lists which packaging formats to enable. Multiple package backends 
++# can be enabled at once and the first item listed in the variable will be used 
++# to generate the root filesystems.
++# Options are:
++#  - 'package_deb' for debian style deb files
++#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
++#  - 'package_rpm' for rpm style packages
++# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
++# We default to ipk:
++PACKAGE_CLASSES ?= "package_ipk"
++
++#
++# SDK/ADT target architecture
++#
++# This variable specified the architecture to build SDK/ADT items for and means
++# you can build the SDK packages for architectures other than the machine you are 
++# running the build on (i.e. building i686 packages on an x86_64 host._
++# Supported values are i686 and x86_64
++SDKMACHINE ?= "i686"
++
++#
++# Extra image configuration defaults
++#
++# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated 
++# images. Some of these options are added to certain image types automatically. The
++# variable can contain the following options:
++#  "dbg-pkgs"       - add -dbg packages for all installed packages
++#                     (adds symbol information for debugging/profiling)
++#  "dev-pkgs"       - add -dev packages for all installed packages
++#                     (useful if you want to develop against libs in the image)
++#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
++#  "tools-debug"    - add debugging tools (gdb, strace)
++#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
++#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
++#  "debug-tweaks"   - make an image suitable for development
++#                     e.g. ssh root access has a blank password
++# There are other application targets that can be used here too, see
++# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
++# We default to enabling the debugging tweaks.
++EXTRA_IMAGE_FEATURES = "debug-tweaks"
++
++#
++# Additional image features
++#
++# The following is a list of additional classes to use when building images which
++# enable extra features. Some available options which can be included in this variable 
++# are:
++#   - 'buildstats' collect build statistics
++#   - 'image-mklibs' to reduce shared library files size for an image
++#   - 'image-prelink' in order to prelink the filesystem image
++#   - 'image-swab' to perform host system intrusion detection
++# NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
++# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
++USER_CLASSES ?= "buildstats image-mklibs image-prelink"
++
++# By default disable interactive patch resolution (tasks will just fail instead):
++PATCHRESOLVE = "noop"
++
++# Qemu 0.12.x is giving too much problems recently (2010.05), so disable it for users
++ENABLE_BINARY_LOCALE_GENERATION = "0"
++
++# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
++# would like to add additional file system types you can uncomment the
++# following line and add the additional IMAGE_FSTYPES you want created
++# as part of the build flow.  Some common types are listed below and you
++# can remove the ones you do not want.
++# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
++
++#
++# Parallelism Options
++#
++# These two options control how much parallelism BitBake should use. The first 
++# option determines how many tasks bitbake should run in parallel:
++#
++BB_NUMBER_THREADS = "1"
++# 
++# The second option controls how many processes make should run in parallel when
++# running compile tasks:
++#
++PARALLEL_MAKE = "-j 1"
++#
++# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
++# be appropriate for example
++
++DISTRO   = "arago"
++
++# Set branding policy for AM-SDK
++ARAGO_BRAND = "processor-sdk"
++
++# Set terminal types by default it expects gnome-terminal
++# but we chose xterm
++TERMCMD = "${XTERM_TERMCMD}"
++TERMCMDRUN = "${XTERM_TERMCMDRUN}"
++
++# Don't generate the mirror tarball for SCM repos, the snapshot is enough
++BB_GENERATE_MIRROR_TARBALLS = "0"
++
++# Uncomment this to remove work directory after packaging to save disk space
++#INHERIT += "rm_work"
++
++# Keep one set of images by default
++RM_OLD_IMAGE = "1"
+-- 
+1.7.9.5
 
-<h2>BUILD_ID: build-2015-04-21_06-01-55</h2>
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.24</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.04"<br>
-MACHINES="am57xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-am57x"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly/am57x"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-am57x/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_240_304327863.1429616715505--
