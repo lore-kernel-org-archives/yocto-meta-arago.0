@@ -1,35 +1,29 @@
-Return-Path: <hzhang@ti.com>
+Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 9DF305297F
+	by arago-project.org (Postfix) with ESMTPS id 9C98C52093
 	for <meta-arago@arago-project.org>;
-	Mon, 20 Apr 2015 20:30:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3KKUAQp006623
-	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 15:30:10 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3KKU7hS031169
-	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 15:30:08 -0500
-Received: from DLEE09.ent.ti.com ([fe80::d03e:3cf4:73ad:d589]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Mon, 20 Apr 2015 15:30:02 -0500
-From: "Zhang, Hao" <hzhang@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [Re-submit: V2] matrix-gui-apps: add utilities
-	demo apps for Keystone devices
-Thread-Index: AQHQeUlVImeEYJgh0km4v1xwZaAbsJ1WXRHwgABVWAD//6xIUA==
-Date: Mon, 20 Apr 2015 20:30:01 +0000
-Message-ID: <ECA334CFBA16F74DB2C66A2F1181F4D63F99C464@DLEE09.ent.ti.com>
-References: <1429300904-28993-1-git-send-email-hzhang@ti.com>
-	<ECA334CFBA16F74DB2C66A2F1181F4D63F99C42B@DLEE09.ent.ti.com>
-	<20150420202837.GG23723@edge>
-In-Reply-To: <20150420202837.GG23723@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	Tue, 21 Apr 2015 04:08:36 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3L48Zic012231
+	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 23:08:35 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3L48Yoa021999
+	for <meta-arago@arago-project.org>; Mon, 20 Apr 2015 23:08:34 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 20 Apr 2015 23:08:34 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t3L48Yuk022039	for <meta-arago@arago-project.org>;
+	Mon, 20 Apr 2015 23:08:34 -0500
+Date: Tue, 21 Apr 2015 00:08:33 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1803102613.237.1429589313917.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [Re-submit: V2] matrix-gui-apps: add utilities demo apps for Keystone devices
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.04 build 2015-04-20_16-50-34
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,184 +36,201 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Apr 2015 20:30:10 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 21 Apr 2015 04:08:36 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_236_1232990588.1429589313861"
 
-Please ignore V1, it's not a valid version for review.
+------=_Part_236_1232990588.1429589313861
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Monday, April 20, 2015 4:29 PM
-To: Zhang, Hao
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [Re-submit: V2] matrix-gui-apps: add utilities de=
-mo apps for Keystone devices
+<html>
+<head>
+<title>
+Status for 04/20/15
+</title>
+</head>
+<body>
 
-Is this v2 of the last week's matrix-gui-apps utilities patch? What was the=
- change between v1 and v2? Please provide a short log next time.
+<h2>Status for 04/20/15</h2>
+
+<h2>BUILD_ID: build-2015-04-20_16-51-39</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.24</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.04"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm k2hk-evm omap5-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-On Mon, Apr 20, 2015 at 08:23:38PM +0000, Zhang, Hao wrote:
-> Ping.
->=20
-> -----Original Message-----
-> From: Zhang, Hao=20
-> Sent: Friday, April 17, 2015 4:02 PM
-> To: meta-arago@arago-project.org
-> Cc: Zhang, Hao
-> Subject: [Re-submit: V2] matrix-gui-apps: add utilities demo apps for Key=
-stone devices
->=20
-> From: Hao Zhang <hzhang@ti.com>
->=20
-> The utilities demo includes PHP based utility apps to read/write I2C EEPR=
-OM and Nand Flash, write root filesystem, and display SoC specific info and=
- statistics.
->=20
-> Signed-off-by: Hao Zhang <hzhang@ti.com>
-> ---
->  .../packagegroup-arago-tisdk-matrix.bb             |    4 +++
->  .../recipes-core/matrix/matrix-gui-apps-git.inc    |    7 ++--
->  .../recipes-core/matrix/matrix-gui-submenus_2.0.bb |    7 ++--
->  .../matrix/matrix-gui-utility-demos_2.0.bb         |   34 ++++++++++++++=
-++++++
->  4 files changed, 46 insertions(+), 6 deletions(-)  create mode 100644 me=
-ta-arago-extras/recipes-core/matrix/matrix-gui-utility-demos_2.0.bb
->=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packageg=
-roup-arago-tisdk-matrix.bb
-> index a006c52..6c58b6f 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
-dk-matrix.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
-> +++ sdk-matrix.bb
-> @@ -125,6 +125,10 @@ MATRIX_APPS_append_am180x-evm =3D "   \
->      matrix-gui-pru-demos            \
->  "
-> =20
-> +MATRIX_APPS_append_keystone =3D " \
-> +    matrix-gui-utility-demos	\
-> +"
-> +
->  RDEPENDS_${PN} =3D "        \
->      ${MATRIX_ESSENTIALS}  \
->      ${MATRIX_GUI}         \
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.in=
-c b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> index 0d2d8c2..73e92ac 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> @@ -5,10 +5,11 @@ LIC_FILES_CHKSUM :=3D "file://../${LICENSE_CHECKSUM}"
-> =20
->  DEPENDS +=3D "ca-certificates-native"
-> =20
-> -SRC_URI =3D "git://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps.git;pr=
-otocol=3Dhttp;branch=3D${BRANCH}"
-> -SRCREV =3D "200426006a3ae68bde9d7eb6a864da51fe07298c"
-> +SRC_URI =3D "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;proto=
-col=3Dgit;branch=3D${BRANCH}"
-> +SRCREV =3D "7a3fb05dfb49b144cb149b31cbc9d452975ddfcd"
->  BRANCH =3D "master"
-> -INC_PR =3D "r31"
-> +INC_PR =3D "r32"
-> +
-> =20
->  # Pull in the base package for installing matrix applications  require m=
-atrix-gui-apps.inc diff --git a/meta-arago-extras/recipes-core/matrix/matri=
-x-gui-submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-su=
-bmenus_2.0.bb
-> index 787a934..250694d 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-> @@ -7,7 +7,7 @@ require matrix-gui-apps-git.inc  # reset the LIC_FILES_CH=
-KSUM setting from the matrix-gui-apps-git.inc file  LIC_FILES_CHKSUM =3D "f=
-ile://LICENSE;md5=3D6e0ae7214f6c74c149cb25f373057fa9"
-> =20
-> -PR =3D "${INC_PR}.11"
-> +PR =3D "${INC_PR}.12"
-> =20
->  # These packages make submenus in matrix and are not architecture specif=
-ic  inherit allarch @@ -15,7 +15,7 @@ inherit allarch  S =3D "${WORKDIR}/gi=
-t"
-> =20
->  # List of submenus to build packages for -SUBMENUS =3D "arm_submenu 3d_s=
-ubmenu cryptos_submenu display_submenu ethernet_submenu multimedia_submenu =
-power_submenu pru_submenu qt4_submenu settings_submenu usb_submenu wifi_sub=
-menu oprofile_submenu"
-> +SUBMENUS =3D "arm_submenu 3d_submenu cryptos_submenu display_submenu eth=
-ernet_submenu multimedia_submenu power_submenu pru_submenu qt4_submenu sett=
-ings_submenu usb_submenu wifi_submenu oprofile_submenu utilities_submenu"
-> =20
->  do_install(){
->      install -d ${D}${MATRIX_APP_DIR}
-> @@ -26,7 +26,7 @@ do_install(){
->      done
->  }
-> =20
-> -PACKAGES +=3D "${PN}-arm ${PN}-3d ${PN}-cryptos ${PN}-display ${PN}-ethe=
-rnet ${PN}-multimedia ${PN}-power ${PN}-pru ${PN}-qt4 ${PN}-qt5 ${PN}-setti=
-ngs ${PN}-usb ${PN}-wifi ${PN}-oprofile ${PN}-camera"
-> +PACKAGES +=3D "${PN}-arm ${PN}-3d ${PN}-cryptos ${PN}-display ${PN}-ethe=
-rnet ${PN}-multimedia ${PN}-power ${PN}-pru ${PN}-qt4 ${PN}-qt5 ${PN}-setti=
-ngs ${PN}-usb ${PN}-wifi ${PN}-oprofile ${PN}-camera  ${PN}-utility"
-> =20
->  # Make sure app images has been installed  RDEPENDS_${PN} +=3D "matrix-g=
-ui-apps-images"
-> @@ -47,3 +47,4 @@ FILES_${PN}-usb =3D "${MATRIX_APP_DIR}/usb_submenu/*"
->  FILES_${PN}-wifi =3D "${MATRIX_APP_DIR}/wifi_submenu/*"
->  FILES_${PN}-oprofile =3D "${MATRIX_APP_DIR}/oprofile_submenu/*"
->  FILES_${PN}-camera =3D "${MATRIX_APP_DIR}/camera_submenu/*"
-> +FILES_${PN}-utility =3D "${MATRIX_APP_DIR}/utilities_submenu/*"
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-utility-dem=
-os_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-utility-demos_=
-2.0.bb
-> new file mode 100644
-> index 0000000..2c4890d
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-utility-demos_2.0
-> +++ .bb
-> @@ -0,0 +1,34 @@
-> +DESCRIPTION =3D "Keystone utility app demo descriptions for Matrix v2"
-> +HOMEPAGE =3D "http://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps"
-> +
-> +require matrix-gui-apps-git.inc
-> +
-> +PR =3D "${INC_PR}.0"
-> +
-> +inherit allarch
-> +
-> +S =3D "${WORKDIR}/git/utilities_apps"
-> +
-> +do_install_prepend(){
-> +   install -d ${D}${MATRIX_BASE_DIR}/html-apps/
-> +   cp -rf ${S}/utility_eeprom/eeprom ${D}${MATRIX_BASE_DIR}/html-apps/
-> +   cp -rf ${S}/utility_flash/flash ${D}${MATRIX_BASE_DIR}/html-apps/
-> +   cp -rf ${S}/utility_filesystem/filesystem ${D}${MATRIX_BASE_DIR}/html=
--apps/
-> +   cp -rf ${S}/utility_info/info ${D}${MATRIX_BASE_DIR}/html-apps/
-> +   cp -rf ${S}/utility_stats/stats ${D}${MATRIX_BASE_DIR}/html-apps/ }
-> +
-> +do_install_append(){
-> +    rm ${D}${MATRIX_APP_DIR}/utility_eeprom/eeprom-utility.php
-> +    rm ${D}${MATRIX_APP_DIR}/utility_flash/flash-utility.php
-> +    rm ${D}${MATRIX_APP_DIR}/utility_filesystem/filesystem-utility.php
-> +    rm ${D}${MATRIX_APP_DIR}/utility_info/info-utility.php
-> +    rm ${D}${MATRIX_APP_DIR}/utility_stats/stats-utility.php
-> +}
-> +
-> +# Make sure utility submenu and app images has been installed.
-> +RDEPENDS_${PN} +=3D "matrix-gui-apps-images matrix-gui-submenus-utility"
-> +
-> +FILES_${PN} +=3D "${MATRIX_BASE_DIR}/html-apps/ \
-> +                ${MATRIX_BASE_DIR}/apps/ \ "
-> --
-> 1.7.9.5
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_236_1232990588.1429589313861--
