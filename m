@@ -1,30 +1,30 @@
 Return-Path: <a0866934local@udb0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id BC439529C6
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 18A1352A0D
 	for <meta-arago@arago-project.org>;
-	Thu, 23 Apr 2015 11:52:11 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3NBqAn8014418
-	for <meta-arago@arago-project.org>; Thu, 23 Apr 2015 06:52:10 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3NBq92h026881
-	for <meta-arago@arago-project.org>; Thu, 23 Apr 2015 06:52:09 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 23 Apr 2015 06:52:09 -0500
+	Thu, 23 Apr 2015 12:08:59 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3NC8vxV027911
+	for <meta-arago@arago-project.org>; Thu, 23 Apr 2015 07:08:57 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3NC8unV031338
+	for <meta-arago@arago-project.org>; Thu, 23 Apr 2015 07:08:56 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 23 Apr 2015 07:08:56 -0500
 Received: from udb0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3NBq9C2025629;
-	Thu, 23 Apr 2015 06:52:09 -0500
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3NC8uTH025986;
+	Thu, 23 Apr 2015 07:08:56 -0500
 Received: from a0866934local by udb0866934 with local (Exim 4.76)
-	(envelope-from <a0866934local@udb0866934>)	id 1YlFfs-00052q-Na;
-	Thu, 23 Apr 2015 07:52:08 -0400
+	(envelope-from <a0866934local@udb0866934>)	id 1YlFw8-0005Bf-Ce;
+	Thu, 23 Apr 2015 08:08:56 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 23 Apr 2015 07:52:05 -0400
-Message-ID: <1429789925-19362-1-git-send-email-j-stiffler@ti.com>
+Date: Thu, 23 Apr 2015 08:08:52 -0400
+Message-ID: <1429790932-19909-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] nativesdk-packagegroup-arago-sdk-host: Add ti-cgt6x for omap-a15.
+Subject: [PATCH] tisdk-uenv, am57xx-evm: Set default dtb to am57xx-evm.dtb
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,39 +37,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Apr 2015 11:52:12 -0000
+X-List-Received-Date: Thu, 23 Apr 2015 12:08:59 -0000
 Content-Type: text/plain
 
-* Add DSP codegen tools for omap-a15 SOC family.
+* This device tree supports display on either LCD or HDMI.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../nativesdk-packagegroup-arago-sdk-host.bb       |    6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../recipes-tisdk/tisdk-uenv/tisdk-uenv.bb         |    2 +-
+ .../tisdk-uenv/tisdk-uenv/am57xx-evm/uEnv.txt      |   10 ++++++++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am57xx-evm/uEnv.txt
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-index 9ef9ddd..6615839 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-@@ -1,13 +1,17 @@
- DESCRIPTION = "Host packages for a standalone Arago SDK or external toolchain"
--PR = "r5"
-+PR = "r6"
- LICENSE = "MIT"
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
+index e67ea97..542cdb2 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
++++ b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
+@@ -6,7 +6,7 @@ SRC_URI = "\
+     file://uEnv.txt \
+ "
  
- inherit nativesdk packagegroup
+-PR = "r0"
++PR = "r1"
+ PV = "1.0"
  
-+EXTRA_TOOLS = ""
-+EXTRA_TOOLS_omap-a15 = "nativesdk-ti-cgt6x"
-+
- RDEPENDS_${PN} = "\
-     nativesdk-pkgconfig \
-     nativesdk-opkg \
-     nativesdk-libtool \
-     nativesdk-python-distutils \
-     nativesdk-git \
-+    ${EXTRA_TOOLS} \
-     "
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am57xx-evm/uEnv.txt b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am57xx-evm/uEnv.txt
+new file mode 100644
+index 0000000..a082e1d
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am57xx-evm/uEnv.txt
+@@ -0,0 +1,10 @@
++# This uEnv.txt file can contain additional environment settings that you
++# want to set in U-Boot at boot time.  This can be simple variables such
++# as the serverip or custom variables.  The format of this file is:
++#    variable=value
++# NOTE: This file will be evaluated after the bootcmd is run and the
++#       bootcmd must be set to load this file if it exists (this is the
++#       default on all newer U-Boot images.  This also means that some
++#       variables such as bootdelay cannot be changed by this file since
++#       it is not evaluated until the bootcmd is run.
++fdtfile=am57xx-evm.dtb
 -- 
 1.7.9.5
 
