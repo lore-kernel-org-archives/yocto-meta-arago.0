@@ -1,27 +1,28 @@
-Return-Path: <yanivma@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 38BD3529A7
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 92B64529A7
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Apr 2015 12:18:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3OCIp0j025761
-	for <meta-arago@arago-project.org>; Fri, 24 Apr 2015 07:18:51 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3OCIoEf014894
-	for <meta-arago@arago-project.org>; Fri, 24 Apr 2015 07:18:50 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 24 Apr 2015 07:18:50 -0500
-Received: from mcp8x-srv.emea.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t3OCIniC016920;	Fri, 24 Apr 2015 07:18:49 -0500
-From: Yaniv Machani <yanivma@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 24 Apr 2015 15:08:44 +0300
-Message-ID: <1429877324-20845-1-git-send-email-yanivma@ti.com>
-X-Mailer: git-send-email 1.8.3.2
-MIME-Version: 1.0
-Subject: [PATCH] wl18xx: compat : update driver to allow irq config
+	Fri, 24 Apr 2015 18:25:20 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NNB00GPYPT7EWD0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 24 Apr 2015 13:24:54 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=B/MOC1ok c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
+	a=sozttTNsAAAA:8 a=Q4-j1AaZAAAA:8	a=HihYlcsHAAAA:8 a=NEAV23lmAAAA:8
+	a=4D75wMKgTkKMlfsMM8UA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 65C0720076;	Fri,
+	24 Apr 2015 14:24:43 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 24 Apr 2015 14:24:43 -0400
+Message-id: <1429899883-18420-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH][oe-layersetup] arago-daisy-config: bump bitbake to 1.26 for lightweight tag fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,31 +35,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Apr 2015 12:18:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 24 Apr 2015 18:25:20 -0000
 
-- Driver update to change the IRQ configuration options.
-   This also fixes an issue with consecutive IRQ with some HW
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Yaniv Machani <yanivma@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../ti-compat-wireless-wl18xx.bb                   |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ configs/arago-daisy-config.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb
-index ec40f9d..23387d1 100644
---- a/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb
-+++ b/meta-arago-extras/recipes-bsp/ti-compat-wireless/ti-compat-wireless-wl18xx.bb
-@@ -15,7 +15,7 @@ inherit module
- PR = "${MACHINE_KERNEL_PR}+f+gitr${SRCPV}"
+diff --git a/configs/arago-daisy-config.txt b/configs/arago-daisy-config.txt
+index b92cf9e..ed70faf 100644
+--- a/configs/arago-daisy-config.txt
++++ b/configs/arago-daisy-config.txt
+@@ -1,7 +1,7 @@
+ # This file takes repo entries in the format
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
  
- # Tags: R8.5
--SRCREV_wl18xx = "cb51164c672b1ecadef339b9f9b39e29ab706723"
-+SRCREV_wl18xx = "ad69b45b9a670ee7f76be4def03895ac9b3a6d4a"
- BRANCH_wl18xx = "ap_p2p"
- SRCREV_backports = "0d46f43a2f3ccdd53de19eee5b9c674bf8ef09a2"
- BRANCH_backports = "ap_dfs_mbss_all"
+-bitbake,git://git.openembedded.org/bitbake,1.24,HEAD,layers=
++bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
 -- 
-1.7.0.4
+2.2.0
 
 
