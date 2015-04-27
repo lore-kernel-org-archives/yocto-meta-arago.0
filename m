@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id DC12252A9A
+Return-Path: <hzhang@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id F280752A9A
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Apr 2015 19:20:15 +0000 (UTC)
-Received: from gandalf.denix.org ([108.28.31.169]) by vms173019.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NNH00249CD52Q50@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 27 Apr 2015 14:19:54 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=E6x6fhYN c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
-	a=sozttTNsAAAA:8	a=3Tw_BOlTBdVOYluzoIEA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id C285920076;	Mon,
-	27 Apr 2015 15:19:53 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 27 Apr 2015 15:19:53 -0400
-Message-id: <1430162393-2211-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH v2] gstreamer, conf: add GST_PROVIDER to switch between 0.10 and 1.x gstreamer
+	Mon, 27 Apr 2015 19:20:29 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3RJKTL3000958
+	for <meta-arago@arago-project.org>; Mon, 27 Apr 2015 14:20:29 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3RJKSMN019520
+	for <meta-arago@arago-project.org>; Mon, 27 Apr 2015 14:20:28 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 27 Apr 2015 14:20:28 -0500
+Received: from ares-ubuntu (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3RJKRtA027182;
+	Mon, 27 Apr 2015 14:20:28 -0500
+Received: from a0868496 by ares-ubuntu with local (Exim 4.76)	(envelope-from
+	<hzhang@ti.com>)	id 1YmoZv-0007zC-L6; Mon, 27 Apr 2015 15:20:27 -0400
+From: <hzhang@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 27 Apr 2015 15:20:26 -0400
+Message-ID: <1430162426-30667-1-git-send-email-hzhang@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH 2/2] image proc demo: update SRCREV to 1.0.0.3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,177 +36,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Apr 2015 19:20:16 -0000
+X-List-Received-Date: Mon, 27 Apr 2015 19:20:30 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Hao Zhang <hzhang@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hao Zhang <hzhang@ti.com>
 ---
-v2 - bump glsdk-exaple-apps SRCREV, that was missed in v1
+ .../demo-image-proc/demo-image-proc_git.bb         |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
- meta-arago-distro/conf/distro/arago.conf           |  9 +++++---
- .../conf/distro/include/arago-prefs.inc            |  8 ++++---
- .../packagegroup-arago-gst-sdk-target.bb           | 16 ++++++++++++--
- .../packagegroups/packagegroup-arago-gst.bb        | 25 ++++++++++++++++------
- .../glsdk-example-apps/glsdk-example-apps.bb       |  6 +++---
- 5 files changed, 47 insertions(+), 17 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 450ffe7..5debe0b 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -24,6 +24,9 @@ DISTRO_FEATURES = "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbh
- # Set additional distro features
- DISTRO_FEATURES += "pam ${@base_contains('MACHINE_FEATURES', 'screen', 'wayland', '', d)}"
+diff --git a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+index 90aabc8..29d87ea 100644
+--- a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
++++ b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+@@ -9,9 +9,9 @@ DEPENDS = "ti-ipc"
  
-+# Set preferred gstreamer version (0.10 vs 1.0)
-+GST_PROVIDER ?= "1.0"
-+
- # Set preferred Qt version
- QT_PROVIDER ?= "qt5"
+ BRANCH = "master"
+ SRC_URI = "git://git.ti.com/keystone-demos/image-proc.git;protocol=git;branch=${BRANCH}"
+-#Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.02B
+-SRCREV = "08d69947cea192328213bb91d52c43b403d3a36f"
+-PV = "1.0.0.2"
++#Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.03
++SRCREV = "d1f4014d28ecedf34dbd20f04d4277eb1c4b8ae0"
++PV = "1.0.0.3"
  
-@@ -35,8 +38,8 @@ PACKAGECONFIG_pn-weston = "fbdev kms launch libinput"
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
- PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples"
+ S = "${WORKDIR}/git"
  
--# Configure gstreamer-0.10.x as a dependency instead of gstreamer-1.x
--PACKAGECONFIG_pn-qtwebkit = "gstreamer010 qtlocation qtmultimedia qtsensors"
-+# Configure gstreamer dependency based on GST_PROVIDER
-+PACKAGECONFIG_pn-qtwebkit = "${@base_conditional('GST_PROVIDER', '0.10', 'gstreamer010', 'gstreamer', d)} qtlocation qtmultimedia qtsensors"
- 
- # Enable UI and scripting for perf
- PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
-@@ -86,4 +89,4 @@ ENTERPRISE_DISTRO = "1"
- # disable by default the codecs in libav that causes issues with shipping an
- # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
- # disable troublesome software.
--LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg"
-+LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg commercial_gstreamer1.0-libav"
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 4f2c854..9f12562 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -113,9 +113,11 @@ PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
- PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
- PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
- 
--PREFERRED_PROVIDER_gstreamer = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel', 'gstreamer', d)}"
--PREFERRED_PROVIDER_gstreamer-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel-dev', 'gstreamer-dev', d)}"
--PREFERRED_PROVIDER_gstreamer-dbg = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel-dbg', 'gstreamer-dbg', d)}"
-+GST_MM_ACCEL = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel', 'gstreamer', d)}"
-+PREFERRED_PROVIDER_gstreamer = "${@base_conditional('GST_PROVIDER', '0.10', "${GST_MM_ACCEL}", 'gstreamer', d)}"
-+PREFERRED_PROVIDER_gstreamer-dev = "${@base_conditional('GST_PROVIDER', '0.10', "${GST_MM_ACCEL}-dev", 'gstreamer-dev', d)}"
-+PREFERRED_PROVIDER_gstreamer-dbg = "${@base_conditional('GST_PROVIDER', '0.10', "${GST_MM_ACCEL}-dbg", 'gstreamer-dbg', d)}"
-+
- PREFERRED_PROVIDER_gst-plugins-bad = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel', 'gst-plugins-bad', d)}"
- PREFERRED_PROVIDER_gst-plugins-bad-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel-dev', 'gst-plugins-bad-dev', d)}"
- PREFERRED_PROVIDER_gst-plugins-bad-meta = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel-meta', 'gst-plugins-bad-meta', d)}"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-index 7897b8a..37e63a3 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-@@ -1,13 +1,25 @@
- DESCRIPTION = "Task to build and install header and libs in sdk"
- LICENSE = "MIT"
--PR = "r7"
-+PR = "r8"
- 
- inherit packagegroup
- 
--RDEPENDS_${PN} = "\
-+GST_010_DEPS = " \
-     gstreamer-dev \
-     gst-plugins-base-dev \
-     gst-plugins-good-dev \
-     gst-plugins-bad-dev \
-     gst-ffmpeg-dev \
- "
-+
-+GST_1X_DEPS = " \
-+    gstreamer1.0-dev \
-+    gstreamer1.0-plugins-base-dev \
-+    gstreamer1.0-plugins-good-dev \
-+    gstreamer1.0-plugins-bad-dev \
-+    gstreamer1.0-libav-dev \
-+"
-+
-+RDEPENDS_${PN} = " \
-+    ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
-+"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index d88e4c8..b449dfe 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -1,12 +1,12 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
--PR = "r11"
-+PR = "r12"
- 
- inherit packagegroup
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--GSTREAMER = " \
-+GST_010_DEPS = " \
-     gstreamer \
-     gst-plugins-base \
-     gst-plugins-good \
-@@ -14,14 +14,27 @@ GSTREAMER = " \
-     gst-plugins-base-meta \
-     gst-plugins-good-meta \
-     gst-plugins-bad-meta \
-+    gst-ffmpeg \
-+"
-+
-+GST_1X_DEPS = " \
-+    gstreamer1.0 \
-+    gstreamer1.0-plugins-base \
-+    gstreamer1.0-plugins-good \
-+    gstreamer1.0-plugins-bad \
-+    gstreamer1.0-plugins-base-meta \
-+    gstreamer1.0-plugins-good-meta \
-+    gstreamer1.0-plugins-bad-meta \
-+    gstreamer1.0-libav \
- "
- 
-+GST_PLUGINS_PREFIX = "${@base_conditional('GST_PROVIDER', '0.10', 'gst-plugins', 'gstreamer1.0-plugins', d)}"
-+
- GSTREAMER_ACCEL_MM = ""
--GSTREAMER_ACCEL_MM_omap-a15 = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-ducati', '', d)}"
--GSTREAMER_ACCEL_MM_append_dra7xx = "${@base_contains('MACHINE_FEATURES', 'mmip', ' gst-plugins-vpe', '', d)}"
-+GSTREAMER_ACCEL_MM_omap-a15 = "${@base_contains('MACHINE_FEATURES', 'mmip', "${GST_PLUGINS_PREFIX}-ducati", '', d)}"
-+GSTREAMER_ACCEL_MM_append_dra7xx = "${@base_contains('MACHINE_FEATURES', 'mmip', " ${GST_PLUGINS_PREFIX}-vpe", '', d)}"
- 
- RDEPENDS_${PN} = "\
--    ${GSTREAMER} \
-+    ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
-     ${GSTREAMER_ACCEL_MM} \
--    gst-ffmpeg \
-     "
-diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-index a6b45b8..b23fd13 100644
---- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-+++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "http://git.ti.com/glsdk"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=10a9abb9c5bb19edd83a8cf66eef7148"
- 
--DEPENDS = "gstreamer libdrm ti-ipc"
-+DEPENDS = "${@base_conditional('GST_PROVIDER', '0.10', 'gstreamer', 'gstreamer1.0', d)} libdrm ti-ipc"
- 
- COMPATIBLE_MACHINE = "dra7xx-evm"
- 
-@@ -12,6 +12,6 @@ S = "${WORKDIR}/git"
- inherit autotools pkgconfig
- 
- SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git"
--SRCREV = "a21dd98d5686a6c4563f89966cb459158085dd1b"
-+SRCREV = "ac71e62ec2bd4c94cd73f24fcf0fc8f4f2876dc8"
- 
--PR = "r1"
-+PR = "r2"
 -- 
-2.2.0
+1.7.9.5
 
 
