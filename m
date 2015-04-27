@@ -1,36 +1,31 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 7EA67529E0
+Return-Path: <j-stiffler@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 3D45E52099
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Apr 2015 11:06:12 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3RB6AEQ031126
-	for <meta-arago@arago-project.org>; Mon, 27 Apr 2015 06:06:11 -0500
-Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3RB67L3027677
-	for <meta-arago@arago-project.org>; Mon, 27 Apr 2015 16:36:08 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.03.0224.002; Mon, 27 Apr 2015 16:36:06 +0530
-From: "R, Karthik" <karthik.ramanan@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [meta-arago PATCH v2] img-pvr-sdk: IMG PowerVR
-	SDK based demos
-Thread-Index: AQHQe+pxXdl7Rmz/YkqlPxj7+tI7sZ1W5pMAgAl4AACAAF2soA==
-Date: Mon, 27 Apr 2015 11:06:06 +0000
-Message-ID: <24B88602B5904F49971CAF899152529B34C2FCBA@DBDE04.ent.ti.com>
-References: <1429196326-11255-1-git-send-email-a0393906@ti.com>
-	<4B26FB5A64EBA14C87266869E037F95814121E6D@DFLE09.ent.ti.com>
-	<5535CFF5.70301@ti.com> <5536254A.7030309@ti.com>
-	<553E16B0.8040009@ti.com>
-In-Reply-To: <553E16B0.8040009@ti.com>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.170.142]
+	Mon, 27 Apr 2015 11:51:47 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3RBpjwX012489
+	for <meta-arago@arago-project.org>; Mon, 27 Apr 2015 06:51:45 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3RBpioc022188
+	for <meta-arago@arago-project.org>; Mon, 27 Apr 2015 06:51:44 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 27 Apr 2015 06:51:44 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3RBpiA5025651;
+	Mon, 27 Apr 2015 06:51:44 -0500
+Message-ID: <553E22CF.1080900@ti.com>
+Date: Mon, 27 Apr 2015 07:51:43 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-Subject: Re: [meta-arago PATCH v2] img-pvr-sdk: IMG PowerVR SDK based demos
+To: "Dmytriyenko, Denys" <denys@ti.com>, "R, Karthik" <karthik.ramanan@ti.com>
+References: <B0581B5571079145BA1CD78C126DBDE73222E69C@DLEE08.ent.ti.com>
+In-Reply-To: <B0581B5571079145BA1CD78C126DBDE73222E69C@DLEE08.ent.ti.com>
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: gstreamer1.0-plugins-bad: Update DEPENDS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,110 +38,321 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Apr 2015 11:06:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 27 Apr 2015 11:51:48 -0000
+Content-Type: multipart/alternative;
+	boundary="------------040306040702080309040403"
 
-Jake,
+--------------040306040702080309040403
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'm in the middle of some customer issue debug.
-Could you please rework this patch to suit your needs? I will review the pa=
-tch after you submit.
+Karthik, Denys,
 
-Regards
-Karthik
+I have been looking into the build failures for am335x-evm so that we 
+may test integrating gstreamer 1.2.
 
------Original Message-----
-From: Stiffler, Jacob=20
-Sent: Monday, April 27, 2015 4:30 PM
-To: R, Karthik; R, Karthik; meta-arago@arago-project.org
-Subject: Re: [meta-arago] [meta-arago PATCH v2] img-pvr-sdk: IMG PowerVR SD=
-K based demos
+I see that the patch 0001-Added-GstDRMBufferPool-support.patch adds the 
+drm support irregardless of whether libdrm was detected. Shouldn't this 
+take the approach or EGL in the same file? If HAVE_KMS, then DRM_DIR=drm...
 
-Ping.
+Here's the relevent portion of the patch:
 
-On 4/21/2015 6:24 AM, Jacob Stiffler wrote:
-> This package is specified in
-> meta-ti/recipes-graphics/libgles/libgles-omap3-no-x.inc
+diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
+index 1d6cc35..b915d07 100644
+--- a/gst-libs/gst/Makefile.am
++++ b/gst-libs/gst/Makefile.am
+@@ -2,7 +2,7 @@ if HAVE_EGL
+  EGL_DIR = egl
+  endif
+
+-SUBDIRS = interfaces basecamerabinsrc codecparsers \
++SUBDIRS = interfaces basecamerabinsrc codecparsers drm \
+          insertbin uridownloader mpegts $(EGL_DIR)
+
+  noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
+
+Let me know if testing the "HAVE_KMS" is the correct approach. I see 
+that for including the gstreamer kms plugin, "USE_KMS" is used to 
+determine whether to build. From 0003-Added-KMSsink-support.patch:
+
+diff --git a/sys/Makefile.am b/sys/Makefile.am
+index b1abda6..b87a1ca 100644
+--- a/sys/Makefile.am
++++ b/sys/Makefile.am
+@@ -106,6 +106,12 @@ else
+  PVR_DIR=
+  endif
+
++if USE_KMS
++KMS_DIR=kms
++else
++KMS_DIR=
++endif
++
+  if USE_SHM
+  SHM_DIR=shm
+  else
+@@ -166,9 +172,9 @@ else
+  MFC_DIR=
+  endif
+
+-SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR) $(AVC_DIR) 
+$(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR) $(DIRECTDRAW_DIR) 
+$(DIRECTSOUND_DIR) $(DIRECTSHOW_DIR) $(DVB_DIR) $(FBDEV_DIR) 
+$(LINSYS_DIR) $(OPENSLES_DIR) $(OSX_VIDEO_DIR) $(PVR_DIR) $(QT_DIR) 
+$(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR) $(VDPAU_DIR) $(WININET_DIR) 
+$(WINSCREENCAP_DIR) $(WASAPI_DIR) $(MFC_DIR)
++SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR) $(AVC_DIR) 
+$(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR) $(DIRECTDRAW_DIR) 
+$(DIRECTSOUND_DIR) $(DIRECTSHOW_DIR) $(DVB_DIR) $(FBDEV_DIR) 
+$(LINSYS_DIR) $(OPENSLES_DIR) $(OSX_VIDEO_DIR) $(PVR_DIR) $(QT_DIR) 
+$(KMS_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR) $(VDPAU_DIR) 
+$(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR) $(MFC_DIR)
+
+  DIST_SUBDIRS = acmenc acmmp3dec androidmedia applemedia 
+applemedia-nonpublic avc bluez d3dvideosink decklink directdraw 
+directsound dvb linsys fbdev dshowdecwrapper dshowsrcwrapper 
+dshowvideosink \
+-               opensles osxvideo pvr2d qtwrapper shm uvch264 vcd vdpau 
+wasapi wininet winks winscreencap mfc
++               opensles osxvideo pvr2d qtwrapper kms shm uvch264 vcd 
+vdpau wasapi wininet winks winscreencap mfc
+
+  include $(top_srcdir)/common/parallel-subdirs.mak
+
+
+Thank you,
+Jake
+
+On 3/26/2015 11:21 AM, Dmytriyenko, Denys wrote:
 >
-> Basically, the OGLES* example binaries are installed to=20
-> ${bindir}/SGX/demos/Raw/
+> Unfortunately, that will make the resulting packages machine specific, 
+> which I want to avoid due to build issues we've had with gst 0.10...
 >
-> On 4/21/2015 12:20 AM, Karthik Ramanan wrote:
->> Jake,
->>
->> Can you point me to the libgles-omap3-rawdemos package?
->> I couldn't find the bb file corresponding to this.
->>
->> Regards
->> Karthik
->>
->> On 20-Apr-15 6:01 PM, Stiffler, Jacob wrote:
->>> Karthik,
->>>
->>> Can this be modified so that the installation of the demos matches=20
->>> the installation of the libgles-omap3-rawdemos package for AM3 and
->>> AM4 so that Matrix scripts may be reused on the platforms?
->>>
->>> Thanks,
->>> Jake
->>>
->>> On 4/16/2015 10:58 AM, Karthik Ramanan wrote:
->>>> * This is a package with pre-built demos
->>>> * These demos will work on DRM
->>>> * Also contains utilities for SGX performance measurement
->>>>
->>>> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
->>>> ---
->>>> .../imgpvrsdk/img-pvr-sdk_3.3.2.bb                 |   29=20
->>>> ++++++++++++++++++++
->>>> 1 file changed, 29 insertions(+)
->>>> create mode 100644
->>>> meta-arago-extras/recipes-graphics/imgpvrsdk/img-pvr-sdk_3.3.2.bb
->>>>
->>>> diff --git
->>>> a/meta-arago-extras/recipes-graphics/imgpvrsdk/img-pvr-sdk_3.3.2.bb
->>>> b/meta-arago-extras/recipes-graphics/imgpvrsdk/img-pvr-sdk_3.3.2.bb
->>>> new file mode 100644
->>>> index 0000000..9387a74
->>>> --- /dev/null
->>>> +++=20
->>>> b/meta-arago-extras/recipes-graphics/imgpvrsdk/img-pvr-sdk_3.3.2.bb
->>>> @@ -0,0 +1,29 @@
->>>> +DESCRIPTION =3D "Imagination PowerVR SDK binaries for Jacinto6 SoC"
->>>> +LICENSE =3D "TI-TSPA"
->>>> +LIC_FILES_CHKSUM =3D
->>>> "file://Jacinto6-IMG-PowerVR-SDK-Manifest.pdf;md5=3D46bcbfc69f8837c339=
-e15fd4a5044a8c"
->>>> +
->>>> +SRC_URI =3D "git://git.ti.com/graphics/img-pvr-sdk.git;protocol=3Dgit=
-"
->>>> +SRCREV =3D "c2456ec3f03da022fb7489d6b381a4ac26a68203"
->>>> +
->>>> +PR =3D "r1"
->>>> +
->>>> +COMPATIBLE_MACHINE =3D "dra7xx"
->>>> +
->>>> +S =3D "${WORKDIR}/git"
->>>> +
->>>> +do_install () {
->>>> +    oe_runmake install DESTDIR=3D${D} }
->>>> +
->>>> +
->>>> +INHIBIT_PACKAGE_STRIP =3D "1"
->>>> +
->>>> +INSANE_SKIP_${PN} +=3D "dev-so"
->>>> +
->>>> +FILES_${PN} +=3D
->>>> "/opt/img-powervr-sdk/Examples/Advanced/OGLES2ChameleonMan \
->>>> + /opt/img-powervr-sdk/Examples/Advanced/OGLES2Coverflow \=20
->>>> + /opt/img-powervr-sdk/Examples/Advanced/OGLES2ExampleUI \=20
->>>> + /opt/img-powervr-sdk/Examples/Advanced/OGLES2Navigation \
->>>> +                /opt/img-powervr-sdk/PVRHub/* \
->>>> +                /opt/img-powervr-sdk/PVRScopeDeveloper/* \
->>>> +               "
->>
+> -- 
+> Denys
 >
+> On Mar 26, 2015 05:59, "R, Karthik" <karthik.ramanan@ti.com> wrote:
+>
+>     * Make the feature additions specific to dra7xx due
+>        to the dependencies
+>
+>     Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+>     ---
+>      .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |    6 ++++--
+>      1 file changed, 4 insertions(+), 2 deletions(-)
+>
+>     diff --git
+>     a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     index b1cacac..72e67f5 100644
+>     ---
+>     a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     +++
+>     b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+>     @@ -2,11 +2,13 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>
+>      PACKAGECONFIG = "faad wayland"
+>
+>     -SRC_URI_append = " \
+>     +DEPENDS_${PN}_append_dra7xx = " libdce libdrm"
+>     +
+>     +SRC_URI_append_dra7xx = " \
+>              file://0001-Added-GstDRMBufferPool-support.patch \
+>     file://0002-Modified-waylandsink-to-accept-NV12-format.patch \
+>              file://0003-Added-KMSsink-support.patch \
+>     file://0004-waylandsink-Removed-dependency-on-dri2.patch \
+>     file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch"
+>
+>     -PR_append = "-arago0"
+>     +PR_append = "-arago1"
+>     -- 
+>     1.7.9.5
+>
+>     _______________________________________________
+>     meta-arago mailing list
+>     meta-arago@arago-project.org
+>     http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
+>
+>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
 
+--------------040306040702080309040403
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Karthik, Denys,<br>
+    <br>
+    I have been looking into the build failures for am335x-evm so that
+    we may test integrating gstreamer 1.2.<br>
+    <br>
+    I see that the patch 0001-Added-GstDRMBufferPool-support.patch adds
+    the drm support irregardless of whether libdrm was detected.
+    Shouldn't this take the approach or EGL in the same file? If
+    HAVE_KMS, then DRM_DIR=drm...<br>
+    <br>
+    Here's the relevent portion of the patch:<br>
+    <br>
+    diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am<br>
+    index 1d6cc35..b915d07 100644<br>
+    --- a/gst-libs/gst/Makefile.am<br>
+    +++ b/gst-libs/gst/Makefile.am<br>
+    @@ -2,7 +2,7 @@ if HAVE_EGL<br>
+     EGL_DIR = egl<br>
+     endif<br>
+    <br>
+    -SUBDIRS = interfaces basecamerabinsrc codecparsers \<br>
+    +SUBDIRS = interfaces basecamerabinsrc codecparsers drm \<br>
+             insertbin uridownloader mpegts $(EGL_DIR)<br>
+    <br>
+     noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h<br>
+    <br>
+    Let me know if testing the "HAVE_KMS" is the correct approach. I see
+    that for including the gstreamer kms plugin, "USE_KMS" is used to
+    determine whether to build. From 0003-Added-KMSsink-support.patch:<br>
+    <br>
+    diff --git a/sys/Makefile.am b/sys/Makefile.am<br>
+    index b1abda6..b87a1ca 100644<br>
+    --- a/sys/Makefile.am<br>
+    +++ b/sys/Makefile.am<br>
+    @@ -106,6 +106,12 @@ else<br>
+     PVR_DIR=<br>
+     endif<br>
+    <br>
+    +if USE_KMS<br>
+    +KMS_DIR=kms<br>
+    +else<br>
+    +KMS_DIR=<br>
+    +endif<br>
+    +<br>
+     if USE_SHM<br>
+     SHM_DIR=shm<br>
+     else<br>
+    @@ -166,9 +172,9 @@ else<br>
+     MFC_DIR=<br>
+     endif<br>
+    <br>
+    -SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR)
+    $(AVC_DIR) $(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR)
+    $(DIRECTDRAW_DIR) $(DIRECTSOUND_DIR) $(DIRECTSHOW_DIR) $(DVB_DIR)
+    $(FBDEV_DIR) $(LINSYS_DIR) $(OPENSLES_DIR) $(OSX_VIDEO_DIR)
+    $(PVR_DIR) $(QT_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR)
+    $(VDPAU_DIR) $(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR)
+    $(MFC_DIR)<br>
+    +SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR)
+    $(AVC_DIR) $(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR)
+    $(DIRECTDRAW_DIR) $(DIRECTSOUND_DIR) $(DIRECTSHOW_DIR) $(DVB_DIR)
+    $(FBDEV_DIR) $(LINSYS_DIR) $(OPENSLES_DIR) $(OSX_VIDEO_DIR)
+    $(PVR_DIR) $(QT_DIR) $(KMS_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR)
+    $(VDPAU_DIR) $(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR)
+    $(MFC_DIR)<br>
+    <br>
+     DIST_SUBDIRS = acmenc acmmp3dec androidmedia applemedia
+    applemedia-nonpublic avc bluez d3dvideosink decklink directdraw
+    directsound dvb linsys fbdev dshowdecwrapper dshowsrcwrapper
+    dshowvideosink \<br>
+    -               opensles osxvideo pvr2d qtwrapper shm uvch264 vcd
+    vdpau wasapi wininet winks winscreencap mfc<br>
+    +               opensles osxvideo pvr2d qtwrapper kms shm uvch264
+    vcd vdpau wasapi wininet winks winscreencap mfc<br>
+    <br>
+     include $(top_srcdir)/common/parallel-subdirs.mak<br>
+    <br>
+    <br>
+    Thank you, <br>
+    Jake<br>
+    <br>
+    <div class="moz-cite-prefix">On 3/26/2015 11:21 AM, Dmytriyenko,
+      Denys wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:B0581B5571079145BA1CD78C126DBDE73222E69C@DLEE08.ent.ti.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <p dir="ltr">Unfortunately, that will make the resulting packages
+        machine specific, which I want to avoid due to build issues
+        we've had with gst 0.10...</p>
+      <p dir="ltr">-- <br>
+        Denys</p>
+      <div class="gmail_quote">On Mar 26, 2015 05:59, "R, Karthik"
+        <a class="moz-txt-link-rfc2396E" href="mailto:karthik.ramanan@ti.com">&lt;karthik.ramanan@ti.com&gt;</a> wrote:<br type="attribution">
+        <blockquote class="quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div><font size="2"><span style="font-size:10pt"></span></font>
+            <div>* Make the feature additions specific to dra7xx due<br>
+                 to the dependencies<br>
+              <br>
+              Signed-off-by: Karthik Ramanan <a class="moz-txt-link-rfc2396E" href="mailto:a0393906@ti.com">&lt;a0393906@ti.com&gt;</a><br>
+              ---<br>
+               .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |    6
+              ++++--<br>
+               1 file changed, 4 insertions(+), 2 deletions(-)<br>
+              <br>
+              diff --git
+              a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
+              index b1cacac..72e67f5 100644<br>
+              ---
+a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
+              +++
+b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
+              @@ -2,11 +2,13 @@ FILESEXTRAPATHS_prepend :=
+              "${THISDIR}/${PN}:"<br>
+               <br>
+               PACKAGECONFIG = "faad wayland"<br>
+               <br>
+              -SRC_URI_append = " \<br>
+              +DEPENDS_${PN}_append_dra7xx = " libdce libdrm"<br>
+              +<br>
+              +SRC_URI_append_dra7xx = " \<br>
+                       <a class="moz-txt-link-freetext" href="file://0001-Added-GstDRMBufferPool-support.patch">file://0001-Added-GstDRMBufferPool-support.patch</a>
+              \<br>
+                      
+              <a class="moz-txt-link-freetext" href="file://0002-Modified-waylandsink-to-accept-NV12-format.patch">file://0002-Modified-waylandsink-to-accept-NV12-format.patch</a>
+              \<br>
+                       <a class="moz-txt-link-freetext" href="file://0003-Added-KMSsink-support.patch">file://0003-Added-KMSsink-support.patch</a> \<br>
+                      
+              <a class="moz-txt-link-freetext" href="file://0004-waylandsink-Removed-dependency-on-dri2.patch">file://0004-waylandsink-Removed-dependency-on-dri2.patch</a> \<br>
+                      
+              <a class="moz-txt-link-freetext" href="file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch">file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch</a>"<br>
+               <br>
+              -PR_append = "-arago0"<br>
+              +PR_append = "-arago1"<br>
+              -- <br>
+              1.7.9.5<br>
+              <br>
+              _______________________________________________<br>
+              meta-arago mailing list<br>
+              <a class="moz-txt-link-abbreviated" href="mailto:meta-arago@arago-project.org">meta-arago@arago-project.org</a><br>
+              <a moz-do-not-send="true"
+                href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a><br>
+            </div>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+meta-arago mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:meta-arago@arago-project.org">meta-arago@arago-project.org</a>
+<a class="moz-txt-link-freetext" href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------040306040702080309040403--
