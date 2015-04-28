@@ -1,30 +1,30 @@
 Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 43AC352093
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0FBC852093
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Apr 2015 18:14:34 +0000 (UTC)
+	Tue, 28 Apr 2015 18:16:44 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3SIEXmQ031778
-	for <meta-arago@arago-project.org>; Tue, 28 Apr 2015 13:14:33 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3SIEWnq018753
-	for <meta-arago@arago-project.org>; Tue, 28 Apr 2015 13:14:32 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 28 Apr 2015 13:14:32 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3SIGh5U000373
+	for <meta-arago@arago-project.org>; Tue, 28 Apr 2015 13:16:43 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3SIGgoG020547
+	for <meta-arago@arago-project.org>; Tue, 28 Apr 2015 13:16:42 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 28 Apr 2015 13:16:42 -0500
 Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t3SIEVsA030577;	Tue, 28 Apr 2015 13:14:32 -0500
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t3SIGfwc013798;	Tue, 28 Apr 2015 13:16:42 -0500
 Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YnA1f-0002r9-NJ;
-	Tue, 28 Apr 2015 14:14:31 -0400
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YnA3k-0002sZ-Su;
+	Tue, 28 Apr 2015 14:16:40 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 28 Apr 2015 14:14:30 -0400
-Message-ID: <1430244870-10948-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 28 Apr 2015 14:16:36 -0400
+Message-ID: <1430244996-11036-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] branding-processor-sdk: Use default virutal/kernel provider.
+Subject: [PATCH] gstreamer1.0-plugins-bad: Fix compilation on non DRM devices.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,62 +37,90 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Apr 2015 18:14:34 -0000
+X-List-Received-Date: Tue, 28 Apr 2015 18:16:44 -0000
 Content-Type: text/plain
 
-* AUTOREV linux, u-boot, and ltp-ddt for all platforms
-* Configure linux-ti-staging sourceipk shallow clone to 400 commits.
+* Conditionally build libgstdrm based on whether both libdrm and
+  libdce are available.
+* Add libdrm/libdce dependency on dra7xx platforms.
+* Only include wayland packageconfig if wayland is a distro feature.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../conf/distro/include/branding-processor-sdk.inc |   26 ++++----------------
- 1 file changed, 5 insertions(+), 21 deletions(-)
+ .../0006-GstDRMBufferPool-support-fix.patch        |   36 ++++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   13 +++++--
+ 2 files changed, 46 insertions(+), 3 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-index 3bb724d..3ef3009 100644
---- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -5,28 +5,10 @@ DISTRO_FEATURES_remove_ti33x = "wayland"
- DISTRO_FEATURES_remove_ti43x = "wayland"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch
+new file mode 100644
+index 0000000..0af1323
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch
+@@ -0,0 +1,36 @@
++From 9e4d46611c4d4600a5abac81b619ae1489d4b8c1 Mon Sep 17 00:00:00 2001
++From: Jacob Stiffler <j-stiffler@ti.com>
++Date: Mon, 27 Apr 2015 08:27:59 -0400
++Subject: [PATCH 6/6] GstDRMBufferPool support fix:
++
++Conditionally build drm library based on if kmssink dependencies are
++by pkgconfig found.
++
++Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
++---
++ gst-libs/gst/Makefile.am |    8 ++++++--
++ 1 file changed, 6 insertions(+), 2 deletions(-)
++
++diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
++index b915d07..52ff331 100644
++--- a/gst-libs/gst/Makefile.am
+++++ b/gst-libs/gst/Makefile.am
++@@ -2,9 +2,13 @@ if HAVE_EGL
++ EGL_DIR = egl
++ endif
++ 
++-SUBDIRS = interfaces basecamerabinsrc codecparsers drm \
+++if USE_KMS
+++DRM_DIR = drm
+++endif
+++
+++SUBDIRS = interfaces basecamerabinsrc codecparsers $(DRM_DIR) \
++ 	 insertbin uridownloader mpegts $(EGL_DIR)
++ 
++ noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
++-DIST_SUBDIRS = interfaces egl basecamerabinsrc codecparsers \
+++DIST_SUBDIRS = interfaces egl basecamerabinsrc codecparsers drm \
++ 	insertbin uridownloader mpegts
++-- 
++1.7.9.5
++
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+index b1cacac..d49da02 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+@@ -1,12 +1,19 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- # Set preferred providers and srcrevs
--PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "sitara-linux-ti-staging"
--PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "sitara-linux-ti-staging"
--PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
--
- # Auto rev important packages to pick up latest
--#SRCREV_pn-u-boot-ti-staging_omap-a15 = "${AUTOREV}"
--#SRCREV_pn-ltp-ddt_omap-a15 = "${AUTOREV}"
--
--# am3 and am4 use sitara-linux-ti-staging, so this only applies to omap-a15
--#SRCREV_pn-linux-ti-staging = "${AUTOREV}"
--
--# Freeze am3 and am4 u-boot
--PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
--PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
--PREFERRED_VERSION_u-boot-ti-staging_am335x-evm = "2014.07%"
--SRCREV_pn-u-boot-ti-staging_am335x-evm = "7e537bfdd261bf8bf444f3ac4d1be3db4ee124e8"
--
--PREFERRED_PROVIDER_virtual/bootloader_am437x-evm = "u-boot-ti-staging"
--PREFERRED_PROVIDER_u-boot_am437x-evm = "u-boot-ti-staging"
--PREFERRED_VERSION_u-boot-ti-staging_am437x-evm = "2014.07%"
--SRCREV_pn-u-boot-ti-staging_am437x-evm = "7e537bfdd261bf8bf444f3ac4d1be3db4ee124e8"
--
-+SRCREV_pn-u-boot-ti-staging_omap-a15 = "${AUTOREV}"
-+SRCREV_pn-ltp-ddt_omap-a15 = "${AUTOREV}"
-+SRCREV_pn-linux-ti-staging = "${AUTOREV}"
+-PACKAGECONFIG = "faad wayland"
++PACKAGECONFIG = "faad ${@base_contains('DISTRO_FEATURES','wayland','wayland','',d)}"
++
++DEPENDS_append_dra7xx = " \
++    libdce \
++    libdrm \
++"
  
- # To create newlines in the message \n is used and the slash must be escaped
- # to function properly
-@@ -53,6 +35,8 @@ SRCIPK_CUSTOM_GIT_MESSAGE_pn-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MES
+ SRC_URI_append = " \
+         file://0001-Added-GstDRMBufferPool-support.patch \
+         file://0002-Modified-waylandsink-to-accept-NV12-format.patch \
+         file://0003-Added-KMSsink-support.patch \
+         file://0004-waylandsink-Removed-dependency-on-dri2.patch \
+-        file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch"
++        file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch \
++        file://0006-GstDRMBufferPool-support-fix.patch \
++"
  
- SRCIPK_CUSTOM_GIT_BRANCH_pn-sitara-linux-ti-staging = "processor-sdk-1.0"
- SRCIPK_CUSTOM_GIT_MESSAGE_pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
-+SRCIPK_SHALLOW_CLONE_pn-linux-ti-staging = "true"
-+SRCIPK_SHALLOW_DEPTH_pn-linux-ti-staging = "400"
- 
- SRCIPK_CUSTOM_GIT_BRANCH_pn-u-boot-ti-staging = "processor-sdk-1.0"
- SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
+-PR_append = "-arago0"
++PR_append = "-arago1"
 -- 
 1.7.9.5
 
