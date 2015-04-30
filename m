@@ -1,27 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 39314529BA
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 939E9529BA
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Apr 2015 19:50:46 +0000 (UTC)
-Received: from gandalf.denix.org ([108.28.31.169]) by vms173021.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NNM00M45XRPFHS0@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 30 Apr 2015 14:50:15 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=ZJdgQs+z c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=e9J7MTPGsLIA:10
-	a=sozttTNsAAAA:8	a=mrhfidMj9VTibTpKm7gA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id DD31A200EF;	Thu,
-	30 Apr 2015 15:50:12 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 30 Apr 2015 15:50:12 -0400
-Message-id: <1430423412-17163-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] packagegroup-arago-test: add cpuburn utility to tests
+	Thu, 30 Apr 2015 20:08:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t3UK8JUj027650
+	for <meta-arago@arago-project.org>; Thu, 30 Apr 2015 15:08:19 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3UK8Int006031
+	for <meta-arago@arago-project.org>; Thu, 30 Apr 2015 15:08:18 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 30 Apr 2015 15:08:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t3UK8H1E026461	for
+	<meta-arago@arago-project.org>; Thu, 30 Apr 2015 15:08:17 -0500
+Date: Thu, 30 Apr 2015 16:08:17 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20150430200816.GT29290@edge>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: RFC: turning off cortex optimizations for nightlies?
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +34,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2015 19:50:46 -0000
+X-List-Received-Date: Thu, 30 Apr 2015 20:08:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+All,
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-test.bb              | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I'm considering turning off cortex optimizations for nightly CoreSDK builds. 
+Currently I'm building 8 machines and besides some machine-specific packages, 
+most of the packages get duplicated into cortex-a8, cortex-a9 and cortex-a15 
+arch-specific directories - each is about 1.5 GB.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index c4d7b61..01d7c62 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r26"
-+PR = "r27"
- 
- inherit packagegroup
- 
-@@ -25,6 +25,7 @@ ARAGO_TEST = "\
-     v4l-utils \
-     smcroute \
-     rwmem \
-+    cpuburn-neon \
-     "
- 
- ARAGO_TI_TEST = "\
+Disabling cortex optimization will of course drop performance slightly (few 
+percent, if I remember correctly), but besides size savings, it also saves on 
+time for rebuilding those packages 3 times. All of them will be designated as 
+armv7a and built once.
+
+Any concerns, comments?
+
 -- 
-2.2.0
-
+Denys
 
