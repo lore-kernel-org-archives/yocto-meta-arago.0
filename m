@@ -1,33 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 3DD7452ACB
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 2A03F52ACB
 	for <meta-arago@arago-project.org>;
-	Fri,  1 May 2015 16:00:26 +0000 (UTC)
+	Fri,  1 May 2015 16:02:04 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t41G0PXU028404
-	for <meta-arago@arago-project.org>; Fri, 1 May 2015 11:00:25 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t41G0Ork031554
-	for <meta-arago@arago-project.org>; Fri, 1 May 2015 11:00:24 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 1 May 2015 11:00:24 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t41G0Ojo032274;
-	Fri, 1 May 2015 11:00:24 -0500
-Date: Fri, 1 May 2015 12:00:23 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20150501160023.GZ29290@edge>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t41G231N023612
+	for <meta-arago@arago-project.org>; Fri, 1 May 2015 11:02:03 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t41G22i2000834
+	for <meta-arago@arago-project.org>; Fri, 1 May 2015 11:02:02 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0224.002; Fri, 1 May 2015 11:02:02 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [nightly] Core TISDK 2015.04 build
+	2015-04-30_22-00-51
+Thread-Index: AQHQg7swyEk1qvM66kefq2765CvgtJ1nehsA//+0HACAAGJ5gP//rx1AgABWNQD//60JAAALJZuAAAp1cdA=
+Date: Fri, 1 May 2015 16:02:02 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F9581412945F@DFLE09.ent.ti.com>
 References: <1480745164.301.1430449311116.JavaMail.jenkins@puget>
 	<20150501135817.GW29290@edge> <55438D20.6020203@ti.com>
 	<20150501151906.GY29290@edge>
 	<4B26FB5A64EBA14C87266869E037F958141293D2@DFLE09.ent.ti.com>
 	<8F29D6B095ED194EA1980491A5E029710C881CD5@DFLE08.ent.ti.com>
 	<4B26FB5A64EBA14C87266869E037F95814129419@DFLE09.ent.ti.com>
+	<20150501160023.GZ29290@edge>
+In-Reply-To: <20150501160023.GZ29290@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814129419@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Cooper Jr.,
 	Franklin" <fcooper@ti.com>
 Subject: Re: [nightly] Core TISDK 2015.04 build 2015-04-30_22-00-51
@@ -43,75 +47,95 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 May 2015 16:00:26 -0000
+X-List-Received-Date: Fri, 01 May 2015 16:02:04 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-With the exception that we have wayland fully functional over fbdev on 
-am3/am4!
+Right, but wayland sink has a dependency on drm. Or is it OK to have libdrm=
+ in the filesystem?
+
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Friday, May 01, 2015 12:00 PM
+To: Stiffler, Jacob
+Cc: Cooper Jr., Franklin; meta-arago@arago-project.org
+Subject: Re: [meta-arago] [nightly] Core TISDK 2015.04 build 2015-04-30_22-=
+00-51
+
+With the exception that we have wayland fully functional over fbdev on am3/=
+am4!
 
 On Fri, May 01, 2015 at 11:47:21AM -0400, Stiffler, Jacob wrote:
-> So in summary: full drm not supported => libdrm should not be included => 
-> libgstdrm should not be built => libgstwaylandsink should not be built => 
-> wayland should be removed from PACKAGE_CONFIG for ti33x and ti43x?
-> 
+> So in summary: full drm not supported =3D> libdrm should not be included=
+=20
+> =3D> libgstdrm should not be built =3D> libgstwaylandsink should not be=20
+> built =3D> wayland should be removed from PACKAGE_CONFIG for ti33x and ti=
+43x?
+>=20
 > Is this logic sound?
-> 
+>=20
 > -----Original Message-----
-> From: Cooper Jr., Franklin 
+> From: Cooper Jr., Franklin
 > Sent: Friday, May 01, 2015 11:38 AM
 > To: Stiffler, Jacob; Dmytriyenko, Denys
 > Cc: meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [nightly] Core TISDK 2015.04 build 2015-04-30_22-00-51
-> 
+> Subject: RE: [meta-arago] [nightly] Core TISDK 2015.04 build=20
+> 2015-04-30_22-00-51
+>=20
 > All platforms are using DRM.
-> 
-> However, am335x and am437x are using what is called FBDEV emulation. Fbdev is an emulation layer that routes traditional fbdev calls to DRM. From a userspace perspective it appears that 335x and am437x are using fbdev even though technically they are using drm.
-> 
-> The reason why we are using fbdev emulation and not straight drm is due to the lack of support of drm in our graphics packages.
-> 
+>=20
+> However, am335x and am437x are using what is called FBDEV emulation. Fbde=
+v is an emulation layer that routes traditional fbdev calls to DRM. From a =
+userspace perspective it appears that 335x and am437x are using fbdev even =
+though technically they are using drm.
+>=20
+> The reason why we are using fbdev emulation and not straight drm is due t=
+o the lack of support of drm in our graphics packages.
+>=20
 > > -----Original Message-----
-> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago- 
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-=20
 > > bounces@arago-project.org] On Behalf Of Stiffler, Jacob
 > > Sent: Friday, May 01, 2015 10:31 AM
 > > To: Dmytriyenko, Denys
 > > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [nightly] Core TISDK 2015.04 build 
+> > Subject: Re: [meta-arago] [nightly] Core TISDK 2015.04 build
 > > 2015-04-30_22-
 > > 00-51
-> > 
-> > Does this mean drm is supported by all platforms, and "libdrm" can be 
-> > a platform-agnostic dependency?
-> > 
+> >=20
+> > Does this mean drm is supported by all platforms, and "libdrm" can=20
+> > be a platform-agnostic dependency?
+> >=20
 > > -----Original Message-----
 > > From: Dmytriyenko, Denys
 > > Sent: Friday, May 01, 2015 11:19 AM
 > > To: Stiffler, Jacob
 > > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [nightly] Core TISDK 2015.04 build 
+> > Subject: Re: [meta-arago] [nightly] Core TISDK 2015.04 build
 > > 2015-04-30_22-
 > > 00-51
-> > 
+> >=20
 > > I think there's some confusion... Does this link help?
-> > 
-> > http://processors.wiki.ti.com/index.php/Linux_Core_LCD_Controller_User
+> >=20
+> > http://processors.wiki.ti.com/index.php/Linux_Core_LCD_Controller_Us
+> > er
 > > _
 > > Guide
-> > 
+> >=20
 > > --
 > > Denys
-> > 
-> > 
+> >=20
+> >=20
 > > On Fri, May 01, 2015 at 10:26:40AM -0400, Jacob Stiffler wrote:
 > > > I see the error:
 > > >
-> > > make[3]: *** No rule to make target
-> > > `../../gst-libs/gst/drm/libgstdrm-1.0.la', needed by 
+> > > make[3]: *** No rule to make target=20
+> > > `../../gst-libs/gst/drm/libgstdrm-1.0.la', needed by=20
 > > > `libgstwaylandsink.la'.  Stop.
 > > > make[3]: *** Waiting for unfinished jobs....
 > > >
-> > > Looks like drm is needed for waylandsink. But I thought am3/am4 did 
-> > > not have DRM?
+> > > Looks like drm is needed for waylandsink. But I thought am3/am4=20
+> > > did not have DRM?
 > > >
 > > >
 > > >
@@ -119,7 +143,8 @@ On Fri, May 01, 2015 at 11:47:21AM -0400, Stiffler, Jacob wrote:
 > > > On 5/1/2015 9:58 AM, Denys Dmytriyenko wrote:
 > > > >Jake,
 > > > >
-> > > >gstreamer1.0-plugins-bad with your patch broke for am3/am4 platforms.
+> > > >gstreamer1.0-plugins-bad with your patch broke for am3/am4 platforms=
+.
 > > > >
 > > > >
 > > > >
@@ -132,7 +157,8 @@ On Fri, May 01, 2015 at 11:47:21AM -0400, Stiffler, Jacob wrote:
 > > > On 5/1/2015 9:58 AM, Denys Dmytriyenko wrote:
 > > > >Jake,
 > > > >
-> > > >gstreamer1.0-plugins-bad with your patch broke for am3/am4 platforms.
+> > > >gstreamer1.0-plugins-bad with your patch broke for am3/am4 platforms=
+.
 > > > >
 > > > >
 > > > >
