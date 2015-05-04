@@ -1,27 +1,34 @@
 Return-Path: <sam.nelson@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id DB70E529B1
+	by arago-project.org (Postfix) with ESMTPS id 15ED852A4D
 	for <meta-arago@arago-project.org>;
-	Mon,  4 May 2015 04:08:02 +0000 (UTC)
+	Mon,  4 May 2015 11:31:11 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t44481he022128
-	for <meta-arago@arago-project.org>; Sun, 3 May 2015 23:08:02 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t44480LV015729
-	for <meta-arago@arago-project.org>; Sun, 3 May 2015 23:08:00 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Sun, 3 May 2015 23:08:00 -0500
-Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t44480hG003770;	Sun, 3 May 2015 23:08:00 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 4 May 2015 00:07:57 -0400
-Message-ID: <1430712477-20534-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t44BV9cf032481
+	for <meta-arago@arago-project.org>; Mon, 4 May 2015 06:31:09 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t44BV8wh008034
+	for <meta-arago@arago-project.org>; Mon, 4 May 2015 06:31:08 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0224.002; Mon, 4 May 2015 06:31:08 -0500
+From: "Nelson, Sam" <sam.nelson@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] ltp-ddt: Skip mv of kernel files if no
+	files found
+Thread-Index: AQHQeUywIN46JmND80K+zYZdea0N651WlGmAgAMuD4CAEgZyAA==
+Date: Mon, 4 May 2015 11:31:08 +0000
+Message-ID: <4F9216F96E5DF9428610502835A9F4905819AD56@DLEE11.ent.ti.com>
+References: <1429302346-9926-1-git-send-email-sam.nelson@ti.com>
+	<20150420184121.GA23723@edge> <20150422191458.GK25236@edge>
+In-Reply-To: <20150422191458.GK25236@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH] configs: mcsdk: Add release config mcsdk/mcsdk-03.01.02.05
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] ltp-ddt: Skip mv of kernel files if no files found
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,39 +41,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 May 2015 04:08:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 04 May 2015 11:31:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- Based on release config mcsdk/mcsdk-3.1.0-config.txt
-  with update commit id for mcsdk release 3.1.2
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
----
- configs/mcsdk/mcsdk-03.01.02.05-config.txt |   14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/mcsdk/mcsdk-03.01.02.05-config.txt
 
-diff --git a/configs/mcsdk/mcsdk-03.01.02.05-config.txt b/configs/mcsdk/mcsdk-03.01.02.05-config.txt
-new file mode 100644
-index 0000000..d75166e
---- /dev/null
-+++ b/configs/mcsdk/mcsdk-03.01.02.05-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
-+meta-mcsdk,git://arago-project.org/git/projects/meta-mcsdk.git,master,2bab20e97aa16c9f763c331ae4c5ad5d045040a0,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,dylan,370ed5e9f68afd0937e01f6cd69863e45ba19c1f,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,ed05b91f137cb229e9ebababf9f72748aece1bf3,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,70ebe86f193decd17d6295bcd4d4e5589585c0cc,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,dylan,0056050410c1d5f8627c509490a5650eb082261c,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,c9f78d6eff14ada3f2bc960e81883b27a10afecc,layers=meta-linaro-toolchain
-+meta-java,git://github.com/woglinde/meta-java,master,ac8c0604d1ed63b1ae0e05f870f53b8241e6dda1,layers=
-+oe-core,git://git.openembedded.org/openembedded-core,dylan,7ff1924674871d604f9656f3928b91dc417c7246,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago.conf.sample
--- 
-1.7.9.5
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Wednesday, April 22, 2015 3:15 PM
+> To: Nelson, Sam
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [PATCH] ltp-ddt: Skip mv of kernel files if no =
+files
+> found
+>=20
+> On Mon, Apr 20, 2015 at 02:41:21PM -0400, Denys Dmytriyenko wrote:
+> > On Fri, Apr 17, 2015 at 04:25:46PM -0400, Sam Nelson wrote:
+> > > - Install was failing if there are no modules for certain platforms
+> > >
+> > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> > > ---
+> > >  .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      |    2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git
+> > > a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> > > b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> > > index 68e1a3c..609b344 100644
+> > > --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> > > +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+> > > @@ -87,7 +87,7 @@ do_install() {
+> > >      oe_runmake install
+> > >      install -d ${D}${datadir}
+> > >      install -d ${D}${kmoddir}
+> > > -    mv ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
+> > > +    find ${D}${LTPROOT}/testcases/bin/ddt/*.ko && mv
+> > > + ${D}${LTPROOT}/testcases/bin/ddt/*.ko ${D}${kmoddir}
+> >
+> > Should probably do "mv || true" instead...
+>=20
+> Sam,
+>=20
+> Do you have any issues doing mv||true construct or do you want to stick
+> with the find command for any reason?
+I am fine with this. Thanks.
+>=20
+> --
+> Denys
 
