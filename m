@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id ED03852093
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id D235B52093
 	for <meta-arago@arago-project.org>;
-	Fri,  8 May 2015 21:56:11 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t48LuAWp025146
-	for <meta-arago@arago-project.org>; Fri, 8 May 2015 16:56:10 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t48LuAfs002069
-	for <meta-arago@arago-project.org>; Fri, 8 May 2015 16:56:10 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 8 May 2015 16:56:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t48Lu9aJ026814	for
-	<meta-arago@arago-project.org>; Fri, 8 May 2015 16:56:10 -0500
-Date: Fri, 8 May 2015 17:56:09 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20150508215609.GQ8462@edge>
-References: <20150430200816.GT29290@edge>
-MIME-Version: 1.0
-In-Reply-To: <20150430200816.GT29290@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: RFC: turning off cortex optimizations for nightlies?
+	Sat,  9 May 2015 02:26:00 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NO200A8Z9ERD0I0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 08 May 2015 21:25:44 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=JbALdvP9 c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=h1PgugrvaO0A:10
+	a=sozttTNsAAAA:8 a=Q4-j1AaZAAAA:8	a=YVR7HjxIffqqjEAitxgA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 172DD200DB;	Fri,
+	8 May 2015 22:25:39 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 08 May 2015 22:25:38 -0400
+Message-id: <1431138338-7007-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] arago.conf: fix Python exception in buildhistory class
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,32 +34,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 May 2015 21:56:12 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 09 May 2015 02:26:02 -0000
 
-Any comments or objections?
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/arago.conf | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Thu, Apr 30, 2015 at 04:08:17PM -0400, Denys Dmytriyenko wrote:
-> All,
-> 
-> I'm considering turning off cortex optimizations for nightly CoreSDK builds. 
-> Currently I'm building 8 machines and besides some machine-specific packages, 
-> most of the packages get duplicated into cortex-a8, cortex-a9 and cortex-a15 
-> arch-specific directories - each is about 1.5 GB.
-> 
-> Disabling cortex optimization will of course drop performance slightly (few 
-> percent, if I remember correctly), but besides size savings, it also saves on 
-> time for rebuilding those packages 3 times. All of them will be designated as 
-> armv7a and built once.
-> 
-> Any concerns, comments?
-> 
-> -- 
-> Denys
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index a64990b..bb74613 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -12,6 +12,10 @@ SDK_NAME = "${SDK_NAME_PREFIX}-${SDK_VERSION}"
+ SDKPATH_REAL = "/usr/local/${SDK_NAME_PREFIX}-${SDK_VERSION}"
+ SDKPATH = "${@"/tmp/"+"x"*96+"/"+"y"*96}"
+ 
++# Daisy has a syntax error in lib/oe/sdk.py, use workaround for now
++# http://cgit.openembedded.org/openembedded-core/commit/?id=81b3cc448f040dcb4c2f2b05983231ac53270663
++IPKGCONF_Target = "${IPKGCONF_TARGET}"
++
+ # Mask any broken recipes (currently none)
+ #BBMASK = ""
+ 
+-- 
+2.2.0
+
 
