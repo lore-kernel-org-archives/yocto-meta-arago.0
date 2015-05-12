@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D2BC6529AE
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 9D6E9529AE
 	for <meta-arago@arago-project.org>;
-	Tue, 12 May 2015 00:12:15 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4C0CEiQ000509
-	for <meta-arago@arago-project.org>; Mon, 11 May 2015 19:12:14 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4C0CDrf013759
-	for <meta-arago@arago-project.org>; Mon, 11 May 2015 19:12:14 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Mon, 11 May 2015 19:12:13 -0500
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "Nelson, Sam" <sam.nelson@ti.com>
-Thread-Topic: [meta-arago] [PATCH] packagegroup-arago-console: Add iproute2
-	tc	package
-Thread-Index: AdCMSEuGxEkqkMmtPUaf4ove1J914A==
-Date: Tue, 12 May 2015 00:12:12 +0000
-Message-ID: <165e40a1-f8d3-4b60-85d2-59e88805da07@email.android.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] packagegroup-arago-console: Add iproute2 tc	package
+	Tue, 12 May 2015 01:48:42 +0000 (UTC)
+Received: from gandalf.denix.org ([108.28.31.169]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NO7009ZBROPKC00@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 11 May 2015 20:48:26 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=AawGxMSu c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=h1PgugrvaO0A:10
+	a=sozttTNsAAAA:8	a=PAp29Sf3gKfwpv2jMhEA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id BA0DF20076;	Mon,
+	11 May 2015 21:48:25 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 11 May 2015 21:48:25 -0400
+Message-id: <1431395305-14703-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] layer.conf: add oprofile and example to siggen safe deps for matrix-gui-oprofile-demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,72 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 May 2015 00:12:16 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_165e40a1f8d34b6085d259e88805da07emailandroidcom_"
+X-List-Received-Date: Tue, 12 May 2015 01:48:44 -0000
 
---_000_165e40a1f8d34b6085d259e88805da07emailandroidcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Denys Dmytriyenko <denys@ti.com>
 
-QWNrDQoNCi0tDQpEZW55cw0KDQpPbiBNYXkgMTEsIDIwMTUgMjA6MDksICJOZWxzb24sIFNhbSIg
-PHNhbS5uZWxzb25AdGkuY29tPiB3cm90ZToNCi0gVG9vbCB1c2VmdWwgdG8gc2hvdyAvIG1hbmlw
-dWxhdGUgdHJhZmZpYyBjb250cm9sIHNldHRpbmdzDQoNClNpZ25lZC1vZmYtYnk6IFNhbSBOZWxz
-b24gPHNhbS5uZWxzb25AdGkuY29tPg0KLS0tDQogLi4uL3BhY2thZ2Vncm91cHMvcGFja2FnZWdy
-b3VwLWFyYWdvLWNvbnNvbGUuYmIgICAgfCAgICAxICsNCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
-cnRpb24oKykNCg0KZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9w
-YWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby1jb25zb2xlLmJiIGIvbWV0YS1hcmFnby1k
-aXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLWNvbnNv
-bGUuYmINCmluZGV4IGJhYTZiY2EuLmQ3MDY5MzggMTAwNjQ0DQotLS0gYS9tZXRhLWFyYWdvLWRp
-c3Ryby9yZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tY29uc29s
-ZS5iYg0KKysrIGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMv
-cGFja2FnZWdyb3VwLWFyYWdvLWNvbnNvbGUuYmINCkBAIC01MSw2ICs1MSw3IEBAIEFSQUdPX1VU
-SUxTID0gIlwNCiAgICAgdXNidXRpbHMgXA0KICAgICBpMmMtdG9vbHMgXA0KICAgICBpcHJvdXRl
-MiBcDQorICAgIGlwcm91dGUyLXRjIFwNCiAgICAgc3RyYWNlIFwNCiAgICAgbHRyYWNlIFwNCiAg
-ICAgJHtAYmFzZV9jb250YWlucygnTUFDSElORV9GRUFUVVJFUycsICdwY2knLCAncGNpdXRpbHMn
-LCAnJyxkKX0gXA0KLS0NCjEuNy45LjUNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18NCm1ldGEtYXJhZ28gbWFpbGluZyBsaXN0DQptZXRhLWFyYWdvQGFy
-YWdvLXByb2plY3Qub3JnDQpodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dpLWJpbi9tYWlsbWFu
-L2xpc3RpbmZvL21ldGEtYXJhZ28NCg==
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-extras/conf/layer.conf | 2 ++
+ 1 file changed, 2 insertions(+)
 
---_000_165e40a1f8d34b6085d259e88805da07emailandroidcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <F1AF87ABE3C999488CF1827FD26EBAAD@owa.mail.ti.com>
-Content-Transfer-Encoding: base64
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+index 2e3ebf3..bbfd594 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -15,5 +15,7 @@ LICENSE_PATH += "${LAYERDIR}/licenses"
+ 
+ SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
+     matrix-gui-multimedia-demos->amsdk-av-files \
++    matrix-gui-oprofile-demos->oprofile \
++    matrix-gui-oprofile-demos->oprofile-example \
+     matrix-lighttpd-config->lighttpd \
+ "
+-- 
+2.2.0
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHAgZGlyPSJsdHIi
-PkFjazwvcD4NCjxwIGRpcj0ibHRyIj4tLSA8YnI+DQpEZW55czwvcD4NCjxkaXYgY2xhc3M9Imdt
-YWlsX3F1b3RlIj5PbiBNYXkgMTEsIDIwMTUgMjA6MDksICZxdW90O05lbHNvbiwgU2FtJnF1b3Q7
-ICZsdDtzYW0ubmVsc29uQHRpLmNvbSZndDsgd3JvdGU6PGJyIHR5cGU9ImF0dHJpYnV0aW9uIj4N
-CjxibG9ja3F1b3RlIGNsYXNzPSJxdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRl
-ci1sZWZ0OjFweCAjY2NjIHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj48Zm9udCBzaXpl
-PSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQiPjwvc3Bhbj48L2ZvbnQ+DQo8ZGl2Pi0g
-VG9vbCB1c2VmdWwgdG8gc2hvdyAvIG1hbmlwdWxhdGUgdHJhZmZpYyBjb250cm9sIHNldHRpbmdz
-PGJyPg0KPGJyPg0KU2lnbmVkLW9mZi1ieTogU2FtIE5lbHNvbiAmbHQ7c2FtLm5lbHNvbkB0aS5j
-b20mZ3Q7PGJyPg0KLS0tPGJyPg0KJm5ic3A7Li4uL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3Vw
-LWFyYWdvLWNvbnNvbGUuYmImbmJzcDsmbmJzcDsmbmJzcDsgfCZuYnNwOyZuYnNwOyZuYnNwOyAx
-ICYjNDM7PGJyPg0KJm5ic3A7MSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCYjNDM7KTxicj4N
-Cjxicj4NCmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvcGFja2Fn
-ZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tY29uc29sZS5iYiBiL21ldGEtYXJhZ28tZGlzdHJv
-L3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby1jb25zb2xlLmJi
-PGJyPg0KaW5kZXggYmFhNmJjYS4uZDcwNjkzOCAxMDA2NDQ8YnI+DQotLS0gYS9tZXRhLWFyYWdv
-LWRpc3Ryby9yZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tY29u
-c29sZS5iYjxicj4NCiYjNDM7JiM0MzsmIzQzOyBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMt
-Y29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby1jb25zb2xlLmJiPGJyPg0KQEAg
-LTUxLDYgJiM0Mzs1MSw3IEBAIEFSQUdPX1VUSUxTID0gJnF1b3Q7XDxicj4NCiZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyB1c2J1dGlscyBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGky
-Yy10b29scyBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGlwcm91dGUyIFw8YnI+DQom
-IzQzOyZuYnNwOyZuYnNwOyZuYnNwOyBpcHJvdXRlMi10YyBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7IHN0cmFjZSBcPGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGx0cmFjZSBc
-PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7QGJhc2VfY29udGFpbnMoJ01BQ0hJTkVf
-RkVBVFVSRVMnLCAncGNpJywgJ3BjaXV0aWxzJywgJycsZCl9IFw8YnI+DQotLSA8YnI+DQoxLjcu
-OS41PGJyPg0KPGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX188YnI+DQptZXRhLWFyYWdvIG1haWxpbmcgbGlzdDxicj4NCm1ldGEtYXJhZ29AYXJhZ28t
-cHJvamVjdC5vcmc8YnI+DQo8YSBocmVmPSJodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dpLWJp
-bi9tYWlsbWFuL2xpc3RpbmZvL21ldGEtYXJhZ28iPmh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9j
-Z2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbzwvYT48YnI+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_165e40a1f8d34b6085d259e88805da07emailandroidcom_--
