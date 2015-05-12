@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 2137452A7F
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id CF26552A22
 	for <meta-arago@arago-project.org>;
-	Tue, 12 May 2015 06:02:13 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4C62BFc012272
-	for <meta-arago@arago-project.org>; Tue, 12 May 2015 01:02:11 -0500
+	Tue, 12 May 2015 10:34:45 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4CAYhRP024206
+	for <meta-arago@arago-project.org>; Tue, 12 May 2015 05:34:43 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4C62BOp008204
-	for <meta-arago@arago-project.org>; Tue, 12 May 2015 01:02:11 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4CAYhc1028625
+	for <meta-arago@arago-project.org>; Tue, 12 May 2015 05:34:43 -0500
 Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 12 May 2015 01:02:10 -0500
+	Tue, 12 May 2015 05:34:43 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t4C62AvI001731	for <meta-arago@arago-project.org>;
-	Tue, 12 May 2015 01:02:10 -0500
-Date: Tue, 12 May 2015 02:02:10 -0400
+	t4CAYhMX014167	for <meta-arago@arago-project.org>;
+	Tue, 12 May 2015 05:34:43 -0500
+Date: Tue, 12 May 2015 06:34:42 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <442412016.365.1431410530465.JavaMail.jenkins@puget>
+Message-ID: <1568764178.367.1431426882870.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.05 build 2015-05-11_17-58-02
+Subject: [nightly] Core TISDK 2015.05 build 2015-05-12_02-02-11
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 May 2015 06:02:14 -0000
+X-List-Received-Date: Tue, 12 May 2015 10:34:46 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_364_436882787.1431410530400"
+	boundary="----=_Part_366_189453176.1431426882771"
 
-------=_Part_364_436882787.1431410530400
+------=_Part_366_189453176.1431426882771
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 05/11/15
+Status for 05/12/15
 </title>
 </head>
 <body>
 
-<h2>Status for 05/11/15</h2>
+<h2>Status for 05/12/15</h2>
 
-<h2>BUILD_ID: build-2015-05-11_17-59-04</h2>
+<h2>BUILD_ID: build-2015-05-12_02-03-19</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -133,13 +133,13 @@ Status for 05/11/15
     </tr>
     <tr>
         <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am57xx-evm</td>
@@ -149,7 +149,7 @@ Status for 05/11/15
     <tr>
         <td>omap5-evm</td>
         <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>k2hk-evm</td>
@@ -158,8 +158,8 @@ Status for 05/11/15
     </tr>
     <tr>
         <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
     <tr>
         <td>k2l-evm</td>
@@ -243,4 +243,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_364_436882787.1431410530400--
+------=_Part_366_189453176.1431426882771--
