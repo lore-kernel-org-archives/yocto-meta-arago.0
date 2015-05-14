@@ -1,32 +1,32 @@
 Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id B737D52A4F
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 48E7C52A4F
 	for <meta-arago@arago-project.org>;
-	Thu, 14 May 2015 14:28:36 +0000 (UTC)
+	Thu, 14 May 2015 14:28:37 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4EESZtO032387
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4EESZZW006159
 	for <meta-arago@arago-project.org>; Thu, 14 May 2015 09:28:35 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4EESZMZ032637
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4EESZAY032640
 	for <meta-arago@arago-project.org>; Thu, 14 May 2015 09:28:35 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 14 May 2015 09:28:34 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 14 May 2015 09:28:35 -0500
 Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t4EESYhF017668;	Thu, 14 May 2015 09:28:34 -0500
+	t4EESZlZ017688;	Thu, 14 May 2015 09:28:35 -0500
 Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1Ysu7m-0006np-Kk;
-	Thu, 14 May 2015 10:28:34 -0400
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1Ysu7n-0006ns-8t;
+	Thu, 14 May 2015 10:28:35 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 14 May 2015 10:28:22 -0400
-Message-ID: <1431613705-26086-7-git-send-email-j-stiffler@ti.com>
+Date: Thu, 14 May 2015 10:28:23 -0400
+Message-ID: <1431613705-26086-8-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1431613705-26086-1-git-send-email-j-stiffler@ti.com>
 References: <1431613705-26086-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 6/9] oprofile-example: Move SRC_URI to git.ti.com.
+Subject: [PATCH 7/9] screenshot: Move SRC_URI to git.ti.com.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,19 +44,19 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../oprofile-example/oprofile-example_git.bb       |    2 +-
+ .../recipes-graphics/screenshot/screenshot_1.0.bb  |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-index 2e289b5..dbcf5b9 100644
---- a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-+++ b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-@@ -12,7 +12,7 @@ PR = "r4"
+diff --git a/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb b/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb
+index c02eab4..c10dc25 100644
+--- a/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb
++++ b/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb
+@@ -9,7 +9,7 @@ PR = "r1"
  BRANCH ?= "master"
- SRCREV = "066ecdab2bf0788eec253bf27fd44f7436f0cd04"
+ SRCREV = "169242aa7a265d5c94755d74601ad4a3f1828c96"
  
--SRC_URI = "git://gitorious.org/oprofile-example/oprofile-example.git;protocol=http;branch=${BRANCH}"
-+SRC_URI = "git://git.ti.com/apps/oprofile-example.git;protocol=git;branch=${BRANCH}"
+-SRC_URI = "git://gitorious.org/screenshot/screenshot.git;protocol=http;branch=${BRANCH}"
++SRC_URI = "git://git.ti.com/apps/screenshot.git;protocol=git;branch=${BRANCH}"
  
  S = "${WORKDIR}/git"
  
