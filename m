@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id 29A3F529AF
+Return-Path: <hzhang@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 862FD52A0D
 	for <meta-arago@arago-project.org>;
-	Fri, 15 May 2015 15:15:36 +0000 (UTC)
-Received: from gandalf.denix.org ([108.28.31.169]) by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NOE00KVQD1J0N80@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 15 May 2015 10:15:20 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=B/MOC1ok c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=h1PgugrvaO0A:10
-	a=sozttTNsAAAA:8	a=qgI-uSC91JOvHJcTXCoA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id D6EAF20091;	Fri,
-	15 May 2015 11:15:19 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 15 May 2015 11:15:19 -0400
-Message-id: <1431702919-28761-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] gstreamer1.0-plugins-bad: fix breakage in omap5 machine
+	Fri, 15 May 2015 19:56:56 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4FJusqj002621
+	for <meta-arago@arago-project.org>; Fri, 15 May 2015 14:56:54 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4FJusNh016251
+	for <meta-arago@arago-project.org>; Fri, 15 May 2015 14:56:54 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 15 May 2015 14:56:54 -0500
+Received: from ares-ubuntu (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4FJusPD032310;
+	Fri, 15 May 2015 14:56:54 -0500
+Received: from a0868496 by ares-ubuntu with local (Exim 4.76)	(envelope-from
+	<hzhang@ti.com>)	id 1YtLj4-0003P2-15; Fri, 15 May 2015 15:56:54 -0400
+From: <hzhang@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 15 May 2015 15:56:52 -0400
+Message-ID: <1431719812-13050-1-git-send-email-hzhang@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH 1/2] tisdk-server image: add recovery kernel build for Keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,44 +36,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 May 2015 15:15:37 -0000
+X-List-Received-Date: Fri, 15 May 2015 19:56:56 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Hao Zhang <hzhang@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Add recovery linux kernel and dtb image build for Keystone II devices.
+
+Signed-off-by: Hao Zhang <hzhang@ti.com>
 ---
- .../gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend             | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ .../packagegroup-arago-base-tisdk-server-extra.bb  |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-index f2a38df..2e91320 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-@@ -2,13 +2,15 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 4241dd4..879b761 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r0"
++PR = "r1"
  
- PACKAGECONFIG = "faad"
+ inherit packagegroup
  
--PACKAGECONFIG_append_dra7xx = " ${@base_contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-+PACKAGECONFIG_append_omap-a15 = " ${@base_contains('DISTRO_FEATURES','wayland','wayland','',d)}"
- 
--DEPENDS_append_dra7xx = " \
-+DEPENDS_append_omap-a15 = " \
-     libdce \
-     libdrm \
- "
- 
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
- SRC_URI_append = " \
-         file://0001-Added-GstDRMBufferPool-support.patch \
-         file://0002-Modified-waylandsink-to-accept-NV12-format.patch \
-@@ -18,4 +20,4 @@ SRC_URI_append = " \
-         file://0006-GstDRMBufferPool-support-fix.patch \
- "
- 
--PR_append = "-arago2"
-+PR_append = "-arago3"
+@@ -159,4 +159,5 @@ RDEPENDS_${PN} = "\
+     file \
+     libbz2 \
+     boost \
++    recovery-kernel \
+     "
 -- 
-2.2.0
+1.7.9.5
 
 
