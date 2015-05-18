@@ -1,28 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 50DDD52987
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 27A0F52A3D
 	for <meta-arago@arago-project.org>;
-	Mon, 18 May 2015 17:27:35 +0000 (UTC)
-Received: from gandalf.denix.org ([108.28.31.169]) by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NOK00ITK3592ZN0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 18 May 2015 12:27:10 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Ap5ZB14n c=1 sm=1 tr=0	a=fMO+sUsoiA3cqMJ/JkSOnA==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=h1PgugrvaO0A:10
-	a=sozttTNsAAAA:8 a=9c4GchTaAAAA:8	a=D3BNXdTDAAAA:8
-	a=cwsjouV1xUdBfSdkvh0A:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id F1E6120076;	Mon,
-	18 May 2015 13:27:08 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 18 May 2015 13:27:06 -0400
-Message-id: <1431970028-25239-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH 1/3] gcc: overlay remaining gcc 4.7 pieces, will need to fix nativesdk deps
+	Mon, 18 May 2015 18:25:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4IIPSbQ018342
+	for <meta-arago@arago-project.org>; Mon, 18 May 2015 13:25:29 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4IIPSXd010904
+	for <meta-arago@arago-project.org>; Mon, 18 May 2015 13:25:28 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 18 May 2015 13:25:28 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4IIPSlW005285;
+	Mon, 18 May 2015 13:25:28 -0500
+Date: Mon, 18 May 2015 14:25:28 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <hzhang@ti.com>
+Message-ID: <20150518182528.GI31845@edge>
+References: <1431719867-13151-1-git-send-email-hzhang@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1431719867-13151-1-git-send-email-hzhang@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] kexec-tools: add kexec fast reboot tools for Keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,720 +37,344 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 May 2015 17:27:35 -0000
+X-List-Received-Date: Mon, 18 May 2015 18:25:38 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+See below.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-devtools/gcc/gcc-cross-initial.inc     |  81 +++++++++
- .../recipes-devtools/gcc/gcc-cross-initial_4.7.bb  |   2 +
- .../recipes-devtools/gcc/gcc-cross.inc             | 185 +++++++++++++++++++++
- .../recipes-devtools/gcc/gcc-cross_4.7.bb          |   3 +
- .../recipes-devtools/gcc/gcc-crosssdk-initial.inc  |   8 +
- .../gcc/gcc-crosssdk-initial_4.7.bb                |   3 +
- .../recipes-devtools/gcc/gcc-crosssdk.inc          |  10 ++
- .../recipes-devtools/gcc/gcc-crosssdk_4.7.bb       |   2 +
- .../recipes-devtools/gcc/gcc-runtime.inc           | 166 ++++++++++++++++++
- .../recipes-devtools/gcc/gcc-runtime_4.7.bb        |   3 +
- meta-arago-distro/recipes-devtools/gcc/libgcc.inc  | 143 ++++++++++++++++
- .../recipes-devtools/gcc/libgcc_4.7.bb             |   3 +
- 12 files changed, 609 insertions(+)
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial.inc
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial_4.7.bb
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-cross.inc
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-cross_4.7.bb
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial.inc
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial_4.7.bb
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk.inc
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_4.7.bb
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-runtime.inc
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-runtime_4.7.bb
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/libgcc.inc
- create mode 100644 meta-arago-distro/recipes-devtools/gcc/libgcc_4.7.bb
 
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial.inc b/meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial.inc
-new file mode 100644
-index 0000000..8184538
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial.inc
-@@ -0,0 +1,81 @@
-+DEPENDS = "virtual/${TARGET_PREFIX}binutils ${NATIVEDEPS}"
-+PROVIDES = "virtual/${TARGET_PREFIX}gcc-initial"
-+PACKAGES = ""
-+
-+INHIBIT_AUTOTOOLS_DEPS = "1"
-+INHIBIT_DEFAULT_DEPS = "1"
-+
-+CROSS_TARGET_SYS_DIR_append = ".${PN}"
-+
-+# This is intended to be a -very- basic config
-+# sysroot is needed in case we use libc-initial
-+EXTRA_OECONF = "--with-newlib \
-+		--without-headers \
-+		--disable-shared \
-+		--disable-threads \
-+		--disable-multilib \
-+		--disable-__cxa_atexit \
-+		--enable-languages=c \
-+                ${OPTSPACE} \
-+		--program-prefix=${TARGET_PREFIX} \
-+		--with-sysroot=${STAGING_DIR_TARGET} \
-+		--with-build-sysroot=${GCCCROSS_BUILDSYSROOT} \
-+		${EXTRA_OECONF_INITIAL} \
-+		${@base_contains('DISTRO_FEATURES', 'ld-is-gold', '--with-ld=${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}ld.bfd', '', d)} \
-+		${EXTRA_OECONF_FPU}"
-+
-+EXTRA_OECONF += " --with-native-system-header-dir=${SYSTEMHEADERS} "
-+
-+GCCCROSS_BUILDSYSROOT = "${B}/tmpsysroot"
-+
-+do_configure_prepend () {
-+	sysr=${GCCCROSS_BUILDSYSROOT}${target_includedir}
-+	mkdir -p $sysr
-+	for t in linux asm asm-generic; do
-+		rm -f $sysr/$t
-+		ln -s ${STAGING_DIR_TARGET}${target_includedir}/$t $sysr/
-+	done
-+}
-+
-+do_compile () {
-+    oe_runmake all-gcc all-target-libgcc
-+}
-+do_install () {
-+	oe_runmake 'DESTDIR=${D}' install-gcc install-target-libgcc
-+
-+	# We don't really need this (here shares/ contains man/, info/, locale/).
-+	rm -rf ${D}${datadir}/
-+
-+	# We use libiberty from binutils
-+	find ${D}${exec_prefix}/lib -name libiberty.a | xargs rm -f
-+	find ${D}${exec_prefix}/lib -name libiberty.h | xargs rm -f
-+
-+	# Insert symlinks into libexec so when tools without a prefix are searched for, the correct ones are
-+	# found. These need to be relative paths so they work in different locations.
-+	dest=${D}${libexecdir}/gcc/${TARGET_SYS}/${BINV}/
-+	install -d $dest
-+	for t in ar as ld nm objcopy objdump ranlib strip g77 gcc cpp gfortran; do
-+		ln -sf ${BINRELPATH}/${TARGET_PREFIX}$t $dest$t
-+	done
-+	# fixed limits.h infact includes the so called real limits.h
-+	# which should come from libc but when we build libc-initial
-+	# then bunch of configure tests include fixed limits.h which in turn
-+	# includes real limits.h but this real limits.h is not staged yet
-+	# so we overwirte the generated include-fixed/limits.h for gcc-cross-initial
-+	# to get rid references to real limits.h
-+	cp gcc/include-fixed/limits.h ${D}${gcclibdir}/${TARGET_SYS}/${BINV}/include-fixed/limits.h
-+}
-+#
-+# Override the default sysroot staging copy since this won't look like a target system
-+#
-+sysroot_stage_all() {
-+	sysroot_stage_dir ${D} ${SYSROOT_DESTDIR}
-+	install -d ${SYSROOT_DESTDIR}${STAGING_DIR_TARGET}${target_base_libdir}/
-+	install -d ${SYSROOT_DESTDIR}${STAGING_DIR_TARGET}${target_libdir}/
-+	mv ${SYSROOT_DESTDIR}${target_base_libdir}/* ${SYSROOT_DESTDIR}${STAGING_DIR_TARGET}${target_base_libdir}/ || true
-+	mv ${SYSROOT_DESTDIR}${target_libdir}/* ${SYSROOT_DESTDIR}${STAGING_DIR_TARGET}${target_libdir}/ || true
-+}
-+
-+do_populate_sysroot[sstate-inputdirs] = "${SYSROOT_DESTDIR}/${STAGING_DIR_HOST}/ ${SYSROOT_DESTDIR}/${STAGING_DIR_TARGET}/${target_base_libdir}/"
-+do_populate_sysroot[sstate-outputdirs] = "${STAGING_DIR_HOST}/ ${STAGING_DIR_TCBOOTSTRAP}/${target_base_libdir}/"
-+
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial_4.7.bb b/meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial_4.7.bb
-new file mode 100644
-index 0000000..4c73e5c
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-cross-initial_4.7.bb
-@@ -0,0 +1,2 @@
-+require recipes-devtools/gcc/gcc-cross_${PV}.bb
-+require gcc-cross-initial.inc
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-cross.inc b/meta-arago-distro/recipes-devtools/gcc/gcc-cross.inc
-new file mode 100644
-index 0000000..25a3142
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-cross.inc
-@@ -0,0 +1,185 @@
-+inherit cross
-+
-+INHIBIT_DEFAULT_DEPS = "1"
-+EXTRADEPENDS = ""
-+DEPENDS = "virtual/${TARGET_PREFIX}binutils virtual/${TARGET_PREFIX}libc-for-gcc ${EXTRADEPENDS} ${NATIVEDEPS}"
-+PROVIDES = "virtual/${TARGET_PREFIX}gcc virtual/${TARGET_PREFIX}g++"
-+python () {
-+    if d.getVar("TARGET_OS", True).startswith("linux"):
-+        d.setVar("EXTRADEPENDS", "linux-libc-headers")
-+}
-+
-+require gcc-configure-common.inc
-+
-+EXTRA_OECONF += " --enable-poison-system-directories"
-+EXTRA_OECONF_append_sh4 = " --with-multilib-list= --enable-incomplete-targets "
-+
-+EXTRA_OECONF += "--disable-libunwind-exceptions \
-+                 --with-mpfr=${STAGING_DIR_NATIVE}${prefix_native} \
-+                 --with-system-zlib "
-+
-+EXTRA_OECONF_PATHS = " \
-+                      --with-gxx-include-dir=${STAGING_DIR_TARGET}${target_includedir}/c++ \
-+                      --with-sysroot=${STAGING_DIR_TARGET} \
-+                      --with-build-sysroot=${STAGING_DIR_TARGET}"
-+
-+ARCH_FLAGS_FOR_TARGET += "-isystem${STAGING_DIR_TARGET}${target_includedir}"
-+
-+do_configure_prepend () {
-+	sed -i 's/BUILD_INFO=info/BUILD_INFO=/' ${S}/gcc/configure
-+}
-+
-+do_compile () {
-+	export CC="${BUILD_CC}"
-+	export AR_FOR_TARGET="${TARGET_SYS}-ar"
-+	export RANLIB_FOR_TARGET="${TARGET_SYS}-ranlib"
-+	export LD_FOR_TARGET="${TARGET_SYS}-ld"
-+	export NM_FOR_TARGET="${TARGET_SYS}-nm"
-+	export CC_FOR_TARGET="${CCACHE} ${TARGET_SYS}-gcc ${TARGET_CC_ARCH}"
-+	export CFLAGS_FOR_TARGET="${TARGET_CFLAGS}"
-+	export CPPFLAGS_FOR_TARGET="${TARGET_CPPFLAGS}"
-+	export CXXFLAGS_FOR_TARGET="${TARGET_CXXFLAGS}"
-+	export LDFLAGS_FOR_TARGET="${TARGET_LDFLAGS}"
-+
-+	oe_runmake all-host all-target-libgcc
-+	# now generate script to drive testing
-+	echo "#!/usr/bin/env sh" >${B}/${TARGET_PREFIX}testgcc
-+	set >> ${B}/${TARGET_PREFIX}testgcc
-+	# prune out the unneeded vars
-+	sed -i -e "/^BASH/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^USER/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^OPT/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^DIRSTACK/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^EUID/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^FUNCNAME/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^GROUPS/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^HOST/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^HOME/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^IFS/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^LC_ALL/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^LOGNAME/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^MACHTYPE/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^OSTYPE/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^PIPE/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^SHELL/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^'/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^UID/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^TERM/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^PATCH_GET/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^PKG_/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^POSIXLY_/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^PPID/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^PS4/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^Q/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^SHLVL/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^STAGING/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^LD_LIBRARY_PATH/d" ${B}/${TARGET_PREFIX}testgcc
-+	sed -i -e "/^PSEUDO/d" ${B}/${TARGET_PREFIX}testgcc
-+
-+	# append execution part of the script
-+cat >> ${B}/${TARGET_PREFIX}testgcc << STOP
-+target="\$1"
-+usage () {
-+	echo "Usage:"
-+	echo "\$0 user@target 'extra options to dejagnu'"
-+	echo "\$0 target 'extra options to dejagnu'"
-+	echo "\$0 target"
-+	echo "e.g. \$0 192.168.7.2 ' dg.exp=visibility-d.c'"
-+	echo "will only run visibility-d.c test case"
-+	echo "e.g. \$0 192.168.7.2 '/-mthumb dg.exp=visibility-d.c'"
-+	echo "will only run visibility-d.c test case in thumb mode"
-+	echo "You need to have dejagnu autogen expect installed"
-+	echo "on the build host"
-+    }
-+if [ "x\$target" = "x" ]
-+then
-+	echo "Please specify the target machine and remote user in form of user@target\n"
-+	usage
-+	exit 1;
-+fi
-+
-+shift
-+
-+echo "\$target" | grep "@" 2>&1 > /dev/null
-+if [ "x\$?" = "x0" ]
-+then
-+   user=\$(echo \$target | cut -d '@' -f 1)
-+   target=\$(echo \$target | cut -d '@' -f 2)
-+else
-+   user=\$USER
-+fi
-+ssh \$user@\$target date 2>&1 > /dev/null
-+if [ "x\$?" != "x0" ]
-+then
-+	echo "Failed connecting to \$user@\$target it could be because"
-+	echo "you don't have passwordless ssh setup to access \$target"
-+	echo "or sometimes host key has been changed"
-+	echo "in such case do something like below on build host"
-+	echo "ssh-keygen -f "~/.ssh/known_hosts" -R \$target"
-+	echo "and then try ssh \$user@\$target"
-+
-+	usage
-+	exit 1
-+fi
-+	echo "lappend boards_dir [pwd]/../../.." > ${B}/site.exp
-+	echo "load_generic_config \"unix\"" > ${B}/${PACKAGE_ARCH}.exp
-+	echo "set_board_info username \$user" >> ${B}/${PACKAGE_ARCH}.exp
-+	echo "set_board_info rsh_prog ssh" >> ${B}/${PACKAGE_ARCH}.exp
-+	echo "set_board_info rcp_prog scp" >> ${B}/${PACKAGE_ARCH}.exp
-+	echo "set_board_info hostname \$target" >> ${B}/${PACKAGE_ARCH}.exp
-+	DEJAGNU=${B}/site.exp make -k check RUNTESTFLAGS="--target_board=${PACKAGE_ARCH}\$@"
-+
-+STOP
-+
-+	chmod +x ${B}/${TARGET_PREFIX}testgcc
-+
-+}
-+
-+INHIBIT_PACKAGE_STRIP = "1"
-+
-+# Compute how to get from libexecdir to bindir in python (easier than shell)
-+BINRELPATH = "${@oe.path.relative(d.expand("${libexecdir}/gcc/${TARGET_SYS}/${BINV}"), d.expand("${STAGING_DIR_NATIVE}${prefix_native}/bin/${MULTIMACH_TARGET_SYS}"))}"
-+
-+do_install () {
-+	oe_runmake 'DESTDIR=${D}' install-host
-+
-+	install -d ${D}${target_base_libdir}
-+	install -d ${D}${target_libdir}
-+    
-+	# Link gfortran to g77 to satisfy not-so-smart configure or hard coded g77
-+	# gfortran is fully backwards compatible. This is a safe and practical solution. 
-+	ln -sf ${STAGING_DIR_NATIVE}${prefix_native}/bin/${TARGET_PREFIX}gfortran ${STAGING_DIR_NATIVE}${prefix_native}/bin/${TARGET_PREFIX}g77 || true
-+
-+	
-+	# Insert symlinks into libexec so when tools without a prefix are searched for, the correct ones are
-+	# found. These need to be relative paths so they work in different locations.
-+	dest=${D}${libexecdir}/gcc/${TARGET_SYS}/${BINV}/
-+	install -d $dest
-+	for t in ar as ld nm objcopy objdump ranlib strip g77 gcc cpp gfortran; do
-+		ln -sf ${BINRELPATH}/${TARGET_PREFIX}$t $dest$t
-+		ln -sf ${BINRELPATH}/${TARGET_PREFIX}$t ${dest}${TARGET_PREFIX}$t
-+	done
-+
-+	# Remove things we don't need but keep share/java
-+	for d in info man share/doc share/locale share/man share/info; do
-+		rm -rf ${D}${STAGING_DIR_NATIVE}${prefix_native}/$d
-+	done
-+
-+	# We use libiberty from binutils
-+	find ${D}${exec_prefix}/lib -name libiberty.a | xargs rm -f
-+	find ${D}${exec_prefix}/lib -name libiberty.h | xargs rm -f
-+
-+	# gcc-runtime installs libgcc into a special location in staging since it breaks doing a standalone build
-+	case ${PN} in
-+		*gcc-cross|*gcc-crosssdk)
-+			dest=${D}/${includedir}/gcc-build-internal-${MULTIMACH_TARGET_SYS}
-+			cp -fpPR . $dest
-+		;;
-+	esac
-+}
-+
-+do_package[noexec] = "1"
-+do_packagedata[noexec] = "1"
-+do_package_write_ipk[noexec] = "1"
-+do_package_write_rpm[noexec] = "1"
-+do_package_write_deb[noexec] = "1"
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-cross_4.7.bb b/meta-arago-distro/recipes-devtools/gcc/gcc-cross_4.7.bb
-new file mode 100644
-index 0000000..b43cca0
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-cross_4.7.bb
-@@ -0,0 +1,3 @@
-+require recipes-devtools/gcc/gcc-${PV}.inc
-+require gcc-cross.inc
-+
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial.inc b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial.inc
-new file mode 100644
-index 0000000..c6f74a6
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial.inc
-@@ -0,0 +1,8 @@
-+inherit crosssdk
-+
-+SYSTEMHEADERS = "${SDKPATHNATIVE}${prefix_nativesdk}/include"
-+SYSTEMLIBS = "${SDKPATHNATIVE}${base_libdir_nativesdk}/"
-+SYSTEMLIBS1 = "${SDKPATHNATIVE}${libdir_nativesdk}/"
-+
-+DEPENDS = "virtual/${TARGET_PREFIX}binutils-crosssdk gettext-native ${NATIVEDEPS}"
-+PROVIDES = "virtual/${TARGET_PREFIX}gcc-initial-crosssdk"
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial_4.7.bb b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial_4.7.bb
-new file mode 100644
-index 0000000..fd90e11
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk-initial_4.7.bb
-@@ -0,0 +1,3 @@
-+require recipes-devtools/gcc/gcc-cross-initial_${PV}.bb
-+require gcc-crosssdk-initial.inc
-+
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk.inc b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk.inc
-new file mode 100644
-index 0000000..5fe0b94
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk.inc
-@@ -0,0 +1,10 @@
-+inherit crosssdk
-+
-+SYSTEMHEADERS = "${SDKPATHNATIVE}${prefix_nativesdk}/include"
-+SYSTEMLIBS = "${SDKPATHNATIVE}${base_libdir_nativesdk}/"
-+SYSTEMLIBS1 = "${SDKPATHNATIVE}${libdir_nativesdk}/"
-+
-+GCCMULTILIB = "--disable-multilib"
-+
-+DEPENDS = "virtual/${TARGET_PREFIX}binutils-crosssdk virtual/nativesdk-${TARGET_PREFIX}libc-for-gcc gettext-native ${NATIVEDEPS}"
-+PROVIDES = "virtual/${TARGET_PREFIX}gcc-crosssdk virtual/${TARGET_PREFIX}g++-crosssdk"
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_4.7.bb b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_4.7.bb
-new file mode 100644
-index 0000000..40a6c4f
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_4.7.bb
-@@ -0,0 +1,2 @@
-+require recipes-devtools/gcc/gcc-cross_${PV}.bb
-+require gcc-crosssdk.inc
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-runtime.inc b/meta-arago-distro/recipes-devtools/gcc/gcc-runtime.inc
-new file mode 100644
-index 0000000..2599760
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-runtime.inc
-@@ -0,0 +1,166 @@
-+require gcc-configure-common.inc
-+
-+CXXFLAGS := "${@oe_filter_out('-fvisibility-inlines-hidden', '${CXXFLAGS}', d)}"
-+
-+EXTRA_OECONF_PATHS = " \
-+    --with-gxx-include-dir=${includedir}/c++/ \
-+    --with-sysroot=${STAGING_DIR_TARGET} \
-+    --with-build-sysroot=${STAGING_DIR_TARGET}"
-+
-+ARCH_FLAGS_FOR_TARGET += "-isystem${STAGING_INCDIR}"
-+
-+EXTRA_OECONF += "--disable-libunwind-exceptions"
-+EXTRA_OECONF_append_linuxstdbase = " --enable-clocale=gnu"
-+
-+RUNTIMETARGET = "libssp libstdc++-v3 libgomp"
-+#  ?
-+# libiberty
-+# libmudflap
-+# libgfortran
-+
-+do_configure () {
-+	export CXX="${CXX} -nostdinc++ -nostdlib++"
-+	mtarget=`echo ${MULTIMACH_TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	target=`echo ${TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	cp -fpPR ${STAGING_INCDIR_NATIVE}/gcc-build-internal-$mtarget/* ${B}
-+	for d in libgcc ${RUNTIMETARGET}; do
-+		echo "Configuring $d"
-+		rm -rf ${B}/$target/$d/
-+		mkdir -p ${B}/$target/$d/
-+		cd ${B}/$target/$d/
-+		chmod a+x ${S}/$d/configure
-+		${S}/$d/configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
-+	done
-+}
-+
-+do_compile () {
-+	target=`echo ${TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	for d in libgcc ${RUNTIMETARGET}; do
-+		cd ${B}/$target/$d/
-+		oe_runmake MULTIBUILDTOP=${B}/$target/$d/
-+	done
-+}
-+
-+do_install () {
-+	target=`echo ${TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	for d in ${RUNTIMETARGET}; do
-+		cd ${B}/$target/$d/
-+		oe_runmake 'DESTDIR=${D}' MULTIBUILDTOP=${B}/$target/$d/ install
-+	done
-+	rm -rf ${D}${infodir}/libgomp.info ${D}${infodir}/dir
-+	rm -rf ${D}${infodir}/libquadmath.info ${D}${infodir}/dir
-+	if [ -d ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/finclude ]; then
-+		rmdir --ignore-fail-on-non-empty -p ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/finclude
-+	fi
-+	if [ -d ${D}${infodir} ]; then
-+		rmdir --ignore-fail-on-non-empty -p ${D}${infodir}
-+	fi
-+	chown -R root:root ${D}
-+}
-+
-+INHIBIT_DEFAULT_DEPS = "1"
-+DEPENDS = "virtual/${TARGET_PREFIX}gcc virtual/${TARGET_PREFIX}g++ libgcc"
-+PROVIDES = "virtual/${TARGET_PREFIX}compilerlibs"
-+
-+BBCLASSEXTEND = "nativesdk"
-+
-+PACKAGES = "\
-+  ${PN}-dbg \
-+  libstdc++ \
-+  libstdc++-precompile-dev \
-+  libstdc++-dev \
-+  libstdc++-staticdev \
-+  libg2c \
-+  libg2c-dev \
-+  libssp \
-+  libssp-dev \
-+  libssp-staticdev \
-+  libgfortran \
-+  libgfortran-dev \
-+  libgfortran-staticdev \
-+  libmudflap \
-+  libmudflap-dev \
-+  libmudflap-staticdev \
-+  libquadmath \
-+  libquadmath-dev \
-+  libquadmath-staticdev \
-+  libgomp \
-+  libgomp-dev \
-+  libgomp-staticdev \
-+"
-+# The base package doesn't exist, so we clear the recommends.
-+RRECOMMENDS_${PN}-dbg = ""
-+
-+# include python debugging scripts
-+FILES_${PN}-dbg += "\
-+  ${libdir}/libstdc++.so.*-gdb.py \
-+  ${datadir}/gcc-${BINV}/python/libstdcxx"
-+
-+FILES_libg2c = "${target_libdir}/libg2c.so.*"
-+FILES_libg2c-dev = "\
-+  ${libdir}/libg2c.so \
-+  ${libdir}/libg2c.a \
-+  ${libdir}/libfrtbegin.a"
-+
-+FILES_libstdc++ = "${libdir}/libstdc++.so.*"
-+FILES_libstdc++-dev = "\
-+  ${includedir}/c++/ \
-+  ${libdir}/libstdc++.so \
-+  ${libdir}/libstdc++.la \
-+  ${libdir}/libsupc++.la"
-+FILES_libstdc++-staticdev = "\
-+  ${libdir}/libstdc++.a \
-+  ${libdir}/libsupc++.a"
-+
-+FILES_libstdc++-precompile-dev = "${includedir}/c++/${TARGET_SYS}/bits/*.gch"
-+
-+FILES_libssp = "${libdir}/libssp.so.*"
-+FILES_libssp-dev = " \
-+  ${libdir}/libssp*.so \
-+  ${libdir}/libssp*_nonshared.a \
-+  ${libdir}/libssp*.la \
-+  ${libdir}/gcc/${TARGET_SYS}/${BINV}/include/ssp"
-+FILES_libssp-staticdev = " \
-+  ${libdir}/libssp*.a"
-+
-+FILES_libgfortran = "${libdir}/libgfortran.so.*"
-+FILES_libgfortran-dev = " \
-+  ${libdir}/libgfortran*.so \
-+  ${libdir}/libgfortran.spec \
-+  ${libdir}/libgfortran.la \
-+  ${libdir}/gcc/${TARGET_SYS}/${BINV}/libgfortranbegin.* \
-+  ${libdir}/gcc/${TARGET_SYS}/${BINV}/libcaf_single*"
-+FILES_libgfortran-staticdev = " \
-+  ${libdir}/libgfortran.a"
-+
-+INSANE_SKIP_${MLPREFIX}libgfortran-dev = "staticdev"
-+
-+FILES_libquadmath = "${libdir}/libquadmath*.so.*"
-+FILES_libquadmath-dev = "\
-+  ${libdir}/gcc/${TARGET_SYS}/${BINV}/include/quadmath* \
-+  ${libdir}/libquadmath*.so \
-+  ${libdir}/libquadmath.la"
-+FILES_libquadmath-staticdev = "\
-+  ${libdir}/libquadmath.a"
-+
-+FILES_libmudflap = "${libdir}/libmudflap*.so.*"
-+FILES_libmudflap-dev = "\
-+  ${libdir}/libmudflap*.so \
-+  ${libdir}/libmudflap.la"
-+FILES_libmudflap-staticdev = "\
-+  ${libdir}/libmudflap.a"
-+
-+FILES_libgomp = "${libdir}/libgomp*${SOLIBS}"
-+FILES_libgomp-dev = "\
-+  ${libdir}/libgomp*${SOLIBSDEV} \
-+  ${libdir}/libgomp*.la \
-+  ${libdir}/libgomp.spec \
-+  ${libdir}/gcc/${TARGET_SYS}/${BINV}/include/omp.h \
-+  "
-+FILES_libgomp-staticdev = "\
-+  ${libdir}/libgomp*.a \
-+  "
-+
-+do_package_write_ipk[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-+do_package_write_deb[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-+do_package_write_rpm[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-runtime_4.7.bb b/meta-arago-distro/recipes-devtools/gcc/gcc-runtime_4.7.bb
-new file mode 100644
-index 0000000..497d691
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/gcc-runtime_4.7.bb
-@@ -0,0 +1,3 @@
-+require recipes-devtools/gcc/gcc-${PV}.inc
-+require gcc-runtime.inc
-+
-diff --git a/meta-arago-distro/recipes-devtools/gcc/libgcc.inc b/meta-arago-distro/recipes-devtools/gcc/libgcc.inc
-new file mode 100644
-index 0000000..fe98238
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/libgcc.inc
-@@ -0,0 +1,143 @@
-+INHIBIT_DEFAULT_DEPS = "1"
-+
-+DEPENDS = "virtual/${TARGET_PREFIX}gcc virtual/${TARGET_PREFIX}g++"
-+
-+PACKAGES = "\
-+  ${PN} \
-+  ${PN}-dev \
-+  ${PN}-dbg \
-+  libgcov-dev \
-+  "
-+
-+FILES_${PN} = "${base_libdir}/libgcc*.so.*"
-+FILES_${PN}-dev = " \
-+  ${base_libdir}/libgcc*.so \
-+  ${libdir}/${TARGET_SYS}/${BINV}/*crt* \
-+  ${libdir}/${TARGET_SYS}/${BINV}/64 \
-+  ${libdir}/${TARGET_SYS}/${BINV}/32 \
-+  ${libdir}/${TARGET_SYS}/${BINV}/x32 \
-+  ${libdir}/${TARGET_SYS}/${BINV}/n32 \
-+  ${libdir}/${TARGET_SYS}/${BINV}/libgcc*"
-+FILES_libgcov-dev = " \
-+  ${libdir}/${TARGET_SYS}/${BINV}/libgcov.a \
-+  "
-+FILES_${PN}-dbg += "${base_libdir}/.debug/"
-+
-+do_configure () {
-+	target=`echo ${MULTIMACH_TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	install -d ${D}${base_libdir} ${D}${libdir}
-+	cp -fpPR ${STAGING_INCDIR_NATIVE}/gcc-build-internal-$target/* ${B}
-+	mkdir -p ${B}/${BPN}
-+	cd ${B}/${BPN}
-+	chmod a+x ${S}/${BPN}/configure
-+	${S}/${BPN}/configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
-+}
-+
-+do_compile () {
-+	target=`echo ${TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	cd ${B}/${BPN}
-+	oe_runmake MULTIBUILDTOP=${B}/$target/${BPN}/
-+}
-+
-+do_install () {
-+	target=`echo ${TARGET_SYS} | sed -e s#-${SDKPKGSUFFIX}##`
-+	cd ${B}/${BPN}
-+	oe_runmake 'DESTDIR=${D}' MULTIBUILDTOP=${B}/$target/${BPN}/ install
-+
-+	# Move libgcc_s into /lib
-+	mkdir -p ${D}${base_libdir}
-+	if [ -f ${D}${libdir}/nof/libgcc_s.so ]; then
-+		mv ${D}${libdir}/nof/libgcc* ${D}${base_libdir}
-+	else
-+		mv ${D}${libdir}/libgcc* ${D}${base_libdir} || true
-+	fi
-+
-+	# install the runtime in /usr/lib/ not in /usr/lib/gcc on target
-+	# so that cross-gcc can find it in the sysroot
-+
-+	mv ${D}${libdir}/gcc/* ${D}${libdir}
-+	rm -rf ${D}${libdir}/gcc/
-+	# unwind.h is installed here which is shipped in gcc-cross
-+	# as well as target gcc and they are identical so we dont
-+	# ship one with libgcc here
-+	rm -rf ${D}${libdir}/${TARGET_SYS}/${BINV}/include
-+}
-+
-+do_package[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-+do_package_write_ipk[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-+do_package_write_deb[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-+do_package_write_rpm[depends] += "virtual/${MLPREFIX}libc:do_packagedata"
-+
-+BBCLASSEXTEND = "nativesdk"
-+
-+INSANE_SKIP_${PN}-dev = "staticdev"
-+INSANE_SKIP_${MLPREFIX}libgcov-dev = "staticdev"
-+
-+addtask multilib_install after do_install before do_package do_populate_sysroot
-+# this makes multilib gcc files findable for target gcc
-+# e.g.
-+#    /usr/lib/i586-pokymllib32-linux/4.7/
-+# by creating this symlink to it
-+#    /usr/lib64/x86_64-poky-linux/4.7/32
-+
-+python do_multilib_install() {
-+    import re
-+
-+    multilibs = d.getVar('MULTILIB_VARIANTS', True)
-+    if not multilibs or bb.data.inherits_class('nativesdk', d):
-+        return
-+
-+    binv = d.getVar('BINV', True)
-+
-+    mlprefix = d.getVar('MLPREFIX', True)
-+    if ('%slibgcc' % mlprefix) != d.getVar('PN', True):
-+        return
-+
-+    if mlprefix:
-+        orig_tune = d.getVar('DEFAULTTUNE_MULTILIB_ORIGINAL', True)
-+        orig_tune_params = get_tune_parameters(orig_tune, d)
-+        orig_tune_baselib = orig_tune_params['baselib']
-+        orig_tune_bitness = orig_tune_baselib.replace('lib', '')
-+        if not orig_tune_bitness:
-+            orig_tune_bitness = '32'
-+
-+        src = '../../../' + orig_tune_baselib + '/' + \
-+            d.getVar('TARGET_SYS_MULTILIB_ORIGINAL', True) + '/' + binv + '/'
-+
-+        dest = d.getVar('D', True) + d.getVar('libdir', True) + '/' + \
-+            d.getVar('TARGET_SYS', True) + '/' + binv + '/' + orig_tune_bitness
-+
-+        if os.path.lexists(dest):
-+            os.unlink(dest)
-+        os.symlink(src, dest)
-+        return
-+
-+
-+    for ml in multilibs.split():
-+        tune = d.getVar('DEFAULTTUNE_virtclass-multilib-' + ml, True)
-+        if not tune:
-+            bb.warn('DEFAULTTUNE_virtclass-multilib-%s is not defined. Skipping...' % ml)
-+            continue
-+
-+        tune_parameters = get_tune_parameters(tune, d)
-+        tune_baselib = tune_parameters['baselib']
-+        if not tune_baselib:
-+            bb.warn("Tune %s doesn't have a baselib set. Skipping..." % tune)
-+            continue
-+
-+        tune_arch = tune_parameters['arch']
-+        tune_bitness = tune_baselib.replace('lib', '')
-+        if not tune_bitness:
-+            tune_bitness = '32' # /lib => 32bit lib
-+
-+        src = '../../../' + tune_baselib + '/' + \
-+            tune_arch + d.getVar('TARGET_VENDOR', True) + 'ml' + ml + \
-+            '-' + d.getVar('TARGET_OS', True) + '/' + binv + '/'
-+
-+        dest = d.getVar('D', True) + d.getVar('libdir', True) + '/' + \
-+            d.getVar('TARGET_SYS', True) + '/' + binv + '/' + tune_bitness
-+
-+        if os.path.lexists(dest):
-+            os.unlink(dest)
-+        os.symlink(src, dest)
-+}
-diff --git a/meta-arago-distro/recipes-devtools/gcc/libgcc_4.7.bb b/meta-arago-distro/recipes-devtools/gcc/libgcc_4.7.bb
-new file mode 100644
-index 0000000..9716e2e
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/gcc/libgcc_4.7.bb
-@@ -0,0 +1,3 @@
-+require recipes-devtools/gcc/gcc-${PV}.inc
-+require libgcc.inc
-+
--- 
-2.2.0
+On Fri, May 15, 2015 at 03:57:47PM -0400, hzhang@ti.com wrote:
+> From: Hao Zhang <hzhang@ti.com>
+> 
+> This recipe adds kexec fast reboot tools (based on v2.0.7) with a patch
+> to resolve aliased address issue for Keystone II devices.
+> 
+> Signed-off-by: Hao Zhang <hzhang@ti.com>
+> ---
+>  ...01-kexec-ks2-use-KS2-aliased-addresses-on.patch |  273 ++++++++++++++++++++
+>  .../recipes-kernel/kexec/kexec-tools_2.0.7.bb      |   19 ++
+>  2 files changed, 292 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch
+>  create mode 100644 meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb
+> 
+> diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch b/meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch
+> new file mode 100644
+> index 0000000..6f6eef1
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch
+> @@ -0,0 +1,273 @@
+> +From b19043c87b481d7faf6ffa72eb6e47920ef51f49 Mon Sep 17 00:00:00 2001
+> +From: Vitaly Andrianov <vitalya@ti.com>
+> +Date: Tue, 5 Aug 2014 13:40:06 -0400
+> +Subject: [KEXEC-TOOLS PATCH] kexec/ks2: use KS2 aliased addresses only
+> +
+> +KS2 SOC doesn't have physical memory at the first 4GB address range.
+> +In order to access the memory at boot time it aliases two GB of the memory
+> +to the that range. So, when kexec creates elf header for the crash kernel
+> +it has to convert KS2 physical addresses to the corresponding aliased ones.
+> +That is what the patch does.
+> +
+> +It also limits available memory to the first 4GB and replaces ELF64
+> +header by ELF32 ones.
+> +
+> +Signed-off-by: Vitaly Andrianov <vitalya@ti.com>
+> +---
+> + kdump/kdump.c                     | 39 ++++++++++++++++++++-------------------
+> + kexec/arch/arm/crashdump-arm.c    | 13 +++++++++----
+> + kexec/arch/arm/kexec-arm.c        | 10 ++++++++--
+> + kexec/arch/arm/kexec-zImage-arm.c |  6 +++---
+> + kexec/crashdump-elf.c             |  4 +++-
+> + kexec/kexec.h                     |  6 ++++++
+> + 6 files changed, 49 insertions(+), 29 deletions(-)
+> +
+> +diff --git a/kdump/kdump.c b/kdump/kdump.c
+> +index 821ee7c..2900416 100644
+> +--- a/kdump/kdump.c
+> ++++ b/kdump/kdump.c
+> +@@ -30,8 +30,8 @@ static void *map_addr(int fd, unsigned long size, off_t offset)
+> + 	void *result;
+> + 	result = mmap(0, size, PROT_READ, MAP_SHARED, fd, offset);
+> + 	if (result == MAP_FAILED) {
+> +-		fprintf(stderr, "Cannot mmap " DEV_MEM " offset: %llu size: %lu: %s\n",
+> +-			(unsigned long long)offset, size, strerror(errno));
+> ++		fprintf(stderr, "Cannot mmap " DEV_MEM " offset: %08x size: %lu: %s\n",
+> ++			(unsigned long)offset, size, strerror(errno));
+> + 		exit(5);
+> + 	}
+> + 	return result;
+> +@@ -61,7 +61,7 @@ static void *xmalloc(size_t size)
+> + }
+> + 
+> + static void *collect_notes(
+> +-	int fd, Elf64_Ehdr *ehdr, Elf64_Phdr *phdr, size_t *note_bytes)
+> ++	int fd, Elf32_Ehdr *ehdr, Elf32_Phdr *phdr, size_t *note_bytes)
+> + {
+> + 	int i;
+> + 	size_t bytes, result_bytes;
+> +@@ -81,7 +81,7 @@ static void *collect_notes(
+> + 
+> + 	/* Walk through and capture the notes */
+> + 	for(i = 0; i < ehdr->e_phnum; i++) {
+> +-		Elf64_Nhdr *hdr, *lhdr, *nhdr;
+> ++		Elf32_Nhdr *hdr, *lhdr, *nhdr;
+> + 		void *pnotes;
+> + 		if (phdr[i].p_type != PT_NOTE) {
+> + 			continue;
+> +@@ -92,8 +92,8 @@ static void *collect_notes(
+> + 		unmap_addr(pnotes, phdr[i].p_filesz);
+> + 
+> + 		/* Walk through the new notes and find the real length */
+> +-		hdr = (Elf64_Nhdr *)(notes + result_bytes);
+> +-		lhdr = (Elf64_Nhdr *)(notes + result_bytes + phdr[i].p_filesz);
+> ++		hdr = (Elf32_Nhdr *)(notes + result_bytes);
+> ++		lhdr = (Elf32_Nhdr *)(notes + result_bytes + phdr[i].p_filesz);
+> + 		for(; hdr < lhdr; hdr = nhdr) {
+> + 			size_t hdr_size;
+> + 			/* If there is not a name this is a invalid/reserved note
+> +@@ -107,7 +107,7 @@ static void *collect_notes(
+> + 				((hdr->n_namesz + 3) & ~3) +
+> + 				((hdr->n_descsz + 3) & ~3);
+> + 
+> +-			nhdr = (Elf64_Nhdr *)(((char *)hdr) + hdr_size); 
+> ++			nhdr = (Elf32_Nhdr *)(((char *)hdr) + hdr_size);
+> + 			/* if the note does not fit in the segment stop here */
+> + 			if (nhdr > lhdr) {
+> + 				break;
+> +@@ -121,13 +121,13 @@ static void *collect_notes(
+> + }
+> + 
+> + static void *generate_new_headers(
+> +-	Elf64_Ehdr *ehdr, Elf64_Phdr *phdr, size_t note_bytes, size_t *header_bytes)
+> ++	Elf32_Ehdr *ehdr, Elf32_Phdr *phdr, size_t note_bytes, size_t *header_bytes)
+> + {
+> + 	unsigned phnum;
+> + 	size_t bytes;
+> + 	char *headers;
+> +-	Elf64_Ehdr *nehdr;
+> +-	Elf64_Phdr *nphdr;
+> ++	Elf32_Ehdr *nehdr;
+> ++	Elf32_Phdr *nphdr;
+> + 	unsigned long long offset;
+> + 	int i;
+> + 	/* Count the number of program headers.
+> +@@ -148,8 +148,8 @@ static void *generate_new_headers(
+> + 	headers = xmalloc(bytes);
+> + 
+> + 	/* Setup pointers to the new headers */
+> +-	nehdr = (Elf64_Ehdr *)headers;
+> +-	nphdr = (Elf64_Phdr *)(headers + sizeof(*nehdr));
+> ++	nehdr = (Elf32_Ehdr *)headers;
+> ++	nphdr = (Elf32_Phdr *)(headers + sizeof(*nehdr));
+> + 	
+> + 	/* Copy and adjust the Elf header */
+> + 	memcpy(nehdr, ehdr, sizeof(*nehdr));
+> +@@ -213,8 +213,8 @@ int main(int argc, char **argv)
+> + {
+> + 	char *start_addr_str, *end;
+> + 	unsigned long long start_addr;
+> +-	Elf64_Ehdr *ehdr;
+> +-	Elf64_Phdr *phdr;
+> ++	Elf32_Ehdr *ehdr;
+> ++	Elf32_Phdr *phdr;
+> + 	void *notes, *headers;
+> + 	size_t note_bytes, header_bytes;
+> + 	int fd;
+> +@@ -235,6 +235,7 @@ int main(int argc, char **argv)
+> + 		exit(1);
+> + 	}
+> + 	start_addr = strtoull(start_addr_str, &end, 0);
+> ++
+> + 	if ((start_addr_str == end) || (*end != '\0')) {
+> + 		fprintf(stderr, "Bad core dump start addres: %s\n",
+> + 			start_addr_str);
+> +@@ -256,21 +257,21 @@ int main(int argc, char **argv)
+> + 		(ehdr->e_ident[EI_MAG1] != ELFMAG1) ||
+> + 		(ehdr->e_ident[EI_MAG2] != ELFMAG2) ||
+> + 		(ehdr->e_ident[EI_MAG3] != ELFMAG3) ||
+> +-		(ehdr->e_ident[EI_CLASS] != ELFCLASS64) ||
+> ++		(ehdr->e_ident[EI_CLASS] != ELFCLASS32) ||
+> + 		(ehdr->e_ident[EI_DATA] != ELFDATALOCAL) ||
+> + 		(ehdr->e_ident[EI_VERSION] != EV_CURRENT) ||
+> + 		(ehdr->e_type != ET_CORE) ||
+> + 		(ehdr->e_version != EV_CURRENT) ||
+> +-		(ehdr->e_ehsize != sizeof(Elf64_Ehdr)) ||
+> +-		(ehdr->e_phentsize != sizeof(Elf64_Phdr)) ||
+> ++		(ehdr->e_ehsize != sizeof(Elf32_Ehdr)) ||
+> ++		(ehdr->e_phentsize != sizeof(Elf32_Phdr)) ||
+> + 		(ehdr->e_phnum == 0))
+> + 	{
+> + 		fprintf(stderr, "Invalid Elf header\n");
+> + 		exit(4);
+> + 	}
+> +-	
+> + 	/* Get the program header */
+> +-	phdr = map_addr(fd, sizeof(*phdr)*(ehdr->e_phnum), ehdr->e_phoff);
+> ++	phdr = map_addr(fd, sizeof(*phdr)*(ehdr->e_phnum),
+> ++			ehdr->e_phoff + start_addr);
+> + 
+> + 	/* Collect up the notes */
+> + 	note_bytes = 0;
+> +diff --git a/kexec/arch/arm/crashdump-arm.c b/kexec/arch/arm/crashdump-arm.c
+> +index b523e5f..23f5999 100644
+> +--- a/kexec/arch/arm/crashdump-arm.c
+> ++++ b/kexec/arch/arm/crashdump-arm.c
+> +@@ -143,16 +143,21 @@ static int crash_range_callback(void *UNUSED(data), int UNUSED(nr),
+> + 	if (usablemem_rgns.size >= CRASH_MAX_MEMORY_RANGES)
+> + 		return 1;
+> + 
+> ++
+> + 	range = usablemem_rgns.ranges + usablemem_rgns.size;
+> + 
+> ++	/* Keystone2 cannot use more than 2GB of DDR */ 
+> ++	if ((base + length) >= K2_MEM_2G_END)
+> ++		return 0;
+> ++
+> + 	if (strncmp(str, "System RAM\n", 11) == 0) {
+> +-		range->start = base;
+> +-		range->end = base + length - 1;
+> ++		range->start = base - K2_ALIAS_OFFSET;
+> ++		range->end = base + length - 1 - K2_ALIAS_OFFSET;
+> + 		range->type = RANGE_RAM;
+> + 		usablemem_rgns.size++;
+> + 	} else if (strncmp(str, "Crash kernel\n", 13) == 0) {
+> +-		crash_reserved_mem.start = base;
+> +-		crash_reserved_mem.end = base + length - 1;
+> ++		crash_reserved_mem.start = base - K2_ALIAS_OFFSET;
+> ++		crash_reserved_mem.end = base + length - 1 - K2_ALIAS_OFFSET;
+> + 		crash_reserved_mem.type = RANGE_RAM;
+> + 	}
+> + 
+> +diff --git a/kexec/arch/arm/kexec-arm.c b/kexec/arch/arm/kexec-arm.c
+> +index 6e8e320..d6b204d 100644
+> +--- a/kexec/arch/arm/kexec-arm.c
+> ++++ b/kexec/arch/arm/kexec-arm.c
+> +@@ -61,8 +61,14 @@ int get_memory_ranges(struct memory_range **range, int *ranges,
+> + 			continue;
+> + 		}
+> + 
+> +-		memory_range[memory_ranges].start = start;
+> +-		memory_range[memory_ranges].end = end;
+> ++		if (start < K2_MEM_START || start >= K2_MEM_2G_END)
+> ++			continue;
+> ++
+> ++		if (end > K2_MEM_2G_END)
+> ++			end == K2_MEM_2G_END;
+> ++
+> ++		memory_range[memory_ranges].start = start - K2_ALIAS_OFFSET;
+> ++		memory_range[memory_ranges].end = end - K2_ALIAS_OFFSET;
+> + 		memory_range[memory_ranges].type = type;
+> + 		memory_ranges++;
+> + 	}
+> +diff --git a/kexec/arch/arm/kexec-zImage-arm.c b/kexec/arch/arm/kexec-zImage-arm.c
+> +index 44b87bb..a4aa000 100644
+> +--- a/kexec/arch/arm/kexec-zImage-arm.c
+> ++++ b/kexec/arch/arm/kexec-zImage-arm.c
+> +@@ -93,7 +93,7 @@ int zImage_arm_probe(const char *UNUSED(buf), off_t UNUSED(len))
+> + 	/* 
+> + 	 * Only zImage loading is supported. Do not check if
+> + 	 * the buffer is valid kernel image
+> +-	 */	
+> ++	 */
+> + 	return 0;
+> + }
+> + 
+> +@@ -150,7 +150,7 @@ int atag_arm_load(struct kexec_info *info, unsigned long base,
+> + 	off_t len;
+> + 	struct tag *params;
+> + 	uint32_t *initrd_start = NULL;
+> +-	
+> ++
+> + 	buf = xmalloc(getpagesize());
+> + 	if (!buf) {
+> + 		fprintf(stderr, "Compiling ATAGs: out of memory\n");
+> +@@ -407,7 +407,7 @@ int zImage_arm_load(int argc, char **argv, const char *buf, off_t len,
+> + 			 */
+> + 			return -1;
+> + 		}
+> +-		base = start;
+> ++		base = start - K2_ALIAS_OFFSET;
+> + 	} else {
+> + 		base = locate_hole(info, len + extra_size, 0, 0,
+> + 				   ULONG_MAX, INT_MAX);
+> +diff --git a/kexec/crashdump-elf.c b/kexec/crashdump-elf.c
+> +index c869347..0585cba 100644
+> +--- a/kexec/crashdump-elf.c
+> ++++ b/kexec/crashdump-elf.c
+> +@@ -151,7 +151,7 @@ int FUNC(struct kexec_info *info,
+> + 		bufp += sizeof(PHDR);
+> + 		phdr->p_type	= PT_NOTE;
+> + 		phdr->p_flags	= 0;
+> +-		phdr->p_offset  = phdr->p_paddr = notes_addr;
+> ++		phdr->p_offset  = phdr->p_paddr = notes_addr - K2_ALIAS_OFFSET;
+> + 		phdr->p_vaddr   = 0;
+> + 		phdr->p_filesz	= phdr->p_memsz	= notes_len;
+> + 		/* Do we need any alignment of segments? */
+> +@@ -202,6 +202,8 @@ int FUNC(struct kexec_info *info,
+> + 			continue;
+> + 		mstart = range->start;
+> + 		mend = range->end;
+> ++		if (mend >= 0x100000000ULL)
+> ++			continue;
+> + 		if (!mstart && !mend)
+> + 			continue;
+> + 		phdr = (PHDR *) bufp;
+> +diff --git a/kexec/kexec.h b/kexec/kexec.h
+> +index 2fad7dc..de6f4da 100644
+> +--- a/kexec/kexec.h
+> ++++ b/kexec/kexec.h
+> +@@ -297,4 +297,10 @@ int xen_kexec_load(struct kexec_info *info);
+> + int xen_kexec_unload(uint64_t kexec_flags);
+> + void xen_kexec_exec(void);
+> + 
+> ++/* Keystone2 definitions */
+> ++
+> ++#define K2_MEM_START  0x800000000ULL
+> ++#define K2_MEM_2G_END 0x880000000ULL
+> ++#define K2_ALIAS_OFFSET 0x780000000ULL
+> ++
+> + #endif /* KEXEC_H */
+> +-- 
+> +1.9.1
+> +
+> diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb
+> new file mode 100644
+> index 0000000..4c4fe35
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb
+> @@ -0,0 +1,19 @@
+> +require recipes-kernel/kexec/kexec-tools.inc
+> +export LDFLAGS = "-L${STAGING_LIBDIR}"
+> +EXTRA_OECONF = " --with-zlib=yes"
+> +
+> +PR = "r0"
+> +COMPATIBLE_MACHINE = "keystone"
 
+This will make this particular version Keystone specific. In case that is the 
+only version available, it will break all other platforms.
+
+
+> +S = "${WORKDIR}/git"
+> +
+> +BRANCH="master"
+> +SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git;protocol=git;branch=${BRANCH}"
+> +SRC_URI +=  "file://0001-kexec-ks2-use-KS2-aliased-addresses-on.patch "
+> +
+> +SRCREV = "v2.0.7"
+
+Please don't use literal (lightweight) tags, but use a corresponding hash 
+instead.
+
+
+> +PACKAGES =+ "kexec kdump"
+> +
+> +FILES_kexec = "${sbindir}/kexec"
+> +FILES_kdump = "${sbindir}/kdump"
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
