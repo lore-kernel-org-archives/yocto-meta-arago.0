@@ -1,32 +1,32 @@
 Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 39A6052A40
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6B7FB52A40
 	for <meta-arago@arago-project.org>;
-	Thu, 28 May 2015 11:05:04 +0000 (UTC)
+	Thu, 28 May 2015 11:05:05 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4SB52Qd020315
-	for <meta-arago@arago-project.org>; Thu, 28 May 2015 06:05:02 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4SB52X3030550
-	for <meta-arago@arago-project.org>; Thu, 28 May 2015 06:05:02 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 28 May 2015 06:05:02 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4SB53Wa010850
+	for <meta-arago@arago-project.org>; Thu, 28 May 2015 06:05:03 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4SB53ga030654
+	for <meta-arago@arago-project.org>; Thu, 28 May 2015 06:05:03 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 28 May 2015 06:05:03 -0500
 Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t4SB52Iq007645;	Thu, 28 May 2015 06:05:02 -0500
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t4SB53Qe010144;	Thu, 28 May 2015 06:05:03 -0500
 Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YxvcT-0000zR-Mi;
-	Thu, 28 May 2015 07:05:01 -0400
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1YxvcV-0000zU-AY;
+	Thu, 28 May 2015 07:05:03 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 28 May 2015 07:04:51 -0400
-Message-ID: <1432811095-3754-2-git-send-email-j-stiffler@ti.com>
+Date: Thu, 28 May 2015 07:04:52 -0400
+Message-ID: <1432811095-3754-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1432811095-3754-1-git-send-email-j-stiffler@ti.com>
 References: <1432811095-3754-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/5] packagegroups/packagegroup-arago-tisdk-addons_dra7xx: Add dsptop.
+Subject: [PATCH 2/5] packagegroup-arago-tisdk-addons-sdk-target_dra7xx: Add libulm.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,35 +39,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 May 2015 11:05:04 -0000
+X-List-Received-Date: Thu, 28 May 2015 11:05:05 -0000
 Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroup-arago-tisdk-addons.bb             |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb  |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 28ea1d6..0d8116d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 725c3e3..2ccbdd4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
  LICENSE = "MIT"
--PR = "r24"
-+PR = "r25"
+-PR = "r6"
++PR = "r7"
  
  inherit packagegroup
  
-@@ -35,7 +35,7 @@ UTILS_append_am180x-evm = " ti-pru-sw-examples"
- UTILS_append_omap3 = " canutils"
- UTILS_append_ti33x = " canutils"
- UTILS_append_ti43x = " canutils"
--UTILS_append_dra7xx = " canutils"
-+UTILS_append_dra7xx = " canutils dsptop"
- UTILS_append_omap-a15 = " parted"
+@@ -15,6 +15,7 @@ UTILS_append_dra7xx = " canutils-dev"
  
- UTILS_append_ti33x = " switch-config"
+ EXTRA_LIBS = ""
+ EXTRA_LIBS_append_omap-a15 = " cmem-dev"
++EXTRA_LIBS_append_dra7xx = " libulm-dev libulm-staticdev"
+ 
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
 -- 
 1.7.9.5
 
