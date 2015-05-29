@@ -1,30 +1,32 @@
-Return-Path: <matti.kaasinen@gmail.com>
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by arago-project.org (Postfix) with ESMTPS id CEA91529A7
+Return-Path: <hzhang@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 7DE4952093
 	for <meta-arago@arago-project.org>;
-	Fri, 29 May 2015 07:40:03 +0000 (UTC)
-Received: by igbhj9 with SMTP id hj9so8605118igb.1
-	for <meta-arago@arago-project.org>;
-	Fri, 29 May 2015 00:40:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=pBo3j92ObQFMPAo8P6GWSwoO0EYtiFdLrwpUu9oxMYk=;
-	b=eIpK425B4Ou9Q+mCRH/i5SUwU1Zw+0nq0zV8LtfuD9tCc8ADCwV/2l/cURVfBZ7Lez
-	NlP2kUGOgkssRRmXbScnR2Uixq7HVpROPN57KtHELZz0rxwl2L0oh+eu9xX09hWXlK1i
-	WoY9ibCe2YkOl9glAgoUJcv8PETMCVaQotJow3IbQ47uFInkVaHyjZeg8wu2lDHsOg1e
-	FiJeArNDONufaNaSophpo8YZTzpdDy+rWsBQhN6kDF1gxt7y63ftnhWLscuoHGaZi9Fb
-	T0XxlrzlYE8g3o7Z8HKkY5o/XnAhs42bKibaAlZ2TMWLwcb6uNW5fAmTkylGDuTBi4N7
-	7tCA==
+	Fri, 29 May 2015 13:46:58 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4TDkuxD017624
+	for <meta-arago@arago-project.org>; Fri, 29 May 2015 08:46:56 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4TDkunb012880
+	for <meta-arago@arago-project.org>; Fri, 29 May 2015 08:46:56 -0500
+Received: from DLEE09.ent.ti.com ([fe80::d03e:3cf4:73ad:d589]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0224.002; Fri, 29 May 2015 08:46:56 -0500
+From: "Zhang, Hao" <hzhang@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [PATCH] recovery-kernel: add recovery kernel dtb build for K2L
+	and K2E
+Thread-Index: AQHQmLxKMW2+vwnr6EONoye7X/aj7J2S+kyQ
+Date: Fri, 29 May 2015 13:46:56 +0000
+Message-ID: <ECA334CFBA16F74DB2C66A2F1181F4D63F9A88E4@DLEE09.ent.ti.com>
+References: <1432758765-28548-1-git-send-email-hzhang@ti.com>
+In-Reply-To: <1432758765-28548-1-git-send-email-hzhang@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Received: by 10.43.65.19 with SMTP id xk19mr13979251icb.20.1432885202594;
-	Fri, 29 May 2015 00:40:02 -0700 (PDT)
-Received: by 10.36.1.197 with HTTP; Fri, 29 May 2015 00:40:02 -0700 (PDT)
-Date: Fri, 29 May 2015 10:40:02 +0300
-Message-ID: <CADnUhn30yG8MMjbonRKZqcpZJaqv6y8LzVXutj__2+Ns2nBq+w@mail.gmail.com>
-From: matti kaasinen <matti.kaasinen@gmail.com>
-To: meta-arago@arago-project.org
-Subject: install/bitbake error
+Subject: Re: [PATCH] recovery-kernel: add recovery kernel dtb build for K2L and K2E
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,57 +39,89 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 May 2015 07:40:04 -0000
-Content-Type: multipart/alternative; boundary=14dae9d7c11a813ffc051733954c
-
---14dae9d7c11a813ffc051733954c
-Content-Type: text/plain; charset=UTF-8
-
-I tried to install Arago distribution following
-http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
-
-I downloaded arago-2011.09-armv7a-linux-gnueabi-sdk.tar.bz2 and inserted
-arago-2011.09/armv7a/bin to my PATH
-
-After some nasty error messages I inserted also TOOLCHAIN_BRAND=arago
-definition.
-BTW, why that is not mentioned in wiki, nor inserted in local.conf?
-
-Still after that I can't run:
-bitbake core-image-minimal
-successfully. I have set MAHINE=am335x-evm
-
-OSError: [Errno 13] Permission denied: '/ARAGO-external-arago-toolchain'
-
-Is this something to do with the fact that I chose to run?:
-
-./oe-layertool-setup.sh -f configs/arago-fido-config.txt
-
-This '/ARAGO-external-arago-toolchain' path seems pretty strange.
-
-Does anyone have any clue what I have done wrong?
-
--Matti
-
---14dae9d7c11a813ffc051733954c
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 29 May 2015 13:46:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div>I tried to in=
-stall Arago distribution following <br><a href=3D"http://arago-project.org/=
-wiki/index.php/Setting_Up_Build_Environment">http://arago-project.org/wiki/=
-index.php/Setting_Up_Build_Environment</a><br><br></div>I downloaded arago-=
-2011.09-armv7a-linux-gnueabi-sdk.tar.bz2 and inserted arago-2011.09/armv7a/=
-bin to my PATH<br><br></div>After some nasty error messages I inserted also=
- TOOLCHAIN_BRAND=3Darago definition.<br></div>BTW, why that is not mentione=
-d in wiki, nor inserted in local.conf?<br><br></div>Still after that I can&=
-#39;t run:<br></div>bitbake core-image-minimal <br></div>successfully. I ha=
-ve set MAHINE=3Dam335x-evm<br><br>OSError: [Errno 13] Permission denied: &#=
-39;/ARAGO-external-arago-toolchain&#39;<br><br></div>Is this something to d=
-o with the fact that I chose to run?:<br><pre>./oe-layertool-setup.sh -f co=
-nfigs/arago-fido-config.txt</pre>This &#39;/ARAGO-external-arago-toolchain&=
-#39; path seems pretty strange.<br><br></div>Does anyone have any clue what=
- I have done wrong?<br><br></div>-Matti<br><div><div><div><div><br></div></=
-div></div></div></div>
+Ping.
 
---14dae9d7c11a813ffc051733954c--
+-----Original Message-----
+From: Zhang, Hao=20
+Sent: Wednesday, May 27, 2015 4:33 PM
+To: meta-arago@arago-project.org
+Cc: Zhang, Hao
+Subject: [PATCH] recovery-kernel: add recovery kernel dtb build for K2L and=
+ K2E
+
+From: Hao Zhang <hzhang@ti.com>
+
+The patch adds the Linux recovery kernel device tree build for K2L and K2E =
+devices based on kernel v3.10.72.
+
+Signed-off-by: Hao Zhang <hzhang@ti.com>
+---
+ .../recovery-kernel/recovery-kernel_1.0.bb         |   18 ++++++++++++----=
+--
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kern=
+el_1.0.bb b/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kerne=
+l_1.0.bb
+index ad3528e..6e4f9c7 100644
+--- a/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.=
+bb
++++ b/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1
++++ .0.bb
+@@ -1,10 +1,10 @@
+ DESCRIPTION =3D "Recovery kernel building for Keystone EVM"
+ LICENSE =3D "GPLv2"
+=20
+-PR =3D "r2"
++PR =3D "r3"
+ COMPATIBLE_MACHINE =3D "keystone"
+-BRANCH =3D "master"
+-SRCREV =3D "9bc93706b37c39c3a95593dc3d56773e9b7425ad"
++BRANCH =3D "v3.10.72/master"
++SRCREV =3D "b9bad8fccc5f9c6bcd78363982b3249a15f193fb"
+ SRC_URI =3D "git://git.ti.com/keystone-linux/linux.git;protocol=3Dgit;bran=
+ch=3D${BRANCH}"
+ S =3D "${WORKDIR}/git"
+ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd7810fab7487fb0aad327b76f1be7cd=
+7"
+@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd7810fab7487fb=
+0aad327b76f1be7cd7"
+ FILES_${PN} +=3D "${bindir}/crashdump"
+ LINUX_ZIMAGE =3D "zImage"
+ KERNEL_MACHINE ?=3D "keystone2_recovery_defconfig"
+-KERNEL_DTBTYPE =3D "k2hk-evm-recovery.dtb"
++KERNEL_DTBTYPE =3D "k2hk-evm-recovery.dtb k2l-evm-recovery.dtb k2e-evm-rec=
+overy.dtb "
+ CRASHDIR =3D "crashdump"
+ ARCH =3D "${TARGET_ARCH}"
+ CROSS_COMPILE =3D "${TARGET_PREFIX}"
+@@ -27,11 +27,17 @@ do_configure () {
+ do_compile() {
+ 	make ${LINUX_ZIMAGE} KALLSYMS_EXTRA_PASS=3D1
+ 	make ${KERNEL_DTBTYPE}
+-	dtc -I dtb -O dtb -p 2048 -o ${KERNEL_DTBTYPE} arch/arm/boot/dts/${KERNEL=
+_DTBTYPE}
++        for d in ${KERNEL_DTBTYPE}
++        do
++            dtc -I dtb -O dtb -p 2048 -o $d arch/arm/boot/dts/$d
++        done
+ }
+=20
+ do_install () {
+ 	install -d ${D}${bindir}/${CRASHDIR}/
+ 	install ${S}/arch/arm/boot/${LINUX_ZIMAGE} ${D}${bindir}/${CRASHDIR}
+-	install ${S}/${KERNEL_DTBTYPE} ${D}${bindir}/${CRASHDIR}
++        for d in ${KERNEL_DTBTYPE}
++        do
++            install ${S}/$d ${D}${bindir}/${CRASHDIR}
++        done
+ }
+--
+1.7.9.5
+
+
