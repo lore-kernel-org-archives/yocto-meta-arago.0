@@ -1,30 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 4436852A83
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id BA87452A83
 	for <meta-arago@arago-project.org>;
-	Fri, 29 May 2015 20:00:08 +0000 (UTC)
+	Fri, 29 May 2015 20:00:34 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4TK06lx014475
-	for <meta-arago@arago-project.org>; Fri, 29 May 2015 15:00:06 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4TK05Ht018074
-	for <meta-arago@arago-project.org>; Fri, 29 May 2015 15:00:06 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 29 May 2015 15:00:04 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t4TK0X2o008012
+	for <meta-arago@arago-project.org>; Fri, 29 May 2015 15:00:33 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4TK0Xan018705
+	for <meta-arago@arago-project.org>; Fri, 29 May 2015 15:00:33 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 29 May 2015 15:00:32 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4TK04ar019545;
-	Fri, 29 May 2015 15:00:04 -0500
-Date: Fri, 29 May 2015 16:00:03 -0400
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t4TK0W1c006770;
+	Fri, 29 May 2015 15:00:32 -0500
+Date: Fri, 29 May 2015 16:00:32 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150529200003.GR16418@edge>
-References: <1432823192-6273-1-git-send-email-j-stiffler@ti.com>
+Message-ID: <20150529200031.GS16418@edge>
+References: <1432811095-3754-1-git-send-email-j-stiffler@ti.com>
+	<1432811095-3754-2-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1432823192-6273-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1432811095-3754-2-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] processor-sdk-daisy-config: Bump bitbake to 1.26, point meta-arago to daisy branch.
+Subject: Re: [PATCH 1/5] packagegroups/packagegroup-arago-tisdk-addons_dra7xx: Add dsptop.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +38,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 May 2015 20:00:08 -0000
+X-List-Received-Date: Fri, 29 May 2015 20:00:34 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
 Ack
 
-On Thu, May 28, 2015 at 10:26:32AM -0400, Jacob Stiffler wrote:
+On Thu, May 28, 2015 at 07:04:51AM -0400, Jacob Stiffler wrote:
 > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  .../processor-sdk/processor-sdk-daisy-config.txt   |    4 ++--
+>  .../packagegroup-arago-tisdk-addons.bb             |    4 ++--
 >  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/configs/processor-sdk/processor-sdk-daisy-config.txt b/configs/processor-sdk/processor-sdk-daisy-config.txt
-> index ffd8e0f..63a5e27 100644
-> --- a/configs/processor-sdk/processor-sdk-daisy-config.txt
-> +++ b/configs/processor-sdk/processor-sdk-daisy-config.txt
-> @@ -1,9 +1,9 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> index 28ea1d6..0d8116d 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+>  LICENSE = "MIT"
+> -PR = "r24"
+> +PR = "r25"
 >  
-> -bitbake,git://git.openembedded.org/bitbake,1.24,HEAD,layers=
-> +bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
->  meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,HEAD,layers=
-> -meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +meta-arago,git://arago-project.org/git/meta-arago.git,daisy,HEAD,layers=meta-arago-distro:meta-arago-extras
->  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
->  meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
->  meta-ti,git://arago-project.org/git/meta-ti.git,daisy,HEAD,layers=
+>  inherit packagegroup
+>  
+> @@ -35,7 +35,7 @@ UTILS_append_am180x-evm = " ti-pru-sw-examples"
+>  UTILS_append_omap3 = " canutils"
+>  UTILS_append_ti33x = " canutils"
+>  UTILS_append_ti43x = " canutils"
+> -UTILS_append_dra7xx = " canutils"
+> +UTILS_append_dra7xx = " canutils dsptop"
+>  UTILS_append_omap-a15 = " parted"
+>  
+>  UTILS_append_ti33x = " switch-config"
 > -- 
 > 1.7.9.5
 > 
