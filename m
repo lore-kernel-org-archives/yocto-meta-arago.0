@@ -1,30 +1,29 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 469B952987
+	by arago-project.org (Postfix) with ESMTPS id DFB605298F
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Jun 2015 12:09:11 +0000 (UTC)
+	Wed,  3 Jun 2015 06:42:34 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t52C995Z014071
-	for <meta-arago@arago-project.org>; Tue, 2 Jun 2015 07:09:09 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t52C99mC000792
-	for <meta-arago@arago-project.org>; Tue, 2 Jun 2015 07:09:09 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 2 Jun 2015 07:09:08 -0500
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t52C998C032450;	Tue, 2 Jun 2015 07:09:09 -0500
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1Yzl0G-000817-PD;
-	Tue, 02 Jun 2015 08:09:08 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t536gXDZ024131
+	for <meta-arago@arago-project.org>; Wed, 3 Jun 2015 01:42:33 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t536gWY3018473
+	for <meta-arago@arago-project.org>; Wed, 3 Jun 2015 01:42:33 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 3 Jun 2015 01:42:32 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t536gWF1024999	for <meta-arago@arago-project.org>;
+	Wed, 3 Jun 2015 01:42:32 -0500
+Date: Wed, 3 Jun 2015 02:42:32 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 2 Jun 2015 08:09:06 -0400
-Message-ID: <1433246946-30787-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Message-ID: <1865188661.487.1433313752377.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui-multimedia-demos: Add IVAHD demos.
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.05 build 2015-06-02_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,74 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jun 2015 12:09:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 03 Jun 2015 06:42:35 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_486_1116337379.1433313752304"
 
-* The following IVAHD demos are added:
-  - H264 Decode
-  - H264 Encode
-  - Capture (vip)
-      -> Scale (vpe)
-        -> Ducati MPEG4 Encode (ivahd)
-          -> Ducati MPEG4 Decode (ivahd)
-            -> Display (kmssink)
+------=_Part_486_1116337379.1433313752304
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../matrix/matrix-gui-multimedia-demos_2.0.bb      |   14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+<html>
+<head>
+<title>
+Status for 06/03/15
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
-index 739e03f..4cfb98e 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
- 
- require matrix-gui-apps-git.inc
- 
--PR = "${INC_PR}.3"
-+PR = "${INC_PR}.4"
- 
- inherit allarch
- 
-@@ -19,6 +19,9 @@ PACKAGES = "matrix-multimedia-demo-aac \
-             matrix-multimedia-demo-h264dec      \
-             matrix-multimedia-demo-mpeg4aacdec   \
-             matrix-multimedia-demo-mpeg4dec     \
-+            matrix-multimedia-demo-ivahdh264dec \
-+            matrix-multimedia-demo-ivahdh264enc \
-+            matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec \
- "
- 
- RDEPENDS_matrix-multimedia-demo-aac = "${MULTIMEDIA_RDEPENDS}"
-@@ -26,6 +29,9 @@ RDEPENDS_matrix-multimedia-demo-audiocapture = "${MULTIMEDIA_RDEPENDS}"
- RDEPENDS_matrix-multimedia-demo-h264dec      = "${MULTIMEDIA_RDEPENDS}"
- RDEPENDS_matrix-multimedia-demo-mpeg4aacdec   = "${MULTIMEDIA_RDEPENDS}"
- RDEPENDS_matrix-multimedia-demo-mpeg4dec     = "${MULTIMEDIA_RDEPENDS}"
-+RDEPENDS_matrix-multimedia-demo-ivahdh264dec             = "${MULTIMEDIA_RDEPENDS}"
-+RDEPENDS_matrix-multimedia-demo-ivahdh264enc             = "${MULTIMEDIA_RDEPENDS}"
-+RDEPENDS_matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec = "${MULTIMEDIA_RDEPENDS}"
- 
- 
- # Split the matrix files by multimedia demos
-@@ -34,6 +40,9 @@ FILES_matrix-multimedia-demo-audiocapture = "${MATRIX_APP_DIR}/arm_multimedia_au
- FILES_matrix-multimedia-demo-h264dec      = "${MATRIX_APP_DIR}/arm_multimedia_h264dec/*"
- FILES_matrix-multimedia-demo-mpeg4aacdec   = "${MATRIX_APP_DIR}/arm_multimedia_mpeg4aacdec/*"
- FILES_matrix-multimedia-demo-mpeg4dec     = "${MATRIX_APP_DIR}/arm_multimedia_mpeg4dec/*"
-+FILES_matrix-multimedia-demo-ivahdh264dec                = "${MATRIX_APP_DIR}/ivahd_multimedia_h264dec/*"
-+FILES_matrix-multimedia-demo-ivahdh264enc                = "${MATRIX_APP_DIR}/ivahd_multimedia_h264enc/*"
-+FILES_matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec    = "${MATRIX_APP_DIR}/ivahd_multimedia_vip_vpe_mpeg4encdec/*"
- 
- # Split the ${bindir} files by multimedia demos
- FILES_matrix-multimedia-demo-aac += "${bindir}/runAACDec.sh"
-@@ -41,3 +50,6 @@ FILES_matrix-multimedia-demo-audiocapture += "${bindir}/runAudioCapture.sh"
- FILES_matrix-multimedia-demo-h264dec      += "${bindir}/runH264Dec.sh"
- FILES_matrix-multimedia-demo-mpeg4aacdec   += "${bindir}/runMpeg4AacDec.sh"
- FILES_matrix-multimedia-demo-mpeg4dec     += "${bindir}/runMpeg4Dec.sh"
-+FILES_matrix-multimedia-demo-ivahdh264dec               += "${bindir}/runIvahdH264Dec.sh"
-+FILES_matrix-multimedia-demo-ivahdh264enc               += "${bindir}/runIvahdH264Enc.sh"
-+FILES_matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec   += "${bindir}/runIvahdVipVpeMpeg4EncDec.sh"
--- 
-1.7.9.5
+<h2>Status for 06/03/15</h2>
+
+<h2>BUILD_ID: build-2015-06-02_22-01-57</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.05"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_486_1116337379.1433313752304--
