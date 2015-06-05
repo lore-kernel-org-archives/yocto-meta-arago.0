@@ -1,32 +1,30 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id F0B5552A2B
+Return-Path: <matti.kaasinen@gmail.com>
+Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
+	[209.85.213.182])
+	by arago-project.org (Postfix) with ESMTPS id 1784F529A7
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Jun 2015 12:01:40 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t55C1dJm021495
-	for <meta-arago@arago-project.org>; Fri, 5 Jun 2015 07:01:39 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t55C1dcc013612
-	for <meta-arago@arago-project.org>; Fri, 5 Jun 2015 07:01:39 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 5 Jun 2015 07:01:39 -0500
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t55C1dAg015908;	Fri, 5 Jun 2015 07:01:39 -0500
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1Z0qJe-0007H8-T5;
-	Fri, 05 Jun 2015 08:01:38 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 5 Jun 2015 08:01:33 -0400
-Message-ID: <1433505693-27926-2-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1433505693-27926-1-git-send-email-j-stiffler@ti.com>
-References: <1433505693-27926-1-git-send-email-j-stiffler@ti.com>
+	Fri,  5 Jun 2015 13:16:39 +0000 (UTC)
+Received: by igblz2 with SMTP id lz2so14303154igb.1
+	for <meta-arago@arago-project.org>;
+	Fri, 05 Jun 2015 06:16:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=NFD1+qVN25Q1oK8+eybOght6UZ9DW9l36erRZuSFFYg=;
+	b=eanyE5lx1oD6qScZXEpk4to1VyU4sZ3uh5GkLK0V6yLNgO3CYoPkROS310XmtRuEnD
+	6fPS+nvyTZA5hOaJUs/n6qxxU2kRJBxNuCc9+d4eeHYMXe7EeUTXzVQR/Fxo9ceRHhhh
+	hGFB5cR4ghGcfZgyGyMpW98hkztgD7BnWSxqf4AQh2qJkc+/SA6/i+ZKS52twsQlciib
+	ppRFJmcpmV/dxCbUuXj0DASTDqIkBnX4uee2SYhei02mA+J6odQV7+MqSicMaWK46WMk
+	5h7Se/ZM5FUIU88hJMZqdQDi1tKE1CJraYatEuhR6keEKXzZNKzK4W+RSd0/1MF8DM6v
+	X7og==
 MIME-Version: 1.0
-Subject: [PATCH 2/2] ti-llvm3.3: Add LLVM 3.3 with c6x intrinsic support.
+X-Received: by 10.42.213.136 with SMTP id gw8mr10190700icb.95.1433510198496;
+	Fri, 05 Jun 2015 06:16:38 -0700 (PDT)
+Received: by 10.36.1.197 with HTTP; Fri, 5 Jun 2015 06:16:38 -0700 (PDT)
+Date: Fri, 5 Jun 2015 16:16:38 +0300
+Message-ID: <CADnUhn0kCvX3JD4T2mfK9_ROdUmZOKPpTrAvobQhtcRy9bMXsw@mail.gmail.com>
+From: matti kaasinen <matti.kaasinen@gmail.com>
+To: meta-arago@arago-project.org
+Subject: am335x power management/dtb with fixed regulators
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,197 +37,120 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jun 2015 12:01:41 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 05 Jun 2015 13:16:39 -0000
+Content-Type: multipart/alternative; boundary=001a11c3170029d5c10517c51a6f
 
-* Supports target, native, and nativesdk classes.
+--001a11c3170029d5c10517c51a6f
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
-Previously submitted to meta-ti.
+Hi!
 
- ...e-Do-not-check-build-executable-extension.patch |   60 ++++++++++++
- .../recipes-core/llvm/ti-llvm3.3_3.3.bb            |  103 ++++++++++++++++++++
- 2 files changed, 163 insertions(+)
- create mode 100644 meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
- create mode 100644 meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+This is  most likely a wrong forum. Please forward me to proper one if you
+know what.
 
-diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
-new file mode 100644
-index 0000000..b6e5331
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
-@@ -0,0 +1,60 @@
-+From 60da8adc29a84796c9768a1a962eda1915c87332 Mon Sep 17 00:00:00 2001
-+From: Jake Stiffler <j-stiffler@ti.com>
-+Date: Fri, 20 Feb 2015 10:55:11 -0500
-+Subject: [PATCH] configure: Do not check build executable extension.
-+
-+ * This seems to cause issues nativesdk and build sdk
-+   architectures are the same.
-+
-+Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
-+---
-+ configure                 |    3 +++
-+ projects/sample/configure |    4 ++++
-+ 2 files changed, 7 insertions(+)
-+
-+diff --git a/configure b/configure
-+index decbc40..387c4fd 100755
-+--- a/configure
-++++ b/configure
-+@@ -4951,6 +4951,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
-+   rm -f conftest*
-+   echo 'int main () { return 0; }' > conftest.$ac_ext
-+   ac_cv_build_exeext=
-++
-++if false; then
-+   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
-+   (eval $ac_build_link) 2>&5
-+   ac_status=$?
-+@@ -4967,6 +4969,7 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
-+ echo "$as_me: error: installation or configuration problem: compiler cannot create executables." >&2;}
-+    { (exit 1); exit 1; }; }
-+   fi
-++fi
-+   rm -f conftest*
-+   test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
-+ fi
-+diff --git a/projects/sample/configure b/projects/sample/configure
-+index a2c70c6..b57f21c 100755
-+--- a/projects/sample/configure
-++++ b/projects/sample/configure
-+@@ -4753,6 +4753,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
-+   rm -f conftest*
-+   echo 'int main () { return 0; }' > conftest.$ac_ext
-+   ac_cv_build_exeext=
-++
-++if false; then
-+   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
-+   (eval $ac_build_link) 2>&5
-+   ac_status=$?
-+@@ -4769,6 +4771,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
-+ echo "$as_me: error: installation or configuration problem: compiler cannot create executables." >&2;}
-+    { (exit 1); exit 1; }; }
-+   fi
-++fi
-++
-+   rm -f conftest*
-+   test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
-+ fi
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
-new file mode 100644
-index 0000000..9ae8866
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
-@@ -0,0 +1,103 @@
-+DESCRIPTION = "LLVM 3.3 with support for TI C66x intrinsics"
-+HOMEPAGE = "https://gitorious.design.ti.com/ocl/llvm33-src"
-+
-+do_configure_prepend_class-native() {
-+    # Fix paths in llvm-config
-+    sed -i "s|sys::path::parent_path(sys::path::parent_path(CurrentPath))).str()|sys::path::parent_path(CurrentPath))\.str()|g" ${S}/tools/llvm-config/llvm-config.cpp
-+}
-+
-+require recipes-core/llvm/llvm.inc
-+require recipes-core/llvm/llvm3.inc
-+
-+DEPENDS_append_class-native = " llvm-common-native"
-+
-+LLVM_DIR = "ti-llvm${PV}"
-+
-+BRANCH = "master"
-+
-+SRC_URI = " \
-+  git://git.ti.com/opencl/ti-llvm-clang-3_3.git;protocol=git;branch=${BRANCH} \
-+  file://0001-configure-Do-not-check-build-executable-extension.patch \
-+"
-+
-+
-+SRCREV = "29629a3e70d445cfbfbb4046a56d3648ebae9544"
-+
-+S = "${WORKDIR}/git"
-+
-+do_compile_class-native() {
-+  cd ${LLVM_BUILD_DIR}
-+  oe_runmake
-+}
-+
-+do_compile_class-nativesdk() {
-+    cd ${LLVM_BUILD_DIR}
-+    oe_runmake \
-+        AR="${BUILD_AR}" \
-+        CC="${BUILD_CC}" \
-+        CFLAGS="${BUILD_CFLAGS}" \
-+        CXX="${BUILD_CXX}" \
-+        CXXFLAGS="${BUILD_CXXFLAGS}" \
-+        CPP="${BUILD_CPP}" \
-+        CPPFLAGS="${BUILD_CPPFLAGS}" \
-+        LD="${BUILD_LD}" \
-+        LDFLAGS="${BUILD_LDFLAGS}" \
-+        NM="${BUILD_NM}" \
-+        RANLIB="${BUILD_RANLIB}" \
-+        PATH="${STAGING_BINDIR_NATIVE}:$PATH" \
-+        cross-compile-build-tools
-+    oe_runmake
-+}
-+
-+do_install_append_class-target() {
-+    for b in ${D}${bindir}/${LLVM_DIR}/${HOST_SYS}-clang*; do
-+        if [ ! -L ${b} ]; then
-+            mv ${b} ${D}${bindir}/`echo "${b}" | sed -e 's|${D}${bindir}/${LLVM_DIR}/${HOST_SYS}-||g'`
-+        fi
-+    done
-+}
-+
-+do_install_class-native() {
-+    cd ${LLVM_BUILD_DIR}
-+    oe_runmake DESTDIR=${LLVM_INSTALL_DIR} install
-+
-+    mv ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-llvm-config ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti
-+
-+    install -d ${D}${bindir}
-+    for b in ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-clang*; do
-+        if [ ! -L ${b} ]; then
-+            mv ${b} ${D}${bindir}/`echo "${b}" | sed -e 's|${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-||g'`
-+        fi
-+    done
-+
-+    install -d ${D}${bindir}/${LLVM_DIR}
-+    mv ${LLVM_INSTALL_DIR}${bindir}/* ${D}${bindir}/${LLVM_DIR}/
-+
-+    install -d ${D}${includedir}/${LLVM_DIR}
-+    mv ${LLVM_INSTALL_DIR}${includedir}/* ${D}${includedir}/${LLVM_DIR}/
-+
-+    install -d ${D}${libdir}/${LLVM_DIR}
-+    mv ${LLVM_INSTALL_DIR}${libdir}/* ${D}${libdir}/${LLVM_DIR}/
-+    ln -s ${LLVM_DIR}/libLLVM-${PV}.so ${D}${libdir}/libLLVM-${PV}.so
-+
-+    install -d ${D}${docdir}/${LLVM_DIR}
-+    mv ${LLVM_INSTALL_DIR}${prefix}/docs/llvm/* ${D}${docdir}/${LLVM_DIR}
-+
-+    install -d ${D}${bindir}
-+    install -m 0755 ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti ${D}${bindir}
-+}
-+
-+SYSROOT_PREPROCESS_FUNCS_class-target += "llvm_sysroot_preprocess_target"
-+SYSROOT_PREPROCESS_FUNCS_class-nativesdk += "llvm_sysroot_preprocess_target"
-+
-+llvm_sysroot_preprocess() {
-+    :
-+}
-+
-+llvm_sysroot_preprocess_target() {
-+    install -d ${SYSROOT_DESTDIR}${bindir_crossscripts}
-+    mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_crossscripts}/llvm-config${PV}-ti
-+}
-+
-+BBCLASSEXTEND = "native nativesdk"
-+
--- 
-1.7.9.5
+I try to make am335x based board to running on linux-ti-staging_3.14.bb
 
+Unfortunately this board has fixed regulators that am335 does not have any
+control at all. Board boots, but starts spitting following log:
 
+(1) [    4.427294] cpu cpu0: of_pm_voltdm_notifier_register: Fail
+calculating voltage latency[1100000<->1260000]:-22
+(1b)[    4.455935] PM: Voltage scaling data blob not provided from DT.
+
+(2) [    6.332180] clk_set_rate: failed to set dpll_mpu_ck rate
+(3)[    6.414665] cpu cpu0: clk_voltdm_notifier_handler: Failed to scale
+voltage(1100000): -22
+(4)[    6.422953] cpufreq_cpu0: failed to set clock rate: -16
+(5)[    6.428302] cpufreq: __cpufreq_driver_target: Failed to change cpu
+frequency: -16
+(6)[    6.764032] cpu cpu0: clk_voltdm_notifier_handler: Failed to scale
+voltage(1260000): -22
+
+Thereafter log is repeting sequence (2)..(6)
+Places of log lines are as follows:
+(1)(3)(6): drivers/power/voltdm/core.c : of_pm_voltdm_notifier_register
+(2): drivers/clk/ti/clk.c : clk_set_rate
+(4): drivers/cpufreq/cpufreq-cpu0.c : __cpufreq_driver_target
+(5): drivers/cpufreq/cpufreq.c : __cpufreq_driver_target
+
+Possibly initial call is coming from (5) and others are coming function
+calls inside next call etc.
+
+In principle defconfig is defconfig of am335x-evm board with the exception
+that I have compiled
+
+am335x-pm-firmware.elf in kernel.
+
+I have defined device voltage regulators in device tree as follows:
+
+    cpus {
+        cpu@0 {
+            cpu0-supply             = <&vmpu_fixed>;
+        };
+    }; /* cpu */
+    vmpu_fixed: fixedregulator@0 {
+        compatible                  = "regulator-fixed";
+        regulator-name              = "vdd_mpu";
+        regulator-min-microvolt     = <1100000>;
+        regulator-max-microvolt     = <1100000>;
+        regulator-always-on;
+        regulator-boot-on;
+    }; /* vmpu_fixed */
+
+I have not defined any regulators with voltage 1260000 microvolts
+unlike log lists.
+
+DT includes am33xx.dtsi, but I did not find that kind of definitions there.
+
+Thanks,
+
+Matti
+
+--001a11c3170029d5c10517c51a6f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hi!<br><br></div>This is=C2=A0 mo=
+st likely a wrong forum. Please forward me to proper one if you know what.<=
+br><br></div>I try to make am335x based board to running on <a href=3D"http=
+://linux-ti-staging_3.14.bb">linux-ti-staging_3.14.bb</a><br><br></div>Unfo=
+rtunately this board has fixed regulators that am335 does not have any cont=
+rol at all. Board boots, but starts spitting following log:<br><br>(1) [=C2=
+=A0=C2=A0=C2=A0 4.427294] cpu cpu0: of_pm_voltdm_notifier_register: Fail ca=
+lculating voltage latency[1100000&lt;-&gt;1260000]:-22<br>(1b)[=C2=A0=C2=A0=
+=C2=A0 4.455935] PM: Voltage scaling data blob not provided from DT.<br><br=
+>(2) [=C2=A0=C2=A0=C2=A0 6.332180] clk_set_rate: failed to set dpll_mpu_ck =
+rate<br>(3)[=C2=A0=C2=A0=C2=A0 6.414665] cpu cpu0: clk_voltdm_notifier_hand=
+ler: Failed to scale voltage(1100000): -22<br>(4)[=C2=A0=C2=A0=C2=A0 6.4229=
+53] cpufreq_cpu0: failed to set clock rate: -16<br>(5)[=C2=A0=C2=A0=C2=A0 6=
+.428302] cpufreq: __cpufreq_driver_target: Failed to change cpu frequency: =
+-16<br>(6)[=C2=A0=C2=A0=C2=A0 6.764032] cpu cpu0: clk_voltdm_notifier_handl=
+er: Failed to scale voltage(1260000): -22<br><br>Thereafter log is repeting=
+ sequence (2)..(6)<br>Places of log lines are as follows:<br>(1)(3)(6): dri=
+vers/power/voltdm/core.c : of_pm_voltdm_notifier_register<br>(2): drivers/c=
+lk/ti/clk.c : clk_set_rate<br>(4): drivers/cpufreq/cpufreq-cpu0.c : __cpufr=
+eq_driver_target<br><span style=3D"font-family:arial,helvetica,sans-serif">=
+(5): drivers/cpufreq/cpufreq.c : __cpufreq_driver_target<br><br></span></di=
+v><span style=3D"font-family:arial,helvetica,sans-serif">Possibly initial c=
+all is coming from (5) and others are coming function calls inside next cal=
+l etc.<br><br></span></div><span style=3D"font-family:arial,helvetica,sans-=
+serif">In principle defconfig is defconfig of am335x-evm board with the exc=
+eption that I have compiled <br></span><pre><span style=3D"font-family:aria=
+l,helvetica,sans-serif">am335x-pm-firmware.elf in kernel.<br><font size=3D"=
+2"><br></font></span></pre><pre><span style=3D"font-family:arial,helvetica,=
+sans-serif"><font size=3D"2">I have defined device voltage regulators in de=
+vice tree as follows:<br><br>    cpus {<br>        cpu@0 {<br>            c=
+pu0-supply             =3D &lt;&amp;vmpu_fixed&gt;;<br>        };<br>    };=
+ /* cpu */<br>    vmpu_fixed: fixedregulator@0 {<br>        compatible     =
+             =3D &quot;regulator-fixed&quot;;<br>        regulator-name    =
+          =3D &quot;vdd_mpu&quot;;<br>        regulator-min-microvolt     =
+=3D &lt;1100000&gt;;<br>        regulator-max-microvolt     =3D &lt;1100000=
+&gt;;<br>        regulator-always-on;<br>        regulator-boot-on;<br>    =
+}; /* vmpu_fixed */<br><br></font></span></pre><pre><span style=3D"font-fam=
+ily:arial,helvetica,sans-serif"><font size=3D"2">I have not defined any reg=
+ulators with voltage 1260000 microvolts unlike log lists. <br></font></span=
+></pre><pre><span style=3D"font-family:arial,helvetica,sans-serif">DT inclu=
+des am33xx.dtsi, but I did not find that kind of definitions there.</span><=
+br><br></pre><pre>Thanks,<br></pre><pre>Matti<br></pre></div>
+
+--001a11c3170029d5c10517c51a6f--
