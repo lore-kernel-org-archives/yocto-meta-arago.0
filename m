@@ -1,28 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 83A22529F8
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id C42EF52093
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Jun 2015 09:47:00 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t549kwp1003491
-	for <meta-arago@arago-project.org>; Thu, 4 Jun 2015 04:46:58 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t549kwGj011938
-	for <meta-arago@arago-project.org>; Thu, 4 Jun 2015 04:46:58 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 4 Jun 2015 04:46:58 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t549kwvX032128;	Thu, 4 Jun 2015 04:46:58 -0500
-Date: Thu, 4 Jun 2015 05:46:57 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <1536058793.495.1433411217840.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.05 build 2015-06-04_00-38-29
+	Fri,  5 Jun 2015 01:10:37 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NPG0049Q5XJJXT0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 04 Jun 2015 20:10:37 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Lv5vsSpc c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=XAFQembCKUMA:10
+	a=sozttTNsAAAA:8	a=klVuRiTrhT7zRFMxjOgA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 4F601161A83;	Thu,
+	4 Jun 2015 21:10:31 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 04 Jun 2015 21:10:31 -0400
+Message-id: <1433466631-15455-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] srcipk: default source package architecture to the same as binary package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,212 +34,351 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jun 2015 09:47:01 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_494_1633974709.1433411217717"
+X-List-Received-Date: Fri, 05 Jun 2015 01:10:38 -0000
 
-------=_Part_494_1633974709.1433411217717
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 06/04/15
-</title>
-</head>
-<body>
+The original idea was that sources are machine- and even architecture-agnostic.
+That should be true in general, but in some cases sources do differ from
+machine to machine, due to different code bases. To accomodate those, there's
+a way to set source package architecture on a case by case basis, but it
+became error-prone lately.
 
-<h2>Status for 06/04/15</h2>
+But the biggest issue is that srcipk class doesn't play nice with sstate,
+resulting in packaging errors. For example, when binary package is machine
+specific, but its sources are marked by default as allarch, the source
+package gets re-packaged every time a new machine gets built and packages
+its machine-speicific packages, which could lead to md5sum mismatches. It
+is also true for regular arch-specific packages when machines have different
+Cortex optimizations enabled, essentially leading to different archs.
 
-<h2>BUILD_ID: build-2015-06-04_00-39-39</h2>
+Another example is when binary package is not machine-specific, but its
+source package is erroneously marked as such, the binary package then gets
+invalidated by sstate for different machines, potentially leading to errors
+like "PR went backwards" and so on.
 
-<h2>Clean Build: false</h2>
+Setting default source package architecture the same as the corresponding
+binary package makes things easier and avoids unnecessary packaging issues.
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+Long-term this could be fixed more flexible by revamping srcipk class to
+do proper shared state handling, so making source package as allarch won't
+trigger rebuilding or re-packaging it.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/classes/sourceipk.bbclass        |  4 +-
+ .../conf/distro/arago-source-ipk.conf              | 65 ----------------------
+ 2 files changed, 2 insertions(+), 67 deletions(-)
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
+index 0e778f4..2d19a18 100644
+--- a/meta-arago-distro/classes/sourceipk.bbclass
++++ b/meta-arago-distro/classes/sourceipk.bbclass
+@@ -13,7 +13,7 @@
+ #                             the sources into.
+ #   - SRCIPK_PACKAGE_ARCH   = This variable allows specific recipies to
+ #                             specify an architecture for the sourcetree
+-#                             package is "all" is not appropriate
++#                             package, defaults to the same as binary pkg
+ #   - SRCIPK_INC_EXTRAFILES = When set to 1 this variable indicates that
+ #                             the source ipk should contain extra files
+ #                             such as the README file and recipe.
+@@ -51,7 +51,7 @@ SRCIPK_INSTALL_DIR ?= "/usr/src/${PN}-src"
+ SRCIPK_SRC_DIR ?= "${S}"
+ 
+ # Default PACKAGE_ARCH for sources is "all"
+-SRCIPK_PACKAGE_ARCH ?= "all"
++SRCIPK_PACKAGE_ARCH ?= "${PACKAGE_ARCH}"
+ 
+ # Default section matches the recipe section
+ SRCIPK_SECTION ?= "${SECTION}"
+diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+index 91b1d48..0940e0d 100644
+--- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
++++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+@@ -96,7 +96,6 @@ SRCIPK_INSTALL_DIR_pn-ti-ocf-crypto-module = "board-support/extra-drivers/${PN}-
+ 
+ CREATE_SRCIPK_pn-omap3-sgx-modules = "1"
+ SRCIPK_INSTALL_DIR_pn-omap3-sgx-modules = "board-support/extra-drivers/sgx-modules-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-omap3-sgx-modules = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-compat-wireless-wl18xx = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-compat-wireless-wl18xx = "board-support/extra-drivers/${PN}-${PV}"
+@@ -114,109 +113,85 @@ CREATE_SRCIPK_pn-u-boot = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot = "board-support/u-boot-${PV}"
+ # For beagleboard we use the git version which doesn't define UVER
+ SRCIPK_INSTALL_DIR_pn-u-boot_beagleboard = "board-support/${P}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-x-load = "1"
+ SRCIPK_INSTALL_DIR_pn-x-load = "board-support/x-load-${XVER}-psp${PSPREL}"
+ # For beagleboard we use the git version which doesn't define XVER
+ SRCIPK_INSTALL_DIR_pn-x-load_beagleboard = "board-support/${P}"
+-SRCIPK_PACKAGE_ARCH_pn-x-load = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-u-boot-ti-staging = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-ti-staging = "board-support/u-boot-${PV}${UBOOT_LOCALVERSION}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-ti-staging = "${MACHINE_ARCH}"
+ SRCIPK_PRESERVE_GIT_pn-u-boot-ti-staging = "true"
+ 
+ CREATE_SRCIPK_pn-u-boot-keystone = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-keystone = "board-support/u-boot-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-keystone = "${MACHINE_ARCH}"
+ SRCIPK_PRESERVE_GIT_pn-u-boot-keystone = "true"
+ 
+ CREATE_SRCIPK_pn-u-boot-dra7xx = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-dra7xx = "board-support/u-boot-${PV}-${PR}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-dra7xx = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-u-boot-am180x = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-am180x = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-am180x = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-u-boot-am37x = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-am37x = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-am37x = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-u-boot-am33x = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-am33x = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-am33x = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-u-boot-am3517 = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-am3517 = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-u-boot-am3517 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-ti-staging = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-ti-staging = "board-support/linux-${PV}${KERNEL_LOCALVERSION}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-ti-staging = "${MACHINE_ARCH}"
+ SRCIPK_PRESERVE_GIT_pn-linux-ti-staging = "true"
+ SRCIPK_SHALLOW_CLONE_pn-linux-ti-staging = "true"
+ 
+ CREATE_SRCIPK_pn-sitara-linux-ti-staging = "1"
+ SRCIPK_INSTALL_DIR_pn-sitara-linux-ti-staging = "board-support/linux-${PV}${KERNEL_LOCALVERSION}"
+-SRCIPK_PACKAGE_ARCH_pn-sitara-linux-ti-staging = "${MACHINE_ARCH}"
+ SRCIPK_PRESERVE_GIT_pn-sitara-linux-ti-staging = "true"
+ SRCIPK_SHALLOW_CLONE_pn-sitara-linux-ti-staging = "true"
+ SRCIPK_SHALLOW_DEPTH_pn-sitara-linux-ti-staging = "400"
+ 
+ CREATE_SRCIPK_pn-linux-keystone = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-keystone = "board-support/linux-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-keystone = "${MACHINE_ARCH}"
+ SRCIPK_PRESERVE_GIT_pn-linux-keystone = "true"
+ 
+ CREATE_SRCIPK_pn-linux-omapl138-psp = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-omapl138-psp = "board-support/linux-${KVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-omapl138-psp = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-omap-psp = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-omap-psp = "board-support/linux-${KVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-omap-psp = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-am335x-psp = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-am335x-psp = "board-support/linux-${KVER}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-am335x-psp = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-omap = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-omap = "board-support/linux-${PV}-${PR}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-omap = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux = "1"
+ SRCIPK_INSTALL_DIR_pn-linux = "board-support/linux-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-linux = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-omap4 = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-omap4 = "board-support/linux-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-omap4 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-davinci = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-davinci = "board-support/linux-${KVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-davinci = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-linux-omapl1 = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-omapl1 = "board-support/linux-${KVER}-psp${PSPREL}"
+-SRCIPK_PACKAGE_ARCH_pn-linux-omapl1 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-cryptodev-module = "1"
+ SRCIPK_INSTALL_DIR_pn-cryptodev-module = "board-support/extra-drivers/cryptodev-module-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-cryptodev-module = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-cmem-mod = "1"
+ SRCIPK_INSTALL_DIR_pn-cmem-mod = "board-support/extra-drivers/${PN}-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-cmem-mod = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-debugss-module-drv = "1"
+ SRCIPK_INSTALL_DIR_pn-debugss-module-drv = "board-support/extra-drivers/${PN}-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-debugss-module-drv = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-gdbserverproxy-module-drv = "1"
+ SRCIPK_INSTALL_DIR_pn-gdbserverproxy-module-drv = "board-support/extra-drivers/${PN}-${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-gdbserverproxy-module-drv = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-linux-driver-examples = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-linux-driver-examples = "example-applications/linux-driver-examples-${PV}"
+@@ -229,163 +204,123 @@ SRCIPK_INSTALL_DIR_pn-ti-linux-driver-examples-omap3 = "example-applications/lin
+ 
+ CREATE_SRCIPK_pn-ti-framework-components = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-framework-components = "component-sources/framework_components_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-framework-components = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codec-engine = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codec-engine = "component-sources/codec_engine_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codec-engine = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-omap3530 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-omap3530 = "codecs-omap3530_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-omap3530 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-linuxutils = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-linuxutils = "component-sources/linuxutils_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-linuxutils = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-xdctools = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-xdctools = "component-sources/xdctools_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-xdctools = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dmai = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dmai = "dmai_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dmai = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-xdais = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-xdais = "component-sources/xdais_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-xdais = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-local-power-manager = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-local-power-manager = "local-power-manager_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-local-power-manager = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-dm355 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-dm355 = "codecs-dm355_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-dm355 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dvsdk-demos = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dvsdk-demos = "dvsdk-demos_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dvsdk-demos = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dvtb = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dvtb = "dvtb_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dvtb = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-dm365 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-dm365 = "codecs-dm365_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-dm365 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dm365mm-module = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dm365mm-module = "dm365mm-module_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dm365mm-module = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-dm6446 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-dm6446 = "codecs-dm6446_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-dm6446 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-dm6467 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-dm6467 = "codecs-dm6467_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-dm6467 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-omapl137 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-omapl137 = "codecs-omapl137_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-omapl137 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-codecs-omapl138 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-codecs-omapl138 = "codecs-omapl138_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-codecs-omapl138 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-cgt6x = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-cgt6x = "dsp-devkit/cgt6x_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-cgt6x = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-cgt470 = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-cgt470 = "media-controller-devkit/cgt470_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-cgt470 = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dspbios = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dspbios = "dspbios_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dspbios = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-sysbios = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-sysbios = "component-sources/bios_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-sysbios = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-biosutils = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-biosutils = "biosutils_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-biosutils = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dsplink = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dsplink = "dsplink_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dsplink = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-syslink = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-syslink = "component-sources/syslink_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-syslink = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-edma3lld = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-edma3lld = "component-sources/edma3lld_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-edma3lld = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-c6accel = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-c6accel = "component-sources/c6accel_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-c6accel = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-biospsp = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-biospsp = "biospsp_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-biospsp = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-audio-soc-example = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-audio-soc-example = "audio-soc-example_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-audio-soc-example = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-c6run = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-c6run = "component-sources/c6run_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-c6run = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-osal = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-osal = "component-sources/osal_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-osal = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-ipc = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-ipc = "component-sources/ipc_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-ipc = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-dsp-benchmark = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-dsp-benchmark = "example-applications/dsp-benchmark_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-dsp-benchmark = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-gstreamer-ti = "1"
+ SRCIPK_INSTALL_DIR_pn-gstreamer-ti = "gstreamer-ti_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-gstreamer-ti = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-omx = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-omx = "component-sources/omx_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-omx = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-uia = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-uia = "component-sources/uia_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-uia = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-media-controller-utils = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-media-controller-utils = "board-support/media-controller-utils_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-media-controller-utils = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-firmware-dm816x = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-firmware-dm816x = "board-support/prebuilt-images/dm816x-firmware_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-firmware-dm816x = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-firmware-dm814x = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-firmware-dm814x = "board-support/prebuilt-images/dm814x-firmware_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-firmware-dm814x = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-slog = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-slog = "component-sources/slog_${PV}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-slog = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-ti-c674x-aaclcdec = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-c674x-aaclcdec = "component-sources/c674x-aaclcdec_${PV}${PVExtra}"
+-SRCIPK_PACKAGE_ARCH_pn-ti-c674x-aaclcdec = "${MACHINE_ARCH}"
+ 
+ CREATE_SRCIPK_pn-oe-layersetup = "1"
+ SRCIPK_INSTALL_DIR_pn-oe-layersetup = "bin/oe-layersetup"
+-- 
+2.2.0
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.05"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
 
-</body>
-</html>
-
-
-------=_Part_494_1633974709.1433411217717--
