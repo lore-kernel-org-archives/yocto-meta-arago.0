@@ -1,30 +1,31 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
+Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 183C2529B5
+	by arago-project.org (Postfix) with ESMTPS id 22714529AC
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Jun 2015 18:41:11 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t58If9st026071
-	for <meta-arago@arago-project.org>; Mon, 8 Jun 2015 13:41:09 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t58If92H016150
-	for <meta-arago@arago-project.org>; Mon, 8 Jun 2015 13:41:09 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 8 Jun 2015 13:41:09 -0500
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t58If9EO011673;	Mon, 8 Jun 2015 13:41:09 -0500
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1Z21yu-0006Hp-OY;
-	Mon, 08 Jun 2015 14:41:08 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 8 Jun 2015 14:41:06 -0400
-Message-ID: <1433788866-24135-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Mon,  8 Jun 2015 22:19:56 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t58MJs0x021556
+	for <meta-arago@arago-project.org>; Mon, 8 Jun 2015 17:19:54 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t58MJsSn015917
+	for <meta-arago@arago-project.org>; Mon, 8 Jun 2015 17:19:54 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 8 Jun 2015 17:19:53 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t58MJrrq027199;
+	Mon, 8 Jun 2015 17:19:53 -0500
+Date: Mon, 8 Jun 2015 18:19:38 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20150608221937.GC4019@edge>
+References: <1424897759-23944-1-git-send-email-sam.nelson@ti.com>
+	<1424897759-23944-2-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2] processor-sdk-daisy-config: Freeze meta-qt5 layer to stay at QT 5.4.1
+In-Reply-To: <1424897759-23944-2-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 2/2] meta-toolchain_arago-mcsdk: Add toolchain build for MCSDK
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,28 +38,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jun 2015 18:41:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 08 Jun 2015 22:19:57 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../processor-sdk/processor-sdk-daisy-config.txt   |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+So, this is the old one.
 
-diff --git a/configs/processor-sdk/processor-sdk-daisy-config.txt b/configs/processor-sdk/processor-sdk-daisy-config.txt
-index 63a5e27..1ef8f62 100644
---- a/configs/processor-sdk/processor-sdk-daisy-config.txt
-+++ b/configs/processor-sdk/processor-sdk-daisy-config.txt
-@@ -4,7 +4,7 @@
- bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
- meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,HEAD,layers=
- meta-arago,git://arago-project.org/git/meta-arago.git,daisy,HEAD,layers=meta-arago-distro:meta-arago-extras
--meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,17eb158c6d2cd290b054b5bd54311aa44a02d04d,layers=
- meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
- meta-ti,git://arago-project.org/git/meta-ti.git,daisy,HEAD,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,daisy,HEAD,layers=meta-linaro-toolchain
+Can you please change 2 things:
+
+1. Move this recipe to meta-arago-distro, where meta-toolchain-arago-tisdk 
+lives
+
+2. Use TOOLCHAIN_SUFFIX to set -mcsdk- suffix.
+
 -- 
-1.7.9.5
+Denys
 
+
+On Wed, Feb 25, 2015 at 03:55:59PM -0500, Sam Nelson wrote:
+> -Uses package group mcsdk-toolchain-target
+> 
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> ---
+>  .../meta/meta-toolchain-arago-mcsdk.bb             |    7 +++++++
+>  1 file changed, 7 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-core/meta/meta-toolchain-arago-mcsdk.bb
+> 
+> diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-mcsdk.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-mcsdk.bb
+> new file mode 100644
+> index 0000000..70543f4
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-mcsdk.bb
+> @@ -0,0 +1,7 @@
+> +# MCSDK Embedded toolchain
+> +TOOLCHAIN_TARGET_TASK = "packagegroup-arago-mcsdk-toolchain-target"
+> +TOOLCHAIN_OUTPUTNAME = "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}-mcsdk-sdk-${SDK_ARCH}"
+> +
+> +require recipes-core/meta/meta-toolchain-arago.bb
+> +
+> +PR = "r0"
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
