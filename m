@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 54551529AC
+	by arago-project.org (Postfix) with ESMTPS id 74A1B529F8
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Jun 2015 09:12:43 +0000 (UTC)
+	Thu, 11 Jun 2015 07:01:15 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5A9CfFO005079
-	for <meta-arago@arago-project.org>; Wed, 10 Jun 2015 04:12:41 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5B71DvT004195
+	for <meta-arago@arago-project.org>; Thu, 11 Jun 2015 02:01:13 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5A9CfpG030112
-	for <meta-arago@arago-project.org>; Wed, 10 Jun 2015 04:12:41 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5B71DcG014666
+	for <meta-arago@arago-project.org>; Thu, 11 Jun 2015 02:01:13 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 10 Jun 2015 04:12:40 -0500
+	Thu, 11 Jun 2015 02:01:13 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t5A9CeSv008453	for <meta-arago@arago-project.org>;
-	Wed, 10 Jun 2015 04:12:40 -0500
-Date: Wed, 10 Jun 2015 05:12:40 -0400
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t5B71D9T025191	for <meta-arago@arago-project.org>;
+	Thu, 11 Jun 2015 02:01:13 -0500
+Date: Thu, 11 Jun 2015 03:01:12 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <293686427.529.1433927560526.JavaMail.jenkins@puget>
+Message-ID: <1561610876.533.1434006072996.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.06 build 2015-06-09_22-00-51
+Subject: [nightly] Core TISDK 2015.06 build 2015-06-10_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jun 2015 09:12:43 -0000
+X-List-Received-Date: Thu, 11 Jun 2015 07:01:15 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_528_1825640509.1433927560470"
+	boundary="----=_Part_532_1573363941.1434006072907"
 
-------=_Part_528_1825640509.1433927560470
+------=_Part_532_1573363941.1434006072907
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 06/10/15
+Status for 06/11/15
 </title>
 </head>
 <body>
 
-<h2>Status for 06/10/15</h2>
+<h2>Status for 06/11/15</h2>
 
-<h2>BUILD_ID: build-2015-06-09_22-01-58</h2>
+<h2>BUILD_ID: build-2015-06-10_22-02-19</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -134,7 +134,7 @@ Status for 06/10/15
     <tr>
         <td>am437x-evm</td>
         <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>dra7xx-evm</td>
@@ -149,7 +149,7 @@ Status for 06/10/15
     <tr>
         <td>omap5-evm</td>
         <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>k2hk-evm</td>
@@ -244,4 +244,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_528_1825640509.1433927560470--
+------=_Part_532_1573363941.1434006072907--
