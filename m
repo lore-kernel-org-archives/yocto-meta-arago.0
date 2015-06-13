@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 3A939529DF
+	by arago-project.org (Postfix) with ESMTPS id 51019529DF
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Jun 2015 23:58:02 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5CNw0QH016135
-	for <meta-arago@arago-project.org>; Fri, 12 Jun 2015 18:58:00 -0500
+	Sat, 13 Jun 2015 09:23:47 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5D9NeTO029865
+	for <meta-arago@arago-project.org>; Sat, 13 Jun 2015 04:23:41 -0500
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5CNw0PO021137
-	for <meta-arago@arago-project.org>; Fri, 12 Jun 2015 18:58:00 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5D9NeAP021044
+	for <meta-arago@arago-project.org>; Sat, 13 Jun 2015 04:23:40 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 12 Jun 2015 18:58:00 -0500
+	Sat, 13 Jun 2015 04:23:40 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t5CNvxU2022032	for <meta-arago@arago-project.org>;
-	Fri, 12 Jun 2015 18:58:00 -0500
-Date: Fri, 12 Jun 2015 19:57:59 -0400
+	t5D9Neeo022215	for <meta-arago@arago-project.org>;
+	Sat, 13 Jun 2015 04:23:40 -0500
+Date: Sat, 13 Jun 2015 05:23:40 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <5358945.539.1434153479703.JavaMail.jenkins@puget>
+Message-ID: <2028769640.543.1434187420315.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-nightly
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.06 build 2015-06-12_11-38-31
+Subject: [nightly] Core TISDK 2015.06 build 2015-06-12_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jun 2015 23:58:02 -0000
+X-List-Received-Date: Sat, 13 Jun 2015 09:23:52 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_538_245452576.1434153479629"
+	boundary="----=_Part_542_392512111.1434187420207"
 
-------=_Part_538_245452576.1434153479629
+------=_Part_542_392512111.1434187420207
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 06/12/15
+Status for 06/13/15
 </title>
 </head>
 <body>
 
-<h2>Status for 06/12/15</h2>
+<h2>Status for 06/13/15</h2>
 
-<h2>BUILD_ID: build-2015-06-12_11-39-39</h2>
+<h2>BUILD_ID: build-2015-06-12_22-01-58</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -153,8 +153,8 @@ Status for 06/12/15
     </tr>
     <tr>
         <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
     <tr>
         <td>k2e-evm</td>
@@ -244,4 +244,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
 </html>
 
 
-------=_Part_538_245452576.1434153479629--
+------=_Part_542_392512111.1434187420207--
