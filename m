@@ -1,31 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 711A452987
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id E8241529B5
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Jun 2015 16:22:28 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5FGMRgE014507;
-	Mon, 15 Jun 2015 11:22:27 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5FGMQab022841;
-	Mon, 15 Jun 2015 11:22:27 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 15 Jun 2015 11:22:26 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5FGMQVo030145;
-	Mon, 15 Jun 2015 11:22:26 -0500
-Date: Mon, 15 Jun 2015 12:22:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Message-ID: <20150615162226.GO4825@edge>
-References: <CADySD0HLdsGyRo3G-GDG7RcS5+pfSQB5Je4-9aNE5W9AX3OidA@mail.gmail.com>
-	<CADySD0FWxqfprvwCAXSEqyL2Sx08=ZWPxdzKoh5vws=cimeZUA@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CADySD0FWxqfprvwCAXSEqyL2Sx08=ZWPxdzKoh5vws=cimeZUA@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: bitbake error when using arago-fido-config
+	Mon, 15 Jun 2015 16:59:18 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NPZ005QWWI0D3C0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 15 Jun 2015 11:58:59 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=ff9QsBkF c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=XAFQembCKUMA:10
+	a=sozttTNsAAAA:8	a=qZweVp4oH_XxJFRKdnoA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 7617B161AA8;	Mon,
+	15 Jun 2015 12:58:48 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 15 Jun 2015 12:58:48 -0400
+Message-id: <1434387528-2210-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] layer.conf: add cryptodev-module to safe ABI list
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,123 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jun 2015 16:22:29 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 15 Jun 2015 16:59:19 -0000
 
-http://arago-project.org/pipermail/meta-arago/2015-May/005666.html
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/layer.conf | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Sat, Jun 13, 2015 at 10:38:46AM +1200, Ankur Tyagi wrote:
-> "With typos fixed"
-> 
-> ​
-> Hi,
-> 
-> I am trying to create tisdk rootfs image for AM335x EVM.
-> 
-> Following are the steps are performed:
-> 
-> git clone git://arago-project.org/git/projects/oe-layersetup.git fido
-> export
-> PATH=/opt/fido/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux/bin:$PATH
-> cd fido
-> ./oe-layersetup.sh -f configs/arago-fido-config.txt
-> cd build
-> . conf/setenv
-> MACHINE=am335x-evm bitbake tisdk-rootfs-image
-> 
-> This gave following error :
-> 
-> NOTE: Started PRServer with DBfile:
-> /home/ankur/fido/build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 53096,
-> PID: 3653
-> ERROR: Layer 'networking-layer' depends on layer 'meta-python', but this
-> layer is not enabled in your configuration
-> 
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> 
-> I then added meta-python in bblayers.conf
-> 
-> /home/ankur/fido/sources/meta-openembedded/meta-python \
-> 
-> Again started bitbake
-> MACHINE=am335x-evm bitbake tisdk-rootfs-image
-> 
-> and got this error
-> 
-> ERROR: ParseError at
-> /home/ankur/fido/sources/meta-arago/meta-arago-extras/recipes-core/meta/
-> external-arago-toolchain.bb:1: Could not include required file
-> recipes-core/eglibc/eglibc-package.inc
-> 
-> Summary: There were 3 WARNING messages shown.
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> 
-> What wrong am I doing and how to fix it ?
-> 
-> thanks
-> Ankur
-> 
-> 
-> 
-> 
-> On Sat, Jun 13, 2015 at 10:36 AM, Ankur Tyagi <ankur.tyagi85@gmail.com>
-> wrote:
-> 
-> > ​​
-> > Hi,
-> >
-> > I am trying to create tisdk rootfs image for AM335x EVM.
-> >
-> > Following are the steps are performed:
-> >
-> > git clone git://arago-project.org/git/projects/oe-layersetup.git fido
-> > export
-> > PATH=/opt/fido/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux/bin:$PATH
-> > cd fido
-> > ./oe-layersetup.sh -f configs/arago-fido-conig.txt
-> > cd build
-> > . conf/setenv
-> > MACHINE=am335-evm bitbake tisdk-rootfs-image
-> >
-> > This gave following error :
-> >
-> > NOTE: Started PRServer with DBfile:
-> > /home/ankur/fido/build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 53096,
-> > PID: 3653
-> > ERROR: Layer 'networking-layer' depends on layer 'meta-python', but this
-> > layer is not enabled in your configuration
-> >
-> > Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> >
-> > I then added meta-python in bblayers.conf
-> >
-> > /home/ankur/fido/sources/meta-openembedded/meta-python \
-> >
-> > Again started bitbake
-> > MACHINE=am335-evm bitbake tisdk-rootfs-image
-> >
-> > and got this error
-> >
-> > ERROR: ParseError at
-> > /home/ankur/fido/sources/meta-arago/meta-arago-extras/recipes-core/meta/
-> > external-arago-toolchain.bb:1: Could not include required file
-> > recipes-core/eglibc/eglibc-package.inc
-> >
-> > Summary: There were 3 WARNING messages shown.
-> > Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> >
-> > What wrong am I doing and how to fix it ?
-> >
-> > thanks
-> > Ankur
-> >
-
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index ce5aed7..998276f 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -12,3 +12,7 @@ SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
+     weston-init->weston \
+     weston-init->kbd \
+ "
++
++SIGGEN_EXCLUDERECIPES_ABISAFE += " \
++    cryptodev-module \
++"
+-- 
+2.2.0
 
 
