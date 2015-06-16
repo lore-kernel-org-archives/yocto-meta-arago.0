@@ -1,27 +1,28 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 530B7529B5
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 69944529B5
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jun 2015 14:32:23 +0000 (UTC)
+	Tue, 16 Jun 2015 14:33:41 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5GEWLVW018648;
-	Tue, 16 Jun 2015 09:32:21 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5GEWLw5001918;
-	Tue, 16 Jun 2015 09:32:21 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 16 Jun 2015 09:32:21 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5GEXdVU002001;
+	Tue, 16 Jun 2015 09:33:39 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5GEXduq003065;
+	Tue, 16 Jun 2015 09:33:39 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 16 Jun 2015 09:33:39 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5GEWK8C019131;
-	Tue, 16 Jun 2015 09:32:21 -0500
-Date: Tue, 16 Jun 2015 10:32:20 -0400
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5GEXdNC003292;
+	Tue, 16 Jun 2015 09:33:39 -0500
+Date: Tue, 16 Jun 2015 10:33:38 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: matti kaasinen <matti.kaasinen@gmail.com>
-Message-ID: <20150616143220.GA14786@edge>
+Message-ID: <20150616143338.GB14786@edge>
 References: <CADnUhn3FrWPH_yUKzX-Tf9Q9vz5GYmDHrVTOQxk_CefMgKvT1A@mail.gmail.com>
+	<CADnUhn1obcbd+OwzAYhDVQzU8eGMh_wt7JapOZH1agPBfFpyaQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CADnUhn3FrWPH_yUKzX-Tf9Q9vz5GYmDHrVTOQxk_CefMgKvT1A@mail.gmail.com>
+In-Reply-To: <CADnUhn1obcbd+OwzAYhDVQzU8eGMh_wt7JapOZH1agPBfFpyaQ@mail.gmail.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
 Subject: Re: overriding arago.conf settings
@@ -37,23 +38,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 14:32:23 -0000
+X-List-Received-Date: Tue, 16 Jun 2015 14:33:41 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Jun 16, 2015 at 12:08:36PM +0300, matti kaasinen wrote:
-> Hi!
-> Do anyone know how to overriding variables set in arago.conf using
-> layer.conf or local.conf settings (or anything else that touching Arago
-> layer). I try to set something else on my own layer
-> (PREFERRED_VERSION_u-boot). I have tried changing layer orders in
-> bblayers.conf and priority in layer.conf. In fact if I got it right from
-> Yocto documentation distro.conf is just parsed first and that is what rules.
+On Tue, Jun 16, 2015 at 02:24:20PM +0300, matti kaasinen wrote:
+> I found how to do it in layer.conf:
+> PREFERRED_VERSION_u-boot_forcevariable                = "2013.10"
+> PREFERRED_VERSION_u-boot-ti-staging_forcevariable     = "2013.10%"
 
-Actually, it's Distro's job to set preferences, hence it usually sets things 
-unconditionally. That's why it's not very easy to override. But it's possible. 
-Just use _forcevariable override, e.g. VAR_forcevariable = VAL.
+Correct. Not sure why would you prefer older u-boot, but still. Also, maybe 
+local.conf is a better place to do that, but it will work anyway.
 
--- 
-Denys
+
+> 2015-06-16 12:08 GMT+03:00 matti kaasinen <matti.kaasinen@gmail.com>:
+> 
+> > Hi!
+> > Do anyone know how to overriding variables set in arago.conf using
+> > layer.conf or local.conf settings (or anything else that touching Arago
+> > layer). I try to set something else on my own layer
+> > (PREFERRED_VERSION_u-boot). I have tried changing layer orders in
+> > bblayers.conf and priority in layer.conf. In fact if I got it right from
+> > Yocto documentation distro.conf is just parsed first and that is what rules.
+> > Thanks,
+> > Matti
+> >
+
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
 
