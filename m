@@ -1,30 +1,29 @@
-Return-Path: <matti.kaasinen@gmail.com>
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by arago-project.org (Postfix) with ESMTPS id F00F8529FF
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 566FD52A99
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jun 2015 07:22:41 +0000 (UTC)
-Received: by igbzc4 with SMTP id zc4so72482916igb.0
-	for <meta-arago@arago-project.org>;
-	Tue, 16 Jun 2015 00:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Oza+/tp/kV4fR8ya2OWXNZI/FqS1sOo/9uiB3iqcK5o=;
-	b=ue5gYMYUGl39W/aXpDp1ZEx0IJgrPfdbBb1tYLE3jhjo1UYwziHrNipmv4xdjmcQsG
-	jjeOvfQAf/5RaY04Dqd733FNQzm8e/dPpwCi6PZ+d6ZOpxuYnTC+y7ncdmUHygvSzptR
-	8TvAYKpeRGYChUJ2WiaLGKYDJ7pWL8VTl6caCyaYJbNG+H/JruZ+l3JZiEzIhG8vUKJ+
-	B4VeTyTdxQo8REPJt0uaVHTz1OnInsxH0clz1bi/OvBAMptIGrjMbcOhyyQNpH496ezW
-	jooB81HzOUS7+ipGVqTcOYtmshTQac5fgTTzig11VJQ91Im8EEgNTJ++Gz92WXBAQmIW
-	R+1A==
+	Tue, 16 Jun 2015 08:55:50 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5G8tmkl026768
+	for <meta-arago@arago-project.org>; Tue, 16 Jun 2015 03:55:48 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5G8tmRU003686
+	for <meta-arago@arago-project.org>; Tue, 16 Jun 2015 03:55:48 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 16 Jun 2015 03:55:48 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t5G8tlGs028753	for <meta-arago@arago-project.org>;
+	Tue, 16 Jun 2015 03:55:48 -0500
+Date: Tue, 16 Jun 2015 04:55:47 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1619542054.555.1434444947772.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Received: by 10.50.80.19 with SMTP id n19mr1628522igx.30.1434439360545; Tue,
-	16 Jun 2015 00:22:40 -0700 (PDT)
-Received: by 10.36.1.197 with HTTP; Tue, 16 Jun 2015 00:22:40 -0700 (PDT)
-Date: Tue, 16 Jun 2015 10:22:40 +0300
-Message-ID: <CADnUhn1LN-0AUhAk8JfKYrWuKQ+RE3-A8AbvE00+V7xFWTDukA@mail.gmail.com>
-From: matti kaasinen <matti.kaasinen@gmail.com>
-To: meta-arago@arago-project.org
-Subject: bitbake-layers show-layers crashes
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.06 build 2015-06-15_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,88 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 07:22:43 -0000
-Content-Type: multipart/alternative; boundary=089e01494b6889883805189d70ee
+X-List-Received-Date: Tue, 16 Jun 2015 08:55:51 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_554_1181998172.1434444947585"
 
---089e01494b6889883805189d70ee
-Content-Type: text/plain; charset=UTF-8
+------=_Part_554_1181998172.1434444947585
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi
-Running bitbake-layers show-layers crashes.  I have done installation with
-arago-daisy-config.txt.
+<html>
+<head>
+<title>
+Status for 06/16/15
+</title>
+</head>
+<body>
 
-For instance bitbake linux-ti-staging works fine. I tried to study layer
-priorities as PREFERRED_VERSION_u-boot-ti-staging setting did not work as
-expected.
+<h2>Status for 06/16/15</h2>
 
-Following lists the error messages I get:
-Traceback (most recent call last):
-  File "/ARAGO/sources/bitbake/lib/bb/cookerdata.py", line 240, in
-parseBaseConfiguration
-    self.parseConfigurationFiles(self.prefiles, self.postfiles)
-  File "/ARAGO/sources/bitbake/lib/bb/cookerdata.py", line 307, in
-parseConfigurationFiles
-    bb.event.fire(bb.event.ConfigParsed(), data)
-  File "/ARAGO/sources/bitbake/lib/bb/event.py", line 163, in fire
-    fire_class_handlers(event, d)
-  File "/ARAGO/sources/bitbake/lib/bb/event.py", line 102, in
-fire_class_handlers
-    execute_handler(name, handler, event, d)
-  File "/ARAGO/sources/bitbake/lib/bb/event.py", line 76, in execute_handler
-    ret = handler(event)
-  File "external_linaro_toolchain_version_handler(e)", line 8, in
-external_linaro_toolchain_version_handler
-  File "external-linaro-toolchain-versions.inc", line 4, in
-elt_get_main_version
-IndexError: list index out of range
-Traceback (most recent call last):
-  File "/ARAGO/sources/bitbake/bin/bitbake-layers", line 1034, in <module>
-    ret = main()
-  File "/ARAGO/sources/bitbake/bin/bitbake-layers", line 1027, in main
-    ret = args.func(args)
-  File "/ARAGO/sources/bitbake/bin/bitbake-layers", line 725, in
-do_show_appends
-    self.init_bbhandler()
-  File "/ARAGO/sources/bitbake/bin/bitbake-layers", line 65, in
-init_bbhandler
-    self.bbhandler = bb.tinfoil.Tinfoil()
-  File "/ARAGO/sources/bitbake/lib/bb/tinfoil.py", line 54, in __init__
-    self.cooker = BBCooker(self.config, features)
+<h2>BUILD_ID: build-2015-06-15_22-01-57</h2>
 
---089e01494b6889883805189d70ee
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<h2>Clean Build: false</h2>
 
-<div dir=3D"ltr"><div><div><div>Hi<br></div>Running bitbake-layers show-lay=
-ers crashes.=C2=A0 I have done installation with arago-daisy-config.txt. <b=
-r><br></div>For instance bitbake linux-ti-staging works fine. I tried to st=
-udy layer priorities as PREFERRED_VERSION_u-boot-ti-staging setting did not=
- work as expected.<br><br></div>Following lists the error messages I get:<b=
-r>Traceback (most recent call last):<br>=C2=A0 File &quot;/ARAGO/sources/bi=
-tbake/lib/bb/cookerdata.py&quot;, line 240, in parseBaseConfiguration<br>=
-=C2=A0=C2=A0=C2=A0 self.parseConfigurationFiles(self.prefiles, self.postfil=
-es)<br>=C2=A0 File &quot;/ARAGO/sources/bitbake/lib/bb/cookerdata.py&quot;,=
- line 307, in parseConfigurationFiles<br>=C2=A0=C2=A0=C2=A0 bb.event.fire(b=
-b.event.ConfigParsed(), data)<br>=C2=A0 File &quot;/ARAGO/sources/bitbake/l=
-ib/bb/event.py&quot;, line 163, in fire<br>=C2=A0=C2=A0=C2=A0 fire_class_ha=
-ndlers(event, d)<br>=C2=A0 File &quot;/ARAGO/sources/bitbake/lib/bb/event.p=
-y&quot;, line 102, in fire_class_handlers<br>=C2=A0=C2=A0=C2=A0 execute_han=
-dler(name, handler, event, d)<br>=C2=A0 File &quot;/ARAGO/sources/bitbake/l=
-ib/bb/event.py&quot;, line 76, in execute_handler<br>=C2=A0=C2=A0=C2=A0 ret=
- =3D handler(event)<br>=C2=A0 File &quot;external_linaro_toolchain_version_=
-handler(e)&quot;, line 8, in external_linaro_toolchain_version_handler<br>=
-=C2=A0 File &quot;external-linaro-toolchain-versions.inc&quot;, line 4, in =
-elt_get_main_version<br>IndexError: list index out of range<br>Traceback (m=
-ost recent call last):<br>=C2=A0 File &quot;/ARAGO/sources/bitbake/bin/bitb=
-ake-layers&quot;, line 1034, in &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 ret =
-=3D main()<br>=C2=A0 File &quot;/ARAGO/sources/bitbake/bin/bitbake-layers&q=
-uot;, line 1027, in main<br>=C2=A0=C2=A0=C2=A0 ret =3D args.func(args)<br>=
-=C2=A0 File &quot;/ARAGO/sources/bitbake/bin/bitbake-layers&quot;, line 725=
-, in do_show_appends<br>=C2=A0=C2=A0=C2=A0 self.init_bbhandler()<br>=C2=A0 =
-File &quot;/ARAGO/sources/bitbake/bin/bitbake-layers&quot;, line 65, in ini=
-t_bbhandler<br>=C2=A0=C2=A0=C2=A0 self.bbhandler =3D bb.tinfoil.Tinfoil()<b=
-r>=C2=A0 File &quot;/ARAGO/sources/bitbake/lib/bb/tinfoil.py&quot;, line 54=
-, in __init__<br>=C2=A0=C2=A0=C2=A0 self.cooker =3D BBCooker(self.config, f=
-eatures)<br><br></div>
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
---089e01494b6889883805189d70ee--
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_554_1181998172.1434444947585--
