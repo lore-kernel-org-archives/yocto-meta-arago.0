@@ -1,29 +1,30 @@
-Return-Path: <hzhang@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BBBB7529B5
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by arago-project.org (Postfix) with ESMTPS id 70E8852093
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Jun 2015 14:48:27 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5IEmPvh030100
-	for <meta-arago@arago-project.org>; Thu, 18 Jun 2015 09:48:25 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5IEmP1C020535
-	for <meta-arago@arago-project.org>; Thu, 18 Jun 2015 09:48:25 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 18 Jun 2015 09:48:25 -0500
-Received: from ares-ubuntu (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5IEmPT1026833;
-	Thu, 18 Jun 2015 09:48:25 -0500
-Received: from a0868496 by ares-ubuntu with local (Exim 4.76)	(envelope-from
-	<hzhang@ti.com>)	id 1Z5b7B-0007rO-41; Thu, 18 Jun 2015 10:48:25 -0400
-From: <hzhang@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 18 Jun 2015 10:48:06 -0400
-Message-ID: <1434638886-30181-1-git-send-email-hzhang@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Fri, 19 Jun 2015 07:04:49 +0000 (UTC)
+Received: by oigx81 with SMTP id x81so74112129oig.1
+	for <meta-arago@arago-project.org>;
+	Fri, 19 Jun 2015 00:04:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=nc8HEn98CAGReJ+N8Tvgqt1ihfd3lEjzphciAS/fvZ8=;
+	b=Bp2D8wzzwyg7+xArn20Xm6/zlDztuqrhcIiBaUE2Aq5iNe58mjswWP0C+SKUkPqr09
+	z3x2RLJf+DB45SI6DnQyajKvkjvpa3ceE1hMazP/VDTJ9Hl0fepUJaBvR6vjrKxwFZIv
+	47q2Uo8ALsGJywYQvmpHhmz6SHolBs4vX7+CWEYBUSQhx9SB0lSI7neQ8vWKT4fmqbPg
+	Hka5Hg66bu9WJOibpRcIpl42O3/RVjcjudUf0vqUQYUub/GyXhfPnt+TgUwv/cXCgIAU
+	b3dxQFWRwjyUhHHVgKUZ/DjVWlSulI4X9Dyc/fNxgov3P0xbBuRmEYRDkPubIkz27mtV
+	YoFA==
+X-Received: by 10.60.134.19 with SMTP id pg19mr6950531oeb.12.1434697488475;
+	Fri, 19 Jun 2015 00:04:48 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [PATCH] keystone: recovery kernel: Add dependency on device tree compiler
+Received: by 10.202.106.213 with HTTP; Fri, 19 Jun 2015 00:04:28 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Fri, 19 Jun 2015 19:04:28 +1200
+Message-ID: <CADySD0Et4JtD7_bZ8yMUkbaBrbrtrt8v8YETaJUHkSm=FbMaTg@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: How to build browser (chrome/firefox) for AM335x using meta-arago
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,33 +37,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jun 2015 14:48:29 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 19 Jun 2015 07:04:49 -0000
+Content-Type: multipart/alternative; boundary=047d7b471dbe292dd60518d98a59
 
-From: Hao Zhang <hzhang@ti.com>
+--047d7b471dbe292dd60518d98a59
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Hao Zhang <hzhang@ti.com>
----
- .../recovery-kernel/recovery-kernel_1.0.bb         |    5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Hi,
 
-diff --git a/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb b/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb
-index 6e4f9c7..3fc631b 100644
---- a/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb
-+++ b/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb
-@@ -1,7 +1,10 @@
- DESCRIPTION = "Recovery kernel building for Keystone EVM"
- LICENSE = "GPLv2"
- 
--PR = "r3"
-+# recovery kernel needs devtree compiler to add padding bytes
-+DEPENDS += "dtc-native"
-+
-+PR = "r4"
- COMPATIBLE_MACHINE = "keystone"
- BRANCH = "v3.10.72/master"
- SRCREV = "b9bad8fccc5f9c6bcd78363982b3249a15f193fb"
--- 
-1.7.9.5
+I want to build chrome/firefox browser for my AM335x EVM.
 
+I am using "arago-daisy-config.txt" to bitbake tisdk-rootfs-image.
 
+I see there is meta-browser which includes chrome, firefox.
+
+How can I get them build with my tisdk rootfs ?
+
+What all do I need to modify in my bblayer and local conf files ?
+
+thanks
+
+--047d7b471dbe292dd60518d98a59
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif;font-size:small;color:#333399">Hi,</div><div class=3D"gmail_default" =
+style=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div=
+><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:=
+small;color:#333399">I want to build chrome/firefox browser for my AM335x E=
+VM.</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;fo=
+nt-size:small;color:#333399"><br></div><div class=3D"gmail_default" style=
+=3D"font-family:georgia,serif;font-size:small;color:#333399">I am using &qu=
+ot;arago-daisy-config.txt&quot; to bitbake tisdk-rootfs-image.</div><div cl=
+ass=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;co=
+lor:#333399"><br></div><div class=3D"gmail_default" style=3D"font-family:ge=
+orgia,serif;font-size:small;color:#333399">I see there is meta-browser whic=
+h includes chrome, firefox.</div><div class=3D"gmail_default" style=3D"font=
+-family:georgia,serif;font-size:small;color:#333399"><br></div><div class=
+=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;color=
+:#333399">How can I get them build with my tisdk rootfs ?</div><div class=
+=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;color=
+:#333399"><br></div><div class=3D"gmail_default" style=3D"font-family:georg=
+ia,serif;font-size:small;color:#333399">What all do I need to modify in my =
+bblayer and local conf files ?</div><div class=3D"gmail_default" style=3D"f=
+ont-family:georgia,serif;font-size:small;color:#333399"><br></div><div clas=
+s=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;colo=
+r:#333399">thanks</div>
+</div>
+
+--047d7b471dbe292dd60518d98a59--
