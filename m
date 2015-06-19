@@ -1,30 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
-	[209.85.218.44])
-	by arago-project.org (Postfix) with ESMTPS id 70E8852093
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 8394D52A40
 	for <meta-arago@arago-project.org>;
-	Fri, 19 Jun 2015 07:04:49 +0000 (UTC)
-Received: by oigx81 with SMTP id x81so74112129oig.1
-	for <meta-arago@arago-project.org>;
-	Fri, 19 Jun 2015 00:04:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=nc8HEn98CAGReJ+N8Tvgqt1ihfd3lEjzphciAS/fvZ8=;
-	b=Bp2D8wzzwyg7+xArn20Xm6/zlDztuqrhcIiBaUE2Aq5iNe58mjswWP0C+SKUkPqr09
-	z3x2RLJf+DB45SI6DnQyajKvkjvpa3ceE1hMazP/VDTJ9Hl0fepUJaBvR6vjrKxwFZIv
-	47q2Uo8ALsGJywYQvmpHhmz6SHolBs4vX7+CWEYBUSQhx9SB0lSI7neQ8vWKT4fmqbPg
-	Hka5Hg66bu9WJOibpRcIpl42O3/RVjcjudUf0vqUQYUub/GyXhfPnt+TgUwv/cXCgIAU
-	b3dxQFWRwjyUhHHVgKUZ/DjVWlSulI4X9Dyc/fNxgov3P0xbBuRmEYRDkPubIkz27mtV
-	YoFA==
-X-Received: by 10.60.134.19 with SMTP id pg19mr6950531oeb.12.1434697488475;
-	Fri, 19 Jun 2015 00:04:48 -0700 (PDT)
+	Fri, 19 Jun 2015 11:02:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t5JB2INv002410
+	for <meta-arago@arago-project.org>; Fri, 19 Jun 2015 06:02:18 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t5JB2ITF015984
+	for <meta-arago@arago-project.org>; Fri, 19 Jun 2015 06:02:18 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 19 Jun 2015 06:02:18 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t5JB2IMs021505	for <meta-arago@arago-project.org>;
+	Fri, 19 Jun 2015 06:02:18 -0500
+Date: Fri, 19 Jun 2015 07:02:18 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1155284816.571.1434711738238.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.202.106.213 with HTTP; Fri, 19 Jun 2015 00:04:28 -0700 (PDT)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Fri, 19 Jun 2015 19:04:28 +1200
-Message-ID: <CADySD0Et4JtD7_bZ8yMUkbaBrbrtrt8v8YETaJUHkSm=FbMaTg@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: How to build browser (chrome/firefox) for AM335x using meta-arago
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.06 build 2015-06-18_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,53 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jun 2015 07:04:49 -0000
-Content-Type: multipart/alternative; boundary=047d7b471dbe292dd60518d98a59
+X-List-Received-Date: Fri, 19 Jun 2015 11:02:20 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_570_813089411.1434711738128"
 
---047d7b471dbe292dd60518d98a59
-Content-Type: text/plain; charset=UTF-8
+------=_Part_570_813089411.1434711738128
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+<html>
+<head>
+<title>
+Status for 06/19/15
+</title>
+</head>
+<body>
 
-I want to build chrome/firefox browser for my AM335x EVM.
+<h2>Status for 06/19/15</h2>
 
-I am using "arago-daisy-config.txt" to bitbake tisdk-rootfs-image.
+<h2>BUILD_ID: build-2015-06-18_22-01-57</h2>
 
-I see there is meta-browser which includes chrome, firefox.
+<h2>Clean Build: false</h2>
 
-How can I get them build with my tisdk rootfs ?
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-What all do I need to modify in my bblayer and local conf files ?
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
 
-thanks
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
---047d7b471dbe292dd60518d98a59
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif;font-size:small;color:#333399">Hi,</div><div class=3D"gmail_default" =
-style=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div=
-><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:=
-small;color:#333399">I want to build chrome/firefox browser for my AM335x E=
-VM.</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;fo=
-nt-size:small;color:#333399"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:georgia,serif;font-size:small;color:#333399">I am using &qu=
-ot;arago-daisy-config.txt&quot; to bitbake tisdk-rootfs-image.</div><div cl=
-ass=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;co=
-lor:#333399"><br></div><div class=3D"gmail_default" style=3D"font-family:ge=
-orgia,serif;font-size:small;color:#333399">I see there is meta-browser whic=
-h includes chrome, firefox.</div><div class=3D"gmail_default" style=3D"font=
--family:georgia,serif;font-size:small;color:#333399"><br></div><div class=
-=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;color=
-:#333399">How can I get them build with my tisdk rootfs ?</div><div class=
-=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;color=
-:#333399"><br></div><div class=3D"gmail_default" style=3D"font-family:georg=
-ia,serif;font-size:small;color:#333399">What all do I need to modify in my =
-bblayer and local conf files ?</div><div class=3D"gmail_default" style=3D"f=
-ont-family:georgia,serif;font-size:small;color:#333399"><br></div><div clas=
-s=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;colo=
-r:#333399">thanks</div>
-</div>
+</body>
+</html>
 
---047d7b471dbe292dd60518d98a59--
+
+------=_Part_570_813089411.1434711738128--
