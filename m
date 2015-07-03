@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id C2ACA52ACF
+	by arago-project.org (Postfix) with ESMTPS id E6B9752AD2
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Jul 2015 03:02:42 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NQW00GUL5S5MG80@vms173023.mailsrvcs.net> for
+	with ESMTPSA id <0NQW00LXP5S5N440@vms173023.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:30 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Jp0M15MC c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=S6gku9YP c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8 a=VwQbUJbxAAAA:8	a=HdP0dGgHUlue44aGmwEA:9
+	a=sozttTNsAAAA:8	a=fio3GR3Ib8NO4SBFGKoA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 3DEB3161AEB;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 3F700161AEC;	Thu,
 	2 Jul 2015 23:02:16 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jul 2015 23:02:01 -0400
-Message-id: <1435892533-6046-43-git-send-email-denis@denix.org>
+Date: Thu, 02 Jul 2015 23:02:02 -0400
+Message-id: <1435892533-6046-44-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1435892533-6046-1-git-send-email-denis@denix.org>
 References: <1435892533-6046-1-git-send-email-denis@denix.org>
-Subject: [PATCH 42/54] obexd: move from extras to distro, fix build when B != S
+Subject: [PATCH 43/54] thttpd: fix build issue for B != S
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,35 +42,22 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-connectivity/{obex => obexd}/obexd_0.34.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-arago-extras/recipes-connectivity/{obex => obexd}/obexd_0.34.bb (93%)
+ meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb b/meta-arago-extras/recipes-connectivity/obexd/obexd_0.34.bb
-similarity index 93%
-rename from meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb
-rename to meta-arago-extras/recipes-connectivity/obexd/obexd_0.34.bb
-index 8de34e9..388a6dd 100644
---- a/meta-arago-extras/recipes-connectivity/obex/obexd_0.34.bb
-+++ b/meta-arago-extras/recipes-connectivity/obexd/obexd_0.34.bb
-@@ -4,7 +4,7 @@ DEPENDS = "openobex glib-2.0 dbus bluez4 libical"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "files://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb b/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
+index a6f14bf..477eff4 100644
+--- a/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
++++ b/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
+@@ -21,7 +21,7 @@ PARALLEL_MAKE = ""
+ INITSCRIPT_NAME = "thttpd"
+ INITSCRIPT_PARAMS = "defaults"
  
--PR = "r0"
-+PR = "r1"
+-inherit autotools update-rc.d
++inherit autotools-brokensep update-rc.d
  
- SRC_URI = "http://www.kernel.org/pub/linux/bluetooth/obexd-${PV}.tar.gz \
- "
-@@ -12,7 +12,7 @@ SRC_URI = "http://www.kernel.org/pub/linux/bluetooth/obexd-${PV}.tar.gz \
- SRC_URI[md5sum] = "36080a767e63e54878cd6bcfb20c4f3b"
- SRC_URI[sha256sum] = "f99fb58562a3d7edef6fd9e63ca04510e241bbdab37fdb122c2c7a112a09100a"
- 
--inherit autotools
-+inherit autotools-brokensep pkgconfig
- 
- PACKAGES =+ "obex-client obex-plugins"
- 
+ EXTRA_OEMAKE += "'WEBDIR=${servicedir}/www'"
+ FILES_${PN}-dbg_append = " ${servicedir}/www/cgi-bin/.debug"
 -- 
 2.2.0
 
