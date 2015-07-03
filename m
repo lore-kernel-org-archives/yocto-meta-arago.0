@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
 	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id F0CA252A6B
+	by arago-project.org (Postfix) with ESMTPS id 13F3B52A93
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Jul 2015 03:02:17 +0000 (UTC)
+	Fri,  3 Jul 2015 03:02:18 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NQW00B5N5RSV690@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:16 -0500 (CDT)
+	with ESMTPSA id <0NQW00B5Q5RSV690@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:17 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=N5PUbDJB c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=KZwvylsD c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8	a=DyUAQdejYNPY82Qm6LoA:9
+	a=sozttTNsAAAA:8 a=xq3W2uTSAAAA:8	a=IdlRr0BsLPe2K1XZmxsA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 1F75B161ACA;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 3C389161ACF;	Thu,
 	2 Jul 2015 23:02:15 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jul 2015 23:01:27 -0400
-Message-id: <1435892533-6046-9-git-send-email-denis@denix.org>
+Date: Thu, 02 Jul 2015 23:01:32 -0400
+Message-id: <1435892533-6046-14-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1435892533-6046-1-git-send-email-denis@denix.org>
 References: <1435892533-6046-1-git-send-email-denis@denix.org>
-Subject: [PATCH 08/54] ti-rm: available in meta-ti as rm-lld
+Subject: [PATCH 13/54] v4l-utils: remove local updates to the older version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,65 +42,23 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb | 49 ------------------------
- 1 file changed, 49 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+ .../recipes-multimedia/v4l2apps/v4l-utils_1.0.1.bbappend           | 7 -------
+ 1 file changed, 7 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-multimedia/v4l2apps/v4l-utils_1.0.1.bbappend
 
-diff --git a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb b/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+diff --git a/meta-arago-distro/recipes-multimedia/v4l2apps/v4l-utils_1.0.1.bbappend b/meta-arago-distro/recipes-multimedia/v4l2apps/v4l-utils_1.0.1.bbappend
 deleted file mode 100644
-index 38ec0ad..0000000
---- a/meta-arago-extras/recipes-bsp/ti-rm/ti-rm_git.bb
+index bda8cae..0000000
+--- a/meta-arago-distro/recipes-multimedia/v4l2apps/v4l-utils_1.0.1.bbappend
 +++ /dev/null
-@@ -1,49 +0,0 @@
--DESCRIPTION = "TI Resource Manager Low Level Driver"
--LICENSE = "TI BSD"
--LIC_FILES_CHKSUM = "file://${WORKDIR}/git/ti/drv/rm/COPYING.txt;md5=dc61631b65360e6beb73b6c337800afc"
+@@ -1,7 +0,0 @@
+-SRC_URI = "git://linuxtv.org/v4l-utils.git"
 -
--BRANCH="master"
--SRC_URI = "git://git.ti.com/keystone-rtos/rm-lld.git;destsuffix=git/ti/drv/rm;protocol=git;branch=${BRANCH}"
--# Below commit ID corresponds to DEV.RM_LLD.02.00.00.08
--SRCREV = "3a73cfe015214ff0401639f85fa5e52ea610e59d"
--PR = "r0"
--PV = "02.00.00.08"
+-SRCREV = "3719cef229379f1f2cb2fe61f2359bdac6cff6b0"
 -
--COMPATIBLE_MACHINE = "keystone"
+-S = "${WORKDIR}/git"
 -
--DEPENDS = "ti-ipc"
--
--PACKAGES =+ "${PN}-test"
--
--FILES_${PN}-test = "${bindir}/rmDspClientTest_*.out \
--                    ${bindir}/rmLinuxClientTest_*.out \
--                    ${bindir}/ti/drv/rm/test/dts_files/*.dtb"
--
--DEVICELIST = "k2h k2k"
--
--CHOICELIST = "yes no"
--
--BASEDIR = "${WORKDIR}/git"
--S = "${BASEDIR}/ti/drv/rm"
--
--do_compile () {
--#   Now build the lld
--    make -f makefile_armv7 clean lib PDK_INSTALL_PATH=${STAGING_INCDIR} RM_SRC_DIR=${S}
--    for device in ${DEVICELIST}
--    do
--      for choice in ${CHOICELIST}
--      do
--        make -f makefile_armv7 tests IPC_DEVKIT_INSTALL_PATH=${STAGING_INCDIR} PDK_INSTALL_PATH=${BASEDIR} DEVICE="$device" USEDYNAMIC_LIB="$choice"
--      done
--    done
--}
--
--do_install () {
--    install -d ${D}${includedir}/ti/drv/rm
--    install -d ${D}${libdir}
--    install -d ${D}${bindir}
--    for device in ${DEVICELIST}
--    do
--      make -f makefile_armv7 install installbin installbin_test INSTALL_INC_BASE_DIR=${D}${includedir} INSTALL_LIB_BASE_DIR=${D}${libdir} INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="$device"
--    done
--}
+-PR_append = "-arago0"
 -- 
 2.2.0
 
