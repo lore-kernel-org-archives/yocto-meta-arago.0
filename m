@@ -1,30 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
 	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id C5E4052AC3
+	by arago-project.org (Postfix) with ESMTPS id F222652AC7
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Jul 2015 03:02:41 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NQW00BIU5RR4GE0@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:30 -0500 (CDT)
+	with ESMTPSA id <0NQW006R55S6UQH0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:31 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Lv5vsSpc c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=KZwvylsD c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8 a=pGLkceISAAAA:8	a=JfrnYn6hAAAA:8
-	a=zTHxBRev5l3MRNL4fWMA:9
+	a=sozttTNsAAAA:8	a=kefA_0BhpZdatvnMMSQA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id EF500161AC5;	Thu,
-	2 Jul 2015 23:02:14 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 5E4FC161AF1;	Thu,
+	2 Jul 2015 23:02:16 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jul 2015 23:01:22 -0400
-Message-id: <1435892533-6046-4-git-send-email-denis@denix.org>
+Date: Thu, 02 Jul 2015 23:02:08 -0400
+Message-id: <1435892533-6046-50-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1435892533-6046-1-git-send-email-denis@denix.org>
 References: <1435892533-6046-1-git-send-email-denis@denix.org>
-Subject: [PATCH 03/54] libnl: remove old local copies of 2.0 and 3.2.24 versions
+Subject: [PATCH 49/54] arago-prefs, toolchain*: update toolchain component versions
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,239 +36,138 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jul 2015 03:02:43 -0000
+X-List-Received-Date: Fri, 03 Jul 2015 03:02:44 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../libnl/libnl-2.0/fix-pc-file.patch              | 17 --------
- .../libnl/libnl-2.0/fix-pktloc_syntax_h-race.patch | 29 -------------
- .../libnl/libnl-3.2.24/fix-pc-file.patch           | 17 --------
- .../libnl-3.2.24/fix-pktloc_syntax_h-race.patch    | 36 ----------------
- .../recipes-support/libnl/libnl_2.0.bb             | 29 -------------
- .../recipes-support/libnl/libnl_3.2.24.bb          | 49 ----------------------
- 6 files changed, 177 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pc-file.patch
- delete mode 100644 meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pktloc_syntax_h-race.patch
- delete mode 100644 meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pc-file.patch
- delete mode 100644 meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pktloc_syntax_h-race.patch
- delete mode 100644 meta-arago-extras/recipes-support/libnl/libnl_2.0.bb
- delete mode 100644 meta-arago-extras/recipes-support/libnl/libnl_3.2.24.bb
+ .../conf/distro/include/arago-prefs.inc            | 22 +++++++++++-----------
+ .../conf/distro/include/branding-mcsdk.inc         |  2 +-
+ .../conf/distro/include/toolchain-gcc.inc          | 12 ++++++------
+ .../conf/distro/include/toolchain-linaro.inc       | 10 +++++-----
+ 4 files changed, 23 insertions(+), 23 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pc-file.patch b/meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pc-file.patch
-deleted file mode 100644
-index 85afe8f..0000000
---- a/meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pc-file.patch
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Upstream-Status: Pending
--
--Some packages are asking only for libnl-2.0, but expects to get also
--libnl-genl, libnl-nf libnl-route, easiest way to fix them is here.
--
--Signed-off-by: Martin Jansa <martin.jansa@gmail.com>
--Index: libnl-2.0/libnl-2.0.pc.in
--===================================================================
----- libnl-2.0.orig/libnl-2.0.pc.in
--+++ libnl-2.0/libnl-2.0.pc.in
--@@ -6,5 +6,5 @@
-- Name: libnl
-- Description: Convenience library for netlink sockets
-- Version: @PACKAGE_VERSION@
---Libs: -L${libdir} -lnl
--+Libs: -L${libdir} -lnl -lnl-genl -lnl-nf -lnl-route
-- Cflags: -I${includedir}
-diff --git a/meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pktloc_syntax_h-race.patch b/meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pktloc_syntax_h-race.patch
-deleted file mode 100644
-index ea32e82..0000000
---- a/meta-arago-extras/recipes-support/libnl/libnl-2.0/fix-pktloc_syntax_h-race.patch
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Upstream-Status: Inappropriate [configuration]
--
--libnl has progressed to 0.3.2 and there does not appear to be any
--"make -j" issues with this build after my limited testing on that
--newer version so we can assume this issue is fixed upstream
--
--Signed-off-by: Martin Jansa <martin.jansa@gmail.com>
--
--Index: libnl-2.0/lib/Makefile.am
--===================================================================
----- libnl-2.0.orig/lib/Makefile.am
--+++ libnl-2.0/lib/Makefile.am
--@@ -27,11 +27,16 @@ CLEANFILES = \
-- 	route/pktloc_grammar.c route/pktloc_grammar.h \
-- 	route/pktloc_syntax.c route/pktloc_syntax.h
-- 
--+BUILT_SOURCES = route/pktloc_syntax.h route/pktloc_grammar.h
--+
-- # Hack to avoid using ylwrap. It does not function correctly in combination
-- # with --header-file=
--+route/pktloc.lo: route/pktloc_syntax.h route/pktloc_grammar.h
--+route/pktloc_grammar.h: route/pktloc_grammar.c
-- route/pktloc_grammar.c: route/pktloc_grammar.l
-- 	$(LEX) --header-file=route/pktloc_grammar.h $(LFLAGS) -o $@ $^
-- 
--+route/pktloc_syntax.h: route/pktloc_syntax.c
-- route/pktloc_syntax.c: route/pktloc_syntax.y
-- 	$(YACC) -d $(YFLAGS) -o $@ $^
-- 
-diff --git a/meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pc-file.patch b/meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pc-file.patch
-deleted file mode 100644
-index 0a7f2fc..0000000
---- a/meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pc-file.patch
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Upstream-Status: Pending
--
--Some packages are asking only for libnl-2.0, but expects to get also
--libnl-genl, libnl-nf libnl-route, easiest way to fix them is here.
--
--Signed-off-by: Martin Jansa <martin.jansa@gmail.com>
--Index: libnl-3.2.24/libnl-3.0.pc.in
--===================================================================
----- libnl-3.2.24.orig/libnl-3.0.pc.in
--+++ libnl-3.2.24/libnl-3.0.pc.in
--@@ -6,5 +6,5 @@ includedir=@includedir@
-- Name: libnl
-- Description: Convenience library for netlink sockets
-- Version: @PACKAGE_VERSION@
---Libs: -L${libdir} -lnl-@MAJ_VERSION@
--+Libs: -L${libdir} -lnl-@MAJ_VERSION@ -lnl-genl-@MAJ_VERSION@ -lnl-nf-@MAJ_VERSION@ -lnl-route-@MAJ_VERSION@
-- Cflags: -I${includedir}/libnl@MAJ_VERSION@
-diff --git a/meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pktloc_syntax_h-race.patch b/meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pktloc_syntax_h-race.patch
-deleted file mode 100644
-index 1939ee2..0000000
---- a/meta-arago-extras/recipes-support/libnl/libnl-3.2.24/fix-pktloc_syntax_h-race.patch
-+++ /dev/null
-@@ -1,36 +0,0 @@
--Upstream-Status: Inappropriate [configuration]
--
--libnl has progressed to 0.3.2 and there does not appear to be any
--"make -j" issues with this build after my limited testing on that
--newer version so we can assume this issue is fixed upstream
--
--Signed-off-by: Martin Jansa <martin.jansa@gmail.com>
--
--Index: libnl-3.2.24/lib/Makefile.am
--===================================================================
----- libnl-3.2.24.orig/lib/Makefile.am
--+++ libnl-3.2.24/lib/Makefile.am
--@@ -46,9 +46,12 @@ CLEANFILES = \
-- 
-- # Hack to avoid using ylwrap. It does not function correctly in combination
-- # with --header-file=
--+route/pktloc.lo: route/pktloc_syntax.h route/pktloc_grammar.h
--+route/pktloc_grammar.h: route/pktloc_grammar.c
-- route/pktloc_grammar.c: route/pktloc_grammar.l
-- 	$(AM_V_GEN) $(FLEX) --header-file=route/pktloc_grammar.h $(LFLAGS) -o $@ $^
-- 
--+route/pktloc_syntax.h: route/pktloc_syntax.c
-- route/pktloc_syntax.c: route/pktloc_syntax.y
-- 	$(AM_V_GEN) $(YACC) -d $(YFLAGS) -o $@ $^
-- 
--@@ -100,7 +103,9 @@ BUILT_SOURCES = \
-- 	route/cls/ematch_grammar.c \
-- 	route/cls/ematch_syntax.c \
-- 	route/pktloc_grammar.c \
---	route/pktloc_syntax.c
--+   route/pktloc_syntax.c \
--+   route/pktloc_syntax.h \
--+   route/pktloc_grammar.h
-- 
-- EXTRA_DIST = \
-- 	route/pktloc_grammar.l \
-diff --git a/meta-arago-extras/recipes-support/libnl/libnl_2.0.bb b/meta-arago-extras/recipes-support/libnl/libnl_2.0.bb
-deleted file mode 100644
-index 5882bf5..0000000
---- a/meta-arago-extras/recipes-support/libnl/libnl_2.0.bb
-+++ /dev/null
-@@ -1,29 +0,0 @@
--DESCRIPTION = "libnl is a library for applications dealing with netlink sockets."
--HOMEPAGE = "http://www.infradead.org/~tgr/libnl/"
--SECTION = "libs/network"
--
--LICENSE = "LGPLv2.1"
--LIC_FILES_CHKSUM = "file://COPYING;md5=2b41e13261a330ee784153ecbb6a82bc"
--
--DEFAULT_PREFERENCE = "-1"
--
--DEPENDS = "flex-native bison-native"
--PE = "1"
--PR = "r6"
--
--SRC_URI = "\
--  http://www.infradead.org/~tgr/${BPN}/files/${BP}.tar.gz \
--  file://fix-pktloc_syntax_h-race.patch \
--  file://fix-pc-file.patch \
--"
--
--SRC_URI[md5sum] = "6aaf1e9802a17a7d702bb0638044ffa7"
--SRC_URI[sha256sum] = "5a40dc903d3ca1074da7424b908bec8ff16936484798c7e46e53e9db8bc87a9c"
--
--inherit autotools pkgconfig
--
--PACKAGES =+ "${PN}-route ${PN}-nf ${PN}-genl ${PN}-cli"
--FILES_${PN}-route = "${libdir}/libnl-route.so.*"
--FILES_${PN}-nf    = "${libdir}/libnl-nf.so.*"
--FILES_${PN}-genl  = "${libdir}/libnl-genl.so.*"
--FILES_${PN}-cli   = "${libdir}/libnl-cli.so.*"
-diff --git a/meta-arago-extras/recipes-support/libnl/libnl_3.2.24.bb b/meta-arago-extras/recipes-support/libnl/libnl_3.2.24.bb
-deleted file mode 100644
-index 073322b..0000000
---- a/meta-arago-extras/recipes-support/libnl/libnl_3.2.24.bb
-+++ /dev/null
-@@ -1,49 +0,0 @@
--SUMMARY = "A library for applications dealing with netlink sockets"
--HOMEPAGE = "http://www.infradead.org/~tgr/libnl/"
--SECTION = "libs/network"
--
--PE = "1"
--
--LICENSE = "LGPLv2.1"
--LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
--
--DEPENDS = "flex-native bison-native"
--
--SRC_URI = "http://www.infradead.org/~tgr/${BPN}/files/${BP}.tar.gz \
--           file://fix-pktloc_syntax_h-race.patch \
--           file://fix-pc-file.patch \
--          "
--
--SRC_URI[md5sum] = "6e0e7bad0674749d930dd9f285343d55"
--SRC_URI[sha256sum] = "fb8d6e5dc8af5b85bc6d00a71582a68a01e6a3f7d1664d4a646e289a99dd6816"
--
--inherit autotools pkgconfig
--
--do_install_append() {
--#   Install private files to allow libnl extensions
--    install -d ${D}${includedir}/netlink-private
--    cp -r ${S}/include/netlink-private/cache-api.h ${D}${includedir}/netlink-private/
--    cp -r ${S}/include/netlink-private/object-api.h ${D}${includedir}/netlink-private/
--}
--
--FILES_${PN} = "${libdir}/libnl-3.so.* \
--               ${libdir}/libnl.so.* \
--               ${sysconfdir}"
--RREPLACES_${PN} = "libnl2"
--RCONFLICTS_${PN} = "libnl2"
--FILES_${PN}-dbg += "${libdir}/libnl/cli/*/.debug"
--FILES_${PN}-dev += "${libdir}/libnl/cli/*/*.so \
--                    ${libdir}/libnl/cli/*/*.la"
--FILES_${PN}-staticdev += "${libdir}/libnl/cli/*/*.a"
--
--PACKAGES += "${PN}-cli ${PN}-route ${PN}-nf ${PN}-genl"
--FILES_${PN}-cli   = "${libdir}/libnl-cli-3.so.* \
--                     ${libdir}/libnl/cli/*/*.so.* \
--                     ${sbindir}/nl-*"
--FILES_${PN}-route = "${libdir}/libnl-route-3.so.*"
--FILES_${PN}-nf    = "${libdir}/libnl-nf-3.so.*"
--FILES_${PN}-genl  = "${libdir}/libnl-genl-3.so.* \
--                     ${libdir}/libnl-genl.so.* \
--                     ${sbindir}/genl-ctrl-list"
--RREPLACES_${PN}-genl = "libnl-genl2 libnl-genl-3-200"
--RCONFLICTS_${PN}-genl = "libnl-genl2 libnl-genl-3-200"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 8947c7f..c9be400 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -1,17 +1,17 @@
+ # Set *target* toolchain preferences at global distro level.
+ # Cross and SDK toolchain preferences are set in toolchain-*.inc files
+-GCCVERSION ?= "linaro-4.7%"
+-BINUVERSION ?= "linaro-2.24%"
+-EGLIBCVERSION ?= "2.19%"
+-EGLIBCINITVERSION ?= "2.19%"
+-LINUXLIBCVERSION ?= "3.14"
++GCCVERSION ?= "linaro-4.9%"
++BINUVERSION ?= "linaro-2.25%"
++GLIBCVERSION ?= "2.21%"
++GLIBCINITVERSION ?= "2.21%"
++LINUXLIBCVERSION ?= "3.19"
+ 
+ PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+ PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
+ PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
+-PREFERRED_VERSION_eglibc ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_eglibc-locale ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_eglibc-initial ?= "${EGLIBCINITVERSION}"
++PREFERRED_VERSION_glibc ?= "${GLIBCVERSION}"
++PREFERRED_VERSION_glibc-locale ?= "${GLIBCVERSION}"
++PREFERRED_VERSION_glibc-initial ?= "${GLIBCINITVERSION}"
+ 
+ # Set preferred Qt5 versions. Different namespace from Qt4, so no conflict
+ include conf/distro/include/qt5-versions.inc
+@@ -20,7 +20,7 @@ include conf/distro/include/qt5-versions.inc
+ PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
+ 
+ # Use the latest version of libdrm
+-PREFERRED_VERSION_libdrm = "2.4.52"
++PREFERRED_VERSION_libdrm = "2.4.59"
+ 
+ PREFERRED_PROVIDER_virtual/gettext = "gettext"
+ 
+@@ -99,8 +99,8 @@ PREFERRED_VERSION_readline = "5.2"
+ PREFERRED_VERSION_readline-native = "5.2"
+ PREFERRED_VERSION_readline-nativesdk = "5.2"
+ 
+-PREFERRED_VERSION_libnl = "3.2.24"
+-PREFERRED_VERSION_crda = "1.1.3"
++PREFERRED_VERSION_libnl = "3.2.25"
++PREFERRED_VERSION_crda = "3.13"
+ PREFERRED_VERSION_obex = "0.34"
+ PREFERRED_VERSION_bash = "3.2.48"
+ PREFERRED_VERSION_gettext = "0.16.1"
+diff --git a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+index 9fca5af..7dbffd3 100644
+--- a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+@@ -15,4 +15,4 @@ PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+ PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+ 
+ PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
+-PREFERRED_PROVIDER_glibc-gconv-iso8859-1 = "eglibc-locale"
++PREFERRED_PROVIDER_glibc-gconv-iso8859-1 = "glibc-locale"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+index 1f40a0a..510915b 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+@@ -1,6 +1,6 @@
+ # Select internal gcc toolchain to be built from sources
+ TCMODE = "default"
+-TCLIBC = "eglibc"
++TCLIBC = "glibc"
+ 
+ # Match some of the external vars
+ TOOLCHAIN_SYS := "${TARGET_SYS}"
+@@ -14,10 +14,10 @@ PREFERRED_PROVIDER_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "gcc-cross-ca
+ PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "binutils-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+ 
+-SDKGCCVERSION ?= "4.7%"
++SDKGCCVERSION ?= "4.9%"
+ SDKBINUVERSION ?= "2.24%"
+-SDKEGLIBCVERSION ?= "2.19%"
+-SDKLINUXLIBCVERSION ?= "3.14%"
++SDKGLIBCVERSION ?= "2.21%"
++SDKLINUXLIBCVERSION ?= "3.19%"
+ 
+ PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+@@ -26,5 +26,5 @@ PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_binutils-crosssdk ?= "${SDKBINUVERSION}"
+ PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-eglibc ?= "${SDKEGLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-eglibc-initial ?= "${SDKEGLIBCVERSION}"
++PREFERRED_VERSION_nativesdk-glibc ?= "${SDKGLIBCVERSION}"
++PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+index cd2d3ce..3a5d207 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+@@ -28,10 +28,10 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+ PREFERRED_PROVIDER_libgcc = "external-linaro-toolchain"
+ PREFERRED_PROVIDER_gcc-runtime = "external-linaro-toolchain"
+ 
+-SDKGCCVERSION ?= "4.7%"
++SDKGCCVERSION ?= "4.9%"
+ SDKBINUVERSION ?= "2.24%"
+-SDKEGLIBCVERSION ?= "2.19%"
+-SDKLINUXLIBCVERSION ?= "3.14%"
++SDKGLIBCVERSION ?= "2.21%"
++SDKLINUXLIBCVERSION ?= "3.19%"
+ 
+ PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+@@ -40,5 +40,5 @@ PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_binutils-crosssdk ?= "${SDKBINUVERSION}"
+ PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-eglibc ?= "${SDKEGLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-eglibc-initial ?= "${SDKEGLIBCVERSION}"
++PREFERRED_VERSION_nativesdk-glibc ?= "${SDKGLIBCVERSION}"
++PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
 -- 
 2.2.0
 
