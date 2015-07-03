@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
 	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 914CB52A08
+	by arago-project.org (Postfix) with ESMTPS id B10EF52AC1
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Jul 2015 03:02:41 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NQW006RN5RS7Y10@vms173021.mailsrvcs.net> for
+	with ESMTPSA id <0NQW009U55RSSGE0@vms173021.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:30 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=S6gku9YP c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=Za3gTZhA c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8 a=67BIL_jfAAAA:8	a=ijFNF1gXmi4lDK3DKxUA:9
-	a=vTkQX3rwq8RlNF_n:21 a=Q5MI8HgEFfMVbFSe:21
+	a=sozttTNsAAAA:8 a=pGLkceISAAAA:8	a=b01i9L7eAAAA:8 a=NEAV23lmAAAA:8
+	a=QqijL4jwTw68lk5qzFsA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 2E9D9161ACC;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 23C7F161ACB;	Thu,
 	2 Jul 2015 23:02:15 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jul 2015 23:01:29 -0400
-Message-id: <1435892533-6046-11-git-send-email-denis@denix.org>
+Date: Thu, 02 Jul 2015 23:01:28 -0400
+Message-id: <1435892533-6046-10-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1435892533-6046-1-git-send-email-denis@denix.org>
 References: <1435892533-6046-1-git-send-email-denis@denix.org>
-Subject: [PATCH 10/54] php: update to latest version, drop upstreamed fixes
+Subject: [PATCH 09/54] leveldb: available from meta-oe now, remove locally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,61 +43,99 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../php/php/fix-race-condition-during-install.patch           | 10 ----------
- .../php/{php_5.4.14.bbappend => php_5.5.21.bbappend}          | 11 +++--------
- 2 files changed, 3 insertions(+), 18 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-devtools/php/php/fix-race-condition-during-install.patch
- rename meta-arago-distro/recipes-devtools/php/{php_5.4.14.bbappend => php_5.5.21.bbappend} (70%)
+ .../leveldb/0001-Explicitly-disable-tcmalloc.patch | 48 ----------------------
+ .../recipes-extended/leveldb/leveldb_git.bb        | 27 ------------
+ 2 files changed, 75 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-extended/leveldb/leveldb/0001-Explicitly-disable-tcmalloc.patch
+ delete mode 100644 meta-arago-distro/recipes-extended/leveldb/leveldb_git.bb
 
-diff --git a/meta-arago-distro/recipes-devtools/php/php/fix-race-condition-during-install.patch b/meta-arago-distro/recipes-devtools/php/php/fix-race-condition-during-install.patch
+diff --git a/meta-arago-distro/recipes-extended/leveldb/leveldb/0001-Explicitly-disable-tcmalloc.patch b/meta-arago-distro/recipes-extended/leveldb/leveldb/0001-Explicitly-disable-tcmalloc.patch
 deleted file mode 100644
-index f4f3fb6..0000000
---- a/meta-arago-distro/recipes-devtools/php/php/fix-race-condition-during-install.patch
+index 4b76dd0..0000000
+--- a/meta-arago-distro/recipes-extended/leveldb/leveldb/0001-Explicitly-disable-tcmalloc.patch
 +++ /dev/null
-@@ -1,10 +0,0 @@
--diff -rupN php-5.4.14/sapi/cgi/Makefile.frag php-5.4.14.0/sapi/cgi/Makefile.frag
----- php-5.4.14/sapi/cgi/Makefile.frag	2013-04-10 03:47:04.000000000 -0400
--+++ php-5.4.14.0/sapi/cgi/Makefile.frag	2015-05-08 11:41:10.389484079 -0400
--@@ -5,5 +5,6 @@ $(SAPI_CGI_PATH): $(PHP_GLOBAL_OBJS) $(P
-- 
-- install-cgi: $(SAPI_CGI_PATH)
-- 	@echo "Installing PHP CGI binary:        $(INSTALL_ROOT)$(bindir)/"
--+	@$(mkinstalldirs) $(INSTALL_ROOT)$(bindir)
-- 	@$(INSTALL) -m 0755 $(SAPI_CGI_PATH) $(INSTALL_ROOT)$(bindir)/$(program_prefix)php-cgi$(program_suffix)$(EXEEXT)
-- 
-diff --git a/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend b/meta-arago-distro/recipes-devtools/php/php_5.5.21.bbappend
-similarity index 70%
-rename from meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
-rename to meta-arago-distro/recipes-devtools/php/php_5.5.21.bbappend
-index 2cc5630..9ed88ef 100644
---- a/meta-arago-distro/recipes-devtools/php/php_5.4.14.bbappend
-+++ b/meta-arago-distro/recipes-devtools/php/php_5.5.21.bbappend
-@@ -1,16 +1,10 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = "-arago4"
+@@ -1,48 +0,0 @@
+-From d6daac04dab4b3acf4b88f16742d1b402cdc3d83 Mon Sep 17 00:00:00 2001
+-From: Martin Jansa <Martin.Jansa@gmail.com>
+-Date: Wed, 1 Oct 2014 18:54:04 +0200
+-Subject: [PATCH] Explicitly disable tcmalloc
 -
--SRC_URI_append = " file://fix-race-condition-during-install.patch"
-+PR_append = "-arago1"
- 
- SRC_URI_append_virtclass-native = " file://0001-php-native-Fix-host-contamination-issue.patch"
- 
--python __anonymous () {
--    d.setVar("SRC_URI", d.getVar("SRC_URI").replace('http://www.php.net/distributions/php-${PV}.tar.bz2', 'http://museum.php.net/php5/php-${PV}.tar.bz2'))
+-Without this change leveldb autodetects tcmalloc from sysroot and
+-sometimes became dependant on gperftools
+-
+-Disable autodetection without TCMALLOC_ENABLED=true pased to make
+-
+-Upstream-Status: Pending
+-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+----
+- build_detect_platform | 16 +++++++++-------
+- 1 file changed, 9 insertions(+), 7 deletions(-)
+-
+-diff --git a/build_detect_platform b/build_detect_platform
+-index bb76c4f..a586364 100755
+---- a/build_detect_platform
+-+++ b/build_detect_platform
+-@@ -201,15 +201,17 @@ EOF
+-         PLATFORM_LIBS="$PLATFORM_LIBS -lsnappy"
+-     fi
+- 
+--    # Test whether tcmalloc is available
+--    $CXX $CXXFLAGS -x c++ - -o $CXXOUTPUT -ltcmalloc 2>/dev/null  <<EOF
+--      int main() {}
+-+    if [ "$TCMALLOC_ENABLED" = "true" ]; then
+-+        # Test whether tcmalloc is available
+-+        $CXX $CXXFLAGS -x c++ - -o $CXXOUTPUT -ltcmalloc 2>/dev/null  <<EOF
+-+          int main() {}
+- EOF
+--    if [ "$?" = 0 ]; then
+--        PLATFORM_LIBS="$PLATFORM_LIBS -ltcmalloc"
+--    fi
+-+        if [ "$?" = 0 ]; then
+-+            PLATFORM_LIBS="$PLATFORM_LIBS -ltcmalloc"
+-+        fi
+- 
+--    rm -f $CXXOUTPUT 2>/dev/null
+-+        rm -f $CXXOUTPUT 2>/dev/null
+-+    fi
+- fi
+- 
+- PLATFORM_CCFLAGS="$PLATFORM_CCFLAGS $COMMON_FLAGS"
+--- 
+-2.1.1
+-
+diff --git a/meta-arago-distro/recipes-extended/leveldb/leveldb_git.bb b/meta-arago-distro/recipes-extended/leveldb/leveldb_git.bb
+deleted file mode 100644
+index a6a3024..0000000
+--- a/meta-arago-distro/recipes-extended/leveldb/leveldb_git.bb
++++ /dev/null
+@@ -1,27 +0,0 @@
+-SUMMARY = "LevelDB is a fast key-value storage library"
+-DESCRIPTION = "LevelDB is a fast key-value storage library that provides an ordered mapping from string keys to string values"
+-HOMEPAGE = "http://leveldb.googlecode.com"
+-LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=92d1b128950b11ba8495b64938fc164d"
+-
+-SRCREV = "803d69203a62faf50f1b77897310a3a1fcae712b"
+-PV = "1.18+git${SRCPV}"
+-
+-SRC_URI = "git://github.com/google/${BPN}.git \
+-    file://0001-Explicitly-disable-tcmalloc.patch \
+-"
+-
+-S = "${WORKDIR}/git"
+-
+-do_compile() {
+-    # do not use oe_runmake. oe_runmake pass to make compilation arguments and override
+-    # leveldb makefile variable CFLAGS and broke leveldb build.
+-    CFLAGS="${CFLAGS}" make || die
 -}
 -
- # Work around to address the fact that php-fpm and php-cgi can not coexist
- # php-cgi is used by Matrix and php-fpm is in beta for this version of php.
- # Once this issue is fix in meta-oe the below won't be needed.
-@@ -24,5 +18,6 @@ PACKAGES_remove = "${PN}-fpm-apache2"
- do_install_prepend_pn-php() {
-     # Add the below file even though we aren't going to use it.
-     # do_install will complain and fail if this file isn't found.
--    touch ${S}/sapi/fpm/init.d.php-fpm
-+    mkdir -p ${B}/sapi/fpm/
-+    touch ${B}/sapi/fpm/init.d.php-fpm
- }
+-do_install() {
+-    install -d ${D}${libdir}
+-    oe_libinstall -C ${S} -so libleveldb ${D}${libdir}
+-    install -d ${D}${includedir}/leveldb
+-    install -m 644 ${S}/include/leveldb/*.h ${D}${includedir}/leveldb/
+-}
 -- 
 2.2.0
 
