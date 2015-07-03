@@ -1,30 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id 5AA0252AC6
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id E95E452ACE
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Jul 2015 03:02:36 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NQW0086J5S6V7F0@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:35 -0500 (CDT)
+	with ESMTPSA id <0NQW002JY5S72RA0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:36 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Jp0M15MC c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=ff9QsBkF c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8 a=lRBHAqtIAAAA:8	a=NEAV23lmAAAA:8
-	a=k7CeUJAlab61aPY1PsgA:9
+	a=sozttTNsAAAA:8	a=uigJPGLW3qyvCFixiGsA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 581E5161AEF;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 78B3D161AF6;	Thu,
 	2 Jul 2015 23:02:16 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jul 2015 23:02:06 -0400
-Message-id: <1435892533-6046-48-git-send-email-denis@denix.org>
+Date: Thu, 02 Jul 2015 23:02:13 -0400
+Message-id: <1435892533-6046-55-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1435892533-6046-1-git-send-email-denis@denix.org>
 References: <1435892533-6046-1-git-send-email-denis@denix.org>
-Subject: [PATCH 47/54] openntpd, matrix-gui, omapconf: fix LICENSE field
+Subject: [PATCH 54/54] HACK: packagegroup-*-connectivity*: disable ti-compat-wireless, as it breaks with latest toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,50 +42,39 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb | 2 +-
- meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb           | 2 +-
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb       | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb     | 2 +-
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb b/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb
-index ba8a9d3..3ee6305 100644
---- a/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb
-+++ b/meta-arago-extras/recipes-connectivity/openntpd/openntpd_3.9p1.bb
-@@ -2,7 +2,7 @@ DESCRIPTION = "OpenNTPD is a FREE, easy to use implementation of the \
- Network Time Protocol."
- HOMEPAGE = "http://www.openntpd.org/"
- SECTION = "console/network"
--LICENSE = "BSD ISC"
-+LICENSE = "BSD & ISC"
- LIC_FILES_CHKSUM = "file://LICENCE;md5=4b4f5158007cc97e6b0e2325bb99854a"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
+index b65657a..50fe2ba 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-host.bb
+@@ -7,8 +7,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit packagegroup
  
- PR = "r0"
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index 67276b2..df17ffe 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Matrix GUI Application launcher"
- HOMEPAGE = "https://gforge.ti.com/gf/project/matrix-gui-v2/"
+ FIRMWARE_AND_DRIVERS_SRC = "\
+-    ti-compat-wireless-wl18xx-src \
+ "
++#    ti-compat-wireless-wl18xx-src 
  
--LICENSE = "BSD MIT"
-+LICENSE = "BSD & MIT"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
+ CONNECTIVITY_RDEPENDS = ""
  
- SECTION = "multimedia"
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 5bc8a9e..7f87644 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Diagnostic tool for TI OMAP processors"
- HOMEPAGE = "https://github.com/omapconf/omapconf"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index ed90740..a50cae1 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -32,9 +32,9 @@ WLAN_COMMON = "\
+ #    netperf
  
--LICENSE = "GPLv2 BSD"
-+LICENSE = "GPLv2 | BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
+ FIRMWARE_AND_DRIVERS = "\
+-    ti-compat-wireless-wl18xx \
+     wl18xx-firmware \
+ "
++#    ti-compat-wireless-wl18xx 
  
- PV = "1.71+1.72-rc1"
+ DEMO_APPS = "\
+     ${@base_conditional('QT_PROVIDER', 'qt5', '', 'wpa-gui-e', d)} \
 -- 
 2.2.0
 
