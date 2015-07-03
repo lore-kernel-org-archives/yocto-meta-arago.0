@@ -1,32 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by arago-project.org (Postfix) with ESMTPS id 7DF97529B5
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id BEC1852A4B
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Jul 2015 04:17:41 +0000 (UTC)
-Received: by obbkm3 with SMTP id km3so62474147obb.1
-	for <meta-arago@arago-project.org>;
-	Thu, 02 Jul 2015 21:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type; bh=AUnQPjvUChlFvhbFoHerVgnCJVEZxfAO5Mtxc6fw0MA=;
-	b=mBvKgMEWHN9vX/zwiTGFHvywn8ZEERwSPRxn5pPi4mXZ6c+q43ztHu/SCAKC7RPcSx
-	AzicwAJcQ1zRL9uhvtuukHUg6erJWSKhlys2IfZ3KrzWIjODvUSlDwgSS1An5KIXKqdA
-	eCYeg7E3dLROGCNRM2X7BRH+uWxuqsqrprr1y+NvD10qWLO3hw4Et4yidxSCVJSVUfb9
-	qAnL1H8l8UTPmY1ClMLsZnksK42Dn04gkdXLu6nnMsGWkuCN3WEy3ZmsgXLfTyJhoFLS
-	FUxj/lpqbiIFcCT8H9ApILBdFLUsJE4fXm2ofXg5Oa24QIehjn1NJobv0MgzegP1D6/n
-	OGWQ==
-X-Received: by 10.182.246.9 with SMTP id xs9mr30632373obc.45.1435897060874;
-	Thu, 02 Jul 2015 21:17:40 -0700 (PDT)
+	Fri,  3 Jul 2015 06:41:11 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t636fBUv027177
+	for <meta-arago@arago-project.org>; Fri, 3 Jul 2015 01:41:11 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t636fArQ023663
+	for <meta-arago@arago-project.org>; Fri, 3 Jul 2015 01:41:11 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 3 Jul 2015 01:41:03 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t636fA5B024717	for <meta-arago@arago-project.org>;
+	Fri, 3 Jul 2015 01:41:10 -0500
+Date: Fri, 3 Jul 2015 02:41:10 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <535961552.627.1435905670412.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.202.106.213 with HTTP; Thu, 2 Jul 2015 21:17:21 -0700 (PDT)
-In-Reply-To: <CADySD0Et4JtD7_bZ8yMUkbaBrbrtrt8v8YETaJUHkSm=FbMaTg@mail.gmail.com>
-References: <CADySD0Et4JtD7_bZ8yMUkbaBrbrtrt8v8YETaJUHkSm=FbMaTg@mail.gmail.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Fri, 3 Jul 2015 16:17:21 +1200
-Message-ID: <CADySD0GJA3Mw4UMuEp9d5rmiChEL+ypZzgCuu-pFxXBLingw1Q@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: Re: How to build browser (chrome/firefox) for AM335x using meta-arago
+X-Jenkins-Job: arago-core-tisdk-nightly
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK 2015.06 build 2015-07-02_22-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,104 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jul 2015 04:17:41 -0000
-Content-Type: multipart/alternative; boundary=001a11c306ee3f616a0519f0d62c
+X-List-Received-Date: Fri, 03 Jul 2015 06:41:12 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_626_132404892.1435905670367"
 
---001a11c306ee3f616a0519f0d62c
-Content-Type: text/plain; charset=UTF-8
+------=_Part_626_132404892.1435905670367
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+<html>
+<head>
+<title>
+Status for 07/03/15
+</title>
+</head>
+<body>
 
-In case previous one was missed.
+<h2>Status for 07/03/15</h2>
 
-I want to build chrome/firefox browser for my AM335x EVM.
+<h2>BUILD_ID: build-2015-07-02_22-02-11</h2>
 
-I am using "arago-daisy-config.txt" to bitbake tisdk-rootfs-image.
+<h2>Clean Build: false</h2>
 
-I see there is meta-browser which includes chrome, firefox.
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-How can I get them build with my tisdk rootfs ?
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
 
-What all do I need to modify in my bblayer and local conf files ?
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
-thanks
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-"Knowledge is knowing tomato is a fruit, wisdom is not putting it in a
-fruit salad"
-
-On Fri, Jun 19, 2015 at 7:04 PM, Ankur Tyagi <ankur.tyagi85@gmail.com>
-wrote:
-
-> Hi,
->
-> I want to build chrome/firefox browser for my AM335x EVM.
->
-> I am using "arago-daisy-config.txt" to bitbake tisdk-rootfs-image.
->
-> I see there is meta-browser which includes chrome, firefox.
->
-> How can I get them build with my tisdk rootfs ?
->
-> What all do I need to modify in my bblayer and local conf files ?
->
-> thanks
->
-
---001a11c306ee3f616a0519f0d62c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif;font-size:small;color:rgb(51,51,153)">Hi,</div><div class=3D"gmail_de=
-fault" style=3D"font-family:georgia,serif;font-size:small;color:rgb(51,51,1=
-53)"><br></div><div class=3D"gmail_default" style=3D"font-family:georgia,se=
-rif;font-size:small;color:rgb(51,51,153)">In case previous one was missed.<=
-/div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-s=
-ize:small;color:rgb(51,51,153)"><br></div><div class=3D"gmail_default" styl=
-e=3D"font-family:georgia,serif;font-size:small;color:rgb(51,51,153)"><div c=
-lass=3D"gmail_default">I want to build chrome/firefox browser for my AM335x=
- EVM.</div><div class=3D"gmail_default"><br></div><div class=3D"gmail_defau=
-lt">I am using &quot;arago-daisy-config.txt&quot; to bitbake tisdk-rootfs-i=
-mage.</div><div class=3D"gmail_default"><br></div><div class=3D"gmail_defau=
-lt">I see there is meta-browser which includes chrome, firefox.</div><div c=
-lass=3D"gmail_default"><br></div><div class=3D"gmail_default">How can I get=
- them build with my tisdk rootfs ?</div><div class=3D"gmail_default"><br></=
-div><div class=3D"gmail_default">What all do I need to modify in my bblayer=
- and local conf files ?</div><div class=3D"gmail_default"><br></div><div cl=
-ass=3D"gmail_default">thanks</div></div><div class=3D"gmail_default" style=
-=3D"font-family:georgia,serif;font-size:small;color:rgb(51,51,153)"><br></d=
-iv></div><div class=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gm=
-ail_signature"><div dir=3D"ltr">&quot;Knowledge is knowing tomato is a frui=
-t, wisdom is not putting it in a fruit salad&quot;</div></div></div>
-<br><div class=3D"gmail_quote">On Fri, Jun 19, 2015 at 7:04 PM, Ankur Tyagi=
- <span dir=3D"ltr">&lt;<a href=3D"mailto:ankur.tyagi85@gmail.com" target=3D=
-"_blank">ankur.tyagi85@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-f=
-amily:georgia,serif;font-size:small;color:#333399">Hi,</div><div class=3D"g=
-mail_default" style=3D"font-family:georgia,serif;font-size:small;color:#333=
-399"><br></div><div class=3D"gmail_default" style=3D"font-family:georgia,se=
-rif;font-size:small;color:#333399">I want to build chrome/firefox browser f=
-or my AM335x EVM.</div><div class=3D"gmail_default" style=3D"font-family:ge=
-orgia,serif;font-size:small;color:#333399"><br></div><div class=3D"gmail_de=
-fault" style=3D"font-family:georgia,serif;font-size:small;color:#333399">I =
-am using &quot;arago-daisy-config.txt&quot; to bitbake tisdk-rootfs-image.<=
-/div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-s=
-ize:small;color:#333399"><br></div><div class=3D"gmail_default" style=3D"fo=
-nt-family:georgia,serif;font-size:small;color:#333399">I see there is meta-=
-browser which includes chrome, firefox.</div><div class=3D"gmail_default" s=
-tyle=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div>=
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:s=
-mall;color:#333399">How can I get them build with my tisdk rootfs ?</div><d=
-iv class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:sma=
-ll;color:#333399"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:georgia,serif;font-size:small;color:#333399">What all do I need to modif=
-y in my bblayer and local conf files ?</div><div class=3D"gmail_default" st=
-yle=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div><=
-div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:sm=
-all;color:#333399">thanks</div>
-</div>
-</blockquote></div><br></div>
-
---001a11c306ee3f616a0519f0d62c--
+------=_Part_626_132404892.1435905670367--
