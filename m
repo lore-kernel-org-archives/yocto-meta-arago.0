@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id A184252AC6
+	by arago-project.org (Postfix) with ESMTPS id B19DF52AD4
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Jul 2015 03:02:43 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NQW00GT55RVTI80@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:34 -0500 (CDT)
+	with ESMTPSA id <0NQW00L6N5RYHD50@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 02 Jul 2015 22:02:37 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Jp0M15MC c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=N5PUbDJB c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8	a=7wc3B4WMf6Kk0WoNH3cA:9
+	a=sozttTNsAAAA:8	a=DeVYQRgbgs0ZmEZAyEQA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 796ED161AD7;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id C69A8161ADE;	Thu,
 	2 Jul 2015 23:02:15 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jul 2015 23:01:40 -0400
-Message-id: <1435892533-6046-22-git-send-email-denis@denix.org>
+Date: Thu, 02 Jul 2015 23:01:47 -0400
+Message-id: <1435892533-6046-29-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1435892533-6046-1-git-send-email-denis@denix.org>
 References: <1435892533-6046-1-git-send-email-denis@denix.org>
-Subject: [PATCH 21/54] busybox: changes are version-agnostic, rename bbappend accordingly
+Subject: [PATCH 28/54] freetype: changes are version-agnostic, rename bbappend accordingly
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,20 +36,20 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jul 2015 03:02:46 -0000
+X-List-Received-Date: Fri, 03 Jul 2015 03:02:47 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/busybox/{busybox_1.22.1.bbappend => busybox_%.bbappend}  | 0
+ .../freetype/{freetype_2.5.2.bbappend => freetype_%.bbappend}             | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-distro/recipes-core/busybox/{busybox_1.22.1.bbappend => busybox_%.bbappend} (100%)
+ rename meta-arago-distro/recipes-graphics/freetype/{freetype_2.5.2.bbappend => freetype_%.bbappend} (100%)
 
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox_1.22.1.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+diff --git a/meta-arago-distro/recipes-graphics/freetype/freetype_2.5.2.bbappend b/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
 similarity index 100%
-rename from meta-arago-distro/recipes-core/busybox/busybox_1.22.1.bbappend
-rename to meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+rename from meta-arago-distro/recipes-graphics/freetype/freetype_2.5.2.bbappend
+rename to meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
 -- 
 2.2.0
 
