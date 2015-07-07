@@ -1,31 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A90675299C
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id B17C352987
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Jul 2015 19:26:26 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t67JQNio018233
-	for <meta-arago@arago-project.org>; Tue, 7 Jul 2015 14:26:23 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t67JQN2T029701
-	for <meta-arago@arago-project.org>; Tue, 7 Jul 2015 14:26:23 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 7 Jul 2015 14:26:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t67JQLjr010949;
-	Tue, 7 Jul 2015 14:26:22 -0500
-Date: Tue, 7 Jul 2015 15:26:20 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150707192618.GB11382@edge>
-References: <1436269586-3894-1-git-send-email-j-stiffler@ti.com>
-	<1436269586-3894-2-git-send-email-j-stiffler@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1436269586-3894-2-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 2/2] amsdk-av-files: Remove version 1.3
+	Tue,  7 Jul 2015 20:56:02 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NR400GEYY53ZK90@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 07 Jul 2015 15:55:56 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=DcDq0aZW c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
+	a=sozttTNsAAAA:8	a=p6KXHsLaRm9GCqsGE-4A:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 6D5C8161AC8;	Tue,
+	7 Jul 2015 16:55:51 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 07 Jul 2015 16:55:50 -0400
+Message-id: <1436302550-27012-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [daisy][PATCH] external-linaro-toolchain: package prebuilt ldconfig to libc
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,82 +34,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jul 2015 19:26:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 07 Jul 2015 20:56:03 -0000
 
-Why not do version upgrade in a single patch? It would be easier to review the 
-changes... Otherwise the first patch should have had -C --find-copies-harder 
-to not look like completely new one, but rather an update to an existing one.
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/meta/external-linaro-toolchain.bbappend             | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index 2d04861..0972b5d 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -10,7 +10,7 @@ INSANE_SKIP_libitm += "ldflags textrel"
+ ALLOW_EMPTY_${PN}-utils = "1"
+ ALLOW_EMPTY_ldd = "1"
+ 
+-PR_append = "-arago10"
++PR_append = "-arago11"
+ 
+ PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
+ PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
+@@ -123,6 +123,9 @@ do_install_append() {
+ 		sed -i -e "s# /lib/ld-linux# ../../lib/ld-linux#g" ${D}${base_libdir}/libc.so
+ 	fi
+ 
++	install -d ${D}/${base_sbindir}
++	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${base_sbindir}/ldconfig ${D}/${base_sbindir}/
++
+ 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/asm*; rm -rf ${D}${includedir}/drm; rm -rf ${D}${includedir}/linux; rm -rf ${D}${includedir}/mtd; rm -rf ${D}${includedir}/rdma; rm -rf ${D}${includedir}/sound; rm -rf ${D}${includedir}/video', d)}
+ 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
+ 
 -- 
-Denys
+2.2.0
 
-
-On Tue, Jul 07, 2015 at 07:46:26AM -0400, Jacob Stiffler wrote:
-> * This provides a subset of 1.4.
-> 
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../amsdk-av-files/amsdk-av-files_1.3.bb           |   44 --------------------
->  1 file changed, 44 deletions(-)
->  delete mode 100644 meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.3.bb
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.3.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.3.bb
-> deleted file mode 100644
-> index 143224b..0000000
-> --- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.3.bb
-> +++ /dev/null
-> @@ -1,44 +0,0 @@
-> -DESCRIPTION = "AMSDK multimedia support files"
-> -HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
-> -LICENSE = "CC-BY-NC-ND-3.0 & CC-BY-3.0"
-> -SECTION = "multimedia"
-> -LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=9254447a504d2179d83a6bc9e2c28142"
-> -PR = "r0"
-> -
-> -COMPATIBLE_MACHINE = "(omap3|ti33x|ti43x|omap-a15)"
-> -PACKAGE_ARCH = "${MACHINE_ARCH}"
-> -
-> -VIDEO_FILES = "video_480p "
-> -
-> -VIDEO_FILES_append_am37x-evm   = "video_vga_r"
-> -VIDEO_FILES_append_beagleboard = "video_vga"
-> -VIDEO_FILES_append_am3517-evm  = "video_wqvga"
-> -VIDEO_FILES_append_ti33x       = "video_wvga \
-> -                                  video_wqvga"
-> -VIDEO_FILES_append_dra7xx      = "video_wvga \
-> -                                  video_1080p \
-> -                                  video_720p \
-> -                                  video_yuv"
-> - 
-> -SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1271/7720/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
-> -
-> -S = "${WORKDIR}/amsdk-av-files"
-> -
-> -do_compile() {
-> -    :
-> -}
-> -
-> -do_install() {
-> -    install -d ${D}${datadir}/ti \
-> -       ${D}${datadir}/ti/audio \
-> -       ${D}${datadir}/ti/video
-> -    install -m 0644 ${S}/audio/* ${D}${datadir}/ti/audio/
-> -    for file in ${VIDEO_FILES}; do
-> -	install -m 0644 ${S}/${file}/* ${D}${datadir}/ti/video/
-> -    done
-> -}
-> -
-> -FILES_${PN} += "${datadir}/ti/*"
-> -
-> -SRC_URI[avfilestarball.md5sum] = "3f930cd873bc55bfd52a09b85f567d0c"
-> -SRC_URI[avfilestarball.sha256sum] = "b389b732df409546c0aba6464a5b0815647d8fa24020c4bede823cbe26337c06"
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
