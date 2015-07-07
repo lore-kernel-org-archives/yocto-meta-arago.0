@@ -1,30 +1,30 @@
 Return-Path: <jake@ubuntu-quadshannondemopc5>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 6024A52A00
+	by arago-project.org (Postfix) with ESMTPS id E6D1052987
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Jul 2015 11:57:21 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t67BvKvq006355
-	for <meta-arago@arago-project.org>; Tue, 7 Jul 2015 06:57:20 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t67BvKK2017706
-	for <meta-arago@arago-project.org>; Tue, 7 Jul 2015 06:57:20 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 7 Jul 2015 06:57:07 -0500
+	Tue,  7 Jul 2015 12:10:25 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t67CAPMd013916
+	for <meta-arago@arago-project.org>; Tue, 7 Jul 2015 07:10:25 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t67CAPUb003430
+	for <meta-arago@arago-project.org>; Tue, 7 Jul 2015 07:10:25 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 7 Jul 2015 07:10:11 -0500
 Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t67BvKLQ019002;	Tue, 7 Jul 2015 06:57:20 -0500
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t67CAPGp014312;	Tue, 7 Jul 2015 07:10:25 -0500
 Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1ZCRV2-0001eG-0x;
-	Tue, 07 Jul 2015 07:57:20 -0400
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1ZCRhg-0001xA-PA;
+	Tue, 07 Jul 2015 08:10:24 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 7 Jul 2015 07:57:16 -0400
-Message-ID: <1436270237-6306-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 7 Jul 2015 08:10:22 -0400
+Message-ID: <1436271023-7478-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] hevc-arm-decoder: Add HEVC (H.265) decoder library and unit test.
+Subject: [PATCH] tisdk-uenv: Add uEnv.txt specific to am437x-evm.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,97 +37,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jul 2015 11:57:21 -0000
+X-List-Received-Date: Tue, 07 Jul 2015 12:10:26 -0000
 Content-Type: text/plain
+
+* This will append to bootargs to work around the DSS underrun errata
+  by limiting the screen resolution for HDMI display.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../hevc-arm-decoder/Testparams.cfg                |   23 ++++++++++
- .../hevc-arm-decoder_01.00.00.01.bb                |   45 ++++++++++++++++++++
- 2 files changed, 68 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg
- create mode 100644 meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
+ .../recipes-tisdk/tisdk-uenv/tisdk-uenv.bb         |    2 +-
+ .../tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt      |   13 +++++++++++++
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt
 
-diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
+index 542cdb2..b290da7 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
++++ b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
+@@ -6,7 +6,7 @@ SRC_URI = "\
+     file://uEnv.txt \
+ "
+ 
+-PR = "r1"
++PR = "r2"
+ PV = "1.0"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt
 new file mode 100644
-index 0000000..5f01863
+index 0000000..89f89f0
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg
-@@ -0,0 +1,23 @@
-+# New Input File Format is as follows
-+# <ParameterName> = <ParameterValue> # Comment
-+################################################################################
-+# Parameters
-+################################################################################
-+#################################### No. of threads ############################
-+NumThreads = 2
-+################################### Files ######################################
-+InputFile   		= /usr/share/ti/video/TearOfSteel-Short-1280x720.265
-+OutputFile   		= /usr/share/ti/examples/h265vdec/TearOfSteel-Short-1280x720.yuv
-+ReferenceFile   	= /usr/share/ti/video/dummy
-+ImageWidth          = 1280  # Image width in Pels
-+ImageHeight         = 720   # Image height in Pels
-+FramesToDecode      = 50   # Number of frames to be coded
-+InputLowDelayMode   = 0     # 0->Entire frame, 1 -> Slice mode (Data sync mode)
-+OutputLowDelayMode  = 0     # 0->Entire frame, 1 -> Number of CTU rows (Data sync mode)
-+NumCTURows          = 0     # 0->Non-DataSync mode, Non-Zero positive when OutputLowDelayMode is set to Data sync mode
-+MetadataType        = 0     # 0->No Metadata, 1-SEI, 2-VUI 3-SEI and VUI
-+###################################################################
-+# Dynamic Parameters
-+###################################################################
-+DecodeHeader         = 0    # 0 -> Disable decode Header mode, 1 -> Enable decode Header mode
++++ b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt
+@@ -0,0 +1,13 @@
++# This uEnv.txt file can contain additional environment settings that you
++# want to set in U-Boot at boot time.  This can be simple variables such
++# as the serverip or custom variables.  The format of this file is:
++#    variable=value
++# NOTE: This file will be evaluated after the bootcmd is run and the
++#       bootcmd must be set to load this file if it exists (this is the
++#       default on all newer U-Boot images.  This also means that some
++#       variables such as bootdelay cannot be changed by this file since
++#       it is not evaluated until the bootcmd is run.
++optargs=video=HDMI-A-1:800x600
 +
-diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-new file mode 100644
-index 0000000..c871177
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-@@ -0,0 +1,45 @@
-+DESCRIPTION = "ARM HEVC Decoder with Unit Test Application"
-+HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
-+LICENSE = "TI-TSPA"
-+LIC_FILES_CHKSUM := "file://Inc/exp_pp_h265decoder.h;beginline=1;endline=27;md5=51a0ae5cca603a21186bf6ff458f3be9"
-+PR = "r0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+COMPATIBLE_MACHINE = "dra7xx"
-+
-+SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1280/7770/REL.HEVC.D.ARM.OBJ.${PV}.tar.gz;name=hevc-arm-decoder"
-+
-+SRC_URI[hevc-arm-decoder.md5sum] = "bb7620e34175f53a1ed989f7ce8f6d29"
-+SRC_URI[hevc-arm-decoder.sha256sum] = "e5743478e94bcfcee2e59e2e0056ece648c11bcbac91a6a8b8e492e3b42738d4"
-+
-+S = "${WORKDIR}/HEVC.D.ARM.${PV}/ARM_001"
-+
-+SRC_URI_append = " file://Testparams.cfg"
-+
-+do_compile() {
-+    cd ${S}/Client/Build/ARM
-+    make
-+}
-+
-+do_install() {
-+    install -d ${D}${libdir}
-+    install -m 755 ${S}/Lib/h265vdec_pp_lib.a ${D}${libdir}
-+
-+    install -d ${D}${includedir}
-+    install -m 644 ${S}/Inc/exp_pp_h265decoder.h ${D}${includedir}
-+
-+    install -d ${D}${bindir}
-+    install -m 755 ${S}/Client/Build/ARM/Out/h265vdec_pp ${D}${bindir}
-+
-+    install -d ${D}${datadir}/ti/examples/h265vdec
-+    install -m 644 ${WORKDIR}/Testparams.cfg ${D}${datadir}/ti/examples/h265vdec
-+
-+    install -d ${D}${docdir}/${PN}
-+    for doc in ${S}/Docs/*; do
-+        install -m 664 ${doc} ${D}${docdir}/${PN}
-+    done
-+}
-+
-+FILES_${PN} += "\
-+    ${datadir}/ti/*  \
-+"
++# Uncomment the following line to enable HDMI display and disable LCD display.
++#fdtfile=am437x-gp-evm-hdmi.dtb
 -- 
 1.7.9.5
 
