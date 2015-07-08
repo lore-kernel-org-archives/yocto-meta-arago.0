@@ -1,30 +1,27 @@
-Return-Path: <jake@ubuntu-quadshannondemopc5>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 5550552A30
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id E649B5299C
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Jul 2015 17:59:26 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t68HxPMJ023508
-	for <meta-arago@arago-project.org>; Wed, 8 Jul 2015 12:59:25 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t68HxPQs003778
-	for <meta-arago@arago-project.org>; Wed, 8 Jul 2015 12:59:25 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 8 Jul 2015 12:59:10 -0500
-Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t68HxPAQ006939;	Wed, 8 Jul 2015 12:59:25 -0500
-Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
-	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1ZCtcy-0000jC-NS;
-	Wed, 08 Jul 2015 13:59:24 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 8 Jul 2015 13:59:17 -0400
-Message-ID: <1436378357-2768-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH] configs: Add processor-sdk-01.00.00.03-config
+	Wed,  8 Jul 2015 22:33:27 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NR6001MVXAZJJ60@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 08 Jul 2015 17:33:00 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=KZwvylsD c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
+	a=sozttTNsAAAA:8	a=s1wRp-aPvzp7AgINL_AA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id D8EED161AC2;	Wed,
+	8 Jul 2015 18:32:59 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 08 Jul 2015 18:32:59 -0400
+Message-id: <1436394779-9622-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] external-linaro-sdk-toolchain: adjust for dropping short compiler binaries
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +34,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jul 2015 17:59:26 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 08 Jul 2015 22:33:28 -0000
 
-* This corresponds to the Processor SDK Linux 01.00.00.03 release.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../processor-sdk-01.00.00.03-config.txt           |   13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-01.00.00.03-config.txt
+ .../recipes-core/meta/external-linaro-sdk-toolchain.bb | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/configs/processor-sdk/processor-sdk-01.00.00.03-config.txt b/configs/processor-sdk/processor-sdk-01.00.00.03-config.txt
-new file mode 100644
-index 0000000..ffb12d1
---- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-01.00.00.03-config.txt
-@@ -0,0 +1,13 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+index cd24553..32e93fc 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+@@ -2,7 +2,7 @@ inherit cross-canadian
+ 
+ require external-linaro-bfd-version.inc
+ 
+-PR = "r4"
++PR = "r5"
+ 
+ INHIBIT_PACKAGE_STRIP = "1"
+ INHIBIT_DEFAULT_DEPS = "1"
+@@ -39,13 +39,15 @@ datadir = "${exec_prefix}/share"
+ 
+ gcclibdir = "${libdir}/gcc"
+ 
++# New Linaro toolchain misses these binaries, comment out for now
++#	${prefix}/${ELT_TARGET_SYS}/bin/cpp
++#	${prefix}/${ELT_TARGET_SYS}/bin/cc
++#	${prefix}/${ELT_TARGET_SYS}/bin/g++
++#	${prefix}/${ELT_TARGET_SYS}/bin/c++
++#	${prefix}/${ELT_TARGET_SYS}/bin/gcov
++#	${prefix}/${ELT_TARGET_SYS}/bin/gcc*
 +
-+bitbake,git://git.openembedded.org/bitbake,1.26,cd92e5dce5f5d61ecb7838bf964a7812e905509a,layers=
-+meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,05b7db4f213c0862cdbb6cc3da1fd2b63a834b28,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,daisy,d4315b423207030962c48de7cbc247abec0c0033,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,17eb158c6d2cd290b054b5bd54311aa44a02d04d,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,daisy,af94b54a5ee81e7ce098a20514a9cc7f88477f08,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,daisy,06008235ca752fea678953e85adaa29a491d246b,layers=meta-linaro-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,daisy,317cad797a77db0aa401d13b763181ed492f5462,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-processor-sdk.conf.sample
+ FILES_gcc-cross-canadian-arm = "\
+-	${prefix}/${ELT_TARGET_SYS}/bin/cpp \
+-	${prefix}/${ELT_TARGET_SYS}/bin/cc \
+-	${prefix}/${ELT_TARGET_SYS}/bin/g++ \
+-	${prefix}/${ELT_TARGET_SYS}/bin/c++ \
+-	${prefix}/${ELT_TARGET_SYS}/bin/gcov \
+-	${prefix}/${ELT_TARGET_SYS}/bin/gcc* \
+ 	${prefix}/${ELT_TARGET_SYS}/lib/libstdc++.* \
+ 	${prefix}/${ELT_TARGET_SYS}/lib/libgcc_s.* \
+ 	${prefix}/${ELT_TARGET_SYS}/lib/libsupc++.* \
+@@ -117,7 +119,7 @@ do_install() {
+ 	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/man/man1', '', d)}
+ 	install -d ${D}${gcclibdir}/${ELT_TARGET_SYS}/${ELT_VER_GCC}/include
+ 
+-	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/bin/{c++,g++,gcc*} ${D}${prefix}/${ELT_TARGET_SYS}/bin
++#	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/bin/{c++,g++,gcc*} ${D}${prefix}/${ELT_TARGET_SYS}/bin
+ 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/lib/{libstdc++.*,libgcc_s.*,libsupc++.*} ${D}${prefix}/${ELT_TARGET_SYS}/lib
+ 	cp -a ${TOOLCHAIN_PATH}/lib/gcc/${ELT_TARGET_SYS}/${ELT_VER_GCC}/* ${D}${gcclibdir}/${ELT_TARGET_SYS}/${ELT_VER_GCC}
+ 	cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}{gcov,gcc*,g++,cpp} ${D}${bindir}
 -- 
-1.7.9.5
+2.2.0
 
 
