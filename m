@@ -1,29 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 758085299C
+Return-Path: <matti.kaasinen@gmail.com>
+Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
+	[209.85.223.174])
+	by arago-project.org (Postfix) with ESMTPS id 8F4B55299C
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Jul 2015 08:42:38 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t688gbP2024393
-	for <meta-arago@arago-project.org>; Wed, 8 Jul 2015 03:42:37 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t688gbpU011578
-	for <meta-arago@arago-project.org>; Wed, 8 Jul 2015 03:42:37 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 8 Jul 2015 03:42:23 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t688gbpx013221	for <meta-arago@arago-project.org>;
-	Wed, 8 Jul 2015 03:42:37 -0500
-Date: Wed, 8 Jul 2015 04:42:36 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <297111167.651.1436344957017.JavaMail.jenkins@puget>
+	Wed,  8 Jul 2015 15:26:59 +0000 (UTC)
+Received: by ieru20 with SMTP id u20so14466595ier.0
+	for <meta-arago@arago-project.org>;
+	Wed, 08 Jul 2015 08:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=ZiHEfiDHKKIwy91B4nQTmbMUDEbgGKxiFu1RaHvvScc=;
+	b=N9o5a8ef1/AhxlaDwiIU/JnqQToM714x6VyF/eMxYL+V3qPpfIXZV+fgPlBBaTN5x+
+	/JwOMogUyJmgMLeLjdIijHm5pE7aklK5jegUU2urOjBld4NgvV1JD5812EqaREvZpQ4C
+	GV1Z/g88X0lnd7fjywFinIWkDDjdeETi2tBpwyR3g3acfEMEvJ4gEBlx7DXTYHVmMlSr
+	1FI3Oh0cbn0LE4vsDjTJsf5l0EGHS1UFZtXbzvZ9I9rruEzt8F8/7jCtSABkao39yuM/
+	NFwOW0WXyFcYYgjvPtPZKt1Q7t6f0vWw6azbRAOq/OSLcTHAGwjhxSM0DXgtYyPBvFy5
+	lqwQ==
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-nightly
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.06 build 2015-07-07_22-00-51
+X-Received: by 10.107.128.214 with SMTP id k83mr17268379ioi.7.1436369218684;
+	Wed, 08 Jul 2015 08:26:58 -0700 (PDT)
+Received: by 10.36.1.197 with HTTP; Wed, 8 Jul 2015 08:26:58 -0700 (PDT)
+In-Reply-To: <CADnUhn0wGGsg7h+BEfRbGVHcu2pV2EzDC++wn_0KS_JYrGeCUw@mail.gmail.com>
+References: <CADnUhn0wGGsg7h+BEfRbGVHcu2pV2EzDC++wn_0KS_JYrGeCUw@mail.gmail.com>
+Date: Wed, 8 Jul 2015 18:26:58 +0300
+Message-ID: <CADnUhn3H=Gk7pTFxyVMc=pK758-OLinzLhJYrdv4Db=QjXq=sw@mail.gmail.com>
+From: matti kaasinen <matti.kaasinen@gmail.com>
+To: meta-arago@arago-project.org
+Subject: Re: Deadlock while reading from TI-am335x-adc in_voltageX_raw sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,212 +39,183 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jul 2015 08:42:38 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_650_565797269.1436344956962"
+X-List-Received-Date: Wed, 08 Jul 2015 15:27:00 -0000
+Content-Type: multipart/alternative; boundary=001a113f97d80bcd58051a5ec5fd
 
-------=_Part_650_565797269.1436344956962
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a113f97d80bcd58051a5ec5fd
+Content-Type: text/plain; charset=UTF-8
 
-<html>
-<head>
-<title>
-Status for 07/08/15
-</title>
-</head>
-<body>
+Some more information: distro poky/fido with meta-ti taken from Arago
+distribution/fido. Therefore, this kernel driver was coming from
+linux-ti-staging_3.14. Board is am2252 based board; very much simplified
+am335x-evm.
+-Matti
 
-<h2>Status for 07/08/15</h2>
+2015-07-08 8:56 GMT+03:00 matti kaasinen <matti.kaasinen@gmail.com>:
 
-<h2>BUILD_ID: build-2015-07-07_22-01-58</h2>
+> Hi!
+>
+> I'm experiencing a deadlock while using TI-am335x-adc sysfs interface. It
+> appears to happen when I read (i.e. cat) in_voltageX_raw files repeatedly.
+> For example, if I execute this with shell script that executes:
+>
+> while true; do
+> for i in 0 1 2 3; do
+> cat in_voltage${i}_raw; usleep 250000;
+> done;done
+>
+> I will eventually get lockup for a while and kernel panic with following
+> listing:
+> ----------- kernel panic listing -----------
+> root@am335x-evm:/sys/devices/ocp/44e0d000.tscadc/TI-am335x-adc/iio:device0#
+> cat in_voltage1_raw
+> [58197.968353] INFO: task cat:1629 blocked for more than 300 seconds.
+> [58197.974615] Not tainted 3.14.46 #1
+> [58197.978628] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables
+> this message.
+> [58197.986504] cat D c06107d4 0 1629 1618 0x00000000
+> [58197.993021] [<c06107d4>] (__schedule) from [<c03a2008>]
+> (am335x_tsc_se_set_once+0xb0/0x100)
+> [58198.001491] [<c03a2008>] (am335x_tsc_se_set_once) from [<bf08653c>]
+> (tiadc_read_raw+0xb8/0x18c [ti_am335x_adc])
+> [58198.011698] [<bf08653c>] (tiadc_read_raw [ti_am335x_adc]) from
+> [<c0504b90>] (iio_read_channel_info+0x34/0x58)
+> [58198.021725] [<c0504b90>] (iio_read_channel_info) from [<c03814d8>]
+> (dev_attr_show+0x1c/0x48)
+> [58198.030260] [<c03814d8>] (dev_attr_show) from [<c0141270>]
+> (sysfs_kf_seq_show+0x80/0xf0)
+> [58198.038448] [<c0141270>] (sysfs_kf_seq_show) from [<c00ffb1c>]
+> (seq_read+0x1f0/0x4a4)
+> [58198.046377] [<c00ffb1c>] (seq_read) from [<c00df924>]
+> (do_readv_writev+0x1d4/0x214)
+> [58198.054124] [<c00df924>] (do_readv_writev) from [<c00df9a4>]
+> (vfs_readv+0x40/0x64)
+> [58198.061780] [<c00df9a4>] (vfs_readv) from [<c0106e84>]
+> (default_file_splice_read+0x204/0x308)
+> [58198.070391] [<c0106e84>] (default_file_splice_read) from [<c0105f98>]
+> (splice_direct_to_actor+0x8c/0x1d4)
+> [58198.080047] [<c0105f98>] (splice_direct_to_actor) from [<c0107390>]
+> (do_splice_direct+0x90/0xb8)
+> [58198.088919] [<c0107390>] (do_splice_direct) from [<c00df158>]
+> (do_sendfile+0x194/0x31c)
+> [58198.096979] [<c00df158>] (do_sendfile) from [<c00dfe2c>]
+> (SyS_sendfile64+0xd0/0xd4)
+> [58198.104727] [<c00dfe2c>] (SyS_sendfile64) from [<c000efe0>]
+> (ret_fast_syscall+0x0/0x38)
+> [58198.112802] INFO: lockdep is turned off.
+> [58198.116753] Kernel panic - not syncing: hung_task: blocked tasks
+> [58198.122797] CPU: 0 PID: 498 Comm: khungtaskd Not tainted 3.14.46 #1
+> [58198.129126] [<c0014ce8>] (unwind_backtrace) from [<c001219c>]
+> (show_stack+0x10/0x14)
+> [58198.136940] [<c001219c>] (show_stack) from [<c060b524>]
+> (panic+0x9c/0x1f0)
+> [58198.143870] [<c060b524>] (panic) from [<c008fab4>]
+> (watchdog+0x3a0/0x3f0)
+> [58198.150714] [<c008fab4>] (watchdog) from [<c00537a4>]
+> (kthread+0xcc/0xe0)
+> [58198.157549] [<c00537a4>] (kthread) from [<c000f080>]
+> (ret_from_fork+0x14/0x34)
+> [58797.599000] kmemleak: Cannot allocate a kmemleak_object structure
+>
+>
+> Above sequence will give every now and then "cat: read error: Device or
+> resource busy" errors, that is clearly listed in
+> wiki.tiprocessors.com/.../Processor_SDK_Linux_Kernel_Release_Notes
+> <http://wiki.tiprocessors.com/index.php/Processor_SDK_Linux_Kernel_Release_Notes>
+>
+> However, if I run the same sequence in c program, I will get much more of
+> these errors - like every thirth reading will fail.
+>
+> Third thing to note is that there is no mode (= continuous/single shot)
+> node in sysfs
+> (/sys/bus/iio/devices/iio:device0/mode) that should be there according to
+> http://processors.wiki.ti.com/index.php/AM335x_ADC_Driver%27s_Guide
+>
+> Thanks,
+> Matti
+>
 
-<h2>Clean Build: false</h2>
+--001a113f97d80bcd58051a5ec5fd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+<div dir=3D"ltr"><div>Some more information: distro poky/fido with meta-ti =
+taken from Arago distribution/fido. Therefore, this kernel driver was comin=
+g from linux-ti-staging_3.14. Board is am2252 based board; very much simpli=
+fied am335x-evm.<br></div>-Matti<br></div><div class=3D"gmail_extra"><br><d=
+iv class=3D"gmail_quote">2015-07-08 8:56 GMT+03:00 matti kaasinen <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:matti.kaasinen@gmail.com" target=3D"_blank">=
+matti.kaasinen@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<div dir=3D"ltr"><div><div><div><div><div><div>Hi!<br><br></div>I&#39;m exp=
+eriencing a deadlock while using TI-am335x-adc sysfs interface. It appears =
+to happen when I read (i.e. cat) in_voltageX_raw files repeatedly. For exam=
+ple, if I execute this with shell script that executes:<br><br>while true; =
+do<br>for i in 0 1 2 3; do<br>cat in_voltage${i}_raw; usleep 250000;<br></d=
+iv>done;done<br><br></div>I will eventually get lockup for a while and kern=
+el panic with following listing:<br>----------- kernel panic listing ------=
+-----<br>
+root@am335x-evm:/sys/devices/ocp/44e0d000.tscadc/TI-am335x-adc/iio:device0#=
+ cat in_voltage1_raw<br>
+[58197.968353] INFO: task cat:1629 blocked for more than 300 seconds.<br>
+[58197.974615]       Not tainted 3.14.46 #1<br>
+[58197.978628] &quot;echo 0 &gt; /proc/sys/kernel/hung_task_timeout_secs&qu=
+ot; disables this message.<br>
+[58197.986504] cat             D c06107d4     0  1629   1618 0x00000000<br>
+[58197.993021] [&lt;c06107d4&gt;] (__schedule) from [&lt;c03a2008&gt;] (am3=
+35x_tsc_se_set_once+0xb0/0x100)<br>
+[58198.001491] [&lt;c03a2008&gt;] (am335x_tsc_se_set_once) from [&lt;bf0865=
+3c&gt;] (tiadc_read_raw+0xb8/0x18c [ti_am335x_adc])<br>
+[58198.011698] [&lt;bf08653c&gt;] (tiadc_read_raw [ti_am335x_adc]) from [&l=
+t;c0504b90&gt;] (iio_read_channel_info+0x34/0x58)<br>
+[58198.021725] [&lt;c0504b90&gt;] (iio_read_channel_info) from [&lt;c03814d=
+8&gt;] (dev_attr_show+0x1c/0x48)<br>
+[58198.030260] [&lt;c03814d8&gt;] (dev_attr_show) from [&lt;c0141270&gt;] (=
+sysfs_kf_seq_show+0x80/0xf0)<br>
+[58198.038448] [&lt;c0141270&gt;] (sysfs_kf_seq_show) from [&lt;c00ffb1c&gt=
+;] (seq_read+0x1f0/0x4a4)<br>
+[58198.046377] [&lt;c00ffb1c&gt;] (seq_read) from [&lt;c00df924&gt;] (do_re=
+adv_writev+0x1d4/0x214)<br>
+[58198.054124] [&lt;c00df924&gt;] (do_readv_writev) from [&lt;c00df9a4&gt;]=
+ (vfs_readv+0x40/0x64)<br>
+[58198.061780] [&lt;c00df9a4&gt;] (vfs_readv) from [&lt;c0106e84&gt;] (defa=
+ult_file_splice_read+0x204/0x308)<br>
+[58198.070391] [&lt;c0106e84&gt;] (default_file_splice_read) from [&lt;c010=
+5f98&gt;] (splice_direct_to_actor+0x8c/0x1d4)<br>
+[58198.080047] [&lt;c0105f98&gt;] (splice_direct_to_actor) from [&lt;c01073=
+90&gt;] (do_splice_direct+0x90/0xb8)<br>
+[58198.088919] [&lt;c0107390&gt;] (do_splice_direct) from [&lt;c00df158&gt;=
+] (do_sendfile+0x194/0x31c)<br>
+[58198.096979] [&lt;c00df158&gt;] (do_sendfile) from [&lt;c00dfe2c&gt;] (Sy=
+S_sendfile64+0xd0/0xd4)<br>
+[58198.104727] [&lt;c00dfe2c&gt;] (SyS_sendfile64) from [&lt;c000efe0&gt;] =
+(ret_fast_syscall+0x0/0x38)<br>
+[58198.112802] INFO: lockdep is turned off.<br>
+[58198.116753] Kernel panic - not syncing: hung_task: blocked tasks<br>
+[58198.122797] CPU: 0 PID: 498 Comm: khungtaskd Not tainted 3.14.46 #1<br>
+[58198.129126] [&lt;c0014ce8&gt;] (unwind_backtrace) from [&lt;c001219c&gt;=
+] (show_stack+0x10/0x14)<br>
+[58198.136940] [&lt;c001219c&gt;] (show_stack) from [&lt;c060b524&gt;] (pan=
+ic+0x9c/0x1f0)<br>
+[58198.143870] [&lt;c060b524&gt;] (panic) from [&lt;c008fab4&gt;] (watchdog=
++0x3a0/0x3f0)<br>
+[58198.150714] [&lt;c008fab4&gt;] (watchdog) from [&lt;c00537a4&gt;] (kthre=
+ad+0xcc/0xe0)<br>
+[58198.157549] [&lt;c00537a4&gt;] (kthread) from [&lt;c000f080&gt;] (ret_fr=
+om_fork+0x14/0x34)<br>
+[58797.599000] kmemleak: Cannot allocate a kmemleak_object structure<br>
+<br><br></div>Above sequence will give every now and then &quot;cat: read e=
+rror: Device or resource busy&quot; errors, that is clearly listed in <a hr=
+ef=3D"http://wiki.tiprocessors.com/index.php/Processor_SDK_Linux_Kernel_Rel=
+ease_Notes" target=3D"_blank">wiki.tiprocessors.com/.../Processor_SDK_Linux=
+_Kernel_Release_Notes</a><br><br>However, if I run the same sequence in c p=
+rogram, I will get much more of these errors - like every thirth reading wi=
+ll fail.<br><br>Third thing to note is that there is no mode (=3D continuou=
+s/single shot) node in sysfs <br>(/sys/bus/iio/devices/iio:device0/mode) th=
+at should be there according to <a title=3D"AM335x ADC Driver&#39;s Guide" =
+href=3D"http://processors.wiki.ti.com/index.php/AM335x_ADC_Driver%27s_Guide=
+" target=3D"_blank">http://processors.wiki.ti.com/index.php/AM335x_ADC_Driv=
+er%27s_Guide</a><br><br></div>Thanks,<br></div>Matti<br></div>
+</blockquote></div><br></div>
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-nightly/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_650_565797269.1436344956962--
+--001a113f97d80bcd58051a5ec5fd--
