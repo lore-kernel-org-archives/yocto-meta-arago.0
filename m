@@ -1,32 +1,30 @@
-Return-Path: <matti.kaasinen@gmail.com>
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by arago-project.org (Postfix) with ESMTPS id 8F4B55299C
+Return-Path: <jake@ubuntu-quadshannondemopc5>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 5550552A30
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Jul 2015 15:26:59 +0000 (UTC)
-Received: by ieru20 with SMTP id u20so14466595ier.0
-	for <meta-arago@arago-project.org>;
-	Wed, 08 Jul 2015 08:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=ZiHEfiDHKKIwy91B4nQTmbMUDEbgGKxiFu1RaHvvScc=;
-	b=N9o5a8ef1/AhxlaDwiIU/JnqQToM714x6VyF/eMxYL+V3qPpfIXZV+fgPlBBaTN5x+
-	/JwOMogUyJmgMLeLjdIijHm5pE7aklK5jegUU2urOjBld4NgvV1JD5812EqaREvZpQ4C
-	GV1Z/g88X0lnd7fjywFinIWkDDjdeETi2tBpwyR3g3acfEMEvJ4gEBlx7DXTYHVmMlSr
-	1FI3Oh0cbn0LE4vsDjTJsf5l0EGHS1UFZtXbzvZ9I9rruEzt8F8/7jCtSABkao39yuM/
-	NFwOW0WXyFcYYgjvPtPZKt1Q7t6f0vWw6azbRAOq/OSLcTHAGwjhxSM0DXgtYyPBvFy5
-	lqwQ==
+	Wed,  8 Jul 2015 17:59:26 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t68HxPMJ023508
+	for <meta-arago@arago-project.org>; Wed, 8 Jul 2015 12:59:25 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t68HxPQs003778
+	for <meta-arago@arago-project.org>; Wed, 8 Jul 2015 12:59:25 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 8 Jul 2015 12:59:10 -0500
+Received: from Ubuntu-QuadShannonDemoPC5 (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t68HxPAQ006939;	Wed, 8 Jul 2015 12:59:25 -0500
+Received: from jake by Ubuntu-QuadShannonDemoPC5 with local (Exim 4.76)
+	(envelope-from <jake@ubuntu-quadshannondemopc5>)	id 1ZCtcy-0000jC-NS;
+	Wed, 08 Jul 2015 13:59:24 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 8 Jul 2015 13:59:17 -0400
+Message-ID: <1436378357-2768-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Received: by 10.107.128.214 with SMTP id k83mr17268379ioi.7.1436369218684;
-	Wed, 08 Jul 2015 08:26:58 -0700 (PDT)
-Received: by 10.36.1.197 with HTTP; Wed, 8 Jul 2015 08:26:58 -0700 (PDT)
-In-Reply-To: <CADnUhn0wGGsg7h+BEfRbGVHcu2pV2EzDC++wn_0KS_JYrGeCUw@mail.gmail.com>
-References: <CADnUhn0wGGsg7h+BEfRbGVHcu2pV2EzDC++wn_0KS_JYrGeCUw@mail.gmail.com>
-Date: Wed, 8 Jul 2015 18:26:58 +0300
-Message-ID: <CADnUhn3H=Gk7pTFxyVMc=pK758-OLinzLhJYrdv4Db=QjXq=sw@mail.gmail.com>
-From: matti kaasinen <matti.kaasinen@gmail.com>
-To: meta-arago@arago-project.org
-Subject: Re: Deadlock while reading from TI-am335x-adc in_voltageX_raw sources
+Subject: [oe-layersetup][PATCH] configs: Add processor-sdk-01.00.00.03-config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,183 +37,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jul 2015 15:27:00 -0000
-Content-Type: multipart/alternative; boundary=001a113f97d80bcd58051a5ec5fd
+X-List-Received-Date: Wed, 08 Jul 2015 17:59:26 -0000
+Content-Type: text/plain
 
---001a113f97d80bcd58051a5ec5fd
-Content-Type: text/plain; charset=UTF-8
+* This corresponds to the Processor SDK Linux 01.00.00.03 release.
 
-Some more information: distro poky/fido with meta-ti taken from Arago
-distribution/fido. Therefore, this kernel driver was coming from
-linux-ti-staging_3.14. Board is am2252 based board; very much simplified
-am335x-evm.
--Matti
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../processor-sdk-01.00.00.03-config.txt           |   13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-01.00.00.03-config.txt
 
-2015-07-08 8:56 GMT+03:00 matti kaasinen <matti.kaasinen@gmail.com>:
+diff --git a/configs/processor-sdk/processor-sdk-01.00.00.03-config.txt b/configs/processor-sdk/processor-sdk-01.00.00.03-config.txt
+new file mode 100644
+index 0000000..ffb12d1
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-01.00.00.03-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.26,cd92e5dce5f5d61ecb7838bf964a7812e905509a,layers=
++meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,05b7db4f213c0862cdbb6cc3da1fd2b63a834b28,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,daisy,d4315b423207030962c48de7cbc247abec0c0033,layers=meta-arago-distro:meta-arago-extras
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,17eb158c6d2cd290b054b5bd54311aa44a02d04d,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
++meta-ti,git://arago-project.org/git/meta-ti.git,daisy,af94b54a5ee81e7ce098a20514a9cc7f88477f08,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,daisy,06008235ca752fea678953e85adaa29a491d246b,layers=meta-linaro-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,daisy,317cad797a77db0aa401d13b763181ed492f5462,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk.conf.sample
+-- 
+1.7.9.5
 
-> Hi!
->
-> I'm experiencing a deadlock while using TI-am335x-adc sysfs interface. It
-> appears to happen when I read (i.e. cat) in_voltageX_raw files repeatedly.
-> For example, if I execute this with shell script that executes:
->
-> while true; do
-> for i in 0 1 2 3; do
-> cat in_voltage${i}_raw; usleep 250000;
-> done;done
->
-> I will eventually get lockup for a while and kernel panic with following
-> listing:
-> ----------- kernel panic listing -----------
-> root@am335x-evm:/sys/devices/ocp/44e0d000.tscadc/TI-am335x-adc/iio:device0#
-> cat in_voltage1_raw
-> [58197.968353] INFO: task cat:1629 blocked for more than 300 seconds.
-> [58197.974615] Not tainted 3.14.46 #1
-> [58197.978628] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables
-> this message.
-> [58197.986504] cat D c06107d4 0 1629 1618 0x00000000
-> [58197.993021] [<c06107d4>] (__schedule) from [<c03a2008>]
-> (am335x_tsc_se_set_once+0xb0/0x100)
-> [58198.001491] [<c03a2008>] (am335x_tsc_se_set_once) from [<bf08653c>]
-> (tiadc_read_raw+0xb8/0x18c [ti_am335x_adc])
-> [58198.011698] [<bf08653c>] (tiadc_read_raw [ti_am335x_adc]) from
-> [<c0504b90>] (iio_read_channel_info+0x34/0x58)
-> [58198.021725] [<c0504b90>] (iio_read_channel_info) from [<c03814d8>]
-> (dev_attr_show+0x1c/0x48)
-> [58198.030260] [<c03814d8>] (dev_attr_show) from [<c0141270>]
-> (sysfs_kf_seq_show+0x80/0xf0)
-> [58198.038448] [<c0141270>] (sysfs_kf_seq_show) from [<c00ffb1c>]
-> (seq_read+0x1f0/0x4a4)
-> [58198.046377] [<c00ffb1c>] (seq_read) from [<c00df924>]
-> (do_readv_writev+0x1d4/0x214)
-> [58198.054124] [<c00df924>] (do_readv_writev) from [<c00df9a4>]
-> (vfs_readv+0x40/0x64)
-> [58198.061780] [<c00df9a4>] (vfs_readv) from [<c0106e84>]
-> (default_file_splice_read+0x204/0x308)
-> [58198.070391] [<c0106e84>] (default_file_splice_read) from [<c0105f98>]
-> (splice_direct_to_actor+0x8c/0x1d4)
-> [58198.080047] [<c0105f98>] (splice_direct_to_actor) from [<c0107390>]
-> (do_splice_direct+0x90/0xb8)
-> [58198.088919] [<c0107390>] (do_splice_direct) from [<c00df158>]
-> (do_sendfile+0x194/0x31c)
-> [58198.096979] [<c00df158>] (do_sendfile) from [<c00dfe2c>]
-> (SyS_sendfile64+0xd0/0xd4)
-> [58198.104727] [<c00dfe2c>] (SyS_sendfile64) from [<c000efe0>]
-> (ret_fast_syscall+0x0/0x38)
-> [58198.112802] INFO: lockdep is turned off.
-> [58198.116753] Kernel panic - not syncing: hung_task: blocked tasks
-> [58198.122797] CPU: 0 PID: 498 Comm: khungtaskd Not tainted 3.14.46 #1
-> [58198.129126] [<c0014ce8>] (unwind_backtrace) from [<c001219c>]
-> (show_stack+0x10/0x14)
-> [58198.136940] [<c001219c>] (show_stack) from [<c060b524>]
-> (panic+0x9c/0x1f0)
-> [58198.143870] [<c060b524>] (panic) from [<c008fab4>]
-> (watchdog+0x3a0/0x3f0)
-> [58198.150714] [<c008fab4>] (watchdog) from [<c00537a4>]
-> (kthread+0xcc/0xe0)
-> [58198.157549] [<c00537a4>] (kthread) from [<c000f080>]
-> (ret_from_fork+0x14/0x34)
-> [58797.599000] kmemleak: Cannot allocate a kmemleak_object structure
->
->
-> Above sequence will give every now and then "cat: read error: Device or
-> resource busy" errors, that is clearly listed in
-> wiki.tiprocessors.com/.../Processor_SDK_Linux_Kernel_Release_Notes
-> <http://wiki.tiprocessors.com/index.php/Processor_SDK_Linux_Kernel_Release_Notes>
->
-> However, if I run the same sequence in c program, I will get much more of
-> these errors - like every thirth reading will fail.
->
-> Third thing to note is that there is no mode (= continuous/single shot)
-> node in sysfs
-> (/sys/bus/iio/devices/iio:device0/mode) that should be there according to
-> http://processors.wiki.ti.com/index.php/AM335x_ADC_Driver%27s_Guide
->
-> Thanks,
-> Matti
->
 
---001a113f97d80bcd58051a5ec5fd
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Some more information: distro poky/fido with meta-ti =
-taken from Arago distribution/fido. Therefore, this kernel driver was comin=
-g from linux-ti-staging_3.14. Board is am2252 based board; very much simpli=
-fied am335x-evm.<br></div>-Matti<br></div><div class=3D"gmail_extra"><br><d=
-iv class=3D"gmail_quote">2015-07-08 8:56 GMT+03:00 matti kaasinen <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:matti.kaasinen@gmail.com" target=3D"_blank">=
-matti.kaasinen@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<div dir=3D"ltr"><div><div><div><div><div><div>Hi!<br><br></div>I&#39;m exp=
-eriencing a deadlock while using TI-am335x-adc sysfs interface. It appears =
-to happen when I read (i.e. cat) in_voltageX_raw files repeatedly. For exam=
-ple, if I execute this with shell script that executes:<br><br>while true; =
-do<br>for i in 0 1 2 3; do<br>cat in_voltage${i}_raw; usleep 250000;<br></d=
-iv>done;done<br><br></div>I will eventually get lockup for a while and kern=
-el panic with following listing:<br>----------- kernel panic listing ------=
------<br>
-root@am335x-evm:/sys/devices/ocp/44e0d000.tscadc/TI-am335x-adc/iio:device0#=
- cat in_voltage1_raw<br>
-[58197.968353] INFO: task cat:1629 blocked for more than 300 seconds.<br>
-[58197.974615]       Not tainted 3.14.46 #1<br>
-[58197.978628] &quot;echo 0 &gt; /proc/sys/kernel/hung_task_timeout_secs&qu=
-ot; disables this message.<br>
-[58197.986504] cat             D c06107d4     0  1629   1618 0x00000000<br>
-[58197.993021] [&lt;c06107d4&gt;] (__schedule) from [&lt;c03a2008&gt;] (am3=
-35x_tsc_se_set_once+0xb0/0x100)<br>
-[58198.001491] [&lt;c03a2008&gt;] (am335x_tsc_se_set_once) from [&lt;bf0865=
-3c&gt;] (tiadc_read_raw+0xb8/0x18c [ti_am335x_adc])<br>
-[58198.011698] [&lt;bf08653c&gt;] (tiadc_read_raw [ti_am335x_adc]) from [&l=
-t;c0504b90&gt;] (iio_read_channel_info+0x34/0x58)<br>
-[58198.021725] [&lt;c0504b90&gt;] (iio_read_channel_info) from [&lt;c03814d=
-8&gt;] (dev_attr_show+0x1c/0x48)<br>
-[58198.030260] [&lt;c03814d8&gt;] (dev_attr_show) from [&lt;c0141270&gt;] (=
-sysfs_kf_seq_show+0x80/0xf0)<br>
-[58198.038448] [&lt;c0141270&gt;] (sysfs_kf_seq_show) from [&lt;c00ffb1c&gt=
-;] (seq_read+0x1f0/0x4a4)<br>
-[58198.046377] [&lt;c00ffb1c&gt;] (seq_read) from [&lt;c00df924&gt;] (do_re=
-adv_writev+0x1d4/0x214)<br>
-[58198.054124] [&lt;c00df924&gt;] (do_readv_writev) from [&lt;c00df9a4&gt;]=
- (vfs_readv+0x40/0x64)<br>
-[58198.061780] [&lt;c00df9a4&gt;] (vfs_readv) from [&lt;c0106e84&gt;] (defa=
-ult_file_splice_read+0x204/0x308)<br>
-[58198.070391] [&lt;c0106e84&gt;] (default_file_splice_read) from [&lt;c010=
-5f98&gt;] (splice_direct_to_actor+0x8c/0x1d4)<br>
-[58198.080047] [&lt;c0105f98&gt;] (splice_direct_to_actor) from [&lt;c01073=
-90&gt;] (do_splice_direct+0x90/0xb8)<br>
-[58198.088919] [&lt;c0107390&gt;] (do_splice_direct) from [&lt;c00df158&gt;=
-] (do_sendfile+0x194/0x31c)<br>
-[58198.096979] [&lt;c00df158&gt;] (do_sendfile) from [&lt;c00dfe2c&gt;] (Sy=
-S_sendfile64+0xd0/0xd4)<br>
-[58198.104727] [&lt;c00dfe2c&gt;] (SyS_sendfile64) from [&lt;c000efe0&gt;] =
-(ret_fast_syscall+0x0/0x38)<br>
-[58198.112802] INFO: lockdep is turned off.<br>
-[58198.116753] Kernel panic - not syncing: hung_task: blocked tasks<br>
-[58198.122797] CPU: 0 PID: 498 Comm: khungtaskd Not tainted 3.14.46 #1<br>
-[58198.129126] [&lt;c0014ce8&gt;] (unwind_backtrace) from [&lt;c001219c&gt;=
-] (show_stack+0x10/0x14)<br>
-[58198.136940] [&lt;c001219c&gt;] (show_stack) from [&lt;c060b524&gt;] (pan=
-ic+0x9c/0x1f0)<br>
-[58198.143870] [&lt;c060b524&gt;] (panic) from [&lt;c008fab4&gt;] (watchdog=
-+0x3a0/0x3f0)<br>
-[58198.150714] [&lt;c008fab4&gt;] (watchdog) from [&lt;c00537a4&gt;] (kthre=
-ad+0xcc/0xe0)<br>
-[58198.157549] [&lt;c00537a4&gt;] (kthread) from [&lt;c000f080&gt;] (ret_fr=
-om_fork+0x14/0x34)<br>
-[58797.599000] kmemleak: Cannot allocate a kmemleak_object structure<br>
-<br><br></div>Above sequence will give every now and then &quot;cat: read e=
-rror: Device or resource busy&quot; errors, that is clearly listed in <a hr=
-ef=3D"http://wiki.tiprocessors.com/index.php/Processor_SDK_Linux_Kernel_Rel=
-ease_Notes" target=3D"_blank">wiki.tiprocessors.com/.../Processor_SDK_Linux=
-_Kernel_Release_Notes</a><br><br>However, if I run the same sequence in c p=
-rogram, I will get much more of these errors - like every thirth reading wi=
-ll fail.<br><br>Third thing to note is that there is no mode (=3D continuou=
-s/single shot) node in sysfs <br>(/sys/bus/iio/devices/iio:device0/mode) th=
-at should be there according to <a title=3D"AM335x ADC Driver&#39;s Guide" =
-href=3D"http://processors.wiki.ti.com/index.php/AM335x_ADC_Driver%27s_Guide=
-" target=3D"_blank">http://processors.wiki.ti.com/index.php/AM335x_ADC_Driv=
-er%27s_Guide</a><br><br></div>Thanks,<br></div>Matti<br></div>
-</blockquote></div><br></div>
-
---001a113f97d80bcd58051a5ec5fd--
