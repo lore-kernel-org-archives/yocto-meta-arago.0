@@ -1,31 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6AA795299C
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 85636529AC
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Jul 2015 23:24:16 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t69NOCBn027602;
-	Thu, 9 Jul 2015 18:24:12 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t69NOCpY026558;
-	Thu, 9 Jul 2015 18:24:12 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 9 Jul 2015 18:23:55 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t69NOBAG029507;
-	Thu, 9 Jul 2015 18:24:12 -0500
-Date: Thu, 9 Jul 2015 19:23:56 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Message-ID: <20150709232356.GK15657@edge>
-References: <CADySD0Et4JtD7_bZ8yMUkbaBrbrtrt8v8YETaJUHkSm=FbMaTg@mail.gmail.com>
-	<CADySD0GJA3Mw4UMuEp9d5rmiChEL+ypZzgCuu-pFxXBLingw1Q@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CADySD0GJA3Mw4UMuEp9d5rmiChEL+ypZzgCuu-pFxXBLingw1Q@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: How to build browser (chrome/firefox) for AM335x using meta-arago
+	Thu,  9 Jul 2015 23:28:25 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NR80028TUIPE240@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 09 Jul 2015 18:28:12 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
+	a=sozttTNsAAAA:8	a=W8lOp7x3hdM8fhWnXbMA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id D9C57161B0A;	Thu,
+	9 Jul 2015 19:28:01 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 09 Jul 2015 19:28:01 -0400
+Message-id: <1436484481-18007-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] linux-ti-staging: make TISDK-specific bbappend generic
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,59 +34,84 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jul 2015 23:24:23 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 09 Jul 2015 23:28:26 -0000
 
-I haven't tried it recently, but you should be able to add meta-browser to 
-bblayers.conf file and bitbake the corresponding target.
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-kernel/linux/linux-ti-staging_%.bbappend      | 15 +++++++++++++++
+ .../recipes-kernel/linux/linux-ti-staging_3.12.bbappend   | 15 ---------------
+ .../recipes-kernel/linux/linux-ti-staging_3.14.bbappend   | 15 ---------------
+ 3 files changed, 15 insertions(+), 30 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
+
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+new file mode 100644
+index 0000000..22d1f4f
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+@@ -0,0 +1,15 @@
++MACHINE_KERNEL_PR_append = "-arago2"
++
++FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
++
++require copy-defconfig.inc
++
++KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
++
++kernel_do_configure_prepend() {
++    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
++    then
++        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
++        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
++    fi
++}
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
+deleted file mode 100644
+index 2a6f090..0000000
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
++++ /dev/null
+@@ -1,15 +0,0 @@
+-MACHINE_KERNEL_PR_append = "-arago1"
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+-
+-require copy-defconfig.inc
+-
+-KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
+-
+-kernel_do_configure_prepend() {
+-    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
+-    then
+-        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
+-        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
+-    fi
+-}
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
+deleted file mode 100644
+index 22d1f4f..0000000
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
++++ /dev/null
+@@ -1,15 +0,0 @@
+-MACHINE_KERNEL_PR_append = "-arago2"
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+-
+-require copy-defconfig.inc
+-
+-KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
+-
+-kernel_do_configure_prepend() {
+-    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
+-    then
+-        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
+-        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
+-    fi
+-}
 -- 
-Denys
-
-
-On Fri, Jul 03, 2015 at 04:17:21PM +1200, Ankur Tyagi wrote:
-> Hi,
-> 
-> In case previous one was missed.
-> 
-> I want to build chrome/firefox browser for my AM335x EVM.
-> 
-> I am using "arago-daisy-config.txt" to bitbake tisdk-rootfs-image.
-> 
-> I see there is meta-browser which includes chrome, firefox.
-> 
-> How can I get them build with my tisdk rootfs ?
-> 
-> What all do I need to modify in my bblayer and local conf files ?
-> 
-> thanks
-> 
-> 
-> "Knowledge is knowing tomato is a fruit, wisdom is not putting it in a
-> fruit salad"
-> 
-> On Fri, Jun 19, 2015 at 7:04 PM, Ankur Tyagi <ankur.tyagi85@gmail.com>
-> wrote:
-> 
-> > Hi,
-> >
-> > I want to build chrome/firefox browser for my AM335x EVM.
-> >
-> > I am using "arago-daisy-config.txt" to bitbake tisdk-rootfs-image.
-> >
-> > I see there is meta-browser which includes chrome, firefox.
-> >
-> > How can I get them build with my tisdk rootfs ?
-> >
-> > What all do I need to modify in my bblayer and local conf files ?
-> >
-> > thanks
-> >
-
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+2.2.0
 
 
