@@ -1,27 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 0E86652A0D
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 13277529AC
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Jul 2015 01:34:21 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
+	Fri, 10 Jul 2015 01:45:36 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NR900MI00CFO9Z0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 09 Jul 2015 20:34:02 -0500 (CDT)
+	with ESMTPSA id <0NR900NAH0VX5180@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 09 Jul 2015 20:45:34 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8	a=lRIzUS_CGXFpfgAXmqEA:9
+	a=sozttTNsAAAA:8	a=p66DwqiCmvK93HlR-vQA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id B07BE161B0C;	Thu,
-	9 Jul 2015 21:33:51 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 868E6161B0E;	Thu,
+	9 Jul 2015 21:45:33 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 09 Jul 2015 21:33:51 -0400
-Message-id: <1436492031-16328-1-git-send-email-denis@denix.org>
+Date: Thu, 09 Jul 2015 21:45:32 -0400
+Message-id: <1436492732-18531-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH v2] linux-ti-staging: make TISDK-specific bbappend generic
+Subject: [tisdk-build-scripts][PATCH] build-oesdk: fold COPY_DEPLOY_TO_WEB and COPY_GOLDEN_TO_WEB under COPY_TO_WEB
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,45 +34,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jul 2015 01:34:22 -0000
+X-List-Received-Date: Fri, 10 Jul 2015 01:45:36 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
-v2 - use rename instead of add/remove
+ build-oesdk.sh | 44 ++++++++++++++++++++++++--------------------
+ 1 file changed, 24 insertions(+), 20 deletions(-)
 
- ...-staging_3.14.bbappend => linux-ti-staging_%.bbappend} |  0
- .../recipes-kernel/linux/linux-ti-staging_3.12.bbappend   | 15 ---------------
- 2 files changed, 15 deletions(-)
- rename meta-arago-distro/recipes-kernel/linux/{linux-ti-staging_3.14.bbappend => linux-ti-staging_%.bbappend} (100%)
- delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
-
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.14.bbappend
-rename to meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
-deleted file mode 100644
-index 2a6f090..0000000
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_3.12.bbappend
-+++ /dev/null
-@@ -1,15 +0,0 @@
--MACHINE_KERNEL_PR_append = "-arago1"
--
--FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
--
--require copy-defconfig.inc
--
--KERNEL_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
--
--kernel_do_configure_prepend() {
--    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
--    then
--        echo ${KERNEL_LOCALVERSION} > ${B}/.scmversion
--        echo ${KERNEL_LOCALVERSION} > ${S}/.scmversion
--    fi
--}
+diff --git a/build-oesdk.sh b/build-oesdk.sh
+index efe1a43..1f6d480 100755
+--- a/build-oesdk.sh
++++ b/build-oesdk.sh
+@@ -200,33 +200,37 @@ generate_report
+ 
+ # If COPY_TO_WEB is set then copy to the WEB_HOST.  If we did not
+ # productize the SDK then there is not much need to copy the files.
+-if [ "$COPY_TO_WEB" == "true" -a "$PRODUCTIZE_SDK" == "true" ]
++if [ "$COPY_TO_WEB" == "true" ]
+ then
+-    scp -r $DEPLOY_ROOT $WEB_HOST/
+-    # If the copy went well then clean out the DEPLOY_ROOT directory
+-    # If the CLEAN_AFTER_COPY variable is true.
+-    # TODO: Maybe this should be cleaned by jenkins if I want that.
+-    if [ "$?" == "0" ]
++    if [ "$PRODUCTIZE_SDK" == "true" ]
+     then
+-        if [ "$CLEAN_AFTER_COPY" == "true" ]
++        echo "Copying productized images"
++        scp -r $DEPLOY_ROOT $WEB_HOST/
++        # If the copy went well then clean out the DEPLOY_ROOT directory
++        # If the CLEAN_AFTER_COPY variable is true.
++        # TODO: Maybe this should be cleaned by jenkins if I want that.
++        if [ "$?" == "0" ]
+         then
+-            rm -rf $DEPLOY_ROOT
++            if [ "$CLEAN_AFTER_COPY" == "true" ]
++            then
++                rm -rf $DEPLOY_ROOT
++            fi
+         fi
+     fi
+-fi
+ 
+-echo "Copying deploy/ directory"
+-# If COPY_DEPLOY_TO_WEB is set then copy to the WEB_HOST.
+-if [ "$COPY_DEPLOY_TO_WEB" == "true" ]
+-then
+-    rsync -az --delete $BUILD_ROOT/build-*/arago-tmp*/deploy/ $WEB_HOST/deploy/
+-fi
++    echo "Copying deploy/ directory"
++    # If COPY_DEPLOY_TO_WEB is set then copy to the WEB_HOST.
++    if [ "$COPY_DEPLOY_TO_WEB" == "true" ]
++    then
++        rsync -az --delete $BUILD_ROOT/build-*/arago-tmp*/deploy/ $WEB_HOST/deploy/
++    fi
+ 
+-echo "Copying golden/ directory"
+-# If COPY_GOLDEN_TO_WEB is set then copy to the WEB_HOST.
+-if [ "$COPY_GOLDEN_TO_WEB" == "true" ]
+-then
+-    rsync -az --delete $BUILD_ROOT/build-*/golden/ $WEB_HOST/golden/
++    echo "Copying golden/ directory"
++    # If COPY_GOLDEN_TO_WEB is set then copy to the WEB_HOST.
++    if [ "$COPY_GOLDEN_TO_WEB" == "true" ]
++    then
++        rsync -az --delete $BUILD_ROOT/build-*/golden/ $WEB_HOST/golden/
++    fi
+ fi
+ 
+ echo "Build Finished"
 -- 
 2.2.0
 
