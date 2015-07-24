@@ -1,32 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 1110652991;
-	Fri, 24 Jul 2015 13:56:03 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t6ODu1b1007756;
-	Fri, 24 Jul 2015 08:56:01 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t6ODu1cb012932;
-	Fri, 24 Jul 2015 08:56:01 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 24 Jul 2015 08:56:01 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t6ODu1pD012441;
-	Fri, 24 Jul 2015 08:56:01 -0500
-Date: Fri, 24 Jul 2015 09:55:45 -0400
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 44DC552A4F
+	for <meta-arago@arago-project.org>;
+	Fri, 24 Jul 2015 17:56:17 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NS000K1W75DG0E0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 24 Jul 2015 12:56:07 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=sozttTNsAAAA:8 a=0gcC27t9AAAA:8	a=oR5dmqMzAAAA:8 a=XYJHFtupD_QA:10
+	a=-9mUelKeXuEA:10 a=kj9zAlcOel0A:10	a=zOBTXjUuO1YA:10 a=HihYlcsHAAAA:8
+	a=w6itKzYy1291-SD3rkQA:9	a=CjuIK1q_8ugA:10
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id D6CBE161B16; Fri,
+	24 Jul 2015 13:56:01 -0400 (EDT)
+Date: Fri, 24 Jul 2015 13:56:01 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Carlos Hernandez <ceh@ti.com>
-Message-ID: <20150724135545.GS1040@edge>
-References: <1D5CE803A5355E429159F7C8EE54EE51051A1295@HIKAWSEXMB01.ad.harman.com>
-	<55B2217A.5010309@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <55B2217A.5010309@ti.com>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-id: <20150724175601.GG1089@denix.org>
+References: <1422426701-26910-1-git-send-email-nikhil.nd@ti.com>
+	<E60A9E1B4132A24DB80BD56ABC92684735043FCF@DBDE04.ent.ti.com>
+	<54C90AFB.9050302@ti.com>
+MIME-version: 1.0
+In-reply-to: <54C90AFB.9050302@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, "Batth,
-	Gurpreet \(Global Edge\)" <Gurpreet.Batth@harman.com>,
-	"opentest@arago-project.org" <opentest@arago-project.org>
-Subject: Re: [opentest] Compile time error "start.S:119: undefined reference to `main'"
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "R,
+	Karthik" <karthik.ramanan@ti.com>
+Subject: Re: [PATCH] packagegroup-arago-test: Update vpdma-fw and vpe-tests packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,66 +41,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 13:56:03 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 24 Jul 2015 17:56:17 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-As indicated earlier in the log:
+Karthik, Nikhil,
 
-MACHINE           = "iukram"
-
-But, ltp-ddt takes MACHINE and passes it down as PLATFORM and has a predefined 
-list of supported platforms, so "iukram" is not in that list, hence the error.
+This split was done back in January, but now it causes a conflict, because 
+both vpdma-fw and vpe-tests try to install the same firmware image. Do you 
+know if vpe-tests Makefile needs to be updated to not install FW image, or we 
+can do it in the recipe itself. How do you want to handle this?
 
 -- 
 Denys
 
 
-On Fri, Jul 24, 2015 at 07:28:58AM -0400, Carlos Hernandez wrote:
-> Hi Gurpreet,
+On Wed, Jan 28, 2015 at 09:44:51PM +0530, Karthik Ramanan wrote:
+> ACK.
 > 
-> It seems like you are not passing the MACHINE to build ltp-ddt for.
-> Please use meta-arago@arago-project.org for issues building
-> Yocto/OpenEmbedded recipes.
+> Validated on dra7xx-evm.
 > 
-> Carlos
-> On 07/24/2015 02:33 AM, Batth, Gurpreet (Global Edge) wrote:
-> >
-> >Hi Team!
-> >
-> >Greetings!
-> >
-> >I am new to ltp-ddt, I am trying to compile it for arm target, I
-> >am using Ubuntu 14.04.1 LTS (i686) as a host. I am facing below
-> >error while comiling.
-> >
-> >| /home/b_lal/elina-distro/build-iuk-ram/tmp/sysroots/iukram/usr/lib/crt1.o*:
-> >In function `_start':*
-> >
-> >| /home/b_lal/elina-distro/build-iuk-ram/tmp/work/cortexa8t2hf-vfp-neon-elina-linux-gnueabi/glibc/2.20-r0/git/csu/../sysdeps/arm/*start.S:119:
-> >undefined reference to `main'*
-> >
-> >| *collect2: error: ld returned 1 exit status*
-> >
-> >**
-> >
-> >I have attached the logs file Console logs.
-> >
-> >Regards,
-> >
-> >Gurpreet
-> >
-> >
-> >
-> >_______________________________________________
-> >opentest mailing list
-> >opentest@arago-project.org
-> >http://arago-project.org/cgi-bin/mailman/listinfo/opentest
+> Regards
+> Karthik
 > 
-
+> On 28-Jan-15 12:04 PM, Devshatwar, Nikhil wrote:
+> >Hi,
+> >The patch http://dflvsu0004.dal.design.ti.com/patch/12353/ in meta-ti
+> >Splits the vpdma-fw and vpe-tests recipes
+> >This patch is needed to update the package group in meta-arago correspondingly
+> >
+> >
+> >>-----Original Message-----
+> >>From: Devshatwar, Nikhil
+> >>Sent: Wednesday, January 28, 2015 12:02 PM
+> >>To: meta-arago@arago-project.org
+> >>Cc: R, Karthik; Devshatwar, Nikhil
+> >>Subject: [PATCH] packagegroup-arago-test: Update vpdma-fw and vpe-tests
+> >>packages
+> >>
+> >>The vpdma-fw and vpe-tests are independent packages now.
+> >>Adding them both in the packagegroup.
+> >>
+> >>Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> >>---
+> >>  .../packagegroups/packagegroup-arago-test.bb       |    3 ++-
+> >>  1 file changed, 2 insertions(+), 1 deletion(-)
+> >>
+> >>diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> >>arago-test.bb b/meta-arago-distro/recipes-
+> >>core/packagegroups/packagegroup-arago-test.bb
+> >>index 6af1321..83ba20e 100644
+> >>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> >>test.bb
+> >>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> >>test.bb
+> >>@@ -44,7 +44,8 @@ ARAGO_TI_TEST_append_omap-a15 = " \
+> >>      "
+> >>
+> >>  ARAGO_TI_TEST_append_dra7xx = " \
+> >>-    vpe-vpdma \
+> >>+    vpdma-fw \
+> >>+    vpe-tests \
+> >>      "
+> >>
+> >>  RDEPENDS_${PN} = "\
+> >>--
+> >>1.7.9.5
+> >
+> 
 > _______________________________________________
-> opentest mailing list
-> opentest@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/opentest
-
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
