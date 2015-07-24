@@ -1,28 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id 7D7C2529A7
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 0D65F52980
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jul 2015 21:05:27 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NS0008AXFWIAGE0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 24 Jul 2015 16:05:11 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=XYJHFtupD_QA:10 a=-9mUelKeXuEA:10
-	a=kj9zAlcOel0A:10 a=zOBTXjUuO1YA:10	a=mGKvJxh9CpBGlx_Pbq4A:9
-	a=CjuIK1q_8ugA:10
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id C432F161B16; Fri,
-	24 Jul 2015 17:05:06 -0400 (EDT)
-Date: Fri, 24 Jul 2015 17:05:06 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Message-id: <20150724210506.GH1089@denix.org>
-MIME-version: 1.0
+	Fri, 24 Jul 2015 21:11:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t6OLBUcc029854
+	for <meta-arago@arago-project.org>; Fri, 24 Jul 2015 16:11:30 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t6OLBUlK026707
+	for <meta-arago@arago-project.org>; Fri, 24 Jul 2015 16:11:30 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 24 Jul 2015 16:11:29 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t6OLBTuM021434	for
+	<meta-arago@arago-project.org>; Fri, 24 Jul 2015 16:11:29 -0500
+Date: Fri, 24 Jul 2015 17:11:13 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20150724211113.GD1040@edge>
+References: <20150724210506.GH1089@denix.org>
+MIME-Version: 1.0
+In-Reply-To: <20150724210506.GH1089@denix.org>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Test
+Subject: Re: Test
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,9 +36,12 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 21:05:28 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Fri, 24 Jul 2015 21:11:31 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Test, please ignore
+On Fri, Jul 24, 2015 at 05:05:06PM -0400, Denys Dmytriyenko wrote:
+> Test, please ignore
+
+Test2.
 
