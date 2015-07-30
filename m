@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id DE68F52A9F
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id 8BDF352A4E
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jul 2015 16:03:42 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
+	Thu, 30 Jul 2015 16:03:50 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NSB00I3R5XCMNC0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 30 Jul 2015 11:03:12 -0500 (CDT)
+	with ESMTPSA id <0NSB008P35XCW690@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 30 Jul 2015 11:03:32 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8	a=Q_ZZ66OwBiOzni1K9NoA:9
+	a=sozttTNsAAAA:8	a=LPpE2oyMjXHHnhJY0IkA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id DC332161B25;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id E6D9C161B2D;	Thu,
 	30 Jul 2015 12:03:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 30 Jul 2015 12:03:09 -0400
-Message-id: <1438272191-15395-3-git-send-email-denis@denix.org>
+Date: Thu, 30 Jul 2015 12:03:10 -0400
+Message-id: <1438272191-15395-4-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1438272191-15395-1-git-send-email-denis@denix.org>
 References: <1438272191-15395-1-git-send-email-denis@denix.org>
-Subject: [PATCH 3/5] HACK: disable CMEM and DSP tools until IPC gets merged to 4.1
+Subject: [PATCH 4/5] HACK: disable remaining smaller pieces due to breakage with 4.1/IPC
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,98 +36,97 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 16:03:43 -0000
+X-List-Received-Date: Thu, 30 Jul 2015 16:03:50 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb      | 6 +++---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb    | 7 ++++---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb  | 7 ++++---
- 3 files changed, 11 insertions(+), 9 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-test.bb  | 14 +++++++++-----
+ .../packagegroup-arago-tisdk-amsdk-sdk-host.bb             |  5 +++--
+ 2 files changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index e1a5ed0..50f7ed2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index 82f86cb..8b505f2 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -1,11 +1,12 @@
+ DESCRIPTION = "Extended task to get System Test specific apps"
  LICENSE = "MIT"
--PR = "r11"
-+PR = "r12"
+-PR = "r30"
++PR = "r32"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -26,8 +26,8 @@ UTILS_append_ti33x = " \
- "
+ inherit packagegroup
  
- EXTRA_LIBS = ""
--EXTRA_LIBS_append_omap-a15 = " cmem-mod-src"
--EXTRA_LIBS_append_dra7xx = " debugss-module-drv-src gdbserverproxy-module-drv-src"
-+#EXTRA_LIBS_append_omap-a15 = " cmem-mod-src"
-+#EXTRA_LIBS_append_dra7xx = " debugss-module-drv-src gdbserverproxy-module-drv-src"
++# perf fails with 4.1 kernel
+ ARAGO_TEST = "\
+     bonnie++ \
+     hdparm \
+@@ -21,7 +22,6 @@ ARAGO_TEST = "\
+     stress \
+     yavta \
+     rng-tools \
+-    perf \
+     v4l-utils \
+     smcroute \
+     rwmem \
+@@ -29,8 +29,10 @@ ARAGO_TEST = "\
+     pulseaudio-misc \
+     "
  
- RDEPENDS_${PN} = "\
-     ${UTILS} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index f34c299..f52ab30 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
- LICENSE = "MIT"
--PR = "r9"
-+PR = "r10"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -14,11 +14,12 @@ UTILS_append_ti43x = " canutils-dev"
- UTILS_append_dra7xx = " canutils-dev"
- 
- EXTRA_LIBS = ""
--EXTRA_LIBS_append_omap-a15 = " cmem-dev"
-+#EXTRA_LIBS_append_omap-a15 = " cmem-dev"
- EXTRA_LIBS_append_dra7xx = " libulm-dev \
-                              libulm-staticdev \
--                             gdbserver-c6x-dev \
- "
-+# dra7xx - gdbserver-c6x-dev
++# Disable this due to IPC missing in 4.1
++#    ltp-ddt
 +
+ ARAGO_TI_TEST = "\
+-    ltp-ddt \
+     input-utils \
+     cpuloadgen \
+     "
+@@ -46,12 +48,14 @@ ARAGO_TI_TEST_append_ti43x = " \
+ ARAGO_TI_TEST_append_omap-a15 = " \
+     omapconf \
+     ipc-test-fw \
+-    ${@base_contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
+     "
++# omap-a15 -    ${@base_contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)}
++
++# vpdma-fw and vpe-tests both provide FW image
++#    vpe-tests
+ 
+ ARAGO_TI_TEST_append_dra7xx = " \
+     vpdma-fw \
+-    vpe-tests \
+     "
  
  RDEPENDS_${PN} = "\
-     ${UTILS} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 7436503..3ac08e2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+index 60e2234..5cb2f86 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ DESCRIPTION = "Task to install additional scripts and applications into the SDK"
  LICENSE = "MIT"
--PR = "r27"
-+PR = "r28"
+-PR = "r22"
++PR = "r23"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -35,7 +35,8 @@ UTILS_append_am180x-evm = " ti-pru-sw-examples"
- UTILS_append_omap3 = " canutils"
- UTILS_append_ti33x = " canutils"
- UTILS_append_ti43x = " canutils"
--UTILS_append_dra7xx = " canutils dsptop gdbc6x"
-+UTILS_append_dra7xx = " canutils"
-+# dra7xx - gdbc6x  dsptop
- UTILS_append_omap-a15 = " parted"
+@@ -24,11 +24,12 @@ TOOLS_append_am3517-evm = " flash-utility"
+ EXTRA_FILES = ""
+ EXTRA_FILES_omap-a15 = "tisdk-readme tisdk-uenv"
  
- UTILS_append_ti33x = " switch-config"
-@@ -43,7 +44,7 @@ UTILS_append_ti43x = " switch-config libdrm-omap"
- UTILS_append_omap-a15 = " switch-config libdrm-omap stream-openmp"
- 
- EXTRA_LIBS = ""
--EXTRA_LIBS_append_omap-a15 = " cmem"
-+#EXTRA_LIBS_append_omap-a15 = " cmem"
- 
- DEVTOOLS = " \
-     packagegroup-core-buildessential \
++# ti-tisdk-makefile
++
+ RDEPENDS_${PN} = "\
+     ${TOOLS} \
+     ti-tisdk-setup \
+     ${EXTRA_FILES} \
+-    ti-tisdk-makefile \
+     ${U-BOOT_SRC} \
+     ${KERNEL_SRC} \
+     ${@base_conditional('KERNEL_SHADOW_CLONE_ENABLED','true','unshallow-repositories','',d)} \
 -- 
 2.2.0
 
