@@ -1,29 +1,27 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 70BC552A4E
+	by arago-project.org (Postfix) with ESMTPS id C2204529B5
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jul 2015 15:50:30 +0000 (UTC)
+	Thu, 30 Jul 2015 16:03:32 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NSB001YO5B82ZD0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 30 Jul 2015 10:50:14 -0500 (CDT)
+	with ESMTPSA id <0NSB00GPE5XBSV60@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 30 Jul 2015 11:03:12 -0500 (CDT)
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8	a=IIu7ueQdGQcWnF6ObZoA:9
+	a=sozttTNsAAAA:8	a=3Paew7jVrbC7I7t5X4wA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 76885161B23;	Thu,
-	30 Jul 2015 11:49:56 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id CF7AA161B13;	Thu,
+	30 Jul 2015 12:03:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 30 Jul 2015 11:49:55 -0400
-Message-id: <1438271395-11014-2-git-send-email-denis@denix.org>
+Date: Thu, 30 Jul 2015 12:03:07 -0400
+Message-id: <1438272191-15395-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1438271395-11014-1-git-send-email-denis@denix.org>
-References: <1438271395-11014-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] external-linaro-toolchain: start updating for 2015.05 release
+Subject: [PATCH 1/5] HACK: disable cryptodev modules for now, until fixed against 4.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,37 +34,94 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 15:50:30 -0000
+X-List-Received-Date: Thu, 30 Jul 2015 16:03:33 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/meta/external-linaro-toolchain.bbappend              | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb  |  8 ++++----
+ .../packagegroup-arago-tisdk-crypto-sdk-target.bb              | 10 +++++-----
+ .../packagegroups/packagegroup-arago-tisdk-crypto.bb           |  9 +++++----
+ 3 files changed, 14 insertions(+), 13 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-index 1257da2..87b4b7c 100644
---- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-+++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-@@ -11,7 +11,7 @@ ALLOW_EMPTY_${PN}-utils = "1"
- ALLOW_EMPTY_ldd = "1"
- ALLOW_EMPTY_libstdc++ = "1"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+index b572e6a..570dfec 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install crypto sources in SDK"
+ LICENSE = "MIT"
+-PR = "r7"
++PR = "r8"
  
--PR_append = "-arago12"
-+PR_append = "-arago13"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
- PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
-@@ -129,7 +129,7 @@ do_install_append() {
- 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${base_sbindir}/ldconfig ${D}/${base_sbindir}/
+@@ -11,9 +11,9 @@ CRYPTO_RDEPENDS = ""
+ CRYPTO_RDEPENDS_append_ti33x = " ti-crypto-examples-src"
+ CRYPTO_RDEPENDS_append_ti43x = " ti-crypto-examples-src"
  
- 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/asm*; rm -rf ${D}${includedir}/drm; rm -rf ${D}${includedir}/linux; rm -rf ${D}${includedir}/mtd; rm -rf ${D}${includedir}/rdma; rm -rf ${D}${includedir}/sound; rm -rf ${D}${includedir}/video', d)}
--	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
-+	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/misc/.install; rm -rf ${D}${includedir}/misc/cxl.h; rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
+-CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
+-CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
+-CRYPTO_RDEPENDS_append_dra7xx = " cryptodev-module-src"
++#CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
++#CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
++#CRYPTO_RDEPENDS_append_dra7xx = " cryptodev-module-src"
  
- 	rm -rf ${D}/lib/libgfortran*
- 	rm -rf ${D}/lib/ldscripts
+ CRYPTO_RDEPENDS_append_am37x-evm = "\
+     ti-ocf-crypto-module-src \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
+index 1cd6d99..63a1bd2 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
+@@ -1,16 +1,16 @@
+ DESCRIPTION = "Task to install crypto dev packages in SDK"
+ LICENSE = "MIT"
+-PR = "r5"
++PR = "r6"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ inherit packagegroup
+ 
+ CRYPTO_API = ""
+-CRYPTO_API_ti33x = "cryptodev-module-dev"
+-CRYPTO_API_ti43x = "cryptodev-module-dev"
+-CRYPTO_API_dra7xx = "cryptodev-module-dev"
+-CRYPTO_API_keystone = "cryptodev-module-dev"
++#CRYPTO_API_ti33x = "cryptodev-module-dev"
++#CRYPTO_API_ti43x = "cryptodev-module-dev"
++#CRYPTO_API_dra7xx = "cryptodev-module-dev"
++#CRYPTO_API_keystone = "cryptodev-module-dev"
+ 
+ RDEPENDS_${PN} = "\
+     openssl-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+index 60a4657..d9e8a60 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install crypto packages into target FS"
+ LICENSE = "MIT"
+-PR = "r7"
++PR = "r8"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -15,9 +15,10 @@ CRYPTO_SUPPORT = "\
+     openssl-engines \
+     "
+ 
+-CRYPTO_SUPPORT_append_ti33x = " ti-crypto-examples cryptodev-module cryptodev-tests"
+-CRYPTO_SUPPORT_append_ti43x = " ti-crypto-examples cryptodev-module cryptodev-tests"
+-CRYPTO_SUPPORT_append_dra7xx = " ti-crypto-examples cryptodev-module cryptodev-tests"
++# all 3 below - cryptodev-module cryptodev-tests
++CRYPTO_SUPPORT_append_ti33x = " ti-crypto-examples"
++CRYPTO_SUPPORT_append_ti43x = " ti-crypto-examples"
++CRYPTO_SUPPORT_append_dra7xx = " ti-crypto-examples"
+ 
+ # Add crypto hardware support for am37x-evm
+ # NOTE: this package depends on a kernel patch which also has a TSU
 -- 
 2.2.0
 
