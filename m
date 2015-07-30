@@ -1,27 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 50E08529B5
+	by arago-project.org (Postfix) with ESMTPS id 70BC552A4E
 	for <meta-arago@arago-project.org>;
 	Thu, 30 Jul 2015 15:50:30 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NSB00I725B8TNH0@vms173023.mailsrvcs.net> for
+	with ESMTPSA id <0NSB001YO5B82ZD0@vms173023.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 30 Jul 2015 10:50:14 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=zOBTXjUuO1YA:10
-	a=sozttTNsAAAA:8	a=zvwpOZseBvZsPP5pFtIA:9
+	a=sozttTNsAAAA:8	a=IIu7ueQdGQcWnF6ObZoA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 69D50161B13;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 76885161B23;	Thu,
 	30 Jul 2015 11:49:56 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 30 Jul 2015 11:49:54 -0400
-Message-id: <1438271395-11014-1-git-send-email-denis@denix.org>
+Date: Thu, 30 Jul 2015 11:49:55 -0400
+Message-id: <1438271395-11014-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH 1/2] gstreamer1.0-plugins-ti: fix build when B != S
+In-reply-to: <1438271395-11014-1-git-send-email-denis@denix.org>
+References: <1438271395-11014-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] external-linaro-toolchain: start updating for 2015.05 release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,22 +42,31 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/meta/external-linaro-toolchain.bbappend              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
-index bf63c6d..529306b 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ti.inc
-@@ -1,7 +1,7 @@
- # Include file for common build settings for TI GStreamer plugins
- DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad libdrm libdce"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index 1257da2..87b4b7c 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -11,7 +11,7 @@ ALLOW_EMPTY_${PN}-utils = "1"
+ ALLOW_EMPTY_ldd = "1"
+ ALLOW_EMPTY_libstdc++ = "1"
  
--inherit autotools pkgconfig gettext
-+inherit autotools-brokensep pkgconfig gettext
+-PR_append = "-arago12"
++PR_append = "-arago13"
  
- INC_PR = "r2"
+ PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
+ PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
+@@ -129,7 +129,7 @@ do_install_append() {
+ 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${base_sbindir}/ldconfig ${D}/${base_sbindir}/
  
+ 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/asm*; rm -rf ${D}${includedir}/drm; rm -rf ${D}${includedir}/linux; rm -rf ${D}${includedir}/mtd; rm -rf ${D}${includedir}/rdma; rm -rf ${D}${includedir}/sound; rm -rf ${D}${includedir}/video', d)}
+-	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
++	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/misc/.install; rm -rf ${D}${includedir}/misc/cxl.h; rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
+ 
+ 	rm -rf ${D}/lib/libgfortran*
+ 	rm -rf ${D}/lib/ldscripts
 -- 
 2.2.0
 
