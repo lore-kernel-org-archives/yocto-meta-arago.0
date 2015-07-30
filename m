@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BCDC45297D
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
+	[209.85.214.173])
+	by arago-project.org (Postfix) with ESMTPS id 148885297D
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jul 2015 04:09:23 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t6U49NCs015017
-	for <meta-arago@arago-project.org>; Wed, 29 Jul 2015 23:09:23 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t6U49Nm3031207
-	for <meta-arago@arago-project.org>; Wed, 29 Jul 2015 23:09:23 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 29 Jul 2015 23:09:22 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t6U49MZ9028675	for <meta-arago@arago-project.org>;
-	Wed, 29 Jul 2015 23:09:22 -0500
-Date: Thu, 30 Jul 2015 00:09:22 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1307252919.785.1438229362466.JavaMail.jenkins@puget>
+	Thu, 30 Jul 2015 04:15:38 +0000 (UTC)
+Received: by obdeg2 with SMTP id eg2so22623027obd.0
+	for <meta-arago@arago-project.org>;
+	Wed, 29 Jul 2015 21:15:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=+JJanErGxjcHYkq0KwyMzLBCugYeB6O52HeMeqggdLE=;
+	b=PChPJzdV/EBi3mLdVoKCssrSqJQtQhOoHkm1AiqrexJMFGa1jLpr/gvn/FNvG/swSF
+	htqChilRc+LVIRdldzcDPIb3IKCM+UvtMO9P5HreC8kTZk/OZYzy9taoafnW9Uto/VpE
+	Lv/X1p9XHv9ZYfwNyt/ZW013+BaDxvV3Wi4IbcYEkhQiFWR5MfwKfj9pWOmO76lyXZVx
+	XOoapQgwbYkHJhumsCcADUqId/JWJAf5SXIvn+zU2tKF7C9gutcGEXRzuODs800QZUiT
+	1NJCjzT8VeWmo/PpV+ISWl3MxE9ZFwMm6TTHjeqxWX7qZwmh01citUVNC0MXiLSNnKP9
+	dz2g==
+X-Received: by 10.183.1.10 with SMTP id bc10mr45400822obd.2.1438229737455;
+	Wed, 29 Jul 2015 21:15:37 -0700 (PDT)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-daisy
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK 2015.06 build 2015-07-29_22-00-51
+Received: by 10.202.197.148 with HTTP; Wed, 29 Jul 2015 21:15:18 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Thu, 30 Jul 2015 16:15:18 +1200
+Message-ID: <CADySD0FMoMZwtM2_oKNbEfobgXxXcOYdK+cqpkgy9WQRZd3Lfw@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: gcc_linaro-4.9.bb do_install error
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,212 +37,127 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 04:09:24 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_784_1884604246.1438229362442"
+X-List-Received-Date: Thu, 30 Jul 2015 04:15:38 -0000
+Content-Type: multipart/alternative; boundary=001a1134af409b5416051c0ff48c
 
-------=_Part_784_1884604246.1438229362442
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a1134af409b5416051c0ff48c
+Content-Type: text/plain; charset=UTF-8
 
-<html>
-<head>
-<title>
-Status for 07/29/15
-</title>
-</head>
-<body>
+Hi,
 
-<h2>Status for 07/29/15</h2>
+I am trying to build tisdk-rootfs-image using "arago-fido-config.txt" and
+ I get following error :
 
-<h2>BUILD_ID: build-2015-07-29_22-01-57</h2>
+| make[1]: Leaving directory
+`/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-gnueabi/gcc/linaro-4.9-r2015.03/gcc-linaro-4.9-2015.03/build.arm-linux-gnueabi.arm-linux-gnueabi/gcc'
+| install: cannot stat
+'/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/i686-linux/usr/lib/arm-linux-gnueabi/gcc/arm-linux-gnueabi/4.9.3/include/unwind.h':
+No such file or directory
+| WARNING:
+/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-gnueabi/gcc/linaro-4.9-r2015.03/temp/run.do_install.3588:1
+exit 1 from
+|   install
+/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/i686-linux/usr/lib/arm-linux-gnueabi/gcc/arm-linux-gnueabi/4.9.3/include/unwind.h
+/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-gnueabi/gcc/linaro-4.9-r2015.03/image/usr/lib/gcc/arm-linux-gnueabi/4.9.3/include/
+| ERROR: Function failed: do_install (log file is located at
+/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-gnueabi/gcc/linaro-4.9-r2015.03/temp/log.do_install.3588)
+ERROR: Task 4107
+(/home/ankur/arago-fido/oe-layersetup/sources/meta-linaro/meta-linaro-toolchain/recipes-devtools/gcc/
+gcc_linaro-4.9.bb, do_install) failed with exit code '1'
 
-<h2>Clean Build: false</h2>
+My build configuration is :
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
-</p>
-
-</body>
-</html>
+BB_VERSION        = "1.26.0"
+BUILD_SYS         = "i686-linux"
+NATIVELSBSTRING   = "Ubuntu-14.04"
+TARGET_SYS        = "arm-linux-gnueabi"
+MACHINE           = "am335x-evm"
+DISTRO            = "arago"
+DISTRO_VERSION    = "2015.07"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa8"
+TARGET_FPU        = "vfp-neon"
+meta-arago-distro
+meta-arago-extras = "master:5159e5f692d6faf08be8599d77479af885b78228"
+meta-qt5          = "master:bafd17e3515b4dc892c7c4c386abf2247e61f090"
+meta-networking
+meta-ruby
+meta-python
+meta-oe           = "fido:10d3c8f85280a0bf867a8e4f84bcda81c290d28e"
+meta-ti           = "fido:3e4278b4ecf66355c3d34e4a160f33b6a6e4352c"
+meta-linaro-toolchain = "fido:ad600ee417d1ff6c266fb9cb7aee32d724533f98"
+meta              = "fido:1c916ddebc3009d3817359144b02745c3ecbd5c4"
 
 
-------=_Part_784_1884604246.1438229362442--
+thanks
+Ankur
+
+--001a1134af409b5416051c0ff48c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif;font-size:small;color:#333399">Hi,</div><div class=3D"gmail_default" =
+style=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div=
+><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:=
+small;color:#333399">I am trying to build tisdk-rootfs-image using &quot;ar=
+ago-fido-config.txt&quot; and =C2=A0I get following error :</div><div class=
+=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;color=
+:#333399"><br></div><div class=3D"gmail_default" style=3D"font-family:georg=
+ia,serif;font-size:small;color:#333399"><div class=3D"gmail_default">| make=
+[1]: Leaving directory `/home/ankur/arago-fido/oe-layersetup/build/arago-tm=
+p-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-gnueabi/gcc/lina=
+ro-4.9-r2015.03/gcc-linaro-4.9-2015.03/build.arm-linux-gnueabi.arm-linux-gn=
+ueabi/gcc&#39;</div><div class=3D"gmail_default">| install: cannot stat &#3=
+9;/home/ankur/arago-fido/oe-layersetup/build/arago-tmp-external-linaro-tool=
+chain/sysroots/i686-linux/usr/lib/arm-linux-gnueabi/gcc/arm-linux-gnueabi/4=
+.9.3/include/unwind.h&#39;: No such file or directory</div><div class=3D"gm=
+ail_default">| WARNING: /home/ankur/arago-fido/oe-layersetup/build/arago-tm=
+p-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-gnueabi/gcc/lina=
+ro-4.9-r2015.03/temp/run.do_install.3588:1 exit 1 from</div><div class=3D"g=
+mail_default">| =C2=A0 install /home/ankur/arago-fido/oe-layersetup/build/a=
+rago-tmp-external-linaro-toolchain/sysroots/i686-linux/usr/lib/arm-linux-gn=
+ueabi/gcc/arm-linux-gnueabi/4.9.3/include/unwind.h /home/ankur/arago-fido/o=
+e-layersetup/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-=
+neon-linux-gnueabi/gcc/linaro-4.9-r2015.03/image/usr/lib/gcc/arm-linux-gnue=
+abi/4.9.3/include/</div><div class=3D"gmail_default">| ERROR: Function fail=
+ed: do_install (log file is located at /home/ankur/arago-fido/oe-layersetup=
+/build/arago-tmp-external-linaro-toolchain/work/cortexa8hf-vfp-neon-linux-g=
+nueabi/gcc/linaro-4.9-r2015.03/temp/log.do_install.3588)</div><div class=3D=
+"gmail_default">ERROR: Task 4107 (/home/ankur/arago-fido/oe-layersetup/sour=
+ces/meta-linaro/meta-linaro-toolchain/recipes-devtools/gcc/<a href=3D"http:=
+//gcc_linaro-4.9.bb">gcc_linaro-4.9.bb</a>, do_install) failed with exit co=
+de &#39;1&#39;</div><div class=3D"gmail_default"><br></div><div class=3D"gm=
+ail_default">My build configuration is :</div><div class=3D"gmail_default">=
+<br></div><div class=3D"gmail_default"><div class=3D"gmail_default">BB_VERS=
+ION =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.26.0&quot;</div><div class=3D"gm=
+ail_default">BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;i686-linux&quo=
+t;</div><div class=3D"gmail_default">NATIVELSBSTRING =C2=A0 =3D &quot;Ubunt=
+u-14.04&quot;</div><div class=3D"gmail_default">TARGET_SYS =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=3D &quot;arm-linux-gnueabi&quot;</div><div class=3D"gmail_def=
+ault">MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;am335x-evm&quot;=
+</div><div class=3D"gmail_default">DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=3D &quot;arago&quot;</div><div class=3D"gmail_default">DISTRO_VE=
+RSION =C2=A0 =C2=A0=3D &quot;2015.07&quot;</div><div class=3D"gmail_default=
+">TUNE_FEATURES =C2=A0 =C2=A0 =3D &quot;arm armv7a vfp thumb neon callconve=
+ntion-hard cortexa8&quot;</div><div class=3D"gmail_default">TARGET_FPU =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;vfp-neon&quot;</div><div class=3D"gmail_d=
+efault">meta-arago-distro=C2=A0</div><div class=3D"gmail_default">meta-arag=
+o-extras =3D &quot;master:5159e5f692d6faf08be8599d77479af885b78228&quot;</d=
+iv><div class=3D"gmail_default">meta-qt5 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+=3D &quot;master:bafd17e3515b4dc892c7c4c386abf2247e61f090&quot;</div><div c=
+lass=3D"gmail_default">meta-networking =C2=A0=C2=A0</div><div class=3D"gmai=
+l_default">meta-ruby =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"g=
+mail_default">meta-python =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"gma=
+il_default">meta-oe =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;fido:10d3c=
+8f85280a0bf867a8e4f84bcda81c290d28e&quot;</div><div class=3D"gmail_default"=
+>meta-ti =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;fido:3e4278b4ecf66355=
+c3d34e4a160f33b6a6e4352c&quot;</div><div class=3D"gmail_default">meta-linar=
+o-toolchain =3D &quot;fido:ad600ee417d1ff6c266fb9cb7aee32d724533f98&quot;</=
+div><div class=3D"gmail_default">meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=3D &quot;fido:1c916ddebc3009d3817359144b02745c3ecbd5c4&quot;<=
+/div><div class=3D"gmail_default"><br></div><div class=3D"gmail_default"><b=
+r></div><div class=3D"gmail_default">thanks</div><div class=3D"gmail_defaul=
+t">Ankur</div></div></div>
+</div>
+
+--001a1134af409b5416051c0ff48c--
