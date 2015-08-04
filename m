@@ -1,29 +1,29 @@
 Return-Path: <jake@udc0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 2E6725299C
+	by arago-project.org (Postfix) with ESMTPS id 0FE9552A08
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Aug 2015 14:26:17 +0000 (UTC)
+	Tue,  4 Aug 2015 15:08:01 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t74EQE5b020200
-	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 09:26:14 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t74F80j5013463
+	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:08:00 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74EQEqG002689
-	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 09:26:14 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74F80nn030627
+	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:08:00 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 4 Aug 2015 09:26:14 -0500
+	Tue, 4 Aug 2015 10:08:00 -0500
 Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74EQD2P015487;
-	Tue, 4 Aug 2015 09:26:14 -0500
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74F80QQ020785;
+	Tue, 4 Aug 2015 10:08:00 -0500
 Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZMdAT-00019e-GQ; Tue, 04 Aug 2015 10:26:13 -0400
+	<jake@udc0866934>)	id 1ZMdot-0008K0-Md; Tue, 04 Aug 2015 11:07:59 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 4 Aug 2015 10:26:08 -0400
-Message-ID: <1438698368-4405-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 4 Aug 2015 11:07:51 -0400
+Message-ID: <1438700873-31955-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] arago-source-ipk: Enable omapdrm-pvr sourceipk.
+Subject: [PATCH 1/3] matrix-gui-apps-git: Bump SRCREV for latest additions.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,28 +36,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 14:26:25 -0000
+X-List-Received-Date: Tue, 04 Aug 2015 15:08:01 -0000
 Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/conf/distro/arago-source-ipk.conf | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index 0940e0d..54a2536 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -193,6 +193,9 @@ SRCIPK_INSTALL_DIR_pn-debugss-module-drv = "board-support/extra-drivers/${PN}-${
- CREATE_SRCIPK_pn-gdbserverproxy-module-drv = "1"
- SRCIPK_INSTALL_DIR_pn-gdbserverproxy-module-drv = "board-support/extra-drivers/${PN}-${PV}"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index e21f356..0399e4f 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
-+CREATE_SRCIPK_pn-omapdrm-pvr = "1"
-+SRCIPK_INSTALL_DIR_pn-omapdrm-pvr = "board-support/extra-drivers/${PN}-${PV}"
-+
- CREATE_SRCIPK_pn-ti-linux-driver-examples = "1"
- SRCIPK_INSTALL_DIR_pn-ti-linux-driver-examples = "example-applications/linux-driver-examples-${PV}"
+ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "f04fd0eff211cff732a3b625166d2a59fd676f14"
++SRCREV = "9190a4d981ab72c0a2425fa97c3f182288a00c88"
+ BRANCH = "master"
+-INC_PR = "r36"
++INC_PR = "r37"
  
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.9.1
 
