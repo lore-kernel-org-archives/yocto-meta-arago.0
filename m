@@ -1,29 +1,29 @@
 Return-Path: <jake@udc0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8DF4A52991
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0850C52A08
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Aug 2015 15:09:19 +0000 (UTC)
+	Tue,  4 Aug 2015 15:32:50 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t74F9Jbh014088
-	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:09:19 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74F9IwX026992
-	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:09:19 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 4 Aug 2015 10:09:18 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t74FWmWV021736
+	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:32:48 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74FWmnP026424
+	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:32:48 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 4 Aug 2015 10:32:48 -0500
 Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74F9IE3021867;
-	Tue, 4 Aug 2015 10:09:18 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74FWlCK020008;
+	Tue, 4 Aug 2015 10:32:48 -0500
 Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZMdqA-0008Lr-8b; Tue, 04 Aug 2015 11:09:18 -0400
+	<jake@udc0866934>)	id 1ZMeCt-0001Wr-I1; Tue, 04 Aug 2015 11:32:47 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 4 Aug 2015 11:09:16 -0400
-Message-ID: <1438700956-32070-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 4 Aug 2015 11:32:44 -0400
+Message-ID: <1438702364-5844-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui-browser: Bump SRCREV
+Subject: [PATCH] gstreamer1.0-plugins-hevc: Add GStreamer HEVC/H265 decoder plugin
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,33 +36,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 15:09:19 -0000
+X-List-Received-Date: Tue, 04 Aug 2015 15:32:53 -0000
 Content-Type: text/plain
-
-* Latest version adds the ability to open the matrix-gui-browser as a
-  windowed application.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gstreamer1.0-plugins-hevc_git.bb               | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 797aa6c..dfc2bbb 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -11,9 +11,9 @@ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
- 
- DEPENDS += "${QT_DEPENDS_WEBKIT}"
- 
--PR = "r10"
-+PR = "r11"
- 
--SRCREV = "f68ab545a60ca446635f9db00d64569cef9c9091"
-+SRCREV = "83019b46fb3dec1a12667d251d35ba8682953a79"
- BRANCH ?= "master"
- 
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+new file mode 100644
+index 0000000..4d4abd2
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+@@ -0,0 +1,31 @@
++DESCRIPTION = "GStreamer plugin for ARM HEVC decoder"
++HOMEPAGE = "https://git.ti.com/processor-sdk/gst-plugin-hevc"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++COMPATIBLE_MACHINE = "dra7xx"
++
++SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=git"
++SRCREV = "2f17d5c50f7376c0489ae1a2f571f1e749f5f72e"
++
++S = "${WORKDIR}/git"
++
++DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad hevc-arm-decoder"
++
++inherit autotools pkgconfig gettext
++
++PR = "r3"
++
++do_configure() {
++        cd ${S}
++        chmod +x autogen.sh
++        ./autogen.sh --host=arm-linux --with-libtool-sysroot=${STAGING_DIR_TARGET} --prefix=/usr
++}
++
++EXTRA_OECONF += "--enable-maintainer-mode"
++EXTRA_OEMAKE += "'ERROR_CFLAGS=-Wno-deprecated-declarations'"
++
++FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
++FILES_${PN}-dbg += "${libdir}/gstreamer-1.0/.debug"
++FILES_${PN}-dev += "${libdir}/gstreamer-1.0/*.la"
 -- 
 1.9.1
 
