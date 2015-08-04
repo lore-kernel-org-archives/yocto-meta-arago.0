@@ -1,31 +1,30 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 6FED45297D
+Return-Path: <jake@udc0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id A28B15299C
 	for <meta-arago@arago-project.org>;
-	Fri, 31 Jul 2015 04:49:43 +0000 (UTC)
-Received: from dbdlxv05.itg.ti.com ([172.24.171.60])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t6V4neAR019973
-	for <meta-arago@arago-project.org>; Thu, 30 Jul 2015 23:49:41 -0500
-Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id t6V4ncin029656
-	for <meta-arago@arago-project.org>; Fri, 31 Jul 2015 10:19:39 +0530
-Received: from [172.24.158.136] (172.24.158.136) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Fri, 31 Jul 2015 10:19:37 +0530
-Message-ID: <55BAFE45.60402@ti.com>
-Date: Fri, 31 Jul 2015 10:19:09 +0530
-From: Karthik Ramanan <a0393906@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+	Tue,  4 Aug 2015 15:52:43 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t74Fqgnj023947
+	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:52:42 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74Fqgxr030270
+	for <meta-arago@arago-project.org>; Tue, 4 Aug 2015 10:52:42 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 4 Aug 2015 10:52:42 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t74FqfI4001160;
+	Tue, 4 Aug 2015 10:52:41 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1ZMeW9-0008D4-E5; Tue, 04 Aug 2015 11:52:41 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 4 Aug 2015 11:52:39 -0400
+Message-ID: <1438703559-30805-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1437992680-17958-1-git-send-email-a0393906@ti.com>
-	<20150731001242.GA1040@edge>
-In-Reply-To: <20150731001242.GA1040@edge>
-X-Originating-IP: [172.24.158.136]
-X-Mailman-Approved-At: Wed, 05 Aug 2015 15:12:05 +0000
-Cc: meta-arago@arago-project.org
-Subject: Re: [daisy, master 1/2] gstreamer1.0-plugins-bad: recipe revamp and bug fixes
+X-Mailman-Approved-At: Wed, 05 Aug 2015 15:12:00 +0000
+Subject: [PATCH] gstreamer1.0-plugins-base: Backport 1.3.1 for improved performance
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,3503 +37,11690 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jul 2015 04:49:44 -0000
-X-Groupsio-MsgNum: 5947
-Content-Type: multipart/mixed; boundary="------------030508060103010202050300"
+X-List-Received-Date: Tue, 04 Aug 2015 15:52:44 -0000
+Content-Type: text/plain
 
---------------030508060103010202050300
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 31-Jul-15 5:42 AM, Denys Dmytriyenko wrote:
-> Karthik,
->
-> This patch seems to use --irreversible-delete flag, which prevents it from
-> being applied to the git tree. Can you please resubmit it. Thanks.
->
-Denys,
-
-I have attached the patch without the -D option, I sent the earlier one 
-on purpose to aid the review.
-
-Regards
-Karthik
-
---------------030508060103010202050300
-Content-Type: text/plain; charset="windows-1252";
-	name="0001-gstreamer1.0-plugins-bad-recipe-revamp-and-bug-fixes.patch"
-Content-Transfer-Encoding: 8bit
-Content-Disposition: attachment;
-	filename*0="0001-gstreamer1.0-plugins-bad-recipe-revamp-and-bug-fixes.pa";
-	filename*1="tch"
-
-From 39a43a2a1a93e8940b68226e99d01fc5c88a08ce Mon Sep 17 00:00:00 2001
-From: Karthik Ramanan <a0393906@ti.com>
-Date: Thu, 9 Jul 2015 19:36:47 +0530
-Subject: [daisy, master 1/2] gstreamer1.0-plugins-bad: recipe revamp and bug
- fixes
-
-The recipe update switches to a TI GLSDK hosted git repository.
-All the previously used private patches are updated on the git.
-
-The following bug fixes have been done:
- * Modify parser to interpolate pts
- * drm buffer pool:
-  * Improved to fix memory leak
-  * GstDRMBufferPool support fix
- * waylandsink:
-  * Remove drm bufferpool instance to fix socket leaks
-  * Fix memleak due to unfreed hash-table
-  * Cleanup buffer in NULL state
-  * Enable mouse pointer movement
-  * Workaround partial frame delay artifacts
-  * Solve segmentation fault in drm_handle_format
-
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../0001-Added-GstDRMBufferPool-support.patch      |  774 -----------
- ...odified-waylandsink-to-accept-NV12-format.patch | 1017 --------------
- .../0003-Added-KMSsink-support.patch               | 1457 --------------------
- ...04-waylandsink-Removed-dependency-on-dri2.patch |   26 -
- ...vc1parse-and-jpegparse-Fixes-plugin-ranks.patch |   54 -
- .../0006-GstDRMBufferPool-support-fix.patch        |   36 -
- .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |   17 +-
- 7 files changed, 8 insertions(+), 3373 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch
+ ...t-use-videoconvert-from-version-1.3.1-to-.patch | 11652 +++++++++++++++++++
+ .../gstreamer1.0-plugins-base_1.2.3.bbappend       |     6 +-
+ 2 files changed, 11656 insertions(+), 2 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-videoconvert-use-videoconvert-from-version-1.3.1-to-.patch
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
-deleted file mode 100644
-index c7015b2..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Added-GstDRMBufferPool-support.patch
-+++ /dev/null
-@@ -1,774 +0,0 @@
--From 1df02c3320d74c0f36e0ea7021b033da5d4d891e Mon Sep 17 00:00:00 2001
--From: Pooja Prajod <a0132412@ti.com>
--Date: Thu, 11 Dec 2014 15:42:39 +0530
--Subject: [PATCH] Added GstDRMBufferPool support
--
--GstDRMBufferPool enabled creation of a bufferpool with extended features.
--The pool stores the element that created it, device for drm allocation,
--height, width and size of buffers.
--All the buffers allocated are through drm. The buffers have dmabuf, crop
--and video metadata set.
-----
-- configure.ac                                      |    6 +
-- gst-libs/gst/Makefile.am                          |    2 +-
-- gst-libs/gst/drm/Makefile.am                      |   36 ++
-- gst-libs/gst/drm/gstdrmbufferpool.c               |  434 +++++++++++++++++++++
-- gst-libs/gst/drm/gstdrmbufferpool.h               |  138 +++++++
-- pkgconfig/Makefile.am                             |    3 +
-- pkgconfig/gstreamer-drm-uninstalled.pc.in         |   12 +
-- pkgconfig/gstreamer-drm.pc.in                     |   12 +
-- pkgconfig/gstreamer-plugins-bad-uninstalled.pc.in |    2 +-
-- 9 files changed, 643 insertions(+), 2 deletions(-)
-- create mode 100644 gst-libs/gst/drm/Makefile.am
-- create mode 100644 gst-libs/gst/drm/gstdrmbufferpool.c
-- create mode 100644 gst-libs/gst/drm/gstdrmbufferpool.h
-- create mode 100644 pkgconfig/gstreamer-drm-uninstalled.pc.in
-- create mode 100644 pkgconfig/gstreamer-drm.pc.in
--
--diff --git a/configure.ac b/configure.ac
--index 8f1a4cb..edf8ea8 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -457,6 +457,9 @@ AC_ARG_WITH([egl-window-system],
--               [EGL_WINDOW_SYSTEM="$withval"],
--               [EGL_WINDOW_SYSTEM="auto"])
-- 
--+dnl *** gst-libs/gst/egl ***
--+PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
--+
-- if test x"$EGL_WINDOW_SYSTEM" = x"auto"; then
--   dnl Mali
--   old_LIBS=$LIBS
--@@ -2404,6 +2407,7 @@ gst/yadif/Makefile
-- gst-libs/Makefile
-- gst-libs/gst/Makefile
-- gst-libs/gst/basecamerabinsrc/Makefile
--+gst-libs/gst/drm/Makefile
-- gst-libs/gst/egl/Makefile
-- gst-libs/gst/insertbin/Makefile
-- gst-libs/gst/interfaces/Makefile
--@@ -2523,6 +2527,8 @@ pkgconfig/gstreamer-plugins-bad.pc
-- pkgconfig/gstreamer-plugins-bad-uninstalled.pc
-- pkgconfig/gstreamer-codecparsers.pc
-- pkgconfig/gstreamer-codecparsers-uninstalled.pc
--+pkgconfig/gstreamer-drm.pc
--+pkgconfig/gstreamer-drm-uninstalled.pc
-- pkgconfig/gstreamer-insertbin.pc
-- pkgconfig/gstreamer-insertbin-uninstalled.pc
-- pkgconfig/gstreamer-egl.pc
--diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
--index 1d6cc35..b915d07 100644
----- a/gst-libs/gst/Makefile.am
--+++ b/gst-libs/gst/Makefile.am
--@@ -2,7 +2,7 @@ if HAVE_EGL
-- EGL_DIR = egl
-- endif
-- 
---SUBDIRS = interfaces basecamerabinsrc codecparsers \
--+SUBDIRS = interfaces basecamerabinsrc codecparsers drm \
-- 	 insertbin uridownloader mpegts $(EGL_DIR)
-- 
-- noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
--diff --git a/gst-libs/gst/drm/Makefile.am b/gst-libs/gst/drm/Makefile.am
--new file mode 100644
--index 0000000..4808009
----- /dev/null
--+++ b/gst-libs/gst/drm/Makefile.am
--@@ -0,0 +1,36 @@
--+
--+lib_LTLIBRARIES = libgstdrm-@GST_API_VERSION@.la
--+
--+CLEANFILES = $(BUILT_SOURCES)
--+
--+libgstdrm_@GST_API_VERSION@_la_SOURCES = \
--+	gstdrmbufferpool.c
--+
--+libgstdrm_@GST_API_VERSION@includedir = \
--+	$(includedir)/gstreamer-@GST_API_VERSION@/gst/drm
--+
--+libgstdrm_@GST_API_VERSION@include_HEADERS = \
--+	gstdrmbufferpool.h
--+
--+libgstdrm_@GST_API_VERSION@_la_CFLAGS = \
--+	$(DRM_CFLAGS) \
--+	$(OMAPDRM_CFLAGS) \
--+	$(GST_PLUGINS_BAD_CFLAGS) \
--+	$(GST_PLUGINS_BASE_CFLAGS) \
--+	-DGST_USE_UNSTABLE_API \
--+	$(GST_CFLAGS)
--+
--+libgstdrm_@GST_API_VERSION@_la_LIBADD = \
--+	$(DRM_LIBS) \
--+	-lgstdmabuf-@GST_API_VERSION@ \
--+	$(GST_PLUGINS_BASE_LIBS) \
--+	$(GST_BASE_LIBS) \
--+	$(GST_LIBS) \
--+	-lgstdmabuf-@GST_API_VERSION@
--+
--+libgstdrm_@GST_API_VERSION@_la_LDFLAGS = \
--+	$(DRM_LDFLAGS) \
--+	$(GST_LIB_LDFLAGS) \
--+	$(GST_ALL_LDFLAGS) \
--+	$(GST_LT_LDFLAGS)
--+
--diff --git a/gst-libs/gst/drm/gstdrmbufferpool.c b/gst-libs/gst/drm/gstdrmbufferpool.c
--new file mode 100644
--index 0000000..6ac8044
----- /dev/null
--+++ b/gst-libs/gst/drm/gstdrmbufferpool.c
--@@ -0,0 +1,434 @@
--+/*
--+ * GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *  Rob Clark <rob.clark@linaro.org>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Lesser General Public
--+ * License as published by the Free Software Foundation
--+ * version 2.1 of the License.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
--+ * Lesser General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Lesser General Public
--+ * License along with this library; if not, write to the Free Software
--+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
--+ */
--+
--+/**
--+ * SECTION:GstDRMBufferPool
--+ * @short_description: GStreamer DRM buffer pool support
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+
--+#ifdef HAVE_CONFIG_H
--+#include "config.h"
--+#endif
--+
--+#include <string.h>
--+
--+#include <gst/dmabuf/dmabuf.h>
--+
--+#include "gstdrmbufferpool.h"
--+
--+GST_DEBUG_CATEGORY (drmbufferpool_debug);
--+#define GST_CAT_DEFAULT drmbufferpool_debug
--+
--+static GstFlowReturn gst_drm_alloc_new_buffer (GstBufferPool * pool, GstBuffer ** buffer,
--+    GstBufferPoolAcquireParams * params);
--+
--+
--+#define gst_drm_buffer_pool_parent_class parent_class
--+G_DEFINE_TYPE (GstDRMBufferPool, gst_drm_buffer_pool, GST_TYPE_BUFFER_POOL);
--+
--+
--+/**
--+ * gst_drm_buffer_pool_set_config:
--+ * @pool: a #GstBufferPool
--+ * @config: a #GstStructure
--+ *
--+ * Parses the @config to retrieve the caps that is set by gst_buffer_pool_config_set_params().
--+ * This caps is then parsed to retrieve the video info. This function can be called to
--+ * change the caps of the buffer pool. 
--+ * 
--+ * Returns: the boolean value, TRUE for success and FALSE in case of an errors
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+gboolean
--+gst_drm_buffer_pool_set_config (GstBufferPool * pool, GstStructure * config)
--+{
--+  GstDRMBufferPool *drmpool = GST_DRM_BUFFER_POOL (pool);
--+  GstCaps *caps;
--+
--+  /* get the caps param already set in the config */
--+  if (!gst_buffer_pool_config_get_params (config, &caps, NULL, NULL, NULL))
--+    goto wrong_config;
--+
--+  if (caps == NULL)
--+    goto no_caps;
--+
--+  /* now parse the caps from the config to get the video info */
--+  if (!gst_video_info_from_caps (&drmpool->info, caps))
--+    goto wrong_caps;
--+
--+  GST_LOG_OBJECT (pool, "%dx%d, caps %" GST_PTR_FORMAT, drmpool->info.width, drmpool->info.height,
--+      caps);
--+
--+  /* Set caps related variables of the pool */
--+  drmpool->caps = gst_caps_ref (caps);
--+  drmpool->width = drmpool->info.width;
--+  drmpool->height = drmpool->info.height;
--+
--+  return GST_BUFFER_POOL_CLASS (parent_class)->set_config (pool, config);
--+
--+  /* ERRORS */
--+wrong_config:
--+  {
--+    GST_WARNING_OBJECT (pool, "invalid config");
--+    return FALSE;
--+  }
--+no_caps:
--+  {
--+    GST_WARNING_OBJECT (pool, "no caps in config");
--+    return FALSE;
--+  }
--+wrong_caps:
--+  {
--+    GST_WARNING_OBJECT (pool,
--+        "failed getting geometry from caps %" GST_PTR_FORMAT, caps);
--+    return FALSE;
--+  }
--+}
--+
--+
--+/**
--+ * gst_drm_buffer_pool_initialize:
--+ * @pool: a #GstBufferPool
--+ * @element: a #GstElement
--+ * @fd: a file descriptor
--+ * @caps: a #GstCaps
--+ * @size: the padded size of buffers
--+ *
--+ * Initializes the device related info. Sets the params for buffer pool config.
--+ * Sets the config of the pool by calling gst_buffer_pool_set_config(). 
--+ * 
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+
--+void
--+gst_drm_buffer_pool_initialize (GstDRMBufferPool * self,
--+    GstElement * element, int fd, GstCaps * caps, guint size)
--+{
--+  GstStructure *conf;
--+
--+  /* store the element that requested for the pool */
--+  if(element)
--+   self->element = gst_object_ref (element);
--+
--+  /* initialize device info */
--+  self->fd = fd;
--+  self->dev = omap_device_new (fd);
--+
--+  /* Padded size of buffers. Can be used for testing requested-buffer-size vs obtained-buffer-size */
--+  self->size = size;
--+ 
--+
--+  /* get the present config of the buffer pool */
--+  conf = gst_buffer_pool_get_config (GST_BUFFER_POOL(self));
--+  if(conf == NULL) {
--+   GST_WARNING_OBJECT(self, "NULL config obtained after get_config on the pool");
--+   }
--+
--+  /* set the config params : caps, size of the buffers, min number of buffers,
--+     max number of buffers (0 for unlimited) */
--+  gst_buffer_pool_config_set_params (conf, caps, size, 0, 0);
--+  if(conf == NULL){
--+    GST_WARNING_OBJECT(self, "NULL config after set_params");
--+   }
--+
--+  /* set config of the pool */
--+  gst_buffer_pool_set_config (GST_BUFFER_POOL(self), conf);
--+
--+}
--+
--+
--+/**
--+ * gst_drm_buffer_pool_new:
--+ * @element: a #GstElement
--+ * @fd: a file descriptor
--+ * @caps: a #GstCaps
--+ * @size: the padded size of buffers
--+ *
--+ * Creates a GstDRMBufferPool and initializes it through gst_drm_buffer_pool_initialize()
--+ *
--+ * Returns: the #GstDRMBufferPool created and initialized.
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+GstDRMBufferPool *
--+gst_drm_buffer_pool_new (GstElement * element,
--+    int fd, GstCaps * caps, guint size)
--+{
--+  GstDRMBufferPool *self = g_object_new (GST_TYPE_DRM_BUFFER_POOL, NULL);
--+
--+  GST_DEBUG_OBJECT (element,
--+      "Creating DRM buffer pool with caps %" GST_PTR_FORMAT, caps);
--+
--+  gst_drm_buffer_pool_initialize (self, element, fd, caps, size);
--+  
--+  return self;
--+}
--+
--+
--+/**
--+ * gst_drm_buffer_pool_size:
--+ * @self: a #GstDRMBufferPool
--+ *
--+ * Obtain the padded size of buffers set during bufferpool creation
--+ *
--+ * Returns: the size of individual buffers within the bufferpool.
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+guint
--+gst_drm_buffer_pool_size (GstDRMBufferPool * self)
--+{
--+  return self->size;
--+}
--+
--+
--+/**
--+ * gst_drm_buffer_pool_check_caps:
--+ * @self: a #GstDRMBufferPool
--+ * @caps: a #GstCaps
--+ *
--+ * Check if the @caps and the caps of the @self is strictly equal
--+ *
--+ * Returns: the boolean value obtained from gst_caps_is_strictly_equal()
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+gboolean
--+gst_drm_buffer_pool_check_caps (GstDRMBufferPool * self, GstCaps * caps)
--+{
--+  return gst_caps_is_strictly_equal (self->caps, caps);
--+}
--+
--+
--+/**
--+ * gst_drm_buffer_pool_destroy:
--+ * @self: a #GstDRMBufferPool
--+ *
--+ * destroy existing bufferpool by gst_object_unref()
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+void
--+gst_drm_buffer_pool_destroy (GstDRMBufferPool * self)
--+{
--+  g_return_if_fail (self);
--+
--+  GST_DEBUG_OBJECT (self->element, "destroy pool (contains: %d buffers)",
--+      self->nbbufs);
--+
--+ /* Sets the buffer pool active to FALSE. Unrefs the buffer pool.
--+    If the the ref_count becomes zero, all buffers are freed and the bufferpool is destroyed */  
--+ if(GST_OBJECT_REFCOUNT(self)) {
--+  gst_buffer_pool_set_active (GST_BUFFER_POOL(self), FALSE);
--+  gst_object_unref (self);
--+  }
--+}
--+
--+
--+
--+/**
--+ * gst_drm_buffer_pool_get:
--+ * @self: a #GstDRMBufferPool
--+ * @force_alloc: a boolean indicating if a buffer should be acquired from already queued buffers of pool.
--+ *
--+ * Get a buffer from the #GstDRMBufferPool
--+ *
--+ * Returns: the #GstBuffer
--+ *
--+ * Since: 1.2.?
--+ */
--+
--+GstBuffer *
--+gst_drm_buffer_pool_get (GstDRMBufferPool * self, gboolean force_alloc)
--+{
--+  GstBuffer *buf = NULL; 
--+  g_return_val_if_fail (self, NULL);
--+
--+  /* Set the buffer pool to active so that acquire_buffer() is not blocked */
--+  gst_buffer_pool_set_active (GST_BUFFER_POOL(self), TRUE);
--+
--+  /* re-use a buffer off the queued buffers of pool if any are available */
--+  if (!force_alloc) {
--+     gst_buffer_pool_acquire_buffer (GST_BUFFER_POOL (self), &buf, NULL);
--+  } else {
--+     GST_BUFFER_POOL_CLASS(GST_DRM_BUFFER_POOL_GET_CLASS (self))->alloc_buffer(GST_BUFFER_POOL (self), &buf, NULL);
--+
--+  }
--+    
--+  /* Set the buffer pool active to FALSE */
--+  gst_buffer_pool_set_active (GST_BUFFER_POOL(self), FALSE);
--+    
--+  GST_LOG_OBJECT (self->element, "returning buf %p", buf);
--+
--+  return GST_BUFFER (buf);
--+}
--+
--+
--+/**
--+ * gst_drm_buffer_pool_put:
--+ * @self: a #GstDRMBufferPool
--+ * @force_alloc: a boolean indicating if a buffer should be acquired from already queued buffers of pool.
--+ *
--+ * Get a buffer from the #GstDRMBufferPool
--+ *
--+ * Returns: the boolean value corresponding to success (TRUE)
--+ *
--+ * Since: 1.2.?
--+ */
--+gboolean
--+gst_drm_buffer_pool_put (GstDRMBufferPool * self, GstBuffer * buf)
--+{
--+  gboolean reuse = gst_buffer_pool_is_active (GST_BUFFER_POOL (self));
--+   if(reuse){
--+       gst_buffer_pool_release_buffer(GST_BUFFER_POOL(self) , buf);
--+   }
--+  return reuse;
--+}
--+
--+static void
--+gst_drm_buffer_pool_finalize (GObject * pool)
--+{
--+  GstDRMBufferPool *self = GST_DRM_BUFFER_POOL (pool);
--+  GST_DEBUG_OBJECT (self->element, "finalize");
--+
--+  if (self->caps)
--+    gst_caps_unref (self->caps);
--+  if (self->element)
--+    gst_object_unref (self->element);
--+  if (self->dev)
--+   omap_device_del (self->dev);
--+  G_OBJECT_CLASS (gst_drm_buffer_pool_parent_class)->finalize(pool);
--+}
--+
--+static void
--+gst_drm_buffer_pool_class_init (GstDRMBufferPoolClass * klass)
--+{
--+  GObjectClass *object_class;
--+  GstBufferPoolClass *bclass = GST_BUFFER_POOL_CLASS (klass);
--+  GST_DEBUG_CATEGORY_INIT (drmbufferpool_debug, "drmbufferpool", 0,
--+      "DRM buffer pool");
--+  parent_class = g_type_class_peek_parent (klass);
--+  object_class = G_OBJECT_CLASS (klass);
--+  bclass->set_config = gst_drm_buffer_pool_set_config;
--+  bclass->alloc_buffer = gst_drm_alloc_new_buffer;
--+  object_class->finalize = gst_drm_buffer_pool_finalize;
--+}
--+
--+static void
--+gst_drm_buffer_pool_init (GstDRMBufferPool * self)
--+{
--+#ifndef GST_DISABLE_GST_DEBUG
--+  self->nbbufs = 0;
--+#endif /* DEBUG */
--+}
--+
--+/**
--+ * gst_drm_alloc_new_buffer:
--+ * @bufpool: a #GstBufferPool
--+ * @buffer: a pointer to #GstBuffer
--+ * @params: a #GstBufferPoolAcquireParams
--+ *
--+ * Allocate a new buffer to the #GstDRMBufferPool
--+ *
--+ * Returns: the #GstFlowReturn
--+ *
--+ * Since: 1.2.?
--+ */
--+static GstFlowReturn
--+gst_drm_alloc_new_buffer (GstBufferPool * bufpool, GstBuffer ** buffer,
--+    GstBufferPoolAcquireParams * params)
--+{
--+
--+  /* create a buffer with ref_count = 1 */
--+  GstBuffer *buf = gst_buffer_new ();
--+  GstDRMBufferPool *pool = GST_DRM_BUFFER_POOL(bufpool);
--+  GstVideoCropMeta *crop;
--+  GstMetaDmaBuf *dmabuf;
--+  GstVideoMeta *videometa;
--+
--+  /* TODO: if allocation could be handled via libkms then this
--+   * bufferpool implementation could be completely generic..
--+   * otherwise we might want some support for various different
--+   * drm drivers here:
--+   */
--+
--+  struct omap_bo *bo = omap_bo_new (pool->dev, pool->size, OMAP_BO_WC);
--+  if (!bo) {
--+    GST_WARNING_OBJECT (pool->element, "Failed to create bo");
--+    return GST_FLOW_ERROR;;
--+  }
--+
--+  /* allocating a memory to the buffer we created */
--+  gst_buffer_append_memory (buf,
--+      gst_memory_new_wrapped (GST_MEMORY_FLAG_NO_SHARE, omap_bo_map (bo),
--+          pool->size, 0, pool->size, NULL, NULL));
--+  
--+  /* Adding the necessary metadatas with initialization*/
--+
--+  dmabuf = gst_buffer_add_dma_buf_meta (GST_BUFFER (buf), omap_bo_dmabuf (bo));
--+  if(!dmabuf){
--+    GST_DEBUG_OBJECT (pool, "Failed to add dmabuf meta to buffer");
--+  }
--+
--+  videometa = gst_buffer_add_video_meta(buf,GST_VIDEO_FRAME_FLAG_NONE, GST_VIDEO_INFO_FORMAT(&pool->info), pool->width, pool->height);
--+  if(!videometa){
--+    GST_DEBUG_OBJECT (pool, "Failed to add video meta to buffer");
--+  }
--+
--+  crop = gst_buffer_add_video_crop_meta(buf);
--+  if(!crop){
--+    GST_DEBUG_OBJECT (pool, "Failed to add crop meta to buffer");
--+  } else {
--+  crop->x = 0;
--+  crop->y = 0;
--+  crop->height = pool->height;
--+  crop->width = pool->width;
--+  }
--+
--+  /* Pointer to the buffer (passed as argument) should now point to the buffer we created */
--+  *buffer = buf;
--+
--+#ifndef GST_DISABLE_GST_DEBUG
--+      {
--+        GST_DEBUG_OBJECT (pool, "Creating new buffer (living buffer: %i)",
--+            ++pool->nbbufs);
--+      }
--+#endif
--+
--+  return GST_FLOW_OK;
--+
--+}
--+
--diff --git a/gst-libs/gst/drm/gstdrmbufferpool.h b/gst-libs/gst/drm/gstdrmbufferpool.h
--new file mode 100644
--index 0000000..a9f3fba
----- /dev/null
--+++ b/gst-libs/gst/drm/gstdrmbufferpool.h
--@@ -0,0 +1,138 @@
--+/*
--+ * GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *  Rob Clark <rob.clark@linaro.org>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Lesser General Public
--+ * License as published by the Free Software Foundation
--+ * version 2.1 of the License.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
--+ * Lesser General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Lesser General Public
--+ * License along with this library; if not, write to the Free Software
--+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
--+ */
--+
--+#ifndef __GSTDRMBUFFERPOOL_H__
--+#define __GSTDRMBUFFERPOOL_H__
--+
--+#include <gst/gst.h>
--+#include <gst/video/gstvideometa.h>
--+G_BEGIN_DECLS
--+
--+/* TODO replace dependency on libdrm_omap w/ libdrm.. the only thing
--+ * missing is way to allocate buffers, but this should probably be
--+ * done via libdrm?
--+ *
--+ * NOTE: this dependency is only for those who want to subclass us,
--+ * so we could perhaps move the struct definitions into a separate
--+ * header or split out private ptr and move that into the .c file..
--+ */
--+#include <stdint.h>
--+#include <omap_drm.h>
--+#include <omap_drmif.h>
--+
--+#define GST_TYPE_DRM_BUFFER_POOL (gst_drm_buffer_pool_get_type())
--+#define GST_IS_DRM_BUFFER_POOL(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_DRM_BUFFER_POOL))
--+#define GST_DRM_BUFFER_POOL(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_DRM_BUFFER_POOL, GstDRMBufferPool))
--+#define GST_DRM_BUFFER_POOL_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_DRM_BUFFER_POOL, GstDRMBufferPoolClass))
--+#define GST_DRM_BUFFER_POOL_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_DRM_BUFFER_POOL, GstDRMBufferPoolClass))
--+
--+
--+typedef struct _GstDRMBufferPool GstDRMBufferPool;
--+typedef struct _GstDRMBufferPoolClass GstDRMBufferPoolClass;
--+
--+
--+/*
--+ * GstDRMBufferPool:
--+ */
--+
--+struct _GstDRMBufferPool {
--+  GstBufferPool parent;
--+
--+  int fd;
--+  struct omap_device *dev;
--+
--+  /* output (padded) size including any codec padding: */
--+  guint size;
--+  gint width, height;
--+
--+  /* Video info obtained from caps */
--+  GstVideoInfo info;
--+  
--+  GstCaps         *caps;
--+  GstElement      *element;  /* the element that owns us.. */
--+
--+#ifndef GST_DISABLE_GST_DEBUG
--+  guint            nbbufs;
--+#endif /* DEBUG */
--+
--+  /* TODO add reserved */
--+};
--+
--+struct _GstDRMBufferPoolClass {
--+  GstBufferPoolClass klass;
--+
--+  /* allow the subclass to allocate it's own buffers that extend
--+   * GstDRMBuffer:
--+   */
--+  GstFlowReturn  (*alloc_buffer)(GstBufferPool * pool, GstBuffer ** buffer,
--+    GstBufferPoolAcquireParams * params);
--+
--+  /* The a buffer subclass should not override finalize, as that
--+   * would interfere with reviving the buffer and returning to the
--+   * pool.  Instead you can implement this vmethod to cleanup a
--+   * buffer.
--+   */
--+  void (*buffer_cleanup)(GstDRMBufferPool * pool, GstBuffer *buf);
--+
--+  /* Called when a buffer is added back to the pool after its last
--+   * ref has been removed.
--+   */
--+  void (*buffer_pooled)(GstDRMBufferPool * pool, GstBuffer *buf);
--+
--+  /* TODO add reserved */
--+};
--+
--+GType gst_drm_buffer_pool_get_type (void);
--+
--+void gst_drm_buffer_pool_initialize (GstDRMBufferPool * self,
--+    GstElement * element, int fd, GstCaps * caps, guint size);
--+
--+/* to set/change the config of pool */
--+gboolean gst_drm_buffer_pool_set_config (GstBufferPool * pool, GstStructure * config);
--+
--+/* create a new drm buffer pool */
--+GstDRMBufferPool * gst_drm_buffer_pool_new (GstElement * element,
--+    int fd, GstCaps * caps, guint size);
--+
--+/* unref the drm buffer pool */
--+void gst_drm_buffer_pool_destroy (GstDRMBufferPool * self);
--+
--+/* size of buffers in the pool */
--+guint gst_drm_buffer_pool_size (GstDRMBufferPool * self);
--+
--+/* check the present caps of the pool */
--+gboolean gst_drm_buffer_pool_check_caps (GstDRMBufferPool * self,
--+    GstCaps * caps);
--+
--+/* get a buffer from the pool */
--+GstBuffer * gst_drm_buffer_pool_get (GstDRMBufferPool * self,
--+    gboolean force_alloc);
--+
--+/* release a buffer to the pool */
--+gboolean gst_drm_buffer_pool_put (GstDRMBufferPool * self, GstBuffer * buf);
--+
--+G_END_DECLS
--+
--+#endif /* __GSTDRMBUFFERPOOL_H__ */
--diff --git a/pkgconfig/Makefile.am b/pkgconfig/Makefile.am
--index 430e123..3fde657 100644
----- a/pkgconfig/Makefile.am
--+++ b/pkgconfig/Makefile.am
--@@ -3,12 +3,14 @@
-- pcverfiles =  \
-- 	gstreamer-plugins-bad-@GST_API_VERSION@.pc \
-- 	gstreamer-codecparsers-@GST_API_VERSION@.pc \
--+        gstreamer-drm-@GST_API_VERSION@.pc \
-- 	gstreamer-insertbin-@GST_API_VERSION@.pc \
-- 	gstreamer-mpegts-@GST_API_VERSION@.pc
-- 
-- pcverfiles_uninstalled = \
-- 	gstreamer-plugins-bad-@GST_API_VERSION@-uninstalled.pc \
-- 	gstreamer-codecparsers-@GST_API_VERSION@-uninstalled.pc \
--+        gstreamer-drm-@GST_API_VERSION@-uninstalled.pc \
-- 	gstreamer-insertbin-@GST_API_VERSION@-uninstalled.pc \
-- 	gstreamer-mpegts-@GST_API_VERSION@-uninstalled.pc
-- 
--@@ -36,6 +38,7 @@ CLEANFILES = $(pcverfiles) $(pcverfiles_uninstalled)
-- pcinfiles = \
--            gstreamer-plugins-bad.pc.in gstreamer-plugins-bad-uninstalled.pc.in \
--            gstreamer-codecparsers.pc.in gstreamer-codecparsers-uninstalled.pc.in \
--+           gstreamer-drm.pc.in gstreamer-drm-uninstalled.pc.in \
--            gstreamer-insertbin.pc.in gstreamer-insertbin-uninstalled.pc.in \
--            gstreamer-egl.pc.in gstreamer-egl-uninstalled.pc.in \
--            gstreamer-mpegts.pc.in gstreamer-mpegts-uninstalled.pc.in
--diff --git a/pkgconfig/gstreamer-drm-uninstalled.pc.in b/pkgconfig/gstreamer-drm-uninstalled.pc.in
--new file mode 100644
--index 0000000..fc0e3f2
----- /dev/null
--+++ b/pkgconfig/gstreamer-drm-uninstalled.pc.in
--@@ -0,0 +1,12 @@
--+prefix=
--+exec_prefix=
--+libdir=${pcfiledir}/../gst-libs/gst/drm
--+includedir=${pcfiledir}/../gst-libs
--+
--+Name: GStreamer DRM buffer pool, Uninstalled
--+Description: DRM buffer pool for GStreamer elements, uninstalled
--+Requires: gstreamer-@GST_MAJORMINOR@ gstreamer-base-@GST_MAJORMINOR@
--+Version: @VERSION@
--+Libs: -L${libdir} ${libdir}/libgstdrm-@GST_MAJORMINOR@.la
--+Cflags: -I${includedir}
--+
--diff --git a/pkgconfig/gstreamer-drm.pc.in b/pkgconfig/gstreamer-drm.pc.in
--new file mode 100644
--index 0000000..8182b4f
----- /dev/null
--+++ b/pkgconfig/gstreamer-drm.pc.in
--@@ -0,0 +1,12 @@
--+prefix=@prefix@
--+exec_prefix=@exec_prefix@
--+libdir=@libdir@
--+includedir=@includedir@/gstreamer-@GST_MAJORMINOR@
--+
--+Name: GStreamer DRM buffer pool
--+Description: DRM buffer pool for GStreamer elements
--+Requires: gstreamer-@GST_MAJORMINOR@ gstreamer-base-@GST_MAJORMINOR@
--+Version: @VERSION@
--+Libs: -L${libdir} -lgstdrm-@GST_MAJORMINOR@
--+Cflags: -I${includedir}
--+
--diff --git a/pkgconfig/gstreamer-plugins-bad-uninstalled.pc.in b/pkgconfig/gstreamer-plugins-bad-uninstalled.pc.in
--index 6fcf773..ed0e5b0 100644
----- a/pkgconfig/gstreamer-plugins-bad-uninstalled.pc.in
--+++ b/pkgconfig/gstreamer-plugins-bad-uninstalled.pc.in
--@@ -10,5 +10,5 @@ Name: GStreamer Bad Plugin libraries, Uninstalled
-- Description: Streaming media framework, bad plugins libraries, uninstalled
-- Version: @VERSION@
-- Requires: gstreamer-@GST_API_VERSION@
---Libs: -L@abs_top_builddir@/gst-libs/gst/basecamerabinsrc -L@abs_top_builddir@/gst-libs/gst/codecparsers -L@abs_top_builddir@/gst-libs/gst/egl -L@abs_top_builddir@/gst-libs/gst/insertbin -L@abs_top_builddir@/gst-libs/gst/interfaces -L@abs_top_builddir@/gst-libs/gst/mpegts -L@abs_top_builddir@/gst-libs/gst/signalprocessor -L@abs_top_builddir@/gst-libs/gst/video
--+Libs: -L@abs_top_builddir@/gst-libs/gst/basecamerabinsrc -L@abs_top_builddir@/gst-libs/gst/codecparsers -L@abs_top_builddir@/gst-libs/gst/drm -L@abs_top_builddir@/gst-libs/gst/egl -L@abs_top_builddir@/gst-libs/gst/insertbin -L@abs_top_builddir@/gst-libs/gst/interfaces -L@abs_top_builddir@/gst-libs/gst/mpegts -L@abs_top_builddir@/gst-libs/gst/signalprocessor -L@abs_top_builddir@/gst-libs/gst/video
-- Cflags: -I@abs_top_srcdir@/gst-libs -I@abs_top_builddir@/gst-libs
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
-deleted file mode 100644
-index 875ff0b..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-Modified-waylandsink-to-accept-NV12-format.patch
-+++ /dev/null
-@@ -1,1017 +0,0 @@
--From 4aba7f1afbd6c364e649f4c0e539c9a93d59bce6 Mon Sep 17 00:00:00 2001
--From: Pooja Prajod <a0132412@ti.com>
--Date: Fri, 12 Dec 2014 12:57:22 +0530
--Subject: [PATCH] Modified waylandsink to accept NV12 format
--
--Wayland sink now accepts NV12 format buffers. A support function gst_wl_buffer_priv
--has been added to check if it is a buffer with GstMetaDmabuf metadata set and
--create a wl_buffer. A hashtable is also maintained with GstMetaDmabuf fd as key
-----
-- configure.ac                 |    6 +-
-- ext/wayland/Makefile.am      |   11 +-
-- ext/wayland/gstwaylandsink.c |  203 +++++++++++++++++--
-- ext/wayland/gstwaylandsink.h |   18 ++
-- .../ext/wayland/gstwlbufferpriv.c                  |  156 ++++++++++++++
-- .../ext/wayland/gstwlbufferpriv.h                  |   56 +++++
-- .../ext/wayland/wayland-drm-client-protocol.h      |  213 ++++++++++++++++++++
-- .../ext/wayland/wayland-drm-protocol.c             |   74 +++++++
-- 8 files changed, 717 insertions(+), 20 deletions(-)
-- create mode 100644 ext/wayland/gstwlbufferpriv.c
-- create mode 100644 ext/wayland/gstwlbufferpriv.h
-- create mode 100644 ext/wayland/wayland-drm-client-protocol.h
-- create mode 100644 ext/wayland/wayland-drm-protocol.c
--
--diff --git a/configure.ac b/configure.ac
--index edf8ea8..b94bd5d 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -1219,8 +1219,10 @@ AG_GST_CHECK_FEATURE(DIRECTFB, [directfb], dfbvideosink , [
-- dnl **** Wayland ****
-- translit(dnm, m, l) AM_CONDITIONAL(USE_WAYLAND, true)
-- AG_GST_CHECK_FEATURE(WAYLAND, [wayland sink], wayland , [
---  PKG_CHECK_MODULES(WAYLAND, wayland-client >= 1.0.0, [
---    HAVE_WAYLAND="yes" ], [ HAVE_WAYLAND="no"
--+  PKG_CHECK_MODULES(WAYLAND, wayland-client >= 1.0.0 dri2 libdrm libdrm_omap, [
--+     AC_SUBST(DRM_CFLAGS)
--+     AC_SUBST(DRM_LIBS)
--+     HAVE_WAYLAND="yes" ], [ HAVE_WAYLAND="no"
--   ])
-- ])
-- 
--diff --git a/ext/wayland/Makefile.am b/ext/wayland/Makefile.am
--index e8edf73..2c7a12f 100644
----- a/ext/wayland/Makefile.am
--+++ b/ext/wayland/Makefile.am
--@@ -1,12 +1,15 @@
-- plugin_LTLIBRARIES = libgstwaylandsink.la
-- 
---libgstwaylandsink_la_SOURCES =  gstwaylandsink.c waylandpool.c
--+libgstwaylandsink_la_SOURCES =  gstwaylandsink.c waylandpool.c gstwlbufferpriv.c wayland-drm-protocol.c
-- libgstwaylandsink_la_CFLAGS = $(GST_CFLAGS) $(GST_PLUGINS_BASE_CFLAGS) \
---                               $(WAYLAND_CFLAGS)
--+                                $(GST_PLUGINS_BAD_CFLAGS) \
--+                               $(WAYLAND_CFLAGS) $(DRM_CFLAGS)
-- libgstwaylandsink_la_LIBADD = $(GST_PLUGINS_BASE_LIBS) \
--                                -lgstvideo-$(GST_API_VERSION) \
---                               $(WAYLAND_LIBS)
--+                               $(WAYLAND_LIBS) \
--+                               -lgstdmabuf-$(GST_API_VERSION) \
--+                               $(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
-- libgstwaylandsink_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS)
-- libgstwaylandsink_la_LIBTOOLFLAGS = $(GST_PLUGIN_LIBTOOLFLAGS)
-- 
---noinst_HEADERS = gstwaylandsink.h waylandpool.h
--+noinst_HEADERS = gstwaylandsink.h waylandpool.h gstwlbufferpriv.h  wayland-drm-client-protocol.h
--diff --git a/ext/wayland/gstwaylandsink.c b/ext/wayland/gstwaylandsink.c
--index cabf310..bb7d838 100644
----- a/ext/wayland/gstwaylandsink.c
--+++ b/ext/wayland/gstwaylandsink.c
--@@ -41,6 +41,13 @@
-- #endif
-- 
-- #include "gstwaylandsink.h"
--+#include "gstwlbufferpriv.h"
--+
--+#include <wayland-client-protocol.h>
--+#include "wayland-drm-client-protocol.h"
--+
--+#include <linux/input.h>
--+
-- 
-- /* signals */
-- enum
--@@ -60,9 +67,9 @@ GST_DEBUG_CATEGORY (gstwayland_debug);
-- #define GST_CAT_DEFAULT gstwayland_debug
-- 
-- #if G_BYTE_ORDER == G_BIG_ENDIAN
---#define CAPS "{xRGB, ARGB}"
--+#define CAPS "{xRGB, ARGB, NV21}"
-- #else
---#define CAPS "{BGRx, BGRA}"
--+#define CAPS "{BGRx, BGRA, NV12, I420, YUY2, UYVY}"
-- #endif
-- 
-- static GstStaticPadTemplate sink_template = GST_STATIC_PAD_TEMPLATE ("sink",
--@@ -181,6 +188,15 @@ gst_wayland_sink_class_init (GstWaylandSinkClass * klass)
--           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-- }
-- 
--+/* Free function for key destruction for the hashtable we are using*/ 
--+static void
--+wlbufferpriv_free_func (GstWLBufferPriv *priv)
--+{
--+  wl_buffer_destroy (priv->buffer);
--+  omap_bo_del (priv->bo);
--+  g_free(priv);
--+}
--+
-- static void
-- gst_wayland_sink_init (GstWaylandSink * sink)
-- {
--@@ -188,7 +204,10 @@ gst_wayland_sink_init (GstWaylandSink * sink)
--   sink->window = NULL;
--   sink->shm_pool = NULL;
--   sink->pool = NULL;
---
--+  sink->drm_pool = NULL;
--+  /* Initialising the hastable for storing map between dmabuf fd and GstWLBufferPriv */
--+  sink->wlbufferpriv = g_hash_table_new_full (g_direct_hash, g_direct_equal,
--+      NULL, (GDestroyNotify) wlbufferpriv_free_func);
--   g_mutex_init (&sink->wayland_lock);
-- }
-- 
--@@ -230,6 +249,9 @@ destroy_display (struct display *display)
--   if (display->shm)
--     wl_shm_destroy (display->shm);
-- 
--+  if (display->drm)
--+    wl_drm_destroy (display->drm);
--+
--   if (display->shell)
--     wl_shell_destroy (display->shell);
-- 
--@@ -280,6 +302,14 @@ gst_wayland_sink_finalize (GObject * object)
--     destroy_display (sink->display);
--   if (sink->shm_pool)
--     shm_pool_destroy (sink->shm_pool);
--+  if (sink->drm_pool) {
--+    gst_drm_buffer_pool_destroy (sink->drm_pool);
--+    sink->drm_pool = NULL;
--+  }
--+  if (sink->wlbufferpriv){
--+    g_hash_table_destroy (sink->wlbufferpriv);
--+    sink->wlbufferpriv = NULL;
--+  }
-- 
--   g_mutex_clear (&sink->wayland_lock);
-- 
--@@ -318,6 +348,56 @@ struct wl_shm_listener shm_listenter = {
--   shm_format
-- };
-- 
--+/* For wl_drm_listener */
--+static void
--+drm_handle_device (void *data, struct wl_drm *drm, const char *device)
--+{
--+  struct display *d = data;
--+  drm_magic_t magic;
--+
--+  d->fd = open (device, O_RDWR | O_CLOEXEC);
--+  if (d->fd == -1) {
--+    GST_ERROR ("could not open %s: %m", device);
--+    // XXX hmm, probably need to throw up some error now??
--+    return;
--+  }
--+
--+  drmGetMagic (d->fd, &magic);
--+  wl_drm_authenticate (d->drm, magic);
--+}
--+
--+
--+static void
--+drm_handle_format (void *data, struct wl_drm *drm, uint32_t format)
--+{
--+  struct display *d = data;
--+  GST_DEBUG ("got format: %" GST_FOURCC_FORMAT, GST_FOURCC_ARGS (format));
--+  if (d->drm_format_count < 50) {
--+    d->drm_formats[d->drm_format_count++] = format;
--+  } else {
--+    GST_WARNING ("drm_handle_formats (no room for more formats): %" 
--+                GST_FOURCC_FORMAT, GST_FOURCC_ARGS (format));
--+  }
--+}
--+
--+static void
--+drm_handle_authenticated (void *data, struct wl_drm *drm)
--+{
--+  struct display *d = data;
--+  GST_DEBUG ("authenticated");
--+  d->dev = omap_device_new (d->fd);
--+  d->authenticated = 1;
--+  GST_DEBUG("drm_handle_authenticated: dev: %p, d->authenticated: %d\n", d->dev, d->authenticated);
--+}
--+
--+static const struct wl_drm_listener drm_listener = {
--+  drm_handle_device,
--+  drm_handle_format,
--+  drm_handle_authenticated
--+};
--+
--+
--+
-- static void
-- registry_handle_global (void *data, struct wl_registry *registry,
--     uint32_t id, const char *interface, uint32_t version)
--@@ -332,6 +412,9 @@ registry_handle_global (void *data, struct wl_registry *registry,
--   } else if (strcmp (interface, "wl_shm") == 0) {
--     d->shm = wl_registry_bind (registry, id, &wl_shm_interface, 1);
--     wl_shm_add_listener (d->shm, &shm_listenter, d);
--+  } else if (strcmp (interface, "wl_drm") == 0) {
--+    d->drm = wl_registry_bind (registry, id, &wl_drm_interface, 1);
--+    wl_drm_add_listener (d->drm, &drm_listener, d);
--   }
-- }
-- 
--@@ -351,13 +434,14 @@ create_display (void)
--     free (display);
--     return NULL;
--   }
--+  display->authenticated = 0;
-- 
--   display->registry = wl_display_get_registry (display->display);
--   wl_registry_add_listener (display->registry, &registry_listener, display);
-- 
--   wl_display_roundtrip (display->display);
---  if (display->shm == NULL) {
---    GST_ERROR ("No wl_shm global..");
--+  if (display->shm == NULL && display->drm == NULL) {
--+    GST_ERROR ("No wl_shm global and wl_drm global..");
--     return NULL;
--   }
-- 
--@@ -384,6 +468,61 @@ gst_wayland_sink_format_from_caps (uint32_t * wl_format, GstCaps * caps)
--   return (*wl_format != -1);
-- }
-- 
--+static void
--+wait_authentication (GstWaylandSink * sink)
--+{
--+  GST_DEBUG_OBJECT (sink, "Before wait aunthenticated value is %d : \n", sink->display->authenticated );
--+  while (!sink->display->authenticated) {
--+    GST_DEBUG_OBJECT (sink, "waiting for authentication");
--+    wl_display_roundtrip (sink->display->display);
--+  }
--+  GST_DEBUG_OBJECT (sink, "After wait aunthenticated value is %d : \n", sink->display->authenticated );
--+}
--+
--+/* create a drm buffer pool if the video format is NV12 */
--+static gboolean
--+create_pool (GstWaylandSink * sink, GstCaps * caps)
--+{
--+
--+  GstVideoInfo info;
--+
--+  wait_authentication (sink);
--+
--+  while (!sink->display->authenticated) {
--+    GST_DEBUG_OBJECT (sink, "not authenticated yet");
--+  }
--+
--+  if (!gst_video_info_from_caps (&info, caps))
--+    goto invalid_format;
--+
--+  
--+
--+  if (sink->drm_pool) {
--+    GST_INFO_OBJECT (sink, "recreating pool");
--+    gst_drm_buffer_pool_destroy (sink->drm_pool);
--+    sink->drm_pool = NULL;
--+  }
--+
--+  sink->video_width = info.width;
--+  sink->video_height = info.height;
--+
--+  sink->drm_pool = gst_drm_buffer_pool_new (GST_ELEMENT (sink),
--+      sink->display->fd, caps, info.size);
--+  if(sink->drm_pool){
--+    return TRUE;
--+   }
--+  else {
--+    return FALSE;
--+   }
--+
--+invalid_format:
--+  {
--+    GST_DEBUG_OBJECT (sink,
--+        "Could not locate image format from caps %" GST_PTR_FORMAT, caps);
--+    return FALSE;
--+  }
--+}
--+
-- static gboolean
-- gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
-- {
--@@ -393,6 +532,7 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
--   GstStructure *structure;
--   static GstAllocationParams params = { 0, 0, 0, 15, };
--   guint size;
--+ GstVideoFormat fmt;
-- 
--   sink = GST_WAYLAND_SINK (bsink);
-- 
--@@ -401,15 +541,23 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
--   if (!gst_video_info_from_caps (&info, caps))
--     goto invalid_format;
-- 
--+  fmt = GST_VIDEO_INFO_FORMAT(&info);
--+  if (fmt == GST_VIDEO_FORMAT_NV12 ||  fmt == GST_VIDEO_FORMAT_I420 || fmt == GST_VIDEO_FORMAT_YUY2 || fmt == GST_VIDEO_FORMAT_UYVY){
--+    create_pool(sink, caps);
--+    return TRUE;
--+  } 
--+
--   if (!gst_wayland_sink_format_from_caps (&sink->format, caps))
--     goto invalid_format;
-- 
--+
--   if (!(sink->display->formats & (1 << sink->format))) {
--     GST_DEBUG_OBJECT (sink, "%s not available",
--         gst_wayland_format_to_string (sink->format));
--     return FALSE;
--   }
-- 
--+
--   sink->video_width = info.width;
--   sink->video_height = info.height;
--   size = info.size;
--@@ -417,6 +565,7 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
--   /* create a new pool for the new configuration */
--   newpool = gst_wayland_buffer_pool_new (sink);
-- 
--+
--   if (!newpool) {
--     GST_DEBUG_OBJECT (sink, "Failed to create new pool");
--     return FALSE;
--@@ -532,6 +681,7 @@ gst_wayland_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
-- {
--   GstWaylandSink *sink = GST_WAYLAND_SINK (bsink);
--   GstBufferPool *pool;
--+  GstDRMBufferPool *drm_pool;
--   GstStructure *config;
--   GstCaps *caps;
--   guint size;
--@@ -562,6 +712,7 @@ gst_wayland_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
--     gst_structure_free (config);
--   }
-- 
--+
--   if (pool == NULL && need_pool) {
--     GstVideoInfo info;
-- 
--@@ -583,7 +734,6 @@ gst_wayland_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
--     gst_query_add_allocation_pool (query, pool, size, 2, 0);
--     gst_object_unref (pool);
--   }
---
--   return TRUE;
-- 
--   /* ERRORS */
--@@ -624,35 +774,54 @@ static const struct wl_callback_listener frame_callback_listener = {
--   frame_redraw_callback
-- };
-- 
--+
-- static GstFlowReturn
-- gst_wayland_sink_render (GstBaseSink * bsink, GstBuffer * buffer)
-- {
--   GstWaylandSink *sink = GST_WAYLAND_SINK (bsink);
--   GstVideoRectangle src, dst, res;
---  GstBuffer *to_render;
--+  GstBuffer *to_render = NULL;
--   GstWlMeta *meta;
--   GstFlowReturn ret;
--   struct window *window;
--   struct display *display;
---
--+  GstWLBufferPriv *priv;
--+  GstMapInfo mapsrc;
--+  
--   GST_LOG_OBJECT (sink, "render buffer %p", buffer);
---  if (!sink->window)
---    create_window (sink, sink->display, sink->video_width, sink->video_height);
--+  if (!sink->window){
--+    gint video_width = sink->video_width;
--+    gint video_height = sink->video_height;
--+    GstVideoCropMeta* crop = gst_buffer_get_video_crop_meta (buffer);
--+    if(crop){
--+       if (crop->width) {
--+         video_width = crop->width;
--+       } 
--+      if (crop->height) {  
--+         video_height = crop->height;
--+       }
--+    }
--+    create_window (sink, sink->display, video_width, video_height);
--+   }
-- 
--   window = sink->window;
--   display = sink->display;
-- 
--   meta = gst_buffer_get_wl_meta (buffer);
--+  priv = gst_wl_buffer_priv (sink, buffer);
-- 
--   if (window->redraw_pending) {
--     wl_display_dispatch (display->display);
--   }
-- 
--+  
--   if (meta && meta->sink == sink) {
--     GST_LOG_OBJECT (sink, "buffer %p from our pool, writing directly", buffer);
--     to_render = buffer;
--+  } else if(priv) {
--+    to_render = buffer;
--+    GST_LOG_OBJECT (sink, " priv buffer %p from drm pool, writing directly", buffer);
--   } else {
---    GstMapInfo src;
--     GST_LOG_OBJECT (sink, "buffer %p not from our pool, copying", buffer);
-- 
--     if (!sink->pool)
--@@ -665,9 +834,9 @@ gst_wayland_sink_render (GstBaseSink * bsink, GstBuffer * buffer)
--     if (ret != GST_FLOW_OK)
--       goto no_buffer;
-- 
---    gst_buffer_map (buffer, &src, GST_MAP_READ);
---    gst_buffer_fill (to_render, 0, src.data, src.size);
---    gst_buffer_unmap (buffer, &src);
--+    gst_buffer_map (buffer, &mapsrc, GST_MAP_READ);
--+    gst_buffer_fill (to_render, 0, mapsrc.data, mapsrc.size);
--+    gst_buffer_unmap (buffer, &mapsrc);
-- 
--     meta = gst_buffer_get_wl_meta (to_render);
--   }
--@@ -679,7 +848,13 @@ gst_wayland_sink_render (GstBaseSink * bsink, GstBuffer * buffer)
-- 
--   gst_video_sink_center_rect (src, dst, &res, FALSE);
-- 
--+  /* display the buffer stored in priv, if the buffer obtained returns a priv */
--+  if(priv){
--+   wl_surface_attach (sink->window->surface, priv->buffer, res.x, res.y);
--+  } else {
--   wl_surface_attach (sink->window->surface, meta->wbuffer, 0, 0);
--+  }
--+  
--   wl_surface_damage (sink->window->surface, 0, 0, res.w, res.h);
--   window->redraw_pending = TRUE;
--   window->callback = wl_surface_frame (window->surface);
--diff --git a/ext/wayland/gstwaylandsink.h b/ext/wayland/gstwaylandsink.h
--index cb3383e..b3fbbac 100644
----- a/ext/wayland/gstwaylandsink.h
--+++ b/ext/wayland/gstwaylandsink.h
--@@ -39,9 +39,11 @@
-- #include <gst/video/video.h>
-- #include <gst/video/gstvideosink.h>
-- #include <gst/video/gstvideometa.h>
--+#include <gst/drm/gstdrmbufferpool.h>
-- 
-- #include <wayland-client.h>
-- 
--+
-- #define GST_TYPE_WAYLAND_SINK \
-- 	    (gst_wayland_sink_get_type())
-- #define GST_WAYLAND_SINK(obj) \
--@@ -62,7 +64,19 @@ struct  display
--   struct wl_compositor *compositor;
--   struct wl_shell *shell;
--   struct wl_shm *shm;
--+  struct wl_drm *drm;
--   uint32_t formats;
--+
--+  uint32_t drm_formats[50];
--+  int drm_format_count;
--+  /* the drm device.. needed for sharing direct-render buffers..
--+   * TODO nothing about this should really be omapdrm specific.  But some
--+   * of the code, like hashtable of imported buffers in libdrm_omap should
--+   * be refactored out into some generic libdrm code..
--+   */
--+  struct omap_device *dev;
--+  int fd;
--+  int authenticated;
-- };
-- 
-- struct window
--@@ -99,6 +113,10 @@ struct _GstWaylandSink
-- 
--   GstBufferPool *pool;
-- 
--+  /* for NV12 buffers on wl_drm_buffer */
--+  GstDRMBufferPool *drm_pool;
--+  GHashTable *wlbufferpriv;
--+
--   GMutex wayland_lock;
-- 
--   gint video_width;
--diff --git a/ext/wayland/gstwlbufferpriv.c b/ext/wayland/gstwlbufferpriv.c
--new file mode 100644
--index 0000000..07fdf70
----- /dev/null
--+++ b/ext/wayland/gstwlbufferpriv.c
--@@ -0,0 +1,156 @@
--+/*
--+ * GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *  Rob Clark <rob.clark@linaro.org>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Lesser General Public
--+ * License as published by the Free Software Foundation
--+ * version 2.1 of the License.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
--+ * Lesser General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Lesser General Public
--+ * License along with this library; if not, write to the Free Software
--+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
--+ */
--+
--+#ifdef HAVE_CONFIG_H
--+#include "config.h"
--+#endif
--+
--+#include <stdint.h>
--+#include <gst/gst.h>
--+#include <gst/dmabuf/dmabuf.h>
--+#include <gst/video/gstvideometa.h>
--+
--+#include <omap_drm.h>
--+#include <omap_drmif.h>
--+
--+#include "gstwaylandsink.h"
--+#include "gstwlbufferpriv.h"
--+#include "wayland-drm-client-protocol.h"
--+
--+
--+/* Create planar wl_buffer that can be given to waylandsink.
--+ * Crop info is also used */
--+static int
--+create_wl_buffer (GstWLBufferPriv * priv, GstWaylandSink * sink,
--+    GstBuffer * buf)
--+{
--+  GstVideoCropMeta *crop;
--+  gint video_width = sink->video_width;
--+  gint video_height = sink->video_height;
--+
--+  /* TODO get format, etc from caps.. and query device for
--+   * supported formats, and make this all more flexible to
--+   * cope with various formats:
--+   */
--+  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
--+  uint32_t name;
--+
--+  /* note: wayland and mesa use the terminology:
--+   *    stride - rowstride in bytes
--+   *    pitch  - rowstride in pixels
--+   */
--+  uint32_t strides[3] = {
--+    GST_ROUND_UP_4 (sink->video_width), GST_ROUND_UP_4 (sink->video_width), 0,
--+  };
--+  uint32_t offsets[3] = {
--+    0, strides[0] * sink->video_height, 0
--+  };
--+
--+  crop = gst_buffer_get_video_crop_meta (buf);
--+  if (crop) {
--+    guint left, top;
--+    left = crop->y;
--+    top = crop->x;
--+
--+    offsets[0] = left;
--+    offsets[1] += (video_width * top / 2) + left;
--+    if(crop->width)
--+     video_width = crop->width;
--+  }
--+
--+  if (omap_bo_get_name (priv->bo, &name)) {
--+    GST_WARNING_OBJECT (sink, "could not get name");
--+    return -1;
--+  }
--+
--+ GST_LOG_OBJECT (sink,"width = %d , height = %d , fourcc = %d ",  video_width, video_height, fourcc );
--+
--+  priv->buffer = wl_drm_create_planar_buffer (sink->display->drm, name,
--+      video_width, video_height, fourcc,
--+      offsets[0], strides[0],
--+      offsets[1], strides[1],
--+      offsets[2], strides[2]);
--+
--+  GST_DEBUG_OBJECT (sink, "create planar buffer: %p (name=%d)",
--+      priv->buffer, name);
--+
--+  return priv->buffer ? 0 : -1;
--+}
--+
--+
--+/**
--+ * gst_wl_buffer_priv:
--+ * @sink: a #GstWaylandSink
--+ * @buf: a pointer to #GstBuffer
--+ *
--+ * Checks if the @buf has a GstMetaDmaBuf metadata set. If it doesn't we return a NULL
--+ * indicating its not a dmabuf buffer. We maintain a hashtable with dmabuf fd as key and 
--+ * the GstWLBufferPriv structure as value
--+ *
--+ * Returns: the #GstWLBufferPriv
--+ *
--+ * Since: 1.2.?
--+ */
--+GstWLBufferPriv *
--+gst_wl_buffer_priv (GstWaylandSink * sink, GstBuffer * buf)
--+{
--+  
--+    GstMetaDmaBuf *dmabuf = gst_buffer_get_dma_buf_meta (buf);
--+    GstWLBufferPriv *priv;
--+    int fd,fd_copy;
--+
--+    /* if it isn't a dmabuf buffer that we can import, then there
--+     * is nothing we can do with it:
--+     */
--+    if (!dmabuf) {
--+      GST_DEBUG_OBJECT (sink, "not importing non dmabuf buffer");
--+      return NULL;
--+    }
--+    fd = gst_dma_buf_meta_get_fd (dmabuf);
--+    fd_copy =fd;
--+
--+     /* lookup the hashtable with fd as key. If present return bo & buffer structure */
--+    priv = g_hash_table_lookup (sink->wlbufferpriv, (gpointer)fd_copy);
--+    if(priv) {
--+       return priv;
--+     }
--+
--+    priv = g_malloc0 (sizeof (GstWLBufferPriv));
--+    priv->bo = omap_bo_from_dmabuf (sink->display->dev, fd);
--+
--+    if (create_wl_buffer (priv, sink, buf)) {
--+      GST_WARNING_OBJECT (sink, "could not create framebuffer: %s",
--+          strerror (errno));
--+      g_free(priv);
--+      return NULL;
--+    }
--+
--+    /* if fd not present, write to hash table fd and the corresponding priv. */
--+    g_hash_table_insert(sink->wlbufferpriv, (gpointer)fd_copy, priv);    
--+    
--+   
--+  return priv;
--+}
--+
--diff --git a/ext/wayland/gstwlbufferpriv.h b/ext/wayland/gstwlbufferpriv.h
--new file mode 100644
--index 0000000..fbce4a2
----- /dev/null
--+++ b/ext/wayland/gstwlbufferpriv.h
--@@ -0,0 +1,56 @@
--+/*
--+ * GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *  Rob Clark <rob.clark@linaro.org>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Lesser General Public
--+ * License as published by the Free Software Foundation
--+ * version 2.1 of the License.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
--+ * Lesser General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Lesser General Public
--+ * License along with this library; if not, write to the Free Software
--+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
--+ */
--+
--+#ifndef __GSTWLBUFFERPRIV_H__
--+#define __GSTWLBUFFERPRIV_H__
--+
--+#include <stdint.h>
--+#include <gst/gst.h>
--+
--+#include <omap_drm.h>
--+#include <omap_drmif.h>
--+
--+#include <wayland-client.h>
--+
--+G_BEGIN_DECLS
--+
--+
--+typedef struct
--+{
--+  struct omap_bo *bo;
--+  struct wl_buffer *buffer;
--+
--+}GstWLBufferPriv;
--+
--+
--+GType gst_wl_buffer_priv_get_type (void);
--+
--+/* Returns a GstWLBufferPriv, if it has a dmabuf fd meatadata */
--+GstWLBufferPriv * gst_wl_buffer_priv (GstWaylandSink *sink, GstBuffer * buf);
--+
--+G_END_DECLS
--+
--+
--+#endif /* __GSTWLBUFFERPRIV_H__ */
--diff --git a/ext/wayland/wayland-drm-client-protocol.h b/ext/wayland/wayland-drm-client-protocol.h
--new file mode 100644
--index 0000000..7ddb614
----- /dev/null
--+++ b/ext/wayland/wayland-drm-client-protocol.h
--@@ -0,0 +1,213 @@
--+/* 
--+ * Copyright © 2008-2011 Kristian Høgsberg
--+ * Copyright © 2010-2011 Intel Corporation
--+ * 
--+ * Permission to use, copy, modify, distribute, and sell this
--+ * software and its documentation for any purpose is hereby granted
--+ * without fee, provided that\n the above copyright notice appear in
--+ * all copies and that both that copyright notice and this permission
--+ * notice appear in supporting documentation, and that the name of
--+ * the copyright holders not be used in advertising or publicity
--+ * pertaining to distribution of the software without specific,
--+ * written prior permission.  The copyright holders make no
--+ * representations about the suitability of this software for any
--+ * purpose.  It is provided "as is" without express or implied
--+ * warranty.
--+ * 
--+ * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
--+ * SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
--+ * FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
--+ * SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
--+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
--+ * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
--+ * ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
--+ * THIS SOFTWARE.
--+ */
--+
--+#ifndef DRM_CLIENT_PROTOCOL_H
--+#define DRM_CLIENT_PROTOCOL_H
--+
--+#ifdef  __cplusplus
--+extern "C" {
--+#endif
--+
--+#include <stdint.h>
--+#include <stddef.h>
--+#include "wayland-util.h"
--+
--+struct wl_client;
--+struct wl_resource;
--+
--+struct wl_drm;
--+
--+extern const struct wl_interface wl_drm_interface;
--+
--+#ifndef WL_DRM_ERROR_ENUM
--+#define WL_DRM_ERROR_ENUM
--+enum wl_drm_error {
--+	WL_DRM_ERROR_AUTHENTICATE_FAIL = 0,
--+	WL_DRM_ERROR_INVALID_FORMAT = 1,
--+	WL_DRM_ERROR_INVALID_NAME = 2,
--+};
--+#endif /* WL_DRM_ERROR_ENUM */
--+
--+#ifndef WL_DRM_FORMAT_ENUM
--+#define WL_DRM_FORMAT_ENUM
--+enum wl_drm_format {
--+	WL_DRM_FORMAT_C8 = 0x20203843,
--+	WL_DRM_FORMAT_RGB332 = 0x38424752,
--+	WL_DRM_FORMAT_BGR233 = 0x38524742,
--+	WL_DRM_FORMAT_XRGB4444 = 0x32315258,
--+	WL_DRM_FORMAT_XBGR4444 = 0x32314258,
--+	WL_DRM_FORMAT_RGBX4444 = 0x32315852,
--+	WL_DRM_FORMAT_BGRX4444 = 0x32315842,
--+	WL_DRM_FORMAT_ARGB4444 = 0x32315241,
--+	WL_DRM_FORMAT_ABGR4444 = 0x32314241,
--+	WL_DRM_FORMAT_RGBA4444 = 0x32314152,
--+	WL_DRM_FORMAT_BGRA4444 = 0x32314142,
--+	WL_DRM_FORMAT_XRGB1555 = 0x35315258,
--+	WL_DRM_FORMAT_XBGR1555 = 0x35314258,
--+	WL_DRM_FORMAT_RGBX5551 = 0x35315852,
--+	WL_DRM_FORMAT_BGRX5551 = 0x35315842,
--+	WL_DRM_FORMAT_ARGB1555 = 0x35315241,
--+	WL_DRM_FORMAT_ABGR1555 = 0x35314241,
--+	WL_DRM_FORMAT_RGBA5551 = 0x35314152,
--+	WL_DRM_FORMAT_BGRA5551 = 0x35314142,
--+	WL_DRM_FORMAT_RGB565 = 0x36314752,
--+	WL_DRM_FORMAT_BGR565 = 0x36314742,
--+	WL_DRM_FORMAT_RGB888 = 0x34324752,
--+	WL_DRM_FORMAT_BGR888 = 0x34324742,
--+	WL_DRM_FORMAT_XRGB8888 = 0x34325258,
--+	WL_DRM_FORMAT_XBGR8888 = 0x34324258,
--+	WL_DRM_FORMAT_RGBX8888 = 0x34325852,
--+	WL_DRM_FORMAT_BGRX8888 = 0x34325842,
--+	WL_DRM_FORMAT_ARGB8888 = 0x34325241,
--+	WL_DRM_FORMAT_ABGR8888 = 0x34324241,
--+	WL_DRM_FORMAT_RGBA8888 = 0x34324152,
--+	WL_DRM_FORMAT_BGRA8888 = 0x34324142,
--+	WL_DRM_FORMAT_XRGB2101010 = 0x30335258,
--+	WL_DRM_FORMAT_XBGR2101010 = 0x30334258,
--+	WL_DRM_FORMAT_RGBX1010102 = 0x30335852,
--+	WL_DRM_FORMAT_BGRX1010102 = 0x30335842,
--+	WL_DRM_FORMAT_ARGB2101010 = 0x30335241,
--+	WL_DRM_FORMAT_ABGR2101010 = 0x30334241,
--+	WL_DRM_FORMAT_RGBA1010102 = 0x30334152,
--+	WL_DRM_FORMAT_BGRA1010102 = 0x30334142,
--+	WL_DRM_FORMAT_YUYV = 0x56595559,
--+	WL_DRM_FORMAT_YVYU = 0x55595659,
--+	WL_DRM_FORMAT_UYVY = 0x59565955,
--+	WL_DRM_FORMAT_VYUY = 0x59555956,
--+	WL_DRM_FORMAT_AYUV = 0x56555941,
--+	WL_DRM_FORMAT_NV12 = 0x3231564e,
--+	WL_DRM_FORMAT_NV21 = 0x3132564e,
--+	WL_DRM_FORMAT_NV16 = 0x3631564e,
--+	WL_DRM_FORMAT_NV61 = 0x3136564e,
--+	WL_DRM_FORMAT_YUV410 = 0x39565559,
--+	WL_DRM_FORMAT_YVU410 = 0x39555659,
--+	WL_DRM_FORMAT_YUV411 = 0x31315559,
--+	WL_DRM_FORMAT_YVU411 = 0x31315659,
--+	WL_DRM_FORMAT_YUV420 = 0x32315559,
--+	WL_DRM_FORMAT_YVU420 = 0x32315659,
--+	WL_DRM_FORMAT_YUV422 = 0x36315559,
--+	WL_DRM_FORMAT_YVU422 = 0x36315659,
--+	WL_DRM_FORMAT_YUV444 = 0x34325559,
--+	WL_DRM_FORMAT_YVU444 = 0x34325659,
--+};
--+#endif /* WL_DRM_FORMAT_ENUM */
--+
--+struct wl_drm_listener {
--+	/**
--+	 * device - (none)
--+	 * @name: (none)
--+	 */
--+	void (*device)(void *data,
--+		       struct wl_drm *wl_drm,
--+		       const char *name);
--+	/**
--+	 * format - (none)
--+	 * @format: (none)
--+	 */
--+	void (*format)(void *data,
--+		       struct wl_drm *wl_drm,
--+		       uint32_t format);
--+	/**
--+	 * authenticated - (none)
--+	 */
--+	void (*authenticated)(void *data,
--+			      struct wl_drm *wl_drm);
--+};
--+
--+static inline int
--+wl_drm_add_listener(struct wl_drm *wl_drm,
--+		    const struct wl_drm_listener *listener, void *data)
--+{
--+	return wl_proxy_add_listener((struct wl_proxy *) wl_drm,
--+				     (void (**)(void)) listener, data);
--+}
--+
--+#define WL_DRM_AUTHENTICATE	0
--+#define WL_DRM_CREATE_BUFFER	1
--+#define WL_DRM_CREATE_PLANAR_BUFFER	2
--+
--+static inline void
--+wl_drm_set_user_data(struct wl_drm *wl_drm, void *user_data)
--+{
--+	wl_proxy_set_user_data((struct wl_proxy *) wl_drm, user_data);
--+}
--+
--+static inline void *
--+wl_drm_get_user_data(struct wl_drm *wl_drm)
--+{
--+	return wl_proxy_get_user_data((struct wl_proxy *) wl_drm);
--+}
--+
--+static inline void
--+wl_drm_destroy(struct wl_drm *wl_drm)
--+{
--+	wl_proxy_destroy((struct wl_proxy *) wl_drm);
--+}
--+
--+static inline void
--+wl_drm_authenticate(struct wl_drm *wl_drm, uint32_t id)
--+{
--+	wl_proxy_marshal((struct wl_proxy *) wl_drm,
--+			 WL_DRM_AUTHENTICATE, id);
--+}
--+
--+static inline struct wl_buffer *
--+wl_drm_create_buffer(struct wl_drm *wl_drm, uint32_t name, int32_t width, int32_t height, uint32_t stride, uint32_t format)
--+{
--+	struct wl_proxy *id;
--+
--+	id = wl_proxy_create((struct wl_proxy *) wl_drm,
--+			     &wl_buffer_interface);
--+	if (!id)
--+		return NULL;
--+
--+	wl_proxy_marshal((struct wl_proxy *) wl_drm,
--+			 WL_DRM_CREATE_BUFFER, id, name, width, height, stride, format);
--+
--+	return (struct wl_buffer *) id;
--+}
--+
--+static inline struct wl_buffer *
--+wl_drm_create_planar_buffer(struct wl_drm *wl_drm, uint32_t name, int32_t width, int32_t height, uint32_t format, int32_t offset0, int32_t stride0, int32_t offset1, int32_t stride1, int32_t offset2, int32_t stride2)
--+{
--+	struct wl_proxy *id;
--+
--+	id = wl_proxy_create((struct wl_proxy *) wl_drm,
--+			     &wl_buffer_interface);
--+	if (!id)
--+		return NULL;
--+
--+	wl_proxy_marshal((struct wl_proxy *) wl_drm,
--+			 WL_DRM_CREATE_PLANAR_BUFFER, id, name, width, height, format, offset0, stride0, offset1, stride1, offset2, stride2);
--+
--+	return (struct wl_buffer *) id;
--+}
--+
--+#ifdef  __cplusplus
--+}
--+#endif
--+
--+#endif
--diff --git a/ext/wayland/wayland-drm-protocol.c b/ext/wayland/wayland-drm-protocol.c
--new file mode 100644
--index 0000000..939af53
----- /dev/null
--+++ b/ext/wayland/wayland-drm-protocol.c
--@@ -0,0 +1,74 @@
--+/* 
--+ * Copyright © 2008-2011 Kristian Høgsberg
--+ * Copyright © 2010-2011 Intel Corporation
--+ * 
--+ * Permission to use, copy, modify, distribute, and sell this
--+ * software and its documentation for any purpose is hereby granted
--+ * without fee, provided that\n the above copyright notice appear in
--+ * all copies and that both that copyright notice and this permission
--+ * notice appear in supporting documentation, and that the name of
--+ * the copyright holders not be used in advertising or publicity
--+ * pertaining to distribution of the software without specific,
--+ * written prior permission.  The copyright holders make no
--+ * representations about the suitability of this software for any
--+ * purpose.  It is provided "as is" without express or implied
--+ * warranty.
--+ * 
--+ * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
--+ * SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
--+ * FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
--+ * SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
--+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
--+ * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
--+ * ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
--+ * THIS SOFTWARE.
--+ */
--+
--+#include <stdlib.h>
--+#include <stdint.h>
--+#include "wayland-util.h"
--+
--+#define ARRAY_LENGTH(a) (sizeof (a) /sizeof (a)[0])
--+
--+extern const struct wl_interface wl_buffer_interface;
--+extern const struct wl_interface wl_buffer_interface;
--+
--+static const struct wl_interface *types[] = {
--+	NULL,
--+	&wl_buffer_interface,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	&wl_buffer_interface,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+	NULL,
--+};
--+
--+static const struct wl_message wl_drm_requests[] = {
--+	{ "authenticate", "u", types + 0 },
--+	{ "create_buffer", "nuiiuu", types + 1 },
--+	{ "create_planar_buffer", "nuiiuiiiiii", types + 7 },
--+};
--+
--+static const struct wl_message wl_drm_events[] = {
--+	{ "device", "s", types + 0 },
--+	{ "format", "u", types + 0 },
--+	{ "authenticated", "", types + 0 },
--+};
--+
--+WL_EXPORT const struct wl_interface wl_drm_interface = {
--+	"wl_drm", 1,
--+	ARRAY_LENGTH(wl_drm_requests), wl_drm_requests,
--+	ARRAY_LENGTH(wl_drm_events), wl_drm_events,
--+};
--+
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
-deleted file mode 100644
-index 8c19fa6..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-Added-KMSsink-support.patch
-+++ /dev/null
-@@ -1,1457 +0,0 @@
--From efe7189ee13e78664bbe373c6fd890280c9dee50 Mon Sep 17 00:00:00 2001
--From: Pooja Prajod <a0132412@ti.com>
--Date: Fri, 12 Dec 2014 13:28:10 +0530
--Subject: [PATCH] Added KMSsink support
--
-----
-- configure.ac               |   12 +
-- sys/Makefile.am            |   10 +-
-- sys/kms/Makefile.am        |   29 +
-- sys/kms/gstdrmutils.c      |  292 +++++++++
-- sys/kms/gstdrmutils.h      |   40 ++
-- sys/kms/gstkmsbufferpriv.c |  124 ++++
-- sys/kms/gstkmsbufferpriv.h |   64 ++
-- sys/kms/gstkmssink.c       |  682 ++++++++++++++++++++++
-- sys/kms/gstkmssink.h       |   91 +++
-- 9 files changed, 1342 insertions(+), 2 deletions(-)
-- create mode 100644 sys/kms/Makefile.am
-- create mode 100644 sys/kms/gstdrmutils.c
-- create mode 100644 sys/kms/gstdrmutils.h
-- create mode 100644 sys/kms/gstkmsbufferpriv.c
-- create mode 100644 sys/kms/gstkmsbufferpriv.h
-- create mode 100644 sys/kms/gstkmssink.c
-- create mode 100644 sys/kms/gstkmssink.h
--
--diff --git a/configure.ac b/configure.ac
--index b94bd5d..8cdf972 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -1400,6 +1400,16 @@ AG_GST_CHECK_FEATURE(KATE, [Kate], kate, [
--   AC_SUBST(TIGER_LIBS)
-- ],,,[AM_CONDITIONAL(USE_TIGER, false)])
-- 
--+dnl *** kms ***
--+translit(dnm, m, l) AM_CONDITIONAL(USE_KMS, true)
--+AG_GST_CHECK_FEATURE(KMS, [kmssink], kms, [
--+  PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
--+  PKG_CHECK_MODULES(LIBDCE, [libdce >= 1.0.0], HAVE_KMS=yes, HAVE_KMS=no)
--+  AC_SUBST(DRM_CFLAGS)
--+  AC_SUBST(DRM_LIBS)
--+])
--+
--+
-- dnl *** ladspa ***
-- translit(dnm, m, l) AM_CONDITIONAL(USE_LADSPA, true)
-- AG_GST_CHECK_FEATURE(LADSPA, [ladspa], ladspa, [
--@@ -2212,6 +2222,7 @@ AM_CONDITIONAL(USE_GSM, false)
-- AM_CONDITIONAL(USE_HLS, false)
-- AM_CONDITIONAL(USE_KATE, false)
-- AM_CONDITIONAL(USE_TIGER, false)
--+AM_CONDITIONAL(USE_KMS, false)
-- AM_CONDITIONAL(USE_LADSPA, false)
-- AM_CONDITIONAL(USE_LV2, false)
-- AM_CONDITIONAL(USE_LIBMMS, false)
--@@ -2439,6 +2450,7 @@ sys/osxvideo/Makefile
-- sys/qtwrapper/Makefile
-- sys/mfc/Makefile
-- sys/shm/Makefile
--+sys/kms/Makefile
-- sys/uvch264/Makefile
-- sys/vcd/Makefile
-- sys/vdpau/Makefile
--diff --git a/sys/Makefile.am b/sys/Makefile.am
--index b1abda6..b87a1ca 100644
----- a/sys/Makefile.am
--+++ b/sys/Makefile.am
--@@ -106,6 +106,12 @@ else
-- PVR_DIR=
-- endif
-- 
--+if USE_KMS
--+KMS_DIR=kms
--+else
--+KMS_DIR=
--+endif
--+
-- if USE_SHM
-- SHM_DIR=shm
-- else
--@@ -166,9 +172,9 @@ else
-- MFC_DIR=
-- endif
-- 
---SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR) $(AVC_DIR) $(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR) $(DIRECTDRAW_DIR) $(DIRECTSOUND_DIR) $(DIRECTSHOW_DIR) $(DVB_DIR) $(FBDEV_DIR) $(LINSYS_DIR) $(OPENSLES_DIR) $(OSX_VIDEO_DIR) $(PVR_DIR) $(QT_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR) $(VDPAU_DIR) $(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR) $(MFC_DIR)
--+SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR) $(AVC_DIR) $(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR) $(DIRECTDRAW_DIR) $(DIRECTSOUND_DIR) $(DIRECTSHOW_DIR) $(DVB_DIR) $(FBDEV_DIR) $(LINSYS_DIR) $(OPENSLES_DIR) $(OSX_VIDEO_DIR) $(PVR_DIR) $(QT_DIR) $(KMS_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR) $(VDPAU_DIR) $(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR) $(MFC_DIR)
-- 
-- DIST_SUBDIRS = acmenc acmmp3dec androidmedia applemedia applemedia-nonpublic avc bluez d3dvideosink decklink directdraw directsound dvb linsys fbdev dshowdecwrapper dshowsrcwrapper dshowvideosink \
---		opensles osxvideo pvr2d qtwrapper shm uvch264 vcd vdpau wasapi wininet winks winscreencap mfc
--+		opensles osxvideo pvr2d qtwrapper kms shm uvch264 vcd vdpau wasapi wininet winks winscreencap mfc
-- 
-- include $(top_srcdir)/common/parallel-subdirs.mak
--diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
--new file mode 100644
--index 0000000..035efef
----- /dev/null
--+++ b/sys/kms/Makefile.am
--@@ -0,0 +1,29 @@
--+plugin_LTLIBRARIES = libgstkmssink.la
--+
--+libgstkmssink_la_SOURCES = \
--+	gstkmssink.c \
--+	gstkmsbufferpriv.c \
--+	gstdrmutils.c
--+
--+libgstkmssink_la_CFLAGS = \
--+	$(GST_PLUGINS_BAD_CFLAGS) \
--+	$(GST_PLUGINS_BASE_CFLAGS) \
--+	$(GST_BASE_CFLAGS) \
--+	$(LIBDCE_CFLAGS) \
--+	$(GST_CFLAGS) \
--+	$(DRM_CFLAGS)
--+
--+libgstkmssink_la_LIBADD = \
--+	$(GST_PLUGINS_BASE_LIBS) \
--+	$(GST_BASE_LIBS) \
--+	$(GST_LIBS) \
--+	$(LIBDCE_LIBS) \
--+	$(DRM_LIBS) \
--+	-lgstvideo-$(GST_API_VERSION) \
--+	-lgstdmabuf-$(GST_API_VERSION) \
--+	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
--+
--+libgstkmssink_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS)
--+libgstkmssink_la_LIBTOOLFLAGS = --tag=disable-static
--+
--+noinst_HEADERS = gstkmssink.h gstdrmutils.h gstkmsbufferpriv.h
--diff --git a/sys/kms/gstdrmutils.c b/sys/kms/gstdrmutils.c
--new file mode 100644
--index 0000000..d7a8dd6
----- /dev/null
--+++ b/sys/kms/gstdrmutils.c
--@@ -0,0 +1,292 @@
--+/* GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Library General Public
--+ * License as published by the Free Software Foundation; either
--+ * version 2 of the License, or (at your option) any later version.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
--+ * Library General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Library General Public
--+ * License along with this library; if not, write to the
--+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
--+ * Boston, MA 02111-1307, USA.
--+ */
--+
--+#include <gst/gst.h>
--+#include "gstdrmutils.h"
--+
--+GST_DEBUG_CATEGORY_EXTERN (gst_debug_kms_sink);
--+#define GST_CAT_DEFAULT gst_debug_kms_sink
--+
--+void
--+gst_drm_connector_cleanup (int fd, struct connector *c)
--+{
--+  if (c->connector) {
--+    drmModeFreeConnector (c->connector);
--+    c->connector = NULL;
--+  }
--+  if (c->encoder) {
--+    drmModeFreeEncoder (c->encoder);
--+    c->encoder = NULL;
--+  }
--+  if (c->fb_id) {
--+    drmModeRmFB (fd, c->fb_id);
--+    c->fb_id = 0;
--+  }
--+  if (c->fb_bo) {
--+    omap_bo_del (c->fb_bo);
--+    c->fb_bo = NULL;
--+  }
--+}
--+
--+static gboolean
--+gst_drm_connector_find_mode_and_plane_helper (int fd,
--+    struct omap_device *dev, int width, int height,
--+    drmModeRes * resources, drmModePlaneRes * plane_resources,
--+    struct connector *c, drmModePlane ** out_plane)
--+{
--+  int i, best_area = 0, ret;
--+
--+  /* free old stuff: */
--+  if (*out_plane) {             /* TODO maybe move into 'struct connector'?? */
--+    drmModeFreePlane (*out_plane);
--+    *out_plane = NULL;
--+  }
--+  gst_drm_connector_cleanup (fd, c);
--+
--+  /* First, find the connector & mode */
--+  c->connector = drmModeGetConnector (fd, c->id);
--+  if (!c->connector)
--+    goto error_no_connector;
--+
--+  if (!c->connector->count_modes)
--+    goto error_no_mode;
--+
--+  /* just look for the highest resolution: */
--+  for (i = 0; i < c->connector->count_modes; i++) {
--+    drmModeModeInfo *mode = &c->connector->modes[i];
--+    int area = mode->hdisplay * mode->vdisplay;
--+
--+    if (area > best_area) {
--+      c->mode = mode;
--+      best_area = area;
--+    }
--+  }
--+
--+  if (c->mode == NULL) {
--+    /* XXX: just pick the first available mode. Not sure this is correct... */
--+    c->mode = &c->connector->modes[0];
--+#if 0
--+    goto error_no_mode;
--+#endif
--+  }
--+
--+  /* Now get the encoder */
--+  c->encoder = drmModeGetEncoder (fd, c->connector->encoder_id);
--+  if (!c->encoder)
--+    goto error_no_encoder;
--+
--+  if (c->crtc == -1)
--+    c->crtc = c->encoder->crtc_id;
--+
--+  /* and figure out which crtc index it is: */
--+  c->pipe = -1;
--+  for (i = 0; i < resources->count_crtcs; i++) {
--+    if (c->crtc == (int) resources->crtcs[i]) {
--+      c->pipe = i;
--+      break;
--+    }
--+  }
--+
--+  if (c->pipe == -1)
--+    goto error_no_crtc;
--+
--+  *out_plane = NULL;
--+  for (i = 0; i < plane_resources->count_planes; i++) {
--+    drmModePlane *plane = drmModeGetPlane (fd, plane_resources->planes[i]);
--+    if (plane->possible_crtcs & (1 << c->pipe)) {
--+      *out_plane = plane;
--+      break;
--+    }
--+  }
--+
--+  if (*out_plane == NULL)
--+    goto error_no_plane;
--+
--+  c->fb_bo = omap_bo_new (dev, best_area * 2, OMAP_BO_WC);
--+  if (c->fb_bo) {
--+    uint32_t fourcc = DRM_FORMAT_RGB565;
--+    uint32_t handles[4] = { omap_bo_handle (c->fb_bo) };
--+    uint32_t pitches[4] = { c->mode->hdisplay * 2 };
--+    uint32_t offsets[4] = { 0 };
--+    ret = drmModeAddFB2 (fd, c->mode->hdisplay, c->mode->vdisplay,
--+        fourcc, handles, pitches, offsets, &c->fb_id, 0);
--+    if (ret) {
--+      /* TODO */
--+    }
--+  }
--+
--+  /* now set the desired mode: */
--+  ret = drmModeSetCrtc (fd, c->crtc, c->fb_id, 0, 0, &c->id, 1, c->mode);
--+  if (ret) {
--+    /* TODO */
--+  }
--+
--+  return TRUE;
--+
--+fail:
--+  gst_drm_connector_cleanup (fd, c);
--+
--+  return FALSE;
--+
--+error_no_connector:
--+  GST_DEBUG ("could not get connector %s", strerror (errno));
--+  goto fail;
--+
--+error_no_mode:
--+  GST_DEBUG ("could not find mode %dx%d (count_modes %d)",
--+      width, height, c->connector->count_modes);
--+  goto fail;
--+
--+error_no_encoder:
--+  GST_DEBUG ("could not get encoder: %s", strerror (errno));
--+  goto fail;
--+
--+error_no_crtc:
--+  GST_DEBUG ("couldn't find a crtc");
--+  goto fail;
--+
--+error_no_plane:
--+  GST_DEBUG ("couldn't find a plane");
--+  goto fail;
--+}
--+
--+gboolean
--+gst_drm_connector_find_mode_and_plane (int fd,
--+    struct omap_device *dev, int width, int height,
--+    drmModeRes * resources, drmModePlaneRes * plane_resources,
--+    struct connector *c, drmModePlane ** out_plane)
--+{
--+  int i;
--+  gboolean found = FALSE;
--+
--+  /* First, find the connector & mode */
--+  if (c->id == 0) {
--+    /* Any connector */
--+    GST_DEBUG ("Any connector, %d available", resources->count_connectors);
--+    for (i = 0; i < resources->count_connectors; i++) {
--+      GST_DEBUG ("  %d", resources->connectors[i]);
--+    }
--+    for (i = 0; i < resources->count_connectors; i++) {
--+      GST_DEBUG ("Trying connector %d: %d", i, resources->connectors[i]);
--+      c->id = resources->connectors[i];
--+      if (gst_drm_connector_find_mode_and_plane_helper (fd, dev, width, height,
--+              resources, plane_resources, c, out_plane)) {
--+        GST_DEBUG ("Found suitable connector");
--+        found = TRUE;
--+        break;
--+      }
--+      GST_DEBUG ("Connector not suitable");
--+    }
--+  } else {
--+    /* A specific connector */
--+    GST_DEBUG ("Connector %d", c->id);
--+    found =
--+        gst_drm_connector_find_mode_and_plane_helper (fd, dev, width, height,
--+        resources, plane_resources, c, out_plane);
--+  }
--+
--+  return found;
--+}
--+
--+/* table nicked off libdrm's modetest.c */
--+/* *INDENT-OFF* */
--+static const struct {
--+  int type_id;
--+  const char *type_name;
--+} connector_type_names[] = {
--+  { DRM_MODE_CONNECTOR_Unknown, "unknown" },
--+  { DRM_MODE_CONNECTOR_VGA, "VGA" },
--+  { DRM_MODE_CONNECTOR_DVII, "DVI-I" },
--+  { DRM_MODE_CONNECTOR_DVID, "DVI-D" },
--+  { DRM_MODE_CONNECTOR_DVIA, "DVI-A" },
--+  { DRM_MODE_CONNECTOR_Composite, "composite" },
--+  { DRM_MODE_CONNECTOR_SVIDEO, "s-video" },
--+  { DRM_MODE_CONNECTOR_LVDS, "LVDS" },
--+  { DRM_MODE_CONNECTOR_Component, "component" },
--+  { DRM_MODE_CONNECTOR_9PinDIN, "9-pin-DIN" },
--+  { DRM_MODE_CONNECTOR_DisplayPort, "displayport" },
--+  { DRM_MODE_CONNECTOR_HDMIA, "HDMI-A" },
--+  { DRM_MODE_CONNECTOR_HDMIB, "HDMI-B" },
--+  { DRM_MODE_CONNECTOR_TV, "TV" },
--+  { DRM_MODE_CONNECTOR_eDP, "embedded-displayport" },
--+};
--+/* *INDENT-ON* */
--+
--+gboolean
--+gst_drm_connector_find_mode_and_plane_by_name (int fd,
--+    struct omap_device * dev, int width, int height,
--+    drmModeRes * resources, drmModePlaneRes * plane_resources,
--+    struct connector * c, const char *name, drmModePlane ** out_plane)
--+{
--+  int i, n;
--+  char tmp[64];
--+  const char *type_name;
--+  int found[G_N_ELEMENTS (connector_type_names)] = { 0 };
--+
--+  /* Find connector from name */
--+  for (i = 0; i < resources->count_connectors; i++) {
--+    GST_DEBUG ("Trying connector %d: %d", i, resources->connectors[i]);
--+    c->id = resources->connectors[i];
--+    c->connector = drmModeGetConnector (fd, c->id);
--+    if (!c->connector)
--+      continue;
--+
--+    /* Find type name from this connector */
--+    for (n = 0; n < G_N_ELEMENTS (connector_type_names); n++)
--+      if (connector_type_names[n].type_id == c->connector->connector_type)
--+        break;
--+    if (n == G_N_ELEMENTS (connector_type_names))
--+      continue;
--+
--+    type_name = connector_type_names[n].type_name;
--+    GST_DEBUG ("Connector %d has type %s", i, type_name);
--+    ++found[n];
--+
--+    drmModeFreeConnector (c->connector);
--+    c->connector = NULL;
--+
--+    /* Try a few different matches, such as modetest and xrandr
--+       output, and also a indexless one matching first found */
--+    snprintf (tmp, sizeof (tmp), "%s-%u", type_name, found[n]);
--+    if (!g_ascii_strcasecmp (tmp, name))
--+      goto found;
--+    snprintf (tmp, sizeof (tmp), "%s%u", type_name, found[n]);
--+    if (!g_ascii_strcasecmp (tmp, name))
--+      goto found;
--+    if (!g_ascii_strcasecmp (name, type_name))
--+      goto found;
--+
--+    continue;
--+
--+  found:
--+    if (gst_drm_connector_find_mode_and_plane_helper (fd, dev, width, height,
--+            resources, plane_resources, c, out_plane)) {
--+      GST_DEBUG ("Found suitable connector");
--+      return TRUE;
--+    }
--+    GST_DEBUG ("Connector not suitable");
--+  }
--+
--+  return FALSE;
--+}
--diff --git a/sys/kms/gstdrmutils.h b/sys/kms/gstdrmutils.h
--new file mode 100644
--index 0000000..053a245
----- /dev/null
--+++ b/sys/kms/gstdrmutils.h
--@@ -0,0 +1,40 @@
--+#ifndef __GST_DRMUTILS_H__
--+#define __GST_DRMUTILS_H__
--+
--+#include <stdio.h>
--+#include <stdint.h>
--+#include <stdlib.h>
--+#include <string.h>
--+#include <errno.h>
--+#include <unistd.h>
--+#include <assert.h>
--+#include <xf86drmMode.h>
--+#include <omap_drm.h>
--+#include <omap_drmif.h>
--+#include <drm_fourcc.h>
--+#include <gst/gst.h>
--+
--+struct connector {
--+	uint32_t id;
--+	char mode_str[64];
--+	drmModeConnector *connector;
--+	drmModeModeInfo *mode;
--+	drmModeEncoder *encoder;
--+	uint32_t fb_id;
--+	struct omap_bo *fb_bo;
--+	int crtc;
--+	int pipe;
--+};
--+
--+void gst_drm_connector_cleanup (int fd, struct connector * c);
--+gboolean gst_drm_connector_find_mode_and_plane (int fd,
--+    struct omap_device * dev, int width, int height,
--+    drmModeRes * resources, drmModePlaneRes * plane_resources,
--+    struct connector *c, drmModePlane ** out_plane);
--+gboolean gst_drm_connector_find_mode_and_plane_by_name (int fd,
--+    struct omap_device *dev, int width, int height,
--+    drmModeRes * resources, drmModePlaneRes * plane_resources,
--+    struct connector *c, const char *name,
--+    drmModePlane ** out_plane);
--+
--+#endif /* __GST_DRMUTILS_H__ */
--diff --git a/sys/kms/gstkmsbufferpriv.c b/sys/kms/gstkmsbufferpriv.c
--new file mode 100644
--index 0000000..ffa7e46
----- /dev/null
--+++ b/sys/kms/gstkmsbufferpriv.c
--@@ -0,0 +1,124 @@
--+/*
--+ * GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *  Rob Clark <rob.clark@linaro.org>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Lesser General Public
--+ * License as published by the Free Software Foundation
--+ * version 2.1 of the License.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
--+ * Lesser General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Lesser General Public
--+ * License along with this library; if not, write to the Free Software
--+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
--+ */
--+
--+#ifdef HAVE_CONFIG_H
--+#include "config.h"
--+#endif
--+
--+#include <stdint.h>
--+#include <gst/gst.h>
--+#include <gst/dmabuf/dmabuf.h>
--+
--+#include <omap_drm.h>
--+#include <omap_drmif.h>
--+#include <xf86drmMode.h>
--+
--+#include "gstkmssink.h"
--+#include "gstkmsbufferpriv.h"
--+
--+static int
--+create_fb (GstKMSBufferPriv * priv, GstKMSSink * sink)
--+{
--+  /* TODO get format, etc from caps.. and query device for
--+   * supported formats, and make this all more flexible to
--+   * cope with various formats:
--+   */
--+  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
--+
--+  uint32_t handles[4] = {
--+    omap_bo_handle (priv->bo), omap_bo_handle (priv->bo),
--+  };
--+  uint32_t pitches[4] = {
--+    GST_ROUND_UP_4 (sink->input_width), GST_ROUND_UP_4 (sink->input_width),
--+  };
--+  uint32_t offsets[4] = {
--+    0, pitches[0] * sink->input_height
--+  };
--+
--+  return drmModeAddFB2 (priv->fd, sink->input_width, sink->input_height,
--+      fourcc, handles, pitches, offsets, &priv->fb_id, 0);
--+}
--+
--+/**
--+ * gst_kms_buffer_priv:
--+ * @sink: a #GstKMSSink
--+ * @buf: a pointer to #GstBuffer
--+ *
--+ * Checks if the @buf has a GstMetaDmaBuf metadata set. If it doesn't we return a NULL
--+ * indicating its not a dmabuf buffer. We maintain a hashtable with dmabuf fd as key and 
--+ * the GstKMSBufferPriv structure as value
--+ *
--+ * Returns: the #GstKMSBufferPriv
--+ *
--+ * Since: 1.2.?
--+ */
--+GstKMSBufferPriv *
--+gst_kms_buffer_priv (GstKMSSink * sink, GstBuffer * buf)
--+{
--+    GstMetaDmaBuf *dmabuf = gst_buffer_get_dma_buf_meta (buf);
--+
--+
--+    struct omap_bo *bo;
--+    int fd;
--+    int fd_copy;
--+    GstKMSBufferPriv * priv;
--+
--+    /* if it isn't a dmabuf buffer that we can import, then there
--+     * is nothing we can do with it:
--+     */
--+   
--+    if (!dmabuf) {
--+      GST_DEBUG_OBJECT (sink, "not importing non dmabuf buffer");
--+      return NULL;
--+    }
--+
--+    fd_copy = gst_dma_buf_meta_get_fd (dmabuf);
--+
--+    /* lookup the hashtable with fd as key. If present return bo & buffer structure */
--+    priv = g_hash_table_lookup (sink->kmsbufferpriv, (gpointer)fd_copy);
--+    if(priv) {
--+       return priv;
--+     }
--+
--+    priv = g_malloc0 (sizeof (GstKMSBufferPriv));
--+    bo = omap_bo_from_dmabuf (sink->dev, fd_copy);
--+    fd = sink->fd;
--+
--+      priv->bo = bo;
--+      priv->fd = fd;
--+
--+    if (create_fb (priv, sink)) {
--+      GST_WARNING_OBJECT (sink, "could not create framebuffer: %s",
--+          strerror (errno));
--+      g_free(priv);
--+      return NULL;
--+    }
--+
--+    /* if fd not present, write to hash table fd and the corresponding priv. */
--+    g_hash_table_insert(sink->kmsbufferpriv, (gpointer)fd_copy, priv); 
--+   
--+  
--+  return priv;
--+}
--diff --git a/sys/kms/gstkmsbufferpriv.h b/sys/kms/gstkmsbufferpriv.h
--new file mode 100644
--index 0000000..a1070da
----- /dev/null
--+++ b/sys/kms/gstkmsbufferpriv.h
--@@ -0,0 +1,64 @@
--+/*
--+ * GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *  Rob Clark <rob.clark@linaro.org>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Lesser General Public
--+ * License as published by the Free Software Foundation
--+ * version 2.1 of the License.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
--+ * Lesser General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Lesser General Public
--+ * License along with this library; if not, write to the Free Software
--+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
--+ */
--+
--+#ifndef __GSTKMSBUFFERPRIV_H__
--+#define __GSTKMSBUFFERPRIV_H__
--+
--+#include <stdint.h>
--+#include <gst/gst.h>
--+
--+G_BEGIN_DECLS
--+
--+/*
--+ * per-buffer private data so kmssink can attach a drm_framebuffer
--+ * handle (fb_id) to a buffer, which gets deleted when the buffer
--+ * is finalized
--+ */
--+
--+#define GST_TYPE_KMS_BUFFER_PRIV      \
--+  (gst_kms_buffer_priv_get_type ())
--+#define GST_KMS_BUFFER_PRIV(obj)      \
--+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_KMS_BUFFER_PRIV, GstKMSBufferPriv))
--+#define GST_IS_KMS_BUFFER_PRIV(obj)     \
--+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_KMS_BUFFER_PRIV))
--+
--+
--+typedef struct
--+{
--+  struct omap_bo *bo;
--+  int fd;
--+  uint32_t fb_id;
--+}GstKMSBufferPriv;
--+
--+
--+GType gst_kms_buffer_priv_get_type (void);
--+
--+/* Returns a GstKMSBufferPriv, if it has a dmabuf fd metadata */
--+GstKMSBufferPriv * gst_kms_buffer_priv (GstKMSSink *sink, GstBuffer * buf);
--+
--+G_END_DECLS
--+
--+
--+#endif /* __GSTKMSBUFFERPRIV_H__ */
--diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
--new file mode 100644
--index 0000000..b9c9095
----- /dev/null
--+++ b/sys/kms/gstkmssink.c
--@@ -0,0 +1,682 @@
--+/* GStreamer
--+ * Copyright (C) 2012 Texas Instruments
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Library General Public
--+ * License as published by the Free Software Foundation; either
--+ * version 2 of the License, or (at your option) any later version.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
--+ * Library General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Library General Public
--+ * License along with this library; if not, write to the
--+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
--+ * Boston, MA 02111-1307, USA.
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ */
--+
--+#ifdef HAVE_CONFIG_H
--+#include "config.h"
--+#endif
--+
--+#include "gstkmssink.h"
--+#include "gstkmsbufferpriv.h"
--+
--+#include <libdce.h>
--+#include <omap_drm.h>
--+#include <omap_drmif.h>
--+#include <xf86drmMode.h>
--+
--+GST_DEBUG_CATEGORY (gst_debug_kms_sink);
--+#define GST_CAT_DEFAULT gst_debug_kms_sink
--+
--+G_DEFINE_TYPE (GstKMSSink, gst_kms_sink, GST_TYPE_VIDEO_SINK);
--+
--+static void gst_kms_sink_reset (GstKMSSink * sink);
--+
--+static GstStaticPadTemplate gst_kms_sink_template_factory =
--+GST_STATIC_PAD_TEMPLATE ("sink",
--+    GST_PAD_SINK,
--+    GST_PAD_ALWAYS,
--+    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("NV12"))
--+    );
--+
--+enum
--+{
--+  PROP_0,
--+  PROP_PIXEL_ASPECT_RATIO,
--+  PROP_FORCE_ASPECT_RATIO,
--+  PROP_SCALE,
--+  PROP_CONNECTOR,
--+  PROP_CONNECTOR_NAME,
--+};
--+
--+static inline void
--+display_bufs_queue (GstKMSSink * sink, GstBuffer * buf)
--+{
--+  int i;
--+  for (i = 0; i < (NUM_DISPLAY_BUFS - 1); i++)
--+    gst_buffer_replace (&sink->display_bufs[i], sink->display_bufs[i + 1]);
--+  gst_buffer_replace (&sink->display_bufs[i], buf);
--+}
--+
--+static inline void
--+display_bufs_free (GstKMSSink * sink)
--+{
--+  int i;
--+  for (i = 0; i < NUM_DISPLAY_BUFS; i++)
--+    gst_buffer_replace (&sink->display_bufs[i], NULL);
--+}
--+
--+static gboolean
--+gst_kms_sink_calculate_aspect_ratio (GstKMSSink * sink, gint width,
--+    gint height, gint video_par_n, gint video_par_d)
--+{
--+  guint calculated_par_n;
--+  guint calculated_par_d;
--+
--+  if (!gst_video_calculate_display_ratio (&calculated_par_n, &calculated_par_d,
--+          width, height, video_par_n, video_par_d, 1, 1)) {
--+    GST_ELEMENT_ERROR (sink, CORE, NEGOTIATION, (NULL),
--+        ("Error calculating the output display ratio of the video."));
--+    return FALSE;
--+  }
--+  GST_DEBUG_OBJECT (sink,
--+      "video width/height: %dx%d, calculated display ratio: %d/%d",
--+      width, height, calculated_par_n, calculated_par_d);
--+
--+  /* now find a width x height that respects this display ratio.
--+   * prefer those that have one of w/h the same as the incoming video
--+   * using wd / hd = calculated_pad_n / calculated_par_d */
--+
--+  /* start with same height, because of interlaced video */
--+  /* check hd / calculated_par_d is an integer scale factor, and scale wd with the PAR */
--+  if (height % calculated_par_d == 0) {
--+    GST_DEBUG_OBJECT (sink, "keeping video height");
--+    GST_VIDEO_SINK_WIDTH (sink) = (guint)
--+        gst_util_uint64_scale_int (height, calculated_par_n, calculated_par_d);
--+    GST_VIDEO_SINK_HEIGHT (sink) = height;
--+  } else if (width % calculated_par_n == 0) {
--+    GST_DEBUG_OBJECT (sink, "keeping video width");
--+    GST_VIDEO_SINK_WIDTH (sink) = width;
--+    GST_VIDEO_SINK_HEIGHT (sink) = (guint)
--+        gst_util_uint64_scale_int (width, calculated_par_d, calculated_par_n);
--+  } else {
--+    GST_DEBUG_OBJECT (sink, "approximating while keeping video height");
--+    GST_VIDEO_SINK_WIDTH (sink) = (guint)
--+        gst_util_uint64_scale_int (height, calculated_par_n, calculated_par_d);
--+    GST_VIDEO_SINK_HEIGHT (sink) = height;
--+  }
--+  GST_DEBUG_OBJECT (sink, "scaling to %dx%d",
--+      GST_VIDEO_SINK_WIDTH (sink), GST_VIDEO_SINK_HEIGHT (sink));
--+
--+  return TRUE;
--+}
--+
--+static gboolean
--+gst_kms_sink_setcaps (GstBaseSink * bsink, GstCaps * caps)
--+{
--+  GstKMSSink *sink;
--+  gboolean ret = TRUE;
--+  gint width, height;
--+  gint fps_n, fps_d;
--+  gint par_n, par_d;
--+  GstVideoFormat format;
--+  GstVideoInfo info;
--+
--+  sink = GST_KMS_SINK (bsink);
--+
--+  ret = gst_video_info_from_caps (&info, caps);
--+  format = GST_VIDEO_INFO_FORMAT(&info);
--+  width = GST_VIDEO_INFO_WIDTH(&info);
--+  height = GST_VIDEO_INFO_HEIGHT(&info);
--+  fps_n = GST_VIDEO_INFO_FPS_N(&info);
--+  fps_d = GST_VIDEO_INFO_FPS_D(&info);
--+  par_n = GST_VIDEO_INFO_PAR_N(&info);
--+  par_d = GST_VIDEO_INFO_PAR_D(&info);
--+
--+  if (!ret)
--+    return FALSE;
--+
--+  if (width <= 0 || height <= 0) {
--+    GST_ELEMENT_ERROR (sink, CORE, NEGOTIATION, (NULL),
--+        ("Invalid image size."));
--+    return FALSE;
--+  }
--+
--+  sink->format = format;
--+  sink->par_n = par_n;
--+  sink->par_d = par_d;
--+  sink->src_rect.x = sink->src_rect.y = 0;
--+  sink->src_rect.w = width;
--+  sink->src_rect.h = height;
--+  sink->input_width = width;
--+  sink->input_height = height;
--+
--+  if (!sink->pool || !gst_drm_buffer_pool_check_caps (sink->pool, caps)) {
--+    int size;
--+
--+    if (sink->pool) {
--+      gst_drm_buffer_pool_destroy (sink->pool);
--+      sink->pool = NULL;
--+    }
--+
--+    size = GST_VIDEO_INFO_SIZE(&info);
--+    sink->pool = gst_drm_buffer_pool_new (GST_ELEMENT (sink),
--+        sink->fd, caps, size);
--+  }
--+
--+  sink->conn.crtc = -1;
--+  sink->plane = NULL;
--+
--+  return TRUE;
--+}
--+
--+static void
--+gst_kms_sink_get_times (GstBaseSink * bsink, GstBuffer * buf,
--+    GstClockTime * start, GstClockTime * end)
--+{
--+  GstKMSSink *sink;
--+
--+  sink = GST_KMS_SINK (bsink);
--+
--+  if (GST_BUFFER_PTS_IS_VALID (buf)) {
--+    *start = GST_BUFFER_PTS (buf);
--+    if (GST_BUFFER_DURATION_IS_VALID (buf)) {
--+      *end = *start + GST_BUFFER_DURATION (buf);
--+    } else {
--+      if (sink->fps_n > 0) {
--+        *end = *start +
--+            gst_util_uint64_scale_int (GST_SECOND, sink->fps_d, sink->fps_n);
--+      }
--+    }
--+  }
--+}
--+
--+static GstFlowReturn
--+gst_kms_sink_show_frame (GstVideoSink * vsink, GstBuffer * inbuf)
--+{
--+  GstKMSSink *sink = GST_KMS_SINK (vsink);
--+  GstBuffer *buf = NULL;
--+  GstKMSBufferPriv *priv;
--+  GstFlowReturn flow_ret = GST_FLOW_OK;
--+  int ret;
--+  gint width, height;
--+  GstVideoRectangle *c = &sink->src_rect;
--+
--+ GstVideoCropMeta* crop = gst_buffer_get_video_crop_meta (inbuf);
--+ if (crop){
--+  c->y = crop->y;
--+  c->x = crop->x;
--+
--+ if (crop->width >= 0) {
--+     width = crop->width;
--+ }
--+ else {
--+     width = GST_VIDEO_SINK_WIDTH (sink);
--+  }
--+ if (crop->height >= 0){
--+        height = crop->height;
--+ }
--+ else {
--+        height = GST_VIDEO_SINK_HEIGHT (sink);
--+  }
--+}
--+
--+
--+ c->w = width;
--+ c->h = height;
--+
--+
--+if (!gst_kms_sink_calculate_aspect_ratio (sink, width, height,
--+              sink->par_n, sink->par_d))
--+  GST_DEBUG_OBJECT (sink, "calculate aspect ratio failed");
--+
--+
--+  GST_INFO_OBJECT (sink, "enter");
--+
--+  if (sink->conn.crtc == -1) {
--+    GstVideoRectangle dest = { 0 };
--+
--+    if (sink->conn_name) {
--+      if (!gst_drm_connector_find_mode_and_plane_by_name (sink->fd,
--+              sink->dev, sink->src_rect.w, sink->src_rect.h,
--+              sink->resources, sink->plane_resources, &sink->conn,
--+              sink->conn_name, &sink->plane))
--+        goto connector_not_found;
--+    } else {
--+      sink->conn.id = sink->conn_id;
--+      if (!gst_drm_connector_find_mode_and_plane (sink->fd,
--+              sink->dev, sink->src_rect.w, sink->src_rect.h,
--+              sink->resources, sink->plane_resources, &sink->conn,
--+              &sink->plane))
--+        goto connector_not_found;
--+    }
--+
--+    dest.w = sink->conn.mode->hdisplay;
--+    dest.h = sink->conn.mode->vdisplay;
--+    gst_video_sink_center_rect (sink->src_rect, dest, &sink->dst_rect,
--+        sink->scale);
--+  }
--+
--+  priv = gst_kms_buffer_priv (sink, inbuf);
--+  if (priv) {
--+    buf = gst_buffer_ref (inbuf);
--+  } else {
--+    GST_LOG_OBJECT (sink, "not a KMS buffer, slow-path!");
--+    buf = gst_drm_buffer_pool_get (sink->pool, FALSE);
--+    if (buf) {
--+      GST_BUFFER_PTS (buf) = GST_BUFFER_PTS (inbuf);
--+      GST_BUFFER_DURATION (buf) = GST_BUFFER_DURATION (inbuf);
--+      gst_buffer_copy_into (buf, inbuf, GST_BUFFER_COPY_DEEP, 0 ,-1);
--+      priv = gst_kms_buffer_priv (sink, buf);
--+    }
--+    if (!priv)
--+      goto add_fb2_failed;
--+  }
--+
--+  ret = drmModeSetPlane (sink->fd, sink->plane->plane_id,
--+      sink->conn.crtc, priv->fb_id, 0,
--+      sink->dst_rect.x, sink->dst_rect.y, sink->dst_rect.w, sink->dst_rect.h,
--+      sink->src_rect.x << 16, sink->src_rect.y << 16,
--+      sink->src_rect.w << 16, sink->src_rect.h << 16);
--+  if (ret)
--+    goto set_plane_failed;
--+
--+  display_bufs_queue (sink, buf);
--+
--+out:
--+  GST_INFO_OBJECT (sink, "exit");
--+  if (buf)
--+    gst_buffer_unref (buf);
--+  return flow_ret;
--+
--+add_fb2_failed:
--+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
--+      (NULL), ("drmModeAddFB2 failed: %s (%d)", strerror (errno), errno));
--+  flow_ret = GST_FLOW_ERROR;
--+  goto out;
--+
--+set_plane_failed:
--+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
--+      (NULL), ("drmModeSetPlane failed: %s (%d)", strerror (errno), errno));
--+  flow_ret = GST_FLOW_ERROR;
--+  goto out;
--+
--+connector_not_found:
--+  GST_ELEMENT_ERROR (sink, RESOURCE, NOT_FOUND,
--+      (NULL), ("connector not found", strerror (errno), errno));
--+  goto out;
--+}
--+
--+
--+static gboolean
--+gst_kms_sink_event (GstBaseSink * bsink, GstEvent * event)
--+{
--+  GstKMSSink *sink = GST_KMS_SINK (bsink);
--+
--+  switch (GST_EVENT_TYPE (event)) {
--+    default:
--+      break;
--+  }
--+  if (GST_BASE_SINK_CLASS (gst_kms_sink_parent_class)->event)
--+    return GST_BASE_SINK_CLASS (gst_kms_sink_parent_class)->event (bsink,
--+        event);
--+  else
--+    return TRUE;
--+}
--+
--+static void
--+gst_kms_sink_set_property (GObject * object, guint prop_id,
--+    const GValue * value, GParamSpec * pspec)
--+{
--+  GstKMSSink *sink;
--+
--+  g_return_if_fail (GST_IS_KMS_SINK (object));
--+
--+  sink = GST_KMS_SINK (object);
--+
--+  switch (prop_id) {
--+    case PROP_FORCE_ASPECT_RATIO:
--+      sink->keep_aspect = g_value_get_boolean (value);
--+      break;
--+    case PROP_SCALE:
--+      sink->scale = g_value_get_boolean (value);
--+      break;
--+    case PROP_CONNECTOR:
--+      sink->conn_id = g_value_get_uint (value);
--+      break;
--+    case PROP_CONNECTOR_NAME:
--+      g_free (sink->conn_name);
--+      sink->conn_name = g_strdup (g_value_get_string (value));
--+      break;
--+    case PROP_PIXEL_ASPECT_RATIO:
--+    {
--+      GValue *tmp;
--+
--+      tmp = g_new0 (GValue, 1);
--+      g_value_init (tmp, GST_TYPE_FRACTION);
--+
--+      if (!g_value_transform (value, tmp)) {
--+        GST_WARNING_OBJECT (sink, "Could not transform string to aspect ratio");
--+      } else {
--+        sink->par_n = gst_value_get_fraction_numerator (tmp);
--+        sink->par_d = gst_value_get_fraction_denominator (tmp);
--+        GST_DEBUG_OBJECT (sink, "set PAR to %d/%d", sink->par_n, sink->par_d);
--+      }
--+      g_free (tmp);
--+    }
--+      break;
--+    default:
--+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
--+      break;
--+  }
--+}
--+
--+static void
--+gst_kms_sink_get_property (GObject * object, guint prop_id,
--+    GValue * value, GParamSpec * pspec)
--+{
--+  GstKMSSink *sink;
--+
--+  g_return_if_fail (GST_IS_KMS_SINK (object));
--+
--+  sink = GST_KMS_SINK (object);
--+
--+  switch (prop_id) {
--+    case PROP_FORCE_ASPECT_RATIO:
--+      g_value_set_boolean (value, sink->keep_aspect);
--+      break;
--+    case PROP_SCALE:
--+      g_value_set_boolean (value, sink->scale);
--+      break;
--+    case PROP_CONNECTOR:
--+      g_value_set_uint (value, sink->conn.id);
--+      break;
--+    case PROP_PIXEL_ASPECT_RATIO:
--+    {
--+      char *v = g_strdup_printf ("%d/%d", sink->par_n, sink->par_d);
--+      g_value_take_string (value, v);
--+      break;
--+    }
--+    default:
--+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
--+      break;
--+  }
--+}
--+
--+static void
--+gst_kms_sink_reset (GstKMSSink * sink)
--+{
--+  GST_DEBUG_OBJECT (sink, "reset");
--+
--+  if (sink->fd != -1) {
--+    gst_drm_connector_cleanup (sink->fd, &sink->conn);
--+  }
--+  memset (&sink->conn, 0, sizeof (struct connector));
--+
--+  if (sink->pool) {
--+    gst_drm_buffer_pool_destroy (sink->pool);
--+    sink->pool = NULL;
--+  }
--+
--+  if (sink->plane) {
--+    drmModeFreePlane (sink->plane);
--+    sink->plane = NULL;
--+  }
--+
--+  if (sink->plane_resources) {
--+    drmModeFreePlaneResources (sink->plane_resources);
--+    sink->plane_resources = NULL;
--+  }
--+
--+  if (sink->resources) {
--+    drmModeFreeResources (sink->resources);
--+    sink->resources = NULL;
--+  }
--+
--+  display_bufs_free (sink);
--+
--+  if (sink->dev) {
--+    dce_deinit (sink->dev);
--+    sink->dev = NULL;
--+    sink->fd = -1;
--+  }
--+
--+  sink->par_n = sink->par_d = 1;
--+  sink->src_rect.x = 0;
--+  sink->src_rect.y = 0;
--+  sink->src_rect.w = 0;
--+  sink->src_rect.h = 0;
--+  sink->input_width = 0;
--+  sink->input_height = 0;
--+  sink->format = GST_VIDEO_FORMAT_UNKNOWN;
--+
--+  memset (&sink->src_rect, 0, sizeof (GstVideoRectangle));
--+  memset (&sink->dst_rect, 0, sizeof (GstVideoRectangle));
--+}
--+
--+static gboolean
--+gst_kms_sink_start (GstBaseSink * bsink)
--+{
--+  GstKMSSink *sink;
--+
--+  sink = GST_KMS_SINK (bsink);
--+
--+  sink->dev = dce_init ();
--+  if (sink->dev == NULL)
--+    goto device_failed;
--+  else
--+    sink->fd = dce_get_fd ();
--+
--+  sink->resources = drmModeGetResources (sink->fd);
--+  if (sink->resources == NULL)
--+    goto resources_failed;
--+
--+  sink->plane_resources = drmModeGetPlaneResources (sink->fd);
--+  if (sink->plane_resources == NULL)
--+    goto plane_resources_failed;
--+
--+  return TRUE;
--+
--+fail:
--+  gst_kms_sink_reset (sink);
--+  return FALSE;
--+
--+device_failed:
--+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
--+      (NULL), ("omap_device_new failed"));
--+  goto fail;
--+
--+resources_failed:
--+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
--+      (NULL), ("drmModeGetResources failed: %s (%d)", strerror (errno), errno));
--+  goto fail;
--+
--+plane_resources_failed:
--+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
--+      (NULL), ("drmModeGetPlaneResources failed: %s (%d)",
--+          strerror (errno), errno));
--+  goto fail;
--+}
--+
--+static gboolean
--+gst_kms_sink_stop (GstBaseSink * bsink)
--+{
--+  GstKMSSink *sink;
--+
--+  sink = GST_KMS_SINK (bsink);
--+  gst_kms_sink_reset (sink);
--+
--+  return TRUE;
--+}
--+
--+static GstFlowReturn
--+gst_kms_sink_buffer_alloc (GstBaseSink * bsink, guint64 offset, guint size,
--+    GstCaps * caps, GstBuffer ** buf)
--+{
--+  GstKMSSink *sink;
--+  GstFlowReturn ret = GST_FLOW_OK;
--+
--+  sink = GST_KMS_SINK (bsink);
--+
--+  GST_DEBUG_OBJECT (sink, "begin");
--+
--+  if (G_UNLIKELY (!caps)) {
--+    GST_WARNING_OBJECT (sink, "have no caps, doing fallback allocation");
--+    *buf = NULL;
--+    ret = GST_FLOW_OK;
--+    goto beach;
--+  }
--+
--+  GST_LOG_OBJECT (sink,
--+      "a buffer of %d bytes was requested with caps %" GST_PTR_FORMAT
--+      " and offset %" G_GUINT64_FORMAT, size, caps, offset);
--+
--+  /* initialize the buffer pool if not initialized yet */
--+  if (G_UNLIKELY (!sink->pool || gst_drm_buffer_pool_size (sink->pool) != size)) {
--+    GstVideoFormat format;
--+    gint width, height;
--+    GstVideoInfo info;
--+
--+    if (sink->pool) {
--+      GST_INFO_OBJECT (sink, "in buffer alloc, pool->size != size");
--+      gst_drm_buffer_pool_destroy (sink->pool);
--+      sink->pool = NULL;
--+    }
--+
--+    gst_video_info_from_caps (&info, caps);
--+    format = GST_VIDEO_INFO_FORMAT(&info);
--+    width = GST_VIDEO_INFO_WIDTH(&info);
--+    height = GST_VIDEO_INFO_HEIGHT(&info);
--+    size = GST_VIDEO_INFO_SIZE(&info);
--+    sink->pool = gst_drm_buffer_pool_new (GST_ELEMENT (sink),
--+        sink->fd, caps, size);
--+  }
--+  *buf = GST_BUFFER_CAST (gst_drm_buffer_pool_get (sink->pool, FALSE));
--+
--+beach:
--+  return ret;
--+}
--+
--+static void
--+gst_kms_sink_finalize (GObject * object)
--+{
--+  GstKMSSink *sink;
--+
--+  sink = GST_KMS_SINK (object);
--+  gst_kms_sink_reset (sink);
--+  g_free (sink->conn_name);
--+  if (sink->kmsbufferpriv){
--+    g_hash_table_destroy (sink->kmsbufferpriv);
--+    sink->kmsbufferpriv = NULL;
--+}
--+
--+  G_OBJECT_CLASS (gst_kms_sink_parent_class)->finalize (object);
--+}
--+
--+static void
--+kmsbufferpriv_free_func (GstKMSBufferPriv *priv)
--+{
--+  drmModeRmFB (priv->fd, priv->fb_id);
--+  omap_bo_del (priv->bo);
--+  g_free(priv);
--+}
--+
--+
--+static void
--+gst_kms_sink_init (GstKMSSink * sink)
--+{
--+  sink->fd = -1;
--+  gst_kms_sink_reset (sink);
--+  sink->kmsbufferpriv = g_hash_table_new_full (g_direct_hash, g_direct_equal,
--+      NULL, (GDestroyNotify) kmsbufferpriv_free_func);
--+}
--+
--+static void
--+gst_kms_sink_class_init (GstKMSSinkClass * klass)
--+{
--+  GObjectClass *gobject_class;
--+  GstElementClass *gstelement_class;
--+  GstBaseSinkClass *gstbasesink_class;
--+  GstVideoSinkClass *videosink_class;
--+
--+  gobject_class = (GObjectClass *) klass;
--+  gstelement_class = (GstElementClass *) klass;
--+  gstbasesink_class = (GstBaseSinkClass *) klass;
--+  videosink_class = (GstVideoSinkClass *) klass;
--+
--+  gobject_class->finalize = gst_kms_sink_finalize;
--+  gobject_class->set_property = gst_kms_sink_set_property;
--+  gobject_class->get_property = gst_kms_sink_get_property;
--+
--+  g_object_class_install_property (gobject_class, PROP_FORCE_ASPECT_RATIO,
--+      g_param_spec_boolean ("force-aspect-ratio", "Force aspect ratio",
--+          "When enabled, reverse caps negotiation (scaling) will respect "
--+          "original aspect ratio", FALSE,
--+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
--+  g_object_class_install_property (gobject_class, PROP_PIXEL_ASPECT_RATIO,
--+      g_param_spec_string ("pixel-aspect-ratio", "Pixel Aspect Ratio",
--+          "The pixel aspect ratio of the device", "1/1",
--+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
--+  g_object_class_install_property (gobject_class, PROP_SCALE,
--+      g_param_spec_boolean ("scale", "Scale",
--+          "When true, scale to render fullscreen", FALSE,
--+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
--+  g_object_class_install_property (gobject_class, PROP_CONNECTOR,
--+      g_param_spec_uint ("connector", "Connector",
--+          "DRM connector id (0 for automatic selection)", 0, G_MAXUINT32, 0,
--+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT));
--+  g_object_class_install_property (gobject_class, PROP_CONNECTOR_NAME,
--+      g_param_spec_string ("connector-name", "Connector name",
--+          "DRM connector name (alternative to the connector property, "
--+          "use $type$index, $type-$index, or $type)", "",
--+          G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
--+
--+  gst_element_class_set_details_simple (gstelement_class,
--+      "Video sink", "Sink/Video",
--+      "A video sink using the linux kernel mode setting API",
--+      "Alessandro Decina <alessandro.d@gmail.com>");
--+
--+  gst_element_class_add_pad_template (gstelement_class,
--+      gst_static_pad_template_get (&gst_kms_sink_template_factory));
--+
--+  gstbasesink_class->set_caps = GST_DEBUG_FUNCPTR (gst_kms_sink_setcaps);
--+  gstbasesink_class->get_times = GST_DEBUG_FUNCPTR (gst_kms_sink_get_times);
--+  gstbasesink_class->event = GST_DEBUG_FUNCPTR (gst_kms_sink_event);
--+  gstbasesink_class->start = GST_DEBUG_FUNCPTR (gst_kms_sink_start);
--+  gstbasesink_class->stop = GST_DEBUG_FUNCPTR (gst_kms_sink_stop);
--+
--+  /* disable preroll as it's called before GST_CROP_EVENT has been received, so
--+   * we end up configuring the wrong mode... (based on padded caps)
--+   */
--+  gstbasesink_class->preroll = NULL;
--+  videosink_class->show_frame = GST_DEBUG_FUNCPTR (gst_kms_sink_show_frame);
--+}
--+
--+static gboolean
--+plugin_init (GstPlugin * plugin)
--+{
--+  if (!gst_element_register (plugin, "kmssink",
--+          GST_RANK_PRIMARY + 1, GST_TYPE_KMS_SINK))
--+    return FALSE;
--+
--+  GST_DEBUG_CATEGORY_INIT (gst_debug_kms_sink, "kmssink", 0, "kmssink element");
--+
--+  return TRUE;
--+}
--+
--+GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
--+    GST_VERSION_MINOR,
--+    kms,
--+    "KMS video output element",
--+    plugin_init, VERSION, GST_LICENSE, GST_PACKAGE_NAME, GST_PACKAGE_ORIGIN)
--diff --git a/sys/kms/gstkmssink.h b/sys/kms/gstkmssink.h
--new file mode 100644
--index 0000000..6c312bb
----- /dev/null
--+++ b/sys/kms/gstkmssink.h
--@@ -0,0 +1,91 @@
--+/* GStreamer
--+ *
--+ * Copyright (C) 2012 Texas Instruments 
--+ * Copyright (C) 2012 Collabora Ltd
--+ *
--+ * Authors:
--+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
--+ *
--+ * This library is free software; you can redistribute it and/or
--+ * modify it under the terms of the GNU Library General Public
--+ * License as published by the Free Software Foundation; either
--+ * version 2 of the License, or (at your option) any later version.
--+ *
--+ * This library is distributed in the hope that it will be useful,
--+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
--+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
--+ * Library General Public License for more details.
--+ *
--+ * You should have received a copy of the GNU Library General Public
--+ * License along with this library; if not, write to the
--+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
--+ * Boston, MA 02111-1307, USA.
--+ */
--+
--+#ifndef __GST_KMS_SINK_H__
--+#define __GST_KMS_SINK_H__
--+
--+#include <gst/video/video.h>
--+#include <gst/video/gstvideosink.h>
--+#include <gst/drm/gstdrmbufferpool.h>
--+
--+#include <stdio.h>
--+#include <stdint.h>
--+#include <stdlib.h>
--+#include <string.h>
--+#include <errno.h>
--+#include <unistd.h>
--+#include <assert.h>
--+
--+#include "gstdrmutils.h"
--+
--+G_BEGIN_DECLS
--+#define GST_TYPE_KMS_SINK \
--+  (gst_kms_sink_get_type())
--+#define GST_KMS_SINK(obj) \
--+  (G_TYPE_CHECK_INSTANCE_CAST((obj), GST_TYPE_KMS_SINK, GstKMSSink))
--+#define GST_KMS_SINK_CLASS(klass) \
--+  (G_TYPE_CHECK_CLASS_CAST((klass), GST_TYPE_KMS_SINK, GstKMSSinkClass))
--+#define GST_IS_KMS_SINK(obj) \
--+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), GST_TYPE_KMS_SINK))
--+#define GST_IS_KMS_SINK_CLASS(klass) \
--+  (G_TYPE_CHECK_CLASS_TYPE((klass), GST_TYPE_KMS_SINK))
--+typedef struct _GstKMSSink GstKMSSink;
--+typedef struct _GstKMSSinkClass GstKMSSinkClass;
--+
--+#define NUM_DISPLAY_BUFS 4
--+
--+struct _GstKMSSink
--+{
--+  GstVideoSink videosink;
--+  gint input_width, input_height;
--+  GstVideoFormat format;
--+  gint par_n, par_d;
--+  gint fps_n, fps_d;
--+  gboolean keep_aspect;
--+  GstVideoRectangle src_rect;
--+  GstVideoRectangle dst_rect;
--+  int fd;
--+  struct omap_device *dev;
--+  drmModeRes *resources;
--+  drmModePlaneRes *plane_resources;
--+  struct connector conn;
--+  uint32_t conn_id;
--+  char *conn_name;
--+  drmModePlane *plane;
--+  GstDRMBufferPool *pool;
--+  GHashTable *kmsbufferpriv;
--+  /* current displayed buffer and last displayed buffer: */
--+  GstBuffer *display_bufs[NUM_DISPLAY_BUFS];
--+  gboolean scale;
--+};
--+
--+struct _GstKMSSinkClass
--+{
--+  GstVideoSinkClass parent_class;
--+};
--+
--+GType gst_kms_sink_get_type (void);
--+
--+G_END_DECLS
--+#endif /* __GST_KMS_SINK_H__ */
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
-deleted file mode 100644
-index 8c2e887..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Removed-dependency-on-dri2.patch
-+++ /dev/null
-@@ -1,26 +0,0 @@
--From dbaac14600fd88988aa676634849b137376de397 Mon Sep 17 00:00:00 2001
--From: Karthik Ramanan <a0393906@ti.com>
--Date: Thu, 15 Jan 2015 12:47:31 +0530
--Subject: [PATCH] waylandsink: Removed dependency on dri2
--
--Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-----
-- configure.ac |    2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/configure.ac b/configure.ac
--index e3db68f..2741824 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -1219,7 +1219,7 @@ AG_GST_CHECK_FEATURE(DIRECTFB, [directfb], dfbvideosink , [
-- dnl **** Wayland ****
-- translit(dnm, m, l) AM_CONDITIONAL(USE_WAYLAND, true)
-- AG_GST_CHECK_FEATURE(WAYLAND, [wayland sink], wayland , [
---  PKG_CHECK_MODULES(WAYLAND, wayland-client >= 1.0.0 dri2 libdrm libdrm_omap, [
--+  PKG_CHECK_MODULES(WAYLAND, wayland-client >= 1.0.0 libdrm libdrm_omap, [
--      AC_SUBST(DRM_CFLAGS)
--      AC_SUBST(DRM_LIBS)
--      HAVE_WAYLAND="yes" ], [ HAVE_WAYLAND="no"
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
-deleted file mode 100644
-index 8ae79b5..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch
-+++ /dev/null
-@@ -1,54 +0,0 @@
--From 7083e7ee50130bf41a0ec0d1634577d4bf9ef9cf Mon Sep 17 00:00:00 2001
--From: Pooja Prajod <a0132412@ti.com>
--Date: Wed, 4 Feb 2015 18:12:58 +0530
--Subject: [PATCH] vc1parse and jpegparse : Fixes plugin ranks
--
--Fix plugin ranks so that they are picked by playbin
-----
-- gst/jpegformat/gstjpegformat.c |    2 +-
-- gst/jpegformat/gstjpegparse.c  |    2 +-
-- gst/videoparsers/plugin.c      |    2 +-
-- 3 files changed, 3 insertions(+), 3 deletions(-)
--
--diff --git a/gst/jpegformat/gstjpegformat.c b/gst/jpegformat/gstjpegformat.c
--index b410466..ecb9311 100644
----- a/gst/jpegformat/gstjpegformat.c
--+++ b/gst/jpegformat/gstjpegformat.c
--@@ -30,7 +30,7 @@
-- static gboolean
-- plugin_init (GstPlugin * plugin)
-- {
---  if (!gst_element_register (plugin, "jpegparse", GST_RANK_NONE,
--+  if (!gst_element_register (plugin, "jpegparse", GST_RANK_PRIMARY + 2,
--           GST_TYPE_JPEG_PARSE))
--     return FALSE;
--   if (!gst_element_register (plugin, "jifmux", GST_RANK_SECONDARY,
--diff --git a/gst/jpegformat/gstjpegparse.c b/gst/jpegformat/gstjpegparse.c
--index 9983f32..04d5b91 100644
----- a/gst/jpegformat/gstjpegparse.c
--+++ b/gst/jpegformat/gstjpegparse.c
--@@ -156,7 +156,7 @@ gst_jpeg_parse_class_init (GstJpegParseClass * klass)
-- 
--   gst_element_class_set_static_metadata (gstelement_class,
--       "JPEG stream parser",
---      "Video/Parser",
--+      "Codec/Parser/Video",
--       "Parse JPEG images into single-frame buffers",
--       "Arnout Vandecappelle (Essensium/Mind) <arnout@mind.be>");
-- 
--diff --git a/gst/videoparsers/plugin.c b/gst/videoparsers/plugin.c
--index 485b0ed..a85550c 100644
----- a/gst/videoparsers/plugin.c
--+++ b/gst/videoparsers/plugin.c
--@@ -48,7 +48,7 @@ plugin_init (GstPlugin * plugin)
--   ret |= gst_element_register (plugin, "pngparse",
--       GST_RANK_PRIMARY, GST_TYPE_PNG_PARSE);
--   ret |= gst_element_register (plugin, "vc1parse",
---      GST_RANK_NONE, GST_TYPE_VC1_PARSE);
--+      GST_RANK_PRIMARY + 2, GST_TYPE_VC1_PARSE);
-- 
--   return ret;
-- }
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch
-deleted file mode 100644
-index 0af1323..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-GstDRMBufferPool-support-fix.patch
-+++ /dev/null
-@@ -1,36 +0,0 @@
--From 9e4d46611c4d4600a5abac81b619ae1489d4b8c1 Mon Sep 17 00:00:00 2001
--From: Jacob Stiffler <j-stiffler@ti.com>
--Date: Mon, 27 Apr 2015 08:27:59 -0400
--Subject: [PATCH 6/6] GstDRMBufferPool support fix:
--
--Conditionally build drm library based on if kmssink dependencies are
--by pkgconfig found.
--
--Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-----
-- gst-libs/gst/Makefile.am |    8 ++++++--
-- 1 file changed, 6 insertions(+), 2 deletions(-)
--
--diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
--index b915d07..52ff331 100644
----- a/gst-libs/gst/Makefile.am
--+++ b/gst-libs/gst/Makefile.am
--@@ -2,9 +2,13 @@ if HAVE_EGL
-- EGL_DIR = egl
-- endif
-- 
---SUBDIRS = interfaces basecamerabinsrc codecparsers drm \
--+if USE_KMS
--+DRM_DIR = drm
--+endif
--+
--+SUBDIRS = interfaces basecamerabinsrc codecparsers $(DRM_DIR) \
-- 	 insertbin uridownloader mpegts $(EGL_DIR)
-- 
-- noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
---DIST_SUBDIRS = interfaces egl basecamerabinsrc codecparsers \
--+DIST_SUBDIRS = interfaces egl basecamerabinsrc codecparsers drm \
-- 	insertbin uridownloader mpegts
---- 
--1.7.9.5
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-index 2e91320..831b8ac 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-@@ -11,13 +11,12 @@ DEPENDS_append_omap-a15 = " \
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRC_URI_append = " \
--        file://0001-Added-GstDRMBufferPool-support.patch \
--        file://0002-Modified-waylandsink-to-accept-NV12-format.patch \
--        file://0003-Added-KMSsink-support.patch \
--        file://0004-waylandsink-Removed-dependency-on-dri2.patch \
--        file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch \
--        file://0006-GstDRMBufferPool-support-fix.patch \
--"
-+SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git \
-+          "
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-videoconvert-use-videoconvert-from-version-1.3.1-to-.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-videoconvert-use-videoconvert-from-version-1.3.1-to-.patch
+new file mode 100644
+index 0000000..9fc2eff
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-videoconvert-use-videoconvert-from-version-1.3.1-to-.patch
+@@ -0,0 +1,11652 @@
++From c4d19b1e7e1b3813555f53214e035cd7dbd9e05f Mon Sep 17 00:00:00 2001
++From: Hongmei Gou <h-gou@ti.com>
++Date: Tue, 31 Mar 2015 17:02:38 -0400
++Subject: [PATCH] videoconvert: use videoconvert from version 1.3.1 to resolve
++ the performance issue with I420 to BGRA conversion
 +
-+S = "${WORKDIR}/git"
++Bug details can be found from https://bugzilla.gnome.org/show_bug.cgi?id=721701
++---
++ gst/videoconvert/gstvideoconvertorc-dist.c | 9405 ++++------------------------
++ gst/videoconvert/gstvideoconvertorc-dist.h |   39 +-
++ gst/videoconvert/gstvideoconvertorc.orc    |  802 +--
++ gst/videoconvert/videoconvert.c            |  213 +-
++ 4 files changed, 1589 insertions(+), 8870 deletions(-)
 +
-+SRCREV = "12b0d2ac50aba19da53d2e1ac40d6ada70a79930"
++diff --git a/gst/videoconvert/gstvideoconvertorc-dist.c b/gst/videoconvert/gstvideoconvertorc-dist.c
++index 4ba952e..362f527 100644
++--- a/gst/videoconvert/gstvideoconvertorc-dist.c
+++++ b/gst/videoconvert/gstvideoconvertorc-dist.c
++@@ -197,83 +197,21 @@ void video_convert_orc_convert_Y444_AYUV (guint8 * ORC_RESTRICT d1,
++     const guint8 * ORC_RESTRICT s2, int s2_stride,
++     const guint8 * ORC_RESTRICT s3, int s3_stride, int n, int m);
++ void video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1,
++-    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
+++    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1,
+++    int p2, int p3, int p4, int p5, int n, int m);
++ void video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1,
++-    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
+++    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1,
+++    int p2, int p3, int p4, int p5, int n, int m);
++ void video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1,
++-    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
+++    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1,
+++    int p2, int p3, int p4, int p5, int n, int m);
++ void video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1,
++-    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
+++    int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1,
+++    int p2, int p3, int p4, int p5, int n, int m);
++ void video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++     const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_I420 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_YUV9 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_YUY2 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_UYVY (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_YVYU (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_Y42B (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_Y444 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_Y800 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_Y16 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_BGRA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_ABGR (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_RGBA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_NV12 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n);
++-void video_convert_orc_getline_NV21 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n);
++-void video_convert_orc_getline_A420 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, const guint8 * ORC_RESTRICT s4, int n);
++-void video_convert_orc_putline_I420 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_YUY2 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_YVYU (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_UYVY (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y42B (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y444 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y800 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y16 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_BGRA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_ABGR (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_RGBA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_NV12 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_NV21 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_A420 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    guint8 * ORC_RESTRICT d4, const guint8 * ORC_RESTRICT s1, int n);
+++    const guint8 * ORC_RESTRICT s3, int p1, int p2, int p3, int p4, int p5,
+++    int n);
++ 
++ 
++ /* begin Orc C target preamble */
++@@ -299,8 +237,8 @@ void video_convert_orc_putline_A420 (guint8 * ORC_RESTRICT d1,
++ #define ORC_CLAMP_UW(x) ORC_CLAMP(x,ORC_UW_MIN,ORC_UW_MAX)
++ #define ORC_CLAMP_SL(x) ORC_CLAMP(x,ORC_SL_MIN,ORC_SL_MAX)
++ #define ORC_CLAMP_UL(x) ORC_CLAMP(x,ORC_UL_MIN,ORC_UL_MAX)
++-#define ORC_SWAP_W(x) ((((x)&0xff)<<8) | (((x)&0xff00)>>8))
++-#define ORC_SWAP_L(x) ((((x)&0xff)<<24) | (((x)&0xff00)<<8) | (((x)&0xff0000)>>8) | (((x)&0xff000000)>>24))
+++#define ORC_SWAP_W(x) ((((x)&0xffU)<<8) | (((x)&0xff00U)>>8))
+++#define ORC_SWAP_L(x) ((((x)&0xffU)<<24) | (((x)&0xff00U)<<8) | (((x)&0xff0000U)>>8) | (((x)&0xff000000U)>>24))
++ #define ORC_SWAP_Q(x) ((((x)&ORC_UINT64_C(0xff))<<56) | (((x)&ORC_UINT64_C(0xff00))<<40) | (((x)&ORC_UINT64_C(0xff0000))<<24) | (((x)&ORC_UINT64_C(0xff000000))<<8) | (((x)&ORC_UINT64_C(0xff00000000))>>8) | (((x)&ORC_UINT64_C(0xff0000000000))>>24) | (((x)&ORC_UINT64_C(0xff000000000000))>>40) | (((x)&ORC_UINT64_C(0xff00000000000000))>>56))
++ #define ORC_PTR_OFFSET(ptr,offset) ((void *)(((unsigned char *)(ptr)) + (offset)))
++ #define ORC_DENORMAL(x) ((x) & ((((x)&0x7f800000) == 0) ? 0xff800000 : 0xffffffff))
++@@ -6627,56 +6565,39 @@ video_convert_orc_convert_Y444_AYUV (guint8 * ORC_RESTRICT d1, int d1_stride,
++ #ifdef DISABLE_ORC
++ void
++ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   int i;
++   int j;
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var54;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -6687,160 +6608,125 @@ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (d1, d1_stride * j);
++     ptr4 = ORC_PTR_OFFSET (s1, s1_stride * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = p1;
+++    /* 11: loadpw */
+++    var49.i = p2;
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = p3;
+++    /* 17: loadpw */
+++    var51.i = p4;
+++    /* 20: loadpw */
+++    var52.i = p5;
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var61;
++-        _dest.x2[1] = var87;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var59;
+++        _dest.x2[1] = var74;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var88;
++-        _dest.x2[1] = var89;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var75;
+++        _dest.x2[1] = var76;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -6856,50 +6742,32 @@ _backup_video_convert_orc_convert_AYUV_ARGB (OrcExecutor * ORC_RESTRICT ex)
++   int m = ex->params[ORC_VAR_A1];
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var54;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -6910,160 +6778,125 @@ _backup_video_convert_orc_convert_AYUV_ARGB (OrcExecutor * ORC_RESTRICT ex)
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (ex->arrays[0], ex->params[0] * j);
++     ptr4 = ORC_PTR_OFFSET (ex->arrays[4], ex->params[4] * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = ex->params[24];
+++    /* 11: loadpw */
+++    var49.i = ex->params[25];
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = ex->params[26];
+++    /* 17: loadpw */
+++    var51.i = ex->params[27];
+++    /* 20: loadpw */
+++    var52.i = ex->params[28];
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var61;
++-        _dest.x2[1] = var87;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var59;
+++        _dest.x2[1] = var74;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var88;
++-        _dest.x2[1] = var89;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var75;
+++        _dest.x2[1] = var76;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -7071,7 +6904,8 @@ _backup_video_convert_orc_convert_AYUV_ARGB (OrcExecutor * ORC_RESTRICT ex)
++ 
++ void
++ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   OrcExecutor _ex, *ex = &_ex;
++   static volatile int p_inited = 0;
++@@ -7087,20 +6921,16 @@ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++       static const orc_uint8 bc[] = {
++         1, 7, 9, 35, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114,
++         116, 95, 111, 114, 99, 95, 99, 111, 110, 118, 101, 114, 116, 95, 65, 89,
++-        85, 86, 95, 65, 82, 71, 66, 11, 4, 4, 12, 4, 4, 14, 1, 8,
++-        0, 0, 0, 14, 4, 128, 0, 0, 0, 14, 4, 42, 0, 0, 0, 14,
++-        4, 103, 0, 0, 0, 14, 4, 4, 0, 0, 0, 14, 4, 100, 0, 0,
++-        0, 14, 4, 104, 0, 0, 0, 20, 2, 20, 2, 20, 1, 20, 1, 20,
++-        1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
++-        1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 47, 4, 17, 198, 32, 33,
++-        47, 199, 35, 34, 33, 199, 37, 36, 32, 149, 38, 35, 149, 39, 36, 149,
++-        40, 37, 89, 32, 38, 18, 94, 32, 32, 16, 71, 38, 38, 32, 71, 41,
++-        38, 40, 89, 32, 40, 19, 94, 32, 32, 16, 99, 41, 41, 32, 71, 41,
++-        41, 40, 71, 43, 38, 39, 71, 43, 43, 39, 89, 32, 39, 20, 94, 32,
++-        32, 16, 71, 43, 43, 32, 89, 32, 39, 21, 94, 32, 32, 16, 99, 42,
++-        38, 32, 89, 32, 40, 22, 94, 32, 32, 16, 99, 42, 42, 32, 99, 42,
++-        42, 32, 159, 44, 41, 159, 45, 42, 159, 46, 43, 196, 32, 34, 44, 196,
++-        33, 45, 46, 195, 47, 32, 33, 21, 2, 33, 0, 47, 17, 2, 0,
+++        85, 86, 95, 65, 82, 71, 66, 11, 4, 4, 12, 4, 4, 14, 1, 128,
+++        0, 0, 0, 16, 2, 16, 2, 16, 2, 16, 2, 16, 2, 20, 1, 20,
+++        1, 20, 1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
+++        2, 20, 1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 45, 4, 16, 198,
+++        38, 36, 45, 199, 33, 32, 36, 199, 35, 34, 38, 151, 36, 33, 151, 37,
+++        34, 151, 38, 35, 90, 36, 36, 24, 90, 39, 38, 25, 71, 39, 36, 39,
+++        90, 41, 37, 26, 71, 41, 36, 41, 90, 40, 37, 27, 71, 40, 36, 40,
+++        90, 36, 38, 28, 71, 40, 40, 36, 159, 42, 39, 159, 43, 40, 159, 44,
+++        41, 196, 39, 32, 42, 196, 41, 43, 44, 195, 45, 39, 41, 21, 2, 33,
+++        0, 45, 16, 2, 0,
++       };
++       p = orc_program_new_from_static_bytecode (bc);
++       orc_program_set_backup_function (p,
++@@ -7113,97 +6943,72 @@ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++           _backup_video_convert_orc_convert_AYUV_ARGB);
++       orc_program_add_destination (p, 4, "d1");
++       orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 1, 0x00000008, "c1");
++-      orc_program_add_constant (p, 4, 0x00000080, "c2");
++-      orc_program_add_constant (p, 4, 0x0000002a, "c3");
++-      orc_program_add_constant (p, 4, 0x00000067, "c4");
++-      orc_program_add_constant (p, 4, 0x00000004, "c5");
++-      orc_program_add_constant (p, 4, 0x00000064, "c6");
++-      orc_program_add_constant (p, 4, 0x00000068, "c7");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
+++      orc_program_add_constant (p, 1, 0x00000080, "c1");
+++      orc_program_add_parameter (p, 2, "p1");
+++      orc_program_add_parameter (p, 2, "p2");
+++      orc_program_add_parameter (p, 2, "p3");
+++      orc_program_add_parameter (p, 2, "p4");
+++      orc_program_add_parameter (p, 2, "p5");
+++      orc_program_add_temporary (p, 1, "t1");
+++      orc_program_add_temporary (p, 1, "t2");
++       orc_program_add_temporary (p, 1, "t3");
++       orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-      orc_program_add_temporary (p, 1, "t6");
+++      orc_program_add_temporary (p, 2, "t5");
+++      orc_program_add_temporary (p, 2, "t6");
++       orc_program_add_temporary (p, 2, "t7");
++       orc_program_add_temporary (p, 2, "t8");
++       orc_program_add_temporary (p, 2, "t9");
++       orc_program_add_temporary (p, 2, "t10");
++-      orc_program_add_temporary (p, 2, "t11");
++-      orc_program_add_temporary (p, 2, "t12");
+++      orc_program_add_temporary (p, 1, "t11");
+++      orc_program_add_temporary (p, 1, "t12");
++       orc_program_add_temporary (p, 1, "t13");
++-      orc_program_add_temporary (p, 1, "t14");
++-      orc_program_add_temporary (p, 1, "t15");
++-      orc_program_add_temporary (p, 4, "t16");
+++      orc_program_add_temporary (p, 4, "t14");
++ 
++-      orc_program_append_2 (p, "subb", 2, 47, ORC_VAR_S1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T1, ORC_VAR_T2, 47,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T6, ORC_VAR_T5, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_D1,
+++      orc_program_append_2 (p, "subb", 2, ORC_VAR_T14, ORC_VAR_S1, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T7, ORC_VAR_C3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T7, ORC_VAR_T5,
+++          ORC_VAR_T14, ORC_VAR_D1);
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T7,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T7, ORC_VAR_T9,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T5, ORC_VAR_T2, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C4,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T6, ORC_VAR_T3, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T9, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T7, ORC_VAR_T8,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T5, ORC_VAR_P1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T8, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C5,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T8, ORC_VAR_T7, ORC_VAR_P2,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_T8,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C6,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T10, ORC_VAR_T6, ORC_VAR_P3,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T5,
+++          ORC_VAR_T10, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_P4,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T5, ORC_VAR_T9,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C7,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T7, ORC_VAR_P5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T9, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T11, ORC_VAR_T8,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T14, ORC_VAR_T11,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T12, ORC_VAR_T9,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T15, ORC_VAR_T12,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T3,
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T8, ORC_VAR_T1,
+++          ORC_VAR_T11, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T10, ORC_VAR_T12,
++           ORC_VAR_T13, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_T14,
++-          ORC_VAR_T15, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, 47, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, 47, ORC_VAR_C2,
+++      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T14, ORC_VAR_T8,
+++          ORC_VAR_T10, ORC_VAR_D1);
+++      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, ORC_VAR_T14, ORC_VAR_C1,
++           ORC_VAR_D1);
++ #endif
++ 
++@@ -7223,6 +7028,11 @@ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++   ex->params[ORC_VAR_D1] = d1_stride;
++   ex->arrays[ORC_VAR_S1] = (void *) s1;
++   ex->params[ORC_VAR_S1] = s1_stride;
+++  ex->params[ORC_VAR_P1] = p1;
+++  ex->params[ORC_VAR_P2] = p2;
+++  ex->params[ORC_VAR_P3] = p3;
+++  ex->params[ORC_VAR_P4] = p4;
+++  ex->params[ORC_VAR_P5] = p5;
++ 
++   func = c->exec;
++   func (ex);
++@@ -7234,56 +7044,39 @@ video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride,
++ #ifdef DISABLE_ORC
++ void
++ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   int i;
++   int j;
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var54;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -7294,160 +7087,125 @@ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (d1, d1_stride * j);
++     ptr4 = ORC_PTR_OFFSET (s1, s1_stride * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = p1;
+++    /* 11: loadpw */
+++    var49.i = p2;
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = p3;
+++    /* 17: loadpw */
+++    var51.i = p4;
+++    /* 20: loadpw */
+++    var52.i = p5;
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var89;
++-        _dest.x2[1] = var88;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var76;
+++        _dest.x2[1] = var75;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var87;
++-        _dest.x2[1] = var61;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var74;
+++        _dest.x2[1] = var59;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -7463,50 +7221,32 @@ _backup_video_convert_orc_convert_AYUV_BGRA (OrcExecutor * ORC_RESTRICT ex)
++   int m = ex->params[ORC_VAR_A1];
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var54;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -7517,160 +7257,125 @@ _backup_video_convert_orc_convert_AYUV_BGRA (OrcExecutor * ORC_RESTRICT ex)
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (ex->arrays[0], ex->params[0] * j);
++     ptr4 = ORC_PTR_OFFSET (ex->arrays[4], ex->params[4] * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = ex->params[24];
+++    /* 11: loadpw */
+++    var49.i = ex->params[25];
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = ex->params[26];
+++    /* 17: loadpw */
+++    var51.i = ex->params[27];
+++    /* 20: loadpw */
+++    var52.i = ex->params[28];
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var89;
++-        _dest.x2[1] = var88;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var76;
+++        _dest.x2[1] = var75;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var87;
++-        _dest.x2[1] = var61;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var74;
+++        _dest.x2[1] = var59;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -7678,7 +7383,8 @@ _backup_video_convert_orc_convert_AYUV_BGRA (OrcExecutor * ORC_RESTRICT ex)
++ 
++ void
++ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   OrcExecutor _ex, *ex = &_ex;
++   static volatile int p_inited = 0;
++@@ -7694,20 +7400,16 @@ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++       static const orc_uint8 bc[] = {
++         1, 7, 9, 35, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114,
++         116, 95, 111, 114, 99, 95, 99, 111, 110, 118, 101, 114, 116, 95, 65, 89,
++-        85, 86, 95, 66, 71, 82, 65, 11, 4, 4, 12, 4, 4, 14, 1, 8,
++-        0, 0, 0, 14, 4, 128, 0, 0, 0, 14, 4, 42, 0, 0, 0, 14,
++-        4, 103, 0, 0, 0, 14, 4, 4, 0, 0, 0, 14, 4, 100, 0, 0,
++-        0, 14, 4, 104, 0, 0, 0, 20, 2, 20, 2, 20, 1, 20, 1, 20,
++-        1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
++-        1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 47, 4, 17, 198, 32, 33,
++-        47, 199, 35, 34, 33, 199, 37, 36, 32, 149, 38, 35, 149, 39, 36, 149,
++-        40, 37, 89, 32, 38, 18, 94, 32, 32, 16, 71, 38, 38, 32, 71, 41,
++-        38, 40, 89, 32, 40, 19, 94, 32, 32, 16, 99, 41, 41, 32, 71, 41,
++-        41, 40, 71, 43, 38, 39, 71, 43, 43, 39, 89, 32, 39, 20, 94, 32,
++-        32, 16, 71, 43, 43, 32, 89, 32, 39, 21, 94, 32, 32, 16, 99, 42,
++-        38, 32, 89, 32, 40, 22, 94, 32, 32, 16, 99, 42, 42, 32, 99, 42,
++-        42, 32, 159, 44, 41, 159, 45, 42, 159, 46, 43, 196, 32, 46, 45, 196,
++-        33, 44, 34, 195, 47, 32, 33, 21, 2, 33, 0, 47, 17, 2, 0,
+++        85, 86, 95, 66, 71, 82, 65, 11, 4, 4, 12, 4, 4, 14, 1, 128,
+++        0, 0, 0, 16, 2, 16, 2, 16, 2, 16, 2, 16, 2, 20, 1, 20,
+++        1, 20, 1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
+++        2, 20, 1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 45, 4, 16, 198,
+++        38, 36, 45, 199, 33, 32, 36, 199, 35, 34, 38, 151, 36, 33, 151, 37,
+++        34, 151, 38, 35, 90, 36, 36, 24, 90, 39, 38, 25, 71, 39, 36, 39,
+++        90, 41, 37, 26, 71, 41, 36, 41, 90, 40, 37, 27, 71, 40, 36, 40,
+++        90, 36, 38, 28, 71, 40, 40, 36, 159, 42, 39, 159, 43, 40, 159, 44,
+++        41, 196, 41, 44, 43, 196, 39, 42, 32, 195, 45, 41, 39, 21, 2, 33,
+++        0, 45, 16, 2, 0,
++       };
++       p = orc_program_new_from_static_bytecode (bc);
++       orc_program_set_backup_function (p,
++@@ -7720,97 +7422,72 @@ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++           _backup_video_convert_orc_convert_AYUV_BGRA);
++       orc_program_add_destination (p, 4, "d1");
++       orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 1, 0x00000008, "c1");
++-      orc_program_add_constant (p, 4, 0x00000080, "c2");
++-      orc_program_add_constant (p, 4, 0x0000002a, "c3");
++-      orc_program_add_constant (p, 4, 0x00000067, "c4");
++-      orc_program_add_constant (p, 4, 0x00000004, "c5");
++-      orc_program_add_constant (p, 4, 0x00000064, "c6");
++-      orc_program_add_constant (p, 4, 0x00000068, "c7");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
+++      orc_program_add_constant (p, 1, 0x00000080, "c1");
+++      orc_program_add_parameter (p, 2, "p1");
+++      orc_program_add_parameter (p, 2, "p2");
+++      orc_program_add_parameter (p, 2, "p3");
+++      orc_program_add_parameter (p, 2, "p4");
+++      orc_program_add_parameter (p, 2, "p5");
+++      orc_program_add_temporary (p, 1, "t1");
+++      orc_program_add_temporary (p, 1, "t2");
++       orc_program_add_temporary (p, 1, "t3");
++       orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-      orc_program_add_temporary (p, 1, "t6");
+++      orc_program_add_temporary (p, 2, "t5");
+++      orc_program_add_temporary (p, 2, "t6");
++       orc_program_add_temporary (p, 2, "t7");
++       orc_program_add_temporary (p, 2, "t8");
++       orc_program_add_temporary (p, 2, "t9");
++       orc_program_add_temporary (p, 2, "t10");
++-      orc_program_add_temporary (p, 2, "t11");
++-      orc_program_add_temporary (p, 2, "t12");
+++      orc_program_add_temporary (p, 1, "t11");
+++      orc_program_add_temporary (p, 1, "t12");
++       orc_program_add_temporary (p, 1, "t13");
++-      orc_program_add_temporary (p, 1, "t14");
++-      orc_program_add_temporary (p, 1, "t15");
++-      orc_program_add_temporary (p, 4, "t16");
+++      orc_program_add_temporary (p, 4, "t14");
++ 
++-      orc_program_append_2 (p, "subb", 2, 47, ORC_VAR_S1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T1, ORC_VAR_T2, 47,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T6, ORC_VAR_T5, ORC_VAR_T1,
+++      orc_program_append_2 (p, "subb", 2, ORC_VAR_T14, ORC_VAR_S1, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T7, ORC_VAR_C3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T7, ORC_VAR_T5,
+++          ORC_VAR_T14, ORC_VAR_D1);
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T7,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T7, ORC_VAR_T9,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T5, ORC_VAR_T2, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C4,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T6, ORC_VAR_T3, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T9, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T7, ORC_VAR_T8,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T5, ORC_VAR_P1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T8, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C5,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T8, ORC_VAR_T7, ORC_VAR_P2,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_T8,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C6,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T10, ORC_VAR_T6, ORC_VAR_P3,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T5,
+++          ORC_VAR_T10, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_P4,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T5, ORC_VAR_T9,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C7,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T7, ORC_VAR_P5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T9, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T11, ORC_VAR_T8,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T14, ORC_VAR_T11,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T12, ORC_VAR_T9,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T15, ORC_VAR_T12,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T15,
++-          ORC_VAR_T14, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_T13,
++-          ORC_VAR_T3, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, 47, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, 47, ORC_VAR_C2,
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T10, ORC_VAR_T13,
+++          ORC_VAR_T12, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T8, ORC_VAR_T11,
+++          ORC_VAR_T1, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T14, ORC_VAR_T10,
+++          ORC_VAR_T8, ORC_VAR_D1);
+++      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, ORC_VAR_T14, ORC_VAR_C1,
++           ORC_VAR_D1);
++ #endif
++ 
++@@ -7830,6 +7507,11 @@ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++   ex->params[ORC_VAR_D1] = d1_stride;
++   ex->arrays[ORC_VAR_S1] = (void *) s1;
++   ex->params[ORC_VAR_S1] = s1_stride;
+++  ex->params[ORC_VAR_P1] = p1;
+++  ex->params[ORC_VAR_P2] = p2;
+++  ex->params[ORC_VAR_P3] = p3;
+++  ex->params[ORC_VAR_P4] = p4;
+++  ex->params[ORC_VAR_P5] = p5;
++ 
++   func = c->exec;
++   func (ex);
++@@ -7841,56 +7523,39 @@ video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride,
++ #ifdef DISABLE_ORC
++ void
++ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   int i;
++   int j;
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var54;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -7901,160 +7566,125 @@ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (d1, d1_stride * j);
++     ptr4 = ORC_PTR_OFFSET (s1, s1_stride * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = p1;
+++    /* 11: loadpw */
+++    var49.i = p2;
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = p3;
+++    /* 17: loadpw */
+++    var51.i = p4;
+++    /* 20: loadpw */
+++    var52.i = p5;
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var61;
++-        _dest.x2[1] = var89;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var59;
+++        _dest.x2[1] = var76;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var88;
++-        _dest.x2[1] = var87;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var75;
+++        _dest.x2[1] = var74;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -8070,50 +7700,32 @@ _backup_video_convert_orc_convert_AYUV_ABGR (OrcExecutor * ORC_RESTRICT ex)
++   int m = ex->params[ORC_VAR_A1];
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
+++  orc_union16 var48;
+++  orc_union16 var49;
+++  orc_union16 var50;
+++  orc_union16 var51;
+++  orc_union16 var52;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var50;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++-  orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++-  orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
++-#else
++-  orc_union16 var54;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -8124,160 +7736,125 @@ _backup_video_convert_orc_convert_AYUV_ABGR (OrcExecutor * ORC_RESTRICT ex)
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (ex->arrays[0], ex->params[0] * j);
++     ptr4 = ORC_PTR_OFFSET (ex->arrays[4], ex->params[4] * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = ex->params[24];
+++    /* 11: loadpw */
+++    var49.i = ex->params[25];
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = ex->params[26];
+++    /* 17: loadpw */
+++    var51.i = ex->params[27];
+++    /* 20: loadpw */
+++    var52.i = ex->params[28];
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var61;
++-        _dest.x2[1] = var89;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var59;
+++        _dest.x2[1] = var76;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var88;
++-        _dest.x2[1] = var87;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var75;
+++        _dest.x2[1] = var74;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -8285,7 +7862,8 @@ _backup_video_convert_orc_convert_AYUV_ABGR (OrcExecutor * ORC_RESTRICT ex)
++ 
++ void
++ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   OrcExecutor _ex, *ex = &_ex;
++   static volatile int p_inited = 0;
++@@ -8301,20 +7879,16 @@ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++       static const orc_uint8 bc[] = {
++         1, 7, 9, 35, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114,
++         116, 95, 111, 114, 99, 95, 99, 111, 110, 118, 101, 114, 116, 95, 65, 89,
++-        85, 86, 95, 65, 66, 71, 82, 11, 4, 4, 12, 4, 4, 14, 1, 8,
++-        0, 0, 0, 14, 4, 128, 0, 0, 0, 14, 4, 42, 0, 0, 0, 14,
++-        4, 103, 0, 0, 0, 14, 4, 4, 0, 0, 0, 14, 4, 100, 0, 0,
++-        0, 14, 4, 104, 0, 0, 0, 20, 2, 20, 2, 20, 1, 20, 1, 20,
++-        1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
++-        1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 47, 4, 17, 198, 32, 33,
++-        47, 199, 35, 34, 33, 199, 37, 36, 32, 149, 38, 35, 149, 39, 36, 149,
++-        40, 37, 89, 32, 38, 18, 94, 32, 32, 16, 71, 38, 38, 32, 71, 41,
++-        38, 40, 89, 32, 40, 19, 94, 32, 32, 16, 99, 41, 41, 32, 71, 41,
++-        41, 40, 71, 43, 38, 39, 71, 43, 43, 39, 89, 32, 39, 20, 94, 32,
++-        32, 16, 71, 43, 43, 32, 89, 32, 39, 21, 94, 32, 32, 16, 99, 42,
++-        38, 32, 89, 32, 40, 22, 94, 32, 32, 16, 99, 42, 42, 32, 99, 42,
++-        42, 32, 159, 44, 41, 159, 45, 42, 159, 46, 43, 196, 32, 34, 46, 196,
++-        33, 45, 44, 195, 47, 32, 33, 21, 2, 33, 0, 47, 17, 2, 0,
+++        85, 86, 95, 65, 66, 71, 82, 11, 4, 4, 12, 4, 4, 14, 1, 128,
+++        0, 0, 0, 16, 2, 16, 2, 16, 2, 16, 2, 16, 2, 20, 1, 20,
+++        1, 20, 1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
+++        2, 20, 1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 45, 4, 16, 198,
+++        38, 36, 45, 199, 33, 32, 36, 199, 35, 34, 38, 151, 36, 33, 151, 37,
+++        34, 151, 38, 35, 90, 36, 36, 24, 90, 39, 38, 25, 71, 39, 36, 39,
+++        90, 41, 37, 26, 71, 41, 36, 41, 90, 40, 37, 27, 71, 40, 36, 40,
+++        90, 36, 38, 28, 71, 40, 40, 36, 159, 42, 39, 159, 43, 40, 159, 44,
+++        41, 196, 41, 32, 44, 196, 39, 43, 42, 195, 45, 41, 39, 21, 2, 33,
+++        0, 45, 16, 2, 0,
++       };
++       p = orc_program_new_from_static_bytecode (bc);
++       orc_program_set_backup_function (p,
++@@ -8327,97 +7901,72 @@ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++           _backup_video_convert_orc_convert_AYUV_ABGR);
++       orc_program_add_destination (p, 4, "d1");
++       orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 1, 0x00000008, "c1");
++-      orc_program_add_constant (p, 4, 0x00000080, "c2");
++-      orc_program_add_constant (p, 4, 0x0000002a, "c3");
++-      orc_program_add_constant (p, 4, 0x00000067, "c4");
++-      orc_program_add_constant (p, 4, 0x00000004, "c5");
++-      orc_program_add_constant (p, 4, 0x00000064, "c6");
++-      orc_program_add_constant (p, 4, 0x00000068, "c7");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
+++      orc_program_add_constant (p, 1, 0x00000080, "c1");
+++      orc_program_add_parameter (p, 2, "p1");
+++      orc_program_add_parameter (p, 2, "p2");
+++      orc_program_add_parameter (p, 2, "p3");
+++      orc_program_add_parameter (p, 2, "p4");
+++      orc_program_add_parameter (p, 2, "p5");
+++      orc_program_add_temporary (p, 1, "t1");
+++      orc_program_add_temporary (p, 1, "t2");
++       orc_program_add_temporary (p, 1, "t3");
++       orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-      orc_program_add_temporary (p, 1, "t6");
+++      orc_program_add_temporary (p, 2, "t5");
+++      orc_program_add_temporary (p, 2, "t6");
++       orc_program_add_temporary (p, 2, "t7");
++       orc_program_add_temporary (p, 2, "t8");
++       orc_program_add_temporary (p, 2, "t9");
++       orc_program_add_temporary (p, 2, "t10");
++-      orc_program_add_temporary (p, 2, "t11");
++-      orc_program_add_temporary (p, 2, "t12");
+++      orc_program_add_temporary (p, 1, "t11");
+++      orc_program_add_temporary (p, 1, "t12");
++       orc_program_add_temporary (p, 1, "t13");
++-      orc_program_add_temporary (p, 1, "t14");
++-      orc_program_add_temporary (p, 1, "t15");
++-      orc_program_add_temporary (p, 4, "t16");
+++      orc_program_add_temporary (p, 4, "t14");
++ 
++-      orc_program_append_2 (p, "subb", 2, 47, ORC_VAR_S1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T1, ORC_VAR_T2, 47,
+++      orc_program_append_2 (p, "subb", 2, ORC_VAR_T14, ORC_VAR_S1, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T6, ORC_VAR_T5, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T7, ORC_VAR_C3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T7, ORC_VAR_T5,
+++          ORC_VAR_T14, ORC_VAR_D1);
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T7,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T7, ORC_VAR_T9,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T5, ORC_VAR_T2, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C4,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T6, ORC_VAR_T3, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T9, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T7, ORC_VAR_T8,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T5, ORC_VAR_P1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T8, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C5,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T8, ORC_VAR_T7, ORC_VAR_P2,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_T8,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C6,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T10, ORC_VAR_T6, ORC_VAR_P3,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T5,
+++          ORC_VAR_T10, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_P4,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T5, ORC_VAR_T9,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C7,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T7, ORC_VAR_P5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T9, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T11, ORC_VAR_T8,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T14, ORC_VAR_T11,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T12, ORC_VAR_T9,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T15, ORC_VAR_T12,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T3,
++-          ORC_VAR_T15, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_T14,
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T10, ORC_VAR_T1,
++           ORC_VAR_T13, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, 47, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, 47, ORC_VAR_C2,
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T8, ORC_VAR_T12,
+++          ORC_VAR_T11, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T14, ORC_VAR_T10,
+++          ORC_VAR_T8, ORC_VAR_D1);
+++      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, ORC_VAR_T14, ORC_VAR_C1,
++           ORC_VAR_D1);
++ #endif
++ 
++@@ -8437,6 +7986,11 @@ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++   ex->params[ORC_VAR_D1] = d1_stride;
++   ex->arrays[ORC_VAR_S1] = (void *) s1;
++   ex->params[ORC_VAR_S1] = s1_stride;
+++  ex->params[ORC_VAR_P1] = p1;
+++  ex->params[ORC_VAR_P2] = p2;
+++  ex->params[ORC_VAR_P3] = p3;
+++  ex->params[ORC_VAR_P4] = p4;
+++  ex->params[ORC_VAR_P5] = p5;
++ 
++   func = c->exec;
++   func (ex);
++@@ -8448,56 +8002,39 @@ video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride,
++ #ifdef DISABLE_ORC
++ void
++ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   int i;
++   int j;
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var53;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
++-#else
++-  orc_union16 var54;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -8508,160 +8045,125 @@ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (d1, d1_stride * j);
++     ptr4 = ORC_PTR_OFFSET (s1, s1_stride * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = p1;
+++    /* 11: loadpw */
+++    var49.i = p2;
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = p3;
+++    /* 17: loadpw */
+++    var51.i = p4;
+++    /* 20: loadpw */
+++    var52.i = p5;
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var87;
++-        _dest.x2[1] = var88;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var74;
+++        _dest.x2[1] = var75;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var89;
++-        _dest.x2[1] = var61;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var76;
+++        _dest.x2[1] = var59;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -8677,50 +8179,32 @@ _backup_video_convert_orc_convert_AYUV_RGBA (OrcExecutor * ORC_RESTRICT ex)
++   int m = ex->params[ORC_VAR_A1];
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var48;
+++  orc_union32 var46;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var49;
+++  volatile orc_union32 var47;
++ #else
++-  orc_union32 var49;
+++  orc_union32 var47;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
+++  orc_union16 var48;
+++  orc_union16 var49;
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++   orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++   orc_union16 var52;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
++-#else
++-  orc_union16 var53;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var54;
+++  volatile orc_union32 var53;
++ #else
++-  orc_union16 var54;
+++  orc_union32 var53;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union32 var55;
++-#else
+++  orc_union32 var54;
++   orc_union32 var55;
++-#endif
++-  orc_union32 var56;
++-  orc_union32 var57;
++-  orc_union16 var58;
++-  orc_union16 var59;
+++  orc_union16 var56;
+++  orc_union16 var57;
+++  orc_int8 var58;
+++  orc_int8 var59;
++   orc_int8 var60;
++   orc_int8 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -8731,160 +8215,125 @@ _backup_video_convert_orc_convert_AYUV_RGBA (OrcExecutor * ORC_RESTRICT ex)
++   orc_union16 var71;
++   orc_union16 var72;
++   orc_union16 var73;
++-  orc_union16 var74;
++-  orc_union16 var75;
++-  orc_union16 var76;
+++  orc_int8 var74;
+++  orc_int8 var75;
+++  orc_int8 var76;
++   orc_union16 var77;
++   orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_union16 var85;
++-  orc_union16 var86;
++-  orc_int8 var87;
++-  orc_int8 var88;
++-  orc_int8 var89;
++-  orc_union16 var90;
++-  orc_union16 var91;
++-  orc_union32 var92;
+++  orc_union32 var79;
++ 
++   for (j = 0; j < m; j++) {
++     ptr0 = ORC_PTR_OFFSET (ex->arrays[0], ex->params[0] * j);
++     ptr4 = ORC_PTR_OFFSET (ex->arrays[4], ex->params[4] * j);
++ 
++     /* 1: loadpb */
++-    var49.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var49.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var47.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++     /* 9: loadpw */
++-    var50.i = (int) 0x0000002a; /* 42 or 2.07508e-322f */
+++    var48.i = ex->params[24];
+++    /* 11: loadpw */
+++    var49.i = ex->params[25];
++     /* 14: loadpw */
++-    var51.i = (int) 0x00000067; /* 103 or 5.08888e-322f */
++-    /* 21: loadpw */
++-    var52.i = (int) 0x00000004; /* 4 or 1.97626e-323f */
++-    /* 25: loadpw */
++-    var53.i = (int) 0x00000064; /* 100 or 4.94066e-322f */
++-    /* 29: loadpw */
++-    var54.i = (int) 0x00000068; /* 104 or 5.13828e-322f */
++-    /* 40: loadpb */
++-    var55.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-    var55.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var50.i = ex->params[26];
+++    /* 17: loadpw */
+++    var51.i = ex->params[27];
+++    /* 20: loadpw */
+++    var52.i = ex->params[28];
+++    /* 29: loadpb */
+++    var53.x4[0] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[1] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[2] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++    var53.x4[3] = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++ 
++     for (i = 0; i < n; i++) {
++       /* 0: loadl */
++-      var48 = ptr4[i];
+++      var46 = ptr4[i];
++       /* 2: subb */
++-      var57.x4[0] = var48.x4[0] - var49.x4[0];
++-      var57.x4[1] = var48.x4[1] - var49.x4[1];
++-      var57.x4[2] = var48.x4[2] - var49.x4[2];
++-      var57.x4[3] = var48.x4[3] - var49.x4[3];
+++      var55.x4[0] = var46.x4[0] - var47.x4[0];
+++      var55.x4[1] = var46.x4[1] - var47.x4[1];
+++      var55.x4[2] = var46.x4[2] - var47.x4[2];
+++      var55.x4[3] = var46.x4[3] - var47.x4[3];
++       /* 3: splitlw */
++       {
++         orc_union32 _src;
++-        _src.i = var57.i;
++-        var58.i = _src.x2[1];
++-        var59.i = _src.x2[0];
+++        _src.i = var55.i;
+++        var56.i = _src.x2[1];
+++        var57.i = _src.x2[0];
++       }
++       /* 4: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var59.i;
++-        var60 = _src.x2[1];
++-        var61 = _src.x2[0];
+++        _src.i = var57.i;
+++        var58 = _src.x2[1];
+++        var59 = _src.x2[0];
++       }
++       /* 5: splitwb */
++       {
++         orc_union16 _src;
++-        _src.i = var58.i;
++-        var62 = _src.x2[1];
++-        var63 = _src.x2[0];
++-      }
++-      /* 6: convsbw */
++-      var64.i = var60;
++-      /* 7: convsbw */
++-      var65.i = var63;
++-      /* 8: convsbw */
++-      var66.i = var62;
++-      /* 10: mullw */
++-      var67.i = (var64.i * var50.i) & 0xffff;
++-      /* 11: shrsw */
++-      var68.i = var67.i >> 8;
++-      /* 12: addssw */
++-      var69.i = ORC_CLAMP_SW (var64.i + var68.i);
+++        _src.i = var56.i;
+++        var60 = _src.x2[1];
+++        var61 = _src.x2[0];
+++      }
+++      /* 6: splatbw */
+++      var62.i = ((var58 & 0xff) << 8) | (var58 & 0xff);
+++      /* 7: splatbw */
+++      var63.i = ((var61 & 0xff) << 8) | (var61 & 0xff);
+++      /* 8: splatbw */
+++      var64.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++      /* 10: mulhsw */
+++      var65.i = (var62.i * var48.i) >> 16;
+++      /* 12: mulhsw */
+++      var66.i = (var64.i * var49.i) >> 16;
++       /* 13: addssw */
++-      var70.i = ORC_CLAMP_SW (var69.i + var66.i);
++-      /* 15: mullw */
++-      var71.i = (var66.i * var51.i) & 0xffff;
++-      /* 16: shrsw */
++-      var72.i = var71.i >> 8;
++-      /* 17: subssw */
++-      var73.i = ORC_CLAMP_SW (var70.i - var72.i);
++-      /* 18: addssw */
++-      var74.i = ORC_CLAMP_SW (var73.i + var66.i);
+++      var67.i = ORC_CLAMP_SW (var65.i + var66.i);
+++      /* 15: mulhsw */
+++      var68.i = (var63.i * var50.i) >> 16;
+++      /* 16: addssw */
+++      var69.i = ORC_CLAMP_SW (var65.i + var68.i);
+++      /* 18: mulhsw */
+++      var70.i = (var63.i * var51.i) >> 16;
++       /* 19: addssw */
++-      var75.i = ORC_CLAMP_SW (var69.i + var65.i);
++-      /* 20: addssw */
++-      var76.i = ORC_CLAMP_SW (var75.i + var65.i);
++-      /* 22: mullw */
++-      var77.i = (var65.i * var52.i) & 0xffff;
++-      /* 23: shrsw */
++-      var78.i = var77.i >> 8;
++-      /* 24: addssw */
++-      var79.i = ORC_CLAMP_SW (var76.i + var78.i);
++-      /* 26: mullw */
++-      var80.i = (var65.i * var53.i) & 0xffff;
++-      /* 27: shrsw */
++-      var81.i = var80.i >> 8;
++-      /* 28: subssw */
++-      var82.i = ORC_CLAMP_SW (var69.i - var81.i);
++-      /* 30: mullw */
++-      var83.i = (var66.i * var54.i) & 0xffff;
++-      /* 31: shrsw */
++-      var84.i = var83.i >> 8;
++-      /* 32: subssw */
++-      var85.i = ORC_CLAMP_SW (var82.i - var84.i);
++-      /* 33: subssw */
++-      var86.i = ORC_CLAMP_SW (var85.i - var84.i);
++-      /* 34: convssswb */
++-      var87 = ORC_CLAMP_SB (var74.i);
++-      /* 35: convssswb */
++-      var88 = ORC_CLAMP_SB (var86.i);
++-      /* 36: convssswb */
++-      var89 = ORC_CLAMP_SB (var79.i);
++-      /* 37: mergebw */
+++      var71.i = ORC_CLAMP_SW (var65.i + var70.i);
+++      /* 21: mulhsw */
+++      var72.i = (var64.i * var52.i) >> 16;
+++      /* 22: addssw */
+++      var73.i = ORC_CLAMP_SW (var71.i + var72.i);
+++      /* 23: convssswb */
+++      var74 = ORC_CLAMP_SB (var67.i);
+++      /* 24: convssswb */
+++      var75 = ORC_CLAMP_SB (var73.i);
+++      /* 25: convssswb */
+++      var76 = ORC_CLAMP_SB (var69.i);
+++      /* 26: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var87;
++-        _dest.x2[1] = var88;
++-        var90.i = _dest.i;
+++        _dest.x2[0] = var74;
+++        _dest.x2[1] = var75;
+++        var77.i = _dest.i;
++       }
++-      /* 38: mergebw */
+++      /* 27: mergebw */
++       {
++         orc_union16 _dest;
++-        _dest.x2[0] = var89;
++-        _dest.x2[1] = var61;
++-        var91.i = _dest.i;
+++        _dest.x2[0] = var76;
+++        _dest.x2[1] = var59;
+++        var78.i = _dest.i;
++       }
++-      /* 39: mergewl */
+++      /* 28: mergewl */
++       {
++         orc_union32 _dest;
++-        _dest.x2[0] = var90.i;
++-        _dest.x2[1] = var91.i;
++-        var92.i = _dest.i;
++-      }
++-      /* 41: addb */
++-      var56.x4[0] = var92.x4[0] + var55.x4[0];
++-      var56.x4[1] = var92.x4[1] + var55.x4[1];
++-      var56.x4[2] = var92.x4[2] + var55.x4[2];
++-      var56.x4[3] = var92.x4[3] + var55.x4[3];
++-      /* 42: storel */
++-      ptr0[i] = var56;
+++        _dest.x2[0] = var77.i;
+++        _dest.x2[1] = var78.i;
+++        var79.i = _dest.i;
+++      }
+++      /* 30: addb */
+++      var54.x4[0] = var79.x4[0] + var53.x4[0];
+++      var54.x4[1] = var79.x4[1] + var53.x4[1];
+++      var54.x4[2] = var79.x4[2] + var53.x4[2];
+++      var54.x4[3] = var79.x4[3] + var53.x4[3];
+++      /* 31: storel */
+++      ptr0[i] = var54;
++     }
++   }
++ 
++@@ -8892,7 +8341,8 @@ _backup_video_convert_orc_convert_AYUV_RGBA (OrcExecutor * ORC_RESTRICT ex)
++ 
++ void
++ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++-    const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m)
+++    const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3,
+++    int p4, int p5, int n, int m)
++ {
++   OrcExecutor _ex, *ex = &_ex;
++   static volatile int p_inited = 0;
++@@ -8908,20 +8358,16 @@ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++       static const orc_uint8 bc[] = {
++         1, 7, 9, 35, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114,
++         116, 95, 111, 114, 99, 95, 99, 111, 110, 118, 101, 114, 116, 95, 65, 89,
++-        85, 86, 95, 82, 71, 66, 65, 11, 4, 4, 12, 4, 4, 14, 1, 8,
++-        0, 0, 0, 14, 4, 128, 0, 0, 0, 14, 4, 42, 0, 0, 0, 14,
++-        4, 103, 0, 0, 0, 14, 4, 4, 0, 0, 0, 14, 4, 100, 0, 0,
++-        0, 14, 4, 104, 0, 0, 0, 20, 2, 20, 2, 20, 1, 20, 1, 20,
++-        1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
++-        1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 47, 4, 17, 198, 32, 33,
++-        47, 199, 35, 34, 33, 199, 37, 36, 32, 149, 38, 35, 149, 39, 36, 149,
++-        40, 37, 89, 32, 38, 18, 94, 32, 32, 16, 71, 38, 38, 32, 71, 41,
++-        38, 40, 89, 32, 40, 19, 94, 32, 32, 16, 99, 41, 41, 32, 71, 41,
++-        41, 40, 71, 43, 38, 39, 71, 43, 43, 39, 89, 32, 39, 20, 94, 32,
++-        32, 16, 71, 43, 43, 32, 89, 32, 39, 21, 94, 32, 32, 16, 99, 42,
++-        38, 32, 89, 32, 40, 22, 94, 32, 32, 16, 99, 42, 42, 32, 99, 42,
++-        42, 32, 159, 44, 41, 159, 45, 42, 159, 46, 43, 196, 32, 44, 45, 196,
++-        33, 46, 34, 195, 47, 32, 33, 21, 2, 33, 0, 47, 17, 2, 0,
+++        85, 86, 95, 82, 71, 66, 65, 11, 4, 4, 12, 4, 4, 14, 1, 128,
+++        0, 0, 0, 16, 2, 16, 2, 16, 2, 16, 2, 16, 2, 20, 1, 20,
+++        1, 20, 1, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2, 20, 2, 20,
+++        2, 20, 1, 20, 1, 20, 1, 20, 4, 21, 2, 65, 45, 4, 16, 198,
+++        38, 36, 45, 199, 33, 32, 36, 199, 35, 34, 38, 151, 36, 33, 151, 37,
+++        34, 151, 38, 35, 90, 36, 36, 24, 90, 39, 38, 25, 71, 39, 36, 39,
+++        90, 41, 37, 26, 71, 41, 36, 41, 90, 40, 37, 27, 71, 40, 36, 40,
+++        90, 36, 38, 28, 71, 40, 40, 36, 159, 42, 39, 159, 43, 40, 159, 44,
+++        41, 196, 39, 42, 43, 196, 41, 44, 32, 195, 45, 39, 41, 21, 2, 33,
+++        0, 45, 16, 2, 0,
++       };
++       p = orc_program_new_from_static_bytecode (bc);
++       orc_program_set_backup_function (p,
++@@ -8934,97 +8380,72 @@ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++           _backup_video_convert_orc_convert_AYUV_RGBA);
++       orc_program_add_destination (p, 4, "d1");
++       orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 1, 0x00000008, "c1");
++-      orc_program_add_constant (p, 4, 0x00000080, "c2");
++-      orc_program_add_constant (p, 4, 0x0000002a, "c3");
++-      orc_program_add_constant (p, 4, 0x00000067, "c4");
++-      orc_program_add_constant (p, 4, 0x00000004, "c5");
++-      orc_program_add_constant (p, 4, 0x00000064, "c6");
++-      orc_program_add_constant (p, 4, 0x00000068, "c7");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
+++      orc_program_add_constant (p, 1, 0x00000080, "c1");
+++      orc_program_add_parameter (p, 2, "p1");
+++      orc_program_add_parameter (p, 2, "p2");
+++      orc_program_add_parameter (p, 2, "p3");
+++      orc_program_add_parameter (p, 2, "p4");
+++      orc_program_add_parameter (p, 2, "p5");
+++      orc_program_add_temporary (p, 1, "t1");
+++      orc_program_add_temporary (p, 1, "t2");
++       orc_program_add_temporary (p, 1, "t3");
++       orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-      orc_program_add_temporary (p, 1, "t6");
+++      orc_program_add_temporary (p, 2, "t5");
+++      orc_program_add_temporary (p, 2, "t6");
++       orc_program_add_temporary (p, 2, "t7");
++       orc_program_add_temporary (p, 2, "t8");
++       orc_program_add_temporary (p, 2, "t9");
++       orc_program_add_temporary (p, 2, "t10");
++-      orc_program_add_temporary (p, 2, "t11");
++-      orc_program_add_temporary (p, 2, "t12");
+++      orc_program_add_temporary (p, 1, "t11");
+++      orc_program_add_temporary (p, 1, "t12");
++       orc_program_add_temporary (p, 1, "t13");
++-      orc_program_add_temporary (p, 1, "t14");
++-      orc_program_add_temporary (p, 1, "t15");
++-      orc_program_add_temporary (p, 4, "t16");
+++      orc_program_add_temporary (p, 4, "t14");
++ 
++-      orc_program_append_2 (p, "subb", 2, 47, ORC_VAR_S1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T1, ORC_VAR_T2, 47,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T6, ORC_VAR_T5, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_D1,
+++      orc_program_append_2 (p, "subb", 2, ORC_VAR_T14, ORC_VAR_S1, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T7, ORC_VAR_C3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T7, ORC_VAR_T5,
+++          ORC_VAR_T14, ORC_VAR_D1);
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T7,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T7, ORC_VAR_T9,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T5, ORC_VAR_T2, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C4,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T6, ORC_VAR_T3, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T10,
++-          ORC_VAR_T9, ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T7, ORC_VAR_T8,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T5, ORC_VAR_P1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T8, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C5,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T8, ORC_VAR_T7, ORC_VAR_P2,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T8, ORC_VAR_T5, ORC_VAR_T8,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T12, ORC_VAR_T12,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T8, ORC_VAR_C6,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T10, ORC_VAR_T6, ORC_VAR_P3,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T10, ORC_VAR_T5,
+++          ORC_VAR_T10, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T9, ORC_VAR_T6, ORC_VAR_P4,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T5, ORC_VAR_T9,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T9, ORC_VAR_C7,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T7, ORC_VAR_P5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T9, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T11, ORC_VAR_T11,
++-          ORC_VAR_T1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T11, ORC_VAR_T8,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T14, ORC_VAR_T11,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T12, ORC_VAR_T9,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T15, ORC_VAR_T12,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T13, ORC_VAR_T10,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T13,
++-          ORC_VAR_T14, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_T15,
++-          ORC_VAR_T3, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, 47, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, 47, ORC_VAR_C2,
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T8, ORC_VAR_T11,
+++          ORC_VAR_T12, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T10, ORC_VAR_T13,
+++          ORC_VAR_T1, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T14, ORC_VAR_T8,
+++          ORC_VAR_T10, ORC_VAR_D1);
+++      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, ORC_VAR_T14, ORC_VAR_C1,
++           ORC_VAR_D1);
++ #endif
++ 
++@@ -9044,6 +8465,11 @@ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++   ex->params[ORC_VAR_D1] = d1_stride;
++   ex->arrays[ORC_VAR_S1] = (void *) s1;
++   ex->params[ORC_VAR_S1] = s1_stride;
+++  ex->params[ORC_VAR_P1] = p1;
+++  ex->params[ORC_VAR_P2] = p2;
+++  ex->params[ORC_VAR_P3] = p3;
+++  ex->params[ORC_VAR_P4] = p4;
+++  ex->params[ORC_VAR_P5] = p5;
++ 
++   func = c->exec;
++   func (ex);
++@@ -9056,77 +8482,56 @@ video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride,
++ void
++ video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++     const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
+++    const guint8 * ORC_RESTRICT s3, int p1, int p2, int p3, int p4, int p5,
+++    int n)
++ {
++   int i;
++   orc_union32 *ORC_RESTRICT ptr0;
++   const orc_int8 *ORC_RESTRICT ptr4;
++   const orc_int8 *ORC_RESTRICT ptr5;
++   const orc_int8 *ORC_RESTRICT ptr6;
++-  orc_int8 var44;
+++  orc_int8 var42;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var45;
+++  volatile orc_int8 var43;
++ #else
++-  orc_int8 var45;
+++  orc_int8 var43;
++ #endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var46;
+++  volatile orc_int8 var44;
++ #else
++-  orc_int8 var46;
+++  orc_int8 var44;
++ #endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var47;
+++  volatile orc_int8 var45;
++ #else
++-  orc_int8 var47;
+++  orc_int8 var45;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var48;
++-#else
+++  orc_union16 var46;
+++  orc_union16 var47;
++   orc_union16 var48;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var49;
++-#else
++   orc_union16 var49;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
++   orc_union16 var50;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
++-#else
++-  orc_union16 var51;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
+++  volatile orc_int8 var51;
++ #else
++-  orc_union16 var52;
+++  orc_int8 var51;
++ #endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
+++  volatile orc_union32 var52;
++ #else
++-  orc_union16 var53;
+++  orc_union32 var52;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var54;
++-#else
+++  orc_union32 var53;
++   orc_int8 var54;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var55;
++-#else
++-  orc_int8 var55;
++-#endif
++-  orc_union32 var56;
+++  orc_union16 var55;
+++  orc_int8 var56;
++   orc_int8 var57;
++   orc_union16 var58;
++   orc_int8 var59;
++   orc_int8 var60;
++   orc_union16 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -9134,27 +8539,12 @@ video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++   orc_union16 var68;
++   orc_union16 var69;
++   orc_union16 var70;
++-  orc_union16 var71;
++-  orc_union16 var72;
++-  orc_union16 var73;
+++  orc_int8 var71;
+++  orc_int8 var72;
+++  orc_int8 var73;
++   orc_union16 var74;
++   orc_union16 var75;
++-  orc_union16 var76;
++-  orc_union16 var77;
++-  orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_int8 var85;
++-  orc_int8 var86;
++-  orc_int8 var87;
++-  orc_union16 var88;
++-  orc_union16 var89;
++-  orc_int8 var90;
++-  orc_union16 var91;
+++  orc_union32 var76;
++ 
++   ptr0 = (orc_union32 *) d1;
++   ptr4 = (orc_int8 *) s1;
++@@ -9162,126 +8552,100 @@ video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++   ptr6 = (orc_int8 *) s3;
++ 
++   /* 1: loadpb */
++-  var45 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++  var43 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++   /* 5: loadpb */
++-  var46 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++  var44 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++   /* 9: loadpb */
++-  var47 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++  var45 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++   /* 12: loadpw */
++-  var48.i = (int) 0x0000002a;   /* 42 or 2.07508e-322f */
+++  var46.i = p1;
+++  /* 14: loadpw */
+++  var47.i = p2;
++   /* 17: loadpw */
++-  var49.i = (int) 0x00000067;   /* 103 or 5.08888e-322f */
++-  /* 24: loadpw */
++-  var50.i = (int) 0x00000004;   /* 4 or 1.97626e-323f */
++-  /* 28: loadpw */
++-  var51.i = (int) 0x00000064;   /* 100 or 4.94066e-322f */
++-  /* 32: loadpw */
++-  var52.i = (int) 0x00000068;   /* 104 or 5.13828e-322f */
++-  /* 41: loadpb */
++-  var53.x2[0] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
++-  var53.x2[1] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
++-  /* 43: loadpb */
++-  var54 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-  /* 45: loadpb */
++-  var55 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
+++  var48.i = p3;
+++  /* 20: loadpw */
+++  var49.i = p4;
+++  /* 23: loadpw */
+++  var50.i = p5;
+++  /* 30: loadpb */
+++  var51 = (int) 0x0000007f;     /* 127 or 6.27463e-322f */
+++  /* 33: loadpb */
+++  var52.x4[0] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
+++  var52.x4[1] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
+++  var52.x4[2] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
+++  var52.x4[3] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
++ 
++   for (i = 0; i < n; i++) {
++     /* 0: loadb */
++-    var44 = ptr4[i];
+++    var42 = ptr4[i];
++     /* 2: subb */
++-    var57 = var44 - var45;
++-    /* 3: convsbw */
++-    var58.i = var57;
++-    /* 4: loadupib */
++-    var59 =
++-        (i & 1) ? ((orc_uint8) ptr5[i >> 1] + (orc_uint8) ptr5[(i >> 1) + 1] +
++-        1) >> 1 : ptr5[i >> 1];
+++    var54 = var42 - var43;
+++    /* 3: splatbw */
+++    var55.i = ((var54 & 0xff) << 8) | (var54 & 0xff);
+++    /* 4: loadupdb */
+++    var56 = ptr5[i >> 1];
++     /* 6: subb */
++-    var60 = var59 - var46;
++-    /* 7: convsbw */
++-    var61.i = var60;
++-    /* 8: loadupib */
++-    var62 =
++-        (i & 1) ? ((orc_uint8) ptr6[i >> 1] + (orc_uint8) ptr6[(i >> 1) + 1] +
++-        1) >> 1 : ptr6[i >> 1];
+++    var57 = var56 - var44;
+++    /* 7: splatbw */
+++    var58.i = ((var57 & 0xff) << 8) | (var57 & 0xff);
+++    /* 8: loadupdb */
+++    var59 = ptr6[i >> 1];
++     /* 10: subb */
++-    var63 = var62 - var47;
++-    /* 11: convsbw */
++-    var64.i = var63;
++-    /* 13: mullw */
++-    var65.i = (var58.i * var48.i) & 0xffff;
++-    /* 14: shrsw */
++-    var66.i = var65.i >> 8;
++-    /* 15: addssw */
++-    var67.i = ORC_CLAMP_SW (var58.i + var66.i);
+++    var60 = var59 - var45;
+++    /* 11: splatbw */
+++    var61.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++    /* 13: mulhsw */
+++    var62.i = (var55.i * var46.i) >> 16;
+++    /* 15: mulhsw */
+++    var63.i = (var61.i * var47.i) >> 16;
++     /* 16: addssw */
++-    var68.i = ORC_CLAMP_SW (var67.i + var64.i);
++-    /* 18: mullw */
++-    var69.i = (var64.i * var49.i) & 0xffff;
++-    /* 19: shrsw */
++-    var70.i = var69.i >> 8;
++-    /* 20: subssw */
++-    var71.i = ORC_CLAMP_SW (var68.i - var70.i);
++-    /* 21: addssw */
++-    var72.i = ORC_CLAMP_SW (var71.i + var64.i);
+++    var64.i = ORC_CLAMP_SW (var62.i + var63.i);
+++    /* 18: mulhsw */
+++    var65.i = (var58.i * var48.i) >> 16;
+++    /* 19: addssw */
+++    var66.i = ORC_CLAMP_SW (var62.i + var65.i);
+++    /* 21: mulhsw */
+++    var67.i = (var58.i * var49.i) >> 16;
++     /* 22: addssw */
++-    var73.i = ORC_CLAMP_SW (var67.i + var61.i);
++-    /* 23: addssw */
++-    var74.i = ORC_CLAMP_SW (var73.i + var61.i);
++-    /* 25: mullw */
++-    var75.i = (var61.i * var50.i) & 0xffff;
++-    /* 26: shrsw */
++-    var76.i = var75.i >> 8;
++-    /* 27: addssw */
++-    var77.i = ORC_CLAMP_SW (var74.i + var76.i);
++-    /* 29: mullw */
++-    var78.i = (var61.i * var51.i) & 0xffff;
++-    /* 30: shrsw */
++-    var79.i = var78.i >> 8;
++-    /* 31: subssw */
++-    var80.i = ORC_CLAMP_SW (var67.i - var79.i);
++-    /* 33: mullw */
++-    var81.i = (var64.i * var52.i) & 0xffff;
++-    /* 34: shrsw */
++-    var82.i = var81.i >> 8;
++-    /* 35: subssw */
++-    var83.i = ORC_CLAMP_SW (var80.i - var82.i);
++-    /* 36: subssw */
++-    var84.i = ORC_CLAMP_SW (var83.i - var82.i);
++-    /* 37: convssswb */
++-    var85 = ORC_CLAMP_SB (var72.i);
++-    /* 38: convssswb */
++-    var86 = ORC_CLAMP_SB (var84.i);
++-    /* 39: convssswb */
++-    var87 = ORC_CLAMP_SB (var77.i);
++-    /* 40: mergebw */
+++    var68.i = ORC_CLAMP_SW (var62.i + var67.i);
+++    /* 24: mulhsw */
+++    var69.i = (var61.i * var50.i) >> 16;
+++    /* 25: addssw */
+++    var70.i = ORC_CLAMP_SW (var68.i + var69.i);
+++    /* 26: convssswb */
+++    var71 = ORC_CLAMP_SB (var64.i);
+++    /* 27: convssswb */
+++    var72 = ORC_CLAMP_SB (var70.i);
+++    /* 28: convssswb */
+++    var73 = ORC_CLAMP_SB (var66.i);
+++    /* 29: mergebw */
++     {
++       orc_union16 _dest;
++-      _dest.x2[0] = var87;
++-      _dest.x2[1] = var86;
++-      var88.i = _dest.i;
++-    }
++-    /* 42: subb */
++-    var89.x2[0] = var88.x2[0] - var53.x2[0];
++-    var89.x2[1] = var88.x2[1] - var53.x2[1];
++-    /* 44: subb */
++-    var90 = var85 - var54;
++-    /* 46: mergebw */
+++      _dest.x2[0] = var73;
+++      _dest.x2[1] = var72;
+++      var74.i = _dest.i;
+++    }
+++    /* 31: mergebw */
++     {
++       orc_union16 _dest;
++-      _dest.x2[0] = var90;
++-      _dest.x2[1] = var55;
++-      var91.i = _dest.i;
+++      _dest.x2[0] = var71;
+++      _dest.x2[1] = var51;
+++      var75.i = _dest.i;
++     }
++-    /* 47: mergewl */
+++    /* 32: mergewl */
++     {
++       orc_union32 _dest;
++-      _dest.x2[0] = var89.i;
++-      _dest.x2[1] = var91.i;
++-      var56.i = _dest.i;
+++      _dest.x2[0] = var74.i;
+++      _dest.x2[1] = var75.i;
+++      var76.i = _dest.i;
++     }
++-    /* 48: storel */
++-    ptr0[i] = var56;
+++    /* 34: addb */
+++    var53.x4[0] = var76.x4[0] + var52.x4[0];
+++    var53.x4[1] = var76.x4[1] + var52.x4[1];
+++    var53.x4[2] = var76.x4[2] + var52.x4[2];
+++    var53.x4[3] = var76.x4[3] + var52.x4[3];
+++    /* 35: storel */
+++    ptr0[i] = var53;
++   }
++ 
++ }
++@@ -9296,70 +8660,48 @@ _backup_video_convert_orc_convert_I420_BGRA (OrcExecutor * ORC_RESTRICT ex)
++   const orc_int8 *ORC_RESTRICT ptr4;
++   const orc_int8 *ORC_RESTRICT ptr5;
++   const orc_int8 *ORC_RESTRICT ptr6;
++-  orc_int8 var44;
+++  orc_int8 var42;
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var45;
+++  volatile orc_int8 var43;
++ #else
++-  orc_int8 var45;
+++  orc_int8 var43;
++ #endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var46;
+++  volatile orc_int8 var44;
++ #else
++-  orc_int8 var46;
+++  orc_int8 var44;
++ #endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var47;
+++  volatile orc_int8 var45;
++ #else
++-  orc_int8 var47;
+++  orc_int8 var45;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var48;
++-#else
+++  orc_union16 var46;
+++  orc_union16 var47;
++   orc_union16 var48;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var49;
++-#else
++   orc_union16 var49;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var50;
++-#else
++   orc_union16 var50;
++-#endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var51;
+++  volatile orc_int8 var51;
++ #else
++-  orc_union16 var51;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var52;
++-#else
++-  orc_union16 var52;
+++  orc_int8 var51;
++ #endif
++ #if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var53;
+++  volatile orc_union32 var52;
++ #else
++-  orc_union16 var53;
+++  orc_union32 var52;
++ #endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var54;
++-#else
+++  orc_union32 var53;
++   orc_int8 var54;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var55;
++-#else
++-  orc_int8 var55;
++-#endif
++-  orc_union32 var56;
+++  orc_union16 var55;
+++  orc_int8 var56;
++   orc_int8 var57;
++   orc_union16 var58;
++   orc_int8 var59;
++   orc_int8 var60;
++   orc_union16 var61;
++-  orc_int8 var62;
++-  orc_int8 var63;
+++  orc_union16 var62;
+++  orc_union16 var63;
++   orc_union16 var64;
++   orc_union16 var65;
++   orc_union16 var66;
++@@ -9367,27 +8709,12 @@ _backup_video_convert_orc_convert_I420_BGRA (OrcExecutor * ORC_RESTRICT ex)
++   orc_union16 var68;
++   orc_union16 var69;
++   orc_union16 var70;
++-  orc_union16 var71;
++-  orc_union16 var72;
++-  orc_union16 var73;
+++  orc_int8 var71;
+++  orc_int8 var72;
+++  orc_int8 var73;
++   orc_union16 var74;
++   orc_union16 var75;
++-  orc_union16 var76;
++-  orc_union16 var77;
++-  orc_union16 var78;
++-  orc_union16 var79;
++-  orc_union16 var80;
++-  orc_union16 var81;
++-  orc_union16 var82;
++-  orc_union16 var83;
++-  orc_union16 var84;
++-  orc_int8 var85;
++-  orc_int8 var86;
++-  orc_int8 var87;
++-  orc_union16 var88;
++-  orc_union16 var89;
++-  orc_int8 var90;
++-  orc_union16 var91;
+++  orc_union32 var76;
++ 
++   ptr0 = (orc_union32 *) ex->arrays[0];
++   ptr4 = (orc_int8 *) ex->arrays[4];
++@@ -9395,126 +8722,100 @@ _backup_video_convert_orc_convert_I420_BGRA (OrcExecutor * ORC_RESTRICT ex)
++   ptr6 = (orc_int8 *) ex->arrays[6];
++ 
++   /* 1: loadpb */
++-  var45 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++  var43 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++   /* 5: loadpb */
++-  var46 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++  var44 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++   /* 9: loadpb */
++-  var47 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
+++  var45 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++   /* 12: loadpw */
++-  var48.i = (int) 0x0000002a;   /* 42 or 2.07508e-322f */
+++  var46.i = ex->params[24];
+++  /* 14: loadpw */
+++  var47.i = ex->params[25];
++   /* 17: loadpw */
++-  var49.i = (int) 0x00000067;   /* 103 or 5.08888e-322f */
++-  /* 24: loadpw */
++-  var50.i = (int) 0x00000004;   /* 4 or 1.97626e-323f */
++-  /* 28: loadpw */
++-  var51.i = (int) 0x00000064;   /* 100 or 4.94066e-322f */
++-  /* 32: loadpw */
++-  var52.i = (int) 0x00000068;   /* 104 or 5.13828e-322f */
++-  /* 41: loadpb */
++-  var53.x2[0] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
++-  var53.x2[1] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
++-  /* 43: loadpb */
++-  var54 = (int) 0x00000080;     /* 128 or 6.32404e-322f */
++-  /* 45: loadpb */
++-  var55 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
+++  var48.i = ex->params[26];
+++  /* 20: loadpw */
+++  var49.i = ex->params[27];
+++  /* 23: loadpw */
+++  var50.i = ex->params[28];
+++  /* 30: loadpb */
+++  var51 = (int) 0x0000007f;     /* 127 or 6.27463e-322f */
+++  /* 33: loadpb */
+++  var52.x4[0] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
+++  var52.x4[1] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
+++  var52.x4[2] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
+++  var52.x4[3] = (int) 0x00000080;       /* 128 or 6.32404e-322f */
++ 
++   for (i = 0; i < n; i++) {
++     /* 0: loadb */
++-    var44 = ptr4[i];
+++    var42 = ptr4[i];
++     /* 2: subb */
++-    var57 = var44 - var45;
++-    /* 3: convsbw */
++-    var58.i = var57;
++-    /* 4: loadupib */
++-    var59 =
++-        (i & 1) ? ((orc_uint8) ptr5[i >> 1] + (orc_uint8) ptr5[(i >> 1) + 1] +
++-        1) >> 1 : ptr5[i >> 1];
+++    var54 = var42 - var43;
+++    /* 3: splatbw */
+++    var55.i = ((var54 & 0xff) << 8) | (var54 & 0xff);
+++    /* 4: loadupdb */
+++    var56 = ptr5[i >> 1];
++     /* 6: subb */
++-    var60 = var59 - var46;
++-    /* 7: convsbw */
++-    var61.i = var60;
++-    /* 8: loadupib */
++-    var62 =
++-        (i & 1) ? ((orc_uint8) ptr6[i >> 1] + (orc_uint8) ptr6[(i >> 1) + 1] +
++-        1) >> 1 : ptr6[i >> 1];
+++    var57 = var56 - var44;
+++    /* 7: splatbw */
+++    var58.i = ((var57 & 0xff) << 8) | (var57 & 0xff);
+++    /* 8: loadupdb */
+++    var59 = ptr6[i >> 1];
++     /* 10: subb */
++-    var63 = var62 - var47;
++-    /* 11: convsbw */
++-    var64.i = var63;
++-    /* 13: mullw */
++-    var65.i = (var58.i * var48.i) & 0xffff;
++-    /* 14: shrsw */
++-    var66.i = var65.i >> 8;
++-    /* 15: addssw */
++-    var67.i = ORC_CLAMP_SW (var58.i + var66.i);
+++    var60 = var59 - var45;
+++    /* 11: splatbw */
+++    var61.i = ((var60 & 0xff) << 8) | (var60 & 0xff);
+++    /* 13: mulhsw */
+++    var62.i = (var55.i * var46.i) >> 16;
+++    /* 15: mulhsw */
+++    var63.i = (var61.i * var47.i) >> 16;
++     /* 16: addssw */
++-    var68.i = ORC_CLAMP_SW (var67.i + var64.i);
++-    /* 18: mullw */
++-    var69.i = (var64.i * var49.i) & 0xffff;
++-    /* 19: shrsw */
++-    var70.i = var69.i >> 8;
++-    /* 20: subssw */
++-    var71.i = ORC_CLAMP_SW (var68.i - var70.i);
++-    /* 21: addssw */
++-    var72.i = ORC_CLAMP_SW (var71.i + var64.i);
+++    var64.i = ORC_CLAMP_SW (var62.i + var63.i);
+++    /* 18: mulhsw */
+++    var65.i = (var58.i * var48.i) >> 16;
+++    /* 19: addssw */
+++    var66.i = ORC_CLAMP_SW (var62.i + var65.i);
+++    /* 21: mulhsw */
+++    var67.i = (var58.i * var49.i) >> 16;
++     /* 22: addssw */
++-    var73.i = ORC_CLAMP_SW (var67.i + var61.i);
++-    /* 23: addssw */
++-    var74.i = ORC_CLAMP_SW (var73.i + var61.i);
++-    /* 25: mullw */
++-    var75.i = (var61.i * var50.i) & 0xffff;
++-    /* 26: shrsw */
++-    var76.i = var75.i >> 8;
++-    /* 27: addssw */
++-    var77.i = ORC_CLAMP_SW (var74.i + var76.i);
++-    /* 29: mullw */
++-    var78.i = (var61.i * var51.i) & 0xffff;
++-    /* 30: shrsw */
++-    var79.i = var78.i >> 8;
++-    /* 31: subssw */
++-    var80.i = ORC_CLAMP_SW (var67.i - var79.i);
++-    /* 33: mullw */
++-    var81.i = (var64.i * var52.i) & 0xffff;
++-    /* 34: shrsw */
++-    var82.i = var81.i >> 8;
++-    /* 35: subssw */
++-    var83.i = ORC_CLAMP_SW (var80.i - var82.i);
++-    /* 36: subssw */
++-    var84.i = ORC_CLAMP_SW (var83.i - var82.i);
++-    /* 37: convssswb */
++-    var85 = ORC_CLAMP_SB (var72.i);
++-    /* 38: convssswb */
++-    var86 = ORC_CLAMP_SB (var84.i);
++-    /* 39: convssswb */
++-    var87 = ORC_CLAMP_SB (var77.i);
++-    /* 40: mergebw */
+++    var68.i = ORC_CLAMP_SW (var62.i + var67.i);
+++    /* 24: mulhsw */
+++    var69.i = (var61.i * var50.i) >> 16;
+++    /* 25: addssw */
+++    var70.i = ORC_CLAMP_SW (var68.i + var69.i);
+++    /* 26: convssswb */
+++    var71 = ORC_CLAMP_SB (var64.i);
+++    /* 27: convssswb */
+++    var72 = ORC_CLAMP_SB (var70.i);
+++    /* 28: convssswb */
+++    var73 = ORC_CLAMP_SB (var66.i);
+++    /* 29: mergebw */
++     {
++       orc_union16 _dest;
++-      _dest.x2[0] = var87;
++-      _dest.x2[1] = var86;
++-      var88.i = _dest.i;
++-    }
++-    /* 42: subb */
++-    var89.x2[0] = var88.x2[0] - var53.x2[0];
++-    var89.x2[1] = var88.x2[1] - var53.x2[1];
++-    /* 44: subb */
++-    var90 = var85 - var54;
++-    /* 46: mergebw */
+++      _dest.x2[0] = var73;
+++      _dest.x2[1] = var72;
+++      var74.i = _dest.i;
+++    }
+++    /* 31: mergebw */
++     {
++       orc_union16 _dest;
++-      _dest.x2[0] = var90;
++-      _dest.x2[1] = var55;
++-      var91.i = _dest.i;
+++      _dest.x2[0] = var71;
+++      _dest.x2[1] = var51;
+++      var75.i = _dest.i;
++     }
++-    /* 47: mergewl */
+++    /* 32: mergewl */
++     {
++       orc_union32 _dest;
++-      _dest.x2[0] = var89.i;
++-      _dest.x2[1] = var91.i;
++-      var56.i = _dest.i;
+++      _dest.x2[0] = var74.i;
+++      _dest.x2[1] = var75.i;
+++      var76.i = _dest.i;
++     }
++-    /* 48: storel */
++-    ptr0[i] = var56;
+++    /* 34: addb */
+++    var53.x4[0] = var76.x4[0] + var52.x4[0];
+++    var53.x4[1] = var76.x4[1] + var52.x4[1];
+++    var53.x4[2] = var76.x4[2] + var52.x4[2];
+++    var53.x4[3] = var76.x4[3] + var52.x4[3];
+++    /* 35: storel */
+++    ptr0[i] = var53;
++   }
++ 
++ }
++@@ -9522,7 +8823,8 @@ _backup_video_convert_orc_convert_I420_BGRA (OrcExecutor * ORC_RESTRICT ex)
++ void
++ video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++     const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
+++    const guint8 * ORC_RESTRICT s3, int p1, int p2, int p3, int p4, int p5,
+++    int n)
++ {
++   OrcExecutor _ex, *ex = &_ex;
++   static volatile int p_inited = 0;
++@@ -9539,20 +8841,15 @@ video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++         1, 9, 35, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++         95, 111, 114, 99, 95, 99, 111, 110, 118, 101, 114, 116, 95, 73, 52, 50,
++         48, 95, 66, 71, 82, 65, 11, 4, 4, 12, 1, 1, 12, 1, 1, 12,
++-        1, 1, 14, 1, 8, 0, 0, 0, 14, 1, 128, 0, 0, 0, 14, 4,
++-        42, 0, 0, 0, 14, 4, 103, 0, 0, 0, 14, 4, 4, 0, 0, 0,
++-        14, 4, 100, 0, 0, 0, 14, 4, 104, 0, 0, 0, 14, 4, 255, 0,
++-        0, 0, 20, 2, 20, 2, 20, 1, 20, 2, 20, 2, 20, 2, 20, 2,
++-        20, 2, 20, 2, 20, 1, 20, 1, 20, 1, 65, 34, 4, 17, 149, 35,
++-        34, 46, 34, 5, 65, 34, 34, 17, 149, 36, 34, 46, 34, 6, 65, 34,
++-        34, 17, 149, 37, 34, 89, 32, 35, 18, 94, 32, 32, 16, 71, 35, 35,
++-        32, 71, 38, 35, 37, 89, 32, 37, 19, 94, 32, 32, 16, 99, 38, 38,
++-        32, 71, 38, 38, 37, 71, 40, 35, 36, 71, 40, 40, 36, 89, 32, 36,
++-        20, 94, 32, 32, 16, 71, 40, 40, 32, 89, 32, 36, 21, 94, 32, 32,
++-        16, 99, 39, 35, 32, 89, 32, 37, 22, 94, 32, 32, 16, 99, 39, 39,
++-        32, 99, 39, 39, 32, 159, 41, 38, 159, 42, 39, 159, 43, 40, 196, 32,
++-        43, 42, 21, 1, 65, 32, 32, 17, 65, 41, 41, 17, 196, 33, 41, 23,
++-        195, 0, 32, 33, 2, 0,
+++        1, 1, 14, 1, 128, 0, 0, 0, 14, 4, 127, 0, 0, 0, 16, 2,
+++        16, 2, 16, 2, 16, 2, 16, 2, 20, 2, 20, 2, 20, 2, 20, 2,
+++        20, 2, 20, 2, 20, 1, 20, 1, 20, 1, 20, 4, 65, 38, 4, 16,
+++        151, 32, 38, 45, 38, 5, 65, 38, 38, 16, 151, 33, 38, 45, 38, 6,
+++        65, 38, 38, 16, 151, 34, 38, 90, 32, 32, 24, 90, 35, 34, 25, 71,
+++        35, 32, 35, 90, 37, 33, 26, 71, 37, 32, 37, 90, 36, 33, 27, 71,
+++        36, 32, 36, 90, 32, 34, 28, 71, 36, 36, 32, 159, 38, 35, 159, 39,
+++        36, 159, 40, 37, 196, 37, 40, 39, 196, 35, 38, 17, 195, 41, 37, 35,
+++        21, 2, 33, 0, 41, 16, 2, 0,
++       };
++       p = orc_program_new_from_static_bytecode (bc);
++       orc_program_set_backup_function (p,
++@@ -9566,303 +8863,71 @@ video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1,
++       orc_program_add_source (p, 1, "s1");
++       orc_program_add_source (p, 1, "s2");
++       orc_program_add_source (p, 1, "s3");
++-      orc_program_add_constant (p, 1, 0x00000008, "c1");
++-      orc_program_add_constant (p, 1, 0x00000080, "c2");
++-      orc_program_add_constant (p, 4, 0x0000002a, "c3");
++-      orc_program_add_constant (p, 4, 0x00000067, "c4");
++-      orc_program_add_constant (p, 4, 0x00000004, "c5");
++-      orc_program_add_constant (p, 4, 0x00000064, "c6");
++-      orc_program_add_constant (p, 4, 0x00000068, "c7");
++-      orc_program_add_constant (p, 4, 0x000000ff, "c8");
+++      orc_program_add_constant (p, 1, 0x00000080, "c1");
+++      orc_program_add_constant (p, 4, 0x0000007f, "c2");
+++      orc_program_add_parameter (p, 2, "p1");
+++      orc_program_add_parameter (p, 2, "p2");
+++      orc_program_add_parameter (p, 2, "p3");
+++      orc_program_add_parameter (p, 2, "p4");
+++      orc_program_add_parameter (p, 2, "p5");
++       orc_program_add_temporary (p, 2, "t1");
++       orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
+++      orc_program_add_temporary (p, 2, "t3");
++       orc_program_add_temporary (p, 2, "t4");
++       orc_program_add_temporary (p, 2, "t5");
++       orc_program_add_temporary (p, 2, "t6");
++-      orc_program_add_temporary (p, 2, "t7");
++-      orc_program_add_temporary (p, 2, "t8");
++-      orc_program_add_temporary (p, 2, "t9");
++-      orc_program_add_temporary (p, 1, "t10");
++-      orc_program_add_temporary (p, 1, "t11");
++-      orc_program_add_temporary (p, 1, "t12");
+++      orc_program_add_temporary (p, 1, "t7");
+++      orc_program_add_temporary (p, 1, "t8");
+++      orc_program_add_temporary (p, 1, "t9");
+++      orc_program_add_temporary (p, 4, "t10");
++ 
++-      orc_program_append_2 (p, "subb", 0, ORC_VAR_T3, ORC_VAR_S1, ORC_VAR_C2,
+++      orc_program_append_2 (p, "subb", 0, ORC_VAR_T7, ORC_VAR_S1, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_D1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T1, ORC_VAR_T7, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "loadupib", 0, ORC_VAR_T3, ORC_VAR_S2,
+++      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T7, ORC_VAR_S2,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subb", 0, ORC_VAR_T3, ORC_VAR_T3, ORC_VAR_C2,
+++      orc_program_append_2 (p, "subb", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T5, ORC_VAR_T3, ORC_VAR_D1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T2, ORC_VAR_T7, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "loadupib", 0, ORC_VAR_T3, ORC_VAR_S3,
+++      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T7, ORC_VAR_S3,
++           ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subb", 0, ORC_VAR_T3, ORC_VAR_T3, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convsbw", 0, ORC_VAR_T6, ORC_VAR_T3, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T4, ORC_VAR_C3,
+++      orc_program_append_2 (p, "subb", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_C1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "splatbw", 0, ORC_VAR_T3, ORC_VAR_T7, ORC_VAR_D1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T4, ORC_VAR_T4, ORC_VAR_T1,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_P1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T7, ORC_VAR_T4, ORC_VAR_T6,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_P2,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T6, ORC_VAR_C4,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T4, ORC_VAR_T1, ORC_VAR_T4,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T6, ORC_VAR_T2, ORC_VAR_P3,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_T1,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T6, ORC_VAR_T1, ORC_VAR_T6,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T7, ORC_VAR_T7, ORC_VAR_T6,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T5, ORC_VAR_T2, ORC_VAR_P4,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T4, ORC_VAR_T5,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T5, ORC_VAR_T1, ORC_VAR_T5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T9, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T5, ORC_VAR_C5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T9, ORC_VAR_T9, ORC_VAR_T1,
+++      orc_program_append_2 (p, "mulhsw", 0, ORC_VAR_T1, ORC_VAR_T3, ORC_VAR_P5,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T5, ORC_VAR_C6,
+++      orc_program_append_2 (p, "addssw", 0, ORC_VAR_T5, ORC_VAR_T5, ORC_VAR_T1,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T8, ORC_VAR_T4, ORC_VAR_T1,
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T7, ORC_VAR_T4,
+++          ORC_VAR_D1, ORC_VAR_D1);
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T8, ORC_VAR_T5,
+++          ORC_VAR_D1, ORC_VAR_D1);
+++      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T9, ORC_VAR_T6,
+++          ORC_VAR_D1, ORC_VAR_D1);
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T6, ORC_VAR_T9, ORC_VAR_T8,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "mullw", 0, ORC_VAR_T1, ORC_VAR_T6, ORC_VAR_C7,
+++      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T4, ORC_VAR_T7, ORC_VAR_C2,
++           ORC_VAR_D1);
++-      orc_program_append_2 (p, "shrsw", 0, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T8, ORC_VAR_T8, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "subssw", 0, ORC_VAR_T8, ORC_VAR_T8, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T10, ORC_VAR_T7,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T11, ORC_VAR_T8,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convssswb", 0, ORC_VAR_T12, ORC_VAR_T9,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T12,
++-          ORC_VAR_T11, ORC_VAR_D1);
++-      orc_program_append_2 (p, "subb", 1, ORC_VAR_T1, ORC_VAR_T1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "subb", 0, ORC_VAR_T10, ORC_VAR_T10, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_T10,
++-          ORC_VAR_C8, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-  ex->arrays[ORC_VAR_S3] = (void *) s3;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_I420 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_I420 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var36;
++-#else
++-  orc_int8 var36;
++-#endif
++-  orc_int8 var37;
++-  orc_union32 var38;
++-  orc_int8 var39;
++-  orc_int8 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_int8 *) s1;
++-  ptr5 = (orc_int8 *) s2;
++-  ptr6 = (orc_int8 *) s3;
++-
++-  /* 3: loadpb */
++-  var36 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadupdb */
++-    var39 = ptr5[i >> 1];
++-    /* 1: loadupdb */
++-    var40 = ptr6[i >> 1];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var39;
++-      _dest.x2[1] = var40;
++-      var41.i = _dest.i;
++-    }
++-    /* 4: loadb */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var42.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.i;
++-      _dest.x2[1] = var41.i;
++-      var38.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_I420 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var36;
++-#else
++-  orc_int8 var36;
++-#endif
++-  orc_int8 var37;
++-  orc_union32 var38;
++-  orc_int8 var39;
++-  orc_int8 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_int8 *) ex->arrays[4];
++-  ptr5 = (orc_int8 *) ex->arrays[5];
++-  ptr6 = (orc_int8 *) ex->arrays[6];
++-
++-  /* 3: loadpb */
++-  var36 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadupdb */
++-    var39 = ptr5[i >> 1];
++-    /* 1: loadupdb */
++-    var40 = ptr6[i >> 1];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var39;
++-      _dest.x2[1] = var40;
++-      var41.i = _dest.i;
++-    }
++-    /* 4: loadb */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var42.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.i;
++-      _dest.x2[1] = var41.i;
++-      var38.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_I420 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 73, 52, 50,
++-        48, 11, 4, 4, 12, 1, 1, 12, 1, 1, 12, 1, 1, 14, 1, 255,
++-        0, 0, 0, 20, 2, 20, 2, 20, 1, 20, 1, 45, 34, 5, 45, 35,
++-        6, 196, 32, 34, 35, 196, 33, 16, 4, 195, 0, 33, 32, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_I420);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_I420");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_I420);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 1, "s1");
++-      orc_program_add_source (p, 1, "s2");
++-      orc_program_add_source (p, 1, "s3");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-
++-      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T3, ORC_VAR_S2,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T4, ORC_VAR_S3,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T2, ORC_VAR_T1,
+++      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T10, ORC_VAR_T6,
+++          ORC_VAR_T4, ORC_VAR_D1);
+++      orc_program_append_2 (p, "addb", 2, ORC_VAR_D1, ORC_VAR_T10, ORC_VAR_C1,
++           ORC_VAR_D1);
++ #endif
++ 
++@@ -9881,5907 +8946,11 @@ video_convert_orc_getline_I420 (guint8 * ORC_RESTRICT d1,
++   ex->arrays[ORC_VAR_S1] = (void *) s1;
++   ex->arrays[ORC_VAR_S2] = (void *) s2;
++   ex->arrays[ORC_VAR_S3] = (void *) s3;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_YUV9 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_YUV9 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union16 var38;
++-  orc_union64 var39;
++-  orc_int8 var40;
++-  orc_int8 var41;
++-  orc_union16 var42;
++-  orc_union32 var43;
++-  orc_union32 var44;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union16 *) s1;
++-  ptr5 = (orc_int8 *) s2;
++-  ptr6 = (orc_int8 *) s3;
++-
++-  /* 4: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadupdb */
++-    var40 = ptr5[i >> 1];
++-    /* 1: loadupdb */
++-    var41 = ptr6[i >> 1];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var40;
++-      _dest.x2[1] = var41;
++-      var42.i = _dest.i;
++-    }
++-    /* 3: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.i;
++-      _dest.x2[1] = var42.i;
++-      var43.i = _dest.i;
++-    }
++-    /* 5: loadw */
++-    var38 = ptr4[i];
++-    /* 6: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var38.x2[0];
++-      var44.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var38.x2[1];
++-      var44.x2[1] = _dest.i;
++-    }
++-    /* 7: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var44.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var39.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var44.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var39.x2[1] = _dest.i;
++-    }
++-    /* 8: storeq */
++-    ptr0[i] = var39;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_YUV9 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union16 var38;
++-  orc_union64 var39;
++-  orc_int8 var40;
++-  orc_int8 var41;
++-  orc_union16 var42;
++-  orc_union32 var43;
++-  orc_union32 var44;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union16 *) ex->arrays[4];
++-  ptr5 = (orc_int8 *) ex->arrays[5];
++-  ptr6 = (orc_int8 *) ex->arrays[6];
++-
++-  /* 4: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadupdb */
++-    var40 = ptr5[i >> 1];
++-    /* 1: loadupdb */
++-    var41 = ptr6[i >> 1];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var40;
++-      _dest.x2[1] = var41;
++-      var42.i = _dest.i;
++-    }
++-    /* 3: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.i;
++-      _dest.x2[1] = var42.i;
++-      var43.i = _dest.i;
++-    }
++-    /* 5: loadw */
++-    var38 = ptr4[i];
++-    /* 6: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var38.x2[0];
++-      var44.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var38.x2[1];
++-      var44.x2[1] = _dest.i;
++-    }
++-    /* 7: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var44.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var39.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var44.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var39.x2[1] = _dest.i;
++-    }
++-    /* 8: storeq */
++-    ptr0[i] = var39;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_YUV9 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 85, 86,
++-        57, 11, 8, 8, 12, 2, 2, 12, 1, 1, 12, 1, 1, 14, 1, 255,
++-        0, 0, 0, 20, 2, 20, 4, 20, 4, 20, 1, 20, 1, 45, 35, 5,
++-        45, 36, 6, 196, 32, 35, 36, 195, 34, 32, 32, 21, 1, 196, 33, 16,
++-        4, 21, 1, 195, 0, 33, 34, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_YUV9);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_YUV9");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_YUV9);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 2, "s1");
++-      orc_program_add_source (p, 1, "s2");
++-      orc_program_add_source (p, 1, "s3");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 4, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-
++-      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T4, ORC_VAR_S2,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T5, ORC_VAR_S3,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T4, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T3, ORC_VAR_T1, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T2, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-  ex->arrays[ORC_VAR_S3] = (void *) s3;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_YUY2 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_YUY2 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var36;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_union32 var41;
++-  orc_union32 var42;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-  /* 2: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var36 = ptr4[i];
++-    /* 1: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 3: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var40.x2[0];
++-      var41.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var40.x2[1];
++-      var41.x2[1] = _dest.i;
++-    }
++-    /* 4: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var39.i;
++-      _dest.x2[1] = var39.i;
++-      var42.i = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[0];
++-      _dest.x2[1] = var42.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[1];
++-      _dest.x2[1] = var42.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_YUY2 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var36;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_union32 var41;
++-  orc_union32 var42;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-  /* 2: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var36 = ptr4[i];
++-    /* 1: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 3: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var40.x2[0];
++-      var41.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var40.x2[1];
++-      var41.x2[1] = _dest.i;
++-    }
++-    /* 4: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var39.i;
++-      _dest.x2[1] = var39.i;
++-      var42.i = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[0];
++-      _dest.x2[1] = var42.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[1];
++-      _dest.x2[1] = var42.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_YUY2 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 85, 89,
++-        50, 11, 8, 8, 12, 4, 4, 14, 2, 255, 0, 0, 0, 20, 2, 20,
++-        2, 20, 4, 20, 4, 21, 1, 199, 33, 32, 4, 21, 1, 196, 34, 16,
++-        32, 195, 35, 33, 33, 21, 1, 195, 0, 34, 35, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_YUY2);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_YUY2");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_YUY2);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 2, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 4, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-
++-      orc_program_append_2 (p, "splitwb", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T3, ORC_VAR_C1, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T4, ORC_VAR_T2, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_UYVY */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_UYVY (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var36;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_union32 var41;
++-  orc_union32 var42;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-  /* 2: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var36 = ptr4[i];
++-    /* 1: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 3: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var39.x2[0];
++-      var41.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var39.x2[1];
++-      var41.x2[1] = _dest.i;
++-    }
++-    /* 4: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.i;
++-      _dest.x2[1] = var40.i;
++-      var42.i = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[0];
++-      _dest.x2[1] = var42.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[1];
++-      _dest.x2[1] = var42.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_UYVY (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var36;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_union32 var41;
++-  orc_union32 var42;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-  /* 2: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var36 = ptr4[i];
++-    /* 1: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 3: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var39.x2[0];
++-      var41.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var39.x2[1];
++-      var41.x2[1] = _dest.i;
++-    }
++-    /* 4: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.i;
++-      _dest.x2[1] = var40.i;
++-      var42.i = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[0];
++-      _dest.x2[1] = var42.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[1];
++-      _dest.x2[1] = var42.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_UYVY (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 85, 89, 86,
++-        89, 11, 8, 8, 12, 4, 4, 14, 2, 255, 0, 0, 0, 20, 2, 20,
++-        2, 20, 4, 20, 4, 21, 1, 199, 32, 33, 4, 21, 1, 196, 34, 16,
++-        32, 195, 35, 33, 33, 21, 1, 195, 0, 34, 35, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_UYVY);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_UYVY");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_UYVY);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 2, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 4, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-
++-      orc_program_append_2 (p, "splitwb", 1, ORC_VAR_T1, ORC_VAR_T2, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T3, ORC_VAR_C1, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T4, ORC_VAR_T2, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_YVYU */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_YVYU (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var36;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_union16 var41;
++-  orc_union32 var42;
++-  orc_union32 var43;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-  /* 3: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var36 = ptr4[i];
++-    /* 1: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: swapw */
++-    var41.i = ORC_SWAP_W (var39.i);
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var40.x2[0];
++-      var42.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var40.x2[1];
++-      var42.x2[1] = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.i;
++-      _dest.x2[1] = var41.i;
++-      var43.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_YVYU (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var36;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var37;
++-#else
++-  orc_union16 var37;
++-#endif
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_union16 var41;
++-  orc_union32 var42;
++-  orc_union32 var43;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-  /* 3: loadpb */
++-  var37.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var37.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var36 = ptr4[i];
++-    /* 1: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: swapw */
++-    var41.i = ORC_SWAP_W (var39.i);
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[0];
++-      _dest.x2[1] = var40.x2[0];
++-      var42.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var37.x2[1];
++-      _dest.x2[1] = var40.x2[1];
++-      var42.x2[1] = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.i;
++-      _dest.x2[1] = var41.i;
++-      var43.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_YVYU (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 86, 89,
++-        85, 11, 8, 8, 12, 4, 4, 14, 2, 255, 0, 0, 0, 20, 2, 20,
++-        2, 20, 4, 20, 4, 21, 1, 199, 33, 32, 4, 183, 33, 33, 21, 1,
++-        196, 34, 16, 32, 195, 35, 33, 33, 21, 1, 195, 0, 34, 35, 2, 0,
++-
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_YVYU);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_YVYU");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_YVYU);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 2, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 4, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-
++-      orc_program_append_2 (p, "splitwb", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "swapw", 0, ORC_VAR_T2, ORC_VAR_T2, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T3, ORC_VAR_C1, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T4, ORC_VAR_T2, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_Y42B */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_Y42B (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-  orc_int8 var36;
++-  orc_int8 var37;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var38;
++-#else
++-  orc_union16 var38;
++-#endif
++-  orc_union16 var39;
++-  orc_union64 var40;
++-  orc_union16 var41;
++-  orc_union32 var42;
++-  orc_union32 var43;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union16 *) s1;
++-  ptr5 = (orc_int8 *) s2;
++-  ptr6 = (orc_int8 *) s3;
++-
++-  /* 3: loadpb */
++-  var38.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var38.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadb */
++-    var36 = ptr5[i];
++-    /* 1: loadb */
++-    var37 = ptr6[i];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var41.i = _dest.i;
++-    }
++-    /* 4: loadw */
++-    var39 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var38.x2[0];
++-      _dest.x2[1] = var39.x2[0];
++-      var42.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var38.x2[1];
++-      _dest.x2[1] = var39.x2[1];
++-      var42.x2[1] = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.i;
++-      _dest.x2[1] = var41.i;
++-      var43.i = _dest.i;
++-    }
++-    /* 7: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var40.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var40.x2[1] = _dest.i;
++-    }
++-    /* 8: storeq */
++-    ptr0[i] = var40;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_Y42B (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-  orc_int8 var36;
++-  orc_int8 var37;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var38;
++-#else
++-  orc_union16 var38;
++-#endif
++-  orc_union16 var39;
++-  orc_union64 var40;
++-  orc_union16 var41;
++-  orc_union32 var42;
++-  orc_union32 var43;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union16 *) ex->arrays[4];
++-  ptr5 = (orc_int8 *) ex->arrays[5];
++-  ptr6 = (orc_int8 *) ex->arrays[6];
++-
++-  /* 3: loadpb */
++-  var38.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var38.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadb */
++-    var36 = ptr5[i];
++-    /* 1: loadb */
++-    var37 = ptr6[i];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var41.i = _dest.i;
++-    }
++-    /* 4: loadw */
++-    var39 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var38.x2[0];
++-      _dest.x2[1] = var39.x2[0];
++-      var42.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var38.x2[1];
++-      _dest.x2[1] = var39.x2[1];
++-      var42.x2[1] = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.i;
++-      _dest.x2[1] = var41.i;
++-      var43.i = _dest.i;
++-    }
++-    /* 7: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var40.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var40.x2[1] = _dest.i;
++-    }
++-    /* 8: storeq */
++-    ptr0[i] = var40;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_Y42B (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 52, 50,
++-        66, 11, 8, 8, 12, 2, 2, 12, 1, 1, 12, 1, 1, 14, 1, 255,
++-        0, 0, 0, 20, 2, 20, 2, 20, 4, 20, 4, 196, 32, 5, 6, 21,
++-        1, 196, 35, 16, 4, 195, 34, 32, 32, 21, 1, 195, 0, 35, 34, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y42B);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_Y42B");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y42B);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 2, "s1");
++-      orc_program_add_source (p, 1, "s2");
++-      orc_program_add_source (p, 1, "s3");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 4, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_S2, ORC_VAR_S3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T4, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T3, ORC_VAR_T1, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T4, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-  ex->arrays[ORC_VAR_S3] = (void *) s3;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_Y444 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_Y444 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-  orc_int8 var34;
++-  orc_int8 var35;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var36;
++-#else
++-  orc_int8 var36;
++-#endif
++-  orc_int8 var37;
++-  orc_union32 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_int8 *) s1;
++-  ptr5 = (orc_int8 *) s2;
++-  ptr6 = (orc_int8 *) s3;
++-
++-  /* 3: loadpb */
++-  var36 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadb */
++-    var34 = ptr5[i];
++-    /* 1: loadb */
++-    var35 = ptr6[i];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var34;
++-      _dest.x2[1] = var35;
++-      var39.i = _dest.i;
++-    }
++-    /* 4: loadb */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var40.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.i;
++-      _dest.x2[1] = var39.i;
++-      var38.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_Y444 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-  orc_int8 var34;
++-  orc_int8 var35;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var36;
++-#else
++-  orc_int8 var36;
++-#endif
++-  orc_int8 var37;
++-  orc_union32 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_int8 *) ex->arrays[4];
++-  ptr5 = (orc_int8 *) ex->arrays[5];
++-  ptr6 = (orc_int8 *) ex->arrays[6];
++-
++-  /* 3: loadpb */
++-  var36 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadb */
++-    var34 = ptr5[i];
++-    /* 1: loadb */
++-    var35 = ptr6[i];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var34;
++-      _dest.x2[1] = var35;
++-      var39.i = _dest.i;
++-    }
++-    /* 4: loadb */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var40.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.i;
++-      _dest.x2[1] = var39.i;
++-      var38.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_Y444 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 52, 52,
++-        52, 11, 4, 4, 12, 1, 1, 12, 1, 1, 12, 1, 1, 14, 1, 255,
++-        0, 0, 0, 20, 2, 20, 2, 196, 32, 5, 6, 196, 33, 16, 4, 195,
++-        0, 33, 32, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y444);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_Y444");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y444);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 1, "s1");
++-      orc_program_add_source (p, 1, "s2");
++-      orc_program_add_source (p, 1, "s3");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_S2, ORC_VAR_S3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T2, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-  ex->arrays[ORC_VAR_S3] = (void *) s3;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_Y800 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_Y800 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var33;
++-#else
++-  orc_int8 var33;
++-#endif
++-  orc_int8 var34;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var35;
++-#else
++-  orc_union16 var35;
++-#endif
++-  orc_union32 var36;
++-  orc_union16 var37;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_int8 *) s1;
++-
++-  /* 0: loadpb */
++-  var33 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-  /* 3: loadpw */
++-  var35.i = (int) 0x00008080;   /* 32896 or 1.62528e-319f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 1: loadb */
++-    var34 = ptr4[i];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var33;
++-      _dest.x2[1] = var34;
++-      var37.i = _dest.i;
++-    }
++-    /* 4: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var37.i;
++-      _dest.x2[1] = var35.i;
++-      var36.i = _dest.i;
++-    }
++-    /* 5: storel */
++-    ptr0[i] = var36;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_Y800 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var33;
++-#else
++-  orc_int8 var33;
++-#endif
++-  orc_int8 var34;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var35;
++-#else
++-  orc_union16 var35;
++-#endif
++-  orc_union32 var36;
++-  orc_union16 var37;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_int8 *) ex->arrays[4];
++-
++-  /* 0: loadpb */
++-  var33 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-  /* 3: loadpw */
++-  var35.i = (int) 0x00008080;   /* 32896 or 1.62528e-319f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 1: loadb */
++-    var34 = ptr4[i];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var33;
++-      _dest.x2[1] = var34;
++-      var37.i = _dest.i;
++-    }
++-    /* 4: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var37.i;
++-      _dest.x2[1] = var35.i;
++-      var36.i = _dest.i;
++-    }
++-    /* 5: storel */
++-    ptr0[i] = var36;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_Y800 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 56, 48,
++-        48, 11, 4, 4, 12, 1, 1, 14, 1, 255, 0, 0, 0, 14, 2, 128,
++-        128, 0, 0, 20, 2, 196, 32, 16, 4, 195, 0, 32, 17, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y800);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_Y800");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y800);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 1, "s1");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_constant (p, 2, 0x00008080, "c2");
++-      orc_program_add_temporary (p, 2, "t1");
++-
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_Y16 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_Y16 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  orc_union16 var34;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var35;
++-#else
++-  orc_int8 var35;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var36;
++-#else
++-  orc_union16 var36;
++-#endif
++-  orc_union32 var37;
++-  orc_int8 var38;
++-  orc_union16 var39;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union16 *) s1;
++-
++-  /* 2: loadpb */
++-  var35 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-  /* 4: loadpw */
++-  var36.i = (int) 0x00008080;   /* 32896 or 1.62528e-319f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadw */
++-    var34 = ptr4[i];
++-    /* 1: convhwb */
++-    var38 = ((orc_uint16) var34.i) >> 8;
++-    /* 3: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var35;
++-      _dest.x2[1] = var38;
++-      var39.i = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var39.i;
++-      _dest.x2[1] = var36.i;
++-      var37.i = _dest.i;
++-    }
++-    /* 6: storel */
++-    ptr0[i] = var37;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_Y16 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  orc_union16 var34;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_int8 var35;
++-#else
++-  orc_int8 var35;
++-#endif
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var36;
++-#else
++-  orc_union16 var36;
++-#endif
++-  orc_union32 var37;
++-  orc_int8 var38;
++-  orc_union16 var39;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union16 *) ex->arrays[4];
++-
++-  /* 2: loadpb */
++-  var35 = (int) 0x000000ff;     /* 255 or 1.25987e-321f */
++-  /* 4: loadpw */
++-  var36.i = (int) 0x00008080;   /* 32896 or 1.62528e-319f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadw */
++-    var34 = ptr4[i];
++-    /* 1: convhwb */
++-    var38 = ((orc_uint16) var34.i) >> 8;
++-    /* 3: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var35;
++-      _dest.x2[1] = var38;
++-      var39.i = _dest.i;
++-    }
++-    /* 5: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var39.i;
++-      _dest.x2[1] = var36.i;
++-      var37.i = _dest.i;
++-    }
++-    /* 6: storel */
++-    ptr0[i] = var37;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_Y16 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 29, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 89, 49, 54,
++-        11, 4, 4, 12, 2, 2, 14, 1, 255, 0, 0, 0, 14, 2, 128, 128,
++-        0, 0, 20, 2, 20, 1, 158, 33, 4, 196, 32, 16, 33, 195, 0, 32,
++-        17, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y16);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_Y16");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_Y16);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 2, "s1");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_constant (p, 2, 0x00008080, "c2");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 1, "t2");
++-
++-      orc_program_append_2 (p, "convhwb", 0, ORC_VAR_T2, ORC_VAR_S1, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_C1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_C2,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_BGRA */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_BGRA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var32;
++-  orc_union32 var33;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var32 = ptr4[i];
++-    /* 1: swapl */
++-    var33.i = ORC_SWAP_L (var32.i);
++-    /* 2: storel */
++-    ptr0[i] = var33;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_BGRA (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var32;
++-  orc_union32 var33;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var32 = ptr4[i];
++-    /* 1: swapl */
++-    var33.i = ORC_SWAP_L (var32.i);
++-    /* 2: storel */
++-    ptr0[i] = var33;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_BGRA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 66, 71, 82,
++-        65, 11, 4, 4, 12, 4, 4, 184, 0, 4, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_BGRA);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_BGRA");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_BGRA);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-
++-      orc_program_append_2 (p, "swapl", 0, ORC_VAR_D1, ORC_VAR_S1, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_ABGR */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_ABGR (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var47;
++-      _dest.x2[1] = var44;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var45;
++-      _dest.x2[1] = var46;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var48.i;
++-      _dest.x2[1] = var49.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_ABGR (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var47;
++-      _dest.x2[1] = var44;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var45;
++-      _dest.x2[1] = var46;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var48.i;
++-      _dest.x2[1] = var49.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_ABGR (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 65, 66, 71,
++-        82, 11, 4, 4, 12, 4, 4, 20, 1, 20, 1, 20, 1, 20, 1, 20,
++-        2, 20, 2, 20, 2, 20, 2, 198, 36, 37, 4, 199, 33, 34, 36, 199,
++-        35, 32, 37, 196, 38, 32, 33, 196, 39, 34, 35, 195, 0, 38, 39, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_ABGR);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_ABGR");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_ABGR);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_temporary (p, 1, "t1");
++-      orc_program_add_temporary (p, 1, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 2, "t5");
++-      orc_program_add_temporary (p, 2, "t6");
++-      orc_program_add_temporary (p, 2, "t7");
++-      orc_program_add_temporary (p, 2, "t8");
++-
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T5, ORC_VAR_T6, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T3, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T1, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T7, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T8, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T7, ORC_VAR_T8,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_RGBA */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_RGBA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var46;
++-      _dest.x2[1] = var45;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44;
++-      _dest.x2[1] = var47;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var48.i;
++-      _dest.x2[1] = var49.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_RGBA (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var46;
++-      _dest.x2[1] = var45;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44;
++-      _dest.x2[1] = var47;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var48.i;
++-      _dest.x2[1] = var49.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_RGBA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 82, 71, 66,
++-        65, 11, 4, 4, 12, 4, 4, 20, 1, 20, 1, 20, 1, 20, 1, 20,
++-        2, 20, 2, 20, 2, 20, 2, 198, 37, 36, 4, 199, 34, 33, 36, 199,
++-        32, 35, 37, 196, 38, 32, 33, 196, 39, 34, 35, 195, 0, 38, 39, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_RGBA);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_RGBA");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_RGBA);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_temporary (p, 1, "t1");
++-      orc_program_add_temporary (p, 1, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 2, "t5");
++-      orc_program_add_temporary (p, 2, "t6");
++-      orc_program_add_temporary (p, 2, "t7");
++-      orc_program_add_temporary (p, 2, "t8");
++-
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T6, ORC_VAR_T5, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T3, ORC_VAR_T2, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T1, ORC_VAR_T4, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T7, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T8, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T7, ORC_VAR_T8,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_NV12 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_NV12 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_union16 *ORC_RESTRICT ptr5;
++-  orc_union16 var34;
++-  orc_union16 var35;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var36;
++-#else
++-  orc_union16 var36;
++-#endif
++-  orc_union16 var37;
++-  orc_union64 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union16 *) s1;
++-  ptr5 = (orc_union16 *) s2;
++-
++-  /* 3: loadpb */
++-  var36.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var36.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadw */
++-    var34 = ptr5[i];
++-    /* 1: loadw */
++-    var35 = ptr5[i];
++-    /* 2: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var34.i;
++-      _dest.x2[1] = var35.i;
++-      var39.i = _dest.i;
++-    }
++-    /* 4: loadw */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[0];
++-      _dest.x2[1] = var37.x2[0];
++-      var40.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[1];
++-      _dest.x2[1] = var37.x2[1];
++-      var40.x2[1] = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.x2[0];
++-      _dest.x2[1] = var39.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.x2[1];
++-      _dest.x2[1] = var39.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_NV12 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_union16 *ORC_RESTRICT ptr5;
++-  orc_union16 var34;
++-  orc_union16 var35;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var36;
++-#else
++-  orc_union16 var36;
++-#endif
++-  orc_union16 var37;
++-  orc_union64 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union16 *) ex->arrays[4];
++-  ptr5 = (orc_union16 *) ex->arrays[5];
++-
++-  /* 3: loadpb */
++-  var36.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var36.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadw */
++-    var34 = ptr5[i];
++-    /* 1: loadw */
++-    var35 = ptr5[i];
++-    /* 2: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var34.i;
++-      _dest.x2[1] = var35.i;
++-      var39.i = _dest.i;
++-    }
++-    /* 4: loadw */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[0];
++-      _dest.x2[1] = var37.x2[0];
++-      var40.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[1];
++-      _dest.x2[1] = var37.x2[1];
++-      var40.x2[1] = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.x2[0];
++-      _dest.x2[1] = var39.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var40.x2[1];
++-      _dest.x2[1] = var39.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_NV12 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 78, 86, 49,
++-        50, 11, 8, 8, 12, 2, 2, 12, 2, 2, 14, 1, 255, 0, 0, 0,
++-        20, 4, 20, 4, 195, 33, 5, 5, 21, 1, 196, 32, 16, 4, 21, 1,
++-        195, 0, 32, 33, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_NV12);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_NV12");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_NV12);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 2, "s1");
++-      orc_program_add_source (p, 2, "s2");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 4, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T2, ORC_VAR_S2, ORC_VAR_S2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T1, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_NV21 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_NV21 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n)
++-{
++-  int i;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_union16 *ORC_RESTRICT ptr5;
++-  orc_union16 var35;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var36;
++-#else
++-  orc_union16 var36;
++-#endif
++-  orc_union16 var37;
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-
++-  ptr0 = (orc_union64 *) d1;
++-  ptr4 = (orc_union16 *) s1;
++-  ptr5 = (orc_union16 *) s2;
++-
++-  /* 3: loadpb */
++-  var36.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var36.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadw */
++-    var35 = ptr5[i];
++-    /* 1: swapw */
++-    var39.i = ORC_SWAP_W (var35.i);
++-    /* 2: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var39.i;
++-      _dest.x2[1] = var39.i;
++-      var40.i = _dest.i;
++-    }
++-    /* 4: loadw */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[0];
++-      _dest.x2[1] = var37.x2[0];
++-      var41.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[1];
++-      _dest.x2[1] = var37.x2[1];
++-      var41.x2[1] = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[0];
++-      _dest.x2[1] = var40.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[1];
++-      _dest.x2[1] = var40.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_NV21 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union64 *ORC_RESTRICT ptr0;
++-  const orc_union16 *ORC_RESTRICT ptr4;
++-  const orc_union16 *ORC_RESTRICT ptr5;
++-  orc_union16 var35;
++-#if defined(__APPLE__) && __GNUC__ == 4 && __GNUC_MINOR__ == 2 && defined (__i386__)
++-  volatile orc_union16 var36;
++-#else
++-  orc_union16 var36;
++-#endif
++-  orc_union16 var37;
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-
++-  ptr0 = (orc_union64 *) ex->arrays[0];
++-  ptr4 = (orc_union16 *) ex->arrays[4];
++-  ptr5 = (orc_union16 *) ex->arrays[5];
++-
++-  /* 3: loadpb */
++-  var36.x2[0] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-  var36.x2[1] = (int) 0x000000ff;       /* 255 or 1.25987e-321f */
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadw */
++-    var35 = ptr5[i];
++-    /* 1: swapw */
++-    var39.i = ORC_SWAP_W (var35.i);
++-    /* 2: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var39.i;
++-      _dest.x2[1] = var39.i;
++-      var40.i = _dest.i;
++-    }
++-    /* 4: loadw */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[0];
++-      _dest.x2[1] = var37.x2[0];
++-      var41.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36.x2[1];
++-      _dest.x2[1] = var37.x2[1];
++-      var41.x2[1] = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[0];
++-      _dest.x2[1] = var40.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var41.x2[1];
++-      _dest.x2[1] = var40.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storeq */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_NV21 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 78, 86, 50,
++-        49, 11, 8, 8, 12, 2, 2, 12, 2, 2, 14, 1, 255, 0, 0, 0,
++-        20, 2, 20, 4, 20, 4, 183, 32, 5, 195, 34, 32, 32, 21, 1, 196,
++-        33, 16, 4, 21, 1, 195, 0, 33, 34, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_NV21);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_NV21");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_NV21);
++-      orc_program_add_destination (p, 8, "d1");
++-      orc_program_add_source (p, 2, "s1");
++-      orc_program_add_source (p, 2, "s2");
++-      orc_program_add_constant (p, 1, 0x000000ff, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 4, "t3");
++-
++-      orc_program_append_2 (p, "swapw", 0, ORC_VAR_T1, ORC_VAR_S2, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_T3, ORC_VAR_T1, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_T2, ORC_VAR_C1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 1, ORC_VAR_D1, ORC_VAR_T2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_getline_A420 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_getline_A420 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, const guint8 * ORC_RESTRICT s4, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-  const orc_int8 *ORC_RESTRICT ptr7;
++-  orc_int8 var36;
++-  orc_int8 var37;
++-  orc_union32 var38;
++-  orc_int8 var39;
++-  orc_int8 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_int8 *) s1;
++-  ptr5 = (orc_int8 *) s2;
++-  ptr6 = (orc_int8 *) s3;
++-  ptr7 = (orc_int8 *) s4;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadupdb */
++-    var39 = ptr5[i >> 1];
++-    /* 1: loadupdb */
++-    var40 = ptr6[i >> 1];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var39;
++-      _dest.x2[1] = var40;
++-      var41.i = _dest.i;
++-    }
++-    /* 3: loadb */
++-    var36 = ptr7[i];
++-    /* 4: loadb */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var42.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.i;
++-      _dest.x2[1] = var41.i;
++-      var38.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_getline_A420 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_int8 *ORC_RESTRICT ptr4;
++-  const orc_int8 *ORC_RESTRICT ptr5;
++-  const orc_int8 *ORC_RESTRICT ptr6;
++-  const orc_int8 *ORC_RESTRICT ptr7;
++-  orc_int8 var36;
++-  orc_int8 var37;
++-  orc_union32 var38;
++-  orc_int8 var39;
++-  orc_int8 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_int8 *) ex->arrays[4];
++-  ptr5 = (orc_int8 *) ex->arrays[5];
++-  ptr6 = (orc_int8 *) ex->arrays[6];
++-  ptr7 = (orc_int8 *) ex->arrays[7];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadupdb */
++-    var39 = ptr5[i >> 1];
++-    /* 1: loadupdb */
++-    var40 = ptr6[i >> 1];
++-    /* 2: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var39;
++-      _dest.x2[1] = var40;
++-      var41.i = _dest.i;
++-    }
++-    /* 3: loadb */
++-    var36 = ptr7[i];
++-    /* 4: loadb */
++-    var37 = ptr4[i];
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var36;
++-      _dest.x2[1] = var37;
++-      var42.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var42.i;
++-      _dest.x2[1] = var41.i;
++-      var38.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_getline_A420 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2,
++-    const guint8 * ORC_RESTRICT s3, const guint8 * ORC_RESTRICT s4, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 103, 101, 116, 108, 105, 110, 101, 95, 65, 52, 50,
++-        48, 11, 4, 4, 12, 1, 1, 12, 1, 1, 12, 1, 1, 12, 1, 1,
++-        20, 2, 20, 2, 20, 1, 20, 1, 45, 34, 5, 45, 35, 6, 196, 32,
++-        34, 35, 196, 33, 7, 4, 195, 0, 33, 32, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_A420);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_getline_A420");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_getline_A420);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 1, "s1");
++-      orc_program_add_source (p, 1, "s2");
++-      orc_program_add_source (p, 1, "s3");
++-      orc_program_add_source (p, 1, "s4");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-
++-      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T3, ORC_VAR_S2,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "loadupdb", 0, ORC_VAR_T4, ORC_VAR_S3,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T1, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T2, ORC_VAR_S4, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T2, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-  ex->arrays[ORC_VAR_S2] = (void *) s2;
++-  ex->arrays[ORC_VAR_S3] = (void *) s3;
++-  ex->arrays[ORC_VAR_S4] = (void *) s4;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_I420 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_I420 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_int8 var40;
++-  orc_int8 var41;
++-  orc_union32 var42;
++-  orc_union32 var43;
++-  orc_union16 var44;
++-  orc_union16 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_int8 var48;
++-  orc_int8 var49;
++-
++-  ptr0 = (orc_union16 *) d1;
++-  ptr1 = (orc_int8 *) d2;
++-  ptr2 = (orc_int8 *) d3;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var38 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[0];
++-      var42.x2[0] = _src.x2[1];
++-      var43.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[1];
++-      var42.x2[1] = _src.x2[1];
++-      var43.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var39;
++-    /* 4: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-      var45.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-      var45.x2[1] = _src.x2[0];
++-    }
++-    /* 5: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var45.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 6: avgub */
++-    var40 = ((orc_uint8) var46 + (orc_uint8) var47 + 1) >> 1;
++-    /* 7: storeb */
++-    ptr1[i] = var40;
++-    /* 8: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.i;
++-      var48 = _src.x2[1];
++-      var49 = _src.x2[0];
++-    }
++-    /* 9: avgub */
++-    var41 = ((orc_uint8) var48 + (orc_uint8) var49 + 1) >> 1;
++-    /* 10: storeb */
++-    ptr2[i] = var41;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_I420 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_int8 var40;
++-  orc_int8 var41;
++-  orc_union32 var42;
++-  orc_union32 var43;
++-  orc_union16 var44;
++-  orc_union16 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_int8 var48;
++-  orc_int8 var49;
++-
++-  ptr0 = (orc_union16 *) ex->arrays[0];
++-  ptr1 = (orc_int8 *) ex->arrays[1];
++-  ptr2 = (orc_int8 *) ex->arrays[2];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var38 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[0];
++-      var42.x2[0] = _src.x2[1];
++-      var43.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[1];
++-      var42.x2[1] = _src.x2[1];
++-      var43.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var39;
++-    /* 4: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-      var45.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-      var45.x2[1] = _src.x2[0];
++-    }
++-    /* 5: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var45.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 6: avgub */
++-    var40 = ((orc_uint8) var46 + (orc_uint8) var47 + 1) >> 1;
++-    /* 7: storeb */
++-    ptr1[i] = var40;
++-    /* 8: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.i;
++-      var48 = _src.x2[1];
++-      var49 = _src.x2[0];
++-    }
++-    /* 9: avgub */
++-    var41 = ((orc_uint8) var48 + (orc_uint8) var49 + 1) >> 1;
++-    /* 10: storeb */
++-    ptr2[i] = var41;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_I420 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 73, 52, 50,
++-        48, 11, 2, 2, 11, 1, 1, 11, 1, 1, 12, 8, 8, 20, 4, 20,
++-        4, 20, 2, 20, 2, 20, 1, 20, 1, 21, 1, 198, 33, 32, 4, 21,
++-        1, 189, 0, 32, 21, 1, 199, 35, 34, 33, 199, 36, 37, 34, 39, 1,
++-        36, 37, 199, 36, 37, 35, 39, 2, 36, 37, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_I420);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_I420");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_I420);
++-      orc_program_add_destination (p, 2, "d1");
++-      orc_program_add_destination (p, 1, "d2");
++-      orc_program_add_destination (p, 1, "d3");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 4, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 2, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-      orc_program_add_temporary (p, 1, "t6");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 1, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T5, ORC_VAR_T6, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 0, ORC_VAR_D2, ORC_VAR_T5, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T5, ORC_VAR_T6, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 0, ORC_VAR_D3, ORC_VAR_T5, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_D2] = d2;
++-  ex->arrays[ORC_VAR_D3] = d3;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_YUY2 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_YUY2 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union32 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var43.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var43.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 4: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_YUY2 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union32 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var43.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var43.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 4: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[0];
++-      _dest.x2[1] = var43.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[1];
++-      _dest.x2[1] = var43.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_YUY2 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 89, 85, 89,
++-        50, 11, 4, 4, 12, 8, 8, 20, 2, 20, 2, 20, 2, 20, 4, 20,
++-        4, 21, 1, 198, 36, 35, 4, 198, 33, 34, 36, 21, 1, 39, 33, 33,
++-        34, 21, 1, 189, 32, 35, 21, 1, 196, 0, 32, 33, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_YUY2);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_YUY2");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_YUY2);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-      orc_program_add_temporary (p, 4, "t5");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T5, ORC_VAR_T4, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T2, ORC_VAR_T3, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 1, ORC_VAR_T2, ORC_VAR_T2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_T1, ORC_VAR_T4,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_YVYU */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_YVYU (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union32 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-  orc_union16 var45;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var43.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var43.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 4: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-    }
++-    /* 5: swapw */
++-    var45.i = ORC_SWAP_W (var43.i);
++-    /* 6: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[0];
++-      _dest.x2[1] = var45.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[1];
++-      _dest.x2[1] = var45.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_YVYU (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union32 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-  orc_union16 var45;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var43.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var43.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 4: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-    }
++-    /* 5: swapw */
++-    var45.i = ORC_SWAP_W (var43.i);
++-    /* 6: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[0];
++-      _dest.x2[1] = var45.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44.x2[1];
++-      _dest.x2[1] = var45.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_YVYU (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 89, 86, 89,
++-        85, 11, 4, 4, 12, 8, 8, 20, 2, 20, 2, 20, 2, 20, 4, 20,
++-        4, 21, 1, 198, 36, 35, 4, 198, 33, 34, 36, 21, 1, 39, 33, 33,
++-        34, 21, 1, 189, 32, 35, 183, 33, 33, 21, 1, 196, 0, 32, 33, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_YVYU);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_YVYU");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_YVYU);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-      orc_program_add_temporary (p, 4, "t5");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T5, ORC_VAR_T4, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T2, ORC_VAR_T3, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 1, ORC_VAR_T2, ORC_VAR_T2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_T1, ORC_VAR_T4,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "swapw", 0, ORC_VAR_T2, ORC_VAR_T2, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_UYVY */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_UYVY (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union32 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var43.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var43.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 4: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var43.x2[0];
++-      _dest.x2[1] = var44.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var43.x2[1];
++-      _dest.x2[1] = var44.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_UYVY (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union32 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var43.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var43.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 4: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var44.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var44.x2[1] = _src.x2[1];
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var43.x2[0];
++-      _dest.x2[1] = var44.x2[0];
++-      var38.x2[0] = _dest.i;
++-    }
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var43.x2[1];
++-      _dest.x2[1] = var44.x2[1];
++-      var38.x2[1] = _dest.i;
++-    }
++-    /* 6: storel */
++-    ptr0[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_UYVY (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 85, 89, 86,
++-        89, 11, 4, 4, 12, 8, 8, 20, 2, 20, 2, 20, 2, 20, 4, 20,
++-        4, 21, 1, 198, 36, 35, 4, 198, 33, 34, 36, 21, 1, 39, 33, 33,
++-        34, 21, 1, 189, 32, 35, 21, 1, 196, 0, 33, 32, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_UYVY);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_UYVY");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_UYVY);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 4, "t4");
++-      orc_program_add_temporary (p, 4, "t5");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T5, ORC_VAR_T4, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T2, ORC_VAR_T3, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 1, ORC_VAR_T2, ORC_VAR_T2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_T1, ORC_VAR_T4,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 1, ORC_VAR_D1, ORC_VAR_T2, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_Y42B */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_Y42B (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var36;
++-  orc_int8 var37;
++-  orc_int8 var38;
++-  orc_union16 var39;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union16 *) d1;
++-  ptr1 = (orc_int8 *) d2;
++-  ptr2 = (orc_int8 *) d3;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var36 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[0];
++-      var40.x2[0] = _src.x2[1];
++-      var41.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[1];
++-      var40.x2[1] = _src.x2[1];
++-      var41.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var44.x2[0] = ((orc_uint8) var42.x2[0] + (orc_uint8) var43.x2[0] + 1) >> 1;
++-    var44.x2[1] = ((orc_uint8) var42.x2[1] + (orc_uint8) var43.x2[1] + 1) >> 1;
++-    /* 4: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.i;
++-      var37 = _src.x2[1];
++-      var38 = _src.x2[0];
++-    }
++-    /* 5: storeb */
++-    ptr2[i] = var37;
++-    /* 6: storeb */
++-    ptr1[i] = var38;
++-    /* 7: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-    }
++-    /* 8: storew */
++-    ptr0[i] = var39;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_Y42B (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var36;
++-  orc_int8 var37;
++-  orc_int8 var38;
++-  orc_union16 var39;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union16 *) ex->arrays[0];
++-  ptr1 = (orc_int8 *) ex->arrays[1];
++-  ptr2 = (orc_int8 *) ex->arrays[2];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var36 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[0];
++-      var40.x2[0] = _src.x2[1];
++-      var41.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[1];
++-      var40.x2[1] = _src.x2[1];
++-      var41.x2[1] = _src.x2[0];
++-    }
++-    /* 2: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 3: avgub */
++-    var44.x2[0] = ((orc_uint8) var42.x2[0] + (orc_uint8) var43.x2[0] + 1) >> 1;
++-    var44.x2[1] = ((orc_uint8) var42.x2[1] + (orc_uint8) var43.x2[1] + 1) >> 1;
++-    /* 4: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.i;
++-      var37 = _src.x2[1];
++-      var38 = _src.x2[0];
++-    }
++-    /* 5: storeb */
++-    ptr2[i] = var37;
++-    /* 6: storeb */
++-    ptr1[i] = var38;
++-    /* 7: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-    }
++-    /* 8: storew */
++-    ptr0[i] = var39;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_Y42B (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 89, 52, 50,
++-        66, 11, 2, 2, 11, 1, 1, 11, 1, 1, 12, 8, 8, 20, 4, 20,
++-        4, 20, 2, 20, 2, 21, 1, 198, 33, 32, 4, 198, 34, 35, 33, 21,
++-        1, 39, 34, 34, 35, 199, 2, 1, 34, 21, 1, 189, 0, 32, 2, 0,
++-
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y42B);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_Y42B");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y42B);
++-      orc_program_add_destination (p, 2, "d1");
++-      orc_program_add_destination (p, 1, "d2");
++-      orc_program_add_destination (p, 1, "d3");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 4, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 2, "t4");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T3, ORC_VAR_T4, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 1, ORC_VAR_T3, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_D3, ORC_VAR_D2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_D2] = d2;
++-  ex->arrays[ORC_VAR_D3] = d3;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_Y444 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_Y444 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_int8 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var34;
++-  orc_int8 var35;
++-  orc_int8 var36;
++-  orc_int8 var37;
++-  orc_union16 var38;
++-  orc_union16 var39;
++-
++-  ptr0 = (orc_int8 *) d1;
++-  ptr1 = (orc_int8 *) d2;
++-  ptr2 = (orc_int8 *) d3;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var34 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var34.i;
++-      var38.i = _src.x2[1];
++-      var39.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var38.i;
++-      var35 = _src.x2[1];
++-      var36 = _src.x2[0];
++-    }
++-    /* 3: storeb */
++-    ptr2[i] = var35;
++-    /* 4: storeb */
++-    ptr1[i] = var36;
++-    /* 5: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var39.i;
++-      var37 = _src.x2[1];
++-    }
++-    /* 6: storeb */
++-    ptr0[i] = var37;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_Y444 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_int8 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var34;
++-  orc_int8 var35;
++-  orc_int8 var36;
++-  orc_int8 var37;
++-  orc_union16 var38;
++-  orc_union16 var39;
++-
++-  ptr0 = (orc_int8 *) ex->arrays[0];
++-  ptr1 = (orc_int8 *) ex->arrays[1];
++-  ptr2 = (orc_int8 *) ex->arrays[2];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var34 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var34.i;
++-      var38.i = _src.x2[1];
++-      var39.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var38.i;
++-      var35 = _src.x2[1];
++-      var36 = _src.x2[0];
++-    }
++-    /* 3: storeb */
++-    ptr2[i] = var35;
++-    /* 4: storeb */
++-    ptr1[i] = var36;
++-    /* 5: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var39.i;
++-      var37 = _src.x2[1];
++-    }
++-    /* 6: storeb */
++-    ptr0[i] = var37;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_Y444 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 89, 52, 52,
++-        52, 11, 1, 1, 11, 1, 1, 11, 1, 1, 12, 4, 4, 20, 2, 20,
++-        2, 198, 33, 32, 4, 199, 2, 1, 33, 189, 0, 32, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y444);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_Y444");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y444);
++-      orc_program_add_destination (p, 1, "d1");
++-      orc_program_add_destination (p, 1, "d2");
++-      orc_program_add_destination (p, 1, "d3");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 2, "t2");
++-
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_D3, ORC_VAR_D2, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 0, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_D2] = d2;
++-  ex->arrays[ORC_VAR_D3] = d3;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_Y800 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_Y800 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_int8 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var33;
++-  orc_int8 var34;
++-  orc_union16 var35;
++-
++-  ptr0 = (orc_int8 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var33 = ptr4[i];
++-    /* 1: select0lw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var33.i;
++-      var35.i = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var35.i;
++-      var34 = _src.x2[1];
++-    }
++-    /* 3: storeb */
++-    ptr0[i] = var34;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_Y800 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_int8 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var33;
++-  orc_int8 var34;
++-  orc_union16 var35;
++-
++-  ptr0 = (orc_int8 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var33 = ptr4[i];
++-    /* 1: select0lw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var33.i;
++-      var35.i = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var35.i;
++-      var34 = _src.x2[1];
++-    }
++-    /* 3: storeb */
++-    ptr0[i] = var34;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_Y800 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 89, 56, 48,
++-        48, 11, 1, 1, 12, 4, 4, 20, 2, 190, 32, 4, 189, 0, 32, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y800);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_Y800");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y800);
++-      orc_program_add_destination (p, 1, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_temporary (p, 2, "t1");
++-
++-      orc_program_append_2 (p, "select0lw", 0, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 0, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_Y16 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_Y16 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var34;
++-  orc_union16 var35;
++-  orc_union16 var36;
++-  orc_int8 var37;
++-  orc_union16 var38;
++-
++-  ptr0 = (orc_union16 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var34 = ptr4[i];
++-    /* 1: select0lw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var34.i;
++-      var36.i = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.i;
++-      var37 = _src.x2[1];
++-    }
++-    /* 3: convubw */
++-    var38.i = (orc_uint8) var37;
++-    /* 4: shlw */
++-    var35.i = var38.i << 8;
++-    /* 5: storew */
++-    ptr0[i] = var35;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_Y16 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var34;
++-  orc_union16 var35;
++-  orc_union16 var36;
++-  orc_int8 var37;
++-  orc_union16 var38;
++-
++-  ptr0 = (orc_union16 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var34 = ptr4[i];
++-    /* 1: select0lw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var34.i;
++-      var36.i = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var36.i;
++-      var37 = _src.x2[1];
++-    }
++-    /* 3: convubw */
++-    var38.i = (orc_uint8) var37;
++-    /* 4: shlw */
++-    var35.i = var38.i << 8;
++-    /* 5: storew */
++-    ptr0[i] = var35;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_Y16 (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 29, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 89, 49, 54,
++-        11, 2, 2, 12, 4, 4, 14, 4, 8, 0, 0, 0, 20, 2, 20, 1,
++-        190, 32, 4, 189, 33, 32, 150, 32, 33, 93, 0, 32, 16, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y16);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_Y16");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_Y16);
++-      orc_program_add_destination (p, 2, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_constant (p, 4, 0x00000008, "c1");
++-      orc_program_add_temporary (p, 2, "t1");
++-      orc_program_add_temporary (p, 1, "t2");
++-
++-      orc_program_append_2 (p, "select0lw", 0, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 0, ORC_VAR_T2, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "convubw", 0, ORC_VAR_T1, ORC_VAR_T2, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "shlw", 0, ORC_VAR_D1, ORC_VAR_T1, ORC_VAR_C1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_BGRA */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_BGRA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var32;
++-  orc_union32 var33;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var32 = ptr4[i];
++-    /* 1: swapl */
++-    var33.i = ORC_SWAP_L (var32.i);
++-    /* 2: storel */
++-    ptr0[i] = var33;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_BGRA (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var32;
++-  orc_union32 var33;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var32 = ptr4[i];
++-    /* 1: swapl */
++-    var33.i = ORC_SWAP_L (var32.i);
++-    /* 2: storel */
++-    ptr0[i] = var33;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_BGRA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 66, 71, 82,
++-        65, 11, 4, 4, 12, 4, 4, 184, 0, 4, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_BGRA);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_BGRA");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_BGRA);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-
++-      orc_program_append_2 (p, "swapl", 0, ORC_VAR_D1, ORC_VAR_S1, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_ABGR */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_ABGR (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var47;
++-      _dest.x2[1] = var44;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var45;
++-      _dest.x2[1] = var46;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var48.i;
++-      _dest.x2[1] = var49.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_ABGR (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var47;
++-      _dest.x2[1] = var44;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var45;
++-      _dest.x2[1] = var46;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var48.i;
++-      _dest.x2[1] = var49.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_ABGR (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 65, 66, 71,
++-        82, 11, 4, 4, 12, 4, 4, 20, 1, 20, 1, 20, 1, 20, 1, 20,
++-        2, 20, 2, 20, 2, 20, 2, 198, 39, 38, 4, 199, 35, 34, 39, 199,
++-        33, 32, 38, 196, 37, 32, 35, 196, 36, 34, 33, 195, 0, 37, 36, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_ABGR);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_ABGR");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_ABGR);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_temporary (p, 1, "t1");
++-      orc_program_add_temporary (p, 1, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 2, "t5");
++-      orc_program_add_temporary (p, 2, "t6");
++-      orc_program_add_temporary (p, 2, "t7");
++-      orc_program_add_temporary (p, 2, "t8");
++-
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T8, ORC_VAR_T7, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T8,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_T7,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T6, ORC_VAR_T1, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T5, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T6, ORC_VAR_T5,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_RGBA */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_RGBA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) d1;
++-  ptr4 = (orc_union32 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44;
++-      _dest.x2[1] = var47;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var46;
++-      _dest.x2[1] = var45;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var49.i;
++-      _dest.x2[1] = var48.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_RGBA (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union32 *ORC_RESTRICT ptr0;
++-  const orc_union32 *ORC_RESTRICT ptr4;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_int8 var44;
++-  orc_int8 var45;
++-  orc_int8 var46;
++-  orc_int8 var47;
++-  orc_union16 var48;
++-  orc_union16 var49;
++-
++-  ptr0 = (orc_union32 *) ex->arrays[0];
++-  ptr4 = (orc_union32 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadl */
++-    var40 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 2: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var42.i;
++-      var44 = _src.x2[1];
++-      var45 = _src.x2[0];
++-    }
++-    /* 3: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.i;
++-      var46 = _src.x2[1];
++-      var47 = _src.x2[0];
++-    }
++-    /* 4: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var44;
++-      _dest.x2[1] = var47;
++-      var48.i = _dest.i;
++-    }
++-    /* 5: mergebw */
++-    {
++-      orc_union16 _dest;
++-      _dest.x2[0] = var46;
++-      _dest.x2[1] = var45;
++-      var49.i = _dest.i;
++-    }
++-    /* 6: mergewl */
++-    {
++-      orc_union32 _dest;
++-      _dest.x2[0] = var49.i;
++-      _dest.x2[1] = var48.i;
++-      var41.i = _dest.i;
++-    }
++-    /* 7: storel */
++-    ptr0[i] = var41;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_RGBA (guint8 * ORC_RESTRICT d1,
++-    const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 82, 71, 66,
++-        65, 11, 4, 4, 12, 4, 4, 20, 1, 20, 1, 20, 1, 20, 1, 20,
++-        2, 20, 2, 20, 2, 20, 2, 198, 39, 38, 4, 199, 35, 34, 39, 199,
++-        33, 32, 38, 196, 37, 35, 32, 196, 36, 33, 34, 195, 0, 36, 37, 2,
++-        0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_RGBA);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_RGBA");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_RGBA);
++-      orc_program_add_destination (p, 4, "d1");
++-      orc_program_add_source (p, 4, "s1");
++-      orc_program_add_temporary (p, 1, "t1");
++-      orc_program_add_temporary (p, 1, "t2");
++-      orc_program_add_temporary (p, 1, "t3");
++-      orc_program_add_temporary (p, 1, "t4");
++-      orc_program_add_temporary (p, 2, "t5");
++-      orc_program_add_temporary (p, 2, "t6");
++-      orc_program_add_temporary (p, 2, "t7");
++-      orc_program_add_temporary (p, 2, "t8");
++-
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T8, ORC_VAR_T7, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T8,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_T7,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T6, ORC_VAR_T4, ORC_VAR_T1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergebw", 0, ORC_VAR_T5, ORC_VAR_T2, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "mergewl", 0, ORC_VAR_D1, ORC_VAR_T5, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_NV12 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_NV12 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_union16 *ORC_RESTRICT ptr1;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var36;
++-  orc_union16 var37;
++-  orc_union16 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-
++-  ptr0 = (orc_union16 *) d1;
++-  ptr1 = (orc_union16 *) d2;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var36 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var37.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var37.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var37;
++-    /* 4: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 5: avgub */
++-    var38.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var38.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 6: storew */
++-    ptr1[i] = var38;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_NV12 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_union16 *ORC_RESTRICT ptr1;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var36;
++-  orc_union16 var37;
++-  orc_union16 var38;
++-  orc_union32 var39;
++-  orc_union32 var40;
++-  orc_union16 var41;
++-  orc_union16 var42;
++-
++-  ptr0 = (orc_union16 *) ex->arrays[0];
++-  ptr1 = (orc_union16 *) ex->arrays[1];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var36 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var36.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[0];
++-      var37.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var40.x2[1];
++-      var37.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var37;
++-    /* 4: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var39.i;
++-      var41.i = _src.x2[1];
++-      var42.i = _src.x2[0];
++-    }
++-    /* 5: avgub */
++-    var38.x2[0] = ((orc_uint8) var41.x2[0] + (orc_uint8) var42.x2[0] + 1) >> 1;
++-    var38.x2[1] = ((orc_uint8) var41.x2[1] + (orc_uint8) var42.x2[1] + 1) >> 1;
++-    /* 6: storew */
++-    ptr1[i] = var38;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_NV12 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 78, 86, 49,
++-        50, 11, 2, 2, 11, 2, 2, 12, 8, 8, 20, 4, 20, 4, 20, 2,
++-        20, 2, 21, 1, 198, 33, 32, 4, 21, 1, 189, 0, 32, 198, 34, 35,
++-        33, 21, 1, 39, 1, 34, 35, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_NV12);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_NV12");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_NV12);
++-      orc_program_add_destination (p, 2, "d1");
++-      orc_program_add_destination (p, 2, "d2");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 4, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 2, "t4");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T3, ORC_VAR_T4, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 1, ORC_VAR_D2, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_D2] = d2;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_NV21 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_NV21 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_union16 *ORC_RESTRICT ptr1;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union16 var38;
++-  orc_union16 var39;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union16 *) d1;
++-  ptr1 = (orc_union16 *) d2;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var40.x2[0] = _src.x2[1];
++-      var41.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var40.x2[1] = _src.x2[1];
++-      var41.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[0];
++-      var38.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[1];
++-      var38.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var38;
++-    /* 4: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 5: avgub */
++-    var44.x2[0] = ((orc_uint8) var42.x2[0] + (orc_uint8) var43.x2[0] + 1) >> 1;
++-    var44.x2[1] = ((orc_uint8) var42.x2[1] + (orc_uint8) var43.x2[1] + 1) >> 1;
++-    /* 6: swapw */
++-    var39.i = ORC_SWAP_W (var44.i);
++-    /* 7: storew */
++-    ptr1[i] = var39;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_NV21 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_union16 *ORC_RESTRICT ptr1;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var37;
++-  orc_union16 var38;
++-  orc_union16 var39;
++-  orc_union32 var40;
++-  orc_union32 var41;
++-  orc_union16 var42;
++-  orc_union16 var43;
++-  orc_union16 var44;
++-
++-  ptr0 = (orc_union16 *) ex->arrays[0];
++-  ptr1 = (orc_union16 *) ex->arrays[1];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var37 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[0];
++-      var40.x2[0] = _src.x2[1];
++-      var41.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var37.x2[1];
++-      var40.x2[1] = _src.x2[1];
++-      var41.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[0];
++-      var38.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var41.x2[1];
++-      var38.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var38;
++-    /* 4: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var40.i;
++-      var42.i = _src.x2[1];
++-      var43.i = _src.x2[0];
++-    }
++-    /* 5: avgub */
++-    var44.x2[0] = ((orc_uint8) var42.x2[0] + (orc_uint8) var43.x2[0] + 1) >> 1;
++-    var44.x2[1] = ((orc_uint8) var42.x2[1] + (orc_uint8) var43.x2[1] + 1) >> 1;
++-    /* 6: swapw */
++-    var39.i = ORC_SWAP_W (var44.i);
++-    /* 7: storew */
++-    ptr1[i] = var39;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_NV21 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 78, 86, 50,
++-        49, 11, 2, 2, 11, 2, 2, 12, 8, 8, 20, 4, 20, 4, 20, 2,
++-        20, 2, 20, 2, 21, 1, 198, 33, 32, 4, 21, 1, 189, 0, 32, 198,
++-        34, 35, 33, 21, 1, 39, 36, 34, 35, 183, 1, 36, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_NV21);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_NV21");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_NV21);
++-      orc_program_add_destination (p, 2, "d1");
++-      orc_program_add_destination (p, 2, "d2");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 4, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 2, "t4");
++-      orc_program_add_temporary (p, 2, "t5");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitlw", 0, ORC_VAR_T3, ORC_VAR_T4, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 1, ORC_VAR_T5, ORC_VAR_T3, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "swapw", 0, ORC_VAR_D2, ORC_VAR_T5, ORC_VAR_D1,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_D2] = d2;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
++-
++-  func = c->exec;
++-  func (ex);
++-}
++-#endif
++-
++-
++-/* video_convert_orc_putline_A420 */
++-#ifdef DISABLE_ORC
++-void
++-video_convert_orc_putline_A420 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    guint8 * ORC_RESTRICT d4, const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  int i;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  orc_union16 *ORC_RESTRICT ptr3;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_int8 var41;
++-  orc_int8 var42;
++-  orc_union32 var43;
++-  orc_union32 var44;
++-  orc_union16 var45;
++-  orc_union16 var46;
++-  orc_int8 var47;
++-  orc_int8 var48;
++-  orc_int8 var49;
++-  orc_int8 var50;
++-
++-  ptr0 = (orc_union16 *) d1;
++-  ptr1 = (orc_int8 *) d2;
++-  ptr2 = (orc_int8 *) d3;
++-  ptr3 = (orc_union16 *) d4;
++-  ptr4 = (orc_union64 *) s1;
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var38 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[0];
++-      var43.x2[0] = _src.x2[1];
++-      var44.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[1];
++-      var43.x2[1] = _src.x2[1];
++-      var44.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var39;
++-    /* 4: select0wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[0];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 5: storew */
++-    ptr3[i] = var40;
++-    /* 6: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[0];
++-      var45.x2[0] = _src.x2[1];
++-      var46.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[1];
++-      var45.x2[1] = _src.x2[1];
++-      var46.x2[1] = _src.x2[0];
++-    }
++-    /* 7: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var46.i;
++-      var47 = _src.x2[1];
++-      var48 = _src.x2[0];
++-    }
++-    /* 8: avgub */
++-    var41 = ((orc_uint8) var47 + (orc_uint8) var48 + 1) >> 1;
++-    /* 9: storeb */
++-    ptr1[i] = var41;
++-    /* 10: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var45.i;
++-      var49 = _src.x2[1];
++-      var50 = _src.x2[0];
++-    }
++-    /* 11: avgub */
++-    var42 = ((orc_uint8) var49 + (orc_uint8) var50 + 1) >> 1;
++-    /* 12: storeb */
++-    ptr2[i] = var42;
++-  }
++-
++-}
++-
++-#else
++-static void
++-_backup_video_convert_orc_putline_A420 (OrcExecutor * ORC_RESTRICT ex)
++-{
++-  int i;
++-  int n = ex->n;
++-  orc_union16 *ORC_RESTRICT ptr0;
++-  orc_int8 *ORC_RESTRICT ptr1;
++-  orc_int8 *ORC_RESTRICT ptr2;
++-  orc_union16 *ORC_RESTRICT ptr3;
++-  const orc_union64 *ORC_RESTRICT ptr4;
++-  orc_union64 var38;
++-  orc_union16 var39;
++-  orc_union16 var40;
++-  orc_int8 var41;
++-  orc_int8 var42;
++-  orc_union32 var43;
++-  orc_union32 var44;
++-  orc_union16 var45;
++-  orc_union16 var46;
++-  orc_int8 var47;
++-  orc_int8 var48;
++-  orc_int8 var49;
++-  orc_int8 var50;
++-
++-  ptr0 = (orc_union16 *) ex->arrays[0];
++-  ptr1 = (orc_int8 *) ex->arrays[1];
++-  ptr2 = (orc_int8 *) ex->arrays[2];
++-  ptr3 = (orc_union16 *) ex->arrays[3];
++-  ptr4 = (orc_union64 *) ex->arrays[4];
++-
++-
++-  for (i = 0; i < n; i++) {
++-    /* 0: loadq */
++-    var38 = ptr4[i];
++-    /* 1: splitlw */
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[0];
++-      var43.x2[0] = _src.x2[1];
++-      var44.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union32 _src;
++-      _src.i = var38.x2[1];
++-      var43.x2[1] = _src.x2[1];
++-      var44.x2[1] = _src.x2[0];
++-    }
++-    /* 2: select1wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[0];
++-      var39.x2[0] = _src.x2[1];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[1];
++-      var39.x2[1] = _src.x2[1];
++-    }
++-    /* 3: storew */
++-    ptr0[i] = var39;
++-    /* 4: select0wb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[0];
++-      var40.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var44.x2[1];
++-      var40.x2[1] = _src.x2[0];
++-    }
++-    /* 5: storew */
++-    ptr3[i] = var40;
++-    /* 6: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[0];
++-      var45.x2[0] = _src.x2[1];
++-      var46.x2[0] = _src.x2[0];
++-    }
++-    {
++-      orc_union16 _src;
++-      _src.i = var43.x2[1];
++-      var45.x2[1] = _src.x2[1];
++-      var46.x2[1] = _src.x2[0];
++-    }
++-    /* 7: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var46.i;
++-      var47 = _src.x2[1];
++-      var48 = _src.x2[0];
++-    }
++-    /* 8: avgub */
++-    var41 = ((orc_uint8) var47 + (orc_uint8) var48 + 1) >> 1;
++-    /* 9: storeb */
++-    ptr1[i] = var41;
++-    /* 10: splitwb */
++-    {
++-      orc_union16 _src;
++-      _src.i = var45.i;
++-      var49 = _src.x2[1];
++-      var50 = _src.x2[0];
++-    }
++-    /* 11: avgub */
++-    var42 = ((orc_uint8) var49 + (orc_uint8) var50 + 1) >> 1;
++-    /* 12: storeb */
++-    ptr2[i] = var42;
++-  }
++-
++-}
++-
++-void
++-video_convert_orc_putline_A420 (guint8 * ORC_RESTRICT d1,
++-    guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3,
++-    guint8 * ORC_RESTRICT d4, const guint8 * ORC_RESTRICT s1, int n)
++-{
++-  OrcExecutor _ex, *ex = &_ex;
++-  static volatile int p_inited = 0;
++-  static OrcCode *c = 0;
++-  void (*func) (OrcExecutor *);
++-
++-  if (!p_inited) {
++-    orc_once_mutex_lock ();
++-    if (!p_inited) {
++-      OrcProgram *p;
++-
++-#if 1
++-      static const orc_uint8 bc[] = {
++-        1, 9, 30, 118, 105, 100, 101, 111, 95, 99, 111, 110, 118, 101, 114, 116,
++-        95, 111, 114, 99, 95, 112, 117, 116, 108, 105, 110, 101, 95, 65, 52, 50,
++-        48, 11, 2, 2, 11, 1, 1, 11, 1, 1, 11, 2, 2, 12, 8, 8,
++-        20, 4, 20, 4, 20, 2, 20, 2, 20, 1, 20, 1, 21, 1, 198, 33,
++-        32, 4, 21, 1, 189, 0, 32, 21, 1, 188, 3, 32, 21, 1, 199, 35,
++-        34, 33, 199, 36, 37, 34, 39, 1, 36, 37, 199, 36, 37, 35, 39, 2,
++-        36, 37, 2, 0,
++-      };
++-      p = orc_program_new_from_static_bytecode (bc);
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_A420);
++-#else
++-      p = orc_program_new ();
++-      orc_program_set_name (p, "video_convert_orc_putline_A420");
++-      orc_program_set_backup_function (p,
++-          _backup_video_convert_orc_putline_A420);
++-      orc_program_add_destination (p, 2, "d1");
++-      orc_program_add_destination (p, 1, "d2");
++-      orc_program_add_destination (p, 1, "d3");
++-      orc_program_add_destination (p, 2, "d4");
++-      orc_program_add_source (p, 8, "s1");
++-      orc_program_add_temporary (p, 4, "t1");
++-      orc_program_add_temporary (p, 4, "t2");
++-      orc_program_add_temporary (p, 2, "t3");
++-      orc_program_add_temporary (p, 2, "t4");
++-      orc_program_add_temporary (p, 1, "t5");
++-      orc_program_add_temporary (p, 1, "t6");
++-
++-      orc_program_append_2 (p, "splitlw", 1, ORC_VAR_T2, ORC_VAR_T1, ORC_VAR_S1,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "select1wb", 1, ORC_VAR_D1, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "select0wb", 1, ORC_VAR_D4, ORC_VAR_T1,
++-          ORC_VAR_D1, ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 1, ORC_VAR_T4, ORC_VAR_T3, ORC_VAR_T2,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T5, ORC_VAR_T6, ORC_VAR_T3,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 0, ORC_VAR_D2, ORC_VAR_T5, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "splitwb", 0, ORC_VAR_T5, ORC_VAR_T6, ORC_VAR_T4,
++-          ORC_VAR_D1);
++-      orc_program_append_2 (p, "avgub", 0, ORC_VAR_D3, ORC_VAR_T5, ORC_VAR_T6,
++-          ORC_VAR_D1);
++-#endif
++-
++-      orc_program_compile (p);
++-      c = orc_program_take_code (p);
++-      orc_program_free (p);
++-    }
++-    p_inited = TRUE;
++-    orc_once_mutex_unlock ();
++-  }
++-  ex->arrays[ORC_VAR_A2] = c;
++-  ex->program = 0;
++-
++-  ex->n = n;
++-  ex->arrays[ORC_VAR_D1] = d1;
++-  ex->arrays[ORC_VAR_D2] = d2;
++-  ex->arrays[ORC_VAR_D3] = d3;
++-  ex->arrays[ORC_VAR_D4] = d4;
++-  ex->arrays[ORC_VAR_S1] = (void *) s1;
+++  ex->params[ORC_VAR_P1] = p1;
+++  ex->params[ORC_VAR_P2] = p2;
+++  ex->params[ORC_VAR_P3] = p3;
+++  ex->params[ORC_VAR_P4] = p4;
+++  ex->params[ORC_VAR_P5] = p5;
++ 
++   func = c->exec;
++   func (ex);
++diff --git a/gst/videoconvert/gstvideoconvertorc-dist.h b/gst/videoconvert/gstvideoconvertorc-dist.h
++index abc0c87..b4981d1 100644
++--- a/gst/videoconvert/gstvideoconvertorc-dist.h
+++++ b/gst/videoconvert/gstvideoconvertorc-dist.h
++@@ -110,40 +110,11 @@ void video_convert_orc_convert_Y42B_AYUV (guint8 * ORC_RESTRICT d1, int d1_strid
++ void video_convert_orc_convert_Y444_YUY2 (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, const guint8 * ORC_RESTRICT s2, int s2_stride, const guint8 * ORC_RESTRICT s3, int s3_stride, int n, int m);
++ void video_convert_orc_convert_Y444_UYVY (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, const guint8 * ORC_RESTRICT s2, int s2_stride, const guint8 * ORC_RESTRICT s3, int s3_stride, int n, int m);
++ void video_convert_orc_convert_Y444_AYUV (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, const guint8 * ORC_RESTRICT s2, int s2_stride, const guint8 * ORC_RESTRICT s3, int s3_stride, int n, int m);
++-void video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
++-void video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
++-void video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
++-void video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int n, int m);
++-void video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_I420 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_YUV9 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_YUY2 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_UYVY (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_YVYU (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_Y42B (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_Y444 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, int n);
++-void video_convert_orc_getline_Y800 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_Y16 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_BGRA (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_ABGR (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_RGBA (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_getline_NV12 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n);
++-void video_convert_orc_getline_NV21 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, int n);
++-void video_convert_orc_getline_A420 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, const guint8 * ORC_RESTRICT s4, int n);
++-void video_convert_orc_putline_I420 (guint8 * ORC_RESTRICT d1, guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_YUY2 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_YVYU (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_UYVY (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y42B (guint8 * ORC_RESTRICT d1, guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y444 (guint8 * ORC_RESTRICT d1, guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y800 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_Y16 (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_BGRA (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_ABGR (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_RGBA (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_NV12 (guint8 * ORC_RESTRICT d1, guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_NV21 (guint8 * ORC_RESTRICT d1, guint8 * ORC_RESTRICT d2, const guint8 * ORC_RESTRICT s1, int n);
++-void video_convert_orc_putline_A420 (guint8 * ORC_RESTRICT d1, guint8 * ORC_RESTRICT d2, guint8 * ORC_RESTRICT d3, guint8 * ORC_RESTRICT d4, const guint8 * ORC_RESTRICT s1, int n);
+++void video_convert_orc_convert_AYUV_ARGB (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3, int p4, int p5, int n, int m);
+++void video_convert_orc_convert_AYUV_BGRA (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3, int p4, int p5, int n, int m);
+++void video_convert_orc_convert_AYUV_ABGR (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3, int p4, int p5, int n, int m);
+++void video_convert_orc_convert_AYUV_RGBA (guint8 * ORC_RESTRICT d1, int d1_stride, const guint8 * ORC_RESTRICT s1, int s1_stride, int p1, int p2, int p3, int p4, int p5, int n, int m);
+++void video_convert_orc_convert_I420_BGRA (guint8 * ORC_RESTRICT d1, const guint8 * ORC_RESTRICT s1, const guint8 * ORC_RESTRICT s2, const guint8 * ORC_RESTRICT s3, int p1, int p2, int p3, int p4, int p5, int n);
++ 
++ #ifdef __cplusplus
++ }
++diff --git a/gst/videoconvert/gstvideoconvertorc.orc b/gst/videoconvert/gstvideoconvertorc.orc
++index c055ce2..29a1998 100644
++--- a/gst/videoconvert/gstvideoconvertorc.orc
+++++ b/gst/videoconvert/gstvideoconvertorc.orc
++@@ -451,8 +451,11 @@ mergewl ayuv, ay, uv
++ .flags 2d
++ .dest 4 argb guint8
++ .source 4 ayuv guint8
++-.temp 2 t1
++-.temp 2 t2
+++.param 2 p1
+++.param 2 p2
+++.param 2 p3
+++.param 2 p4
+++.param 2 p5
++ .temp 1 a
++ .temp 1 y
++ .temp 1 u
++@@ -467,57 +470,48 @@ mergewl ayuv, ay, uv
++ .temp 1 g
++ .temp 1 b
++ .temp 4 x
++-.const 1 c8 8
+++.const 1 c128 128
++ 
++-x4 subb x, ayuv, 128
++-splitlw t1, t2, x
++-splitwb y, a, t2
++-splitwb v, u, t1
++-convsbw wy, y
++-convsbw wu, u
++-convsbw wv, v
++-
++-mullw t1, wy, 42
++-shrsw t1, t1, c8
++-addssw wy, wy, t1
++-
++-addssw wr, wy, wv
++-mullw t1, wv, 103
++-shrsw t1, t1, c8
++-subssw wr, wr, t1
++-addssw wr, wr, wv
++-
++-addssw wb, wy, wu
++-addssw wb, wb, wu
++-mullw t1, wu, 4
++-shrsw t1, t1, c8
++-addssw wb, wb, t1
++-
++-mullw t1, wu, 100
++-shrsw t1, t1, c8
++-subssw wg, wy, t1
++-mullw t1, wv, 104
++-shrsw t1, t1, c8
++-subssw wg, wg, t1
++-subssw wg, wg, t1
+++x4 subb x, ayuv, c128 
+++splitlw wv, wy, x
+++splitwb y, a, wy
+++splitwb v, u, wv
+++
+++splatbw wy, y
+++splatbw wu, u
+++splatbw wv, v
+++
+++mulhsw wy, wy, p1
+++
+++mulhsw wr, wv, p2
+++addssw wr, wy, wr
+++
+++mulhsw wb, wu, p3
+++addssw wb, wy, wb
+++
+++mulhsw wg, wu, p4
+++addssw wg, wy, wg
+++mulhsw wy, wv, p5
+++addssw wg, wg, wy
++ 
++ convssswb r, wr
++ convssswb g, wg
++ convssswb b, wb
++ 
++-mergebw t1, a, r
++-mergebw t2, g, b
++-mergewl x, t1, t2
++-x4 addb argb, x, 128
++-
++-
+++mergebw wr, a, r
+++mergebw wb, g, b
+++mergewl x, wr, wb
+++x4 addb argb, x, c128
++ 
++ .function video_convert_orc_convert_AYUV_BGRA
++ .flags 2d
++-.dest 4 argb guint8
+++.dest 4 bgra guint8
++ .source 4 ayuv guint8
++-.temp 2 t1
++-.temp 2 t2
+++.param 2 p1
+++.param 2 p2
+++.param 2 p3
+++.param 2 p4
+++.param 2 p5
++ .temp 1 a
++ .temp 1 y
++ .temp 1 u
++@@ -532,58 +526,49 @@ x4 addb argb, x, 128
++ .temp 1 g
++ .temp 1 b
++ .temp 4 x
++-.const 1 c8 8
+++.const 1 c128 128
++ 
++-x4 subb x, ayuv, 128
++-splitlw t1, t2, x
++-splitwb y, a, t2
++-splitwb v, u, t1
++-convsbw wy, y
++-convsbw wu, u
++-convsbw wv, v
++-
++-mullw t1, wy, 42
++-shrsw t1, t1, c8
++-addssw wy, wy, t1
++-
++-addssw wr, wy, wv
++-mullw t1, wv, 103
++-shrsw t1, t1, c8
++-subssw wr, wr, t1
++-addssw wr, wr, wv
++-
++-addssw wb, wy, wu
++-addssw wb, wb, wu
++-mullw t1, wu, 4
++-shrsw t1, t1, c8
++-addssw wb, wb, t1
++-
++-mullw t1, wu, 100
++-shrsw t1, t1, c8
++-subssw wg, wy, t1
++-mullw t1, wv, 104
++-shrsw t1, t1, c8
++-subssw wg, wg, t1
++-subssw wg, wg, t1
+++x4 subb x, ayuv, c128 
+++splitlw wv, wy, x
+++splitwb y, a, wy
+++splitwb v, u, wv
+++
+++splatbw wy, y
+++splatbw wu, u
+++splatbw wv, v
+++
+++mulhsw wy, wy, p1
+++
+++mulhsw wr, wv, p2
+++addssw wr, wy, wr
+++
+++mulhsw wb, wu, p3
+++addssw wb, wy, wb
+++
+++mulhsw wg, wu, p4
+++addssw wg, wy, wg
+++mulhsw wy, wv, p5
+++addssw wg, wg, wy
++ 
++ convssswb r, wr
++ convssswb g, wg
++ convssswb b, wb
++ 
++-mergebw t1, b, g
++-mergebw t2, r, a
++-mergewl x, t1, t2
++-x4 addb argb, x, 128
++-
++-
+++mergebw wb, b, g
+++mergebw wr, r, a
+++mergewl x, wb, wr
+++x4 addb bgra, x, c128
++ 
++ 
++ .function video_convert_orc_convert_AYUV_ABGR
++ .flags 2d
++ .dest 4 argb guint8
++ .source 4 ayuv guint8
++-.temp 2 t1
++-.temp 2 t2
+++.param 2 p1
+++.param 2 p2
+++.param 2 p3
+++.param 2 p4
+++.param 2 p5
++ .temp 1 a
++ .temp 1 y
++ .temp 1 u
++@@ -598,57 +583,48 @@ x4 addb argb, x, 128
++ .temp 1 g
++ .temp 1 b
++ .temp 4 x
++-.const 1 c8 8
+++.const 1 c128 128
++ 
++-x4 subb x, ayuv, 128
++-splitlw t1, t2, x
++-splitwb y, a, t2
++-splitwb v, u, t1
++-convsbw wy, y
++-convsbw wu, u
++-convsbw wv, v
++-
++-mullw t1, wy, 42
++-shrsw t1, t1, c8
++-addssw wy, wy, t1
++-
++-addssw wr, wy, wv
++-mullw t1, wv, 103
++-shrsw t1, t1, c8
++-subssw wr, wr, t1
++-addssw wr, wr, wv
++-
++-addssw wb, wy, wu
++-addssw wb, wb, wu
++-mullw t1, wu, 4
++-shrsw t1, t1, c8
++-addssw wb, wb, t1
++-
++-mullw t1, wu, 100
++-shrsw t1, t1, c8
++-subssw wg, wy, t1
++-mullw t1, wv, 104
++-shrsw t1, t1, c8
++-subssw wg, wg, t1
++-subssw wg, wg, t1
+++x4 subb x, ayuv, c128 
+++splitlw wv, wy, x
+++splitwb y, a, wy
+++splitwb v, u, wv
+++
+++splatbw wy, y
+++splatbw wu, u
+++splatbw wv, v
+++
+++mulhsw wy, wy, p1
+++
+++mulhsw wr, wv, p2
+++addssw wr, wy, wr
+++
+++mulhsw wb, wu, p3
+++addssw wb, wy, wb
+++
+++mulhsw wg, wu, p4
+++addssw wg, wy, wg
+++mulhsw wy, wv, p5
+++addssw wg, wg, wy
++ 
++ convssswb r, wr
++ convssswb g, wg
++ convssswb b, wb
++ 
++-mergebw t1, a, b
++-mergebw t2, g, r
++-mergewl x, t1, t2
++-x4 addb argb, x, 128
++-
++-
+++mergebw wb, a, b
+++mergebw wr, g, r
+++mergewl x, wb, wr
+++x4 addb argb, x, c128
++ 
++ .function video_convert_orc_convert_AYUV_RGBA
++ .flags 2d
++ .dest 4 argb guint8
++ .source 4 ayuv guint8
++-.temp 2 t1
++-.temp 2 t2
+++.param 2 p1
+++.param 2 p2
+++.param 2 p3
+++.param 2 p4
+++.param 2 p5
++ .temp 1 a
++ .temp 1 y
++ .temp 1 u
++@@ -663,48 +639,38 @@ x4 addb argb, x, 128
++ .temp 1 g
++ .temp 1 b
++ .temp 4 x
++-.const 1 c8 8
+++.const 1 c128 128
++ 
++-x4 subb x, ayuv, 128
++-splitlw t1, t2, x
++-splitwb y, a, t2
++-splitwb v, u, t1
++-convsbw wy, y
++-convsbw wu, u
++-convsbw wv, v
++-
++-mullw t1, wy, 42
++-shrsw t1, t1, c8
++-addssw wy, wy, t1
++-
++-addssw wr, wy, wv
++-mullw t1, wv, 103
++-shrsw t1, t1, c8
++-subssw wr, wr, t1
++-addssw wr, wr, wv
++-
++-addssw wb, wy, wu
++-addssw wb, wb, wu
++-mullw t1, wu, 4
++-shrsw t1, t1, c8
++-addssw wb, wb, t1
++-
++-mullw t1, wu, 100
++-shrsw t1, t1, c8
++-subssw wg, wy, t1
++-mullw t1, wv, 104
++-shrsw t1, t1, c8
++-subssw wg, wg, t1
++-subssw wg, wg, t1
+++x4 subb x, ayuv, c128 
+++splitlw wv, wy, x
+++splitwb y, a, wy
+++splitwb v, u, wv
+++
+++splatbw wy, y
+++splatbw wu, u
+++splatbw wv, v
+++
+++mulhsw wy, wy, p1
+++
+++mulhsw wr, wv, p2
+++addssw wr, wy, wr
+++
+++mulhsw wb, wu, p3
+++addssw wb, wy, wb
+++
+++mulhsw wg, wu, p4
+++addssw wg, wy, wg
+++mulhsw wy, wv, p5
+++addssw wg, wg, wy
++ 
++ convssswb r, wr
++ convssswb g, wg
++ convssswb b, wb
++ 
++-mergebw t1, r, g
++-mergebw t2, b, a
++-mergewl x, t1, t2
++-x4 addb argb, x, 128
+++mergebw wr, r, g
+++mergebw wb, b, a
+++mergewl x, wr, wb
+++x4 addb argb, x, c128
++ 
++ 
++ 
++@@ -713,9 +679,11 @@ x4 addb argb, x, 128
++ .source 1 y guint8
++ .source 1 u guint8
++ .source 1 v guint8
++-.temp 2 t1
++-.temp 2 t2
++-.temp 1 t3
+++.param 2 p1
+++.param 2 p2
+++.param 2 p3
+++.param 2 p4
+++.param 2 p5
++ .temp 2 wy
++ .temp 2 wu
++ .temp 2 wv
++@@ -725,497 +693,37 @@ x4 addb argb, x, 128
++ .temp 1 r
++ .temp 1 g
++ .temp 1 b
++-.const 1 c8 8
+++.temp 4 x
++ .const 1 c128 128
++ 
++-subb t3, y, c128
++-convsbw wy, t3
++-loadupib t3, u
++-subb t3, t3, c128
++-convsbw wu, t3
++-loadupib t3, v
++-subb t3, t3, c128
++-convsbw wv, t3
++-
++-mullw t1, wy, 42
++-shrsw t1, t1, c8
++-addssw wy, wy, t1
++-
++-addssw wr, wy, wv
++-mullw t1, wv, 103
++-shrsw t1, t1, c8
++-subssw wr, wr, t1
++-addssw wr, wr, wv
++-
++-addssw wb, wy, wu
++-addssw wb, wb, wu
++-mullw t1, wu, 4
++-shrsw t1, t1, c8
++-addssw wb, wb, t1
++-
++-mullw t1, wu, 100
++-shrsw t1, t1, c8
++-subssw wg, wy, t1
++-mullw t1, wv, 104
++-shrsw t1, t1, c8
++-subssw wg, wg, t1
++-subssw wg, wg, t1
++-
++-convssswb r, wr
++-convssswb g, wg
++-convssswb b, wb
++-
++-mergebw t1, b, g
++-x2 subb t1, t1, c128
++-subb    r, r, c128
++-mergebw t2, r, 255
++-mergewl argb, t1, t2
++-
++-
++-
++-.function video_convert_orc_getline_I420
++-.dest 4 d guint8
++-.source 1 y guint8
++-.source 1 u guint8
++-.source 1 v guint8
++-.const 1 c255 255
++-.temp 2 uv
++-.temp 2 ay
++-.temp 1 tu
++-.temp 1 tv
++-
++-loadupdb tu, u
++-loadupdb tv, v
++-mergebw uv, tu, tv
++-mergebw ay, c255, y
++-mergewl d, ay, uv
++-
++-.function video_convert_orc_getline_YUV9
++-.dest 8 d guint8
++-.source 2 y guint8
++-.source 1 u guint8
++-.source 1 v guint8
++-.const 1 c255 255
++-.temp 2 tuv
++-.temp 4 ay
++-.temp 4 uv
++-.temp 1 tu
++-.temp 1 tv
++-
++-loadupdb tu, u
++-loadupdb tv, v
++-mergebw tuv, tu, tv
++-mergewl uv, tuv, tuv
++-x2 mergebw ay, c255, y
++-x2 mergewl d, ay, uv
++-
++-.function video_convert_orc_getline_YUY2
++-.dest 8 ayuv guint8
++-.source 4 yuy2 guint8
++-.const 2 c255 0xff
++-.temp 2 yy
++-.temp 2 uv
++-.temp 4 ayay
++-.temp 4 uvuv
++-
++-x2 splitwb uv, yy, yuy2
++-x2 mergebw ayay, c255, yy
++-mergewl uvuv, uv, uv
++-x2 mergewl ayuv, ayay, uvuv
++-
++-
++-.function video_convert_orc_getline_UYVY
++-.dest 8 ayuv guint8
++-.source 4 uyvy guint8
++-.const 2 c255 0xff
++-.temp 2 yy
++-.temp 2 uv
++-.temp 4 ayay
++-.temp 4 uvuv
++-
++-x2 splitwb yy, uv, uyvy
++-x2 mergebw ayay, c255, yy
++-mergewl uvuv, uv, uv
++-x2 mergewl ayuv, ayay, uvuv
++-
++-
++-.function video_convert_orc_getline_YVYU
++-.dest 8 ayuv guint8
++-.source 4 uyvy guint8
++-.const 2 c255 0xff
++-.temp 2 yy
++-.temp 2 uv
++-.temp 4 ayay
++-.temp 4 uvuv
++-
++-x2 splitwb uv, yy, uyvy
++-swapw uv, uv
++-x2 mergebw ayay, c255, yy
++-mergewl uvuv, uv, uv
++-x2 mergewl ayuv, ayay, uvuv
++-
++-
++-.function video_convert_orc_getline_Y42B
++-.dest 8 ayuv guint8
++-.source 2 yy guint8
++-.source 1 u guint8
++-.source 1 v guint8
++-.const 1 c255 255
++-.temp 2 uv
++-.temp 2 ay
++-.temp 4 uvuv
++-.temp 4 ayay
++-
++-mergebw uv, u, v
++-x2 mergebw ayay, c255, yy
++-mergewl uvuv, uv, uv
++-x2 mergewl ayuv, ayay, uvuv
++-
++-
++-.function video_convert_orc_getline_Y444
++-.dest 4 ayuv guint8
++-.source 1 y guint8
++-.source 1 u guint8
++-.source 1 v guint8
++-.const 1 c255 255
++-.temp 2 uv
++-.temp 2 ay
++-
++-mergebw uv, u, v
++-mergebw ay, c255, y
++-mergewl ayuv, ay, uv
++-
++-
++-.function video_convert_orc_getline_Y800
++-.dest 4 ayuv guint8
++-.source 1 y guint8
++-.const 1 c255 255
++-.const 2 c0x8080 0x8080
++-.temp 2 ay
++-
++-mergebw ay, c255, y
++-mergewl ayuv, ay, c0x8080
++-
++-.function video_convert_orc_getline_Y16
++-.dest 4 ayuv guint8
++-.source 2 y guint8
++-.const 1 c255 255
++-.const 2 c0x8080 0x8080
++-.temp 2 ay
++-.temp 1 yb
++-
++-convhwb yb, y
++-mergebw ay, c255, yb
++-mergewl ayuv, ay, c0x8080
++-
++-.function video_convert_orc_getline_BGRA
++-.dest 4 argb guint8
++-.source 4 bgra guint8
++-
++-swapl argb, bgra
++-
++-
++-.function video_convert_orc_getline_ABGR
++-.dest 4 argb guint8
++-.source 4 abgr guint8
++-.temp 1 a
++-.temp 1 r
++-.temp 1 g
++-.temp 1 b
++-.temp 2 gr
++-.temp 2 ab
++-.temp 2 ar
++-.temp 2 gb
++-
++-splitlw gr, ab, abgr
++-splitwb r, g, gr
++-splitwb b, a, ab
++-mergebw ar, a, r
++-mergebw gb, g, b
++-mergewl argb, ar, gb
++-
++-
++-.function video_convert_orc_getline_RGBA
++-.dest 4 argb guint8
++-.source 4 rgba guint8
++-.temp 1 a
++-.temp 1 r
++-.temp 1 g
++-.temp 1 b
++-.temp 2 rg
++-.temp 2 ba
++-.temp 2 ar
++-.temp 2 gb
++-
++-splitlw ba, rg, rgba
++-splitwb g, r, rg
++-splitwb a, b, ba
++-mergebw ar, a, r
++-mergebw gb, g, b
++-mergewl argb, ar, gb
++-
++-
++-.function video_convert_orc_getline_NV12
++-.dest 8 d guint8
++-.source 2 y guint8
++-.source 2 uv guint8
++-.const 1 c255 255
++-.temp 4 ay
++-.temp 4 uvuv
++-
++-mergewl uvuv, uv, uv
++-x2 mergebw ay, c255, y
++-x2 mergewl d, ay, uvuv
++-
++-
++-.function video_convert_orc_getline_NV21
++-.dest 8 d guint8
++-.source 2 y guint8
++-.source 2 vu guint8
++-.const 1 c255 255
++-.temp 2 uv
++-.temp 4 ay
++-.temp 4 uvuv
++-
++-swapw uv, vu
++-mergewl uvuv, uv, uv
++-x2 mergebw ay, c255, y
++-x2 mergewl d, ay, uvuv
++-
++-.function video_convert_orc_getline_A420
++-.dest 4 d guint8
++-.source 1 y guint8
++-.source 1 u guint8
++-.source 1 v guint8
++-.source 1 a guint8
++-.temp 2 uv
++-.temp 2 ay
++-.temp 1 tu
++-.temp 1 tv
+++subb r, y, c128
+++splatbw wy, r
+++loadupdb r, u
+++subb r, r, c128
+++splatbw wu, r
+++loadupdb r, v
+++subb r, r, c128
+++splatbw wv, r
++ 
++-loadupdb tu, u
++-loadupdb tv, v
++-mergebw uv, tu, tv
++-mergebw ay, a, y
++-mergewl d, ay, uv
+++mulhsw wy, wy, p1
++ 
++-.function video_convert_orc_putline_I420
++-.dest 2 y guint8
++-.dest 1 u guint8
++-.dest 1 v guint8
++-.source 8 ayuv guint8
++-.temp 4 ay
++-.temp 4 uv
++-.temp 2 uu
++-.temp 2 vv
++-.temp 1 t1
++-.temp 1 t2
+++mulhsw wr, wv, p2
+++addssw wr, wy, wr
++ 
++-x2 splitlw uv, ay, ayuv
++-x2 select1wb y, ay
++-x2 splitwb vv, uu, uv
++-splitwb t1, t2, uu
++-avgub u, t1, t2
++-splitwb t1, t2, vv
++-avgub v, t1, t2
+++mulhsw wb, wu, p3
+++addssw wb, wy, wb
++ 
+++mulhsw wg, wu, p4
+++addssw wg, wy, wg
+++mulhsw wy, wv, p5
+++addssw wg, wg, wy
++ 
+++convssswb r, wr
+++convssswb g, wg
+++convssswb b, wb
++ 
++-.function video_convert_orc_putline_YUY2
++-.dest 4 yuy2 guint8
++-.source 8 ayuv guint8
++-.temp 2 yy
++-.temp 2 uv1
++-.temp 2 uv2
++-.temp 4 ayay
++-.temp 4 uvuv
++-
++-x2 splitlw uvuv, ayay, ayuv
++-splitlw uv1, uv2, uvuv
++-x2 avgub uv1, uv1, uv2
++-x2 select1wb yy, ayay
++-x2 mergebw yuy2, yy, uv1
++-
++-
++-.function video_convert_orc_putline_YVYU
++-.dest 4 yuy2 guint8
++-.source 8 ayuv guint8
++-.temp 2 yy
++-.temp 2 uv1
++-.temp 2 uv2
++-.temp 4 ayay
++-.temp 4 uvuv
++-
++-x2 splitlw uvuv, ayay, ayuv
++-splitlw uv1, uv2, uvuv
++-x2 avgub uv1, uv1, uv2
++-x2 select1wb yy, ayay
++-swapw uv1, uv1
++-x2 mergebw yuy2, yy, uv1
++-
++-
++-.function video_convert_orc_putline_UYVY
++-.dest 4 yuy2 guint8
++-.source 8 ayuv guint8
++-.temp 2 yy
++-.temp 2 uv1
++-.temp 2 uv2
++-.temp 4 ayay
++-.temp 4 uvuv
++-
++-x2 splitlw uvuv, ayay, ayuv
++-splitlw uv1, uv2, uvuv
++-x2 avgub uv1, uv1, uv2
++-x2 select1wb yy, ayay
++-x2 mergebw yuy2, uv1, yy
++-
++-
++-
++-.function video_convert_orc_putline_Y42B
++-.dest 2 y guint8
++-.dest 1 u guint8
++-.dest 1 v guint8
++-.source 8 ayuv guint8
++-.temp 4 ayay
++-.temp 4 uvuv
++-.temp 2 uv1
++-.temp 2 uv2
++-
++-x2 splitlw uvuv, ayay, ayuv
++-splitlw uv1, uv2, uvuv
++-x2 avgub uv1, uv1, uv2
++-splitwb v, u, uv1
++-x2 select1wb y, ayay
++-
++-
++-.function video_convert_orc_putline_Y444
++-.dest 1 y guint8
++-.dest 1 u guint8
++-.dest 1 v guint8
++-.source 4 ayuv guint8
++-.temp 2 ay
++-.temp 2 uv
++-
++-splitlw uv, ay, ayuv
++-splitwb v, u, uv
++-select1wb y, ay
++-
++-
++-.function video_convert_orc_putline_Y800
++-.dest 1 y guint8
++-.source 4 ayuv guint8
++-.temp 2 ay
++-
++-select0lw ay, ayuv
++-select1wb y, ay
++-
++-.function video_convert_orc_putline_Y16
++-.dest 2 y guint8
++-.source 4 ayuv guint8
++-.temp 2 ay
++-.temp 1 yb
++-
++-select0lw ay, ayuv
++-select1wb yb, ay
++-convubw ay, yb
++-shlw y, ay, 8
++-
++-.function video_convert_orc_putline_BGRA
++-.dest 4 bgra guint8
++-.source 4 argb guint8
++-
++-swapl bgra, argb
++-
++-
++-.function video_convert_orc_putline_ABGR
++-.dest 4 abgr guint8
++-.source 4 argb guint8
++-.temp 1 a
++-.temp 1 r
++-.temp 1 g
++-.temp 1 b
++-.temp 2 gr
++-.temp 2 ab
++-.temp 2 ar
++-.temp 2 gb
++-
++-splitlw gb, ar, argb
++-splitwb b, g, gb
++-splitwb r, a, ar
++-mergebw ab, a, b
++-mergebw gr, g, r
++-mergewl abgr, ab, gr
++-
++-
++-.function video_convert_orc_putline_RGBA
++-.dest 4 rgba guint8
++-.source 4 argb guint8
++-.temp 1 a
++-.temp 1 r
++-.temp 1 g
++-.temp 1 b
++-.temp 2 rg
++-.temp 2 ba
++-.temp 2 ar
++-.temp 2 gb
++-
++-splitlw gb, ar, argb
++-splitwb b, g, gb
++-splitwb r, a, ar
++-mergebw ba, b, a
++-mergebw rg, r, g
++-mergewl rgba, rg, ba
++-
++-
++-.function video_convert_orc_putline_NV12
++-.dest 2 y guint8
++-.dest 2 uv guint8
++-.source 8 ayuv guint8
++-.temp 4 ay
++-.temp 4 uvuv
++-.temp 2 uv1
++-.temp 2 uv2
++-
++-x2 splitlw uvuv, ay, ayuv
++-x2 select1wb y, ay
++-splitlw uv1, uv2, uvuv
++-x2 avgub uv, uv1, uv2
++-
++-
++-.function video_convert_orc_putline_NV21
++-.dest 2 y guint8
++-.dest 2 vu guint8
++-.source 8 ayuv guint8
++-.temp 4 ay
++-.temp 4 uvuv
++-.temp 2 uv1
++-.temp 2 uv2
++-.temp 2 uv
++-
++-x2 splitlw uvuv, ay, ayuv
++-x2 select1wb y, ay
++-splitlw uv1, uv2, uvuv
++-x2 avgub uv, uv1, uv2
++-swapw vu, uv
++-
++-.function video_convert_orc_putline_A420
++-.dest 2 y guint8
++-.dest 1 u guint8
++-.dest 1 v guint8
++-.dest 2 a guint8
++-.source 8 ayuv guint8
++-.temp 4 ay
++-.temp 4 uv
++-.temp 2 uu
++-.temp 2 vv
++-.temp 1 t1
++-.temp 1 t2
+++mergebw wb, b, g
+++mergebw wr, r, 127
+++mergewl x, wb, wr
+++x4 addb argb, x, c128
++ 
++-x2 splitlw uv, ay, ayuv
++-x2 select1wb y, ay
++-x2 select0wb a, ay
++-x2 splitwb vv, uu, uv
++-splitwb t1, t2, uu
++-avgub u, t1, t2
++-splitwb t1, t2, vv
++-avgub v, t1, t2
++diff --git a/gst/videoconvert/videoconvert.c b/gst/videoconvert/videoconvert.c
++index 916f632..380822d 100644
++--- a/gst/videoconvert/videoconvert.c
+++++ b/gst/videoconvert/videoconvert.c
++@@ -276,6 +276,7 @@ videoconvert_convert_compute_matrix (VideoConvert * convert)
++   /* 1, bring color components to [0..1.0] range */
++   gst_video_color_range_offsets (in_info->colorimetry.range, suinfo, offset,
++       scale);
+++
++   color_matrix_offset_components (&dst, -offset[0], -offset[1], -offset[2]);
++ 
++   color_matrix_scale_components (&dst, 1 / ((float) scale[0]),
++@@ -300,6 +301,7 @@ videoconvert_convert_compute_matrix (VideoConvert * convert)
++   /* 8, bring color components to nominal range */
++   gst_video_color_range_offsets (out_info->colorimetry.range, duinfo, offset,
++       scale);
+++
++   color_matrix_scale_components (&dst, (float) scale[0], (float) scale[1],
++       (float) scale[2]);
++ 
++@@ -597,7 +599,7 @@ videoconvert_convert_generic (VideoConvert * convert, GstVideoFrame * dest,
++       for (j = 0; j < down_n_lines; j += lines) {
++         idx = down_offset + j;
++ 
++-        if (idx >= 0 && idx < height) {
+++        if (idx < height) {
++           GST_DEBUG ("packing line %d %d %d", j + start, down_offset, idx);
++           /* FIXME, not correct if lines > 1 */
++           PACK_FRAME (dest, out_tmplines[j + start], idx, width);
++@@ -1202,7 +1204,9 @@ convert_AYUV_ARGB (VideoConvert * convert, GstVideoFrame * dest,
++ 
++   video_convert_orc_convert_AYUV_ARGB (FRAME_GET_LINE (dest, 0),
++       FRAME_GET_STRIDE (dest), FRAME_GET_LINE (src, 0),
++-      FRAME_GET_STRIDE (src), width, height);
+++      FRAME_GET_STRIDE (src), convert->cmatrix[0][0], convert->cmatrix[0][2],
+++      convert->cmatrix[2][1], convert->cmatrix[1][1], convert->cmatrix[1][2],
+++      width, height);
++ }
++ 
++ static void
++@@ -1214,7 +1218,9 @@ convert_AYUV_BGRA (VideoConvert * convert, GstVideoFrame * dest,
++ 
++   video_convert_orc_convert_AYUV_BGRA (FRAME_GET_LINE (dest, 0),
++       FRAME_GET_STRIDE (dest), FRAME_GET_LINE (src, 0),
++-      FRAME_GET_STRIDE (src), width, height);
+++      FRAME_GET_STRIDE (src), convert->cmatrix[0][0], convert->cmatrix[0][2],
+++      convert->cmatrix[2][1], convert->cmatrix[1][1], convert->cmatrix[1][2],
+++      width, height);
++ }
++ 
++ static void
++@@ -1226,7 +1232,9 @@ convert_AYUV_ABGR (VideoConvert * convert, GstVideoFrame * dest,
++ 
++   video_convert_orc_convert_AYUV_ABGR (FRAME_GET_LINE (dest, 0),
++       FRAME_GET_STRIDE (dest), FRAME_GET_LINE (src, 0),
++-      FRAME_GET_STRIDE (src), width, height);
+++      FRAME_GET_STRIDE (src), convert->cmatrix[0][0], convert->cmatrix[0][2],
+++      convert->cmatrix[2][1], convert->cmatrix[1][1], convert->cmatrix[1][2],
+++      width, height);
++ }
++ 
++ static void
++@@ -1238,7 +1246,9 @@ convert_AYUV_RGBA (VideoConvert * convert, GstVideoFrame * dest,
++ 
++   video_convert_orc_convert_AYUV_RGBA (FRAME_GET_LINE (dest, 0),
++       FRAME_GET_STRIDE (dest), FRAME_GET_LINE (src, 0),
++-      FRAME_GET_STRIDE (src), width, height);
+++      FRAME_GET_STRIDE (src), convert->cmatrix[0][0], convert->cmatrix[0][2],
+++      convert->cmatrix[2][1], convert->cmatrix[1][1], convert->cmatrix[1][2],
+++      width, height);
++ }
++ 
++ static void
++@@ -1252,7 +1262,10 @@ convert_I420_BGRA (VideoConvert * convert, GstVideoFrame * dest,
++   for (i = 0; i < height; i++) {
++     video_convert_orc_convert_I420_BGRA (FRAME_GET_LINE (dest, i),
++         FRAME_GET_Y_LINE (src, i),
++-        FRAME_GET_U_LINE (src, i >> 1), FRAME_GET_V_LINE (src, i >> 1), width);
+++        FRAME_GET_U_LINE (src, i >> 1), FRAME_GET_V_LINE (src, i >> 1),
+++        convert->cmatrix[0][0], convert->cmatrix[0][2],
+++        convert->cmatrix[2][1], convert->cmatrix[1][1], convert->cmatrix[1][2],
+++        width);
++   }
++ }
++ #endif
++@@ -1269,6 +1282,7 @@ typedef struct
++   GstVideoColorMatrix out_matrix;
++   gboolean keeps_color_matrix;
++   gboolean keeps_interlaced;
+++  gboolean needs_color_matrix;
++   gint width_align, height_align;
++   void (*convert) (VideoConvert * convert, GstVideoFrame * dest,
++       const GstVideoFrame * src);
++@@ -1276,118 +1290,165 @@ typedef struct
++ 
++ static const VideoTransform transforms[] = {
++   {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YUY2,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_I420_YUY2},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_I420_YUY2},
++   {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_UYVY,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_I420_UYVY},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_I420_UYVY},
++   {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_AYUV,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_I420_AYUV},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_I420_AYUV},
++   {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y42B,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 0, 0, convert_I420_Y42B},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 0, 0,
+++      convert_I420_Y42B},
++   {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y444,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 0, 0, convert_I420_Y444},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 0, 0,
+++      convert_I420_Y444},
++ 
++   {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YUY2,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_I420_YUY2},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_I420_YUY2},
++   {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_UYVY,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_I420_UYVY},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_I420_UYVY},
++   {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_AYUV,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_I420_AYUV},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_I420_AYUV},
++   {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y42B,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 0, 0, convert_I420_Y42B},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 0, 0,
+++      convert_I420_Y42B},
++   {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y444,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 0, 0, convert_I420_Y444},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 0, 0,
+++      convert_I420_Y444},
++ 
++   {GST_VIDEO_FORMAT_YUY2, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_I420,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_YUY2_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_YUY2_I420},
++   {GST_VIDEO_FORMAT_YUY2, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YV12,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_YUY2_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_YUY2_I420},
++   {GST_VIDEO_FORMAT_YUY2, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_UYVY,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_YUY2},     /* alias */
+++      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0, convert_UYVY_YUY2},      /* alias */
++   {GST_VIDEO_FORMAT_YUY2, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_AYUV,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_YUY2_AYUV},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_YUY2_AYUV},
++   {GST_VIDEO_FORMAT_YUY2, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y42B,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_YUY2_Y42B},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_YUY2_Y42B},
++   {GST_VIDEO_FORMAT_YUY2, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y444,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_YUY2_Y444},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_YUY2_Y444},
++ 
++   {GST_VIDEO_FORMAT_UYVY, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_I420,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_UYVY_I420},
++   {GST_VIDEO_FORMAT_UYVY, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YV12,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_UYVY_I420},
++   {GST_VIDEO_FORMAT_UYVY, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YUY2,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_YUY2},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_UYVY_YUY2},
++   {GST_VIDEO_FORMAT_UYVY, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_AYUV,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_AYUV},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_UYVY_AYUV},
++   {GST_VIDEO_FORMAT_UYVY, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y42B,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_Y42B},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_UYVY_Y42B},
++   {GST_VIDEO_FORMAT_UYVY, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y444,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_UYVY_Y444},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_UYVY_Y444},
++ 
++   {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_I420,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 1, 1, convert_AYUV_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 1, 1,
+++      convert_AYUV_I420},
++   {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YV12,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 1, 1, convert_AYUV_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 1, 1,
+++      convert_AYUV_I420},
++   {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YUY2,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_AYUV_YUY2},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_AYUV_YUY2},
++   {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_UYVY,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_AYUV_UYVY},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_AYUV_UYVY},
++   {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y42B,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_AYUV_Y42B},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_AYUV_Y42B},
++   {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y444,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_AYUV_Y444},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_AYUV_Y444},
++ 
++   {GST_VIDEO_FORMAT_Y42B, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_I420,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 0, 0, convert_Y42B_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 0, 0,
+++      convert_Y42B_I420},
++   {GST_VIDEO_FORMAT_Y42B, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YV12,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 0, 0, convert_Y42B_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 0, 0,
+++      convert_Y42B_I420},
++   {GST_VIDEO_FORMAT_Y42B, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YUY2,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_Y42B_YUY2},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_Y42B_YUY2},
++   {GST_VIDEO_FORMAT_Y42B, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_UYVY,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_Y42B_UYVY},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_Y42B_UYVY},
++   {GST_VIDEO_FORMAT_Y42B, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_AYUV,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_Y42B_AYUV},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_Y42B_AYUV},
++   {GST_VIDEO_FORMAT_Y42B, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y444,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_Y42B_Y444},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_Y42B_Y444},
++ 
++   {GST_VIDEO_FORMAT_Y444, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_I420,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 1, 0, convert_Y444_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 1, 0,
+++      convert_Y444_I420},
++   {GST_VIDEO_FORMAT_Y444, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YV12,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, 1, 0, convert_Y444_I420},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, FALSE, 1, 0,
+++      convert_Y444_I420},
++   {GST_VIDEO_FORMAT_Y444, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_YUY2,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_Y444_YUY2},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_Y444_YUY2},
++   {GST_VIDEO_FORMAT_Y444, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_UYVY,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_Y444_UYVY},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_Y444_UYVY},
++   {GST_VIDEO_FORMAT_Y444, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_AYUV,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 0, 0, convert_Y444_AYUV},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 0, 0,
+++      convert_Y444_AYUV},
++   {GST_VIDEO_FORMAT_Y444, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_Y42B,
++-      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, 1, 0, convert_Y444_Y42B},
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, FALSE, 1, 0,
+++      convert_Y444_Y42B},
++ 
++ #if G_BYTE_ORDER == G_LITTLE_ENDIAN
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_ARGB,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_ARGB},
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_BGRA,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_BGRA},
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_xRGB,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_ARGB},        /* alias */
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_BGRx,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_BGRA},        /* alias */
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_ABGR,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_ABGR},
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_RGBA,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_RGBA},
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_xBGR,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_ABGR},        /* alias */
++-  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_RGBx,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, TRUE, 0, 0, convert_AYUV_RGBA},        /* alias */
++-
++-  {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_BGRA,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, FALSE, 0, 0, convert_I420_BGRA},
++-  {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_BGRx,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, FALSE, 0, 0, convert_I420_BGRA},
++-  {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_BGRA,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, FALSE, 0, 0, convert_I420_BGRA},
++-  {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_BT601, GST_VIDEO_FORMAT_BGRx,
++-      GST_VIDEO_COLOR_MATRIX_RGB, FALSE, FALSE, 0, 0, convert_I420_BGRA},
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_ARGB,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0,
+++      convert_AYUV_ARGB},
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_BGRA,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0,
+++      convert_AYUV_BGRA},
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_xRGB,
+++      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0, convert_AYUV_ARGB},       /* alias */
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_BGRx,
+++      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0, convert_AYUV_BGRA},       /* alias */
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_ABGR,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0,
+++      convert_AYUV_ABGR},
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_RGBA,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0,
+++      convert_AYUV_RGBA},
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_xBGR,
+++      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0, convert_AYUV_ABGR},       /* alias */
+++  {GST_VIDEO_FORMAT_AYUV, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_RGBx,
+++      GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, TRUE, TRUE, 0, 0, convert_AYUV_RGBA},       /* alias */
+++
+++  {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_BGRA,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, TRUE, 0, 0,
+++      convert_I420_BGRA},
+++  {GST_VIDEO_FORMAT_I420, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_BGRx,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, TRUE, 0, 0,
+++      convert_I420_BGRA},
+++  {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_BGRA,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, TRUE, 0, 0,
+++      convert_I420_BGRA},
+++  {GST_VIDEO_FORMAT_YV12, GST_VIDEO_COLOR_MATRIX_UNKNOWN, GST_VIDEO_FORMAT_BGRx,
+++        GST_VIDEO_COLOR_MATRIX_UNKNOWN, TRUE, FALSE, TRUE, 0, 0,
+++      convert_I420_BGRA},
++ #endif
++ };
++ 
++@@ -1422,10 +1483,20 @@ videoconvert_convert_lookup_fastpath (VideoConvert * convert)
++         (transforms[i].width_align & width) == 0 &&
++         (transforms[i].height_align & height) == 0) {
++       GST_DEBUG ("using fastpath");
+++      if (transforms[i].needs_color_matrix)
+++        if (!videoconvert_convert_compute_matrix (convert))
+++          goto no_convert;
++       convert->convert = transforms[i].convert;
++       alloc_tmplines (convert, 1, GST_VIDEO_INFO_WIDTH (&convert->in_info));
++       return TRUE;
++     }
++   }
+++  GST_DEBUG ("no fastpath found");
++   return FALSE;
+++
+++no_convert:
+++  {
+++    GST_DEBUG ("can't create matrix");
+++    return FALSE;
+++  }
++ }
++-- 
++1.7.9.5
 +
-+PR_append = "-arago5"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+index ce821cc..58af98a 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.2.3.bbappend
+@@ -1,6 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--PR_append = "-arago3"
+ SRC_URI_append = " \
+-        file://0001-Added-GstMetaDmaBuf-features.patch"
++        file://0001-Added-GstMetaDmaBuf-features.patch \
++        file://0002-videoconvert-use-videoconvert-from-version-1.3.1-to-.patch \
++"
+ 
+-PR_append = "-arago0"
++PR_append = "-arago1"
 -- 
-1.7.9.5
+1.9.1
 
 
---------------030508060103010202050300--
