@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id DFF9E52ACA
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id BC92F52A28
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Aug 2015 04:31:51 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t764VotP029429
-	for <meta-arago@arago-project.org>; Wed, 5 Aug 2015 23:31:51 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t764Vokg008845
-	for <meta-arago@arago-project.org>; Wed, 5 Aug 2015 23:31:50 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	Thu,  6 Aug 2015 09:45:09 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t769j9j4003763
+	for <meta-arago@arago-project.org>; Thu, 6 Aug 2015 04:45:09 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t769j8oj026333
+	for <meta-arago@arago-project.org>; Thu, 6 Aug 2015 04:45:08 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 5 Aug 2015 23:31:50 -0500
+	Thu, 6 Aug 2015 04:45:08 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t764VoJO005145	for <meta-arago@arago-project.org>;
-	Wed, 5 Aug 2015 23:31:50 -0500
-Date: Thu, 6 Aug 2015 00:31:50 -0400
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t769j8sP018932	for <meta-arago@arago-project.org>;
+	Thu, 6 Aug 2015 04:45:08 -0500
+Date: Thu, 6 Aug 2015 05:45:08 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <459701542.843.1438835510223.JavaMail.jenkins@puget>
+Message-ID: <808306562.845.1438854308455.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Job: arago-core-tisdk-fido
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (1.6/daisy) 2015.06 build 2015-08-05_22-00-51
+Subject: [nightly] Core TISDK (fido/1.8) 2015.08 build 2015-08-06_03-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Aug 2015 04:31:52 -0000
+X-List-Received-Date: Thu, 06 Aug 2015 09:45:10 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_842_701374275.1438835510122"
+	boundary="----=_Part_844_1000000912.1438854308080"
 
-------=_Part_842_701374275.1438835510122
+------=_Part_844_1000000912.1438854308080
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 08/05/15
+Status for 08/06/15
 </title>
 </head>
 <body>
 
-<h2>Status for 08/05/15</h2>
+<h2>Status for 08/06/15</h2>
 
-<h2>BUILD_ID: build-2015-08-05_22-01-59</h2>
+<h2>BUILD_ID: build-2015-08-06_03-01-54</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -79,7 +79,7 @@ Status for 08/05/15
     <tr>
         <td>meta-arago</td>
         <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
+        <td>master</td>
         <td>HEAD</td>
         <td>layers=meta-arago-distro:meta-arago-extras</td>
     </tr>
@@ -87,34 +87,34 @@ Status for 08/05/15
         <td>meta-qt5</td>
         <td>git://github.com/meta-qt5/meta-qt5.git</td>
         <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>HEAD</td>
         <td>layers=</td>
     </tr>
     <tr>
         <td>meta-openembedded</td>
         <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
+        <td>fido</td>
         <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
     </tr>
     <tr>
         <td>meta-ti</td>
         <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
+        <td>fido</td>
         <td>HEAD</td>
         <td>layers=</td>
     </tr>
     <tr>
         <td>meta-linaro</td>
         <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
+        <td>fido</td>
         <td>HEAD</td>
         <td>layers=meta-linaro-toolchain</td>
     </tr>
     <tr>
         <td>oe-core</td>
         <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
+        <td>fido</td>
         <td>HEAD</td>
         <td>layers=meta</td>
     </tr>
@@ -137,34 +137,34 @@ Status for 08/05/15
         <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
     </tr>
     <tr>
         <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
 </table>
 
@@ -180,15 +180,15 @@ The configuration file passed to this script had the contents:
 </p>
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+TISDK_VERSION="2015.08"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.02/bin/"<br>
 BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
 SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
 TEST_ROOT="$BUILD_ROOT/testing"<br>
 PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
 DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
@@ -201,7 +201,7 @@ SOURCE_DIR="${BUILD_ROOT}/sources"<br>
 CLEAN_BUILD="false"<br>
 CLEAN_SSTATE="false"<br>
 CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
 BUILD_LOG_VERBOSE="true"<br>
 DL_DIR="/OE/downloads"<br>
@@ -235,13 +235,13 @@ EXPORT_ARAGO_SRC="0"<br>
 COPY_TO_WEB="true"<br>
 COPY_DEPLOY_TO_WEB="true"<br>
 COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
 CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
 </p>
 
 </body>
 </html>
 
 
-------=_Part_842_701374275.1438835510122--
+------=_Part_844_1000000912.1438854308080--
