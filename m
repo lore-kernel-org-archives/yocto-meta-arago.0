@@ -1,27 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id C5E7E52A95
+	by arago-project.org (Postfix) with ESMTPS id E3D1652AB5
 	for <meta-arago@arago-project.org>;
 	Fri,  7 Aug 2015 21:20:39 +0000 (UTC)
 Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NSQ009WTDXULMO0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 07 Aug 2015 16:20:18 -0500 (CDT)
+	with ESMTPSA id <0NSQ00AD1DXU7HO0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 07 Aug 2015 16:20:19 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
-	a=sozttTNsAAAA:8	a=OHcKQydtSPKzqyCZWPAA:9
+	a=sozttTNsAAAA:8	a=-fcZcDzWTgiWMpGjppoA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 17C0E161B47;	Fri,
+	by gandalf.denix.org (Postfix) with ESMTP id 44F2F161B4C;	Fri,
 	7 Aug 2015 17:20:18 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 07 Aug 2015 17:20:08 -0400
-Message-id: <1438982412-15565-1-git-send-email-denis@denix.org>
+Date: Fri, 07 Aug 2015 17:20:12 -0400
+Message-id: <1438982412-15565-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [fido/master][PATCH 1/5] dhcp: workaround "debugedit: canonicalization unexpectedly shrank by one character"
+In-reply-to: <1438982412-15565-1-git-send-email-denis@denix.org>
+References: <1438982412-15565-1-git-send-email-denis@denix.org>
+Subject: [fido/master][PATCH 5/5] HACK: packagegroup-*: disable Keystone specific LLDs and deps for IPC
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,17 +42,192 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-connectivity/dhcp/dhcp_4.3.1.bbappend | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 meta-arago-distro/recipes-connectivity/dhcp/dhcp_4.3.1.bbappend
+ .../packagegroup-arago-base-tisdk-server-extra.bb  | 53 ++++++++--------
+ .../packagegroup-arago-test-addons.bb              | 71 +++++++++++-----------
+ 2 files changed, 63 insertions(+), 61 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/dhcp/dhcp_4.3.1.bbappend b/meta-arago-distro/recipes-connectivity/dhcp/dhcp_4.3.1.bbappend
-new file mode 100644
-index 0000000..2938186
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/dhcp/dhcp_4.3.1.bbappend
-@@ -0,0 +1 @@
-+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 73e0928..6040879 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r2"
++PR = "r3"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -81,51 +81,52 @@ ARAGO_SECURE_STORAGE = "\
+     engine-pkcs11 \
+     "
+ 
++# Disable due to IPC for now
++#    ti-ipc
++#    demo-image-proc
++#    rm-lld
++#    cmem
++#    cmem-mod
++#    pa-lld
++#    qmss-lld
++#    hplib
++#    hplib-mod
++#    multiprocmgr
++#    nwal-lld
++#    netapi
++#    netapi-test
++#    mpm-transport
++#    pktlib
++#    cppi-lld
++#    ipsecmgr-mod
+ ARAGO_TI_KEYSTONE_PKGS = "\
+     ${ARAGO_SECURE_STORAGE} \
+     uio-module-drv \
+-    multiprocmgr \
+-    mpm-transport \
+     traceframework \
+     cuia \
+-    hplib \
+-    hplib-mod \
+-    netapi \
+-    netapi-test \
+-    ipsecmgr-mod \
+     libnl-xfrm \
+-    demo-image-proc \
+-    ti-ipc \
+-    rm-lld \
+-    cmem \
+-    cmem-mod \
+     mmap-lld \
+     udma \
+     cuia \
+-    qmss-lld \
+-    pa-lld \
+-    cppi-lld \
+     edma3-lld \
+     hyplnk-lld \
+-    pktlib \
+-    nwal-lld \
+     srss-tc \
+     "
+ 
+-ARAGO_TI_PKGS = "\
+-    uio-module-drv \
+-    cmem \
+-    cmem-mod \
+-    "
++ARAGO_TI_PKGS = ""
++#    uio-module-drv \
++#    cmem \
++#    cmem-mod \
++#    "
+ ARAGO_TI_PKGS_append_keystone = "${ARAGO_TI_KEYSTONE_PKGS}"
+ ARAGO_TI_PKGS_append_k2l-evm = "\
+     dfe-lld \
+     iqn2-lld \
+     "
+ 
+-ARAGO_TI_PKGS_append_k2hk-evm = "\
+-    srio-lld \
+-    "
++#ARAGO_TI_PKGS_append_k2hk-evm = "\
++#    srio-lld \
++#    "
+ 
+ RDEPENDS_${PN} = "\
+     ${ARAGO_LIBNL} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+index 3e1fa8f..9affd75 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to install additional utilities/demos for test image"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r2"
++PR = "r3"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -15,42 +15,43 @@ TEST_ADDONS = " \
+     gdb \
+     "
+ 
+-TEST_ADDONS_TI = " \
+-    cmem-test \
+-    "
+-TEST_ADDONS_TI_append_keystone = " \
+-    qmss-lld-test \
+-    pa-lld-test \
+-    cppi-lld-test \
+-    hyplnk-lld-test \
+-    edma3-lld-test \
+-    mmap-lld-test \
+-    rm-lld \
+-    rm-lld-test \
+-    sa-lld \
+-    sa-lld-test \
+-    traceframework-test \
+-    multiprocmgr-test \
+-    hplib-test \
+-    hyplnk-lld-test \
+-    nwal-lld \
+-    nwal-lld-test \
+-    udma-test \
+-    mpm-transport-test \
+-    ipc-transport-qmss-test \
+-    ipsecmgr \
+-    netapi-test \
+-    "
++TEST_ADDONS_TI = ""
+ 
+-TEST_ADDONS_TI_append_k2hk-evm = " \
+-    srio-lld-test \
+-    ipc-transport-srio-test \
+-    "
++#    cmem-test \
++#    "
++#TEST_ADDONS_TI_append_keystone = " \
++#    qmss-lld-test \
++#    pa-lld-test \
++#    cppi-lld-test \
++#    hyplnk-lld-test \
++#    edma3-lld-test \
++#    mmap-lld-test \
++#    rm-lld \
++#    rm-lld-test \
++#    sa-lld \
++#    sa-lld-test \
++#    traceframework-test \
++#    multiprocmgr-test \
++#    hplib-test \
++#    hyplnk-lld-test \
++#    nwal-lld \
++#    nwal-lld-test \
++#    udma-test \
++#    mpm-transport-test \
++#    ipc-transport-qmss-test \
++#    ipsecmgr \
++#    netapi-test \
++#    "
+ 
+-TEST_ADDONS_TI_append_k2l-evm = " \
+-    dfe-lld-test \
+-    iqn2-lld-test \
+-    "
++#TEST_ADDONS_TI_append_k2hk-evm = " \
++#    srio-lld-test \
++#    ipc-transport-srio-test \
++#    "
++
++#TEST_ADDONS_TI_append_k2l-evm = " \
++#    dfe-lld-test \
++#    iqn2-lld-test \
++#    "
+ 
+ RDEPENDS_${PN} = "\
+     ${TEST_ADDONS} \
 -- 
 2.2.0
 
