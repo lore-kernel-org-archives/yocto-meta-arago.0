@@ -1,31 +1,29 @@
-Return-Path: <srinivasan.rns@gmail.com>
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by arago-project.org (Postfix) with ESMTPS id 7880B52987
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 4083652A00
 	for <meta-arago@arago-project.org>;
-	Sat,  8 Aug 2015 09:18:10 +0000 (UTC)
-Received: by iodd187 with SMTP id d187so131852910iod.2
-	for <meta-arago@arago-project.org>;
-	Sat, 08 Aug 2015 02:18:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=dnEV+AU8DJr8/YU191iPETLh0pkBcqI8fs2QQ1/C2kU=;
-	b=mWH8kNT/Q5nMuUXUSvKIJAMu83HTWI80sb/B/xol7j3qfjTzeow6BfM/mksC1+6ihn
-	oFsu1K/+WcBwZNP1QIt8g6oYYZbocg5Id7ChaNxoSf9Yu+xREYjArmPFN6cjbyHIDGBz
-	n/jZfXZ5GAJVMk+NSnVHRRNTciJ8PN3mJSjRsL4tFsy5y0onI/jh4bqniBAZFJZHmqSI
-	IQpbAGPcyA6mVv0YFbJrad2uWaq3bUOsjwohf60GLg0MCdFUisLY0+OPVxvko7VGNZPa
-	76sf2aJOdwZtxk4uf9/92i+lu52OTYc956O9MuXUG0qyDW9/0itkcTNxIee4E2+bukGx
-	Mdag==
+	Sat,  8 Aug 2015 11:35:33 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t78BZWmX018138
+	for <meta-arago@arago-project.org>; Sat, 8 Aug 2015 06:35:32 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t78BZWmt002891
+	for <meta-arago@arago-project.org>; Sat, 8 Aug 2015 06:35:32 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 8 Aug 2015 06:35:32 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t78BZWlV015555	for <meta-arago@arago-project.org>;
+	Sat, 8 Aug 2015 06:35:32 -0500
+Date: Sat, 8 Aug 2015 07:35:31 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1925236448.857.1439033731961.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Received: by 10.107.170.212 with SMTP id g81mr11749985ioj.79.1439025489709; 
-	Sat, 08 Aug 2015 02:18:09 -0700 (PDT)
-Received: by 10.36.64.142 with HTTP; Sat, 8 Aug 2015 02:18:09 -0700 (PDT)
-Date: Sat, 8 Aug 2015 14:48:09 +0530
-Message-ID: <CAFsTbWc-hJV7M5zWhQbxAkM3v3zihxNAPvBBuA=Wj+76_qdtKw@mail.gmail.com>
-From: srinivasan <srinivasan.rns@gmail.com>
-To: meta-ti@yoctoproject.org, meta-arago@arago-project.org, 
-	"srinivasan.s" <srinivasan.s@tataelxsi.co.in>
-Subject: Alsa related configuration & libraries from ti sdk 7 to ti sdk 8
+X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (1.6/daisy) 2015.06 build 2015-08-07_18-01-58
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,147 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Aug 2015 09:18:10 -0000
-Content-Type: multipart/alternative; boundary=001a11425b70231046051cc93bec
+X-List-Received-Date: Sat, 08 Aug 2015 11:35:33 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_856_2116038224.1439033731523"
 
---001a11425b70231046051cc93bec
-Content-Type: text/plain; charset=UTF-8
+------=_Part_856_2116038224.1439033731523
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Dear Meta Ti community,
+<html>
+<head>
+<title>
+Status for 08/08/15
+</title>
+</head>
+<body>
 
-Am trying to run the voip calls with ti sdk 8 BSP's it doesn't work
-consistently
+<h2>Status for 08/08/15</h2>
 
-But when I move *ti sdk 8 kernel with ti sdk 7 rootfs, *it works
-consistently
+<h2>BUILD_ID: build-2015-08-07_18-03-06</h2>
 
-Now am planning to replace all the alsa related configuration files &
-libraries with ti sdk 7 rootfs in ti sdk 8 rootfs
+<h2>Clean Build: true</h2>
 
-Could anybody please let me know what are all alsa related stuffs that can
-be replaced from ti sdk 7 to ti sdk 8 rootfs
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-Could anybody please list the names of alsa related configurations & the
-names of the libraries (along with their paths) & anyother alsa related
-stuffs in rootfs that can be moved from ti sdk 7 to ti sdk 8
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
 
-In order to get voip calls working consistently
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
-Could anybody please provide any inputs w.r.t the above query ie., am
-planning to copy all audio & alsa related configuration from ti sdk 7
-rootfs to ti sdk 8 rootfs
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_SSTATE="true"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+</p>
 
-*Could you please let me know is there any thing apart from the below needs
-to copied (audio/alsa related) from ti sdk 7 rootfs to ti sdk 8 rootfs*
+</body>
+</html>
 
-1. AlSA configuration files
 
-usr/share/alsa
-
-2.
-/usr/lib/libasound.la
-
-/usr/lib/libasound.so
-
-/usr/lib/alsa-lib/smixer/smixer-ac97.la
-
-/usr/lib/alsa-lib/smixer/smixer-ac97.so
-
-/usr/lib/alsa-lib/smixer/smixer-hda.la
-
-/usr/lib/alsa-lib/smixer/smixer-hda.so
-
-/usr/lib/alsa-lib/smixer/smixer-sbase.la
-
-/usr/lib/alsa-lib/smixer/smixer-sbase.so
-
-Kindly do the needful as early as possible
-
-Awaiting for your replies
-
-Many Thanks in advance
-
---001a11425b70231046051cc93bec
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><p style=3D"margin:0px 0px 1.5em;line-height:1.35em;font-s=
-ize:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetic=
-a,Arial,sans-serif">Dear Meta Ti=C2=A0community,</p><p style=3D"margin:1.5e=
-m 0px;line-height:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#3=
-9;Source Sans Pro&#39;,Helvetica,Arial,sans-serif">Am trying to run the voi=
-p calls with ti sdk 8 BSP&#39;s it doesn&#39;t work consistently</p><p styl=
-e=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px;color:rgb(85,85,85)=
-;font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,sans-serif">But when=
- I move=C2=A0<b>ti sdk 8 kernel with ti sdk 7 rootfs,=C2=A0</b>it works con=
-sistently</p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px=
-;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,=
-sans-serif">Now am planning to replace all the alsa related configuration f=
-iles &amp; libraries with ti sdk 7 rootfs in ti sdk 8 rootfs</p><p style=3D=
-"margin:1.5em 0px;line-height:1.35em;font-size:14px;color:rgb(85,85,85);fon=
-t-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,sans-serif">Could anybod=
-y please let me know what are all alsa related stuffs that can be replaced =
-from ti sdk 7 to ti sdk 8 rootfs</p><p style=3D"margin:1.5em 0px;line-heigh=
-t:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pr=
-o&#39;,Helvetica,Arial,sans-serif">Could anybody please list the names of a=
-lsa related configurations &amp; the names of the libraries (along with the=
-ir paths) &amp; anyother alsa related stuffs in rootfs that can be moved fr=
-om ti sdk 7 to ti sdk 8</p><p style=3D"margin:1.5em 0px;line-height:1.35em;=
-font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,He=
-lvetica,Arial,sans-serif"><span style=3D"line-height:1.35em">In order to ge=
-t voip calls working consistently</span><br></p><p style=3D"margin:1.5em 0p=
-x;line-height:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;So=
-urce Sans Pro&#39;,Helvetica,Arial,sans-serif"><span style=3D"font-size:12p=
-x">Could anybody please provide any inputs w.r.t the above query ie., am pl=
-anning to copy all audio &amp; alsa related configuration from ti sdk 7 roo=
-tfs to ti sdk 8 rootfs</span></p><p style=3D"margin:1.5em 0px;line-height:1=
-.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#=
-39;,Helvetica,Arial,sans-serif"><b>Could you please let me know is there an=
-y thing apart from the below needs to copied (audio/alsa related) from ti s=
-dk 7 rootfs to ti sdk 8 rootfs</b></p><p style=3D"margin:1.5em 0px;line-hei=
-ght:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans =
-Pro&#39;,Helvetica,Arial,sans-serif"></p><p style=3D"margin:1.5em 0px;line-=
-height:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sa=
-ns Pro&#39;,Helvetica,Arial,sans-serif">1. AlSA configuration files</p><p s=
-tyle=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px;color:rgb(85,85,=
-85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,sans-serif">usr/s=
-hare/alsa</p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px=
-;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,=
-sans-serif"></p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:1=
-4px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Ari=
-al,sans-serif">2.=C2=A0<br>/usr/lib/<a href=3D"http://libasound.la">libasou=
-nd.la</a></p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px=
-;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,=
-sans-serif">/usr/lib/libasound.so</p><p style=3D"margin:1.5em 0px;line-heig=
-ht:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans P=
-ro&#39;,Helvetica,Arial,sans-serif">/usr/lib/alsa-lib/smixer/<a href=3D"htt=
-p://smixer-ac97.la">smixer-ac97.la</a></p><p style=3D"margin:1.5em 0px;line=
--height:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source S=
-ans Pro&#39;,Helvetica,Arial,sans-serif">/usr/lib/alsa-lib/smixer/smixer-ac=
-97.so</p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px;col=
-or:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,sans=
--serif">/usr/lib/alsa-lib/smixer/<a href=3D"http://smixer-hda.la">smixer-hd=
-a.la</a></p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px;=
-color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,s=
-ans-serif">/usr/lib/alsa-lib/smixer/smixer-hda.so</p><p style=3D"margin:1.5=
-em 0px;line-height:1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#=
-39;Source Sans Pro&#39;,Helvetica,Arial,sans-serif">/usr/lib/alsa-lib/smixe=
-r/<a href=3D"http://smixer-sbase.la">smixer-sbase.la</a></p><p style=3D"mar=
-gin:1.5em 0px;line-height:1.35em;font-size:14px;color:rgb(85,85,85);font-fa=
-mily:&#39;Source Sans Pro&#39;,Helvetica,Arial,sans-serif">/usr/lib/alsa-li=
-b/smixer/smixer-sbase.so</p><p style=3D"margin:1.5em 0px;line-height:1.35em=
-;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,H=
-elvetica,Arial,sans-serif"></p><p style=3D"margin:1.5em 0px;line-height:1.3=
-5em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39=
-;,Helvetica,Arial,sans-serif"></p><p style=3D"margin:1.5em 0px;line-height:=
-1.35em;font-size:14px;color:rgb(85,85,85);font-family:&#39;Source Sans Pro&=
-#39;,Helvetica,Arial,sans-serif">Kindly do the needful as early as possible=
-</p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px;color:rg=
-b(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,sans-seri=
-f">Awaiting for your replies</p><p style=3D"margin-top:0px;margin-bottom:0p=
-x;color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-serif;font-size=
-:16px"></p><p style=3D"margin:1.5em 0px;line-height:1.35em;font-size:14px;c=
-olor:rgb(85,85,85);font-family:&#39;Source Sans Pro&#39;,Helvetica,Arial,sa=
-ns-serif">Many Thanks in advance</p></div>
-
---001a11425b70231046051cc93bec--
+------=_Part_856_2116038224.1439033731523--
