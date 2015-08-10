@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id 2E73752A7D
+Return-Path: <jake@udc0866934>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 5CF3452991
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Aug 2015 18:34:49 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NSV00DC4Q9K18R0@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 10 Aug 2015 13:34:33 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
-	a=sozttTNsAAAA:8	a=BFBAi58tQ5V8VtZGVMkA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 8D094161B6B;	Mon,
-	10 Aug 2015 14:34:32 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 10 Aug 2015 14:34:31 -0400
-Message-id: <1439231671-30803-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] bt-firmware: Makefile doesn't have clean target
+	Mon, 10 Aug 2015 18:40:12 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7AIeBHl031643
+	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 13:40:11 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7AIeB7b028343
+	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 13:40:11 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 10 Aug 2015 13:40:11 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7AIeB4x005730;
+	Mon, 10 Aug 2015 13:40:11 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1ZOrzW-0006lB-PO; Mon, 10 Aug 2015 14:40:10 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 10 Aug 2015 14:40:09 -0400
+Message-ID: <1439232009-25951-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] packagegroup-arago-tisdk-matrix: Add HEVC demo.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,29 +36,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 18:34:49 -0000
+X-List-Received-Date: Mon, 10 Aug 2015 18:40:12 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb | 2 ++
- 1 file changed, 2 insertions(+)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb      | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-index f17863e..cb29a84 100644
---- a/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-+++ b/meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
-@@ -15,6 +15,8 @@ PR = "r8"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index f22be0f..c13461b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r41"
++PR = "r42"
  
- COMPATIBLE_MACHINE = "ti33x|ti43x|dra7xx"
+ inherit packagegroup
  
-+CLEANBROKEN = "1"
-+
- SRCREV = "46f6a1d0087bd9aac6e6cbae58ed9ee236e5f1b1"
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/wilink8-bt/ti-bt-firmware.git;branch=${BRANCH} \
+@@ -97,6 +97,7 @@ MATRIX_APPS_append_omap-a15 = "     \
+     matrix-gui-generic-pm           \
+     matrix-gui-clocks               \
+     matrix-gui-pm-demos-governor    \
++    matrix-multimedia-demo-h265dec \
+ "
+ 
+ MATRIX_APPS_append_beagleboard = "  \
 -- 
-2.2.0
+1.9.1
 
 
