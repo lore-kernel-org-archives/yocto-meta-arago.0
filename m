@@ -1,29 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id 367C552A19
+Return-Path: <jake@udc0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id ED40352991
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Aug 2015 15:05:48 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NSV00N78GKZ3900@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 10 Aug 2015 10:05:28 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
-	a=sozttTNsAAAA:8	a=MU7iauR8p3Pzr1LYDw8A:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id B02E9161B53;	Mon,
-	10 Aug 2015 11:05:23 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 10 Aug 2015 11:05:21 -0400
-Message-id: <1439219121-18334-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-In-reply-to: <1439219121-18334-1-git-send-email-denis@denix.org>
-References: <1439219121-18334-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] oprofile-example: Makefile is not being used, don't do clean too
+	Mon, 10 Aug 2015 15:16:41 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7AFGfQk015338
+	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 10:16:41 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7AFGf4k021573
+	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 10:16:41 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 10 Aug 2015 10:16:40 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7AFGeNe030613;
+	Mon, 10 Aug 2015 10:16:40 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1ZOooa-0004I2-9t; Mon, 10 Aug 2015 11:16:40 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 10 Aug 2015 11:16:37 -0400
+Message-ID: <1439219797-16456-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] packagegroup-arago-gst*: Add gstreamer1.0-plugins-hevc.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,39 +36,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 15:05:48 -0000
+X-List-Received-Date: Mon, 10 Aug 2015 15:16:42 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* Add to filesystem and devkit.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/oprofile-example/oprofile-example_git.bb            | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb | 6 +++++-
+ .../recipes-core/packagegroups/packagegroup-arago-gst.bb            | 6 +++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-index dbcf5b9..dd013c8 100644
---- a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-+++ b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://signal_parent.c;beginline=1;endline=37;md5=3c72149bb4
- SECTION = "system"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
+index 780363a..2261b5b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to build and install header and libs in sdk"
+ LICENSE = "MIT"
+-PR = "r9"
++PR = "r10"
  
- INHIBIT_PACKAGE_STRIP = "1"
-+CLEANBROKEN = "1"
+ inherit packagegroup
  
- PR = "r4"
+@@ -22,6 +22,10 @@ GST_1X_DEPS = " \
+     gstreamer1.0-libav-dev \
+ "
  
-@@ -17,8 +18,8 @@ SRC_URI = "git://git.ti.com/apps/oprofile-example.git;protocol=git;branch=${BRAN
- S = "${WORKDIR}/git"
++GST_1X_DEPS_append_dra7xx = " \
++    gstreamer1.0-plugins-hevc-dev \
++"
++
+ RDEPENDS_${PN} = " \
+     ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+index b449dfe..549de96 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
+ LICENSE = "MIT"
+-PR = "r12"
++PR = "r13"
  
- do_compile() {
--    install -d  ${S}/Debug
--    install -d  ${S}/Debug1
-+	install -d ${S}/Debug
-+	install -d ${S}/Debug1
- 	${CC} ${CFLAGS} ${LDFLAGS} -o Debug/signal_parent signal_parent.c
- 	${CC} ${CFLAGS} -DUSE_SIGNALS ${LDFLAGS} -o Debug1/signal_parent.opt signal_parent.c
- }
+ inherit packagegroup
+ 
+@@ -28,6 +28,10 @@ GST_1X_DEPS = " \
+     gstreamer1.0-libav \
+ "
+ 
++GST_1X_DEPS_append_dra7xx = " \
++    gstreamer1.0-plugins-hevc \
++"
++
+ GST_PLUGINS_PREFIX = "${@base_conditional('GST_PROVIDER', '0.10', 'gst-plugins', 'gstreamer1.0-plugins', d)}"
+ 
+ GSTREAMER_ACCEL_MM = ""
 -- 
-2.2.0
+1.9.1
 
 
