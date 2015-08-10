@@ -1,29 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 6C53D52991
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 8A84052A19
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Aug 2015 07:18:27 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7A7IQEb016229
-	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 02:18:26 -0500
+	Mon, 10 Aug 2015 11:56:48 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7ABulKo027403
+	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 06:56:47 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7A7IQnd031627
-	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 02:18:26 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7ABulpP011671
+	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 06:56:47 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 10 Aug 2015 02:18:26 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t7A7IQ6l004297	for <meta-arago@arago-project.org>;
-	Mon, 10 Aug 2015 02:18:26 -0500
-Date: Mon, 10 Aug 2015 03:18:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1702510914.871.1439191106055.JavaMail.jenkins@puget>
+	Mon, 10 Aug 2015 06:56:47 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7ABulxf031085	for
+	<meta-arago@arago-project.org>; Mon, 10 Aug 2015 06:56:47 -0500
+Message-ID: <55C8917E.60904@ti.com>
+Date: Mon, 10 Aug 2015 07:56:46 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.08 build 2015-08-10_03-00-51
+To: <meta-arago@arago-project.org>
+References: <1433505693-27926-1-git-send-email-j-stiffler@ti.com>
+	<1433505693-27926-2-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1433505693-27926-2-git-send-email-j-stiffler@ti.com>
+Subject: Re: [PATCH 2/2] ti-llvm3.3: Add LLVM 3.3 with c6x intrinsic support.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,212 +38,199 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 07:18:27 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_870_109347357.1439191106032"
-
-------=_Part_870_109347357.1439191106032
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Mon, 10 Aug 2015 11:56:48 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html>
-<head>
-<title>
-Status for 08/10/15
-</title>
-</head>
-<body>
+Ping.
 
-<h2>Status for 08/10/15</h2>
-
-<h2>BUILD_ID: build-2015-08-10_03-01-56</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.08"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.02/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
-</p>
-
-</body>
-</html>
+On 6/5/2015 8:01 AM, Jacob Stiffler wrote:
+> * Supports target, native, and nativesdk classes.
+>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+> Previously submitted to meta-ti.
+>
+>   ...e-Do-not-check-build-executable-extension.patch |   60 ++++++++++++
+>   .../recipes-core/llvm/ti-llvm3.3_3.3.bb            |  103 ++++++++++++++++++++
+>   2 files changed, 163 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
+>   create mode 100644 meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+>
+> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
+> new file mode 100644
+> index 0000000..b6e5331
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
+> @@ -0,0 +1,60 @@
+> +From 60da8adc29a84796c9768a1a962eda1915c87332 Mon Sep 17 00:00:00 2001
+> +From: Jake Stiffler <j-stiffler@ti.com>
+> +Date: Fri, 20 Feb 2015 10:55:11 -0500
+> +Subject: [PATCH] configure: Do not check build executable extension.
+> +
+> + * This seems to cause issues nativesdk and build sdk
+> +   architectures are the same.
+> +
+> +Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
+> +---
+> + configure                 |    3 +++
+> + projects/sample/configure |    4 ++++
+> + 2 files changed, 7 insertions(+)
+> +
+> +diff --git a/configure b/configure
+> +index decbc40..387c4fd 100755
+> +--- a/configure
+> ++++ b/configure
+> +@@ -4951,6 +4951,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+> +   rm -f conftest*
+> +   echo 'int main () { return 0; }' > conftest.$ac_ext
+> +   ac_cv_build_exeext=
+> ++
+> ++if false; then
+> +   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
+> +   (eval $ac_build_link) 2>&5
+> +   ac_status=$?
+> +@@ -4967,6 +4969,7 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+> + echo "$as_me: error: installation or configuration problem: compiler cannot create executables." >&2;}
+> +    { (exit 1); exit 1; }; }
+> +   fi
+> ++fi
+> +   rm -f conftest*
+> +   test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
+> + fi
+> +diff --git a/projects/sample/configure b/projects/sample/configure
+> +index a2c70c6..b57f21c 100755
+> +--- a/projects/sample/configure
+> ++++ b/projects/sample/configure
+> +@@ -4753,6 +4753,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+> +   rm -f conftest*
+> +   echo 'int main () { return 0; }' > conftest.$ac_ext
+> +   ac_cv_build_exeext=
+> ++
+> ++if false; then
+> +   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
+> +   (eval $ac_build_link) 2>&5
+> +   ac_status=$?
+> +@@ -4769,6 +4771,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+> + echo "$as_me: error: installation or configuration problem: compiler cannot create executables." >&2;}
+> +    { (exit 1); exit 1; }; }
+> +   fi
+> ++fi
+> ++
+> +   rm -f conftest*
+> +   test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
+> + fi
+> +--
+> +1.7.9.5
+> +
+> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+> new file mode 100644
+> index 0000000..9ae8866
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+> @@ -0,0 +1,103 @@
+> +DESCRIPTION = "LLVM 3.3 with support for TI C66x intrinsics"
+> +HOMEPAGE = "https://gitorious.design.ti.com/ocl/llvm33-src"
+> +
+> +do_configure_prepend_class-native() {
+> +    # Fix paths in llvm-config
+> +    sed -i "s|sys::path::parent_path(sys::path::parent_path(CurrentPath))).str()|sys::path::parent_path(CurrentPath))\.str()|g" ${S}/tools/llvm-config/llvm-config.cpp
+> +}
+> +
+> +require recipes-core/llvm/llvm.inc
+> +require recipes-core/llvm/llvm3.inc
+> +
+> +DEPENDS_append_class-native = " llvm-common-native"
+> +
+> +LLVM_DIR = "ti-llvm${PV}"
+> +
+> +BRANCH = "master"
+> +
+> +SRC_URI = " \
+> +  git://git.ti.com/opencl/ti-llvm-clang-3_3.git;protocol=git;branch=${BRANCH} \
+> +  file://0001-configure-Do-not-check-build-executable-extension.patch \
+> +"
+> +
+> +
+> +SRCREV = "29629a3e70d445cfbfbb4046a56d3648ebae9544"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_compile_class-native() {
+> +  cd ${LLVM_BUILD_DIR}
+> +  oe_runmake
+> +}
+> +
+> +do_compile_class-nativesdk() {
+> +    cd ${LLVM_BUILD_DIR}
+> +    oe_runmake \
+> +        AR="${BUILD_AR}" \
+> +        CC="${BUILD_CC}" \
+> +        CFLAGS="${BUILD_CFLAGS}" \
+> +        CXX="${BUILD_CXX}" \
+> +        CXXFLAGS="${BUILD_CXXFLAGS}" \
+> +        CPP="${BUILD_CPP}" \
+> +        CPPFLAGS="${BUILD_CPPFLAGS}" \
+> +        LD="${BUILD_LD}" \
+> +        LDFLAGS="${BUILD_LDFLAGS}" \
+> +        NM="${BUILD_NM}" \
+> +        RANLIB="${BUILD_RANLIB}" \
+> +        PATH="${STAGING_BINDIR_NATIVE}:$PATH" \
+> +        cross-compile-build-tools
+> +    oe_runmake
+> +}
+> +
+> +do_install_append_class-target() {
+> +    for b in ${D}${bindir}/${LLVM_DIR}/${HOST_SYS}-clang*; do
+> +        if [ ! -L ${b} ]; then
+> +            mv ${b} ${D}${bindir}/`echo "${b}" | sed -e 's|${D}${bindir}/${LLVM_DIR}/${HOST_SYS}-||g'`
+> +        fi
+> +    done
+> +}
+> +
+> +do_install_class-native() {
+> +    cd ${LLVM_BUILD_DIR}
+> +    oe_runmake DESTDIR=${LLVM_INSTALL_DIR} install
+> +
+> +    mv ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-llvm-config ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti
+> +
+> +    install -d ${D}${bindir}
+> +    for b in ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-clang*; do
+> +        if [ ! -L ${b} ]; then
+> +            mv ${b} ${D}${bindir}/`echo "${b}" | sed -e 's|${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-||g'`
+> +        fi
+> +    done
+> +
+> +    install -d ${D}${bindir}/${LLVM_DIR}
+> +    mv ${LLVM_INSTALL_DIR}${bindir}/* ${D}${bindir}/${LLVM_DIR}/
+> +
+> +    install -d ${D}${includedir}/${LLVM_DIR}
+> +    mv ${LLVM_INSTALL_DIR}${includedir}/* ${D}${includedir}/${LLVM_DIR}/
+> +
+> +    install -d ${D}${libdir}/${LLVM_DIR}
+> +    mv ${LLVM_INSTALL_DIR}${libdir}/* ${D}${libdir}/${LLVM_DIR}/
+> +    ln -s ${LLVM_DIR}/libLLVM-${PV}.so ${D}${libdir}/libLLVM-${PV}.so
+> +
+> +    install -d ${D}${docdir}/${LLVM_DIR}
+> +    mv ${LLVM_INSTALL_DIR}${prefix}/docs/llvm/* ${D}${docdir}/${LLVM_DIR}
+> +
+> +    install -d ${D}${bindir}
+> +    install -m 0755 ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti ${D}${bindir}
+> +}
+> +
+> +SYSROOT_PREPROCESS_FUNCS_class-target += "llvm_sysroot_preprocess_target"
+> +SYSROOT_PREPROCESS_FUNCS_class-nativesdk += "llvm_sysroot_preprocess_target"
+> +
+> +llvm_sysroot_preprocess() {
+> +    :
+> +}
+> +
+> +llvm_sysroot_preprocess_target() {
+> +    install -d ${SYSROOT_DESTDIR}${bindir_crossscripts}
+> +    mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_crossscripts}/llvm-config${PV}-ti
+> +}
+> +
+> +BBCLASSEXTEND = "native nativesdk"
+> +
 
 
-------=_Part_870_109347357.1439191106032--
