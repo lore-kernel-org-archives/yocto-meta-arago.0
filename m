@@ -1,29 +1,27 @@
-Return-Path: <jake@udc0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C1EAF52A67
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 860A552A19
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Aug 2015 14:20:29 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7AEKTNL017863
-	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 09:20:29 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7AEKTCS001818
-	for <meta-arago@arago-project.org>; Mon, 10 Aug 2015 09:20:29 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 10 Aug 2015 09:20:28 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7AEKSFp021524;
-	Mon, 10 Aug 2015 09:20:28 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZOnwC-00055U-7j; Mon, 10 Aug 2015 10:20:28 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 10 Aug 2015 10:20:25 -0400
-Message-ID: <1439216425-19522-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] ti-tisdk-setup: Bump SRCREV for latest enhancements and fixes
+	Mon, 10 Aug 2015 15:05:42 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NSV00E5VGKZ70E0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 10 Aug 2015 10:05:29 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
+	a=sozttTNsAAAA:8	a=ZnpdZ7Og_Se2PUKZ_yoA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id A58BD161B52;	Mon,
+	10 Aug 2015 11:05:23 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 10 Aug 2015 11:05:20 -0400
+Message-id: <1439219121-18334-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH 1/2] oprofile: drop bbappend
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,38 +34,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 14:20:30 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 10 Aug 2015 15:05:43 -0000
 
-These enhancements include:
-* create-sdcard: Increase rootfs partition size when creating 3
-  partitions.
-* setup-uboot-env*: Enhance to parse uEnv.txt
-* setup-uboot-env-am57xx-evm: Detect the USB serial connection.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-kernel/oprofile/oprofile_1.0.0.bbappend | 3 ---
+ 1 file changed, 3 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-kernel/oprofile/oprofile_1.0.0.bbappend
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index e060aeb..67fbf0f 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
- 
--PR = "r24"
-+PR = "r25"
- 
- BRANCH ?= "master"
--SRCREV = "e724d593f53a85a09ed99bd1e4f502e9008e6a9d"
-+SRCREV = "8f1fe66d48f12de284b2e9b5540c040a756ea0d3"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
+diff --git a/meta-arago-distro/recipes-kernel/oprofile/oprofile_1.0.0.bbappend b/meta-arago-distro/recipes-kernel/oprofile/oprofile_1.0.0.bbappend
+deleted file mode 100644
+index 1386a89..0000000
+--- a/meta-arago-distro/recipes-kernel/oprofile/oprofile_1.0.0.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-PR_append = "-arago0"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
 -- 
-1.9.1
+2.2.0
 
 
