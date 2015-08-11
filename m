@@ -1,31 +1,31 @@
 Return-Path: <jake@udc0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 22D7452986
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id DC4BB52986
 	for <meta-arago@arago-project.org>;
 	Tue, 11 Aug 2015 14:01:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7BE1vPS000770
-	for <meta-arago@arago-project.org>; Tue, 11 Aug 2015 09:01:57 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7BE1vEM008123
-	for <meta-arago@arago-project.org>; Tue, 11 Aug 2015 09:01:57 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 11 Aug 2015 09:01:57 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7BE1wVT007031
+	for <meta-arago@arago-project.org>; Tue, 11 Aug 2015 09:01:58 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7BE1wbO008159
+	for <meta-arago@arago-project.org>; Tue, 11 Aug 2015 09:01:58 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 11 Aug 2015 09:01:58 -0500
 Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7BE1v6C024215;
-	Tue, 11 Aug 2015 09:01:57 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7BE1v5p016022;
+	Tue, 11 Aug 2015 09:01:58 -0500
 Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZPA7o-00087G-SR; Tue, 11 Aug 2015 10:01:56 -0400
+	<jake@udc0866934>)	id 1ZPA7p-00087L-K0; Tue, 11 Aug 2015 10:01:57 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 11 Aug 2015 10:01:46 -0400
-Message-ID: <1439301710-31159-2-git-send-email-j-stiffler@ti.com>
+Date: Tue, 11 Aug 2015 10:01:47 -0400
+Message-ID: <1439301710-31159-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1439301710-31159-1-git-send-email-j-stiffler@ti.com>
 References: <1439301710-31159-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/5] clocl: Add opencl kernel compiler.
+Subject: [PATCH 2/5] opencl-monitor: Add opencl monitor firmware
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,73 +38,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 14:01:58 -0000
+X-List-Received-Date: Tue, 11 Aug 2015 14:01:59 -0000
 Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/clocl_git.bb | 34 +++++++++++++++++++++++++++
- meta-arago-extras/recipes-ti/ocl/ocl.inc      | 10 ++++++++
- 2 files changed, 44 insertions(+)
- create mode 100644 meta-arago-extras/recipes-ti/ocl/clocl_git.bb
- create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl.inc
+ .../recipes-ti/ocl/opencl-monitor_git.bb           | 58 ++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
 new file mode 100644
-index 0000000..d566cde
+index 0000000..f9ba530
 --- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
-@@ -0,0 +1,34 @@
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+@@ -0,0 +1,58 @@
 +DESCRIPTION = "TI OpenCL"
 +HOMEPAGE = "https://gitorious.design.ti.com/ocl"
 +LICENSE = "BSD"
 +
 +include ocl.inc
++require recipes-ti/includes/ti-paths.inc
 +
 +PR = "${INC_PR}.0"
 +
-+DEPENDS = "ti-llvm3.3 ti-llvm3.3-native boost"
++inherit cmake
 +
-+S = "${WORKDIR}/git/host"
-+
-+export WANT_LLVM_RELEASE = "3.3-ti"
-+
-+TARGET_class-target = "arm"
-+TARGET_class-native = "x86"
-+TARGET_class-nativesdk = "x86"
-+
-+EXTRA_OEMAKE = " -C ${S}/clocl \
-+                 _PRODUCT_VERSION=${PV} \
-+                 TARGET=${TARGET} \
-+                 LLVM_CONFIG_EXE=llvm-config \
++DEPENDS = " ti-llvm3.3-native \
++            common-csl-ip-rtos \
++            ti-xdctools \
++            ti-ipc-rtos \
++            ti-sysbios \
++            ti-cgt6x-native \
++            edma3-lld-rtos \
++            ti-xdais \
++            ti-framework-components \
++            libulm \
++            gdbserver-c6x \
 +"
 +
-+do_compile() {
-+  oe_runmake
-+}
++COMPATIBLE_MACHINE = "dra7xx|k2hk-evm"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-+do_install() {
-+  install -d ${D}${bindir}
-+  install -m 755 ${S}/clocl/${TARGET}/clocl ${D}${bindir}
-+}
++S = "${WORKDIR}/git/monitor"
++S_dra7xx = "${WORKDIR}/git/monitor_vayu"
 +
-+BBCLASSEXTEND = "native nativesdk"
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-new file mode 100644
-index 0000000..3195d5b
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -0,0 +1,10 @@
-+PV = "1.1.4"
-+INC_PR = "r0"
++EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
++                   -DOCL_MONITOR_DIR=${S} \
++                   -DBUILD_OUTPUT=all \
++                   -DSHARE_PATH=${datadir}/ti \
++"
 +
-+LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
++export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
++export PDK_DIR = "${PDK_INSTALL_DIR}"
++export IPC_DIR = "${IPC_INSTALL_DIR}"
++export XDC_DIR = "${XDC_INSTALL_DIR}"
++export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
++export EDMA3LLD_DIR = "${EDMA3_LLD_INSTALL_DIR}"
++export XDAIS_DIR = "${XDAIS_INSTALL_DIR}"
++export FC_DIR = "${FC_INSTALL_DIR}"
++export ULM_DIR ="${STAGING_DIR_TARGET}/usr/share/ti/ulm"
++export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
++export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
++export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
 +
-+FILESEXTRAPATHS_prepend := "${THISDIR}/ocl:"
++MONITOR_FIRMWARE = ""
++MONITOR_FIRMWARE_dra7xx = "${base_libdir}/firmware/*"
 +
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/opencl/ti-opencl.git;protocol=git;branch=${BRANCH}"
-+SRCREV = "a675f28647b294d0fc5d5234dd8bcf89a330a0e5"
++FILES_${PN} += " \
++    ${datadir}/ti/opencl/* \
++    ${MONITOR_FIRMWARE} \
++"
++
++INSANE_SKIP_${PN} = "arch"
 -- 
 1.9.1
 
