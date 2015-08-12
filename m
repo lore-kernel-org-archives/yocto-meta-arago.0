@@ -1,29 +1,32 @@
-Return-Path: <jake@udc0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 832585299C
+Return-Path: <j-stiffler@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C959F529E1
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Aug 2015 11:13:39 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7CBDcHR024242
-	for <meta-arago@arago-project.org>; Wed, 12 Aug 2015 06:13:38 -0500
+	Wed, 12 Aug 2015 11:20:26 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7CBKQN1017393
+	for <meta-arago@arago-project.org>; Wed, 12 Aug 2015 06:20:26 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7CBDc3l025236
-	for <meta-arago@arago-project.org>; Wed, 12 Aug 2015 06:13:38 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7CBKPxO028419
+	for <meta-arago@arago-project.org>; Wed, 12 Aug 2015 06:20:26 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 12 Aug 2015 06:13:38 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7CBDc2x031510;
-	Wed, 12 Aug 2015 06:13:38 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZPTyT-0003si-KA; Wed, 12 Aug 2015 07:13:37 -0400
+	Wed, 12 Aug 2015 06:20:25 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7CBKPUc022784;
+	Wed, 12 Aug 2015 06:20:25 -0500
+Message-ID: <55CB2BF9.5070009@ti.com>
+Date: Wed, 12 Aug 2015 07:20:25 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 12 Aug 2015 07:13:35 -0400
-Message-ID: <1439378015-14715-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-Subject: [PATCH] weston-init: UX enhancements.
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1439301710-31159-1-git-send-email-j-stiffler@ti.com>
+	<20150812034226.GR30560@edge>
+In-Reply-To: <20150812034226.GR30560@edge>
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 0/5] TI OpenCL
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,107 +39,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Aug 2015 11:13:40 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 12 Aug 2015 11:20:27 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-* Add weston wrapper script to
-  - switch vt and display status message to hide console output
-  - create log for weston.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../recipes-graphics/wayland/weston-init.bbappend  | 11 +++++-
- .../recipes-graphics/wayland/weston-init/init      |  4 +--
- .../recipes-graphics/wayland/weston-init/runWeston | 39 ++++++++++++++++++++++
- 3 files changed, 51 insertions(+), 3 deletions(-)
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-index 7825618..d9e15b6 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-@@ -1,3 +1,12 @@
--PR_append = "-arago3"
-+PR_append = "-arago4"
- 
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI_append = " \
-+    file://runWeston \
-+"
-+
-+do_install_append() {
-+    install -d ${D}${bindir}
-+    install -m 755 ${WORKDIR}/runWeston ${D}${bindir}
-+}
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-index b2a2567..b2648f9 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-@@ -40,7 +40,7 @@ case "$1" in
-             chmod 0700 $XDG_RUNTIME_DIR
-         fi
- 
--        openvt -s weston
-+        openvt -c 4 -f runWeston
- 
-         # If there's no touchscreen device available, done
-         if [ ! -e /dev/input/touchscreen0 ] ; then
-@@ -83,7 +83,7 @@ case "$1" in
-         udevadm trigger
-         killproc weston
-         sleep 1
--        openvt -s weston
-+        openvt -c 4 -f runWeston
-   ;;
- 
-   stop)
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
-new file mode 100644
-index 0000000..6ef574a
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
-@@ -0,0 +1,39 @@
-+#!/bin/bash
-+
-+clear
-+cat << EOF
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+                                        Please wait...
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+EOF
-+
-+weston --idle-time=0 >> /var/log/weston.log 2>&1
--- 
-1.9.1
+On 8/11/2015 11:42 PM, Denys Dmytriyenko wrote:
+> Thanks.
+>
+> 1. Is 3/5 missing?
+It was a large patch (>100KB) and is pending approval.
+> 2. Can you be more specific, as multiple recipes say "TI OpenCL" in
+> description.
+Do you mean that only the "DESCRIPTION" needs more specific information? 
+Or are there other areas too?
+
+If there are no other comments, I will go ahead and update.
+>
+>
+> On Tue, Aug 11, 2015 at 10:01:45AM -0400, Jacob Stiffler wrote:
+>> This patch set provides the complte set of OpenCL packages for TI devices.
+>>
+>> Jacob Stiffler (5):
+>>    clocl: Add opencl kernel compiler.
+>>    opencl-monitor: Add opencl monitor firmware
+>>    ocl-gl-headers: Add GL headers required for opencl.
+>>    opencl: Add the opencl library
+>>    opencl-examples: Add the opencl examples.
+>>
+>>   meta-arago-extras/recipes-ti/ocl/clocl_git.bb      |    34 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/gl.h          |  2235 ++++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h   |  2311 ++++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glext.h       | 10776 +++++++++++++++++++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glx.h         |   513 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h  |    82 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glxext.h      |  1001 ++
+>>   .../ocl/ocl-gl-headers/GL/internal/dri_interface.h |  1189 ++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h      |   283 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/wglext.h      |   901 ++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h       |   140 +
+>>   .../recipes-ti/ocl/ocl-gl-headers_git.bb           |    25 +
+>>   meta-arago-extras/recipes-ti/ocl/ocl.inc           |    10 +
+>>   .../recipes-ti/ocl/opencl-examples_git.bb          |    77 +
+>>   .../recipes-ti/ocl/opencl-monitor_git.bb           |    58 +
+>>   meta-arago-extras/recipes-ti/ocl/opencl_git.bb     |    55 +
+>>   16 files changed, 19690 insertions(+)
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glext.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glxext.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/internal/dri_interface.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wglext.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers_git.bb
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl.inc
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+>>
+>> -- 
+>> 1.9.1
+>>
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
 
