@@ -1,27 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id 0D6B952986
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 1BEC152A19
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Aug 2015 23:43:35 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NSX00LITZ869NC0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 11 Aug 2015 18:43:19 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
-	a=sozttTNsAAAA:8	a=3fDX69P77cDcjl9whgAA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 582D4161B72;	Tue,
-	11 Aug 2015 19:43:18 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 11 Aug 2015 19:43:17 -0400
-Message-id: <1439336597-9053-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] ti-tisdk-makefile: fix breakage when UBOOT_LOADADDRESS is not defined
+	Wed, 12 Aug 2015 03:42:43 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7C3ggCW002287
+	for <meta-arago@arago-project.org>; Tue, 11 Aug 2015 22:42:42 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7C3ggQL001939
+	for <meta-arago@arago-project.org>; Tue, 11 Aug 2015 22:42:42 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 11 Aug 2015 22:42:42 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7C3gfhu012007;
+	Tue, 11 Aug 2015 22:42:41 -0500
+Date: Tue, 11 Aug 2015 23:42:26 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20150812034226.GR30560@edge>
+References: <1439301710-31159-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1439301710-31159-1-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 0/5] TI OpenCL
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,30 +37,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 23:43:36 -0000
+X-List-Received-Date: Wed, 12 Aug 2015 03:42:43 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Thanks.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb           | 3 +++
- 1 file changed, 3 insertions(+)
+1. Is 3/5 missing?
+2. Can you be more specific, as multiple recipes say "TI OpenCL" in 
+description.
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 6ac7a28..8eafcc1 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -115,6 +115,9 @@ PLATFORM_DEBUGSS_dra7xx = "DRA7xx_PLATFORM"
- PLATFORM_GDBSERVERPROXY = ""
- PLATFORM_GDBSERVERPROXY_dra7xx = "DRA7xx_PLATFORM"
- 
-+# If it's not defined at all, like for zImage case
-+UBOOT_LOADADDRESS ?= "0"
-+
- KERNEL_BUILD_CMDS = "${@base_conditional('KERNEL_IMAGETYPE','uImage','LOADADDR=${UBOOT_LOADADDRESS} uImage','zImage',d)}"
- 
- KERNEL_DEVICETREE_ti33x = "am335x-evm.dtb am335x-evmsk.dtb am335x-bone.dtb am335x-boneblack.dtb"
--- 
-2.2.0
 
+On Tue, Aug 11, 2015 at 10:01:45AM -0400, Jacob Stiffler wrote:
+> This patch set provides the complte set of OpenCL packages for TI devices.
+> 
+> Jacob Stiffler (5):
+>   clocl: Add opencl kernel compiler.
+>   opencl-monitor: Add opencl monitor firmware
+>   ocl-gl-headers: Add GL headers required for opencl.
+>   opencl: Add the opencl library
+>   opencl-examples: Add the opencl examples.
+> 
+>  meta-arago-extras/recipes-ti/ocl/clocl_git.bb      |    34 +
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/gl.h          |  2235 ++++
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h   |  2311 ++++
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/glext.h       | 10776 +++++++++++++++++++
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/glx.h         |   513 +
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h  |    82 +
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/glxext.h      |  1001 ++
+>  .../ocl/ocl-gl-headers/GL/internal/dri_interface.h |  1189 ++
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h      |   283 +
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/wglext.h      |   901 ++
+>  .../recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h       |   140 +
+>  .../recipes-ti/ocl/ocl-gl-headers_git.bb           |    25 +
+>  meta-arago-extras/recipes-ti/ocl/ocl.inc           |    10 +
+>  .../recipes-ti/ocl/opencl-examples_git.bb          |    77 +
+>  .../recipes-ti/ocl/opencl-monitor_git.bb           |    58 +
+>  meta-arago-extras/recipes-ti/ocl/opencl_git.bb     |    55 +
+>  16 files changed, 19690 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glext.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glxext.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/internal/dri_interface.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wglext.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers_git.bb
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl.inc
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+>  create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> 
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
