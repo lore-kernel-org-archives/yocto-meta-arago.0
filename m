@@ -1,48 +1,33 @@
-Return-Path: <anders@chargestorm.se>
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by arago-project.org (Postfix) with ESMTPS id E30B1529E1
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
+	[209.85.218.47])
+	by arago-project.org (Postfix) with ESMTPS id 509555209B
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Aug 2015 09:33:36 +0000 (UTC)
-Received: by lalv9 with SMTP id v9so22948845lal.0
+	Thu, 13 Aug 2015 10:41:32 +0000 (UTC)
+Received: by oio137 with SMTP id 137so24317006oio.0
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Aug 2015 02:33:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id
-	:mail-followup-to:references:mime-version:content-type
-	:content-disposition:in-reply-to:organization:user-agent;
-	bh=CSrMZ8uF3DvWwoleJrz2wc5shjTtG4FLpvmeXVPryN4=;
-	b=iTBjZU3E+R9zrp98wTe2z+KadLQKmruJj3+SN91i6jUWpHS4gToicteDjVxCxyijZp
-	hW123z3XM1QAE8jozfRTOh9OzBxQ2GSAWNo1xGOKzb7hxz+sO44jJ4Kcgwn8wpXXPpXc
-	xHS2fhojnVtBpu0B52Pmyj0eP0ruxymdOKLrxDH7wjQzJ+4OXAhU9r40DbxGEAAYfmoX
-	Pq34koWTeweqljteZYxrV0MOLywhSejlnhjedYsb0dkIsKqahtLNRykd585W3OJ0a7l9
-	3q6vzCXpeYGQg3acc5F84aXn5zg7Jp8jZ9fJSxUOMUfp2jL/JwbElCVYOW3ecicjcAeO
-	QPPQ==
-X-Gm-Message-State: ALoCoQmhl376J6Mlmf3loJEjBIM/4Xq4aqXErSRX9TldoHlHWMUVBHvFLf0CqLvWxys4J5X50bSI
-X-Received: by 10.152.8.233 with SMTP id u9mr13812299laa.8.1439458414333;
-	Thu, 13 Aug 2015 02:33:34 -0700 (PDT)
-Received: from ad.chargestorm.se (213-64-219-84-no126.business.telia.com.
-	[213.64.219.84])
-	by smtp.gmail.com with ESMTPSA id 6sm401391lai.27.2015.08.13.02.33.33
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 13 Aug 2015 02:33:33 -0700 (PDT)
-Date: Thu, 13 Aug 2015 11:33:31 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Message-ID: <20150813093331.GD15357@ad.chargestorm.se>
-Mail-Followup-To: Ankur Tyagi <ankur.tyagi85@gmail.com>,
-	meta-arago@arago-project.org
-References: <CADySD0Fs0k-B0G=ZFa_yesxdF7tuvdjjAkfKdBPp0JpS=5EcVw@mail.gmail.com>
+	Thu, 13 Aug 2015 03:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=Vn51t4doscuTNhAIlrOsEjo4kB/+nk9GDUubD5bh8zI=;
+	b=dKHAEmLJFNB8uOrtWDCC7z/UwfKTjz2UPSvQ6/IlZ2A8DHX5Q7fH20jtaiQEZCyysW
+	yKfpS0TknrfoxYn6D2N84/sqnm2mHMKkANlKPBoHluB8s4evid+rGMKjySgPAbLMXefu
+	I6jK1iyH5L2CKz6KXkcAVgHQhKmSEhLor/niqi+oAQ1Vc0mXQ0zztIzMYTEysgwzhr90
+	nz+zbsHYErbmj/GXGGW+iOJRrBJmer7KSjZIjvGS2e6dA48yri93FtojeC9ASe8CDaDo
+	ozm8mjtJKwld6vUMtjafEAI1IWevi3PufHzOfGuDIiZu2FFMAjOlqKP3VzOiylkAKTSe
+	F6BQ==
 MIME-Version: 1.0
-In-Reply-To: <CADySD0Fs0k-B0G=ZFa_yesxdF7tuvdjjAkfKdBPp0JpS=5EcVw@mail.gmail.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: meta-arago@arago-project.org
+X-Received: by 10.202.197.86 with SMTP id v83mr11786820oif.88.1439462491306;
+	Thu, 13 Aug 2015 03:41:31 -0700 (PDT)
+Received: by 10.202.86.131 with HTTP; Thu, 13 Aug 2015 03:41:31 -0700 (PDT)
+Received: by 10.202.86.131 with HTTP; Thu, 13 Aug 2015 03:41:31 -0700 (PDT)
+In-Reply-To: <20150813093331.GD15357@ad.chargestorm.se>
+References: <CADySD0Fs0k-B0G=ZFa_yesxdF7tuvdjjAkfKdBPp0JpS=5EcVw@mail.gmail.com>
+	<20150813093331.GD15357@ad.chargestorm.se>
+Date: Thu, 13 Aug 2015 22:41:31 +1200
+Message-ID: <CADySD0EM1OaWLjZPBczm0EqFP0BzM6oOaX_AEpTgS3s7g+gufg@mail.gmail.com>
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+To: meta-arago@arago-project.org
 Subject: Re: Using Valgrind from Yocto doesn't give stack trace
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -56,43 +41,116 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Aug 2015 09:33:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 13 Aug 2015 10:41:33 -0000
+Content-Type: multipart/alternative; boundary=001a1134e93c764130051d2efa06
 
-Hi,
+--001a1134e93c764130051d2efa06
+Content-Type: text/plain; charset=UTF-8
 
-* Ankur Tyagi <ankur.tyagi85@gmail.com> [150813 06:25]:
-> I am using Valgrind coming from yocto on my AM335x-EVM kit.
+Hi Anders,
 
-> But when I try to use valgrind, it doesn't give me stack trace. Following
-> is what I get :
+How to include that package with debug symbols ?
+Which packagegroup shall I include in my recipe ?
 
-I actually got the same question from a customer (on an older TI arm
-core) earlier this summer. So luckily I rember what the fix was...
+Thanks for response.
 
-> ==1732== HEAP SUMMARY:
-> ==1732==     in use at exit: 4 bytes in 1 blocks
-> ==1732==   total heap usage: 2 allocs, 1 frees, 8 bytes allocated
-> ==1732==
-> ==1732== 4 bytes in 1 blocks are definitely lost in loss record 1 of 1
-> ==1732==    at 0x4811FE8: malloc (in
-> /usr/lib/valgrind/vgpreload_memcheck-arm-linux.so)
+Cheers
+Ankur
+On 13-Aug-2015 9:33 pm, "Anders Darander" <anders@chargestorm.se> wrote:
 
-To get better backtraces than this (which is useless), all you need to
-do is to install the debug symbols for vgpreload_memcheck-arm-linux.so.
+> Hi,
+>
+> * Ankur Tyagi <ankur.tyagi85@gmail.com> [150813 06:25]:
+> > I am using Valgrind coming from yocto on my AM335x-EVM kit.
+>
+> > But when I try to use valgrind, it doesn't give me stack trace. Following
+> > is what I get :
+>
+> I actually got the same question from a customer (on an older TI arm
+> core) earlier this summer. So luckily I rember what the fix was...
+>
+> > ==1732== HEAP SUMMARY:
+> > ==1732==     in use at exit: 4 bytes in 1 blocks
+> > ==1732==   total heap usage: 2 allocs, 1 frees, 8 bytes allocated
+> > ==1732==
+> > ==1732== 4 bytes in 1 blocks are definitely lost in loss record 1 of 1
+> > ==1732==    at 0x4811FE8: malloc (in
+> > /usr/lib/valgrind/vgpreload_memcheck-arm-linux.so)
+>
+> To get better backtraces than this (which is useless), all you need to
+> do is to install the debug symbols for vgpreload_memcheck-arm-linux.so.
+>
+> As the complete valgrind-dbg package in Yocto is far too big, I just
+> created a new package with the debug symbols for
+> vgpreload_memcheck-arm-linux.so.  After installing this to our image (or
+> just manually copying the debug info for that file into the rootfs), the
+> memcheck tool from valgrind will start giving you usefull backtraces and
+> thus, a usefull grouping of memory leaks.
+>
+> Cheers,
+> Anders
+>
+> --
+> Anders Darander
+> ChargeStorm AB / eStorm AB
+>
 
-As the complete valgrind-dbg package in Yocto is far too big, I just
-created a new package with the debug symbols for
-vgpreload_memcheck-arm-linux.so.  After installing this to our image (or
-just manually copying the debug info for that file into the rootfs), the
-memcheck tool from valgrind will start giving you usefull backtraces and
-thus, a usefull grouping of memory leaks.
+--001a1134e93c764130051d2efa06
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Anders
+<p dir=3D"ltr">Hi Anders,</p>
+<p dir=3D"ltr">How to include that package with debug symbols ? <br>
+Which packagegroup shall I include in my recipe ?</p>
+<p dir=3D"ltr">Thanks for response.</p>
+<p dir=3D"ltr">Cheers<br>
+Ankur</p>
+<div class=3D"gmail_quote">On 13-Aug-2015 9:33 pm, &quot;Anders Darander&qu=
+ot; &lt;<a href=3D"mailto:anders@chargestorm.se">anders@chargestorm.se</a>&=
+gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+<br>
+* Ankur Tyagi &lt;<a href=3D"mailto:ankur.tyagi85@gmail.com">ankur.tyagi85@=
+gmail.com</a>&gt; [150813 06:25]:<br>
+&gt; I am using Valgrind coming from yocto on my AM335x-EVM kit.<br>
+<br>
+&gt; But when I try to use valgrind, it doesn&#39;t give me stack trace. Fo=
+llowing<br>
+&gt; is what I get :<br>
+<br>
+I actually got the same question from a customer (on an older TI arm<br>
+core) earlier this summer. So luckily I rember what the fix was...<br>
+<br>
+&gt; =3D=3D1732=3D=3D HEAP SUMMARY:<br>
+&gt; =3D=3D1732=3D=3D=C2=A0 =C2=A0 =C2=A0in use at exit: 4 bytes in 1 block=
+s<br>
+&gt; =3D=3D1732=3D=3D=C2=A0 =C2=A0total heap usage: 2 allocs, 1 frees, 8 by=
+tes allocated<br>
+&gt; =3D=3D1732=3D=3D<br>
+&gt; =3D=3D1732=3D=3D 4 bytes in 1 blocks are definitely lost in loss recor=
+d 1 of 1<br>
+&gt; =3D=3D1732=3D=3D=C2=A0 =C2=A0 at 0x4811FE8: malloc (in<br>
+&gt; /usr/lib/valgrind/vgpreload_memcheck-arm-linux.so)<br>
+<br>
+To get better backtraces than this (which is useless), all you need to<br>
+do is to install the debug symbols for vgpreload_memcheck-arm-linux.so.<br>
+<br>
+As the complete valgrind-dbg package in Yocto is far too big, I just<br>
+created a new package with the debug symbols for<br>
+vgpreload_memcheck-arm-linux.so.=C2=A0 After installing this to our image (=
+or<br>
+just manually copying the debug info for that file into the rootfs), the<br=
+>
+memcheck tool from valgrind will start giving you usefull backtraces and<br=
+>
+thus, a usefull grouping of memory leaks.<br>
+<br>
+Cheers,<br>
+Anders<br>
+<br>
+--<br>
+Anders Darander<br>
+ChargeStorm AB / eStorm AB<br>
+</blockquote></div>
 
--- 
-Anders Darander
-ChargeStorm AB / eStorm AB
-
+--001a1134e93c764130051d2efa06--
