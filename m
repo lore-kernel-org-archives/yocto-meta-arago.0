@@ -1,30 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by arago-project.org (Postfix) with ESMTPS id CC72052A12
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id B59C652A98
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Aug 2015 04:25:50 +0000 (UTC)
-Received: by obbfr1 with SMTP id fr1so28612071obb.1
-	for <meta-arago@arago-project.org>;
-	Wed, 12 Aug 2015 21:25:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=rtXaXmlDeFOkKqfjHJy/2R9kKWWpdZWiBv/rSNInYLE=;
-	b=LopXeoBp1tzISlIA6+agtI1KtKIU9nYrgysv+InaVVFDJzWKXXujhIDOzGGUXgNGBE
-	EKoNtwPoYPRnN5bjC/GKhfdY53JrHzMUeGNOqQ83+jQp54X87SX1Ep3RYHlhkJ6PnUsi
-	0E4pwEIGAPpOAvciuiOscMzhpxQQAqlhxjx2wzS7SGTfopI5osdGcIYZcK+yVRJbw8Mw
-	zPOVigXaCU7qNHHRPy0xsrvIDexlaCLRojcWtTXOnjmZaddsIIfwlhQFa/t4CLAu9Qmj
-	FBF7WXg/K7i9wti26CnLAwWfKNCiF6hud08sSXQOrw3L2x0UO3SY8hZfiFDJfyIHIMiS
-	isUA==
-X-Received: by 10.60.44.171 with SMTP id f11mr21312379oem.12.1439439948318;
-	Wed, 12 Aug 2015 21:25:48 -0700 (PDT)
+	Thu, 13 Aug 2015 08:38:41 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7D8ceNn031144
+	for <meta-arago@arago-project.org>; Thu, 13 Aug 2015 03:38:40 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7D8ceVS013304
+	for <meta-arago@arago-project.org>; Thu, 13 Aug 2015 03:38:40 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 13 Aug 2015 03:38:40 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t7D8cdwr001525	for <meta-arago@arago-project.org>;
+	Thu, 13 Aug 2015 03:38:40 -0500
+Date: Thu, 13 Aug 2015 04:38:39 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <2086288520.901.1439455119844.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.202.86.131 with HTTP; Wed, 12 Aug 2015 21:25:28 -0700 (PDT)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Thu, 13 Aug 2015 16:25:28 +1200
-Message-ID: <CADySD0Fs0k-B0G=ZFa_yesxdF7tuvdjjAkfKdBPp0JpS=5EcVw@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: Using Valgrind from Yocto doesn't give stack trace
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.08 build 2015-08-12_23-00-51
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,126 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Aug 2015 04:25:55 -0000
-Content-Type: multipart/alternative; boundary=001a11333e9ecb8f29051d29babc
+X-List-Received-Date: Thu, 13 Aug 2015 08:38:44 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_900_814805856.1439455119744"
 
---001a11333e9ecb8f29051d29babc
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+------=_Part_900_814805856.1439455119744
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+<html>
+<head>
+<title>
+Status for 08/13/15
+</title>
+</head>
+<body>
 
-I am using Valgrind coming from yocto on my AM335x-EVM kit.
+<h2>Status for 08/13/15</h2>
 
-But when I try to use valgrind, it doesn't give me stack trace. Following
-is what I get :
+<h2>BUILD_ID: build-2015-08-12_23-02-00</h2>
 
-root@am335x-evm:~# valgrind --tool=3Dmemcheck --leak-check=3Dyes
---track-origins=3Dyes --error-limit=3Dno /home/root/test
-Checking /home/root/test for memory leaks..
-=3D=3D1732=3D=3D Memcheck, a memory error detector
-=3D=3D1732=3D=3D Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward e=
-t al.
-=3D=3D1732=3D=3D Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyrig=
-ht info
-=3D=3D1732=3D=3D Command: /home/root/test
-=3D=3D1732=3D=3D
-=3D=3D1732=3D=3D Invalid write of size 4
-=3D=3D1732=3D=3D    at 0x8420: main (test.c:11)
-=3D=3D1732=3D=3D  Address 0x4823060 is 0 bytes inside a block of size 4 fre=
-e'd
-=3D=3D1732=3D=3D    at 0x48109C4: free (in
-/usr/lib/valgrind/vgpreload_memcheck-arm-linux.so)
-=3D=3D1732=3D=3D
-=3D=3D1732=3D=3D
-=3D=3D1732=3D=3D HEAP SUMMARY:
-=3D=3D1732=3D=3D     in use at exit: 4 bytes in 1 blocks
-=3D=3D1732=3D=3D   total heap usage: 2 allocs, 1 frees, 8 bytes allocated
-=3D=3D1732=3D=3D
-=3D=3D1732=3D=3D 4 bytes in 1 blocks are definitely lost in loss record 1 o=
-f 1
-=3D=3D1732=3D=3D    at 0x4811FE8: malloc (in
-/usr/lib/valgrind/vgpreload_memcheck-arm-linux.so)
-=3D=3D1732=3D=3D
-=3D=3D1732=3D=3D LEAK SUMMARY:
-=3D=3D1732=3D=3D    definitely lost: 4 bytes in 1 blocks
-=3D=3D1732=3D=3D    indirectly lost: 0 bytes in 0 blocks
-=3D=3D1732=3D=3D      possibly lost: 0 bytes in 0 blocks
-=3D=3D1732=3D=3D    still reachable: 0 bytes in 0 blocks
-=3D=3D1732=3D=3D         suppressed: 0 bytes in 0 blocks
-=3D=3D1732=3D=3D
-=3D=3D1732=3D=3D For counts of detected and suppressed errors, rerun with: =
--v
-=3D=3D1732=3D=3D ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 fro=
-m 0)
+<h2>Clean Build: false</h2>
 
-=E2=80=8BHow to get stack trace ?
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-thanks
-Ankur=E2=80=8B
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
 
---001a11333e9ecb8f29051d29babc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif;font-size:small;color:#333399">Hi,</div><div class=3D"gmail_default" =
-style=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div=
-><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:=
-small;color:#333399">I am using Valgrind coming from yocto on my AM335x-EVM=
- kit.</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;=
-font-size:small;color:#333399"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:georgia,serif;font-size:small;color:#333399">But when I try=
- to use valgrind, it doesn&#39;t give me stack trace. Following is what I g=
-et :</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;f=
-ont-size:small;color:#333399"><br></div><div class=3D"gmail_default"><font =
-color=3D"#333399" face=3D"georgia, serif">root@am335x-evm:~# valgrind --too=
-l=3Dmemcheck --leak-check=3Dyes --track-origins=3Dyes --error-limit=3Dno=C2=
-=A0</font><span style=3D"color:rgb(51,51,153);font-family:georgia,serif">/h=
-ome/root/test</span><br></div><div class=3D"gmail_default" style=3D"font-fa=
-mily:georgia,serif;font-size:small;color:#333399"><div class=3D"gmail_defau=
-lt">Checking /home/root/test for memory leaks..</div><div class=3D"gmail_de=
-fault">=3D=3D1732=3D=3D Memcheck, a memory error detector</div><div class=
-=3D"gmail_default">=3D=3D1732=3D=3D Copyright (C) 2002-2013, and GNU GPL&#3=
-9;d, by Julian Seward et al.</div><div class=3D"gmail_default">=3D=3D1732=
-=3D=3D Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info</d=
-iv><div class=3D"gmail_default">=3D=3D1732=3D=3D Command: /home/root/test</=
-div><div class=3D"gmail_default">=3D=3D1732=3D=3D</div><div class=3D"gmail_=
-default">=3D=3D1732=3D=3D Invalid write of size 4</div><div class=3D"gmail_=
-default">=3D=3D1732=3D=3D =C2=A0 =C2=A0at 0x8420: main (test.c:11)</div><di=
-v class=3D"gmail_default">=3D=3D1732=3D=3D =C2=A0Address 0x4823060 is 0 byt=
-es inside a block of size 4 free&#39;d</div><div class=3D"gmail_default">=
-=3D=3D1732=3D=3D =C2=A0 =C2=A0at 0x48109C4: free (in /usr/lib/valgrind/vgpr=
-eload_memcheck-arm-linux.so)</div><div class=3D"gmail_default">=3D=3D1732=
-=3D=3D</div><div class=3D"gmail_default">=3D=3D1732=3D=3D</div><div class=
-=3D"gmail_default">=3D=3D1732=3D=3D HEAP SUMMARY:</div><div class=3D"gmail_=
-default">=3D=3D1732=3D=3D =C2=A0 =C2=A0 in use at exit: 4 bytes in 1 blocks=
-</div><div class=3D"gmail_default">=3D=3D1732=3D=3D =C2=A0 total heap usage=
-: 2 allocs, 1 frees, 8 bytes allocated</div><div class=3D"gmail_default">=
-=3D=3D1732=3D=3D</div><div class=3D"gmail_default">=3D=3D1732=3D=3D 4 bytes=
- in 1 blocks are definitely lost in loss record 1 of 1</div><div class=3D"g=
-mail_default">=3D=3D1732=3D=3D =C2=A0 =C2=A0at 0x4811FE8: malloc (in /usr/l=
-ib/valgrind/vgpreload_memcheck-arm-linux.so)</div><div class=3D"gmail_defau=
-lt">=3D=3D1732=3D=3D</div><div class=3D"gmail_default">=3D=3D1732=3D=3D LEA=
-K SUMMARY:</div><div class=3D"gmail_default">=3D=3D1732=3D=3D =C2=A0 =C2=A0=
-definitely lost: 4 bytes in 1 blocks</div><div class=3D"gmail_default">=3D=
-=3D1732=3D=3D =C2=A0 =C2=A0indirectly lost: 0 bytes in 0 blocks</div><div c=
-lass=3D"gmail_default">=3D=3D1732=3D=3D =C2=A0 =C2=A0 =C2=A0possibly lost: =
-0 bytes in 0 blocks</div><div class=3D"gmail_default">=3D=3D1732=3D=3D =C2=
-=A0 =C2=A0still reachable: 0 bytes in 0 blocks</div><div class=3D"gmail_def=
-ault">=3D=3D1732=3D=3D =C2=A0 =C2=A0 =C2=A0 =C2=A0 suppressed: 0 bytes in 0=
- blocks</div><div class=3D"gmail_default">=3D=3D1732=3D=3D</div><div class=
-=3D"gmail_default">=3D=3D1732=3D=3D For counts of detected and suppressed e=
-rrors, rerun with: -v</div><div class=3D"gmail_default">=3D=3D1732=3D=3D ER=
-ROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)</div></div><di=
-v><div class=3D"gmail_signature"><div dir=3D"ltr"><br></div><div dir=3D"ltr=
-"><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size=
-:small;color:rgb(51,51,153)">=E2=80=8BHow to get stack trace ?</div><div cl=
-ass=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;co=
-lor:rgb(51,51,153)"><br></div><div class=3D"gmail_default" style=3D"font-fa=
-mily:georgia,serif;font-size:small;color:rgb(51,51,153)">thanks</div><div c=
-lass=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;c=
-olor:rgb(51,51,153)">Ankur=E2=80=8B</div><br></div></div></div>
-</div>
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.08"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.02/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
 
---001a11333e9ecb8f29051d29babc--
+</body>
+</html>
+
+
+------=_Part_900_814805856.1439455119744--
