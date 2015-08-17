@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id BC96D52A73
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 5C9DF52AC6
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Aug 2015 20:15:42 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7HKFfrQ002457
-	for <meta-arago@arago-project.org>; Mon, 17 Aug 2015 15:15:41 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7HKFfOV029399
-	for <meta-arago@arago-project.org>; Mon, 17 Aug 2015 15:15:41 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 17 Aug 2015 15:15:41 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t7HKFfSo024461	for <meta-arago@arago-project.org>;
-	Mon, 17 Aug 2015 15:15:41 -0500
-Date: Mon, 17 Aug 2015 16:15:41 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <917914734.931.1439842541223.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.08 build 2015-08-17_13-34-04
+	Mon, 17 Aug 2015 22:52:28 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NT9006T70VCB9L0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 17 Aug 2015 17:52:25 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
+	a=sozttTNsAAAA:8	a=7-kBMe3LSNiluEdgXBYA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 39D3C161B79;	Mon,
+	17 Aug 2015 18:52:24 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 17 Aug 2015 18:52:21 -0400
+Message-id: <1439851943-29587-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [master/fido][PATCH 1/3] toolchain: remove remaining deprecated Arago toolchain pieces
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,177 +34,166 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Aug 2015 20:15:43 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_930_450582808.1439842541124"
+X-List-Received-Date: Mon, 17 Aug 2015 22:52:33 -0000
 
-------=_Part_930_450582808.1439842541124
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 08/17/15
-</title>
-</head>
-<body>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../conf/distro/include/toolchain-arago.inc        |  9 ---
+ .../include/tclibc-external-arago-toolchain.inc    | 41 ------------
+ .../conf/distro/include/tcmode-external-arago.inc  | 77 ----------------------
+ 3 files changed, 127 deletions(-)
+ delete mode 100644 meta-arago-distro/conf/distro/include/toolchain-arago.inc
+ delete mode 100644 meta-arago-extras/conf/distro/include/tclibc-external-arago-toolchain.inc
+ delete mode 100644 meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
 
-<h2>Status for 08/17/15</h2>
-
-<h2>BUILD_ID: build-2015-08-17_13-35-09</h2>
-
-<h2>Clean Build: true</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.08"<br>
-MACHINES="dra7xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.02/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
-CLEAN_SSTATE="true"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-arago.inc b/meta-arago-distro/conf/distro/include/toolchain-arago.inc
+deleted file mode 100644
+index 45d2538..0000000
+--- a/meta-arago-distro/conf/distro/include/toolchain-arago.inc
++++ /dev/null
+@@ -1,9 +0,0 @@
+-# Select external binary prebuilt Arago toolchain
+-TCMODE = "external-arago"
+-TCLIBC = "external-arago-toolchain"
+-
+-#DEFAULTTUNE = "armv7at-neon"
+-
+-# Set some vars to help locate the toolchain automatically from PATH
+-TOOLCHAIN_SYS := "arm-arago-linux-gnueabi"
+-TOOLCHAIN_PREFIX := "${TOOLCHAIN_SYS}-"
+diff --git a/meta-arago-extras/conf/distro/include/tclibc-external-arago-toolchain.inc b/meta-arago-extras/conf/distro/include/tclibc-external-arago-toolchain.inc
+deleted file mode 100644
+index 37dc0e8..0000000
+--- a/meta-arago-extras/conf/distro/include/tclibc-external-arago-toolchain.inc
++++ /dev/null
+@@ -1,41 +0,0 @@
+-#
+-# external Arago eglibc specific configuration
+-#
+-
+-LIBCEXTENSION = "${@['', '-gnu'][(d.getVar('ABIEXTENSION', True) or '') != '']}"
+-
+-# Add glibc overrides to the overrides for eglibc.
+-LIBCOVERRIDE = ":libc-glibc"
+-OVERRIDES .= "${LIBCOVERRIDE}"
+-
+-PREFERRED_PROVIDER_virtual/libiconv ?= "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/libintl ?= "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/libc ?= "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/libc-locale ?= "external-arago-toolchain"
+-
+-PREFERRED_PROVIDER_virtual/nativesdk-libiconv ?= "nativesdk-eglibc"
+-PREFERRED_PROVIDER_virtual/nativesdk-libintl ?= "nativesdk-eglibc"
+-PREFERRED_PROVIDER_virtual/nativesdk-libc ?= "nativesdk-eglibc"
+-
+-LIBC_DEPENDENCIES = "libsegfault \
+-		     glibc \
+-		     glibc-dbg \
+-		     glibc-dev \
+-		     glibc-utils \
+-		     glibc-thread-db \
+-		     ${@get_libc_locales_dependencies(d)}"
+-
+-LIBC_LOCALE_DEPENDENCIES = "\
+-	glibc-localedata-i18n \
+-	glibc-gconv-ibm850 \
+-	glibc-gconv-cp1252 \
+-	glibc-gconv-iso8859-1 \
+-	glibc-gconv-iso8859-15 \
+-	locale-base-en-us \
+-	locale-base-en-gb"
+-
+-def get_libc_locales_dependencies(d):
+-    if 'libc-locales' in (d.getVar('DISTRO_FEATURES', True) or '').split() :
+-        return d.getVar('LIBC_LOCALE_DEPENDENCIES', True) or ''
+-    else:
+-        return ''
+diff --git a/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc b/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
+deleted file mode 100644
+index 603dc5d..0000000
+--- a/meta-arago-extras/conf/distro/include/tcmode-external-arago.inc
++++ /dev/null
+@@ -1,77 +0,0 @@
+-#
+-# Configuration to use an external Arago binary toolchain
+-#
+-
+-EXTERNAL_TOOLCHAIN ?= "/usr/local/arago-2011.09/${TARGET_ARCH}"
+-
+-ARAGO_TARGET_SYS = "arm-arago-linux-gnueabi"
+-TARGET_PREFIX = "${ARAGO_TARGET_SYS}-"
+-
+-# Need to use newer linux headers, as 2011.09 has too old ones for newer udev
+-PREFERRED_PROVIDER_linux-libc-headers = "linux-libc-headers"
+-PREFERRED_PROVIDER_linux-libc-headers-dev = "linux-libc-headers"
+-PREFERRED_PROVIDER_virtual/linux-libc-headers = "linux-libc-headers"
+-
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-initial = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}g++ = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}binutils = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}libc-for-gcc = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}compilerlibs = "external-arago-toolchain"
+-PREFERRED_PROVIDER_libgcc = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/libc = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/libintl = "external-arago-toolchain"
+-PREFERRED_PROVIDER_virtual/libiconv = "external-arago-toolchain"
+-PREFERRED_PROVIDER_glibc-thread-db = "external-arago-toolchain"
+-PREFERRED_PROVIDER_gdbserver = "external-arago-toolchain"
+-
+-PREFERRED_PROVIDER_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "external-arago-sdk-toolchain"
+-PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "external-arago-sdk-toolchain"
+-#PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "external-arago-sdk-toolchain"
+-
+-# Special case for gdb to be built as part of canadian-cross-sdk, instead of packaged from external toolchain
+-bindir_pn-gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${exec_prefix}/bin"
+-PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+-
+-GCCVERSION ?= "4.5%"
+-SDKGCCVERSION ?= "4.5%"
+-BINUVERSION ?= "2.20%"
+-EGLIBCVERSION ?= "2.12%"
+-SDKLINUXLIBCVERSION ?= "3.10"
+-
+-PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+-PREFERRED_VERSION_gcc-cross ?= "${GCCVERSION}"
+-PREFERRED_VERSION_gcc-cross-initial ?= "${GCCVERSION}"
+-PREFERRED_VERSION_gcc-cross-intermediate ?= "${GCCVERSION}"
+-PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_gcc-crosssdk-intermediate ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "${GCCVERSION}"
+-PREFERRED_VERSION_gcc-runtime ?= "${GCCVERSION}"
+-PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_libgcc ?= "${GCCVERSION}"
+-PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
+-PREFERRED_VERSION_binutils-cross ?= "${BINUVERSION}"
+-PREFERRED_VERSION_binutils-crosssdk ?= "${BINUVERSION}"
+-PREFERRED_VERSION_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "${BINUVERSION}"
+-PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+-PREFERRED_VERSION_eglibc ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_eglibc-locale ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-eglibc ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_eglibc-initial ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_nativesdk-eglibc-initial ?= "${EGLIBCVERSION}"
+-PREFERRED_VERSION_cross-localedef-native ?= "${EGLIBCVERSION}"
+-
+-TOOLCHAIN_OPTIONS = " --sysroot=${STAGING_DIR_HOST}"
+-
+-DISTRO_FEATURES_LIBC = "ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-crypt \
+-			libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse \
+-			libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big \
+-			libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc \
+-			libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc \
+-			libc-posix-wchar-io"
+-
+-ENABLE_BINARY_LOCALE_GENERATION = "0"
+-GLIBC_INTERNAL_USE_BINARY_LOCALE = "precompiled"
+-- 
+2.2.0
 
 
-------=_Part_930_450582808.1439842541124--
