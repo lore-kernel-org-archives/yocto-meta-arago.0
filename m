@@ -1,32 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 09E4E52987
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id A67FF529AC
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Aug 2015 18:59:44 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7IIxijv011635
-	for <meta-arago@arago-project.org>; Tue, 18 Aug 2015 13:59:44 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7IIxhcd000756
-	for <meta-arago@arago-project.org>; Tue, 18 Aug 2015 13:59:44 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 18 Aug 2015 13:59:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7IIxhWI020825;
-	Tue, 18 Aug 2015 13:59:43 -0500
-Date: Tue, 18 Aug 2015 14:59:28 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150818185928.GC6542@edge>
-References: <1439301710-31159-1-git-send-email-j-stiffler@ti.com>
-	<20150812034226.GR30560@edge> <55CB2BF9.5070009@ti.com>
-	<55D36851.2030802@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <55D36851.2030802@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 0/5] TI OpenCL
+	Tue, 18 Aug 2015 19:39:04 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NTA005YVMK19SE0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 18 Aug 2015 14:38:36 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
+	a=sozttTNsAAAA:8	a=fFuYLBRKINfKk58sjCMA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 7F341161B46;	Tue,
+	18 Aug 2015 15:38:25 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 18 Aug 2015 15:38:24 -0400
+Message-id: <1439926704-22149-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] qtbase: bbappend version agnostic, workaround for font install
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,97 +34,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Aug 2015 18:59:45 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 18 Aug 2015 19:39:04 -0000
 
-Sorry, no comments. Can you please submit the set with changes requested?
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../{qtbase_5.4.1.bbappend => qtbase_%.bbappend}   |   11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+ rename meta-arago-distro/recipes-qt/qt5/{qtbase_5.4.1.bbappend => qtbase_%.bbappend} (81%)
 
-On Tue, Aug 18, 2015 at 01:16:01PM -0400, Jacob Stiffler wrote:
-> Ping.
-> 
-> On 8/12/2015 7:20 AM, Jacob Stiffler wrote:
-> >
-> >
-> >On 8/11/2015 11:42 PM, Denys Dmytriyenko wrote:
-> >>Thanks.
-> >>
-> >>1. Is 3/5 missing?
-> >It was a large patch (>100KB) and is pending approval.
-> >>2. Can you be more specific, as multiple recipes say "TI OpenCL" in
-> >>description.
-> >Do you mean that only the "DESCRIPTION" needs more specific
-> >information? Or are there other areas too?
-> >
-> >If there are no other comments, I will go ahead and update.
-> >>
-> >>
-> >>On Tue, Aug 11, 2015 at 10:01:45AM -0400, Jacob Stiffler wrote:
-> >>>This patch set provides the complte set of OpenCL packages for
-> >>>TI devices.
-> >>>
-> >>>Jacob Stiffler (5):
-> >>>   clocl: Add opencl kernel compiler.
-> >>>   opencl-monitor: Add opencl monitor firmware
-> >>>   ocl-gl-headers: Add GL headers required for opencl.
-> >>>   opencl: Add the opencl library
-> >>>   opencl-examples: Add the opencl examples.
-> >>>
-> >>>  meta-arago-extras/recipes-ti/ocl/clocl_git.bb      |    34 +
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/gl.h          |  2235 ++++
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h   |  2311 ++++
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/glext.h       | 10776
-> >>>+++++++++++++++++++
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/glx.h         |   513 +
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h  |    82 +
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/glxext.h      |  1001 ++
-> >>>  .../ocl/ocl-gl-headers/GL/internal/dri_interface.h |  1189 ++
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h      |   283 +
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/wglext.h      |   901 ++
-> >>>  .../recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h       |   140 +
-> >>>  .../recipes-ti/ocl/ocl-gl-headers_git.bb           |    25 +
-> >>>  meta-arago-extras/recipes-ti/ocl/ocl.inc           |    10 +
-> >>>  .../recipes-ti/ocl/opencl-examples_git.bb          |    77 +
-> >>>  .../recipes-ti/ocl/opencl-monitor_git.bb           |    58 +
-> >>>  meta-arago-extras/recipes-ti/ocl/opencl_git.bb     |    55 +
-> >>>  16 files changed, 19690 insertions(+)
-> >>>  create mode 100644 meta-arago-extras/recipes-ti/ocl/clocl_git.bb
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glext.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glxext.h
-> >>>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/internal/dri_interface.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wglext.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/ocl-gl-headers_git.bb
-> >>>  create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl.inc
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> >>>  create mode 100644
-> >>>meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> >>>  create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> >>>
-> >>>-- 
-> >>>1.9.1
-> >>>
-> >>>_______________________________________________
-> >>>meta-arago mailing list
-> >>>meta-arago@arago-project.org
-> >>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >
-> 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+similarity index 81%
+rename from meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+rename to meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+index d6e3f4d..0819af3 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+@@ -5,7 +5,7 @@ GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
+ 
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+ 
+-PR_append = "-arago7"
++PR_append = "-arago8"
+ 
+ QT_CONFIG_FLAGS += "-qpa ${@base_contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+ 
+@@ -41,6 +41,15 @@ do_install_append () {
+     install -m 0644 ${WORKDIR}/${QT_ENV} ${D}${sysconfdir}/profile.d/qt_env.sh
+ }
+ 
++do_install_prepend () {
++    # install fonts manually if they are missing
++    if [ ! -d ${D}/${OE_QMAKE_PATH_LIBS}/fonts ]; then
++        mkdir -p ${D}/${OE_QMAKE_PATH_LIBS}/fonts
++        cp -a ${S}/lib/fonts/* ${D}/${OE_QMAKE_PATH_LIBS}/fonts
++        chown -R root:root ${D}/${OE_QMAKE_PATH_LIBS}/fonts
++    fi
++}
++
+ PACKAGES =+ "${PN}-conf"
+ 
+ FILES_${PN}-conf = "${sysconfdir}/profile.d/qt_env.sh"
+-- 
+1.7.9.5
+
 
