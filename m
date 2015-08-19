@@ -1,31 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D50CB529B5
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id A248C529B5
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Aug 2015 17:20:04 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7JHK4Ff014804
-	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 12:20:04 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JHK3UT010063
-	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 12:20:03 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 19 Aug 2015 12:20:03 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JHK31H006929;
-	Wed, 19 Aug 2015 12:20:03 -0500
-Date: Wed, 19 Aug 2015 13:19:47 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20150819171947.GJ6542@edge>
-References: <1439552740-15530-1-git-send-email-j-stiffler@ti.com>
-	<20150818205706.GD6542@edge> <55D45FD0.4020507@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <55D45FD0.4020507@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] tisdk-image: Use "TOOLCHAIN_SUFFIX" to find devkit
+	Wed, 19 Aug 2015 18:42:03 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NTC00I5WEL42HX0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 19 Aug 2015 13:41:29 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
+	a=sozttTNsAAAA:8	a=eAcECQlf0xolgFJQIQoA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 7474E161B46;	Wed,
+	19 Aug 2015 14:41:28 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 19 Aug 2015 14:41:28 -0400
+Message-id: <1440009688-24342-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [daisy][PATCH] qtbase: workaround for font install issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,30 +34,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Aug 2015 17:20:05 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 19 Aug 2015 18:42:04 -0000
 
-On Wed, Aug 19, 2015 at 06:52:00AM -0400, Jacob Stiffler wrote:
-> 
-> 
-> On 8/18/2015 4:57 PM, Denys Dmytriyenko wrote:
-> >Jake,
-> >
-> >This one didn't apply even on daisy - I didn't have much time to look at the
-> >issue, but maybe you have an idea what's wrong?
-> >
-> 
-> 
-> Denys,
-> 
-> I developed this patch in the fido context, and should apply cleanly
-> on the master branch.
-> 
-> On fido, there is the commit
-> 1ed881223402fdb1ab7f4ffe444d8b4e7f67cb34 to make the SDK filter
-> stricter. This has not been implemented on daisy, and causes the
-> patch to fail.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Do you need this fixed in daisy?
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+index 412bf67..9f11ba7 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_5.4.1.bbappend
+@@ -5,7 +5,7 @@ GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
+ 
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+ 
+-PR_append = "-arago6"
++PR_append = "-arago7"
+ 
+ QT_CONFIG_FLAGS += "-qpa ${@base_contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+ 
+@@ -39,6 +39,15 @@ do_install_append () {
+     install -m 0644 ${WORKDIR}/${QT_ENV} ${D}${sysconfdir}/profile.d/qt_env.sh
+ }
+ 
++do_install_prepend () {
++    # install fonts manually if they are missing
++    if [ ! -d ${D}/${OE_QMAKE_PATH_LIBS}/fonts ]; then
++        mkdir -p ${D}/${OE_QMAKE_PATH_LIBS}/fonts
++        cp -a ${S}/lib/fonts/* ${D}/${OE_QMAKE_PATH_LIBS}/fonts
++        chown -R root:root ${D}/${OE_QMAKE_PATH_LIBS}/fonts
++    fi
++}
++
+ PACKAGES =+ "${PN}-conf"
+ 
+ FILES_${PN}-conf = "${sysconfdir}/profile.d/qt_env.sh"
+-- 
+2.2.0
+
 
