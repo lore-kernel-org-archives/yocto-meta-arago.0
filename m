@@ -1,31 +1,31 @@
 Return-Path: <jake@udc0866934>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2446F52987
+	by arago-project.org (Postfix) with ESMTPS id C832252987
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Aug 2015 13:59:01 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7JDx0hg026369
-	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 08:59:00 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JDx0K2007030
-	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 08:59:00 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 19 Aug 2015 08:58:59 -0500
+	Wed, 19 Aug 2015 13:59:02 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7JDx2gs026379
+	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 08:59:02 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JDx1rG026600
+	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 08:59:02 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 19 Aug 2015 08:59:01 -0500
 Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JDwxth016884;
-	Wed, 19 Aug 2015 08:58:59 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JDx1xD027853;
+	Wed, 19 Aug 2015 08:59:01 -0500
 Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZS3tL-0004Cm-MA; Wed, 19 Aug 2015 09:58:59 -0400
+	<jake@udc0866934>)	id 1ZS3tN-0004Cr-Ia; Wed, 19 Aug 2015 09:59:01 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 19 Aug 2015 09:58:45 -0400
-Message-ID: <1439992726-16109-5-git-send-email-j-stiffler@ti.com>
+Date: Wed, 19 Aug 2015 09:58:46 -0400
+Message-ID: <1439992726-16109-6-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1439992726-16109-1-git-send-email-j-stiffler@ti.com>
 References: <1439992726-16109-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2 4/5] opencl: Add the opencl library
+Subject: [PATCH v2 5/5] opencl-examples: Add the opencl examples.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,24 +38,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Aug 2015 13:59:01 -0000
+X-List-Received-Date: Wed, 19 Aug 2015 13:59:03 -0000
 Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
 v2 changes: Update description and homepage.
 
- meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 55 ++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+ .../recipes-ti/ocl/opencl-examples_git.bb          | 77 ++++++++++++++++++++++
+ 1 file changed, 77 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
 new file mode 100644
-index 0000000..568e249
+index 0000000..af225d1
 --- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-@@ -0,0 +1,55 @@
-+DESCRIPTION = "TI OpenCL host runtime and development packages"
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+@@ -0,0 +1,77 @@
++DESCRIPTION = "TI OpenCL example applications"
 +HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
 +LICENSE = "BSD"
 +
@@ -63,53 +63,75 @@ index 0000000..568e249
 +
 +PR = "${INC_PR}.0"
 +
-+inherit cmake
-+
 +COMPATIBLE_MACHINE = "dra7xx|k2hk-evm"
 +PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-+PACKAGES += " ${PN}-runtime"
++DEPENDS = "opencl ti-cgt6x-native clocl-native"
 +
-+DEPENDS = " ocl-gl-headers \
-+            opencl-monitor \
-+            cmake-native \
-+            cmem \
-+            ti-llvm3.3 \
-+            ti-llvm3.3-native \
-+            binutils \
-+            sqlite3 \
-+            libffi \
-+            boost \
-+            boost-native \
-+            libloki \
-+            pkgconfig-native \
-+            libulm \
++RDEPENDS_${PN} += " opencl-runtime"
++RDEPENDS_${PN}-dev += " libgomp-dev"
++
++S = "${WORKDIR}/git/opencl_example_src"
++B = "${S}"
++
++OCL_EXAMPLE_LIST = " buffer \
++                     ccode \
++                     dsplib_fft \
++                     float_compute \
++                     null \
++                     offline \
++                     offline_embed \
++                     platforms \
++                     simple \
++                     vecadd \
++                     matmpy \
++                     ooo_callback \
++                     edmamgr \
 +"
 +
-+DEPENDS_append_dra7xx += "ti-ipc virtual/kernel"
-+DEPENDS_append_k2hk-evm += " mpm-transport multiprocmgr"
++python do_unpack_append() {
++    import shutil
 +
-+RDEPENDS_${PN}-dev += " ocl-gl-headers-dev opencl-monitor"
-+RDEPENDS_${PN}-runtime += " ${PN} opencl-monitor clocl ti-cgt6x"
++    git_dir = d.expand("${WORKDIR}/git/examples")
++    s = d.getVar("S", True)
 +
-+ALLOW_EMPTY_${PN}-runtime = "1"
++    os.makedirs(s)
++    shutil.copy(os.path.join(git_dir,"Makefile"),s)
++    shutil.copy(os.path.join(git_dir,"make.inc"),s)
++    for example in d.getVar("OCL_EXAMPLE_LIST").split():
++        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
++}
 +
 +
-+S = "${WORKDIR}/git/host"
-+
-+export WANT_LLVM_RELEASE = "3.3-ti"
-+
-+OCL_BUILD_TARGET_dra7xx = "ARM_AM57"
-+OCL_BUILD_TARGET_k2hk-evm = "ARM_K2H"
-+
-+EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=1"
-+
-+EXTRA_OEMAKE += "KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} LINUX_DEVKIT_ROOT=${STAGING_DIR_HOST}"
-+export KERNEL_INSTALL_DIR = "${STAGING_KERNEL_DIR}"
-+
-+FILES_${PN} += " \
-+    ${datadir}/ti/opencl/* \
++EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
++                 TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
 +"
++
++do_compile() {
++    oe_runmake
++}
++
++do_install() {
++    install -d ${D}${datadir}/ti/examples/opencl
++
++    install ${B}/Makefile ${D}${datadir}/ti/examples/opencl
++    install ${B}/make.inc ${D}${datadir}/ti/examples/opencl
++
++    for ocl_example in ${OCL_EXAMPLE_LIST}; do
++        install -d ${D}${datadir}/ti/examples/opencl/${ocl_example}
++        cp -rv ${B}/${ocl_example}/* ${D}${datadir}/ti/examples/opencl/${ocl_example}
++    done
++}
++
++FILES_${PN} += "\
++    ${datadir}/ti/examples/opencl \
++"
++
++FILES_${PN}-dbg += "\
++    ${datadir}/ti/examples/opencl/*/.debug \
++"
++
++INSANE_SKIP_${PN} = "arch ldflags textrel"
 -- 
 1.9.1
 
