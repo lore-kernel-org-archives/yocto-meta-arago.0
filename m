@@ -1,27 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 0363852A08
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id B9BCE52A08
 	for <meta-arago@arago-project.org>;
-	Thu, 20 Aug 2015 00:36:01 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	Thu, 20 Aug 2015 00:36:03 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NTC00EF8UZNE980@vms173023.mailsrvcs.net> for
+	with ESMTPSA id <0NTC00C89UZN0C20@vms173021.mailsrvcs.net> for
 	meta-arago@arago-project.org; Wed, 19 Aug 2015 19:35:48 -0500 (CDT)
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
-	a=sozttTNsAAAA:8	a=i5kaQHlOvP_IAqFGZ5QA:9
+	a=sozttTNsAAAA:8	a=3Paew7jVrbC7I7t5X4wA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 36E97161B54;	Wed,
+	by gandalf.denix.org (Postfix) with ESMTP id 3951D161B82;	Wed,
 	19 Aug 2015 20:35:47 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 19 Aug 2015 20:35:34 -0400
-Message-id: <1440030941-20751-1-git-send-email-denis@denix.org>
+Date: Wed, 19 Aug 2015 20:35:35 -0400
+Message-id: <1440030941-20751-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [master/fido][PATCH 1/8] recipes: correct FILESEXTRAPATHS_append syntax
+In-reply-to: <1440030941-20751-1-git-send-email-denis@denix.org>
+References: <1440030941-20751-1-git-send-email-denis@denix.org>
+Subject: [master/fido][PATCH 2/8] Revert "HACK: disable cryptodev modules for now, until fixed against 4.1"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,67 +36,96 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Aug 2015 00:36:01 -0000
+X-List-Received-Date: Thu, 20 Aug 2015 00:36:04 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+This reverts commit ffdcd0ff22be19b45bfb62538905fb64980bc9f9.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend | 2 +-
- meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb   | 2 +-
- .../recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb        | 2 +-
- meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb             | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb  |  8 ++++----
+ .../packagegroup-arago-tisdk-crypto-sdk-target.bb              | 10 +++++-----
+ .../packagegroups/packagegroup-arago-tisdk-crypto.bb           |  9 ++++-----
+ 3 files changed, 13 insertions(+), 14 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
-index 6bea43f..2296ccd 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
-@@ -1,4 +1,4 @@
--FILESEXTRAPATHS_append := "${THISDIR}/${PN}:"
-+FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+index 570dfec..509642e 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install crypto sources in SDK"
+ LICENSE = "MIT"
+-PR = "r8"
++PR = "r9"
  
- PR_append = "-arago7"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-index 0348cb0..1151012 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://../COPYING;md5=36b27801447e0662ee0138d17fe93880"
+@@ -11,9 +11,9 @@ CRYPTO_RDEPENDS = ""
+ CRYPTO_RDEPENDS_append_ti33x = " ti-crypto-examples-src"
+ CRYPTO_RDEPENDS_append_ti43x = " ti-crypto-examples-src"
  
- PR_append = "d"
+-#CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
+-#CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
+-#CRYPTO_RDEPENDS_append_dra7xx = " cryptodev-module-src"
++CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
++CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
++CRYPTO_RDEPENDS_append_dra7xx = " cryptodev-module-src"
  
--FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
-+FILESEXTRAPATHS_append := ":${THISDIR}/hostap-daemon"
+ CRYPTO_RDEPENDS_append_am37x-evm = "\
+     ti-ocf-crypto-module-src \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
+index 63a1bd2..759276f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
+@@ -1,16 +1,16 @@
+ DESCRIPTION = "Task to install crypto dev packages in SDK"
+ LICENSE = "MIT"
+-PR = "r6"
++PR = "r7"
  
- # Add TI to the end to make it clear that this is a TI customized version
- # of hostap
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
-index dea4384..9e98080 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
-@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://../COPYING;md5=36b27801447e0662ee0138d17fe93880 \
-                     file://../README;md5=7f393579f8b109fe91f3b9765d26c7d3 \
-                     file://wpa_supplicant.c;beginline=1;endline=17;md5=8a3131126465e08eb6b8d17ea880e162"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
-+FILESEXTRAPATHS_append := ":${THISDIR}/wpa-supplicant"
+ inherit packagegroup
  
- # Tag: R8.6
- SRCREV = "f80fe345acf103ba6882ac8396f19584ac184904"
-diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
-index 460de67..c846c18 100644
---- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
-+++ b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
-@@ -3,7 +3,7 @@ require ${COREBASE}/meta/recipes-qt/qt4/qt4-embedded.inc
+ CRYPTO_API = ""
+-#CRYPTO_API_ti33x = "cryptodev-module-dev"
+-#CRYPTO_API_ti43x = "cryptodev-module-dev"
+-#CRYPTO_API_dra7xx = "cryptodev-module-dev"
+-#CRYPTO_API_keystone = "cryptodev-module-dev"
++CRYPTO_API_ti33x = "cryptodev-module-dev"
++CRYPTO_API_ti43x = "cryptodev-module-dev"
++CRYPTO_API_dra7xx = "cryptodev-module-dev"
++CRYPTO_API_keystone = "cryptodev-module-dev"
  
- PR = "${INC_PR}.3"
+ RDEPENDS_${PN} = "\
+     openssl-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+index d9e8a60..99d9253 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install crypto packages into target FS"
+ LICENSE = "MIT"
+-PR = "r8"
++PR = "r9"
  
--FILESEXTRAPATHS_append := "${THISDIR}/${PN}:${COREBASE}/meta/recipes-qt/qt4/qt4-${PV}:${COREBASE}/meta/recipes-qt/qt4/files:"
-+FILESEXTRAPATHS_append := ":${THISDIR}/${PN}:${COREBASE}/meta/recipes-qt/qt4/qt4-${PV}:${COREBASE}/meta/recipes-qt/qt4/files"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- DEFAULT_PREFERENCE = "-1"
+@@ -15,10 +15,9 @@ CRYPTO_SUPPORT = "\
+     openssl-engines \
+     "
  
+-# all 3 below - cryptodev-module cryptodev-tests
+-CRYPTO_SUPPORT_append_ti33x = " ti-crypto-examples"
+-CRYPTO_SUPPORT_append_ti43x = " ti-crypto-examples"
+-CRYPTO_SUPPORT_append_dra7xx = " ti-crypto-examples"
++CRYPTO_SUPPORT_append_ti33x = " ti-crypto-examples cryptodev-module cryptodev-tests"
++CRYPTO_SUPPORT_append_ti43x = " ti-crypto-examples cryptodev-module cryptodev-tests"
++CRYPTO_SUPPORT_append_dra7xx = " ti-crypto-examples cryptodev-module cryptodev-tests"
+ 
+ # Add crypto hardware support for am37x-evm
+ # NOTE: this package depends on a kernel patch which also has a TSU
 -- 
 2.2.0
 
