@@ -1,33 +1,27 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C905A529B5
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 0363852A08
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Aug 2015 18:45:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7JIj45f005740
-	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 13:45:04 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JIj4LU002479
-	for <meta-arago@arago-project.org>; Wed, 19 Aug 2015 13:45:04 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 19 Aug 2015 13:45:03 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7JIj3sg028545;
-	Wed, 19 Aug 2015 13:45:03 -0500
-Message-ID: <55D4CEAF.3040309@ti.com>
-Date: Wed, 19 Aug 2015 14:45:03 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1439552740-15530-1-git-send-email-j-stiffler@ti.com>
-	<20150818205706.GD6542@edge> <55D45FD0.4020507@ti.com>
-	<20150819171947.GJ6542@edge>
-In-Reply-To: <20150819171947.GJ6542@edge>
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] tisdk-image: Use "TOOLCHAIN_SUFFIX" to find devkit
+	Thu, 20 Aug 2015 00:36:01 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NTC00EF8UZNE980@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 19 Aug 2015 19:35:48 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
+	a=sozttTNsAAAA:8	a=i5kaQHlOvP_IAqFGZ5QA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 36E97161B54;	Wed,
+	19 Aug 2015 20:35:47 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 19 Aug 2015 20:35:34 -0400
+Message-id: <1440030941-20751-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [master/fido][PATCH 1/8] recipes: correct FILESEXTRAPATHS_append syntax
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,33 +34,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Aug 2015 18:45:05 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Aug 2015 00:36:01 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend | 2 +-
+ meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb   | 2 +-
+ .../recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb        | 2 +-
+ meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb             | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-On 8/19/2015 1:19 PM, Denys Dmytriyenko wrote:
-> On Wed, Aug 19, 2015 at 06:52:00AM -0400, Jacob Stiffler wrote:
->>
->> On 8/18/2015 4:57 PM, Denys Dmytriyenko wrote:
->>> Jake,
->>>
->>> This one didn't apply even on daisy - I didn't have much time to look at the
->>> issue, but maybe you have an idea what's wrong?
->>>
->>
->> Denys,
->>
->> I developed this patch in the fido context, and should apply cleanly
->> on the master branch.
->>
->> On fido, there is the commit
->> 1ed881223402fdb1ab7f4ffe444d8b4e7f67cb34 to make the SDK filter
->> stricter. This has not been implemented on daisy, and causes the
->> patch to fail.
-> Do you need this fixed in daisy?
-
-No, though it shouldn't be hard to adapt this to daisy.
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
+index 6bea43f..2296ccd 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2014.07.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS_append := "${THISDIR}/${PN}:"
++FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
+ 
+ PR_append = "-arago7"
+ 
+diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
+index 0348cb0..1151012 100644
+--- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
++++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
+@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://../COPYING;md5=36b27801447e0662ee0138d17fe93880"
+ 
+ PR_append = "d"
+ 
+-FILESEXTRAPATHS_append := "${THISDIR}/hostap-daemon:"
++FILESEXTRAPATHS_append := ":${THISDIR}/hostap-daemon"
+ 
+ # Add TI to the end to make it clear that this is a TI customized version
+ # of hostap
+diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
+index dea4384..9e98080 100644
+--- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
++++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant-wl18xx.bb
+@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://../COPYING;md5=36b27801447e0662ee0138d17fe93880 \
+                     file://../README;md5=7f393579f8b109fe91f3b9765d26c7d3 \
+                     file://wpa_supplicant.c;beginline=1;endline=17;md5=8a3131126465e08eb6b8d17ea880e162"
+ 
+-FILESEXTRAPATHS_append := "${THISDIR}/wpa-supplicant:"
++FILESEXTRAPATHS_append := ":${THISDIR}/wpa-supplicant"
+ 
+ # Tag: R8.6
+ SRCREV = "f80fe345acf103ba6882ac8396f19584ac184904"
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
+index 460de67..c846c18 100644
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
++++ b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
+@@ -3,7 +3,7 @@ require ${COREBASE}/meta/recipes-qt/qt4/qt4-embedded.inc
+ 
+ PR = "${INC_PR}.3"
+ 
+-FILESEXTRAPATHS_append := "${THISDIR}/${PN}:${COREBASE}/meta/recipes-qt/qt4/qt4-${PV}:${COREBASE}/meta/recipes-qt/qt4/files:"
++FILESEXTRAPATHS_append := ":${THISDIR}/${PN}:${COREBASE}/meta/recipes-qt/qt4/qt4-${PV}:${COREBASE}/meta/recipes-qt/qt4/files"
+ 
+ DEFAULT_PREFERENCE = "-1"
+ 
+-- 
+2.2.0
 
 
