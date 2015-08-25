@@ -1,29 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 6C5535297D
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id BAF4C5297D
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Aug 2015 04:42:00 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
+	Tue, 25 Aug 2015 04:42:29 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NTM0035JFPYAA60@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 24 Aug 2015 23:41:59 -0500 (CDT)
+	with ESMTPSA id <0NTM00BLAFPYER70@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 24 Aug 2015 23:42:14 -0500 (CDT)
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=-9mUelKeXuEA:10 a=uRRa74qj2VoA:10
-	a=sozttTNsAAAA:8	a=k8khDwIkjvLC5WihasUA:9
+	a=sozttTNsAAAA:8	a=Qk8NL6J1ZrxGUnBKleMA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 90622161BAC;	Tue,
+	by gandalf.denix.org (Postfix) with ESMTP id 8E722161BA6;	Tue,
 	25 Aug 2015 00:41:58 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 25 Aug 2015 00:41:57 -0400
-Message-id: <1440477718-4125-2-git-send-email-denis@denix.org>
+Date: Tue, 25 Aug 2015 00:41:56 -0400
+Message-id: <1440477718-4125-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1440477718-4125-1-git-send-email-denis@denix.org>
-References: <1440477718-4125-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/3] packagegroup-*-qte: qt3d-tools no longer exists
+Subject: [PATCH 1/3] qtbase: drop font workaround, add libqtfreetype workaround
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,35 +34,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Aug 2015 04:42:01 -0000
+X-List-Received-Date: Tue, 25 Aug 2015 04:42:29 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb         | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index 6fdccf1..fac2c5b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r13"
-+PR = "r14"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+index 2e9446c..d32636f 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+@@ -5,7 +5,7 @@ GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
  
-@@ -15,7 +15,6 @@ QT4_DEMOS = "\
+-PR_append = "-arago8"
++PR_append = "-arago9"
  
- QT5_DEMOS = "\
-     qt3d-examples \
--    qt3d-tools \
-     qtbase-examples \
-     qtdeclarative-examples \
-     qtdeclarative-tools \
+ QT_CONFIG_FLAGS += "-qpa ${@base_contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+ 
+@@ -39,15 +39,8 @@ python do_patch_append() {
+ do_install_append () {
+     install -d ${D}${sysconfdir}/profile.d
+     install -m 0644 ${WORKDIR}/${QT_ENV} ${D}${sysconfdir}/profile.d/qt_env.sh
+-}
+ 
+-do_install_prepend () {
+-    # install fonts manually if they are missing
+-    if [ ! -d ${D}/${OE_QMAKE_PATH_LIBS}/fonts ]; then
+-        mkdir -p ${D}/${OE_QMAKE_PATH_LIBS}/fonts
+-        cp -a ${S}/lib/fonts/* ${D}/${OE_QMAKE_PATH_LIBS}/fonts
+-        chown -R root:root ${D}/${OE_QMAKE_PATH_LIBS}/fonts
+-    fi
++    cp -a ${B}/lib/libqt* ${D}${libdir}
+ }
+ 
+ PACKAGES =+ "${PN}-conf"
 -- 
 2.2.0
 
