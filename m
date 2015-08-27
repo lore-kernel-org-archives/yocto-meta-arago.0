@@ -1,27 +1,31 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 341CF52A08
+Return-Path: <j-stiffler@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id ECDE0529F8
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Aug 2015 09:07:50 +0000 (UTC)
+	Thu, 27 Aug 2015 13:21:49 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7R97ns4030554
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 04:07:49 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R97nst008713
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 04:07:49 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7RDLl14006780
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 08:21:47 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7RDLlgX029930
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 08:21:47 -0500
 Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 27 Aug 2015 04:07:48 -0500
-Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R97lFr032320;
-	Thu, 27 Aug 2015 04:07:48 -0500
-From: Karthik Ramanan <a0393906@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 27 Aug 2015 14:37:46 +0530
-Message-ID: <1440666466-25862-1-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Thu, 27 Aug 2015 08:21:47 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7RDLlM8010495	for
+	<meta-arago@arago-project.org>; Thu, 27 Aug 2015 08:21:47 -0500
+Message-ID: <55DF0EEB.1060809@ti.com>
+Date: Thu, 27 Aug 2015 09:21:47 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-Subject: [daisy, master] omapconf: update to version 1.72
+To: <meta-arago@arago-project.org>
+References: <1439992726-16109-1-git-send-email-j-stiffler@ti.com>
+	<55DC6FC5.7090407@ti.com>
+In-Reply-To: <55DC6FC5.7090407@ti.com>
+Subject: Re: [PATCH v2 0/5] TI OpenCL
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +38,80 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Aug 2015 09:07:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 27 Aug 2015 13:21:55 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
----
- .../recipes-devtools/omapconf/omapconf_git.bb      |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Ping
 
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 5bc8a9e..4121150 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -4,13 +4,13 @@ HOMEPAGE = "https://github.com/omapconf/omapconf"
- LICENSE = "GPLv2 BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
- 
--PV = "1.71+1.72-rc1"
--PR = "r0"
-+PV = "1.72"
-+PR = "r1"
- 
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
- 
- BRANCH ?= "master"
--SRCREV = "576b01f43bcbfa15fb25b2aeb17ac3b3aa70e3d7"
-+SRCREV = "e821a16e707cbde41ed07c1a05de4a497b39c000"
- 
- SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
- 
--- 
-1.7.9.5
+On 8/25/2015 9:38 AM, Jacob Stiffler wrote:
+> Ping.
+>
+> On 8/19/2015 9:58 AM, Jacob Stiffler wrote:
+>> This patch set provides the complte set of OpenCL packages for
+>> TI devices.
+>>
+>> v2 changes: Update descrption and homepage.
+>>
+>> Jacob Stiffler (5):
+>>    clocl: Add opencl kernel compiler.
+>>    opencl-monitor: Add opencl monitor firmware
+>>    ocl-gl-headers: Add GL headers required for opencl.
+>>    opencl: Add the opencl library
+>>    opencl-examples: Add the opencl examples.
+>>
+>>   meta-arago-extras/recipes-ti/ocl/clocl_git.bb      |    34 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/gl.h          |  2235 ++++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h   |  2311 ++++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glext.h       | 10776 
+>> +++++++++++++++++++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glx.h         |   513 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h  |    82 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/glxext.h      |  1001 ++
+>>   .../ocl/ocl-gl-headers/GL/internal/dri_interface.h |  1189 ++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h      |   283 +
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/wglext.h      |   901 ++
+>>   .../recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h       |   140 +
+>>   .../recipes-ti/ocl/ocl-gl-headers_git.bb           |    25 +
+>>   meta-arago-extras/recipes-ti/ocl/ocl.inc           |    10 +
+>>   .../recipes-ti/ocl/opencl-examples_git.bb          |    77 +
+>>   .../recipes-ti/ocl/opencl-monitor_git.bb           |    58 +
+>>   meta-arago-extras/recipes-ti/ocl/opencl_git.bb     |    55 +
+>>   16 files changed, 19690 insertions(+)
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/gl_mangle.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glext.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glx_mangle.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/glxext.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/internal/dri_interface.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/osmesa.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wglext.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers/GL/wmesa.h
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/ocl-gl-headers_git.bb
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/ocl.inc
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+>>   create mode 100644 
+>> meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+>>   create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+>>
+>
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
 
