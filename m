@@ -1,27 +1,27 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 369C8529F8
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 9930A529F8
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Aug 2015 08:47:00 +0000 (UTC)
+	Thu, 27 Aug 2015 08:47:18 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7R8kxfG028691
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 03:46:59 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R8kxOS026640
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 03:46:59 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 27 Aug 2015 03:46:59 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7R8lHBu002735
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 03:47:18 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R8lH7V027472
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 03:47:17 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 27 Aug 2015 03:47:17 -0500
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R8kv5P032180;
-	Thu, 27 Aug 2015 03:46:58 -0500
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R8lGXR027209;
+	Thu, 27 Aug 2015 03:47:17 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 27 Aug 2015 14:16:56 +0530
-Message-ID: <1440665216-1773-1-git-send-email-a0393906@ti.com>
+Date: Thu, 27 Aug 2015 14:17:14 +0530
+Message-ID: <1440665234-1913-1-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [daisy, master] gstreamer1.0-plugins-vpe: Bug fixes
+Subject: [daisy, master] omapdrmtest: Update SRCREV with bug fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,33 +34,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Aug 2015 08:47:00 -0000
+X-List-Received-Date: Thu, 27 Aug 2015 08:47:18 -0000
 Content-Type: text/plain
 
-The following issues are resolved with this update:
- * Reduce number of vpe output buffers in bin elements
- * Changes to input bufferpool for efficient use of buffers
+The following issues will be resolved with this update:
+ * viddec3test: move a global variable to demux structure
+ * vpe: Correct the colorspace field
+ * display-kmscube: fix race condition for buffer to face mapping
+ * vpe: Pass correct colorspace to s_fmt ioctl
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |    4 ++--
+ .../omapdrmtest/omapdrmtest_1.0.0.bb               |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-index 73a7723..7b41914 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
+diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+index 5ed1783..5d17409 100644
+--- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+@@ -6,8 +6,8 @@ DEPENDS += "libav libdce libdrm libgbm omap5-sgx-ddk-um-linux wayland"
  
- require gstreamer1.0-plugins-ti.inc
+ inherit autotools pkgconfig
  
--PR = "${INC_PR}.3"
--SRCREV = "876d28b2de5fa02d0f5fa836cba7be9a14b819eb"
-+PR = "${INC_PR}.6"
-+SRCREV = "1a8da5e527275f6bba33663d0d7017d8e1f8f7d9"
+-PR = "r7"
+-SRCREV = "a2f483ef833ce7a6f3e0b975d9e49267960b288e"
++PR = "r9"
++SRCREV = "152713c45d7972ed08f506255c43ce7ff634a9f5"
  
- SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git \
-            file://ti-video.conf \
+ SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git"
+ 
 -- 
 1.7.9.5
 
