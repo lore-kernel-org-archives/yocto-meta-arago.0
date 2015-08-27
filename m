@@ -1,27 +1,27 @@
 Return-Path: <karthik.ramanan@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A0CBB529F8
+	by arago-project.org (Postfix) with ESMTPS id 341CF52A08
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Aug 2015 08:47:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7R8lb10028753
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 03:47:37 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R8lauI023827
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 03:47:37 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 27 Aug 2015 03:47:36 -0500
+	Thu, 27 Aug 2015 09:07:50 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7R97ns4030554
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 04:07:49 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R97nst008713
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 04:07:49 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 27 Aug 2015 04:07:48 -0500
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R8lZ84000578;
-	Thu, 27 Aug 2015 03:47:35 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7R97lFr032320;
+	Thu, 27 Aug 2015 04:07:48 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 27 Aug 2015 14:17:33 +0530
-Message-ID: <1440665253-2357-1-git-send-email-a0393906@ti.com>
+Date: Thu, 27 Aug 2015 14:37:46 +0530
+Message-ID: <1440666466-25862-1-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [daisy, master] glsdk-example-apps: Add support for mediabus formats
+Subject: [daisy, master] omapconf: update to version 1.72
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,27 +34,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Aug 2015 08:47:37 -0000
+X-List-Received-Date: Thu, 27 Aug 2015 09:07:50 -0000
 Content-Type: text/plain
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../glsdk-example-apps/glsdk-example-apps.bb       |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-devtools/omapconf/omapconf_git.bb      |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-index 887450f..b9f2258 100644
---- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-+++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-@@ -12,6 +12,6 @@ S = "${WORKDIR}/git"
- inherit autotools pkgconfig
+diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
+index 5bc8a9e..4121150 100644
+--- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
++++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
+@@ -4,13 +4,13 @@ HOMEPAGE = "https://github.com/omapconf/omapconf"
+ LICENSE = "GPLv2 BSD"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
  
- SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git"
--SRCREV = "adae69a898c21bf6a905d4fb32a977713149bbd8"
-+SRCREV = "85006e48fbf6e7664699a8d0944013e1f80e8e73"
+-PV = "1.71+1.72-rc1"
+-PR = "r0"
++PV = "1.72"
++PR = "r1"
  
--PR = "r11"
-+PR = "r12"
+ COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
+ 
+ BRANCH ?= "master"
+-SRCREV = "576b01f43bcbfa15fb25b2aeb17ac3b3aa70e3d7"
++SRCREV = "e821a16e707cbde41ed07c1a05de4a497b39c000"
+ 
+ SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
+ 
 -- 
 1.7.9.5
 
