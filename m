@@ -1,29 +1,29 @@
 Return-Path: <h-gou@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id B689952A28
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 0067F52A97
 	for <meta-arago@arago-project.org>;
 	Fri, 28 Aug 2015 04:01:59 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7S41wGk016247
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 23:01:58 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t7S41xT1024562
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 23:01:59 -0500
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7S41whS003353
-	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 23:01:58 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t7S41xHX003385
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2015 23:01:59 -0500
 Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 27 Aug 2015 23:01:58 -0500
+	Thu, 27 Aug 2015 23:01:59 -0500
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t7S41vif027352;	Thu, 27 Aug 2015 23:01:58 -0500
+	t7S41vig027352;	Thu, 27 Aug 2015 23:01:58 -0500
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 28 Aug 2015 00:01:53 -0400
-Message-ID: <1440734514-16165-5-git-send-email-h-gou@ti.com>
+Date: Fri, 28 Aug 2015 00:01:54 -0400
+Message-ID: <1440734514-16165-6-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1440734514-16165-1-git-send-email-h-gou@ti.com>
 References: <1440734514-16165-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 4/5] qtbase: add dependency on libdrm for AM3 and AM4 which now use null_window DRM from SGX user module
+Subject: [PATCH 5/5] matrix-gui-3d-demos: update demo dependency for AM3 and AM4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,27 +41,32 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-index d32636f..49b3a2b 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-@@ -2,10 +2,12 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
+index 649c673..57bba86 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
  
- GLES_EXTRA_DEPS = ""
- GLES_EXTRA_DEPS_omap-a15 = "libdrm wayland"
-+GLES_EXTRA_DEPS_ti43x = "libdrm"
-+GLES_EXTRA_DEPS_ti33x = "libdrm"
+ require matrix-gui-apps-git.inc
  
- PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+-PR = "${INC_PR}.3"
++PR = "${INC_PR}.4"
  
--PR_append = "-arago9"
-+PR_append = "-arago10"
+ S = "${WORKDIR}/git/3d_apps"
  
- QT_CONFIG_FLAGS += "-qpa ${@base_contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+@@ -44,7 +44,8 @@ do_install_prepend() {
+ 3D_DEMOS_RDEPENDS_MATRIX = "matrix-gui-apps-images matrix-gui-submenus-3d"
+ 3D_DEMOS_RDEPENDS = "${3D_DEMOS_RDEPENDS_MATRIX} libgles-omap3-rawdemos"
+ 3D_DEMOS_RDEPENDS_omap-a15 = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
+-
++3D_DEMOS_RDEPENDS_ti43x    = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
++3D_DEMOS_RDEPENDS_ti33x    = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
  
+ RDEPENDS_matrix-3d-demo-chameleon = "${3D_DEMOS_RDEPENDS}"
+ RDEPENDS_matrix-3d-demo-coverflow = "${3D_DEMOS_RDEPENDS}"
 -- 
 1.9.1
 
