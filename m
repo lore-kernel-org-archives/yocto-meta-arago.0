@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7FB5C52094
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
+	[209.85.213.53])
+	by arago-project.org (Postfix) with ESMTPS id 9C430529F8
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Sep 2015 11:14:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t81BEO86031355
-	for <meta-arago@arago-project.org>; Tue, 1 Sep 2015 06:14:24 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t81BEO9f023903
-	for <meta-arago@arago-project.org>; Tue, 1 Sep 2015 06:14:24 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 1 Sep 2015 06:14:24 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t81BEOQD029837	for <meta-arago@arago-project.org>;
-	Tue, 1 Sep 2015 06:14:24 -0500
-Date: Tue, 1 Sep 2015 07:14:24 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <866532285.93.1441106064121.JavaMail.jenkins@puget>
+	Wed,  2 Sep 2015 04:00:06 +0000 (UTC)
+Received: by vkhf67 with SMTP id f67so69191759vkh.1
+	for <meta-arago@arago-project.org>;
+	Tue, 01 Sep 2015 21:00:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=f3Q/qQP/XLyzYOCRMipmmyGJQeshAiobUuUh4rsPQNw=;
+	b=cTXpKz6xAFLN3hX9DFEQskoYJRrtYVIDZ5WLhPMiBzcSdS57nOG+ZjWRLZyVWw3rCG
+	S6ySiOmvzy7iwDdDUWZzVt6nSPhnb0Z10xdBrA2qwhRBRINdVLuitu66zauoK9+k+rUf
+	v/AzvuLSorb4yldlosn5ZUWpeiC4nfo+ds2b7qVKQev1uqUjh79Y/IJiLDgF2SNNzLSr
+	Pq4ucGmtV1qJqXPZnXwr2gEOs207VU8HD3S/ZQ2Mq1KlwgP0ZEixC+dP8zWhnIpIVAkB
+	OFHjAkZ6g6Vy4ngHa0DHtS/rmfgmOofyJOuQDxZJAtya/rbtSRCF4su5j74VeBHm5WtU
+	6MyQ==
+X-Received: by 10.53.11.226 with SMTP id el2mr35696913vdd.37.1441166405794;
+	Tue, 01 Sep 2015 21:00:05 -0700 (PDT)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-daisy
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2015-09-01_05-01-41
+Received: by 10.31.201.130 with HTTP; Tue, 1 Sep 2015 20:59:46 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Wed, 2 Sep 2015 15:59:46 +1200
+Message-ID: <CADySD0GtpTGt+5mWrofmk5EBSxPAC1+kJo3piYKUY9+=Srq9xA@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Using 1GB Nand with AM335x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,212 +37,180 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Sep 2015 11:14:27 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_92_1572939265.1441106064055"
+X-List-Received-Date: Wed, 02 Sep 2015 04:00:06 -0000
+Content-Type: multipart/alternative; boundary=001a11360486ae01e1051ebbb3db
 
-------=_Part_92_1572939265.1441106064055
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a11360486ae01e1051ebbb3db
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<title>
-Status for 09/01/15
-</title>
-</head>
-<body>
+Hi,
 
-<h2>Status for 09/01/15</h2>
+I have following queries regarding usage of 1GB Nand (MT29F8G16ABACAWP)
+with AM335x
 
-<h2>BUILD_ID: build-2015-09-01_05-02-50</h2>
+- what is the meaning of cells in "reg" property of gpmc nand child node ?
+Information here is not clear
+http://lxr.free-electrons.com/source/Documentation/devicetree/bindings/mtd/=
+gpmc-nand.txt?v=3D3.14
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="am335x-evm am437x-evm dra7xx-evm am57xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
-</p>
-
-</body>
-</html>
+- what should be the value of property "gpmc,device-width" if
+"nand-bus-width=3D <16>" ? I think it should be "2"
 
 
-------=_Part_92_1572939265.1441106064055--
+Please confirm whether below is correct for 1GB 16-bit bus-width nand
+
+&gpmc {
+	status =3D "okay";
+	pinctrl-names =3D "default", "sleep";
+	pinctrl-0 =3D <&nandflash_pins_default>;
+	pinctrl-1 =3D <&nandflash_pins_sleep>;
+	ranges =3D <0 0 0x08000000 0x40000000>;	/* CS0: NAND */
+	nand@0,0 {
+		reg =3D <0 0 0>; /* CS0, offset 0 */
+		ti,nand-ecc-opt =3D "bch16";
+		ti,elm-id =3D <&elm>;
+		nand-bus-width =3D <16>;
+		gpmc,device-width =3D <2>;
+		#address-cells =3D <1>;
+		#size-cells =3D <1>;
+		partition@0 {
+			label =3D "NAND.SPL";
+			reg =3D <0x00000000 0x000040000>;
+		};
+		partition@1 {
+			label =3D "NAND.SPL.backup1";
+			reg =3D <0x00040000 0x00040000>;
+		};
+		partition@2 {
+			label =3D "NAND.SPL.backup2";
+			reg =3D <0x00080000 0x00040000>;
+		};
+		partition@3 {
+			label =3D "NAND.SPL.backup3";
+			reg =3D <0x000c0000 0x00040000>;
+		};
+		partition@4 {
+			label =3D "NAND.u-boot-spl-os";
+			reg =3D <0x00100000 0x00080000>;
+		};
+		partition@5 {
+			label =3D "NAND.u-boot";
+			reg =3D <0x00180000 0x00200000>;
+		};
+		partition@6 {
+			label =3D "NAND.u-boot-env";
+			reg =3D <0x00380000 0x00040000>;
+		};
+		partition@7 {
+			label =3D "NAND.u-boot-env.backup1";
+			reg =3D <0x003c0000 0x00040000>;
+		};
+		partition@8 {
+			label =3D "NAND.kernel";
+			reg =3D <0x00400000 0x00600000>;
+		};
+		partition@9 {
+			label =3D "NAND.file-system";
+			reg =3D <0x00A00000 0x1F600000>;
+		};
+	}
+}
+
+
+Please also confirm the following arguments for UBIFS :
+
+mkfs.ubifs -r </path/rootfs> -o </path/rootfs.ubifs> -F =E2=80=93m 4096 =E2=
+=80=93e
+253952 =E2=80=93c 1918
+ubinize -o </path/rootfs.ubi> -m 4096 -p 256KiB -s 1024 -O 4096 ubinize.cfg
+ubiformat /dev/mtd9 -f rootfs.ubi -s 1024 -O 4096
+
+
+Thanks
+
+Ankur
+
+--001a11360486ae01e1051ebbb3db
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif;font-size:small;color:#333399">Hi,<br></div><div class=3D"gmail_quote=
+"><div dir=3D"ltr"><div style=3D"font-family:georgia,serif;font-size:small;=
+color:rgb(51,51,153)"><p>I have following queries regarding usage of 1GB Na=
+nd (MT29F8G16ABACAWP) with AM335x<br></p><p>- what is the meaning of cells =
+in &quot;reg&quot; property of gpmc nand child node ? Information here=C2=
+=A0is not clear=C2=A0<a href=3D"http://lxr.free-electrons.com/source/Docume=
+ntation/devicetree/bindings/mtd/gpmc-nand.txt?v=3D3.14" target=3D"_blank">h=
+ttp://lxr.free-electrons.com/source/Documentation/devicetree/bindings/mtd/g=
+pmc-nand.txt?v=3D3.14</a> <br></p><p>- what should be the value of property=
+ &quot;gpmc,device-width&quot; if &quot;nand-bus-width=3D &lt;16&gt;&quot; =
+? I think it should be &quot;2&quot;<br></p><p><br></p><p>Please confirm wh=
+ether below is correct for 1GB 16-bit bus-width nand<br></p><pre>&amp;gpmc =
+{
+	status =3D &quot;okay&quot;;
+	pinctrl-names =3D &quot;default&quot;, &quot;sleep&quot;;
+	pinctrl-0 =3D &lt;&amp;nandflash_pins_default&gt;;
+	pinctrl-1 =3D &lt;&amp;nandflash_pins_sleep&gt;;
+	ranges =3D &lt;0 0 0x08000000 0x40000000&gt;;	/* CS0: NAND */
+	nand@0,0 {
+		reg =3D &lt;0 0 0&gt;; /* CS0, offset 0 */
+		ti,nand-ecc-opt =3D &quot;bch16&quot;;
+		ti,elm-id =3D &lt;&amp;elm&gt;;
+		nand-bus-width =3D &lt;16&gt;;
+		gpmc,device-width =3D &lt;2&gt;;
+		#address-cells =3D &lt;1&gt;;
+		#size-cells =3D &lt;1&gt;;
+		partition@0 {
+			label =3D &quot;NAND.SPL&quot;;
+			reg =3D &lt;0x00000000 0x000040000&gt;;
+		};
+		partition@1 {
+			label =3D &quot;NAND.SPL.backup1&quot;;
+			reg =3D &lt;0x00040000 0x00040000&gt;;
+		};
+		partition@2 {
+			label =3D &quot;NAND.SPL.backup2&quot;;
+			reg =3D &lt;0x00080000 0x00040000&gt;;
+		};
+		partition@3 {
+			label =3D &quot;NAND.SPL.backup3&quot;;
+			reg =3D &lt;0x000c0000 0x00040000&gt;;
+		};
+		partition@4 {
+			label =3D &quot;NAND.u-boot-spl-os&quot;;
+			reg =3D &lt;0x00100000 0x00080000&gt;;
+		};
+		partition@5 {
+			label =3D &quot;NAND.u-boot&quot;;
+			reg =3D &lt;0x00180000 0x00200000&gt;;
+		};
+		partition@6 {
+			label =3D &quot;NAND.u-boot-env&quot;;
+			reg =3D &lt;0x00380000 0x00040000&gt;;
+		};
+		partition@7 {
+			label =3D &quot;NAND.u-boot-env.backup1&quot;;
+			reg =3D &lt;0x003c0000 0x00040000&gt;;
+		};
+		partition@8 {
+			label =3D &quot;NAND.kernel&quot;;
+			reg =3D &lt;0x00400000 0x00600000&gt;;
+		};
+		partition@9 {
+			label =3D &quot;NAND.file-system&quot;;
+			reg =3D &lt;0x00A00000 0x1F600000&gt;;
+		};
+	}
+}</pre><p><br></p><p>Please also confirm the following arguments for UBIFS =
+:<br></p><pre>mkfs.ubifs -r &lt;/path/rootfs&gt; -o &lt;/path/rootfs.ubifs&=
+gt; -F =E2=80=93m 4096 =E2=80=93e 253952 =E2=80=93c 1918
+ubinize -o &lt;/path/rootfs.ubi&gt; -m 4096 -p 256KiB -s 1024 -O 4096 ubini=
+ze.cfg
+ubiformat /dev/mtd9 -f rootfs.ubi -s 1024 -O 4096</pre><p><br></p><p>Thanks=
+<span class=3D"HOEnZb"><font color=3D"#888888"><br></font></span></p><span =
+class=3D"HOEnZb"><font color=3D"#888888"><p>Ankur</p></font></span></div></=
+div></div></div>
+
+--001a11360486ae01e1051ebbb3db--
