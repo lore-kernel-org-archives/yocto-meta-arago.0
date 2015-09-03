@@ -1,29 +1,29 @@
-Return-Path: <jake@udd0866934>
+Return-Path: <denys@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C5D2252A14
+	by arago-project.org (Postfix) with ESMTPS id 9676852A79
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Sep 2015 14:55:33 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t82EtXXW007853
-	for <meta-arago@arago-project.org>; Wed, 2 Sep 2015 09:55:33 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t82EtXUU018274
-	for <meta-arago@arago-project.org>; Wed, 2 Sep 2015 09:55:33 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 2 Sep 2015 09:55:32 -0500
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t82EtWBx010884;
-	Wed, 2 Sep 2015 09:55:33 -0500
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1ZX9Rk-00041y-8P; Wed, 02 Sep 2015 10:55:32 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Thu,  3 Sep 2015 06:02:28 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t8362R0t014365
+	for <meta-arago@arago-project.org>; Thu, 3 Sep 2015 01:02:27 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8362Rne024587
+	for <meta-arago@arago-project.org>; Thu, 3 Sep 2015 01:02:27 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 3 Sep 2015 01:02:27 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t8362RLK009824	for <meta-arago@arago-project.org>;
+	Thu, 3 Sep 2015 01:02:27 -0500
+Date: Thu, 3 Sep 2015 02:02:27 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 2 Sep 2015 10:55:28 -0400
-Message-ID: <1441205728-15460-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+Message-ID: <902379132.103.1441260147341.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui: workaround for GUI apps with weston
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.08 build 2015-09-02_23-01-41
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,153 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Sep 2015 14:55:34 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 03 Sep 2015 06:02:28 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_102_1006650714.1441260147207"
 
-* For all GUI apps, shutdown matrix before launching
-  - This is needed since matrix is launched fullscreen, and another
-    GUI app may get hidden behind matrix with no way to recover.
-* For MM and 3D apps, shutdown weston before launching
-  - These apps use KMS sink, which collides with weston.
+------=_Part_102_1006650714.1441260147207
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- ...mmand-workaround-for-GUI-apps-with-weston.patch | 103 +++++++++++++++++++++
- .../recipes-core/matrix/matrix-gui_2.0.bb          |   3 +-
- 2 files changed, 105 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
+<html>
+<head>
+<title>
+Status for 09/03/15
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
-new file mode 100644
-index 0000000..860fbcd
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
-@@ -0,0 +1,103 @@
-+From 1fcef8505e6cb8769e84c3bd3e0abd67579bcd68 Mon Sep 17 00:00:00 2001
-+From: Jacob Stiffler <j-stiffler@ti.com>
-+Date: Wed, 2 Sep 2015 09:55:05 -0400
-+Subject: [PATCH] execute_command: workaround for GUI apps with weston
-+
-+* For all GUI apps, shutdown matrix before launching
-+  - This is needed since matrix is launched fullscreen, and another
-+    GUI app may get hidden behind matrix with no way to recover.
-+* For MM and 3D apps, shutdown weston before launching
-+  - These apps use KMS sink, which collides with weston.
-+
-+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-+---
-+ execute_command.sh | 34 +++++++++++++++++++++++++++++++++-
-+ generate.php       |  2 ++
-+ run_script.php     |  2 +-
-+ 3 files changed, 36 insertions(+), 2 deletions(-)
-+
-+diff --git a/execute_command.sh b/execute_command.sh
-+index 018c632..86d7106 100755
-+--- a/execute_command.sh
-++++ b/execute_command.sh
-+@@ -59,7 +59,17 @@ do
-+ 	outputfilename=$item 
-+   fi
-+ 
-+-  if [ $i -gt 1 ]
-++  if [ $i -eq 2 ]
-++  then
-++    program_type=$item
-++  fi
-++
-++  if [ $i -eq 3 ]
-++  then
-++    category=$item
-++  fi
-++
-++  if [ $i -gt 3 ]
-+   then
-+     touch "lock/"$item
-+ 
-+@@ -68,10 +78,32 @@ do
-+ 
-+ done
-+ 
-++if [ $program_type == gui ]
-++then
-++  /etc/init.d/matrix-gui-2.0 stop
-++
-++  if [ $category == 3d -o $category == multimedia ]
-++  then
-++    /etc/init.d/weston stop
-++    sleep 1
-++  fi
-++fi
-++
-+ echo "Filename:"$filename
-+ echo "Output:"$outputfilename
-+ eval $filename > "tmp/"$outputfilename 2>&1
-+ 
-++if [ $program_type == gui ]
-++then
-++  if [ $category == 3d -o $category == multimedia ]
-++  then
-++    /etc/init.d/weston start
-++    sleep 1
-++  fi
-++
-++  /etc/init.d/matrix-gui-2.0 start
-++fi
-++
-+ #Using a more unique string to detect if the script is completed
-+ echo "_?!!MATRIX_SCRIPT_COMPLETED!!?_" >> "tmp/"$outputfilename
-+ 
-+diff --git a/generate.php b/generate.php
-+index 10cfed4..7c08282 100644
-+--- a/generate.php
-++++ b/generate.php
-+@@ -105,6 +105,8 @@ for($x = 0;$x<count($contents)&&strlen($contents[$x])>0;$x++)
-+ 		$top["Description_Link"] = get_contents("X-MATRIX-Description",$dotdesktop);
-+ 
-+ 		$top["Lock"] = get_contents("X-MATRIX-LOCK",$dotdesktop);
-++
-++		$top["Category"] = get_contents("Categories",$dotdesktop);
-+ 	} 
-+ 
-+ 	if($category == -1)
-+diff --git a/run_script.php b/run_script.php
-+index 9dd7a10..1481b17 100644
-+--- a/run_script.php
-++++ b/run_script.php
-+@@ -91,7 +91,7 @@ if($currently_locked==false)
-+ 	$random_string = strval(rand());
-+ 	$random_string .= strval(rand());
-+ 
-+-	$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt ".$lock_list;
-++	$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt \"".$found_app["ProgramType"]."\" \"".$found_app["Category"]."\" ".$lock_list;
-+ 
-+ 	$last_line = system($script_command." > /dev/null 2>/dev/null & ", $retval);
-+ }
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index df17ffe..e379a8d 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
- 
- SECTION = "multimedia"
- 
--PR = "r27"
-+PR = "r28"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -24,6 +24,7 @@ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=
-            file://${MATRIX_INITSCRIPT} \
-            file://php.ini \
-            ${@base_conditional('QT_PROVIDER', 'qt5', base_contains('DISTRO_FEATURES', 'wayland', '', 'file://0001-execute_command-Stop-matrix-when-running-a-GUI-demo.patch', d), '', d)} \
-+           ${@base_contains('DISTRO_FEATURES', 'wayland', 'file://0001-execute_command-workaround-for-GUI-apps-with-weston.patch', '', d)} \
- "
- 
- require matrix-gui-paths.inc
--- 
-1.9.1
+<h2>Status for 09/03/15</h2>
+
+<h2>BUILD_ID: build-2015-09-02_23-02-44</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>97ce05c0b2a81f05388d7f727741529fb9177775</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.08"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.02/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_102_1006650714.1441260147207--
