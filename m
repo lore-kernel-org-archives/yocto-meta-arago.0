@@ -1,27 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 77C6052A21
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 018B552A28
 	for <meta-arago@arago-project.org>;
-	Fri,  4 Sep 2015 20:01:10 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173021.mailsrvcs.net
+	Fri,  4 Sep 2015 20:02:13 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
 	16 2014))
-	with ESMTPSA id <0NU6000JA4XA1U90@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 04 Sep 2015 15:00:46 -0500 (CDT)
+	with ESMTPSA id <0NU600AP64ZJOZN0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 04 Sep 2015 15:02:12 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=ff-B7xzCdYMA:10 a=sozttTNsAAAA:8
-	a=eNSs0AzVi8gfCgP-aKcA:9
+	a=TcUN6v173rxkS-YU7YMA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 2134D161BD2;	Fri,
-	4 Sep 2015 16:00:46 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 31A36161BD2;	Fri,
+	4 Sep 2015 16:02:07 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 04 Sep 2015 16:00:45 -0400
-Message-id: <1441396845-19291-1-git-send-email-denis@denix.org>
+Date: Fri, 04 Sep 2015 16:02:06 -0400
+Message-id: <1441396926-20867-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [master/fido][PATCH v2] arago-prefs: u-boot-ti-staging is now default for keystone
+Subject: [master/fido][PATCH] external-linaro-toolchain: pre-populate /etc/ld.so.conf to help ld-linux find libs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +34,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Sep 2015 20:01:13 -0000
+X-List-Received-Date: Fri, 04 Sep 2015 20:02:13 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+Linaro 2015.05 moved libs around between /usr/lib and /lib, so some assumptions
+by ld-linux linker/loader may no longer be true, configure defaults accordingly
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 9 ---------
- 1 file changed, 9 deletions(-)
+ .../recipes-core/meta/external-linaro-toolchain.bbappend              | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 4f47d5b..cc2c4db 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -69,16 +69,7 @@ PREFERRED_PROVIDER_virtual/libgles2_keystone = "mesa"
- PREFERRED_PROVIDER_virtual/libgl_keystone = "mesa"
- PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index 1830d77..0040412 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -4,7 +4,7 @@ ALLOW_EMPTY_ldd = "1"
+ ALLOW_EMPTY_libstdc++ = "1"
+ ALLOW_EMPTY_libgomp = "1"
  
--# Use the mainline u-boot recipe for TI devices unless overridden below
--PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
--PREFERRED_PROVIDER_u-boot = "u-boot"
--PREFERRED_VERSION_u-boot = "2014.07"
--
- # Use latest TI staging kernel and u-boot trees
--PREFERRED_PROVIDER_virtual/bootloader_keystone = "u-boot-keystone"
--PREFERRED_PROVIDER_u-boot_keystone = "u-boot-keystone"
--PREFERRED_VERSION_linux-keystone = "3.10%"
--
- PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-ti-staging"
- PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "linux-ti-staging"
- PREFERRED_VERSION_linux-ti-staging = "4.1%"
+-PR_append = "-arago16"
++PR_append = "-arago17"
+ 
+ PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
+ PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
+@@ -91,6 +91,8 @@ do_install_append() {
+ 
+ 	install -d ${D}/${base_sbindir}
+ 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${base_sbindir}/ldconfig ${D}/${base_sbindir}/
++	install -d ${D}/${sysconfdir}
++	echo -e "/lib\n/usr/lib" >> ${D}/${sysconfdir}/ld.so.conf
+ 
+ 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/asm*; rm -rf ${D}${includedir}/drm; rm -rf ${D}${includedir}/linux; rm -rf ${D}${includedir}/mtd; rm -rf ${D}${includedir}/rdma; rm -rf ${D}${includedir}/sound; rm -rf ${D}${includedir}/video', d)}
+ 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/misc/.install; rm -rf ${D}${includedir}/misc/cxl.h; rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
 -- 
 2.2.0
 
