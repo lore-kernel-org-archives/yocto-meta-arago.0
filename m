@@ -1,27 +1,27 @@
-Return-Path: <h-gou@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 55CED529BC
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 45C33529FA
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Sep 2015 14:21:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t88ELEYm010089
-	for <meta-arago@arago-project.org>; Tue, 8 Sep 2015 09:21:14 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t88ELE22008672
-	for <meta-arago@arago-project.org>; Tue, 8 Sep 2015 09:21:14 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 8 Sep 2015 09:21:08 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t88ELEFF006661;	Tue, 8 Sep 2015 09:21:14 -0500
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 8 Sep 2015 10:21:11 -0400
-Message-ID: <1441722071-13351-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] img-pvr-sdk: Bump SRCREV
+	Tue,  8 Sep 2015 15:55:34 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NUD00IDK88156M0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 08 Sep 2015 10:55:18 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=ff-B7xzCdYMA:10 a=sozttTNsAAAA:8
+	a=s0xFg_XHMkChdAgMgMIA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id E2ED4161BD6;	Tue,
+	8 Sep 2015 11:55:12 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 08 Sep 2015 11:55:12 -0400
+Message-id: <1441727712-28199-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] cryptodev-module: update for changed variable syntax
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,35 +34,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Sep 2015 14:21:17 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 08 Sep 2015 15:55:35 -0000
 
-* Use demo applications which are rebuilt with .so.* libs
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend            | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-index bc4ad9b..516ec6a 100644
---- a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-+++ b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-@@ -10,10 +10,10 @@ BRANCH_ti43x = "am4/k4.1"
+diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend
+index 24c99ed..0a3d1be 100644
+--- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend
++++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend
+@@ -1,6 +1,6 @@
+-PR_append = "-arago5"
++PR_append = "-arago6"
  
- SRC_URI = "git://git.ti.com/graphics/img-pvr-sdk.git;protocol=git;branch=${BRANCH}"
- SRCREV_omap-a15 = "c2456ec3f03da022fb7489d6b381a4ac26a68203"
--SRCREV_ti33x = "f753b6c00168f9dd534c2b34206845d3cdddabe6"
--SRCREV_ti43x = "f753b6c00168f9dd534c2b34206845d3cdddabe6"
-+SRCREV_ti33x = "c4df891d6842600a5affdc479269540099e20fda"
-+SRCREV_ti43x = "c4df891d6842600a5affdc479269540099e20fda"
+-module_autoload_cryptodev = "cryptodev"
++KERNEL_MODULE_AUTOLOAD += "cryptodev"
  
--PR = "r2"
-+PR = "r3"
- 
- COMPATIBLE_MACHINE = "dra7xx|ti43x|ti33x"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
 -- 
-1.9.1
+2.2.0
 
 
