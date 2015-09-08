@@ -1,29 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 76FEB529BC
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id E9BB05209B
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Sep 2015 21:04:11 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t88L4AAR013540
-	for <meta-arago@arago-project.org>; Tue, 8 Sep 2015 16:04:10 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t88L4AB0024657
-	for <meta-arago@arago-project.org>; Tue, 8 Sep 2015 16:04:10 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 8 Sep 2015 16:04:03 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t88L4AH7017897	for <meta-arago@arago-project.org>;
-	Tue, 8 Sep 2015 16:04:10 -0500
-Date: Tue, 8 Sep 2015 17:04:09 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <43577935.153.1441746250019.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.09 build 2015-09-08_11-59-53
+	Tue,  8 Sep 2015 21:45:12 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NUD0015GOETFGB1@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 08 Sep 2015 16:44:55 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=ff-B7xzCdYMA:10 a=sozttTNsAAAA:8
+	a=gHvrztcjAAAA:8 a=3tcz3bTJAAAA:8	a=9MxS-y3_KvG8FtTRqOMA:9
+	a=hQPmHTgTrNxfemI4:21 a=7_qYlc5lv-3j6l9E:21	a=JACYB0tQtnoA:10
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 9186A161BDE;	Tue,
+	8 Sep 2015 17:44:53 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 08 Sep 2015 17:44:53 -0400
+Message-id: <1441748693-16022-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] openssl: update local patches against 1.0.2d version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,212 +35,3387 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Sep 2015 21:04:11 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_152_451425198.1441746249753"
+X-List-Received-Date: Tue, 08 Sep 2015 21:45:13 -0000
 
-------=_Part_152_451425198.1441746249753
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 09/08/15
-</title>
-</head>
-<body>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ ...todev-Fix-issue-with-signature-generation.patch |  445 ++++
+ ...1-eng_cryptodev.c-update-to-cryptodev-1.6.patch | 2628 --------------------
+ ...0002-cryptodev-allow-copying-EVP-contexts.patch |  202 ++
+ ...ev-Add-SHA224-initialization-to-cryptodev.patch |   37 +-
+ ...ssl_1.0.1m.bbappend => openssl_1.0.2d.bbappend} |    3 +-
+ 5 files changed, 667 insertions(+), 2648 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-connectivity/openssl/openssl/0001-cryptodev-Fix-issue-with-signature-generation.patch
+ delete mode 100644 meta-arago-distro/recipes-connectivity/openssl/openssl/0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch
+ create mode 100644 meta-arago-distro/recipes-connectivity/openssl/openssl/0002-cryptodev-allow-copying-EVP-contexts.patch
+ rename meta-arago-distro/recipes-connectivity/openssl/{openssl_1.0.1m.bbappend => openssl_1.0.2d.bbappend} (86%)
 
-<h2>Status for 09/08/15</h2>
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl/0001-cryptodev-Fix-issue-with-signature-generation.patch b/meta-arago-distro/recipes-connectivity/openssl/openssl/0001-cryptodev-Fix-issue-with-signature-generation.patch
+new file mode 100644
+index 0000000..327c204
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl/0001-cryptodev-Fix-issue-with-signature-generation.patch
+@@ -0,0 +1,445 @@
++From 86abebcfddaecf6492a7893c1ae2403679358a51 Mon Sep 17 00:00:00 2001
++From: Nikos Mavrogiannopoulos <nmav@gnutls.org>
++Date: Tue, 8 Sep 2015 17:14:55 -0400
++Subject: [PATCH] cryptodev: Fix issue with signature generation
++
++That patch also enables support for SHA2 hashes, and
++removes support for hashes that were never supported by
++cryptodev.
++---
++ crypto/engine/eng_cryptodev.c | 195 +++++++++++++++++++++++++++++++-----------
++ 1 file changed, 146 insertions(+), 49 deletions(-)
++
++diff --git a/crypto/engine/eng_cryptodev.c b/crypto/engine/eng_cryptodev.c
++index 926d95c..b7bff89 100644
++--- a/crypto/engine/eng_cryptodev.c
+++++ b/crypto/engine/eng_cryptodev.c
++@@ -2,6 +2,7 @@
++  * Copyright (c) 2002 Bob Beck <beck@openbsd.org>
++  * Copyright (c) 2002 Theo de Raadt
++  * Copyright (c) 2002 Markus Friedl
+++ * Copyright (c) 2012 Nikos Mavrogiannopoulos
++  * All rights reserved.
++  *
++  * Redistribution and use in source and binary forms, with or without
++@@ -72,7 +73,6 @@ struct dev_crypto_state {
++     struct session_op d_sess;
++     int d_fd;
++ # ifdef USE_CRYPTODEV_DIGESTS
++-    char dummy_mac_key[HASH_MAX_LEN];
++     unsigned char digest_res[HASH_MAX_LEN];
++     char *mac_data;
++     int mac_len;
++@@ -189,8 +189,10 @@ static struct {
++ static struct {
++     int id;
++     int nid;
++-    int keylen;
+++    int digestlen;
++ } digests[] = {
+++#if 0
+++    /* HMAC is not supported */
++     {
++         CRYPTO_MD5_HMAC, NID_hmacWithMD5, 16
++     },
++@@ -198,15 +200,15 @@ static struct {
++         CRYPTO_SHA1_HMAC, NID_hmacWithSHA1, 20
++     },
++     {
++-        CRYPTO_RIPEMD160_HMAC, NID_ripemd160, 16
++-        /* ? */
+++        CRYPTO_SHA2_256_HMAC, NID_hmacWithSHA256, 32
++     },
++     {
++-        CRYPTO_MD5_KPDK, NID_undef, 0
+++        CRYPTO_SHA2_384_HMAC, NID_hmacWithSHA384, 48
++     },
++     {
++-        CRYPTO_SHA1_KPDK, NID_undef, 0
+++        CRYPTO_SHA2_512_HMAC, NID_hmacWithSHA512, 64
++     },
+++#endif
++     {
++         CRYPTO_MD5, NID_md5, 16
++     },
++@@ -214,6 +216,15 @@ static struct {
++         CRYPTO_SHA1, NID_sha1, 20
++     },
++     {
+++        CRYPTO_SHA2_256, NID_sha256, 32
+++    },
+++    {
+++        CRYPTO_SHA2_384, NID_sha384, 48
+++    },
+++    {
+++        CRYPTO_SHA2_512, NID_sha512, 64
+++    },
+++    {
++         0, NID_undef, 0
++     },
++ };
++@@ -288,13 +299,14 @@ static int get_cryptodev_ciphers(const int **cnids)
++     static int nids[CRYPTO_ALGORITHM_MAX];
++     struct session_op sess;
++     int fd, i, count = 0;
+++    unsigned char fake_key[CRYPTO_CIPHER_MAX_KEY_LEN];
++ 
++     if ((fd = get_dev_crypto()) < 0) {
++         *cnids = NULL;
++         return (0);
++     }
++     memset(&sess, 0, sizeof(sess));
++-    sess.key = (caddr_t) "123456789abcdefghijklmno";
+++    sess.key = (void*)fake_key;
++ 
++     for (i = 0; ciphers[i].id && count < CRYPTO_ALGORITHM_MAX; i++) {
++         if (ciphers[i].nid == NID_undef)
++@@ -327,18 +339,19 @@ static int get_cryptodev_digests(const int **cnids)
++     static int nids[CRYPTO_ALGORITHM_MAX];
++     struct session_op sess;
++     int fd, i, count = 0;
+++    unsigned char fake_key[CRYPTO_CIPHER_MAX_KEY_LEN];
++ 
++     if ((fd = get_dev_crypto()) < 0) {
++         *cnids = NULL;
++         return (0);
++     }
++     memset(&sess, 0, sizeof(sess));
++-    sess.mackey = (caddr_t) "123456789abcdefghijklmno";
+++    sess.mackey = fake_key;
++     for (i = 0; digests[i].id && count < CRYPTO_ALGORITHM_MAX; i++) {
++         if (digests[i].nid == NID_undef)
++             continue;
++         sess.mac = digests[i].id;
++-        sess.mackeylen = digests[i].keylen;
+++        sess.mackeylen = 8;
++         sess.cipher = 0;
++         if (ioctl(fd, CIOCGSESSION, &sess) != -1 &&
++             ioctl(fd, CIOCFSESSION, &sess.ses) != -1)
++@@ -424,14 +437,14 @@ cryptodev_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
++     cryp.ses = sess->ses;
++     cryp.flags = 0;
++     cryp.len = inl;
++-    cryp.src = (caddr_t) in;
++-    cryp.dst = (caddr_t) out;
+++    cryp.src = (void*) in;
+++    cryp.dst = (void*) out;
++     cryp.mac = 0;
++ 
++     cryp.op = ctx->encrypt ? COP_ENCRYPT : COP_DECRYPT;
++ 
++     if (ctx->cipher->iv_len) {
++-        cryp.iv = (caddr_t) ctx->iv;
+++        cryp.iv = (void*) ctx->iv;
++         if (!ctx->encrypt) {
++             iiv = in + inl - ctx->cipher->iv_len;
++             memcpy(save_iv, iiv, ctx->cipher->iv_len);
++@@ -483,7 +496,7 @@ cryptodev_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
++     if ((state->d_fd = get_dev_crypto()) < 0)
++         return (0);
++ 
++-    sess->key = (caddr_t) key;
+++    sess->key = (void*)key;
++     sess->keylen = ctx->key_len;
++     sess->cipher = cipher;
++ 
++@@ -749,16 +762,6 @@ static int digest_nid_to_cryptodev(int nid)
++     return (0);
++ }
++ 
++-static int digest_key_length(int nid)
++-{
++-    int i;
++-
++-    for (i = 0; digests[i].id; i++)
++-        if (digests[i].nid == nid)
++-            return digests[i].keylen;
++-    return (0);
++-}
++-
++ static int cryptodev_digest_init(EVP_MD_CTX *ctx)
++ {
++     struct dev_crypto_state *state = ctx->md_data;
++@@ -769,7 +772,6 @@ static int cryptodev_digest_init(EVP_MD_CTX *ctx)
++         printf("cryptodev_digest_init: Can't get digest \n");
++         return (0);
++     }
++-
++     memset(state, 0, sizeof(struct dev_crypto_state));
++ 
++     if ((state->d_fd = get_dev_crypto()) < 0) {
++@@ -777,8 +779,8 @@ static int cryptodev_digest_init(EVP_MD_CTX *ctx)
++         return (0);
++     }
++ 
++-    sess->mackey = state->dummy_mac_key;
++-    sess->mackeylen = digest_key_length(ctx->digest->type);
+++    sess->mackey = NULL;
+++    sess->mackeylen = 0;
++     sess->mac = digest;
++ 
++     if (ioctl(state->d_fd, CIOCGSESSION, sess) < 0) {
++@@ -794,8 +796,8 @@ static int cryptodev_digest_init(EVP_MD_CTX *ctx)
++ static int cryptodev_digest_update(EVP_MD_CTX *ctx, const void *data,
++                                    size_t count)
++ {
++-    struct crypt_op cryp;
++     struct dev_crypto_state *state = ctx->md_data;
+++    struct crypt_op cryp;
++     struct session_op *sess = &state->d_sess;
++ 
++     if (!data || state->d_fd < 0) {
++@@ -804,7 +806,7 @@ static int cryptodev_digest_update(EVP_MD_CTX *ctx, const void *data,
++     }
++ 
++     if (!count) {
++-        return (0);
+++        return (1);
++     }
++ 
++     if (!(ctx->flags & EVP_MD_CTX_FLAG_ONESHOT)) {
++@@ -828,9 +830,9 @@ static int cryptodev_digest_update(EVP_MD_CTX *ctx, const void *data,
++     cryp.ses = sess->ses;
++     cryp.flags = 0;
++     cryp.len = count;
++-    cryp.src = (caddr_t) data;
+++    cryp.src = (void*) data;
++     cryp.dst = NULL;
++-    cryp.mac = (caddr_t) state->digest_res;
+++    cryp.mac = (void*) state->digest_res;
++     if (ioctl(state->d_fd, CIOCCRYPT, &cryp) < 0) {
++         printf("cryptodev_digest_update: digest failed\n");
++         return (0);
++@@ -844,8 +846,6 @@ static int cryptodev_digest_final(EVP_MD_CTX *ctx, unsigned char *md)
++     struct dev_crypto_state *state = ctx->md_data;
++     struct session_op *sess = &state->d_sess;
++ 
++-    int ret = 1;
++-
++     if (!md || state->d_fd < 0) {
++         printf("cryptodev_digest_final: illegal input\n");
++         return (0);
++@@ -859,7 +859,7 @@ static int cryptodev_digest_final(EVP_MD_CTX *ctx, unsigned char *md)
++         cryp.len = state->mac_len;
++         cryp.src = state->mac_data;
++         cryp.dst = NULL;
++-        cryp.mac = (caddr_t) md;
+++        cryp.mac = (void*)md;
++         if (ioctl(state->d_fd, CIOCCRYPT, &cryp) < 0) {
++             printf("cryptodev_digest_final: digest failed\n");
++             return (0);
++@@ -870,7 +870,7 @@ static int cryptodev_digest_final(EVP_MD_CTX *ctx, unsigned char *md)
++ 
++     memcpy(md, state->digest_res, ctx->digest->md_size);
++ 
++-    return (ret);
+++    return 1;
++ }
++ 
++ static int cryptodev_digest_cleanup(EVP_MD_CTX *ctx)
++@@ -921,8 +921,8 @@ static int cryptodev_digest_copy(EVP_MD_CTX *to, const EVP_MD_CTX *from)
++ 
++     digest = digest_nid_to_cryptodev(to->digest->type);
++ 
++-    sess->mackey = dstate->dummy_mac_key;
++-    sess->mackeylen = digest_key_length(to->digest->type);
+++    sess->mackey = NULL;
+++    sess->mackeylen = 0;
++     sess->mac = digest;
++ 
++     dstate->d_fd = get_dev_crypto();
++@@ -947,32 +947,116 @@ static int cryptodev_digest_copy(EVP_MD_CTX *to, const EVP_MD_CTX *from)
++ 
++ const EVP_MD cryptodev_sha1 = {
++     NID_sha1,
++-    NID_undef,
+++    NID_sha1WithRSAEncryption,
++     SHA_DIGEST_LENGTH,
+++#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+++    EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+++    EVP_MD_FLAG_DIGALGID_ABSENT|
+++#endif
++     EVP_MD_FLAG_ONESHOT,
++     cryptodev_digest_init,
++     cryptodev_digest_update,
++     cryptodev_digest_final,
++     cryptodev_digest_copy,
++     cryptodev_digest_cleanup,
++-    EVP_PKEY_NULL_method,
+++    EVP_PKEY_RSA_method,
++     SHA_CBLOCK,
++-    sizeof(struct dev_crypto_state),
+++    sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
++ };
++ 
++-const EVP_MD cryptodev_md5 = {
+++static const EVP_MD cryptodev_sha256 = {
+++    NID_sha256,
+++    NID_sha256WithRSAEncryption,
+++    SHA256_DIGEST_LENGTH,
+++#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+++    EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+++    EVP_MD_FLAG_DIGALGID_ABSENT|
+++#endif
+++    EVP_MD_FLAG_ONESHOT,
+++    cryptodev_digest_init,
+++    cryptodev_digest_update,
+++    cryptodev_digest_final,
+++    cryptodev_digest_copy,
+++    cryptodev_digest_cleanup,
+++    EVP_PKEY_RSA_method,
+++    SHA256_CBLOCK,
+++    sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+++};
+++
+++static const EVP_MD cryptodev_sha224 = {
+++    NID_sha224,
+++    NID_sha224WithRSAEncryption,
+++    SHA224_DIGEST_LENGTH,
+++#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+++    EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+++    EVP_MD_FLAG_DIGALGID_ABSENT|
+++#endif
+++    EVP_MD_FLAG_ONESHOT,
+++    cryptodev_digest_init,
+++    cryptodev_digest_update,
+++    cryptodev_digest_final,
+++    cryptodev_digest_copy,
+++    cryptodev_digest_cleanup,
+++    EVP_PKEY_RSA_method,
+++    SHA256_CBLOCK,
+++    sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+++};
+++
+++static const EVP_MD cryptodev_sha384 = {
+++    NID_sha384,
+++    NID_sha384WithRSAEncryption,
+++    SHA384_DIGEST_LENGTH,
+++#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+++    EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+++    EVP_MD_FLAG_DIGALGID_ABSENT|
+++#endif
+++    EVP_MD_FLAG_ONESHOT,
+++    cryptodev_digest_init,
+++    cryptodev_digest_update,
+++    cryptodev_digest_final,
+++    cryptodev_digest_copy,
+++    cryptodev_digest_cleanup,
+++    EVP_PKEY_RSA_method,
+++    SHA512_CBLOCK,
+++    sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+++};
+++
+++static const EVP_MD cryptodev_sha512 = {
+++    NID_sha512,
+++    NID_sha512WithRSAEncryption,
+++    SHA512_DIGEST_LENGTH,
+++#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+++    EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+++    EVP_MD_FLAG_DIGALGID_ABSENT|
+++#endif
+++    EVP_MD_FLAG_ONESHOT,
+++    cryptodev_digest_init,
+++    cryptodev_digest_update,
+++    cryptodev_digest_final,
+++    cryptodev_digest_copy,
+++    cryptodev_digest_cleanup,
+++    EVP_PKEY_RSA_method,
+++    SHA512_CBLOCK,
+++    sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+++};
+++
+++static const EVP_MD cryptodev_md5 = {
++     NID_md5,
++-    NID_undef,
+++    NID_md5WithRSAEncryption,
++     16 /* MD5_DIGEST_LENGTH */ ,
+++#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+++    EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+++    EVP_MD_FLAG_DIGALGID_ABSENT|
+++#endif
++     EVP_MD_FLAG_ONESHOT,
++     cryptodev_digest_init,
++     cryptodev_digest_update,
++     cryptodev_digest_final,
++     cryptodev_digest_copy,
++     cryptodev_digest_cleanup,
++-    EVP_PKEY_NULL_method,
+++    EVP_PKEY_RSA_method,
++     64 /* MD5_CBLOCK */ ,
++-    sizeof(struct dev_crypto_state),
+++    sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
++ };
++ 
++ # endif                         /* USE_CRYPTODEV_DIGESTS */
++@@ -992,6 +1076,18 @@ cryptodev_engine_digests(ENGINE *e, const EVP_MD **digest,
++     case NID_sha1:
++         *digest = &cryptodev_sha1;
++         break;
+++    case NID_sha224:
+++        *digest = &cryptodev_sha224;
+++        break;
+++    case NID_sha256:
+++        *digest = &cryptodev_sha256;
+++        break;
+++    case NID_sha384:
+++        *digest = &cryptodev_sha384;
+++        break;
+++    case NID_sha512:
+++        *digest = &cryptodev_sha512;
+++        break;
++     default:
++ # endif                         /* USE_CRYPTODEV_DIGESTS */
++         *digest = NULL;
++@@ -1022,7 +1118,7 @@ static int bn2crparam(const BIGNUM *a, struct crparam *crp)
++         return (1);
++     memset(b, 0, bytes);
++ 
++-    crp->crp_p = (caddr_t) b;
+++    crp->crp_p = (void*) b;
++     crp->crp_nbits = bits;
++ 
++     for (i = 0, j = 0; i < a->top; i++) {
++@@ -1277,7 +1373,7 @@ static DSA_SIG *cryptodev_dsa_do_sign(const unsigned char *dgst, int dlen,
++     kop.crk_op = CRK_DSA_SIGN;
++ 
++     /* inputs: dgst dsa->p dsa->q dsa->g dsa->priv_key */
++-    kop.crk_param[0].crp_p = (caddr_t) dgst;
+++    kop.crk_param[0].crp_p = (void*)dgst;
++     kop.crk_param[0].crp_nbits = dlen * 8;
++     if (bn2crparam(dsa->p, &kop.crk_param[1]))
++         goto err;
++@@ -1317,7 +1413,7 @@ cryptodev_dsa_verify(const unsigned char *dgst, int dlen,
++     kop.crk_op = CRK_DSA_VERIFY;
++ 
++     /* inputs: dgst dsa->p dsa->q dsa->g dsa->pub_key sig->r sig->s */
++-    kop.crk_param[0].crp_p = (caddr_t) dgst;
+++    kop.crk_param[0].crp_p = (void*)dgst;
++     kop.crk_param[0].crp_nbits = dlen * 8;
++     if (bn2crparam(dsa->p, &kop.crk_param[1]))
++         goto err;
++@@ -1398,9 +1494,10 @@ cryptodev_dh_compute_key(unsigned char *key, const BIGNUM *pub_key, DH *dh)
++         goto err;
++     kop.crk_iparams = 3;
++ 
++-    kop.crk_param[3].crp_p = (caddr_t) key;
++-    kop.crk_param[3].crp_nbits = keylen * 8;
+++    kop.crk_param[3].crp_p = (void*) key;
+++    kop.crk_param[3].crp_nbits = keylen;
++     kop.crk_oparams = 1;
+++    dhret = keylen / 8;
++ 
++     if (ioctl(fd, CIOCKEY, &kop) == -1) {
++         const DH_METHOD *meth = DH_OpenSSL();
++@@ -1470,7 +1567,7 @@ void ENGINE_load_cryptodev(void)
++     put_dev_crypto(fd);
++ 
++     if (!ENGINE_set_id(engine, "cryptodev") ||
++-        !ENGINE_set_name(engine, "BSD cryptodev engine") ||
+++        !ENGINE_set_name(engine, "cryptodev engine") ||
++         !ENGINE_set_ciphers(engine, cryptodev_engine_ciphers) ||
++         !ENGINE_set_digests(engine, cryptodev_engine_digests) ||
++         !ENGINE_set_ctrl_function(engine, cryptodev_ctrl) ||
++-- 
++2.2.0
++
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl/0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch b/meta-arago-distro/recipes-connectivity/openssl/openssl/0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch
+deleted file mode 100644
+index 1950427..0000000
+--- a/meta-arago-distro/recipes-connectivity/openssl/openssl/0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch
++++ /dev/null
+@@ -1,2628 +0,0 @@
+-From 4852393775cf3966ccedf8857f89f91933ab6ba7 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Tue, 7 Apr 2015 13:34:47 -0400
+-Subject: [PATCH] eng_cryptodev.c: update to cryptodev-1.6
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- crypto/engine/eng_cryptodev.c | 2308 +++++++++++++++++++++--------------------
+- 1 file changed, 1188 insertions(+), 1120 deletions(-)
+-
+-diff --git a/crypto/engine/eng_cryptodev.c b/crypto/engine/eng_cryptodev.c
+-index bcb936d..a312316 100644
+---- a/crypto/engine/eng_cryptodev.c
+-+++ b/crypto/engine/eng_cryptodev.c
+-@@ -2,6 +2,7 @@
+-  * Copyright (c) 2002 Bob Beck <beck@openbsd.org>
+-  * Copyright (c) 2002 Theo de Raadt
+-  * Copyright (c) 2002 Markus Friedl
+-+ * Copyright (c) 2012 Nikos Mavrogiannopoulos
+-  * All rights reserved.
+-  *
+-  * Redistribution and use in source and binary forms, with or without
+-@@ -32,8 +33,8 @@
+- #include <openssl/bn.h>
+- 
+- #if (defined(__unix__) || defined(unix)) && !defined(USG) && \
+--        (defined(OpenBSD) || defined(__FreeBSD__))
+--# include <sys/param.h>
+-+	(defined(OpenBSD) || defined(__FreeBSD__))
+-+#include <sys/param.h>
+- # if (OpenBSD >= 200112) || ((__FreeBSD_version >= 470101 && __FreeBSD_version < 500000) || __FreeBSD_version >= 500041)
+- #  define HAVE_CRYPTODEV
+- # endif
+-@@ -44,39 +45,40 @@
+- 
+- #ifndef HAVE_CRYPTODEV
+- 
+--void ENGINE_load_cryptodev(void)
+-+void
+-+ENGINE_load_cryptodev(void)
+- {
+--    /* This is a NOP on platforms without /dev/crypto */
+--    return;
+-+	/* This is a NOP on platforms without /dev/crypto */
+-+	return;
+- }
+- 
+--#else
+--
+--# include <sys/types.h>
+--# include <crypto/cryptodev.h>
+--# include <crypto/dh/dh.h>
+--# include <crypto/dsa/dsa.h>
+--# include <crypto/err/err.h>
+--# include <crypto/rsa/rsa.h>
+--# include <sys/ioctl.h>
+--# include <errno.h>
+--# include <stdio.h>
+--# include <unistd.h>
+--# include <fcntl.h>
+--# include <stdarg.h>
+--# include <syslog.h>
+--# include <errno.h>
+--# include <string.h>
+-+#else 
+-+ 
+-+#include <sys/types.h>
+-+#include <crypto/cryptodev.h>
+-+#include <crypto/dh/dh.h>
+-+#include <crypto/dsa/dsa.h>
+-+#include <crypto/err/err.h>
+-+#include <crypto/rsa/rsa.h>
+-+#include <sys/ioctl.h>
+-+#include <errno.h>
+-+#include <stdio.h>
+-+#include <unistd.h>
+-+#include <fcntl.h>
+-+#include <stdarg.h>
+-+#include <syslog.h>
+-+#include <errno.h>
+-+#include <string.h>
+- 
+- struct dev_crypto_state {
+--    struct session_op d_sess;
+--    int d_fd;
+--# ifdef USE_CRYPTODEV_DIGESTS
+--    char dummy_mac_key[HASH_MAX_LEN];
+--    unsigned char digest_res[HASH_MAX_LEN];
+--    char *mac_data;
+--    int mac_len;
+--# endif
+-+	struct session_op d_sess;
+-+	int d_fd;
+-+
+-+#ifdef USE_CRYPTODEV_DIGESTS
+-+	unsigned char digest_res[HASH_MAX_LEN];
+-+	char *mac_data;
+-+	int mac_len;
+-+#endif
+- };
+- 
+- static u_int32_t cryptodev_asymfeat = 0;
+-@@ -85,185 +87,153 @@ static int get_asym_dev_crypto(void);
+- static int open_dev_crypto(void);
+- static int get_dev_crypto(void);
+- static int get_cryptodev_ciphers(const int **cnids);
+--# ifdef USE_CRYPTODEV_DIGESTS
+-+#ifdef USE_CRYPTODEV_DIGESTS
+- static int get_cryptodev_digests(const int **cnids);
+--# endif
+-+#endif
+- static int cryptodev_usable_ciphers(const int **nids);
+- static int cryptodev_usable_digests(const int **nids);
+- static int cryptodev_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
+--                            const unsigned char *in, size_t inl);
+-+    const unsigned char *in, size_t inl);
+- static int cryptodev_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
+--                              const unsigned char *iv, int enc);
+-+    const unsigned char *iv, int enc);
+- static int cryptodev_cleanup(EVP_CIPHER_CTX *ctx);
+- static int cryptodev_engine_ciphers(ENGINE *e, const EVP_CIPHER **cipher,
+--                                    const int **nids, int nid);
+-+    const int **nids, int nid);
+- static int cryptodev_engine_digests(ENGINE *e, const EVP_MD **digest,
+--                                    const int **nids, int nid);
+-+    const int **nids, int nid);
+- static int bn2crparam(const BIGNUM *a, struct crparam *crp);
+- static int crparam2bn(struct crparam *crp, BIGNUM *a);
+- static void zapparams(struct crypt_kop *kop);
+- static int cryptodev_asym(struct crypt_kop *kop, int rlen, BIGNUM *r,
+--                          int slen, BIGNUM *s);
+-+    int slen, BIGNUM *s);
+- 
+- static int cryptodev_bn_mod_exp(BIGNUM *r, const BIGNUM *a,
+--                                const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx,
+--                                BN_MONT_CTX *m_ctx);
+--static int cryptodev_rsa_nocrt_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa,
+--                                       BN_CTX *ctx);
+--static int cryptodev_rsa_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa,
+--                                 BN_CTX *ctx);
+-+    const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *m_ctx);
+-+static int cryptodev_rsa_nocrt_mod_exp(BIGNUM *r0, const BIGNUM *I,
+-+    RSA *rsa, BN_CTX *ctx);
+-+static int cryptodev_rsa_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa, BN_CTX *ctx);
+- static int cryptodev_dsa_bn_mod_exp(DSA *dsa, BIGNUM *r, BIGNUM *a,
+--                                    const BIGNUM *p, const BIGNUM *m,
+--                                    BN_CTX *ctx, BN_MONT_CTX *m_ctx);
+-+    const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *m_ctx);
+- static int cryptodev_dsa_dsa_mod_exp(DSA *dsa, BIGNUM *t1, BIGNUM *g,
+--                                     BIGNUM *u1, BIGNUM *pub_key, BIGNUM *u2,
+--                                     BIGNUM *p, BN_CTX *ctx,
+--                                     BN_MONT_CTX *mont);
+--static DSA_SIG *cryptodev_dsa_do_sign(const unsigned char *dgst, int dlen,
+--                                      DSA *dsa);
+-+    BIGNUM *u1, BIGNUM *pub_key, BIGNUM *u2, BIGNUM *p,
+-+    BN_CTX *ctx, BN_MONT_CTX *mont);
+-+static DSA_SIG *cryptodev_dsa_do_sign(const unsigned char *dgst,
+-+    int dlen, DSA *dsa);
+- static int cryptodev_dsa_verify(const unsigned char *dgst, int dgst_len,
+--                                DSA_SIG *sig, DSA *dsa);
+-+    DSA_SIG *sig, DSA *dsa);
+- static int cryptodev_mod_exp_dh(const DH *dh, BIGNUM *r, const BIGNUM *a,
+--                                const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx,
+--                                BN_MONT_CTX *m_ctx);
+--static int cryptodev_dh_compute_key(unsigned char *key, const BIGNUM *pub_key,
+--                                    DH *dh);
+-+    const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx,
+-+    BN_MONT_CTX *m_ctx);
+-+static int cryptodev_dh_compute_key(unsigned char *key,
+-+    const BIGNUM *pub_key, DH *dh);
+- static int cryptodev_ctrl(ENGINE *e, int cmd, long i, void *p,
+--                          void (*f) (void));
+-+    void (*f)(void));
+- void ENGINE_load_cryptodev(void);
+- 
+- static const ENGINE_CMD_DEFN cryptodev_defns[] = {
+--    {0, NULL, NULL, 0}
+-+	{ 0, NULL, NULL, 0 }
+- };
+- 
+- static struct {
+--    int id;
+--    int nid;
+--    int ivmax;
+--    int keylen;
+-+	int	id;
+-+	int	nid;
+-+	int	ivmax;
+-+	int	keylen;
+- } ciphers[] = {
+--    {
+--        CRYPTO_ARC4, NID_rc4, 0, 16,
+--    },
+--    {
+--        CRYPTO_DES_CBC, NID_des_cbc, 8, 8,
+--    },
+--    {
+--        CRYPTO_3DES_CBC, NID_des_ede3_cbc, 8, 24,
+--    },
+--    {
+--        CRYPTO_AES_CBC, NID_aes_128_cbc, 16, 16,
+--    },
+--    {
+--        CRYPTO_AES_CBC, NID_aes_192_cbc, 16, 24,
+--    },
+--    {
+--        CRYPTO_AES_CBC, NID_aes_256_cbc, 16, 32,
+--    },
+--    {
+--        CRYPTO_BLF_CBC, NID_bf_cbc, 8, 16,
+--    },
+--    {
+--        CRYPTO_CAST_CBC, NID_cast5_cbc, 8, 16,
+--    },
+--    {
+--        CRYPTO_SKIPJACK_CBC, NID_undef, 0, 0,
+--    },
+--    {
+--        0, NID_undef, 0, 0,
+--    },
+-+	{ CRYPTO_ARC4,			NID_rc4,		0,	16, },
+-+	{ CRYPTO_DES_CBC,		NID_des_cbc,		8,	 8, },
+-+	{ CRYPTO_3DES_CBC,		NID_des_ede3_cbc,	8,	24, },
+-+	{ CRYPTO_AES_CBC,		NID_aes_128_cbc,	16,	16, },
+-+	{ CRYPTO_AES_CBC,		NID_aes_192_cbc,	16,	24, },
+-+	{ CRYPTO_AES_CBC,		NID_aes_256_cbc,	16,	32, },
+-+	{ CRYPTO_BLF_CBC,		NID_bf_cbc,		8,	16, },
+-+	{ CRYPTO_CAST_CBC,		NID_cast5_cbc,		8,	16, },
+-+	{ CRYPTO_SKIPJACK_CBC,		NID_undef,		0,	 0, },
+-+	{ 0,				NID_undef,		0,	 0, },
+- };
+- 
+--# ifdef USE_CRYPTODEV_DIGESTS
+-+#ifdef USE_CRYPTODEV_DIGESTS
+- static struct {
+--    int id;
+--    int nid;
+--    int keylen;
+-+	int	id;
+-+	int	nid;
+-+	int 	digestlen;
+- } digests[] = {
+--    {
+--        CRYPTO_MD5_HMAC, NID_hmacWithMD5, 16
+--    },
+--    {
+--        CRYPTO_SHA1_HMAC, NID_hmacWithSHA1, 20
+--    },
+--    {
+--        CRYPTO_RIPEMD160_HMAC, NID_ripemd160, 16
+--        /* ? */
+--    },
+--    {
+--        CRYPTO_MD5_KPDK, NID_undef, 0
+--    },
+--    {
+--        CRYPTO_SHA1_KPDK, NID_undef, 0
+--    },
+--    {
+--        CRYPTO_MD5, NID_md5, 16
+--    },
+--    {
+--        CRYPTO_SHA1, NID_sha1, 20
+--    },
+--    {
+--        0, NID_undef, 0
+--    },
+-+#if 0
+-+        /* HMAC is not supported */
+-+	{ CRYPTO_MD5_HMAC,		NID_hmacWithMD5,	16},
+-+	{ CRYPTO_SHA1_HMAC,		NID_hmacWithSHA1,	20},
+-+	{ CRYPTO_SHA2_256_HMAC,		NID_hmacWithSHA256,	32},
+-+	{ CRYPTO_SHA2_384_HMAC,		NID_hmacWithSHA384,	48},
+-+	{ CRYPTO_SHA2_512_HMAC,		NID_hmacWithSHA512,	64},
+-+#endif
+-+	{ CRYPTO_MD5,			NID_md5,		16},
+-+	{ CRYPTO_SHA1,			NID_sha1,		20},
+-+	{ CRYPTO_SHA2_256,		NID_sha256,		32},
+-+	{ CRYPTO_SHA2_384,		NID_sha384,		48},
+-+	{ CRYPTO_SHA2_512,		NID_sha512,		64},
+-+	{ 0,				NID_undef,		0},
+- };
+--# endif
+-+#endif
+- 
+- /*
+-  * Return a fd if /dev/crypto seems usable, 0 otherwise.
+-  */
+--static int open_dev_crypto(void)
+-+static int
+-+open_dev_crypto(void)
+- {
+--    static int fd = -1;
+--
+--    if (fd == -1) {
+--        if ((fd = open("/dev/crypto", O_RDWR, 0)) == -1)
+--            return (-1);
+--        /* close on exec */
+--        if (fcntl(fd, F_SETFD, 1) == -1) {
+--            close(fd);
+--            fd = -1;
+--            return (-1);
+--        }
+--    }
+--    return (fd);
+-+	static int fd = -1;
+-+
+-+	if (fd == -1) {
+-+		if ((fd = open("/dev/crypto", O_RDWR, 0)) == -1)
+-+			return (-1);
+-+		/* close on exec */
+-+		if (fcntl(fd, F_SETFD, 1) == -1) {
+-+			close(fd);
+-+			fd = -1;
+-+			return (-1);
+-+		}
+-+	}
+-+	return (fd);
+- }
+- 
+--static int get_dev_crypto(void)
+-+static int
+-+get_dev_crypto(void)
+- {
+--    int fd, retfd;
+--
+--    if ((fd = open_dev_crypto()) == -1)
+--        return (-1);
+--# ifndef CRIOGET_NOT_NEEDED
+--    if (ioctl(fd, CRIOGET, &retfd) == -1)
+--        return (-1);
+--
+--    /* close on exec */
+--    if (fcntl(retfd, F_SETFD, 1) == -1) {
+--        close(retfd);
+--        return (-1);
+--    }
+--# else
+--    retfd = fd;
+--# endif
+--    return (retfd);
+-+	int fd, retfd;
+-+
+-+	if ((fd = open_dev_crypto()) == -1)
+-+		return (-1);
+-+#ifndef CRIOGET_NOT_NEEDED
+-+	if (ioctl(fd, CRIOGET, &retfd) == -1)
+-+		return (-1);
+-+
+-+	/* close on exec */
+-+	if (fcntl(retfd, F_SETFD, 1) == -1) {
+-+		close(retfd);
+-+		return (-1);
+-+	}
+-+#else
+-+        retfd = fd;
+-+#endif
+-+	return (retfd);
+- }
+- 
+- static void put_dev_crypto(int fd)
+- {
+--# ifndef CRIOGET_NOT_NEEDED
+--    close(fd);
+--# endif
+-+#ifndef CRIOGET_NOT_NEEDED
+-+	close(fd);
+-+#endif
+- }
+- 
+- /* Caching version for asym operations */
+--static int get_asym_dev_crypto(void)
+-+static int
+-+get_asym_dev_crypto(void)
+- {
+--    static int fd = -1;
+-+	static int fd = -1;
+- 
+--    if (fd == -1)
+--        fd = get_dev_crypto();
+--    return fd;
+-+	if (fd == -1)
+-+		fd = get_dev_crypto();
+-+	return fd;
+- }
+- 
+- /*
+-@@ -272,76 +242,80 @@ static int get_asym_dev_crypto(void)
+-  * returning them here is harmless, as long as we return NULL
+-  * when asked for a handler in the cryptodev_engine_ciphers routine
+-  */
+--static int get_cryptodev_ciphers(const int **cnids)
+-+static int
+-+get_cryptodev_ciphers(const int **cnids)
+- {
+--    static int nids[CRYPTO_ALGORITHM_MAX];
+--    struct session_op sess;
+--    int fd, i, count = 0;
+--
+--    if ((fd = get_dev_crypto()) < 0) {
+--        *cnids = NULL;
+--        return (0);
+--    }
+--    memset(&sess, 0, sizeof(sess));
+--    sess.key = (caddr_t) "123456789abcdefghijklmno";
+--
+--    for (i = 0; ciphers[i].id && count < CRYPTO_ALGORITHM_MAX; i++) {
+--        if (ciphers[i].nid == NID_undef)
+--            continue;
+--        sess.cipher = ciphers[i].id;
+--        sess.keylen = ciphers[i].keylen;
+--        sess.mac = 0;
+--        if (ioctl(fd, CIOCGSESSION, &sess) != -1 &&
+--            ioctl(fd, CIOCFSESSION, &sess.ses) != -1)
+--            nids[count++] = ciphers[i].nid;
+--    }
+--    put_dev_crypto(fd);
+--
+--    if (count > 0)
+--        *cnids = nids;
+--    else
+--        *cnids = NULL;
+--    return (count);
+-+	static int nids[CRYPTO_ALGORITHM_MAX];
+-+	struct session_op sess;
+-+	int fd, i, count = 0;
+-+	unsigned char fake_key[CRYPTO_CIPHER_MAX_KEY_LEN];
+-+
+-+	if ((fd = get_dev_crypto()) < 0) {
+-+		*cnids = NULL;
+-+		return (0);
+-+	}
+-+	memset(&sess, 0, sizeof(sess));
+-+	sess.key = (void*)fake_key;
+-+
+-+	for (i = 0; ciphers[i].id && count < CRYPTO_ALGORITHM_MAX; i++) {
+-+		if (ciphers[i].nid == NID_undef)
+-+			continue;
+-+		sess.cipher = ciphers[i].id;
+-+		sess.keylen = ciphers[i].keylen;
+-+		sess.mac = 0;
+-+		if (ioctl(fd, CIOCGSESSION, &sess) != -1 &&
+-+		    ioctl(fd, CIOCFSESSION, &sess.ses) != -1)
+-+			nids[count++] = ciphers[i].nid;
+-+	}
+-+	put_dev_crypto(fd);
+-+
+-+	if (count > 0)
+-+		*cnids = nids;
+-+	else
+-+		*cnids = NULL;
+-+	return (count);
+- }
+- 
+--# ifdef USE_CRYPTODEV_DIGESTS
+-+#ifdef USE_CRYPTODEV_DIGESTS
+- /*
+-  * Find out what digests /dev/crypto will let us have a session for.
+-  * XXX note, that some of these openssl doesn't deal with yet!
+-  * returning them here is harmless, as long as we return NULL
+-  * when asked for a handler in the cryptodev_engine_digests routine
+-  */
+--static int get_cryptodev_digests(const int **cnids)
+-+static int
+-+get_cryptodev_digests(const int **cnids)
+- {
+--    static int nids[CRYPTO_ALGORITHM_MAX];
+--    struct session_op sess;
+--    int fd, i, count = 0;
+--
+--    if ((fd = get_dev_crypto()) < 0) {
+--        *cnids = NULL;
+--        return (0);
+--    }
+--    memset(&sess, 0, sizeof(sess));
+--    sess.mackey = (caddr_t) "123456789abcdefghijklmno";
+--    for (i = 0; digests[i].id && count < CRYPTO_ALGORITHM_MAX; i++) {
+--        if (digests[i].nid == NID_undef)
+--            continue;
+--        sess.mac = digests[i].id;
+--        sess.mackeylen = digests[i].keylen;
+--        sess.cipher = 0;
+--        if (ioctl(fd, CIOCGSESSION, &sess) != -1 &&
+--            ioctl(fd, CIOCFSESSION, &sess.ses) != -1)
+--            nids[count++] = digests[i].nid;
+--    }
+--    put_dev_crypto(fd);
+--
+--    if (count > 0)
+--        *cnids = nids;
+--    else
+--        *cnids = NULL;
+--    return (count);
+-+	static int nids[CRYPTO_ALGORITHM_MAX];
+-+	unsigned char fake_key[CRYPTO_CIPHER_MAX_KEY_LEN];
+-+	struct session_op sess;
+-+	int fd, i, count = 0;
+-+
+-+	if ((fd = get_dev_crypto()) < 0) {
+-+		*cnids = NULL;
+-+		return (0);
+-+	}
+-+	memset(&sess, 0, sizeof(sess));
+-+	sess.mackey = fake_key;
+-+	for (i = 0; digests[i].id && count < CRYPTO_ALGORITHM_MAX; i++) {
+-+		if (digests[i].nid == NID_undef)
+-+			continue;
+-+		sess.mac = digests[i].id;
+-+		sess.mackeylen = 8;
+-+		sess.cipher = 0;
+-+		if (ioctl(fd, CIOCGSESSION, &sess) != -1 &&
+-+		    ioctl(fd, CIOCFSESSION, &sess.ses) != -1)
+-+			nids[count++] = digests[i].nid;
+-+	}
+-+	put_dev_crypto(fd);
+-+
+-+	if (count > 0)
+-+		*cnids = nids;
+-+	else
+-+		*cnids = NULL;
+-+	return (count);
+- }
+--# endif                         /* 0 */
+-+#endif  /* 0 */
+- 
+- /*
+-  * Find the useable ciphers|digests from dev/crypto - this is the first
+-@@ -364,158 +338,161 @@ static int get_cryptodev_digests(const int **cnids)
+-  * want most of the decisions made about what we actually want
+-  * to use from /dev/crypto.
+-  */
+--static int cryptodev_usable_ciphers(const int **nids)
+-+static int
+-+cryptodev_usable_ciphers(const int **nids)
+- {
+--    return (get_cryptodev_ciphers(nids));
+-+	return (get_cryptodev_ciphers(nids));
+- }
+- 
+--static int cryptodev_usable_digests(const int **nids)
+-+static int
+-+cryptodev_usable_digests(const int **nids)
+- {
+--# ifdef USE_CRYPTODEV_DIGESTS
+--    return (get_cryptodev_digests(nids));
+--# else
+--    /*
+--     * XXXX just disable all digests for now, because it sucks.
+--     * we need a better way to decide this - i.e. I may not
+--     * want digests on slow cards like hifn on fast machines,
+--     * but might want them on slow or loaded machines, etc.
+--     * will also want them when using crypto cards that don't
+--     * suck moose gonads - would be nice to be able to decide something
+--     * as reasonable default without having hackery that's card dependent.
+--     * of course, the default should probably be just do everything,
+--     * with perhaps a sysctl to turn algoritms off (or have them off
+--     * by default) on cards that generally suck like the hifn.
+--     */
+--    *nids = NULL;
+--    return (0);
+--# endif
+-+#ifdef USE_CRYPTODEV_DIGESTS
+-+	return (get_cryptodev_digests(nids));
+-+#else
+-+	/*
+-+	 * XXXX just disable all digests for now, because it sucks.
+-+	 * we need a better way to decide this - i.e. I may not
+-+	 * want digests on slow cards like hifn on fast machines,
+-+	 * but might want them on slow or loaded machines, etc.
+-+	 * will also want them when using crypto cards that don't
+-+	 * suck moose gonads - would be nice to be able to decide something
+-+	 * as reasonable default without having hackery that's card dependent.
+-+	 * of course, the default should probably be just do everything,
+-+	 * with perhaps a sysctl to turn algoritms off (or have them off
+-+	 * by default) on cards that generally suck like the hifn.
+-+	 */
+-+	*nids = NULL;
+-+	return (0);
+-+#endif
+- }
+- 
+- static int
+- cryptodev_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
+--                 const unsigned char *in, size_t inl)
+-+    const unsigned char *in, size_t inl)
+- {
+--    struct crypt_op cryp;
+--    struct dev_crypto_state *state = ctx->cipher_data;
+--    struct session_op *sess = &state->d_sess;
+--    const void *iiv;
+--    unsigned char save_iv[EVP_MAX_IV_LENGTH];
+--
+--    if (state->d_fd < 0)
+--        return (0);
+--    if (!inl)
+--        return (1);
+--    if ((inl % ctx->cipher->block_size) != 0)
+--        return (0);
+--
+--    memset(&cryp, 0, sizeof(cryp));
+--
+--    cryp.ses = sess->ses;
+--    cryp.flags = 0;
+--    cryp.len = inl;
+--    cryp.src = (caddr_t) in;
+--    cryp.dst = (caddr_t) out;
+--    cryp.mac = 0;
+--
+--    cryp.op = ctx->encrypt ? COP_ENCRYPT : COP_DECRYPT;
+--
+--    if (ctx->cipher->iv_len) {
+--        cryp.iv = (caddr_t) ctx->iv;
+--        if (!ctx->encrypt) {
+--            iiv = in + inl - ctx->cipher->iv_len;
+--            memcpy(save_iv, iiv, ctx->cipher->iv_len);
+--        }
+--    } else
+--        cryp.iv = NULL;
+--
+--    if (ioctl(state->d_fd, CIOCCRYPT, &cryp) == -1) {
+--        /*
+--         * XXX need better errror handling this can fail for a number of
+--         * different reasons.
+--         */
+--        return (0);
+--    }
+--
+--    if (ctx->cipher->iv_len) {
+--        if (ctx->encrypt)
+--            iiv = out + inl - ctx->cipher->iv_len;
+--        else
+--            iiv = save_iv;
+--        memcpy(ctx->iv, iiv, ctx->cipher->iv_len);
+--    }
+--    return (1);
+-+	struct crypt_op cryp;
+-+	struct dev_crypto_state *state = ctx->cipher_data;
+-+	struct session_op *sess = &state->d_sess;
+-+	const void *iiv;
+-+	unsigned char save_iv[EVP_MAX_IV_LENGTH];
+-+
+-+	if (state->d_fd < 0)
+-+		return (0);
+-+	if (!inl)
+-+		return (1);
+-+	if ((inl % ctx->cipher->block_size) != 0)
+-+		return (0);
+-+
+-+	memset(&cryp, 0, sizeof(cryp));
+-+
+-+	cryp.ses = sess->ses;
+-+	cryp.flags = 0;
+-+	cryp.len = inl;
+-+	cryp.src = (void*) in;
+-+	cryp.dst = (void*) out;
+-+	cryp.mac = 0;
+-+
+-+	cryp.op = ctx->encrypt ? COP_ENCRYPT : COP_DECRYPT;
+-+
+-+	if (ctx->cipher->iv_len) {
+-+		cryp.iv = (void*) ctx->iv;
+-+		if (!ctx->encrypt) {
+-+			iiv = in + inl - ctx->cipher->iv_len;
+-+			memcpy(save_iv, iiv, ctx->cipher->iv_len);
+-+		}
+-+	} else
+-+		cryp.iv = NULL;
+-+
+-+	if (ioctl(state->d_fd, CIOCCRYPT, &cryp) == -1) {
+-+		/* XXX need better errror handling
+-+		 * this can fail for a number of different reasons.
+-+		 */
+-+		return (0);
+-+	}
+-+
+-+	if (ctx->cipher->iv_len) {
+-+		if (ctx->encrypt)
+-+			iiv = out + inl - ctx->cipher->iv_len;
+-+		else
+-+			iiv = save_iv;
+-+		memcpy(ctx->iv, iiv, ctx->cipher->iv_len);
+-+	}
+-+	return (1);
+- }
+- 
+- static int
+- cryptodev_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
+--                   const unsigned char *iv, int enc)
+-+    const unsigned char *iv, int enc)
+- {
+--    struct dev_crypto_state *state = ctx->cipher_data;
+--    struct session_op *sess = &state->d_sess;
+--    int cipher = -1, i;
+--
+--    for (i = 0; ciphers[i].id; i++)
+--        if (ctx->cipher->nid == ciphers[i].nid &&
+--            ctx->cipher->iv_len <= ciphers[i].ivmax &&
+--            ctx->key_len == ciphers[i].keylen) {
+--            cipher = ciphers[i].id;
+--            break;
+--        }
+--
+--    if (!ciphers[i].id) {
+--        state->d_fd = -1;
+--        return (0);
+--    }
+--
+--    memset(sess, 0, sizeof(struct session_op));
+--
+--    if ((state->d_fd = get_dev_crypto()) < 0)
+--        return (0);
+--
+--    sess->key = (caddr_t) key;
+--    sess->keylen = ctx->key_len;
+--    sess->cipher = cipher;
+--
+--    if (ioctl(state->d_fd, CIOCGSESSION, sess) == -1) {
+--        put_dev_crypto(state->d_fd);
+--        state->d_fd = -1;
+--        return (0);
+--    }
+--    return (1);
+-+	struct dev_crypto_state *state = ctx->cipher_data;
+-+	struct session_op *sess = &state->d_sess;
+-+	int cipher = -1, i;
+-+
+-+	for (i = 0; ciphers[i].id; i++)
+-+		if (ctx->cipher->nid == ciphers[i].nid &&
+-+		    ctx->cipher->iv_len <= ciphers[i].ivmax &&
+-+		    ctx->key_len == ciphers[i].keylen) {
+-+			cipher = ciphers[i].id;
+-+			break;
+-+		}
+-+
+-+	if (!ciphers[i].id) {
+-+		state->d_fd = -1;
+-+		return (0);
+-+	}
+-+
+-+	memset(sess, 0, sizeof(struct session_op));
+-+
+-+	if ((state->d_fd = get_dev_crypto()) < 0)
+-+		return (0);
+-+
+-+	sess->key = (void*)key;
+-+	sess->keylen = ctx->key_len;
+-+	sess->cipher = cipher;
+-+
+-+	if (ioctl(state->d_fd, CIOCGSESSION, sess) == -1) {
+-+		put_dev_crypto(state->d_fd);
+-+		state->d_fd = -1;
+-+		return (0);
+-+	}
+-+	return (1);
+- }
+- 
+- /*
+-  * free anything we allocated earlier when initting a
+-  * session, and close the session.
+-  */
+--static int cryptodev_cleanup(EVP_CIPHER_CTX *ctx)
+-+static int
+-+cryptodev_cleanup(EVP_CIPHER_CTX *ctx)
+- {
+--    int ret = 0;
+--    struct dev_crypto_state *state = ctx->cipher_data;
+--    struct session_op *sess = &state->d_sess;
+--
+--    if (state->d_fd < 0)
+--        return (0);
+--
+--    /*
+--     * XXX if this ioctl fails, someting's wrong. the invoker may have called
+--     * us with a bogus ctx, or we could have a device that for whatever
+--     * reason just doesn't want to play ball - it's not clear what's right
+--     * here - should this be an error? should it just increase a counter,
+--     * hmm. For right now, we return 0 - I don't believe that to be "right".
+--     * we could call the gorpy openssl lib error handlers that print messages
+--     * to users of the library. hmm..
+--     */
+--
+--    if (ioctl(state->d_fd, CIOCFSESSION, &sess->ses) == -1) {
+--        ret = 0;
+--    } else {
+--        ret = 1;
+--    }
+--    put_dev_crypto(state->d_fd);
+--    state->d_fd = -1;
+--
+--    return (ret);
+-+	int ret = 0;
+-+	struct dev_crypto_state *state = ctx->cipher_data;
+-+	struct session_op *sess = &state->d_sess;
+-+
+-+	if (state->d_fd < 0)
+-+		return (0);
+-+
+-+	/* XXX if this ioctl fails, someting's wrong. the invoker
+-+	 * may have called us with a bogus ctx, or we could
+-+	 * have a device that for whatever reason just doesn't
+-+	 * want to play ball - it's not clear what's right
+-+	 * here - should this be an error? should it just
+-+	 * increase a counter, hmm. For right now, we return
+-+	 * 0 - I don't believe that to be "right". we could
+-+	 * call the gorpy openssl lib error handlers that
+-+	 * print messages to users of the library. hmm..
+-+	 */
+-+
+-+	if (ioctl(state->d_fd, CIOCFSESSION, &sess->ses) == -1) {
+-+		ret = 0;
+-+	} else {
+-+		ret = 1;
+-+	}
+-+	put_dev_crypto(state->d_fd);
+-+	state->d_fd = -1;
+-+
+-+	return (ret);
+- }
+- 
+- /*
+-@@ -525,109 +502,109 @@ static int cryptodev_cleanup(EVP_CIPHER_CTX *ctx)
+- 
+- /* RC4 */
+- const EVP_CIPHER cryptodev_rc4 = {
+--    NID_rc4,
+--    1, 16, 0,
+--    EVP_CIPH_VARIABLE_LENGTH,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    NULL,
+--    NULL,
+--    NULL
+-+	NID_rc4,
+-+	1, 16, 0,
+-+	EVP_CIPH_VARIABLE_LENGTH,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	NULL,
+-+	NULL,
+-+	NULL
+- };
+- 
+- /* DES CBC EVP */
+- const EVP_CIPHER cryptodev_des_cbc = {
+--    NID_des_cbc,
+--    8, 8, 8,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_des_cbc,
+-+	8, 8, 8,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- /* 3DES CBC EVP */
+- const EVP_CIPHER cryptodev_3des_cbc = {
+--    NID_des_ede3_cbc,
+--    8, 24, 8,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_des_ede3_cbc,
+-+	8, 24, 8,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- const EVP_CIPHER cryptodev_bf_cbc = {
+--    NID_bf_cbc,
+--    8, 16, 8,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_bf_cbc,
+-+	8, 16, 8,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- const EVP_CIPHER cryptodev_cast_cbc = {
+--    NID_cast5_cbc,
+--    8, 16, 8,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_cast5_cbc,
+-+	8, 16, 8,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- const EVP_CIPHER cryptodev_aes_cbc = {
+--    NID_aes_128_cbc,
+--    16, 16, 16,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_aes_128_cbc,
+-+	16, 16, 16,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- const EVP_CIPHER cryptodev_aes_192_cbc = {
+--    NID_aes_192_cbc,
+--    16, 24, 16,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_aes_192_cbc,
+-+	16, 24, 16,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- const EVP_CIPHER cryptodev_aes_256_cbc = {
+--    NID_aes_256_cbc,
+--    16, 32, 16,
+--    EVP_CIPH_CBC_MODE,
+--    cryptodev_init_key,
+--    cryptodev_cipher,
+--    cryptodev_cleanup,
+--    sizeof(struct dev_crypto_state),
+--    EVP_CIPHER_set_asn1_iv,
+--    EVP_CIPHER_get_asn1_iv,
+--    NULL
+-+	NID_aes_256_cbc,
+-+	16, 32, 16,
+-+	EVP_CIPH_CBC_MODE,
+-+	cryptodev_init_key,
+-+	cryptodev_cipher,
+-+	cryptodev_cleanup,
+-+	sizeof(struct dev_crypto_state),
+-+	EVP_CIPHER_set_asn1_iv,
+-+	EVP_CIPHER_get_asn1_iv,
+-+	NULL
+- };
+- 
+- /*
+-@@ -637,305 +614,394 @@ const EVP_CIPHER cryptodev_aes_256_cbc = {
+-  */
+- static int
+- cryptodev_engine_ciphers(ENGINE *e, const EVP_CIPHER **cipher,
+--                         const int **nids, int nid)
+-+    const int **nids, int nid)
+- {
+--    if (!cipher)
+--        return (cryptodev_usable_ciphers(nids));
+--
+--    switch (nid) {
+--    case NID_rc4:
+--        *cipher = &cryptodev_rc4;
+--        break;
+--    case NID_des_ede3_cbc:
+--        *cipher = &cryptodev_3des_cbc;
+--        break;
+--    case NID_des_cbc:
+--        *cipher = &cryptodev_des_cbc;
+--        break;
+--    case NID_bf_cbc:
+--        *cipher = &cryptodev_bf_cbc;
+--        break;
+--    case NID_cast5_cbc:
+--        *cipher = &cryptodev_cast_cbc;
+--        break;
+--    case NID_aes_128_cbc:
+--        *cipher = &cryptodev_aes_cbc;
+--        break;
+--    case NID_aes_192_cbc:
+--        *cipher = &cryptodev_aes_192_cbc;
+--        break;
+--    case NID_aes_256_cbc:
+--        *cipher = &cryptodev_aes_256_cbc;
+--        break;
+--    default:
+--        *cipher = NULL;
+--        break;
+--    }
+--    return (*cipher != NULL);
+-+	if (!cipher)
+-+		return (cryptodev_usable_ciphers(nids));
+-+
+-+	switch (nid) {
+-+	case NID_rc4:
+-+		*cipher = &cryptodev_rc4;
+-+		break;
+-+	case NID_des_ede3_cbc:
+-+		*cipher = &cryptodev_3des_cbc;
+-+		break;
+-+	case NID_des_cbc:
+-+		*cipher = &cryptodev_des_cbc;
+-+		break;
+-+	case NID_bf_cbc:
+-+		*cipher = &cryptodev_bf_cbc;
+-+		break;
+-+	case NID_cast5_cbc:
+-+		*cipher = &cryptodev_cast_cbc;
+-+		break;
+-+	case NID_aes_128_cbc:
+-+		*cipher = &cryptodev_aes_cbc;
+-+		break;
+-+	case NID_aes_192_cbc:
+-+		*cipher = &cryptodev_aes_192_cbc;
+-+		break;
+-+	case NID_aes_256_cbc:
+-+		*cipher = &cryptodev_aes_256_cbc;
+-+		break;
+-+	default:
+-+		*cipher = NULL;
+-+		break;
+-+	}
+-+	return (*cipher != NULL);
+- }
+- 
+--# ifdef USE_CRYPTODEV_DIGESTS
+-+
+-+#ifdef USE_CRYPTODEV_DIGESTS
+- 
+- /* convert digest type to cryptodev */
+--static int digest_nid_to_cryptodev(int nid)
+-+static int
+-+digest_nid_to_cryptodev(int nid)
+- {
+--    int i;
+-+	int i;
+- 
+--    for (i = 0; digests[i].id; i++)
+--        if (digests[i].nid == nid)
+--            return (digests[i].id);
+--    return (0);
+-+	for (i = 0; digests[i].id; i++)
+-+		if (digests[i].nid == nid)
+-+			return (digests[i].id);
+-+	return (0);
+- }
+- 
+--static int digest_key_length(int nid)
+--{
+--    int i;
+--
+--    for (i = 0; digests[i].id; i++)
+--        if (digests[i].nid == nid)
+--            return digests[i].keylen;
+--    return (0);
+--}
+- 
+- static int cryptodev_digest_init(EVP_MD_CTX *ctx)
+- {
+--    struct dev_crypto_state *state = ctx->md_data;
+--    struct session_op *sess = &state->d_sess;
+--    int digest;
+--
+--    if ((digest = digest_nid_to_cryptodev(ctx->digest->type)) == NID_undef) {
+--        printf("cryptodev_digest_init: Can't get digest \n");
+--        return (0);
+--    }
+--
+--    memset(state, 0, sizeof(struct dev_crypto_state));
+--
+--    if ((state->d_fd = get_dev_crypto()) < 0) {
+--        printf("cryptodev_digest_init: Can't get Dev \n");
+--        return (0);
+--    }
+--
+--    sess->mackey = state->dummy_mac_key;
+--    sess->mackeylen = digest_key_length(ctx->digest->type);
+--    sess->mac = digest;
+--
+--    if (ioctl(state->d_fd, CIOCGSESSION, sess) < 0) {
+--        put_dev_crypto(state->d_fd);
+--        state->d_fd = -1;
+--        printf("cryptodev_digest_init: Open session failed\n");
+--        return (0);
+--    }
+--
+--    return (1);
+-+	struct dev_crypto_state *state = ctx->md_data;
+-+	struct session_op *sess = &state->d_sess;
+-+	int digest;
+-+
+-+	if ((digest = digest_nid_to_cryptodev(ctx->digest->type)) == NID_undef){
+-+		printf("cryptodev_digest_init: Can't get digest \n");
+-+		return (0);
+-+	}
+-+	memset(state, 0, sizeof(struct dev_crypto_state));
+-+
+-+	if ((state->d_fd = get_dev_crypto()) < 0) {
+-+		printf("cryptodev_digest_init: Can't get Dev \n");
+-+		return (0);
+-+	}
+-+
+-+	sess->mackey = NULL;
+-+	sess->mackeylen = 0;
+-+	sess->mac = digest;
+-+
+-+	if (ioctl(state->d_fd, CIOCGSESSION, sess) < 0) {
+-+		put_dev_crypto(state->d_fd);
+-+		state->d_fd = -1;
+-+		printf("cryptodev_digest_init: Open session failed\n");
+-+		return (0);
+-+	}
+-+
+-+	return (1);
+- }
+- 
+- static int cryptodev_digest_update(EVP_MD_CTX *ctx, const void *data,
+--                                   size_t count)
+-+		size_t count)
+- {
+--    struct crypt_op cryp;
+--    struct dev_crypto_state *state = ctx->md_data;
+--    struct session_op *sess = &state->d_sess;
+--
+--    if (!data || state->d_fd < 0) {
+--        printf("cryptodev_digest_update: illegal inputs \n");
+--        return (0);
+--    }
+--
+--    if (!count) {
+--        return (0);
+--    }
+--
+--    if (!(ctx->flags & EVP_MD_CTX_FLAG_ONESHOT)) {
+--        /* if application doesn't support one buffer */
+--        state->mac_data =
+--            OPENSSL_realloc(state->mac_data, state->mac_len + count);
+--
+--        if (!state->mac_data) {
+--            printf("cryptodev_digest_update: realloc failed\n");
+--            return (0);
+--        }
+--
+--        memcpy(state->mac_data + state->mac_len, data, count);
+--        state->mac_len += count;
+--
+--        return (1);
+--    }
+--
+--    memset(&cryp, 0, sizeof(cryp));
+--
+--    cryp.ses = sess->ses;
+--    cryp.flags = 0;
+--    cryp.len = count;
+--    cryp.src = (caddr_t) data;
+--    cryp.dst = NULL;
+--    cryp.mac = (caddr_t) state->digest_res;
+--    if (ioctl(state->d_fd, CIOCCRYPT, &cryp) < 0) {
+--        printf("cryptodev_digest_update: digest failed\n");
+--        return (0);
+--    }
+--    return (1);
+-+	struct dev_crypto_state *state = ctx->md_data;
+-+	struct crypt_op cryp;
+-+	struct session_op *sess = &state->d_sess;
+-+
+-+	if (!data || state->d_fd < 0) {
+-+		printf("cryptodev_digest_update: illegal inputs \n");
+-+		return (0);
+-+	}
+-+
+-+	if (!count) {
+-+		return (1);
+-+	}
+-+
+-+	if (!(ctx->flags & EVP_MD_CTX_FLAG_ONESHOT)) {
+-+		/* if application doesn't support one buffer */
+-+		state->mac_data = OPENSSL_realloc(state->mac_data, state->mac_len + count);
+-+
+-+		if (!state->mac_data) {
+-+			printf("cryptodev_digest_update: realloc failed\n");
+-+			return (0);
+-+		}
+-+
+-+		memcpy(state->mac_data + state->mac_len, data, count);
+-+   		state->mac_len += count;
+-+	
+-+		return (1);
+-+	}
+-+
+-+	memset(&cryp, 0, sizeof(cryp));
+-+
+-+	cryp.ses = sess->ses;
+-+	cryp.flags = 0;
+-+	cryp.len = count;
+-+	cryp.src = (void*) data;
+-+	cryp.dst = NULL;
+-+	cryp.mac = (void*) state->digest_res;
+-+	if (ioctl(state->d_fd, CIOCCRYPT, &cryp) < 0) {
+-+		printf("cryptodev_digest_update: digest failed\n");
+-+		return (0);
+-+	}
+-+	return (1);
+- }
+- 
+-+
+- static int cryptodev_digest_final(EVP_MD_CTX *ctx, unsigned char *md)
+- {
+--    struct crypt_op cryp;
+--    struct dev_crypto_state *state = ctx->md_data;
+--    struct session_op *sess = &state->d_sess;
+--
+--    int ret = 1;
+--
+--    if (!md || state->d_fd < 0) {
+--        printf("cryptodev_digest_final: illegal input\n");
+--        return (0);
+--    }
+--
+--    if (!(ctx->flags & EVP_MD_CTX_FLAG_ONESHOT)) {
+--        /* if application doesn't support one buffer */
+--        memset(&cryp, 0, sizeof(cryp));
+--        cryp.ses = sess->ses;
+--        cryp.flags = 0;
+--        cryp.len = state->mac_len;
+--        cryp.src = state->mac_data;
+--        cryp.dst = NULL;
+--        cryp.mac = (caddr_t) md;
+--        if (ioctl(state->d_fd, CIOCCRYPT, &cryp) < 0) {
+--            printf("cryptodev_digest_final: digest failed\n");
+--            return (0);
+--        }
+--
+--        return 1;
+--    }
+--
+--    memcpy(md, state->digest_res, ctx->digest->md_size);
+--
+--    return (ret);
+-+	struct crypt_op cryp;
+-+	struct dev_crypto_state *state = ctx->md_data;
+-+	struct session_op *sess = &state->d_sess;
+-+
+-+	if (!md || state->d_fd < 0) {
+-+		printf("cryptodev_digest_final: illegal input\n");
+-+		return(0);
+-+	}
+-+
+-+	if (! (ctx->flags & EVP_MD_CTX_FLAG_ONESHOT) ) {
+-+		/* if application doesn't support one buffer */
+-+		memset(&cryp, 0, sizeof(cryp));
+-+		cryp.ses = sess->ses;
+-+		cryp.flags = 0;
+-+		cryp.len = state->mac_len;
+-+		cryp.src = state->mac_data;
+-+		cryp.dst = NULL;
+-+		cryp.mac = (void*)md;
+-+		if (ioctl(state->d_fd, CIOCCRYPT, &cryp) < 0) {
+-+			printf("cryptodev_digest_final: digest failed\n");
+-+			return (0);
+-+		}
+-+
+-+		return 1;
+-+	}
+-+
+-+	memcpy(md, state->digest_res, ctx->digest->md_size);
+-+
+-+	return 1;
+- }
+- 
+-+
+- static int cryptodev_digest_cleanup(EVP_MD_CTX *ctx)
+- {
+--    int ret = 1;
+--    struct dev_crypto_state *state = ctx->md_data;
+--    struct session_op *sess = &state->d_sess;
+--
+--    if (state == NULL)
+--        return 0;
+--
+--    if (state->d_fd < 0) {
+--        printf("cryptodev_digest_cleanup: illegal input\n");
+--        return (0);
+--    }
+--
+--    if (state->mac_data) {
+--        OPENSSL_free(state->mac_data);
+--        state->mac_data = NULL;
+--        state->mac_len = 0;
+--    }
+--
+--    if (ioctl(state->d_fd, CIOCFSESSION, &sess->ses) < 0) {
+--        printf("cryptodev_digest_cleanup: failed to close session\n");
+--        ret = 0;
+--    } else {
+--        ret = 1;
+--    }
+--    put_dev_crypto(state->d_fd);
+--    state->d_fd = -1;
+--
+--    return (ret);
+-+	int ret = 1;
+-+	struct dev_crypto_state *state = ctx->md_data;
+-+	struct session_op *sess = &state->d_sess;
+-+
+-+	if (state == NULL)
+-+	  return 0;
+-+
+-+	if (state->d_fd < 0) {
+-+		printf("cryptodev_digest_cleanup: illegal input\n");
+-+		return (0);
+-+	}
+-+
+-+	if (state->mac_data) {
+-+		OPENSSL_free(state->mac_data);
+-+		state->mac_data = NULL;
+-+		state->mac_len = 0;
+-+	}
+-+
+-+	if (ioctl(state->d_fd, CIOCFSESSION, &sess->ses) < 0) {
+-+		printf("cryptodev_digest_cleanup: failed to close session\n");
+-+		ret = 0;
+-+	} else {
+-+		ret = 1;
+-+	}
+-+	put_dev_crypto(state->d_fd);	
+-+	state->d_fd = -1;
+-+
+-+	return (ret);
+- }
+- 
+--static int cryptodev_digest_copy(EVP_MD_CTX *to, const EVP_MD_CTX *from)
+-+static int cryptodev_digest_copy(EVP_MD_CTX *to,const EVP_MD_CTX *from)
+- {
+--    struct dev_crypto_state *fstate = from->md_data;
+--    struct dev_crypto_state *dstate = to->md_data;
+--    struct session_op *sess;
+--    int digest;
+-+	struct dev_crypto_state *fstate = from->md_data;
+-+	struct dev_crypto_state *dstate = to->md_data;
+-+	struct session_op *sess;
+-+	int digest;
+- 
+--    if (dstate == NULL || fstate == NULL)
+--        return 1;
+-+	if (dstate == NULL || fstate == NULL)
+-+	  return 1;
+- 
+--    memcpy(dstate, fstate, sizeof(struct dev_crypto_state));
+-+       	memcpy(dstate, fstate, sizeof(struct dev_crypto_state));
+- 
+--    sess = &dstate->d_sess;
+-+	sess = &dstate->d_sess;
+- 
+--    digest = digest_nid_to_cryptodev(to->digest->type);
+-+	digest = digest_nid_to_cryptodev(to->digest->type);
+- 
+--    sess->mackey = dstate->dummy_mac_key;
+--    sess->mackeylen = digest_key_length(to->digest->type);
+--    sess->mac = digest;
+-+	sess->mackey = NULL;
+-+	sess->mackeylen = 0;
+-+	sess->mac = digest;
+- 
+--    dstate->d_fd = get_dev_crypto();
+-+	dstate->d_fd = get_dev_crypto();
+- 
+--    if (ioctl(dstate->d_fd, CIOCGSESSION, sess) < 0) {
+--        put_dev_crypto(dstate->d_fd);
+--        dstate->d_fd = -1;
+--        printf("cryptodev_digest_init: Open session failed\n");
+--        return (0);
+--    }
+-+	if (ioctl(dstate->d_fd, CIOCGSESSION, sess) < 0) {
+-+		put_dev_crypto(dstate->d_fd);
+-+		dstate->d_fd = -1;
+-+		printf("cryptodev_digest_init: Open session failed\n");
+-+		return (0);
+-+	}
+- 
+--    if (fstate->mac_len != 0) {
+--        if (fstate->mac_data != NULL) {
+--            dstate->mac_data = OPENSSL_malloc(fstate->mac_len);
+--            memcpy(dstate->mac_data, fstate->mac_data, fstate->mac_len);
+--            dstate->mac_len = fstate->mac_len;
+--        }
+--    }
+-+	if (fstate->mac_len != 0) {
+-+	        if (fstate->mac_data != NULL)
+-+	                {
+-+        		dstate->mac_data = OPENSSL_malloc(fstate->mac_len);
+-+	        	memcpy(dstate->mac_data, fstate->mac_data, fstate->mac_len);
+-+           		dstate->mac_len = fstate->mac_len;
+-+	        	}
+-+	}
+- 
+--    return 1;
+-+	return 1;
+- }
+- 
+--const EVP_MD cryptodev_sha1 = {
+--    NID_sha1,
+--    NID_undef,
+--    SHA_DIGEST_LENGTH,
+--    EVP_MD_FLAG_ONESHOT,
+--    cryptodev_digest_init,
+--    cryptodev_digest_update,
+--    cryptodev_digest_final,
+--    cryptodev_digest_copy,
+--    cryptodev_digest_cleanup,
+--    EVP_PKEY_NULL_method,
+--    SHA_CBLOCK,
+--    sizeof(struct dev_crypto_state),
+-+
+-+static const EVP_MD cryptodev_sha1 = {
+-+	NID_sha1,
+-+	NID_sha1WithRSAEncryption,
+-+	SHA_DIGEST_LENGTH, 
+-+#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+-+	EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+-+	EVP_MD_FLAG_DIGALGID_ABSENT|
+-+#endif
+-+	EVP_MD_FLAG_ONESHOT,
+-+	cryptodev_digest_init,
+-+	cryptodev_digest_update,
+-+	cryptodev_digest_final,
+-+	cryptodev_digest_copy,
+-+	cryptodev_digest_cleanup,
+-+	EVP_PKEY_RSA_method,
+-+	SHA_CBLOCK,
+-+	sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+- };
+- 
+--const EVP_MD cryptodev_md5 = {
+--    NID_md5,
+--    NID_undef,
+--    16 /* MD5_DIGEST_LENGTH */ ,
+--    EVP_MD_FLAG_ONESHOT,
+--    cryptodev_digest_init,
+--    cryptodev_digest_update,
+--    cryptodev_digest_final,
+--    cryptodev_digest_copy,
+--    cryptodev_digest_cleanup,
+--    EVP_PKEY_NULL_method,
+--    64 /* MD5_CBLOCK */ ,
+--    sizeof(struct dev_crypto_state),
+-+static const EVP_MD cryptodev_sha256 = {
+-+	NID_sha256,
+-+	NID_sha256WithRSAEncryption,
+-+	SHA256_DIGEST_LENGTH, 
+-+#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+-+	EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+-+	EVP_MD_FLAG_DIGALGID_ABSENT|
+-+#endif
+-+	EVP_MD_FLAG_ONESHOT,
+-+	cryptodev_digest_init,
+-+	cryptodev_digest_update,
+-+	cryptodev_digest_final,
+-+	cryptodev_digest_copy,
+-+	cryptodev_digest_cleanup,
+-+	EVP_PKEY_RSA_method,
+-+	SHA256_CBLOCK,
+-+	sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+-+};
+-+static const EVP_MD cryptodev_sha224 = {
+-+	NID_sha224,
+-+	NID_sha224WithRSAEncryption, 
+-+	SHA224_DIGEST_LENGTH, 
+-+#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+-+	EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+-+	EVP_MD_FLAG_DIGALGID_ABSENT|
+-+#endif
+-+	EVP_MD_FLAG_ONESHOT,
+-+	cryptodev_digest_init,
+-+	cryptodev_digest_update,
+-+	cryptodev_digest_final,
+-+	cryptodev_digest_copy,
+-+	cryptodev_digest_cleanup,
+-+	EVP_PKEY_RSA_method,
+-+	SHA256_CBLOCK,
+-+	sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+- };
+- 
+--# endif                         /* USE_CRYPTODEV_DIGESTS */
+-+static const EVP_MD cryptodev_sha384 = {
+-+	NID_sha384,
+-+	NID_sha384WithRSAEncryption, 
+-+	SHA384_DIGEST_LENGTH, 
+-+#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+-+	EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+-+	EVP_MD_FLAG_DIGALGID_ABSENT|
+-+#endif
+-+	EVP_MD_FLAG_ONESHOT,
+-+	cryptodev_digest_init,
+-+	cryptodev_digest_update,
+-+	cryptodev_digest_final,
+-+	cryptodev_digest_copy,
+-+	cryptodev_digest_cleanup,
+-+	EVP_PKEY_RSA_method,
+-+	SHA512_CBLOCK,
+-+	sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+-+};
+-+
+-+static const EVP_MD cryptodev_sha512 = {
+-+	NID_sha512,
+-+	NID_sha512WithRSAEncryption, 
+-+	SHA512_DIGEST_LENGTH, 
+-+#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+-+	EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+-+	EVP_MD_FLAG_DIGALGID_ABSENT|
+-+#endif
+-+	EVP_MD_FLAG_ONESHOT,
+-+	cryptodev_digest_init,
+-+	cryptodev_digest_update,
+-+	cryptodev_digest_final,
+-+	cryptodev_digest_copy,
+-+	cryptodev_digest_cleanup,
+-+	EVP_PKEY_RSA_method,
+-+	SHA512_CBLOCK,
+-+	sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+-+};
+-+
+-+static const EVP_MD cryptodev_md5 = {
+-+	NID_md5,
+-+	NID_md5WithRSAEncryption, 
+-+	16 /* MD5_DIGEST_LENGTH */, 
+-+#if defined(EVP_MD_FLAG_PKEY_METHOD_SIGNATURE) && defined(EVP_MD_FLAG_DIGALGID_ABSENT)
+-+	EVP_MD_FLAG_PKEY_METHOD_SIGNATURE|
+-+	EVP_MD_FLAG_DIGALGID_ABSENT|
+-+#endif
+-+	EVP_MD_FLAG_ONESHOT,
+-+	cryptodev_digest_init,
+-+	cryptodev_digest_update,
+-+	cryptodev_digest_final,
+-+	cryptodev_digest_copy,
+-+	cryptodev_digest_cleanup,
+-+	EVP_PKEY_RSA_method,
+-+	64 /* MD5_CBLOCK */,
+-+	sizeof(EVP_MD *)+sizeof(struct dev_crypto_state),
+-+};
+-+
+-+#endif /* USE_CRYPTODEV_DIGESTS */
+-+
+- 
+- static int
+- cryptodev_engine_digests(ENGINE *e, const EVP_MD **digest,
+--                         const int **nids, int nid)
+-+    const int **nids, int nid)
+- {
+--    if (!digest)
+--        return (cryptodev_usable_digests(nids));
+--
+--    switch (nid) {
+--# ifdef USE_CRYPTODEV_DIGESTS
+--    case NID_md5:
+--        *digest = &cryptodev_md5;
+--        break;
+--    case NID_sha1:
+--        *digest = &cryptodev_sha1;
+--        break;
+--    default:
+--# endif                         /* USE_CRYPTODEV_DIGESTS */
+--        *digest = NULL;
+--        break;
+--    }
+--    return (*digest != NULL);
+-+	if (!digest)
+-+		return (cryptodev_usable_digests(nids));
+-+
+-+	switch (nid) {
+-+#ifdef USE_CRYPTODEV_DIGESTS
+-+	case NID_md5:
+-+		*digest = &cryptodev_md5; 
+-+		break;
+-+	case NID_sha1:
+-+		*digest = &cryptodev_sha1;
+-+ 		break;
+-+	case NID_sha224:
+-+		*digest = &cryptodev_sha224;
+-+ 		break;
+-+	case NID_sha256:
+-+		*digest = &cryptodev_sha256;
+-+ 		break;
+-+	case NID_sha384:
+-+		*digest = &cryptodev_sha384;
+-+ 		break;
+-+	case NID_sha512:
+-+		*digest = &cryptodev_sha512;
+-+ 		break;
+-+	default:
+-+#endif /* USE_CRYPTODEV_DIGESTS */
+-+		*digest = NULL;
+-+		break;
+-+	}
+-+	return (*digest != NULL);
+- }
+- 
+- /*
+-@@ -943,423 +1009,420 @@ cryptodev_engine_digests(ENGINE *e, const EVP_MD **digest,
+-  * Upon completion of use, the caller is responsible for freeing
+-  * crp->crp_p.
+-  */
+--static int bn2crparam(const BIGNUM *a, struct crparam *crp)
+-+static int
+-+bn2crparam(const BIGNUM *a, struct crparam *crp)
+- {
+--    int i, j, k;
+--    ssize_t bytes, bits;
+--    u_char *b;
+--
+--    crp->crp_p = NULL;
+--    crp->crp_nbits = 0;
+--
+--    bits = BN_num_bits(a);
+--    bytes = (bits + 7) / 8;
+--
+--    b = malloc(bytes);
+--    if (b == NULL)
+--        return (1);
+--    memset(b, 0, bytes);
+--
+--    crp->crp_p = (caddr_t) b;
+--    crp->crp_nbits = bits;
+--
+--    for (i = 0, j = 0; i < a->top; i++) {
+--        for (k = 0; k < BN_BITS2 / 8; k++) {
+--            if ((j + k) >= bytes)
+--                return (0);
+--            b[j + k] = a->d[i] >> (k * 8);
+--        }
+--        j += BN_BITS2 / 8;
+--    }
+--    return (0);
+-+	int i, j, k;
+-+	ssize_t bytes, bits;
+-+	u_char *b;
+-+
+-+	crp->crp_p = NULL;
+-+	crp->crp_nbits = 0;
+-+
+-+	bits = BN_num_bits(a);
+-+	bytes = (bits + 7) / 8;
+-+
+-+	b = malloc(bytes);
+-+	if (b == NULL)
+-+		return (1);
+-+	memset(b, 0, bytes);
+-+
+-+	crp->crp_p = (void*) b;
+-+	crp->crp_nbits = bits;
+-+
+-+	for (i = 0, j = 0; i < a->top; i++) {
+-+		for (k = 0; k < BN_BITS2 / 8; k++) {
+-+			if ((j + k) >= bytes)
+-+				return (0);
+-+			b[j + k] = a->d[i] >> (k * 8);
+-+		}
+-+		j += BN_BITS2 / 8;
+-+	}
+-+	return (0);
+- }
+- 
+- /* Convert a /dev/crypto parameter to a BIGNUM */
+--static int crparam2bn(struct crparam *crp, BIGNUM *a)
+-+static int
+-+crparam2bn(struct crparam *crp, BIGNUM *a)
+- {
+--    u_int8_t *pd;
+--    int i, bytes;
+-+	u_int8_t *pd;
+-+	int i, bytes;
+- 
+--    bytes = (crp->crp_nbits + 7) / 8;
+-+	bytes = (crp->crp_nbits + 7) / 8;
+- 
+--    if (bytes == 0)
+--        return (-1);
+-+	if (bytes == 0)
+-+		return (-1);
+- 
+--    if ((pd = (u_int8_t *) malloc(bytes)) == NULL)
+--        return (-1);
+-+	if ((pd = (u_int8_t *) malloc(bytes)) == NULL)
+-+		return (-1);
+- 
+--    for (i = 0; i < bytes; i++)
+--        pd[i] = crp->crp_p[bytes - i - 1];
+-+	for (i = 0; i < bytes; i++)
+-+		pd[i] = crp->crp_p[bytes - i - 1];
+- 
+--    BN_bin2bn(pd, bytes, a);
+--    free(pd);
+-+	BN_bin2bn(pd, bytes, a);
+-+	free(pd);
+- 
+--    return (0);
+-+	return (0);
+- }
+- 
+--static void zapparams(struct crypt_kop *kop)
+-+static void
+-+zapparams(struct crypt_kop *kop)
+- {
+--    int i;
+--
+--    for (i = 0; i < kop->crk_iparams + kop->crk_oparams; i++) {
+--        if (kop->crk_param[i].crp_p)
+--            free(kop->crk_param[i].crp_p);
+--        kop->crk_param[i].crp_p = NULL;
+--        kop->crk_param[i].crp_nbits = 0;
+--    }
+-+	int i;
+-+
+-+	for (i = 0; i < kop->crk_iparams + kop->crk_oparams; i++) {
+-+		if (kop->crk_param[i].crp_p)
+-+			free(kop->crk_param[i].crp_p);
+-+		kop->crk_param[i].crp_p = NULL;
+-+		kop->crk_param[i].crp_nbits = 0;
+-+	}
+- }
+- 
+- static int
+--cryptodev_asym(struct crypt_kop *kop, int rlen, BIGNUM *r, int slen,
+--               BIGNUM *s)
+-+cryptodev_asym(struct crypt_kop *kop, int rlen, BIGNUM *r, int slen, BIGNUM *s)
+- {
+--    int fd, ret = -1;
+--
+--    if ((fd = get_asym_dev_crypto()) < 0)
+--        return (ret);
+--
+--    if (r) {
+--        kop->crk_param[kop->crk_iparams].crp_p = calloc(rlen, sizeof(char));
+--        kop->crk_param[kop->crk_iparams].crp_nbits = rlen * 8;
+--        kop->crk_oparams++;
+--    }
+--    if (s) {
+--        kop->crk_param[kop->crk_iparams + 1].crp_p =
+--            calloc(slen, sizeof(char));
+--        kop->crk_param[kop->crk_iparams + 1].crp_nbits = slen * 8;
+--        kop->crk_oparams++;
+--    }
+--
+--    if (ioctl(fd, CIOCKEY, kop) == 0) {
+--        if (r)
+--            crparam2bn(&kop->crk_param[kop->crk_iparams], r);
+--        if (s)
+--            crparam2bn(&kop->crk_param[kop->crk_iparams + 1], s);
+--        ret = 0;
+--    }
+--
+--    return (ret);
+-+	int fd, ret = -1;
+-+
+-+	if ((fd = get_asym_dev_crypto()) < 0)
+-+		return (ret);
+-+
+-+	if (r) {
+-+		kop->crk_param[kop->crk_iparams].crp_p = calloc(rlen, sizeof(char));
+-+		kop->crk_param[kop->crk_iparams].crp_nbits = rlen * 8;
+-+		kop->crk_oparams++;
+-+	}
+-+	if (s) {
+-+		kop->crk_param[kop->crk_iparams+1].crp_p = calloc(slen, sizeof(char));
+-+		kop->crk_param[kop->crk_iparams+1].crp_nbits = slen * 8;
+-+		kop->crk_oparams++;
+-+	}
+-+
+-+	if (ioctl(fd, CIOCKEY, kop) == 0) {
+-+		if (r)
+-+			crparam2bn(&kop->crk_param[kop->crk_iparams], r);
+-+		if (s)
+-+			crparam2bn(&kop->crk_param[kop->crk_iparams+1], s);
+-+		ret = 0;
+-+	}
+-+
+-+	return (ret);
+- }
+- 
+- static int
+- cryptodev_bn_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
+--                     const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont)
+-+    const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont)
+- {
+--    struct crypt_kop kop;
+--    int ret = 1;
+--
+--    /*
+--     * Currently, we know we can do mod exp iff we can do any asymmetric
+--     * operations at all.
+--     */
+--    if (cryptodev_asymfeat == 0) {
+--        ret = BN_mod_exp(r, a, p, m, ctx);
+--        return (ret);
+--    }
+--
+--    memset(&kop, 0, sizeof kop);
+--    kop.crk_op = CRK_MOD_EXP;
+--
+--    /* inputs: a^p % m */
+--    if (bn2crparam(a, &kop.crk_param[0]))
+--        goto err;
+--    if (bn2crparam(p, &kop.crk_param[1]))
+--        goto err;
+--    if (bn2crparam(m, &kop.crk_param[2]))
+--        goto err;
+--    kop.crk_iparams = 3;
+--
+--    if (cryptodev_asym(&kop, BN_num_bytes(m), r, 0, NULL)) {
+--        const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+--        printf("OCF asym process failed, Running in software\n");
+--        ret = meth->bn_mod_exp(r, a, p, m, ctx, in_mont);
+--
+--    } else if (ECANCELED == kop.crk_status) {
+--        const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+--        printf("OCF hardware operation cancelled. Running in Software\n");
+--        ret = meth->bn_mod_exp(r, a, p, m, ctx, in_mont);
+--    }
+--    /* else cryptodev operation worked ok ==> ret = 1 */
+--
+-- err:
+--    zapparams(&kop);
+--    return (ret);
+-+	struct crypt_kop kop;
+-+	int ret = 1;
+-+
+-+	/* Currently, we know we can do mod exp iff we can do any
+-+	 * asymmetric operations at all.
+-+	 */
+-+	if (cryptodev_asymfeat == 0) {
+-+		ret = BN_mod_exp(r, a, p, m, ctx);
+-+		return (ret);
+-+	}
+-+
+-+	memset(&kop, 0, sizeof kop);
+-+	kop.crk_op = CRK_MOD_EXP;
+-+
+-+	/* inputs: a^p % m */
+-+	if (bn2crparam(a, &kop.crk_param[0]))
+-+		goto err;
+-+	if (bn2crparam(p, &kop.crk_param[1]))
+-+		goto err;
+-+	if (bn2crparam(m, &kop.crk_param[2]))
+-+		goto err;
+-+	kop.crk_iparams = 3;
+-+
+-+	if (cryptodev_asym(&kop, BN_num_bytes(m), r, 0, NULL)) {
+-+		const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+-+		printf("OCF asym process failed, Running in software\n");
+-+		ret = meth->bn_mod_exp(r, a, p, m, ctx, in_mont);
+-+
+-+	} else if (ECANCELED == kop.crk_status) {
+-+		const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+-+		printf("OCF hardware operation cancelled. Running in Software\n");
+-+		ret = meth->bn_mod_exp(r, a, p, m, ctx, in_mont);
+-+	}
+-+	/* else cryptodev operation worked ok ==> ret = 1*/
+-+
+-+err:
+-+	zapparams(&kop);
+-+	return (ret);
+- }
+- 
+- static int
+--cryptodev_rsa_nocrt_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa,
+--                            BN_CTX *ctx)
+-+cryptodev_rsa_nocrt_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa, BN_CTX *ctx)
+- {
+--    int r;
+--    ctx = BN_CTX_new();
+--    r = cryptodev_bn_mod_exp(r0, I, rsa->d, rsa->n, ctx, NULL);
+--    BN_CTX_free(ctx);
+--    return (r);
+-+	int r;
+-+	ctx = BN_CTX_new();
+-+	r = cryptodev_bn_mod_exp(r0, I, rsa->d, rsa->n, ctx, NULL);
+-+	BN_CTX_free(ctx);
+-+	return (r);
+- }
+- 
+- static int
+- cryptodev_rsa_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa, BN_CTX *ctx)
+- {
+--    struct crypt_kop kop;
+--    int ret = 1;
+--
+--    if (!rsa->p || !rsa->q || !rsa->dmp1 || !rsa->dmq1 || !rsa->iqmp) {
+--        /* XXX 0 means failure?? */
+--        return (0);
+--    }
+--
+--    memset(&kop, 0, sizeof kop);
+--    kop.crk_op = CRK_MOD_EXP_CRT;
+--    /* inputs: rsa->p rsa->q I rsa->dmp1 rsa->dmq1 rsa->iqmp */
+--    if (bn2crparam(rsa->p, &kop.crk_param[0]))
+--        goto err;
+--    if (bn2crparam(rsa->q, &kop.crk_param[1]))
+--        goto err;
+--    if (bn2crparam(I, &kop.crk_param[2]))
+--        goto err;
+--    if (bn2crparam(rsa->dmp1, &kop.crk_param[3]))
+--        goto err;
+--    if (bn2crparam(rsa->dmq1, &kop.crk_param[4]))
+--        goto err;
+--    if (bn2crparam(rsa->iqmp, &kop.crk_param[5]))
+--        goto err;
+--    kop.crk_iparams = 6;
+--
+--    if (cryptodev_asym(&kop, BN_num_bytes(rsa->n), r0, 0, NULL)) {
+--        const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+--        printf("OCF asym process failed, running in Software\n");
+--        ret = (*meth->rsa_mod_exp) (r0, I, rsa, ctx);
+--
+--    } else if (ECANCELED == kop.crk_status) {
+--        const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+--        printf("OCF hardware operation cancelled. Running in Software\n");
+--        ret = (*meth->rsa_mod_exp) (r0, I, rsa, ctx);
+--    }
+--    /* else cryptodev operation worked ok ==> ret = 1 */
+--
+-- err:
+--    zapparams(&kop);
+--    return (ret);
+-+	struct crypt_kop kop;
+-+	int ret = 1;
+-+
+-+	if (!rsa->p || !rsa->q || !rsa->dmp1 || !rsa->dmq1 || !rsa->iqmp) {
+-+		/* XXX 0 means failure?? */
+-+		return (0);
+-+	}
+-+
+-+	memset(&kop, 0, sizeof kop);
+-+	kop.crk_op = CRK_MOD_EXP_CRT;
+-+	/* inputs: rsa->p rsa->q I rsa->dmp1 rsa->dmq1 rsa->iqmp */
+-+	if (bn2crparam(rsa->p, &kop.crk_param[0]))
+-+		goto err;
+-+	if (bn2crparam(rsa->q, &kop.crk_param[1]))
+-+		goto err;
+-+	if (bn2crparam(I, &kop.crk_param[2]))
+-+		goto err;
+-+	if (bn2crparam(rsa->dmp1, &kop.crk_param[3]))
+-+		goto err;
+-+	if (bn2crparam(rsa->dmq1, &kop.crk_param[4]))
+-+		goto err;
+-+	if (bn2crparam(rsa->iqmp, &kop.crk_param[5]))
+-+		goto err;
+-+	kop.crk_iparams = 6;
+-+
+-+	if (cryptodev_asym(&kop, BN_num_bytes(rsa->n), r0, 0, NULL)) {
+-+		const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+-+		printf("OCF asym process failed, running in Software\n");
+-+		ret = (*meth->rsa_mod_exp)(r0, I, rsa, ctx);
+-+
+-+	} else if (ECANCELED == kop.crk_status) {
+-+		const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
+-+		printf("OCF hardware operation cancelled. Running in Software\n");
+-+		ret = (*meth->rsa_mod_exp)(r0, I, rsa, ctx);
+-+	}
+-+	/* else cryptodev operation worked ok ==> ret = 1*/
+-+
+-+err:
+-+	zapparams(&kop);
+-+	return (ret);
+- }
+- 
+- static RSA_METHOD cryptodev_rsa = {
+--    "cryptodev RSA method",
+--    NULL,                       /* rsa_pub_enc */
+--    NULL,                       /* rsa_pub_dec */
+--    NULL,                       /* rsa_priv_enc */
+--    NULL,                       /* rsa_priv_dec */
+--    NULL,
+--    NULL,
+--    NULL,                       /* init */
+--    NULL,                       /* finish */
+--    0,                          /* flags */
+--    NULL,                       /* app_data */
+--    NULL,                       /* rsa_sign */
+--    NULL                        /* rsa_verify */
+-+	"cryptodev RSA method",
+-+	NULL,				/* rsa_pub_enc */
+-+	NULL,				/* rsa_pub_dec */
+-+	NULL,				/* rsa_priv_enc */
+-+	NULL,				/* rsa_priv_dec */
+-+	NULL,
+-+	NULL,
+-+	NULL,				/* init */
+-+	NULL,				/* finish */
+-+	0,				/* flags */
+-+	NULL,				/* app_data */
+-+	NULL,				/* rsa_sign */
+-+	NULL				/* rsa_verify */
+- };
+- 
+- static int
+- cryptodev_dsa_bn_mod_exp(DSA *dsa, BIGNUM *r, BIGNUM *a, const BIGNUM *p,
+--                         const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *m_ctx)
+-+    const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *m_ctx)
+- {
+--    return (cryptodev_bn_mod_exp(r, a, p, m, ctx, m_ctx));
+-+	return (cryptodev_bn_mod_exp(r, a, p, m, ctx, m_ctx));
+- }
+- 
+- static int
+- cryptodev_dsa_dsa_mod_exp(DSA *dsa, BIGNUM *t1, BIGNUM *g,
+--                          BIGNUM *u1, BIGNUM *pub_key, BIGNUM *u2, BIGNUM *p,
+--                          BN_CTX *ctx, BN_MONT_CTX *mont)
+-+    BIGNUM *u1, BIGNUM *pub_key, BIGNUM *u2, BIGNUM *p,
+-+    BN_CTX *ctx, BN_MONT_CTX *mont)
+- {
+--    BIGNUM t2;
+--    int ret = 0;
+-+	BIGNUM t2;
+-+	int ret = 0;
+- 
+--    BN_init(&t2);
+-+	BN_init(&t2);
+- 
+--    /* v = ( g^u1 * y^u2 mod p ) mod q */
+--    /* let t1 = g ^ u1 mod p */
+--    ret = 0;
+-+	/* v = ( g^u1 * y^u2 mod p ) mod q */
+-+	/* let t1 = g ^ u1 mod p */
+-+	ret = 0;
+- 
+--    if (!dsa->meth->bn_mod_exp(dsa, t1, dsa->g, u1, dsa->p, ctx, mont))
+--        goto err;
+-+	if (!dsa->meth->bn_mod_exp(dsa,t1,dsa->g,u1,dsa->p,ctx,mont))
+-+		goto err;
+- 
+--    /* let t2 = y ^ u2 mod p */
+--    if (!dsa->meth->bn_mod_exp(dsa, &t2, dsa->pub_key, u2, dsa->p, ctx, mont))
+--        goto err;
+--    /* let u1 = t1 * t2 mod p */
+--    if (!BN_mod_mul(u1, t1, &t2, dsa->p, ctx))
+--        goto err;
+-+	/* let t2 = y ^ u2 mod p */
+-+	if (!dsa->meth->bn_mod_exp(dsa,&t2,dsa->pub_key,u2,dsa->p,ctx,mont))
+-+		goto err;
+-+	/* let u1 = t1 * t2 mod p */
+-+	if (!BN_mod_mul(u1,t1,&t2,dsa->p,ctx))
+-+		goto err;
+- 
+--    BN_copy(t1, u1);
+-+	BN_copy(t1,u1);
+- 
+--    ret = 1;
+-- err:
+--    BN_free(&t2);
+--    return (ret);
+-+	ret = 1;
+-+err:
+-+	BN_free(&t2);
+-+	return(ret);
+- }
+- 
+--static DSA_SIG *cryptodev_dsa_do_sign(const unsigned char *dgst, int dlen,
+--                                      DSA *dsa)
+-+static DSA_SIG *
+-+cryptodev_dsa_do_sign(const unsigned char *dgst, int dlen, DSA *dsa)
+- {
+--    struct crypt_kop kop;
+--    BIGNUM *r = NULL, *s = NULL;
+--    DSA_SIG *dsaret = NULL;
+--
+--    if ((r = BN_new()) == NULL)
+--        goto err;
+--    if ((s = BN_new()) == NULL) {
+--        BN_free(r);
+--        goto err;
+--    }
+--
+--    memset(&kop, 0, sizeof kop);
+--    kop.crk_op = CRK_DSA_SIGN;
+--
+--    /* inputs: dgst dsa->p dsa->q dsa->g dsa->priv_key */
+--    kop.crk_param[0].crp_p = (caddr_t) dgst;
+--    kop.crk_param[0].crp_nbits = dlen * 8;
+--    if (bn2crparam(dsa->p, &kop.crk_param[1]))
+--        goto err;
+--    if (bn2crparam(dsa->q, &kop.crk_param[2]))
+--        goto err;
+--    if (bn2crparam(dsa->g, &kop.crk_param[3]))
+--        goto err;
+--    if (bn2crparam(dsa->priv_key, &kop.crk_param[4]))
+--        goto err;
+--    kop.crk_iparams = 5;
+--
+--    if (cryptodev_asym(&kop, BN_num_bytes(dsa->q), r,
+--                       BN_num_bytes(dsa->q), s) == 0) {
+--        dsaret = DSA_SIG_new();
+--        dsaret->r = r;
+--        dsaret->s = s;
+--    } else {
+--        const DSA_METHOD *meth = DSA_OpenSSL();
+--        BN_free(r);
+--        BN_free(s);
+--        dsaret = (meth->dsa_do_sign) (dgst, dlen, dsa);
+--    }
+-- err:
+--    kop.crk_param[0].crp_p = NULL;
+--    zapparams(&kop);
+--    return (dsaret);
+-+	struct crypt_kop kop;
+-+	BIGNUM *r = NULL, *s = NULL;
+-+	DSA_SIG *dsaret = NULL;
+-+
+-+	if ((r = BN_new()) == NULL)
+-+		goto err;
+-+	if ((s = BN_new()) == NULL) {
+-+		BN_free(r);
+-+		goto err;
+-+	}
+-+
+-+	memset(&kop, 0, sizeof kop);
+-+	kop.crk_op = CRK_DSA_SIGN;
+-+
+-+	/* inputs: dgst dsa->p dsa->q dsa->g dsa->priv_key */
+-+	kop.crk_param[0].crp_p = (void*)dgst;
+-+	kop.crk_param[0].crp_nbits = dlen * 8;
+-+	if (bn2crparam(dsa->p, &kop.crk_param[1]))
+-+		goto err;
+-+	if (bn2crparam(dsa->q, &kop.crk_param[2]))
+-+		goto err;
+-+	if (bn2crparam(dsa->g, &kop.crk_param[3]))
+-+		goto err;
+-+	if (bn2crparam(dsa->priv_key, &kop.crk_param[4]))
+-+		goto err;
+-+	kop.crk_iparams = 5;
+-+
+-+	if (cryptodev_asym(&kop, BN_num_bytes(dsa->q), r,
+-+	    BN_num_bytes(dsa->q), s) == 0) {
+-+		dsaret = DSA_SIG_new();
+-+		dsaret->r = r;
+-+		dsaret->s = s;
+-+	} else {
+-+		const DSA_METHOD *meth = DSA_OpenSSL();
+-+		BN_free(r);
+-+		BN_free(s);
+-+		dsaret = (meth->dsa_do_sign)(dgst, dlen, dsa);
+-+	}
+-+err:
+-+	kop.crk_param[0].crp_p = NULL;
+-+	zapparams(&kop);
+-+	return (dsaret);
+- }
+- 
+- static int
+- cryptodev_dsa_verify(const unsigned char *dgst, int dlen,
+--                     DSA_SIG *sig, DSA *dsa)
+-+    DSA_SIG *sig, DSA *dsa)
+- {
+--    struct crypt_kop kop;
+--    int dsaret = 1;
+--
+--    memset(&kop, 0, sizeof kop);
+--    kop.crk_op = CRK_DSA_VERIFY;
+--
+--    /* inputs: dgst dsa->p dsa->q dsa->g dsa->pub_key sig->r sig->s */
+--    kop.crk_param[0].crp_p = (caddr_t) dgst;
+--    kop.crk_param[0].crp_nbits = dlen * 8;
+--    if (bn2crparam(dsa->p, &kop.crk_param[1]))
+--        goto err;
+--    if (bn2crparam(dsa->q, &kop.crk_param[2]))
+--        goto err;
+--    if (bn2crparam(dsa->g, &kop.crk_param[3]))
+--        goto err;
+--    if (bn2crparam(dsa->pub_key, &kop.crk_param[4]))
+--        goto err;
+--    if (bn2crparam(sig->r, &kop.crk_param[5]))
+--        goto err;
+--    if (bn2crparam(sig->s, &kop.crk_param[6]))
+--        goto err;
+--    kop.crk_iparams = 7;
+--
+--    if (cryptodev_asym(&kop, 0, NULL, 0, NULL) == 0) {
+--        /*
+--         * OCF success value is 0, if not zero, change dsaret to fail
+--         */
+--        if (0 != kop.crk_status)
+--            dsaret = 0;
+--    } else {
+--        const DSA_METHOD *meth = DSA_OpenSSL();
+--
+--        dsaret = (meth->dsa_do_verify) (dgst, dlen, sig, dsa);
+--    }
+-- err:
+--    kop.crk_param[0].crp_p = NULL;
+--    zapparams(&kop);
+--    return (dsaret);
+-+	struct crypt_kop kop;
+-+	int dsaret = 1;
+-+
+-+	memset(&kop, 0, sizeof kop);
+-+	kop.crk_op = CRK_DSA_VERIFY;
+-+
+-+	/* inputs: dgst dsa->p dsa->q dsa->g dsa->pub_key sig->r sig->s */
+-+	kop.crk_param[0].crp_p = (void*)dgst;
+-+	kop.crk_param[0].crp_nbits = dlen * 8;
+-+	if (bn2crparam(dsa->p, &kop.crk_param[1]))
+-+		goto err;
+-+	if (bn2crparam(dsa->q, &kop.crk_param[2]))
+-+		goto err;
+-+	if (bn2crparam(dsa->g, &kop.crk_param[3]))
+-+		goto err;
+-+	if (bn2crparam(dsa->pub_key, &kop.crk_param[4]))
+-+		goto err;
+-+	if (bn2crparam(sig->r, &kop.crk_param[5]))
+-+		goto err;
+-+	if (bn2crparam(sig->s, &kop.crk_param[6]))
+-+		goto err;
+-+	kop.crk_iparams = 7;
+-+
+-+	if (cryptodev_asym(&kop, 0, NULL, 0, NULL) == 0) {
+-+/*OCF success value is 0, if not zero, change dsaret to fail*/
+-+		if(0 != kop.crk_status) dsaret  = 0;
+-+	} else {
+-+		const DSA_METHOD *meth = DSA_OpenSSL();
+-+
+-+		dsaret = (meth->dsa_do_verify)(dgst, dlen, sig, dsa);
+-+	}
+-+err:
+-+	kop.crk_param[0].crp_p = NULL;
+-+	zapparams(&kop);
+-+	return (dsaret);
+- }
+- 
+- static DSA_METHOD cryptodev_dsa = {
+--    "cryptodev DSA method",
+--    NULL,
+--    NULL,                       /* dsa_sign_setup */
+--    NULL,
+--    NULL,                       /* dsa_mod_exp */
+--    NULL,
+--    NULL,                       /* init */
+--    NULL,                       /* finish */
+--    0,                          /* flags */
+--    NULL                        /* app_data */
+-+	"cryptodev DSA method",
+-+	NULL,
+-+	NULL,				/* dsa_sign_setup */
+-+	NULL,
+-+	NULL,				/* dsa_mod_exp */
+-+	NULL,
+-+	NULL,				/* init */
+-+	NULL,				/* finish */
+-+	0,	/* flags */
+-+	NULL	/* app_data */
+- };
+- 
+- static int
+- cryptodev_mod_exp_dh(const DH *dh, BIGNUM *r, const BIGNUM *a,
+--                     const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx,
+--                     BN_MONT_CTX *m_ctx)
+-+    const BIGNUM *p, const BIGNUM *m, BN_CTX *ctx,
+-+    BN_MONT_CTX *m_ctx)
+- {
+--    return (cryptodev_bn_mod_exp(r, a, p, m, ctx, m_ctx));
+-+	return (cryptodev_bn_mod_exp(r, a, p, m, ctx, m_ctx));
+- }
+- 
+- static int
+- cryptodev_dh_compute_key(unsigned char *key, const BIGNUM *pub_key, DH *dh)
+- {
+--    struct crypt_kop kop;
+--    int dhret = 1;
+--    int fd, keylen;
+--
+--    if ((fd = get_asym_dev_crypto()) < 0) {
+--        const DH_METHOD *meth = DH_OpenSSL();
+--
+--        return ((meth->compute_key) (key, pub_key, dh));
+--    }
+--
+--    keylen = BN_num_bits(dh->p);
+--
+--    memset(&kop, 0, sizeof kop);
+--    kop.crk_op = CRK_DH_COMPUTE_KEY;
+--
+--    /* inputs: dh->priv_key pub_key dh->p key */
+--    if (bn2crparam(dh->priv_key, &kop.crk_param[0]))
+--        goto err;
+--    if (bn2crparam(pub_key, &kop.crk_param[1]))
+--        goto err;
+--    if (bn2crparam(dh->p, &kop.crk_param[2]))
+--        goto err;
+--    kop.crk_iparams = 3;
+--
+--    kop.crk_param[3].crp_p = (caddr_t) key;
+--    kop.crk_param[3].crp_nbits = keylen * 8;
+--    kop.crk_oparams = 1;
+--
+--    if (ioctl(fd, CIOCKEY, &kop) == -1) {
+--        const DH_METHOD *meth = DH_OpenSSL();
+--
+--        dhret = (meth->compute_key) (key, pub_key, dh);
+--    }
+-- err:
+--    kop.crk_param[3].crp_p = NULL;
+--    zapparams(&kop);
+--    return (dhret);
+-+	struct crypt_kop kop;
+-+	int dhret = 1;
+-+	int fd, keylen;
+-+
+-+	if ((fd = get_asym_dev_crypto()) < 0) {
+-+		const DH_METHOD *meth = DH_OpenSSL();
+-+
+-+		return ((meth->compute_key)(key, pub_key, dh));
+-+	}
+-+
+-+	keylen = BN_num_bits(dh->p);
+-+
+-+	memset(&kop, 0, sizeof kop);
+-+	kop.crk_op = CRK_DH_COMPUTE_KEY;
+-+
+-+	/* inputs: dh->priv_key pub_key dh->p key */
+-+	if (bn2crparam(dh->priv_key, &kop.crk_param[0]))
+-+		goto err;
+-+	if (bn2crparam(pub_key, &kop.crk_param[1]))
+-+		goto err;
+-+	if (bn2crparam(dh->p, &kop.crk_param[2]))
+-+		goto err;
+-+	kop.crk_iparams = 3;
+-+
+-+	kop.crk_param[3].crp_p = (void*) key;
+-+	kop.crk_param[3].crp_nbits = keylen;
+-+	kop.crk_oparams = 1;
+-+	dhret = keylen/8;
+-+
+-+	if (ioctl(fd, CIOCKEY, &kop) == -1) {
+-+		const DH_METHOD *meth = DH_OpenSSL();
+-+
+-+		dhret = (meth->compute_key)(key, pub_key, dh);
+-+	}
+-+err:
+-+	kop.crk_param[3].crp_p = NULL;
+-+	zapparams(&kop);
+-+	return (dhret);
+- }
+- 
+- static DH_METHOD cryptodev_dh = {
+--    "cryptodev DH method",
+--    NULL,                       /* cryptodev_dh_generate_key */
+--    NULL,
+--    NULL,
+--    NULL,
+--    NULL,
+--    0,                          /* flags */
+--    NULL                        /* app_data */
+-+	"cryptodev DH method",
+-+	NULL,				/* cryptodev_dh_generate_key */
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	0,	/* flags */
+-+	NULL	/* app_data */
+- };
+- 
+- /*
+-@@ -1367,104 +1430,109 @@ static DH_METHOD cryptodev_dh = {
+-  * but I expect we'll want some options soon.
+-  */
+- static int
+--cryptodev_ctrl(ENGINE *e, int cmd, long i, void *p, void (*f) (void))
+-+cryptodev_ctrl(ENGINE *e, int cmd, long i, void *p, void (*f)(void))
+- {
+--# ifdef HAVE_SYSLOG_R
+--    struct syslog_data sd = SYSLOG_DATA_INIT;
+--# endif
+-+#ifdef HAVE_SYSLOG_R
+-+	struct syslog_data sd = SYSLOG_DATA_INIT;
+-+#endif
+- 
+--    switch (cmd) {
+--    default:
+--# ifdef HAVE_SYSLOG_R
+--        syslog_r(LOG_ERR, &sd, "cryptodev_ctrl: unknown command %d", cmd);
+--# else
+--        syslog(LOG_ERR, "cryptodev_ctrl: unknown command %d", cmd);
+--# endif
+--        break;
+--    }
+--    return (1);
+-+	switch (cmd) {
+-+	default:
+-+#ifdef HAVE_SYSLOG_R
+-+		syslog_r(LOG_ERR, &sd,
+-+		    "cryptodev_ctrl: unknown command %d", cmd);
+-+#else
+-+		syslog(LOG_ERR, "cryptodev_ctrl: unknown command %d", cmd);
+-+#endif
+-+		break;
+-+	}
+-+	return (1);
+- }
+- 
+--void ENGINE_load_cryptodev(void)
+-+void
+-+ENGINE_load_cryptodev(void)
+- {
+--    ENGINE *engine = ENGINE_new();
+--    int fd;
+--
+--    if (engine == NULL)
+--        return;
+--    if ((fd = get_dev_crypto()) < 0) {
+--        ENGINE_free(engine);
+--        return;
+--    }
+--
+--    /*
+--     * find out what asymmetric crypto algorithms we support
+--     */
+--    if (ioctl(fd, CIOCASYMFEAT, &cryptodev_asymfeat) == -1) {
+--        put_dev_crypto(fd);
+--        ENGINE_free(engine);
+--        return;
+--    }
+--    put_dev_crypto(fd);
+--
+--    if (!ENGINE_set_id(engine, "cryptodev") ||
+--        !ENGINE_set_name(engine, "BSD cryptodev engine") ||
+--        !ENGINE_set_ciphers(engine, cryptodev_engine_ciphers) ||
+--        !ENGINE_set_digests(engine, cryptodev_engine_digests) ||
+--        !ENGINE_set_ctrl_function(engine, cryptodev_ctrl) ||
+--        !ENGINE_set_cmd_defns(engine, cryptodev_defns)) {
+--        ENGINE_free(engine);
+--        return;
+--    }
+--
+--    if (ENGINE_set_RSA(engine, &cryptodev_rsa)) {
+--        const RSA_METHOD *rsa_meth = RSA_PKCS1_SSLeay();
+--
+--        cryptodev_rsa.bn_mod_exp = rsa_meth->bn_mod_exp;
+--        cryptodev_rsa.rsa_mod_exp = rsa_meth->rsa_mod_exp;
+--        cryptodev_rsa.rsa_pub_enc = rsa_meth->rsa_pub_enc;
+--        cryptodev_rsa.rsa_pub_dec = rsa_meth->rsa_pub_dec;
+--        cryptodev_rsa.rsa_priv_enc = rsa_meth->rsa_priv_enc;
+--        cryptodev_rsa.rsa_priv_dec = rsa_meth->rsa_priv_dec;
+--        if (cryptodev_asymfeat & CRF_MOD_EXP) {
+--            cryptodev_rsa.bn_mod_exp = cryptodev_bn_mod_exp;
+--            if (cryptodev_asymfeat & CRF_MOD_EXP_CRT)
+--                cryptodev_rsa.rsa_mod_exp = cryptodev_rsa_mod_exp;
+--            else
+--                cryptodev_rsa.rsa_mod_exp = cryptodev_rsa_nocrt_mod_exp;
+--        }
+--    }
+--
+--    if (ENGINE_set_DSA(engine, &cryptodev_dsa)) {
+--        const DSA_METHOD *meth = DSA_OpenSSL();
+--
+--        memcpy(&cryptodev_dsa, meth, sizeof(DSA_METHOD));
+--        if (cryptodev_asymfeat & CRF_DSA_SIGN)
+--            cryptodev_dsa.dsa_do_sign = cryptodev_dsa_do_sign;
+--        if (cryptodev_asymfeat & CRF_MOD_EXP) {
+--            cryptodev_dsa.bn_mod_exp = cryptodev_dsa_bn_mod_exp;
+--            cryptodev_dsa.dsa_mod_exp = cryptodev_dsa_dsa_mod_exp;
+--        }
+--        if (cryptodev_asymfeat & CRF_DSA_VERIFY)
+--            cryptodev_dsa.dsa_do_verify = cryptodev_dsa_verify;
+--    }
+--
+--    if (ENGINE_set_DH(engine, &cryptodev_dh)) {
+--        const DH_METHOD *dh_meth = DH_OpenSSL();
+--
+--        cryptodev_dh.generate_key = dh_meth->generate_key;
+--        cryptodev_dh.compute_key = dh_meth->compute_key;
+--        cryptodev_dh.bn_mod_exp = dh_meth->bn_mod_exp;
+--        if (cryptodev_asymfeat & CRF_MOD_EXP) {
+--            cryptodev_dh.bn_mod_exp = cryptodev_mod_exp_dh;
+--            if (cryptodev_asymfeat & CRF_DH_COMPUTE_KEY)
+--                cryptodev_dh.compute_key = cryptodev_dh_compute_key;
+--        }
+--    }
+--
+--    ENGINE_add(engine);
+--    ENGINE_free(engine);
+--    ERR_clear_error();
+-+	ENGINE *engine = ENGINE_new();
+-+	int fd;
+-+
+-+	if (engine == NULL)
+-+		return;
+-+	if ((fd = get_dev_crypto()) < 0) {
+-+		ENGINE_free(engine);
+-+		return;
+-+	}
+-+
+-+	/*
+-+	 * find out what asymmetric crypto algorithms we support
+-+	 */
+-+	if (ioctl(fd, CIOCASYMFEAT, &cryptodev_asymfeat) == -1) {
+-+		put_dev_crypto(fd);
+-+		ENGINE_free(engine);
+-+		return;
+-+	}
+-+	put_dev_crypto(fd);
+-+
+-+	if (!ENGINE_set_id(engine, "cryptodev") ||
+-+	    !ENGINE_set_name(engine, "cryptodev engine") ||
+-+	    !ENGINE_set_ciphers(engine, cryptodev_engine_ciphers) ||
+-+	    !ENGINE_set_digests(engine, cryptodev_engine_digests) ||
+-+	    !ENGINE_set_ctrl_function(engine, cryptodev_ctrl) ||
+-+	    !ENGINE_set_cmd_defns(engine, cryptodev_defns)) {
+-+		ENGINE_free(engine);
+-+		return;
+-+	}
+-+
+-+	if (ENGINE_set_RSA(engine, &cryptodev_rsa)) {
+-+		const RSA_METHOD *rsa_meth = RSA_PKCS1_SSLeay();
+-+
+-+		cryptodev_rsa.bn_mod_exp = rsa_meth->bn_mod_exp;
+-+		cryptodev_rsa.rsa_mod_exp = rsa_meth->rsa_mod_exp;
+-+		cryptodev_rsa.rsa_pub_enc = rsa_meth->rsa_pub_enc;
+-+		cryptodev_rsa.rsa_pub_dec = rsa_meth->rsa_pub_dec;
+-+		cryptodev_rsa.rsa_priv_enc = rsa_meth->rsa_priv_enc;
+-+		cryptodev_rsa.rsa_priv_dec = rsa_meth->rsa_priv_dec;
+-+		if (cryptodev_asymfeat & CRF_MOD_EXP) {
+-+			cryptodev_rsa.bn_mod_exp = cryptodev_bn_mod_exp;
+-+			if (cryptodev_asymfeat & CRF_MOD_EXP_CRT)
+-+				cryptodev_rsa.rsa_mod_exp =
+-+				    cryptodev_rsa_mod_exp;
+-+			else
+-+				cryptodev_rsa.rsa_mod_exp =
+-+				    cryptodev_rsa_nocrt_mod_exp;
+-+		}
+-+	}
+-+
+-+	if (ENGINE_set_DSA(engine, &cryptodev_dsa)) {
+-+		const DSA_METHOD *meth = DSA_OpenSSL();
+-+
+-+		memcpy(&cryptodev_dsa, meth, sizeof(DSA_METHOD));
+-+		if (cryptodev_asymfeat & CRF_DSA_SIGN)
+-+			cryptodev_dsa.dsa_do_sign = cryptodev_dsa_do_sign;
+-+		if (cryptodev_asymfeat & CRF_MOD_EXP) {
+-+			cryptodev_dsa.bn_mod_exp = cryptodev_dsa_bn_mod_exp;
+-+			cryptodev_dsa.dsa_mod_exp = cryptodev_dsa_dsa_mod_exp;
+-+		}
+-+		if (cryptodev_asymfeat & CRF_DSA_VERIFY)
+-+			cryptodev_dsa.dsa_do_verify = cryptodev_dsa_verify;
+-+	}
+-+
+-+	if (ENGINE_set_DH(engine, &cryptodev_dh)){
+-+		const DH_METHOD *dh_meth = DH_OpenSSL();
+-+
+-+		cryptodev_dh.generate_key = dh_meth->generate_key;
+-+		cryptodev_dh.compute_key = dh_meth->compute_key;
+-+		cryptodev_dh.bn_mod_exp = dh_meth->bn_mod_exp;
+-+		if (cryptodev_asymfeat & CRF_MOD_EXP) {
+-+			cryptodev_dh.bn_mod_exp = cryptodev_mod_exp_dh;
+-+			if (cryptodev_asymfeat & CRF_DH_COMPUTE_KEY)
+-+				cryptodev_dh.compute_key =
+-+				    cryptodev_dh_compute_key;
+-+		}
+-+	}
+-+
+-+	ENGINE_add(engine);
+-+	ENGINE_free(engine);
+-+	ERR_clear_error();
+- }
+- 
+--#endif                          /* HAVE_CRYPTODEV */
+-+#endif /* HAVE_CRYPTODEV */
+--- 
+-2.2.0
+-
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl/0002-cryptodev-allow-copying-EVP-contexts.patch b/meta-arago-distro/recipes-connectivity/openssl/openssl/0002-cryptodev-allow-copying-EVP-contexts.patch
+new file mode 100644
+index 0000000..c4ab53c
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl/0002-cryptodev-allow-copying-EVP-contexts.patch
+@@ -0,0 +1,202 @@
++From 656b55e39ab22ed135221214ccc47a00369f3ff6 Mon Sep 17 00:00:00 2001
++From: Nikos Mavrogiannopoulos <nmav@gnutls.org>
++Date: Fri, 4 Jul 2014 08:41:04 +0200
++Subject: [PATCH 2/2] cryptodev: allow copying EVP contexts
++
++---
++ crypto/engine/eng_cryptodev.c | 57 ++++++++++++++++++++++++++-----------------
++ 1 file changed, 35 insertions(+), 22 deletions(-)
++
++diff --git a/crypto/engine/eng_cryptodev.c b/crypto/engine/eng_cryptodev.c
++index a1c39e5..0d54613 100644
++--- a/crypto/engine/eng_cryptodev.c
+++++ b/crypto/engine/eng_cryptodev.c
++@@ -505,150 +505,163 @@ cryptodev_cleanup(EVP_CIPHER_CTX *ctx)
++  * gets called when libcrypto requests a cipher NID.
++  */
++ 
+++static int cryptodev_cipher_ctrl(EVP_CIPHER_CTX *ctx, int type, int p1, void *p2)
+++{
+++	struct dev_crypto_state *state = ctx->cipher_data;
+++	struct session_op *sess = &state->d_sess;
+++
+++	if (type == EVP_CTRL_COPY) {
+++		EVP_CIPHER_CTX *out = p2;
+++		return cryptodev_init_key(out, sess->key, ctx->iv, 0);
+++	}
+++
+++	return 0;
+++}
+++
++ /* RC4 */
++ const EVP_CIPHER cryptodev_rc4 = {
++ 	NID_rc4,
++ 	1, 16, 0,
++-	EVP_CIPH_VARIABLE_LENGTH,
+++	EVP_CIPH_VARIABLE_LENGTH|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	NULL,
++ 	NULL,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ /* DES CBC EVP */
++ const EVP_CIPHER cryptodev_des_cbc = {
++ 	NID_des_cbc,
++ 	8, 8, 8,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ /* 3DES CBC EVP */
++ const EVP_CIPHER cryptodev_3des_cbc = {
++ 	NID_des_ede3_cbc,
++ 	8, 24, 8,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_bf_cbc = {
++ 	NID_bf_cbc,
++ 	8, 16, 8,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_cast_cbc = {
++ 	NID_cast5_cbc,
++ 	8, 16, 8,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_aes_cbc = {
++ 	NID_aes_128_cbc,
++ 	16, 16, 16,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_aes_192_cbc = {
++ 	NID_aes_192_cbc,
++ 	16, 24, 16,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_aes_256_cbc = {
++ 	NID_aes_256_cbc,
++ 	16, 32, 16,
++-	EVP_CIPH_CBC_MODE,
+++	EVP_CIPH_CBC_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ #ifdef CRYPTO_AES_CTR
++ const EVP_CIPHER cryptodev_aes_ctr = {
++ 	NID_aes_128_ctr,
++ 	16, 16, 14,
++-	EVP_CIPH_CTR_MODE,
+++	EVP_CIPH_CTR_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_aes_ctr_192 = {
++ 	NID_aes_192_ctr,
++ 	16, 24, 14,
++-	EVP_CIPH_CTR_MODE,
+++	EVP_CIPH_CTR_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ 
++ const EVP_CIPHER cryptodev_aes_ctr_256 = {
++ 	NID_aes_256_ctr,
++ 	16, 32, 14,
++-	EVP_CIPH_CTR_MODE,
+++	EVP_CIPH_CTR_MODE|EVP_CIPH_CUSTOM_COPY,
++ 	cryptodev_init_key,
++ 	cryptodev_cipher,
++ 	cryptodev_cleanup,
++ 	sizeof(struct dev_crypto_state),
++ 	EVP_CIPHER_set_asn1_iv,
++ 	EVP_CIPHER_get_asn1_iv,
++-	NULL
+++	cryptodev_cipher_ctrl
++ };
++ #endif
++ /*
++-- 
++2.0.0
++
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl/0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch b/meta-arago-distro/recipes-connectivity/openssl/openssl/0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch
+index ae55a1a..f5a3da2 100644
+--- a/meta-arago-distro/recipes-connectivity/openssl/openssl/0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl/0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch
+@@ -1,26 +1,27 @@
+-From 3b8c75093561d2f4b06b1b9efc7689971c9a1709 Mon Sep 17 00:00:00 2001
+-From: Joel A Fernandes <joelagnel@ti.com>
+-Date: Fri, 19 Apr 2013 03:19:11 -0500
+-Subject: [PATCH 09/11] eng_cryptodev: Add SHA224 initialization to cryptodev
+- engine.
++From 67f8fdee6e979173c7c6793593147030df6aaa40 Mon Sep 17 00:00:00 2001
++From: Denys Dmytriyenko <denys@ti.com>
++Date: Tue, 8 Sep 2015 17:19:57 -0400
++Subject: [PATCH] eng_cryptodev: Add SHA224 initialization to cryptodev engine.
+ 
+-Signed-off-by: Joel A Fernandes <joelagnel@ti.com>
++Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+ ---
+- crypto/engine/eng_cryptodev.c | 1 +
+- 1 file changed, 1 insertion(+)
++ crypto/engine/eng_cryptodev.c | 3 +++
++ 1 file changed, 3 insertions(+)
+ 
+ diff --git a/crypto/engine/eng_cryptodev.c b/crypto/engine/eng_cryptodev.c
+-index 00580a5..d095a58 100644
++index b7bff89..3cd4bcf 100644
+ --- a/crypto/engine/eng_cryptodev.c
+ +++ b/crypto/engine/eng_cryptodev.c
+-@@ -170,6 +170,7 @@ static struct {
+- #endif
+- 	{ CRYPTO_MD5,			NID_md5,		16},
+- 	{ CRYPTO_SHA1,			NID_sha1,		20},
+-+	{ CRYPTO_SHA2_224,		NID_sha224,		28},
+- 	{ CRYPTO_SHA2_256,		NID_sha256,		32},
+- 	{ CRYPTO_SHA2_384,		NID_sha384,		48},
+- 	{ CRYPTO_SHA2_512,		NID_sha512,		64},
++@@ -216,6 +216,9 @@ static struct {
++         CRYPTO_SHA1, NID_sha1, 20
++     },
++     {
+++        CRYPTO_SHA2_224, NID_sha224, 28
+++    },
+++    {
++         CRYPTO_SHA2_256, NID_sha256, 32
++     },
++     {
+ -- 
+-1.8.3.2
++2.2.0
+ 
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1m.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2d.bbappend
+similarity index 86%
+rename from meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1m.bbappend
+rename to meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2d.bbappend
+index b00ba90..486f106 100644
+--- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.1m.bbappend
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2d.bbappend
+@@ -16,11 +16,10 @@ DEPENDS += "cryptodev-linux"
+ RDEPENDS_${PN}_class-target += "cryptodev-module"
+ 
+ CRYPTODEV_AFALG_PATCHES = " \
++	file://0001-cryptodev-Fix-issue-with-signature-generation.patch \
+ 	file://0001-Add-AF_ALG-interface-support-to-OpenSSL.patch \
+ 	file://0004-Sample-AF_ALG-openssl.cnf.patch \
+-	file://0001-eng_cryptodev.c-update-to-cryptodev-1.6.patch \
+ 	file://0009-eng_cryptodev-Add-SHA224-initialization-to-cryptodev.patch \
+-	file://0011-cryptodev-Add-AES-CBC-CTR-modes-for-128-192-256-bit-.patch \
+ "
+ 
+ SRC_URI += "${CRYPTODEV_AFALG_PATCHES}"
+-- 
+2.2.0
 
-<h2>BUILD_ID: build-2015-09-08_12-00-56</h2>
 
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>97ce05c0b2a81f05388d7f727741529fb9177775</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.09"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_152_451425198.1441746249753--
