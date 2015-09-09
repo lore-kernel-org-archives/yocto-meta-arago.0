@@ -1,29 +1,27 @@
-Return-Path: <jake@udd0866934>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 82CAA52979
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id C7BC752979
 	for <meta-arago@arago-project.org>;
-	Wed,  9 Sep 2015 17:52:50 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t89HqnxI007985
-	for <meta-arago@arago-project.org>; Wed, 9 Sep 2015 12:52:49 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t89HqnmV032391
-	for <meta-arago@arago-project.org>; Wed, 9 Sep 2015 12:52:49 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 9 Sep 2015 12:52:41 -0500
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t89Hqn7T002747;
-	Wed, 9 Sep 2015 12:52:49 -0500
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1ZZjY8-0003UV-Uj; Wed, 09 Sep 2015 13:52:49 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 9 Sep 2015 13:52:47 -0400
-Message-ID: <1441821167-13385-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] packagegroup-arago-tisdk-matrix: Add 3d demos for omap-a15.
+	Wed,  9 Sep 2015 17:56:11 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NUF00F538H7CYC0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 09 Sep 2015 12:55:56 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=ff-B7xzCdYMA:10 a=sozttTNsAAAA:8
+	a=TcUN6v173rxkS-YU7YMA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 71A53161BDA;	Wed,
+	9 Sep 2015 13:55:55 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 09 Sep 2015 13:55:55 -0400
+Message-id: <1441821355-13700-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH v2] external-linaro-toolchain: adjust -cross deps to avoid warning and race
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,63 +34,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Sep 2015 17:52:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 09 Sep 2015 17:56:12 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Many toolchain components like gcc share common work directory with sources
+and rely on those sources being prepped by a corresponding -cross part.
+Since we use a prebuilt cross toolchain, we have to fake some prep steps for
+target toolchain components to build successfully (install unwind.h, etc.).
+Need to make sure those prep steps get executed before target gcc requires
+them.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb      | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ .../recipes-core/meta/external-linaro-toolchain-cross.bb          | 8 +++++++-
+ .../recipes-core/meta/external-linaro-toolchain.bbappend          | 4 ++--
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 92887e6..422e9cd 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
+index d0b5bfe..d448f47 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
+@@ -3,10 +3,16 @@ SUMMARY = "Stage provided unwind.h header being used by target gcc installation"
  LICENSE = "MIT"
--PR = "r43"
-+PR = "r44"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+-PR = "r0"
++PR = "r1"
  
-@@ -39,6 +39,14 @@ MATRIX_SGX_DEMOS = "                \
-     matrix-3d-demo-lantern          \
-     matrix-3d-demo-skull            \
- "
+ inherit cross
+ 
++PN = "external-linaro-toolchain-cross-${TARGET_ARCH}"
++BPN = "external-linaro-toolchain"
 +
-+MATRIX_SGX_DEMOS_omap-a15 = " \
-+    matrix-3d-demo-chameleon \
-+    matrix-3d-demo-coverflow \
-+    matrix-3d-demo-navigation \
-+    matrix-3d-demo-exampleui \
-+"
++INHIBIT_DEFAULT_DEPS = "1"
++INHIBIT_AUTOTOOLS_DEPS = "1"
 +
- MATRIX_QT_APPS_keystone = ""
+ do_install() {
+ 	install -d ${D}${libdir}/gcc/${TARGET_SYS}/${ELT_VER_GCC}/include/
+ 	cp -a ${TOOLCHAIN_PATH}/lib/gcc/${ELT_TARGET_SYS}/${ELT_VER_GCC}/include/unwind.h ${D}/${libdir}/gcc/${TARGET_SYS}/${ELT_VER_GCC}/include/
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index f382897..5155ffb 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -4,7 +4,7 @@ ALLOW_EMPTY_ldd = "1"
+ ALLOW_EMPTY_libstdc++ = "1"
+ ALLOW_EMPTY_libgomp = "1"
  
- MATRIX_APPS = ""
-@@ -88,16 +96,19 @@ MATRIX_APPS_append_ti43x = "        \
- "
+-PR_append = "-arago21"
++PR_append = "-arago22"
  
- MATRIX_APPS_append_omap-a15 = "     \
-+    ${@base_contains('MACHINE_FEATURES','sgx','${MATRIX_SGX_DEMOS}','',d)} \
-+                                    \
-     matrix-multimedia-demo-aac      \
-+    matrix-multimedia-demo-h265dec  \
-     ${@base_contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdh264dec','matrix-multimedia-demo-h264dec',d)} \
-     ${@base_contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdh264enc','',d)} \
-     ${@base_contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec','',d)} \
-     ${@base_contains('MACHINE_FEATURES','mmip','','matrix-multimedia-demo-mpeg4aacdec',d)} \
-     ${@base_contains('MACHINE_FEATURES','mmip','','matrix-multimedia-demo-mpeg4dec',d)} \
-+                                    \
-     matrix-gui-generic-pm           \
-     matrix-gui-clocks               \
-     matrix-gui-pm-demos-governor    \
--    matrix-multimedia-demo-h265dec \
- "
+ PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
+ PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
+@@ -18,7 +18,7 @@ PACKAGES += "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'exter
  
- MATRIX_APPS_append_beagleboard = "  \
+ DEPENDS += "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'linux-libc-headers', d)}"
+ 
+-do_build[depends] += "external-linaro-toolchain-cross:do_populate_sysroot"
++DEPENDS += "external-linaro-toolchain-cross-${TARGET_ARCH}"
+ 
+ RDEPENDS_${PN}-utils = ""
+ 
 -- 
-1.9.1
+2.2.0
 
 
