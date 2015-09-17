@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id AE88A529FA
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
+	[209.85.213.41])
+	by arago-project.org (Postfix) with ESMTPS id BF5AF529FB
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Sep 2015 03:19:22 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t8H3JMBN011461
-	for <meta-arago@arago-project.org>; Wed, 16 Sep 2015 22:19:22 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8H3JLfC016399
-	for <meta-arago@arago-project.org>; Wed, 16 Sep 2015 22:19:22 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 16 Sep 2015 22:19:21 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t8H3JLSw006303	for <meta-arago@arago-project.org>;
-	Wed, 16 Sep 2015 22:19:21 -0500
-Date: Wed, 16 Sep 2015 23:19:21 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1096728350.223.1442459961516.JavaMail.jenkins@puget>
+	Thu, 17 Sep 2015 03:24:48 +0000 (UTC)
+Received: by vkhf67 with SMTP id f67so3456819vkh.1
+	for <meta-arago@arago-project.org>;
+	Wed, 16 Sep 2015 20:24:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=OWU8/JZxUy1gJ5ZUpMgHEflixlfWkbIhqc7iGDbNShc=;
+	b=h99sPB1yxZryiA+r7bBi3ekFlKkn3rCIhc0f7wIEMz/viFgLCeI4B25z2a+n0XCfpR
+	TqgXxAZBtnFX0eLlqzRjJpKe72yLzRGWKevZR7Q4E4lR8OZyuoAiyGfBXUoiL+sA5Uux
+	UG1dW2+hM/62G8tUXDv3TPt/yrWBmqGlB1XNLURZqr1+MHdVOS1VhFSWZMfTJUQ51UaY
+	yLf775rIBedt+dz/czj6coTcBjB3NPom1RTpsHBa5nUe4MJRUuZQ6cZIkcQVijwzctLN
+	LzcnnkmXtvVhz4Uqm8KCRfts/2rUDXHafdX0SfzJ5ermRJCJJ+5jeL69qn2v9aVrJz2i
+	VQxQ==
+X-Received: by 10.31.107.213 with SMTP id k82mr33334692vki.5.1442460285018;
+	Wed, 16 Sep 2015 20:24:45 -0700 (PDT)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.09 build 2015-09-16_23-01-41
+Received: by 10.31.201.130 with HTTP; Wed, 16 Sep 2015 20:24:25 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Thu, 17 Sep 2015 15:24:25 +1200
+Message-ID: <CADySD0EXH6VNtEonLMfmDtqhygOLrdkOgp-WrR=xjxXxYzzdaw@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Mounting /var/log in NAND parition
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,212 +37,90 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Sep 2015 03:19:22 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_222_1823260599.1442459961514"
+X-List-Received-Date: Thu, 17 Sep 2015 03:24:55 -0000
+Content-Type: multipart/alternative; boundary=001a114786f0e42d45051fe8f4e9
 
-------=_Part_222_1823260599.1442459961514
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a114786f0e42d45051fe8f4e9
+Content-Type: text/plain; charset=UTF-8
 
-<html>
-<head>
-<title>
-Status for 09/16/15
-</title>
-</head>
-<body>
+Hi,
 
-<h2>Status for 09/16/15</h2>
+In order to preserve log files in NAND partition, I mounted my NAND
+patition /dev/mtdX in /var/log.
 
-<h2>BUILD_ID: build-2015-09-16_23-02-44</h2>
+Disabled volatile file system from creating  any object or link to
+/var/volatile/log by commenting out following in
+/etc/default/volatiles/00_core
 
-<h2>Clean Build: false</h2>
+#d root root 0755 /var/volatile/log none
+#l root root 0755 /var/log /var/volatile/log
+#f root root 0664 /var/log/wtmp none
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+But when system boots, I still see /var/volatile/log and a symlink to it
+inside /var/log
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>97ce05c0b2a81f05388d7f727741529fb9177775</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.09"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
-</p>
-
-</body>
-</html>
+root@am335x-evm:~# ls -al /var/log/
+drwxr-xr-x    3 root     root             0 Sep 17 00:05 .
+drwxr-xr-x    8 root     root           808 Sep 16 23:36 ..
+-rw-r--r--    1 root     root         23600 Sep 17 00:04 dmesg
+-rw-r--r--    1 root     root           292 Sep 17 00:05 lastlog
+lrwxrwxrwx    1 root     root            17 Sep 17 00:04 log ->
+/var/volatile/log
+-rw-r--r--    1 root     root         53389 Sep 17 00:05 messages
+-rw-rw-r--    1 root     root          3456 Sep 17 00:05 wtmp
 
 
-------=_Part_222_1823260599.1442459961514--
+How to fix it ?
+
+thanks
+Ankur
+
+--001a114786f0e42d45051fe8f4e9
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif;font-size:small;color:rgb(51,51,153)">Hi,</div><div class=3D"gmail_de=
+fault" style=3D"font-family:georgia,serif;font-size:small;color:rgb(51,51,1=
+53)"><br></div><div class=3D"gmail_default" style=3D"font-family:georgia,se=
+rif;font-size:small;color:rgb(51,51,153)">In order to preserve log files in=
+ NAND partition, I mounted my NAND patition /dev/mtdX in /var/log.</div><di=
+v class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:smal=
+l;color:rgb(51,51,153)"><br></div><div class=3D"gmail_default" style=3D"fon=
+t-family:georgia,serif;font-size:small;color:rgb(51,51,153)">Disabled volat=
+ile file system from creating =C2=A0any object or link to /var/volatile/log=
+ by commenting out following in /etc/default/volatiles/00_core=C2=A0</div><=
+div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:sm=
+all;color:rgb(51,51,153)"><br></div><div class=3D"gmail_default" style=3D"f=
+ont-family:georgia,serif;font-size:small;color:rgb(51,51,153)"><div class=
+=3D"gmail_default">#d root root 0755 /var/volatile/log none</div><div class=
+=3D"gmail_default">#l root root 0755 /var/log /var/volatile/log</div><div c=
+lass=3D"gmail_default">#f root root 0664 /var/log/wtmp none</div><div class=
+=3D"gmail_default"><br></div><div class=3D"gmail_default">But when system b=
+oots, I still see /var/volatile/log and a symlink to it inside /var/log</di=
+v><div class=3D"gmail_default"><div class=3D"gmail_default"><br></div><div =
+class=3D"gmail_default">root@am335x-evm:~# ls -al /var/log/</div><div class=
+=3D"gmail_default">drwxr-xr-x =C2=A0 =C2=A03 root =C2=A0 =C2=A0 root =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0 Sep 17 00:05 .</div><div class=3D"gma=
+il_default">drwxr-xr-x =C2=A0 =C2=A08 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 808 Sep 16 23:36 ..</div><div class=3D"gmail_default"=
+>-rw-r--r-- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 23600 Sep 17 00:04 dmesg</div><div class=3D"gmail_default">-rw-r--r-- =
+=C2=A0 =C2=A01 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2=
+92 Sep 17 00:05 lastlog</div><div class=3D"gmail_default">lrwxrwxrwx =C2=A0=
+ =C2=A01 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01=
+7 Sep 17 00:04 log -&gt; /var/volatile/log</div><div class=3D"gmail_default=
+">-rw-r--r-- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 53389 Sep 17 00:05 messages</div><div class=3D"gmail_default">-rw-rw=
+-r-- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A03456 Sep 17 00:05 wtmp</div><div class=3D"gmail_default"><br></div><div =
+class=3D"gmail_default"><br></div></div></div><div class=3D"gmail_default" =
+style=3D"font-family:georgia,serif;font-size:small;color:rgb(51,51,153)">Ho=
+w to fix it ?</div><div class=3D"gmail_default" style=3D"font-family:georgi=
+a,serif;font-size:small;color:rgb(51,51,153)"><br></div><div class=3D"gmail=
+_default" style=3D"font-family:georgia,serif;font-size:small;color:rgb(51,5=
+1,153)">thanks</div><div class=3D"gmail_default" style=3D"font-family:georg=
+ia,serif;font-size:small;color:rgb(51,51,153)">Ankur</div>
+</div>
+
+--001a114786f0e42d45051fe8f4e9--
