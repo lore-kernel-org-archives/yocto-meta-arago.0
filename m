@@ -1,29 +1,27 @@
-Return-Path: <jake@udc0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 798445209B
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 635245209B
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Sep 2015 15:21:48 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t8IFLiN8016401
-	for <meta-arago@arago-project.org>; Fri, 18 Sep 2015 10:21:44 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8IFLibk004419
-	for <meta-arago@arago-project.org>; Fri, 18 Sep 2015 10:21:44 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 18 Sep 2015 10:21:44 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8IFLioL029058;
-	Fri, 18 Sep 2015 10:21:44 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZcxTr-0007Kd-NM; Fri, 18 Sep 2015 11:21:43 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 18 Sep 2015 11:21:39 -0400
-Message-ID: <1442589699-28149-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [crypto-example-apps][PATCH] */Makefile: Explicitly link with -ldl
+	Fri, 18 Sep 2015 18:58:31 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NUV00BLMZD2VO30@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 18 Sep 2015 13:58:15 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=ff-B7xzCdYMA:10 a=sozttTNsAAAA:8
+	a=lTaffnaOjYQEs8HXVuEA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id C7E95161C47;	Fri,
+	18 Sep 2015 14:58:14 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 18 Sep 2015 14:58:14 -0400
+Message-id: <1442602694-15713-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] meta-toolchain-arago: adjust devkit paths slightly for new 2015.05+ toolchain layout
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,129 +34,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Sep 2015 15:21:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 18 Sep 2015 18:58:32 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- AES/Makefile              | 4 ++--
- Certificate_gen/Makefile  | 4 ++--
- Certificate_info/Makefile | 4 ++--
- Gen_public_key/Makefile   | 4 ++--
- SHA1/Makefile             | 4 ++--
- 5 files changed, 10 insertions(+), 10 deletions(-)
+ meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/AES/Makefile b/AES/Makefile
-index 6ce6928..c4b959a 100644
---- a/AES/Makefile
-+++ b/AES/Makefile
-@@ -45,7 +45,7 @@ BIN := AES_256
- #   ----------------------------------------------------------------------------
- OBJDIR_D := Debug
- BINDIR_D := $(OBJDIR_D)
--LIBS_D := $(LIBS) -lssl -lcrypto
-+LIBS_D := $(LIBS) -ldl -lssl -lcrypto
- OBJS_D := $(SRCS:%.c=$(OBJDIR_D)/%.o)
- ALL_DEBUG := -g3 -gdwarf-2
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index 5e88c86..cda39a6 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -8,7 +8,7 @@ SDKIMAGE_FEATURES = ""
  
-@@ -54,7 +54,7 @@ ALL_DEBUG := -g3 -gdwarf-2
- #   ----------------------------------------------------------------------------
- OBJDIR_R := Release
- BINDIR_R := $(OBJDIR_R)
--LIBS_R := $(LIBS) -lssl -lcrypto
-+LIBS_R := $(LIBS) -ldl -lssl -lcrypto
- OBJS_R := $(SRCS:%.c=$(OBJDIR_R)/%.o)
- ALL_RELEASE := -O3
+ require recipes-core/meta/meta-toolchain.bb
  
-diff --git a/Certificate_gen/Makefile b/Certificate_gen/Makefile
-index 43d5120..ebff375 100644
---- a/Certificate_gen/Makefile
-+++ b/Certificate_gen/Makefile
-@@ -45,7 +45,7 @@ BIN := Certificate_gen
- #   ----------------------------------------------------------------------------
- OBJDIR_D := Debug
- BINDIR_D := $(OBJDIR_D)
--LIBS_D := $(LIBS) -lssl -lcrypto
-+LIBS_D := $(LIBS) -ldl -lssl -lcrypto
- OBJS_D := $(SRCS:%.c=$(OBJDIR_D)/%.o)
- ALL_DEBUG := -g3 -gdwarf-2
+-PR = "r29"
++PR = "r30"
  
-@@ -54,7 +54,7 @@ ALL_DEBUG := -g3 -gdwarf-2
- #   ----------------------------------------------------------------------------
- OBJDIR_R := Release
- BINDIR_R := $(OBJDIR_R)
--LIBS_R := $(LIBS) -lssl -lcrypto
-+LIBS_R := $(LIBS) -ldl -lssl -lcrypto
- OBJS_R := $(SRCS:%.c=$(OBJDIR_R)/%.o)
- ALL_RELEASE := -O3
- 
-diff --git a/Certificate_info/Makefile b/Certificate_info/Makefile
-index 16acbbb..86bd5f4 100644
---- a/Certificate_info/Makefile
-+++ b/Certificate_info/Makefile
-@@ -45,7 +45,7 @@ BIN := Certificate_info
- #   ----------------------------------------------------------------------------
- OBJDIR_D := Debug
- BINDIR_D := $(OBJDIR_D)
--LIBS_D := $(LIBS) -lssl -lcrypto
-+LIBS_D := $(LIBS) -ldl -lssl -lcrypto
- OBJS_D := $(SRCS:%.c=$(OBJDIR_D)/%.o)
- ALL_DEBUG := -g3 -gdwarf-2
- 
-@@ -54,7 +54,7 @@ ALL_DEBUG := -g3 -gdwarf-2
- #   ----------------------------------------------------------------------------
- OBJDIR_R := Release
- BINDIR_R := $(OBJDIR_R)
--LIBS_R := $(LIBS) -lssl -lcrypto
-+LIBS_R := $(LIBS) -ldl -lssl -lcrypto
- OBJS_R := $(SRCS:%.c=$(OBJDIR_R)/%.o)
- ALL_RELEASE := -O3
- 
-diff --git a/Gen_public_key/Makefile b/Gen_public_key/Makefile
-index f1947d7..ebca169 100644
---- a/Gen_public_key/Makefile
-+++ b/Gen_public_key/Makefile
-@@ -45,7 +45,7 @@ BIN := Gen_publickey
- #   ----------------------------------------------------------------------------
- OBJDIR_D := Debug
- BINDIR_D := $(OBJDIR_D)
--LIBS_D := $(LIBS) -lssl -lcrypto
-+LIBS_D := $(LIBS) -ldl -lssl -lcrypto
- OBJS_D := $(SRCS:%.c=$(OBJDIR_D)/%.o)
- ALL_DEBUG := -g3 -gdwarf-2
- 
-@@ -54,7 +54,7 @@ ALL_DEBUG := -g3 -gdwarf-2
- #   ----------------------------------------------------------------------------
- OBJDIR_R := Release
- BINDIR_R := $(OBJDIR_R)
--LIBS_R := $(LIBS) -lssl -lcrypto
-+LIBS_R := $(LIBS) -ldl -lssl -lcrypto
- OBJS_R := $(SRCS:%.c=$(OBJDIR_R)/%.o)
- ALL_RELEASE := -O3
- 
-diff --git a/SHA1/Makefile b/SHA1/Makefile
-index 0f23d9e..e32d4d4 100644
---- a/SHA1/Makefile
-+++ b/SHA1/Makefile
-@@ -45,7 +45,7 @@ BIN := SHA1_test
- #   ----------------------------------------------------------------------------
- OBJDIR_D := Debug
- BINDIR_D := $(OBJDIR_D)
--LIBS_D := $(LIBS) -lssl -lcrypto
-+LIBS_D := $(LIBS) -ldl -lssl -lcrypto
- OBJS_D := $(SRCS:%.c=$(OBJDIR_D)/%.o)
- ALL_DEBUG := -g3 -gdwarf-2
- 
-@@ -54,7 +54,7 @@ ALL_DEBUG := -g3 -gdwarf-2
- #   ----------------------------------------------------------------------------
- OBJDIR_R := Release
- BINDIR_R := $(OBJDIR_R)
--LIBS_R := $(LIBS) -lssl -lcrypto
-+LIBS_R := $(LIBS) -ldl -lssl -lcrypto
- OBJS_R := $(SRCS:%.c=$(OBJDIR_R)/%.o)
- ALL_RELEASE := -O3
- 
+ # This function creates an environment-setup-script for use in a deployable SDK
+ toolchain_create_sdk_env_script () {
+@@ -82,6 +82,8 @@ arago_sdk_fixup () {
+ 	tcv=`ls -1 $lexec|head -1`
+ 	ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv
+ 	ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv
++	ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS}
++	ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS}
+ 	tcpath="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/${TOOLCHAIN_SYS}"
+ 	mkdir -p $tcpath
+ 	pushd $tcpath
+@@ -90,10 +92,9 @@ arago_sdk_fixup () {
+ 		mkdir -p libc
+ 		cd libc
+ 	fi
+-	mkdir -p lib
+-	mkdir -p usr/lib
+-	ln -s ${SDKTARGETSYSROOT}/lib lib/${TOOLCHAIN_SYS}
+-	ln -s ${SDKTARGETSYSROOT}/usr/lib usr/lib/${TOOLCHAIN_SYS}
++	mkdir -p usr
++	ln -s ${SDKTARGETSYSROOT}/lib lib
++	ln -s ${SDKTARGETSYSROOT}/usr/lib usr/lib
+ 	ln -s ${SDKTARGETSYSROOT}/usr/include usr/include
+ 	popd
+ }
 -- 
-1.9.1
+2.2.0
 
 
