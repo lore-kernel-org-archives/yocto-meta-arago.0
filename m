@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id E79CF52A86
+Return-Path: <jake@udd0866934>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id BC39D5297D
 	for <meta-arago@arago-project.org>;
-	Mon, 21 Sep 2015 15:46:27 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NV1008JTAGL6P90@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 21 Sep 2015 10:45:58 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=ff-B7xzCdYMA:10 a=sozttTNsAAAA:8
-	a=JiZ5Zz3ktcg4vh6JznsA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id C032D161C47;	Mon,
-	21 Sep 2015 11:45:57 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 21 Sep 2015 11:45:49 -0400
-Message-id: <1442850349-10272-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] branding-core: disable AUTOREV for the release
+	Mon, 21 Sep 2015 17:10:22 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t8LHAMNP024879
+	for <meta-arago@arago-project.org>; Mon, 21 Sep 2015 12:10:22 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8LHALBu021772
+	for <meta-arago@arago-project.org>; Mon, 21 Sep 2015 12:10:22 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 21 Sep 2015 12:10:21 -0500
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8LHAL2U028824;
+	Mon, 21 Sep 2015 12:10:21 -0500
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1Ze4bW-0002G9-HA; Mon, 21 Sep 2015 13:10:16 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 21 Sep 2015 13:10:11 -0400
+Message-ID: <1442855411-4931-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] branding-processor-sdk: Only reserve CMEM memory for omap-a15
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,30 +36,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Sep 2015 15:46:28 -0000
+X-List-Received-Date: Mon, 21 Sep 2015 17:10:23 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-core.inc | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-distro/conf/distro/include/branding-processor-sdk.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index b759469..311998b 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -6,6 +6,6 @@
- # hence this file is mostly empty and used as a template
+diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+index ebcc7b5..31507dc 100644
+--- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+@@ -5,8 +5,8 @@ DISTRO_FEATURES_remove_ti33x = "wayland"
+ DISTRO_FEATURES_remove_ti43x = "wayland"
  
- # Auto rev important packages to pick up latest
--SRCREV_pn-linux-ti-staging = "${AUTOREV}"
--SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
--SRCREV_pn-ltp-ddt = "${AUTOREV}"
-+#SRCREV_pn-linux-ti-staging = "${AUTOREV}"
-+#SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
-+#SRCREV_pn-ltp-ddt = "${AUTOREV}"
+ # Set CMEM reserved memory region
+-CMEM_BASE ?= "a0000000"
+-CMEM_SIZE ?= "08000000"
++CMEM_BASE_omap-a15 ?= "a0000000"
++CMEM_SIZE_omap-a15 ?= "08000000"
+ 
+ # To create newlines in the message \n is used and the slash must be escaped
+ # to function properly
 -- 
-2.2.0
+1.9.1
 
 
