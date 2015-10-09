@@ -1,29 +1,29 @@
-Return-Path: <jake@udd0866934>
+Return-Path: <jake@udc0866934>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 8149352961
+	by arago-project.org (Postfix) with ESMTPS id 0B08652A32
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Oct 2015 13:47:03 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99Dl2rU025288
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:47:02 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99Dl2fC026960
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:47:02 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 9 Oct 2015 08:47:02 -0500
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99Dl1cS021157;
-	Fri, 9 Oct 2015 08:47:02 -0500
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1ZkY0j-0005Sa-Fi; Fri, 09 Oct 2015 09:47:01 -0400
+	Fri,  9 Oct 2015 14:34:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99EYIrv020751
+	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 09:34:18 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99EYHS0027762
+	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 09:34:18 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 9 Oct 2015 09:34:18 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99EYHBH012139;
+	Fri, 9 Oct 2015 09:34:17 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1ZkYkT-0001BN-9B; Fri, 09 Oct 2015 10:34:17 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 9 Oct 2015 09:47:00 -0400
-Message-ID: <1444398420-20954-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 9 Oct 2015 10:34:14 -0400
+Message-ID: <1444401255-4511-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] unshallow-repositories: Fix for 64-bit nativesdk
+Subject: [tisdk-setup-scripts][PATCH 1/2] setup-uboot-env-{am335x, am43x, am57xx-evm}.sh: Config NFS over TCP.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,52 +36,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Oct 2015 13:47:03 -0000
+X-List-Received-Date: Fri, 09 Oct 2015 14:34:26 -0000
 Content-Type: text/plain
 
-* Use SDKMACHINE to obtain the location of the nativesdk git
-  executable.
+* This is to improve the stability of the root NFS mount.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../unshallow-repositories/unshallow-repositories.sh                 | 2 +-
- .../unshallow-repositories/unshallow-repositories_1.0.bb             | 5 ++++-
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ setup-uboot-env-am335x.sh     | 2 ++
+ setup-uboot-env-am43x.sh      | 2 ++
+ setup-uboot-env-am57xx-evm.sh | 2 ++
+ 3 files changed, 6 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh
-index f20a9b5..61bdb88 100755
---- a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh
-+++ b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh
-@@ -35,7 +35,7 @@
- install_dir="__SDK_INSTALL_DIR__"
- 
- # Find git binary within the host native bin directory
--sdk_git_bin="$install_dir/linux-devkit/sysroots/i*/usr/bin/git"
-+sdk_git_bin="$install_dir/linux-devkit/sysroots/__SDKMACHINE__*/usr/bin/git"
- sdk_git_bin=`which $sdk_git_bin`
- 
- if [ "$sdk_git_bin" = "" ]
-diff --git a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb
-index f1ea414..12fd4f2 100644
---- a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb
-@@ -4,12 +4,15 @@ LIC_FILES_CHKSUM = "file://../unshallow-repositories.sh;beginline=3;endline=19;m
- 
- SRC_URI = "file://unshallow-repositories.sh"
- 
--PR = "r0"
-+PR = "r1"
- 
- do_install () {
-     install -d ${D}/
-     install -d ${D}/bin
-     install -m 0755 ${WORKDIR}/unshallow-repositories.sh ${D}/bin
-+
-+    sed -i -e "s|__SDKMACHINE__|${SDKMACHINE}|g" \
-+        ${D}/bin/unshallow-repositories.sh
- }
- 
- FILES_${PN} = "/*"
+diff --git a/setup-uboot-env-am335x.sh b/setup-uboot-env-am335x.sh
+index 6ba4993..d593c1c 100644
+--- a/setup-uboot-env-am335x.sh
++++ b/setup-uboot-env-am335x.sh
+@@ -184,6 +184,7 @@ if [ "$kernel" -eq "1" ]; then
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+@@ -205,6 +206,7 @@ else
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+diff --git a/setup-uboot-env-am43x.sh b/setup-uboot-env-am43x.sh
+index 74c7c85..329e3d7 100644
+--- a/setup-uboot-env-am43x.sh
++++ b/setup-uboot-env-am43x.sh
+@@ -138,6 +138,7 @@ if [ "$kernel" -eq "1" ]; then
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+@@ -159,6 +160,7 @@ else
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+diff --git a/setup-uboot-env-am57xx-evm.sh b/setup-uboot-env-am57xx-evm.sh
+index f1dcc3d..ae95368 100644
+--- a/setup-uboot-env-am57xx-evm.sh
++++ b/setup-uboot-env-am57xx-evm.sh
+@@ -144,6 +144,7 @@ if [ "$kernel" -eq "1" ]; then
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+@@ -165,6 +166,7 @@ else
+ 		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
++		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 -- 
 1.9.1
 
