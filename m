@@ -1,29 +1,31 @@
 Return-Path: <jake@udc0866934>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 99B335298C
+	by arago-project.org (Postfix) with ESMTPS id 574575298C
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Oct 2015 11:59:03 +0000 (UTC)
+	Fri,  9 Oct 2015 11:59:04 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99Bx2ll022745
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 06:59:02 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99Bx2xd011110
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 06:59:02 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 9 Oct 2015 06:59:02 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99Bx3Me022749
+	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 06:59:03 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99Bx3aw011146
+	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 06:59:03 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 9 Oct 2015 06:59:03 -0500
 Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99Bx2eV019603;
-	Fri, 9 Oct 2015 06:59:02 -0500
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99Bx3ak019647;
+	Fri, 9 Oct 2015 06:59:03 -0500
 Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1ZkWKE-0000mK-6R; Fri, 09 Oct 2015 07:59:02 -0400
+	<jake@udc0866934>)	id 1ZkWKF-0000mP-C3; Fri, 09 Oct 2015 07:59:03 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 9 Oct 2015 07:58:59 -0400
-Message-ID: <1444391940-2958-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 9 Oct 2015 07:59:00 -0400
+Message-ID: <1444391940-2958-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1444391940-2958-1-git-send-email-j-stiffler@ti.com>
+References: <1444391940-2958-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH v2 1/2] local-processor-sdk-64.conf.sample: Switch SDK machine to 64 bit
+Subject: [oe-layersetup][PATCH v2 2/2] configs: Add processor-sdk-02.00.00.00-config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,35 +38,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Oct 2015 11:59:03 -0000
+X-List-Received-Date: Fri, 09 Oct 2015 11:59:04 -0000
 Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
-v2 changes: 
+v2 changes:
   * Add "oe-layersetup" prefix
   * Find copies harder
 
- ...cal-processor-sdk.conf.sample => local-processor-sdk-64.conf.sample} | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- copy sample-files/{local-processor-sdk.conf.sample => local-processor-sdk-64.conf.sample} (99%)
+ .../processor-sdk-02.00.00.00-config.txt}                          | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+ copy configs/{coresdk/coresdk-2015.01-config.txt => processor-sdk/processor-sdk-02.00.00.00-config.txt} (64%)
 
-diff --git a/sample-files/local-processor-sdk.conf.sample b/sample-files/local-processor-sdk-64.conf.sample
-similarity index 99%
-copy from sample-files/local-processor-sdk.conf.sample
-copy to sample-files/local-processor-sdk-64.conf.sample
-index d5af93a..726b1ba 100644
---- a/sample-files/local-processor-sdk.conf.sample
-+++ b/sample-files/local-processor-sdk-64.conf.sample
-@@ -79,7 +79,7 @@ PACKAGE_CLASSES ?= "package_ipk"
- # you can build the SDK packages for architectures other than the machine you are 
- # running the build on (i.e. building i686 packages on an x86_64 host._
- # Supported values are i686 and x86_64
--SDKMACHINE ?= "i686"
-+SDKMACHINE ?= "x86_64"
+diff --git a/configs/coresdk/coresdk-2015.01-config.txt b/configs/processor-sdk/processor-sdk-02.00.00.00-config.txt
+similarity index 64%
+copy from configs/coresdk/coresdk-2015.01-config.txt
+copy to configs/processor-sdk/processor-sdk-02.00.00.00-config.txt
+index 6c544d6..f43a511 100644
+--- a/configs/coresdk/coresdk-2015.01-config.txt
++++ b/configs/processor-sdk/processor-sdk-02.00.00.00-config.txt
+@@ -2,11 +2,12 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
  
- #
- # Extra image configuration defaults
+ bitbake,git://git.openembedded.org/bitbake,1.26,ed30f4ee1cef8db9ea422c5e54b2375c4f3b1d6f,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,master,ti2015.01,layers=meta-arago-distro:meta-arago-extras
++meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,bfc49c171cead0cf0b5d859f51c45364a74e1ea7,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,master,f36422977840d88696e4ea209a82b0caa37a3f5d,layers=meta-arago-distro:meta-arago-extras
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,97ce05c0b2a81f05388d7f727741529fb9177775,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,214e1801d0efc38d3b6142bdc0d8e58ca593e34c,layers=meta-networking:meta-ruby:meta-python:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,fido,ti2015.01,layers=
++meta-ti,git://arago-project.org/git/meta-ti.git,fido,0a222c70845d19a2213ac36803361e8531768cca,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,3f1933242062d1cf473d20b86fa4582963ff9441,layers=meta-linaro-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,fido,4c02a30f084408d0a6a5149937ef74520f8346dc,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
 -- 
 1.9.1
 
