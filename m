@@ -1,29 +1,33 @@
-Return-Path: <jake@udd0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 9C1A052A52
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id 9E9795298C
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Oct 2015 13:01:47 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99D1l63027541
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:01:47 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99D1kJo029424
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:01:46 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 9 Oct 2015 08:01:47 -0500
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99D1kNf009499;
-	Fri, 9 Oct 2015 08:01:46 -0500
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1ZkXIw-00050y-6V; Fri, 09 Oct 2015 09:01:46 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 9 Oct 2015 09:01:43 -0400
-Message-ID: <1444395703-19242-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] img-pvr-sdk: Bump SRCREV for am3 and am4
+	Fri,  9 Oct 2015 13:11:27 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173017.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NVY00MJ0FAE6220@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 09 Oct 2015 08:11:12 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=eIhxMilvRf8A:10 a=kj9zAlcOel0A:10
+	a=5lJygRwiOn0A:10 a=sozttTNsAAAA:8	a=Q4-j1AaZAAAA:8 a=HihYlcsHAAAA:8
+	a=NEAV23lmAAAA:8 a=KKAkSRfTAAAA:8	a=6dpbzgcQzp9FdROB2dIA:9
+	a=CjuIK1q_8ugA:10
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 04F24161C70; Fri,
+	9 Oct 2015 09:11:01 -0400 (EDT)
+Date: Fri, 09 Oct 2015 09:11:01 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-id: <20151009131101.GH11709@denix.org>
+References: <1444391940-2958-1-git-send-email-j-stiffler@ti.com>
+	<1444391940-2958-2-git-send-email-j-stiffler@ti.com>
+MIME-version: 1.0
+In-reply-to: <1444391940-2958-2-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [oe-layersetup][PATCH v2 2/2] configs: Add processor-sdk-02.00.00.00-config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,42 +40,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Oct 2015 13:01:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 09 Oct 2015 13:11:27 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-* Pick up the latest PVR SDK development tools
-    - PVRTune
-    - PVRTrace
-    - PVRScope
+On Fri, Oct 09, 2015 at 07:59:00AM -0400, Jacob Stiffler wrote:
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+> v2 changes:
+>   * Add "oe-layersetup" prefix
+>   * Find copies harder
 
-* Update a few scripts due to minor PVRTrace configuration changes
-* Create symbolic links of the PVRTrace logging libraries because
-  some applications are linked with lib*.so.* instead of lib*.so
+Is this a release config? Why are you switching off the release tag?
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-index 290cb91..96b7d5a 100644
---- a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-+++ b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-@@ -10,10 +10,10 @@ BRANCH_ti43x = "am4/k4.1"
- 
- SRC_URI = "git://git.ti.com/graphics/img-pvr-sdk.git;protocol=git;branch=${BRANCH}"
- SRCREV_omap-a15 = "c2456ec3f03da022fb7489d6b381a4ac26a68203"
--SRCREV_ti33x = "c4df891d6842600a5affdc479269540099e20fda"
--SRCREV_ti43x = "c4df891d6842600a5affdc479269540099e20fda"
-+SRCREV_ti33x = "f24650bc8243b25c23d6a0a502ed79fc472ac424"
-+SRCREV_ti43x = "f24650bc8243b25c23d6a0a502ed79fc472ac424"
- 
--PR = "r3"
-+PR = "r4"
- 
- COMPATIBLE_MACHINE = "omap-a15|ti43x|ti33x"
- 
--- 
-1.9.1
-
+>  .../processor-sdk-02.00.00.00-config.txt}                          | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+>  copy configs/{coresdk/coresdk-2015.01-config.txt => processor-sdk/processor-sdk-02.00.00.00-config.txt} (64%)
+> 
+> diff --git a/configs/coresdk/coresdk-2015.01-config.txt b/configs/processor-sdk/processor-sdk-02.00.00.00-config.txt
+> similarity index 64%
+> copy from configs/coresdk/coresdk-2015.01-config.txt
+> copy to configs/processor-sdk/processor-sdk-02.00.00.00-config.txt
+> index 6c544d6..f43a511 100644
+> --- a/configs/coresdk/coresdk-2015.01-config.txt
+> +++ b/configs/processor-sdk/processor-sdk-02.00.00.00-config.txt
+> @@ -2,11 +2,12 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.26,ed30f4ee1cef8db9ea422c5e54b2375c4f3b1d6f,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,master,ti2015.01,layers=meta-arago-distro:meta-arago-extras
+> +meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,bfc49c171cead0cf0b5d859f51c45364a74e1ea7,layers=
+> +meta-arago,git://arago-project.org/git/meta-arago.git,master,f36422977840d88696e4ea209a82b0caa37a3f5d,layers=meta-arago-distro:meta-arago-extras
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,97ce05c0b2a81f05388d7f727741529fb9177775,layers=
+>  meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,214e1801d0efc38d3b6142bdc0d8e58ca593e34c,layers=meta-networking:meta-ruby:meta-python:meta-oe
+> -meta-ti,git://arago-project.org/git/meta-ti.git,fido,ti2015.01,layers=
+> +meta-ti,git://arago-project.org/git/meta-ti.git,fido,0a222c70845d19a2213ac36803361e8531768cca,layers=
+>  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,3f1933242062d1cf473d20b86fa4582963ff9441,layers=meta-linaro-toolchain
+>  oe-core,git://git.openembedded.org/openembedded-core,fido,4c02a30f084408d0a6a5149937ef74520f8346dc,layers=meta
+>  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> -OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+> +OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
