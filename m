@@ -1,29 +1,29 @@
 Return-Path: <jake@udd0866934>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 693E45299C
+	by arago-project.org (Postfix) with ESMTPS id 119785299C
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Oct 2015 13:30:57 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99DUsef030424
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:30:54 -0500
+	Fri,  9 Oct 2015 13:36:16 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t99DaFiK030879
+	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:36:15 -0500
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99DUs98028882
-	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:30:54 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99DaFki023205
+	for <meta-arago@arago-project.org>; Fri, 9 Oct 2015 08:36:15 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 9 Oct 2015 08:30:54 -0500
+	Fri, 9 Oct 2015 08:36:15 -0500
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99DUsqa009928;
-	Fri, 9 Oct 2015 08:30:54 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t99DaEeS031026;
+	Fri, 9 Oct 2015 08:36:14 -0500
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1ZkXl7-0005Bp-QQ; Fri, 09 Oct 2015 09:30:53 -0400
+	<jake@udd0866934>)	id 1ZkXqI-0005Ek-7R; Fri, 09 Oct 2015 09:36:14 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 9 Oct 2015 09:30:51 -0400
-Message-ID: <1444397451-19915-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 9 Oct 2015 09:36:12 -0400
+Message-ID: <1444397772-20096-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] weston: Update weston.ini to show top panel
+Subject: [PATCH] dual-camera-demo: Bump SRCREV for fix for closing with one camera
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,43 +36,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Oct 2015 13:30:58 -0000
+X-List-Received-Date: Fri, 09 Oct 2015 13:36:16 -0000
 Content-Type: text/plain
-
-* This provides a clock along with a shortcut to the weston-terminal
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/recipes-graphics/wayland/weston/weston.ini     | 2 +-
- meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb       | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
-index 8caa891..615a604 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
-@@ -1,7 +1,7 @@
- [shell]
- locking=false
- animation=zoom
--panel-location=none
-+panel-location=top
- startup-animation=fade
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+index 015a99c..43bf00d 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+@@ -7,10 +7,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
+ DEPENDS += "libdrm"
+ require recipes-core/matrix/matrix-gui-paths.inc
  
- [screensaver]
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
-index af504b4..fb7cda0 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
-@@ -2,7 +2,7 @@
- PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
- PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+-PR = "r11"
++PR = "r12"
  
--PR_append = "-arago6"
-+PR_append = "-arago7"
+ BRANCH = "drm"
+-SRCREV = "2e703d50f9f34391b3912b666a68b43a58d7ef28"
++SRCREV = "3be10676149c5f6e0ef1660d6b1ee4b9165dd993"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
+ SRC_URI = "git://git.ti.com/sitara-linux/dual-camera-demo.git;protocol=git;branch=${BRANCH} \
+            file://desc_dual-camera.html \
 -- 
 1.9.1
 
