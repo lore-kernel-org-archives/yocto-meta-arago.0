@@ -1,32 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id BD6F8529B5
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id E336D52A19
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Oct 2015 15:17:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9CFHaEG031210;
-	Mon, 12 Oct 2015 10:17:36 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9CFHaYS030933;
-	Mon, 12 Oct 2015 10:17:36 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 12 Oct 2015 10:17:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9CFHae0010112;
-	Mon, 12 Oct 2015 10:17:36 -0500
-Date: Mon, 12 Oct 2015 11:17:20 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20151012151720.GA28164@edge>
-References: <1444390383-5586-1-git-send-email-j-stiffler@ti.com>
-	<20151009113618.GE11709@denix.org> <5617A6FF.1090401@ti.com>
-	<20151009114933.GF11709@denix.org>
-MIME-Version: 1.0
-In-Reply-To: <20151009114933.GF11709@denix.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] init-ifupdown: Fix getting DNS if rootfs is network mount
+	Mon, 12 Oct 2015 17:56:03 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NW400L8ZCGVW970@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 12 Oct 2015 12:55:48 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=5lJygRwiOn0A:10 a=sozttTNsAAAA:8
+	a=danhDmx_AAAA:8 a=KKAkSRfTAAAA:8	a=ESGmfnGfbX2v7qRlIx0A:9
+	a=HCXXNV8pDlEA:10
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id D3EB7161C58;	Mon,
+	12 Oct 2015 13:55:43 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 12 Oct 2015 13:55:43 -0400
+Message-id: <1444672543-10595-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [tisdk-build-scripts][PATCH] publish-sdk-data/*/webgen.mak: update toolchain version and link
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,81 +35,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Oct 2015 15:17:38 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 12 Oct 2015 17:56:04 -0000
 
-On Fri, Oct 09, 2015 at 07:49:33AM -0400, Denys Dmytriyenko wrote:
-> On Fri, Oct 09, 2015 at 07:37:35AM -0400, Jacob Stiffler wrote:
-> > 
-> > 
-> > On 10/9/2015 7:36 AM, Denys Dmytriyenko wrote:
-> > >NAK, this is wrong.
-> > 
-> > What is wrong about it? Is there another way to get the DNS addresses?
-> 
-> You assume dhcp unconditionally w/o consulting /etc/interfaces file from 
-> init-ifupdown
+From: Denys Dmytriyenko <denys@ti.com>
 
-Moreover, when rootfs is mounted over NFS, the kernel is responsible for 
-assigning the IP address early on, but it can be either dynamic or static, so 
-again, defaulting to dhcp here is not entirely correct.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ publish-sdk-data/coresdk/2015.01/am335x-evm/webgen.mak | 2 +-
+ publish-sdk-data/coresdk/2015.01/am437x-evm/webgen.mak | 2 +-
+ publish-sdk-data/coresdk/2015.01/am57xx-evm/webgen.mak | 2 +-
+ publish-sdk-data/coresdk/2015.01/dra7xx-evm/webgen.mak | 2 +-
+ publish-sdk-data/coresdk/2015.01/k2e-evm/webgen.mak    | 2 +-
+ publish-sdk-data/coresdk/2015.01/k2hk-evm/webgen.mak   | 2 +-
+ publish-sdk-data/coresdk/2015.01/k2l-evm/webgen.mak    | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
+diff --git a/publish-sdk-data/coresdk/2015.01/am335x-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/am335x-evm/webgen.mak
+index 32add44..1c81a9d 100644
+--- a/publish-sdk-data/coresdk/2015.01/am335x-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/am335x-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"AM335x SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"am335x-evm-sdk-src-2015.01.tar.gz","am335x-evm-sdk-src-2015.01.tar.gz", "AM335x SDK PSP Source Code")
+ 	$(call add-link,"am335x-evm-sdk-bin-2015.01.tar.gz","am335x-evm-sdk-bin-2015.01.tar.gz", "AM335x SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+diff --git a/publish-sdk-data/coresdk/2015.01/am437x-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/am437x-evm/webgen.mak
+index 1fb4c85..8a28d69 100644
+--- a/publish-sdk-data/coresdk/2015.01/am437x-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/am437x-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"AM437x SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"am437x-evm-sdk-src-2015.01.tar.gz","am437x-evm-sdk-src-2015.01.tar.gz", "AM437x SDK PSP Source Code")
+ 	$(call add-link,"am437x-evm-sdk-bin-2015.01.tar.gz","am437x-evm-sdk-bin-2015.01.tar.gz", "AM437x SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+diff --git a/publish-sdk-data/coresdk/2015.01/am57xx-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/am57xx-evm/webgen.mak
+index fee29e8..5890635 100644
+--- a/publish-sdk-data/coresdk/2015.01/am57xx-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/am57xx-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"AM57xx SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"am57xx-evm-sdk-src-2015.01.tar.gz","am57xx-evm-sdk-src-2015.01.tar.gz", "AM57xx SDK PSP Source Code")
+ 	$(call add-link,"am57xx-evm-sdk-bin-2015.01.tar.gz","am57xx-evm-sdk-bin-2015.01.tar.gz", "AM57xx SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+diff --git a/publish-sdk-data/coresdk/2015.01/dra7xx-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/dra7xx-evm/webgen.mak
+index 139bfd8..abff62d 100644
+--- a/publish-sdk-data/coresdk/2015.01/dra7xx-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/dra7xx-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"DRA7xx SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"dra7xx-evm-sdk-src-2015.01.tar.gz","dra7xx-evm-sdk-src-2015.01.tar.gz", "DRA7xx SDK PSP Source Code")
+ 	$(call add-link,"dra7xx-evm-sdk-bin-2015.01.tar.gz","dra7xx-evm-sdk-bin-2015.01.tar.gz", "DRA7xx SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+diff --git a/publish-sdk-data/coresdk/2015.01/k2e-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/k2e-evm/webgen.mak
+index b5b654b..ea6d769 100644
+--- a/publish-sdk-data/coresdk/2015.01/k2e-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/k2e-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"K2E SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"k2e-evm-sdk-src-2015.01.tar.gz","k2e-evm-sdk-src-2015.01.tar.gz", "K2E SDK PSP Source Code")
+ 	$(call add-link,"k2e-evm-sdk-bin-2015.01.tar.gz","k2e-evm-sdk-bin-2015.01.tar.gz", "K2E SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+diff --git a/publish-sdk-data/coresdk/2015.01/k2hk-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/k2hk-evm/webgen.mak
+index bfd99d5..e7426c7 100644
+--- a/publish-sdk-data/coresdk/2015.01/k2hk-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/k2hk-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"K2HK SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"k2hk-evm-sdk-src-2015.01.tar.gz","k2hk-evm-sdk-src-2015.01.tar.gz", "K2HK SDK PSP Source Code")
+ 	$(call add-link,"k2hk-evm-sdk-bin-2015.01.tar.gz","k2hk-evm-sdk-bin-2015.01.tar.gz", "K2HK SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+diff --git a/publish-sdk-data/coresdk/2015.01/k2l-evm/webgen.mak b/publish-sdk-data/coresdk/2015.01/k2l-evm/webgen.mak
+index 60dec06..1924f8d 100644
+--- a/publish-sdk-data/coresdk/2015.01/k2l-evm/webgen.mak
++++ b/publish-sdk-data/coresdk/2015.01/k2l-evm/webgen.mak
+@@ -18,7 +18,7 @@ VERSION=2015.01
+ 	$(call add-selfcert-link,"CCS6.0.0.00190_linux.tar.gz",CCS6.0.0.00190_linux.tar.gz,"Code Composer Studio for Sitara ARM.  This CCS bundle can be used for ARM debugging on OMAP devices as well.")
+ 	$(call add-link,"README.ccs","README.ccs","Code Composer Studio for Sitara ARM README")
+ 	$(call add-divider,"K2L SDK Individual Components \(all of the below compoonents are bundled within the SDK installer\)")
+-	$(call add-http-link,"https://launchpad.net/linaro-toolchain-binaries/trunk/2013.03/+download/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.7 2013.03 hard-float toolchain")
++	$(call add-http-link,"http://releases.linaro.org/15.05/components/toolchain/binaries/arm-linux-gnueabihf/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf.tar.xz","Download Linaro Toolchain","Standalone Linaro Toolchain - Linaro GCC 4.9 2015.05 hard-float toolchain")
+ 	$(call add-link,"k2l-evm-sdk-src-2015.01.tar.gz","k2l-evm-sdk-src-2015.01.tar.gz", "K2L SDK PSP Source Code")
+ 	$(call add-link,"k2l-evm-sdk-bin-2015.01.tar.gz","k2l-evm-sdk-bin-2015.01.tar.gz", "K2L SDK prebuilt PSP binaries and root filesystem")
+ 	$(call add-http-link,"http://focus.ti.com/docs/toolsw/folders/print/pinmuxtool.html","Download Pinmuxtool","Sitara Pin Mux Configuration Utility")
+-- 
+2.2.0
 
-> > >On Fri, Oct 09, 2015 at 07:33:03AM -0400, Jacob Stiffler wrote:
-> > >>* Previously, if the rootfs was a network mount, then no network
-> > >>   configuration was done
-> > >>* This included the DHCP request to obtain the DNS addresses
-> > >>* If the rootfs is a network mount, then run "udhcpc" to get the DNS
-> > >>   addresses
-> > >>
-> > >>Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > >>---
-> > >>  meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init      | 5 ++++-
-> > >>  .../recipes-core/init-ifupdown/init-ifupdown_%.bbappend              | 2 +-
-> > >>  2 files changed, 5 insertions(+), 2 deletions(-)
-> > >>
-> > >>diff --git a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init
-> > >>index 86aff88..235652d 100644
-> > >>--- a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init
-> > >>+++ b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init
-> > >>@@ -20,12 +20,15 @@ case "$1" in
-> > >>          if sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts |
-> > >>            grep -q "^/ nfs$"; then
-> > >>              echo "NOT configuring network interfaces: / is an NFS mount"
-> > >>+            udhcpc
-> > >>          elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts |
-> > >>            grep -q "^/ smbfs$"; then
-> > >>              echo "NOT configuring network interfaces: / is an SMB mount"
-> > >>-	elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts |
-> > >>+            udhcpc
-> > >>+        elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts |
-> > >>            grep -qE '^(nfs|smbfs|ncp|coda)$'; then
-> > >>              echo "NOT configuring network interfaces: network shares still mounted."
-> > >>+            udhcpc
-> > >>          else
-> > >>              echo -n "Configuring network interfaces... "
-> > >>              ifup -a
-> > >>diff --git a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.bbappend b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.bbappend
-> > >>index c0ab069..997adf2 100644
-> > >>--- a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.bbappend
-> > >>+++ b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.bbappend
-> > >>@@ -1,4 +1,4 @@
-> > >>  # look for files in this layer first
-> > >>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > >>-PR_append = "-arago0"
-> > >>+PR_append = "-arago1"
-> > >>-- 
-> > >>1.9.1
-> > >>
-> > >>_______________________________________________
-> > >>meta-arago mailing list
-> > >>meta-arago@arago-project.org
-> > >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >>
-> > 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
