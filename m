@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 4646C529B5
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 33DCA529B5
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Oct 2015 17:19:55 +0000 (UTC)
+	Tue, 13 Oct 2015 17:22:09 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9DHJsEZ006437
-	for <meta-arago@arago-project.org>; Tue, 13 Oct 2015 12:19:54 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9DHJs3x015450
-	for <meta-arago@arago-project.org>; Tue, 13 Oct 2015 12:19:54 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 13 Oct 2015 12:19:54 -0500
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9DHM6ZE001539
+	for <meta-arago@arago-project.org>; Tue, 13 Oct 2015 12:22:06 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9DHM6KX023292
+	for <meta-arago@arago-project.org>; Tue, 13 Oct 2015 12:22:06 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 13 Oct 2015 12:22:06 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9DHJrmk011895;
-	Tue, 13 Oct 2015 12:19:54 -0500
-Date: Tue, 13 Oct 2015 13:19:38 -0400
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9DHM6oe001271;
+	Tue, 13 Oct 2015 12:22:06 -0500
+Date: Tue, 13 Oct 2015 13:21:50 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20151013171938.GH28164@edge>
-References: <1444397451-19915-1-git-send-email-j-stiffler@ti.com>
+Message-ID: <20151013172150.GI28164@edge>
+References: <1444398420-20954-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1444397451-19915-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1444398420-20954-1-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] weston: Update weston.ini to show top panel
+Subject: Re: [PATCH] unshallow-repositories: Fix for 64-bit nativesdk
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,48 +37,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Oct 2015 17:19:55 -0000
+X-List-Received-Date: Tue, 13 Oct 2015 17:22:15 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Fri, Oct 09, 2015 at 09:30:51AM -0400, Jacob Stiffler wrote:
-> * This provides a clock along with a shortcut to the weston-terminal
-
-What was the reason to disable it in the first place?
-
-
+On Fri, Oct 09, 2015 at 09:47:00AM -0400, Jacob Stiffler wrote:
+> * Use SDKMACHINE to obtain the location of the nativesdk git
+>   executable.
+> 
 > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  meta-arago-distro/recipes-graphics/wayland/weston/weston.ini     | 2 +-
->  meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  .../unshallow-repositories/unshallow-repositories.sh                 | 2 +-
+>  .../unshallow-repositories/unshallow-repositories_1.0.bb             | 5 ++++-
+>  2 files changed, 5 insertions(+), 2 deletions(-)
 > 
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
-> index 8caa891..615a604 100644
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
-> @@ -1,7 +1,7 @@
->  [shell]
->  locking=false
->  animation=zoom
-> -panel-location=none
-> +panel-location=top
->  startup-animation=fade
+> diff --git a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh
+> index f20a9b5..61bdb88 100755
+> --- a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh
+> +++ b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories/unshallow-repositories.sh
+> @@ -35,7 +35,7 @@
+>  install_dir="__SDK_INSTALL_DIR__"
 >  
->  [screensaver]
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
-> index af504b4..fb7cda0 100644
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.6.0.bbappend
-> @@ -2,7 +2,7 @@
->  PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
->  PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+>  # Find git binary within the host native bin directory
+> -sdk_git_bin="$install_dir/linux-devkit/sysroots/i*/usr/bin/git"
+
+.../linux-devkit/sysroots/*86*-linux/usr/bin/git ?
+
+
+> +sdk_git_bin="$install_dir/linux-devkit/sysroots/__SDKMACHINE__*/usr/bin/git"
+>  sdk_git_bin=`which $sdk_git_bin`
 >  
-> -PR_append = "-arago6"
-> +PR_append = "-arago7"
+>  if [ "$sdk_git_bin" = "" ]
+> diff --git a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb
+> index f1ea414..12fd4f2 100644
+> --- a/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb
+> +++ b/meta-arago-distro/recipes-tisdk/unshallow-repositories/unshallow-repositories_1.0.bb
+> @@ -4,12 +4,15 @@ LIC_FILES_CHKSUM = "file://../unshallow-repositories.sh;beginline=3;endline=19;m
 >  
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  SRC_URI = "file://unshallow-repositories.sh"
 >  
+> -PR = "r0"
+> +PR = "r1"
+>  
+>  do_install () {
+>      install -d ${D}/
+>      install -d ${D}/bin
+>      install -m 0755 ${WORKDIR}/unshallow-repositories.sh ${D}/bin
+> +
+> +    sed -i -e "s|__SDKMACHINE__|${SDKMACHINE}|g" \
+> +        ${D}/bin/unshallow-repositories.sh
+>  }
+>  
+>  FILES_${PN} = "/*"
 > -- 
 > 1.9.1
 > 
