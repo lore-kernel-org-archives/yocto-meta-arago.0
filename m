@@ -1,27 +1,27 @@
 Return-Path: <sam.nelson@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id CE0A4529FC
+	by arago-project.org (Postfix) with ESMTPS id 9673D529FC
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Oct 2015 04:12:33 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9M4CX1o000581
-	for <meta-arago@arago-project.org>; Wed, 21 Oct 2015 23:12:33 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9M4CXrS008911
-	for <meta-arago@arago-project.org>; Wed, 21 Oct 2015 23:12:33 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 21 Oct 2015 23:12:33 -0500
+	Thu, 22 Oct 2015 04:13:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9M4DKvw000617
+	for <meta-arago@arago-project.org>; Wed, 21 Oct 2015 23:13:20 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9M4DJ7v022150
+	for <meta-arago@arago-project.org>; Wed, 21 Oct 2015 23:13:20 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 21 Oct 2015 23:13:20 -0500
 Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	t9M4CWM4015891;	Wed, 21 Oct 2015 23:12:32 -0500
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t9M4DJpF000472;	Wed, 21 Oct 2015 23:13:19 -0500
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Oct 2015 00:12:29 -0400
-Message-ID: <1445487149-30279-1-git-send-email-sam.nelson@ti.com>
+Date: Thu, 22 Oct 2015 00:13:17 -0400
+Message-ID: <1445487197-30323-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] ipsecmgr: Update to new version 1.1.0.4
+Subject: [PATCH] parse-ip: Update init script for keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,28 +34,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Oct 2015 04:12:34 -0000
+X-List-Received-Date: Thu, 22 Oct 2015 04:13:20 -0000
 Content-Type: text/plain
+
+- Script update to make the display of IP address more robust
 
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../recipes-support/ipsecmgr/ipsecmgr.inc          |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../recipes-tisdk/parse-ip/parse-ip/keystone/init  |    8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
-index 0844420..ac99c30 100644
---- a/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
-+++ b/meta-arago-extras/recipes-support/ipsecmgr/ipsecmgr.inc
-@@ -1,6 +1,6 @@
- LICENSE = "BSD-3-Clause"
- BRANCH="master"
- SRC_URI = "git://arago-project.org/git/projects/ipsecmgr.git;protocol=git;branch=${BRANCH}"
--#Commit ID corresponding to DEV.IPSECMGR.01.01.00.03
--SRCREV = "1ea8355ae9142311901c842c97a58d2846b308e6"
--PV     = "01.01.00.03+git${SRCPV}"
-+#Commit ID corresponding to DEV.IPSECMGR.01.01.00.04
-+SRCREV = "d28e0b78bf55a2e0af596bab697a448aa3343470"
-+PV     = "01.01.00.04+git${SRCPV}"
+diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
+index 7f260fb..de4ed8e 100644
+--- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
++++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
+@@ -32,13 +32,17 @@
+ 
+ case "$1" in
+     start )
+-        echo '#>>>>> LCD 12' > ipaddr
++	echo ' ' > ipaddr
++	echo ' ' >> ipaddr
++        echo '#>>>>> LCD 12' >> ipaddr
+         echo 'IP Address:' >> ipaddr
+         cat ipaddr
++        wait
++        sleep 1
+ 
+         echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` > ipaddr
+         cat ipaddr
+-
++        wait
+         sleep 1
+     ;;
+     stop )
 -- 
 1.7.9.5
 
