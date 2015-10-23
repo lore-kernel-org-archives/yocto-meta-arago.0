@@ -1,32 +1,27 @@
-Return-Path: <h-gou@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id D412D52A3A
+Return-Path: <sam.nelson@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 2C3D952A19
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Oct 2015 16:05:41 +0000 (UTC)
+	Fri, 23 Oct 2015 22:26:07 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9NG5euK026930
-	for <meta-arago@arago-project.org>; Fri, 23 Oct 2015 11:05:40 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9NG5eAo023809
-	for <meta-arago@arago-project.org>; Fri, 23 Oct 2015 11:05:40 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0224.002; Fri, 23 Oct 2015 11:05:41 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH] packagegroup-arago-tisdk-multimedia: add
-	dspdce-fw
-Thread-Index: AQHQ8mHk2kOasiZmGE6VIMFlsCBphZ55c+kQ
-Date: Fri, 23 Oct 2015 16:05:40 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926ADC8C9@DLEE08.ent.ti.com>
-References: <1442615538-28141-1-git-send-email-h-gou@ti.com>
-In-Reply-To: <1442615538-28141-1-git-send-email-h-gou@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9NMQ33h010719
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2015 17:26:03 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9NMQ3TU017420
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2015 17:26:03 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 23 Oct 2015 17:26:03 -0500
+Received: from udb0862859.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	t9NMQ29e024397;	Fri, 23 Oct 2015 17:26:02 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 23 Oct 2015 18:25:40 -0400
+Message-ID: <1445639140-9135-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [PATCH] packagegroup-arago-tisdk-multimedia: add dspdce-fw
+Subject: [PATCH] strongswan: Add back config patch for pkcs11 in 5.2.1 format
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,69 +34,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Oct 2015 16:05:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 23 Oct 2015 22:26:15 -0000
+Content-Type: text/plain
 
-Ping. The patch for updating the recipe for dspdce-fw is now up-streamed: h=
-ttp://arago-project.org/git/?p=3Dmeta-ti.git;a=3Dcommit;h=3D5f12d9f826344a8=
-a27d9d77a4d1cb614ad4b8f2c.
+- 5.2.1 version of strongswan expects config in changed format.
+  This patch adds the pkcs11_plugin.conf file to adapt to that.
 
-> -----Original Message-----
-> From: Gou, Hongmei
-> Sent: Friday, September 18, 2015 6:32 PM
-> To: meta-arago@arago-project.org
-> Cc: Gou, Hongmei
-> Subject: [meta-arago] [PATCH] packagegroup-arago-tisdk-multimedia: add
-> dspdce-fw
->=20
-> Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-multimedia.bb          | 8 ++=
-++---
-> -
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> index 7f9cb90..2a78d0e 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> tisdk-multimedia.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> tisdk-multimedia.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION =3D "Task to add multimedia related packages"
->  LICENSE =3D "MIT"
-> -PR =3D "r13"
-> +PR =3D "r14"
->=20
->  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->=20
-> @@ -44,15 +44,15 @@ MULTIMEDIA_append_am3517-evm =3D " \
->=20
->  ACCEL_FW =3D ""
->  ACCEL_FW_append_am57xx-evm =3D " \
-> -    ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw', '', d)} \
-> +    ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw dspdce-
-> fw', '', d)} \
->      "
->=20
->  ACCEL_FW_append_omap5-evm =3D " \
-> -    ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw', '', d)} \
-> +    ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw dspdce-
-> fw', '', d)} \
->      "
->=20
->  ACCEL_FW_append_dra7xx-evm =3D " \
-> -    ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw', '', d)} \
-> +    ${@base_contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw dspdce-
-> fw', '', d)} \
->      vis \
->      "
->=20
-> --
-> 1.9.1
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../strongswan/files/pkcs11_plugin.conf            |   15 +++++++++++++++
+ .../strongswan/files/strongswan_libsecstore.patch  |   16 ----------------
+ .../strongswan/strongswan_%.bbappend               |    4 ++--
+ 3 files changed, 17 insertions(+), 18 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-support/strongswan/files/pkcs11_plugin.conf
+ delete mode 100644 meta-arago-distro/recipes-support/strongswan/files/strongswan_libsecstore.patch
+
+diff --git a/meta-arago-distro/recipes-support/strongswan/files/pkcs11_plugin.conf b/meta-arago-distro/recipes-support/strongswan/files/pkcs11_plugin.conf
+new file mode 100644
+index 0000000..6d8c1cb
+--- /dev/null
++++ b/meta-arago-distro/recipes-support/strongswan/files/pkcs11_plugin.conf
+@@ -0,0 +1,15 @@
++# strongswan.conf - strongSwan configuration file
++libstrongswan {
++
++	#  set to no, the DH exponent size is optimized
++	#  dh_exponent_ansi_x9_42 = no
++  plugins {
++    pkcs11 {
++      modules {
++        secstore {
++          path = /usr/lib/softhsm/libsecstore.so.1
++        }
++      }
++    }
++  }
++}
+diff --git a/meta-arago-distro/recipes-support/strongswan/files/strongswan_libsecstore.patch b/meta-arago-distro/recipes-support/strongswan/files/strongswan_libsecstore.patch
+deleted file mode 100644
+index c16b05e..0000000
+--- a/meta-arago-distro/recipes-support/strongswan/files/strongswan_libsecstore.patch
++++ /dev/null
+@@ -1,16 +0,0 @@
+---- strongswan-5.0.0/src/strongswan.conf	2010-10-22 10:33:30.000000000 -0400
+-+++ strongswan-5.0.0.libsecstore/src/strongswan.conf	2014-04-03 18:31:17.228569896 -0400
+-@@ -31,4 +31,13 @@
+- 
+- 	#  set to no, the DH exponent size is optimized
+- 	#  dh_exponent_ansi_x9_42 = no
+-+  plugins {
+-+    pkcs11 {
+-+      modules {
+-+        secstore {
+-+          path = /usr/lib/softhsm/libsecstore.so.1
+-+        }
+-+      }
+-+    }
+-+  }
+- }
+diff --git a/meta-arago-distro/recipes-support/strongswan/strongswan_%.bbappend b/meta-arago-distro/recipes-support/strongswan/strongswan_%.bbappend
+index f065a63..74829e7 100644
+--- a/meta-arago-distro/recipes-support/strongswan/strongswan_%.bbappend
++++ b/meta-arago-distro/recipes-support/strongswan/strongswan_%.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = "-arago1"
++PR_append = "-arago2"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+ 
+ DEPENDS_remove = "gmp"
+@@ -11,4 +11,4 @@ EXTRA_OECONF += "--disable-gmp \
+         --disable-tools \
+ "
+ 
+-#SRC_URI += "file://strongswan_libsecstore.patch"
++SRC_URI += "file://pkcs11_plugin.conf"
+-- 
+1.7.9.5
 
 
