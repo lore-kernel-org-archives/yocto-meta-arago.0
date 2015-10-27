@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 20CEE52A4F
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id ABB2852A1E
 	for <meta-arago@arago-project.org>;
 	Tue, 27 Oct 2015 19:05:30 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9RJ5TaH026949
-	for <meta-arago@arago-project.org>; Tue, 27 Oct 2015 14:05:29 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9RJ5TPq023754
-	for <meta-arago@arago-project.org>; Tue, 27 Oct 2015 14:05:29 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 27 Oct 2015 14:05:29 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id t9RJ5UU0012136
+	for <meta-arago@arago-project.org>; Tue, 27 Oct 2015 14:05:30 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9RJ5UnL023781
+	for <meta-arago@arago-project.org>; Tue, 27 Oct 2015 14:05:30 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 27 Oct 2015 14:05:30 -0500
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9RJ5TV7002339;
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t9RJ5Tbo025735;
 	Tue, 27 Oct 2015 14:05:29 -0500
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1Zr9Ym-0000xT-Se; Tue, 27 Oct 2015 15:05:28 -0400
+	<jake@udd0866934>)	id 1Zr9Yn-0000xY-J3; Tue, 27 Oct 2015 15:05:29 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 27 Oct 2015 15:05:19 -0400
-Message-ID: <1445972723-3625-5-git-send-email-j-stiffler@ti.com>
+Date: Tue, 27 Oct 2015 15:05:20 -0400
+Message-ID: <1445972723-3625-6-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1445972723-3625-1-git-send-email-j-stiffler@ti.com>
 References: <1445972723-3625-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 4/8] packagegroup-arago-tisdk-addons-sdk-host: Add opencl example sources
+Subject: [PATCH 5/8] packagegroup-arago-tisdk-matrix: Add opencl matrix demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,32 +43,33 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb       | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb  | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 525655f..4afe4f7 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index a6d1b39..c487d46 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+ DESCRIPTION = "Task to include Matrix v2"
  LICENSE = "MIT"
--PR = "r13"
-+PR = "r14"
+-PR = "r45"
++PR = "r46"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -25,6 +25,10 @@ UTILS_append_ti33x = " \
-     omapconf-src \
+@@ -113,6 +113,11 @@ MATRIX_APPS_append_omap-a15 = "     \
+     matrix-gui-pm-demos-governor    \
  "
  
-+UTILS_append_dra7xx = " \
-+    opencl-examples-src \
++MATRIX_APPS_append_dra7xx = "        \
++    matrix-opencl-demo-floatcompute  \
++    matrix-opencl-demo-vecadd        \
 +"
 +
- EXTRA_LIBS = ""
- EXTRA_LIBS_append_omap-a15 = " cmem-mod-src"
- EXTRA_LIBS_append_dra7xx = " debugss-module-drv-src gdbserverproxy-module-drv-src"
+ MATRIX_APPS_append_beagleboard = "  \
+     matrix-gui-display-control      \
+ "
 -- 
 1.9.1
 
