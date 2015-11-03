@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C17F952AB1
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id CAE4952AB3
 	for <meta-arago@arago-project.org>;
 	Tue,  3 Nov 2015 19:56:37 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA3JuavF028012
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA3JuaS8014199
 	for <meta-arago@arago-project.org>; Tue, 3 Nov 2015 13:56:36 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA3JuasD025158
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA3Juahh025172
 	for <meta-arago@arago-project.org>; Tue, 3 Nov 2015 13:56:36 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 3 Nov 2015 13:56:36 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 3 Nov 2015 13:56:37 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA3Juapr019353;
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA3JuaCa006857;
 	Tue, 3 Nov 2015 13:56:36 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1Zthh6-0004VD-2g; Tue, 03 Nov 2015 14:56:36 -0500
+	<jake@udd0866934>)	id 1Zthh6-0004VQ-Bi; Tue, 03 Nov 2015 14:56:36 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Nov 2015 14:56:26 -0500
-Message-ID: <1446580592-17255-5-git-send-email-j-stiffler@ti.com>
+Date: Tue, 3 Nov 2015 14:56:28 -0500
+Message-ID: <1446580592-17255-7-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1446580592-17255-1-git-send-email-j-stiffler@ti.com>
 References: <1446580592-17255-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 04/10] packagegroup-arago-tisdk-amsdk-sdk-host: Add boot-monitor-src
+Subject: [PATCH 06/10] packagegroup-arago-tisdk-crypto-sdk-host: keystone: Add cryptodev sources
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,43 +41,36 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Tue, 03 Nov 2015 19:56:39 -0000
 Content-Type: text/plain
 
-* Only add for keystone devices
-
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb        | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb         | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index 361f595..cf5e2e3 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
+index 509642e..632efe7 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional scripts and applications into the SDK"
+ DESCRIPTION = "Task to install crypto sources in SDK"
  LICENSE = "MIT"
--PR = "r25"
-+PR = "r26"
+-PR = "r9"
++PR = "r10"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -14,6 +14,9 @@ KERNEL_SRC = "${PREFERRED_PROVIDER_virtual/kernel}-src"
- KERNEL_SHADOW_CLONE := "${PREFERRED_PROVIDER_virtual/kernel}"
- KERNEL_SHADOW_CLONE_ENABLED := "${SRCIPK_SHALLOW_CLONE_pn-${KERNEL_SHADOW_CLONE}}"
+@@ -10,10 +10,12 @@ CRYPTO_RDEPENDS = ""
  
-+BOOT_MONITOR = ""
-+BOOT_MONITOR_keystone = "boot-monitor-src"
-+
- TOOLS = ""
- TOOLS_omap-a15 = ""
- TOOLS_ti43x = ""
-@@ -32,6 +35,7 @@ RDEPENDS_${PN} = "\
-     ti-tisdk-makefile \
-     ${U-BOOT_SRC} \
-     ${KERNEL_SRC} \
-+    ${BOOT_MONITOR} \
-     ${@base_conditional('KERNEL_SHADOW_CLONE_ENABLED','true','unshallow-repositories','',d)} \
-     tisdk-install \
- "
+ CRYPTO_RDEPENDS_append_ti33x = " ti-crypto-examples-src"
+ CRYPTO_RDEPENDS_append_ti43x = " ti-crypto-examples-src"
++CRYPTO_RDEPENDS_append_keystone = " ti-crypto-examples-src"
+ 
+ CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
+ CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
+ CRYPTO_RDEPENDS_append_dra7xx = " cryptodev-module-src"
++CRYPTO_RDEPENDS_append_keystone = " cryptodev-module-src"
+ 
+ CRYPTO_RDEPENDS_append_am37x-evm = "\
+     ti-ocf-crypto-module-src \
 -- 
 1.9.1
 
