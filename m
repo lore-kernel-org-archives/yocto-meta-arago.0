@@ -1,30 +1,29 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 0A2B352A0A
+	by arago-project.org (Postfix) with ESMTPS id 59C145299C
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Nov 2015 17:40:46 +0000 (UTC)
+	Tue,  3 Nov 2015 06:41:53 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA2HekqI003319
-	for <meta-arago@arago-project.org>; Mon, 2 Nov 2015 11:40:46 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA36fopF014454
+	for <meta-arago@arago-project.org>; Tue, 3 Nov 2015 00:41:51 -0600
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA2Hek05017697
-	for <meta-arago@arago-project.org>; Mon, 2 Nov 2015 11:40:46 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA36foLX024977
+	for <meta-arago@arago-project.org>; Tue, 3 Nov 2015 00:41:50 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 2 Nov 2015 11:40:46 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA2Hej4n030575	for
-	<meta-arago@arago-project.org>; Mon, 2 Nov 2015 11:40:46 -0600
-Message-ID: <5637A01D.2070105@ti.com>
-Date: Mon, 2 Nov 2015 12:40:45 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
+	Tue, 3 Nov 2015 00:41:50 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tA36fnmZ021169	for <meta-arago@arago-project.org>;
+	Tue, 3 Nov 2015 00:41:50 -0600
+Date: Tue, 3 Nov 2015 01:41:49 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-References: <1445972723-3625-1-git-send-email-j-stiffler@ti.com>
-In-Reply-To: <1445972723-3625-1-git-send-email-j-stiffler@ti.com>
-Subject: Re: [PATCH 0/8] Integrate OpenCL
+Message-ID: <1660832376.515.1446532909736.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.09 build 2015-11-02_23-01-41
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Nov 2015 17:40:52 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Tue, 03 Nov 2015 06:41:55 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_514_1876575574.1446532909517"
+
+------=_Part_514_1876575574.1446532909517
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Ping.
+<html>
+<head>
+<title>
+Status for 11/03/15
+</title>
+</head>
+<body>
 
-On 10/27/2015 3:05 PM, Jacob Stiffler wrote:
-> * Integrate the OpenCL packages into the target filesystem and devkit
-> * Integrate the OpenCL Example matrix files
-> * Enable rebuilding the OpenCL example sources from the SDK
->
-> Jacob Stiffler (8):
->    packagegroup-arago-tisdk-addons: Clean up machine-specific packages
->    packagegroup-arago-tisdk-addons: Add opencl dev pkgs and examples
->    packagegroup-arago-tisdk-addons-sdk-target: Add opencl to devkit
->    packagegroup-arago-tisdk-addons-sdk-host: Add opencl example sources
->    packagegroup-arago-tisdk-matrix: Add opencl matrix demos
->    nativesdk-packagegroup-arago-sdk-host: Add clocl
->    ti-tisdk-makefile: Include opencl-example fragment for dra7xx
->    arago-base-tisdk-image: Add BAD_RECOMMENDATIONS to remove unneeded dev
->      pkgs
->
->   .../recipes-core/images/arago-base-tisdk-image.bb  |  7 ++++
->   .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  6 +++-
->   .../packagegroup-arago-tisdk-addons-sdk-target.bb  |  6 ++--
->   .../packagegroup-arago-tisdk-addons.bb             | 38 ++++++++++++++--------
->   .../packagegroup-arago-tisdk-matrix.bb             |  7 +++-
->   .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  3 +-
->   .../nativesdk-packagegroup-arago-sdk-host.bb       |  4 +--
->   7 files changed, 51 insertions(+), 20 deletions(-)
->
+<h2>Status for 11/03/15</h2>
+
+<h2>BUILD_ID: build-2015-11-02_23-02-45</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>97ce05c0b2a81f05388d7f727741529fb9177775</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.09"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_514_1876575574.1446532909517--
