@@ -1,35 +1,33 @@
-Return-Path: <h-gou@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id C7E0F52999
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 3DAC352999
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Nov 2015 21:12:26 +0000 (UTC)
+	Wed,  4 Nov 2015 21:14:20 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4LCQ0W004212
-	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 15:12:26 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4LCQPj020925
-	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 15:12:26 -0600
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Wed, 4 Nov 2015 15:12:26 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH 7/7] packagegroup-arago-tisdk-matrix:
-	update the SGX demos for ti43x
-Thread-Index: AQHRFzxTnTyp3MirVECPdzgWv2rT4p6MXFLg
-Date: Wed, 4 Nov 2015 21:12:26 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926AE90A5@DLEE08.ent.ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4LEJhY025801
+	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 15:14:19 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4LEJj9024321
+	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 15:14:19 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 Nov 2015 15:14:19 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4LEIpp015454;
+	Wed, 4 Nov 2015 15:14:18 -0600
+Date: Wed, 4 Nov 2015 16:14:02 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Gou, Hongmei" <h-gou@ti.com>
+Message-ID: <20151104211401.GL25957@edge>
 References: <1446667217-21466-1-git-send-email-h-gou@ti.com>
-	<1446667217-21466-8-git-send-email-h-gou@ti.com>
-	<20151104200627.GK25957@edge>
-In-Reply-To: <20151104200627.GK25957@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.247.5.50]
+	<1446667217-21466-7-git-send-email-h-gou@ti.com>
+	<20151104200520.GJ25957@edge>
+	<2E957F12D11D904590FA9AF86D366BD926AE905F@DLEE08.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <2E957F12D11D904590FA9AF86D366BD926AE905F@DLEE08.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 7/7] packagegroup-arago-tisdk-matrix: update the SGX demos for ti43x
+Subject: Re: [PATCH 6/7] matrix-gui-3d-demos: add kmscube for ti43x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,69 +40,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Nov 2015 21:12:27 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 04 Nov 2015 21:14:20 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, November 04, 2015 3:06 PM
-> To: Gou, Hongmei
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH 7/7] packagegroup-arago-tisdk-matrix:
-> update the SGX demos for ti43x
->=20
-> On Wed, Nov 04, 2015 at 03:00:17PM -0500, Hongmei Gou wrote:
-> > Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> > ---
-> >  .../packagegroups/packagegroup-arago-tisdk-matrix.bb           | 10
-> +++++++++-
-> >  1 file changed, 9 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-matrix.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> > index a6d1b39..a63b8ea 100644
-> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> tisdk-matrix.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-matrix.bb
-> > @@ -1,6 +1,6 @@
-> >  DESCRIPTION =3D "Task to include Matrix v2"
-> >  LICENSE =3D "MIT"
-> > -PR =3D "r45"
-> > +PR =3D "r46"
-> >
-> >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> >
-> > @@ -49,6 +49,14 @@ MATRIX_SGX_DEMOS_omap-a15 =3D " \
-> >      matrix-3d-demo-kmscubevideo \
-> >  "
-> >
-> > +MATRIX_SGX_DEMOS_ti43x =3D " \
-> > +    matrix-3d-demo-chameleon \
-> > +    matrix-3d-demo-coverflow \
-> > +    matrix-3d-demo-navigation \
-> > +    matrix-3d-demo-exampleui \
-> > +    matrix-3d-demo-kmscube \
->=20
-> Same question as before about kmscubevideo - that is used on omap-a15...
+On Wed, Nov 04, 2015 at 04:11:36PM -0500, Gou, Hongmei wrote:
+> Please see below inline.
+> 
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Wednesday, November 04, 2015 3:05 PM
+> > To: Gou, Hongmei
+> > Cc: meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [PATCH 6/7] matrix-gui-3d-demos: add kmscube
+> > for ti43x
+> > 
+> > On Wed, Nov 04, 2015 at 03:00:16PM -0500, Hongmei Gou wrote:
+> > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> > > ---
+> > >  meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb | 6
+> > > +++++-
+> > >  1 file changed, 5 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git
+> > > a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
+> > > b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
+> > > index 4373d5f..710bb75 100644
+> > > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
+> > > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-
+> > demos_2.0.bb
+> > > @@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-
+> > v2/matrix-gui-v2-apps"
+> > >
+> > >  require matrix-gui-apps-git.inc
+> > >
+> > > -PR = "${INC_PR}.5"
+> > > +PR = "${INC_PR}.6"
+> > >
+> > >  S = "${WORKDIR}/git/3d_apps"
+> > >
+> > > @@ -33,6 +33,10 @@ PACKAGES_append_omap-a15 = " \
+> > >              matrix-3d-demo-kmscubevideo \  "
+> > >
+> > > +PACKAGES_append_ti43x = " \
+> > > +            matrix-3d-demo-kmscube \
+> > 
+> > What about kmscubevideo one?
+> 
+> kmscubevideo is not supported for AM4, as the video decoding is running on IVAHD.
 
-kmscubevideo is not supported for AM4, as the video decoding is running on =
-IVAHD.
+Thanks
 
->=20
-> > +"
-> > +
-> >  MATRIX_QT_APPS_keystone =3D ""
-> >
-> >  MATRIX_APPS =3D ""
-> > --
-> > 1.9.1
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+> > > +"
+> > > +
+> > >  MATRIX_3D_DEMO_SGX_QAF_PARAM = "1000"
+> > >
+> > >  do_install_prepend() {
+> > > --
+> > > 1.9.1
+> > >
+> > > _______________________________________________
+> > > meta-arago mailing list
+> > > meta-arago@arago-project.org
+> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
