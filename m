@@ -1,29 +1,29 @@
 Return-Path: <h-gou@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 5A3CB52A89
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 4E74552A27
 	for <meta-arago@arago-project.org>;
 	Wed,  4 Nov 2015 20:00:21 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4K0Kc5017938
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4K0KvL003635
 	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 14:00:20 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4K0KeI018126
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4K0J79018055
 	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 14:00:20 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
 	Wed, 4 Nov 2015 14:00:20 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tA4K0JUr001906;	Wed, 4 Nov 2015 14:00:20 -0600
+	tA4K0JUq001906;	Wed, 4 Nov 2015 14:00:19 -0600
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 4 Nov 2015 15:00:12 -0500
-Message-ID: <1446667217-21466-3-git-send-email-h-gou@ti.com>
+Date: Wed, 4 Nov 2015 15:00:11 -0500
+Message-ID: <1446667217-21466-2-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1446667217-21466-1-git-send-email-h-gou@ti.com>
 References: <1446667217-21466-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/7] arago.conf: enable hardware mode weston for ti43x
+Subject: [PATCH 1/7] branding-processor-sdk: add back wayland DISTRO_FEATURES for ti43x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,22 +41,23 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 ++
- 1 file changed, 2 insertions(+)
+ meta-arago-distro/conf/distro/include/branding-processor-sdk.inc | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index c26cbc9..5c33666 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -37,6 +37,8 @@ QT_PROVIDER ?= "qt5"
- PACKAGECONFIG_pn-weston = "fbdev kms launch libinput"
- PACKAGECONFIG_append_pn-weston_omap-a15 = " egl"
- PACKAGECONFIG_remove_pn-weston_omap-a15 = "fbdev"
-+PACKAGECONFIG_append_pn-weston_ti43x    = " egl"
-+PACKAGECONFIG_remove_pn-weston_ti43x    = "fbdev"
+diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+index 31507dc..0c5e41c 100644
+--- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+@@ -1,8 +1,7 @@
+ ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
  
- # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+-# Remove wayland from ti33x and ti43x DISTRO_FEATURES.
++# Remove wayland from ti33x DISTRO_FEATURES.
+ DISTRO_FEATURES_remove_ti33x = "wayland"
+-DISTRO_FEATURES_remove_ti43x = "wayland"
+ 
+ # Set CMEM reserved memory region
+ CMEM_BASE_omap-a15 ?= "a0000000"
 -- 
 1.9.1
 
