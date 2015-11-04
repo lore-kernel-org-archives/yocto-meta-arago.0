@@ -1,29 +1,29 @@
 Return-Path: <h-gou@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 5CE8052AA7
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 822FA52AB0
 	for <meta-arago@arago-project.org>;
 	Wed,  4 Nov 2015 20:00:22 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4K0LGW003638
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4K0LNa028796
 	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 14:00:21 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4K0LRL018219
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4K0LKT018222
 	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 14:00:21 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 Nov 2015 14:00:21 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 Nov 2015 14:00:22 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tA4K0JUv001906;	Wed, 4 Nov 2015 14:00:21 -0600
+	tA4K0JUw001906;	Wed, 4 Nov 2015 14:00:21 -0600
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 4 Nov 2015 15:00:16 -0500
-Message-ID: <1446667217-21466-7-git-send-email-h-gou@ti.com>
+Date: Wed, 4 Nov 2015 15:00:17 -0500
+Message-ID: <1446667217-21466-8-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1446667217-21466-1-git-send-email-h-gou@ti.com>
 References: <1446667217-21466-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 6/7] matrix-gui-3d-demos: add kmscube for ti43x
+Subject: [PATCH 7/7] packagegroup-arago-tisdk-matrix: update the SGX demos for ti43x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,33 +41,36 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-matrix.bb           | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-index 4373d5f..710bb75 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index a6d1b39..a63b8ea 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r45"
++PR = "r46"
  
- require matrix-gui-apps-git.inc
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--PR = "${INC_PR}.5"
-+PR = "${INC_PR}.6"
- 
- S = "${WORKDIR}/git/3d_apps"
- 
-@@ -33,6 +33,10 @@ PACKAGES_append_omap-a15 = " \
-             matrix-3d-demo-kmscubevideo \
+@@ -49,6 +49,14 @@ MATRIX_SGX_DEMOS_omap-a15 = " \
+     matrix-3d-demo-kmscubevideo \
  "
  
-+PACKAGES_append_ti43x = " \
-+            matrix-3d-demo-kmscube \
++MATRIX_SGX_DEMOS_ti43x = " \
++    matrix-3d-demo-chameleon \
++    matrix-3d-demo-coverflow \
++    matrix-3d-demo-navigation \
++    matrix-3d-demo-exampleui \
++    matrix-3d-demo-kmscube \
 +"
 +
- MATRIX_3D_DEMO_SGX_QAF_PARAM = "1000"
+ MATRIX_QT_APPS_keystone = ""
  
- do_install_prepend() {
+ MATRIX_APPS = ""
 -- 
 1.9.1
 
