@@ -1,33 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 3DAC352999
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 79C9452A8B
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Nov 2015 21:14:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA4LEJhY025801
-	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 15:14:19 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4LEJj9024321
-	for <meta-arago@arago-project.org>; Wed, 4 Nov 2015 15:14:19 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 Nov 2015 15:14:19 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA4LEIpp015454;
-	Wed, 4 Nov 2015 15:14:18 -0600
-Date: Wed, 4 Nov 2015 16:14:02 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Gou, Hongmei" <h-gou@ti.com>
-Message-ID: <20151104211401.GL25957@edge>
-References: <1446667217-21466-1-git-send-email-h-gou@ti.com>
-	<1446667217-21466-7-git-send-email-h-gou@ti.com>
-	<20151104200520.GJ25957@edge>
-	<2E957F12D11D904590FA9AF86D366BD926AE905F@DLEE08.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <2E957F12D11D904590FA9AF86D366BD926AE905F@DLEE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 6/7] matrix-gui-3d-demos: add kmscube for ti43x
+	Wed,  4 Nov 2015 22:40:50 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NXB00JW4AZDO100@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 04 Nov 2015 16:40:26 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=qtqOOiqGOCEA:10 a=sozttTNsAAAA:8
+	a=AP1bPOkfmopSWgM4qr8A:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id BA4B9161CB7;	Wed,
+	4 Nov 2015 17:40:25 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 04 Nov 2015 17:40:25 -0500
+Message-id: <1446676825-31087-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] busybox: enable taskset command and showing threads
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,68 +34,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Nov 2015 21:14:20 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 04 Nov 2015 22:40:55 -0000
 
-On Wed, Nov 04, 2015 at 04:11:36PM -0500, Gou, Hongmei wrote:
-> Please see below inline.
-> 
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Wednesday, November 04, 2015 3:05 PM
-> > To: Gou, Hongmei
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 6/7] matrix-gui-3d-demos: add kmscube
-> > for ti43x
-> > 
-> > On Wed, Nov 04, 2015 at 03:00:16PM -0500, Hongmei Gou wrote:
-> > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> > > ---
-> > >  meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb | 6
-> > > +++++-
-> > >  1 file changed, 5 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git
-> > > a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-> > > b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-> > > index 4373d5f..710bb75 100644
-> > > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-> > > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-
-> > demos_2.0.bb
-> > > @@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-
-> > v2/matrix-gui-v2-apps"
-> > >
-> > >  require matrix-gui-apps-git.inc
-> > >
-> > > -PR = "${INC_PR}.5"
-> > > +PR = "${INC_PR}.6"
-> > >
-> > >  S = "${WORKDIR}/git/3d_apps"
-> > >
-> > > @@ -33,6 +33,10 @@ PACKAGES_append_omap-a15 = " \
-> > >              matrix-3d-demo-kmscubevideo \  "
-> > >
-> > > +PACKAGES_append_ti43x = " \
-> > > +            matrix-3d-demo-kmscube \
-> > 
-> > What about kmscubevideo one?
-> 
-> kmscubevideo is not supported for AM4, as the video decoding is running on IVAHD.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Thanks
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/busybox/busybox/defconfig  | 6 +++---
+ meta-arago-distro/recipes-core/busybox/busybox_%.bbappend | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+index e0d6540..9072493 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+@@ -702,8 +702,8 @@ CONFIG_MICROCOM=y
+ # CONFIG_RX is not set
+ CONFIG_SETSID=y
+ CONFIG_STRINGS=y
+-# CONFIG_TASKSET is not set
+-# CONFIG_FEATURE_TASKSET_FANCY is not set
++CONFIG_TASKSET=y
++CONFIG_FEATURE_TASKSET_FANCY=y
+ CONFIG_TIME=y
+ CONFIG_TIMEOUT=y
+ # CONFIG_TTYSIZE is not set
+@@ -910,7 +910,7 @@ CONFIG_FEATURE_TOP_CPU_GLOBAL_PERCENTS=y
+ # CONFIG_FEATURE_TOP_DECIMALS is not set
+ # CONFIG_FEATURE_TOP_SMP_PROCESS is not set
+ # CONFIG_FEATURE_TOPMEM is not set
+-# CONFIG_FEATURE_SHOW_THREADS is not set
++CONFIG_FEATURE_SHOW_THREADS=y
+ CONFIG_WATCH=y
+ 
+ #
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+index 297a442..aefb648 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago15"
++PR_append = "-arago16"
+ 
+ SRC_URI += " \
+ 	file://inetd \
+-- 
+2.2.0
 
-> > > +"
-> > > +
-> > >  MATRIX_3D_DEMO_SGX_QAF_PARAM = "1000"
-> > >
-> > >  do_install_prepend() {
-> > > --
-> > > 1.9.1
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
