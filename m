@@ -1,31 +1,29 @@
-Return-Path: <jake@udd0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E979D52AB7
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id BE5CA5208B
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Nov 2015 19:30:39 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA6JUdLC017703
-	for <meta-arago@arago-project.org>; Fri, 6 Nov 2015 13:30:39 -0600
+	Sat,  7 Nov 2015 10:26:00 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA7APu0S021217
+	for <meta-arago@arago-project.org>; Sat, 7 Nov 2015 04:25:56 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA6JUdhv010902
-	for <meta-arago@arago-project.org>; Fri, 6 Nov 2015 13:30:39 -0600
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA7APunY000373
+	for <meta-arago@arago-project.org>; Sat, 7 Nov 2015 04:25:56 -0600
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 6 Nov 2015 13:30:39 -0600
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA6JUcGs009635;
-	Fri, 6 Nov 2015 13:30:38 -0600
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1Zumic-0006Mj-HW; Fri, 06 Nov 2015 14:30:38 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Sat, 7 Nov 2015 04:25:56 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tA7APtgX009823	for <meta-arago@arago-project.org>;
+	Sat, 7 Nov 2015 04:25:55 -0600
+Date: Sat, 7 Nov 2015 05:25:55 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 6 Nov 2015 14:30:33 -0500
-Message-ID: <1446838233-24415-5-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1446838233-24415-1-git-send-email-j-stiffler@ti.com>
-References: <1446838233-24415-1-git-send-email-j-stiffler@ti.com>
+Message-ID: <807372902.547.1446891955445.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH 4/4] ti-tisdk-makefile: Add pru-icss makefile fragment
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.11 build 2015-11-06_23-01-41
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,172 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Nov 2015 19:30:41 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 07 Nov 2015 10:26:08 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_546_1496399617.1446891955231"
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../ti-tisdk-makefile/Makefile_pru-icss            | 73 ++++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     | 15 ++++-
- 2 files changed, 86 insertions(+), 2 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
+------=_Part_546_1496399617.1446891955231
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-new file mode 100644
-index 0000000..7dbbca7
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-@@ -0,0 +1,73 @@
-+
-+# PRU-ICSS build targets
-+pru-icss:
-+	@echo =================================
-+	@echo    Building PRU-ICSS
-+	@echo =================================
-+	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	for dir in examples pru_cape/pru_fw lib/src labs; \
-+	do \
-+		make -C $$dir PRU_CGT=$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-linux/usr/share/ti/cgt-pru; \
-+	done
-+
-+pru-icss_clean:
-+	@echo =================================
-+	@echo    Cleaning PRU-ICSS
-+	@echo =================================
-+	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	for dir in examples pru_cape/pru_fw lib/src labs; \
-+	do \
-+		make -C $$dir clean PRU_CGT=$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-linux/usr/share/ti/cgt-pru; \
-+	done
-+
-+pru-icss_install: __PRU_ICSS_INSTALL_TARGET__
-+
-+pru-icss_install_common:
-+	@echo ===================================================
-+	@echo   Installing PRU-ICSS
-+	@echo ===================================================
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	@install -d $(DESTDIR)/lib/firmware/pru
-+
-+pru-icss_install_none:
-+	@echo ===================================================
-+	@echo   Nothing to install
-+	@echo ===================================================
-+
-+pru-icss_install_am335x: pru-icss_install_common
-+	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	for i in 0 1; \
-+	install -m 0644 ./examples/am335x/PRU_Halt/gen/PRU_Halt.out \
-+		$(DESTDIR)/lib/firmware/pru; \
-+	do \
-+		install -m 0644 ./examples/am335x/PRU_RPMsg_Echo_Interrupt$${i}/gen/PRU_RPMsg_Echo_Interrupt$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+	done
-+
-+pru-icss_install_am437x: pru-icss_install_common
-+	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	for i in 0 1; \
-+	install -m 0644 ./examples/am437x/PRU_Halt/gen/PRU_Halt.out \
-+		$(DESTDIR)/lib/firmware/pru; \
-+	do \
-+		install -m 0644 ./examples/am437x/PRU_RPMsg_Echo_Interrupt$${i}/gen/PRU_RPMsg_Echo_Interrupt$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+	done
-+
-+pru-icss_install_am572x: pru-icss_install_common
-+	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	for i in 1 2; \
-+	install -m 0644 ./examples/am572x/PRU_Halt/gen/PRU_Halt.out \
-+		$(DESTDIR)/lib/firmware/pru; \
-+	do \
-+		for j in 0 1; \
-+		do \
-+			install -m 0644 ./examples/am572x/PRU_RPMsg_Echo_Interrupt$${i}_$${j}/gen/PRU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+		done; \
-+	done
-+
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index bf6b2ba..914d184 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -41,9 +41,10 @@ SRC_URI = "\
-     file://Makefile_boot-monitor \
-     file://Makefile_hplib-mod \
-     file://Makefile_uio-module-drv \
-+    file://Makefile_pru-icss \
- "
- 
--PR = "r59"
-+PR = "r60"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -52,7 +53,6 @@ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
- 
- MAKEFILES_MATRIX_GUI_keystone = ""
- 
--
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-                     arm-benchmarks \
-@@ -82,6 +82,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
-                            linux-dtbs \
-                            cryptodev \
-                            omapdrm-pvr \
-+                           pru-icss \
- "
- MAKEFILES_append_ti43x = " u-boot-spl \
-                            ${QUICK_PLAYGROUND} \
-@@ -91,6 +92,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
-                            dual-camera-demo \
-                            image-gallery \
-                            omapdrm-pvr \
-+                           pru-icss \
- "
- 
- MAKEFILES_append_dra7xx = " cryptodev \
-@@ -105,6 +107,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               linux-dtbs \
-                               cmem-mod \
-                               omapdrm-pvr \
-+                              pru-icss \
- "
- MAKEFILES_append_am180x-evm = " pru \
-                                 u-boot-legacy \
-@@ -140,6 +143,12 @@ PLATFORM_DEBUGSS_dra7xx = "DRA7xx_PLATFORM"
- PLATFORM_GDBSERVERPROXY = ""
- PLATFORM_GDBSERVERPROXY_dra7xx = "DRA7xx_PLATFORM"
- 
-+PRU_ICSS_INSTALL_TARGET = "pru-icss_install_none"
-+PRU_ICSS_INSTALL_TARGET_ti33x = "pru-icss_install_am335x"
-+PRU_ICSS_INSTALL_TARGET_ti43x = "pru-icss_install_am437x"
-+PRU_ICSS_INSTALL_TARGET_omap-a15 = "pru-icss_install_am572x"
-+
-+
- # If it's not defined at all, like for zImage case
- UBOOT_LOADADDRESS ?= "0"
- 
-@@ -200,12 +209,14 @@ do_install () {
-     fi
- 
-     sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
-+    sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/g" ${D}/Makefile
- 
-     sed -i -e "s/__PLATFORM_OMAPDRM__/${PLATFORM_OMAPDRM}/" ${D}/Makefile
-     sed -i -e "s/__PVR_NULLDRM__/${PVR_NULLDRM}/" ${D}/Makefile
-     sed -i -e "s/__PLATFORM_DEBUGSS__/${PLATFORM_DEBUGSS}/g" ${D}/Makefile
-     sed -i -e "s/__PLATFORM_GDBSERVERPROXY__/${PLATFORM_GDBSERVERPROXY}/g" ${D}/Makefile
-     sed -i -e "s/__BOOT_MONITOR_MAKE_TARGET__/${BOOT_MONITOR_MAKE_TARGET}/g" ${D}/Makefile
-+    sed -i -e "s/__PRU_ICSS_INSTALL_TARGET__/${PRU_ICSS_INSTALL_TARGET}/g" ${D}/Makefile
- 
-     cat ${D}/Makefile | grep "__DTB_DEPEND__" > /dev/null
- 
--- 
-1.9.1
+<html>
+<head>
+<title>
+Status for 11/07/15
+</title>
+</head>
+<body>
+
+<h2>Status for 11/07/15</h2>
+
+<h2>BUILD_ID: build-2015-11-06_23-02-47</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>97ce05c0b2a81f05388d7f727741529fb9177775</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.11"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_546_1496399617.1446891955231--
