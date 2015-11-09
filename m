@@ -1,31 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D993B52A52
+Return-Path: <h-gou@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id E68C852A19
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Nov 2015 19:40:31 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA9JeU0p026902
-	for <meta-arago@arago-project.org>; Mon, 9 Nov 2015 13:40:31 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA9JeUFI010875
-	for <meta-arago@arago-project.org>; Mon, 9 Nov 2015 13:40:30 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 9 Nov 2015 13:40:30 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA9JeUYF002830;
-	Mon, 9 Nov 2015 13:40:30 -0600
-Date: Mon, 9 Nov 2015 14:40:14 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Hongmei Gou <h-gou@ti.com>
-Message-ID: <20151109194014.GW25957@edge>
-References: <1446667217-21466-1-git-send-email-h-gou@ti.com>
-	<1446667217-21466-8-git-send-email-h-gou@ti.com>
+	Mon,  9 Nov 2015 23:01:10 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tA9N1A2H010763
+	for <meta-arago@arago-project.org>; Mon, 9 Nov 2015 17:01:10 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tA9N194R026625
+	for <meta-arago@arago-project.org>; Mon, 9 Nov 2015 17:01:10 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 9 Nov 2015 17:01:09 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tA9N19TR027908;	Mon, 9 Nov 2015 17:01:09 -0600
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 9 Nov 2015 18:01:07 -0500
+Message-ID: <1447110067-11943-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1446667217-21466-8-git-send-email-h-gou@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 7/7] packagegroup-arago-tisdk-matrix: update the SGX demos for ti43x
+Subject: [PATCH 7/7 v2] packagegroup-arago-tisdk-matrix: update the SGX demos for ti43x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,51 +34,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Nov 2015 19:40:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 09 Nov 2015 23:01:11 -0000
+Content-Type: text/plain
 
-Please rebase your patch with the recent opencl changes.
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
+v2 changes: rebase the patch with the recent opencl changes
 
+ .../packagegroups/packagegroup-arago-tisdk-matrix.bb           | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-On Wed, Nov 04, 2015 at 03:00:17PM -0500, Hongmei Gou wrote:
-> Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-matrix.bb           | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> index a6d1b39..a63b8ea 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to include Matrix v2"
->  LICENSE = "MIT"
-> -PR = "r45"
-> +PR = "r46"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -49,6 +49,14 @@ MATRIX_SGX_DEMOS_omap-a15 = " \
->      matrix-3d-demo-kmscubevideo \
->  "
->  
-> +MATRIX_SGX_DEMOS_ti43x = " \
-> +    matrix-3d-demo-chameleon \
-> +    matrix-3d-demo-coverflow \
-> +    matrix-3d-demo-navigation \
-> +    matrix-3d-demo-exampleui \
-> +    matrix-3d-demo-kmscube \
-> +"
-> +
->  MATRIX_QT_APPS_keystone = ""
->  
->  MATRIX_APPS = ""
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index c487d46..fde7c8f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r46"
++PR = "r47"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -49,6 +49,14 @@ MATRIX_SGX_DEMOS_omap-a15 = " \
+     matrix-3d-demo-kmscubevideo \
+ "
+ 
++MATRIX_SGX_DEMOS_ti43x = " \
++    matrix-3d-demo-chameleon \
++    matrix-3d-demo-coverflow \
++    matrix-3d-demo-navigation \
++    matrix-3d-demo-exampleui \
++    matrix-3d-demo-kmscube \
++"
++
+ MATRIX_QT_APPS_keystone = ""
+ 
+ MATRIX_APPS = ""
+-- 
+1.9.1
+
 
