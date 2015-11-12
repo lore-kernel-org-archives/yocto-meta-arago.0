@@ -1,29 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id E222052A77
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 8CC7852A77
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Nov 2015 02:04:59 +0000 (UTC)
-Received: from gandalf.denix.org ([108.51.169.48]) by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
-	16 2014))
-	with ESMTPSA id <0NXO00MA4J3XKR20@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 11 Nov 2015 20:04:46 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=qtqOOiqGOCEA:10 a=sozttTNsAAAA:8
-	a=ZoNzMwvQMmpEiEY8jf8A:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id B65A1161D0B;	Wed,
-	11 Nov 2015 21:04:45 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 11 Nov 2015 21:04:45 -0500
-Message-id: <1447293885-4222-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-In-reply-to: <1447293885-4222-1-git-send-email-denis@denix.org>
-References: <1447293885-4222-1-git-send-email-denis@denix.org>
-Subject: [PATCH] arago.conf, arago-prefs: add ARAGO_RT_ENABLE and ARAGO_RT_SUFFIX variables
+	Thu, 12 Nov 2015 02:05:37 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAC25aQL023567;
+	Wed, 11 Nov 2015 20:05:36 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAC25aEl007800;
+	Wed, 11 Nov 2015 20:05:36 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 11 Nov 2015 20:05:36 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAC25aim006136;
+	Wed, 11 Nov 2015 20:05:36 -0600
+Date: Wed, 11 Nov 2015 21:05:20 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Message-ID: <20151112020520.GL3272@edge>
+References: <1447293861-3979-1-git-send-email-denis@denix.org>
+MIME-Version: 1.0
+In-Reply-To: <1447293861-3979-1-git-send-email-denis@denix.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v2] linux-ti-staging: update to 4.1.13, add am571-idk DTB
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,48 +37,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Nov 2015 02:05:00 -0000
+X-List-Received-Date: Thu, 12 Nov 2015 02:05:37 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Oops, wrong list
 
-Allows easy switching between RT and non-RT kernel builds
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf              | 4 ++++
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 3 +--
- 2 files changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 5c33666..b33f311 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -53,6 +53,10 @@ PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6",
- # Enable UI and scripting for perf
- PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
- 
-+# Set real-time kernel suffix
-+ARAGO_RT_ENABLE ?= "0"
-+ARAGO_RT_SUFFIX = "${@base_conditional("ARAGO_RT_ENABLE", "1", "-rt", "", d)}"
-+
- # ARM9 is not supported by the Linaro toolchain so default back to the Arago
- # toolchain for ARM9 based SOCs.
- TC_SANE_DEFAULT := "${@bb.utils.contains('SOC_FAMILY','omapl138','arago','linaro',d)}"
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 1cafa96..874bea5 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -62,8 +62,7 @@ PREFERRED_PROVIDER_virtual/libgl_keystone = "mesa"
- PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
- 
- # Use latest TI staging kernel and u-boot trees
--PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-ti-staging"
--PREFERRED_PROVIDER_virtual/kernel_am437x-evm = "linux-ti-staging"
-+PREFERRED_PROVIDER_virtual/kernel = "linux-ti-staging${ARAGO_RT_SUFFIX}"
- PREFERRED_VERSION_linux-ti-staging = "4.1%"
- 
- PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
--- 
-2.2.0
-
+On Wed, Nov 11, 2015 at 09:04:19PM -0500, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@ti.com>
+> 
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+> v2 - update FILESEXTRAPTHS
+> 
+>  recipes-kernel/linux/linux-ti-staging-rt_4.1.bb | 6 +++++-
+>  recipes-kernel/linux/linux-ti-staging_4.1.bb    | 8 ++++----
+>  2 files changed, 9 insertions(+), 5 deletions(-)
+> 
+> diff --git a/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb b/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb
+> index 82e3bc7..35c4910 100644
+> --- a/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb
+> +++ b/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb
+> @@ -1,5 +1,9 @@
+>  require linux-ti-staging_4.1.bb
+>  
+> +# Look in the generic major.minor directory for files
+> +# This will have priority over generic non-rt path
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.1:"
+> +
+>  BRANCH = "ti-rt-linux-4.1.y"
+>  
+> -SRCREV = "c6d2ee60de8003e5491ab131307570581529029f"
+> +SRCREV = "689b0790980be1cc3eb84e435c1bc87cd1e91458"
+> diff --git a/recipes-kernel/linux/linux-ti-staging_4.1.bb b/recipes-kernel/linux/linux-ti-staging_4.1.bb
+> index 6e64b8b..afaa25c 100644
+> --- a/recipes-kernel/linux/linux-ti-staging_4.1.bb
+> +++ b/recipes-kernel/linux/linux-ti-staging_4.1.bb
+> @@ -35,7 +35,7 @@ KERNEL_DEVICETREE_ti43x = "am43x-epos-evm.dtb am43x-epos-evm-hdmi.dtb am437x-gp-
+>  KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb"
+>  KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
+>  KERNEL_DEVICETREE_dra7xx-evm = "dra7-evm.dtb dra7-evm-lcd-lg.dtb dra7-evm-lcd-osd.dtb dra72-evm.dtb dra72-evm-lcd-lg.dtb dra72-evm-lcd-osd.dtb"
+> -KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-evm.dtb am572x-idk.dtb"
+> +KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-evm.dtb am572x-idk.dtb am571x-idk.dtb"
+>  KERNEL_DEVICETREE_omap3 = "omap3-beagle.dtb omap3-beagle-xm.dtb omap3-evm.dtb omap3-evm-37xx.dtb am3517-evm.dtb"
+>  KERNEL_DEVICETREE_am3517-evm = "am3517-evm.dtb"
+>  KERNEL_DEVICETREE_am37x-evm = "omap3-evm-37xx.dtb"
+> @@ -54,11 +54,11 @@ S = "${WORKDIR}/git"
+>  
+>  BRANCH = "ti-lsk-linux-4.1.y"
+>  
+> -SRCREV = "b9280daf1340ca5a21271d560df522215e7f2d73"
+> -PV = "4.1.12+git${SRCPV}"
+> +SRCREV = "e7ce6b9cdee62083862c3d86853819d871f853de"
+> +PV = "4.1.13+git${SRCPV}"
+>  
+>  # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
+> -MACHINE_KERNEL_PR_append = "b"
+> +MACHINE_KERNEL_PR_append = "a"
+>  PR = "${MACHINE_KERNEL_PR}"
+>  
+>  KERNEL_CONFIG_DIR = "${S}/ti_config_fragments"
+> -- 
+> 2.2.0
+> 
 
