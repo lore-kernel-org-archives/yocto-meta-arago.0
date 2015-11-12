@@ -1,33 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 7ACF552A3A
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 732A452AC8
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Nov 2015 17:24:56 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tACHOsew009613
-	for <meta-arago@arago-project.org>; Thu, 12 Nov 2015 11:24:54 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tACHOs3W008776
-	for <meta-arago@arago-project.org>; Thu, 12 Nov 2015 11:24:54 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Nov 2015 11:24:54 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tACHOrr6028641;
-	Thu, 12 Nov 2015 11:24:54 -0600
-Date: Thu, 12 Nov 2015 12:24:38 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Chengalvala, Vivek" <vchengalvala@ti.com>
-Message-ID: <20151112172438.GS3272@edge>
-References: <1447293885-4222-1-git-send-email-denis@denix.org>
-	<5644AA40.5030507@ti.com> <20151112164458.GQ3272@edge>
-	<5644C498.7090402@ti.com>
-	<FCB36D0BED1F0D4EA8E6242507E4245B0CB0201E@DFLE08.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <FCB36D0BED1F0D4EA8E6242507E4245B0CB0201E@DFLE08.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] nativesdk-qtbase: drop locally applied patch that was upstreamed
+	Thu, 12 Nov 2015 20:03:08 +0000 (UTC)
+Received: from gandalf.denix.org ([108.51.169.48]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul
+	16 2014))
+	with ESMTPSA id <0NXP0002ZX03VMN0@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 12 Nov 2015 14:02:42 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=x3PDphkivVtATbYodTxRAw==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=qtqOOiqGOCEA:10 a=sozttTNsAAAA:8
+	a=Q4-j1AaZAAAA:8 a=HihYlcsHAAAA:8	a=NEAV23lmAAAA:8 a=KKAkSRfTAAAA:8
+	a=29j1c5WjWDn-_df73FUA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 204F5161D10;	Thu,
+	12 Nov 2015 15:02:27 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 12 Nov 2015 15:02:26 -0500
+Message-id: <1447358546-16428-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [oe-layersetup][PATCH] arago-fido-config: actually pick up jethro branch instead of master
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,119 +35,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Nov 2015 17:25:02 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 12 Nov 2015 20:03:09 -0000
 
-Since September
+From: Denys Dmytriyenko <denys@ti.com>
 
-On Thu, Nov 12, 2015 at 12:11:53PM -0500, Chengalvala, Vivek wrote:
-> The commit message from when the qt5 version was pinned says " 
-> arago-fido-config: temporarily pin meta-qt5 to avoid breaking qtwebkit". Is 
-> that resolved?
-> 
-> 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> Sent: Thursday, November 12, 2015 11:56 AM
-> To: Dmytriyenko, Denys
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] nativesdk-qtbase: drop locally applied patch that was upstreamed
-> 
-> No reason other than following coresdk.
-> 
-> Do you plan on updating the arago-fido-config.txt to use the tip of the master branch on meta-qt5?
-> 
-> On 11/12/2015 11:44 AM, Denys Dmytriyenko wrote:
-> > Yeah, I meant to un-pin meta-qt5 some time ago right after 2015.01. 
-> > Any particular reason you want it pinned now?
-> >
-> >
-> > On Thu, Nov 12, 2015 at 10:03:28AM -0500, Jacob Stiffler wrote:
-> >> In our configs, we have the meta-qt5 layer frozen at 
-> >> 97ce05c0b2a81f05388d7f727741529fb9177775.
-> >>
-> >> How will we get this upstream patch?
-> >>
-> >> Thanks,
-> >> Jake
-> >>
-> >> On 11/11/2015 9:04 PM, Denys Dmytriyenko wrote:
-> >>> From: Denys Dmytriyenko <denys@ti.com>
-> >>>
-> >>> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >>> ---
-> >>>   ...xpand-path-increase-change-to-2-more-path.patch | 28 ----------------------
-> >>>   .../recipes-qt/qt5/nativesdk-qtbase_%.bbappend     |  5 ----
-> >>>   2 files changed, 33 deletions(-)
-> >>>   delete mode 100644 meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-configure-expand-path-increase-change-to-2-more-path.patch
-> >>>   delete mode 100644 
-> >>> meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase_%.bbappend
-> >>>
-> >>> diff --git 
-> >>> a/meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-configure-e
-> >>> xpand-path-increase-change-to-2-more-path.patch 
-> >>> b/meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-configure-e
-> >>> xpand-path-increase-change-to-2-more-path.patch
-> >>> deleted file mode 100644
-> >>> index fc54c64..0000000
-> >>> --- 
-> >>> a/meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase/0001-configure-e
-> >>> xpand-path-increase-change-to-2-more-path.patch
-> >>> +++ /dev/null
-> >>> @@ -1,28 +0,0 @@
-> >>> -From cfa358e04b9e7c66d59db3000b2a2ab2ebf543c8 Mon Sep 17 00:00:00 
-> >>> 2001
-> >>> -From: Denys Dmytriyenko <denys@ti.com>
-> >>> -Date: Tue, 25 Aug 2015 11:26:48 -0400
-> >>> -Subject: [PATCH] configure: expand path increase change to 2 more 
-> >>> paths
-> >>> -
-> >>> -Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >>> ----
-> >>> - configure | 4 ++--
-> >>> - 1 file changed, 2 insertions(+), 2 deletions(-)
-> >>> -
-> >>> -diff --git a/configure b/configure
-> >>> -index bea14af..fe18487 100755
-> >>> ---- a/configure
-> >>> -+++ b/configure
-> >>> -@@ -3853,8 +3853,8 @@ static const char qt_configure_installation          [12+11]    = "qt_instdate=2
-> >>> - /* Installation Info */
-> >>> - static const char qt_configure_prefix_path_str       [512 + 12] = "qt_prfxpath=$QT_INSTALL_PREFIX";
-> >>> - #ifdef QT_BUILD_QMAKE
-> >>> --static const char qt_configure_ext_prefix_path_str   [256 + 12] = "qt_epfxpath=$QT_EXT_PREFIX";
-> >>> --static const char qt_configure_host_prefix_path_str  [256 + 12] = 
-> >>> "qt_hpfxpath=$QT_HOST_PREFIX";
-> >>> -+static const char qt_configure_ext_prefix_path_str   [512 + 12] = "qt_epfxpath=$QT_EXT_PREFIX";
-> >>> -+static const char qt_configure_host_prefix_path_str  [512 + 12] = 
-> >>> -+"qt_hpfxpath=$QT_HOST_PREFIX";
-> >>> - #endif
-> >>> -
-> >>> - static const short qt_configure_str_offsets[] = {
-> >>> ---
-> >>> -2.2.0
-> >>> -
-> >>> diff --git 
-> >>> a/meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase_%.bbappend 
-> >>> b/meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase_%.bbappend
-> >>> deleted file mode 100644
-> >>> index 39f739a..0000000
-> >>> --- a/meta-arago-distro/recipes-qt/qt5/nativesdk-qtbase_%.bbappend
-> >>> +++ /dev/null
-> >>> @@ -1,5 +0,0 @@
-> >>> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> >>> -
-> >>> -SRC_URI += "file://0001-configure-expand-path-increase-change-to-2-more-path.patch"
-> >>> -
-> >>> -PR_append = "-arago0"
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Master has recently merged 5.6-alpha, which is unstable, while jethro
+contains latest 5.5.1 stable instead.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ configs/arago-fido-config.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configs/arago-fido-config.txt b/configs/arago-fido-config.txt
+index 21d546a..cae923b 100644
+--- a/configs/arago-fido-config.txt
++++ b/configs/arago-fido-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,jethro,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
+ meta-ti,git://arago-project.org/git/meta-ti.git,fido,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,HEAD,layers=meta-linaro-toolchain
+-- 
+2.2.0
+
 
