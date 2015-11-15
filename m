@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 922E852A9B
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id F37CC52A22
 	for <meta-arago@arago-project.org>;
-	Sun, 15 Nov 2015 02:11:15 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAF2BEaM017582
-	for <meta-arago@arago-project.org>; Sat, 14 Nov 2015 20:11:14 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAF2BE1K008953
-	for <meta-arago@arago-project.org>; Sat, 14 Nov 2015 20:11:14 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Sat, 14 Nov 2015 20:11:15 -0600
+	Sun, 15 Nov 2015 09:32:22 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAF9WKpF020269
+	for <meta-arago@arago-project.org>; Sun, 15 Nov 2015 03:32:20 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAF9WK7E029321
+	for <meta-arago@arago-project.org>; Sun, 15 Nov 2015 03:32:20 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Sun, 15 Nov 2015 03:32:20 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tAF2BEJ5009708	for <meta-arago@arago-project.org>;
-	Sat, 14 Nov 2015 20:11:14 -0600
-Date: Sat, 14 Nov 2015 21:11:14 -0500
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tAF9WK8e011405	for <meta-arago@arago-project.org>;
+	Sun, 15 Nov 2015 03:32:20 -0600
+Date: Sun, 15 Nov 2015 04:32:19 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <659747313.599.1447553474324.JavaMail.jenkins@puget>
+Message-ID: <1818050163.601.1447579940111.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-fido
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.11 build 2015-11-14_05-41-11
+Subject: [nightly] Core TISDK (fido/1.8) 2015.11 build 2015-11-14_23-01-41
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Nov 2015 02:11:17 -0000
+X-List-Received-Date: Sun, 15 Nov 2015 09:32:28 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_598_206520695.1447553474221"
+	boundary="----=_Part_600_1775644125.1447579939969"
 
-------=_Part_598_206520695.1447553474221
+------=_Part_600_1775644125.1447579939969
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 11/14/15
+Status for 11/15/15
 </title>
 </head>
 <body>
 
-<h2>Status for 11/14/15</h2>
+<h2>Status for 11/15/15</h2>
 
-<h2>BUILD_ID: build-2015-11-14_05-42-17</h2>
+<h2>BUILD_ID: build-2015-11-14_23-02-47</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -149,7 +149,7 @@ Status for 11/14/15
     <tr>
         <td>omap5-evm</td>
         <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="omap5-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
     </tr>
     <tr>
         <td>k2hk-evm</td>
@@ -159,7 +159,7 @@ Status for 11/14/15
     <tr>
         <td>k2g-evm</td>
         <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
     </tr>
     <tr>
         <td>k2e-evm</td>
@@ -249,4 +249,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
 </html>
 
 
-------=_Part_598_206520695.1447553474221--
+------=_Part_600_1775644125.1447579939969--
