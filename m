@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D741E52973
+	by arago-project.org (Postfix) with ESMTPS id DF52852973
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Nov 2015 03:41:57 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAH3ftTM004503
-	for <meta-arago@arago-project.org>; Mon, 16 Nov 2015 21:41:55 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAH3ftUZ026512
-	for <meta-arago@arago-project.org>; Mon, 16 Nov 2015 21:41:55 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 16 Nov 2015 21:41:55 -0600
+	Tue, 17 Nov 2015 06:11:29 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAH6BSfK015534
+	for <meta-arago@arago-project.org>; Tue, 17 Nov 2015 00:11:28 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAH6BSEC013260
+	for <meta-arago@arago-project.org>; Tue, 17 Nov 2015 00:11:28 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 17 Nov 2015 00:11:28 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tAH3fsn9015028	for <meta-arago@arago-project.org>;
-	Mon, 16 Nov 2015 21:41:55 -0600
-Date: Mon, 16 Nov 2015 22:41:54 -0500
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tAH6BSbT017249	for <meta-arago@arago-project.org>;
+	Tue, 17 Nov 2015 00:11:28 -0600
+Date: Tue, 17 Nov 2015 01:11:27 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <684622159.5.1447731714720.JavaMail.jenkins@puget>
+Message-ID: <513548917.7.1447740687993.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-fido
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.11 build 2015-11-16_21-19-33
+Subject: [nightly] Core TISDK (fido/1.8) 2015.11 build 2015-11-16_22-58-22
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,24 +36,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Nov 2015 03:41:58 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_4_1437744429.1447731714627"
+X-List-Received-Date: Tue, 17 Nov 2015 06:11:31 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_6_841805667.1447740687892"
 
-------=_Part_4_1437744429.1447731714627
+------=_Part_6_841805667.1447740687892
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 11/16/15
+Status for 11/17/15
 </title>
 </head>
 <body>
 
-<h2>Status for 11/16/15</h2>
+<h2>Status for 11/17/15</h2>
 
-<h2>BUILD_ID: build-2015-11-16_21-20-41</h2>
+<h2>BUILD_ID: build-2015-11-16_22-59-28</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -127,8 +127,13 @@ Status for 11/16/15
     </tr>
     <tr>
         <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
 </table>
 
@@ -145,7 +150,7 @@ The configuration file passed to this script had the contents:
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
 TISDK_VERSION="2015.11"<br>
-MACHINES="am57xx-evm"<br>
+MACHINES="am57xx-evm dra7xx-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
@@ -208,4 +213,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
 </html>
 
 
-------=_Part_4_1437744429.1447731714627--
+------=_Part_6_841805667.1447740687892--
