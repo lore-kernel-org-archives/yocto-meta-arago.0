@@ -1,33 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
-	[209.85.213.46])
-	by arago-project.org (Postfix) with ESMTPS id E0F1452A22
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 640AC52973
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Nov 2015 22:14:35 +0000 (UTC)
-Received: by vkha189 with SMTP id a189so6945416vkh.2
-	for <meta-arago@arago-project.org>;
-	Fri, 20 Nov 2015 14:14:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=wUFXWd3DcjPAMyjbVo5Y9Yz5sz8AQVrQuNQjbdjjBhI=;
-	b=N7tUVom46pqFdtXD+UxHhLHdkOb71kmhzWO2uI6AJ0bjiLp+13/+kA1A6Dp0N+U/sI
-	aTSd7VnO9s+eIJy0VGlo/KQqyQjClf0/C/+/0Kbn54DH7HJcVFKeFfduVhMIyl0Ab8xf
-	Qv8ccz0tXbXxe68MJXwvZQWA2KrLlV7QKeSBAALaqvUgpn9qohO7QMvkLiZ/3uSPx3tr
-	FsfGQ5cpJJe0IX1Hed7WMYzGyMy3CP4wfaksKZc+UZWYbiN98cBlPdJ1rYixVWuBpQ/F
-	Nrv5mY62RdifTy+GZSvcisSzsjHB68WXfb2iY8LGpeX0F1iTfO1XawUXU2XcS294oAw5
-	Mcug==
+	Sat, 21 Nov 2015 09:00:00 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAL8xxe0001003
+	for <meta-arago@arago-project.org>; Sat, 21 Nov 2015 02:59:59 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAL8xxpW026349
+	for <meta-arago@arago-project.org>; Sat, 21 Nov 2015 02:59:59 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 21 Nov 2015 02:59:59 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tAL8xwqk014744	for <meta-arago@arago-project.org>;
+	Sat, 21 Nov 2015 02:59:59 -0600
+Date: Sat, 21 Nov 2015 03:59:58 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <381250140.27.1448096398797.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Received: by 10.31.183.208 with SMTP id h199mr1805700vkf.44.1448057674957;
-	Fri, 20 Nov 2015 14:14:34 -0800 (PST)
-Received: by 10.31.166.17 with HTTP; Fri, 20 Nov 2015 14:14:34 -0800 (PST)
-Received: by 10.31.166.17 with HTTP; Fri, 20 Nov 2015 14:14:34 -0800 (PST)
-In-Reply-To: <CADySD0H0u8_vE6nC4pcuHPcEGDSZCtbTm6RKy+s5u2S1ff3mYg@mail.gmail.com>
-References: <CADySD0H0u8_vE6nC4pcuHPcEGDSZCtbTm6RKy+s5u2S1ff3mYg@mail.gmail.com>
-Date: Sat, 21 Nov 2015 11:14:34 +1300
-Message-ID: <CADySD0H-0W2LxedCqMoofin7RXd5dwDy40MLZUa312cUQ_-2GQ@mail.gmail.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-To: meta-arago@arago-project.org
-Subject: Re: QT5.4.1 combobox error when running on AM335x-EVM
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.11 build 2015-11-20_23-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,346 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Nov 2015 22:14:36 -0000
-Content-Type: multipart/alternative; boundary=001a114394c45493c9052500336c
+X-List-Received-Date: Sat, 21 Nov 2015 09:00:00 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_26_1366045631.1448096398619"
 
---001a114394c45493c9052500336c
-Content-Type: text/plain; charset=UTF-8
+------=_Part_26_1366045631.1448096398619
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+<html>
+<head>
+<title>
+Status for 11/21/15
+</title>
+</head>
+<body>
 
-Can someone please respond, I am blocked in my project because of this
-combobox error.
+<h2>Status for 11/21/15</h2>
 
-Thanks
-Ankur
-On 18-Nov-2015 4:38 pm, "Ankur Tyagi" <ankur.tyagi85@gmail.com> wrote:
+<h2>BUILD_ID: build-2015-11-20_23-01-39</h2>
 
-> Hi,
->
-> When running QT5.4.1 based app, I get following error when I try to use a
-> combobox:
->
-> QEGLPlatformContext::makeCurrent: eglError: 3002, this: 0x3f5b58
-> QEGLPlatformContext::makeCurrent: eglError: 3009, this: 0x3f5b58
->
-> I am using meta-arago daisy branch on TI AM335x-EVM. I have also removed
-> "x11 and wayland" from distro features.
->
-> Any help is appreciated.
->
-> My environment is following:
->
-> Build Configuration:
-> BB_VERSION        = "1.26.0"
-> BUILD_SYS         = "i686-linux"
-> NATIVELSBSTRING   = "Ubuntu-14.04"
-> TARGET_SYS        = "arm-linux-gnueabi"
-> MACHINE           = "am335x-evm"
-> DISTRO            = "arago"
-> DISTRO_VERSION    = "2015.05"
-> TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa8"
-> TARGET_FPU        = "vfp-neon"
-> meta-arago-distro
-> meta-arago-extras = "daisy:d607cf64048994eaf2e8bb1687092c65febb27f2"
-> meta-qt5          =
-> "(detachedfrom17eb158):c6d3e94ff294f39994de85b3fd12ffde8b3f8372"
-> toolchain-layer
-> meta-networking
-> meta-ruby
-> meta-oe           = "daisy:d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa"
-> meta-ti           = "daisy:70cdadbfb48ef3e7a2596320cdfc626078c1ac34"
-> meta-linaro-toolchain = "daisy:06008235ca752fea678953e85adaa29a491d246b"
-> meta              = "daisy:e1a2540227250d854d5bba278634bcc9e7572cda"
->
-> Following is QT build configuration:
->
->    Configure summary
->
-> Building on:
-> /home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/i686-linux/usr/lib/qt5/mkspecs/linux-oe-g++
-> (arm, CPU features: neon)
-> Building for:  linux-oe-g++ (arm, CPU features: neon)
->
-> qmake vars .......... OE_QMAKE_AR = arm-linux-gnueabihf-ar OE_QMAKE_CC =
-> arm-linux-gnueabihf-gcc  -march=armv7-a -marm -mthumb-interwork
-> -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8
-> --sysroot=/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm
-> OE_QMAKE_CFLAGS =
->  -isystem/home/nws/gcc-4.7.3/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/include
->  -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types
-> OE_QMAKE_COMPILER = arm-linux-gnueabihf-gcc  -march=armv7-a -marm
-> -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8
-> --sysroot=/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm
-> OE_QMAKE_CXX = arm-linux-gnueabihf-g++  -march=armv7-a -marm
-> -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8
-> --sysroot=/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm
-> OE_QMAKE_CXXFLAGS =
->  -isystem/home/nws/gcc-4.7.3/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/include
->  -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types
-> OE_QMAKE_LDFLAGS =
->  -L/home/nws/gcc-4.7.3/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/lib
-> -Wl,-rpath-link,/home/nws/gcc-4.7.3/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/lib
-> -Wl,-O1 -Wl,--hash-style=gnu OE_QMAKE_LINK = arm-linux-gnueabihf-g++
->  -march=armv7-a -marm -mthumb-interwork -mfloat-abi=hard -mfpu=neon
-> -mtune=cortex-a8
-> --sysroot=/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm
-> OE_QMAKE_STRIP = echo styles += mac fusion windows DEFINES += QT_NO_MTDEV
-> QT_CFLAGS_PULSEAUDIO = -D_REENTRANT
-> -I/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm/usr/include/glib-2.0
-> -I/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm/usr/lib/glib-2.0/include
->  QT_LIBS_PULSEAUDIO = -lpulse-mainloop-glib -lpulse -lglib-2.0
->  QMAKE_INCDIR_LIBUDEV =  QMAKE_LIBS_LIBUDEV = -ludev -lrt  sql-drivers =
->  sql-plugins =  qmake switches .........
->
-> Build options:
->   Configuration .......... accessibility audio-backend c++11 clock-gettime
-> clock-monotonic compile_examples concurrent cross_compile dbus egl eglfs
-> evdev eventfd freetype full-config getaddrinfo getifaddrs harfbuzz inotify
-> ipv6ifname large-config largefile libudev linuxfb medium-config
-> minimal-config mremap neon opengl opengles2 openssl-linked pcre png
-> posix_fallocate pulseaudio qpa qpa reduce_exports release shared silent
-> small-config system-jpeg system-png system-zlib
->   Build parts ............  libs tools
->   Mode ................... release
->   Using C++11 ............ yes
->   Using gold linker....... no
->   Using PCH .............. no
->   Target compiler supports:
->     Neon ................. yes
->
-> Qt modules and options:
->   Qt D-Bus ............... yes (loading dbus-1 at runtime)
->   Qt Concurrent .......... yes
->   Qt GUI ................. yes
->   Qt Widgets ............. yes
->   Large File ............. yes
->   QML debugging .......... yes
->   Use system proxies ..... no
->
-> Support enabled for:
->   Accessibility .......... yes
->   ALSA ................... no
->   CUPS ................... no
->   Evdev .................. yes
->   FontConfig ............. no
->   FreeType ............... qt
->   Glib ................... no
->   GTK theme .............. no
->   HarfBuzz ............... yes (bundled copy)
->   Iconv .................. no
->   ICU .................... no
->   Image formats:
->     GIF .................. yes (plugin, using bundled copy)
->     JPEG ................. yes (plugin, using system library)
->     PNG .................. yes (in QtGui, using system library)
->   journald ............... no
->   mtdev .................. no
->   Networking:
->     getaddrinfo .......... yes
->     getifaddrs ........... yes
->     IPv6 ifname .......... yes
->     OpenSSL .............. yes (linked to the libraries)
->   NIS .................... no
->   OpenGL / OpenVG:
->     EGL .................. yes
->     OpenGL ............... yes (OpenGL ES 2.0+)
->     OpenVG ............... no
->   PCRE ................... yes (bundled copy)
->   pkg-config ............. yes
->   PulseAudio ............. yes
->   QPA backends:
->     DirectFB ............. no
->     EGLFS ................ yes
->     KMS .................. no
->     LinuxFB .............. yes
->     XCB .................. no
->   Session management ..... no
->   SQL drivers:
->     DB2 .................. no
->     InterBase ............ no
->     MySQL ................ no
->     OCI .................. no
->     ODBC ................. no
->     PostgreSQL ........... no
->     SQLite 2 ............. no
->     SQLite ............... no
->     TDS .................. no
->   udev ................... yes
->   xkbcommon .............. no
->   zlib ................... yes (system library)
->
-> regards
-> Ankur
->
+<h2>Clean Build: false</h2>
 
---001a114394c45493c9052500336c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-<p dir=3D"ltr">Hi,</p>
-<p dir=3D"ltr">Can someone please respond, I am blocked in my project becau=
-se of this combobox error.</p>
-<p dir=3D"ltr">Thanks<br>
-Ankur</p>
-<div class=3D"gmail_quote">On 18-Nov-2015 4:38 pm, &quot;Ankur Tyagi&quot; =
-&lt;<a href=3D"mailto:ankur.tyagi85@gmail.com">ankur.tyagi85@gmail.com</a>&=
-gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
-=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small"><font color=
-=3D"#000000" face=3D"verdana, sans-serif">Hi,</font></div><div class=3D"gma=
-il_default" style=3D"font-size:small"><font color=3D"#000000" face=3D"verda=
-na, sans-serif"><br></font></div><div class=3D"gmail_default" style=3D"font=
--size:small"><font color=3D"#000000" face=3D"verdana, sans-serif">When runn=
-ing QT5.4.1 based app, I get following error when I try to use a combobox:<=
-/font></div><div class=3D"gmail_default" style=3D"font-size:small"><font co=
-lor=3D"#000000" face=3D"verdana, sans-serif"><br></font></div><div class=3D=
-"gmail_default" style=3D"font-size:small"><div class=3D"gmail_default" styl=
-e=3D"color:rgb(0,0,0);font-family:verdana,sans-serif">QEGLPlatformContext::=
-makeCurrent: eglError: 3002, this: 0x3f5b58</div><div class=3D"gmail_defaul=
-t" style=3D"color:rgb(0,0,0);font-family:verdana,sans-serif">QEGLPlatformCo=
-ntext::makeCurrent: eglError: 3009, this: 0x3f5b58</div><div class=3D"gmail=
-_default" style=3D"color:rgb(0,0,0);font-family:verdana,sans-serif"><br></d=
-iv><div class=3D"gmail_default" style=3D"color:rgb(0,0,0);font-family:verda=
-na,sans-serif">I am using meta-arago daisy branch on TI AM335x-EVM. I have =
-also removed &quot;x11 and wayland&quot; from distro features.</div><div cl=
-ass=3D"gmail_default" style=3D"color:rgb(0,0,0);font-family:verdana,sans-se=
-rif"><br></div><div class=3D"gmail_default" style=3D"color:rgb(0,0,0);font-=
-family:verdana,sans-serif">Any help is appreciated.</div><div class=3D"gmai=
-l_default" style=3D"color:rgb(0,0,0);font-family:verdana,sans-serif"><br></=
-div></div><div class=3D"gmail_default" style=3D"font-size:small"><font colo=
-r=3D"#000000" face=3D"verdana, sans-serif">My environment is following:=C2=
-=A0</font></div><div class=3D"gmail_default"><font color=3D"#000000" face=
-=3D"verdana, sans-serif"><div class=3D"gmail_default" style=3D"font-size:sm=
-all"><br></div><div class=3D"gmail_default" style=3D"font-size:small">Build=
- Configuration:</div><div class=3D"gmail_default" style=3D"font-size:small"=
->BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.26.0&quot;</div><div cla=
-ss=3D"gmail_default" style=3D"font-size:small">BUILD_SYS =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =3D &quot;i686-linux&quot;</div><div class=3D"gmail_default" sty=
-le=3D"font-size:small">NATIVELSBSTRING =C2=A0 =3D &quot;Ubuntu-14.04&quot;<=
-/div><div class=3D"gmail_default" style=3D"font-size:small">TARGET_SYS =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;arm-linux-gnueabi&quot;</div><div class=
-=3D"gmail_default" style=3D"font-size:small">MACHINE =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =3D &quot;am335x-evm&quot;</div><div class=3D"gmail_default" =
-style=3D"font-size:small">DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=3D &quot;arago&quot;</div><div class=3D"gmail_default" style=3D"font-size:=
-small">DISTRO_VERSION =C2=A0 =C2=A0=3D &quot;2015.05&quot;</div><div class=
-=3D"gmail_default" style=3D"font-size:small">TUNE_FEATURES =C2=A0 =C2=A0 =
-=3D &quot;armv7a vfp thumb neon callconvention-hard cortexa8&quot;</div><di=
-v class=3D"gmail_default" style=3D"font-size:small">TARGET_FPU =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0=3D &quot;vfp-neon&quot;</div><div class=3D"gmail_default"=
- style=3D"font-size:small">meta-arago-distro=C2=A0</div><div class=3D"gmail=
-_default" style=3D"font-size:small">meta-arago-extras =3D &quot;daisy:d607c=
-f64048994eaf2e8bb1687092c65febb27f2&quot;</div><div class=3D"gmail_default"=
- style=3D"font-size:small">meta-qt5 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &=
-quot;(detachedfrom17eb158):c6d3e94ff294f39994de85b3fd12ffde8b3f8372&quot;</=
-div><div class=3D"gmail_default" style=3D"font-size:small">toolchain-layer =
-=C2=A0=C2=A0</div><div class=3D"gmail_default" style=3D"font-size:small">me=
-ta-networking =C2=A0=C2=A0</div><div class=3D"gmail_default" style=3D"font-=
-size:small">meta-ruby =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"=
-gmail_default" style=3D"font-size:small">meta-oe =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =3D &quot;daisy:d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa&quot;</=
-div><div class=3D"gmail_default" style=3D"font-size:small">meta-ti =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;daisy:70cdadbfb48ef3e7a2596320cdfc626=
-078c1ac34&quot;</div><div class=3D"gmail_default" style=3D"font-size:small"=
->meta-linaro-toolchain =3D &quot;daisy:06008235ca752fea678953e85adaa29a491d=
-246b&quot;</div><div class=3D"gmail_default" style=3D"font-size:small">meta=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;daisy:e1a2540227=
-250d854d5bba278634bcc9e7572cda&quot;</div><div style=3D"font-size:small"><b=
-r></div><div style=3D"font-size:small">Following is QT build configuration:=
-</div><div style=3D"font-size:small"><br></div><div><div>=C2=A0 =C2=A0Confi=
-gure summary</div><div><br></div><div>Building on: =C2=A0 /home/nws/yocto-d=
-aisy-dev/oe-layersetup/build/arago-tmp-external-linaro-toolchain/sysroots/i=
-686-linux/usr/lib/qt5/mkspecs/linux-oe-g++ (arm, CPU features: neon)</div><=
-div>Building for: =C2=A0linux-oe-g++ (arm, CPU features: neon)</div><div><b=
-r></div><div>qmake vars .......... OE_QMAKE_AR =3D arm-linux-gnueabihf-ar O=
-E_QMAKE_CC =3D arm-linux-gnueabihf-gcc =C2=A0-march=3Darmv7-a -marm -mthumb=
--interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/=
-home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external-linaro-tool=
-chain/sysroots/am335x-evm OE_QMAKE_CFLAGS =3D =C2=A0-isystem/home/nws/gcc-4=
-.7.3/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gn=
-ueabihf/include =C2=A0-fstack-protector -O2 -pipe -g -feliminate-unused-deb=
-ug-types OE_QMAKE_COMPILER =3D arm-linux-gnueabihf-gcc =C2=A0-march=3Darmv7=
--a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-=
-a8 --sysroot=3D/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-exte=
-rnal-linaro-toolchain/sysroots/am335x-evm OE_QMAKE_CXX =3D arm-linux-gnueab=
-ihf-g++ =C2=A0-march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -=
-mfpu=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/home/nws/yocto-daisy-dev/oe-lay=
-ersetup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm OE_QM=
-AKE_CXXFLAGS =3D =C2=A0-isystem/home/nws/gcc-4.7.3/gcc-linaro-arm-linux-gnu=
-eabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/include =C2=A0-fstack=
--protector -O2 -pipe -g -feliminate-unused-debug-types OE_QMAKE_LDFLAGS =3D=
- =C2=A0-L/home/nws/gcc-4.7.3/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-201=
-30313_linux/arm-linux-gnueabihf/lib -Wl,-rpath-link,/home/nws/gcc-4.7.3/gcc=
--linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/=
-lib -Wl,-O1 -Wl,--hash-style=3Dgnu OE_QMAKE_LINK =3D arm-linux-gnueabihf-g+=
-+ =C2=A0-march=3Darmv7-a -marm -mthumb-interwork -mfloat-abi=3Dhard -mfpu=
-=3Dneon -mtune=3Dcortex-a8 --sysroot=3D/home/nws/yocto-daisy-dev/oe-layerse=
-tup/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm OE_QMAKE_=
-STRIP =3D echo styles +=3D mac fusion windows DEFINES +=3D QT_NO_MTDEV QT_C=
-FLAGS_PULSEAUDIO =3D -D_REENTRANT -I/home/nws/yocto-daisy-dev/oe-layersetup=
-/build/arago-tmp-external-linaro-toolchain/sysroots/am335x-evm/usr/include/=
-glib-2.0 -I/home/nws/yocto-daisy-dev/oe-layersetup/build/arago-tmp-external=
--linaro-toolchain/sysroots/am335x-evm/usr/lib/glib-2.0/include =C2=A0QT_LIB=
-S_PULSEAUDIO =3D -lpulse-mainloop-glib -lpulse -lglib-2.0 =C2=A0QMAKE_INCDI=
-R_LIBUDEV =3D =C2=A0QMAKE_LIBS_LIBUDEV =3D -ludev -lrt =C2=A0sql-drivers =
-=3D =C2=A0sql-plugins =3D =C2=A0qmake switches .........=C2=A0</div><div><b=
-r></div></div><div><div>Build options:</div><div>=C2=A0 Configuration .....=
-..... accessibility audio-backend c++11 clock-gettime clock-monotonic compi=
-le_examples concurrent cross_compile dbus egl eglfs evdev eventfd freetype =
-full-config getaddrinfo getifaddrs harfbuzz inotify ipv6ifname large-config=
- largefile libudev linuxfb medium-config minimal-config mremap neon opengl =
-opengles2 openssl-linked pcre png posix_fallocate pulseaudio qpa qpa reduce=
-_exports release shared silent small-config system-jpeg system-png system-z=
-lib=C2=A0</div><div>=C2=A0 Build parts ............ =C2=A0libs tools</div><=
-div>=C2=A0 Mode ................... release</div><div>=C2=A0 Using C++11 ..=
-.......... yes</div><div>=C2=A0 Using gold linker....... no</div><div>=C2=
-=A0 Using PCH .............. no</div><div>=C2=A0 Target compiler supports:<=
-/div><div>=C2=A0 =C2=A0 Neon ................. yes</div><div><br></div><div=
->Qt modules and options:</div><div>=C2=A0 Qt D-Bus ............... yes (loa=
-ding dbus-1 at runtime)</div><div>=C2=A0 Qt Concurrent .......... yes</div>=
-<div>=C2=A0 Qt GUI ................. yes</div><div>=C2=A0 Qt Widgets ......=
-....... yes</div><div>=C2=A0 Large File ............. yes</div><div>=C2=A0 =
-QML debugging .......... yes</div><div>=C2=A0 Use system proxies ..... no</=
-div><div><br></div><div>Support enabled for:</div><div>=C2=A0 Accessibility=
- .......... yes</div><div>=C2=A0 ALSA ................... no</div><div>=C2=
-=A0 CUPS ................... no</div><div>=C2=A0 Evdev .................. y=
-es</div><div>=C2=A0 FontConfig ............. no</div><div>=C2=A0 FreeType .=
-.............. qt</div><div>=C2=A0 Glib ................... no</div><div>=
-=C2=A0 GTK theme .............. no</div><div>=C2=A0 HarfBuzz ..............=
-. yes (bundled copy)</div><div>=C2=A0 Iconv .................. no</div><div=
->=C2=A0 ICU .................... no</div><div>=C2=A0 Image formats:=C2=A0</=
-div><div>=C2=A0 =C2=A0 GIF .................. yes (plugin, using bundled co=
-py)</div><div>=C2=A0 =C2=A0 JPEG ................. yes (plugin, using syste=
-m library)</div><div>=C2=A0 =C2=A0 PNG .................. yes (in QtGui, us=
-ing system library)</div><div>=C2=A0 journald ............... no</div><div>=
-=C2=A0 mtdev .................. no</div><div>=C2=A0 Networking:=C2=A0</div>=
-<div>=C2=A0 =C2=A0 getaddrinfo .......... yes</div><div>=C2=A0 =C2=A0 getif=
-addrs ........... yes</div><div>=C2=A0 =C2=A0 IPv6 ifname .......... yes</d=
-iv><div>=C2=A0 =C2=A0 OpenSSL .............. yes (linked to the libraries)<=
-/div><div>=C2=A0 NIS .................... no</div><div>=C2=A0 OpenGL / Open=
-VG:=C2=A0</div><div>=C2=A0 =C2=A0 EGL .................. yes</div><div>=C2=
-=A0 =C2=A0 OpenGL ............... yes (OpenGL ES 2.0+)</div><div>=C2=A0 =C2=
-=A0 OpenVG ............... no</div><div>=C2=A0 PCRE ................... yes=
- (bundled copy)</div><div>=C2=A0 pkg-config ............. yes=C2=A0</div><d=
-iv>=C2=A0 PulseAudio ............. yes</div><div>=C2=A0 QPA backends:=C2=A0=
-</div><div>=C2=A0 =C2=A0 DirectFB ............. no</div><div>=C2=A0 =C2=A0 =
-EGLFS ................ yes</div><div>=C2=A0 =C2=A0 KMS .................. n=
-o</div><div>=C2=A0 =C2=A0 LinuxFB .............. yes</div><div>=C2=A0 =C2=
-=A0 XCB .................. no</div><div>=C2=A0 Session management ..... no<=
-/div><div>=C2=A0 SQL drivers:=C2=A0</div><div>=C2=A0 =C2=A0 DB2 ...........=
-....... no</div><div>=C2=A0 =C2=A0 InterBase ............ no</div><div>=C2=
-=A0 =C2=A0 MySQL ................ no</div><div>=C2=A0 =C2=A0 OCI ..........=
-........ no</div><div>=C2=A0 =C2=A0 ODBC ................. no</div><div>=C2=
-=A0 =C2=A0 PostgreSQL ........... no</div><div>=C2=A0 =C2=A0 SQLite 2 .....=
-........ no</div><div>=C2=A0 =C2=A0 SQLite ............... no</div><div>=C2=
-=A0 =C2=A0 TDS .................. no</div><div>=C2=A0 udev ................=
-... yes</div><div>=C2=A0 xkbcommon .............. no</div><div>=C2=A0 zlib =
-................... yes (system library)</div></div><div style=3D"font-size=
-:small"><br></div></font></div><div class=3D"gmail_default"><font color=3D"=
-#000000" face=3D"verdana, sans-serif"><div class=3D"gmail_default">regards<=
-/div><div class=3D"gmail_default">Ankur</div></font></div>
-</div>
-</blockquote></div>
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
 
---001a114394c45493c9052500336c--
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.11"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_26_1366045631.1448096398619--
