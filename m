@@ -1,29 +1,31 @@
 Return-Path: <jake@udd0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A09D052A22
+	by arago-project.org (Postfix) with ESMTPS id B2A9D52A3B
 	for <meta-arago@arago-project.org>;
 	Mon, 23 Nov 2015 17:40:42 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id tANHefZi009802
-	for <meta-arago@arago-project.org>; Mon, 23 Nov 2015 11:40:41 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tANHeeo6001370
-	for <meta-arago@arago-project.org>; Mon, 23 Nov 2015 11:40:40 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 23 Nov 2015 11:40:40 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id tANHeg9k009808
+	for <meta-arago@arago-project.org>; Mon, 23 Nov 2015 11:40:42 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tANHegDY001428
+	for <meta-arago@arago-project.org>; Mon, 23 Nov 2015 11:40:42 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 23 Nov 2015 11:40:42 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id tANHeem3010388;
-	Mon, 23 Nov 2015 11:40:40 -0600
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tANHefgW006385;
+	Mon, 23 Nov 2015 11:40:41 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1a0v6W-0005J4-0h; Mon, 23 Nov 2015 12:40:40 -0500
+	<jake@udd0866934>)	id 1a0v6X-0005J9-Hg; Mon, 23 Nov 2015 12:40:41 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 23 Nov 2015 12:40:32 -0500
-Message-ID: <1448300436-20360-1-git-send-email-j-stiffler@ti.com>
+Date: Mon, 23 Nov 2015 12:40:33 -0500
+Message-ID: <1448300436-20360-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1448300436-20360-1-git-send-email-j-stiffler@ti.com>
+References: <1448300436-20360-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 0/4] Update keystone devkit
+Subject: [PATCH 1/4] tisdk-image.bbclass: Remove wildcard from search for devkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,26 +41,26 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Mon, 23 Nov 2015 17:40:47 -0000
 Content-Type: text/plain
 
-Update keystone devkit to be on par with sitara devkits.
+* Information for the exact name is already provided
 
-This addresses LCPD-5347.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-distro/classes/tisdk-image.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Jacob Stiffler (4):
-  tisdk-image.bbclass: Remove wildcard from search for devkit
-  meta-toolchain-arago-tisdk: Split common content into inc file
-  meta-toolchain-arago-tisdk-server: tisdk devkit without QT
-  arago-core-tisdk-image: use meta-toolchain-arago-tisdk-server for
-    keystone
-
- meta-arago-distro/classes/tisdk-image.bbclass                    | 2 +-
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 4 ++--
- .../recipes-core/meta/meta-toolchain-arago-tisdk-server.bb       | 6 ++++++
- .../recipes-core/meta/meta-toolchain-arago-tisdk.bb              | 9 ++-------
- .../recipes-core/meta/meta-toolchain-arago-tisdk.inc             | 8 ++++++++
- 5 files changed, 19 insertions(+), 10 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
- create mode 100644 meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.inc
-
+diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
+index e5640bf..b78311f 100644
+--- a/meta-arago-distro/classes/tisdk-image.bbclass
++++ b/meta-arago-distro/classes/tisdk-image.bbclass
+@@ -788,7 +788,7 @@ tisdk_image_build () {
+ 
+     # Copy over the toolchain sdk installer an give it a simple name which
+     # matches the traditional name within the SDK.
+-    cp ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}*.sh ${IMAGE_ROOTFS}/linux-devkit.sh
++    cp ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}.sh ${IMAGE_ROOTFS}/linux-devkit.sh
+ 
+     # Copy the opkg.conf used by the image to allow for future updates
+     cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
 -- 
 1.9.1
 
