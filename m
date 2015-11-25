@@ -1,29 +1,28 @@
-Return-Path: <jake@udd0866934>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 5F90052976
+Return-Path: <e-ruei1@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 608F652A96
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Nov 2015 20:32:25 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAPKWMaG032560
-	for <meta-arago@arago-project.org>; Wed, 25 Nov 2015 14:32:22 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAPKWMXB031036
-	for <meta-arago@arago-project.org>; Wed, 25 Nov 2015 14:32:22 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 25 Nov 2015 14:32:22 -0600
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAPKWLmu032753;
-	Wed, 25 Nov 2015 14:32:22 -0600
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1a1gjl-0006Vj-9S; Wed, 25 Nov 2015 15:32:21 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Wed, 25 Nov 2015 23:08:05 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tAPN84Zi012553
+	for <meta-arago@arago-project.org>; Wed, 25 Nov 2015 17:08:04 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tAPN83HR026878
+	for <meta-arago@arago-project.org>; Wed, 25 Nov 2015 17:08:04 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 25 Nov 2015 17:08:03 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tAPN83pc018422	for <meta-arago@arago-project.org>;
+	Wed, 25 Nov 2015 17:08:03 -0600
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 25 Nov 2015 15:32:19 -0500
-Message-ID: <1448483539-24993-1-git-send-email-j-stiffler@ti.com>
+Date: Wed, 25 Nov 2015 18:07:54 -0500
+Message-ID: <1448492879-1050-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] tisdk-image.bbclass: Copy pmmc-firmware to prebuilt-images
+Subject: [PATCH 0/5] Enable non-SGX build for AM3/AM4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,44 +35,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Nov 2015 20:32:28 -0000
+X-List-Received-Date: Wed, 25 Nov 2015 23:08:06 -0000
 Content-Type: text/plain
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- meta-arago-distro/classes/tisdk-image.bbclass | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+From: Eric Ruei <a0850410@uda0850410>
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index b78311f..bc9948f 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -53,6 +53,9 @@ DEPLOY_SPL_NAME ?= "MLO-${MACHINE}"
- # Variable to specify the name of SPL/UART
- DEPLOY_SPL_UART_NAME ?= "u-boot-spl.bin-${MACHINE}"
- 
-+# Variable to specify the name of the PMMC firmware
-+DEPLOY_PMMC_FW_NAME ?= "pmmc-firmware.bin"
-+
- # Manifest file location which will be created as part of the image build
- # process.
- # This manifest follows the TI manifest format requirements which is why
-@@ -755,6 +758,15 @@ tisdk_image_build () {
-         fi
-     fi
- 
-+    if [ "${DEPLOY_PMMC_FW_NAME}" != "" ]
-+    then
-+        # Copy pmmc firmware if it exists
-+        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_PMMC_FW_NAME} ]
-+        then
-+            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_PMMC_FW_NAME} ${prebuilt_dir}/
-+        fi
-+    fi
-+
-     # Add the EXTRA_TISDK_FILES contents if they exist
-     # Make sure EXTRA_TISDK_FILES is not empty so we don't accidentaly
-     # copy the root directory.
+Enhance meta-arago (and meta-ti) recipes to enable SGX/software rendering
+graphics support based on whether or not SGX is included at Machine Feature
+list.
+
+Eric Ruei (5):
+  arago.conf: Configure Weston based on the availability of SGX
+  branding-processor-sdk:Update ti33x feature based on the availability
+    of SGX
+  tisdk-rootfs-image: Include packagegroup-arago-tisdk-graphics
+    unconditionally
+  qt5/qtbase: Define GLES_EXTRA_DEPS based on the availability of SGX
+  ti-tisdk-makefile: Define PVR_NULLDRM based on the availability of SGX
+
+ meta-arago-distro/conf/distro/arago.conf                              | 4 ++--
+ meta-arago-distro/conf/distro/include/branding-processor-sdk.inc      | 4 ++--
+ meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb           | 2 +-
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend                    | 4 ++--
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
+ 5 files changed, 9 insertions(+), 9 deletions(-)
+
 -- 
 1.9.1
 
