@@ -1,30 +1,28 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 7C4DA52A5B
+	by arago-project.org (Postfix) with ESMTPS id 7B7C052A5A
 	for <meta-arago@arago-project.org>;
 	Tue,  1 Dec 2015 15:30:38 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tB1FUZuO021349
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tB1FUZut021345
 	for <meta-arago@arago-project.org>; Tue, 1 Dec 2015 09:30:35 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB1FUZfe029330
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB1FUZ05029297
 	for <meta-arago@arago-project.org>; Tue, 1 Dec 2015 09:30:35 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
 	Tue, 1 Dec 2015 09:30:34 -0600
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tB1FUY6s003898	for <meta-arago@arago-project.org>;
-	Tue, 1 Dec 2015 09:30:35 -0600
+	tB1FUY6q003898	for <meta-arago@arago-project.org>;
+	Tue, 1 Dec 2015 09:30:34 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 1 Dec 2015 10:30:15 -0500
-Message-ID: <1448983818-21402-3-git-send-email-e-ruei1@ti.com>
+Date: Tue, 1 Dec 2015 10:30:13 -0500
+Message-ID: <1448983818-21402-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1448983818-21402-1-git-send-email-e-ruei1@ti.com>
-References: <1448983818-21402-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH V2 2/5] branding-processor-sdk:Update ti33x feature based on the availability of SGX
+Subject: [PATCH V2 0/5] Enable non-SGX build for AM3/AM4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,31 +38,30 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Tue, 01 Dec 2015 15:30:42 -0000
 Content-Type: text/plain
 
-From: Eric Ruei <a0850410@uda0850410>
+Enhance meta-ti (and meta-arago) recipes to enable SGX/software rendering 
+graphics support based on whether SGX is included at Machine Feature list.
 
-Enable non-SGX build for AM3/AM4:
-For ti33x, remove wayland from DISTRO_FEATURES only if SGX is included at MACHINE_FEATURES.
+Major changes since V1:
+- ti-tisdk-makefile: Remove omapdrm-pvr related make instructions if
+                     SGX is not available
 
+Eric Ruei (5):
+  arago.conf: Configure Weston based on the availability of SGX
+  branding-processor-sdk:Update ti33x feature based on the availability
+    of SGX
+  tisdk-rootfs-image: Include packagegroup-arago-tisdk-graphics
+    unconditionally
+  qt5/qtbase: Define GLES_EXTRA_DEPS based on the availability of SGX
+  ti-tisdk-makefile: Include omapdrm-pvr related make instructions only
+    if SGX is available
 
-Signed-off-by: Eric Ruei <a0850410@uda0850410>
----
- meta-arago-distro/conf/distro/include/branding-processor-sdk.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf                          | 4 ++--
+ meta-arago-distro/conf/distro/include/branding-processor-sdk.inc  | 4 ++--
+ meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb       | 2 +-
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend                | 4 ++--
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb      | 8 ++++----
+ 5 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-index 0c5e41c..0de7204 100644
---- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -1,7 +1,7 @@
- ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
- 
--# Remove wayland from ti33x DISTRO_FEATURES.
--DISTRO_FEATURES_remove_ti33x = "wayland"
-+# Remove wayland from ti33x DISTRO_FEATURES if SGX is present.
-+DISTRO_FEATURES_remove_ti33x = "${@base_contains('MACHINE_FEATURES', 'sgx', 'wayland', '', d)}"
- 
- # Set CMEM reserved memory region
- CMEM_BASE_omap-a15 ?= "a0000000"
 -- 
 1.9.1
 
