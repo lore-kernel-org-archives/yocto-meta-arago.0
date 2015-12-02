@@ -1,29 +1,26 @@
-Return-Path: <jake@udd0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B3637529E2
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id B979752A14
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Dec 2015 18:37:00 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id tB2IaxPa021063
-	for <meta-arago@arago-project.org>; Wed, 2 Dec 2015 12:36:59 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB2IaxDn016848
-	for <meta-arago@arago-project.org>; Wed, 2 Dec 2015 12:36:59 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 2 Dec 2015 12:36:58 -0600
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB2Iawu5019831;
-	Wed, 2 Dec 2015 12:36:58 -0600
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1a4CGv-0000tn-Tl; Wed, 02 Dec 2015 13:36:57 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 2 Dec 2015 13:36:56 -0500
-Message-ID: <1449081416-3421-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] Revert "HACK: dspdce-fw: Add ipumm-fw to DEPENDS"
+	Wed,  2 Dec 2015 21:41:00 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPSA id <0NYR007IE2VJFX10@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 02 Dec 2015 15:40:37 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=wUQvQvOEmiQA:10 a=sozttTNsAAAA:8
+	a=x30bPJPgPvrwdlGsDNQA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 9461B161D1F;	Wed,
+	2 Dec 2015 16:40:31 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 02 Dec 2015 16:40:31 -0500
+Message-id: <1449092431-29232-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] packagegroup-*-addons-sdk-target: netapi is only supported on hk/l/e devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,32 +33,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Dec 2015 18:37:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 02 Dec 2015 21:41:06 -0000
 
-* The root issue has been resolved in upstream sources
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-bsp/dspdce-fw/dspdce-fw_git.bbappend | 8 --------
- 1 file changed, 8 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-bsp/dspdce-fw/dspdce-fw_git.bbappend
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb              | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/dspdce-fw/dspdce-fw_git.bbappend b/meta-arago-distro/recipes-bsp/dspdce-fw/dspdce-fw_git.bbappend
-deleted file mode 100644
-index 77a7b03..0000000
---- a/meta-arago-distro/recipes-bsp/dspdce-fw/dspdce-fw_git.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--PR_append = "-arago0"
--
--# This is a crude workaround to prevent dspdce and ipumm from
--# attempting to concurrently rebuild common packages (such as
--# fc and ce) in the sysroot.
--DEPENDS_append = " \
--    ipumm-fw \
--"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 8ba5a82..74bf6a7 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
+ LICENSE = "MIT"
+-PR = "r17"
++PR = "r18"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -58,8 +58,6 @@ EXTRA_LIBS_append_keystone = "\
+ 	nwal-lld-staticdev \
+ 	pktlib-dev \
+ 	pktlib-staticdev \
+-	netapi-dev \
+-	netapi-staticdev \
+ 	libnl-xfrm-dev \
+ 	libnl-xfrm-staticdev \
+ 	libnl-dev \
+@@ -83,6 +81,8 @@ EXTRA_LIBS_append_k2l-evm = "\
+ 	dfe-lld-staticdev \
+ 	iqn2-lld-dev \
+ 	iqn2-lld-staticdev \
++	netapi-dev \
++	netapi-staticdev \
+ 	"
+ 
+ EXTRA_LIBS_append_k2hk-evm = "\
+@@ -94,6 +94,8 @@ EXTRA_LIBS_append_k2hk-evm = "\
+ 	mmap-lld-staticdev \
+ 	hyplnk-lld-dev \
+ 	hyplnk-lld-staticdev \
++	netapi-dev \
++	netapi-staticdev \
+ 	"
+ 
+ EXTRA_LIBS_append_k2e-evm = "\
+@@ -101,6 +103,8 @@ EXTRA_LIBS_append_k2e-evm = "\
+ 	mmap-lld-staticdev \
+ 	hyplnk-lld-dev \
+ 	hyplnk-lld-staticdev \
++	netapi-dev \
++	netapi-staticdev \
+ "
+ 
+ UTILS_append_omap3 = " canutils-dev"
 -- 
-1.9.1
+2.2.0
 
 
