@@ -1,28 +1,26 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id A3C6152A81
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id DCE3052A34
 	for <meta-arago@arago-project.org>;
-	Fri,  4 Dec 2015 22:36:05 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tB4Ma5PH008316
-	for <meta-arago@arago-project.org>; Fri, 4 Dec 2015 16:36:05 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB4Ma2Yp023225
-	for <meta-arago@arago-project.org>; Fri, 4 Dec 2015 16:36:05 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 4 Dec 2015 16:36:02 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tB4Ma2gS023250	for <meta-arago@arago-project.org>;
-	Fri, 4 Dec 2015 16:36:02 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 4 Dec 2015 17:35:57 -0500
-Message-ID: <1449268557-32271-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] ti-tisdk-makefile: Update PVR_NULLDRM for ti43x
+	Sat,  5 Dec 2015 02:25:21 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPSA id <0NYV003A75DT3P10@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 04 Dec 2015 20:25:06 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=wUQvQvOEmiQA:10 a=sozttTNsAAAA:8
+	a=U53058OFSLw7R0u1540A:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 5A626161D36;	Fri,
+	4 Dec 2015 21:25:05 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 04 Dec 2015 21:25:03 -0500
+Message-id: <1449282304-13964-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH 1/2] ipc-test-fw: add alternatives handling
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,39 +33,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Dec 2015 22:36:06 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 05 Dec 2015 02:25:22 -0000
 
-* ti43x: PVR_NULLDRM should be set to 0 to build SGX KM with DRM/Wayland support
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          | 23 +++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 024e3cd..1988b8b 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -44,7 +44,7 @@ SRC_URI = "\
-     file://Makefile_pru-icss \
- "
+diff --git a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+index 55a6768..3093b53 100644
+--- a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
++++ b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Firmware images to test IPC"
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD;md5=3775480a712fc46a69647678acb234cb"
  
--PR = "r61"
-+PR = "r62"
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
++inherit update-alternatives
  
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -134,7 +134,7 @@ PLATFORM_OMAPDRM_omap-a15 = "omap5430"
+ FWVER = "eng-4-gb9283b0"
+-PR = "r1+${FWVER}"
++PR = "r2+${FWVER}"
  
- PVR_NULLDRM = ""
- PVR_NULLDRM_ti33x = "1"
--PVR_NULLDRM_ti43x = "1"
-+PVR_NULLDRM_ti43x = "0"
- PVR_NULLDRM_omap-a15 = "0"
+ COMPATIBLE_MACHINE = "omap5-evm|dra7xx"
  
- PLATFORM_DEBUGSS = ""
+@@ -23,14 +23,27 @@ do_compile() {
+     :
+ }
+ 
+-# Add a .test extension to the firmware files so that they do not conflict
+-# with the real firmware images
+ do_install() {
+     install -d ${D}${base_libdir}/firmware
+     for f in *.xe*
+     do
+-        install -m 755 ${f} ${D}${base_libdir}/firmware/${f}.test
++        install -m 755 $f ${D}${base_libdir}/firmware/$f.${BPN}
+     done
+ }
+ 
++ALTERNATIVE_${PN} = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66 dra7-ipu1-fw.xem4 dra7-ipu2-fw.xem4 ducati-m3-core0.xem3 tesla-dsp.xe64T"
++ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66"
++ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66.${BPN}"
++ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66"
++ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66.${BPN}"
++ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
++ALTERNATIVE_TARGET[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4.${BPN}"
++ALTERNATIVE_LINK_NAME[dra7-ipu2-fw.xem4] = "${base_libdir}/firmware/dra7-ipu2-fw.xem4"
++ALTERNATIVE_TARGET[dra7-ipu2-fw.xem4] = "${base_libdir}/firmware/dra7-ipu2-fw.xem4.${BPN}"
++ALTERNATIVE_LINK_NAME[ducati-m3-core0.xem3] = "${base_libdir}/firmware/ducati-m3-core0.xem3"
++ALTERNATIVE_TARGET[ducati-m3-core0.xem3] = "${base_libdir}/firmware/ducati-m3-core0.xem3.${BPN}"
++ALTERNATIVE_LINK_NAME[tesla-dsp.xe64T] = "${base_libdir}/firmware/tesla-dsp.xe64T"
++ALTERNATIVE_TARGET[tesla-dsp.xe64T] = "${base_libdir}/firmware/tesla-dsp.xe64T.${BPN}"
++ALTERNATIVE_PRIORITY = "20"
++
+ FILES_${PN} += "${base_libdir}/firmware"
 -- 
-1.9.1
+2.2.0
 
 
