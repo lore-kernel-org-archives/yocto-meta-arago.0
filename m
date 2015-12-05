@@ -1,28 +1,26 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 05DAF52A34
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id 88EB052A34
 	for <meta-arago@arago-project.org>;
-	Sat,  5 Dec 2015 02:25:24 +0000 (UTC)
-Received: from gandalf.denix.org ([100.15.86.14]) by vms173023.mailsrvcs.net
+	Sat,  5 Dec 2015 03:18:09 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173017.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0NYV00ECJ5DT9240@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 04 Dec 2015 20:25:18 -0600 (CST)
+	2014)) with ESMTPSA id <0NYV00HRX7TJE6Q0@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 04 Dec 2015 21:17:53 -0600 (CST)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=wUQvQvOEmiQA:10 a=sozttTNsAAAA:8
-	a=pen8Khb97LPnepmOTfYA:9
+	a=wu2g2PXzGwTBtfXfhPsA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 5BDCD161D39;	Fri,
-	4 Dec 2015 21:25:05 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id 4A3F4161D37;	Fri,
+	4 Dec 2015 22:17:43 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 04 Dec 2015 21:25:04 -0500
-Message-id: <1449282304-13964-2-git-send-email-denis@denix.org>
+Date: Fri, 04 Dec 2015 22:17:42 -0500
+Message-id: <1449285462-22582-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1449282304-13964-1-git-send-email-denis@denix.org>
-References: <1449282304-13964-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] opencl-monitor: fix alternatives handling
+Subject: [PATCH] tisdk-image: rename PMMC firmware to new TI SCI name
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,37 +33,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Dec 2015 02:25:24 -0000
+X-List-Received-Date: Sat, 05 Dec 2015 03:18:09 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ meta-arago-distro/classes/tisdk-image.bbclass | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-index fbc4949..6657ba8 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-@@ -47,9 +47,15 @@ export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
- export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
- export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
+diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
+index bc9948f..e5d5e50 100644
+--- a/meta-arago-distro/classes/tisdk-image.bbclass
++++ b/meta-arago-distro/classes/tisdk-image.bbclass
+@@ -53,8 +53,8 @@ DEPLOY_SPL_NAME ?= "MLO-${MACHINE}"
+ # Variable to specify the name of SPL/UART
+ DEPLOY_SPL_UART_NAME ?= "u-boot-spl.bin-${MACHINE}"
  
-+do_install_append() {
-+	for i in 1 2; do mv ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66 ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66.${BPN}; done
-+}
-+
- ALTERNATIVE_${PN} = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
--ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "/lib/firmware/dra7-dsp1-fw.xe66"
--ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "/lib/firmware/dra7-dsp2-fw.xe66"
-+ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66"
-+ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66.${BPN}"
-+ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66"
-+ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66.${BPN}"
- ALTERNATIVE_PRIORITY = "100"
+-# Variable to specify the name of the PMMC firmware
+-DEPLOY_PMMC_FW_NAME ?= "pmmc-firmware.bin"
++# Variable to specify the name of the TI SCI firmware
++DEPLOY_TISCI_FW_NAME ?= "ti-sci-firmware-k2g.bin"
  
- MONITOR_FIRMWARE = ""
+ # Manifest file location which will be created as part of the image build
+ # process.
+@@ -758,12 +758,12 @@ tisdk_image_build () {
+         fi
+     fi
+ 
+-    if [ "${DEPLOY_PMMC_FW_NAME}" != "" ]
++    if [ "${DEPLOY_TISCI_FW_NAME}" != "" ]
+     then
+-        # Copy pmmc firmware if it exists
+-        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_PMMC_FW_NAME} ]
++        # Copy TI SCI firmware if it exists
++        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_TISCI_FW_NAME} ]
+         then
+-            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_PMMC_FW_NAME} ${prebuilt_dir}/
++            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_TISCI_FW_NAME} ${prebuilt_dir}/
+         fi
+     fi
+ 
 -- 
 2.2.0
 
