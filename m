@@ -1,33 +1,26 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 1AA7A52997
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id ABAF5529E2
 	for <meta-arago@arago-project.org>;
-	Mon,  7 Dec 2015 16:10:51 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tB7GAo8I012152
-	for <meta-arago@arago-project.org>; Mon, 7 Dec 2015 10:10:50 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB7GAoT2010468
-	for <meta-arago@arago-project.org>; Mon, 7 Dec 2015 10:10:50 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 7 Dec 2015 10:10:49 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id tB7GAn4o016958;
-	Mon, 7 Dec 2015 10:10:50 -0600
-Date: Mon, 7 Dec 2015 11:10:34 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20151207161034.GH6264@edge>
-References: <1449282304-13964-1-git-send-email-denis@denix.org>
-	<1449282304-13964-2-git-send-email-denis@denix.org>
-	<566577B6.20606@ti.com> <20151207145857.GF6264@edge>
-	<20151207151521.GG6264@edge> <5665A357.3020002@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <5665A357.3020002@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 2/2] opencl-monitor: fix alternatives handling
+	Tue,  8 Dec 2015 04:17:58 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPSA id <0NZ000BS6ULLBK50@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 07 Dec 2015 22:17:46 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=wUQvQvOEmiQA:10 a=sozttTNsAAAA:8
+	a=pRKgWKOXhPrAVY49P3cA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 15C05161D38;	Mon,
+	7 Dec 2015 23:17:45 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 07 Dec 2015 23:17:44 -0500
+Message-id: <1449548264-2956-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] arago.conf: bump version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,133 +33,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Dec 2015 16:10:51 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 08 Dec 2015 04:17:58 -0000
 
-On Mon, Dec 07, 2015 at 10:18:47AM -0500, Jacob Stiffler wrote:
-> 
-> 
-> On 12/7/2015 10:15 AM, Denys Dmytriyenko wrote:
-> >And BTW, building opencl-monitor for keystone is not in upstream, hence no
-> >issues in nightlies... Hint - please submit the necessary changes for opencl
-> >on keystone.
-> 
-> Sources are still internal...
+From: Denys Dmytriyenko <denys@ti.com>
 
-Any ETA?
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 14af8c4..f876f00 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,6 +1,6 @@
+ # Name and version of the distribution
+ DISTRO_NAME = "Arago"
+-DISTRO_VERSION = "2015.11"
++DISTRO_VERSION = "2015.12"
+ DISTRO_FEED_URI ?= "http://gtautoftp.gt.design.ti.com"
+ FEEDURIPREFIX ?= "lcpd/core-sdk/nightly/deploy/ipk/"
+ 
+-- 
+2.2.0
 
-> >On Mon, Dec 07, 2015 at 09:58:57AM -0500, Denys Dmytriyenko wrote:
-> >>Looks like when you build just opencl-monitor directly, the renaming doesn't
-> >>happen in the sysroots, but only for the packaging. So, even though the IPK
-> >>gets files renamed with ${BPN} suffix, the same files in sysroots are
-> >>installed w/o such suffix, leading to conflicts with dspdce-fw and also
-> >>ipc-test-fw after it got update-alternatives added.
-> 
-> I guess there are some gaps with udate-alternatives.
-
-Yeah, looks like it - I've submitted a bugreport upstream.
-
-
-> ACK
-> 
-> >>BTW, do_install_append can be machine-speicfic to dra7xx...
-> >>
-> >>
-> >>$ MACHINE=am57xx-evm bitbake opencl-monitor -c cleansstate
-> >>$ MACHINE=am57xx-evm bitbake opencl-monitor
-> >>$ ls ${TMPDIR}/sysroots/am57xx-evm/lib/firmware/dra7-dsp*
-> >>./sysroots/am57xx-evm/lib/firmware/dra7-dsp2-fw.xe66
-> >>./sysroots/am57xx-evm/lib/firmware/dra7-dsp1-fw.xe66
-> >>
-> >>Also, the error message looks like this:
-> >>
-> >>ERROR: The recipe dspdce-fw is trying to install files into a shared area when
-> >>those files already exist. Those files and their manifest location are:
-> >>   .../sysroots/am57xx-evm/lib/firmware/dra7-dsp1-fw.xe66
-> >>  Matched in manifest-am57xx-evm-opencl-monitor.populate_sysroot
-> >>Please verify which recipe should provide the above files.
-> >>The build has stopped as continuing in this scenario WILL break things, if not
-> >>now, possibly in the future (we've seen builds fail several months later). If
-> >>the system knew how to recover from this automatically it would however there
-> >>are several different scenarios which can result in this and we don't know
-> >>which one this is. It may be you have switched providers of something like
-> >>virtual/kernel (e.g. from linux-yocto to linux-yocto-dev), in that case you
-> >>need to execute the clean task for both recipes and it will resolve this
-> >>error. It may be you changed DISTRO_FEATURES from systemd to udev or vice
-> >>versa. Cleaning those recipes should again resolve this error however
-> >>switching DISTRO_FEATURES on an existing build directory is not supported, you
-> >>should really clean out tmp and rebuild (reusing sstate should be safe). It
-> >>could be the overlapping files detected are harmless in which case adding them
-> >>to SSTATE_DUPWHITELIST may be the correct solution. It could also be your
-> >>build is including two different conflicting versions of things (e.g. bluez 4
-> >>and bluez 5 and the correct solution for that would be to resolve the
-> >>conflict. If in doubt, please ask on the mailing list, sharing the error and
-> >>filelist above.
-> >>ERROR: If the above message is too much, the simpler version is you're advised
-> >>to wipe out tmp and rebuild (reusing sstate is fine). That will likely fix
-> >>things in most (but not all) cases.
-> >>ERROR: Function failed: sstate_task_postfunc
-> >>ERROR: Logfile of failure stored in: .../work/cortexa15hf-vfp-neon-linux-gnueabi/dspdce-fw/1.00.00.06-r1/temp/log.do_populate_sysroot.20654
-> >>ERROR: Task 3 (.../sources/meta-ti/recipes-bsp/dspdce-fw/dspdce-fw_git.bb, do_populate_sysroot) failed with exit code '1'
-> >>
-> >>
-> >>On Mon, Dec 07, 2015 at 07:12:38AM -0500, Jacob Stiffler wrote:
-> >>>NAK
-> >>>
-> >>>
-> >>>This breaks opencl-monitor for keystone as there is no dra7-dsp$i-fw.xe66.
-> >>>
-> >>>Why was this change necessary? According to the documentation,
-> >>>update-alternatives will automatically do this renaming.
-> >>>
-> >>>Frm openembedded-core/meta/classes/update-alternative.bbclass:
-> >>># NOTE: If the ALTERNATIVE_LINK_NAME and ALTERNATIVE_TARGET are the same,
-> >>># ALTERNATIVE_TARGET will have '.{BPN}' appended to it.  If the file
-> >>># referenced has not been renamed, it will also be renamed.  (This avoids
-> >>># the need to rename alternative files in the do_install step, but still
-> >>># supports it if necessary for some reason.)
-> >>><<<
-> >>>
-> >>>- Jake
-> >>>
-> >>>
-> >>>On 12/4/2015 9:25 PM, Denys Dmytriyenko wrote:
-> >>>>From: Denys Dmytriyenko <denys@ti.com>
-> >>>>
-> >>>>Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >>>>---
-> >>>>  meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb | 10 ++++++++--
-> >>>>  1 file changed, 8 insertions(+), 2 deletions(-)
-> >>>>
-> >>>>diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> >>>>index fbc4949..6657ba8 100644
-> >>>>--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> >>>>+++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> >>>>@@ -47,9 +47,15 @@ export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
-> >>>>  export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
-> >>>>  export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
-> >>>>+do_install_append() {
-> >>>>+	for i in 1 2; do mv ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66 ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66.${BPN}; done
-> >>>>+}
-> >>>>+
-> >>>>  ALTERNATIVE_${PN} = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
-> >>>>-ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "/lib/firmware/dra7-dsp1-fw.xe66"
-> >>>>-ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "/lib/firmware/dra7-dsp2-fw.xe66"
-> >>>>+ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66"
-> >>>>+ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66.${BPN}"
-> >>>>+ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66"
-> >>>>+ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66.${BPN}"
-> >>>>  ALTERNATIVE_PRIORITY = "100"
-> >>>>  MONITOR_FIRMWARE = ""
-> >>>_______________________________________________
-> >>>meta-arago mailing list
-> >>>meta-arago@arago-project.org
-> >>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
