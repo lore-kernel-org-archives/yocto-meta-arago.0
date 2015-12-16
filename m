@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id C96285208B
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 29F395208B
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Dec 2015 19:39:32 +0000 (UTC)
+	Wed, 16 Dec 2015 20:42:16 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id tBGJdWct019519
-	for <meta-arago@arago-project.org>; Wed, 16 Dec 2015 13:39:32 -0600
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id tBGKgFOs032513
+	for <meta-arago@arago-project.org>; Wed, 16 Dec 2015 14:42:15 -0600
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tBGJdWmS020229
-	for <meta-arago@arago-project.org>; Wed, 16 Dec 2015 13:39:32 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id tBGKgFv2022112
+	for <meta-arago@arago-project.org>; Wed, 16 Dec 2015 14:42:15 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 16 Dec 2015 13:39:31 -0600
+	Wed, 16 Dec 2015 14:42:15 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tBGJdVIR032307	for <meta-arago@arago-project.org>;
-	Wed, 16 Dec 2015 13:39:31 -0600
-Date: Wed, 16 Dec 2015 14:39:31 -0500
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tBGKgFUH028353	for <meta-arago@arago-project.org>;
+	Wed, 16 Dec 2015 14:42:15 -0600
+Date: Wed, 16 Dec 2015 15:42:14 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <455705838.149.1450294771634.JavaMail.jenkins@puget>
+Message-ID: <1316931090.151.1450298534895.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido-rt
+X-Jenkins-Job: arago-core-tisdk-fido
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] RT Core TISDK (fido/1.8) 2015.12 build 2015-12-16_08-27-34
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2015-12-16_14-39-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Dec 2015 19:39:33 -0000
+X-List-Received-Date: Wed, 16 Dec 2015 20:42:16 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_148_1332701264.1450294771576"
+	boundary="----=_Part_150_1267588190.1450298534781"
 
-------=_Part_148_1332701264.1450294771576
+------=_Part_150_1267588190.1450298534781
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +54,7 @@ Status for 12/16/15
 
 <h2>Status for 12/16/15</h2>
 
-<h2>BUILD_ID: build-2015-12-16_08-28-35</h2>
+<h2>BUILD_ID: build-2015-12-16_14-40-40</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -127,24 +127,9 @@ Status for 12/16/15
         <th>Target Test Result</th>
     </tr>
     <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
         <td>am57xx-evm</td>
         <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
         <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
 </table>
 
@@ -161,14 +146,14 @@ The configuration file passed to this script had the contents:
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
 TISDK_VERSION="2015.12"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm"<br>
+MACHINES="am57xx-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
 TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
 BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
 SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido-rt"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
 TEST_ROOT="$BUILD_ROOT/testing"<br>
 PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
 DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
@@ -215,13 +200,13 @@ EXPORT_ARAGO_SRC="0"<br>
 COPY_TO_WEB="true"<br>
 COPY_DEPLOY_TO_WEB="true"<br>
 COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
 CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido-rt/workspace"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
 </p>
 
 </body>
 </html>
 
 
-------=_Part_148_1332701264.1450294771576--
+------=_Part_150_1267588190.1450298534781--
