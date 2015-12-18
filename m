@@ -1,33 +1,29 @@
-Return-Path: <matti.kaasinen@gmail.com>
-Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
-	[209.85.192.53])
-	by arago-project.org (Postfix) with ESMTPS id 41D0952A3A
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 3AFA452A89
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Dec 2015 09:27:19 +0000 (UTC)
-Received: by mail-qg0-f53.google.com with SMTP id v36so28404031qgd.2
-	for <meta-arago@arago-project.org>;
-	Fri, 18 Dec 2015 01:27:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=5n3MU1Zj2M9e0+qmyoIZ4qUzidkZQuqfl3FFNdK3sXA=;
-	b=lr4TWla6bLU6jexsfeSSoWYa5kZ7mqhhJT6KrgJUUuhLk8/DUQlmxauAveJeqIADEK
-	At90ydhkXFibei/dpO/BI3lfQmFga9IGhKFSY+txlp1ViF/8F0G6/K2pVrRdpZU2fizO
-	+2l8wJAuhFvuVTYhKf2GKvvN9BPJenYcBodAbC3wjV3/xiQPNefouJ5Q9qdSaahY2P59
-	KCXzT049QRv+Und7MnuYtn/m/VZHAJ/wSjHLLhkAgU3VCNlTYpDpF4FxkIws9OBJ3Zet
-	O/hSIaIo4jxt63TMjtJEU66eAqU2F5keXdqOugBW7h2/YWsHfvxfLbRNC9da50XMnzWa
-	rykQ==
+	Fri, 18 Dec 2015 12:34:53 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tBICYqbN012849
+	for <meta-arago@arago-project.org>; Fri, 18 Dec 2015 06:34:52 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tBICYqGe014963
+	for <meta-arago@arago-project.org>; Fri, 18 Dec 2015 06:34:52 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 18 Dec 2015 06:34:52 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	tBICYpo8021909	for <meta-arago@arago-project.org>;
+	Fri, 18 Dec 2015 06:34:52 -0600
+Date: Fri, 18 Dec 2015 07:34:51 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1048748431.163.1450442091653.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Received: by 10.140.165.16 with SMTP id l16mr3575840qhl.101.1450430838118;
-	Fri, 18 Dec 2015 01:27:18 -0800 (PST)
-Received: by 10.55.114.6 with HTTP; Fri, 18 Dec 2015 01:27:18 -0800 (PST)
-In-Reply-To: <CADnUhn0tvXObVAai0r9W3Ywr6jmfryBbHSSe2kjPehTPGekKCQ@mail.gmail.com>
-References: <CADnUhn2v6yOE8JBsoLxpCZaGkO_GZMWme-K2d7SDUbHF-D-Ouw@mail.gmail.com>
-	<CADnUhn0tvXObVAai0r9W3Ywr6jmfryBbHSSe2kjPehTPGekKCQ@mail.gmail.com>
-Date: Fri, 18 Dec 2015 11:27:18 +0200
-Message-ID: <CADnUhn3iEzEq9wuo86eciPpAfp+KrEhFob8dhPCTYikEaqt7sA@mail.gmail.com>
-From: matti kaasinen <matti.kaasinen@gmail.com>
-To: meta-arago@arago-project.org
-Subject: Re: "broken dt data from edma" message while booting linux-ti-staging-rt-4.1
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2015-12-18_00-36-25
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,106 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Dec 2015 09:27:20 -0000
-Content-Type: multipart/alternative; boundary=001a11355e70e0a04b052728be08
+X-List-Received-Date: Fri, 18 Dec 2015 12:34:54 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_162_246536842.1450442091418"
 
---001a11355e70e0a04b052728be08
-Content-Type: text/plain; charset=UTF-8
+------=_Part_162_246536842.1450442091418
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Problem was device tree.
-4.1 seems to be more accurate with dtb parsing.
-Status = okay  definitions were missing in Ethernet structures.
+<html>
+<head>
+<title>
+Status for 12/18/15
+</title>
+</head>
+<body>
 
--Matti
+<h2>Status for 12/18/15</h2>
 
-2015-12-16 18:05 GMT+02:00 matti kaasinen <matti.kaasinen@gmail.com>:
+<h2>BUILD_ID: build-2015-12-18_00-37-34</h2>
 
-> Those " broken dt data" lines are not the problem. They seem to exist also
-> in normal 3.14 boot without problems. Two clear differences are: there is
-> no nand flash memory mapping and that there is that SIOCGIFFLAGS.
->
-> Perhaps I try normal 4.1 kernel also. I used to get it running before.
->
-> - Matti
->
-> 2015-12-16 14:48 GMT+02:00 matti kaasinen <matti.kaasinen@gmail.com>:
->
->> Hi!
->>
->> I have seen nightly builds of fido RT passing quite consistently.
->> However, I got nasty error messages while my am335x booted
->> linux-ti-staging-rt-4.1 as follows:
->>
->> [    0.146612] omap_hwmod: tptc0 using broken dt data from edma
->> [    0.146751] omap_hwmod: tptc1 using broken dt data from edma
->> [    0.146868] omap_hwmod: tptc2 using broken dt data from edma
->> [    0.151906] omap_hwmod: debugss: _wait_target_disable failed
->>
->> Perhaps for this reason I also get:
->> Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device
->>
->> and
->>
->> Failed to get index for interface name 'eth0': No such device
->>
->> - so I don't get Ethernet up and running.
->>
->> I have used Yocto version of meta-ti (fido).
->>
->> I found
->> https://www.mail-archive.com/linux-omap@vger.kernel.org/msg116472.html
->> discussing this problem, but I did not these changes made in am33xx.dtsi.
->>
->> What patches should I need to get rt-4.1 running properly?
->>
->> Thanks,
->> Matti
->>
->
->
+<h2>Clean Build: false</h2>
 
---001a11355e70e0a04b052728be08
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-<div dir=3D"ltr"><div><div><div>Problem was device tree.<br></div>4.1 seems=
- to be more accurate with dtb parsing.<br></div>Status =3D okay=C2=A0 defin=
-itions were missing in Ethernet structures.<br><br></div>-Matti<br></div><d=
-iv class=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-12-16 18:05 GM=
-T+02:00 matti kaasinen <span dir=3D"ltr">&lt;<a href=3D"mailto:matti.kaasin=
-en@gmail.com" target=3D"_blank">matti.kaasinen@gmail.com</a>&gt;</span>:<br=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div>Those &quot; bro=
-ken dt data&quot; lines are not the problem. They seem to exist also in nor=
-mal 3.14 boot without problems. Two clear differences are: there is no nand=
- flash memory mapping and that there is that SIOCGIFFLAGS.<br><br></div>Per=
-haps I try normal 4.1 kernel also. I used to get it running before.<span cl=
-ass=3D"HOEnZb"><font color=3D"#888888"><br><br></font></span></div><span cl=
-ass=3D"HOEnZb"><font color=3D"#888888">- Matti<br></font></span></div><div =
-class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div clas=
-s=3D"gmail_quote">2015-12-16 14:48 GMT+02:00 matti kaasinen <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:matti.kaasinen@gmail.com" target=3D"_blank">matti.=
-kaasinen@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div d=
-ir=3D"ltr"><div><div>Hi!<br><br>I have seen nightly builds of fido RT passi=
-ng quite consistently. However, I got nasty error messages while my am335x =
-booted linux-ti-staging-rt-4.1 as follows: <br><br>[=C2=A0=C2=A0=C2=A0 0.14=
-6612] omap_hwmod: tptc0 using broken dt data from edma<br>[=C2=A0=C2=A0=C2=
-=A0 0.146751] omap_hwmod: tptc1 using broken dt data from edma<br>[=C2=A0=
-=C2=A0=C2=A0 0.146868] omap_hwmod: tptc2 using broken dt data from edma<br>=
-[=C2=A0=C2=A0=C2=A0 0.151906] omap_hwmod: debugss: _wait_target_disable fai=
-led<br><br></div>Perhaps for this reason I also get:<br>Configuring network=
- interfaces... ifconfig: SIOCGIFFLAGS: No such device<br><br></div>and<br><=
-br><div><div>Failed to get index for interface name &#39;eth0&#39;: No such=
- device<br><br></div><div>- so I don&#39;t get Ethernet up and running.<br>=
-<br></div><div>I have used Yocto version of meta-ti (fido).<br><br></div><d=
-iv>I found <a href=3D"https://www.mail-archive.com/linux-omap@vger.kernel.o=
-rg/msg116472.html" target=3D"_blank">https://www.mail-archive.com/linux-oma=
-p@vger.kernel.org/msg116472.html</a><br></div><div>discussing this problem,=
- but I did not these changes made in am33xx.dtsi.<br><br></div><div>What pa=
-tches should I need to get rt-4.1 running properly?<br><br></div><div>Thank=
-s,<br></div><div>Matti<br></div></div></div>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
 
---001a11355e70e0a04b052728be08--
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.12"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_162_246536842.1450442091418--
