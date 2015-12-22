@@ -1,29 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id CCD005298C
+Return-Path: <matti.kaasinen@gmail.com>
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by arago-project.org (Postfix) with ESMTPS id B57095298C
 	for <meta-arago@arago-project.org>;
-	Tue, 22 Dec 2015 14:22:52 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id tBMEMpPa019514
-	for <meta-arago@arago-project.org>; Tue, 22 Dec 2015 08:22:51 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id tBMEMpC7024484
-	for <meta-arago@arago-project.org>; Tue, 22 Dec 2015 08:22:51 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 22 Dec 2015 08:22:50 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	tBMEMpof026730	for <meta-arago@arago-project.org>;
-	Tue, 22 Dec 2015 08:22:51 -0600
-Date: Tue, 22 Dec 2015 09:22:50 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1017930564.187.1450794170904.JavaMail.jenkins@puget>
+	Tue, 22 Dec 2015 14:22:53 +0000 (UTC)
+Received: by mail-qg0-f50.google.com with SMTP id k90so132149135qge.0
+	for <meta-arago@arago-project.org>;
+	Tue, 22 Dec 2015 06:22:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=btD9tYPnB5y8erX+eA/E0ZXV52pktKoK4J4crChM8g8=;
+	b=n4v1ZA/c0AckoKT/p6Z7n0VTy8nGm+jHUzSNki7otItuCnVSc2Oavt0rmW669FIvyd
+	P6oTNyuUc6ED/J75I6jODIKUN+3c9gyGnHH7rUhcMrAViGKBmNDsPRW8pDNfVKLYdSkB
+	uVQJqOREEa+8v4+0P3iepUtC6zpEofBRd3oeUnMNJBfBlAoI7/+NBCb7lfUuoiYVmwGD
+	dxVQT1KItlvnF6Hn9y/2AkurmA42exBvHfGgH76vTpyQUKDEb8vGg5drJfL8cjgbJ53K
+	/tuFexhfvHhW/7IF9S4/UdcayW8xNkTFyLVQFewynBBruEVsMclbJPH0PfQurIH3R9e2
+	PXqg==
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido-rt
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] RT Core TISDK (fido/1.8) 2015.12 build 2015-12-22_05-00-32
+X-Received: by 10.140.177.3 with SMTP id x3mr34756245qhx.82.1450794173143;
+	Tue, 22 Dec 2015 06:22:53 -0800 (PST)
+Received: by 10.55.114.6 with HTTP; Tue, 22 Dec 2015 06:22:53 -0800 (PST)
+Date: Tue, 22 Dec 2015 16:22:53 +0200
+Message-ID: <CADnUhn3oXU5CGhobLdRmAyWF8FBUr8ejv-d+FCx+h3Nn1i6drA@mail.gmail.com>
+From: matti kaasinen <matti.kaasinen@gmail.com>
+To: meta-arago@arago-project.org
+Subject: nand flash does not get probed linux-ti-staging-rt-4.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,192 +37,102 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Dec 2015 14:22:53 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_186_449949893.1450794170805"
+X-List-Received-Date: Tue, 22 Dec 2015 14:22:54 -0000
+Content-Type: multipart/alternative; boundary=001a113a6a8e55218205277d57f3
 
-------=_Part_186_449949893.1450794170805
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a113a6a8e55218205277d57f3
+Content-Type: text/plain; charset=UTF-8
 
-<html>
-<head>
-<title>
-Status for 12/22/15
-</title>
-</head>
-<body>
+Hi!
 
-<h2>Status for 12/22/15</h2>
+I try to upgrade from linux-ti-staging-3.14 to .. -rt-4.1.
 
-<h2>BUILD_ID: build-2015-12-22_05-01-33</h2>
+Most of service seems to work after fiddling with device tree and kernel
+configs. However, I just can't figure out why nand flash does not get
+probed.
+I don't get any error messages, some warnings, though.
 
-<h2>Clean Build: false</h2>
+Clear differences are that rt-41 has emif message, but does not have "probe
+deferral" message
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+-------
+rt-4.1
+-------
+[    0.243614] omap-gpmc 50000000.gpmc: could not find pctldev for node
+/ocp/l4_wkup@44c00000/scm@210000/pinmux@800/nandflash_pins_default,
+deferring probe
+...
+[    1.296180]  remoteproc0: Direct firmware load for
+am335x-pm-firmware.elf failed with error -2
+[    1.300299] ti_emif_sram 4c000000.emif: Unable to get sram pool for
+ocmcram
+...
+[    1.320653] omap-gpmc 50000000.gpmc: GPMC revision 6.0
+[    1.320668] gpmc_mem_init: disabling cs 0 mapped at 0x0-0x1000000
+.....
+no partition messages in log nor proper contents in /proc/mtd
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>jethro</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-</table>
+------
+3.13
+------
+[    0.305249] omap-gpmc 50000000.gpmc: could not find pctldev for node
+/pinmux@44e10800/nandflash_pins_default, deferring probe
+[    0.305307] platform 50000000.gpmc: Driver omap-gpmc requests probe
+deferral
+....
+[    2.272467] omap-gpmc 50000000.gpmc: GPMC revision 6.0
+[    2.278170] gpmc_mem_init: disabling cs 0 mapped at 0x0-0x1000000
+[    2.286917] nand: device found, Manufacturer ID: 0x2c, Chip ID: 0xda
+[    2.293595] nand: Micron MT29F2G08ABAEAWP
+[    2.297903] nand: 256MiB, SLC, page size: 2048, OOB size: 64
+[    2.303833] nand: using OMAP_ECC_BCH8_CODE_HW ECC scheme
+[    2.309991] 10 ofpart partitions found on MTD device omap2-nand.0
+[    2.316478] Creating 10 MTD partitions on "omap2-nand.0":
+[    2.322149] 0x000000000000-0x000000020000 : "NAND.SPL"
+[    2.334053] 0x000000020000-0x000000040000 : "NAND.SPL.backup1"
+...
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+Do anyone else make sense out of this?
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2015.12"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido-rt"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido-rt/workspace"<br>
-</p>
+Thanks,
+Matti
 
-</body>
-</html>
+--001a113a6a8e55218205277d57f3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div>Hi!<br><br></div>I try to upgrade from linu=
+x-ti-staging-3.14 to .. -rt-4.1.<br><br></div>Most of service seems to work=
+ after fiddling with device tree and kernel configs. However, I just can&#3=
+9;t figure out why nand flash does not get probed. <br>I don&#39;t get any =
+error messages, some warnings, though.<br><br></div><div>Clear differences =
+are that rt-41 has emif message, but does not have &quot;probe deferral&quo=
+t; message<br></div><div><br>-------<br>rt-4.1<br>-------<br>[=C2=A0=C2=A0=
+=C2=A0 0.243614] omap-gpmc 50000000.gpmc: could not find pctldev for node /=
+ocp/l4_wkup@44c00000/scm@210000/pinmux@800/nandflash_pins_default, deferrin=
+g probe<br>...<br>[=C2=A0=C2=A0=C2=A0 1.296180]=C2=A0 remoteproc0: Direct f=
+irmware load for am335x-pm-firmware.elf failed with error -2<br>[=C2=A0=C2=
+=A0=C2=A0 1.300299] ti_emif_sram 4c000000.emif: Unable to get sram pool for=
+ ocmcram<br>...<br>[=C2=A0=C2=A0=C2=A0 1.320653] omap-gpmc 50000000.gpmc: G=
+PMC revision 6.0<br>[=C2=A0=C2=A0=C2=A0 1.320668] gpmc_mem_init: disabling =
+cs 0 mapped at 0x0-0x1000000<br>.....<br></div>no partition messages in log=
+ nor proper contents in /proc/mtd<br><div><br>------<br>3.13<br>------<br>[=
+=C2=A0=C2=A0=C2=A0 0.305249] omap-gpmc 50000000.gpmc: could not find pctlde=
+v for node /pinmux@44e10800/nandflash_pins_default, deferring probe<br>[=C2=
+=A0=C2=A0=C2=A0 0.305307] platform 50000000.gpmc: Driver omap-gpmc requests=
+ probe deferral<br>....<br>[=C2=A0=C2=A0=C2=A0 2.272467] omap-gpmc 50000000=
+.gpmc: GPMC revision 6.0<br>[=C2=A0=C2=A0=C2=A0 2.278170] gpmc_mem_init: di=
+sabling cs 0 mapped at 0x0-0x1000000<br>[=C2=A0=C2=A0=C2=A0 2.286917] nand:=
+ device found, Manufacturer ID: 0x2c, Chip ID: 0xda<br>[=C2=A0=C2=A0=C2=A0 =
+2.293595] nand: Micron MT29F2G08ABAEAWP<br>[=C2=A0=C2=A0=C2=A0 2.297903] na=
+nd: 256MiB, SLC, page size: 2048, OOB size: 64<br>[=C2=A0=C2=A0=C2=A0 2.303=
+833] nand: using OMAP_ECC_BCH8_CODE_HW ECC scheme<br>[=C2=A0=C2=A0=C2=A0 2.=
+309991] 10 ofpart partitions found on MTD device omap2-nand.0<br>[=C2=A0=C2=
+=A0=C2=A0 2.316478] Creating 10 MTD partitions on &quot;omap2-nand.0&quot;:=
+<br>[=C2=A0=C2=A0=C2=A0 2.322149] 0x000000000000-0x000000020000 : &quot;NAN=
+D.SPL&quot;<br>[=C2=A0=C2=A0=C2=A0 2.334053] 0x000000020000-0x000000040000 =
+: &quot;NAND.SPL.backup1&quot;<br>...<br><br></div><div>Do anyone else make=
+ sense out of this?<br><br></div><div>Thanks,<br></div><div>Matti<br></div>=
+</div>
 
-------=_Part_186_449949893.1450794170805--
+--001a113a6a8e55218205277d57f3--
