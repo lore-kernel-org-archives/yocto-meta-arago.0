@@ -1,30 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
-	[209.85.213.46])
-	by arago-project.org (Postfix) with ESMTPS id 154BE52A60
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 042DB52961
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Jan 2016 03:30:35 +0000 (UTC)
-Received: by mail-vk0-f46.google.com with SMTP id f2so238023420vkb.3
-	for <meta-arago@arago-project.org>;
-	Tue, 05 Jan 2016 19:30:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=5QWDTQ7gI/WX9ECKzt/y7j5kZ+Yd/UO/SMXLfUG1Z1g=;
-	b=vy75aGMxTtsoP393E51RO13D7UHxP1aVYhAH9+o4KxF7YrtThjO1L5VTG3CWgfBP3F
-	V+7KSCjB3mROX1j01SN+PtYLO02c+aDjNuuKNdExuDC9i1bgieyvXD7tB9zOKBhjQzni
-	1qPuejZ1W0oKpeE3hNMWBVJbQlv+7Sivk1eic9AZsJi4+CjAa+9EOpb+sVORn56CKXbc
-	3lcEttZgdrv5c4uxY+TNVsh8CZpKJq5pVuENygj1E/u2ysNUM/9s6LmSFax4/sRgv7Ro
-	MR3uTxOpNIxsAui+YetKK27lhKTQyA/A7hlzafVJ+0UXcEiYz5sCH10ds5/EyuUD0lYJ
-	k2Uw==
-X-Received: by 10.31.147.82 with SMTP id v79mr32326529vkd.58.1452051034594;
-	Tue, 05 Jan 2016 19:30:34 -0800 (PST)
+	Wed,  6 Jan 2016 15:43:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u06Fhnp9013602
+	for <meta-arago@arago-project.org>; Wed, 6 Jan 2016 09:43:49 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u06Fhn0N001500
+	for <meta-arago@arago-project.org>; Wed, 6 Jan 2016 09:43:49 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 6 Jan 2016 09:43:49 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u06Fhnqx014695	for <meta-arago@arago-project.org>;
+	Wed, 6 Jan 2016 09:43:49 -0600
+Date: Wed, 6 Jan 2016 10:43:49 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1530330587.249.1452095029162.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.31.166.146 with HTTP; Tue, 5 Jan 2016 19:30:15 -0800 (PST)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Wed, 6 Jan 2016 16:30:15 +1300
-Message-ID: <CADySD0H-jcsHE7ZxhEwDfObtGc-p7rdUGzPk8=KAotFq7Fbb8g@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: QT5.4.1 Bluetooth issue
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-05_23-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,112 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jan 2016 03:30:35 -0000
-Content-Type: multipart/alternative; boundary=001a1141dca21ce2870528a1fa01
+X-List-Received-Date: Wed, 06 Jan 2016 15:43:51 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_248_1911194338.1452095029099"
 
---001a1141dca21ce2870528a1fa01
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+------=_Part_248_1911194338.1452095029099
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-=E2=80=8B
-Hi,
+<html>
+<head>
+<title>
+Status for 01/06/16
+</title>
+</head>
+<body>
 
-I am using meta-arago daisy branch for TI AM335x-EVM.
+<h2>Status for 01/06/16</h2>
 
-When trying to use QT Bluetooth API, it fails to find the
-=E2=80=8B
-local
-=E2=80=8B
-device
+<h2>BUILD_ID: build-2016-01-05_23-01-41</h2>
 
-QBluetoothLocalDevice localDevice;
-// Check if Bluetooth is available on this device
-if (localDevice.isValid()) {
- qDebug("is Valid");
- QBluetoothAddress myAddress =3D localDevice.address();
- return true;
-} else {
- qDebug("Not Valid");
- return false;
-}
+<h2>Clean Build: false</h2>
 
-I am using
-=E2=80=8B
-QT5.4.1
-=E2=80=8B
-and BlueZ 4.101
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-I can use hciconfig , hcitool, rfcomm, sdptool to operate Bluetooth device
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.12"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-root@am335x-evm:~# hciconfig -a
-hci0:   Type: BR/EDR  Bus: UART
-        BD Address: 34:B1:F7:E1:49:09  ACL MTU: 1021:6  SCO MTU: 180:4
-        UP RUNNING PSCAN ISCAN
-        RX bytes:948 acl:0 sco:0 events:42 errors:0
-        TX bytes:1294 acl:0 sco:0 commands:42 errors:0
-        Features: 0xff 0xfe 0x2d 0xfe 0xdb 0xff 0x7b 0x87
-        Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3
-        Link policy: RSWITCH HOLD SNIFF
-        Link mode: SLAVE ACCEPT
-        Name: 'at-bt'
-        Class: 0x4c0100
-        Service Classes: Rendering, Capturing, Telephony
-        Device Class: Computer, Uncategorized
-        HCI Version:  (0x7)  Revision: 0x0
-        LMP Version:  (0x7)  Subversion: 0xac7c
-        Manufacturer: Texas Instruments Inc. (13)
-
-
-Is there any known limitation or am I missing something here ?
-
-thanks
-Ankur
-
---001a1141dca21ce2870528a1fa01
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div style=3D"=
-color:rgb(51,51,153);font-family:georgia,serif;font-size:small"><div class=
-=3D"gmail_default" style=3D"color:rgb(51,51,153);font-family:georgia,serif;=
-font-size:small">=E2=80=8B<br></div></div><div>Hi,<br><br>I am using meta-a=
-rago daisy branch for TI AM335x-EVM.<br><br>When trying to use QT Bluetooth=
- API, it fails to find the<div class=3D"gmail_default" style=3D"color:rgb(5=
-1,51,153);font-family:georgia,serif;font-size:small;display:inline">=E2=80=
-=8B </div>local<div class=3D"gmail_default" style=3D"color:rgb(51,51,153);f=
-ont-family:georgia,serif;font-size:small;display:inline">=E2=80=8B </div>de=
-vice<br></div><div><br></div><div>QBluetoothLocalDevice localDevice;<br>// =
-Check if Bluetooth is available on this device<br>if (localDevice.isValid()=
-) {<br>=C2=A0qDebug(&quot;is Valid&quot;);<br>=C2=A0QBluetoothAddress myAdd=
-ress =3D localDevice.address();<br>=C2=A0return true;<br>} else {<br>=C2=A0=
-qDebug(&quot;Not Valid&quot;);<br>=C2=A0return false;<br>}<br><br>I am usin=
-g<div style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:sma=
-ll;display:inline">=E2=80=8B </div>QT5.4.1<div style=3D"color:rgb(51,51,153=
-);font-family:georgia,serif;font-size:small;display:inline">=E2=80=8B </div=
->and BlueZ 4.101<br><br>I can use hciconfig , hcitool, rfcomm, sdptool to o=
-perate Bluetooth device</div><div><div style=3D"color:rgb(51,51,153);font-f=
-amily:georgia,serif;font-size:small;display:inline"><br></div></div><div><d=
-iv style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:small;=
-display:inline"><br></div></div><div>root@am335x-evm:~# hciconfig -a<br>hci=
-0: =C2=A0 Type: BR/EDR =C2=A0Bus: UART<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 BD Ad=
-dress: 34:B1:F7:E1:49:09 =C2=A0ACL MTU: 1021:6 =C2=A0SCO MTU: 180:4<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 UP RUNNING PSCAN ISCAN<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 RX bytes:948 acl:0 sco:0 events:42 errors:0<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 TX bytes:1294 acl:0 sco:0 commands:42 errors:0<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 Features: 0xff 0xfe 0x2d 0xfe 0xdb 0xff 0x7b 0x87<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 Link policy: RSWITCH HOLD SNIFF<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 Link mode: SLAVE ACCEPT<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 Name: &#3=
-9;at-bt&#39;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 Class: 0x4c0100<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 Service Classes: Rendering, Capturing, Telephony<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 Device Class: Computer, Uncategorized<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 HCI Version: =C2=A0(0x7) =C2=A0Revision: 0x0<br>=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 LMP Version: =C2=A0(0x7) =C2=A0Subversion: 0xac7c<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 Manufacturer: Texas Instruments Inc. (13)</div>=
-<div><br></div><br>Is there any known limitation or am I missing something =
-here ?<br><br>thanks<span class=3D"HOEnZb"><font color=3D"#888888"><br>Anku=
-r</font></span></div>
-</div><br></div>
-
---001a1141dca21ce2870528a1fa01--
+------=_Part_248_1911194338.1452095029099--
