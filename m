@@ -1,37 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
-	[209.85.213.51])
-	by arago-project.org (Postfix) with ESMTPS id 20C81529B5
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 8377C52975
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Jan 2016 21:19:38 +0000 (UTC)
-Received: by mail-vk0-f51.google.com with SMTP id a123so132281357vkh.1
-	for <meta-arago@arago-project.org>;
-	Wed, 06 Jan 2016 13:19:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=594eHHW1rFrSAj4YIgbk49P6fW3X97jq7Wu3N/Tew2M=;
-	b=h3OOwcogewFcVlvz9nnvdjfD0lnf7nYFdnl5afeBSWu/dgf5rMDf7+Y6cPj4r3C+cC
-	1IG51IAwV3Lv4L6nDLMYTx6OBakxXy3ogxli3wuphXysIKSmT2G7CKzfVoMBd5sfWoZf
-	7SGXKFXEgnOh04C8QOx9QcY6Bl5nIgCBjfKX4DQHWp3Rekafrtwe3FMOH17WoeXyp/uB
-	m/BNOPlXUMbzi5vgZHM5jYMM4Y+kVkZBdQKqpvhkKTXVioa7FMrYQ1FhL1A7andwSr6/
-	fAhFpDx8TdqWLMxtFofCPrx0YvLbb0elcmk9xpth0DZdD6GCAsjnDa83A5Ri44b/LV+Y
-	jNdQ==
-X-Received: by 10.31.131.203 with SMTP id f194mr72324519vkd.90.1452115177500; 
-	Wed, 06 Jan 2016 13:19:37 -0800 (PST)
+	Thu,  7 Jan 2016 07:54:17 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u077sGN2012728
+	for <meta-arago@arago-project.org>; Thu, 7 Jan 2016 01:54:16 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u077sGuS015972
+	for <meta-arago@arago-project.org>; Thu, 7 Jan 2016 01:54:16 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 7 Jan 2016 01:54:16 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u077sFlZ013951	for <meta-arago@arago-project.org>;
+	Thu, 7 Jan 2016 01:54:16 -0600
+Date: Thu, 7 Jan 2016 02:54:14 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1759752268.253.1452153255574.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.31.166.146 with HTTP; Wed, 6 Jan 2016 13:19:18 -0800 (PST)
-In-Reply-To: <CADySD0HySFRYxkFF6SnE1zfKh3+E1k7-aGFbVAR-vivP1NrsWA@mail.gmail.com>
-References: <CADySD0FHQNG=r-um9qpbW1SQbnvZpum8mvnb19rD-4iOuZEujQ@mail.gmail.com>
-	<CADySD0E+jJHqmsx+MsO-hwVr0iioSYGgRzYVs3o8RT-TzLO90w@mail.gmail.com>
-	<20151217232009.GP27464@edge>
-	<CADySD0HySFRYxkFF6SnE1zfKh3+E1k7-aGFbVAR-vivP1NrsWA@mail.gmail.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Thu, 7 Jan 2016 10:19:18 +1300
-Message-ID: <CADySD0GzYXdxzK3VOQ5NECRE==RNAiPMqdMOVV80Hq4N=VOY1Q@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: Bluetooth agent can't get default adapter
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-06_23-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,405 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jan 2016 21:19:38 -0000
-Content-Type: multipart/alternative; boundary=001a1145817a53f4c80528b0e9ab
+X-List-Received-Date: Thu, 07 Jan 2016 07:54:18 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_252_1034160181.1452153255000"
 
---001a1145817a53f4c80528b0e9ab
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+------=_Part_252_1034160181.1452153255000
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Managed to get it working by disabling TI's shared transport in kernel
-along with kim, uim.
+<html>
+<head>
+<title>
+Status for 01/07/16
+</title>
+</head>
+<body>
 
-On Fri, Dec 18, 2015 at 12:58 PM, Ankur Tyagi <ankur.tyagi85@gmail.com>
-wrote:
+<h2>Status for 01/07/16</h2>
 
-> Because our product is based on 3.14
->
-> Now we are trying to add Wi-Fi, Bluetooth capability to it
->
-> I am happy to back-port some stuff from 4.1 if it can fix it
->
-> regards
-> Ankur
->
-> "Knowledge is knowing tomato is a fruit, wisdom is not putting it in a
-> fruit salad"
->
-> On Fri, Dec 18, 2015 at 12:20 PM, Denys Dmytriyenko <denys@ti.com> wrote:
->
->> Any specific reason you are trying 3.14? Can you try 4.1 instead?
->>
->> --
->> Denys
->>
->>
->> On Fri, Dec 18, 2015 at 11:38:40AM +1300, Ankur Tyagi wrote:
->> > Further debugged it to check dbus and bluez service
->> >
->> > =E2=80=8B=E2=80=8B
->> > dbus is running and service file is also present
->> >
->> > root@am335x-evm:~# cat
->> /usr/share/dbus-1/system-services/org.bluez.service
->> > [D-BUS Service]
->> > Name=3Dorg.bluez
->> > Exec=3D/bin/false
->> > User=3Droot
->> > SystemdService=3Ddbus-org.bluez.service
->> >
->> > root@am335x-evm:~# cat /etc/dbus-1/system.d/bluetooth.conf
->> > <!-- This configuration file specifies the required security policies
->> >      for Bluetooth core daemon to work. -->
->> > <!DOCTYPE busconfig PUBLIC "-//freedesktop//DTD D-BUS Bus Configuratio=
-n
->> > 1.0//EN"
->> >  "<a href=3D"http://www.freedesktop.org/standards/dbus/1.0/busconfig.d=
-td
->> ">
->> > www.freedesktop.org/.../busconfig.dtd"></a>
->> > <busconfig>
->> >   <!-- ../system.conf have denied everything, so we just punch some
->> holes
->> > -->
->> >   <policy user=3D"root">
->> >     <allow own=3D"org.bluez"/>
->> >     <allow send_destination=3D"org.bluez"/>
->> >     <allow send_interface=3D"org.bluez.Agent"/>
->> >     <allow send_interface=3D"org.bluez.PasskeyAgent"/>
->> >   </policy>
->> >
->> >   <policy context=3D"default">
->> >     <allow own=3D"org.bluez"/>
->> >     <allow send_destination=3D"org.bluez"/>
->> >     <allow send_interface=3D"org.bluez.Agent"/>
->> >   </policy>
->> >
->> > </busconfig>
->> >
->> >
->> > When I run bluetoothd, I can see org.bluez in dbus list
->> >
->> > root@am335x-evm:~# dbus-send --system --dest=3Dorg.freedesktop.DBus
->> > --type=3Dmethod_call --print-reply /org/freedesktop/DBus
->> > org.freedesktop.DBus.ListNames
->> > method return sender=3Dorg.freedesktop.DBus -> dest=3D:1.4 reply_seria=
-l=3D2
->> >    array [
->> >       string "org.freedesktop.DBus"
->> >       string ":1.4"
->> >       string ":1.0"
->> >       string "org.bluez"
->> >    ]
->> >
->> > But when I query default adapter, I don't get a response
->> >
->> > root@am335x-evm:~# dbus-send --system --print-reply --dest=3Dorg.bluez=
- /
->> > org.bluez.Manager.ListAdapters
->> > method return sender=3D:1.0 -> dest=3D:1.5 reply_serial=3D2
->> >    array [
->> >    ]
->> >
->> > What's missing to get it working ? Any help is appreciated
->> >
->> > Thanks
->> > Ankur
->> >
->> > "Knowledge is knowing tomato is a fruit, wisdom is not putting it in a
->> > fruit salad"
->> >
->> > On Thu, Dec 17, 2015 at 7:24 PM, Ankur Tyagi <ankur.tyagi85@gmail.com>
->> > wrote:
->> >
->> > > =E2=80=8B=E2=80=8B
->> > > Hi,
->> > >
->> > > I am trying to use WL1835  bluetooth with AM335x EVM. Software is
->> > > meta-arago daisy.
->> > >
->> > > When I run bluetooth agent, I get error  "Can't get default adapter"
->> > >
->> > > Following is the sequence of commands:
->> > >
->> > > root@am335x-evm:~# bluetoothd
->> > >
->> > > root@am335x-evm:~# hciconfig hci0 up
->> > >
->> > > [  944.008593] (stc):  chnl_id list empty :4
->> > > [  944.012749] (stk) : st_kim_start(stk) :ldisc_install =3D 1uim:pol=
-l
->> broke
->> > > due to event 10(PRI:2/ERR:8)
->> > >
->> > > uim:read 1 from install
->> > >
->> > > uim:@ st_uart_config
->> > > uim: signal received, opening /dev/ttyS1
->> > > uim:@ set_baud_rate
->> > > uim:set_baud_rate() done
->> > > uim:Setting speed to 3000000
->> > > uim:@ read_command_complete
->> > > uim: Command complete started
->> > > uim:@ read_hci_event
->> > > uim: read_hci_event
->> > > uim:Command complete done
->> > > [  944.180311] (stc): st_tty_open
->> > > uim:Speed changing to 3000000, 1
->> > > uim:@ set_custom_baud_rate
->> > > (stk) :line discipline installeduim:Installed N_TI_WL Line displine
->> > > [  944.194437] (stk) :TIInit_11.8.32.bts
->> > > uim:begin polling...
->> > > (stk) :change remote baud rate command in firmware
->> > > [  944.214516] (stk) :skipping the wait event of change remote baud[
->> > >  944.928331] (stc): add_channel_to_table: id 4
->> > > [  944.932771] (stc): add_channel_to_table: id 2
->> > > [  944.937149] (stc): add_channel_to_table: id 3
->> > >
->> > > root@am335x-evm:~# hcitool scan
->> > > Scanning ...
->> > >         00:02:72:E3:0F:7F       RS232 Dongle Slave
->> > >
->> > > root@am335x-evm:~# agent hci0 00:02:72:E3:0F:7F
->> > > Can't get default adapter
->> > > No such adapter
->> > >
->> > > root@am335x-evm:~# dmesg | grep Bluetooth
->> > > [    3.475348] Bluetooth: Core ver 2.18
->> > > [    3.483613] Bluetooth: HCI device and connection manager
->> initialized
->> > > [    3.663793] Bluetooth: HCI socket layer initialized
->> > > [    3.668731] Bluetooth: L2CAP socket layer initialized
->> > > [    3.814838] Bluetooth: SCO socket layer initialized
->> > > [   16.667945] Bluetooth: st_register failed -22
->> > >
->> > > What am I missing here ?
->> > >
->> > > thanks
->> > > Ankur
->> > >
->>
->> > _______________________________________________
->> > meta-arago mailing list
->> > meta-arago@arago-project.org
->> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->>
->>
->
+<h2>BUILD_ID: build-2016-01-06_23-01-41</h2>
 
---001a1145817a53f4c80528b0e9ab
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<h2>Clean Build: false</h2>
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-;font-family:georgia,serif;font-size:small">Managed to get it working by di=
-sabling TI&#39;s shared transport in kernel along with kim, uim.</div><div =
-class=3D"gmail_extra">
-<br><div class=3D"gmail_quote">On Fri, Dec 18, 2015 at 12:58 PM, Ankur Tyag=
-i <span dir=3D"ltr">&lt;<a href=3D"mailto:ankur.tyagi85@gmail.com" target=
-=3D"_blank">ankur.tyagi85@gmail.com</a>&gt;</span> wrote:<br><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;bord=
-er-left-color:rgb(204,204,204);border-left-width:1px;border-left-style:soli=
-d"><div dir=3D"ltr"><div style=3D"color:rgb(51,51,153);font-family:georgia,=
-serif;font-size:small">Because our product is based on 3.14</div><div style=
-=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:small"><br></d=
-iv><div style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:s=
-mall">Now we are trying to add Wi-Fi, Bluetooth capability to it</div><div =
-style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:small"><b=
-r></div><div style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-s=
-ize:small">I am happy to back-port some stuff from 4.1 if it can fix it</di=
-v><div style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:sm=
-all"><br></div><div style=3D"color:rgb(51,51,153);font-family:georgia,serif=
-;font-size:small">regards</div><span class=3D"HOEnZb"><font color=3D"#88888=
-8"><div style=3D"color:rgb(51,51,153);font-family:georgia,serif;font-size:s=
-mall">Ankur</div></font></span></div><div class=3D"gmail_extra"><span><br c=
-lear=3D"all"><div><div><div dir=3D"ltr">&quot;Knowledge is knowing tomato i=
-s a fruit, wisdom is not putting it in a fruit salad&quot;</div></div></div=
->
-<br></span><div><div class=3D"h5"><div class=3D"gmail_quote">On Fri, Dec 18=
-, 2015 at 12:20 PM, Denys Dmytriyenko <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:denys@ti.com" target=3D"_blank">denys@ti.com</a>&gt;</span> wrote:<br><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;padding-l=
-eft:1ex;border-left-color:rgb(204,204,204);border-left-width:1px;border-lef=
-t-style:solid">Any specific reason you are trying 3.14? Can you try 4.1 ins=
-tead?<br>
-<br>
---<br>
-Denys<br>
-<div><div><br>
-<br>
-On Fri, Dec 18, 2015 at 11:38:40AM +1300, Ankur Tyagi wrote:<br>
-&gt; Further debugged it to check dbus and bluez service<br>
-&gt;<br>
-&gt; =E2=80=8B=E2=80=8B<br>
-&gt; dbus is running and service file is also present<br>
-&gt;<br>
-&gt; root@am335x-evm:~# cat /usr/share/dbus-1/system-services/org.bluez.ser=
-vice<br>
-&gt; [D-BUS Service]<br>
-&gt; Name=3Dorg.bluez<br>
-&gt; Exec=3D/bin/false<br>
-&gt; User=3Droot<br>
-&gt; SystemdService=3Ddbus-org.bluez.service<br>
-&gt;<br>
-&gt; root@am335x-evm:~# cat /etc/dbus-1/system.d/bluetooth.conf<br>
-&gt; &lt;!-- This configuration file specifies the required security polici=
-es<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 for Bluetooth core daemon to work. --&gt;<br>
-&gt; &lt;!DOCTYPE busconfig PUBLIC &quot;-//freedesktop//DTD D-BUS Bus Conf=
-iguration<br>
-&gt; 1.0//EN&quot;<br>
-&gt;=C2=A0 &quot;&lt;a href=3D&quot;<a href=3D"http://www.freedesktop.org/s=
-tandards/dbus/1.0/busconfig.dtd" target=3D"_blank" rel=3D"noreferrer">http:=
-//www.freedesktop.org/standards/dbus/1.0/busconfig.dtd</a>&quot;&gt;<br>
-&gt; <a href=3D"http://www.freedesktop.org/.../busconfig.dtd" target=3D"_bl=
-ank" rel=3D"noreferrer">www.freedesktop.org/.../busconfig.dtd</a>&quot;&gt;=
-&lt;/a&gt;<br>
-&gt; &lt;busconfig&gt;<br>
-&gt;=C2=A0 =C2=A0&lt;!-- ../system.conf have denied everything, so we just =
-punch some holes<br>
-&gt; --&gt;<br>
-&gt;=C2=A0 =C2=A0&lt;policy user=3D&quot;root&quot;&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow own=3D&quot;org.bluez&quot;/&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow send_destination=3D&quot;org.bluez&quot;/=
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow send_interface=3D&quot;org.bluez.Agent&qu=
-ot;/&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow send_interface=3D&quot;org.bluez.PasskeyA=
-gent&quot;/&gt;<br>
-&gt;=C2=A0 =C2=A0&lt;/policy&gt;<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0&lt;policy context=3D&quot;default&quot;&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow own=3D&quot;org.bluez&quot;/&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow send_destination=3D&quot;org.bluez&quot;/=
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&lt;allow send_interface=3D&quot;org.bluez.Agent&qu=
-ot;/&gt;<br>
-&gt;=C2=A0 =C2=A0&lt;/policy&gt;<br>
-&gt;<br>
-&gt; &lt;/busconfig&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; When I run bluetoothd, I can see org.bluez in dbus list<br>
-&gt;<br>
-&gt; root@am335x-evm:~# dbus-send --system --dest=3Dorg.freedesktop.DBus<br=
->
-&gt; --type=3Dmethod_call --print-reply /org/freedesktop/DBus<br>
-&gt; org.freedesktop.DBus.ListNames<br>
-&gt; method return sender=3Dorg.freedesktop.DBus -&gt; dest=3D:1.4 reply_se=
-rial=3D2<br>
-&gt;=C2=A0 =C2=A0 array [<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0string &quot;org.freedesktop.DBus&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0string &quot;:1.4&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0string &quot;:1.0&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0string &quot;org.bluez&quot;<br>
-&gt;=C2=A0 =C2=A0 ]<br>
-&gt;<br>
-&gt; But when I query default adapter, I don&#39;t get a response<br>
-&gt;<br>
-&gt; root@am335x-evm:~# dbus-send --system --print-reply --dest=3Dorg.bluez=
- /<br>
-&gt; org.bluez.Manager.ListAdapters<br>
-&gt; method return sender=3D:1.0 -&gt; dest=3D:1.5 reply_serial=3D2<br>
-&gt;=C2=A0 =C2=A0 array [<br>
-&gt;=C2=A0 =C2=A0 ]<br>
-&gt;<br>
-&gt; What&#39;s missing to get it working ? Any help is appreciated<br>
-&gt;<br>
-&gt; Thanks<br>
-&gt; Ankur<br>
-&gt;<br>
-&gt; &quot;Knowledge is knowing tomato is a fruit, wisdom is not putting it=
- in a<br>
-&gt; fruit salad&quot;<br>
-&gt;<br>
-&gt; On Thu, Dec 17, 2015 at 7:24 PM, Ankur Tyagi &lt;<a href=3D"mailto:ank=
-ur.tyagi85@gmail.com" target=3D"_blank">ankur.tyagi85@gmail.com</a>&gt;<br>
-&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; =E2=80=8B=E2=80=8B<br>
-&gt; &gt; Hi,<br>
-&gt; &gt;<br>
-&gt; &gt; I am trying to use WL1835=C2=A0 bluetooth with AM335x EVM. Softwa=
-re is<br>
-&gt; &gt; meta-arago daisy.<br>
-&gt; &gt;<br>
-&gt; &gt; When I run bluetooth agent, I get error=C2=A0 &quot;Can&#39;t get=
- default adapter&quot;<br>
-&gt; &gt;<br>
-&gt; &gt; Following is the sequence of commands:<br>
-&gt; &gt;<br>
-&gt; &gt; root@am335x-evm:~# bluetoothd<br>
-&gt; &gt;<br>
-&gt; &gt; root@am335x-evm:~# hciconfig hci0 up<br>
-&gt; &gt;<br>
-&gt; &gt; [=C2=A0 944.008593] (stc):=C2=A0 chnl_id list empty :4<br>
-&gt; &gt; [=C2=A0 944.012749] (stk) : st_kim_start(stk) :ldisc_install =3D =
-1uim:poll broke<br>
-&gt; &gt; due to event 10(PRI:2/ERR:8)<br>
-&gt; &gt;<br>
-&gt; &gt; uim:read 1 from install<br>
-&gt; &gt;<br>
-&gt; &gt; uim:@ st_uart_config<br>
-&gt; &gt; uim: signal received, opening /dev/ttyS1<br>
-&gt; &gt; uim:@ set_baud_rate<br>
-&gt; &gt; uim:set_baud_rate() done<br>
-&gt; &gt; uim:Setting speed to 3000000<br>
-&gt; &gt; uim:@ read_command_complete<br>
-&gt; &gt; uim: Command complete started<br>
-&gt; &gt; uim:@ read_hci_event<br>
-&gt; &gt; uim: read_hci_event<br>
-&gt; &gt; uim:Command complete done<br>
-&gt; &gt; [=C2=A0 944.180311] (stc): st_tty_open<br>
-&gt; &gt; uim:Speed changing to 3000000, 1<br>
-&gt; &gt; uim:@ set_custom_baud_rate<br>
-&gt; &gt; (stk) :line discipline installeduim:Installed N_TI_WL Line displi=
-ne<br>
-&gt; &gt; [=C2=A0 944.194437] (stk) :TIInit_11.8.32.bts<br>
-&gt; &gt; uim:begin polling...<br>
-&gt; &gt; (stk) :change remote baud rate command in firmware<br>
-&gt; &gt; [=C2=A0 944.214516] (stk) :skipping the wait event of change remo=
-te baud[<br>
-&gt; &gt;=C2=A0 944.928331] (stc): add_channel_to_table: id 4<br>
-&gt; &gt; [=C2=A0 944.932771] (stc): add_channel_to_table: id 2<br>
-&gt; &gt; [=C2=A0 944.937149] (stc): add_channel_to_table: id 3<br>
-&gt; &gt;<br>
-&gt; &gt; root@am335x-evm:~# hcitool scan<br>
-&gt; &gt; Scanning ...<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000:02:72:E3:0F:7F=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0RS232 Dongle Slave<br>
-&gt; &gt;<br>
-&gt; &gt; root@am335x-evm:~# agent hci0 00:02:72:E3:0F:7F<br>
-&gt; &gt; Can&#39;t get default adapter<br>
-&gt; &gt; No such adapter<br>
-&gt; &gt;<br>
-&gt; &gt; root@am335x-evm:~# dmesg | grep Bluetooth<br>
-&gt; &gt; [=C2=A0 =C2=A0 3.475348] Bluetooth: Core ver 2.18<br>
-&gt; &gt; [=C2=A0 =C2=A0 3.483613] Bluetooth: HCI device and connection man=
-ager initialized<br>
-&gt; &gt; [=C2=A0 =C2=A0 3.663793] Bluetooth: HCI socket layer initialized<=
-br>
-&gt; &gt; [=C2=A0 =C2=A0 3.668731] Bluetooth: L2CAP socket layer initialize=
-d<br>
-&gt; &gt; [=C2=A0 =C2=A0 3.814838] Bluetooth: SCO socket layer initialized<=
-br>
-&gt; &gt; [=C2=A0 =C2=A016.667945] Bluetooth: st_register failed -22<br>
-&gt; &gt;<br>
-&gt; &gt; What am I missing here ?<br>
-&gt; &gt;<br>
-&gt; &gt; thanks<br>
-&gt; &gt; Ankur<br>
-&gt; &gt;<br>
-<br>
-</div></div>&gt; _______________________________________________<br>
-&gt; meta-arago mailing list<br>
-&gt; <a href=3D"mailto:meta-arago@arago-project.org" target=3D"_blank">meta=
--arago@arago-project.org</a><br>
-&gt; <a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arag=
-o" target=3D"_blank" rel=3D"noreferrer">http://arago-project.org/cgi-bin/ma=
-ilman/listinfo/meta-arago</a><br>
-<br>
-</blockquote></div><br></div></div></div>
-</blockquote></div><br></div></div>
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
---001a1145817a53f4c80528b0e9ab--
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.12"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_252_1034160181.1452153255000--
