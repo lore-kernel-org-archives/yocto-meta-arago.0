@@ -1,30 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 0628C52A98
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 7B78E529E2
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Jan 2016 02:36:34 +0000 (UTC)
-Received: from gandalf.denix.org ([100.15.86.14]) by vms173025.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0O180026SCKCL481@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 19 Jan 2016 20:36:18 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
-	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=7aQ_Q-yQQ-AA:10 a=sozttTNsAAAA:8
-	a=pGLkceISAAAA:8 a=MQQvbd3fAAAA:8	a=hD80L64hAAAA:8 a=gvl4HP8tAAAA:8
-	a=e5mUnYsNAAAA:8 a=FpMKTI_weO-G4vS7dJMA:9	a=fJOQ9ch9damFqVMu:21
-	a=lOtv2s_ZUi0YkZbs:21
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 7C62F161E04;	Tue,
-	19 Jan 2016 21:36:12 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 19 Jan 2016 21:36:10 -0500
-Message-id: <1453257370-3024-3-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-In-reply-to: <1453257370-3024-1-git-send-email-denis@denix.org>
-References: <1453257370-3024-1-git-send-email-denis@denix.org>
-Subject: [PATCH 3/3] weston: update to 1.9.0
+	Wed, 20 Jan 2016 03:29:33 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0K3TW6a015804
+	for <meta-arago@arago-project.org>; Tue, 19 Jan 2016 21:29:32 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0K3TVBF001755
+	for <meta-arago@arago-project.org>; Tue, 19 Jan 2016 21:29:31 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 19 Jan 2016 21:29:32 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0K3TT56017139	for <meta-arago@arago-project.org>;
+	Tue, 19 Jan 2016 21:29:30 -0600
+Date: Tue, 19 Jan 2016 22:29:27 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <464704873.305.1453260568399.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-19_13-09-22
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,355 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jan 2016 02:36:34 -0000
+X-List-Received-Date: Wed, 20 Jan 2016 03:29:33 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_304_473682786.1453260568055"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_304_473682786.1453260568055
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../wayland/weston/0001-make-error-portable.patch  | 80 ++++++++++++++++++++++
- .../weston/disable-wayland-scanner-pkg-check.patch | 13 ----
- .../weston/explicit-enable-disable-systemd.patch   | 70 +++++++++++++++++++
- .../wayland/weston/libsystemd.patch                | 53 ++++++++++++++
- .../wayland/{weston_1.6.0.bb => weston_1.9.0.bb}   | 40 +++++++----
- 5 files changed, 230 insertions(+), 26 deletions(-)
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch
- delete mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch
- rename meta-arago-extras/recipes-graphics/wayland/{weston_1.6.0.bb => weston_1.9.0.bb} (70%)
+<html>
+<head>
+<title>
+Status for 01/19/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch
-new file mode 100644
-index 0000000..148848d
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch
-@@ -0,0 +1,80 @@
-+From c22e90365d89346258394833cbcad03ff32b2e27 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Fri, 29 May 2015 20:56:00 -0700
-+Subject: [PATCH weston] make error() portable
-+
-+error() is not posix but gnu extension so may not be available on all
-+kind of systemsi e.g. musl.
-+
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+Upstream-Status: Submitted
-+
-+ configure.ac        |  2 ++
-+ src/weston-error.h  | 20 ++++++++++++++++++++
-+ src/weston-launch.c |  2 +-
-+ 3 files changed, 23 insertions(+), 1 deletion(-)
-+ create mode 100644 src/weston-error.h
-+
-+diff --git a/configure.ac b/configure.ac
-+index 263fc22..f52cd62 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -57,6 +57,8 @@ AC_CHECK_DECL(CLOCK_MONOTONIC,[],
-+ 	      [[#include <time.h>]])
-+ AC_CHECK_HEADERS([execinfo.h])
-+ 
-++AC_CHECK_HEADERS([error.h])
-++
-+ AC_CHECK_FUNCS([mkostemp strchrnul initgroups posix_fallocate])
-+ 
-+ COMPOSITOR_MODULES="wayland-server >= 1.7.93 pixman-1 >= 0.25.2"
-+diff --git a/src/weston-error.h b/src/weston-error.h
-+new file mode 100644
-+index 0000000..2089d02
-+--- /dev/null
-++++ b/src/weston-error.h
-+@@ -0,0 +1,20 @@
-++#ifndef _WESTON_ERROR_H
-++#define _WESTON_ERROR_H
-++
-++#if defined(HAVE_ERROR_H)
-++#include <error.h>
-++#else
-++#include <err.h>
-++#include <string.h>
-++#define _weston_error(S, E, F, ...) do { \
-++	if (E) \
-++		err(S, F ": %s", ##__VA_ARGS__, strerror(E)); \
-++	else \
-++		err(S, F, ##__VA_ARGS__); \
-++} while(0)
-++
-++#define error _weston_error
-++#endif
-++
-++#endif
-++
-+diff --git a/src/weston-launch.c b/src/weston-launch.c
-+index 10c66de..3e6d30a 100644
-+--- a/src/weston-launch.c
-++++ b/src/weston-launch.c
-+@@ -30,7 +30,6 @@
-+ #include <poll.h>
-+ #include <errno.h>
-+ 
-+-#include <error.h>
-+ #include <getopt.h>
-+ 
-+ #include <sys/types.h>
-+@@ -56,6 +55,7 @@
-+ #endif
-+ 
-+ #include "weston-launch.h"
-++#include "weston-error.h"
-+ 
-+ #define DRM_MAJOR 226
-+ 
-+-- 
-+2.1.4
-+
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch b/meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch
-deleted file mode 100644
-index 062da5c..0000000
---- a/meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch
-+++ /dev/null
-@@ -1,13 +0,0 @@
--Index: weston-1.5.0/configure.ac
--===================================================================
----- weston-1.5.0.orig/configure.ac
--+++ weston-1.5.0/configure.ac
--@@ -503,7 +503,7 @@ if test x$wayland_scanner = x; then
-- 	AC_MSG_ERROR([wayland-scanner is needed to compile weston])
-- fi
-- 
---PKG_CHECK_MODULES(WAYLAND_SCANNER, wayland-scanner)
--+#PKG_CHECK_MODULES(WAYLAND_SCANNER, wayland-scanner)
-- 
-- AC_CONFIG_FILES([Makefile src/version.h src/weston.pc])
-- 
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch b/meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch
-new file mode 100644
-index 0000000..a40eaf1
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch
-@@ -0,0 +1,70 @@
-+From 8e1efcd40b3bad81c83744e2e120d70c2b567ef2 Mon Sep 17 00:00:00 2001
-+From: Frederico Cadete <frederico@cadete.eu>
-+Date: Mon, 28 Sep 2015 00:30:10 +0200
-+Subject: configure.ac: add explicit enable/disable for systemd-login support
-+
-+Otherwise, auto-enable depending on whether the system has the necessary
-+libraries.
-+
-+[Updated help text as per pq suggestion -- bwh]
-+
-+Reviewed-by: Bryce Harrington <bryce@osg.samsung.com>
-+Reviewed-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-+Tested-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-+
-+Upstream-Status: Backport
-+Backported from Weston git:
-+http://cgit.freedesktop.org/wayland/weston/commit/?id=8e1efc
-+
-+Signed-off-by: Joshua Lock <joshua.lock@collabora.co.uk>
-+
-+diff --git a/configure.ac b/configure.ac
-+index a9cd429..67e80d0 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -380,18 +380,30 @@ AC_ARG_ENABLE(resize-optimization,
-+ AS_IF([test "x$enable_resize_optimization" = "xyes"],
-+       [AC_DEFINE([USE_RESIZE_POOL], [1], [Use resize memory pool as a performance optimization])])
-+ 
-+-PKG_CHECK_MODULES(SYSTEMD_LOGIN,
-+-                  [libsystemd >= 209],
-+-                  [have_systemd_login_209=yes;have_systemd_login=yes],
-+-                  [have_systemd_login_209=no;have_systemd_login=no])
-+-
-+-# Older versions of systemd package systemd-login separately. Fall back on that
-+-AS_IF([test x$have_systemd_login != xyes],[
-+-      PKG_CHECK_MODULES(SYSTEMD_LOGIN,
-+-                        [libsystemd-login >= 198],
-+-                        [have_systemd_login=yes],
-+-                        [have_systemd_login=no])
-+-      ])
-++AC_ARG_ENABLE(systemd-login,
-++              AS_HELP_STRING([--enable-systemd-login],
-++                             [Enable logind support]),,
-++              enable_systemd_login=auto)
-++if test x$enable_systemd_login != xno; then
-++  PKG_CHECK_MODULES(SYSTEMD_LOGIN,
-++                    [libsystemd >= 209],
-++                    [have_systemd_login_209=yes;have_systemd_login=yes],
-++                    [have_systemd_login_209=no;have_systemd_login=no])
-++
-++  # Older versions of systemd package systemd-login separately. Fall back on that
-++  AS_IF([test x$have_systemd_login != xyes],[
-++        PKG_CHECK_MODULES(SYSTEMD_LOGIN,
-++                          [libsystemd-login >= 198],
-++                          [have_systemd_login=yes],
-++                          [have_systemd_login=no])
-++        ])
-++else
-++  have_systemd_login=no
-++fi
-++
-++if test "x$have_systemd_login" = "xno" -a "x$enable_systemd_login" = "xyes"; then
-++  AC_MSG_ERROR([systemd-login support explicitly enabled, but can't find libsystemd>=209 or libsystemd-login])
-++fi
-+ 
-+ AS_IF([test "x$have_systemd_login" = "xyes"],
-+       [AC_DEFINE([HAVE_SYSTEMD_LOGIN], [1], [Have systemd-login])])
-+-- 
-+cgit v0.10.2
-+
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch b/meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch
-new file mode 100644
-index 0000000..2d28d56
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch
-@@ -0,0 +1,53 @@
-+From 5eb025a867b42f8bc7bc73279eac8de58e51a13e Mon Sep 17 00:00:00 2001
-+From: Frederico Cadete <frederico@cadete.eu>
-+Date: Mon, 28 Sep 2015 00:30:09 +0200
-+Subject: configure.ac: add support for new versions of systemd
-+
-+Starting from systemd version 209, a single libsystemd.pc is provided.
-+For previous versions, fall back on libsystemd-login.pc.
-+
-+Signed-off-by: Frederico Cadete <frederico@cadete.eu>
-+Reviewed-by: Bryce Harrington <bryce@osg.samsung.com>
-+Reviewed-by: Derek Foreman <derekf@osg.samsung.com>
-+
-+Upstream-Status: Backport
-+Backported from Weston git:
-+http://cgit.freedesktop.org/wayland/weston/commit/?id=5eb025
-+
-+Signed-off-by: Joshua Lock <joshua.lock@collabora.co.uk>
-+
-+diff --git a/configure.ac b/configure.ac
-+index 045291c..a9cd429 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -380,14 +380,23 @@ AC_ARG_ENABLE(resize-optimization,
-+ AS_IF([test "x$enable_resize_optimization" = "xyes"],
-+       [AC_DEFINE([USE_RESIZE_POOL], [1], [Use resize memory pool as a performance optimization])])
-+ 
-+-PKG_CHECK_MODULES(SYSTEMD_LOGIN, [libsystemd-login >= 198],
-+-                  [have_systemd_login=yes], [have_systemd_login=no])
-++PKG_CHECK_MODULES(SYSTEMD_LOGIN,
-++                  [libsystemd >= 209],
-++                  [have_systemd_login_209=yes;have_systemd_login=yes],
-++                  [have_systemd_login_209=no;have_systemd_login=no])
-++
-++# Older versions of systemd package systemd-login separately. Fall back on that
-++AS_IF([test x$have_systemd_login != xyes],[
-++      PKG_CHECK_MODULES(SYSTEMD_LOGIN,
-++                        [libsystemd-login >= 198],
-++                        [have_systemd_login=yes],
-++                        [have_systemd_login=no])
-++      ])
-++
-+ AS_IF([test "x$have_systemd_login" = "xyes"],
-+       [AC_DEFINE([HAVE_SYSTEMD_LOGIN], [1], [Have systemd-login])])
-+ AM_CONDITIONAL(HAVE_SYSTEMD_LOGIN, test "x$have_systemd_login" = "xyes")
-+ 
-+-PKG_CHECK_MODULES(SYSTEMD_LOGIN_209, [libsystemd-login >= 209],
-+-                  [have_systemd_login_209=yes], [have_systemd_login_209=no])
-+ AS_IF([test "x$have_systemd_login_209" = "xyes"],
-+       [AC_DEFINE([HAVE_SYSTEMD_LOGIN_209], [1], [Have systemd-login >= 209])])
-+ 
-+-- 
-+cgit v0.10.2
-+
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-similarity index 70%
-rename from meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
-rename to meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-index efbbbe0..e14ea9d 100644
---- a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
-+++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-@@ -2,38 +2,46 @@ SUMMARY = "Weston, a Wayland compositor"
- DESCRIPTION = "Weston is the reference implementation of a Wayland compositor"
- HOMEPAGE = "http://wayland.freedesktop.org"
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
--                    file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=d79ee9e66bb0f95d3386a7acae780b70 \
-+                    file://src/compositor.c;endline=23;md5=1d535fed266cf39f6d8c0647f52ac331"
- 
- SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
-            file://weston.png \
-            file://weston.desktop \
--           file://disable-wayland-scanner-pkg-check.patch \
-            file://make-lcms-explicitly-configurable.patch \
-            file://make-libwebp-explicitly-configurable.patch \
-+           file://0001-make-error-portable.patch \
-+           file://libsystemd.patch \
-+           file://explicit-enable-disable-systemd.patch \
- "
--SRC_URI[md5sum] = "c60ce9dde99a089db0539d8f6b557827"
--SRC_URI[sha256sum] = "dc3ea5d13bbf025fabc006216c5ddc0d80d5f4ebe778912b8c4d1d4acaaa614d"
-+SRC_URI[md5sum] = "66bbba12f546570b4d97f676bc79a28e"
-+SRC_URI[sha256sum] = "9c1b03f3184fa0b0dfdf67e215048085156e1a2ca344af6613fed36794ac48cf"
- 
--inherit autotools pkgconfig useradd
-+inherit autotools pkgconfig useradd distro_features_check
-+# depends on virtual/egl
-+REQUIRED_DISTRO_FEATURES = "opengl"
- 
- DEPENDS = "libxkbcommon gdk-pixbuf pixman cairo glib-2.0 jpeg"
--DEPENDS += "wayland virtual/egl pango"
-+DEPENDS += "wayland libinput virtual/egl pango"
- 
- EXTRA_OECONF = "--enable-setuid-install \
--                --disable-xwayland \
-                 --enable-simple-clients \
-                 --enable-clients \
-                 --enable-demo-clients-install \
--                --disable-libunwind \
-                 --disable-rpi-compositor \
-                 --disable-rdp-compositor \
-                 "
- 
--
-+EXTRA_OECONF_append_qemux86 = "\
-+		WESTON_NATIVE_BACKEND=fbdev-backend.so \
-+		"
-+EXTRA_OECONF_append_qemux86-64 = "\
-+		WESTON_NATIVE_BACKEND=fbdev-backend.so \
-+		"
- PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'kms fbdev wayland egl', '', d)} \
-                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
-                    ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'launch', '', d)} \
-+                   ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)} \
-                   "
- #
- # Compositor choices
-@@ -60,8 +68,14 @@ PACKAGECONFIG[cairo-glesv2] = "--with-cairo-glesv2,--with-cairo=image,cairo"
- PACKAGECONFIG[lcms] = "--enable-lcms,--disable-lcms,lcms"
- # Weston with webp support
- PACKAGECONFIG[webp] = "--enable-webp,--disable-webp,libwebp"
--# Weston with libinput backend
--PACKAGECONFIG[libinput] = "--enable-libinput-backend,--disable-libinput-backend,libinput"
-+# Weston with unwinding support
-+PACKAGECONFIG[libunwind] = "--enable-libunwind,--disable-libunwind,libunwind"
-+# Weston with systemd-login support
-+PACKAGECONFIG[systemd] = "--enable-systemd-login,--disable-systemd-login,systemd dbus"
-+# Weston with Xwayland support
-+PACKAGECONFIG[xwayland] = "--enable-xwayland,--disable-xwayland,libxcb libxcursor cairo"
-+# colord CMS support
-+PACKAGECONFIG[colord] = "--enable-colord,--disable-colord,colord"
- 
- do_install_append() {
- 	# Weston doesn't need the .la files to load modules, so wipe them
-@@ -79,7 +93,7 @@ do_install_append() {
- 
- PACKAGES += "${PN}-examples"
- 
--FILES_${PN} = "${bindir}/weston ${bindir}/weston-terminal ${bindir}/weston-info ${bindir}/weston-launch ${bindir}/wcap-decode ${libexecdir} ${datadir}"
-+FILES_${PN} = "${bindir}/weston ${bindir}/weston-terminal ${bindir}/weston-info ${bindir}/weston-launch ${bindir}/wcap-decode ${libexecdir} ${libdir}/${BPN}/*.so ${datadir}"
- FILES_${PN}-examples = "${bindir}/*"
- 
- RDEPENDS_${PN} += "xkeyboard-config"
--- 
-2.2.0
+<h2>Status for 01/19/16</h2>
+
+<h2>BUILD_ID: build-2016-01-19_13-10-29</h2>
+
+<h2>Clean Build: true</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.12"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_304_473682786.1453260568055--
