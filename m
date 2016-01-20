@@ -1,27 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
 	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id DAC8A52993
+	by arago-project.org (Postfix) with ESMTPS id 0628C52A98
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Jan 2016 02:36:33 +0000 (UTC)
+	Wed, 20 Jan 2016 02:36:34 +0000 (UTC)
 Received: from gandalf.denix.org ([100.15.86.14]) by vms173025.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0O18002EICKC6SS0@vms173025.mailsrvcs.net> for
+	2014)) with ESMTPSA id <0O180026SCKCL481@vms173025.mailsrvcs.net> for
 	meta-arago@arago-project.org; Tue, 19 Jan 2016 20:36:18 -0600 (CST)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=7aQ_Q-yQQ-AA:10 a=sozttTNsAAAA:8
-	a=QyXUC8HyAAAA:8 a=D31QgfloAAAA:8	a=pGLkceISAAAA:8 a=20KFwNOVAAAA:8
-	a=e5mUnYsNAAAA:8 a=vlf6L3127E15xcbZ8ugA:9
+	a=pGLkceISAAAA:8 a=MQQvbd3fAAAA:8	a=hD80L64hAAAA:8 a=gvl4HP8tAAAA:8
+	a=e5mUnYsNAAAA:8 a=FpMKTI_weO-G4vS7dJMA:9	a=fJOQ9ch9damFqVMu:21
+	a=lOtv2s_ZUi0YkZbs:21
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 7014A161E01;	Tue,
+	by gandalf.denix.org (Postfix) with ESMTP id 7C62F161E04;	Tue,
 	19 Jan 2016 21:36:12 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 19 Jan 2016 21:36:08 -0500
-Message-id: <1453257370-3024-1-git-send-email-denis@denix.org>
+Date: Tue, 19 Jan 2016 21:36:10 -0500
+Message-id: <1453257370-3024-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH 1/3] libinput: update to 1.1.4
+In-reply-to: <1453257370-3024-1-git-send-email-denis@denix.org>
+References: <1453257370-3024-1-git-send-email-denis@denix.org>
+Subject: [PATCH 3/3] weston: update to 1.9.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,141 +43,348 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...ics-need-to-fake-new-touches-on-TRIPLETAP.patch | 72 ++++++++++++++++++++++
- .../recipes-graphics/wayland/libinput_0.6.0.bb     | 14 -----
- .../recipes-graphics/wayland/libinput_1.1.4.bb     | 23 +++++++
- 3 files changed, 95 insertions(+), 14 deletions(-)
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/libinput/touchpad-serial-synaptics-need-to-fake-new-touches-on-TRIPLETAP.patch
- delete mode 100644 meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/libinput_1.1.4.bb
+ .../wayland/weston/0001-make-error-portable.patch  | 80 ++++++++++++++++++++++
+ .../weston/disable-wayland-scanner-pkg-check.patch | 13 ----
+ .../weston/explicit-enable-disable-systemd.patch   | 70 +++++++++++++++++++
+ .../wayland/weston/libsystemd.patch                | 53 ++++++++++++++
+ .../wayland/{weston_1.6.0.bb => weston_1.9.0.bb}   | 40 +++++++----
+ 5 files changed, 230 insertions(+), 26 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch
+ delete mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch
+ rename meta-arago-extras/recipes-graphics/wayland/{weston_1.6.0.bb => weston_1.9.0.bb} (70%)
 
-diff --git a/meta-arago-extras/recipes-graphics/wayland/libinput/touchpad-serial-synaptics-need-to-fake-new-touches-on-TRIPLETAP.patch b/meta-arago-extras/recipes-graphics/wayland/libinput/touchpad-serial-synaptics-need-to-fake-new-touches-on-TRIPLETAP.patch
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch
 new file mode 100644
-index 0000000..97c63bd
+index 0000000..148848d
 --- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/libinput/touchpad-serial-synaptics-need-to-fake-new-touches-on-TRIPLETAP.patch
-@@ -0,0 +1,72 @@
-+This is a workaround upstream suggests for use with kernel 4.1.
++++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-make-error-portable.patch
+@@ -0,0 +1,80 @@
++From c22e90365d89346258394833cbcad03ff32b2e27 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Fri, 29 May 2015 20:56:00 -0700
++Subject: [PATCH weston] make error() portable
 +
-+Upstream-Status: Inappropriate [temporary work-around]
-+Signed-Off-By: Jussi Kukkonen <jussi.kukkonen@intel.com>
++error() is not posix but gnu extension so may not be available on all
++kind of systemsi e.g. musl.
 +
-+
-+
-+From: Peter Hutterer <peter.hutterer@who-t.net>
-+Date: Mon Aug 3 18:23:12 PDT 2015
-+Subject: [PATCH v3 libinput] touchpad: serial synaptics need to fake new touches on TRIPLETAP
-+
-+On the 4.1 kernels synaptics pretends to have 3 slots (the serial fw only does
-+2). This was added to avoid cursor jumps but has since been reverted for 4.2
-+(kernel commit dbf3c37086, 4.1.3 is still buggy). In some cases a TRIPLETAP
-+may be triggered without slot 2 ever activating.
-+
-+While there are still those kernels out there, work around this bug by opening
-+a new touch point where none exists if the fake finger count exceeds the slot
-+count.
-+
-+Reported-by: Jan Alexander Steffens <jan.steffens at gmail.com>
-+Signed-off-by: Peter Hutterer <peter.hutterer at who-t.net>
-+Tested-by: Jan Alexander Steffens <jan.steffens at gmail.com>
-+Reviewed-by: Hans de Goede <hdegoede at redhat.com>
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
 +---
-+Changes to v2:
-+- split out the handling instead of having a tmp state variable, see Hans'
-+  comments from v2
++Upstream-Status: Submitted
 +
-+Mainly sending this to the list again so I have a link to point people to.
-+If you're on 4.1.x add this patch to your distribution package.
++ configure.ac        |  2 ++
++ src/weston-error.h  | 20 ++++++++++++++++++++
++ src/weston-launch.c |  2 +-
++ 3 files changed, 23 insertions(+), 1 deletion(-)
++ create mode 100644 src/weston-error.h
 +
-+ src/evdev-mt-touchpad.c | 22 ++++++++++++++++------
-+ 1 file changed, 16 insertions(+), 6 deletions(-)
-+
-+diff --git a/src/evdev-mt-touchpad.c b/src/evdev-mt-touchpad.c
-+index a683d9a..5ef03d5 100644
-+--- a/src/evdev-mt-touchpad.c
-++++ b/src/evdev-mt-touchpad.c
-+@@ -369,13 +369,23 @@ tp_restore_synaptics_touches(struct tp_dispatch *tp,
-+ 	for (i = 0; i < tp->num_slots; i++) {
-+ 		struct tp_touch *t = tp_get_touch(tp, i);
++diff --git a/configure.ac b/configure.ac
++index 263fc22..f52cd62 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -57,6 +57,8 @@ AC_CHECK_DECL(CLOCK_MONOTONIC,[],
++ 	      [[#include <time.h>]])
++ AC_CHECK_HEADERS([execinfo.h])
 + 
-+-		if (t->state != TOUCH_END)
-++		switch(t->state) {
-++		case TOUCH_HOVERING:
-++		case TOUCH_BEGIN:
-++		case TOUCH_UPDATE:
-+ 			continue;
-+-
-+-		/* new touch, move it through begin to update immediately */
-+-		tp_new_touch(tp, t, time);
-+-		tp_begin_touch(tp, t, time);
-+-		t->state = TOUCH_UPDATE;
-++		case TOUCH_NONE:
-++			/* new touch, move it through to begin immediately */
-++			tp_new_touch(tp, t, time);
-++			tp_begin_touch(tp, t, time);
-++			break;
-++		case TOUCH_END:
-++			/* touch just ended ,we need need to restore it to update */
-++			tp_new_touch(tp, t, time);
-++			tp_begin_touch(tp, t, time);
-++			t->state = TOUCH_UPDATE;
-++			break;
-++		}
-+ 	}
-+ }
+++AC_CHECK_HEADERS([error.h])
+++
++ AC_CHECK_FUNCS([mkostemp strchrnul initgroups posix_fallocate])
++ 
++ COMPOSITOR_MODULES="wayland-server >= 1.7.93 pixman-1 >= 0.25.2"
++diff --git a/src/weston-error.h b/src/weston-error.h
++new file mode 100644
++index 0000000..2089d02
++--- /dev/null
+++++ b/src/weston-error.h
++@@ -0,0 +1,20 @@
+++#ifndef _WESTON_ERROR_H
+++#define _WESTON_ERROR_H
+++
+++#if defined(HAVE_ERROR_H)
+++#include <error.h>
+++#else
+++#include <err.h>
+++#include <string.h>
+++#define _weston_error(S, E, F, ...) do { \
+++	if (E) \
+++		err(S, F ": %s", ##__VA_ARGS__, strerror(E)); \
+++	else \
+++		err(S, F, ##__VA_ARGS__); \
+++} while(0)
+++
+++#define error _weston_error
+++#endif
+++
+++#endif
+++
++diff --git a/src/weston-launch.c b/src/weston-launch.c
++index 10c66de..3e6d30a 100644
++--- a/src/weston-launch.c
+++++ b/src/weston-launch.c
++@@ -30,7 +30,6 @@
++ #include <poll.h>
++ #include <errno.h>
++ 
++-#include <error.h>
++ #include <getopt.h>
++ 
++ #include <sys/types.h>
++@@ -56,6 +55,7 @@
++ #endif
++ 
++ #include "weston-launch.h"
+++#include "weston-error.h"
++ 
++ #define DRM_MAJOR 226
 + 
 +-- 
-+2.4.3
++2.1.4
 +
-diff --git a/meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb b/meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch b/meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch
 deleted file mode 100644
-index c3bbb7b..0000000
---- a/meta-arago-extras/recipes-graphics/wayland/libinput_0.6.0.bb
+index 062da5c..0000000
+--- a/meta-arago-extras/recipes-graphics/wayland/weston/disable-wayland-scanner-pkg-check.patch
 +++ /dev/null
-@@ -1,14 +0,0 @@
--SUMMARY = "Library to handle input devices in Wayland compositors"
--HOMEPAGE = "http://www.freedesktop.org/wiki/Software/libinput/"
--SECTION = "libs"
--
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://COPYING;md5=673e626420c7f859fbe2be3a9c13632d"
--
--DEPENDS = "libevdev udev mtdev"
--
--SRC_URI = "http://www.freedesktop.org/software/${BPN}/${BP}.tar.xz"
--SRC_URI[md5sum] = "3afaf9f66d8796323a79edb879c10ba3"
--SRC_URI[sha256sum] = "30b555771e7cb921ccb9430c4a86940aa3938d05506e81d2417c03e30451bfbc"
--
--inherit autotools pkgconfig
-diff --git a/meta-arago-extras/recipes-graphics/wayland/libinput_1.1.4.bb b/meta-arago-extras/recipes-graphics/wayland/libinput_1.1.4.bb
+@@ -1,13 +0,0 @@
+-Index: weston-1.5.0/configure.ac
+-===================================================================
+---- weston-1.5.0.orig/configure.ac
+-+++ weston-1.5.0/configure.ac
+-@@ -503,7 +503,7 @@ if test x$wayland_scanner = x; then
+- 	AC_MSG_ERROR([wayland-scanner is needed to compile weston])
+- fi
+- 
+--PKG_CHECK_MODULES(WAYLAND_SCANNER, wayland-scanner)
+-+#PKG_CHECK_MODULES(WAYLAND_SCANNER, wayland-scanner)
+- 
+- AC_CONFIG_FILES([Makefile src/version.h src/weston.pc])
+- 
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch b/meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch
 new file mode 100644
-index 0000000..635b36a
+index 0000000..a40eaf1
 --- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/libinput_1.1.4.bb
-@@ -0,0 +1,23 @@
-+SUMMARY = "Library to handle input devices in Wayland compositors"
-+HOMEPAGE = "http://www.freedesktop.org/wiki/Software/libinput/"
-+SECTION = "libs"
++++ b/meta-arago-extras/recipes-graphics/wayland/weston/explicit-enable-disable-systemd.patch
+@@ -0,0 +1,70 @@
++From 8e1efcd40b3bad81c83744e2e120d70c2b567ef2 Mon Sep 17 00:00:00 2001
++From: Frederico Cadete <frederico@cadete.eu>
++Date: Mon, 28 Sep 2015 00:30:10 +0200
++Subject: configure.ac: add explicit enable/disable for systemd-login support
 +
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=2184aef38ff137ed33ce9a63b9d1eb8f"
++Otherwise, auto-enable depending on whether the system has the necessary
++libraries.
 +
-+DEPENDS = "libevdev udev mtdev"
++[Updated help text as per pq suggestion -- bwh]
 +
-+SRC_URI = "http://www.freedesktop.org/software/${BPN}/${BP}.tar.xz \
-+           file://touchpad-serial-synaptics-need-to-fake-new-touches-on-TRIPLETAP.patch \
-+"
-+SRC_URI[md5sum] = "0945318141c1a9f52857bbf65d175f32"
-+SRC_URI[sha256sum] = "302cb76209b9c57a5a318e178f9bc446eede8ea79386103b5291cbfaa5fab5b6"
++Reviewed-by: Bryce Harrington <bryce@osg.samsung.com>
++Reviewed-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
++Tested-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
 +
-+inherit autotools pkgconfig
++Upstream-Status: Backport
++Backported from Weston git:
++http://cgit.freedesktop.org/wayland/weston/commit/?id=8e1efc
 +
-+PACKAGECONFIG ??= ""
-+PACKAGECONFIG[libunwind] = "--with-libunwind,--without-libunwind,libunwind"
-+PACKAGECONFIG[gui] = "--enable-event-gui,--disable-event-gui,cairo gtk+3"
++Signed-off-by: Joshua Lock <joshua.lock@collabora.co.uk>
 +
-+FILES_${PN} += "${libdir}/udev/"
-+FILES_${PN}-dbg += "${libdir}/udev/.debug"
++diff --git a/configure.ac b/configure.ac
++index a9cd429..67e80d0 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -380,18 +380,30 @@ AC_ARG_ENABLE(resize-optimization,
++ AS_IF([test "x$enable_resize_optimization" = "xyes"],
++       [AC_DEFINE([USE_RESIZE_POOL], [1], [Use resize memory pool as a performance optimization])])
++ 
++-PKG_CHECK_MODULES(SYSTEMD_LOGIN,
++-                  [libsystemd >= 209],
++-                  [have_systemd_login_209=yes;have_systemd_login=yes],
++-                  [have_systemd_login_209=no;have_systemd_login=no])
++-
++-# Older versions of systemd package systemd-login separately. Fall back on that
++-AS_IF([test x$have_systemd_login != xyes],[
++-      PKG_CHECK_MODULES(SYSTEMD_LOGIN,
++-                        [libsystemd-login >= 198],
++-                        [have_systemd_login=yes],
++-                        [have_systemd_login=no])
++-      ])
+++AC_ARG_ENABLE(systemd-login,
+++              AS_HELP_STRING([--enable-systemd-login],
+++                             [Enable logind support]),,
+++              enable_systemd_login=auto)
+++if test x$enable_systemd_login != xno; then
+++  PKG_CHECK_MODULES(SYSTEMD_LOGIN,
+++                    [libsystemd >= 209],
+++                    [have_systemd_login_209=yes;have_systemd_login=yes],
+++                    [have_systemd_login_209=no;have_systemd_login=no])
+++
+++  # Older versions of systemd package systemd-login separately. Fall back on that
+++  AS_IF([test x$have_systemd_login != xyes],[
+++        PKG_CHECK_MODULES(SYSTEMD_LOGIN,
+++                          [libsystemd-login >= 198],
+++                          [have_systemd_login=yes],
+++                          [have_systemd_login=no])
+++        ])
+++else
+++  have_systemd_login=no
+++fi
+++
+++if test "x$have_systemd_login" = "xno" -a "x$enable_systemd_login" = "xyes"; then
+++  AC_MSG_ERROR([systemd-login support explicitly enabled, but can't find libsystemd>=209 or libsystemd-login])
+++fi
++ 
++ AS_IF([test "x$have_systemd_login" = "xyes"],
++       [AC_DEFINE([HAVE_SYSTEMD_LOGIN], [1], [Have systemd-login])])
++-- 
++cgit v0.10.2
++
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch b/meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch
+new file mode 100644
+index 0000000..2d28d56
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/wayland/weston/libsystemd.patch
+@@ -0,0 +1,53 @@
++From 5eb025a867b42f8bc7bc73279eac8de58e51a13e Mon Sep 17 00:00:00 2001
++From: Frederico Cadete <frederico@cadete.eu>
++Date: Mon, 28 Sep 2015 00:30:09 +0200
++Subject: configure.ac: add support for new versions of systemd
++
++Starting from systemd version 209, a single libsystemd.pc is provided.
++For previous versions, fall back on libsystemd-login.pc.
++
++Signed-off-by: Frederico Cadete <frederico@cadete.eu>
++Reviewed-by: Bryce Harrington <bryce@osg.samsung.com>
++Reviewed-by: Derek Foreman <derekf@osg.samsung.com>
++
++Upstream-Status: Backport
++Backported from Weston git:
++http://cgit.freedesktop.org/wayland/weston/commit/?id=5eb025
++
++Signed-off-by: Joshua Lock <joshua.lock@collabora.co.uk>
++
++diff --git a/configure.ac b/configure.ac
++index 045291c..a9cd429 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -380,14 +380,23 @@ AC_ARG_ENABLE(resize-optimization,
++ AS_IF([test "x$enable_resize_optimization" = "xyes"],
++       [AC_DEFINE([USE_RESIZE_POOL], [1], [Use resize memory pool as a performance optimization])])
++ 
++-PKG_CHECK_MODULES(SYSTEMD_LOGIN, [libsystemd-login >= 198],
++-                  [have_systemd_login=yes], [have_systemd_login=no])
+++PKG_CHECK_MODULES(SYSTEMD_LOGIN,
+++                  [libsystemd >= 209],
+++                  [have_systemd_login_209=yes;have_systemd_login=yes],
+++                  [have_systemd_login_209=no;have_systemd_login=no])
+++
+++# Older versions of systemd package systemd-login separately. Fall back on that
+++AS_IF([test x$have_systemd_login != xyes],[
+++      PKG_CHECK_MODULES(SYSTEMD_LOGIN,
+++                        [libsystemd-login >= 198],
+++                        [have_systemd_login=yes],
+++                        [have_systemd_login=no])
+++      ])
+++
++ AS_IF([test "x$have_systemd_login" = "xyes"],
++       [AC_DEFINE([HAVE_SYSTEMD_LOGIN], [1], [Have systemd-login])])
++ AM_CONDITIONAL(HAVE_SYSTEMD_LOGIN, test "x$have_systemd_login" = "xyes")
++ 
++-PKG_CHECK_MODULES(SYSTEMD_LOGIN_209, [libsystemd-login >= 209],
++-                  [have_systemd_login_209=yes], [have_systemd_login_209=no])
++ AS_IF([test "x$have_systemd_login_209" = "xyes"],
++       [AC_DEFINE([HAVE_SYSTEMD_LOGIN_209], [1], [Have systemd-login >= 209])])
++ 
++-- 
++cgit v0.10.2
++
+diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
+similarity index 70%
+rename from meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
+rename to meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
+index efbbbe0..e14ea9d 100644
+--- a/meta-arago-extras/recipes-graphics/wayland/weston_1.6.0.bb
++++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
+@@ -2,38 +2,46 @@ SUMMARY = "Weston, a Wayland compositor"
+ DESCRIPTION = "Weston is the reference implementation of a Wayland compositor"
+ HOMEPAGE = "http://wayland.freedesktop.org"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=275efac2559a224527bd4fd593d38466 \
+-                    file://src/compositor.c;endline=23;md5=aa98a8db03480fe7d500d0b1f4b8850c"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d79ee9e66bb0f95d3386a7acae780b70 \
++                    file://src/compositor.c;endline=23;md5=1d535fed266cf39f6d8c0647f52ac331"
+ 
+ SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
+            file://weston.png \
+            file://weston.desktop \
+-           file://disable-wayland-scanner-pkg-check.patch \
+            file://make-lcms-explicitly-configurable.patch \
+            file://make-libwebp-explicitly-configurable.patch \
++           file://0001-make-error-portable.patch \
++           file://libsystemd.patch \
++           file://explicit-enable-disable-systemd.patch \
+ "
+-SRC_URI[md5sum] = "c60ce9dde99a089db0539d8f6b557827"
+-SRC_URI[sha256sum] = "dc3ea5d13bbf025fabc006216c5ddc0d80d5f4ebe778912b8c4d1d4acaaa614d"
++SRC_URI[md5sum] = "66bbba12f546570b4d97f676bc79a28e"
++SRC_URI[sha256sum] = "9c1b03f3184fa0b0dfdf67e215048085156e1a2ca344af6613fed36794ac48cf"
+ 
+-inherit autotools pkgconfig useradd
++inherit autotools pkgconfig useradd distro_features_check
++# depends on virtual/egl
++REQUIRED_DISTRO_FEATURES = "opengl"
+ 
+ DEPENDS = "libxkbcommon gdk-pixbuf pixman cairo glib-2.0 jpeg"
+-DEPENDS += "wayland virtual/egl pango"
++DEPENDS += "wayland libinput virtual/egl pango"
+ 
+ EXTRA_OECONF = "--enable-setuid-install \
+-                --disable-xwayland \
+                 --enable-simple-clients \
+                 --enable-clients \
+                 --enable-demo-clients-install \
+-                --disable-libunwind \
+                 --disable-rpi-compositor \
+                 --disable-rdp-compositor \
+                 "
+ 
+-
++EXTRA_OECONF_append_qemux86 = "\
++		WESTON_NATIVE_BACKEND=fbdev-backend.so \
++		"
++EXTRA_OECONF_append_qemux86-64 = "\
++		WESTON_NATIVE_BACKEND=fbdev-backend.so \
++		"
+ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'kms fbdev wayland egl', '', d)} \
+                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
+                    ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'launch', '', d)} \
++                   ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)} \
+                   "
+ #
+ # Compositor choices
+@@ -60,8 +68,14 @@ PACKAGECONFIG[cairo-glesv2] = "--with-cairo-glesv2,--with-cairo=image,cairo"
+ PACKAGECONFIG[lcms] = "--enable-lcms,--disable-lcms,lcms"
+ # Weston with webp support
+ PACKAGECONFIG[webp] = "--enable-webp,--disable-webp,libwebp"
+-# Weston with libinput backend
+-PACKAGECONFIG[libinput] = "--enable-libinput-backend,--disable-libinput-backend,libinput"
++# Weston with unwinding support
++PACKAGECONFIG[libunwind] = "--enable-libunwind,--disable-libunwind,libunwind"
++# Weston with systemd-login support
++PACKAGECONFIG[systemd] = "--enable-systemd-login,--disable-systemd-login,systemd dbus"
++# Weston with Xwayland support
++PACKAGECONFIG[xwayland] = "--enable-xwayland,--disable-xwayland,libxcb libxcursor cairo"
++# colord CMS support
++PACKAGECONFIG[colord] = "--enable-colord,--disable-colord,colord"
+ 
+ do_install_append() {
+ 	# Weston doesn't need the .la files to load modules, so wipe them
+@@ -79,7 +93,7 @@ do_install_append() {
+ 
+ PACKAGES += "${PN}-examples"
+ 
+-FILES_${PN} = "${bindir}/weston ${bindir}/weston-terminal ${bindir}/weston-info ${bindir}/weston-launch ${bindir}/wcap-decode ${libexecdir} ${datadir}"
++FILES_${PN} = "${bindir}/weston ${bindir}/weston-terminal ${bindir}/weston-info ${bindir}/weston-launch ${bindir}/wcap-decode ${libexecdir} ${libdir}/${BPN}/*.so ${datadir}"
+ FILES_${PN}-examples = "${bindir}/*"
+ 
+ RDEPENDS_${PN} += "xkeyboard-config"
 -- 
 2.2.0
 
