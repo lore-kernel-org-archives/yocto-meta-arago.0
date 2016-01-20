@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 7B78E529E2
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id A2B5D529C9
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Jan 2016 03:29:33 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0K3TW6a015804
-	for <meta-arago@arago-project.org>; Tue, 19 Jan 2016 21:29:32 -0600
+	Wed, 20 Jan 2016 07:59:38 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0K7xboQ000666
+	for <meta-arago@arago-project.org>; Wed, 20 Jan 2016 01:59:37 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0K3TVBF001755
-	for <meta-arago@arago-project.org>; Tue, 19 Jan 2016 21:29:31 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0K7xbKZ020636
+	for <meta-arago@arago-project.org>; Wed, 20 Jan 2016 01:59:37 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 19 Jan 2016 21:29:32 -0600
+	Wed, 20 Jan 2016 01:59:37 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u0K3TT56017139	for <meta-arago@arago-project.org>;
-	Tue, 19 Jan 2016 21:29:30 -0600
-Date: Tue, 19 Jan 2016 22:29:27 -0500
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0K7xbtq014378	for <meta-arago@arago-project.org>;
+	Wed, 20 Jan 2016 01:59:37 -0600
+Date: Wed, 20 Jan 2016 02:59:36 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <464704873.305.1453260568399.JavaMail.jenkins@puget>
+Message-ID: <1665898005.307.1453276776920.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-fido
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-19_13-09-22
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-19_23-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,27 +36,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jan 2016 03:29:33 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_304_473682786.1453260568055"
+X-List-Received-Date: Wed, 20 Jan 2016 07:59:38 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_306_1935693.1453276776661"
 
-------=_Part_304_473682786.1453260568055
+------=_Part_306_1935693.1453276776661
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 01/19/16
+Status for 01/20/16
 </title>
 </head>
 <body>
 
-<h2>Status for 01/19/16</h2>
+<h2>Status for 01/20/16</h2>
 
-<h2>BUILD_ID: build-2016-01-19_13-10-29</h2>
+<h2>BUILD_ID: build-2016-01-19_23-01-43</h2>
 
-<h2>Clean Build: true</h2>
+<h2>Clean Build: false</h2>
 
 <h2>Clean Sources: false</h2>
 <h2><u>Repository Revisions</u></h2>
@@ -133,8 +132,8 @@ Status for 01/19/16
     </tr>
     <tr>
         <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>am57xx-evm</td>
@@ -203,7 +202,7 @@ SDK_FILTER="arago-core-tisdk-image-"<br>
 SDK_IMAGE_TYPE="tar.gz"<br>
 NFS_ROOT="/home/jenkins/nfs-root"<br>
 SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
+CLEAN_BUILD="false"<br>
 CLEAN_SSTATE="false"<br>
 CLEAN_ALL="false"<br>
 CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
@@ -249,4 +248,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
 </html>
 
 
-------=_Part_304_473682786.1453260568055--
+------=_Part_306_1935693.1453276776661--
