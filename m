@@ -1,28 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id DCC3A529A5
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id BC8CD529A5
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Jan 2016 22:04:32 +0000 (UTC)
-Received: from gandalf.denix.org ([100.15.86.14]) by vms173019.mailsrvcs.net
+	Thu, 21 Jan 2016 22:04:35 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0O1B00I7LPAZ7C70@vms173019.mailsrvcs.net> for
+	2014)) with ESMTPSA id <0O1B0046ZPAZOW30@vms173023.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 21 Jan 2016 16:04:12 -0600 (CST)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
 	a=0gcC27t9AAAA:8 a=oR5dmqMzAAAA:8	a=7aQ_Q-yQQ-AA:10 a=sozttTNsAAAA:8
-	a=z97URBAEcLwSniDkDKUA:9
+	a=pGLkceISAAAA:8 a=QyXUC8HyAAAA:8	a=e5mUnYsNAAAA:8
+	a=HPtoqTigU4XusegAvmkA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 9DE0F161E06;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 9C3E6161DFD;	Thu,
 	21 Jan 2016 17:04:11 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 21 Jan 2016 17:04:10 -0500
-Message-id: <1453413851-27029-2-git-send-email-denis@denix.org>
+Date: Thu, 21 Jan 2016 17:04:09 -0500
+Message-id: <1453413851-27029-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1453413851-27029-1-git-send-email-denis@denix.org>
-References: <1453413851-27029-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/3] libdrm: update bbappend and the patch for the new version
+Subject: [PATCH 1/3] libdrm: add version 2.4.66
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,95 +34,134 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jan 2016 22:04:33 -0000
+X-List-Received-Date: Thu, 21 Jan 2016 22:04:35 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+Overlay locally latest version needed for DDK 1.14 work.
+Taken from oe-core/master verbatim and can be dropped once migrated there.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...001-Add-option-to-run-a-test-indefinitely.patch | 30 +++++++++++-----------
- ...bdrm_2.4.59.bbappend => libdrm_2.4.66.bbappend} |  0
- 2 files changed, 15 insertions(+), 15 deletions(-)
- rename meta-arago-distro/recipes-graphics/drm/{libdrm_2.4.59.bbappend => libdrm_2.4.66.bbappend} (100%)
+ ...tests-kms-steal-crtc-Include-sys-select.h.patch | 33 ++++++++++++++++
+ .../recipes-graphics/drm/libdrm/installtests.patch | 15 ++++++++
+ .../recipes-graphics/drm/libdrm_2.4.66.bb          | 45 ++++++++++++++++++++++
+ 3 files changed, 93 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-graphics/drm/libdrm/0001-tests-kms-steal-crtc-Include-sys-select.h.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/drm/libdrm/installtests.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/drm/libdrm_2.4.66.bb
 
-diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
-index d74d713..6e3dfd4 100644
---- a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
-+++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
-@@ -16,19 +16,19 @@ Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-  1 file changed, 8 insertions(+), 4 deletions(-)
- 
- diff --git a/tests/modetest/modetest.c b/tests/modetest/modetest.c
--index 4b9cf2f..208af86 100644
-+index 22e3e81..a74e39a 100644
- --- a/tests/modetest/modetest.c
- +++ b/tests/modetest/modetest.c
--@@ -1163,7 +1163,7 @@ static void clear_cursors(struct device *dev)
-- 	cursor_stop();
-+@@ -1181,7 +1181,7 @@ static void clear_cursors(struct device *dev)
-+ 		bo_destroy(dev->mode.cursor_bo);
-  }
-  
- -static void test_page_flip(struct device *dev, struct pipe_arg *pipes, unsigned int count)
- +static void test_page_flip(struct device *dev, struct pipe_arg *pipes, unsigned int count, int dont_stop)
-  {
-- 	uint32_t handles[4], pitches[4], offsets[4] = {0}; /* we only use [0] */
-+ 	uint32_t handles[4] = {0}, pitches[4] = {0}, offsets[4] = {0};
-  	unsigned int other_fb_id;
--@@ -1241,7 +1241,7 @@ static void test_page_flip(struct device *dev, struct pipe_arg *pipes, unsigned
-+@@ -1258,7 +1258,7 @@ static void test_page_flip(struct device *dev, struct pipe_arg *pipes, unsigned
-  			fprintf(stderr, "select timed out or error (ret %d)\n",
-  				ret);
-  			continue;
-@@ -37,8 +37,8 @@ index 4b9cf2f..208af86 100644
-  			break;
-  		}
-  #endif
--@@ -1442,7 +1442,7 @@ static int cursor_supported(void)
-- 	return 1;
-+@@ -1492,7 +1492,7 @@ static int pipe_resolve_connectors(struct device *dev, struct pipe_arg *pipe)
-+ 	return 0;
-  }
-  
- -static char optstr[] = "cdD:efM:P:ps:Cvw:";
-@@ -46,25 +46,25 @@ index 4b9cf2f..208af86 100644
-  
-  int main(int argc, char **argv)
-  {
--@@ -1458,6 +1458,7 @@ int main(int argc, char **argv)
-+@@ -1507,6 +1507,7 @@ int main(int argc, char **argv)
-  	char *module = NULL;
-  	unsigned int i;
-- 	int count = 0, plane_count = 0;
--+  int dont_stop= 0;
-+ 	unsigned int count = 0, plane_count = 0;
-++	int dont_stop= 0;
-  	unsigned int prop_count = 0;
-  	struct pipe_arg *pipe_args = NULL;
-  	struct plane_arg *plane_args = NULL;
--@@ -1542,6 +1543,9 @@ int main(int argc, char **argv)
-+@@ -1594,6 +1595,9 @@ int main(int argc, char **argv)
-  
-  			prop_count++;
-  			break;
--+    case 't':
--+      dont_stop = 1;
--+      break;
-++		case 't':
-++			dont_stop = 1;
-++			break;
-  		default:
-  			usage(argv[0]);
-  			break;
--@@ -1626,7 +1630,7 @@ int main(int argc, char **argv)
-+@@ -1666,7 +1670,7 @@ int main(int argc, char **argv)
-  			set_cursors(&dev, pipe_args, count);
-  
-  		if (test_vsync)
-diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm_2.4.59.bbappend b/meta-arago-distro/recipes-graphics/drm/libdrm_2.4.66.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/drm/libdrm_2.4.59.bbappend
-rename to meta-arago-distro/recipes-graphics/drm/libdrm_2.4.66.bbappend
+diff --git a/meta-arago-extras/recipes-graphics/drm/libdrm/0001-tests-kms-steal-crtc-Include-sys-select.h.patch b/meta-arago-extras/recipes-graphics/drm/libdrm/0001-tests-kms-steal-crtc-Include-sys-select.h.patch
+new file mode 100644
+index 0000000..c18228e
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/drm/libdrm/0001-tests-kms-steal-crtc-Include-sys-select.h.patch
+@@ -0,0 +1,33 @@
++From 46fb5516fb0ab17bcf46a0306a11e8966bb36e14 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Tue, 29 Dec 2015 22:17:21 +0000
++Subject: [PATCH] tests/kms-steal-crtc: Include sys/select.h
++
++Fixes errors e.g.
++
++error: implicit declaration of function 'select'
++
++and missing definitions of FD_* defines
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++Upstream-Status: Submitted
++
++ tests/kms/kms-steal-crtc.c | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/tests/kms/kms-steal-crtc.c b/tests/kms/kms-steal-crtc.c
++index 2f7f327..24d70ab 100644
++--- a/tests/kms/kms-steal-crtc.c
+++++ b/tests/kms/kms-steal-crtc.c
++@@ -31,6 +31,7 @@
++ #include <stdio.h>
++ #include <string.h>
++ #include <unistd.h>
+++#include <sys/select.h>
++ 
++ #include <drm_fourcc.h>
++ 
++-- 
++2.6.4
++
+diff --git a/meta-arago-extras/recipes-graphics/drm/libdrm/installtests.patch b/meta-arago-extras/recipes-graphics/drm/libdrm/installtests.patch
+new file mode 100644
+index 0000000..30e0a61
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/drm/libdrm/installtests.patch
+@@ -0,0 +1,15 @@
++tests: also install tests app
++
++Upstream-Status: Inappropriate [configuration]
++
++Signed-off-by: Yu Ke <ke.yu@intel.com>
++
++Index: libdrm-2.4.66/tests/Makefile.am
++===================================================================
++--- libdrm-2.4.66.orig/tests/Makefile.am
+++++ libdrm-2.4.66/tests/Makefile.am
++@@ -73,3 +73,4 @@ TESTS +=					\
++ endif
++ 
++ check_PROGRAMS += $(TESTS)
+++bin_PROGRAMS = $(check_PROGRAMS)
+diff --git a/meta-arago-extras/recipes-graphics/drm/libdrm_2.4.66.bb b/meta-arago-extras/recipes-graphics/drm/libdrm_2.4.66.bb
+new file mode 100644
+index 0000000..028db4a
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/drm/libdrm_2.4.66.bb
+@@ -0,0 +1,45 @@
++SUMMARY = "Userspace interface to the kernel DRM services"
++DESCRIPTION = "The runtime library for accessing the kernel DRM services.  DRM \
++stands for \"Direct Rendering Manager\", which is the kernel portion of the \
++\"Direct Rendering Infrastructure\" (DRI).  DRI is required for many hardware \
++accelerated OpenGL drivers."
++HOMEPAGE = "http://dri.freedesktop.org"
++SECTION = "x11/base"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://xf86drm.c;beginline=9;endline=32;md5=c8a3b961af7667c530816761e949dc71"
++PROVIDES = "drm"
++DEPENDS = "libpthread-stubs udev libpciaccess"
++
++SRC_URI = "http://dri.freedesktop.org/libdrm/${BP}.tar.bz2 \
++           file://installtests.patch \
++           file://0001-tests-kms-steal-crtc-Include-sys-select.h.patch \
++          "
++
++SRC_URI[md5sum] = "c6809c48538d6e5999588832045ff014"
++SRC_URI[sha256sum] = "79cb8e988749794edfb2d777b298d5292eff353bbbb71ed813589e61d2bc2d76"
++
++inherit autotools pkgconfig
++
++EXTRA_OECONF += "--disable-cairo-tests \
++                 --enable-omap-experimental-api \
++                 --enable-install-test-programs \
++                 --disable-manpages \
++                 --disable-valgrind \
++                "
++
++ALLOW_EMPTY_${PN}-drivers = "1"
++PACKAGES =+ "${PN}-tests ${PN}-drivers ${PN}-radeon ${PN}-nouveau ${PN}-omap \
++             ${PN}-intel ${PN}-exynos ${PN}-kms ${PN}-freedreno ${PN}-amdgpu"
++
++RRECOMMENDS_${PN}-drivers = "${PN}-radeon ${PN}-nouveau ${PN}-omap ${PN}-intel \
++                             ${PN}-exynos ${PN}-freedreno ${PN}-amdgpu"
++
++FILES_${PN}-tests = "${bindir}/*"
++FILES_${PN}-radeon = "${libdir}/libdrm_radeon.so.*"
++FILES_${PN}-nouveau = "${libdir}/libdrm_nouveau.so.*"
++FILES_${PN}-omap = "${libdir}/libdrm_omap.so.*"
++FILES_${PN}-intel = "${libdir}/libdrm_intel.so.*"
++FILES_${PN}-exynos = "${libdir}/libdrm_exynos.so.*"
++FILES_${PN}-kms = "${libdir}/libkms*.so.*"
++FILES_${PN}-freedreno = "${libdir}/libdrm_freedreno.so.*"
++FILES_${PN}-amdgpu = "${libdir}/libdrm_amdgpu.so.*"
 -- 
 2.2.0
 
