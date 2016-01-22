@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
+Return-Path: <h-gou@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 990555208B
+	by arago-project.org (Postfix) with ESMTPS id 21F375298C
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Jan 2016 19:43:14 +0000 (UTC)
+	Fri, 22 Jan 2016 19:58:48 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0MJhDvs010456
-	for <meta-arago@arago-project.org>; Fri, 22 Jan 2016 13:43:13 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0MJwlK8011922
+	for <meta-arago@arago-project.org>; Fri, 22 Jan 2016 13:58:47 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0MJhDlt019434
-	for <meta-arago@arago-project.org>; Fri, 22 Jan 2016 13:43:13 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0MJwl8G000863
+	for <meta-arago@arago-project.org>; Fri, 22 Jan 2016 13:58:47 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 22 Jan 2016 13:43:13 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u0MJhDOk004936	for <meta-arago@arago-project.org>;
-	Fri, 22 Jan 2016 13:43:13 -0600
-Date: Fri, 22 Jan 2016 14:43:13 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	Fri, 22 Jan 2016 13:58:46 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0MJwkfX031919;	Fri, 22 Jan 2016 13:58:46 -0600
+From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <978072299.327.1453491793338.JavaMail.jenkins@puget>
+Date: Fri, 22 Jan 2016 14:58:40 -0500
+Message-ID: <1453492720-8389-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-22_12-21-45
+Subject: [PATCH 1/2 v2] nodejs: add version 4.2.3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,217 +34,178 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jan 2016 19:43:15 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_326_492751533.1453491793322"
+X-List-Received-Date: Fri, 22 Jan 2016 19:58:48 -0000
+Content-Type: text/plain
 
-------=_Part_326_492751533.1453491793322
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+This is copied from meta-oe/master without modifications. It can be dropped locally
+when migrated to a newer meta-oe release which has nodejs of version 4.2.3 or above
 
-<html>
-<head>
-<title>
-Status for 01/22/16
-</title>
-</head>
-<body>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
+v2 changes: update commit message with some details
 
-<h2>Status for 01/22/16</h2>
+ .../nodejs/nodejs/no-registry.patch                | 59 +++++++++++++++
+ .../recipes-devtools/nodejs/nodejs_4.2.3.bb        | 84 ++++++++++++++++++++++
+ 2 files changed, 143 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/nodejs/nodejs/no-registry.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/nodejs/nodejs_4.2.3.bb
 
-<h2>BUILD_ID: build-2016-01-22_12-22-55</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>jethro</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>omap5-evm</td>
-        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2015.12"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-extras/recipes-devtools/nodejs/nodejs/no-registry.patch b/meta-arago-extras/recipes-devtools/nodejs/nodejs/no-registry.patch
+new file mode 100644
+index 0000000..ed24738
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/nodejs/nodejs/no-registry.patch
+@@ -0,0 +1,59 @@
++Bugfix for --no-registry in nodejs-v0.12.2
++
++diff -u -r node-v0.12.2_def/deps/npm/lib/cache/caching-client.js node-v0.12.2/deps/npm/lib/cache/caching-client.js
++--- node-v0.12.2_def/deps/npm/lib/cache/caching-client.js	2015-04-01 01:13:01.000000000 +0300
+++++ node-v0.12.2/deps/npm/lib/cache/caching-client.js	2015-05-18 00:47:10.738599686 +0300
++@@ -67,6 +67,22 @@
++   var cacheBase = cacheFile(npm.config.get("cache"))(uri)
++   var cachePath = path.join(cacheBase, ".cache.json")
++ 
+++  if (parsed.host === "noregistry") (function() {
+++    var stat = null
+++    var file = npm.config.get("cache") + parsed.pathname + "/.cache.json"
+++    try {
+++      stat = fs.statSync(cachePath)
+++    } catch (ex) {}
+++    if (!stat) try {
+++      stat = fs.statSync(file) 
+++      cachePath = file
+++    } catch (ex) {
+++      stat = "Registry not defined and registry files not found: \"" +
+++             cachePath + "\", \"" + file + "\"."
+++      throw new Error(stat)
+++    }
+++  })()
+++
++   // If the GET is part of a write operation (PUT or DELETE), then
++   // skip past the cache entirely, but still save the results.
++   if (uri.match(/\?write=true$/)) {
++@@ -83,12 +99,17 @@
++         }
++         catch (ex) {
++           data = null
+++          if (parsed.host === "noregistry")
+++            throw new Error("File \"" + cachePath+"\"" + " corrupted.")
++         }
++ 
++         params.stat = stat
++         params.data = data
++ 
++-        get_.call(client, uri, cachePath, params, cb)
+++        if (parsed.host === "noregistry")
+++          cb(null, data, JSON.stringify(data), { statusCode : 304 })
+++        else
+++          get_.call(client, uri, cachePath, params, cb)
++       })
++     }
++     else {
++diff -u -r node-v0.12.2_def/deps/npm/lib/utils/map-to-registry.js node-v0.12.2/deps/npm/lib/utils/map-to-registry.js
++--- node-v0.12.2_def/deps/npm/lib/utils/map-to-registry.js	2015-04-01 01:13:01.000000000 +0300
+++++ node-v0.12.2/deps/npm/lib/utils/map-to-registry.js	2015-05-18 01:15:10.030569613 +0300
++@@ -45,6 +45,8 @@
++ 
++   log.silly("mapToRegistry", "registry", registry)
++ 
+++  if (!registry) return cb(null, "http://noregistry/" + name, {})
+++
++   var auth = config.getCredentialsByURI(registry)
++ 
++   // normalize registry URL so resolution doesn't drop a piece of registry URL
+diff --git a/meta-arago-extras/recipes-devtools/nodejs/nodejs_4.2.3.bb b/meta-arago-extras/recipes-devtools/nodejs/nodejs_4.2.3.bb
+new file mode 100644
+index 0000000..66a3c11
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/nodejs/nodejs_4.2.3.bb
+@@ -0,0 +1,84 @@
++DESCRIPTION = "nodeJS Evented I/O for V8 JavaScript"
++HOMEPAGE = "http://nodejs.org"
++LICENSE = "MIT & BSD & Artistic-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=ee90ba97d933fc8d56e97812b7dd62e9"
++
++DEPENDS = "openssl"
++
++COMPATIBLE_MACHINE_armv4 = "(!.*armv4).*"
++COMPATIBLE_MACHINE_armv5 = "(!.*armv5).*"
++COMPATIBLE_MACHINE_mips64 = "(!.*mips64).*"
++
++SRC_URI = "http://nodejs.org/dist/v${PV}/node-v${PV}.tar.gz \
++    file://no-registry.patch \
++"
++SRC_URI[md5sum] = "529a8abd4ca5a2225636767d3f14c382"
++SRC_URI[sha256sum] = "5008ade5feb4b089f59163f66bffddc113f27de5d78edf203e39435c2c5d554f"
++
++S = "${WORKDIR}/node-v${PV}"
++
++# v8 errors out if you have set CCACHE
++CCACHE = ""
++
++def map_nodejs_arch(a, d):
++    import re
++
++    if   re.match('i.86$', a): return 'ia32'
++    elif re.match('x86_64$', a): return 'x64'
++    elif re.match('aarch64$', a): return 'arm64'
++    elif re.match('powerpc64$', a): return 'ppc64'
++    elif re.match('powerpc$', a): return 'ppc'
++    return a
++
++ARCHFLAGS_arm = "${@bb.utils.contains('TUNE_FEATURES', 'callconvention-hard', '--with-arm-float-abi=hard', '--with-arm-float-abi=softfp', d)}"
++GYP_DEFINES_append_mipsel = " mips_arch_variant='r1' "
++ARCHFLAGS ?= ""
++
++# Node is way too cool to use proper autotools, so we install two wrappers to forcefully inject proper arch cflags to workaround gypi
++do_configure () {
++    export LD="${CXX}"
++    GYP_DEFINES="${GYP_DEFINES}" export GYP_DEFINES
++    # $TARGET_ARCH settings don't match --dest-cpu settings
++   ./configure --prefix=${prefix} --without-snapshot --shared-openssl \
++               --dest-cpu="${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)}" \
++               --dest-os=linux \
++               ${ARCHFLAGS}
++}
++
++do_compile () {
++    export LD="${CXX}"
++    oe_runmake BUILDTYPE=Release
++}
++
++do_install () {
++    oe_runmake install DESTDIR=${D}
++}
++
++do_install_append_class-native() {
++    # use node from PATH instead of absolute path to sysroot
++    # node-v0.10.25/tools/install.py is using:
++    # shebang = os.path.join(node_prefix, 'bin/node')
++    # update_shebang(link_path, shebang)
++    # and node_prefix can be very long path to bindir in native sysroot and
++    # when it exceeds 128 character shebang limit it's stripped to incorrect path
++    # and npm fails to execute like in this case with 133 characters show in log.do_install:
++    # updating shebang of /home/jenkins/workspace/build-webos-nightly/device/qemux86/label/open-webos-builder/BUILD-qemux86/work/x86_64-linux/nodejs-native/0.10.15-r0/image/home/jenkins/workspace/build-webos-nightly/device/qemux86/label/open-webos-builder/BUILD-qemux86/sysroots/x86_64-linux/usr/bin/npm to /home/jenkins/workspace/build-webos-nightly/device/qemux86/label/open-webos-builder/BUILD-qemux86/sysroots/x86_64-linux/usr/bin/node
++    # /usr/bin/npm is symlink to /usr/lib/node_modules/npm/bin/npm-cli.js
++    # use sed on npm-cli.js because otherwise symlink is replaced with normal file and
++    # npm-cli.js continues to use old shebang
++    sed "1s^.*^#\!/usr/bin/env node^g" -i ${D}${exec_prefix}/lib/node_modules/npm/bin/npm-cli.js
++}
++
++do_install_append_class-target() {
++    sed "1s^.*^#\!${bindir}/env node^g" -i ${D}${exec_prefix}/lib/node_modules/npm/bin/npm-cli.js
++}
++
++PACKAGES =+ "${PN}-npm"
++FILES_${PN}-npm = "${exec_prefix}/lib/node_modules ${bindir}/npm"
++RDEPENDS_${PN}-npm = "bash python-shell python-datetime python-subprocess python-textutils"
++
++PACKAGES =+ "${PN}-systemtap"
++FILES_${PN}-systemtap = "${datadir}/systemtap"
++
++
++BBCLASSEXTEND = "native"
+-- 
+1.9.1
 
 
-------=_Part_326_492751533.1453491793322--
