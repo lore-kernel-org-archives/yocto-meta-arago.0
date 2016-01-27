@@ -1,27 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 6CCD152961
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 638A452961
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jan 2016 19:21:45 +0000 (UTC)
+	Wed, 27 Jan 2016 19:23:15 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RJLi6o001961
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:21:44 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJLiTi022412
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:21:44 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 27 Jan 2016 13:21:44 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u0RJLiCl021248;	Wed, 27 Jan 2016 13:21:44 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 27 Jan 2016 14:21:42 -0500
-Message-ID: <1453922502-16517-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RJNEQI013809
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:23:14 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJNECp023656
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:23:14 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 27 Jan 2016 13:23:14 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJNE7A026276;
+	Wed, 27 Jan 2016 13:23:14 -0600
+Date: Wed, 27 Jan 2016 14:22:59 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Hongmei Gou <h-gou@ti.com>
+Message-ID: <20160127192259.GQ11314@edge>
+References: <1453922502-16517-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2] packagegroup-arago-tisdk-addons-sdk-target: add elfutils-dev and elfutils-staticdev for dra7xx
+In-Reply-To: <1453922502-16517-1-git-send-email-h-gou@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v2] packagegroup-arago-tisdk-addons-sdk-target: add elfutils-dev and elfutils-staticdev for dra7xx
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,43 +37,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 19:21:45 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 27 Jan 2016 19:23:19 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-elfutils are needed for clacc, the shell that is used to implement the
-OpenMP accelerator model for ARM+DSP. elfutils have been added for
-keystone, and now adding them for dra7xx.
+Thanks!
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
----
-v2 changes: update commit message by providing the reason for adding 
-            elfutils for dra7xx
-
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 7d5b290..44abbdb 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
- LICENSE = "MIT"
--PR = "r19"
-+PR = "r20"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -120,6 +120,8 @@ UTILS_append_ti33x = " canutils-dev"
- UTILS_append_ti43x = " canutils-dev"
- UTILS_append_dra7xx = " canutils-dev \
-                         opencl-staticdev \
-+                        elfutils-dev \
-+                        elfutils-staticdev \
- "
- UTILS_append_k2g-evm = " canutils-dev"
- 
--- 
-1.9.1
-
+On Wed, Jan 27, 2016 at 02:21:42PM -0500, Hongmei Gou wrote:
+> elfutils are needed for clacc, the shell that is used to implement the
+> OpenMP accelerator model for ARM+DSP. elfutils have been added for
+> keystone, and now adding them for dra7xx.
+> 
+> Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> ---
+> v2 changes: update commit message by providing the reason for adding 
+>             elfutils for dra7xx
+> 
+>  .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+> index 7d5b290..44abbdb 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
+>  LICENSE = "MIT"
+> -PR = "r19"
+> +PR = "r20"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -120,6 +120,8 @@ UTILS_append_ti33x = " canutils-dev"
+>  UTILS_append_ti43x = " canutils-dev"
+>  UTILS_append_dra7xx = " canutils-dev \
+>                          opencl-staticdev \
+> +                        elfutils-dev \
+> +                        elfutils-staticdev \
+>  "
+>  UTILS_append_k2g-evm = " canutils-dev"
+>  
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
