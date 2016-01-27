@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 56FDF529E4
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 58B8952A56
 	for <meta-arago@arago-project.org>;
 	Wed, 27 Jan 2016 19:54:33 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RJsWxC022471
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RJsWPN020674
 	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:54:32 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJsWAP022552
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJsWMW012382
 	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:54:32 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
 	Wed, 27 Jan 2016 13:54:32 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJsWm7022148;
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJsWCh022147;
 	Wed, 27 Jan 2016 13:54:32 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aOWAh-0007F4-UB; Wed, 27 Jan 2016 14:54:31 -0500
+	<jake@udd0866934>)	id 1aOWAh-0007Ew-J2; Wed, 27 Jan 2016 14:54:31 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 27 Jan 2016 14:54:26 -0500
-Message-ID: <1453924469-27790-4-git-send-email-j-stiffler@ti.com>
+Date: Wed, 27 Jan 2016 14:54:24 -0500
+Message-ID: <1453924469-27790-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1453924469-27790-1-git-send-email-j-stiffler@ti.com>
 References: <1453924469-27790-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/6] packagegroup-arago-tisdk-addons*: Add OpenCL and related packages for keystone
+Subject: [PATCH 1/6] ti-llvm3.6: Upgrade ti-llvm from version 3.3 to 3.6
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,134 +43,159 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroup-arago-tisdk-addons-sdk-host.bb    | 29 +++++++++++++++++++++-
- .../packagegroup-arago-tisdk-addons-sdk-target.bb  | 14 ++++++++++-
- .../packagegroup-arago-tisdk-addons.bb             | 21 ++++++++++++++++
- 3 files changed, 62 insertions(+), 2 deletions(-)
+ ...e-Do-not-check-build-executable-extension.patch | 25 +-----------
+ .../llvm/{ti-llvm3.3_3.3.bb => ti-llvm3.6_3.6.bb}  | 47 ++++++++++++++++++----
+ 2 files changed, 40 insertions(+), 32 deletions(-)
+ rename meta-arago-extras/recipes-core/llvm/{ti-llvm3.3 => ti-llvm3.6}/0001-configure-Do-not-check-build-executable-extension.patch (56%)
+ rename meta-arago-extras/recipes-core/llvm/{ti-llvm3.3_3.3.bb => ti-llvm3.6_3.6.bb} (67%)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index c5ffbe9..eed469d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r16"
-+PR = "r17"
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-extension.patch
+similarity index 56%
+rename from meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
+rename to meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-extension.patch
+index b6e5331..9a60caf 100644
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
++++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-extension.patch
+@@ -9,8 +9,7 @@ Subject: [PATCH] configure: Do not check build executable extension.
+ Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
+ ---
+  configure                 |    3 +++
+- projects/sample/configure |    4 ++++
+- 2 files changed, 7 insertions(+)
++ 1 files changed, 3 insertions(+)
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ diff --git a/configure b/configure
+ index decbc40..387c4fd 100755
+@@ -33,28 +32,6 @@ index decbc40..387c4fd 100755
+    rm -f conftest*
+    test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
+  fi
+-diff --git a/projects/sample/configure b/projects/sample/configure
+-index a2c70c6..b57f21c 100755
+---- a/projects/sample/configure
+-+++ b/projects/sample/configure
+-@@ -4753,6 +4753,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+-   rm -f conftest*
+-   echo 'int main () { return 0; }' > conftest.$ac_ext
+-   ac_cv_build_exeext=
+-+
+-+if false; then
+-   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
+-   (eval $ac_build_link) 2>&5
+-   ac_status=$?
+-@@ -4769,6 +4771,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+- echo "$as_me: error: installation or configuration problem: compiler cannot create executables." >&2;}
+-    { (exit 1); exit 1; }; }
+-   fi
+-+fi
+-+
+-   rm -f conftest*
+-   test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
+- fi
+ -- 
+ 1.7.9.5
  
-@@ -35,6 +35,18 @@ UTILS_append_dra7xx = " \
-     opencl-examples-src \
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+similarity index 67%
+rename from meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+rename to meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+index 35514c4..2c53f1f 100644
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
++++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+@@ -1,7 +1,7 @@
+-DESCRIPTION = "LLVM 3.3 with support for TI C66x intrinsics"
++DESCRIPTION = "LLVM 3.6 with support for TI C66x intrinsics"
+ HOMEPAGE = "https://gitorious.design.ti.com/ocl/llvm33-src"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ do_configure_prepend_class-native() {
+     # Fix paths in llvm-config
+@@ -10,27 +10,48 @@ do_configure_prepend_class-native() {
+ 
+ require recipes-core/llvm/llvm.inc
+ 
+-DEPENDS += "zlib libxml2"
+-EXTRA_OECONF += "--enable-zlib"
++LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
++
++DEPENDS += "libxml2"
++EXTRA_OECONF += ""
+ 
+ 
+ LLVM_DIR = "ti-llvm${PV}"
+ 
+-BRANCH = "master"
++LLVM_GIT_NAME = "llvm"
++LLVM_GIT_URI = "git://git.ti.com/opencl/llvm.git"
++LLVM_GIT_PROTOCOL = "git"
++LLVM_GIT_BRANCH = "release_36_ti"
++LLVM_GIT_DESTSUFFIX = "git"
++LLVM_GIT_SRCREV = "2ff2f1fe65645f9323372e382d0fd9647462abcb"
++
++CLANG_GIT_NAME = "clang"
++CLANG_GIT_URI = "git://git.ti.com/opencl/clang.git"
++CLANG_GIT_PROTOCOL = "git"
++CLANG_GIT_BRANCH = "release_36_ti"
++CLANG_GIT_DESTSUFFIX = "${LLVM_GIT_DESTSUFFIX}/tools/clang"
++CLANG_GIT_SRCREV = "7b43bc10396ecdd141cec40acacbc240ac76a84f"
+ 
+ SRC_URI = " \
+-  git://git.ti.com/opencl/ti-llvm-clang-3_3.git;protocol=git;branch=${BRANCH} \
++  ${LLVM_GIT_URI};protocol=${LLVM_GIT_PROTOCOL};branch=${LLVM_GIT_BRANCH};destsuffix=${LLVM_GIT_DESTSUFFIX};name=${LLVM_GIT_NAME} \
++  ${CLANG_GIT_URI};protocol=${CLANG_GIT_PROTOCOL};branch=${CLANG_GIT_BRANCH};destsuffix=${CLANG_GIT_DESTSUFFIX};name=${CLANG_GIT_NAME} \
+   file://0001-configure-Do-not-check-build-executable-extension.patch \
  "
  
-+UTILS_append_k2hk-evm = " \
-+    opencl-examples-src \
-+"
-+
-+UTILS_append_k2l-evm = " \
-+    opencl-examples-src \
-+"
-+
-+UTILS_append_k2e-evm = " \
-+    opencl-examples-src \
-+"
-+
- EXTRA_LIBS = ""
+-
+-SRCREV = "29629a3e70d445cfbfbb4046a56d3648ebae9544"
++SRCREV_${LLVM_GIT_NAME} = "${LLVM_GIT_SRCREV}"
++SRCREV_${CLANG_GIT_NAME} = "${CLANG_GIT_SRCREV}"
  
- EXTRA_LIBS_append_omap-a15 = " \
-@@ -53,6 +65,21 @@ EXTRA_LIBS_append_keystone = " \
-     hplib-mod-src \
- "
+ S = "${WORKDIR}/git"
  
-+EXTRA_LIBS_append_k2hk-evm = " \
-+    debugss-module-drv-src \
-+    gdbserverproxy-module-drv-src \
+ LIBXML2_INC = "`pkg-config libxml-2.0 --cflags`"
+ LIBXML2_LIBS = "`pkg-config libxml-2.0 --libs`"
+ 
++EXTRA_OECONF += " --enable-targets="host,arm,c6000,msp430" \
++                  --disable-zlib \
++                  --disable-terminfo \
++                  --disable-libedit \
 +"
 +
-+EXTRA_LIBS_append_k2l-evm = " \
-+    debugss-module-drv-src \
-+    gdbserverproxy-module-drv-src \
-+"
+ EXTRA_OEMAKE += "LIBXML2_INC="${LIBXML2_INC}" LIBXML2_LIBS="${LIBXML2_LIBS}""
+ 
+ do_compile_class-native() {
+@@ -54,6 +75,13 @@ do_compile_class-nativesdk() {
+         RANLIB="${BUILD_RANLIB}" \
+         PATH="${STAGING_BINDIR_NATIVE}:$PATH" \
+         cross-compile-build-tools
 +
-+EXTRA_LIBS_append_k2e-evm = " \
-+    debugss-module-drv-src \
-+    gdbserverproxy-module-drv-src \
-+"
++    # Workaround for timestamp issue on built-tools
++    for f in ${LLVM_BUILD_DIR}/BuildTools/Release/bin/*
++    do
++        touch $f
++    done
 +
- RDEPENDS_${PN} = "\
-     ${UTILS} \
-     ${EXTRA_LIBS} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 7d5b290..12352eb 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
- LICENSE = "MIT"
--PR = "r19"
-+PR = "r20"
+     oe_runmake
+ }
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -95,6 +123,7 @@ do_install_class-native() {
+     install -m 0755 ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti ${D}${bindir}
+ }
  
-@@ -121,6 +121,9 @@ UTILS_append_ti43x = " canutils-dev"
- UTILS_append_dra7xx = " canutils-dev \
-                         opencl-staticdev \
- "
-+UTILS_append_k2hk-evm = " opencl-staticdev"
-+UTILS_append_k2l-evm = " opencl-staticdev"
-+UTILS_append_k2e-evm = " opencl-staticdev"
- UTILS_append_k2g-evm = " canutils-dev"
- 
- EXTRA_LIBS = ""
-@@ -129,6 +132,15 @@ EXTRA_LIBS_append_dra7xx = " libulm-dev \
-                              libulm-staticdev \
-                              gdbserver-c6x-dev \
- "
-+EXTRA_LIBS_append_k2hk-evm = " libulm-staticdev \
-+                               gdbserver-c6x-dev \
-+"
-+EXTRA_LIBS_append_k2l-evm = " libulm-staticdev \
-+                              gdbserver-c6x-dev \
-+"
-+EXTRA_LIBS_append_k2e-evm = " libulm-staticdev \
-+                              gdbserver-c6x-dev \
-+"
- 
- RDEPENDS_${PN} = "\
-     ${UTILS} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 1fade5a..b34c6f4 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -62,6 +62,27 @@ UTILS_append_dra7xx = " canutils \
-                         opencl-examples-dev \
- "
- 
-+UTILS_append_k2hk-evm = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    gdbc6x \
-+    dsptop \
-+"
 +
-+UTILS_append_k2l-evm = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    gdbc6x \
-+    dsptop \
-+"
-+
-+UTILS_append_k2e-evm = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    gdbc6x \
-+    dsptop \
-+"
-+
- UTILS_append_k2g-evm = " canutils"
+ SYSROOT_PREPROCESS_FUNCS_class-target += "llvm_sysroot_preprocess_target"
+ SYSROOT_PREPROCESS_FUNCS_class-nativesdk += "llvm_sysroot_preprocess_target"
  
- EXTRA_LIBS = ""
+@@ -107,4 +136,6 @@ llvm_sysroot_preprocess_target() {
+     mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_crossscripts}/llvm-config${PV}-ti
+ }
+ 
++INSANE_SKIP_${MLPREFIX}libllvm${LLVM_RELEASE}-llvm-${LLVM_RELEASE}.0 += "dev-so"
++
+ BBCLASSEXTEND = "native nativesdk"
 -- 
 1.9.1
 
