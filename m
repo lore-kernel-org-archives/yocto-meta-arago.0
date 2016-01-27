@@ -1,27 +1,32 @@
-Return-Path: <h-gou@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 78FBD52961
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id DE67F52961
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jan 2016 20:14:20 +0000 (UTC)
+	Wed, 27 Jan 2016 20:15:47 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RKEJLv010506
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:14:19 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKEJB0003544
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:14:19 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 27 Jan 2016 14:14:19 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u0RKEJeU021144;	Wed, 27 Jan 2016 14:14:19 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 27 Jan 2016 15:14:17 -0500
-Message-ID: <1453925657-16950-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RKFlK4006341
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:15:47 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKFld3004956
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:15:47 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 27 Jan 2016 14:15:47 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKFkTT022656;
+	Wed, 27 Jan 2016 14:15:46 -0600
+Date: Wed, 27 Jan 2016 15:15:31 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20160127201531.GV11314@edge>
+References: <1453924469-27790-1-git-send-email-j-stiffler@ti.com>
+	<1453924469-27790-7-git-send-email-j-stiffler@ti.com>
+	<20160127201338.GU11314@edge>
 MIME-Version: 1.0
-Subject: [PATCH v2] opencv: update to version 3.1
+In-Reply-To: <20160127201338.GU11314@edge>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 6/6] tisdk-server-rootfs-image: Add unnecessary dev packages to BAD_RECOMMENDATIONS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,42 +39,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 20:14:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 27 Jan 2016 20:15:48 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
----
-v2 changes: update commit message
+On Wed, Jan 27, 2016 at 03:13:38PM -0500, Denys Dmytriyenko wrote:
+> Can you please summarize why those packages get pulled in the first place?
+> 
+> On Wed, Jan 27, 2016 at 02:54:29PM -0500, Jacob Stiffler wrote:
+> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> > ---
+> >  meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+> > index 3928948..89272f0 100644
+> > --- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+> > +++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+> > @@ -13,4 +13,11 @@ IMAGE_INSTALL += "\
+> >      gdb \
+> >  "
+> >  
+> > +BAD_RECOMMENDATIONS += " \
+> > +    ti-llvm3.3-dev \
 
- .../recipes-support/opencv/{opencv_3.0.bb => opencv_3.1.bb}         | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- copy meta-arago-extras/recipes-support/opencv/{opencv_3.0.bb => opencv_3.1.bb} (97%)
+Moreover, wasn't ti-llvm3.3-dev updated to ti-llvm3.6-dev by patch #1/6?
 
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv_3.0.bb b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-similarity index 97%
-copy from meta-arago-extras/recipes-support/opencv/opencv_3.0.bb
-copy to meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-index ef56a78..54ddee8 100644
---- a/meta-arago-extras/recipes-support/opencv/opencv_3.0.bb
-+++ b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-@@ -11,13 +11,13 @@ DEFAULT_PREFERENCE = "-1"
- 
- DEPENDS = "python-numpy libtool swig swig-native python bzip2 zlib glib-2.0"
- 
--SRCREV_opencv = "b3ac274617beb8e54c8bfebcb141090a57165ea2"
--SRCREV_contrib = "c8053da4f2621169746ef8670dc6145ee5958e9c"
-+SRCREV_opencv = "92387b1ef8fad15196dd5f7fb4931444a68bc93a"
-+SRCREV_contrib = "5409d5ad560523c85c6796cc5a009347072d883c"
- SRCREV_FORMAT = "opencv"
- SRC_URI = "git://github.com/Itseez/opencv.git;name=opencv \
-            git://github.com/Itseez/opencv_contrib.git;destsuffix=contrib;name=contrib"
- 
--PV = "3.0+git${SRCPV}"
-+PV = "3.1+git${SRCPV}"
- 
- S = "${WORKDIR}/git"
- 
--- 
-1.9.1
 
+> > +    opencl-monitor-dev \
+> > +    libulm-dev \
+> > +    gdbserver-c6x-dev \
+> > +"
+> > +
+> >  export IMAGE_BASENAME = "tisdk-server-rootfs-image"
+> > -- 
+> > 1.9.1
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
