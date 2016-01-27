@@ -1,27 +1,27 @@
 Return-Path: <anandb@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6650852007
+	by arago-project.org (Postfix) with ESMTPS id 47455529B5
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jan 2016 16:10:48 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RGAlmN031301
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 10:10:47 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RGAl5p031348
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 10:10:47 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 27 Jan 2016 10:10:46 -0600
+	Wed, 27 Jan 2016 16:27:00 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RGQwwA008467
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 10:26:58 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RGQwWN021730
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 10:26:58 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 27 Jan 2016 10:26:58 -0600
 Received: from tigfxsrv.india.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u0RGAjsa009022;	Wed, 27 Jan 2016 10:10:46 -0600
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0RGQuw1001479;	Wed, 27 Jan 2016 10:26:57 -0600
 From: Anand Balagopalakrishnan <anandb@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 27 Jan 2016 21:40:35 +0530
-Message-ID: <1453911035-17363-1-git-send-email-anandb@ti.com>
+Date: Wed, 27 Jan 2016 21:56:53 +0530
+Message-ID: <1453912013-17710-1-git-send-email-anandb@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH 1/1] libgbm: synchronize libgbm with upstream Mesa
+Subject: [PATCH 1/1] omapdrmtest: disable viddectest on kmscube
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,44 +34,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 16:10:48 -0000
+X-List-Received-Date: Wed, 27 Jan 2016 16:27:02 -0000
 Content-Type: text/plain
 
-Move to the latest GBM API defined in upstream Mesa:
-git://anongit.freedesktop.org/mesa/mesa
+display-kmscube uses proprietary EGL extension EGL_RAW_VIDEO_TI_DMABUF. The
+right way to incorporate this feature is using the standard EGL extension
+EXT_image_dma_buf_import.
 
-This API change breaks backward compatibility. All dependent
-applications/libraries need to be rebuilt against this GBM library.
+Disable viddec3test on kmscube until the correct EGL extension is available.
 
 Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
 ---
- .../recipes-graphics/gbm/libgbm_10.0.0.bb          |   17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb
+ .../0001-configure-disable-kmscube.patch           |   35 ++++++++++++++++++++
+ .../omapdrmtest/omapdrmtest_1.0.0.bb               |    3 +-
+ 2 files changed, 37 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest/0001-configure-disable-kmscube.patch
 
-diff --git a/meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb b/meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb
+diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest/0001-configure-disable-kmscube.patch b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest/0001-configure-disable-kmscube.patch
 new file mode 100644
-index 0000000..303f245
+index 0000000..231dc75
 --- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb
-@@ -0,0 +1,17 @@
-+DESCRIPTION = "Userspace interface for the kernel GBM services."
-+HOMEPAGE = "http://git.ti.com"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://gbm.c;beginline=1;endline=26;md5=b871c7f2f477df29ee4c0ec437b187f7"
-+DEPENDS = "libdrm"
++++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest/0001-configure-disable-kmscube.patch
+@@ -0,0 +1,35 @@
++From f56d36a2323f04bb4936a106efdcf8c4754e2233 Mon Sep 17 00:00:00 2001
++From: Anand Balagopalakrishnan <anandb@ti.com>
++Date: Sun, 24 Jan 2016 14:16:10 +0530
++Subject: [PATCH 1/1] configure: disable kmscube
 +
-+inherit autotools pkgconfig
++kmscube support requires proprietary EGL extensions EGL_RAW_VIDEO_TI_DMABUF
++which is not supported in DDK 1.14.
 +
-+BRANCH = "next"
++Future versions of DDK will support the standard EGL extension
++EXT_image_dma_buf_import which is ratified by Khronos. This will require
++corresponding changes to the application.
 +
-+SRCREV = "96f37555c7e82a417b02051661377b10e6b3966e"
++Till then, disable kmscube in omapdrmtest.
 +
-+SRC_URI = "git://git.ti.com/glsdk/libgbm.git;protocol=git;branch=${BRANCH}"
++Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
++---
++ configure.ac |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+S = "${WORKDIR}/git"
++diff --git a/configure.ac b/configure.ac
++index c026733..05180a6 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -51,7 +51,7 @@ AM_CONDITIONAL(ENABLE_V4L2_DMABUF, [test "x$HAVE_V4L2_DMABUF" = xyes])
++ 
++ # Check optional KMSCUBE:
++ AC_ARG_ENABLE([kmscube], AS_HELP_STRING([--disable-kmscube], [disable kmscube display support]))
++-AS_IF([test "x$enable_kmscube" != "xno"], [PKG_CHECK_EXISTS(gbm egl glesv2, [HAVE_KMSCUBE=yes], [HAVE_KMSCUBE=no])])
+++HAVE_KMSCUBE="no"
++ if test "x$HAVE_KMSCUBE" = "xyes"; then
++ 	AC_DEFINE(HAVE_KMSCUBE, 1, [Have KMSCUBE support])
++ 	PKG_CHECK_MODULES(GBM, gbm)
++-- 
++1.7.9.5
 +
-+PR = "r0"
+diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+index ac45da3..f5880b4 100644
+--- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+@@ -6,11 +6,12 @@ DEPENDS += "libav libdce libdrm libgbm omap5-sgx-ddk-um-linux wayland"
+ 
+ inherit autotools pkgconfig
+ 
+-PR = "r8"
++PR = "r9"
+ SRCREV = "152713c45d7972ed08f506255c43ce7ff634a9f5"
+ 
+ SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git \
+ 	file://0001-util-demux-update-use-of-deprecated-API.patch \
++	file://0001-configure-disable-kmscube.patch \
+ "
+ 
+ S = "${WORKDIR}/git"
 -- 
 1.7.9.5
 
