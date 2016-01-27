@@ -1,32 +1,31 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id DE67F52961
+	by arago-project.org (Postfix) with ESMTPS id E3B3752961
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jan 2016 20:15:47 +0000 (UTC)
+	Wed, 27 Jan 2016 20:22:50 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RKFlK4006341
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:15:47 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKFld3004956
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:15:47 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 27 Jan 2016 14:15:47 -0600
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RKMoFj007087
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:22:50 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKMoPM012402
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 14:22:50 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 27 Jan 2016 14:22:49 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKFkTT022656;
-	Wed, 27 Jan 2016 14:15:46 -0600
-Date: Wed, 27 Jan 2016 15:15:31 -0500
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RKMn68027224;
+	Wed, 27 Jan 2016 14:22:49 -0600
+Date: Wed, 27 Jan 2016 15:22:34 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20160127201531.GV11314@edge>
+Message-ID: <20160127202233.GW11314@edge>
 References: <1453924469-27790-1-git-send-email-j-stiffler@ti.com>
-	<1453924469-27790-7-git-send-email-j-stiffler@ti.com>
-	<20160127201338.GU11314@edge>
+	<1453924469-27790-2-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20160127201338.GU11314@edge>
+In-Reply-To: <1453924469-27790-2-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 6/6] tisdk-server-rootfs-image: Add unnecessary dev packages to BAD_RECOMMENDATIONS
+Subject: Re: [PATCH 1/6] ti-llvm3.6: Upgrade ti-llvm from version 3.3 to 3.6
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,46 +38,175 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 20:15:48 -0000
+X-List-Received-Date: Wed, 27 Jan 2016 20:22:51 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Jan 27, 2016 at 03:13:38PM -0500, Denys Dmytriyenko wrote:
-> Can you please summarize why those packages get pulled in the first place?
+On Wed, Jan 27, 2016 at 02:54:24PM -0500, Jacob Stiffler wrote:
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  ...e-Do-not-check-build-executable-extension.patch | 25 +-----------
+>  .../llvm/{ti-llvm3.3_3.3.bb => ti-llvm3.6_3.6.bb}  | 47 ++++++++++++++++++----
+>  2 files changed, 40 insertions(+), 32 deletions(-)
+>  rename meta-arago-extras/recipes-core/llvm/{ti-llvm3.3 => ti-llvm3.6}/0001-configure-Do-not-check-build-executable-extension.patch (56%)
+>  rename meta-arago-extras/recipes-core/llvm/{ti-llvm3.3_3.3.bb => ti-llvm3.6_3.6.bb} (67%)
 > 
-> On Wed, Jan 27, 2016 at 02:54:29PM -0500, Jacob Stiffler wrote:
-> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > ---
-> >  meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-> > index 3928948..89272f0 100644
-> > --- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-> > +++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-> > @@ -13,4 +13,11 @@ IMAGE_INSTALL += "\
-> >      gdb \
-> >  "
-> >  
-> > +BAD_RECOMMENDATIONS += " \
-> > +    ti-llvm3.3-dev \
+> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-extension.patch
+> similarity index 56%
+> rename from meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
+> rename to meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-extension.patch
+> index b6e5331..9a60caf 100644
+> --- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3/0001-configure-Do-not-check-build-executable-extension.patch
+> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-extension.patch
+> @@ -9,8 +9,7 @@ Subject: [PATCH] configure: Do not check build executable extension.
+>  Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
+>  ---
+>   configure                 |    3 +++
+> - projects/sample/configure |    4 ++++
+> - 2 files changed, 7 insertions(+)
+> + 1 files changed, 3 insertions(+)
+>  
+>  diff --git a/configure b/configure
+>  index decbc40..387c4fd 100755
+> @@ -33,28 +32,6 @@ index decbc40..387c4fd 100755
+>     rm -f conftest*
+>     test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
+>   fi
+> -diff --git a/projects/sample/configure b/projects/sample/configure
+> -index a2c70c6..b57f21c 100755
+> ---- a/projects/sample/configure
+> -+++ b/projects/sample/configure
+> -@@ -4753,6 +4753,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+> -   rm -f conftest*
+> -   echo 'int main () { return 0; }' > conftest.$ac_ext
+> -   ac_cv_build_exeext=
+> -+
+> -+if false; then
+> -   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
+> -   (eval $ac_build_link) 2>&5
+> -   ac_status=$?
+> -@@ -4769,6 +4771,8 @@ echo "$as_me: error: no acceptable cc found in \$PATH" >&2;}
+> - echo "$as_me: error: installation or configuration problem: compiler cannot create executables." >&2;}
+> -    { (exit 1); exit 1; }; }
+> -   fi
+> -+fi
+> -+
+> -   rm -f conftest*
+> -   test x"${ac_cv_build_exeext}" = x && ac_cv_build_exeext=blank
+> - fi
+>  -- 
+>  1.7.9.5
+>  
+> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+> similarity index 67%
+> rename from meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+> rename to meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+> index 35514c4..2c53f1f 100644
+> --- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.3_3.3.bb
+> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+> @@ -1,7 +1,7 @@
+> -DESCRIPTION = "LLVM 3.3 with support for TI C66x intrinsics"
+> +DESCRIPTION = "LLVM 3.6 with support for TI C66x intrinsics"
+>  HOMEPAGE = "https://gitorious.design.ti.com/ocl/llvm33-src"
+>  
+> -PR = "r1"
+> +PR = "r2"
+>  
+>  do_configure_prepend_class-native() {
+>      # Fix paths in llvm-config
+> @@ -10,27 +10,48 @@ do_configure_prepend_class-native() {
+>  
+>  require recipes-core/llvm/llvm.inc
+>  
+> -DEPENDS += "zlib libxml2"
+> -EXTRA_OECONF += "--enable-zlib"
+> +LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
+> +
+> +DEPENDS += "libxml2"
+> +EXTRA_OECONF += ""
 
-Moreover, wasn't ti-llvm3.3-dev updated to ti-llvm3.6-dev by patch #1/6?
+^^^ Do you need to keep this, when it's empty?
 
 
-> > +    opencl-monitor-dev \
-> > +    libulm-dev \
-> > +    gdbserver-c6x-dev \
-> > +"
-> > +
-> >  export IMAGE_BASENAME = "tisdk-server-rootfs-image"
-> > -- 
-> > 1.9.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>  LLVM_DIR = "ti-llvm${PV}"
+>  
+> -BRANCH = "master"
+> +LLVM_GIT_NAME = "llvm"
+> +LLVM_GIT_URI = "git://git.ti.com/opencl/llvm.git"
+> +LLVM_GIT_PROTOCOL = "git"
+> +LLVM_GIT_BRANCH = "release_36_ti"
+> +LLVM_GIT_DESTSUFFIX = "git"
+> +LLVM_GIT_SRCREV = "2ff2f1fe65645f9323372e382d0fd9647462abcb"
+> +
+> +CLANG_GIT_NAME = "clang"
+> +CLANG_GIT_URI = "git://git.ti.com/opencl/clang.git"
+> +CLANG_GIT_PROTOCOL = "git"
+> +CLANG_GIT_BRANCH = "release_36_ti"
+> +CLANG_GIT_DESTSUFFIX = "${LLVM_GIT_DESTSUFFIX}/tools/clang"
+> +CLANG_GIT_SRCREV = "7b43bc10396ecdd141cec40acacbc240ac76a84f"
+>  
+>  SRC_URI = " \
+> -  git://git.ti.com/opencl/ti-llvm-clang-3_3.git;protocol=git;branch=${BRANCH} \
+> +  ${LLVM_GIT_URI};protocol=${LLVM_GIT_PROTOCOL};branch=${LLVM_GIT_BRANCH};destsuffix=${LLVM_GIT_DESTSUFFIX};name=${LLVM_GIT_NAME} \
+> +  ${CLANG_GIT_URI};protocol=${CLANG_GIT_PROTOCOL};branch=${CLANG_GIT_BRANCH};destsuffix=${CLANG_GIT_DESTSUFFIX};name=${CLANG_GIT_NAME} \
+>    file://0001-configure-Do-not-check-build-executable-extension.patch \
+>  "
+>  
+> -
+> -SRCREV = "29629a3e70d445cfbfbb4046a56d3648ebae9544"
+> +SRCREV_${LLVM_GIT_NAME} = "${LLVM_GIT_SRCREV}"
+> +SRCREV_${CLANG_GIT_NAME} = "${CLANG_GIT_SRCREV}"
+>  
+>  S = "${WORKDIR}/git"
+>  
+>  LIBXML2_INC = "`pkg-config libxml-2.0 --cflags`"
+>  LIBXML2_LIBS = "`pkg-config libxml-2.0 --libs`"
+>  
+> +EXTRA_OECONF += " --enable-targets="host,arm,c6000,msp430" \
+> +                  --disable-zlib \
+> +                  --disable-terminfo \
+> +                  --disable-libedit \
+> +"
+> +
+>  EXTRA_OEMAKE += "LIBXML2_INC="${LIBXML2_INC}" LIBXML2_LIBS="${LIBXML2_LIBS}""
+>  
+>  do_compile_class-native() {
+> @@ -54,6 +75,13 @@ do_compile_class-nativesdk() {
+>          RANLIB="${BUILD_RANLIB}" \
+>          PATH="${STAGING_BINDIR_NATIVE}:$PATH" \
+>          cross-compile-build-tools
+> +
+> +    # Workaround for timestamp issue on built-tools
+> +    for f in ${LLVM_BUILD_DIR}/BuildTools/Release/bin/*
+> +    do
+> +        touch $f
+> +    done
+> +
+>      oe_runmake
+>  }
+>  
+> @@ -95,6 +123,7 @@ do_install_class-native() {
+>      install -m 0755 ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti ${D}${bindir}
+>  }
+>  
+> +
+>  SYSROOT_PREPROCESS_FUNCS_class-target += "llvm_sysroot_preprocess_target"
+>  SYSROOT_PREPROCESS_FUNCS_class-nativesdk += "llvm_sysroot_preprocess_target"
+>  
+> @@ -107,4 +136,6 @@ llvm_sysroot_preprocess_target() {
+>      mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_crossscripts}/llvm-config${PV}-ti
+>  }
+>  
+> +INSANE_SKIP_${MLPREFIX}libllvm${LLVM_RELEASE}-llvm-${LLVM_RELEASE}.0 += "dev-so"
+
+Should there be .0 at the end of the package name?
+
+
+> +
+>  BBCLASSEXTEND = "native nativesdk"
+> -- 
+> 1.9.1
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
