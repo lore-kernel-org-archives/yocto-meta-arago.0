@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 638A452961
+Return-Path: <h-gou@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id E8B30529B5
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jan 2016 19:23:15 +0000 (UTC)
+	Wed, 27 Jan 2016 19:48:08 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RJNEQI013809
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:23:14 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJNECp023656
-	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:23:14 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 27 Jan 2016 13:23:14 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJNE7A026276;
-	Wed, 27 Jan 2016 13:23:14 -0600
-Date: Wed, 27 Jan 2016 14:22:59 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Hongmei Gou <h-gou@ti.com>
-Message-ID: <20160127192259.GQ11314@edge>
-References: <1453922502-16517-1-git-send-email-h-gou@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0RJm8Tq004103
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:48:08 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0RJm8Ri016933
+	for <meta-arago@arago-project.org>; Wed, 27 Jan 2016 13:48:08 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 27 Jan 2016 13:48:07 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0RJm7eZ031798;	Wed, 27 Jan 2016 13:48:07 -0600
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 27 Jan 2016 14:48:05 -0500
+Message-ID: <1453924085-16748-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1453922502-16517-1-git-send-email-h-gou@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] packagegroup-arago-tisdk-addons-sdk-target: add elfutils-dev and elfutils-staticdev for dra7xx
+Subject: [PATCH] weston-init: update init scripts related to restarting Weston
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,51 +34,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 19:23:19 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 27 Jan 2016 19:48:09 -0000
+Content-Type: text/plain
 
-Thanks!
+* Bypass restarting Weston if SD card has calibration file already
 
-On Wed, Jan 27, 2016 at 02:21:42PM -0500, Hongmei Gou wrote:
-> elfutils are needed for clacc, the shell that is used to implement the
-> OpenMP accelerator model for ARM+DSP. elfutils have been added for
-> keystone, and now adding them for dra7xx.
-> 
-> Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> ---
-> v2 changes: update commit message by providing the reason for adding 
->             elfutils for dra7xx
-> 
->  .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-> index 7d5b290..44abbdb 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
->  LICENSE = "MIT"
-> -PR = "r19"
-> +PR = "r20"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -120,6 +120,8 @@ UTILS_append_ti33x = " canutils-dev"
->  UTILS_append_ti43x = " canutils-dev"
->  UTILS_append_dra7xx = " canutils-dev \
->                          opencl-staticdev \
-> +                        elfutils-dev \
-> +                        elfutils-staticdev \
->  "
->  UTILS_append_k2g-evm = " canutils-dev"
->  
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+* Increase the sleep time before Weston is restarted
+  It takes some time to complete the Weston termination procedure.
+  If Weston is restarted before the previous instance is fully
+  terminated, the restart of Weston will fail.
+
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend | 2 +-
+ meta-arago-distro/recipes-graphics/wayland/weston-init/init     | 7 ++++---
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+index d9e15b6..4b5ad93 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = "-arago4"
++PR_append = "-arago5"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+index 2e2ae36..494584f 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+@@ -63,8 +63,9 @@ case "$1" in
+         # Check if SD card has a calibration rules file
+         SD_CALUDEV_FILE=/run/media/mmcblk0p1/ws-calibrate.rules
+         if [ "$SD_MOUNTED" = "1" -a -f "$SD_CALUDEV_FILE" ] ; then
+-            # Copy it over to udev location
++            # Copy it over to udev location, and done
+             cp "$SD_CALUDEV_FILE" "$WS_CALUDEV_FILE"
++            exit 0
+         else
+             # Run a calibration app and save output to udev rules
+             echo    "Calibrating touchscreen (first time only)"
+@@ -85,7 +86,7 @@ case "$1" in
+         udevadm control --reload
+         udevadm trigger
+         killproc weston
+-        sleep 1
++        sleep 2
+         openvt -c 4 -f runWeston
+   ;;
+ 
+@@ -96,7 +97,7 @@ case "$1" in
+ 
+   restart)
+ 	$0 stop
+-        sleep 1
++        sleep 2
+         $0 start
+   ;;
+ 
+-- 
+1.9.1
+
 
