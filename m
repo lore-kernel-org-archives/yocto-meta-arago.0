@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0740752A2A
+	by arago-project.org (Postfix) with ESMTPS id 04C9252AA7
 	for <meta-arago@arago-project.org>;
 	Fri, 29 Jan 2016 15:10:23 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TFANnr001741
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TFANcx001742
 	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 09:10:23 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TFANke019094
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TFANk5028800
 	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 09:10:23 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 29 Jan 2016 09:10:22 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 29 Jan 2016 09:10:23 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TFAMKa028688;
-	Fri, 29 Jan 2016 09:10:22 -0600
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TFANhF008669;
+	Fri, 29 Jan 2016 09:10:23 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aPAgo-0001od-Lc; Fri, 29 Jan 2016 10:10:22 -0500
+	<jake@udd0866934>)	id 1aPAgo-0001oj-RR; Fri, 29 Jan 2016 10:10:22 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Jan 2016 10:10:16 -0500
-Message-ID: <1454080219-6927-5-git-send-email-j-stiffler@ti.com>
+Date: Fri, 29 Jan 2016 10:10:17 -0500
+Message-ID: <1454080219-6927-6-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1454080219-6927-1-git-send-email-j-stiffler@ti.com>
 References: <1454080219-6927-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 4/7] matrix-gui-video-analytics-demos: Add demo and submenu
+Subject: [PATCH 5/7] packagegroup-arago-tisdk-multimedia*: Add qt-opencv-opencl-opengl-multithreaded
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,85 +41,79 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 29 Jan 2016 15:10:24 -0000
 Content-Type: text/plain
 
-* This matrix demo enables access to the
-  qt-opencv-opencl-opengl-multithreaded application
+* Add dev package to filesystem and devkit
+* Add sources to the host
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-submenus_2.0.bb |  5 +++-
- .../matrix/matrix-gui-video-analytics-demos_2.0.bb | 29 ++++++++++++++++++++++
- 2 files changed, 33 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-video-analytics-demos_2.0.bb
+ .../packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb   | 6 +++++-
+ .../packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb | 3 ++-
+ .../packagegroups/packagegroup-arago-tisdk-multimedia.bb            | 3 ++-
+ 3 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-index 132b81a..6fdaccd 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-@@ -7,7 +7,7 @@ require matrix-gui-apps-git.inc
- # reset the LIC_FILES_CHKSUM setting from the matrix-gui-apps-git.inc file
- LIC_FILES_CHKSUM = "file://LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
+index 8a728f5..e83a01c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add multimedia related sources into the SDK"
+ LICENSE = "MIT"
+-PR = "r8"
++PR = "r9"
  
--PR = "${INC_PR}.14"
-+PR = "${INC_PR}.15"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- # These packages make submenus in matrix and are not architecture specific
- inherit allarch
-@@ -31,6 +31,7 @@ SUBMENUS = " arm_submenu \
-              utilities_submenu \
-              mc_demo_submenu \
-              opencl_submenu \
-+             videoanalytics_submenu \
+@@ -21,6 +21,10 @@ MULTIMEDIA_append_ti43x = " \
+     image-gallery-src \
  "
  
- do_install(){
-@@ -60,6 +61,7 @@ PACKAGES += " ${PN}-arm \
-               ${PN}-utility \
-               ${PN}-mc-demo \
-               ${PN}-opencl \
-+              ${PN}-videoanalytics \
++MULTIMEDIA_append_dra7xx = " \
++    qt-opencv-opencl-opengl-multithreaded-src \
++"
++
+ #Demo doesn't work on 3.14
+ # ${@base_conditional('QT_PROVIDER', 'qt5', '', 'dual-camera-demo-src image-gallery-src', d)}
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+index e803acd..93b6664 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to build and install header and libs into sdk"
+ LICENSE = "MIT"
+-PR = "r5"
++PR = "r6"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -11,6 +11,7 @@ MULTIMEDIA = ""
+ MULTIMEDIA_append_dra7xx = " \
+     hevc-arm-decoder-dev \
+     hevc-arm-decoder-staticdev \
++    qt-opencv-opencl-opengl-multithreaded-dev \
  "
  
- # Make sure app images has been installed
-@@ -84,3 +86,4 @@ FILES_${PN}-camera = "${MATRIX_APP_DIR}/camera_submenu/*"
- FILES_${PN}-utility = "${MATRIX_APP_DIR}/utilities_submenu/*"
- FILES_${PN}-mc-demo = "${MATRIX_APP_DIR}/mc_demo_submenu/*"
- FILES_${PN}-opencl = "${MATRIX_APP_DIR}/opencl_submenu/*"
-+FILES_${PN}-videoanalytics = "${MATRIX_APP_DIR}/videoanalytics_submenu/*"
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-video-analytics-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-video-analytics-demos_2.0.bb
-new file mode 100644
-index 0000000..54b70dd
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-video-analytics-demos_2.0.bb
-@@ -0,0 +1,29 @@
-+DESCRIPTION = "Video Analytics demo descriptions for Matrix v2"
-+HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-+
-+require recipes-core/matrix/matrix-gui-apps-git.inc
-+
-+PR = "${INC_PR}.0"
-+
-+inherit allarch
-+
-+S = "${WORKDIR}/git/videoanalytics_apps"
-+
-+# Make sure video analytics submenu and app images has been installed
-+VIDEO_ANALYTICS_DEMO_RDEPENDS += " \
-+    matrix-gui-apps-images \
-+    matrix-gui-submenus-videoanalytics \
-+"
-+
-+PACKAGES = "matrix-video-analytics-opencv-opencl-opengl-demo \
-+"
-+
-+RDEPENDS_matrix-video-analytics-opencv-opencl-opengl-demo = " \
-+    ${VIDEO_ANALYTICS_DEMO_RDEPENDS} \
-+    qt-opencv-opencl-opengl-multithreaded \
-+"
-+
-+# Split the matrix files by demos
-+FILES_matrix-video-analytics-opencv-opencl-opengl-demo = " \
-+    ${MATRIX_APP_DIR}/videoanalytics_opencv_opencl_opengl_demo/* \
-+"
+ RDEPENDS_${PN} = "\
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index b7decfc..f5f2a25 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add multimedia related packages"
+ LICENSE = "MIT"
+-PR = "r15"
++PR = "r16"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -28,6 +28,7 @@ MULTIMEDIA_append_omap-a15 = " \
+ 
+ MULTIMEDIA_append_dra7xx = " \
+     hevc-arm-decoder \
++    qt-opencv-opencl-opengl-multithreaded-dev \
+ "
+ 
+ MULTIMEDIA_append_am37x-evm = " \
 -- 
 1.9.1
 
