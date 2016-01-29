@@ -1,29 +1,29 @@
 Return-Path: <jake@udd0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id B3E9D52007
+	by arago-project.org (Postfix) with ESMTPS id 73F8D5296D
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Jan 2016 14:18:17 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TEIHh7004075
-	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:18:17 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEIHcL028298
-	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:18:17 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 29 Jan 2016 08:18:16 -0600
+	Fri, 29 Jan 2016 14:35:22 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TEZLUX014036
+	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:35:21 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEZLlr026437
+	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:35:21 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 29 Jan 2016 08:35:22 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEIGtu000519;
-	Fri, 29 Jan 2016 08:18:16 -0600
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEZLtK011799;
+	Fri, 29 Jan 2016 08:35:21 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aP9sN-0000wN-WC; Fri, 29 Jan 2016 09:18:16 -0500
+	<jake@udd0866934>)	id 1aPA8u-00015Y-VF; Fri, 29 Jan 2016 09:35:21 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Jan 2016 09:18:14 -0500
-Message-ID: <1454077094-3581-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 29 Jan 2016 09:35:18 -0500
+Message-ID: <1454078119-4150-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] matrix-gui-crypto-demos: Add ti-crypto-examples for keystone
+Subject: [PATCH 1/2] matrix-gui-mc-demos: split each demo into individual packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,40 +36,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jan 2016 14:18:18 -0000
+X-List-Received-Date: Fri, 29 Jan 2016 14:35:22 -0000
 Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../recipes-core/matrix/matrix-gui-mc-demos_2.0.bb  | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-index 4607c3c..02a4f46 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb
+index 79c7202..8a74335 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb
+@@ -3,17 +3,26 @@ HOMEPAGE = "http://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps"
  
  require matrix-gui-apps-git.inc
  
--PR = "${INC_PR}.10"
-+PR = "${INC_PR}.11"
+-PR = "${INC_PR}.0"
++PR = "${INC_PR}.1"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit allarch
  
-@@ -11,6 +11,7 @@ S = "${WORKDIR}/git/cryptos_apps_scripts"
- S_ti33x = "${WORKDIR}/git/cryptos_apps_program"
- S_ti43x = "${WORKDIR}/git/cryptos_apps_program"
- S_dra7xx = "${WORKDIR}/git/cryptos_apps_program"
-+S_keystone = "${WORKDIR}/git/cryptos_apps_program"
+ S = "${WORKDIR}/git/mc_demo_apps"
  
- FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+ # Make sure demo submenu and app images has been installed.
+-RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-mc-demo"
++MC_DEMOS_RDEPENDS = "matrix-gui-apps-images matrix-gui-submenus-mc-demo"
  
-@@ -20,3 +21,4 @@ RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl ma
- RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
- RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
- RDEPENDS_${PN}_append_dra7xx = " ti-crypto-examples"
-+RDEPENDS_${PN}_append_keystone = " ti-crypto-examples"
+-FILES_${PN} += "${MATRIX_BASE_DIR}/apps/ \
+-		${bindir}/mc_demo_imageproc.sh \
+-		${bindir}/mc_run_dsp.sh \
+-		${bindir}/mc_demo_ipc.sh \
++PACKAGES = "matrix-mc-demo-ipc \
++            matrix-mc-demo-imageproc \
++"
++
++RDEPENDS_matrix-mc-demo-ipc        = "${MC_DEMOS_RDEPENDS}"
++RDEPENDS_matrix-mc-demo-imageproc  = "${MC_DEMOS_RDEPENDS}"
++
++FILES_matrix-mc-demo-ipc        = "${MATRIX_APP_DIR}/mc_demo_ipc/*"
++FILES_matrix-mc-demo-imageproc  = "${MATRIX_APP_DIR}/mc_demo_imageproc/*"
++
++FILES_matrix-mc-demo-ipc       += "${bindir}/mc_demo_ipc.sh"
++FILES_matrix-mc-demo-imageproc += "${bindir}/mc_demo_imageproc.sh \
++                                   ${bindir}/mc_run_dsp.sh \
+ "
 -- 
 1.9.1
 
