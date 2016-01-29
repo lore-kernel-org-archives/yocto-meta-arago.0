@@ -1,29 +1,31 @@
 Return-Path: <jake@udd0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 73F8D5296D
+	by arago-project.org (Postfix) with ESMTPS id C0AD35296D
 	for <meta-arago@arago-project.org>;
 	Fri, 29 Jan 2016 14:35:22 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TEZLUX014036
-	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:35:21 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TEZMkq014042
+	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:35:22 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEZLlr026437
-	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:35:21 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEZMLJ026448
+	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 08:35:22 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
 	Fri, 29 Jan 2016 08:35:22 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEZLtK011799;
-	Fri, 29 Jan 2016 08:35:21 -0600
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TEZL4j003196;
+	Fri, 29 Jan 2016 08:35:22 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aPA8u-00015Y-VF; Fri, 29 Jan 2016 09:35:21 -0500
+	<jake@udd0866934>)	id 1aPA8v-00015d-PZ; Fri, 29 Jan 2016 09:35:21 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Jan 2016 09:35:18 -0500
-Message-ID: <1454078119-4150-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 29 Jan 2016 09:35:19 -0500
+Message-ID: <1454078119-4150-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1454078119-4150-1-git-send-email-j-stiffler@ti.com>
+References: <1454078119-4150-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/2] matrix-gui-mc-demos: split each demo into individual packages
+Subject: [PATCH 2/2] packagegroup-arago-tisdk-matrix: Fix for matrix-gui-mc-demos split
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,51 +38,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jan 2016 14:35:22 -0000
+X-List-Received-Date: Fri, 29 Jan 2016 14:35:23 -0000
 Content-Type: text/plain
+
+* The package "matrix-gui-mc-demos" was split into one package for
+  each demo: "matrix-mc-demo-ipc" and "matrix-mc-demo-imageproc"
+* Remove "matrix-gui-mc-demos" and add "matrix-mc-demo-ipc"
+* Leave out "matrix-mc-demo-imageproc" as it requires updates
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/matrix/matrix-gui-mc-demos_2.0.bb  | 21 +++++++++++++++------
- 1 file changed, 15 insertions(+), 6 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb   | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb
-index 79c7202..8a74335 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-mc-demos_2.0.bb
-@@ -3,17 +3,26 @@ HOMEPAGE = "http://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index 52e006b..a007f6d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r48"
++PR = "r49"
  
- require matrix-gui-apps-git.inc
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--PR = "${INC_PR}.0"
-+PR = "${INC_PR}.1"
- 
- inherit allarch
- 
- S = "${WORKDIR}/git/mc_demo_apps"
- 
- # Make sure demo submenu and app images has been installed.
--RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-mc-demo"
-+MC_DEMOS_RDEPENDS = "matrix-gui-apps-images matrix-gui-submenus-mc-demo"
- 
--FILES_${PN} += "${MATRIX_BASE_DIR}/apps/ \
--		${bindir}/mc_demo_imageproc.sh \
--		${bindir}/mc_run_dsp.sh \
--		${bindir}/mc_demo_ipc.sh \
-+PACKAGES = "matrix-mc-demo-ipc \
-+            matrix-mc-demo-imageproc \
-+"
-+
-+RDEPENDS_matrix-mc-demo-ipc        = "${MC_DEMOS_RDEPENDS}"
-+RDEPENDS_matrix-mc-demo-imageproc  = "${MC_DEMOS_RDEPENDS}"
-+
-+FILES_matrix-mc-demo-ipc        = "${MATRIX_APP_DIR}/mc_demo_ipc/*"
-+FILES_matrix-mc-demo-imageproc  = "${MATRIX_APP_DIR}/mc_demo_imageproc/*"
-+
-+FILES_matrix-mc-demo-ipc       += "${bindir}/mc_demo_ipc.sh"
-+FILES_matrix-mc-demo-imageproc += "${bindir}/mc_demo_imageproc.sh \
-+                                   ${bindir}/mc_run_dsp.sh \
+@@ -158,8 +158,8 @@ MATRIX_APPS_append_am180x-evm = "   \
  "
+ 
+ MATRIX_APPS_append_keystone = " \
+-    matrix-gui-utility-demos	\
+-    matrix-gui-mc-demos	\
++    matrix-gui-utility-demos    \
++    matrix-mc-demo-ipc          \
+ "
+ 
+ MATRIX_APPS_append_k2hk-evm = "      \
 -- 
 1.9.1
 
