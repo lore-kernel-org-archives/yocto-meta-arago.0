@@ -1,28 +1,29 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D6DDE52976
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C598952007
 	for <meta-arago@arago-project.org>;
-	Thu, 28 Jan 2016 22:40:49 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0SMenSn015090
-	for <meta-arago@arago-project.org>; Thu, 28 Jan 2016 16:40:49 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0SMenbD031080
-	for <meta-arago@arago-project.org>; Thu, 28 Jan 2016 16:40:49 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 28 Jan 2016 16:40:48 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u0SMem2x021022	for <meta-arago@arago-project.org>;
-	Thu, 28 Jan 2016 16:40:48 -0600
-From: Eric Ruei <e-ruei1@ti.com>
+	Fri, 29 Jan 2016 11:24:35 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0TBOThb005783
+	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 05:24:29 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0TBOTDr017777
+	for <meta-arago@arago-project.org>; Fri, 29 Jan 2016 05:24:29 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 29 Jan 2016 05:24:28 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0TBOS0j030474	for <meta-arago@arago-project.org>;
+	Fri, 29 Jan 2016 05:24:29 -0600
+Date: Fri, 29 Jan 2016 06:24:28 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 28 Jan 2016 17:40:41 -0500
-Message-ID: <1454020841-57046-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
+Message-ID: <509685319.375.1454066668686.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] Add two necessary patches on top of weston 1.9.0:
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2015.12 build 2016-01-28_16-37-13
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,138 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jan 2016 22:40:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 29 Jan 2016 11:24:40 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_374_753636475.1454066668572"
 
-- Enable DRM-backend with multiple displays
-- Allow visual_id to be 0 at function match_config_to_visual()
+------=_Part_374_753636475.1454066668572
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- ...-Enabling-DRM-backend-with-multiple-displ.patch | 60 ++++++++++++++++++++++
- .../0002-Weston1.9.0-Allow-visual_id-to-be-0.patch | 31 +++++++++++
- .../recipes-graphics/wayland/weston_1.9.0.bbappend |  2 +
- 3 files changed, 93 insertions(+)
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
+<html>
+<head>
+<title>
+Status for 01/29/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch
-new file mode 100644
-index 0000000..3efceb5
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch
-@@ -0,0 +1,60 @@
-+From 15d9f155fdb3abffc348e81b1560702801994715 Mon Sep 17 00:00:00 2001
-+From: Karthik Ramanan <a0393906@ti.com>
-+Date: Mon, 11 Jan 2016 11:51:30 -0500
-+Subject: [PATCH 1/2] weston1.9.0: Enabling DRM backend with multiple displays
-+
-+There are three main issues that this patch tries to address
-+
-+ 1. Black screen when running weston
-+ 2. Support for multiple displays
-+ 3. Handling missing VBlanks
-+
-+There is an issue with missing VBlanks for LCD and
-+HDMI connectors which leads to display not getting refreshed.
-+This patch can be considered as a workaround.
-+
-+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-+---
-+ src/compositor-drm.c | 10 ++++++++--
-+ 1 file changed, 8 insertions(+), 2 deletions(-)
-+
-+diff --git a/src/compositor-drm.c b/src/compositor-drm.c
-+index 6777bf8..15ddba8 100644
-+--- a/src/compositor-drm.c
-++++ b/src/compositor-drm.c
-+@@ -686,7 +686,7 @@ drm_output_repaint(struct weston_output *output_base,
-+ 			.request.sequence = 1,
-+ 		};
-+ 
-+-		if ((!s->current && !s->next) ||
-++		if ((!s->current && !s->next) &&
-+ 		    !drm_sprite_crtc_supported(output, s->possible_crtcs))
-+ 			continue;
-+ 
-+@@ -847,6 +847,7 @@ page_flip_handler(int fd, unsigned int frame,
-+ {
-+ 	struct drm_output *output = (struct drm_output *) data;
-+ 	struct timespec ts;
-++	uint32_t bail;
-+ 	uint32_t flags = PRESENTATION_FEEDBACK_KIND_VSYNC |
-+ 			 PRESENTATION_FEEDBACK_KIND_HW_COMPLETION |
-+ 			 PRESENTATION_FEEDBACK_KIND_HW_CLOCK;
-+@@ -864,9 +865,14 @@ page_flip_handler(int fd, unsigned int frame,
-+ 
-+ 	output->page_flip_pending = 0;
-+ 
-++	if(output->vblank_pending) {
-++		weston_log("VBlank is pending for connector = %d, frame = %d\n", output->connector_id, frame);
-++		bail = 1;
-++	}
-++
-+ 	if (output->destroy_pending)
-+ 		drm_output_destroy(&output->base);
-+-	else if (!output->vblank_pending) {
-++	else if (!output->vblank_pending || bail ) {
-+ 		ts.tv_sec = sec;
-+ 		ts.tv_nsec = usec * 1000;
-+ 		weston_output_finish_frame(&output->base, &ts, flags);
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
-new file mode 100644
-index 0000000..72d067f
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
-@@ -0,0 +1,31 @@
-+From 27cf7d0c260fa4754a021e9f6f92f83e2c99f5f4 Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Mon, 11 Jan 2016 11:59:19 -0500
-+Subject: [PATCH 2/2] Weston1.9.0: Allow visual_id to be 0
-+
-+The inquiry of visual id from egl API eglGetConfigAttrib(EGL_NATIVE_VISUAL_ID)
-+is an optional feature. The visual id will be set to 0 if this feature is
-+not supported. Therefore, the return condition @function match_config_to_visual()
-+should be (id == visual_id || id == 0) instead of (id == visual_id)
-+
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ src/gl-renderer.c | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/gl-renderer.c b/src/gl-renderer.c
-+index d7231f4..e1b925e 100644
-+--- a/src/gl-renderer.c
-++++ b/src/gl-renderer.c
-+@@ -2194,7 +2194,7 @@ match_config_to_visual(EGLDisplay egl_display,
-+ 				&id))
-+ 			continue;
-+ 
-+-		if (id == visual_id)
-++		if (id == visual_id || id == 0)
-+ 			return i;
-+ 	}
-+ 
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
-index 4aff58d..c4623df 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
-@@ -8,6 +8,8 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
- SRC_URI += "file://wayland_env.sh \
-             file://weston.ini \
-+            file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
-+            file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
- "
- 
- # Add custom Arago Wayland Environment script file
--- 
-1.9.1
+<h2>Status for 01/29/16</h2>
+
+<h2>BUILD_ID: build-2016-01-28_16-38-13</h2>
+
+<h2>Clean Build: true</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="omap5-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.12"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_SSTATE="true"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_374_753636475.1454066668572--
