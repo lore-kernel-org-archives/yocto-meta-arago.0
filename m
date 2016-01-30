@@ -1,42 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
-	[209.85.213.48])
-	by arago-project.org (Postfix) with ESMTPS id E60C65296D
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id CB15352A0A
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Jan 2016 20:30:44 +0000 (UTC)
-Received: by mail-vk0-f48.google.com with SMTP id e6so48352734vkh.2
-	for <meta-arago@arago-project.org>;
-	Fri, 29 Jan 2016 12:30:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=jglBTLLjEeumTptd+19jzHZ0Clz3aOScZQeP0+nd56I=;
-	b=b7vwUTLIyl/vTAO4KqR4sqVLl0Auv7QMRj9TPZIkCf3fJ+z+CaMXwzU2HA6j4iB9yU
-	baJdaS/omofoETcXeUMMX/Y1FeANDi+LZ45Jo294hcW2a+MigPaV4l66WQtEoFH6Ujoa
-	n40zpTX04DzTzOyj6tu8ChJRkbUlhEB1Fa1phWtVz3y86Bd6hxXkXxwCljbRudhvEiJV
-	Gug6D4JcxXRxluXOLTNG9j1/2nztncFlsC0UYAnZmweXy2gnx0eIInmF1tgnNQG6gfGR
-	VVf0V8epJ1t10S9DfkIUkpQpbIKPxb8lx1niXH1nOZZBcUiDxN8pKJ1lvllvgcTmq5OQ
-	UOKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-type;
-	bh=jglBTLLjEeumTptd+19jzHZ0Clz3aOScZQeP0+nd56I=;
-	b=ipRz+jTzJz4s5yHIp//tUvXEA0vd3wM93ZxtgNpX4lcWFo0uasZqxPAC5oTSsTvpZv
-	ZKYt6AUvqjlvk3YOZC3bzuQEGAPfMRAylfS3LdiokAmJCzBdiy6Q0AjZEx8N0wXio3qE
-	MqkESQXwmSCE4TUUkvmIQ3R70ZqYz6vyXbjvI/RwPQA4B7XvVc7xqyBqqT4fbDw3H1LT
-	iisqYkBEfhN4AGHnjmcTRSVP2thUGbupOpPXIZb2b12SnsTwyGXBWGmNg/iIVLNtdJhW
-	A/UjfPxJNbB80BeLO9bvWOX8olsA1E5CH0GfQAEsTObGINvkrBj+9bqLmbviFivLmKGK
-	ax6Q==
-X-Gm-Message-State: AG10YOQuWzaxNKXWL9JLk3SjOPiOYo43Lm4lvQvW6K2gnzQ2tM2twLqJrf/ikyq282/+QmWraZuGCPVskJzsWQ==
-X-Received: by 10.31.48.132 with SMTP id w126mr7621773vkw.5.1454099442012;
-	Fri, 29 Jan 2016 12:30:42 -0800 (PST)
+	Sat, 30 Jan 2016 07:06:51 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u0U76puh016230
+	for <meta-arago@arago-project.org>; Sat, 30 Jan 2016 01:06:51 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u0U76pei013959
+	for <meta-arago@arago-project.org>; Sat, 30 Jan 2016 01:06:51 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Sat, 30 Jan 2016 01:06:50 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u0U76o8H032357	for <meta-arago@arago-project.org>;
+	Sat, 30 Jan 2016 01:06:51 -0600
+Date: Sat, 30 Jan 2016 02:06:50 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1389190132.383.1454137610727.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.31.146.65 with HTTP; Fri, 29 Jan 2016 12:30:22 -0800 (PST)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sat, 30 Jan 2016 09:30:22 +1300
-Message-ID: <CADySD0G_Sy+0JasUQ=R7Du-iwwLH4OKZ4UBp7v4srHvzDPK50A@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: [PATCH] Fix bluetooth.h compilation error with strict C
+X-Jenkins-Job: arago-core-tisdk-fido-rt
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] RT Core TISDK (fido/1.8) 2015.12 build 2016-01-29_12-07-44
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,152 +36,212 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jan 2016 20:30:49 -0000
-Content-Type: multipart/alternative; boundary=001a11430e0eb59660052a7ee8dc
+X-List-Received-Date: Sat, 30 Jan 2016 07:06:52 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_382_136799946.1454137610557"
 
---001a11430e0eb59660052a7ee8dc
-Content-Type: text/plain; charset=UTF-8
+------=_Part_382_136799946.1454137610557
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This patch fixes the compilation error of bluetooth.h on fido branch
+<html>
+<head>
+<title>
+Status for 01/29/16
+</title>
+</head>
+<body>
 
-regards
-Ankur
+<h2>Status for 01/29/16</h2>
 
-Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
----
- .../0001-strict-C-compilation-error-fix.patch      | 41
-++++++++++++++++++++++
- .../bluez/bluez4_4.101.bbappend                    |  1 +
- 2 files changed, 42 insertions(+)
- create mode 100644
-meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
+<h2>BUILD_ID: build-2016-01-29_12-08-45</h2>
 
-diff --git
-a/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
-b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
-new file mode 100644
-index 0000000..c2cac24
---- /dev/null
-+++
-b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
-@@ -0,0 +1,41 @@
-+From d7fab1e161c2344875b1b0a2363f1f62efdd6cd4 Mon Sep 17 00:00:00 2001
-+From: Ankur Tyagi <ankur.tyagi@gallagher.com>
-+Date: Thu, 14 Jan 2016 18:12:23 +1300
-+Subject: [PATCH 1/1] strict C compilation error fix
-+
-+Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
-+---
-+ lib/bluetooth.h | 10 +++++-----
-+ 1 file changed, 5 insertions(+), 5 deletions(-)
-+
-+diff --git a/lib/bluetooth.h b/lib/bluetooth.h
-+index 0fc4508..449431d 100644
-+--- a/lib/bluetooth.h
-++++ b/lib/bluetooth.h
-+@@ -138,18 +138,18 @@ enum {
-+
-+ /* Bluetooth unaligned access */
-+ #define bt_get_unaligned(ptr)            \
-+-({                        \
-++__extension__ ({                \
-+    struct __attribute__((packed)) {    \
-+-        typeof(*(ptr)) __v;        \
-+-    } *__p = (typeof(__p)) (ptr);        \
-++        __typeof__(*(ptr)) __v;        \
-++    } *__p = (__typeof__(__p)) (ptr);    \
-+    __p->__v;                \
-+ })
-+
-+ #define bt_put_unaligned(val, ptr)        \
-+ do {                        \
-+    struct __attribute__((packed)) {    \
-+-        typeof(*(ptr)) __v;        \
-+-    } *__p = (typeof(__p)) (ptr);        \
-++        __typeof__(*(ptr)) __v;        \
-++    } *__p = (__typeof__(__p)) (ptr);    \
-+    __p->__v = (val);            \
-+ } while(0)
-+
-+--
-+1.9.1
-+
-diff --git
-a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-index d111425..acda4ee 100644
---- a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-@@ -5,6 +5,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- SRC_URI +=
-"file://bluez4-fix-synchronization-between-bluetoothd-and-dr.patch \
-             file://0001-socket-enable-for-bluez-4_98.patch \
-             file://0001-bluez-enable-source-interface.patch \
-+            file://0001-strict-C-compilation-error-fix.patch \
- "
- # udev 150-170 provide its on hid2hci tool and udev rules for it.
-Therefore,
- # disabling hid2hci from bluez4.
---
+<h2>Clean Build: true</h2>
 
---001a11430e0eb59660052a7ee8dc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-<div dir=3D"ltr">This patch fixes the compilation error of bluetooth.h on f=
-ido branch<br><br>regards<br>Ankur<br><br>Signed-off-by: Ankur Tyagi &lt;<a=
- href=3D"mailto:ankur.tyagi@gallagher.com">ankur.tyagi@gallagher.com</a>&gt=
-;<br>---<br>=C2=A0.../0001-strict-C-compilation-error-fix.patch =C2=A0 =C2=
-=A0 =C2=A0| 41 ++++++++++++++++++++++<br>=C2=A0.../bluez/bluez4_4.101.bbapp=
-end =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
-=C2=A01 +<br>=C2=A02 files changed, 42 insertions(+)<br>=C2=A0create mode 1=
-00644 meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-com=
-pilation-error-fix.patch<br><br>diff --git a/meta-arago-distro/recipes-conn=
-ectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch b/meta-arag=
-o-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-=
-fix.patch<br>new file mode 100644<br>index 0000000..c2cac24<br>--- /dev/nul=
-l<br>+++ b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-=
-C-compilation-error-fix.patch<br>@@ -0,0 +1,41 @@<br>+From d7fab1e161c23448=
-75b1b0a2363f1f62efdd6cd4 Mon Sep 17 00:00:00 2001<br>+From: Ankur Tyagi &lt=
-;<a href=3D"mailto:ankur.tyagi@gallagher.com">ankur.tyagi@gallagher.com</a>=
-&gt;<br>+Date: Thu, 14 Jan 2016 18:12:23 +1300<br>+Subject: [PATCH 1/1] str=
-ict C compilation error fix<br>+<br>+Signed-off-by: Ankur Tyagi &lt;<a href=
-=3D"mailto:ankur.tyagi@gallagher.com">ankur.tyagi@gallagher.com</a>&gt;<br>=
-+---<br>+ lib/bluetooth.h | 10 +++++-----<br>+ 1 file changed, 5 insertions=
-(+), 5 deletions(-)<br>+<br>+diff --git a/lib/bluetooth.h b/lib/bluetooth.h=
-<br>+index 0fc4508..449431d 100644<br>+--- a/lib/bluetooth.h<br>++++ b/lib/=
-bluetooth.h<br>+@@ -138,18 +138,18 @@ enum {<br>+<br>+ /* Bluetooth unalign=
-ed access */<br>+ #define bt_get_unaligned(ptr) =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0\<br>+-({ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>++__extension__ ({ =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>+ =C2=A0 =C2=A0struct __attribut=
-e__((packed)) { =C2=A0 =C2=A0\<br>+- =C2=A0 =C2=A0 =C2=A0 =C2=A0typeof(*(pt=
-r)) __v; =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>+- =C2=A0 =C2=A0} *__p =3D (typeof=
-(__p)) (ptr); =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>++ =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0__typeof__(*(ptr)) __v; =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>++ =C2=A0 =C2=A0=
-} *__p =3D (__typeof__(__p)) (ptr); =C2=A0 =C2=A0\<br>+ =C2=A0 =C2=A0__p-&g=
-t;__v; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>+ })<br>=
-+<br>+ #define bt_put_unaligned(val, ptr) =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>+=
- do { =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0\<br>+ =C2=A0 =C2=A0struct __attribute__((packed)) { =C2=A0 =
-=C2=A0\<br>+- =C2=A0 =C2=A0 =C2=A0 =C2=A0typeof(*(ptr)) __v; =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0\<br>+- =C2=A0 =C2=A0} *__p =3D (typeof(__p)) (ptr); =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0\<br>++ =C2=A0 =C2=A0 =C2=A0 =C2=A0__typeof__(*(ptr)) _=
-_v; =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>++ =C2=A0 =C2=A0} *__p =3D (__typeof__(=
-__p)) (ptr); =C2=A0 =C2=A0\<br>+ =C2=A0 =C2=A0__p-&gt;__v =3D (val); =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>+ } while(0)<br>+<br>+--<br>+1.9.1<=
-br>+<br>diff --git a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.=
-101.bbappend b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bb=
-append<br>index d111425..acda4ee 100644<br>--- a/meta-arago-distro/recipes-=
-connectivity/bluez/bluez4_4.101.bbappend<br>+++ b/meta-arago-distro/recipes=
--connectivity/bluez/bluez4_4.101.bbappend<br>@@ -5,6 +5,7 @@ FILESEXTRAPATH=
-S_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>=C2=A0SRC_URI +=3D &quot;fi=
-le://bluez4-fix-synchronization-between-bluetoothd-and-dr.patch \<br>=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://0001-socket-enable-for-blu=
-ez-4_98.patch \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://0=
-001-bluez-enable-source-interface.patch \<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0file://0001-strict-C-compilation-error-fix.patch \<br>=C2=A0&q=
-uot;<br>=C2=A0# udev 150-170 provide its on hid2hci tool and udev rules for=
- it. Therefore,<br>=C2=A0# disabling hid2hci from bluez4.<br>--<br></div>
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
 
---001a11430e0eb59660052a7ee8dc--
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2015.12"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido-rt"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="true"<br>
+CLEAN_SSTATE="true"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido-rt/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_382_136799946.1454137610557--
