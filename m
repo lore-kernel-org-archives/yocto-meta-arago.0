@@ -1,25 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id E84C652092
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 406D2529C7
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Feb 2016 20:57:01 +0000 (UTC)
-Received: from gandalf.denix.org ([100.15.86.14]) by vms173023.mailsrvcs.net
+	Mon,  1 Feb 2016 20:57:02 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0O1V0038KZI765J0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 01 Feb 2016 14:56:49 -0600 (CST)
+	2014)) with ESMTPSA id <0O1V003RQZI7FMV0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 01 Feb 2016 14:56:46 -0600 (CST)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
-	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=WgzECQPijqLMQD2ErMAA:9
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=YZRA6BItdeVLk80DytoA:9
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 1D089161E40;	Mon,
+	by gandalf.denix.org (Postfix) with ESMTP id 28930161E4E;	Mon,
 	1 Feb 2016 15:56:31 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 01 Feb 2016 15:56:29 -0500
-Message-id: <1454360190-6501-1-git-send-email-denis@denix.org>
+Date: Mon, 01 Feb 2016 15:56:30 -0500
+Message-id: <1454360190-6501-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH 1/2] arago-core-tisdk-image.inc: only pull graphics when "sgx" feature is enabled
+In-reply-to: <1454360190-6501-1-git-send-email-denis@denix.org>
+References: <1454360190-6501-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] branding-core.inc: disable "sgx" in preparation for DDK 1.14 merge
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,22 +40,21 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/include/branding-core.inc | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 26bf4a7..c063bb8 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -48,7 +48,7 @@ IMAGE_INSTALL_QT_keystone = ""
- IMAGE_INSTALL = "\
-     packagegroup-arago-tisdk-addons-sdk-host \
-     packagegroup-arago-tisdk-crypto-sdk-host \
--    packagegroup-arago-tisdk-graphics-sdk-host \
-+    ${@base_contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
-     packagegroup-arago-tisdk-matrix-sdk-host \
-     packagegroup-arago-tisdk-multimedia-sdk-host \
-     packagegroup-arago-tisdk-amsdk-sdk-host \
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index de4fbe6..ee3e34d 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -13,3 +13,7 @@ SRCREV_pn-ltp-ddt = "${AUTOREV}"
+ 
+ # Lower opencl-monitor priority for now, due to affected performance
+ ALTERNATIVE_PRIORITY_pn-opencl-monitor = "1"
++
++# Temporarily disable "sgx" machine feature for all SOCs while building
++# latest 4.1 integration kernel, until DDK 1.14 merges are finished
++MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('sgx', '')}"
 -- 
 2.2.0
 
