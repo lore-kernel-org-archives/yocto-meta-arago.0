@@ -1,49 +1,47 @@
 Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
-	[209.85.213.52])
-	by arago-project.org (Postfix) with ESMTPS id ECFC6529C7
+Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
+	[209.85.213.45])
+	by arago-project.org (Postfix) with ESMTPS id 661D5529C7
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Feb 2016 22:26:18 +0000 (UTC)
-Received: by mail-vk0-f52.google.com with SMTP id e6so85737248vkh.2
+	Mon,  1 Feb 2016 22:38:53 +0000 (UTC)
+Received: by mail-vk0-f45.google.com with SMTP id e6so85892379vkh.2
 	for <meta-arago@arago-project.org>;
-	Mon, 01 Feb 2016 14:26:18 -0800 (PST)
+	Mon, 01 Feb 2016 14:38:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=NP2vh2TGkM6oOH5bRLD3/+FDGwJY3lpoFWjFLsygz7c=;
-	b=MdPtcn316Kw3qh+awFyu+UdWdayohQzGHrQfk4OKtWToYUBfKjB6QDuEp8CNu4Ghfx
-	2uZHCcTjGsve/E5p+H33JeOqO27oWWCMqLPlt7rMYHy+QHCoUxQ05/ozfP7thh8OQ1kx
-	wer8eS1dullxlJm6P44AqGLjyXpryPETQ1tiezeTgCS9j8VxwM/krRMYRzwlqxqpM3RB
-	pPs7H/E1D2RKNtn6CWa0AmOYeMNEmArbPoekHxayNM9xlfnnw+5OAOcH8gqUs3m0dszq
-	GKcuEYVrnJfnvt4ZxsqMJBhtUoL/CF7DK93KMzYAxcgXtSRp40QQkxYvOiSbrN1JcY27
-	JuKg==
+	bh=IUNMp9NnETUWr6V1QMg/kWFxiQ6BkIhoIrzm5b4VXOE=;
+	b=uwrqNp8swG3y9oAlHXBiqiiVPpV1UrkE1Li0IVU1NvU3CfIngnut8xgUl4s/IVZmNB
+	0o1xX5u2BViACqTfeMJxUNwOmKPuloj8b3fZl7yjm3l+xD85Bicm673b8PJVOKVkc1QV
+	KEiyM5Rbm4XvgZvVsQJwka/+m0P5u4s9FkSHNrWKTuNx0RMzhbyDSp3DIhm8yqV3EHr8
+	dJA2Omb4iC9DlPPF3DIemowHpsmczVySVFBuAUqwdFVCb741v8Nv8gQ5Hb3LHD86n+S4
+	pghTkHRqJFwO4DgtRKZkCUoIHr9QWs/+aoQeQzy+2hSBRQS6lgpTgHZp/5C2YgIQivFH
+	cUzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=NP2vh2TGkM6oOH5bRLD3/+FDGwJY3lpoFWjFLsygz7c=;
-	b=eNVd9NNd9l8awx2eWyP+VBjxX2rYuCXjlUKufesi8YpFLZ1LXE4EAqkSm0H1sYep2b
-	1FWpQM2inHDyhkgXxOkLYH0+d+RJ69z1d1CbcfRjgEFB2R4yuJpwWip5m15n0srbzs/b
-	15Nm0oDShkA2pQ3Qfzaqvh6ZLecCEkdfe5A3btaXATb2s++42lCv4Jl2xAV4Iu6ZFZa5
-	0JbN5Exu26hAeY6V0sm/IsKuKC751EKSeuIvp4rPf/OP1X9mzdrhAaZ4wYdjSZU3bqfQ
-	mCZrZEYFyaBOEoxRx59SkBWpajrsGSHqpianbOBqPFCDdZ/67y0O8LnkbdHKlHhahWg+
-	vJ1A==
-X-Gm-Message-State: AG10YOQTkkXLAKdp8VlhGnbyfzuejJ0quUVkucGhNjqBfMNuzqZWNxeleh+5ILka+G3Z58spZiaCfvYw3LB8kg==
-X-Received: by 10.31.162.20 with SMTP id l20mr16152695vke.137.1454365578261;
-	Mon, 01 Feb 2016 14:26:18 -0800 (PST)
+	bh=IUNMp9NnETUWr6V1QMg/kWFxiQ6BkIhoIrzm5b4VXOE=;
+	b=VPLDJ+CusFUT3AXTVm9e7as2lJkhpNl5+9gWuCG83WowiEuZFLHO3mjkb2uO30ixZK
+	3XNrFI4u92+6bHaUOA6ubpPGtFLuwzuibMrATqN48q+Hut4npVhdHMRZcFos+Wn2Li+k
+	1IX4JE4GA8fEJTDmD/Zopa7wMJtvmjgK88Hu+Ws0MMRFasBRgYzteLerdMK5zNhVu1oU
+	MTOvIVQ0DNKLuRqTGAjR978clCK7YSrumbCEpiCwkDKWgSIpMIMNWmPiXIcieMdsV728
+	C0VJ2s2vFez/cy0QL4lLieWA2OpOX3uQUhv6rCC6gxNkq7CuH18xCQwGHgVtnVlgZH/H
+	8vLw==
+X-Gm-Message-State: AG10YOSiL9DaDOyeDvk/FXmLin+o1a0Vf8cqI5jL+YPE9czraaauynpgsbPnMUyS8SHN1Hivyc/et2titb5HkQ==
+X-Received: by 10.31.107.1 with SMTP id g1mr17813570vkc.15.1454366332912; Mon,
+	01 Feb 2016 14:38:52 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.31.146.65 with HTTP; Mon, 1 Feb 2016 14:25:58 -0800 (PST)
-In-Reply-To: <20160201222242.GW11314@edge>
-References: <CADySD0FB8Y_f9SWK+=WDmb8tba=mUZ==PK-spO+_BOhR4QhVsQ@mail.gmail.com>
-	<20160201215854.GU11314@edge>
-	<CADySD0GthGnaKrt+R=4azdPffVYWWz33hehvQP2gKjzZuUpDEg@mail.gmail.com>
-	<20160201222242.GW11314@edge>
+Received: by 10.31.146.65 with HTTP; Mon, 1 Feb 2016 14:38:33 -0800 (PST)
+In-Reply-To: <20160201220304.GV11314@edge>
+References: <CADySD0G_Sy+0JasUQ=R7Du-iwwLH4OKZ4UBp7v4srHvzDPK50A@mail.gmail.com>
+	<20160201220304.GV11314@edge>
 From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Tue, 2 Feb 2016 11:25:58 +1300
-Message-ID: <CADySD0EuZSbrCROCSp9tQ7hAEhWh4DEJYf5i43+A7fsLsNJLaQ@mail.gmail.com>
+Date: Tue, 2 Feb 2016 11:38:33 +1300
+Message-ID: <CADySD0GpTH726emZj0CEp4ifJMG2sSBd1gSBK-i8rQJPwonFpQ@mail.gmail.com>
 To: Denys Dmytriyenko <denys@ti.com>
 Cc: meta-arago@arago-project.org
-Subject: Re: What's the reason behind different config file in oe-layersetup
+Subject: Re: [PATCH] Fix bluetooth.h compilation error with strict C
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,192 +54,286 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Feb 2016 22:26:19 -0000
-Content-Type: multipart/alternative; boundary=001a1143f2acaa79ed052abcdfab
+X-List-Received-Date: Mon, 01 Feb 2016 22:38:53 -0000
+Content-Type: multipart/alternative; boundary=001a114790a8a58c32052abd0c9d
 
---001a1143f2acaa79ed052abcdfab
+--001a114790a8a58c32052abd0c9d
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Thanks for the help.
+I am using Ubuntu 14.04 x86_64,arago-fido-config,toolchain
+gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf
 
+Patch is available here :
+http://git.kernel.org/cgit/bluetooth/bluez.git/commit/?id=cf52a40302d0d20ccca22a7a1f53e46ef8abfca8
 
-On Tue, Feb 2, 2016 at 11:22 AM, Denys Dmytriyenko <denys@ti.com> wrote:
+I'll update Upstream-Status: Backported
 
-> I would recommend starting from arago-fido-config.txt and pin down all
-> layers
-> later, once your own development stabilizes and you are ready to make you=
-r
-> release. You can also start with one of the latest coresdk or processor-s=
-dk
-> configs as well, but you maybe missing some of the important bugfixes fro=
-m
-> different layers that could be made during your development cycle...
+thanks
+Ankur
+
+On Tue, Feb 2, 2016 at 11:03 AM, Denys Dmytriyenko <denys@ti.com> wrote:
+
+> Can you please specify:
+> * what combination of setup and toolchain causes the error (not seen here)
+> * where this patch comes from
+> * update Upstream-Status: field accordingly[1]
+>
+> [1]
+> http://openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommendations
 >
 > --
 > Denys
 >
 >
-> On Tue, Feb 02, 2016 at 11:16:26AM +1300, Ankur Tyagi wrote:
-> > Thanks for explaining it.
+> On Sat, Jan 30, 2016 at 09:30:22AM +1300, Ankur Tyagi wrote:
+> > This patch fixes the compilation error of bluetooth.h on fido branch
 > >
-> > I am using am335x-evm as reference platform, so as per the link, I shou=
-ld
-> > be using amsdk-08.00.00.00-config.txt but it is based on daisy branch.
-> > Whereas processor-sdk-02.00.01.07-config.txt looks updated one.
+> > regards
+> > Ankur
 > >
-> > So is it ok to refer to processor-sdk to create my own ?
+> > Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
+> > ---
+> >  .../0001-strict-C-compilation-error-fix.patch      | 41
+> > ++++++++++++++++++++++
+> >  .../bluez/bluez4_4.101.bbappend                    |  1 +
+> >  2 files changed, 42 insertions(+)
+> >  create mode 100644
 > >
-> > =E2=80=8Bthanks=E2=80=8B
+> meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
 > >
+> > diff --git
 > >
-> > On Tue, Feb 2, 2016 at 10:58 AM, Denys Dmytriyenko <denys@ti.com> wrote=
-:
+> a/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
 > >
-> > > On Tue, Feb 02, 2016 at 10:45:43AM +1300, Ankur Tyagi wrote:
-> > > > Hi,
-> > > >
-> > > > oe-layersetup has different set of configs. I couldn't find any
-> > > > documentation explaining "when to use which config".
-> > > >
-> > > > Can someone help me understand the rationale behind these configs ?
-> They
-> > > > all refer to different commits of same repo, so I am sure there mus=
-t
-> a
-> > > > reason behind it.
-> > >
-> > > http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
-> > >
-> > > Available Layer Configurations section explains what those configs ar=
-e.
-> > >
-> > > To summarize - config files in the main configs/ directory are all
-> > > "rolling",
-> > > i.e. they pull latest from corresponding branches of all the layers.
-> Useful
-> > > for development. On the other hand, configs in coresdk, amsdk, glsdk,
-> mcsdk
-> > > and processor-sdk directories are the release configs, i.e. they pin
-> down
-> > > all
-> > > the layers to a specific commit ID at the time of release. That way a
-> given
-> > > release can be reproduced later on. And those SDK names are just
-> product
-> > > names
-> > > to support corresponding TI embedded processor platforms.
-> > >
-> > >
-> > > > For a commercial product, which config should be used to create bsp=
-,
-> > > kernel
-> > > > and rootfs
-> > >
-> > > For your own commercial product, you should create your own config,
-> using
-> > > one
-> > > of the existing ones as an example.
-> > >
-> > > --
-> > > Denys
-> > >
+> b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
+> > new file mode 100644
+> > index 0000000..c2cac24
+> > --- /dev/null
+> > +++
+> >
+> b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-compilation-error-fix.patch
+> > @@ -0,0 +1,41 @@
+> > +From d7fab1e161c2344875b1b0a2363f1f62efdd6cd4 Mon Sep 17 00:00:00 2001
+> > +From: Ankur Tyagi <ankur.tyagi@gallagher.com>
+> > +Date: Thu, 14 Jan 2016 18:12:23 +1300
+> > +Subject: [PATCH 1/1] strict C compilation error fix
+> > +
+> > +Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
+> > +---
+> > + lib/bluetooth.h | 10 +++++-----
+> > + 1 file changed, 5 insertions(+), 5 deletions(-)
+> > +
+> > +diff --git a/lib/bluetooth.h b/lib/bluetooth.h
+> > +index 0fc4508..449431d 100644
+> > +--- a/lib/bluetooth.h
+> > ++++ b/lib/bluetooth.h
+> > +@@ -138,18 +138,18 @@ enum {
+> > +
+> > + /* Bluetooth unaligned access */
+> > + #define bt_get_unaligned(ptr)            \
+> > +-({                        \
+> > ++__extension__ ({                \
+> > +    struct __attribute__((packed)) {    \
+> > +-        typeof(*(ptr)) __v;        \
+> > +-    } *__p = (typeof(__p)) (ptr);        \
+> > ++        __typeof__(*(ptr)) __v;        \
+> > ++    } *__p = (__typeof__(__p)) (ptr);    \
+> > +    __p->__v;                \
+> > + })
+> > +
+> > + #define bt_put_unaligned(val, ptr)        \
+> > + do {                        \
+> > +    struct __attribute__((packed)) {    \
+> > +-        typeof(*(ptr)) __v;        \
+> > +-    } *__p = (typeof(__p)) (ptr);        \
+> > ++        __typeof__(*(ptr)) __v;        \
+> > ++    } *__p = (__typeof__(__p)) (ptr);    \
+> > +    __p->__v = (val);            \
+> > + } while(0)
+> > +
+> > +--
+> > +1.9.1
+> > +
+> > diff --git
+> > a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
+> > b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
+> > index d111425..acda4ee 100644
+> > --- a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
+> > +++ b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
+> > @@ -5,6 +5,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >  SRC_URI +=
+> > "file://bluez4-fix-synchronization-between-bluetoothd-and-dr.patch \
+> >              file://0001-socket-enable-for-bluez-4_98.patch \
+> >              file://0001-bluez-enable-source-interface.patch \
+> > +            file://0001-strict-C-compilation-error-fix.patch \
+> >  "
+> >  # udev 150-170 provide its on hid2hci tool and udev rules for it.
+> > Therefore,
+> >  # disabling hid2hci from bluez4.
+> > --
+>
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>
 >
 
---001a1143f2acaa79ed052abcdfab
+--001a114790a8a58c32052abd0c9d
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif;font-size:small;color:#333399">Thanks for the help.=C2=A0</div><div c=
-lass=3D"gmail_extra"><br>
-<br><div class=3D"gmail_quote">On Tue, Feb 2, 2016 at 11:22 AM, Denys Dmytr=
-iyenko <span dir=3D"ltr">&lt;<a href=3D"mailto:denys@ti.com" target=3D"_bla=
-nk">denys@ti.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">I =
-would recommend starting from arago-fido-config.txt and pin down all layers=
-<br>
-later, once your own development stabilizes and you are ready to make your<=
+<div dir=3D"ltr">I am using Ubuntu 14.04 x86_64,arago-fido-config,toolchain=
+ gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf<br><br>Patch is availabl=
+e here :<br><a href=3D"http://git.kernel.org/cgit/bluetooth/bluez.git/commi=
+t/?id=3Dcf52a40302d0d20ccca22a7a1f53e46ef8abfca8">http://git.kernel.org/cgi=
+t/bluetooth/bluez.git/commit/?id=3Dcf52a40302d0d20ccca22a7a1f53e46ef8abfca8=
+</a><div class=3D"gmail_extra"><br clear=3D"all">I&#39;ll update Upstream-S=
+tatus: Backported</div><div class=3D"gmail_extra"><br></div><div class=3D"g=
+mail_extra">thanks<br>Ankur</div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Tue, Feb 2, 2016 at 11:03 AM, Denys Dmytriyenko <span d=
+ir=3D"ltr">&lt;<a href=3D"mailto:denys@ti.com" target=3D"_blank">denys@ti.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,20=
+4);border-left-style:solid;padding-left:1ex">Can you please specify:<br>
+* what combination of setup and toolchain causes the error (not seen here)<=
 br>
-release. You can also start with one of the latest coresdk or processor-sdk=
+* where this patch comes from<br>
+* update Upstream-Status: field accordingly[1]<br>
 <br>
-configs as well, but you maybe missing some of the important bugfixes from<=
-br>
-different layers that could be made during your development cycle...<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+[1] <a href=3D"http://openembedded.org/wiki/Commit_Patch_Message_Guidelines=
+#Patch_Header_Recommendations" rel=3D"noreferrer" target=3D"_blank">http://=
+openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommen=
+dations</a><br>
+<br>
 --<br>
 Denys<br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
+<div><div class=3D"h5"><br>
 <br>
-On Tue, Feb 02, 2016 at 11:16:26AM +1300, Ankur Tyagi wrote:<br>
-&gt; Thanks for explaining it.<br>
+On Sat, Jan 30, 2016 at 09:30:22AM +1300, Ankur Tyagi wrote:<br>
+&gt; This patch fixes the compilation error of bluetooth.h on fido branch<b=
+r>
 &gt;<br>
-&gt; I am using am335x-evm as reference platform, so as per the link, I sho=
-uld<br>
-&gt; be using amsdk-08.00.00.00-config.txt but it is based on daisy branch.=
+&gt; regards<br>
+&gt; Ankur<br>
+&gt;<br>
+&gt; Signed-off-by: Ankur Tyagi &lt;<a href=3D"mailto:ankur.tyagi@gallagher=
+.com">ankur.tyagi@gallagher.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 .../0001-strict-C-compilation-error-fix.patch=C2=A0 =C2=A0 =C2=
+=A0 | 41<br>
+&gt; ++++++++++++++++++++++<br>
+&gt;=C2=A0 .../bluez/bluez4_4.101.bbappend=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 +<br>
+&gt;=C2=A0 2 files changed, 42 insertions(+)<br>
+&gt;=C2=A0 create mode 100644<br>
+&gt; meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-comp=
+ilation-error-fix.patch<br>
+&gt;<br>
+&gt; diff --git<br>
+&gt; a/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-co=
+mpilation-error-fix.patch<br>
+&gt; b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-co=
+mpilation-error-fix.patch<br>
+&gt; new file mode 100644<br>
+&gt; index 0000000..c2cac24<br>
+&gt; --- /dev/null<br>
+&gt; +++<br>
+&gt; b/meta-arago-distro/recipes-connectivity/bluez/bluez4/0001-strict-C-co=
+mpilation-error-fix.patch<br>
+&gt; @@ -0,0 +1,41 @@<br>
+&gt; +From d7fab1e161c2344875b1b0a2363f1f62efdd6cd4 Mon Sep 17 00:00:00 200=
+1<br>
+&gt; +From: Ankur Tyagi &lt;<a href=3D"mailto:ankur.tyagi@gallagher.com">an=
+kur.tyagi@gallagher.com</a>&gt;<br>
+&gt; +Date: Thu, 14 Jan 2016 18:12:23 +1300<br>
+&gt; +Subject: [PATCH 1/1] strict C compilation error fix<br>
+&gt; +<br>
+&gt; +Signed-off-by: Ankur Tyagi &lt;<a href=3D"mailto:ankur.tyagi@gallaghe=
+r.com">ankur.tyagi@gallagher.com</a>&gt;<br>
+&gt; +---<br>
+&gt; + lib/bluetooth.h | 10 +++++-----<br>
+&gt; + 1 file changed, 5 insertions(+), 5 deletions(-)<br>
+&gt; +<br>
+&gt; +diff --git a/lib/bluetooth.h b/lib/bluetooth.h<br>
+&gt; +index 0fc4508..449431d 100644<br>
+&gt; +--- a/lib/bluetooth.h<br>
+&gt; ++++ b/lib/bluetooth.h<br>
+&gt; +@@ -138,18 +138,18 @@ enum {<br>
+&gt; +<br>
+&gt; + /* Bluetooth unaligned access */<br>
+&gt; + #define bt_get_unaligned(ptr)=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 \<br>
+&gt; +-({=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 \<br>
+&gt; ++__extension__ ({=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 \<br>
+&gt; +=C2=A0 =C2=A0 struct __attribute__((packed)) {=C2=A0 =C2=A0 \<br>
+&gt; +-=C2=A0 =C2=A0 =C2=A0 =C2=A0 typeof(*(ptr)) __v;=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 \<br>
+&gt; +-=C2=A0 =C2=A0 } *__p =3D (typeof(__p)) (ptr);=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 \<br>
+&gt; ++=C2=A0 =C2=A0 =C2=A0 =C2=A0 __typeof__(*(ptr)) __v;=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 \<br>
+&gt; ++=C2=A0 =C2=A0 } *__p =3D (__typeof__(__p)) (ptr);=C2=A0 =C2=A0 \<br>
+&gt; +=C2=A0 =C2=A0 __p-&gt;__v;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 \<br>
+&gt; + })<br>
+&gt; +<br>
+&gt; + #define bt_put_unaligned(val, ptr)=C2=A0 =C2=A0 =C2=A0 =C2=A0 \<br>
+&gt; + do {=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 \<br>
+&gt; +=C2=A0 =C2=A0 struct __attribute__((packed)) {=C2=A0 =C2=A0 \<br>
+&gt; +-=C2=A0 =C2=A0 =C2=A0 =C2=A0 typeof(*(ptr)) __v;=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 \<br>
+&gt; +-=C2=A0 =C2=A0 } *__p =3D (typeof(__p)) (ptr);=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 \<br>
+&gt; ++=C2=A0 =C2=A0 =C2=A0 =C2=A0 __typeof__(*(ptr)) __v;=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 \<br>
+&gt; ++=C2=A0 =C2=A0 } *__p =3D (__typeof__(__p)) (ptr);=C2=A0 =C2=A0 \<br>
+&gt; +=C2=A0 =C2=A0 __p-&gt;__v =3D (val);=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 \<br>
+&gt; + } while(0)<br>
+&gt; +<br>
+&gt; +--<br>
+&gt; +1.9.1<br>
+&gt; +<br>
+&gt; diff --git<br>
+&gt; a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend<b=
+r>
+&gt; b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend<b=
+r>
+&gt; index d111425..acda4ee 100644<br>
+&gt; --- a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappe=
+nd<br>
+&gt; +++ b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappe=
+nd<br>
+&gt; @@ -5,6 +5,7 @@ FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&q=
+uot;<br>
+&gt;=C2=A0 SRC_URI +=3D<br>
+&gt; &quot;file://bluez4-fix-synchronization-between-bluetoothd-and-dr.patc=
+h \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://0001-socket-ena=
+ble-for-bluez-4_98.patch \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://0001-bluez-enab=
+le-source-interface.patch \<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://0001-strict-C-compil=
+ation-error-fix.patch \<br>
+&gt;=C2=A0 &quot;<br>
+&gt;=C2=A0 # udev 150-170 provide its on hid2hci tool and udev rules for it=
+.<br>
+&gt; Therefore,<br>
+&gt;=C2=A0 # disabling hid2hci from bluez4.<br>
+&gt; --<br>
 <br>
-&gt; Whereas processor-sdk-02.00.01.07-config.txt looks updated one.<br>
-&gt;<br>
-&gt; So is it ok to refer to processor-sdk to create my own ?<br>
-&gt;<br>
-&gt; =E2=80=8Bthanks=E2=80=8B<br>
-&gt;<br>
-&gt;<br>
-&gt; On Tue, Feb 2, 2016 at 10:58 AM, Denys Dmytriyenko &lt;<a href=3D"mail=
-to:denys@ti.com">denys@ti.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; On Tue, Feb 02, 2016 at 10:45:43AM +1300, Ankur Tyagi wrote:<br>
-&gt; &gt; &gt; Hi,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; oe-layersetup has different set of configs. I couldn&#39;t f=
-ind any<br>
-&gt; &gt; &gt; documentation explaining &quot;when to use which config&quot=
-;.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Can someone help me understand the rationale behind these co=
-nfigs ? They<br>
-&gt; &gt; &gt; all refer to different commits of same repo, so I am sure th=
-ere must a<br>
-&gt; &gt; &gt; reason behind it.<br>
-&gt; &gt;<br>
-&gt; &gt; <a href=3D"http://arago-project.org/wiki/index.php/Setting_Up_Bui=
-ld_Environment" rel=3D"noreferrer" target=3D"_blank">http://arago-project.o=
-rg/wiki/index.php/Setting_Up_Build_Environment</a><br>
-&gt; &gt;<br>
-&gt; &gt; Available Layer Configurations section explains what those config=
-s are.<br>
-&gt; &gt;<br>
-&gt; &gt; To summarize - config files in the main configs/ directory are al=
-l<br>
-&gt; &gt; &quot;rolling&quot;,<br>
-&gt; &gt; i.e. they pull latest from corresponding branches of all the laye=
-rs. Useful<br>
-&gt; &gt; for development. On the other hand, configs in coresdk, amsdk, gl=
-sdk, mcsdk<br>
-&gt; &gt; and processor-sdk directories are the release configs, i.e. they =
-pin down<br>
-&gt; &gt; all<br>
-&gt; &gt; the layers to a specific commit ID at the time of release. That w=
-ay a given<br>
-&gt; &gt; release can be reproduced later on. And those SDK names are just =
-product<br>
-&gt; &gt; names<br>
-&gt; &gt; to support corresponding TI embedded processor platforms.<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; For a commercial product, which config should be used to cre=
-ate bsp,<br>
-&gt; &gt; kernel<br>
-&gt; &gt; &gt; and rootfs<br>
-&gt; &gt;<br>
-&gt; &gt; For your own commercial product, you should create your own confi=
-g, using<br>
-&gt; &gt; one<br>
-&gt; &gt; of the existing ones as an example.<br>
-&gt; &gt;<br>
-&gt; &gt; --<br>
-&gt; &gt; Denys<br>
-&gt; &gt;<br>
-</div></div></blockquote></div><br></div></div>
+</div></div>&gt; _______________________________________________<br>
+&gt; meta-arago mailing list<br>
+&gt; <a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-proje=
+ct.org</a><br>
+&gt; <a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arag=
+o" rel=3D"noreferrer" target=3D"_blank">http://arago-project.org/cgi-bin/ma=
+ilman/listinfo/meta-arago</a><br>
+<br>
+</blockquote></div><br></div></div>
 
---001a1143f2acaa79ed052abcdfab--
+--001a114790a8a58c32052abd0c9d--
