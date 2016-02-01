@@ -1,42 +1,30 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
-	[209.85.213.51])
-	by arago-project.org (Postfix) with ESMTPS id 0076152092
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id E5C5E52961
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Feb 2016 21:46:02 +0000 (UTC)
-Received: by mail-vk0-f51.google.com with SMTP id e6so85194519vkh.2
-	for <meta-arago@arago-project.org>;
-	Mon, 01 Feb 2016 13:46:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=eXqHL6NhOtgyveBPmyhzx8E3HL+tEM+EWfguChTB/6c=;
-	b=mVXKGTELh9DeaFJ7hbrgSfsSFzrzedXmesfShpxu0MCcuzGhP17n5Xllr+gcPMJbb+
-	fuKImZl+AsTlNK0HpPJIFohBqERkKR8KYBxfSYkCIb+TSesv5o/MYVJcZWD42aOEVH+G
-	Y7hQK+8JeZs29NXID0Ei6/p1lUjWWrBg/onzCPu1ifDX3C1MMGSfcBA2Bqe1OJx8JQn5
-	UbpBbrNQMNnkiej1aA7/PAs4BcUTiMSZ0qT0TiGAaMdQ+NvCBYyRagxfFshTubI6TdG5
-	rnpLgfnjP1tn0sFSGQX/VTaaepR3OrE2Ze7G1EXY/0UX6yKf0jFJ6lOhAFeJc6swRJhS
-	WM/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-type;
-	bh=eXqHL6NhOtgyveBPmyhzx8E3HL+tEM+EWfguChTB/6c=;
-	b=Hkf7CDu0P/XyIVoHu01mXCKhh8bVug+n8eaMNHSNWHcrNPMBWxifNu7a036xJPFxbO
-	0FM/mkus+uPJCq60MX0rq/en0PMiU9fVBP+8CnwNsJZuZm5Vfty77lDb9U6qy9VMl6BL
-	QRmkqIBV7a+0weOqnWOBMcNq5Eq05rYmeJ7JLccnD8q/XqYv0f/ljzM0pCNHvLDpfrS7
-	aOxujTvun5OUNWpM564M4vwpoAodvF4vm1WYysmVV8bzTHK0FuNisP+Uxxm1bKUdtgmO
-	LQ0eCGiXUYh6DgrNaW94FtOXve+S5eGSeAP49KlZII6X/MAANpjdlSdvI9JWWwIgwRLw
-	sS0w==
-X-Gm-Message-State: AG10YOQwqGh2UDjeGm8x7J0RxxQtdtRbsT2dhHnoSyr+7bR+VC2AocBw5VDnOA4FXfKKcMFo/pKsb0cj4YsvIQ==
-X-Received: by 10.31.48.132 with SMTP id w126mr18381437vkw.5.1454363162477;
-	Mon, 01 Feb 2016 13:46:02 -0800 (PST)
+	Mon,  1 Feb 2016 21:59:13 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u11LxAf0005940;
+	Mon, 1 Feb 2016 15:59:10 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u11LxA3Q030028;
+	Mon, 1 Feb 2016 15:59:10 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 1 Feb 2016 15:59:10 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u11Lx9HX023128;
+	Mon, 1 Feb 2016 15:59:10 -0600
+Date: Mon, 1 Feb 2016 16:58:54 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Message-ID: <20160201215854.GU11314@edge>
+References: <CADySD0FB8Y_f9SWK+=WDmb8tba=mUZ==PK-spO+_BOhR4QhVsQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.31.146.65 with HTTP; Mon, 1 Feb 2016 13:45:43 -0800 (PST)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Tue, 2 Feb 2016 10:45:43 +1300
-Message-ID: <CADySD0FB8Y_f9SWK+=WDmb8tba=mUZ==PK-spO+_BOhR4QhVsQ@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: What's the reason behind different config file in oe-layersetup
+In-Reply-To: <CADySD0FB8Y_f9SWK+=WDmb8tba=mUZ==PK-spO+_BOhR4QhVsQ@mail.gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: What's the reason behind different config file in oe-layersetup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,51 +37,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Feb 2016 21:46:03 -0000
-Content-Type: multipart/alternative; boundary=001a11430e0eac8c8e052abc4f13
+X-List-Received-Date: Mon, 01 Feb 2016 21:59:14 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
---001a11430e0eac8c8e052abc4f13
-Content-Type: text/plain; charset=UTF-8
+On Tue, Feb 02, 2016 at 10:45:43AM +1300, Ankur Tyagi wrote:
+> Hi,
+> 
+> oe-layersetup has different set of configs. I couldn't find any
+> documentation explaining "when to use which config".
+> 
+> Can someone help me understand the rationale behind these configs ? They
+> all refer to different commits of same repo, so I am sure there must a
+> reason behind it.
 
-Hi,
+http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
 
-oe-layersetup has different set of configs. I couldn't find any
-documentation explaining "when to use which config".
+Available Layer Configurations section explains what those configs are.
 
-Can someone help me understand the rationale behind these configs ? They
-all refer to different commits of same repo, so I am sure there must a
-reason behind it.
+To summarize - config files in the main configs/ directory are all "rolling", 
+i.e. they pull latest from corresponding branches of all the layers. Useful 
+for development. On the other hand, configs in coresdk, amsdk, glsdk, mcsdk 
+and processor-sdk directories are the release configs, i.e. they pin down all 
+the layers to a specific commit ID at the time of release. That way a given 
+release can be reproduced later on. And those SDK names are just product names 
+to support corresponding TI embedded processor platforms.
 
-For a commercial product, which config should be used to create bsp, kernel
-and rootfs
 
-thanks
-Ankur
+> For a commercial product, which config should be used to create bsp, kernel
+> and rootfs
 
---001a11430e0eac8c8e052abc4f13
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+For your own commercial product, you should create your own config, using one 
+of the existing ones as an example.
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif;font-size:small;color:#333399">Hi,</div><div class=3D"gmail_default" =
-style=3D"font-family:georgia,serif;font-size:small;color:#333399"><br></div=
-><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:=
-small;color:#333399">oe-layersetup has different set of configs. I couldn&#=
-39;t find any documentation explaining &quot;when to use which config&quot;=
-.</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font=
--size:small;color:#333399"><br></div><div class=3D"gmail_default" style=3D"=
-font-family:georgia,serif;font-size:small;color:#333399">Can someone help m=
-e understand the rationale behind these configs ? They all refer to differe=
-nt commits of same repo, so I am sure there must a reason behind it.</div><=
-div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:sm=
-all;color:#333399"><br></div><div class=3D"gmail_default" style=3D"font-fam=
-ily:georgia,serif;font-size:small;color:#333399">For a commercial product, =
-which config should be used to create bsp, kernel and rootfs</div><div clas=
-s=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;colo=
-r:#333399"><br></div><div class=3D"gmail_default" style=3D"font-family:geor=
-gia,serif;font-size:small;color:#333399">thanks</div><div class=3D"gmail_de=
-fault" style=3D"font-family:georgia,serif;font-size:small;color:#333399">An=
-kur</div>
-</div>
+-- 
+Denys
 
---001a11430e0eac8c8e052abc4f13--
