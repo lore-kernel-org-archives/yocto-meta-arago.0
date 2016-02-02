@@ -1,31 +1,29 @@
 Return-Path: <jake@udd0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 9E61952ABA
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 7A0E552A97
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Feb 2016 13:42:09 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u12Dg91M002022
-	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 07:42:09 -0600
+	Tue,  2 Feb 2016 14:37:33 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u12EbWVC021404
+	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 08:37:32 -0600
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12Dg9Z5023757
-	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 07:42:09 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12EbWZW005083
+	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 08:37:32 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 2 Feb 2016 07:42:09 -0600
+	Tue, 2 Feb 2016 08:37:32 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12Dg8Fh001746;
-	Tue, 2 Feb 2016 07:42:08 -0600
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12EbW7I024683;
+	Tue, 2 Feb 2016 08:37:32 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aQbDc-0005GW-Ed; Tue, 02 Feb 2016 08:42:08 -0500
+	<jake@udd0866934>)	id 1aQc5D-0007QY-Qq; Tue, 02 Feb 2016 09:37:31 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 2 Feb 2016 08:42:04 -0500
-Message-ID: <1454420524-20173-8-git-send-email-j-stiffler@ti.com>
+Date: Tue, 2 Feb 2016 09:37:29 -0500
+Message-ID: <1454423850-28516-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1454420524-20173-1-git-send-email-j-stiffler@ti.com>
-References: <1454420524-20173-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 7/7] ti-tisdk-makefile: Add ipsecmgr-mod target
+Subject: [PATCH 1/2] weston-conf: Add recipe for weston configuration files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,74 +36,99 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Feb 2016 13:42:10 -0000
+X-List-Received-Date: Tue, 02 Feb 2016 14:37:34 -0000
 Content-Type: text/plain
+
+* This is required when configuration files differ between machines to
+  keep the weston package from becoming machine-specific.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_ipsecmgr-mod        | 28 ++++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  4 +++-
- 2 files changed, 31 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod
+ .../wayland/{weston => weston-conf}/wayland_env.sh |  0
+ .../wayland/{weston => weston-conf}/weston.ini     |  0
+ ...{weston_1.9.0.bbappend => weston-conf_1.9.0.bb} | 22 ++++++++--------------
+ .../recipes-graphics/wayland/weston_1.9.0.bbappend | 18 ++----------------
+ 4 files changed, 10 insertions(+), 30 deletions(-)
+ rename meta-arago-distro/recipes-graphics/wayland/{weston => weston-conf}/wayland_env.sh (100%)
+ rename meta-arago-distro/recipes-graphics/wayland/{weston => weston-conf}/weston.ini (100%)
+ copy meta-arago-distro/recipes-graphics/wayland/{weston_1.9.0.bbappend => weston-conf_1.9.0.bb} (29%)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod
-new file mode 100644
-index 0000000..e39a2c0
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod
-@@ -0,0 +1,28 @@
-+ipsecmgr-mod: linux
-+	@echo ================================
-+	@echo      Building ipsecmgr-mod
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "ipsecmgr-mod*"`; \
-+	make ARCH=arm KDIR=$(LINUXKERNEL_INSTALL_DIR)
-+
-+ipsecmgr-mod_clean:
-+	@echo ================================
-+	@echo      Cleaning ipsecmgr-mod
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "ipsecmgr-mod*"`; \
-+	make ARCH=arm KDIR=$(LINUXKERNEL_INSTALL_DIR) clean
-+
-+ipsecmgr-mod_install:
-+	@echo ================================
-+	@echo      Installing ipsecmgr-mod
-+	@echo ================================
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "ipsecmgr-mod*"`; \
-+	make ARCH=arm  KDIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 14f8e8a..3813082 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -43,9 +43,10 @@ SRC_URI = "\
-     file://Makefile_uio-module-drv \
-     file://Makefile_pru-icss \
-     file://Makefile_qt-opencv-opencl-opengl-multithreaded \
-+    file://Makefile_ipsecmgr-mod \
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/wayland_env.sh b/meta-arago-distro/recipes-graphics/wayland/weston-conf/wayland_env.sh
+similarity index 100%
+rename from meta-arago-distro/recipes-graphics/wayland/weston/wayland_env.sh
+rename to meta-arago-distro/recipes-graphics/wayland/weston-conf/wayland_env.sh
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini
+similarity index 100%
+rename from meta-arago-distro/recipes-graphics/wayland/weston/weston.ini
+rename to meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.9.0.bb
+similarity index 29%
+copy from meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+copy to meta-arago-distro/recipes-graphics/wayland/weston-conf_1.9.0.bb
+index 4aff58d..7c22282 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.9.0.bb
+@@ -1,23 +1,17 @@
+-# When configured for fbdev compositor, make it the default
+-PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+-PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
++SUMMARY = "Weston configuration files"
++HOMEPAGE = "http://wayland.freedesktop.org"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+ 
+-PR_append = "-arago0"
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-SRC_URI += "file://wayland_env.sh \
+-            file://weston.ini \
++SRC_URI = "file://wayland_env.sh \
++           file://weston.ini \
  "
  
--PR = "r64"
-+PR = "r65"
+ # Add custom Arago Wayland Environment script file
+-do_install_append () {
++do_install () {
+     install -d ${D}${sysconfdir}/profile.d
+     install -m 0644 ${WORKDIR}/weston.ini ${D}${sysconfdir}
+     install -m 0644 ${WORKDIR}/wayland_env.sh ${D}${sysconfdir}/profile.d/
+ }
  
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -123,6 +124,7 @@ MAKEFILES_append_keystone = " u-boot-spl \
-                               ti-crypto-examples \
-                               hplib-mod \
-                               uio-module-drv \
-+                              ipsecmgr-mod-src \
- "
+-PACKAGES += "${PN}-conf"
+-
+-FILES_${PN}-conf += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
+-RDEPENDS_${PN} += "${PN}-conf"
++FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+index 4aff58d..92c143d 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+@@ -2,22 +2,8 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
  
- MAKEFILES_append_k2hk-evm = " opencl-examples \
+-PR_append = "-arago0"
++PR_append = "-arago1"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-SRC_URI += "file://wayland_env.sh \
+-            file://weston.ini \
+-"
+-
+-# Add custom Arago Wayland Environment script file
+-do_install_append () {
+-    install -d ${D}${sysconfdir}/profile.d
+-    install -m 0644 ${WORKDIR}/weston.ini ${D}${sysconfdir}
+-    install -m 0644 ${WORKDIR}/wayland_env.sh ${D}${sysconfdir}/profile.d/
+-}
+-
+-PACKAGES += "${PN}-conf"
+-
+-FILES_${PN}-conf += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
+-RDEPENDS_${PN} += "${PN}-conf"
++RDEPENDS_${PN} += "weston-conf"
 -- 
 1.9.1
 
