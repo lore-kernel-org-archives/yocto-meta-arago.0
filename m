@@ -1,27 +1,29 @@
-Return-Path: <anandb@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id AF5D65208B
+Return-Path: <jake@udd0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0EF27529E7
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Feb 2016 14:43:21 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u12EhLCE005103
-	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 08:43:21 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12EhKF4021315
-	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 08:43:20 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 2 Feb 2016 08:43:21 -0600
-Received: from tigfxsrv.india.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u12EhJjh023310;	Tue, 2 Feb 2016 08:43:20 -0600
-From: Anand Balagopalakrishnan <anandb@ti.com>
+	Tue,  2 Feb 2016 15:14:39 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u12FEc1c022082
+	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 09:14:38 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12FEcTI013875
+	for <meta-arago@arago-project.org>; Tue, 2 Feb 2016 09:14:38 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 2 Feb 2016 09:14:37 -0600
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u12FEbYU027054;
+	Tue, 2 Feb 2016 09:14:37 -0600
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1aQcf7-0007ep-CQ; Tue, 02 Feb 2016 10:14:37 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 2 Feb 2016 20:13:15 +0530
-Message-ID: <1454424195-11064-1-git-send-email-anandb@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Tue, 2 Feb 2016 10:14:35 -0500
+Message-ID: <1454426075-29401-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH 1/1] weston: restrict udev enumeration to /dev/dri/card0
+Subject: [PATCH] ti-tisdk-setup: Updates for k2g-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,71 +36,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Feb 2016 14:43:21 -0000
+X-List-Received-Date: Tue, 02 Feb 2016 15:14:39 -0000
 Content-Type: text/plain
 
-Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- ...v-seat-restrict-udev-enumeration-to-card0.patch |   36 ++++++++++++++++++++
- .../recipes-graphics/wayland/weston_1.9.0.bb       |    1 +
- 2 files changed, 37 insertions(+)
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
+ meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
-new file mode 100644
-index 0000000..9503428
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
-@@ -0,0 +1,36 @@
-+From e8e7a9f7dfa164a75fdbdca87622a2e13334478a Mon Sep 17 00:00:00 2001
-+From: Anand Balagopalakrishnan <anandb@ti.com>
-+Date: Sat, 23 Jan 2016 22:48:07 +0530
-+Subject: [PATCH 1/1] udev-seat: restrict udev enumeration to card0
-+
-+In case of separate GPU and Display devices as found in embedded systems, we
-+could have modeset node and render node controlled by different drivers.
-+There is a distinct possibility that udev enumeration returns the DRM device
-+corresponding to render node as the primary DRM device.
-+
-+Obviously, modeset operations cannot be done on the GPU DRM device.
-+
-+Restrict the udev enumeration to card0 and ensure that DRM device corresponding
-+to display is returned as the primary DRM device.
-+
-+Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
-+---
-+ src/compositor-drm.c |    2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/compositor-drm.c b/src/compositor-drm.c
-+index 6777bf8..59c2cc5 100644
-+--- a/src/compositor-drm.c
-++++ b/src/compositor-drm.c
-+@@ -2827,7 +2827,7 @@ find_primary_gpu(struct drm_backend *b, const char *seat)
-+ 
-+ 	e = udev_enumerate_new(b->udev);
-+ 	udev_enumerate_add_match_subsystem(e, "drm");
-+-	udev_enumerate_add_match_sysname(e, "card[0-9]*");
-++	udev_enumerate_add_match_sysname(e, "card0");
-+ 
-+ 	udev_enumerate_scan_devices(e);
-+ 	drm_device = NULL;
-+-- 
-+1.7.9.5
-+
-diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-index 439b279..a444590 100644
---- a/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-+++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-@@ -13,6 +13,7 @@ SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
-            file://0001-make-error-portable.patch \
-            file://libsystemd.patch \
-            file://explicit-enable-disable-systemd.patch \
-+	   file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
- "
- SRC_URI[md5sum] = "66bbba12f546570b4d97f676bc79a28e"
- SRC_URI[sha256sum] = "9c1b03f3184fa0b0dfdf67e215048085156e1a2ca344af6613fed36794ac48cf"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 701346b..0afeb48 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+ 
+-PR = "r27"
++PR = "r28"
+ 
+ BRANCH ?= "master"
+-SRCREV = "9ba9b0c10634d71aa4685aedc4ce9990534586ea"
++SRCREV = "b391f655577f8dc56ba63abfbfe9eac4ab11e8b6"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
+@@ -14,6 +14,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ SDCARD_SCRIPT = " create-sdcard.sh"
+ SDCARD_SCRIPT_keystone = ""
++SDCARD_SCRIPT_k2g-evm = " create-sdcard.sh"
+ 
+ SETUP_SCRIPTS = " common.sh \
+                   setup-host-check.sh \
+@@ -34,6 +35,7 @@ UBOOT_ENV_ti43x = "setup-uboot-env-am43x.sh"
+ UBOOT_ENV_omap5-evm = "setup-uboot-env-omap5.sh"
+ UBOOT_ENV_am57xx-evm = "setup-uboot-env-am57xx-evm.sh"
+ UBOOT_ENV_keystone = "setup-uboot-env-keystone.sh"
++UBOOT_ENV_k2g-evm = "setup-uboot-env-k2g-evm.sh"
+ UBOOT_ENV = "setup-uboot-unknown.sh"
+ 
+ do_install () {
 -- 
-1.7.9.5
+1.9.1
 
 
