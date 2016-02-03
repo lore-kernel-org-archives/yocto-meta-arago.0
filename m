@@ -1,27 +1,25 @@
-Return-Path: <h-gou@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 41BF05208B
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id F0EC05208B
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Feb 2016 20:42:59 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u13KgvCc014574
-	for <meta-arago@arago-project.org>; Wed, 3 Feb 2016 14:42:57 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u13Kgv8U014194
-	for <meta-arago@arago-project.org>; Wed, 3 Feb 2016 14:42:57 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 3 Feb 2016 14:42:56 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u13Kgu00005748;	Wed, 3 Feb 2016 14:42:56 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 3 Feb 2016 15:42:54 -0500
-Message-ID: <1454532174-3980-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] qtmultimedia: add gstreamer in PACKAGECONFIG to enable video
+	Wed,  3 Feb 2016 20:59:23 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173017.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPSA id <0O1Z007C3OYF6O70@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 03 Feb 2016 14:59:03 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=ztUL1BmNLBpAi8s-rQgA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 1B35E161E3F;	Wed,
+	3 Feb 2016 15:59:03 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 03 Feb 2016 15:59:02 -0500
+Message-id: <1454533142-25375-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] tisdk-image: add packaging of skern and k2-fw-initrd to prebuilt-images/
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,27 +32,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 20:43:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 03 Feb 2016 20:59:26 -0000
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtmultimedia_%.bbappend | 5 +++++
- 1 file changed, 5 insertions(+)
- create mode 100644 meta-arago-distro/recipes-qt/qt5/qtmultimedia_%.bbappend
+ meta-arago-distro/classes/tisdk-image.bbclass | 26 +++++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtmultimedia_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtmultimedia_%.bbappend
-new file mode 100644
-index 0000000..f164f6e
---- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt5/qtmultimedia_%.bbappend
-@@ -0,0 +1,5 @@
-+PR_append = "-arago0"
+diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
+index e5d5e50..86fbb58 100644
+--- a/meta-arago-distro/classes/tisdk-image.bbclass
++++ b/meta-arago-distro/classes/tisdk-image.bbclass
+@@ -56,6 +56,12 @@ DEPLOY_SPL_UART_NAME ?= "u-boot-spl.bin-${MACHINE}"
+ # Variable to specify the name of the TI SCI firmware
+ DEPLOY_TISCI_FW_NAME ?= "ti-sci-firmware-k2g.bin"
+ 
++# Variable to specify the name of Keystone skern file (it has SOC in the name, not MACHINE)
++DEPLOY_K2_SKERN_NAME ?= "skern-*.bin"
 +
-+PACKAGECONFIG ??= "gstreamer \
-+                   ${@bb.utils.contains('DISTRO_FEATURES', 'alsa', 'alsa', '', d)} \
-+                   ${@bb.utils.contains('DISTRO_FEATURES', 'pulseaudio', 'pulseaudio', '', d)}"
++# Variable to specify the name of Keystone initramfs with FW images
++DEPLOY_K2_FW_INITRD_NAME ?= "k2-fw-initrd.cpio.gz"
++
+ # Manifest file location which will be created as part of the image build
+ # process.
+ # This manifest follows the TI manifest format requirements which is why
+@@ -758,15 +764,33 @@ tisdk_image_build () {
+         fi
+     fi
+ 
++    # Copy TI SCI firmware if it exists
+     if [ "${DEPLOY_TISCI_FW_NAME}" != "" ]
+     then
+-        # Copy TI SCI firmware if it exists
+         if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_TISCI_FW_NAME} ]
+         then
+             cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_TISCI_FW_NAME} ${prebuilt_dir}/
+         fi
+     fi
+ 
++    # Copy skern/boot-monitor image if it exists
++    if [ "${DEPLOY_K2_SKERN_NAME}" != "" ]
++    then
++        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_K2_SKERN_NAME} ]
++        then
++            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_K2_SKERN_NAME} ${prebuilt_dir}/
++        fi
++    fi
++
++    # Copy Keystone FW initramfs image if it exists
++    if [ "${DEPLOY_K2_FW_INITRD_NAME}" != "" ]
++    then
++        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_K2_FW_INITRD_NAME} ]
++        then
++            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_K2_FW_INITRD_NAME} ${prebuilt_dir}/
++        fi
++    fi
++
+     # Add the EXTRA_TISDK_FILES contents if they exist
+     # Make sure EXTRA_TISDK_FILES is not empty so we don't accidentaly
+     # copy the root directory.
 -- 
-1.9.1
+2.2.0
 
 
