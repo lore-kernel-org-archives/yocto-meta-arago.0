@@ -1,30 +1,26 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 2260C52A95
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id A7B4A529EA
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Feb 2016 18:36:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u14IaFc4002150
-	for <meta-arago@arago-project.org>; Thu, 4 Feb 2016 12:36:15 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u14IaFxr014395
-	for <meta-arago@arago-project.org>; Thu, 4 Feb 2016 12:36:15 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 4 Feb 2016 12:36:15 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u14IaFgJ013587;
-	Thu, 4 Feb 2016 12:36:15 -0600
-Date: Thu, 4 Feb 2016 13:35:59 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Anand Balagopalakrishnan <anandb@ti.com>
-Message-ID: <20160204183559.GO31480@edge>
-References: <1454424195-11064-1-git-send-email-anandb@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1454424195-11064-1-git-send-email-anandb@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/1] weston: restrict udev enumeration to /dev/dri/card0
+	Thu,  4 Feb 2016 19:30:44 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPSA id <0O21004J7FINOO60@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 04 Feb 2016 13:30:24 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
+	a=BepsUTWYBPPOVOd4LkAA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id AFC2C161E69;	Thu,
+	4 Feb 2016 14:30:23 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 04 Feb 2016 14:30:23 -0500
+Message-id: <1454614223-25454-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [tisdk-build-scripts][PATCH] run-opentest: pass PMMC/TI-SCI FW file to opentest for k2g-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,87 +33,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Feb 2016 18:36:16 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 04 Feb 2016 19:30:45 -0000
 
-Anand,
+From: Denys Dmytriyenko <denys@ti.com>
 
-Is this patch meant to be upstreamed? Or is this rather a hack for our 
-own setup? If latter, please add the patch to weston_1.9.0.bbappend in 
-meta-arago-distro instead of the main recipe. Thanks.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ lib/run-opentest | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
+diff --git a/lib/run-opentest b/lib/run-opentest
+index fb9ffd5..f09466a 100644
+--- a/lib/run-opentest
++++ b/lib/run-opentest
+@@ -240,6 +240,13 @@ run_target_side_test() {
+             ;;
+     esac
+ 
++    pmmc=""
++    case $machine in
++        k2g-evm )
++            pmmc="~pmmc=$(ls $test_dir/temp/board-support/prebuilt-images/ti-sci-firmware-k2g.bin)"
++            ;;
++    esac
++
+     bootattempts=""
+     boottimeout=""
+     if [ -n $OPENTEST_BOOT_ATTEMPTS ]
+@@ -277,8 +284,8 @@ run_target_side_test() {
+     fi
+ 
+     # Call opentest framework.  Echo the command being used for logging
+-    echo "java -jar $OPENTEST_JAR --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot$skern$fwinit$bootattempts$boottimeout~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --options \"priority 0\" --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
+-    java -jar $OPENTEST_JAR --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot$skern$fwinit$bootattempts$boottimeout~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --options "priority 0" --params script=/$TEST_SCRIPTS_TGT/opentest.sh
++    echo "java -jar $OPENTEST_JAR --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot$skern$fwinit$pmmc$bootattempts$boottimeout~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --options \"priority 0\" --params script=/$TEST_SCRIPTS_TGT/opentest.sh"
++    java -jar $OPENTEST_JAR --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot$skern$fwinit$pmmc$bootattempts$boottimeout~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --options "priority 0" --params script=/$TEST_SCRIPTS_TGT/opentest.sh
+ 
+ ################################################################################
+ # Check the results of the opentest run.
 -- 
-Denys
+2.2.0
 
-
-On Tue, Feb 02, 2016 at 08:13:15PM +0530, Anand Balagopalakrishnan wrote:
-> Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
-> ---
->  ...v-seat-restrict-udev-enumeration-to-card0.patch |   36 ++++++++++++++++++++
->  .../recipes-graphics/wayland/weston_1.9.0.bb       |    1 +
->  2 files changed, 37 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
-> 
-> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch b/meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
-> new file mode 100644
-> index 0000000..9503428
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
-> @@ -0,0 +1,36 @@
-> +From e8e7a9f7dfa164a75fdbdca87622a2e13334478a Mon Sep 17 00:00:00 2001
-> +From: Anand Balagopalakrishnan <anandb@ti.com>
-> +Date: Sat, 23 Jan 2016 22:48:07 +0530
-> +Subject: [PATCH 1/1] udev-seat: restrict udev enumeration to card0
-> +
-> +In case of separate GPU and Display devices as found in embedded systems, we
-> +could have modeset node and render node controlled by different drivers.
-> +There is a distinct possibility that udev enumeration returns the DRM device
-> +corresponding to render node as the primary DRM device.
-> +
-> +Obviously, modeset operations cannot be done on the GPU DRM device.
-> +
-> +Restrict the udev enumeration to card0 and ensure that DRM device corresponding
-> +to display is returned as the primary DRM device.
-> +
-> +Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
-> +---
-> + src/compositor-drm.c |    2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/src/compositor-drm.c b/src/compositor-drm.c
-> +index 6777bf8..59c2cc5 100644
-> +--- a/src/compositor-drm.c
-> ++++ b/src/compositor-drm.c
-> +@@ -2827,7 +2827,7 @@ find_primary_gpu(struct drm_backend *b, const char *seat)
-> + 
-> + 	e = udev_enumerate_new(b->udev);
-> + 	udev_enumerate_add_match_subsystem(e, "drm");
-> +-	udev_enumerate_add_match_sysname(e, "card[0-9]*");
-> ++	udev_enumerate_add_match_sysname(e, "card0");
-> + 
-> + 	udev_enumerate_scan_devices(e);
-> + 	drm_device = NULL;
-> +-- 
-> +1.7.9.5
-> +
-> diff --git a/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-> index 439b279..a444590 100644
-> --- a/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-> +++ b/meta-arago-extras/recipes-graphics/wayland/weston_1.9.0.bb
-> @@ -13,6 +13,7 @@ SRC_URI = "http://wayland.freedesktop.org/releases/${BPN}-${PV}.tar.xz \
->             file://0001-make-error-portable.patch \
->             file://libsystemd.patch \
->             file://explicit-enable-disable-systemd.patch \
-> +	   file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
->  "
->  SRC_URI[md5sum] = "66bbba12f546570b4d97f676bc79a28e"
->  SRC_URI[sha256sum] = "9c1b03f3184fa0b0dfdf67e215048085156e1a2ca344af6613fed36794ac48cf"
-> -- 
-> 1.7.9.5
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
