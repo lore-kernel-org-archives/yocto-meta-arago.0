@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 5CC1952A08
+	by arago-project.org (Postfix) with ESMTPS id 5E4EA52A1C
 	for <meta-arago@arago-project.org>;
 	Thu,  4 Feb 2016 14:04:32 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u14E4V9O022810
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u14E4Vkg022809
 	for <meta-arago@arago-project.org>; Thu, 4 Feb 2016 08:04:31 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u14E4VjX012596
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u14E4Vic021286
 	for <meta-arago@arago-project.org>; Thu, 4 Feb 2016 08:04:31 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 4 Feb 2016 08:04:32 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 4 Feb 2016 08:04:31 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u14E4VJK029603;
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u14E4V7g013165;
 	Thu, 4 Feb 2016 08:04:31 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aRKWN-0000lM-4h; Thu, 04 Feb 2016 09:04:31 -0500
+	<jake@udd0866934>)	id 1aRKWN-0000lP-8S; Thu, 04 Feb 2016 09:04:31 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 4 Feb 2016 09:04:27 -0500
-Message-ID: <1454594668-2894-2-git-send-email-j-stiffler@ti.com>
+Date: Thu, 4 Feb 2016 09:04:28 -0500
+Message-ID: <1454594668-2894-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1454594668-2894-1-git-send-email-j-stiffler@ti.com>
 References: <1454594668-2894-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/3] packagegroup-arago-tisdk-addons: Add ti-ipc-rtos-fw
+Subject: [PATCH 3/3] packagegroup-arago-tisdk-addons-sdk-target: k2hk-evm: Add aif2-lld-staticdev
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,40 +43,30 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb  | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index f4bc863..13ec23e 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 6843427..cf279b5 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
  LICENSE = "MIT"
--PR = "r37"
-+PR = "r38"
+-PR = "r21"
++PR = "r22"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -47,6 +47,7 @@ UTILS_append_omap-a15 = " mmc-utils \
-                           stream-openmp \
-                           pru-icss \
-                           strongswan \
-+                          ti-ipc-rtos-fw \
- "
+@@ -100,6 +100,8 @@ EXTRA_LIBS_append_k2hk-evm = "\
+ 	hplib-staticdev \
+ 	nwal-lld-dev \
+ 	nwal-lld-staticdev \
++	aif2-lld-dev \
++	aif2-lld-staticdev \
+ 	"
  
- # Add PRU examples for am180x-evm devices
-@@ -62,6 +63,10 @@ UTILS_append_dra7xx = " canutils \
-                         opencl-examples-dev \
- "
- 
-+UTILS_append_keystone = " \
-+    ti-ipc-rtos-fw \
-+"
-+
- UTILS_append_k2hk-evm = " \
-     opencl-staticdev \
-     opencl-examples-dev \
+ EXTRA_LIBS_append_k2e-evm = "\
 -- 
 1.9.1
 
