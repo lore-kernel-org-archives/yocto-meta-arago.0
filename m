@@ -1,31 +1,26 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 8DFE452ABE
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 954B3529B0
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Feb 2016 15:53:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u15Fr9uC013545
-	for <meta-arago@arago-project.org>; Fri, 5 Feb 2016 09:53:09 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u15Fr9js007509
-	for <meta-arago@arago-project.org>; Fri, 5 Feb 2016 09:53:09 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 5 Feb 2016 09:53:09 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u15Fr9T6032458;
-	Fri, 5 Feb 2016 09:53:09 -0600
-Date: Fri, 5 Feb 2016 10:52:53 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Anand Balagopalakrishnan <anandb@ti.com>
-Message-ID: <20160205155253.GS31480@edge>
-References: <1454424195-11064-1-git-send-email-anandb@ti.com>
-	<20160204183559.GO31480@edge> <56B44A9E.1090204@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <56B44A9E.1090204@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/1] weston: restrict udev enumeration to /dev/dri/card0
+	Fri,  5 Feb 2016 16:46:58 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPSA id <0O2300MC22LUFLA0@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 05 Feb 2016 10:46:43 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=Q4-j1AaZAAAA:8
+	a=PqpS4GuionrRl7GZ8xcA:9
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 8612E161E7C;	Fri,
+	5 Feb 2016 11:46:42 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 05 Feb 2016 11:46:41 -0500
+Message-id: <1454690801-22391-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] cryptodev-tests: don't use STAGING_KERNEL_DIR, fix re-packaging in multi-machine builds
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,39 +33,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 15:53:10 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 05 Feb 2016 16:46:58 -0000
 
-Anand,
+From: Denys Dmytriyenko <denys@ti.com>
 
-Thanks. Then we need to add this line to the patch for tracking:
+Backport from oe-core/master:
+http://cgit.openembedded.org/openembedded-core/commit/?id=547c2b30573ee0e9e796acf7d8f0411063033282
 
-Upstream-Status: Pending
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/layer.conf                                     | 1 -
+ .../recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend            | 4 +++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index 4529040..f7e4631 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -14,6 +14,5 @@ SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
+ "
+ 
+ SIGGEN_EXCLUDERECIPES_ABISAFE += " \
+-    cryptodev-module \
+     udev \
+ "
+diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend
+index 0a3d1be..05219fa 100644
+--- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend
++++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_1.6.bbappend
+@@ -1,7 +1,9 @@
+-PR_append = "-arago6"
++PR_append = "-arago7"
+ 
+ KERNEL_MODULE_AUTOLOAD += "cryptodev"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ SRC_URI += "file://0001-allow-for-cross-compiling-cryptodev.patch"
++
++EXTRA_OEMAKE='KERNEL_DIR="${STAGING_EXECPREFIXDIR}" PREFIX="${D}"'
 -- 
-Denys
+2.2.0
 
-
-On Fri, Feb 05, 2016 at 12:39:18PM +0530, Anand Balagopalakrishnan wrote:
-> Denys,
-> 
-> I plan to push the embedded patch to wayland-devel. We could have a
-> rework of this patch based on comments.
-> 
-> Nonetheless, I have no doubt that this patch is indeed required. The
-> current Weston code is not factoring in the embedded SoC
-> configurations.
-> 
-> Regards,
-> Anand
-> 
-> On Friday 05 February 2016 12:05 AM, Denys Dmytriyenko wrote:
-> >Anand,
-> >
-> >Is this patch meant to be upstreamed? Or is this rather a hack for our
-> >own setup? If latter, please add the patch to weston_1.9.0.bbappend in
-> >meta-arago-distro instead of the main recipe. Thanks.
-> >
-> 
 
