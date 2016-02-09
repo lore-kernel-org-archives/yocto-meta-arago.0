@@ -1,25 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTPS id 47267529C9
+Return-Path: <jake@udd0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 4E4CB52996
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Feb 2016 15:24:16 +0000 (UTC)
-Received: from gandalf.denix.org ([100.15.86.14]) by vms173007.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0O2A00IYMDEXLL60@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 09 Feb 2016 09:23:32 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
-	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=UjxGRkv5lX4Jd7rqt9UA:9
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id CDA4E161E8B;	Tue,
-	9 Feb 2016 10:23:21 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 09 Feb 2016 10:23:21 -0500
-Message-id: <1455031401-29960-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] layer.conf: add opencl to ABI safe list
+	Tue,  9 Feb 2016 16:16:38 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u19GGb9x024962
+	for <meta-arago@arago-project.org>; Tue, 9 Feb 2016 10:16:37 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u19GGbdx031574
+	for <meta-arago@arago-project.org>; Tue, 9 Feb 2016 10:16:37 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 9 Feb 2016 10:16:37 -0600
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u19GGb5t018640;
+	Tue, 9 Feb 2016 10:16:37 -0600
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1aTAxw-0008RC-Kq; Tue, 09 Feb 2016 11:16:36 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 9 Feb 2016 11:16:34 -0500
+Message-ID: <1455034594-32400-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] packagegroup-arago-tisdk-addons-sdk-target: Add back ipsecmgr dev packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -32,26 +36,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Feb 2016 15:24:19 -0000
+X-List-Received-Date: Tue, 09 Feb 2016 16:16:38 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/conf/layer.conf | 1 +
- 1 file changed, 1 insertion(+)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb    | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-index 31b25e4..605d083 100644
---- a/meta-arago-extras/conf/layer.conf
-+++ b/meta-arago-extras/conf/layer.conf
-@@ -28,4 +28,5 @@ SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
- SIGGEN_EXCLUDERECIPES_ABISAFE += " \
-     ipsecmgr-mod \
-     gstreamer1.0-plugins-bad \
-+    opencl \
- "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index cf279b5..6322ee8 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
+ LICENSE = "MIT"
+-PR = "r22"
++PR = "r23"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -28,9 +28,6 @@ TI_SECURE_STORAGE_DEV = "\
+ 	libp11-staticdev \
+ 	"
+ 
+-# Broken with 4.1
+-#	ipsecmgr-dev
+-#	ipsecmgr-staticdev
+ EXTRA_LIBS_append_keystone = "\
+ 	${TI_SECURE_STORAGE_DEV} \
+ 	cmem-dev \
+@@ -70,6 +67,8 @@ EXTRA_LIBS_append_keystone = "\
+ 	lksctp-tools-staticdev \
+ 	ipc-transport-qmss-dev \
+ 	ipc-transport-qmss-staticdev \
++	ipsecmgr-dev \
++	ipsecmgr-staticdev \
+ 	"
+ 
+ EXTRA_LIBS_append_k2l-evm = "\
 -- 
-2.2.0
+1.9.1
 
 
