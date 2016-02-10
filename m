@@ -1,26 +1,26 @@
 Return-Path: <denis@denix.org>
-Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
-	[206.46.173.15])
-	by arago-project.org (Postfix) with ESMTPS id 4DD7952982
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTPS id 67E2B5296D
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Feb 2016 20:45:47 +0000 (UTC)
-Received: from gandalf.denix.org ([100.15.86.14]) by vms173015.mailsrvcs.net
+	Wed, 10 Feb 2016 00:04:39 +0000 (UTC)
+Received: from gandalf.denix.org ([100.15.86.14]) by vms173011.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPSA id <0O2A00BP6SBP5840@vms173015.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 09 Feb 2016 14:45:31 -0600 (CST)
+	2014)) with ESMTPSA id <0O2B000DC1J7O0A0@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 09 Feb 2016 18:04:20 -0600 (CST)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
-	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
-	a=SgmpmKiGJiIJ4EAPgTEA:9
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=xDJgBcBrK5EN9DJ6g74wNQ==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=sXxbYe1gZPRFtlL-J8AA:9
+	a=7MU8ljVfTrYSjeOW:21 a=jNbxiHwMRvXj5poW:21
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 78DC3161E8C;	Tue,
-	9 Feb 2016 15:45:25 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id 83B6E161E8B;	Tue,
+	9 Feb 2016 19:04:19 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 09 Feb 2016 15:45:25 -0500
-Message-id: <1455050725-31731-1-git-send-email-denis@denix.org>
+Date: Tue, 09 Feb 2016 19:04:18 -0500
+Message-id: <1455062658-23081-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [tisdk-build-scripts][PATCH] run-opentest: grab console logs from OpenTest
+Subject: [PATCH] images: fix BAD_RECOMMENDATIONS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,60 +33,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Feb 2016 20:45:48 -0000
+X-List-Received-Date: Wed, 10 Feb 2016 00:04:40 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+1. keystone-specific image was updated to exclude ti-llvm3.6-dev, but other
+   platforms still refered to ti-llvm3.3-dev and won't purge it
+2. no need to separate BAD_RECOMMENDATIONS for keystone from other platforms,
+   as all of them incldude common arago-base-tisdk-image
+3. also exclude coreutils that gets pulled due to number of -dev packages,
+   for consistency of using busybox-based system tools across all platforms
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- lib/common-functions |    1 +
- lib/run-opentest     |   11 ++++++++++-
- 2 files changed, 11 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb    | 3 ++-
+ meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb | 7 -------
+ 2 files changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/lib/common-functions b/lib/common-functions
-index ace8f86..e0fc8c6 100644
---- a/lib/common-functions
-+++ b/lib/common-functions
-@@ -62,4 +62,5 @@ parse_config_file() {
- general_log='$LOG_DIR/sdk-build-log.txt'
- machine_build_log='$LOG_DIR/$m-build-log.txt'
- machine_test_log='$LOG_DIR/$m-test-log.txt'
-+machine_console_log='$LOG_DIR/$m-console-log.txt'
- error_log='$LOG_DIR/error-log.txt'
-diff --git a/lib/run-opentest b/lib/run-opentest
-index 0017b5e..fb27d82 100644
---- a/lib/run-opentest
-+++ b/lib/run-opentest
-@@ -1,3 +1,5 @@
-+#!/bin/bash
-+
- # Translate OE machine types to opentest HW platforms and don't test on
- # unsupported platforms.
- # NOTE: Some platforms re-use the same board so we can set oplatform the same
-@@ -291,6 +293,13 @@ run_target_side_test() {
-         java -jar $OPENTEST_JAR --template penguin --hw platform=$oplatform,$OPENTEST_HW_CAP --sw kernel=$kernel$dtb~kernel_modules=$spluart$uboot$skern$fwinit$pmmc$bootattempts$boottimeout~nfs=$ipaddr:$nfs_dir$ASSIGN_TO_TEE~test_scripts_root=git://http://arago-project.org/git/projects/test-automation/execution-engines/vatf-scripts.git --options "priority 0" --params script=/$TEST_SCRIPTS_TGT/opentest.sh
-     fi
+diff --git a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+index 51d2652..7b589e2 100644
+--- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+@@ -13,10 +13,11 @@ IMAGE_INSTALL += "\
+     "
  
-+    otret=$?
-+
-+    if [ "${BUILD_LOG_VERBOSE}" = "true" ]; then
-+        oturl=`eval grep 'LOG\ PATH' $machine_test_log | egrep -o 'href="([^"]*)' | cut -d\" -f2 | sed 's/dev_test_\([[:digit:]]\+\).html/dut1_\1_log.txt/'`
-+        eval wget --no-proxy "$oturl" -O $machine_console_log
-+    fi
-+
- ################################################################################
- # Check the results of the opentest run.
- #   - If the test failed mark the failure and exit
-@@ -300,7 +309,7 @@ run_target_side_test() {
-     # This is not marked as a critical failure because this could be a false
-     # failure from the test system itself.  So depending on what we set for
-     # SKIP_TEST_FAILURES we may continue with the packaging step.
--    if [ "$?" != 0 ]
-+    if [ "$otret" != 0 ]
-     then
-         echo "Opentest failed for $m"
-         echo "FAILED" > $LOG_DIR/$m-test-result.txt
+ BAD_RECOMMENDATIONS += " \
+-    ti-llvm3.3-dev \
++    ti-llvm3.6-dev \
+     opencl-monitor-dev \
+     libulm-dev \
+     gdbserver-c6x-dev \
++    coreutils \
+ "
+ 
+ export IMAGE_BASENAME = "arago-base-tisdk-image"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+index d0c3f54..53ea300 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+@@ -14,11 +14,4 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-test-addons \
+ "
+ 
+-BAD_RECOMMENDATIONS += " \
+-    ti-llvm3.6-dev \
+-    opencl-monitor-dev \
+-    libulm-dev \
+-    gdbserver-c6x-dev \
+-"
+-
+ export IMAGE_BASENAME = "tisdk-server-rootfs-image"
 -- 
-1.7.9.5
+2.2.0
 
 
