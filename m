@@ -1,29 +1,28 @@
-Return-Path: <jake@udd0866934>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 85FE8529A5
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 7CAD1529A5
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Feb 2016 20:25:02 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1CKP1gL015790
-	for <meta-arago@arago-project.org>; Fri, 12 Feb 2016 14:25:01 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1CKP1B3005967
-	for <meta-arago@arago-project.org>; Fri, 12 Feb 2016 14:25:01 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 12 Feb 2016 14:25:00 -0600
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1CKP0Fl002847;
-	Fri, 12 Feb 2016 14:25:00 -0600
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aUKGy-00086L-3n; Fri, 12 Feb 2016 15:25:00 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 12 Feb 2016 15:24:58 -0500
-Message-ID: <1455308698-31107-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] packagegroup-arago-tisdk-addons: Add nodejs-npm for am3/4/5
+	Fri, 12 Feb 2016 20:25:05 +0000 (UTC)
+Received: from vz-proxy-l003.mx.aol.com ([64.236.82.148])
+	by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O2G006MJBDA7C20@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 12 Feb 2016 14:25:00 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=hkQRW7prCrFMEwk2DGUM9Q==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
+	a=HzvI_sJN3mAfTqGuu-4A:9
+Received: by 100.15.86.14 with SMTP id 294de9df; Fri, 12 Feb 2016 20:25:00 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id B1068161E9D;	Fri,
+	12 Feb 2016 15:04:24 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 12 Feb 2016 15:04:23 -0500
+Message-id: <1455307463-17555-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] k2-initramfs: update with new NETCP PA firmware images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,47 +35,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Feb 2016 20:25:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 12 Feb 2016 20:25:05 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb    | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 4317c25..8314cc2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r39"
-+PR = "r40"
+diff --git a/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb b/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
+index f7b13ae..e61edbd 100644
+--- a/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
++++ b/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
+@@ -1,9 +1,9 @@
+-DESCRIPTION = "Prebuilt Keystone2 initramfs with SerDes and QMSS firmware"
++DESCRIPTION = "Prebuilt Keystone2 initramfs with SerDes, QMSS and NETCP PA firmware"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ LICENSE = "TI-TFL"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3a86335d32864b0bef996bee26cc0f2c"
  
-@@ -101,16 +101,19 @@ DEVTOOLS = " \
+-PV = "0.0.3"
++PV = "0.0.4"
+ PR = "r0"
  
- DEVTOOLS_append_ti33x = " \
-     nodejs \
-+    nodejs-npm \
-     protobuf \
- "
+ CLEANBROKEN = "1"
+@@ -14,8 +14,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- DEVTOOLS_append_ti43x = " \
-     nodejs \
-+    nodejs-npm \
-     protobuf \
- "
+ SRC_URI = "http://arago-project.org/files/releases/k2-fw/${P}.tar.gz"
  
- DEVTOOLS_append_omap-a15 = " \
-     nodejs \
-+    nodejs-npm \
-     protobuf \
- "
+-SRC_URI[md5sum] = "d5c7bf5425a7f09d2b70d5ce8c4e73bf"
+-SRC_URI[sha256sum] = "5b6889593daef70e01b3933f44f3769c0fe766f5fe016fcc0777a4c3063bc03b"
++SRC_URI[md5sum] = "ba1fe7a7f9279ea7ed0d26fbba30e4d5"
++SRC_URI[sha256sum] = "c76c0899cbe9b5dde45febf4be48175142dc49ddcfe759596090c183743e8b3b"
  
+ S = "${WORKDIR}"
+ TARGET = "k2-fw-initrd.cpio.gz"
 -- 
-1.9.1
+2.2.0
 
 
