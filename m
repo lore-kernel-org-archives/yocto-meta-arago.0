@@ -1,29 +1,29 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id F144752982
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 965BB52982
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Feb 2016 18:53:30 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1FIrUwd008063
-	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:53:30 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FIrUvM020312
-	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:53:30 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 15 Feb 2016 12:53:29 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FIrTPq018115	for
-	<meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:53:29 -0600
-Message-ID: <56C21EA9.3090209@ti.com>
-Date: Mon, 15 Feb 2016 13:53:29 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
-To: <meta-arago@arago-project.org>
+	Mon, 15 Feb 2016 18:56:15 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1FIuFj2027526
+	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:56:15 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FIuEGd014611
+	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:56:15 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 15 Feb 2016 12:56:14 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FIuEen021335;
+	Mon, 15 Feb 2016 12:56:14 -0600
+Date: Mon, 15 Feb 2016 13:55:58 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20160215185558.GF31480@edge>
 References: <1455561794-2206-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
 In-Reply-To: <1455561794-2206-1-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
 Subject: Re: [PATCH 1/2] arago.conf: Remove qtwayland from opencv PACKAGECONFIG for keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -37,52 +37,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Feb 2016 18:53:31 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Feb 2016 18:56:15 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-This may be more of an RFC as I have some concerns.
+This alters package configuration based on machine/soc w/o making the package 
+machine-specific, resulting in a conflict or package rebuild and checksum 
+mismatch...
 
-I am concerned with this patch as it adds machine-specific configuration 
-for opencv, but the recipe is not marked as machine-specific.
-
-Will this pose an issue?
-
-Now I understand that if opencv packaging is done well enough, that we 
-should still be able to build the qtwayland parts of opencv, but do not 
-install them in the keystone filesystem so that wayland is not brought 
-in. However, wayland has a dependency on the ddk, which is not 
-compatible with keystone machines. Thus the opencv build will be broken 
-for keystone machines.
-
-Any suggestions?
+-- 
+Denys
 
 
-
-On 2/15/2016 1:43 PM, Jacob Stiffler wrote:
+On Mon, Feb 15, 2016 at 01:43:13PM -0500, Jacob Stiffler wrote:
 > * keystone machines do not have a display, hence they do not support
->    wayland
+>   wayland
 > * opencv adds qtwayland support since wayland is in DISTRO_FEATURES
 > * Remove qtwayland from opencv PACKAGECONFIG for keystone machines
->
+> 
 > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->   meta-arago-distro/conf/distro/arago.conf | 3 +++
->   1 file changed, 3 insertions(+)
->
+>  meta-arago-distro/conf/distro/arago.conf | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 > diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
 > index 325e112..38c7887 100644
 > --- a/meta-arago-distro/conf/distro/arago.conf
 > +++ b/meta-arago-distro/conf/distro/arago.conf
 > @@ -58,6 +58,9 @@ PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
->   # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
->   PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)} ssl zlib"
->   
+>  # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
+>  PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)} ssl zlib"
+>  
 > +# Remove qtwayland from openvcv PACKAGECONFIG for keystone
 > +PACKAGECONFIG_remove_pn-opencv_keystone = "qtwayland"
 > +
->   # Enable UI and scripting for perf
->   PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
->   
-
+>  # Enable UI and scripting for perf
+>  PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+>  
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
