@@ -1,31 +1,29 @@
 Return-Path: <jake@udd0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id CBBC952A8E
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id C1A7152982
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Feb 2016 17:19:36 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1FHJZ4L001212
-	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 11:19:35 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FHJZTL003738
-	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 11:19:35 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	Mon, 15 Feb 2016 18:43:18 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1FIhHYR017976
+	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:43:17 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FIhHro002816
+	for <meta-arago@arago-project.org>; Mon, 15 Feb 2016 12:43:17 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 15 Feb 2016 11:19:35 -0600
+	Mon, 15 Feb 2016 12:43:17 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FHJZOj011249;
-	Mon, 15 Feb 2016 11:19:35 -0600
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1FIhH63006078;
+	Mon, 15 Feb 2016 12:43:17 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aVMoB-0000PI-3A; Mon, 15 Feb 2016 12:19:35 -0500
+	<jake@udd0866934>)	id 1aVO7A-0000aH-NJ; Mon, 15 Feb 2016 13:43:16 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 15 Feb 2016 12:19:30 -0500
-Message-ID: <1455556771-1512-5-git-send-email-j-stiffler@ti.com>
+Date: Mon, 15 Feb 2016 13:43:13 -0500
+Message-ID: <1455561794-2206-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1455556771-1512-1-git-send-email-j-stiffler@ti.com>
-References: <1455556771-1512-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 4/5] tisdk-server-extra-rootfs-image: Create new server rootfs image
+Subject: [PATCH 1/2] arago.conf: Remove qtwayland from opencv PACKAGECONFIG for keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,35 +36,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Feb 2016 17:19:38 -0000
+X-List-Received-Date: Mon, 15 Feb 2016 18:43:20 -0000
 Content-Type: text/plain
 
-* This image is provided in only the tar.gz format for mounting
-  over NFS
-* This removes the size limitation imposed by the ubifs image format
+* keystone machines do not have a display, hence they do not support
+  wayland
+* opencv adds qtwayland support since wayland is in DISTRO_FEATURES
+* Remove qtwayland from opencv PACKAGECONFIG for keystone machines
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/images/tisdk-server-extra-rootfs-image.bb     | 10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
+ meta-arago-distro/conf/distro/arago.conf | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-new file mode 100644
-index 0000000..6013160
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-@@ -0,0 +1,10 @@
-+require recipes-core/images/tisdk-server-rootfs-image.bb
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 325e112..38c7887 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -58,6 +58,9 @@ PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
+ # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
+ PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)} ssl zlib"
+ 
++# Remove qtwayland from openvcv PACKAGECONFIG for keystone
++PACKAGECONFIG_remove_pn-opencv_keystone = "qtwayland"
 +
-+IMAGE_INSTALL += "\
-+    packagegroup-arago-test-addons \
-+    packagegroup-arago-tisdk-addons-extra \
-+"
-+
-+export IMAGE_BASENAME = "tisdk-server-extra-rootfs-image"
-+
-+IMAGE_FSTYPES = "tar.gz"
+ # Enable UI and scripting for perf
+ PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+ 
 -- 
 1.9.1
 
