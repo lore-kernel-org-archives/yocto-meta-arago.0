@@ -1,33 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id E5CD45208B
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id B00F65208B
 	for <meta-arago@arago-project.org>;
-	Wed, 17 Feb 2016 22:28:05 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1HMS5HZ012257
-	for <meta-arago@arago-project.org>; Wed, 17 Feb 2016 16:28:05 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1HMS5d2017461
-	for <meta-arago@arago-project.org>; Wed, 17 Feb 2016 16:28:05 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 17 Feb 2016 16:28:04 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1HMS4rc000505;
-	Wed, 17 Feb 2016 16:28:04 -0600
-Date: Wed, 17 Feb 2016 17:27:49 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20160217222748.GH31480@edge>
-References: <1455561794-2206-1-git-send-email-j-stiffler@ti.com>
-	<56C21EA9.3090209@ti.com> <20160215190458.GG31480@edge>
-	<56C237D5.9030907@ti.com> <20160215210210.GK31480@edge>
-	<56C4F1AA.5060609@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <56C4F1AA.5060609@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/2] arago.conf: Remove qtwayland from opencv PACKAGECONFIG for keystone
+	Wed, 17 Feb 2016 22:40:22 +0000 (UTC)
+Received: from vz-proxy-l007.mx.aol.com ([64.236.82.152])
+	by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O2P00LHMQXUQD10@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 17 Feb 2016 16:39:35 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
+	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=BKnvCB8l_7Tj7Oe19xwA:9
+Received: by 100.15.86.14 with SMTP id 16725b9c; Wed, 17 Feb 2016 22:39:35 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 0BCAE161E90;	Wed,
+	17 Feb 2016 17:39:30 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 17 Feb 2016 17:39:29 -0500
+Message-id: <1455748769-14277-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] external-linaro-toolchain: strip libraries and binaries normally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,86 +34,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Feb 2016 22:28:06 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 17 Feb 2016 22:40:22 -0000
 
-Well, it would be rather expensive to rebuild opencv for each machine...
-BTW, in this case having a .bbappend would be more preferable to change 
-PACKAGECONFIG for keystone and set it as machine-speicfic.
+From: Denys Dmytriyenko <denys@ti.com>
 
+Latest Linaro binary toolchains are now shipped unstripped,
+so INHIBIT_PACKAGE_STRIP is no longer needed.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/meta/external-linaro-toolchain.bbappend              | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index 479a006..19e7617 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -1,10 +1,12 @@
++INHIBIT_PACKAGE_STRIP = "0"
++
+ ALLOW_EMPTY_${PN}-utils = "1"
+ ALLOW_EMPTY_ldd = "1"
+ 
+ ALLOW_EMPTY_libstdc++ = "1"
+ ALLOW_EMPTY_libgomp = "1"
+ 
+-PR_append = "-arago28"
++PR_append = "-arago29"
+ 
+ PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
+ PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
 -- 
-Denys
+2.2.0
 
-
-On Wed, Feb 17, 2016 at 05:18:18PM -0500, Jacob Stiffler wrote:
-> Should I mark opencv as machine-specific in arago.conf?
-> 
-> On 2/15/2016 4:02 PM, Denys Dmytriyenko wrote:
-> >On Mon, Feb 15, 2016 at 03:40:53PM -0500, Jacob Stiffler wrote:
-> >>
-> >>On 2/15/2016 2:04 PM, Denys Dmytriyenko wrote:
-> >>>On Mon, Feb 15, 2016 at 01:53:29PM -0500, Jacob Stiffler wrote:
-> >>>>This may be more of an RFC as I have some concerns.
-> >>>>
-> >>>>I am concerned with this patch as it adds machine-specific
-> >>>>configuration for opencv, but the recipe is not marked as
-> >>>>machine-specific.
-> >>>>
-> >>>>Will this pose an issue?
-> >>>Yeah, I just replied on this part.
-> >>>
-> >>>
-> >>>>Now I understand that if opencv packaging is done well enough, that
-> >>>>we should still be able to build the qtwayland parts of opencv, but
-> >>>>do not install them in the keystone filesystem so that wayland is
-> >>>>not brought in. However, wayland has a dependency on the ddk, which
-> >>>>is not compatible with keystone machines. Thus the opencv build will
-> >>>>be broken for keystone machines.
-> >>>>
-> >>>>Any suggestions?
-> >>>Quick question - where did 3.1 recipe come from and what exactly qtwayland
-> >>>dependency do?
-> >>The 3.1 recipe was created by Hongmei and based on
-> >>http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-support/opencv/opencv_2.4.bb?h=master.
-> >Well, not exactly. The original 3.0 recipe that we added to meta-arago was
-> >backported from meta-oe/master as is.
-> >
-> >Then, 3.1 update came along and this one is completely custom, as no other
-> >layer has 3.1 and the dependency on qtwayland is also something that we added.
-> >
-> >
-> >>We use the qtwayland component for the GUI in the video analytics demo.
-> >Ok, by the looks of it, enabling WITH_QT option in opencv allows it to work
-> >with QT and open windows in opencv-enabled apps...
-> >
-> >
-> >>>>On 2/15/2016 1:43 PM, Jacob Stiffler wrote:
-> >>>>>* keystone machines do not have a display, hence they do not support
-> >>>>>   wayland
-> >>>>>* opencv adds qtwayland support since wayland is in DISTRO_FEATURES
-> >>>>>* Remove qtwayland from opencv PACKAGECONFIG for keystone machines
-> >>>>>
-> >>>>>Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> >>>>>---
-> >>>>>  meta-arago-distro/conf/distro/arago.conf | 3 +++
-> >>>>>  1 file changed, 3 insertions(+)
-> >>>>>
-> >>>>>diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> >>>>>index 325e112..38c7887 100644
-> >>>>>--- a/meta-arago-distro/conf/distro/arago.conf
-> >>>>>+++ b/meta-arago-distro/conf/distro/arago.conf
-> >>>>>@@ -58,6 +58,9 @@ PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
-> >>>>>  # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
-> >>>>>  PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)} ssl zlib"
-> >>>>>+# Remove qtwayland from openvcv PACKAGECONFIG for keystone
-> >>>>>+PACKAGECONFIG_remove_pn-opencv_keystone = "qtwayland"
-> >>>>>+
-> >>>>>  # Enable UI and scripting for perf
-> >>>>>  PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
-> >>>>_______________________________________________
-> >>>>meta-arago mailing list
-> >>>>meta-arago@arago-project.org
-> >>>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
