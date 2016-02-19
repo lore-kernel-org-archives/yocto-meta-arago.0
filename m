@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 0922A52ADC
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 35A4152ADD
 	for <meta-arago@arago-project.org>;
-	Fri, 19 Feb 2016 19:43:02 +0000 (UTC)
+	Fri, 19 Feb 2016 19:43:03 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh28x000765
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh2bN010042
 	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:02 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1pP022377
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh216022405
 	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:02 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
 	Fri, 19 Feb 2016 13:43:01 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh11s012645;
-	Fri, 19 Feb 2016 13:43:01 -0600
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1p1002863;
+	Fri, 19 Feb 2016 13:43:02 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aWqxB-0006el-FE; Fri, 19 Feb 2016 14:43:01 -0500
+	<jake@udd0866934>)	id 1aWqxB-0006ev-Lm; Fri, 19 Feb 2016 14:43:01 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 19 Feb 2016 14:42:56 -0500
-Message-ID: <1455910978-25530-6-git-send-email-j-stiffler@ti.com>
+Date: Fri, 19 Feb 2016 14:42:58 -0500
+Message-ID: <1455910978-25530-8-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 References: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 5/7] packagegroup-arago-tisdk-addons*: Integrate openmpacc into the SDK
+Subject: [PATCH 7/7] ti-tisdk-makefile: Add openmpacc-examples target
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,114 +43,93 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroup-arago-tisdk-addons-sdk-host.bb           |  6 +++++-
- .../packagegroup-arago-tisdk-addons-sdk-target.bb         | 15 +++++++++++----
- .../packagegroups/packagegroup-arago-tisdk-addons.bb      |  6 +++++-
- 3 files changed, 21 insertions(+), 6 deletions(-)
+ .../ti-tisdk-makefile/Makefile_openmpacc-examples  | 32 ++++++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  7 ++++-
+ 2 files changed, 38 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_openmpacc-examples
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 3b97c18..a7b90fd 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r18"
-+PR = "r19"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -33,18 +33,22 @@ UTILS_append_ti43x = " \
- 
- UTILS_append_dra7xx = " \
-     opencl-examples-src \
-+    openmpacc-examples-src \
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_openmpacc-examples b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_openmpacc-examples
+new file mode 100644
+index 0000000..e1842ba
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_openmpacc-examples
+@@ -0,0 +1,32 @@
++# OpenMP Accelerator Examples build targets
++openmpacc-examples:
++	@echo ================================================
++	@echo     Building the OpenMP Accelerator Examples
++	@echo ================================================
++	@cd example-applications; cd `find . -name "*openmpacc-examples*"`; . $(ENV_SETUP); make TARGET_ROOTDIR=$(SDK_PATH_TARGET) TI_OCL_CGT_INSTALL=$(SDK_PATH_TARGET)/usr/share/ti/cgt-c6x
++
++openmpacc-examples_install:
++	@echo ==================================================
++	@echo     Installing the OpenMP Accelerator Examples
++	@echo ==================================================
++	@if [ ! -d $(DESTDIR) ] ; then \
++		echo "The extracted target filesystem directory doesn't exist."; \
++		echo "Please run setup.sh in the SDK's root directory and then try again."; \
++		exit 1; \
++	fi
++	@cd example-applications; \
++	cd `find . -name "*openmpacc-examples*"`; \
++	for example in `find . -executable -not \( -type d -o -iname 'make*' \)`; do \
++		install -d $(DESTDIR)/usr/share/ti/examples/openmpacc/`dirname $${example}` ; \
++		install -m 755 $${example} $(DESTDIR)/usr/share/ti/examples/openmpacc/`dirname $${example}` ; \
++		if [ -f `dirname $${example}`/*.out ]; then \
++			install -m 755 `dirname $${example}`/*.out $(DESTDIR)/usr/share/ti/examples/openmpacc/`dirname $${example}` ; \
++		fi \
++	done
++
++openmpacc-examples_clean:
++	@echo ==================================================
++	@echo     Cleaning the OpenMP Accelerator Examples
++	@echo ==================================================
++	@cd example-applications; cd `find . -name "*openmpacc-examples*"`; . $(ENV_SETUP); make TARGET_ROOTDIR=$(SDK_PATH_TARGET) clean
++
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index b762b0e..bcd78ba 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -44,9 +44,10 @@ SRC_URI = "\
+     file://Makefile_pru-icss \
+     file://Makefile_qt-opencv-opencl-opengl-multithreaded \
+     file://Makefile_ipsecmgr-mod \
++    file://Makefile_openmpacc-examples \
  "
  
- UTILS_append_k2hk-evm = " \
-     opencl-examples-src \
-+    openmpacc-examples-src \
+-PR = "r67"
++PR = "r68"
+ 
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
+@@ -101,6 +102,7 @@ MAKEFILES_append_dra7xx = " cryptodev \
+                             debugss-module-drv \
+                             gdbserverproxy-module-drv \
+                             opencl-examples \
++                            openmpacc-examples \
+                             qt-opencv-opencl-opengl-multithreaded \
  "
  
- UTILS_append_k2l-evm = " \
-     opencl-examples-src \
-+    openmpacc-examples-src \
+@@ -130,16 +132,19 @@ MAKEFILES_append_keystone = " u-boot-spl \
+ MAKEFILES_append_k2hk-evm = " opencl-examples \
+                               gdbserverproxy-module-drv \
+                               debugss-module-drv \
++                              openmpacc-examples \
  "
  
- UTILS_append_k2e-evm = " \
-     opencl-examples-src \
-+    openmpacc-examples-src \
+ MAKEFILES_append_k2l-evm = " opencl-examples \
+                              gdbserverproxy-module-drv \
+                              debugss-module-drv \
++                             openmpacc-examples \
  "
  
- EXTRA_LIBS = ""
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 6322ee8..6931150 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
- LICENSE = "MIT"
--PR = "r23"
-+PR = "r24"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -123,10 +123,17 @@ UTILS_append_dra7xx = " canutils-dev \
-                         opencl-staticdev \
-                         elfutils-dev \
-                         elfutils-staticdev \
-+                        openmpacc-dev \
-+"
-+UTILS_append_k2hk-evm = " opencl-staticdev \
-+                          openmpacc-dev \
-+"
-+UTILS_append_k2l-evm = " opencl-staticdev \
-+                         openmpacc-dev \
-+"
-+UTILS_append_k2e-evm = " opencl-staticdev \
-+                         openmpacc-dev \
- "
--UTILS_append_k2hk-evm = " opencl-staticdev"
--UTILS_append_k2l-evm = " opencl-staticdev"
--UTILS_append_k2e-evm = " opencl-staticdev"
- UTILS_append_k2g-evm = " canutils-dev"
- 
- EXTRA_LIBS = ""
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 3ab3bf8..8af7fcc 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r41"
-+PR = "r42"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -105,18 +105,22 @@ EXTRA_PACKAGES = " \
- EXTRA_PACKAGES_append_dra7xx = " \
-     opencl-staticdev \
-     opencl-examples-dev \
-+    openmpacc-examples-dev \
- "
- EXTRA_PACKAGES_append_k2hk-evm = " \
-     opencl-staticdev \
-     opencl-examples-dev \
-+    openmpacc-examples-dev \
- "
- EXTRA_PACKAGES_append_k2l-evm = " \
-     opencl-staticdev \
-     opencl-examples-dev \
-+    openmpacc-examples-dev \
- "
- EXTRA_PACKAGES_append_k2e-evm = " \
-     opencl-staticdev \
-     opencl-examples-dev \
-+    openmpacc-examples-dev \
+ MAKEFILES_append_k2e-evm = " opencl-examples \
+                              gdbserverproxy-module-drv \
+                              debugss-module-drv \
++                             openmpacc-examples \
  "
  
- RDEPENDS_${PN} = "\
+ # Use ARCH format expected by the makefile
 -- 
 1.9.1
 
