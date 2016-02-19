@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id D9E9D52AD9
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id E81FD52ADA
 	for <meta-arago@arago-project.org>;
 	Fri, 19 Feb 2016 19:43:02 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh2pW006626
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh2rE010039
 	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:02 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1GL022378
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1pO022377
 	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:02 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
 	Fri, 19 Feb 2016 13:43:01 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1uK026288;
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1jG028779;
 	Fri, 19 Feb 2016 13:43:01 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aWqxB-0006ep-Iq; Fri, 19 Feb 2016 14:43:01 -0500
+	<jake@udd0866934>)	id 1aWqxB-0006eV-0P; Fri, 19 Feb 2016 14:43:01 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 19 Feb 2016 14:42:57 -0500
-Message-ID: <1455910978-25530-7-git-send-email-j-stiffler@ti.com>
+Date: Fri, 19 Feb 2016 14:42:53 -0500
+Message-ID: <1455910978-25530-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 References: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 6/7] nativesdk-packagegroup-arago-sdk-host: Add clacc to the devkit
+Subject: [PATCH 2/7] openmpacc: Add OpenMP-Acc library
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,28 +43,35 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroups/nativesdk-packagegroup-arago-sdk-host.bb             | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../recipes-ti/openmpacc/openmpacc_git.bb             | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-index 8f47c9c..42b93e7 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-@@ -1,5 +1,5 @@
- DESCRIPTION = "Host packages for a standalone Arago SDK or external toolchain"
--PR = "r11"
-+PR = "r12"
- LICENSE = "MIT"
- 
- inherit packagegroup nativesdk
-@@ -7,6 +7,7 @@ inherit packagegroup nativesdk
- EXTRA_TOOLS = "nativesdk-ti-cgt6x \
-                nativesdk-ti-cgt-pru \
-                nativesdk-clocl \
-+               nativesdk-clacc \
- "
- 
- RDEPENDS_${PN} = "\
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+new file mode 100644
+index 0000000..89f6b79
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+@@ -0,0 +1,19 @@
++DESCRIPTION = "TI OpenMP-Acc host runtime and development packages"
++
++include openmpacc.inc
++
++PR = "${INC_PR}.0"
++
++inherit cmake
++
++DEPENDS = "boost boost-native opencl"
++RDEPENDS_${PN} += "opencl-runtime"
++
++S = "${WORKDIR}/git/host"
++
++export TARGET_ROOTDIR = "${STAGING_DIR_HOST}"
++export LINUX_DEVKIT_ROOT = "${STAGING_DIR_HOST}"
++
++EXTRA_OECMAKE += "-DVERSION="${PV}" -DBUILD_OUTPUT=lib"
++
++FILES_${PN} += "/usr/share/ti/openmpacc/*"
 -- 
 1.9.1
 
