@@ -1,27 +1,31 @@
-Return-Path: <h-gou@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 34F9752A3A
+Return-Path: <jake@udd0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id A008E52AD0
 	for <meta-arago@arago-project.org>;
-	Fri, 19 Feb 2016 16:40:50 +0000 (UTC)
+	Fri, 19 Feb 2016 19:43:02 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JGen9s016501
-	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 10:40:49 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JGenOj030889
-	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 10:40:49 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 19 Feb 2016 10:40:49 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u1JGene0023195;	Fri, 19 Feb 2016 10:40:49 -0600
-From: Hongmei Gou <h-gou@ti.com>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh1IE031520
+	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:01 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1NE029766
+	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:01 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 19 Feb 2016 13:43:01 -0600
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1Ix028782;
+	Fri, 19 Feb 2016 13:43:01 -0600
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1aWqxB-0006eZ-4k; Fri, 19 Feb 2016 14:43:01 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 19 Feb 2016 11:40:46 -0500
-Message-ID: <1455900046-4338-1-git-send-email-h-gou@ti.com>
+Date: Fri, 19 Feb 2016 14:42:54 -0500
+Message-ID: <1455910978-25530-4-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
+References: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [tisdk-setup-scripts] [PATCH] setup-targetfs-nfs: update extracting of filesystem tarball(s) in a for loop
+Subject: [PATCH 3/7] openmpacc-examples: Add the OpenMP-Acc examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +38,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Feb 2016 16:40:50 -0000
+X-List-Received-Date: Fri, 19 Feb 2016 19:43:03 -0000
 Content-Type: text/plain
 
-* keystone platforms now have tisdk-server-extra rootfs tarball in addition
-  to the tisdk-server rootfs tarball, while other platforms still have a
-  single tisdk-server rootfs tarball. The keystone extra rootfs tarball is
-  a super set of its base rootfs tarball, and it is provided for mounting
-  over NFS.
-
-  Adding the for loop here provides a simple solution to correctly extract
-  the filesystem for NFS mounting for all the platforms.
-
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- setup-targetfs-nfs.sh | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-ti/openmpacc/openmpacc-examples_git.bb | 72 ++++++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
 
-diff --git a/setup-targetfs-nfs.sh b/setup-targetfs-nfs.sh
-index d8d6805..b27f7c4 100644
---- a/setup-targetfs-nfs.sh
-+++ b/setup-targetfs-nfs.sh
-@@ -60,7 +60,7 @@ extract_fs() {
-     me=`whoami`
-     sudo mkdir -p $1
-     check_status
--    sudo tar xzf $fstar -C $1
-+    for i in $fstar; do sudo tar xzf $i -C $1;done
-     check_status
-     sudo chown $me:$me $1
-     check_status
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+new file mode 100644
+index 0000000..9c7e85e
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+@@ -0,0 +1,72 @@
++DESCRIPTION = "TI OpenMP-Acc example applications"
++
++include openmpacc.inc
++
++PR = "${INC_PR}.0"
++
++DEPENDS = "openmpacc clacc-native clocl-native ti-cgt6x-native"
++RDEPENDS_${PN} += "opencl-runtime"
++
++S = "${WORKDIR}/git/openmpacc-examples-src"
++
++OMPACC_EXAMPLE_LIST = " target_update \
++                        vecadd \
++                        printf_debug \
++                        edmamgr \
++                        dspheap \
++                        target_orphan_call \
++                        target_implicit_map \
++                        vecadd_t \
++                        vecadd_complex \
++                        local \
++                        null \
++                        dsplib_fft \
++                        vecadd_lib \
++                        edmabw \
++                        sub_section \
++"
++
++python do_unpack_append() {
++    import shutil
++
++    git_dir = d.expand("${WORKDIR}/git/examples")
++    s = d.getVar("S", True)
++
++    os.makedirs(s)
++    shutil.copy(os.path.join(git_dir,"Makefile"),s)
++    shutil.copy(os.path.join(git_dir,"make.inc"),s)
++    shutil.copy(os.path.join(git_dir,"ompacc_env.sh"),s)
++    for example in d.getVar("OMPACC_EXAMPLE_LIST").split():
++        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
++}
++
++EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
++                 TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
++"
++
++do_compile() {
++    oe_runmake
++}
++
++do_install() {
++    install -d ${D}${datadir}/ti/examples/openmpacc
++
++    install -m 644 ${B}/Makefile ${D}${datadir}/ti/examples/openmpacc
++    install -m 644 ${B}/make.inc ${D}${datadir}/ti/examples/openmpacc
++    install -m 644 ${B}/ompacc_env.sh ${D}${datadir}/ti/examples/openmpacc
++
++    for ompacc_example in ${OMPACC_EXAMPLE_LIST}; do
++        install -d ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
++        cp -rv ${B}/${ompacc_example}/* ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
++    done
++}
++
++FILES_${PN} += "\
++    ${datadir}/ti/examples/openmpacc \
++"
++
++FILES_${PN}-dbg += "\
++    ${datadir}/ti/examples/openmpacc/*/.debug \
++"
++
++INSANE_SKIP_${PN} = "arch ldflags textrel staticdev"
 -- 
 1.9.1
 
