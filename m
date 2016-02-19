@@ -1,31 +1,31 @@
 Return-Path: <jake@udd0866934>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A008E52AD0
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id C31BC52AD2
 	for <meta-arago@arago-project.org>;
 	Fri, 19 Feb 2016 19:43:02 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh1IE031520
-	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:01 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1NE029766
-	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:01 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1JJh2oX006625
+	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:02 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1GI022378
+	for <meta-arago@arago-project.org>; Fri, 19 Feb 2016 13:43:02 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
 	Fri, 19 Feb 2016 13:43:01 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1Ix028782;
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1JJh1jW002855;
 	Fri, 19 Feb 2016 13:43:01 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aWqxB-0006eZ-4k; Fri, 19 Feb 2016 14:43:01 -0500
+	<jake@udd0866934>)	id 1aWqxA-0006eR-Oa; Fri, 19 Feb 2016 14:43:00 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 19 Feb 2016 14:42:54 -0500
-Message-ID: <1455910978-25530-4-git-send-email-j-stiffler@ti.com>
+Date: Fri, 19 Feb 2016 14:42:52 -0500
+Message-ID: <1455910978-25530-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 References: <1455910978-25530-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/7] openmpacc-examples: Add the OpenMP-Acc examples
+Subject: [PATCH 1/7] openmpacc: Add clacc, the OpenMP-Acc compiler
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,60 +43,41 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-ti/openmpacc/openmpacc-examples_git.bb | 72 ++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+ .../recipes-ti/openmpacc/clacc_git.bb              | 38 ++++++++++++++++++++++
+ .../recipes-ti/openmpacc/openmpacc.inc             | 21 ++++++++++++
+ 2 files changed, 59 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+ create mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
 
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
 new file mode 100644
-index 0000000..9c7e85e
+index 0000000..f41c291
 --- /dev/null
-+++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-@@ -0,0 +1,72 @@
-+DESCRIPTION = "TI OpenMP-Acc example applications"
++++ b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+@@ -0,0 +1,38 @@
++DESCRIPTION = "TI OpenMP-Acc C compiler"
 +
 +include openmpacc.inc
 +
 +PR = "${INC_PR}.0"
 +
-+DEPENDS = "openmpacc clacc-native clocl-native ti-cgt6x-native"
-+RDEPENDS_${PN} += "opencl-runtime"
++DEPENDS = "boost elfutils"
++RDEPENDS_${PN} += "clocl"
 +
-+S = "${WORKDIR}/git/openmpacc-examples-src"
++S = "${WORKDIR}/git/host"
 +
-+OMPACC_EXAMPLE_LIST = " target_update \
-+                        vecadd \
-+                        printf_debug \
-+                        edmamgr \
-+                        dspheap \
-+                        target_orphan_call \
-+                        target_implicit_map \
-+                        vecadd_t \
-+                        vecadd_complex \
-+                        local \
-+                        null \
-+                        dsplib_fft \
-+                        vecadd_lib \
-+                        edmabw \
-+                        sub_section \
-+"
++TARGET_class-target = "clacc_arm"
++TARGET_class-native = "clacc_x86"
++TARGET_class-nativesdk = "clacc_x86"
 +
-+python do_unpack_append() {
-+    import shutil
++export LINUX_DEVKIT_ROOT = "${STAGING_DIR_HOST}"
++export X86_HOST_ROOT = "${STAGING_DIR_HOST}"
 +
-+    git_dir = d.expand("${WORKDIR}/git/examples")
-+    s = d.getVar("S", True)
++PARALLEL_MAKE = ""
 +
-+    os.makedirs(s)
-+    shutil.copy(os.path.join(git_dir,"Makefile"),s)
-+    shutil.copy(os.path.join(git_dir,"make.inc"),s)
-+    shutil.copy(os.path.join(git_dir,"ompacc_env.sh"),s)
-+    for example in d.getVar("OMPACC_EXAMPLE_LIST").split():
-+        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
-+}
-+
-+EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
-+                 TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
++EXTRA_OEMAKE = " -C ${S}/clacc \
++                  ${TARGET} \
++                  CXX="${CXX}" \
 +"
 +
 +do_compile() {
@@ -104,27 +85,41 @@ index 0000000..9c7e85e
 +}
 +
 +do_install() {
-+    install -d ${D}${datadir}/ti/examples/openmpacc
++    install -d ${D}${bindir}
++    install -m 755 clacc/${TARGET} ${D}${bindir}/clacc
 +
-+    install -m 644 ${B}/Makefile ${D}${datadir}/ti/examples/openmpacc
-+    install -m 644 ${B}/make.inc ${D}${datadir}/ti/examples/openmpacc
-+    install -m 644 ${B}/ompacc_env.sh ${D}${datadir}/ti/examples/openmpacc
-+
-+    for ompacc_example in ${OMPACC_EXAMPLE_LIST}; do
-+        install -d ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
-+        cp -rv ${B}/${ompacc_example}/* ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
-+    done
++    install -d ${D}${mandir}/man1
++    install -m 644 clacc/clacc.1 ${D}${mandir}/man1
 +}
 +
-+FILES_${PN} += "\
-+    ${datadir}/ti/examples/openmpacc \
-+"
++BBCLASSEXTEND = "native nativesdk"
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+new file mode 100644
+index 0000000..4f55d0d
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+@@ -0,0 +1,21 @@
++SUMMARY = "TI OpenMP Accelerator Model"
++HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
++LICENSE = "BSD"
 +
-+FILES_${PN}-dbg += "\
-+    ${datadir}/ti/examples/openmpacc/*/.debug \
-+"
++PV = "1.3.0.1"
++INC_PR = "r0"
 +
-+INSANE_SKIP_${PN} = "arch ldflags textrel staticdev"
++LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
++
++FILESEXTRAPATHS_prepend := "${THISDIR}/openmpacc:"
++
++OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
++OMPACC_GIT_PROTOCOL = "git"
++OMPACC_GIT_BRANCH = "master"
++
++OMPACC_SRCREV = "814accdbb441a3b258a548c6fbaa087b314ee18b"
++
++BRANCH = "${OMPACC_GIT_BRANCH}"
++SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
++SRCREV = "${OMPACC_SRCREV}"
++
 -- 
 1.9.1
 
