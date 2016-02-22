@@ -1,42 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-vk0-f42.google.com (mail-vk0-f42.google.com
-	[209.85.213.42])
-	by arago-project.org (Postfix) with ESMTPS id BA81152092
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id F0ACE52A87
 	for <meta-arago@arago-project.org>;
-	Mon, 22 Feb 2016 01:49:28 +0000 (UTC)
-Received: by mail-vk0-f42.google.com with SMTP id e6so117085406vkh.2
-	for <meta-arago@arago-project.org>;
-	Sun, 21 Feb 2016 17:49:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=PPmljmQIpuYacOGZUeKZgsrF25rHXnAHQ+Eysrv+2fA=;
-	b=o0dkgphK85Oto5A5aqx+XKIQP4+JHadVoUl2p8T7gT/RyZu6JcsObfY2QU9kAzyM/K
-	mLno9ihP0xD03QCDfu6xIr8djw7hD8msQOtEKbTAPq6mVhno2qTVMuwtBzjUrpflTJR8
-	xGGQDjo1zr/phcRu9IemesKkoHyIhqOasXk1d2PE69mGtTW1d5632jNT0HI7K0kWCUTM
-	Ls5GhfJk9o8UUwg3QiUY4POenfOrebNa8jjr2c3yfsunylDI6w8ivTBE0PC1brjJqe64
-	G5Tto5KDhMzAAg1JttMfiGOL9iG/TvhOfHZ//s9BP/Z7LaCfBKoYbiFJJrB0zCo2/fa1
-	GnPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-type;
-	bh=PPmljmQIpuYacOGZUeKZgsrF25rHXnAHQ+Eysrv+2fA=;
-	b=aUfl4UgR2UXt7ldmvJs/zI4Wynpj8B0WLGq2t2i+l9hPsihmxYqvr4DT7gAMJtsnXR
-	/Gy0jYIW0mK72UzlP0t547hl6i8AvkI8Z3kyI353v6fys+ab8klIR6uj7anLRsIw1XO0
-	jJ2EBG7y2hy/wdfjAAsDZQdPdq8E3ByPKWXGsQSlTTkiXA7v/esp1EAItCBXF/1tuDQ5
-	HvRv9dZ6YhtPNQrTkKbYNJZQHcA0+tT0DlDiYeKKLHB5LlbB8adaG3iHHc85oFfwHalF
-	fKIJm3SOFlSszfcxCkuOKxcFEGZXZfAG2A/ShkZxhv6LMdvpF7E3NQmrskow7fyMjTUQ
-	EAHQ==
-X-Gm-Message-State: AG10YOSDTUvxc7vpb0kNyMzT6wuj9rjoyd8NDkeEuLO1U3pUpNnxPgXy8lvAJK5rPwPJ1KT5uNO467Inv2YyMw==
-X-Received: by 10.31.148.144 with SMTP id w138mr19077595vkd.44.1456105768303; 
-	Sun, 21 Feb 2016 17:49:28 -0800 (PST)
+	Mon, 22 Feb 2016 04:03:25 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1M43Pt2031686
+	for <meta-arago@arago-project.org>; Sun, 21 Feb 2016 22:03:25 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1M43PdA007927
+	for <meta-arago@arago-project.org>; Sun, 21 Feb 2016 22:03:25 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Sun, 21 Feb 2016 22:03:25 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u1M43OY8029851	for <meta-arago@arago-project.org>;
+	Sun, 21 Feb 2016 22:03:25 -0600
+Date: Sun, 21 Feb 2016 23:03:24 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1568686786.585.1456113804853.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.31.146.65 with HTTP; Sun, 21 Feb 2016 17:49:08 -0800 (PST)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Mon, 22 Feb 2016 14:49:08 +1300
-Message-ID: <CADySD0FyhAvLh83Gi=qDOmqGVHNZ6eNhjmOC_okpib9+jYysAQ@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: How to rotate display by 180 degree in am335x ?
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2016.02 build 2016-02-21_23-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,44 +36,217 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2016 01:49:28 -0000
-Content-Type: multipart/alternative; boundary=001a11408c44134228052c520ba6
+X-List-Received-Date: Mon, 22 Feb 2016 04:03:26 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_584_1243965133.1456113804851"
 
---001a11408c44134228052c520ba6
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+------=_Part_584_1243965133.1456113804851
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+<html>
+<head>
+<title>
+Status for 02/21/16
+</title>
+</head>
+<body>
 
-I am running arago distro (daisy) on am335x-evm based reference board.
+<h2>Status for 02/21/16</h2>
 
-How can I rotate the display by 180 degree ?
+<h2>BUILD_ID: build-2016-02-21_23-01-44</h2>
 
-Here is the configuration:
-- Linux version 3.14.49-ge9cd4cc
- - drm 1.1.0 20060810
-- SGX_DDK_Linux_CustomerTI sgxddk 1.10@2359475
+<h2>Clean Build: false</h2>
 
-When I run following command, no rotation happens
-echo 2 > /sys/class/graphics/fb0/rotate
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-thanks
-Ankur=E2=80=8B
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>omap5-evm</td>
+        <td id="omap5-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="omap5-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
 
---001a11408c44134228052c520ba6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-;font-family:georgia,serif;font-size:small"><br></div><p>Hi,<br><br>I am ru=
-nning arago distro (daisy) on am335x-evm based reference board.<br><br>How =
-can I rotate the display by 180 degree ?<br><br>Here is the configuration:<=
-br>- Linux version 3.14.49-ge9cd4cc<br>=C2=A0- drm 1.1.0 20060810<br>- SGX_=
-DDK_Linux_CustomerTI sgxddk 1.10@2359475<br><br>When I run following comman=
-d, no rotation happens<br>echo 2 &gt; /sys/class/graphics/fb0/rotate</p><di=
-v><br>thanks<br>Ankur=E2=80=8B</div><div class=3D"gmail_default" style=3D"c=
-olor:rgb(51,51,153);font-family:georgia,serif;font-size:small"><br></div><d=
-iv class=3D"gmail_default" style=3D"color:rgb(51,51,153);font-family:georgi=
-a,serif;font-size:small"><br></div></div>
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.02"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm omap5-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
 
---001a11408c44134228052c520ba6--
+</body>
+</html>
+
+
+------=_Part_584_1243965133.1456113804851--
