@@ -1,27 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id A231E52A5A
+Return-Path: <jake@udd0866934>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 099A3529E6
 	for <meta-arago@arago-project.org>;
-	Wed, 24 Feb 2016 19:05:02 +0000 (UTC)
-Received: from vz-proxy-l005.mx.aol.com ([64.236.82.148])
-	by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O32009ACFO1ZI60@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 24 Feb 2016 13:04:50 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=hkQRW7prCrFMEwk2DGUM9Q==:117
-	a=jFJIQSaiL_oA:10 a=sozttTNsAAAA:8	a=a1_7XnguTYcgEfei7WoA:9
-Received: by 100.15.86.14 with SMTP id 53547f46; Wed, 24 Feb 2016 19:04:49 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 34588161EC0;	Wed,
-	24 Feb 2016 14:04:48 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 24 Feb 2016 14:04:47 -0500
-Message-id: <1456340687-32524-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] u-boot-fw-utils: add HS support
+	Wed, 24 Feb 2016 20:12:01 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1OKC1hK030134
+	for <meta-arago@arago-project.org>; Wed, 24 Feb 2016 14:12:01 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1OKC1ZZ012610
+	for <meta-arago@arago-project.org>; Wed, 24 Feb 2016 14:12:01 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 24 Feb 2016 14:12:00 -0600
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1OKC0pC029841;
+	Wed, 24 Feb 2016 14:12:00 -0600
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1aYfmy-0003Nk-A9; Wed, 24 Feb 2016 15:12:00 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 24 Feb 2016 15:11:57 -0500
+Message-ID: <1456344717-12958-3-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1456344717-12958-1-git-send-email-j-stiffler@ti.com>
+References: <1456344717-12958-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
+Subject: [PATCH 2/2] nativesdk-packagegroup-arago-sdk-host: Include ubifs utils
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,29 +38,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Feb 2016 19:05:02 -0000
+X-List-Received-Date: Wed, 24 Feb 2016 20:12:02 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* Include the ubifs utils to allow users to create their own ubi
+  images
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bbappend | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../packagegroups/nativesdk-packagegroup-arago-sdk-host.bb             | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bbappend
-index 047f94b..67bf9cf 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bbappend
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bbappend
-@@ -1,5 +1,7 @@
--PR_append = "-arago0"
-+PR_append = "-arago1"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+index 42b93e7..8eb4759 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+@@ -1,5 +1,5 @@
+ DESCRIPTION = "Host packages for a standalone Arago SDK or external toolchain"
+-PR = "r12"
++PR = "r13"
+ LICENSE = "MIT"
  
- # The proper config doesn't currently exist anywhere in mainline U-boot.
- # For now just use a similar config which is good enough for U-boot utilities.
- UBOOT_MACHINE_am57xx-evm = "dra7xx_evm_config"
-+UBOOT_MACHINE_dra7xx-hs-evm = "dra7xx_evm_config"
-+UBOOT_MACHINE_am437x-hs-evm = "am43xx_evm_config"
+ inherit packagegroup nativesdk
+@@ -8,6 +8,7 @@ EXTRA_TOOLS = "nativesdk-ti-cgt6x \
+                nativesdk-ti-cgt-pru \
+                nativesdk-clocl \
+                nativesdk-clacc \
++               nativesdk-mtd-utils-ubifs \
+ "
+ 
+ RDEPENDS_${PN} = "\
 -- 
-2.2.0
+1.9.1
 
 
