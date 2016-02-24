@@ -1,29 +1,31 @@
 Return-Path: <jake@udd0866934>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 1E5B352A4F
+	by arago-project.org (Postfix) with ESMTPS id 2EAE152A57
 	for <meta-arago@arago-project.org>;
 	Wed, 24 Feb 2016 20:12:02 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1OKC1JN012573
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1OKC1Tt012572
 	for <meta-arago@arago-project.org>; Wed, 24 Feb 2016 14:12:01 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1OKC1ZY012610
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1OKC17c029829
 	for <meta-arago@arago-project.org>; Wed, 24 Feb 2016 14:12:01 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
 	Wed, 24 Feb 2016 14:12:00 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1OKC0CP019005;
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1OKC0g4025444;
 	Wed, 24 Feb 2016 14:12:00 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aYfmy-0003Nd-3H; Wed, 24 Feb 2016 15:12:00 -0500
+	<jake@udd0866934>)	id 1aYfmy-0003Nh-6l; Wed, 24 Feb 2016 15:12:00 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 24 Feb 2016 15:11:55 -0500
-Message-ID: <1456344717-12958-1-git-send-email-j-stiffler@ti.com>
+Date: Wed, 24 Feb 2016 15:11:56 -0500
+Message-ID: <1456344717-12958-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1456344717-12958-1-git-send-email-j-stiffler@ti.com>
+References: <1456344717-12958-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 0/2] Add ubi utils to devkit
+Subject: [PATCH 1/2] mtd-utils: Extend to include the nativesdk class
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,18 +41,21 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 24 Feb 2016 20:12:02 -0000
 Content-Type: text/plain
 
-The is in preparation for adding a script to the SDK which can create
-a ubi image from a root filesytem
-
-Jacob Stiffler (2):
-  mtd-utils: Extend to include the nativesdk class
-  nativesdk-packagegroup-arago-sdk-host: Include ubifs utils
-
- .../packagegroups/nativesdk-packagegroup-arago-sdk-host.bb             | 3 ++-
- meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend          | 3 +++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend | 3 +++
+ 1 file changed, 3 insertions(+)
  create mode 100644 meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
 
+diff --git a/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend b/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
+new file mode 100644
+index 0000000..9988fdc
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
+@@ -0,0 +1,3 @@
++PR_append = ".arago0"
++
++BBCLASSEXTEND += "nativesdk"
 -- 
 1.9.1
 
