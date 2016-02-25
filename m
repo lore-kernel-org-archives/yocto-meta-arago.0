@@ -1,28 +1,28 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id ADBC4529CF
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 08D2E529CF
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Feb 2016 19:19:23 +0000 (UTC)
+	Thu, 25 Feb 2016 19:31:24 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PJJNti007225
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:19:23 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PJJM97004434
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:19:23 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 25 Feb 2016 13:19:22 -0600
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PJVOww014212
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:31:24 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PJVOSD017416
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:31:24 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 25 Feb 2016 13:31:23 -0600
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u1PJJMwd023388	for <meta-arago@arago-project.org>;
-	Thu, 25 Feb 2016 13:19:22 -0600
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u1PJVNBu003096	for <meta-arago@arago-project.org>;
+	Thu, 25 Feb 2016 13:31:23 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 25 Feb 2016 14:18:59 -0500
-Message-ID: <1456427939-8796-1-git-send-email-e-ruei1@ti.com>
+Date: Thu, 25 Feb 2016 14:31:19 -0500
+Message-ID: <1456428679-25796-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] Re-enable dual camera demo on AM4
+Subject: [PATCH] Enhance kmscube demo to support AM3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,60 +35,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Feb 2016 19:19:23 -0000
+X-List-Received-Date: Thu, 25 Feb 2016 19:31:25 -0000
 Content-Type: text/plain
 
-The dual camera demo stopped working when Wayland/DRM-based graphics support
-was introduced on AM4 and therefore this demo was disabled. This demo does not
-work with Wayland/DRM-based graphics system because it invokes DRM APIs to
-demonstrate DRM mode setings and overlay operations and those operations
-are denied because there should be only one DRM master.
+Enable AM3 support by adding "tilcdc" to the modules list at kmscube.c
 
-The simple solution is to update the demo script to run this QT5-based demo
-program over linuxfb platform and therefore there is not another DRM master
-running.
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh         | 9 +++++----
- .../recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb  | 2 +-
- 2 files changed, 6 insertions(+), 5 deletions(-)
+ ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 ++++++++++++++++++++++
+ .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  9 +++----
+ 2 files changed, 33 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
 
-diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
-index 9bf560b..151b13b 100644
---- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
-+++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
-@@ -1,12 +1,13 @@
- #!/bin/bash
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+new file mode 100644
+index 0000000..64b7b04
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+@@ -0,0 +1,28 @@
++From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Thu, 25 Feb 2016 09:49:24 -0500
++Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
++
++Enable AM3 support by adding "tilcdc" to the modules list.
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ kmscube.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/kmscube.c b/kmscube.c
++index 5a18c32..919b3e7 100644
++--- a/kmscube.c
+++++ b/kmscube.c
++@@ -84,7 +84,7 @@ struct drm_fb {
++ static int init_drm(void)
++ {
++ 	static const char *modules[] = {
++-			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
+++			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
++ 	};
++ 	drmModeRes *resources;
++ 	drmModeConnector *connector = NULL;
++-- 
++1.9.1
++
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+index 484a46b..138a55b 100644
+--- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+@@ -5,18 +5,19 @@ LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=e760965096e52da8
  
--/etc/init.d/matrix-gui-2.0 stop
-+/etc/init.d/weston stop
-+sleep 1
+ DEPENDS = "libdrm libgbm omap5-sgx-ddk-um-linux"
  
- echo 0 > /sys/class/graphics/fbcon/cursor_blink
+-COMPATIBLE_MACHINE = "ti43x|omap-a15"
++COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--dual_camera
-+dual_camera -platform linuxfb
+ inherit autotools pkgconfig
  
- echo 1 > /sys/class/graphics/fbcon/cursor_blink
+-PR = "r4"
++PR = "r5"
+ SRCREV = "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
  
--/etc/init.d/matrix-gui-2.0 start
--
-+/etc/init.d/weston start
-+sleep 1
-diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-index 43bf00d..1b1a146 100644
---- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-+++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
- DEPENDS += "libdrm"
- require recipes-core/matrix/matrix-gui-paths.inc
+ SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
  
--PR = "r12"
-+PR = "r13"
+-SRC_URI_append_ti43x = " \
+-    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
++SRC_URI_append = " \
++    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
++    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
+ "
  
- BRANCH = "drm"
- SRCREV = "3be10676149c5f6e0ef1660d6b1ee4b9165dd993"
+ S = "${WORKDIR}/git"
 -- 
 1.9.1
 
