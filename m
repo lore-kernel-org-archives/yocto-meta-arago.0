@@ -1,33 +1,29 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <denys@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id E9802529EA
+	by arago-project.org (Postfix) with ESMTPS id 2E446529CF
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Feb 2016 20:04:46 +0000 (UTC)
+	Thu, 25 Feb 2016 21:00:12 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PK4khT000624
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 14:04:46 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PK4kVO032032
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 14:04:46 -0600
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0224.002; Thu, 25 Feb 2016 14:04:46 -0600
-From: "Ruei, Eric" <e-ruei1@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] Enhance kmscube demo to support AM3
-Thread-Index: AQHRcASFx2xB2dl3IEe4iRICF0TzCZ89L1Ew
-Date: Thu, 25 Feb 2016 20:04:45 +0000
-Message-ID: <009C030982313E4589C6BC55FBF1E82A14232505@DFLE09.ent.ti.com>
-References: <1456428679-25796-1-git-send-email-e-ruei1@ti.com>
-	<20160225194113.GK29852@edge>
-In-Reply-To: <20160225194113.GK29852@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.90]
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PL0BDo031826
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 15:00:11 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PL0Bet017909
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 15:00:11 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 25 Feb 2016 15:00:11 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u1PL0AIK020708	for <meta-arago@arago-project.org>;
+	Thu, 25 Feb 2016 15:00:11 -0600
+Date: Thu, 25 Feb 2016 16:00:10 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1597704139.611.1456434010799.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] Enhance kmscube demo to support AM3
+X-Jenkins-Job: arago-core-tisdk-fido
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (fido/1.8) 2016.02 build 2016-02-25_14-19-16
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,124 +36,184 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Feb 2016 20:04:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 25 Feb 2016 21:00:12 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_610_699142068.1456434010786"
 
-Hi, Denys:
+------=_Part_610_699142068.1456434010786
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Yes, the one should be applied to GLSDK.
+<html>
+<head>
+<title>
+Status for 02/25/16
+</title>
+</head>
+<body>
 
-Best regards,
+<h2>Status for 02/25/16</h2>
 
-Eric
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Thursday, February 25, 2016 2:41 PM
-To: Ruei, Eric
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH] Enhance kmscube demo to support AM3
+<h2>BUILD_ID: build-2016-02-25_14-20-16</h2>
 
-Eric,
+<h2>Clean Build: false</h2>
 
-Any plans to upstream patches to GLSDK repo?
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
-Karthik,
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>jethro</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>fido</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am437x-hs-evm</td>
+        <td id="am437x-hs-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-hs-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-hs-evm</td>
+        <td id="dra7xx-hs-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
 
-Who owns that repo and would you be willing to take them up?
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
---=20
-Denys
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.02"<br>
+MACHINES="am437x-hs-evm dra7xx-hs-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
-On Thu, Feb 25, 2016 at 02:31:19PM -0500, Eric Ruei wrote:
-> Enable AM3 support by adding "tilcdc" to the modules list at kmscube.c
->=20
->=20
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->  ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 ++++++++++++++++=
-++++++
->  .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  9 +++----
->  2 files changed, 33 insertions(+), 4 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube/00=
-01-kmscube.c-init_drm-enable-AM3-support.patch
->=20
-> diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmsc=
-ube.c-init_drm-enable-AM3-support.patch b/meta-arago-extras/recipes-graphic=
-s/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
-> new file mode 100644
-> index 0000000..64b7b04
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-i=
-nit_drm-enable-AM3-support.patch
-> @@ -0,0 +1,28 @@
-> +From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00 2001
-> +From: Eric Ruei <e-ruei1@ti.com>
-> +Date: Thu, 25 Feb 2016 09:49:24 -0500
-> +Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
-> +
-> +Enable AM3 support by adding "tilcdc" to the modules list.
-> +
-> +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> +---
-> + kmscube.c | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/kmscube.c b/kmscube.c
-> +index 5a18c32..919b3e7 100644
-> +--- a/kmscube.c
-> ++++ b/kmscube.c
-> +@@ -84,7 +84,7 @@ struct drm_fb {
-> + static int init_drm(void)
-> + {
-> + 	static const char *modules[] =3D {
-> +-			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-> ++			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-> + 	};
-> + 	drmModeRes *resources;
-> + 	drmModeConnector *connector =3D NULL;
-> +--=20
-> +1.9.1
-> +
-> diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb =
-b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> index 484a46b..138a55b 100644
-> --- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> @@ -5,18 +5,19 @@ LIC_FILES_CHKSUM =3D "file://kmscube.c;beginline=3D1;en=
-dline=3D23;md5=3De760965096e52da8
-> =20
->  DEPENDS =3D "libdrm libgbm omap5-sgx-ddk-um-linux"
-> =20
-> -COMPATIBLE_MACHINE =3D "ti43x|omap-a15"
-> +COMPATIBLE_MACHINE =3D "ti33x|ti43x|omap-a15"
->  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> =20
->  inherit autotools pkgconfig
-> =20
-> -PR =3D "r4"
-> +PR =3D "r5"
->  SRCREV =3D "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
-> =20
->  SRC_URI =3D "git://git.ti.com/glsdk/kmscube.git;protocol=3Dgit"
-> =20
-> -SRC_URI_append_ti43x =3D " \
-> -    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.pat=
-ch \
-> +SRC_URI_append =3D " \
-> +    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.pat=
-ch \
-> +    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
->  "
-> =20
->  S =3D "${WORKDIR}/git"
-> --=20
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+------=_Part_610_699142068.1456434010786--
