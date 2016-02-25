@@ -1,28 +1,28 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 08D2E529CF
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 8036D529CF
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Feb 2016 19:31:24 +0000 (UTC)
+	Thu, 25 Feb 2016 19:34:46 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PJVOww014212
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:31:24 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PJVOSD017416
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:31:24 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 25 Feb 2016 13:31:23 -0600
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PJYkGp016108
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:34:46 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PJYjYs020539
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:34:46 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 25 Feb 2016 13:34:45 -0600
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u1PJVNBu003096	for <meta-arago@arago-project.org>;
-	Thu, 25 Feb 2016 13:31:23 -0600
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u1PJYjD9019259	for <meta-arago@arago-project.org>;
+	Thu, 25 Feb 2016 13:34:45 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 25 Feb 2016 14:31:19 -0500
-Message-ID: <1456428679-25796-1-git-send-email-e-ruei1@ti.com>
+Date: Thu, 25 Feb 2016 14:34:42 -0500
+Message-ID: <1456428882-25947-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] Enhance kmscube demo to support AM3
+Subject: [PATCH] Weston 1.9: Add Virtual keyboard patch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,81 +35,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Feb 2016 19:31:25 -0000
+X-List-Received-Date: Thu, 25 Feb 2016 19:34:46 -0000
 Content-Type: text/plain
-
-Enable AM3 support by adding "tilcdc" to the modules list at kmscube.c
-
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 ++++++++++++++++++++++
- .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  9 +++----
- 2 files changed, 33 insertions(+), 4 deletions(-)
- create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+ ...-Fix-virtual-keyboard-display-issue-for-Q.patch | 40 ++++++++++++++++++++++
+ .../recipes-graphics/wayland/weston_1.9.0.bbappend |  3 +-
+ 2 files changed, 42 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch
 
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch
 new file mode 100644
-index 0000000..64b7b04
+index 0000000..576b37e
 --- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
-@@ -0,0 +1,28 @@
-+From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00 2001
++++ b/meta-arago-distro/recipes-graphics/wayland/weston/0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch
+@@ -0,0 +1,40 @@
++From 7d2f4a97306707fb29e743bf66a827e661aa5615 Mon Sep 17 00:00:00 2001
 +From: Eric Ruei <e-ruei1@ti.com>
-+Date: Thu, 25 Feb 2016 09:49:24 -0500
-+Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
++Date: Tue, 23 Feb 2016 18:26:57 -0500
++Subject: [PATCH 3/3] Weston1.9.0: Fix virtual keyboard display issue for QT5
++ application
 +
-+Enable AM3 support by adding "tilcdc" to the modules list.
++The virtual keyboard does pop up as expected, however, it will never hide
++even when the application is terminated. This problem is due to the order
++of the text APIs( text_input_activate and test_input_show_input_panel) are
++invoked in QT5 and a potential bug of the API implementation. The virtual
++keyboard works as expected if the test_input_show_input_panel() is invoked
++prior to the test_input_activate() as most of the weston sample applications
++do. However, the problem will show up if that order is reversed and the reason
++why is that the current_panel is not set in this case and hence this panel
++cannot be hidden.
++
++It is required to set the current_panel to the text_input when the input_panel
++becomes visible at the first time.
++
 +
 +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 +---
-+ kmscube.c | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ src/text-backend.c | 1 +
++ 1 file changed, 1 insertion(+)
 +
-+diff --git a/kmscube.c b/kmscube.c
-+index 5a18c32..919b3e7 100644
-+--- a/kmscube.c
-++++ b/kmscube.c
-+@@ -84,7 +84,7 @@ struct drm_fb {
-+ static int init_drm(void)
-+ {
-+ 	static const char *modules[] = {
-+-			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-++			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-+ 	};
-+ 	drmModeRes *resources;
-+ 	drmModeConnector *connector = NULL;
++diff --git a/src/text-backend.c b/src/text-backend.c
++index cd6c4d99..ba60949 100644
++--- a/src/text-backend.c
+++++ b/src/text-backend.c
++@@ -338,6 +338,7 @@ text_input_show_input_panel(struct wl_client *client,
++ 			       text_input->surface);
++ 		wl_signal_emit(&ec->update_input_panel_signal,
++ 			       &text_input->cursor_rectangle);
+++		text_input->manager->current_panel = text_input;
++ 	}
++ }
++ 
 +-- 
 +1.9.1
 +
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-index 484a46b..138a55b 100644
---- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-@@ -5,18 +5,19 @@ LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=e760965096e52da8
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+index a51f134..99b6d07 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+@@ -2,7 +2,7 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
  
- DEPENDS = "libdrm libgbm omap5-sgx-ddk-um-linux"
+-PR_append = "-arago3"
++PR_append = "-arago4"
  
--COMPATIBLE_MACHINE = "ti43x|omap-a15"
-+COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- inherit autotools pkgconfig
- 
--PR = "r4"
-+PR = "r5"
- SRCREV = "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
- 
- SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
- 
--SRC_URI_append_ti43x = " \
--    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
-+SRC_URI_append = " \
-+    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
-+    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
+@@ -11,5 +11,6 @@ RDEPENDS_${PN} += "weston-conf"
+ SRC_URI += " \
+ 	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
+ 	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
++	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch \
+ 	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
  "
- 
- S = "${WORKDIR}/git"
 -- 
 1.9.1
 
