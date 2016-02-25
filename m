@@ -1,30 +1,33 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id B74B9529CF
+Return-Path: <e-ruei1@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id E9802529EA
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Feb 2016 19:58:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PJwKGe016125
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:58:20 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PJwKaE010426
-	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 13:58:20 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 25 Feb 2016 13:58:19 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PJwFoX022290;
-	Thu, 25 Feb 2016 13:58:17 -0600
-Date: Thu, 25 Feb 2016 14:58:00 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20160225195757.GL29852@edge>
-References: <1456429618-35160-1-git-send-email-e-ruei1@ti.com>
+	Thu, 25 Feb 2016 20:04:46 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1PK4khT000624
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 14:04:46 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1PK4kVO032032
+	for <meta-arago@arago-project.org>; Thu, 25 Feb 2016 14:04:46 -0600
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0224.002; Thu, 25 Feb 2016 14:04:46 -0600
+From: "Ruei, Eric" <e-ruei1@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] Enhance kmscube demo to support AM3
+Thread-Index: AQHRcASFx2xB2dl3IEe4iRICF0TzCZ89L1Ew
+Date: Thu, 25 Feb 2016 20:04:45 +0000
+Message-ID: <009C030982313E4589C6BC55FBF1E82A14232505@DFLE09.ent.ti.com>
+References: <1456428679-25796-1-git-send-email-e-ruei1@ti.com>
+	<20160225194113.GK29852@edge>
+In-Reply-To: <20160225194113.GK29852@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.170.170.90]
 MIME-Version: 1.0
-In-Reply-To: <1456429618-35160-1-git-send-email-e-ruei1@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] Enable Wayland/DRM-based graphics support on AM3
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] Enhance kmscube demo to support AM3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,109 +40,122 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Feb 2016 19:58:21 -0000
+X-List-Received-Date: Thu, 25 Feb 2016 20:04:47 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+Hi, Denys:
 
-On Thu, Feb 25, 2016 at 02:46:58PM -0500, Eric Ruei wrote:
-> - Retain "wayland" within DISTRO_FEATURES of AM3
-> - Replace "fbdev" with "egl" in weston plugin list
-> - Use the same set of 3D demos in Matrix Gui on AM3/4
-> - Enable kmscube on AM3
-> 
+Yes, the one should be applied to GLSDK.
+
+Best regards,
+
+Eric
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Thursday, February 25, 2016 2:41 PM
+To: Ruei, Eric
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] Enhance kmscube demo to support AM3
+
+Eric,
+
+Any plans to upstream patches to GLSDK repo?
+
+Karthik,
+
+Who owns that repo and would you be willing to take them up?
+
+--=20
+Denys
+
+
+On Thu, Feb 25, 2016 at 02:31:19PM -0500, Eric Ruei wrote:
+> Enable AM3 support by adding "tilcdc" to the modules list at kmscube.c
+>=20
+>=20
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
->  meta-arago-distro/conf/distro/arago.conf                       |  5 ++++-
->  .../conf/distro/include/branding-processor-sdk.inc             |  3 ---
->  .../packagegroups/packagegroup-arago-tisdk-matrix.bb           | 10 +++++++++-
->  .../recipes-core/matrix/matrix-gui-3d-demos_2.0.bb             |  6 +++++-
->  4 files changed, 18 insertions(+), 6 deletions(-)
-> 
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> index f4f499e..98efdfe 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -43,7 +43,10 @@ PACKAGECONFIG_pn-weston = "fbdev kms launch libinput"
->  PACKAGECONFIG_append_pn-weston_omap-a15 = " egl"
->  PACKAGECONFIG_remove_pn-weston_omap-a15 = "fbdev"
->  PACKAGECONFIG_append_pn-weston_ti43x    = " egl"
-> -PACKAGECONFIG_remove_pn-weston_ti43x    = "fbdev"
-> +PACKAGECONFIG_remove_pn-weston_ti43x    = "fbdev"
-> +PACKAGECONFIG_append_pn-weston_ti33x    = " egl"
-> +PACKAGECONFIG_remove_pn-weston_ti33x    = "fbdev"
+>  ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 ++++++++++++++++=
+++++++
+>  .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  9 +++----
+>  2 files changed, 33 insertions(+), 4 deletions(-)
+>  create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube/00=
+01-kmscube.c-init_drm-enable-AM3-support.patch
+>=20
+> diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmsc=
+ube.c-init_drm-enable-AM3-support.patch b/meta-arago-extras/recipes-graphic=
+s/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+> new file mode 100644
+> index 0000000..64b7b04
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-i=
+nit_drm-enable-AM3-support.patch
+> @@ -0,0 +1,28 @@
+> +From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00 2001
+> +From: Eric Ruei <e-ruei1@ti.com>
+> +Date: Thu, 25 Feb 2016 09:49:24 -0500
+> +Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
 > +
->  
->  # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
->  PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
-> diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> index 0c5e41c..bd51f76 100644
-> --- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-> @@ -1,8 +1,5 @@
->  ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
->  
-> -# Remove wayland from ti33x DISTRO_FEATURES.
-> -DISTRO_FEATURES_remove_ti33x = "wayland"
-> -
->  # Set CMEM reserved memory region
->  CMEM_BASE_omap-a15 ?= "a0000000"
->  CMEM_SIZE_omap-a15 ?= "08000000"
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> index 75866d2..11ff899 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to include Matrix v2"
->  LICENSE = "MIT"
-> -PR = "r50"
-> +PR = "r51"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -57,6 +57,14 @@ MATRIX_SGX_DEMOS_ti43x = " \
->      matrix-3d-demo-kmscube \
+> +Enable AM3 support by adding "tilcdc" to the modules list.
+> +
+> +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> +---
+> + kmscube.c | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/kmscube.c b/kmscube.c
+> +index 5a18c32..919b3e7 100644
+> +--- a/kmscube.c
+> ++++ b/kmscube.c
+> +@@ -84,7 +84,7 @@ struct drm_fb {
+> + static int init_drm(void)
+> + {
+> + 	static const char *modules[] =3D {
+> +-			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
+> ++			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
+> + 	};
+> + 	drmModeRes *resources;
+> + 	drmModeConnector *connector =3D NULL;
+> +--=20
+> +1.9.1
+> +
+> diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb =
+b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+> index 484a46b..138a55b 100644
+> --- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+> +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+> @@ -5,18 +5,19 @@ LIC_FILES_CHKSUM =3D "file://kmscube.c;beginline=3D1;en=
+dline=3D23;md5=3De760965096e52da8
+> =20
+>  DEPENDS =3D "libdrm libgbm omap5-sgx-ddk-um-linux"
+> =20
+> -COMPATIBLE_MACHINE =3D "ti43x|omap-a15"
+> +COMPATIBLE_MACHINE =3D "ti33x|ti43x|omap-a15"
+>  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> =20
+>  inherit autotools pkgconfig
+> =20
+> -PR =3D "r4"
+> +PR =3D "r5"
+>  SRCREV =3D "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
+> =20
+>  SRC_URI =3D "git://git.ti.com/glsdk/kmscube.git;protocol=3Dgit"
+> =20
+> -SRC_URI_append_ti43x =3D " \
+> -    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.pat=
+ch \
+> +SRC_URI_append =3D " \
+> +    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.pat=
+ch \
+> +    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
 >  "
->  
-> +MATRIX_SGX_DEMOS_ti33x = " \
-> +    matrix-3d-demo-chameleon \
-> +    matrix-3d-demo-coverflow \
-> +    matrix-3d-demo-navigation \
-> +    matrix-3d-demo-exampleui \
-> +    matrix-3d-demo-kmscube \
-> +"
-> +
->  MATRIX_QT_APPS_keystone = ""
->  
->  MATRIX_APPS = ""
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-> index 710bb75..f9d3f30 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-> @@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
->  
->  require matrix-gui-apps-git.inc
->  
-> -PR = "${INC_PR}.6"
-> +PR = "${INC_PR}.7"
->  
->  S = "${WORKDIR}/git/3d_apps"
->  
-> @@ -37,6 +37,10 @@ PACKAGES_append_ti43x = " \
->              matrix-3d-demo-kmscube \
->  "
->  
-> +PACKAGES_append_ti33x = " \
-> +            matrix-3d-demo-kmscube \
-> +"
-> +
->  MATRIX_3D_DEMO_SGX_QAF_PARAM = "1000"
->  
->  do_install_prepend() {
-> -- 
+> =20
+>  S =3D "${WORKDIR}/git"
+> --=20
 > 1.9.1
-> 
+>=20
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
