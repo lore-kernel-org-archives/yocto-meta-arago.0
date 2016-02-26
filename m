@@ -1,30 +1,27 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 854FB52004
+Return-Path: <h-gou@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 0503352004
 	for <meta-arago@arago-project.org>;
-	Fri, 26 Feb 2016 14:32:56 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1QEWt7A009169
-	for <meta-arago@arago-project.org>; Fri, 26 Feb 2016 08:32:55 -0600
+	Fri, 26 Feb 2016 16:48:01 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u1QGm0Pm016855
+	for <meta-arago@arago-project.org>; Fri, 26 Feb 2016 10:48:00 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1QEWtLR000433
-	for <meta-arago@arago-project.org>; Fri, 26 Feb 2016 08:32:55 -0600
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u1QGm0IY031547
+	for <meta-arago@arago-project.org>; Fri, 26 Feb 2016 10:48:00 -0600
 Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 26 Feb 2016 08:32:55 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Fri, 26 Feb 2016 10:48:00 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u1QEWmdN026291	for <meta-arago@arago-project.org>;
-	Fri, 26 Feb 2016 08:32:55 -0600
-From: Eric Ruei <e-ruei1@ti.com>
+	u1QGm0Yq010783;	Fri, 26 Feb 2016 10:48:00 -0600
+From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 26 Feb 2016 09:32:38 -0500
-Message-ID: <1456497158-46802-3-git-send-email-e-ruei1@ti.com>
+Date: Fri, 26 Feb 2016 11:47:57 -0500
+Message-ID: <1456505277-17729-1-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1456497158-46802-1-git-send-email-e-ruei1@ti.com>
-References: <1456497158-46802-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH V2 2/2] matrix: enable corresponding 3D demos including kmscube for AM3
+Subject: [PATCH] tisdk-server-extra-rootfs-image: add multimedia packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,66 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 14:32:56 -0000
+X-List-Received-Date: Fri, 26 Feb 2016 16:48:02 -0000
 Content-Type: text/plain
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb           | 10 +++++++++-
- .../recipes-core/matrix/matrix-gui-3d-demos_2.0.bb             |  6 +++++-
- 2 files changed, 14 insertions(+), 2 deletions(-)
+* This addition is to include gstreamer for keystone2
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 75866d2..11ff899 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r50"
-+PR = "r51"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -57,6 +57,14 @@ MATRIX_SGX_DEMOS_ti43x = " \
-     matrix-3d-demo-kmscube \
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
+ meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
+index 6013160..432f421 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
+@@ -3,6 +3,7 @@ require recipes-core/images/tisdk-server-rootfs-image.bb
+ IMAGE_INSTALL += "\
+     packagegroup-arago-test-addons \
+     packagegroup-arago-tisdk-addons-extra \
++    packagegroup-arago-tisdk-multimedia \
  "
  
-+MATRIX_SGX_DEMOS_ti33x = " \
-+    matrix-3d-demo-chameleon \
-+    matrix-3d-demo-coverflow \
-+    matrix-3d-demo-navigation \
-+    matrix-3d-demo-exampleui \
-+    matrix-3d-demo-kmscube \
-+"
-+
- MATRIX_QT_APPS_keystone = ""
- 
- MATRIX_APPS = ""
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-index 710bb75..f9d3f30 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
- 
- require matrix-gui-apps-git.inc
- 
--PR = "${INC_PR}.6"
-+PR = "${INC_PR}.7"
- 
- S = "${WORKDIR}/git/3d_apps"
- 
-@@ -37,6 +37,10 @@ PACKAGES_append_ti43x = " \
-             matrix-3d-demo-kmscube \
- "
- 
-+PACKAGES_append_ti33x = " \
-+            matrix-3d-demo-kmscube \
-+"
-+
- MATRIX_3D_DEMO_SGX_QAF_PARAM = "1000"
- 
- do_install_prepend() {
+ export IMAGE_BASENAME = "tisdk-server-extra-rootfs-image"
 -- 
 1.9.1
 
