@@ -1,49 +1,31 @@
-Return-Path: <ticotimo@gmail.com>
-Received: from mail-pf0-f180.google.com (mail-pf0-f180.google.com
-	[209.85.192.180])
-	by arago-project.org (Postfix) with ESMTPS id BA79252A87
+Return-Path: <jake@udd0866934>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 6B72152A26
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Mar 2016 03:46:32 +0000 (UTC)
-Received: by mail-pf0-f180.google.com with SMTP id 4so25985074pfd.1
-	for <meta-arago@arago-project.org>;
-	Mon, 29 Feb 2016 19:46:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-transfer-encoding:mime-version:subject:message-id:date
-	:to; bh=Qa1VyUPOhtxmtd73+0hOExqohx99IEJDtyXkWDXRA18=;
-	b=EtYXWevhjyEuslEc7WymGLdoikD/RddHIwasv3NPh/Jam2z6S0sQ+M/ab/Agu9udYf
-	8cMMm9jkzRm9RhhZ9wFNCkx6AGEdHa3PR+1T9QK8GvD+jYTU8wd80JaurwWPWIFh25AU
-	dKFPLtjPtYMYoMUxqCLF0h9L+WKX28aV2YEZFa/HvNbffw2GetHUVrKHhOQraQl4wmBF
-	bgINxIPScAOdT+D6QWomXQ1X1fcPggbmPGbrY64Ao7Zb6U3L8PYwVa+QDABLZU+0LXBx
-	zAUgsuN5BfY8q+PXIXx7kBLescmvaQQZrpA7G40ezinWRKh5tJ+F+SyBrzN6JU++Gvcx
-	U6WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:content-transfer-encoding:mime-version
-	:subject:message-id:date:to;
-	bh=Qa1VyUPOhtxmtd73+0hOExqohx99IEJDtyXkWDXRA18=;
-	b=Wg9x1g9sEYr1NxxaPeXMKWEFR4rM6t3y8FB3gyVVaPrEIty9a5Z0P+PWT5rnmvVAC6
-	nfrJQ+HBSaXZKCdvOQLL6Q5oefnhekIQ6pTciMxxutVJ/kOleMkFP+gwSH2giA3zd3S5
-	u0D1BfG4ZzAq81KuwY4bGtmkUNwFFpjB1ldSfqsvAbiPzXGYx0MMcOa3ofJA4mGYZmsc
-	eUrtDgiPC1RjTbm4cas1UIIbrP9FJjj1Kt3xZTa1KtCCDpGKznuRNFh3TRsTLK++Nrsf
-	16HQ7UQrN9hey10pmndgo46nLr9SVuCEJqTIQGjE4k7jFKs0mY+bTiou3fZbDyzOWISr
-	Wm8g==
-X-Gm-Message-State: AD7BkJKiS320VM6hKvmVBIO1X+9owbErL0gM5VtDSzfWcqimsE32r5IzynNTvJD1EqpkiQ==
-X-Received: by 10.98.32.218 with SMTP id m87mr26990750pfj.48.1456803991905;
-	Mon, 29 Feb 2016 19:46:31 -0800 (PST)
-Received: from [10.0.0.194] (c-76-115-105-5.hsd1.or.comcast.net.
-	[76.115.105.5]) by smtp.gmail.com with ESMTPSA id
-	cq9sm41307920pac.26.2016.02.29.19.46.30
-	for <meta-arago@arago-project.org>
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 29 Feb 2016 19:46:30 -0800 (PST)
-From: Tim Orling <ticotimo@gmail.com>
-X-Google-Original-From: Tim Orling <TicoTimo@gmail.com>
-Mime-Version: 1.0 (1.0)
-Message-Id: <A78912DB-197C-4868-971C-25C34F2578BF@gmail.com>
-Date: Mon, 29 Feb 2016 19:46:29 -0800
-To: meta-arago@arago-project.org
-X-Mailer: iPhone Mail (13D15)
-Subject: Plans for jethro?
+	Tue,  1 Mar 2016 13:31:32 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u21DVVmF026952
+	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 07:31:31 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21DVVDL005716
+	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 07:31:31 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 1 Mar 2016 07:31:31 -0600
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21DVUqb016679;
+	Tue, 1 Mar 2016 07:31:30 -0600
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1aakOg-0003zq-0w; Tue, 01 Mar 2016 08:31:30 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 1 Mar 2016 08:31:27 -0500
+Message-ID: <1456839087-15323-2-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1456839087-15323-1-git-send-email-j-stiffler@ti.com>
+References: <1456839087-15323-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
+Subject: [PATCH 2/2] tisdk-install: Insert SDK path into ubifs script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,16 +38,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2016 03:46:33 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Mar 2016 13:31:33 -0000
+Content-Type: text/plain
 
-New to the list; curious if there is a planned schedule for a jethro branch?=
+* Insert SDK path into create_ubifs.sh so that the ubifs utilities may
+  be found in the devkit.
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh         | 5 +++++
+ meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb   | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-I have some Beagleboard related trees that would appreciate a jethro update :=
-)
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
+index 65c5b69..d195d51 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
++++ b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
+@@ -102,6 +102,11 @@ then
+     sed -i -e s=__SDK_INSTALL_DIR__=$install_dir= $install_dir/bin/unshallow-repositories.sh
+ fi
+ 
++if [ -f "$install_dir/bin/create-ubifs.sh" ]
++then
++    sed -i -e s=__SDK_INSTALL_DIR__=$install_dir= $install_dir/bin/create-ubifs.sh
++fi
++
+ # Modify create-sdcard.sh to have user-supplied installation directory
+ if [ -f "${install_dir}/bin/create-sdcard.sh" ]
+ then
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
+index a3b88d9..e418813 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
+@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://../sdk-install.sh;beginline=3;endline=19;md5=4b899037
+ 
+ SRC_URI = "file://sdk-install.sh"
+ 
+-PR = "r5"
++PR = "r6"
+ 
+ do_install () {
+     install -d ${D}/
+-- 
+1.9.1
 
---Tim=
 
