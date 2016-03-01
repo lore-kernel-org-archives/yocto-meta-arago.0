@@ -1,32 +1,28 @@
-Return-Path: <denys@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id E69DE52A1C
+	by arago-project.org (Postfix) with ESMTPS id C017B52004
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Mar 2016 22:42:53 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u21Mgrqx013403
-	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 16:42:53 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21Mgrxe010734
-	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 16:42:53 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 1 Mar 2016 16:42:53 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21MgqZ0031382;
-	Tue, 1 Mar 2016 16:42:52 -0600
-Date: Tue, 1 Mar 2016 17:42:37 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <e-ruei1@ti.com>
-Message-ID: <20160301224237.GA5889@edge>
-References: <1456428679-25796-1-git-send-email-e-ruei1@ti.com>
-	<20160225194113.GK29852@edge>
-	<009C030982313E4589C6BC55FBF1E82A14232505@DFLE09.ent.ti.com>
+	Tue,  1 Mar 2016 22:48:27 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u21MmR9T013861
+	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 16:48:27 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21MmQHr019556
+	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 16:48:26 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 1 Mar 2016 16:48:26 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u21MmQYG028594	for <meta-arago@arago-project.org>;
+	Tue, 1 Mar 2016 16:48:26 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 1 Mar 2016 17:48:22 -0500
+Message-ID: <1456872502-5739-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <009C030982313E4589C6BC55FBF1E82A14232505@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] Enhance kmscube demo to support AM3
+Subject: [PATCH] kmscube: Enhance and enable this demo for AM3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,123 +35,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2016 22:42:54 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 01 Mar 2016 22:48:28 -0000
+Content-Type: text/plain
 
-Eric,
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 ++++++++++++++++++++++
+ .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  9 +++----
+ 2 files changed, 33 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
 
-Will you be re-submitting the patch with the corrected subject?
-
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+new file mode 100644
+index 0000000..64b7b04
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
+@@ -0,0 +1,28 @@
++From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Thu, 25 Feb 2016 09:49:24 -0500
++Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
++
++Enable AM3 support by adding "tilcdc" to the modules list.
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ kmscube.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/kmscube.c b/kmscube.c
++index 5a18c32..919b3e7 100644
++--- a/kmscube.c
+++++ b/kmscube.c
++@@ -84,7 +84,7 @@ struct drm_fb {
++ static int init_drm(void)
++ {
++ 	static const char *modules[] = {
++-			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
+++			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
++ 	};
++ 	drmModeRes *resources;
++ 	drmModeConnector *connector = NULL;
++-- 
++1.9.1
++
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+index 484a46b..138a55b 100644
+--- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+@@ -5,18 +5,19 @@ LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=e760965096e52da8
+ 
+ DEPENDS = "libdrm libgbm omap5-sgx-ddk-um-linux"
+ 
+-COMPATIBLE_MACHINE = "ti43x|omap-a15"
++COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ inherit autotools pkgconfig
+ 
+-PR = "r4"
++PR = "r5"
+ SRCREV = "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
+ 
+ SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
+ 
+-SRC_URI_append_ti43x = " \
+-    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
++SRC_URI_append = " \
++    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
++    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
+ "
+ 
+ S = "${WORKDIR}/git"
 -- 
-Denys
+1.9.1
 
-
-On Thu, Feb 25, 2016 at 03:04:45PM -0500, Ruei, Eric wrote:
-> Hi, Denys:
-> 
-> Yes, the one should be applied to GLSDK.
-> 
-> Best regards,
-> 
-> Eric
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Thursday, February 25, 2016 2:41 PM
-> To: Ruei, Eric
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] Enhance kmscube demo to support AM3
-> 
-> Eric,
-> 
-> Any plans to upstream patches to GLSDK repo?
-> 
-> Karthik,
-> 
-> Who owns that repo and would you be willing to take them up?
-> 
-> -- 
-> Denys
-> 
-> 
-> On Thu, Feb 25, 2016 at 02:31:19PM -0500, Eric Ruei wrote:
-> > Enable AM3 support by adding "tilcdc" to the modules list at kmscube.c
-> > 
-> > 
-> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > ---
-> >  ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 ++++++++++++++++++++++
-> >  .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  9 +++----
-> >  2 files changed, 33 insertions(+), 4 deletions(-)
-> >  create mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
-> > 
-> > diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
-> > new file mode 100644
-> > index 0000000..64b7b04
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-init_drm-enable-AM3-support.patch
-> > @@ -0,0 +1,28 @@
-> > +From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00 2001
-> > +From: Eric Ruei <e-ruei1@ti.com>
-> > +Date: Thu, 25 Feb 2016 09:49:24 -0500
-> > +Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
-> > +
-> > +Enable AM3 support by adding "tilcdc" to the modules list.
-> > +
-> > +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > +---
-> > + kmscube.c | 2 +-
-> > + 1 file changed, 1 insertion(+), 1 deletion(-)
-> > +
-> > +diff --git a/kmscube.c b/kmscube.c
-> > +index 5a18c32..919b3e7 100644
-> > +--- a/kmscube.c
-> > ++++ b/kmscube.c
-> > +@@ -84,7 +84,7 @@ struct drm_fb {
-> > + static int init_drm(void)
-> > + {
-> > + 	static const char *modules[] = {
-> > +-			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-> > ++			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-> > + 	};
-> > + 	drmModeRes *resources;
-> > + 	drmModeConnector *connector = NULL;
-> > +-- 
-> > +1.9.1
-> > +
-> > diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > index 484a46b..138a55b 100644
-> > --- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > @@ -5,18 +5,19 @@ LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=e760965096e52da8
-> >  
-> >  DEPENDS = "libdrm libgbm omap5-sgx-ddk-um-linux"
-> >  
-> > -COMPATIBLE_MACHINE = "ti43x|omap-a15"
-> > +COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
-> >  PACKAGE_ARCH = "${MACHINE_ARCH}"
-> >  
-> >  inherit autotools pkgconfig
-> >  
-> > -PR = "r4"
-> > +PR = "r5"
-> >  SRCREV = "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
-> >  
-> >  SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
-> >  
-> > -SRC_URI_append_ti43x = " \
-> > -    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
-> > +SRC_URI_append = " \
-> > +    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.patch \
-> > +    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
-> >  "
-> >  
-> >  S = "${WORKDIR}/git"
-> > -- 
-> > 1.9.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
