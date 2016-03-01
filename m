@@ -1,31 +1,29 @@
 Return-Path: <jake@udd0866934>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 6B72152A26
+	by arago-project.org (Postfix) with ESMTPS id 6B78352A35
 	for <meta-arago@arago-project.org>;
 	Tue,  1 Mar 2016 13:31:32 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u21DVVmF026952
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u21DVVro026953
 	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 07:31:31 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21DVVDL005716
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21DVVAu005717
 	for <meta-arago@arago-project.org>; Tue, 1 Mar 2016 07:31:31 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 1 Mar 2016 07:31:31 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 1 Mar 2016 07:31:30 -0600
 Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21DVUqb016679;
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u21DVUKm010294;
 	Tue, 1 Mar 2016 07:31:30 -0600
 Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1aakOg-0003zq-0w; Tue, 01 Mar 2016 08:31:30 -0500
+	<jake@udd0866934>)	id 1aakOf-0003zm-L5; Tue, 01 Mar 2016 08:31:29 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 1 Mar 2016 08:31:27 -0500
-Message-ID: <1456839087-15323-2-git-send-email-j-stiffler@ti.com>
+Date: Tue, 1 Mar 2016 08:31:26 -0500
+Message-ID: <1456839087-15323-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1456839087-15323-1-git-send-email-j-stiffler@ti.com>
-References: <1456839087-15323-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/2] tisdk-install: Insert SDK path into ubifs script
+Subject: [PATCH 1/2] ti-tisdk-setup: Add support for create_ubifs script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,44 +39,50 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Tue, 01 Mar 2016 13:31:33 -0000
 Content-Type: text/plain
 
-* Insert SDK path into create_ubifs.sh so that the ubifs utilities may
-  be found in the devkit.
+* Bump SRCREV to get create_ubifs.sh
+* Use machine-specific variables to populate the UBI parameters
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh         | 5 +++++
- meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb   | 2 +-
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
-index 65c5b69..d195d51 100644
---- a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
-+++ b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install/sdk-install.sh
-@@ -102,6 +102,11 @@ then
-     sed -i -e s=__SDK_INSTALL_DIR__=$install_dir= $install_dir/bin/unshallow-repositories.sh
- fi
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 0afeb48..ebf4080 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
-+if [ -f "$install_dir/bin/create-ubifs.sh" ]
-+then
-+    sed -i -e s=__SDK_INSTALL_DIR__=$install_dir= $install_dir/bin/create-ubifs.sh
-+fi
+-PR = "r28"
++PR = "r29"
+ 
+ BRANCH ?= "master"
+-SRCREV = "b391f655577f8dc56ba63abfbfe9eac4ab11e8b6"
++SRCREV = "6e4af301f7524546545f5b2b0bb46d7993c07ba8"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
+@@ -23,6 +23,7 @@ SETUP_SCRIPTS = " common.sh \
+                   setup-targetfs-nfs.sh \
+                   setup-tftp.sh \
+                   add-to-group.sh \
++                  create-ubifs.sh \
+                   ${SDCARD_SCRIPT} \
+ "
+ 
+@@ -48,6 +49,10 @@ do_install () {
+     done
+ 
+     install -m 0755 ${S}/${UBOOT_ENV} ${D}/bin/setup-uboot-env.sh
 +
- # Modify create-sdcard.sh to have user-supplied installation directory
- if [ -f "${install_dir}/bin/create-sdcard.sh" ]
- then
-diff --git a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
-index a3b88d9..e418813 100644
---- a/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/tisdk-install/tisdk-install_1.0.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://../sdk-install.sh;beginline=3;endline=19;md5=4b899037
++    sed -i -e "s|__MKUBIFS_ARGS__|${MKUBIFS_ARGS}|" \
++           -e "s|__UBINIZE_ARGS__|${UBINIZE_ARGS}|" \
++              "${D}/bin/create-ubifs.sh"
+ }
  
- SRC_URI = "file://sdk-install.sh"
- 
--PR = "r5"
-+PR = "r6"
- 
- do_install () {
-     install -d ${D}/
+ FILES_${PN} += "setup.sh"
 -- 
 1.9.1
 
