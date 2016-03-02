@@ -1,30 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 816FF52A7D
+Return-Path: <anton.gerasimov@openmailbox.org>
+Received: from smtp3.openmailbox.org (smtp3.openmailbox.org [62.4.1.37])
+	by arago-project.org (Postfix) with ESMTPS id 4C23452A7D
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Mar 2016 15:38:20 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u22FcJxc024654
-	for <meta-arago@arago-project.org>; Wed, 2 Mar 2016 09:38:19 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u22FcJm1011364
-	for <meta-arago@arago-project.org>; Wed, 2 Mar 2016 09:38:19 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 2 Mar 2016 09:38:19 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u22FcJ15020536;
-	Wed, 2 Mar 2016 09:38:19 -0600
-Date: Wed, 2 Mar 2016 10:38:03 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20160302153803.GD7505@edge>
-References: <1456929820-47497-1-git-send-email-e-ruei1@ti.com>
+	Wed,  2 Mar 2016 15:47:06 +0000 (UTC)
+Received: by mail2.openmailbox.org (Postfix, from userid 1004)
+	id EE65A2ACA5D8; Wed,  2 Mar 2016 16:47:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=openmailbox.org;
+	s=openmailbox; t=1456933624;
+	bh=kykYwyPYcONUu36EeIX64j3wzAmmg7At39gZHLprx5Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=dlgBNwBuurC6TiD6b3KXb5nRRvD8ddedGkvRay/9agMWUgDoSYOv6vgxsttPqn9I+
+	hTIyGE+81/dkUitH4g+rLshBiPQFuO8Er4xSTOG+xmSQJDp5qNLSYXcvDbzMG+elzD
+	KIorPkrT7kIL3ISkqoeCMmQ+2xEeBgRIZvuXIQJ4=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on openmailbox-b2
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=ALL_TRUSTED,BAYES_50,
+	DKIM_ADSP_ALL,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from www.openmailbox.org (openmailbox-b1 [10.91.69.218])
+	by mail2.openmailbox.org (Postfix) with ESMTP id 9689E2ACA53C;
+	Wed,  2 Mar 2016 16:46:55 +0100 (CET)
 MIME-Version: 1.0
-In-Reply-To: <1456929820-47497-1-git-send-email-e-ruei1@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Date: Wed, 02 Mar 2016 18:46:55 +0300
+From: anton.gerasimov@openmailbox.org
+To: Denys Dmytriyenko <denys@ti.com>
+In-Reply-To: <20160302150829.GB7505@edge>
+References: <a997894609107b25e5d70de8ab1c2b34@openmailbox.org>
+	<20160302150829.GB7505@edge>
+Message-ID: <9b7bbc1e8acebd2e42d243366eddec37@openmailbox.org>
+X-Sender: anton.gerasimov@openmailbox.org
+User-Agent: Roundcube Webmail/1.0.6
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH V4] ti-tisdk-makefile: Replace PVR_NULLDRM and PLATFORM_OMAPDRM with TARGET_PRODUCT per graphics DDK change
+Subject: Re: Compiling with internal toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,60 +44,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Mar 2016 15:38:20 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 02 Mar 2016 15:47:06 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Ack
+I set it in my local.conf. Here's the whole file (comments stripped):
 
-On Wed, Mar 02, 2016 at 09:43:40AM -0500, Eric Ruei wrote:
-> PVR_NULLDRM and PLATFORM_OMAPDRM are only applicable for DDK 1.9 and no longer used.
-> TARGET_PRODUCT is required for omapdrm-pvr build per DDK 1.14
+BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
+PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
+MACHINE = "varsomam33"
+DISTRO ?= "arago"
+PACKAGE_CLASSES ?= "package_ipk"
+EXTRA_IMAGE_FEATURES = "debug-tweaks"
+IMAGE_INSTALL_append = " gdbserver"
+USER_CLASSES ?= "buildstats image-mklibs image-prelink"
+PATCHRESOLVE = "noop"
+BB_DISKMON_DIRS = "\
+     STOPTASKS,${TMPDIR},1G,100K \
+     STOPTASKS,${DL_DIR},1G,100K \
+     STOPTASKS,${SSTATE_DIR},1G,100K \
+     ABORT,${TMPDIR},100M,1K \
+     ABORT,${DL_DIR},100M,1K \
+     ABORT,${SSTATE_DIR},100M,1K"
+PACKAGECONFIG_pn-qemu-native = "sdl"
+PACKAGECONFIG_pn-nativesdk-qemu = "sdl"
+ASSUME_PROVIDED += "libsdl-native"
+CONF_VERSION = "1"
+PRSERV_HOST = "localhost:0"
+TOOLCHAIN_BRAND ?= "gcc"
+TOOLCHAIN_TYPE ?= "internal"
+
+
+On 2016-03-02 18:08, Denys Dmytriyenko wrote:
+> On Wed, Mar 02, 2016 at 05:01:17PM +0300, 
+> anton.gerasimov@openmailbox.org wrote:
+>> I'm trying to compile arago-test-image for varsomam33 machine and
+>> arago distro with internal toolchain. When bitbake reaches cmem_mod,
 > 
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
-> V4 Changes: Update commit message 
->  .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 15 ++++-----------
->  1 file changed, 4 insertions(+), 11 deletions(-)
+> How do you select internal toolchain?
 > 
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-> index bcd78ba..c49909e 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-> @@ -151,15 +151,9 @@ MAKEFILES_append_k2e-evm = " opencl-examples \
->  PLATFORM_ARCH = "armv7-a"
->  PLATFORM_ARCH_omapl138 = "armv5te"
->  
-> -PLATFORM_OMAPDRM = ""
-> -PLATFORM_OMAPDRM_ti33x = "omap335x"
-> -PLATFORM_OMAPDRM_ti43x = "omap437x"
-> -PLATFORM_OMAPDRM_omap-a15 = "omap5430"
-> -
-> -PVR_NULLDRM = ""
-> -PVR_NULLDRM_ti33x = "1"
-> -PVR_NULLDRM_ti43x = "0"
-> -PVR_NULLDRM_omap-a15 = "0"
-> +TARGET_PRODUCT = "jacinto6evm"
-> +TARGET_PRODUCT_ti33x = "ti335x"
-> +TARGET_PRODUCT_ti43x = "ti437x"
->  
->  PLATFORM_DEBUGSS = ""
->  PLATFORM_DEBUGSS_dra7xx = "DRA7xx_PLATFORM"
-> @@ -238,8 +232,7 @@ do_install () {
->      sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
->      sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/g" ${D}/Makefile
->  
-> -    sed -i -e "s/__PLATFORM_OMAPDRM__/${PLATFORM_OMAPDRM}/" ${D}/Makefile
-> -    sed -i -e "s/__PVR_NULLDRM__/${PVR_NULLDRM}/" ${D}/Makefile
-> +    sed -i -e "s/__TARGET_PRODUCT__/${TARGET_PRODUCT}/" ${D}/Makefile
->      sed -i -e "s/__PLATFORM_DEBUGSS__/${PLATFORM_DEBUGSS}/g" ${D}/Makefile
->      sed -i -e "s/__PLATFORM_GDBSERVERPROXY__/${PLATFORM_GDBSERVERPROXY}/g" ${D}/Makefile
->      sed -i -e "s/__BOOT_MONITOR_MAKE_TARGET__/${BOOT_MONITOR_MAKE_TARGET}/g" ${D}/Makefile
-> -- 
-> 1.9.1
 > 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>> I get the following error "make[3]: arm-oe-linuxeabi-gcc: Command
+>> not found".
+>> And arm-oe-linuxeabi-gcc is really not built, real target toolchain
+>> is called arm-oe-linux-gnueabi-gcc.
+>> After running bitbake -e I see that arm-oe-linuxeabi is the value of
+>> TOOLCHAIN_SYS:
+>> 
+>> # $TOOLCHAIN_SYS
+>> #   immediate 
+>> /home/a-gerasimov/Yocto/meta-arago/meta-arago-distro/conf/distro/include/toolchain-gcc.inc:6
+>> #     "${TARGET_SYS}"
+>> TOOLCHAIN_SYS="arm-oe-linuxeabi"
+>> 
+>> But TARGET_SYS is set to arm-oe-linux-gnueabi:
+>> 
+>> # $TARGET_SYS [2 operations]
+>> #   set /home/a-gerasimov/Yocto/poky/meta/conf/bitbake.conf:118
+>> #     "${TARGET_ARCH}${TARGET_VENDOR}${@['-' + d.getVar('TARGET_OS',
+>> True), ''][d.getVar('TARGET_OS', True) == ('' or 'custom')]}"
+>> #   set /home/a-gerasimov/Yocto/poky/meta/conf/documentation.conf:415
+>> #     [doc] "The target system is comprised of
+>> TARGET_ARCH,TARGET_VENDOR and TARGET_OS."
+>> # pre-expansion value:
+>> #   "${TARGET_ARCH}${TARGET_VENDOR}${@['-' + d.getVar('TARGET_OS',
+>> True), ''][d.getVar('TARGET_OS', True) == ('' or 'custom')]}"
+>> TARGET_SYS="arm-oe-linux-gnueabi"
+>> 
+>> It seems that for some reason when toolchain-gcc.inc is included
+>> into distro/arago.conf, TARGET_SYS is set to some weird value, not
+>> the one that is set by bitbake.conf. Do you have any ideas about how
+>> that is possible and how it can be debugged.
+>> Thank you!
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
 
