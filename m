@@ -1,29 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id AD63B52AC7
+Return-Path: <denis@denix.org>
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by arago-project.org (Postfix) with ESMTPS id F093152A2E
 	for <meta-arago@arago-project.org>;
-	Fri,  4 Mar 2016 16:07:53 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u24G7q5Y003349
-	for <meta-arago@arago-project.org>; Fri, 4 Mar 2016 10:07:52 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u24G7qu6000693
-	for <meta-arago@arago-project.org>; Fri, 4 Mar 2016 10:07:52 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 4 Mar 2016 10:07:52 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u24G7qZT015810	for <meta-arago@arago-project.org>;
-	Fri, 4 Mar 2016 10:07:52 -0600
-Date: Fri, 4 Mar 2016 11:07:51 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <1376654946.657.1457107672017.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido-rt
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] RT Core TISDK (fido/1.8) 2016.02 build 2016-03-04_10-18-30
+	Fri,  4 Mar 2016 16:18:06 +0000 (UTC)
+Received: from vz-proxy-l007.mx.aol.com ([64.236.82.151])
+	by vms173017.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O3I0088OVXDJL80@vms173017.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 04 Mar 2016 10:17:38 -0600 (CST)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=NEAV23lmAAAA:8 a=Q4-j1AaZAAAA:8
+	a=HihYlcsHAAAA:8 a=KKAkSRfTAAAA:8	a=bx4o7g0SYcHKd1mDW0kA:9
+Received: by 100.15.86.14 with SMTP id 742d930a; Fri, 04 Mar 2016 16:17:38 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id A82BE161EF9;	Fri,
+	4 Mar 2016 11:17:37 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 04 Mar 2016 11:17:37 -0500
+Message-id: <1457108257-19085-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [oe-layersetup][PATCH] arago-fido-config: pin oe-core to avoid OpenSSL CVE fix that breaks crda
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,215 +35,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Mar 2016 16:07:54 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_656_136671427.1457107671986"
+X-List-Received-Date: Fri, 04 Mar 2016 16:18:07 -0000
 
-------=_Part_656_136671427.1457107671986
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 03/04/16
-</title>
-</head>
-<body>
+crda uses python-m2crypto, which uses SSLv2, but latest OpenSSL CVE for DROWN
+attack disables SSLv2 calls as being vulnerable. Until those dependencies are
+fixed, don't pull the latest OpenSSL CVE fix for now.
 
-<h2>Status for 03/04/16</h2>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ configs/arago-fido-config.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-<h2>BUILD_ID: build-2016-03-04_10-19-35</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>jethro</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2016.02"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido-rt"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido-rt/workspace"<br>
-LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-fido-rt/workspace/configs/arago-core-tisdk-fido-rt-append.txt"<br>
-</p>
-
-</body>
-</html>
+diff --git a/configs/arago-fido-config.txt b/configs/arago-fido-config.txt
+index cae923b..6d840ee 100644
+--- a/configs/arago-fido-config.txt
++++ b/configs/arago-fido-config.txt
+@@ -7,6 +7,6 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,jethro,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
+ meta-ti,git://arago-project.org/git/meta-ti.git,fido,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,HEAD,layers=meta-linaro-toolchain
+-oe-core,git://git.openembedded.org/openembedded-core,fido,HEAD,layers=meta
++oe-core,git://git.openembedded.org/openembedded-core,fido,12520d7f729fe3d07c2f94b813994718edb2d987,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+-- 
+2.2.0
 
 
-------=_Part_656_136671427.1457107671986--
