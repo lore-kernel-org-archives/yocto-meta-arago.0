@@ -1,28 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id F093152A2E
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 2D98A52AC6
 	for <meta-arago@arago-project.org>;
-	Fri,  4 Mar 2016 16:18:06 +0000 (UTC)
-Received: from vz-proxy-l007.mx.aol.com ([64.236.82.151])
-	by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O3I0088OVXDJL80@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 04 Mar 2016 10:17:38 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=NEAV23lmAAAA:8 a=Q4-j1AaZAAAA:8
-	a=HihYlcsHAAAA:8 a=KKAkSRfTAAAA:8	a=bx4o7g0SYcHKd1mDW0kA:9
-Received: by 100.15.86.14 with SMTP id 742d930a; Fri, 04 Mar 2016 16:17:38 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id A82BE161EF9;	Fri,
-	4 Mar 2016 11:17:37 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 04 Mar 2016 11:17:37 -0500
-Message-id: <1457108257-19085-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [oe-layersetup][PATCH] arago-fido-config: pin oe-core to avoid OpenSSL CVE fix that breaks crda
+	Fri,  4 Mar 2016 17:07:48 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u24H7kVn019288
+	for <meta-arago@arago-project.org>; Fri, 4 Mar 2016 11:07:46 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u24H7a4F014311
+	for <meta-arago@arago-project.org>; Fri, 4 Mar 2016 11:07:46 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 4 Mar 2016 10:57:38 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u24GvclQ012433;
+	Fri, 4 Mar 2016 10:57:38 -0600
+Date: Fri, 4 Mar 2016 11:57:22 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <20160304165722.GA7505@edge>
+References: <1457075004-18964-1-git-send-email-a0393906@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1457075004-18964-1-git-send-email-a0393906@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] gstreamer1.0-plugins-bad: Update SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,32 +37,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Mar 2016 16:18:07 -0000
+X-List-Received-Date: Fri, 04 Mar 2016 17:07:48 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Nak, please rebase your copy.
 
-crda uses python-m2crypto, which uses SSLv2, but latest OpenSSL CVE for DROWN
-attack disables SSLv2 calls as being vulnerable. Until those dependencies are
-fixed, don't pull the latest OpenSSL CVE fix for now.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- configs/arago-fido-config.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/configs/arago-fido-config.txt b/configs/arago-fido-config.txt
-index cae923b..6d840ee 100644
---- a/configs/arago-fido-config.txt
-+++ b/configs/arago-fido-config.txt
-@@ -7,6 +7,6 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,jethro,HEAD,layers=
- meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
- meta-ti,git://arago-project.org/git/meta-ti.git,fido,HEAD,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,HEAD,layers=meta-linaro-toolchain
--oe-core,git://git.openembedded.org/openembedded-core,fido,HEAD,layers=meta
-+oe-core,git://git.openembedded.org/openembedded-core,fido,12520d7f729fe3d07c2f94b813994718edb2d987,layers=meta
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
- OECORELOCALCONF=./sample-files/local-arago64.conf.sample
--- 
-2.2.0
-
+On Fri, Mar 04, 2016 at 12:33:24PM +0530, Karthik Ramanan wrote:
+> This update brings in two feature additions:
+>  * Ability to provide the start position by setting the title
+>  * Add crop support to waylandsink
+> 
+> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+> ---
+>  .../gstreamer1.0-plugins-bad_1.2.3.bbappend        |    4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+> index 831b8ac..9b0cdcd 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+> @@ -16,7 +16,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git \
+>  
+>  S = "${WORKDIR}/git"
+>  
+> -SRCREV = "12b0d2ac50aba19da53d2e1ac40d6ada70a79930"
+> +SRCREV = "9396248f2daf0b28b83ab0f01c4d17a8af46b1ca"
+>  
+> -PR_append = "-arago5"
+> +PR_append = "-arago6"
+>  
+> -- 
+> 1.7.9.5
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
