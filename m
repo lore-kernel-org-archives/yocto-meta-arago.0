@@ -1,28 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 246D052A26
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 4A4A252A4F
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Mar 2016 18:23:49 +0000 (UTC)
-Received: from vz-proxy-l001.mx.aol.com ([64.236.82.158])
-	by vms173025.mailsrvcs.net
+	Tue,  8 Mar 2016 22:38:20 +0000 (UTC)
+Received: from vz-proxy-l003.mx.aol.com ([64.236.82.150])
+	by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O3Q00DJKGF6VZ30@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 08 Mar 2016 12:23:31 -0600 (CST)
+	2014)) with ESMTPA id <0O3Q00A3YS7EV470@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 08 Mar 2016 16:38:07 -0600 (CST)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=W8DY27sA+pJ1DslXMfMu3Q==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
-	a=SOnmpBoiLuU9oqWKTP8A:9
-Received: by 100.15.86.14 with SMTP id 4c748d68; Tue, 08 Mar 2016 18:23:30 GMT
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=0tGySW8maceftNfHUCUfCA==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=xGzgkhYzQj5s1MIUEMwA:9
+Received: by 100.15.86.14 with SMTP id 5ad7ff17; Tue, 08 Mar 2016 22:38:07 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 66DBC161F14;	Tue,
-	8 Mar 2016 13:23:30 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id B6FB6161EF9;	Tue,
+	8 Mar 2016 17:38:01 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 08 Mar 2016 13:23:30 -0500
-Message-id: <1457461410-12113-1-git-send-email-denis@denix.org>
+Date: Tue, 08 Mar 2016 17:38:01 -0500
+Message-id: <1457476681-12836-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] ipc-test-fw: remove, sample FW images are now provided by ipc
+Subject: [PATCH] branding-core: adjust FW image priorities for CoreSDK testing
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,92 +34,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Mar 2016 18:23:57 -0000
+X-List-Received-Date: Tue, 08 Mar 2016 22:38:21 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../ipc-test-fw/ipc-test-fw_3.21.00.02.bb          | 49 ----------------------
- .../packagegroups/packagegroup-arago-test.bb       |  3 +-
- 2 files changed, 1 insertion(+), 51 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
+ meta-arago-distro/conf/distro/include/branding-core.inc | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb b/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
-deleted file mode 100644
-index 3093b53..0000000
---- a/meta-arago-distro/recipes-bsp/ipc-test-fw/ipc-test-fw_3.21.00.02.bb
-+++ /dev/null
-@@ -1,49 +0,0 @@
--DESCRIPTION = "Firmware images to test IPC"
--LICENSE = "BSD"
--LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD;md5=3775480a712fc46a69647678acb234cb"
--
--inherit update-alternatives
--
--FWVER = "eng-4-gb9283b0"
--PR = "r2+${FWVER}"
--
--COMPATIBLE_MACHINE = "omap5-evm|dra7xx"
--
--INHIBIT_PACKAGE_STRIP = "1"
--INSANE_SKIP_${PN} = "arch"
--
--S = "${WORKDIR}/${PV}_${FWVER}"
--
--SRC_URI = "http://arago-project.org/files/releases/ipc-test-fw/${PV}_${FWVER}.tar.gz"
--
--SRC_URI[md5sum] = "4fcba6844949ea909131684a80233800"
--SRC_URI[sha256sum] = "3b90b195c382937551251055aaa9185627e86027c91fb41a594dc390391d5fb6"
--
--do_compile() {
--    :
--}
--
--do_install() {
--    install -d ${D}${base_libdir}/firmware
--    for f in *.xe*
--    do
--        install -m 755 $f ${D}${base_libdir}/firmware/$f.${BPN}
--    done
--}
--
--ALTERNATIVE_${PN} = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66 dra7-ipu1-fw.xem4 dra7-ipu2-fw.xem4 ducati-m3-core0.xem3 tesla-dsp.xe64T"
--ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66"
--ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66.${BPN}"
--ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66"
--ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66.${BPN}"
--ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
--ALTERNATIVE_TARGET[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4.${BPN}"
--ALTERNATIVE_LINK_NAME[dra7-ipu2-fw.xem4] = "${base_libdir}/firmware/dra7-ipu2-fw.xem4"
--ALTERNATIVE_TARGET[dra7-ipu2-fw.xem4] = "${base_libdir}/firmware/dra7-ipu2-fw.xem4.${BPN}"
--ALTERNATIVE_LINK_NAME[ducati-m3-core0.xem3] = "${base_libdir}/firmware/ducati-m3-core0.xem3"
--ALTERNATIVE_TARGET[ducati-m3-core0.xem3] = "${base_libdir}/firmware/ducati-m3-core0.xem3.${BPN}"
--ALTERNATIVE_LINK_NAME[tesla-dsp.xe64T] = "${base_libdir}/firmware/tesla-dsp.xe64T"
--ALTERNATIVE_TARGET[tesla-dsp.xe64T] = "${base_libdir}/firmware/tesla-dsp.xe64T.${BPN}"
--ALTERNATIVE_PRIORITY = "20"
--
--FILES_${PN} += "${base_libdir}/firmware"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 34d3b59..2aa3885 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r39"
-+PR = "r40"
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index 1982f2a..914b334 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -12,5 +12,8 @@ SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
+ SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
+ SRCREV_pn-ltp-ddt = "${AUTOREV}"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -49,7 +49,6 @@ ARAGO_TI_TEST_append_ti43x = " \
- 
- ARAGO_TI_TEST_append_omap-a15 = " \
-     omapconf \
--    ipc-test-fw \
-     ${@base_contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
-     "
- 
+-# Lower opencl-monitor priority for now, due to affected performance
++# Lower opencl-monitor priority for now
+ ALTERNATIVE_PRIORITY_pn-opencl-monitor = "1"
++
++# Raise priority for sample IPC FW images
++ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos-fw = "15"
 -- 
 2.2.0
 
