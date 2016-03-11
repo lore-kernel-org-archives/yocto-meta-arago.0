@@ -1,28 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id 2CBBE529C7
+Return-Path: <h-gou@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id A715C529C7
 	for <meta-arago@arago-project.org>;
-	Fri, 11 Mar 2016 19:19:32 +0000 (UTC)
-Received: from vz-proxy-l006.mx.aol.com ([64.236.82.154])
-	by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O3W000VK2ZZAVA0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 11 Mar 2016 13:19:12 -0600 (CST)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=Ut/DdBcw22SB5hFy08yqCQ==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
-	a=lH_c-ZoV6C5kqe6wiJUA:9
-Received: by 100.15.86.14 with SMTP id 40e04d96; Fri, 11 Mar 2016 19:19:12 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 47C0E161F21;	Fri,
-	11 Mar 2016 14:19:11 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 11 Mar 2016 14:19:10 -0500
-Message-id: <1457723950-5452-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] ltp-ddt: update to the latest, drop upstreamed patch
+	Fri, 11 Mar 2016 22:02:19 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2BM2JeW026655
+	for <meta-arago@arago-project.org>; Fri, 11 Mar 2016 16:02:19 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2BM2JKb007018
+	for <meta-arago@arago-project.org>; Fri, 11 Mar 2016 16:02:19 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 11 Mar 2016 16:02:19 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u2BM2I6I011570;	Fri, 11 Mar 2016 16:02:19 -0600
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 11 Mar 2016 17:02:11 -0500
+Message-ID: <1457733732-18531-3-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1457733732-18531-1-git-send-email-h-gou@ti.com>
+References: <1457733732-18531-1-git-send-email-h-gou@ti.com>
+MIME-Version: 1.0
+Subject: [PATCH 2/3] gstreamer1.0-plugins-hevc: add support for keystone platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,95 +36,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Mar 2016 19:19:32 -0000
+X-List-Received-Date: Fri, 11 Mar 2016 22:02:20 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* Bump SRCREV to get Makefile fix
+* Remove non-necessary DEPENDS gstreamer1.0-plugins-bad
+* Remove PACKAGE_ARCH as the plugin is common for compatible machines
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- ...dt-filter-out-test-cases-for-HS-platforms.patch | 44 ----------------------
- .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      |  5 +--
- 2 files changed, 2 insertions(+), 47 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-ddt-filter-out-test-cases-for-HS-platforms.patch
+ .../gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb              | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-ddt-filter-out-test-cases-for-HS-platforms.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-ddt-filter-out-test-cases-for-HS-platforms.patch
-deleted file mode 100644
-index f459de1..0000000
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-ddt-filter-out-test-cases-for-HS-platforms.patch
-+++ /dev/null
-@@ -1,44 +0,0 @@
--From 68458ee412f0e8ea465705b157f978d76f4772a4 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Thu, 25 Feb 2016 13:51:17 -0500
--Subject: [PATCH] testcases/ddt: filter out test cases for HS platforms
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- testcases/ddt/Makefile | 13 +++++++++++++
-- 1 file changed, 13 insertions(+)
--
--diff --git a/testcases/ddt/Makefile b/testcases/ddt/Makefile
--index d3e95e7..a08136e 100644
----- a/testcases/ddt/Makefile
--+++ b/testcases/ddt/Makefile
--@@ -38,6 +38,10 @@ ifeq ($(PLATFORM),dra72x-evm)
-- FILTER_OUT_DIRS                 += mc_test_suite
-- endif
-- 
--+ifeq ($(PLATFORM),dra7xx-hs-evm)
--+FILTER_OUT_DIRS                 += mc_test_suite
--+endif
--+
-- ifeq ($(PLATFORM),am57xx-evm)
-- FILTER_OUT_DIRS                 += mc_test_suite
-- endif
--@@ -140,6 +144,15 @@ FILTER_OUT_DIRS                 += edma_test_suite
-- FILTER_OUT_DIRS                 += ipc_test_suite
-- endif
-- 
--+ifeq ($(PLATFORM),am437x-hs-evm)
--+FILTER_OUT_DIRS                 += v4l2_capture_test_suite
--+FILTER_OUT_DIRS                 += v4l2_display_test_suite
--+FILTER_OUT_DIRS                 += mc_test_suite
--+FILTER_OUT_DIRS                 += v4l2_display_davinci_test_suite
--+FILTER_OUT_DIRS                 += edma_test_suite
--+FILTER_OUT_DIRS                 += ipc_test_suite
--+endif
--+
-- ifeq ($(PLATFORM),am437x-sk)
-- FILTER_OUT_DIRS                 += v4l2_capture_test_suite
-- FILTER_OUT_DIRS                 += v4l2_display_test_suite
---- 
--2.2.0
--
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-index 1d6c1ba..1d01ca1 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+index d32ad20..cd93955 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+@@ -3,19 +3,18 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/gst-plugin-hevc"
+ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
  
--PR = "r10"
-+PR = "r11"
- PV_append = "+git${SRCPV}"
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-COMPATIBLE_MACHINE = "dra7xx"
++COMPATIBLE_MACHINE = "dra7xx|keystone"
  
- PROVIDES += "ltp"
-@@ -16,12 +16,11 @@ inherit autotools-brokensep module-base kernel-module-split
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRCREV = "4a2129a1fefdd065dcaedb415ffa1da46ef9ceb6"
-+SRCREV = "7e8dfc07a3f4f8b7d6d8fc381be1db7affad67ef"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
-     file://ltp-Do-not-link-against-libfl.patch \
--    file://0001-testcases-ddt-filter-out-test-cases-for-HS-platforms.patch \
- "
+ SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=git"
+-SRCREV = "5e2658b71536dffac6fc09e14ca91114795cfc7a"
++SRCREV = "e4ea007d0ddeb95ae01742293454ef3c87a6e84c"
  
  S = "${WORKDIR}/git"
+ 
+-DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad hevc-arm-decoder"
++DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base hevc-arm-decoder"
+ 
+ inherit autotools-brokensep pkgconfig gettext
+ 
+-PR = "r4"
++PR = "r5"
+ 
+ do_configure() {
+         cd ${S}
 -- 
-2.2.0
+1.9.1
 
 
