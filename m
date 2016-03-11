@@ -1,29 +1,29 @@
 Return-Path: <h-gou@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id BE184529D3
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id DF8D052A70
 	for <meta-arago@arago-project.org>;
 	Fri, 11 Mar 2016 22:02:19 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2BM2J9d026658
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2BM2JVX006608
 	for <meta-arago@arago-project.org>; Fri, 11 Mar 2016 16:02:19 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2BM2JRo007027
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2BM2J8q016102
 	for <meta-arago@arago-project.org>; Fri, 11 Mar 2016 16:02:19 -0600
 Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
 	Fri, 11 Mar 2016 16:02:19 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u2BM2I6J011570;	Fri, 11 Mar 2016 16:02:19 -0600
+	u2BM2I6H011570;	Fri, 11 Mar 2016 16:02:18 -0600
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 11 Mar 2016 17:02:12 -0500
-Message-ID: <1457733732-18531-4-git-send-email-h-gou@ti.com>
+Date: Fri, 11 Mar 2016 17:02:10 -0500
+Message-ID: <1457733732-18531-2-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1457733732-18531-1-git-send-email-h-gou@ti.com>
 References: <1457733732-18531-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/3] packagegroup-arago-gst*: add gstreamer1.0-plugins-hevc for keystone
+Subject: [PATCH 1/3] hevc-arm-decoder: add support for keystone platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,56 +41,26 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb | 6 +++++-
- .../recipes-core/packagegroups/packagegroup-arago-gst.bb            | 6 +++++-
- 2 files changed, 10 insertions(+), 2 deletions(-)
+ .../hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb                  | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-index c76a2e1..8a331e4 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to build and install header and libs in sdk"
- LICENSE = "MIT"
--PR = "r11"
-+PR = "r12"
+diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
+index c871177..d5f438f 100644
+--- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
++++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "ARM HEVC Decoder with Unit Test Application"
+ HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
+ LICENSE = "TI-TSPA"
+ LIC_FILES_CHKSUM := "file://Inc/exp_pp_h265decoder.h;beginline=1;endline=27;md5=51a0ae5cca603a21186bf6ff458f3be9"
+-PR = "r0"
++PR = "r1"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
+-COMPATIBLE_MACHINE = "dra7xx"
++COMPATIBLE_MACHINE = "dra7xx|keystone"
  
-@@ -26,6 +26,10 @@ GST_1X_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc-dev \
- "
+ SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1280/7770/REL.HEVC.D.ARM.OBJ.${PV}.tar.gz;name=hevc-arm-decoder"
  
-+GST_1X_DEPS_append_keystone = " \
-+    gstreamer1.0-plugins-hevc-dev \
-+"
-+
- RDEPENDS_${PN} = " \
-     ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index ff71236..0ba7423 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
--PR = "r14"
-+PR = "r15"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -32,6 +32,10 @@ GST_1X_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc \
- "
- 
-+GST_1X_DEPS_append_keystone = " \
-+    gstreamer1.0-plugins-hevc \
-+"
-+
- GST_PLUGINS_PREFIX = "${@base_conditional('GST_PROVIDER', '0.10', 'gst-plugins', 'gstreamer1.0-plugins', d)}"
- 
- GSTREAMER_ACCEL_MM = ""
 -- 
 1.9.1
 
