@@ -1,29 +1,29 @@
 Return-Path: <h-gou@ti.com>
 Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id A715C529C7
+	by arago-project.org (Postfix) with ESMTPS id BE184529D3
 	for <meta-arago@arago-project.org>;
 	Fri, 11 Mar 2016 22:02:19 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2BM2JeW026655
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2BM2J9d026658
 	for <meta-arago@arago-project.org>; Fri, 11 Mar 2016 16:02:19 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2BM2JKb007018
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2BM2JRo007027
 	for <meta-arago@arago-project.org>; Fri, 11 Mar 2016 16:02:19 -0600
 Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
 	Fri, 11 Mar 2016 16:02:19 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u2BM2I6I011570;	Fri, 11 Mar 2016 16:02:19 -0600
+	u2BM2I6J011570;	Fri, 11 Mar 2016 16:02:19 -0600
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 11 Mar 2016 17:02:11 -0500
-Message-ID: <1457733732-18531-3-git-send-email-h-gou@ti.com>
+Date: Fri, 11 Mar 2016 17:02:12 -0500
+Message-ID: <1457733732-18531-4-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1457733732-18531-1-git-send-email-h-gou@ti.com>
 References: <1457733732-18531-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/3] gstreamer1.0-plugins-hevc: add support for keystone platforms
+Subject: [PATCH 3/3] packagegroup-arago-gst*: add gstreamer1.0-plugins-hevc for keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,43 +39,58 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 11 Mar 2016 22:02:20 -0000
 Content-Type: text/plain
 
-* Bump SRCREV to get Makefile fix
-* Remove non-necessary DEPENDS gstreamer1.0-plugins-bad
-* Remove PACKAGE_ARCH as the plugin is common for compatible machines
-
 Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- .../gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb              | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb | 6 +++++-
+ .../recipes-core/packagegroups/packagegroup-arago-gst.bb            | 6 +++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
-index d32ad20..cd93955 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
-@@ -3,19 +3,18 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/gst-plugin-hevc"
- LICENSE = "BSD-3-Clause"
- LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
+index c76a2e1..8a331e4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to build and install header and libs in sdk"
+ LICENSE = "MIT"
+-PR = "r11"
++PR = "r12"
  
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--COMPATIBLE_MACHINE = "dra7xx"
-+COMPATIBLE_MACHINE = "dra7xx|keystone"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=git"
--SRCREV = "5e2658b71536dffac6fc09e14ca91114795cfc7a"
-+SRCREV = "e4ea007d0ddeb95ae01742293454ef3c87a6e84c"
+@@ -26,6 +26,10 @@ GST_1X_DEPS_append_dra7xx = " \
+     gstreamer1.0-plugins-hevc-dev \
+ "
  
- S = "${WORKDIR}/git"
++GST_1X_DEPS_append_keystone = " \
++    gstreamer1.0-plugins-hevc-dev \
++"
++
+ RDEPENDS_${PN} = " \
+     ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+index ff71236..0ba7423 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
+ LICENSE = "MIT"
+-PR = "r14"
++PR = "r15"
  
--DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad hevc-arm-decoder"
-+DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base hevc-arm-decoder"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- inherit autotools-brokensep pkgconfig gettext
+@@ -32,6 +32,10 @@ GST_1X_DEPS_append_dra7xx = " \
+     gstreamer1.0-plugins-hevc \
+ "
  
--PR = "r4"
-+PR = "r5"
++GST_1X_DEPS_append_keystone = " \
++    gstreamer1.0-plugins-hevc \
++"
++
+ GST_PLUGINS_PREFIX = "${@base_conditional('GST_PROVIDER', '0.10', 'gst-plugins', 'gstreamer1.0-plugins', d)}"
  
- do_configure() {
-         cd ${S}
+ GSTREAMER_ACCEL_MM = ""
 -- 
 1.9.1
 
