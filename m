@@ -1,32 +1,27 @@
-Return-Path: <jake@udd0866934>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 73D9C52AD3
+Return-Path: <denis@denix.org>
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTPS id 17DC952AF2
 	for <meta-arago@arago-project.org>;
-	Tue, 15 Mar 2016 19:54:17 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2FJsGvG027443
-	for <meta-arago@arago-project.org>; Tue, 15 Mar 2016 14:54:16 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2FJsG1W025383
-	for <meta-arago@arago-project.org>; Tue, 15 Mar 2016 14:54:16 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 15 Mar 2016 14:54:16 -0500
-Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2FJsGnk016535;
-	Tue, 15 Mar 2016 14:54:16 -0500
-Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udd0866934>)	id 1afv2m-0004aA-DJ; Tue, 15 Mar 2016 15:54:16 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 15 Mar 2016 15:54:11 -0400
-Message-ID: <1458071653-17553-7-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1458071653-17553-1-git-send-email-j-stiffler@ti.com>
-References: <1458071653-17553-1-git-send-email-j-stiffler@ti.com>
-MIME-Version: 1.0
-Cc: xuj@ti.com
-Subject: [PATCH 6/8] arago-source-ipk: Enable linalg-examples-src
+	Tue, 15 Mar 2016 22:01:21 +0000 (UTC)
+Received: from vz-proxy-l005.mx.aol.com ([64.236.82.148])
+	by vms173013.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O43000KPP68AP60@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 15 Mar 2016 17:01:20 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=hkQRW7prCrFMEwk2DGUM9Q==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=PdtXcO8pJYN-CpjZQHgA:9
+Received: by 100.15.86.14 with SMTP id 210c4efb; Tue, 15 Mar 2016 22:01:20 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 8E293161F22;	Tue,
+	15 Mar 2016 18:01:19 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 15 Mar 2016 18:01:18 -0400
+Message-id: <1458079278-20711-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] gcc-crosssdk: enable NLS and GNU locales for clacc host tool to work properly in devkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,30 +34,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Mar 2016 19:54:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 15 Mar 2016 22:01:21 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/arago-source-ipk.conf | 4 ++++
+ .../recipes-devtools/gcc/gcc-crosssdk_linaro-4.9.bbappend             | 4 ++++
  1 file changed, 4 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_linaro-4.9.bbappend
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index 56a488f..9dca564 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -350,6 +350,10 @@ SRCIPK_INSTALL_DIR_pn-qt-opencv-opencl-opengl-multithreaded = "example-applicati
- CREATE_SRCIPK_pn-libarch-examples = "1"
- SRCIPK_INSTALL_DIR_pn-libarch-examples = "example-applications/${PN}-${PV}"
- 
-+CREATE_SRCIPK_pn-linalg-examples = "1"
-+SRCIPK_INSTALL_DIR_pn-linalg-examples = "example-applications/${PN}-${PV}"
-+SRCIPK_SRC_DIR_pn-linalg-examples = "${EXAMPLES_ROOT}"
-+
- CREATE_SRCIPK_pn-boot-monitor = "1"
- SRCIPK_INSTALL_DIR_pn-boot-monitor = "board-support/${PN}-${PV}"
- 
+diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_linaro-4.9.bbappend b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_linaro-4.9.bbappend
+new file mode 100644
+index 0000000..c30369d
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/gcc/gcc-crosssdk_linaro-4.9.bbappend
+@@ -0,0 +1,4 @@
++# Need to enable NLS and GNU locales for clacc locale support to work properly in the devkit
++USE_NLS = "yes"
++EXTRA_OECONF_remove = "--disable-nls"
++EXTRA_OECONF_append = " --enable-nls --enable-clocale=gnu"
 -- 
-1.9.1
+2.2.0
 
 
