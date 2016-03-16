@@ -1,32 +1,29 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5383F52A5F
+Return-Path: <jake@udd0866934>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 1E08152A65
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Mar 2016 18:35:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2GIZP2Z019075
-	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 13:35:25 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GIZP1H022601
-	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 13:35:25 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 16 Mar 2016 13:35:24 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GIZOcZ014999;
-	Wed, 16 Mar 2016 13:35:24 -0500
-Message-ID: <56E9A76C.1020607@ti.com>
-Date: Wed, 16 Mar 2016 14:35:24 -0400
+	Wed, 16 Mar 2016 19:34:08 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2GJY7uR019141
+	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 14:34:07 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GJY7dn024339
+	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 14:34:07 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 16 Mar 2016 14:34:07 -0500
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GJY74t021143;
+	Wed, 16 Mar 2016 14:34:07 -0500
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1agHCo-0001rU-KY; Wed, 16 Mar 2016 15:34:06 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+To: <meta-arago@arago-project.org>
+Date: Wed, 16 Mar 2016 15:34:04 -0400
+Message-ID: <1458156844-7122-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1458071653-17553-1-git-send-email-j-stiffler@ti.com>
-	<56E9A40C.6080704@ti.com> <20160316182508.GD29659@edge>
-In-Reply-To: <20160316182508.GD29659@edge>
-Cc: meta-arago@arago-project.org, xuj@ti.com
-Subject: Re: [PATCH 0/8] Add LibArch and LinAlg
+Subject: [PATCH] ti-tisdk-makefile: Fix boot-monitor target
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,22 +36,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Mar 2016 18:35:25 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Mar 2016 19:34:09 -0000
+Content-Type: text/plain
 
+* The actual make target is prefixed with "image_"
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_boot-monitor           | 2 +-
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On 3/16/2016 2:25 PM, Denys Dmytriyenko wrote:
-> Jake,
->
-> I was on the fence about this particular set. What are your requirement and
-> priority here?
->
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_boot-monitor b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_boot-monitor
+index 74c7935..03f3f92 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_boot-monitor
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_boot-monitor
+@@ -4,7 +4,7 @@ boot-monitor:
+ 	@echo ================================
+ 	@cd board-support; \
+ 	cd `find . -maxdepth 1 -name "boot-monitor*"`; \
+-	make __BOOT_MONITOR_MAKE_TARGET__
++	make image___BOOT_MONITOR_MAKE_TARGET__
+ 
+ boot-monitor_clean:
+ 	@echo ================================
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index a65918e..f7871b3 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -48,7 +48,7 @@ SRC_URI = "\
+     file://Makefile_linalg-examples \
+ "
+ 
+-PR = "r70"
++PR = "r71"
+ 
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
+-- 
+1.9.1
 
-I was really hoping to get this in sooner, but the sources were just 
-pushed external.
-
-This is a requirement for our next release, so if it does not make it 
-in, then I will need to rework this for meta-processor-sdk.
 
