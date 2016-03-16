@@ -1,30 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 242B652A5F
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 45117529AD
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Mar 2016 18:17:11 +0000 (UTC)
+	Wed, 16 Mar 2016 18:21:01 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2GIHBW9017654
-	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 13:17:11 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GIHBQJ007152
-	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 13:17:11 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 16 Mar 2016 13:17:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GIHAN0022337;
-	Wed, 16 Mar 2016 13:17:10 -0500
-Date: Wed, 16 Mar 2016 14:16:55 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20160316181655.GC29659@edge>
-References: <1458152054-3169-1-git-send-email-j-stiffler@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2GIL0Q1012825
+	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 13:21:00 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GIL0pb010421
+	for <meta-arago@arago-project.org>; Wed, 16 Mar 2016 13:21:00 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 16 Mar 2016 13:21:00 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2GIL02N025857;
+	Wed, 16 Mar 2016 13:21:00 -0500
+Message-ID: <56E9A40C.6080704@ti.com>
+Date: Wed, 16 Mar 2016 14:21:00 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-In-Reply-To: <1458152054-3169-1-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] parse-ip: Extend to support k2g-evm
+To: <meta-arago@arago-project.org>
+References: <1458071653-17553-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1458071653-17553-1-git-send-email-j-stiffler@ti.com>
+Cc: xuj@ti.com
+Subject: Re: [PATCH 0/8] Add LibArch and LinAlg
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,96 +38,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Mar 2016 18:17:11 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 16 Mar 2016 18:21:01 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Ack
+Denys,
 
-On Wed, Mar 16, 2016 at 02:14:14PM -0400, Jacob Stiffler wrote:
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  .../recipes-tisdk/parse-ip/parse-ip.bb             |  2 +-
->  .../recipes-tisdk/parse-ip/parse-ip/k2g-evm/init   | 52 ++++++++++++++++++++++
->  2 files changed, 53 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/k2g-evm/init
-> 
-> diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-> index 2cfc675..c83bb19 100644
-> --- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-> +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-> @@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
->  SRC_URI = "file://init"
->  
-> -PR = "r3"
-> +PR = "r4"
->  
->  S = "${WORKDIR}"
->  
-> diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/k2g-evm/init b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/k2g-evm/init
-> new file mode 100644
-> index 0000000..a2efc71
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/k2g-evm/init
-> @@ -0,0 +1,52 @@
-> +#!/bin/sh
-> +
-> +# This distribution contains contributions or derivatives under copyright
-> +# as follows:
-> +#
-> +# Copyright (c) 2016, Texas Instruments Incorporated
-> +# All rights reserved.
-> +#
-> +# Redistribution and use in source and binary forms, with or without
-> +# modification, are permitted provided that the following conditions
-> +# are met:
-> +# - Redistributions of source code must retain the above copyright notice,
-> +#   this list of conditions and the following disclaimer.
-> +# - Redistributions in binary form must reproduce the above copyright
-> +#   notice, this list of conditions and the following disclaimer in the
-> +#   documentation and/or other materials provided with the distribution.
-> +# - Neither the name of Texas Instruments nor the names of its
-> +#   contributors may be used to endorse or promote products derived
-> +#   from this software without specific prior written permission.
-> +#
-> +# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-> +# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-> +# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-> +# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-> +# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-> +# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-> +# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-> +# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-> +# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-> +# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-> +# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-> +
-> +case "$1" in
-> +    start )
-> +        /bin/stty -F /dev/ttyS2 115200
-> +
-> +	echo ' ' > ipaddr
-> +	echo ' ' >> ipaddr
-> +        echo '#>>>>> LCD 12' >> ipaddr
-> +        echo 'IP Address:' >> ipaddr
-> +        cat ipaddr > /dev/ttyS2
-> +        wait
-> +        sleep 1
-> +
-> +        echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` > ipaddr
-> +        cat ipaddr > /dev/ttyS2
-> +        wait
-> +        sleep 1
-> +    ;;
-> +    stop )
-> +        exit 0;;
-> +esac
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+What are the chances of this making it into the 2015.03 release?
+
+Thank you,
+Jake
+
+On 3/15/2016 3:54 PM, Jacob Stiffler wrote:
+> Integrate Library Architecture and Framework (LibArch)
+> and TI Linear Algebra Library (LinAlg)
+>
+> Jacob Stiffler (8):
+>    libarch: Add version 1.0.0.0
+>    libarch-examples: Add examples for libarch version 1.0.0.0
+>    arago-source-ipk: Enable libarch-examples-src
+>    linalg: Add Linear Algebra Library version 1.2.0.0
+>    linalg-examples: And Linear Algebra Library examples
+>    arago-source-ipk: Enable linalg-examples-src
+>    packagegroup-arago-tisdk-addons: k2hk-evm: Integrate linalg
+>    ti-tisdk-makefile: Add linalg-examples target
+>
+>   .../conf/distro/arago-source-ipk.conf              |  7 ++
+>   .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  3 +-
+>   .../packagegroup-arago-tisdk-addons-sdk-target.bb  |  3 +-
+>   .../packagegroup-arago-tisdk-addons.bb             |  3 +-
+>   .../ti-tisdk-makefile/Makefile_linalg-examples     | 39 ++++++++++++
+>   .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  4 +-
+>   .../recipes-ti/includes/arago-paths.inc            |  7 ++
+>   .../recipes-ti/libarch/libarch-examples_git.bb     | 36 +++++++++++
+>   meta-arago-extras/recipes-ti/libarch/libarch.inc   | 32 ++++++++++
+>   .../recipes-ti/libarch/libarch_git.bb              | 25 ++++++++
+>   .../recipes-ti/linalg/linalg-examples_git.bb       | 74 ++++++++++++++++++++++
+>   meta-arago-extras/recipes-ti/linalg/linalg.inc     | 43 +++++++++++++
+>   meta-arago-extras/recipes-ti/linalg/linalg_git.bb  | 23 +++++++
+>   13 files changed, 295 insertions(+), 4 deletions(-)
+>   create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linalg-examples
+>   create mode 100644 meta-arago-extras/recipes-ti/includes/arago-paths.inc
+>   create mode 100644 meta-arago-extras/recipes-ti/libarch/libarch-examples_git.bb
+>   create mode 100644 meta-arago-extras/recipes-ti/libarch/libarch.inc
+>   create mode 100644 meta-arago-extras/recipes-ti/libarch/libarch_git.bb
+>   create mode 100644 meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb
+>   create mode 100644 meta-arago-extras/recipes-ti/linalg/linalg.inc
+>   create mode 100644 meta-arago-extras/recipes-ti/linalg/linalg_git.bb
+>
+
 
