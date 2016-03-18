@@ -1,27 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id EEE1952A27
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id B51F352A7A
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Mar 2016 17:17:02 +0000 (UTC)
-Received: from vz-proxy-l004.mx.aol.com ([64.236.82.152])
-	by vms173013.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4800242VZZ3A60@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 18 Mar 2016 12:16:47 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=EGU_KJDdnLjsBuGhkGQA:9
-Received: by 100.15.86.14 with SMTP id 4bba41c9; Fri, 18 Mar 2016 17:16:47 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 35228161EE8;	Fri,
-	18 Mar 2016 13:16:47 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 18 Mar 2016 13:16:46 -0400
-Message-id: <1458321406-21615-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] hevc-arm-decoder: don't make it machine-specific
+	Fri, 18 Mar 2016 20:12:16 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2IKCGrV020611
+	for <meta-arago@arago-project.org>; Fri, 18 Mar 2016 15:12:16 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2IKCGi3018318
+	for <meta-arago@arago-project.org>; Fri, 18 Mar 2016 15:12:16 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 18 Mar 2016 15:12:15 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2IKCFD2020147	for
+	<meta-arago@arago-project.org>; Fri, 18 Mar 2016 15:12:15 -0500
+Date: Fri, 18 Mar 2016 16:12:00 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20160318201159.GJ29659@edge>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: Branching off fido and freeing up master
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,31 +34,17 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Mar 2016 17:17:03 -0000
+X-List-Received-Date: Fri, 18 Mar 2016 20:12:17 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+All,
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb                   | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Heads up, I'll be branching off current meta-arago into fido branch and 
+freeing up master for the work against latest OpenEmbedded/Yocto Project 
+master. Please update your configs accordingly, if you are pointing to 
+meta-arago/master. Thanks.
 
-diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-index d5f438f..0e79921 100644
---- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-+++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-@@ -2,9 +2,8 @@ DESCRIPTION = "ARM HEVC Decoder with Unit Test Application"
- HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
- LICENSE = "TI-TSPA"
- LIC_FILES_CHKSUM := "file://Inc/exp_pp_h265decoder.h;beginline=1;endline=27;md5=51a0ae5cca603a21186bf6ff458f3be9"
--PR = "r1"
-+PR = "r2"
- 
--PACKAGE_ARCH = "${MACHINE_ARCH}"
- COMPATIBLE_MACHINE = "dra7xx|keystone"
- 
- SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1280/7770/REL.HEVC.D.ARM.OBJ.${PV}.tar.gz;name=hevc-arm-decoder"
 -- 
-2.2.0
-
+Denys
 
