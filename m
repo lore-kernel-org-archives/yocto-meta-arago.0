@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id CE666529EA
+Return-Path: <jake@udd0866934>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id EA3805299B
 	for <meta-arago@arago-project.org>;
-	Mon, 21 Mar 2016 17:07:01 +0000 (UTC)
-Received: from vz-proxy-l008.mx.aol.com ([64.236.82.152])
-	by vms173025.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4E003V3FJAX0A0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 21 Mar 2016 12:06:46 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=s6hyFwtd_71cRIpGMS4A:9
-Received: by 100.15.86.14 with SMTP id 126197ac; Mon, 21 Mar 2016 17:06:46 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id D5079161F43;	Mon,
-	21 Mar 2016 13:06:45 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 21 Mar 2016 13:06:45 -0400
-Message-id: <1458580005-7816-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] packagegroup-arago-test: add ti-ipc-test package
+	Mon, 21 Mar 2016 17:31:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2LHVV4h031046
+	for <meta-arago@arago-project.org>; Mon, 21 Mar 2016 12:31:31 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2LHVVB1020957
+	for <meta-arago@arago-project.org>; Mon, 21 Mar 2016 12:31:31 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 21 Mar 2016 12:31:31 -0500
+Received: from udd0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2LHVUwI010908;
+	Mon, 21 Mar 2016 12:31:31 -0500
+Received: from jake by udd0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udd0866934>)	id 1ai3fu-0001Ig-CL; Mon, 21 Mar 2016 13:31:30 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 21 Mar 2016 13:31:28 -0400
+Message-ID: <1458581488-4964-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] ocl: Upgrade to version 1.1.8.0 and add k2g-evm support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,46 +36,115 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Mar 2016 17:07:02 -0000
+X-List-Received-Date: Mon, 21 Mar 2016 17:31:32 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-test.bb          | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc                |  4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb |  2 +-
+ meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb  |  5 ++++-
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb          | 15 +++++++++------
+ 4 files changed, 16 insertions(+), 10 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 2aa3885..2fe32fa 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r40"
-+PR = "r41"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 18690e7..be596e3 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.7.2"
++PV = "1.1.8.0"
+ INC_PR = "r0"
  
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "b437300df647551ebd5df7130576c726155eee4d"
++OCL_SRCREV = "07577df55e6a81a1b7ca85b7007baa221e24adb2"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+index 344d2d0..c067085 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+@@ -6,7 +6,7 @@ include ocl.inc
+ 
+ PR = "${INC_PR}.0"
+ 
+-COMPATIBLE_MACHINE = "dra7xx|k2hk-evm|k2l-evm|k2e-evm"
++COMPATIBLE_MACHINE = "dra7xx|keystone"
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -50,12 +50,17 @@ ARAGO_TI_TEST_append_ti43x = " \
- ARAGO_TI_TEST_append_omap-a15 = " \
-     omapconf \
-     ${@base_contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
-+    ti-ipc-test \
-     "
+ DEPENDS = "opencl ti-cgt6x-native clocl-native"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+index 1f0a849..8420217 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+@@ -41,15 +41,18 @@ DEPENDS_append_k2e-evm  = " multiprocmgr-rtos \
+                             rm-lld-rtos \
+ "
  
- ARAGO_TI_TEST_append_dra7xx = " \
-     vpe-tests \
-     "
+-COMPATIBLE_MACHINE = "dra7xx|k2hk-evm|k2l-evm|k2e-evm"
++COMPATIBLE_MACHINE = "dra7xx|keystone"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-+ARAGO_TI_TEST_append_keystone = " \
-+    ti-ipc-test \
-+    "
+ S = "${WORKDIR}/git/monitor"
+ S_dra7xx = "${WORKDIR}/git/monitor_vayu"
++S_k2g-evm = "${WORKDIR}/git/monitor_vayu"
+ 
+ BUILD_TARGET_k2hk-evm = "ARM_K2H"
+ BUILD_TARGET_k2l-evm  = "ARM_K2L"
+ BUILD_TARGET_k2e-evm  = "ARM_K2E"
++BUILD_TARGET_dra7xx   = "ARM_AM57"
++BUILD_TARGET_k2g-evm  = "ARM_K2G"
+ 
+ EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
+                    -DOCL_MONITOR_DIR=${S} \
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index de97844..7954f2f 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -8,7 +8,7 @@ PR = "${INC_PR}.0"
+ 
+ inherit cmake
+ 
+-COMPATIBLE_MACHINE = "dra7xx|k2hk-evm|k2l-evm|k2e-evm"
++COMPATIBLE_MACHINE = "dra7xx|keystone"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ PACKAGES += " ${PN}-runtime"
+@@ -29,10 +29,9 @@ DEPENDS = " ocl-gl-headers \
+             libulm \
+ "
+ 
+-DEPENDS_append_dra7xx   += " ti-ipc virtual/kernel"
+-DEPENDS_append_k2hk-evm += " mpm-transport multiprocmgr"
+-DEPENDS_append_k2l-evm  += " mpm-transport multiprocmgr"
+-DEPENDS_append_k2e-evm  += " mpm-transport multiprocmgr"
++DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
++DEPENDS_append_keystone = " mpm-transport multiprocmgr"
++DEPENDS_remove_k2g-evm  = " libulm"
+ 
+ RDEPENDS_${PN}-dev += " ocl-gl-headers-dev opencl-monitor"
+ RDEPENDS_${PN}-runtime += " ${PN} opencl-monitor clocl ti-cgt6x"
+@@ -48,8 +47,12 @@ OCL_BUILD_TARGET_dra7xx   = "ARM_AM57"
+ OCL_BUILD_TARGET_k2hk-evm = "ARM_K2H"
+ OCL_BUILD_TARGET_k2l-evm  = "ARM_K2L"
+ OCL_BUILD_TARGET_k2e-evm  = "ARM_K2E"
++OCL_BUILD_TARGET_k2g-evm  = "ARM_K2G"
+ 
+-EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=1"
++ENABLE_ULM = "1"
++ENABLE_ULM_k2g-evm = "0"
 +
- RDEPENDS_${PN} = "\
-     ${ARAGO_TEST} \
-     ${ARAGO_TI_TEST} \
++EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=${ENABLE_ULM}"
+ 
+ EXTRA_OEMAKE += "KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} LINUX_DEVKIT_ROOT=${STAGING_DIR_HOST}"
+ export KERNEL_INSTALL_DIR = "${STAGING_KERNEL_DIR}"
 -- 
-2.2.0
+1.9.1
 
 
