@@ -1,27 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id 9FD4C52AB1
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id DB18D52AB1
 	for <meta-arago@arago-project.org>;
-	Tue, 22 Mar 2016 18:55:51 +0000 (UTC)
-Received: from vz-proxy-l006.mx.aol.com ([64.236.82.154])
-	by vms173019.mailsrvcs.net
+	Tue, 22 Mar 2016 18:56:11 +0000 (UTC)
+Received: from vz-proxy-l004.mx.aol.com ([64.236.82.152])
+	by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4G0015IF92ET30@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 22 Mar 2016 13:55:51 -0500 (CDT)
+	2014)) with ESMTPA id <0O4G00JN3F8E9G80@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 22 Mar 2016 13:55:37 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=Ut/DdBcw22SB5hFy08yqCQ==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=ztGQagcx57n3yV9kHsAA:9
-Received: by 100.15.86.14 with SMTP id 4450ee8c; Tue, 22 Mar 2016 18:55:51 GMT
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=Z6pEUyKhh6cp7L26gWQA:9
+Received: by 100.15.86.14 with SMTP id 56f4297c; Tue, 22 Mar 2016 18:55:37 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 50C03161F3F;	Tue,
+	by gandalf.denix.org (Postfix) with ESMTP id 5B39D161F44;	Tue,
 	22 Mar 2016 14:55:26 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 22 Mar 2016 14:55:24 -0400
-Message-id: <1458672925-16251-1-git-send-email-denis@denix.org>
+Date: Tue, 22 Mar 2016 14:55:25 -0400
+Message-id: <1458672925-16251-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH 1/2] u-boot-ti-staging: update with UART1_RTSN pinmux fix
+In-reply-to: <1458672925-16251-1-git-send-email-denis@denix.org>
+References: <1458672925-16251-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] linux-ti-staging: update with PRU PHY state change fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,36 +36,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2016 18:55:51 -0000
+X-List-Received-Date: Tue, 22 Mar 2016 18:56:12 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- recipes-bsp/u-boot/u-boot-ti-staging_2015.07.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-kernel/linux/linux-ti-staging-rt_4.1.bb | 2 +-
+ recipes-kernel/linux/linux-ti-staging_4.1.bb    | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-bsp/u-boot/u-boot-ti-staging_2015.07.bb b/recipes-bsp/u-boot/u-boot-ti-staging_2015.07.bb
-index bac0acc..0634a16 100644
---- a/recipes-bsp/u-boot/u-boot-ti-staging_2015.07.bb
-+++ b/recipes-bsp/u-boot/u-boot-ti-staging_2015.07.bb
-@@ -7,14 +7,14 @@ DESCRIPTION = "u-boot bootloader for TI devices"
+diff --git a/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb b/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb
+index d2c4b28..5671d45 100644
+--- a/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb
++++ b/recipes-kernel/linux/linux-ti-staging-rt_4.1.bb
+@@ -6,4 +6,4 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.1:"
  
- LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
+ BRANCH = "ti-rt-linux-4.1.y"
  
--PR = "r24"
-+PR = "r25"
- PV_append = "+git${SRCPV}"
+-SRCREV = "b1e14d991256c58d564b50d4d0439521cff27749"
++SRCREV = "3bef1493dbbc61880f09cfda285cd0032a501d41"
+diff --git a/recipes-kernel/linux/linux-ti-staging_4.1.bb b/recipes-kernel/linux/linux-ti-staging_4.1.bb
+index 8efb1c5..5d639b1 100644
+--- a/recipes-kernel/linux/linux-ti-staging_4.1.bb
++++ b/recipes-kernel/linux/linux-ti-staging_4.1.bb
+@@ -69,11 +69,11 @@ S = "${WORKDIR}/git"
  
- SRC_URI = "git://git.ti.com/ti-u-boot/ti-u-boot.git;protocol=git;branch=${BRANCH}"
+ BRANCH = "ti-lsk-linux-4.1.y"
  
- BRANCH ?= "ti-u-boot-2015.07"
+-SRCREV = "c23eecbb9f1d6f2eef11eebb3281b79fb26ff862"
++SRCREV = "6b41ca0b945d73ac8c8318083f79411639836643"
+ PV = "4.1.18+git${SRCPV}"
  
--SRCREV = "d013f6ec602485f6fd543b0ef712abc8d77ebf07"
-+SRCREV = "46c915c96358c426bb1f4dd1e25a9a805d93a24e"
+ # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
+-MACHINE_KERNEL_PR_append = "j"
++MACHINE_KERNEL_PR_append = "k"
+ PR = "${MACHINE_KERNEL_PR}"
  
- # Support for secure devices - detailed info is in doc/README.ti-secure
- TI_SECURE_DEV_PKG ?= ""
+ KERNEL_CONFIG_DIR = "${S}/ti_config_fragments"
 -- 
 2.2.0
 
