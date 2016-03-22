@@ -1,29 +1,28 @@
 Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id DEE2F5299F
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id E59EA5299F
 	for <meta-arago@arago-project.org>;
-	Tue, 22 Mar 2016 20:20:06 +0000 (UTC)
-Received: from vz-proxy-l003.mx.aol.com ([64.236.82.150])
-	by vms173017.mailsrvcs.net
+	Tue, 22 Mar 2016 20:20:16 +0000 (UTC)
+Received: from vz-proxy-l002.mx.aol.com ([64.236.82.153])
+	by vms173019.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4G00CTVJ4YOR80@vms173017.mailsrvcs.net> for
+	2014)) with ESMTPA id <0O4G00AWCJ4Y8C40@vms173019.mailsrvcs.net> for
 	meta-arago@arago-project.org; Tue, 22 Mar 2016 15:19:46 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=0tGySW8maceftNfHUCUfCA==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=Qbd34W_1eAqQqDLOa-4A:9
-Received: by 100.15.86.14 with SMTP id 4cee6fe8; Tue, 22 Mar 2016 20:19:46 GMT
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=FJ1kTJ0/xm5uTekQe8vMdQ==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
+	a=WTBVgR4bEvGbKzlNsnUA:9
+Received: by 100.15.86.14 with SMTP id 7f45e115; Tue, 22 Mar 2016 20:19:46 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 05416161F47;	Tue,
-	22 Mar 2016 16:19:46 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id EE4DE161F42;	Tue,
+	22 Mar 2016 16:19:45 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 22 Mar 2016 16:19:45 -0400
-Message-id: <1458677985-9692-2-git-send-email-denis@denix.org>
+Date: Tue, 22 Mar 2016 16:19:44 -0400
+Message-id: <1458677985-9692-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1458677985-9692-1-git-send-email-denis@denix.org>
-References: <1458677985-9692-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] branding-core: disable AUTOREV-ing packages for the release
+Subject: [PATCH 1/2] ltp-ddt: update to the latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,36 +35,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2016 20:20:07 -0000
+X-List-Received-Date: Tue, 22 Mar 2016 20:20:17 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-core.inc | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index 99bedcf..8463ea9 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -6,11 +6,11 @@
- # hence this file is mostly empty and used as a template
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+index 1d01ca1..4158fc6 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
  
- # Auto rev important packages to pick up latest
--SRCREV_pn-linux-ti-staging = "${AUTOREV}"
--SRCREV_pn-linux-ti-staging-rt = "${AUTOREV}"
--SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
--SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
--SRCREV_pn-ltp-ddt = "${AUTOREV}"
-+#SRCREV_pn-linux-ti-staging = "${AUTOREV}"
-+#SRCREV_pn-linux-ti-staging-rt = "${AUTOREV}"
-+#SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
-+#SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
-+#SRCREV_pn-ltp-ddt = "${AUTOREV}"
+-PR = "r11"
++PR = "r12"
+ PV_append = "+git${SRCPV}"
  
- # Lower opencl-monitor priority for now
- ALTERNATIVE_PRIORITY_pn-opencl-monitor = "1"
+ PROVIDES += "ltp"
+@@ -16,7 +16,7 @@ inherit autotools-brokensep module-base kernel-module-split
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-SRCREV = "7e8dfc07a3f4f8b7d6d8fc381be1db7affad67ef"
++SRCREV = "92b5131095588e84793934711b0ceaba82970e95"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
 2.2.0
 
