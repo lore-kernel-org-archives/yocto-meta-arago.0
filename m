@@ -1,29 +1,40 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 0ECED52A65
+Return-Path: <thomas.kaufmann@duagon.com>
+Received: from antispamrelay01.bull-services.ch
+	(antispamrelay01.bull-services.ch [62.12.170.131])
+	by arago-project.org (Postfix) with ESMTPS id 846C852A85
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Mar 2016 10:54:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2NAsKVv028132
-	for <meta-arago@arago-project.org>; Wed, 23 Mar 2016 05:54:20 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2NAsK0o018084
-	for <meta-arago@arago-project.org>; Wed, 23 Mar 2016 05:54:20 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 23 Mar 2016 05:54:20 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u2NAsKiC024993	for <meta-arago@arago-project.org>;
-	Wed, 23 Mar 2016 05:54:20 -0500
-Date: Wed, 23 Mar 2016 06:54:19 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <544864946.773.1458730460017.JavaMail.jenkins@puget>
+	Wed, 23 Mar 2016 12:12:30 +0000 (UTC)
+Received: from 220.158.14.46.static.wline.lns.sme.cust.swisscom.ch
+	([46.14.158.220]) by mx-gate01-zrh.antispameurope.com; 
+	Wed, 23 Mar 2016 13:12:23 +0100
+Received: from chdua14.duagon.ads (192.168.0.83) by chdua14.duagon.ads
+	(192.168.0.83) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Wed, 23 Mar 2016 13:12:08 +0100
+Received: from chdua14.duagon.ads ([fe80::11cc:5f18:bf89:c528]) by
+	chdua14.duagon.ads ([fe80::11cc:5f18:bf89:c528%12]) with mapi id
+	15.00.1104.000; Wed, 23 Mar 2016 13:12:08 +0100
+From: Thomas Kaufmann <Thomas.Kaufmann@duagon.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: sdk created with arago fido contains hardcoded paths to build
+	system in setup script
+Thread-Index: AdGE/L2mSD49ZUE5RwaYG0D7c2UiiQ==
+Date: Wed, 23 Mar 2016 12:12:08 +0000
+Message-ID: <87f35714305b4138b6523b1f5d7f04f4@chdua14.duagon.ads>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [192.168.0.189]
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-fido
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (fido/1.8) 2016.03 build 2016-03-22_21-35-59
+X-cloud-security-sender: thomas.kaufmann@duagon.com
+X-cloud-security-recipient: meta-arago@arago-project.org
+X-cloud-security-Virusscan: CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on
+	mx-gate01-zrh with BFFDD395C079
+X-cloud-security-connect: 220.158.14.46.static.wline.lns.sme.cust.swisscom.ch[46.14.158.220],
+	TLS=1, IP=46.14.158.220
+X-cloud-security: scantime:2.825
+Subject: sdk created with arago fido contains hardcoded paths to build system in setup script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,224 +47,165 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Mar 2016 10:54:21 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_772_1977194432.1458730459772"
+X-List-Received-Date: Wed, 23 Mar 2016 12:12:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_87f35714305b4138b6523b1f5d7f04f4chdua14duagonads_"
 
-------=_Part_772_1977194432.1458730459772
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--_000_87f35714305b4138b6523b1f5d7f04f4chdua14duagonads_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-<html>
+Hi I tried to get an answer to this from the TI e2e community, but so far w=
+ithout luck:
+
+https://e2e.ti.com/support/embedded/linux/f/354/p/500188/1811754#1811754
+
+My issue is this:
+
+When I create a SDK for my target platform using arago with the populate_sd=
+k command in bitbake. I receive a self extracting shell script, which unpac=
+ks all the rootfs, compilers, libraries and everything. Basically the SDK i=
+s working and I am able to develop for my target with it.
+
+One thing bothers me:
+
+in the environment-setup-cortexa8hf-vfp-non-linux-gnueabi file which needs =
+to be sourced before using the SDK, there are some hardcoded paths which po=
+int to the linaro toolchain as it is installed on the original system, wher=
+e I actually build the SDK,
+
+e.g.: export CFLAGS=3D" -isystem/home/tkaufmann/gcc-linaro-4.9-2015.05-x86_=
+64_arm-linux-gnueabihf/arm-linux-gnueabihf/include  -fstack-protector -O2 -=
+pipe -g -feliminate-unused-debug-types"
+
+similar things are in CFLAGS, CXXFLAGS, LDFLAGS and CPPFLAGS
+
+The plan was to use the compiler and sysroot as it is available in the SDK.=
+ This is working so far for sinple projects without separately installing t=
+he linaro toolchain. Why are these linaro based paths in the environment-se=
+tup script and how do I get rid of this to not confuse the users of the SDK=
+?
+
+I appreciate your feedback
+
+Regards Thomas
+
+--_000_87f35714305b4138b6523b1f5d7f04f4chdua14duagonads_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<title>
-Status for 03/23/16
-</title>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body>
-
-<h2>Status for 03/23/16</h2>
-
-<h2>BUILD_ID: build-2016-03-22_21-37-01</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>jethro</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>fido</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>fido</td>
-        <td>12520d7f729fe3d07c2f94b813994718edb2d987</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-hs-evm</td>
-        <td id="am437x-hs-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-hs-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-hs-evm</td>
-        <td id="dra7xx-hs-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-hs-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2016.03"<br>
-MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"<br>
-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-fido"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-fido/workspace"<br>
-</p>
-
+<body lang=3D"DE-CH" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi I tried to get an answer to =
+this from the TI e2e community, but so far without luck:<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><a href=3D"https://e2e.ti.com/s=
+upport/embedded/linux/f/354/p/500188/1811754#1811754">https://e2e.ti.com/su=
+pport/embedded/linux/f/354/p/500188/1811754#1811754</a><o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">My issue is this:<o:p></o:p></s=
+pan></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-US">When I create a SDK for my ta=
+rget platform using arago with the populate_sdk command in bitbake. I recei=
+ve a self extracting shell script, which unpacks
+ all the rootfs, compilers, libraries and everything. Basically the SDK is =
+working and I am able to develop for my target with it.<o:p></o:p></span></=
+p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-US">One thing bothers me:<o:p></o=
+:p></span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-US">in the environment-setup-cort=
+exa8hf-vfp-non-linux-gnueabi file which needs to be sourced before using th=
+e SDK, there are some hardcoded paths which point
+ to the linaro toolchain as it is installed on the original system, where I=
+ actually build the SDK,<o:p></o:p></span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-US">e.g.: export CFLAGS=3D&quot; =
+-isystem<b>/home/tkaufmann/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabih=
+f/arm-linux-gnueabihf/include</b>&nbsp; -fstack-protector
+ -O2 -pipe -g -feliminate-unused-debug-types&quot;<o:p></o:p></span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-US">similar things are in CFLAGS,=
+ CXXFLAGS, LDFLAGS and CPPFLAGS<o:p></o:p></span></p>
+<p><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-US">The plan was to use the compi=
+ler and sysroot as it is available in the SDK. This is working so far for s=
+inple projects without separately installing the
+ linaro toolchain. Why are these linaro based paths in the environment-setu=
+p script and how do I get rid of this to not confuse the users of the SDK?<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I appreciate your feedback<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards Thomas<o:p></o:p></span=
+></p>
+</div>
 </body>
 </html>
 
-
-------=_Part_772_1977194432.1458730459772--
+--_000_87f35714305b4138b6523b1f5d7f04f4chdua14duagonads_--
