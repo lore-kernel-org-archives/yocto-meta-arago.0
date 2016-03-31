@@ -1,28 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id BB21452AA3
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 7FF0E529EF
 	for <meta-arago@arago-project.org>;
-	Thu, 31 Mar 2016 03:37:46 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2V3bkQK013875
-	for <meta-arago@arago-project.org>; Wed, 30 Mar 2016 22:37:46 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2V3bkSE006733
-	for <meta-arago@arago-project.org>; Wed, 30 Mar 2016 22:37:46 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 30 Mar 2016 22:37:46 -0500
+	Thu, 31 Mar 2016 20:25:52 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u2VKPpEM011963
+	for <meta-arago@arago-project.org>; Thu, 31 Mar 2016 15:25:51 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u2VKPpkG018980
+	for <meta-arago@arago-project.org>; Thu, 31 Mar 2016 15:25:51 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 31 Mar 2016 15:25:50 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u2V3bjki014654;	Wed, 30 Mar 2016 22:37:45 -0500
-Date: Wed, 30 Mar 2016 23:37:45 -0400
+	u2VKPnfS014470	for <meta-arago@arago-project.org>;
+	Thu, 31 Mar 2016 15:25:50 -0500
+Date: Thu, 31 Mar 2016 16:25:48 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <1520016212.815.1459395465519.JavaMail.jenkins@puget>
+To: <meta-arago@arago-project.org>
+Message-ID: <678611670.817.1459455948982.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-daisy
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-03-30_14-14-49
+Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-03-31_11-19-45
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,25 +36,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Mar 2016 03:37:47 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_814_1205243744.1459395465270"
+X-List-Received-Date: Thu, 31 Mar 2016 20:25:56 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_816_37350142.1459455948873"
 
-------=_Part_814_1205243744.1459395465270
+------=_Part_816_37350142.1459455948873
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 03/30/16
+Status for 03/31/16
 </title>
 </head>
 <body>
 
-<h2>Status for 03/30/16</h2>
+<h2>Status for 03/31/16</h2>
 
-<h2>BUILD_ID: build-2016-03-30_14-16-02</h2>
+<h2>BUILD_ID: build-2016-03-31_11-20-55</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -152,8 +152,8 @@ Status for 03/30/16
     </tr>
     <tr>
         <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2e-evm</td>
@@ -243,4 +243,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
 </html>
 
 
-------=_Part_814_1205243744.1459395465270--
+------=_Part_816_37350142.1459455948873--
