@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id D06D152A85
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTPS id F121152A8B
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Apr 2016 03:52:02 +0000 (UTC)
-Received: from vz-proxy-l004.mx.aol.com ([64.236.82.152])
-	by vms173023.mailsrvcs.net
+Received: from vz-proxy-l002.mx.aol.com ([64.236.82.153])
+	by vms173013.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X00H5GS2B4060@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:51:47 -0500 (CDT)
+	2014)) with ESMTPA id <0O4X0069ES2BDF30@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:51:48 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=18M5Ul_0bz0glMo6STsA:9
-Received: by 100.15.86.14 with SMTP id 14f398ba; Fri, 01 Apr 2016 03:51:47 GMT
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=FJ1kTJ0/xm5uTekQe8vMdQ==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=tHoVJYAslwCI2Lp5fK4A:9
+Received: by 100.15.86.14 with SMTP id 42420126; Fri, 01 Apr 2016 03:51:47 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 341FB161F71;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 32AAB161F70;	Thu,
 	31 Mar 2016 23:41:50 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:45 -0400
-Message-id: <1459482106-27723-26-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:44 -0400
+Message-id: <1459482106-27723-25-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
 References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 25/26] toolchain*.inc: update toolchain preferences
+Subject: [PATCH 24/26] arago-prefs: update toolchain preferences, drop gstreamer 0.10
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,47 +42,68 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc    | 8 ++++----
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 6 +++---
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ .../conf/distro/include/arago-prefs.inc            | 27 ++++++----------------
+ 1 file changed, 7 insertions(+), 20 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index f86a79c..e378f2d 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -14,10 +14,10 @@ PREFERRED_PROVIDER_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "gcc-cross-ca
- PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "binutils-cross-canadian-${TRANSLATED_TARGET_ARCH}"
- PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 8acd156..4a02e79 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -1,10 +1,10 @@
+ # Set *target* toolchain preferences at global distro level.
+ # Cross and SDK toolchain preferences are set in toolchain-*.inc files
+-GCCVERSION ?= "linaro-4.9%"
++GCCVERSION ?= "linaro-5.2%"
+ BINUVERSION ?= "linaro-2.25%"
+-GLIBCVERSION ?= "2.21%"
+-GLIBCINITVERSION ?= "2.21%"
+-LINUXLIBCVERSION ?= "4.1"
++GLIBCVERSION ?= "2.23%"
++GLIBCINITVERSION ?= "2.23%"
++LINUXLIBCVERSION ?= "4.4"
  
--SDKGCCVERSION ?= "4.9%"
--SDKBINUVERSION ?= "2.24%"
--SDKGLIBCVERSION ?= "2.21%"
--SDKLINUXLIBCVERSION ?= "4.1%"
-+SDKGCCVERSION ?= "5.3%"
-+SDKBINUVERSION ?= "2.26%"
-+SDKGLIBCVERSION ?= "2.23%"
-+SDKLINUXLIBCVERSION ?= "4.4%"
+ PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+ PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
+@@ -78,8 +78,8 @@ PREFERRED_PROVIDER_u-boot_omap-a15 = "u-boot-ti-staging"
+ PREFERRED_VERSION_u-boot-ti-staging = "2015.07%"
  
- PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index 233f293..25c2ddc 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -28,10 +28,10 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
- PREFERRED_PROVIDER_libgcc = "external-linaro-toolchain"
- PREFERRED_PROVIDER_gcc-runtime = "external-linaro-toolchain"
+ # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
+-PREFERRED_VERSION_udev = "182"
+-PREFERRED_PROVIDER_udev = "udev"
++PREFERRED_VERSION_eudev = "3.1.5"
++PREFERRED_PROVIDER_eudev = "eudev"
  
--SDKGCCVERSION ?= "linaro-4.9%"
-+SDKGCCVERSION ?= "linaro-5.2%"
- SDKBINUVERSION ?= "linaro-2.25%"
--SDKGLIBCVERSION ?= "2.21%"
--SDKLINUXLIBCVERSION ?= "4.1%"
-+SDKGLIBCVERSION ?= "2.23%"
-+SDKLINUXLIBCVERSION ?= "4.4%"
+ # Set the PREFERRED_PROVIDER for jpeg functionality based on the MACHINE
+ # architecture.  For armv7a devices libjpeg-turbo should be used to take
+@@ -95,7 +95,7 @@ PREFERRED_VERSION_readline-native = "5.2"
+ PREFERRED_VERSION_readline-nativesdk = "5.2"
  
- PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_libnl = "3.2.25"
+-PREFERRED_VERSION_crda = "3.13"
++PREFERRED_VERSION_crda = "3.18"
+ PREFERRED_VERSION_obex = "0.34"
+ PREFERRED_VERSION_bash = "3.2.48"
+ PREFERRED_VERSION_gettext = "0.16.1"
+@@ -107,19 +107,6 @@ PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
+ PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
+ PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
+ 
+-PREFERRED_PROVIDER_gstreamer = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel', 'gstreamer', d)}"
+-PREFERRED_PROVIDER_gstreamer-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel-dev', 'gstreamer-dev', d)}"
+-PREFERRED_PROVIDER_gstreamer-dbg = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gstreamer-mm-accel-dbg', 'gstreamer-dbg', d)}"
+-PREFERRED_PROVIDER_gst-plugins-bad = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel', 'gst-plugins-bad', d)}"
+-PREFERRED_PROVIDER_gst-plugins-bad-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel-dev', 'gst-plugins-bad-dev', d)}"
+-PREFERRED_PROVIDER_gst-plugins-bad-meta = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-bad-mm-accel-meta', 'gst-plugins-bad-meta', d)}"
+-PREFERRED_PROVIDER_gst-plugins-base = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-base-mm-accel', 'gst-plugins-base', d)}"
+-PREFERRED_PROVIDER_gst-plugins-base-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-base-mm-accel-dev', 'gst-plugins-base-dev', d)}"
+-PREFERRED_PROVIDER_gst-plugins-base-meta = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-base-mm-accel-meta', 'gst-plugins-base-meta', d)}"
+-PREFERRED_PROVIDER_gst-plugins-good = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-good-mm-accel', 'gst-plugins-good', d)}"
+-PREFERRED_PROVIDER_gst-plugins-good-dev = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-good-mm-accel-dev', 'gst-plugins-good-dev', d)}"
+-PREFERRED_PROVIDER_gst-plugins-good-meta = "${@base_contains('MACHINE_FEATURES', 'mmip', 'gst-plugins-good-mm-accel-meta', 'gst-plugins-good-meta', d)}"
+-
+ def filter_out(f, str, d):
+     from re import match
+     return " ".join(filter(lambda x: not match(f, x, 0), str.split()))
 -- 
 2.2.0
 
