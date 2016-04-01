@@ -1,30 +1,31 @@
 Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id F3F2E52A85
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTPS id F3F7A529C2
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Apr 2016 03:41:51 +0000 (UTC)
-Received: from vz-proxy-l003.mx.aol.com ([64.236.82.150])
-	by vms173013.mailsrvcs.net
+Received: from vz-proxy-l006.mx.aol.com ([64.236.82.154])
+	by vms173015.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X002NGRLRA050@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:51 -0500 (CDT)
+	2014)) with ESMTPA id <0O4X00ELPRLQFB50@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:52 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=0tGySW8maceftNfHUCUfCA==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=NEAV23lmAAAA:8
-	a=xm5lrAq8cDT53UIO91EA:9
-Received: by 100.15.86.14 with SMTP id 6118d927; Fri, 01 Apr 2016 03:41:51 GMT
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=Ut/DdBcw22SB5hFy08yqCQ==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
+	a=tbSNNzvVuQxZeTjNaYAA:9
+	a=oX6NkTPnkpBS0idu:21	a=yKzt8qsgUb9Ld3Tm:21 a=8j2U2-28lyOKDbcw:21
+Received: by 100.15.86.14 with SMTP id 483dea43; Fri, 01 Apr 2016 03:41:50 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 0078C161F67;	Thu,
-	31 Mar 2016 23:41:50 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id AE405161F59;	Thu,
+	31 Mar 2016 23:41:49 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:35 -0400
-Message-id: <1459482106-27723-16-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:21 -0400
+Message-id: <1459482106-27723-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
 References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 15/26] omapconf: bump SRCREV to pick up gcc-5 fixes
+Subject: [PATCH 01/26] recipes-qt: remove all traces of qt4, no longer in oe-core
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,28 +44,2193 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-qt/qt4/arago-qt4.inc     |  25 -
+ ...-PATCH-make-demos-maximized-for-TISDK-use.patch |  48 -
+ .../qt4/files/0002-qwslock-messages.patch          |  67 --
+ meta-arago-distro/recipes-qt/qt4/files/qte.sh      |  11 -
+ .../qt4/nativesdk-qt4-tools_4.8.6.bbappend         |   9 -
+ .../qt4/qt4-embedded-gles_4.8.6.bbappend           |  12 -
+ .../recipes-qt/qt4/qt4-embedded_4.8.6.bbappend     |   3 -
+ .../recipes-qt/qt-apps/quick-playground_1.0.bb     |  39 -
+ ...hanges-for-integrating-with-TI-graphics-S.patch | 719 ---------------
+ .../qt4-embedded-gles/0001-wsegl2-support.patch    | 997 ---------------------
+ .../qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch  |  11 -
+ .../qt4/qt4-embedded-gles/cursor-hack.diff         |  34 -
+ .../recipes-qt/qt4/qt4-embedded-gles/linux.conf    |  68 --
+ .../recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb      |  30 -
+ 14 files changed, 2073 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/files/0001-PATCH-make-demos-maximized-for-TISDK-use.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/files/0002-qwslock-messages.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/files/qte.sh
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.6.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/qt4-embedded_4.8.6.bbappend
+ delete mode 100644 meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-wsegl2-support.patch
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/cursor-hack.diff
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 81f85f9..fa08cfa 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -5,12 +5,12 @@ LICENSE = "GPLv2 | BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
- 
- PV = "1.72"
--PR = "r1"
-+PR = "r2"
- 
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
- 
- BRANCH ?= "master"
--SRCREV = "e821a16e707cbde41ed07c1a05de4a497b39c000"
-+SRCREV = "340f7dddb23664d8323c8d2002443606b95d969b"
- 
- SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
- 
+diff --git a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc b/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+deleted file mode 100644
+index 57ced60..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
++++ /dev/null
+@@ -1,25 +0,0 @@
+-# Common file for patches or tweaks that are needed by qt4-embedded and
+-# qt4-embedded-gles
+-
+-PR := "${PR}-arago8"
+-
+-# look for files in this layer first
+-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+-
+-python __anonymous () {
+-    d.setVar("RRECOMMENDS_libqt-embeddedcore4", "")
+-}
+-
+-# Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+-# For our distribution purposes we only use LGPLv2.1
+-LICENSE = "LGPLv2.1"
+-
+-SRC_URI += "file://0001-PATCH-make-demos-maximized-for-TISDK-use.patch \
+-            file://0002-qwslock-messages.patch \
+-            file://qte.sh \
+-"
+-
+-# Rotate the display only for am37x_evm
+-do_install_prepend_am37x-evm () {
+-    echo "export QWS_DISPLAY="transformed:Rot90" >> ${WORKDIR}/qte.sh
+-}
+diff --git a/meta-arago-distro/recipes-qt/qt4/files/0001-PATCH-make-demos-maximized-for-TISDK-use.patch b/meta-arago-distro/recipes-qt/qt4/files/0001-PATCH-make-demos-maximized-for-TISDK-use.patch
+deleted file mode 100644
+index 70f67fd..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/files/0001-PATCH-make-demos-maximized-for-TISDK-use.patch
++++ /dev/null
+@@ -1,48 +0,0 @@
+-From d8d20f1a7b889ee28f786cc1dfaa65b610d63b13 Mon Sep 17 00:00:00 2001
+-From: Franklin S. Cooper Jr <fcooper@ti.com>
+-Date: Wed, 31 Oct 2012 21:06:01 -0500
+-Subject: [PATCH] make demos maximized for TISDK use
+-
+-* Maximize the weatherinfo and imageviewer demos for use in the TISDK
+-
+-Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
+----
+- demos/embedded/weatherinfo/weatherinfo.cpp |    5 -----
+- examples/widgets/imageviewer/main.cpp      |    4 ----
+- 2 files changed, 0 insertions(+), 9 deletions(-)
+-
+-diff --git a/demos/embedded/weatherinfo/weatherinfo.cpp b/demos/embedded/weatherinfo/weatherinfo.cpp
+-index 0614149..c47504d 100644
+---- a/demos/embedded/weatherinfo/weatherinfo.cpp
+-+++ b/demos/embedded/weatherinfo/weatherinfo.cpp
+-@@ -492,12 +492,7 @@ int main(int argc, char *argv[])
+-     QApplication app(argc, argv);
+- 
+-     WeatherInfo w;
+--#if defined(Q_OS_SYMBIAN)
+-     w.showMaximized();
+--#else
+--    w.resize(520, 288);
+--    w.show();
+--#endif
+- 
+-     return app.exec();
+- }
+-diff --git a/examples/widgets/imageviewer/main.cpp b/examples/widgets/imageviewer/main.cpp
+-index 8d1a068..35fb80d 100644
+---- a/examples/widgets/imageviewer/main.cpp
+-+++ b/examples/widgets/imageviewer/main.cpp
+-@@ -46,10 +46,6 @@ int main(int argc, char *argv[])
+- {
+-     QApplication app(argc, argv);
+-     ImageViewer imageViewer;
+--#if defined(Q_OS_SYMBIAN)
+-     imageViewer.showMaximized();
+--#else
+--    imageViewer.show();
+--#endif
+-     return app.exec();
+- }
+--- 
+-1.7.0.4
+-
+diff --git a/meta-arago-distro/recipes-qt/qt4/files/0002-qwslock-messages.patch b/meta-arago-distro/recipes-qt/qt4/files/0002-qwslock-messages.patch
+deleted file mode 100644
+index d1355a7..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/files/0002-qwslock-messages.patch
++++ /dev/null
+@@ -1,67 +0,0 @@
+-From f18e63824df6bcbadc99f8efa26aae6c425fd5bc Mon Sep 17 00:00:00 2001
+-From: Jeff Lance <j-lance1@ti.com>
+-Date: Thu, 13 Dec 2012 07:13:11 -0600
+-Subject: [PATCH] Adding patch to fix QWSLOCK message issue
+-
+----
+- src/gui/embedded/qwslock.cpp |   11 +++++++----
+- src/gui/embedded/qwslock_p.h |    2 +-
+- 2 files changed, 8 insertions(+), 5 deletions(-)
+-
+-diff --git a/src/gui/embedded/qwslock.cpp b/src/gui/embedded/qwslock.cpp
+-index f9ea000..7d8b6c2 100644
+---- a/src/gui/embedded/qwslock.cpp
+-+++ b/src/gui/embedded/qwslock.cpp
+-@@ -82,10 +82,12 @@ QWSLock::QWSLock(int id) : semId(id)
+- #ifndef QT_NO_QWS_SIGNALHANDLER
+-     QWSSignalHandler::instance()->addWSLock(this);
+- #endif
+-+    owned = false;
+- 
+- #ifndef QT_POSIX_IPC
+-     if (semId == -1) {
+-         semId = semget(IPC_PRIVATE, 3, IPC_CREAT | 0666);
+-+        owned = true;
+-         if (semId == -1) {
+-             perror("QWSLock::QWSLock");
+-             qFatal("Unable to create semaphore");
+-@@ -100,7 +102,6 @@ QWSLock::QWSLock(int id) : semId(id)
+-     }
+- #else
+-     sems[0] = sems[1] = sems[2] = SEM_FAILED;
+--    owned = false;
+- 
+-     if (semId == -1) {
+-         // ### generate really unique IDs
+-@@ -134,9 +135,11 @@ QWSLock::~QWSLock()
+- 
+-     if (semId != -1) {
+- #ifndef QT_POSIX_IPC
+--        qt_semun semval;
+--        semval.val = 0;
+--        semctl(semId, 0, IPC_RMID, semval);
+-+        if(owned) {
+-+            qt_semun semval;
+-+            semval.val = 0;
+-+            semctl(semId, 0, IPC_RMID, semval);
+-+        }
+-         semId = -1;
+- #else
+-         // emulate the SEM_UNDO behavior for the BackingStore lock
+-diff --git a/src/gui/embedded/qwslock_p.h b/src/gui/embedded/qwslock_p.h
+-index 71a4cca..7a74710 100644
+---- a/src/gui/embedded/qwslock_p.h
+-+++ b/src/gui/embedded/qwslock_p.h
+-@@ -86,8 +86,8 @@ private:
+-     int lockCount[2];
+- #ifdef QT_POSIX_IPC
+-     sem_t *sems[3];
+--    bool owned;
+- #endif
+-+    bool owned;
+- };
+- 
+- QT_END_NAMESPACE
+--- 
+-1.7.0.4
+-
+diff --git a/meta-arago-distro/recipes-qt/qt4/files/qte.sh b/meta-arago-distro/recipes-qt/qt4/files/qte.sh
+deleted file mode 100644
+index 3d656f3..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/files/qte.sh
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/bin/sh
+-
+-### QT Environment Variables ###
+-export QWS_MOUSE_PROTO=Auto
+-
+-
+-# Set the QWS_MOUSE_PROTO for touchscreen if it exists
+-if [ -e /dev/input/touchscreen0 ]
+-then
+-    export QWS_MOUSE_PROTO=Tslib:/dev/input/touchscreen0
+-fi
+diff --git a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.6.bbappend b/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.6.bbappend
+deleted file mode 100644
+index 8391cdd..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.6.bbappend
++++ /dev/null
+@@ -1,9 +0,0 @@
+-PR_append = "-arago3"
+-
+-# Qt/E from Nokia is dual-licensed (LGPLv2.1 or GPLv3)
+-# For our distribution purposes we only use LGPLv2.1
+-LICENSE = "LGPLv2.1"
+-
+-DEPENDS := "${@oe_filter_out('nativesdk-libx11', '${DEPENDS}', d)}"
+-
+-EXTRA_OECONF += " -no-pch"
+diff --git a/meta-arago-distro/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bbappend b/meta-arago-distro/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bbappend
+deleted file mode 100644
+index 827eaf8..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bbappend
++++ /dev/null
+@@ -1,12 +0,0 @@
+-require arago-qt4.inc
+-
+-PR := "${PR}.1"
+-
+-# Some deps are missing when sgx is not set, skip this package
+-python __anonymous() {
+-    features = bb.data.getVar("MACHINE_FEATURES", d, 1)
+-    if not features:
+-        return
+-    if "sgx" not in features:
+-        raise bb.parse.SkipPackage('qt4-embedded-gles needs dependencies derived from "sgx" flag in MACHINE_FEATURES')
+-}
+diff --git a/meta-arago-distro/recipes-qt/qt4/qt4-embedded_4.8.6.bbappend b/meta-arago-distro/recipes-qt/qt4/qt4-embedded_4.8.6.bbappend
+deleted file mode 100644
+index f9e5810..0000000
+--- a/meta-arago-distro/recipes-qt/qt4/qt4-embedded_4.8.6.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-require arago-qt4.inc
+-
+-PR := "${PR}.0"
+diff --git a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb b/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+deleted file mode 100644
+index f285ff1..0000000
+--- a/meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
++++ /dev/null
+@@ -1,39 +0,0 @@
+-DESCRIPTION = "Qt Quick Playground"
+-HOMEPAGE = "http://arago-project.org/git/projects/?p=qt4-demos.git;a=summary"
+-SECTION = "multimedia"
+-LICENSE = "Nokia"
+-LIC_FILES_CHKSUM = "file://Licence.txt;md5=7cc88160b55ec5db6c6c5bb8e3238c0b"
+-
+-require recipes-core/matrix/matrix-gui-paths.inc
+-
+-PR = "r3"
+-
+-BRANCH = "master"
+-SRCREV = "b055cefbe2ecb9e8009c08abe2c9dcfe447cfc9d"
+-
+-SRC_URI = "git://arago-project.org/git/projects/qt4-demos.git;protocol=git;branch=${BRANCH}"
+-
+-S = "${WORKDIR}/git/qml_playground"
+-
+-inherit qt4e
+-
+-do_install() {
+-    install -d ${D}/usr/bin 
+-    install -m 0755 runQMLplay.sh ${D}/usr/bin/
+-    install -d ${D}${MATRIX_APP_DIR}/qml_playground
+-    cp -r apps/qml_playground/*  ${D}${MATRIX_APP_DIR}/qml_playground
+-    install -m 0755 qtquickplayground ${D}${MATRIX_APP_DIR}/qml_playground/
+-}
+-
+-PACKAGES += "matrix-gui-apps-quick-playground"
+-
+-RDEPENDS_matrix-gui-apps-quick-playground  = "matrix-gui-apps-images matrix-gui-submenus-qt4 ${PN}"
+-
+-# Add the matrix directory to the FILES
+-FILES_${PN} = "${MATRIX_APP_DIR}/qml_playground/qtquickplayground \
+-               /usr/bin/runQMLplay.sh"
+-
+-# Add the .debug directory to the dbg package
+-FILES_${PN}-dbg += "${MATRIX_APP_DIR}/qml_playground/.debug"
+-
+-FILES_matrix-gui-apps-quick-playground = "${MATRIX_APP_DIR}/*"
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch
+deleted file mode 100644
+index 73ef094..0000000
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch
++++ /dev/null
+@@ -1,719 +0,0 @@
+-From c463092eb5465cf7a7f9f783425dd75ec48d5f89 Mon Sep 17 00:00:00 2001
+-From: Prathap Srinivas <msprathap@ti.com>
+-Date: Tue, 5 Nov 2013 07:52:34 -0600
+-Subject: [PATCH] Qt 4.x v2: Changes for integrating with TI graphics SDK release 04.10.00.01
+-
+-This patch adds the changes required for Qt 4.x to work with 04.10 TI gfx sdk.
+-04.10.00.01 TI gfx sdk is based on 1.10 Linux DDK from Imagination Technologies
+-wsegl.h, pvr2d.h has been updated with 1.10 DDK.
+-This patch includes the updated files and also makes the required changes.
+-The changes are in QWSWSEGL to interface with updated wsegl.h.
+-
+-Version 2:
+-Updated to apply cleanly
+----
+- src/3rdparty/powervr/wsegl2/pvr2d.h                |  190 +++++++++++++-------
+- src/3rdparty/powervr/wsegl2/wsegl.h                |  172 ++++++++++++------
+- .../gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c      |   28 +++-
+- 3 files changed, 269 insertions(+), 121 deletions(-)
+-
+-diff --git a/src/3rdparty/powervr/wsegl2/pvr2d.h b/src/3rdparty/powervr/wsegl2/pvr2d.h
+-index 0f44833..d7e8123 100644
+---- a/src/3rdparty/powervr/wsegl2/pvr2d.h
+-+++ b/src/3rdparty/powervr/wsegl2/pvr2d.h
+-@@ -1,39 +1,47 @@
+--/**********************************************************************
+--*
+--* Copyright(c) Imagination Technologies Ltd.
+--*
+--* The contents of this file are subject to the MIT license as set out below.
+--*
+--* Permission is hereby granted, free of charge, to any person obtaining a copy
+--* of this software and associated documentation files (the "Software"),
+--* to deal in the Software without restriction, including without limitation
+--* the rights to use, copy, modify, merge, publish, distribute, sublicense,
+--* and/or sell copies of the Software, and to permit persons to whom the
+--* Software is furnished to do so, subject to the following conditions:
+--*
+--* The above copyright notice and this permission notice shall be included
+--* in all copies or substantial portions of the Software.
+--*
+--* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+--* OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+--* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+--* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+--* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+--* OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+--* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--*
+--* This License is also included in this distribution in the file called
+--* "COPYING".
+--*
+--******************************************************************************/
+--
+--
+-+/*************************************************************************/ /*!
+-+@Copyright      Copyright (c) Imagination Technologies Ltd. All Rights Reserved
+-+@License        Dual MIT/GPLv2
+-+
+-+The contents of this file are subject to the MIT license as set out below.
+-+
+-+Permission is hereby granted, free of charge, to any person obtaining a copy
+-+of this software and associated documentation files (the "Software"), to deal
+-+in the Software without restriction, including without limitation the rights
+-+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-+copies of the Software, and to permit persons to whom the Software is
+-+furnished to do so, subject to the following conditions:
+-+
+-+The above copyright notice and this permission notice shall be included in
+-+all copies or substantial portions of the Software.
+-+
+-+Alternatively, the contents of this file may be used under the terms of
+-+the GNU General Public License Version 2 ("GPL") in which case the provisions
+-+of GPL are applicable instead of those above.
+-+
+-+If you wish to allow use of your version of this file only under the terms of
+-+GPL, and not to allow others to use your version of this file under the terms
+-+of the MIT license, indicate your decision by deleting the provisions above
+-+and replace them with the notice and other provisions required by GPL as set
+-+out in the file called "GPL-COPYING" included in this distribution. If you do
+-+not delete the provisions above, a recipient may use your version of this file
+-+under the terms of either the MIT license or GPL.
+-+
+-+This License is also included in this distribution in the file called
+-+"MIT-COPYING".
+-+
+-+EXCEPT AS OTHERWISE STATED IN A NEGOTIATED AGREEMENT: (A) THE SOFTWARE IS
+-+PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+-+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+-+PURPOSE AND NONINFRINGEMENT; AND (B) IN NO EVENT SHALL THE AUTHORS OR
+-+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+-+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+-+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-+
+-+*/ /**************************************************************************/
+- 
+- /******************************************************************************
+- Modifications :-
+- $Log: pvr2d.h $
+--
+-- --- Revision Logs Removed ---
+- ******************************************************************************/
+- 
+- #ifndef _PVR2D_H_
+-@@ -54,7 +62,7 @@ extern "C" {
+- 
+- /* PVR2D header revision */
+- #define PVR2D_REV_MAJOR		3
+--#define PVR2D_REV_MINOR		5
+-+#define PVR2D_REV_MINOR		6
+- 
+- /* Basic types */
+- typedef enum
+-@@ -67,13 +75,20 @@ typedef void* PVR2D_HANDLE;
+- 
+- typedef char             PVR2D_CHAR,	*PVR2D_PCHAR;
+- typedef unsigned char    PVR2D_UCHAR,	*PVR2D_PUCHAR;
+-+
+- typedef int              PVR2D_INT,		*PVR2D_PINT;
+- typedef unsigned int     PVR2D_UINT,	*PVR2D_PUINT;
+-+
+-+typedef unsigned short   PVR2D_UINT16,	*PVR2D_PUINT16;
+-+typedef signed short     PVR2D_INT16,	*PVR2D_PINT16;
+-+
+- typedef long             PVR2D_LONG,	*PVR2D_PLONG;
+- typedef unsigned long    PVR2D_ULONG,	*PVR2D_PULONG;
+- 
+- typedef void             PVR2D_VOID,	*PVR2D_PVOID;
+- 
+-+/* services/stream ID */
+-+typedef unsigned int      PVR2D_SID;
+- 
+- /* error codes */
+- typedef enum
+-@@ -99,7 +114,7 @@ typedef unsigned long PVR2DFORMAT;
+- #define	PVR2D_1BPP						0x00UL // 1bpp mask surface or palletized 1 bit source with 2x32 bit CLUT
+- #define	PVR2D_RGB565					0x01UL // Common rgb 565 format
+- #define	PVR2D_ARGB4444					0x02UL // Common argb 4444 format
+--#define	PVR2D_RGB888					0x03UL // Common rgb 888 format (not supported)
+-+#define	PVR2D_RGB888					0x03UL // Common rgb 888 format
+- #define	PVR2D_ARGB8888					0x04UL // Common argb 8888 format
+- #define	PVR2D_ARGB1555					0x05UL // Common argb 1555 format
+- #define	PVR2D_ALPHA8					0x06UL // Alpha-only 8 bit per pixel (used with a constant fill colour)
+-@@ -114,16 +129,18 @@ typedef unsigned long PVR2DFORMAT;
+- #define PVR2D_YUV422_UYVY				0x14UL // YUV 422 low-high byte order UY0VY1
+- #define PVR2D_YUV422_YVYU				0x15UL // YUV 422 low-high byte order Y0VY1U
+- #define PVR2D_YUV422_VYUY				0x16UL // YUV 422 low-high byte order VY0UY1
+--#define PVR2D_YUV420_2PLANE				0x17UL // YUV420 2 Plane
+--#define PVR2D_YUV420_3PLANE				0x18UL // YUV420 3 Plane
+--#define PVR2D_2101010ARGB				0x19UL // 32 bit 2 10 10 10
+--#define PVR2D_888RSGSBS					0x1AUL
+-+#define PVR2D_YUV420_2PLANE				0x17UL // YUV420 2 Plane with UV interleaved in plane 2
+-+#define PVR2D_YVU420_3PLANE				0x18UL // YVU420 3 Plane
+-+#define PVR2D_YUV420_3PLANE				0x21UL // YUV420 3 Plane
+-+#define PVR2D_2101010ARGB				0x19UL // 32 bit 2 10 10 10 
+-+#define PVR2D_888RSGSBS					0x1AUL // 3 channel signed 8 bit
+- #define PVR2D_16BPP_RAW					0x1BUL // 16 bit raw (no format conversion)
+- #define PVR2D_32BPP_RAW					0x1CUL // 32 bit raw
+- #define PVR2D_64BPP_RAW					0x1DUL // 64 bit raw
+- #define PVR2D_128BPP_RAW				0x1EUL // 128 bit raw
+--
+--#define	PVR2D_NO_OF_FORMATS				0x1FUL
+-+#define PVR2D_AYUV8888					0x1FUL
+-+#define PVR2D_F16						0x20UL
+-+#define	PVR2D_NO_OF_FORMATS				0x22UL
+- 
+- /* Format modifier bit field (DstFormat and SrcFormat bits 16..23) */
+- #define PVR2D_FORMAT_MASK				0x0000FFFFUL	// PVR2D Format bits
+-@@ -141,7 +158,8 @@ typedef unsigned long PVR2DFORMAT;
+- 	This flag requests a surface pdump, to capture the pixel state after host writes.
+- 	Not needed if the surface state has resulted from previous SGX 2D/3D core writes.
+- */
+--#define PVR2D_SURFACE_PDUMP				0x00100000UL	// calls PVRSRVPDumpMem to capture the surface (pdump builds only)
+-+#define PVR2D_SURFACE_PDUMP				0x00100000UL	// calls PVRSRVPDumpMem to capture the surface (pdump builds only) 
+-+#define PVR2D_BLTRECT_PDUMP				0x00200000UL	// calls PVRSRVPDumpMem to capture the blt rectangle (pdump builds only) 
+- 
+- /*
+- 	Low level 3D format extension - for blts via the 3D core only.
+-@@ -155,8 +173,7 @@ typedef unsigned long PVR2DFORMAT;
+- typedef enum
+- {
+- 	PVR2D_WRAPFLAG_NONCONTIGUOUS = 0,
+--	PVR2D_WRAPFLAG_CONTIGUOUS = 1,
+--
+-+	PVR2D_WRAPFLAG_CONTIGUOUS = 1
+- }PVR2DWRAPFLAGS;
+- 
+- #define	PVR2D_CONTEXT_FLAGS_PRIORITY_MASK			0x00000003
+-@@ -171,7 +188,7 @@ typedef enum
+- 	PVR2D_BLIT_DISABLE_ALL					= 0x00000000,	/* disable all additional controls */
+- 	PVR2D_BLIT_CK_ENABLE					= 0x00000001,	/* enable colour key */
+- 	PVR2D_BLIT_GLOBAL_ALPHA_ENABLE			= 0x00000002,	/* enable standard global alpha */
+--	PVR2D_BLIT_PERPIXEL_ALPHABLEND_ENABLE	= 0x00000004,	/* enable per-pixel alpha bleding */
+-+	PVR2D_BLIT_PERPIXEL_ALPHABLEND_ENABLE	= 0x00000004,	/* enable per-pixel alpha blending */
+- 	PVR2D_BLIT_PAT_SURFACE_ENABLE			= 0x00000008,	/* enable pattern surf (disable fill) */
+- 	PVR2D_BLIT_FULLY_SPECIFIED_ALPHA_ENABLE	= 0x00000010,	/* enable fully specified alpha */
+- 	PVR2D_BLIT_ROT_90						= 0x00000020,	/* apply 90 degree rotation to the blt */
+-@@ -186,11 +203,12 @@ typedef enum
+- 	PVR2D_BLIT_COLKEY_MASKED				= 0x00004000,	/* Mask enabled for colour key */
+- 	PVR2D_BLIT_COLKEY_OP_PASS				= 0x00008000,	/* Colour key op = pass */
+- 	PVR2D_BLIT_COLKEY_OP_REJECT				= 0x00010000,	/* Colour key op = reject */
+-+	PVR2D_BLIT_ROP4							= 0x00020000,	/* rop4 pattern support */
+- 	PVR2D_BLIT_PATH_2DCORE					= 0x00100000,	/* Blt via dedicated 2D Core or PTLA */
+- 	PVR2D_BLIT_PATH_3DCORE					= 0x00200000,	/* Blt via 3D Core */
+- 	PVR2D_BLIT_PATH_SWBLT					= 0x00400000,	/* Blt via host software */
+- 	PVR2D_BLIT_NO_SRC_SYNC_INFO				= 0x00800000,	/* Dont send a source sync info*/
+--	PVR2D_BLIT_ISSUE_STATUS_UPDATES			= 0x01000000,	/* Issue status updates */
+-+	PVR2D_BLIT_ISSUE_STATUS_UPDATES			= 0x01000000,	/* Issue SyncInfo status updates */
+- 
+- } PVR2DBLITFLAGS;
+- 
+-@@ -288,6 +306,17 @@ typedef struct _PVR2MISCDISPLAYINFO
+- 
+- }PVR2DMISCDISPLAYINFO;
+- 
+-+typedef struct
+-+{
+-+	PVR2DMEMINFO	*pSurfMemInfo;		/* surface memory */
+-+	PVR2D_ULONG		SurfOffset;			/* byte offset from start of allocation to destination surface pixel 0,0 */
+-+	PVR2D_LONG		Stride;				/* signed stride */
+-+	PVR2DFORMAT		Format;				/* format */
+-+	PVR2D_ULONG		SurfWidth;			/* surface width in pixels */
+-+	PVR2D_ULONG		SurfHeight;			/* surface height in pixels */
+-+
+-+} PVR2D_SURFACE, *PPVR2D_SURFACE;
+-+
+- 
+- typedef struct _PVR2DBLTINFO
+- {
+-@@ -326,34 +355,28 @@ typedef struct _PVR2DBLTINFO
+- 	PVR2D_LONG		MaskX, MaskY;		/* mask rect top left (mask size = blt size) */
+- 	PVR2D_ULONG		MaskSurfWidth;		/* size of mask surface in pixels */
+- 	PVR2D_ULONG		MaskSurfHeight;		/* size of mask surface in pixels */
+--
+-+	
+- 	PPVR2D_ALPHABLT pAlpha;				/* fully specified alpha blend (2DCore only) */
+--
+-+	
+- 	PVR2D_ULONG		uSrcChromaPlane1;	/* mem offset from start of source alloc to chroma plane 1 */
+- 	PVR2D_ULONG		uSrcChromaPlane2;	/* mem offset from start of source alloc to chroma plane 2 */
+- 	PVR2D_ULONG		uDstChromaPlane1;	/* mem offset from start of dest alloc to chroma plane 1 */
+- 	PVR2D_ULONG		uDstChromaPlane2;	/* mem offset from start of dest alloc to chroma plane 2 */
+--
+-+	
+- 	PVR2D_ULONG		ColourKeyMask;		/* 32 bit colour key mask, only valid when PVR2D_BLIT_COLKEY_MASKED is set */
+- 
+-+	PPVR2D_SURFACE	pPat;				/* full rop4 support for patterns if PVR2D_BLIT_ROP4 set (2D Core hardware only) */
+-+	PVR2D_LONG		PatX, PatY;			/* pattern start offset if PVR2D_BLIT_ROP4 set (2D Core hardware only) */
+-+
+- }PVR2DBLTINFO, *PPVR2DBLTINFO;
+- 
+-+
+- typedef struct _PVR2DRECT
+- {
+- 	PVR2D_LONG left, top;
+- 	PVR2D_LONG right, bottom;
+--} PVR2DRECT;
+-+} PVR2DRECT, *PPVR2DRECT;
+- 
+--typedef struct
+--{
+--	PVR2DMEMINFO	*pSurfMemInfo;		/* surface memory */
+--	PVR2D_ULONG		SurfOffset;			/* byte offset from start of allocation to destination surface pixel 0,0 */
+--	PVR2D_LONG		Stride;				/* signed stride */
+--	PVR2DFORMAT		Format;				/* format */
+--	PVR2D_ULONG		SurfWidth;			/* surface width in pixels */
+--	PVR2D_ULONG		SurfHeight;			/* surface height in pixels */
+--
+--} PVR2D_SURFACE, *PPVR2D_SURFACE;
+- 
+- typedef struct
+- {
+-@@ -479,8 +502,8 @@ typedef void* PVR2DFLIPCHAINHANDLE;
+- 
+- #define PVR2D_CREATE_FLIPCHAIN_SHARED		(1UL << 0)
+- #define PVR2D_CREATE_FLIPCHAIN_QUERY		(1UL << 1)
+--#define PVR2D_CREATE_FLIPCHAIN_OEMOVERLAY   (1UL << 2)
+--#define PVR2D_CREATE_FLIPCHAIN_AS_BLITCHAIN (1UL << 3)
+-+#define PVR2D_CREATE_FLIPCHAIN_OEMOVERLAY	(1UL << 2)
+-+#define PVR2D_CREATE_FLIPCHAIN_AS_BLITCHAIN	(1UL << 3)
+- 
+- /* Colour-key colour must be translated into argb8888 format */
+- #define CKEY_8888(P)		(P)
+-@@ -498,7 +521,8 @@ typedef void* PVR2DFLIPCHAINHANDLE;
+- #define CFILL_565(P)		(((P&0xF800UL)<<8)  | ((P&0x7E0UL)<<5)   | ((P&0x1FUL)<<3))
+- 
+- /* PVR2DCreateDeviceContext flags */
+--#define PVR2D_XSERVER_PROC			0x00000001UL		/*!< Set for the Xserver connection */
+-+#define PVR2D_XSERVER_PROC			0x00000001UL		/* Set for the Xserver connection */
+-+#define PVR2D_FLAGS_PDUMP_ACTIVE	0x00000002UL		/* Set when pdumping from multiple processes */
+- 
+- /* PVR2DMemAlloc flags */
+- #define PVR2D_MEM_UNCACHED			0x00000000UL	/* Default */
+-@@ -508,7 +532,7 @@ typedef void* PVR2DFLIPCHAINHANDLE;
+- /* Functions that the library exports */
+- 
+- PVR2D_IMPORT
+--int PVR2DEnumerateDevices(PVR2DDEVICEINFO *pDevInfo);
+-+PVR2D_INT PVR2DEnumerateDevices(PVR2DDEVICEINFO *pDevInfo);
+- 
+- PVR2D_IMPORT
+- PVR2DERROR PVR2DCreateDeviceContext(PVR2D_ULONG ulDevID,
+-@@ -633,7 +657,7 @@ PVR2DERROR PVR2DSetPresentFlipProperties(PVR2DCONTEXTHANDLE hContext,
+- 										 PVR2D_ULONG ulPropertyMask,
+- 										 PVR2D_LONG lDstXPos,
+- 										 PVR2D_LONG lDstYPos,
+--										 PVR2D_ULONG ulNumClipRects,
+-+										 PVR2D_ULONG ulNumClipRects, 
+- 										 PVR2DRECT *pClipRects,
+- 										 PVR2D_ULONG ulSwapInterval);
+- 
+-@@ -658,6 +682,44 @@ PVR2DERROR PVR2DBlt3D (const PVR2DCONTEXTHANDLE hContext, const PPVR2D_3DBLT pBl
+- PVR2D_IMPORT
+- PVR2DERROR PVR2DBlt3DExt (const PVR2DCONTEXTHANDLE hContext, const PPVR2D_3DBLT_EXT pBlt3D);
+- 
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DModifyPendingOps(const PVR2DCONTEXTHANDLE hContext,
+-+								 PVR2D_HANDLE *phSyncModObj,
+-+								 PVR2DMEMINFO *psMemInfo,
+-+								 PVR2D_BOOL  bIsWriteOp,
+-+								 PVR2D_ULONG *pulReadOpsPending,
+-+								 PVR2D_ULONG *pulWriteOpsPending);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DModifyCompleteOps(const PVR2DCONTEXTHANDLE hContext,
+-+								  PVR2D_HANDLE hSyncModObj);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DFlushToSyncModObj(const PVR2DCONTEXTHANDLE hContext,
+-+								  PVR2D_HANDLE hSyncModObj,
+-+								  PVR2D_BOOL bWait);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DTakeSyncToken(const PVR2DCONTEXTHANDLE hContext,
+-+							  PVR2DMEMINFO *psMemInfo,
+-+							  PVR2D_HANDLE *phSyncToken,
+-+							  PVR2D_ULONG *pulReadOpsPending,
+-+							  PVR2D_ULONG *pulWriteOpsPending);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DReleaseSyncToken(const PVR2DCONTEXTHANDLE hContext,
+-+								 PVR2D_HANDLE hSyncToken);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DFlushToSyncToken(const PVR2DCONTEXTHANDLE hContext,
+-+								 PVR2DMEMINFO *psMemInfo,
+-+								 PVR2D_HANDLE hSyncToken,
+-+								 PVR2D_BOOL bWait);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DWaitForNextHardwareEvent(const PVR2DCONTEXTHANDLE hContext);
+-+
+- #ifdef __cplusplus
+- }
+- #endif
+-diff --git a/src/3rdparty/powervr/wsegl2/wsegl.h b/src/3rdparty/powervr/wsegl2/wsegl.h
+-index a2c3ffc..480179b 100644
+---- a/src/3rdparty/powervr/wsegl2/wsegl.h
+-+++ b/src/3rdparty/powervr/wsegl2/wsegl.h
+-@@ -1,34 +1,43 @@
+--/**********************************************************************
+--*
+--* Copyright(c) Imagination Technologies Ltd.
+--*
+--* The contents of this file are subject to the MIT license as set out below.
+--*
+--* Permission is hereby granted, free of charge, to any person obtaining a copy
+--* of this software and associated documentation files (the "Software"),
+--* to deal in the Software without restriction, including without limitation
+--* the rights to use, copy, modify, merge, publish, distribute, sublicense,
+--* and/or sell copies of the Software, and to permit persons to whom the
+--* Software is furnished to do so, subject to the following conditions:
+--*
+--* The above copyright notice and this permission notice shall be included
+--* in all copies or substantial portions of the Software.
+--*
+--* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+--* OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+--* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+--* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+--* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+--* OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+--* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--*
+--* This License is also included in this distribution in the file called
+--* "COPYING".
+--*
+--******************************************************************************/
+--
+--
+--
+-+/*************************************************************************/ /*!
+-+@Copyright      Copyright (c) Imagination Technologies Ltd. All Rights Reserved
+-+@License        Dual MIT/GPLv2
+-+
+-+The contents of this file are subject to the MIT license as set out below.
+-+
+-+Permission is hereby granted, free of charge, to any person obtaining a copy
+-+of this software and associated documentation files (the "Software"), to deal
+-+in the Software without restriction, including without limitation the rights
+-+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-+copies of the Software, and to permit persons to whom the Software is
+-+furnished to do so, subject to the following conditions:
+-+
+-+The above copyright notice and this permission notice shall be included in
+-+all copies or substantial portions of the Software.
+-+
+-+Alternatively, the contents of this file may be used under the terms of
+-+the GNU General Public License Version 2 ("GPL") in which case the provisions
+-+of GPL are applicable instead of those above.
+-+
+-+If you wish to allow use of your version of this file only under the terms of
+-+GPL, and not to allow others to use your version of this file under the terms
+-+of the MIT license, indicate your decision by deleting the provisions above
+-+and replace them with the notice and other provisions required by GPL as set
+-+out in the file called "GPL-COPYING" included in this distribution. If you do
+-+not delete the provisions above, a recipient may use your version of this file
+-+under the terms of either the MIT license or GPL.
+-+
+-+This License is also included in this distribution in the file called
+-+"MIT-COPYING".
+-+
+-+EXCEPT AS OTHERWISE STATED IN A NEGOTIATED AGREEMENT: (A) THE SOFTWARE IS
+-+PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+-+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+-+PURPOSE AND NONINFRINGEMENT; AND (B) IN NO EVENT SHALL THE AUTHORS OR
+-+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+-+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+-+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-+
+-+*/ /**************************************************************************/
+- #if !defined(__WSEGL_H__)
+- #define __WSEGL_H__
+- 
+-@@ -51,7 +60,7 @@ extern "C" {
+- // WSEGL API Version Number
+- */
+- 
+--#define WSEGL_VERSION 2
+-+#define WSEGL_VERSION 4
+- #define WSEGL_DEFAULT_DISPLAY 0
+- #define WSEGL_DEFAULT_NATIVE_ENGINE 0
+- 
+-@@ -78,6 +87,11 @@ typedef enum WSEGLCapsType_TAG
+- 	WSEGL_CAP_WINDOWS_USE_HW_SYNC = 3, /* System default value = 0 (FALSE) */
+- 	WSEGL_CAP_PIXMAPS_USE_HW_SYNC = 4, /* System default value = 0 (FALSE) */
+- 
+-+	/* When this capability is set, the EGL lock is not taken around calls
+-+	   to WSEGL functions. The WSEGL module is responsible for performing
+-+	   its own locking in this case. */
+-+	WSEGL_CAP_UNLOCKED = 5, /* System default value = 0 */
+-+
+- } WSEGLCapsType;
+- 
+- /*
+-@@ -97,6 +111,19 @@ typedef struct WSEGLCaps_TAG
+- #define WSEGL_DRAWABLE_WINDOW		0x1
+- #define WSEGL_DRAWABLE_PIXMAP		0x2
+- 
+-+/*
+-+// YUV format flags and sync
+-+*/
+-+#define WSEGL_FLAGS_YUV_CONFORMANT_RANGE		(0 << 0)
+-+#define WSEGL_FLAGS_YUV_FULL_RANGE				(1 << 0)
+-+#define WSEGL_FLAGS_YUV_BT601					(0 << 1)
+-+#define WSEGL_FLAGS_YUV_BT709					(1 << 1)
+-+#define WSEGL_FLAGS_EGLIMAGE_COMPOSITION_SYNC	(1 << 2)
+-+
+-+/*
+-+// Maximum number of optional PowerVR Services 4 SYNCINFO objects
+-+*/
+-+#define WSEGL_MAX_SRC_SYNCS 32
+- 
+- /*
+- // Pixel format of display/drawable
+-@@ -110,6 +137,16 @@ typedef enum WSEGLPixelFormat_TAG
+- 	WSEGL_PIXELFORMAT_ARGB1555	= 3,
+- 	WSEGL_PIXELFORMAT_ABGR8888	= 4,
+- 	WSEGL_PIXELFORMAT_XBGR8888	= 5,
+-+	WSEGL_PIXELFORMAT_NV12		= 6,
+-+	WSEGL_PIXELFORMAT_YUYV		= 7,
+-+	WSEGL_PIXELFORMAT_YV12		= 8,
+-+	WSEGL_PIXELFORMAT_XRGB8888	= 9,
+-+	WSEGL_PIXELFORMAT_UYVY		= 10,
+-+	WSEGL_PIXELFORMAT_NV12_4KALIGN = 11,
+-+	WSEGL_PIXELFORMAT_NV21_4KALIGN = 12,
+-+	WSEGL_PIXELFORMAT_R8		= 13,
+-+	WSEGL_PIXELFORMAT_R8G8		= 14,
+-+	WSEGL_PIXELFORMAT_NV21		= 15,
+- 
+- 	/* These are compatibility names only; new WSEGL
+- 	 * modules should not use them.
+-@@ -138,31 +175,33 @@ typedef struct WSEGLConfig_TAG
+- {
+- 	/*
+- 	// Type of drawables this configuration applies to -
+--	// OR'd values of drawable types.
+-+	// OR'd values of drawable types. 
+- 	*/
+--	unsigned long ui32DrawableType;
+-+	unsigned long			ui32DrawableType;
+- 
+- 	/* Pixel format */
+--	WSEGLPixelFormat ePixelFormat;
+-+	WSEGLPixelFormat		ePixelFormat;
+- 
+- 	/* Native Renderable  - set to WSEGL_TRUE if native renderable */
+--	unsigned long ulNativeRenderable;
+-+	unsigned long			ulNativeRenderable;
+- 
+- 	/* FrameBuffer Level Parameter */
+--	unsigned long ulFrameBufferLevel;
+-+	unsigned long			ulFrameBufferLevel;
+- 
+- 	/* Native Visual ID */
+--	unsigned long ulNativeVisualID;
+-+	unsigned long			ulNativeVisualID;
+- 
+- 	/* Native Visual */
+--	void *hNativeVisual;
+-+	unsigned long			ulNativeVisualType;
+- 
+- 	/* Transparent Type */
+--	WSEGLTransparentType eTransparentType;
+-+	WSEGLTransparentType	eTransparentType;
+- 
+- 	/* Transparent Color - only used if transparent type is COLOR_KEY */
+--	unsigned long ulTransparentColor; /* packed as 0x00RRGGBB */
+-+	unsigned long			ulTransparentColor; /* packed as 0x00RRGGBB */
+- 
+-+	/* Framebuffer Target - set to WSEGL_TRUE if config compatible with framebuffer */
+-+	unsigned long			ulFramebufferTarget;
+- 
+- } WSEGLConfig;
+- 
+-@@ -180,13 +219,14 @@ typedef enum WSEGLError_TAG
+- 	WSEGL_BAD_DRAWABLE = 6,
+- 	WSEGL_BAD_MATCH = 7,
+- 	WSEGL_OUT_OF_MEMORY = 8,
+-+	WSEGL_RETRY = 9,
+- 
+- 	/* These are compatibility names only; new WSEGL
+- 	 * modules should not use them.
+- 	 */
+- 	WSEGL_BAD_CONFIG = WSEGL_BAD_MATCH,
+- 
+--} WSEGLError;
+-+} WSEGLError; 
+- 
+- /*
+- // Drawable orientation (in degrees anti-clockwise)
+-@@ -198,7 +238,7 @@ typedef enum WSEGLRotationAngle_TAG
+- 	WSEGL_ROTATE_180 = 2,
+- 	WSEGL_ROTATE_270 = 3
+- 
+--} WSEGLRotationAngle;
+-+} WSEGLRotationAngle; 
+- 
+- /*
+- // Drawable information required by OpenGL-ES driver
+-@@ -206,26 +246,46 @@ typedef enum WSEGLRotationAngle_TAG
+- typedef struct WSEGLDrawableParams_TAG
+- {
+- 	/* Width in pixels of the drawable */
+--	unsigned long	ui32Width;
+-+	unsigned long			ui32Width;
+- 
+- 	/* Height in pixels of the drawable */
+--	unsigned long	ui32Height;
+-+	unsigned long			ui32Height;
+- 
+- 	/* Stride in pixels of the drawable */
+--	unsigned long	ui32Stride;
+-+	unsigned long			ui32Stride;
+- 
+- 	/* Pixel format of the drawable */
+--	WSEGLPixelFormat	ePixelFormat;
+-+	WSEGLPixelFormat		ePixelFormat;
+- 
+- 	/* User space cpu virtual address of the drawable */
+--	void   			*pvLinearAddress;
+-+	void   					*pvLinearAddress;
+- 
+- 	/* HW address of the drawable */
+--	unsigned long	ui32HWAddress;
+-+	unsigned long			ui32HWAddress;
+-+
+-+	/* Override display's HW_SYNC mode */
+-+	unsigned long			bWaitForRender;
+- 
+--	/* Private data for the drawable */
+--	void			*hPrivateData;
+-+	/* Flags */
+-+	unsigned long			ulFlags;
+- 
+-+	/* Rotation angle of drawable (presently source only) */
+-+	WSEGLRotationAngle		eRotationAngle;
+-+
+-+	/*
+-+	// Optional PowerVR Services 4 MEMINFO pointer. This may be used for
+-+	// internal (implicit) synchronization purposes, and by PDUMP. It should
+-+	// refer to the same object as the other fields in this structure.
+-+	*/
+-+	void					*hMemInfo;
+-+
+-+	/*
+-+	// Optional PowerVR Services 4 SYNCINFO pointers to sent down as source
+-+	// surface (texture) dependencies of a render. If these are provided
+-+	// when not applicable, they will be ignored. If a sync is not needed,
+-+	// it should be passed as NULL.
+-+	*/
+-+	void					*ahSyncInfo[WSEGL_MAX_SRC_SYNCS];
+- 
+- } WSEGLDrawableParams;
+- 
+-@@ -262,12 +322,18 @@ typedef struct WSEGL_FunctionTable_TAG
+- 
+- 	WSEGLError (*pfnWSEGL_CopyFromPBuffer)(void *, unsigned long, unsigned long, unsigned long, WSEGLPixelFormat, NativePixmapType);
+- 
+--	WSEGLError (*pfnWSEGL_GetDrawableParameters)(WSEGLDrawableHandle, WSEGLDrawableParams *, WSEGLDrawableParams *);
+-+	WSEGLError (*pfnWSEGL_GetDrawableParameters)(WSEGLDrawableHandle, WSEGLDrawableParams *, WSEGLDrawableParams *, unsigned long);
+- 
+- 	WSEGLError (*pfnWSEGL_ConnectDrawable)(WSEGLDrawableHandle);
+- 
+- 	WSEGLError (*pfnWSEGL_DisconnectDrawable)(WSEGLDrawableHandle);
+- 
+-+	WSEGLError (*pfnWSEGL_FlagStartFrame)(void);
+-+
+-+
+-+#if defined (__QNXNTO__)
+-+	WSEGLError (*pfnWSEGL_WaitForDrawableRenderBuffer)(WSEGLDrawableHandle);
+-+#endif
+- 
+- } WSEGL_FunctionTable;
+- 
+-@@ -276,7 +342,7 @@ WSEGL_IMPORT const WSEGL_FunctionTable *WSEGL_GetFunctionTablePointer(void);
+- 
+- #ifdef __cplusplus
+- }
+--#endif
+-+#endif 
+- 
+- #endif /* __WSEGL_H__ */
+- 
+-diff --git a/src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c b/src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c
+-index d42e59f..24e5b0d 100644
+---- a/src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c
+-+++ b/src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c
+-@@ -336,12 +336,17 @@ static WSEGLError wseglCopyFromPBuffer
+- /* Return the parameters of a drawable that are needed by the EGL layer */
+- static WSEGLError wseglGetDrawableParameters
+-     (WSEGLDrawableHandle _drawable, WSEGLDrawableParams *sourceParams,
+--     WSEGLDrawableParams *renderParams)
+-+     WSEGLDrawableParams *renderParams,unsigned long ulPlaneOffset)
+- {
+-     PvrQwsDrawable *drawable = (PvrQwsDrawable *)_drawable;
+-     PVR2DMEMINFO *source, *render;
+-     WSEGLPixelFormat pixelFormat;
+- 
+-+    WSEGL_UNREFERENCED_PARAMETER(ulPlaneOffset);
+-+
+-+	memset(renderParams, 0, sizeof(*renderParams));
+-+	memset(sourceParams, 0, sizeof(*sourceParams));
+-+
+-     if (!pvrQwsGetBuffers(drawable, &source, &render))
+-         return WSEGL_BAD_DRAWABLE;
+- 
+-@@ -366,7 +371,7 @@ static WSEGLError wseglGetDrawableParameters
+-     sourceParams->ePixelFormat = pixelFormat;
+-     sourceParams->pvLinearAddress = source->pBase;
+-     sourceParams->ui32HWAddress = source->ui32DevAddr;
+--    sourceParams->hPrivateData = source->hPrivateData;
+-+    sourceParams->hMemInfo = source->hPrivateData;
+- 
+-     renderParams->ui32Width = drawable->rect.width;
+-     renderParams->ui32Height = drawable->rect.height;
+-@@ -374,7 +379,7 @@ static WSEGLError wseglGetDrawableParameters
+-     renderParams->ePixelFormat = pixelFormat;
+-     renderParams->pvLinearAddress = render->pBase;
+-     renderParams->ui32HWAddress = render->ui32DevAddr;
+--    renderParams->hPrivateData = render->hPrivateData;
+-+    renderParams->hMemInfo = render->hPrivateData;
+- 
+-     return WSEGL_SUCCESS;
+- }
+-@@ -393,6 +398,20 @@ static WSEGLError wseglDisconnectDrawable(WSEGLDrawableHandle hDrawable)
+-     return WSEGL_SUCCESS;
+- }
+- 
+-+/***********************************************************************************
+-+ Function Name      : WSEGL_FlagStartFrame
+-+ Inputs             : hDrawable
+-+ Outputs            : None
+-+ Returns            : Error code
+-+ Description        : Indicates that there have been rendering commands submitted
+-+                                          by a client driver
+-+************************************************************************************/
+-+static WSEGLError wseglFlagStartFrame(void)
+-+{
+-+        return WSEGL_SUCCESS;
+-+}
+-+
+-+
+- static WSEGL_FunctionTable const wseglFunctions = {
+-     WSEGL_VERSION,
+-     wseglIsDisplayValid,
+-@@ -408,7 +427,8 @@ static WSEGL_FunctionTable const wseglFunctions = {
+-     wseglCopyFromPBuffer,
+-     wseglGetDrawableParameters,
+-     wseglConnectDrawable,
+--    wseglDisconnectDrawable
+-+    wseglDisconnectDrawable,
+-+    wseglFlagStartFrame,
+- };
+- 
+- /* Return the table of WSEGL functions to the EGL implementation */
+--- 
+-1.7.0.4
+-
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-wsegl2-support.patch b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-wsegl2-support.patch
+deleted file mode 100644
+index fcfd885..0000000
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-wsegl2-support.patch
++++ /dev/null
+@@ -1,997 +0,0 @@
+-diff -Nurp qt-everywhere-opensource-src-4.6.3-orig//src/3rdparty/powervr/wsegl2/pvr2d.h qt-everywhere-opensource-src-4.6.3/src/3rdparty/powervr/wsegl2/pvr2d.h
+---- qt-everywhere-opensource-src-4.6.3-orig//src/3rdparty/powervr/wsegl2/pvr2d.h	1970-01-01 00:00:00.000000000 +0000
+-+++ qt-everywhere-opensource-src-4.6.3/src/3rdparty/powervr/wsegl2/pvr2d.h	2011-05-16 22:51:43.158564336 +0000
+-@@ -0,0 +1,669 @@
+-+/**********************************************************************
+-+*
+-+* Copyright(c) Imagination Technologies Ltd.
+-+*
+-+* The contents of this file are subject to the MIT license as set out below.
+-+*
+-+* Permission is hereby granted, free of charge, to any person obtaining a copy
+-+* of this software and associated documentation files (the "Software"),
+-+* to deal in the Software without restriction, including without limitation
+-+* the rights to use, copy, modify, merge, publish, distribute, sublicense,
+-+* and/or sell copies of the Software, and to permit persons to whom the
+-+* Software is furnished to do so, subject to the following conditions:
+-+*
+-+* The above copyright notice and this permission notice shall be included
+-+* in all copies or substantial portions of the Software.
+-+*
+-+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+-+* OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+-+* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+-+* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+-+* OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+-+* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-+*
+-+* This License is also included in this distribution in the file called
+-+* "COPYING".
+-+*
+-+******************************************************************************/
+-+
+-+
+-+
+-+/******************************************************************************
+-+Modifications :-
+-+$Log: pvr2d.h $
+-+
+-+ --- Revision Logs Removed ---
+-+******************************************************************************/
+-+
+-+#ifndef _PVR2D_H_
+-+#define _PVR2D_H_
+-+
+-+#ifdef __cplusplus
+-+extern "C" {
+-+#endif
+-+
+-+/* PVR2D Platform-specific definitions */
+-+#if defined (__linux__)
+-+#define PVR2D_EXPORT __attribute__((visibility("default")))
+-+#define PVR2D_IMPORT
+-+#else
+-+#define PVR2D_EXPORT
+-+#define PVR2D_IMPORT
+-+#endif
+-+
+-+/* PVR2D header revision */
+-+#define PVR2D_REV_MAJOR		3
+-+#define PVR2D_REV_MINOR		5
+-+
+-+/* Basic types */
+-+typedef enum
+-+{
+-+	PVR2D_FALSE = 0,
+-+	PVR2D_TRUE
+-+} PVR2D_BOOL;
+-+
+-+typedef void* PVR2D_HANDLE;
+-+
+-+typedef char             PVR2D_CHAR,	*PVR2D_PCHAR;
+-+typedef unsigned char    PVR2D_UCHAR,	*PVR2D_PUCHAR;
+-+typedef int              PVR2D_INT,		*PVR2D_PINT;
+-+typedef unsigned int     PVR2D_UINT,	*PVR2D_PUINT;
+-+typedef long             PVR2D_LONG,	*PVR2D_PLONG;
+-+typedef unsigned long    PVR2D_ULONG,	*PVR2D_PULONG;
+-+
+-+typedef void             PVR2D_VOID,	*PVR2D_PVOID;
+-+
+-+
+-+/* error codes */
+-+typedef enum
+-+{
+-+	PVR2D_OK = 0,
+-+	PVR2DERROR_INVALID_PARAMETER = -1,
+-+	PVR2DERROR_DEVICE_UNAVAILABLE = -2,
+-+	PVR2DERROR_INVALID_CONTEXT = -3,
+-+	PVR2DERROR_MEMORY_UNAVAILABLE = -4,
+-+	PVR2DERROR_DEVICE_NOT_PRESENT = -5,
+-+	PVR2DERROR_IOCTL_ERROR = -6,
+-+	PVR2DERROR_GENERIC_ERROR = -7,
+-+	PVR2DERROR_BLT_NOTCOMPLETE = -8,
+-+	PVR2DERROR_HW_FEATURE_NOT_SUPPORTED = -9,
+-+	PVR2DERROR_NOT_YET_IMPLEMENTED = -10,
+-+	PVR2DERROR_MAPPING_FAILED = -11
+-+}PVR2DERROR;
+-+
+-+/* 32 bit PVR2D pixel format specifier */
+-+typedef unsigned long PVR2DFORMAT;
+-+
+-+/* Standard PVR2D pixel formats */
+-+#define	PVR2D_1BPP						0x00UL // 1bpp mask surface or palletized 1 bit source with 2x32 bit CLUT
+-+#define	PVR2D_RGB565					0x01UL // Common rgb 565 format
+-+#define	PVR2D_ARGB4444					0x02UL // Common argb 4444 format
+-+#define	PVR2D_RGB888					0x03UL // Common rgb 888 format (not supported)
+-+#define	PVR2D_ARGB8888					0x04UL // Common argb 8888 format
+-+#define	PVR2D_ARGB1555					0x05UL // Common argb 1555 format
+-+#define	PVR2D_ALPHA8					0x06UL // Alpha-only 8 bit per pixel (used with a constant fill colour)
+-+#define	PVR2D_ALPHA4					0x07UL // Alpha-only 4 bits per pixel (used with a constant fill colour)
+-+#define	PVR2D_PAL2						0x08UL // Palletized 2 bit format (requires   4x32 bit CLUT)
+-+#define	PVR2D_PAL4						0x09UL // Palletized 4 bit format (requires  16x32 bit CLUT)
+-+#define	PVR2D_PAL8						0x0AUL // Palletized 8 bit format (requires 256x32 bit CLUT)
+-+#define PVR2D_U8						0x10UL // monochrome unsigned 8 bit
+-+#define PVR2D_U88						0x11UL // monochrome unsigned 16 bit
+-+#define PVR2D_S8						0x12UL // signed 8 bit
+-+#define PVR2D_YUV422_YUYV				0x13UL // YUV 422 low-high byte order Y0UY1V
+-+#define PVR2D_YUV422_UYVY				0x14UL // YUV 422 low-high byte order UY0VY1
+-+#define PVR2D_YUV422_YVYU				0x15UL // YUV 422 low-high byte order Y0VY1U
+-+#define PVR2D_YUV422_VYUY				0x16UL // YUV 422 low-high byte order VY0UY1
+-+#define PVR2D_YUV420_2PLANE				0x17UL // YUV420 2 Plane
+-+#define PVR2D_YUV420_3PLANE				0x18UL // YUV420 3 Plane
+-+#define PVR2D_2101010ARGB				0x19UL // 32 bit 2 10 10 10
+-+#define PVR2D_888RSGSBS					0x1AUL
+-+#define PVR2D_16BPP_RAW					0x1BUL // 16 bit raw (no format conversion)
+-+#define PVR2D_32BPP_RAW					0x1CUL // 32 bit raw
+-+#define PVR2D_64BPP_RAW					0x1DUL // 64 bit raw
+-+#define PVR2D_128BPP_RAW				0x1EUL // 128 bit raw
+-+
+-+#define	PVR2D_NO_OF_FORMATS				0x1FUL
+-+
+-+/* Format modifier bit field (DstFormat and SrcFormat bits 16..23) */
+-+#define PVR2D_FORMAT_MASK				0x0000FFFFUL	// PVR2D Format bits
+-+#define PVR2D_FORMAT_LAYOUT_MASK		0x000F0000UL	// Format layout (strided / twiddled / tiled)
+-+#define PVR2D_FORMAT_FLAGS_MASK			0x0FF00000UL	// Surface Flags mask
+-+
+-+/* Layout */
+-+#define PVR2D_FORMAT_LAYOUT_SHIFT		16
+-+#define PVR2D_FORMAT_LAYOUT_STRIDED		0x00000000UL
+-+#define PVR2D_FORMAT_LAYOUT_TILED		0x00010000UL
+-+#define PVR2D_FORMAT_LAYOUT_TWIDDLED	0x00020000UL
+-+
+-+/*
+-+	PVR2D_SURFACE_PDUMP
+-+	This flag requests a surface pdump, to capture the pixel state after host writes.
+-+	Not needed if the surface state has resulted from previous SGX 2D/3D core writes.
+-+*/
+-+#define PVR2D_SURFACE_PDUMP				0x00100000UL	// calls PVRSRVPDumpMem to capture the surface (pdump builds only)
+-+
+-+/*
+-+	Low level 3D format extension - for blts via the 3D core only.
+-+	If the top bit of the format field is set then PVR2D reads it as a PVRSRV_PIXEL_FORMAT.
+-+	The outcome is hardware dependant.
+-+	There is no guarantee that any specific PVRSRV format will be supported.
+-+*/
+-+#define PVR2D_FORMAT_PVRSRV				0x80000000
+-+
+-+/* wrap surface type */
+-+typedef enum
+-+{
+-+	PVR2D_WRAPFLAG_NONCONTIGUOUS = 0,
+-+	PVR2D_WRAPFLAG_CONTIGUOUS = 1,
+-+
+-+}PVR2DWRAPFLAGS;
+-+
+-+#define	PVR2D_CONTEXT_FLAGS_PRIORITY_MASK			0x00000003
+-+
+-+#define	PVR2D_CONTEXT_FLAGS_LOW_PRIORITY_CONTEXT	1
+-+#define	PVR2D_CONTEXT_FLAGS_NORMAL_PRIORITY_CONTEXT	0
+-+#define	PVR2D_CONTEXT_FLAGS_HIGH_PRIORITY_CONTEXT	2
+-+
+-+/* flags for control information of additional blits */
+-+typedef enum
+-+{
+-+	PVR2D_BLIT_DISABLE_ALL					= 0x00000000,	/* disable all additional controls */
+-+	PVR2D_BLIT_CK_ENABLE					= 0x00000001,	/* enable colour key */
+-+	PVR2D_BLIT_GLOBAL_ALPHA_ENABLE			= 0x00000002,	/* enable standard global alpha */
+-+	PVR2D_BLIT_PERPIXEL_ALPHABLEND_ENABLE	= 0x00000004,	/* enable per-pixel alpha bleding */
+-+	PVR2D_BLIT_PAT_SURFACE_ENABLE			= 0x00000008,	/* enable pattern surf (disable fill) */
+-+	PVR2D_BLIT_FULLY_SPECIFIED_ALPHA_ENABLE	= 0x00000010,	/* enable fully specified alpha */
+-+	PVR2D_BLIT_ROT_90						= 0x00000020,	/* apply 90 degree rotation to the blt */
+-+	PVR2D_BLIT_ROT_180						= 0x00000040,	/* apply 180 degree rotation to the blt */
+-+	PVR2D_BLIT_ROT_270						= 0x00000080,	/* apply 270 degree rotation to the blt */
+-+	PVR2D_BLIT_COPYORDER_TL2BR				= 0x00000100,	/* copy order overrides */
+-+	PVR2D_BLIT_COPYORDER_BR2TL				= 0x00000200,
+-+	PVR2D_BLIT_COPYORDER_TR2BL				= 0x00000400,
+-+	PVR2D_BLIT_COPYORDER_BL2TR				= 0x00000800,
+-+	PVR2D_BLIT_COLKEY_SOURCE				= 0x00001000,	/* Key colour is on the source surface */
+-+	PVR2D_BLIT_COLKEY_DEST					= 0x00002000,	/* Key colour is on the destination surface */
+-+	PVR2D_BLIT_COLKEY_MASKED				= 0x00004000,	/* Mask enabled for colour key */
+-+	PVR2D_BLIT_COLKEY_OP_PASS				= 0x00008000,	/* Colour key op = pass */
+-+	PVR2D_BLIT_COLKEY_OP_REJECT				= 0x00010000,	/* Colour key op = reject */
+-+	PVR2D_BLIT_PATH_2DCORE					= 0x00100000,	/* Blt via dedicated 2D Core or PTLA */
+-+	PVR2D_BLIT_PATH_3DCORE					= 0x00200000,	/* Blt via 3D Core */
+-+	PVR2D_BLIT_PATH_SWBLT					= 0x00400000,	/* Blt via host software */
+-+	PVR2D_BLIT_NO_SRC_SYNC_INFO				= 0x00800000,	/* Dont send a source sync info*/
+-+	PVR2D_BLIT_ISSUE_STATUS_UPDATES			= 0x01000000,	/* Issue status updates */
+-+
+-+} PVR2DBLITFLAGS;
+-+
+-+/* standard alpha-blending functions, AlphaBlendingFunc field of PVR2DBLTINFO */
+-+typedef enum
+-+{
+-+	PVR2D_ALPHA_OP_SRC_DSTINV = 1,	/* source alpha : Cdst = Csrc*Asrc + Cdst*(1-Asrc) */
+-+	PVR2D_ALPHA_OP_SRCP_DSTINV = 2	/* premultiplied source alpha : Cdst = Csrc + Cdst*(1-Asrc) */
+-+} PVR2D_ALPHABLENDFUNC;
+-+
+-+/* blend ops for fully specified alpha (SGX 2D Core only) */
+-+typedef enum
+-+{
+-+	PVR2D_BLEND_OP_ZERO = 0,
+-+	PVR2D_BLEND_OP_ONE = 1,
+-+	PVR2D_BLEND_OP_SRC = 2,
+-+	PVR2D_BLEND_OP_DST = 3,
+-+	PVR2D_BLEND_OP_GLOBAL = 4,
+-+	PVR2D_BLEND_OP_SRC_PLUS_GLOBAL = 5,
+-+	PVR2D_BLEND_OP_DST_PLUS_GLOBAL = 6
+-+}PVR2D_BLEND_OP;
+-+
+-+/* SGX 2D Core Fully specified alpha blend :	pAlpha field of PVR2DBLTINFO structure		*/
+-+/* a fully specified Alpha Blend operation is defined as									*/
+-+/* DST (ALPHA) = (ALPHA_1 * SRC (ALPHA)) + (ALPHA_3 * DST (ALPHA))							*/
+-+/* DST (RGB)   = (ALPHA_2 * SRC (RGB)) + (ALPHA_4 * DST (RGB))								*/
+-+/* if the pre-multiplication stage is enabled then the equations become the following:		*/
+-+/* PRE_MUL     = ((SRC(A)) * (Global Alpha Value))											*/
+-+/* DST (ALPHA) = (ALPHA_1 * SRC (ALPHA)) + (PRE_MUL * DST (ALPHA))							*/
+-+/* DST (RGB)   = (ALPHA_2 * SRC (RGB)) + (PRE_MUL * DST (RGB))								*/
+-+/* if the transparent source alpha stage is enabled then a source alpha of zero forces the	*/
+-+/* source to be transparent for that pixel regardless of the blend equation being used.		*/
+-+typedef struct _PVR2D_ALPHABLT
+-+{
+-+	PVR2D_BLEND_OP	eAlpha1;
+-+	PVR2D_BOOL		bAlpha1Invert;
+-+	PVR2D_BLEND_OP	eAlpha2;
+-+	PVR2D_BOOL		bAlpha2Invert;
+-+	PVR2D_BLEND_OP	eAlpha3;
+-+	PVR2D_BOOL		bAlpha3Invert;
+-+	PVR2D_BLEND_OP	eAlpha4;
+-+	PVR2D_BOOL		bAlpha4Invert;
+-+	PVR2D_BOOL		bPremulAlpha;			/* enable pre-multiplication stage */
+-+	PVR2D_BOOL		bTransAlpha;			/* enable transparent source alpha stage */
+-+	PVR2D_BOOL		bUpdateAlphaLookup;		/* enable and update the 1555-Lookup alpha table */
+-+	PVR2D_UCHAR		uAlphaLookup0;			/* 8 bit alpha when A=0 in a 1555-Lookup surface */
+-+	PVR2D_UCHAR		uAlphaLookup1;			/* 8 bit alpha when A=1 in a 1555-Lookup surface */
+-+	PVR2D_UCHAR		uGlobalRGB;				/* Global Alpha Value for RGB, 0=transparent 255=opaque */
+-+	PVR2D_UCHAR		uGlobalA;				/* Global Alpha Value for Alpha */
+-+
+-+} PVR2D_ALPHABLT, *PPVR2D_ALPHABLT;
+-+
+-+
+-+/* surface memory info structure */
+-+typedef struct _PVR2DMEMINFO
+-+{
+-+	PVR2D_VOID			*pBase;
+-+	PVR2D_ULONG			ui32MemSize;
+-+	PVR2D_ULONG			ui32DevAddr;
+-+	PVR2D_ULONG			ulFlags;
+-+	PVR2D_VOID			*hPrivateData;
+-+	PVR2D_VOID			*hPrivateMapData;
+-+
+-+}PVR2DMEMINFO, *PPVR2DMEMINFO;
+-+
+-+
+-+#define PVR2D_MAX_DEVICE_NAME 20
+-+
+-+typedef struct _PVR2DDEVICEINFO
+-+{
+-+	PVR2D_ULONG		ulDevID;
+-+	PVR2D_CHAR		szDeviceName[PVR2D_MAX_DEVICE_NAME];
+-+}PVR2DDEVICEINFO;
+-+
+-+
+-+typedef struct _PVR2DISPLAYINFO
+-+{
+-+	PVR2D_ULONG	ulMaxFlipChains;
+-+	PVR2D_ULONG	ulMaxBuffersInChain;
+-+	PVR2DFORMAT	eFormat;
+-+	PVR2D_ULONG	ulWidth;
+-+	PVR2D_ULONG	ulHeight;
+-+	PVR2D_LONG	lStride;
+-+	PVR2D_ULONG	ulMinFlipInterval;
+-+	PVR2D_ULONG	ulMaxFlipInterval;
+-+
+-+}PVR2DDISPLAYINFO;
+-+
+-+
+-+typedef struct _PVR2MISCDISPLAYINFO
+-+{
+-+	PVR2D_ULONG ulPhysicalWidthmm;
+-+	PVR2D_ULONG ulPhysicalHeightmm;
+-+	PVR2D_ULONG ulUnused[10];
+-+
+-+}PVR2DMISCDISPLAYINFO;
+-+
+-+
+-+typedef struct _PVR2DBLTINFO
+-+{
+-+	PVR2D_ULONG		CopyCode;			/* rop code  */
+-+	PVR2D_ULONG		Colour;				/* fill colour */
+-+	PVR2D_ULONG		ColourKey;			/* colour key argb8888 (see CKEY_ defs below) */
+-+	PVR2D_UCHAR		GlobalAlphaValue;	/* global alpha blending */
+-+	PVR2D_UCHAR		AlphaBlendingFunc;	/* per-pixel alpha-blending function */
+-+
+-+	PVR2DBLITFLAGS	BlitFlags;			/* additional blit control information */
+-+
+-+	PVR2DMEMINFO	*pDstMemInfo;		/* destination memory */
+-+	PVR2D_ULONG		DstOffset;			/* byte offset from start of allocation to destination surface pixel 0,0 */
+-+	PVR2D_LONG		DstStride;			/* signed stride, the number of bytes from pixel 0,0 to 0,1 */
+-+	PVR2D_LONG		DstX, DstY;			/* pixel offset from start of dest surface to start of blt rectangle */
+-+	PVR2D_LONG		DSizeX,DSizeY;		/* blt size */
+-+	PVR2DFORMAT		DstFormat;			/* dest format */
+-+	PVR2D_ULONG		DstSurfWidth;		/* size of dest surface in pixels */
+-+	PVR2D_ULONG		DstSurfHeight;		/* size of dest surface in pixels */
+-+
+-+	PVR2DMEMINFO	*pSrcMemInfo;		/* source mem, (source fields are also used for patterns) */
+-+	PVR2D_ULONG		SrcOffset;			/* byte offset from start of allocation to src/pat surface pixel 0,0 */
+-+	PVR2D_LONG		SrcStride;			/* signed stride, the number of bytes from pixel 0,0 to 0,1 */
+-+	PVR2D_LONG		SrcX, SrcY;			/* pixel offset from start of surface to start of source rectangle */
+-+										/* for patterns this is the start offset within the pattern */
+-+	PVR2D_LONG		SizeX,SizeY;		/* source rectangle size or pattern size in pixels */
+-+	PVR2DFORMAT		SrcFormat;			/* source/pattern format */
+-+	PVR2DMEMINFO	*pPalMemInfo;		/* source/pattern palette memory containing argb8888 colour table */
+-+	PVR2D_ULONG		PalOffset;			/* byte offset from start of allocation to start of palette */
+-+	PVR2D_ULONG		SrcSurfWidth;		/* size of source surface in pixels */
+-+	PVR2D_ULONG		SrcSurfHeight;		/* size of source surface in pixels */
+-+
+-+	PVR2DMEMINFO	*pMaskMemInfo;		/* mask memory, 1bpp format implied */
+-+	PVR2D_ULONG		MaskOffset;			/* byte offset from start of allocation to mask surface pixel 0,0 */
+-+	PVR2D_LONG		MaskStride;			/* signed stride, the number of bytes from pixel 0,0 to 0,1 */
+-+	PVR2D_LONG		MaskX, MaskY;		/* mask rect top left (mask size = blt size) */
+-+	PVR2D_ULONG		MaskSurfWidth;		/* size of mask surface in pixels */
+-+	PVR2D_ULONG		MaskSurfHeight;		/* size of mask surface in pixels */
+-+
+-+	PPVR2D_ALPHABLT pAlpha;				/* fully specified alpha blend (2DCore only) */
+-+
+-+	PVR2D_ULONG		uSrcChromaPlane1;	/* mem offset from start of source alloc to chroma plane 1 */
+-+	PVR2D_ULONG		uSrcChromaPlane2;	/* mem offset from start of source alloc to chroma plane 2 */
+-+	PVR2D_ULONG		uDstChromaPlane1;	/* mem offset from start of dest alloc to chroma plane 1 */
+-+	PVR2D_ULONG		uDstChromaPlane2;	/* mem offset from start of dest alloc to chroma plane 2 */
+-+
+-+	PVR2D_ULONG		ColourKeyMask;		/* 32 bit colour key mask, only valid when PVR2D_BLIT_COLKEY_MASKED is set */
+-+
+-+}PVR2DBLTINFO, *PPVR2DBLTINFO;
+-+
+-+typedef struct _PVR2DRECT
+-+{
+-+	PVR2D_LONG left, top;
+-+	PVR2D_LONG right, bottom;
+-+} PVR2DRECT;
+-+
+-+typedef struct
+-+{
+-+	PVR2DMEMINFO	*pSurfMemInfo;		/* surface memory */
+-+	PVR2D_ULONG		SurfOffset;			/* byte offset from start of allocation to destination surface pixel 0,0 */
+-+	PVR2D_LONG		Stride;				/* signed stride */
+-+	PVR2DFORMAT		Format;				/* format */
+-+	PVR2D_ULONG		SurfWidth;			/* surface width in pixels */
+-+	PVR2D_ULONG		SurfHeight;			/* surface height in pixels */
+-+
+-+} PVR2D_SURFACE, *PPVR2D_SURFACE;
+-+
+-+typedef struct
+-+{
+-+	PVR2D_ULONG		uChromaPlane1;		/* YUV multiplane - byte offset from start of alloc to chroma plane 1 */
+-+	PVR2D_ULONG		uChromaPlane2;		/* YUV multiplane - byte offset from start of alloc to chroma plane 2 */
+-+	PVR2D_LONG		Reserved[2];		/* Reserved, must be zero */
+-+
+-+} PVR2D_SURFACE_EXT, *PPVR2D_SURFACE_EXT;
+-+
+-+typedef struct
+-+{
+-+	PVR2D_ULONG		*pUseCode;					/* USSE code */
+-+	PVR2D_ULONG		UseCodeSize;				/* usse code size in bytes */
+-+
+-+} PVR2D_USECODE, *PPVR2D_USECODE;
+-+
+-+typedef struct
+-+{
+-+	PVR2D_SURFACE			sDst;				/* destination surface */
+-+	PVR2D_SURFACE			sSrc;				/* source surface */
+-+	PVR2DRECT				rcDest;				/* destination rectangle */
+-+	PVR2DRECT				rcSource;			/* source rectangle */
+-+	PVR2D_HANDLE			hUseCode;			/* custom USE code (NULL implies source copy) */
+-+	PVR2D_ULONG				UseParams[2];		/* per-blt params for use code */
+-+
+-+} PVR2D_3DBLT, *PPVR2D_3DBLT;
+-+
+-+typedef struct
+-+{
+-+	PVR2D_SURFACE			sDst;						/* destination surface */
+-+	PVR2DRECT				rcDest;						/* destination rectangle; scaling is supported */
+-+	PVR2D_SURFACE			sSrc;						/* source surface */
+-+	PVR2DRECT				rcSource;					/* source rectangle; scaling is supported */
+-+	PPVR2D_SURFACE			pSrc2;						/* optional second source surface (NULL if not required) */
+-+	PVR2DRECT*				prcSource2;					/* optional pSrc2 rectangle */
+-+	PVR2D_HANDLE			hUseCode;					/* custom USSE shader code (NULL implies default source copy) */
+-+	PVR2D_ULONG				UseParams[2];				/* per-blt params for usse code */
+-+	PVR2D_ULONG				uiNumTemporaryRegisters;	/* no. of temporary registers used in custom shader code */
+-+	PVR2D_BOOL				bDisableDestInput;			/* set true if the destination is output only */
+-+	PPVR2D_SURFACE_EXT		pDstExt;					/* Extended format params for dest */
+-+	PPVR2D_SURFACE_EXT		pSrcExt[2];					/* Extended format params for source 1 and 2 */
+-+	PVR2D_LONG				Reserved[4];				/* Reserved, must be zero */
+-+
+-+} PVR2D_3DBLT_EXT, *PPVR2D_3DBLT_EXT;
+-+
+-+
+-+#define MAKE_COPY_BLIT(src,soff,dest,doff,sx,sy,dx,dy,sz)
+-+
+-+typedef void* PVR2DCONTEXTHANDLE;
+-+typedef void* PVR2DFLIPCHAINHANDLE;
+-+
+-+
+-+// CopyCode field of PVR2DBLTINFO structure:
+-+// the CopyCode field of the PVR2DBLTINFO structure should contain a rop3 or rop4 code.
+-+// a rop3 is an 8 bit code that describes a blt with three inputs : source dest and pattern
+-+// rop4 is a 16 bit code that describes a blt with four inputs : source dest pattern and mask
+-+// common rop3 codes are defined below
+-+// a colour fill blt is processed in the pattern channel as a constant colour with a rop code of 0xF0
+-+// PVR2D_BLIT_PAT_SURFACE_ENABLE defines whether the pattern channel is a surface or a fill colour.
+-+// a rop4 is defined by two rop3 codes, and the 1 bit-per-pixel mask surface defines which is used.
+-+// a common rop4 is 0xAAF0 which is the mask copy blt used for text glyphs.
+-+// CopyCode is taken to be a rop4 when pMaskMemInfo is non zero, otherwise it is assumed to be a rop3
+-+// use the PVR2DMASKROP4 macro below to construct a rop4 from two rop3's
+-+// rop3a is the rop used when mask pixel = 1, and rop3b when mask = 0
+-+#define PVR2DROP4(rop3b, rop3a)			((rop3b<<8)|rop3a)
+-+
+-+/* common rop codes */
+-+#define PVR2DROPclear				0x00       /* 0 (whiteness) */
+-+#define PVR2DROPset					0xFF       /* 1 (blackness) */
+-+#define PVR2DROPnoop				0xAA       /* dst (used for masked blts) */
+-+
+-+/* source and  dest rop codes */
+-+#define PVR2DROPand					0x88       /* src AND dst */
+-+#define PVR2DROPandReverse			0x44       /* src AND NOT dst */
+-+#define PVR2DROPcopy				0xCC       /* src (used for source copy and alpha blts) */
+-+#define PVR2DROPandInverted			0x22       /* NOT src AND dst */
+-+#define PVR2DROPxor					0x66       /* src XOR dst */
+-+#define PVR2DROPor					0xEE       /* src OR dst */
+-+#define PVR2DROPnor					0x11       /* NOT src AND NOT dst */
+-+#define PVR2DROPequiv				0x99       /* NOT src XOR dst */
+-+#define PVR2DROPinvert				0x55       /* NOT dst */
+-+#define PVR2DROPorReverse			0xDD       /* src OR NOT dst */
+-+#define PVR2DROPcopyInverted		0x33       /* NOT src */
+-+#define PVR2DROPorInverted			0xBB       /* NOT src OR dst */
+-+#define PVR2DROPnand				0x77       /* NOT src OR NOT dst */
+-+
+-+/* pattern rop codes */
+-+#define PVR2DPATROPand				0xA0       /* pat AND dst */
+-+#define PVR2DPATROPandReverse		0x50       /* pat AND NOT dst */
+-+#define PVR2DPATROPcopy				0xF0       /* pat (used for solid color fills and pattern blts) */
+-+#define PVR2DPATROPandInverted		0x0A       /* NOT pat AND dst */
+-+#define PVR2DPATROPxor				0x5A       /* pat XOR dst */
+-+#define PVR2DPATROPor				0xFA       /* pat OR dst */
+-+#define PVR2DPATROPnor				0x05       /* NOT pat AND NOT dst */
+-+#define PVR2DPATROPequiv			0xA5       /* NOT pat XOR dst */
+-+#define PVR2DPATROPinvert			0x55       /* NOT dst */
+-+#define PVR2DPATROPorReverse		0xF5       /* pat OR NOT dst */
+-+#define PVR2DPATROPcopyInverted		0x0F       /* NOT pat */
+-+#define PVR2DPATROPorInverted		0xAF       /* NOT pat OR dst */
+-+#define PVR2DPATROPnand				0x5F       /* NOT pat OR NOT dst */
+-+
+-+/* common rop4 codes */
+-+#define PVR2DROP4MaskedCopy              PVR2DROP4(PVR2DROPnoop,PVR2DROPcopy)		/* masked source copy blt (used for rounded window corners etc) */
+-+#define PVR2DROP4MaskedFill              PVR2DROP4(PVR2DROPnoop,PVR2DPATROPcopy)	/* masked colour fill blt (used for text) */
+-+
+-+/* Legacy support */
+-+#define PVR2DROP3_PATMASK			PVR2DPATROPcopy
+-+#define PVR2DROP3_SRCMASK			PVR2DROPcopy
+-+
+-+/* pixmap memory alignment */
+-+#define PVR2D_ALIGNMENT_4			4			/* DWORD alignment */
+-+#define PVR2D_ALIGNMENT_ANY			0			/* no alignment    */
+-+#define PVR2D_ALIGNMENT_PALETTE		16			/* 16 byte alignment is required for palettes */
+-+
+-+/* Heap number for PVR2DGetFrameBuffer */
+-+#define PVR2D_FB_PRIMARY_SURFACE 0
+-+
+-+#define PVR2D_PRESENT_PROPERTY_SRCSTRIDE	(1UL << 0)
+-+#define PVR2D_PRESENT_PROPERTY_DSTSIZE		(1UL << 1)
+-+#define PVR2D_PRESENT_PROPERTY_DSTPOS		(1UL << 2)
+-+#define PVR2D_PRESENT_PROPERTY_CLIPRECTS	(1UL << 3)
+-+#define PVR2D_PRESENT_PROPERTY_INTERVAL		(1UL << 4)
+-+
+-+#define PVR2D_CREATE_FLIPCHAIN_SHARED		(1UL << 0)
+-+#define PVR2D_CREATE_FLIPCHAIN_QUERY		(1UL << 1)
+-+#define PVR2D_CREATE_FLIPCHAIN_OEMOVERLAY   (1UL << 2)
+-+#define PVR2D_CREATE_FLIPCHAIN_AS_BLITCHAIN (1UL << 3)
+-+
+-+/* Colour-key colour must be translated into argb8888 format */
+-+#define CKEY_8888(P)		(P)
+-+#define CKEY_4444(P)		(((P&0xF000UL)<<16) | ((P&0x0F00UL)<<12) | ((P&0x00F0UL)<<8) | ((P&0x000FUL)<<4))
+-+#define CKEY_1555(P)		(((P&0x8000UL)<<16) | ((P&0x7C00UL)<<9)  | ((P&0x3E0UL)<<6)  | ((P&0x1FUL)<<3))
+-+#define CKEY_565(P)			(((P&0xF800UL)<<8)  | ((P&0x7E0UL)<<5)   | ((P&0x1FUL)<<3))
+-+#define CKEY_MASK_8888		0x00FFFFFFUL
+-+#define CKEY_MASK_4444		0x00F0F0F0UL
+-+#define CKEY_MASK_1555		0x00F8F8F8UL	/* Alpha is not normally included in the key test */
+-+#define CKEY_MASK_565		0x00F8FCF8UL
+-+
+-+/* Fill colours must be translated into argb8888 format */
+-+#define CFILL_4444(P)		(((P&0xF000UL)<<16) | ((P&0x0F00UL)<<12) | ((P&0x00F0UL)<<8) | ((P&0x000FUL)<<4))
+-+#define CFILL_1555(P)		(((P&0x8000UL)<<16) | ((P&0x7C00UL)<<9)  | ((P&0x3E0UL)<<6)  | ((P&0x1FUL)<<3))
+-+#define CFILL_565(P)		(((P&0xF800UL)<<8)  | ((P&0x7E0UL)<<5)   | ((P&0x1FUL)<<3))
+-+
+-+/* PVR2DCreateDeviceContext flags */
+-+#define PVR2D_XSERVER_PROC			0x00000001UL		/*!< Set for the Xserver connection */
+-+
+-+/* PVR2DMemAlloc flags */
+-+#define PVR2D_MEM_UNCACHED			0x00000000UL	/* Default */
+-+#define PVR2D_MEM_CACHED			0x00000001UL	/* Caller must flush and sync when necessary */
+-+#define PVR2D_MEM_WRITECOMBINE		0x00000002UL
+-+
+-+/* Functions that the library exports */
+-+
+-+PVR2D_IMPORT
+-+int PVR2DEnumerateDevices(PVR2DDEVICEINFO *pDevInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DCreateDeviceContext(PVR2D_ULONG ulDevID,
+-+									PVR2DCONTEXTHANDLE* phContext,
+-+									PVR2D_ULONG ulFlags);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DDestroyDeviceContext(PVR2DCONTEXTHANDLE hContext);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DGetDeviceInfo(PVR2DCONTEXTHANDLE hContext,
+-+							  PVR2DDISPLAYINFO *pDisplayInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DGetMiscDisplayInfo(PVR2DCONTEXTHANDLE hContext,
+-+							  PVR2DMISCDISPLAYINFO *pMiscDisplayInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DGetScreenMode(PVR2DCONTEXTHANDLE hContext,
+-+							  PVR2DFORMAT *pFormat,
+-+							  PVR2D_LONG *plWidth,
+-+							  PVR2D_LONG *plHeight,
+-+							  PVR2D_LONG *plStride,
+-+							  PVR2D_INT *piRefreshRate);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DGetFrameBuffer(PVR2DCONTEXTHANDLE hContext,
+-+							   PVR2D_INT nHeap,
+-+							   PVR2DMEMINFO **ppsMemInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DMemAlloc(PVR2DCONTEXTHANDLE hContext,
+-+						 PVR2D_ULONG ulBytes,
+-+						 PVR2D_ULONG ulAlign,
+-+						 PVR2D_ULONG ulFlags,
+-+						 PVR2DMEMINFO **ppsMemInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DMemExport(PVR2DCONTEXTHANDLE hContext,
+-+						 PVR2D_ULONG ulFlags,
+-+						 PVR2DMEMINFO *psMemInfo,
+-+						 PVR2D_HANDLE *phMemHandle);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DMemWrap(PVR2DCONTEXTHANDLE hContext,
+-+						PVR2D_VOID *pMem,
+-+						PVR2D_ULONG ulFlags,
+-+						PVR2D_ULONG ulBytes,
+-+						PVR2D_ULONG alPageAddress[],
+-+						PVR2DMEMINFO **ppsMemInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DMemMap(PVR2DCONTEXTHANDLE hContext,
+-+						PVR2D_ULONG ulFlags,
+-+						PVR2D_HANDLE hMemHandle,
+-+						PVR2DMEMINFO **ppsDstMem);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DMemFree(PVR2DCONTEXTHANDLE hContext,
+-+						PVR2DMEMINFO *psMemInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DBlt(PVR2DCONTEXTHANDLE hContext,
+-+					PVR2DBLTINFO *pBltInfo);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DBltClipped(PVR2DCONTEXTHANDLE hContext,
+-+						   PVR2DBLTINFO *pBltInfo,
+-+						   PVR2D_ULONG ulNumClipRects,
+-+						   PVR2DRECT *pClipRects);
+-+
+-+PVR2D_EXPORT
+-+PVR2DERROR PVR2DSet1555Alpha (PVR2DCONTEXTHANDLE hContext,
+-+							  PVR2D_UCHAR Alpha0, PVR2D_UCHAR Alpha1);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DQueryBlitsComplete(PVR2DCONTEXTHANDLE hContext,
+-+								   const PVR2DMEMINFO *pMemInfo,
+-+								   PVR2D_UINT uiWaitForComplete);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DSetPresentBltProperties(PVR2DCONTEXTHANDLE hContext,
+-+										PVR2D_ULONG ulPropertyMask,
+-+										PVR2D_LONG lSrcStride,
+-+										PVR2D_ULONG ulDstWidth,
+-+										PVR2D_ULONG ulDstHeight,
+-+										PVR2D_LONG lDstXPos,
+-+										PVR2D_LONG lDstYPos,
+-+										PVR2D_ULONG ulNumClipRects,
+-+										PVR2DRECT *pClipRects,
+-+										PVR2D_ULONG ulSwapInterval);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DPresentBlt(PVR2DCONTEXTHANDLE hContext,
+-+						   PVR2DMEMINFO *pMemInfo,
+-+						   PVR2D_LONG lRenderID);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DCreateFlipChain(PVR2DCONTEXTHANDLE hContext,
+-+								PVR2D_ULONG ulFlags,
+-+								PVR2D_ULONG ulNumBuffers,
+-+								PVR2D_ULONG ulWidth,
+-+								PVR2D_ULONG ulHeight,
+-+								PVR2DFORMAT eFormat,
+-+								PVR2D_LONG *plStride,
+-+								PVR2D_ULONG *pulFlipChainID,
+-+								PVR2DFLIPCHAINHANDLE *phFlipChain);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DDestroyFlipChain(PVR2DCONTEXTHANDLE hContext,
+-+								 PVR2DFLIPCHAINHANDLE hFlipChain);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DGetFlipChainBuffers(PVR2DCONTEXTHANDLE hContext,
+-+									PVR2DFLIPCHAINHANDLE hFlipChain,
+-+									PVR2D_ULONG *pulNumBuffers,
+-+									PVR2DMEMINFO *psMemInfo[]);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DSetPresentFlipProperties(PVR2DCONTEXTHANDLE hContext,
+-+										 PVR2DFLIPCHAINHANDLE hFlipChain,
+-+										 PVR2D_ULONG ulPropertyMask,
+-+										 PVR2D_LONG lDstXPos,
+-+										 PVR2D_LONG lDstYPos,
+-+										 PVR2D_ULONG ulNumClipRects,
+-+										 PVR2DRECT *pClipRects,
+-+										 PVR2D_ULONG ulSwapInterval);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DPresentFlip(PVR2DCONTEXTHANDLE hContext,
+-+							PVR2DFLIPCHAINHANDLE hFlipChain,
+-+							PVR2DMEMINFO *psMemInfo,
+-+							PVR2D_LONG lRenderID);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DGetAPIRev(PVR2D_LONG *lRevMajor, PVR2D_LONG *lRevMinor);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DLoadUseCode (const PVR2DCONTEXTHANDLE hContext, const PVR2D_UCHAR	*pUseCode,
+-+									const PVR2D_ULONG UseCodeSize, PVR2D_HANDLE *pUseCodeHandle);
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DFreeUseCode (const PVR2DCONTEXTHANDLE hContext, const PVR2D_HANDLE hUseCodeHandle);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DBlt3D (const PVR2DCONTEXTHANDLE hContext, const PPVR2D_3DBLT pBlt3D);
+-+
+-+PVR2D_IMPORT
+-+PVR2DERROR PVR2DBlt3DExt (const PVR2DCONTEXTHANDLE hContext, const PPVR2D_3DBLT_EXT pBlt3D);
+-+
+-+#ifdef __cplusplus
+-+}
+-+#endif
+-+
+-+#endif /* _PVR2D_H_ */
+-+
+-+/******************************************************************************
+-+ End of file (pvr2d.h)
+-+******************************************************************************/
+-diff -Nurp qt-everywhere-opensource-src-4.6.3-orig//src/3rdparty/powervr/wsegl2/wsegl.h qt-everywhere-opensource-src-4.6.3/src/3rdparty/powervr/wsegl2/wsegl.h
+---- qt-everywhere-opensource-src-4.6.3-orig//src/3rdparty/powervr/wsegl2/wsegl.h	1970-01-01 00:00:00.000000000 +0000
+-+++ qt-everywhere-opensource-src-4.6.3/src/3rdparty/powervr/wsegl2/wsegl.h	2011-05-16 22:51:52.702601769 +0000
+-@@ -0,0 +1,285 @@
+-+/**********************************************************************
+-+*
+-+* Copyright(c) Imagination Technologies Ltd.
+-+*
+-+* The contents of this file are subject to the MIT license as set out below.
+-+*
+-+* Permission is hereby granted, free of charge, to any person obtaining a copy
+-+* of this software and associated documentation files (the "Software"),
+-+* to deal in the Software without restriction, including without limitation
+-+* the rights to use, copy, modify, merge, publish, distribute, sublicense,
+-+* and/or sell copies of the Software, and to permit persons to whom the
+-+* Software is furnished to do so, subject to the following conditions:
+-+*
+-+* The above copyright notice and this permission notice shall be included
+-+* in all copies or substantial portions of the Software.
+-+*
+-+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+-+* OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+-+* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+-+* DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+-+* OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+-+* OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-+*
+-+* This License is also included in this distribution in the file called
+-+* "COPYING".
+-+*
+-+******************************************************************************/
+-+
+-+
+-+
+-+#if !defined(__WSEGL_H__)
+-+#define __WSEGL_H__
+-+
+-+#ifdef __cplusplus
+-+extern "C" {
+-+#endif
+-+
+-+/*
+-+// WSEGL Platform-specific definitions
+-+*/
+-+#if defined(__linux__)
+-+#define WSEGL_EXPORT __attribute__((visibility("default")))
+-+#define WSEGL_IMPORT
+-+#else
+-+#define WSEGL_EXPORT
+-+#define WSEGL_IMPORT
+-+#endif
+-+
+-+/*
+-+// WSEGL API Version Number
+-+*/
+-+
+-+#define WSEGL_VERSION 2
+-+#define WSEGL_DEFAULT_DISPLAY 0
+-+#define WSEGL_DEFAULT_NATIVE_ENGINE 0
+-+
+-+#define WSEGL_FALSE		0
+-+#define WSEGL_TRUE		1
+-+#define WSEGL_NULL		0
+-+
+-+#define	WSEGL_UNREFERENCED_PARAMETER(param) (param) = (param)
+-+
+-+/*
+-+// WSEGL handles
+-+*/
+-+typedef void *WSEGLDisplayHandle;
+-+typedef void *WSEGLDrawableHandle;
+-+
+-+/*
+-+// Display capability type
+-+*/
+-+typedef enum WSEGLCapsType_TAG
+-+{
+-+	WSEGL_NO_CAPS = 0,
+-+	WSEGL_CAP_MIN_SWAP_INTERVAL = 1, /* System default value = 1 */
+-+	WSEGL_CAP_MAX_SWAP_INTERVAL = 2, /* System default value = 1 */
+-+	WSEGL_CAP_WINDOWS_USE_HW_SYNC = 3, /* System default value = 0 (FALSE) */
+-+	WSEGL_CAP_PIXMAPS_USE_HW_SYNC = 4, /* System default value = 0 (FALSE) */
+-+
+-+} WSEGLCapsType;
+-+
+-+/*
+-+// Display capability
+-+*/
+-+typedef struct WSEGLCaps_TAG
+-+{
+-+	WSEGLCapsType eCapsType;
+-+	unsigned long ui32CapsValue;
+-+
+-+} WSEGLCaps;
+-+
+-+/*
+-+// Drawable type
+-+*/
+-+#define WSEGL_NO_DRAWABLE			0x0
+-+#define WSEGL_DRAWABLE_WINDOW		0x1
+-+#define WSEGL_DRAWABLE_PIXMAP		0x2
+-+
+-+
+-+/*
+-+// Pixel format of display/drawable
+-+*/
+-+typedef enum WSEGLPixelFormat_TAG
+-+{
+-+	/* These must not be re-ordered */
+-+	WSEGL_PIXELFORMAT_RGB565	= 0,
+-+	WSEGL_PIXELFORMAT_ARGB4444	= 1,
+-+	WSEGL_PIXELFORMAT_ARGB8888	= 2,
+-+	WSEGL_PIXELFORMAT_ARGB1555	= 3,
+-+	WSEGL_PIXELFORMAT_ABGR8888	= 4,
+-+	WSEGL_PIXELFORMAT_XBGR8888	= 5,
+-+
+-+	/* These are compatibility names only; new WSEGL
+-+	 * modules should not use them.
+-+	 */
+-+	WSEGL_PIXELFORMAT_565		= WSEGL_PIXELFORMAT_RGB565,
+-+	WSEGL_PIXELFORMAT_4444		= WSEGL_PIXELFORMAT_ARGB4444,
+-+	WSEGL_PIXELFORMAT_8888		= WSEGL_PIXELFORMAT_ARGB8888,
+-+	WSEGL_PIXELFORMAT_1555		= WSEGL_PIXELFORMAT_ARGB1555,
+-+
+-+} WSEGLPixelFormat;
+-+
+-+/*
+-+// Transparent of display/drawable
+-+*/
+-+typedef enum WSEGLTransparentType_TAG
+-+{
+-+	WSEGL_OPAQUE = 0,
+-+	WSEGL_COLOR_KEY = 1,
+-+
+-+} WSEGLTransparentType;
+-+
+-+/*
+-+// Display/drawable configuration
+-+*/
+-+typedef struct WSEGLConfig_TAG
+-+{
+-+	/*
+-+	// Type of drawables this configuration applies to -
+-+	// OR'd values of drawable types.
+-+	*/
+-+	unsigned long ui32DrawableType;
+-+
+-+	/* Pixel format */
+-+	WSEGLPixelFormat ePixelFormat;
+-+
+-+	/* Native Renderable  - set to WSEGL_TRUE if native renderable */
+-+	unsigned long ulNativeRenderable;
+-+
+-+	/* FrameBuffer Level Parameter */
+-+	unsigned long ulFrameBufferLevel;
+-+
+-+	/* Native Visual ID */
+-+	unsigned long ulNativeVisualID;
+-+
+-+	/* Native Visual */
+-+	void *hNativeVisual;
+-+
+-+	/* Transparent Type */
+-+	WSEGLTransparentType eTransparentType;
+-+
+-+	/* Transparent Color - only used if transparent type is COLOR_KEY */
+-+	unsigned long ulTransparentColor; /* packed as 0x00RRGGBB */
+-+
+-+
+-+} WSEGLConfig;
+-+
+-+/*
+-+// WSEGL errors
+-+*/
+-+typedef enum WSEGLError_TAG
+-+{
+-+	WSEGL_SUCCESS = 0,
+-+	WSEGL_CANNOT_INITIALISE = 1,
+-+	WSEGL_BAD_NATIVE_DISPLAY = 2,
+-+	WSEGL_BAD_NATIVE_WINDOW = 3,
+-+	WSEGL_BAD_NATIVE_PIXMAP = 4,
+-+	WSEGL_BAD_NATIVE_ENGINE = 5,
+-+	WSEGL_BAD_DRAWABLE = 6,
+-+	WSEGL_BAD_MATCH = 7,
+-+	WSEGL_OUT_OF_MEMORY = 8,
+-+
+-+	/* These are compatibility names only; new WSEGL
+-+	 * modules should not use them.
+-+	 */
+-+	WSEGL_BAD_CONFIG = WSEGL_BAD_MATCH,
+-+
+-+} WSEGLError;
+-+
+-+/*
+-+// Drawable orientation (in degrees anti-clockwise)
+-+*/
+-+typedef enum WSEGLRotationAngle_TAG
+-+{
+-+	WSEGL_ROTATE_0 = 0,
+-+	WSEGL_ROTATE_90 = 1,
+-+	WSEGL_ROTATE_180 = 2,
+-+	WSEGL_ROTATE_270 = 3
+-+
+-+} WSEGLRotationAngle;
+-+
+-+/*
+-+// Drawable information required by OpenGL-ES driver
+-+*/
+-+typedef struct WSEGLDrawableParams_TAG
+-+{
+-+	/* Width in pixels of the drawable */
+-+	unsigned long	ui32Width;
+-+
+-+	/* Height in pixels of the drawable */
+-+	unsigned long	ui32Height;
+-+
+-+	/* Stride in pixels of the drawable */
+-+	unsigned long	ui32Stride;
+-+
+-+	/* Pixel format of the drawable */
+-+	WSEGLPixelFormat	ePixelFormat;
+-+
+-+	/* User space cpu virtual address of the drawable */
+-+	void   			*pvLinearAddress;
+-+
+-+	/* HW address of the drawable */
+-+	unsigned long	ui32HWAddress;
+-+
+-+	/* Private data for the drawable */
+-+	void			*hPrivateData;
+-+
+-+
+-+} WSEGLDrawableParams;
+-+
+-+
+-+/*
+-+// Table of function pointers that is returned by WSEGL_GetFunctionTablePointer()
+-+//
+-+// The first entry in the table is the version number of the wsegl.h header file that
+-+// the module has been written against, and should therefore be set to WSEGL_VERSION
+-+*/
+-+typedef struct WSEGL_FunctionTable_TAG
+-+{
+-+	unsigned long ui32WSEGLVersion;
+-+
+-+	WSEGLError (*pfnWSEGL_IsDisplayValid)(NativeDisplayType);
+-+
+-+	WSEGLError (*pfnWSEGL_InitialiseDisplay)(NativeDisplayType, WSEGLDisplayHandle *, const WSEGLCaps **, WSEGLConfig **);
+-+
+-+	WSEGLError (*pfnWSEGL_CloseDisplay)(WSEGLDisplayHandle);
+-+
+-+	WSEGLError (*pfnWSEGL_CreateWindowDrawable)(WSEGLDisplayHandle, WSEGLConfig *, WSEGLDrawableHandle *, NativeWindowType, WSEGLRotationAngle *);
+-+
+-+	WSEGLError (*pfnWSEGL_CreatePixmapDrawable)(WSEGLDisplayHandle, WSEGLConfig *, WSEGLDrawableHandle *, NativePixmapType, WSEGLRotationAngle *);
+-+
+-+	WSEGLError (*pfnWSEGL_DeleteDrawable)(WSEGLDrawableHandle);
+-+
+-+	WSEGLError (*pfnWSEGL_SwapDrawable)(WSEGLDrawableHandle, unsigned long);
+-+
+-+	WSEGLError (*pfnWSEGL_SwapControlInterval)(WSEGLDrawableHandle, unsigned long);
+-+
+-+	WSEGLError (*pfnWSEGL_WaitNative)(WSEGLDrawableHandle, unsigned long);
+-+
+-+	WSEGLError (*pfnWSEGL_CopyFromDrawable)(WSEGLDrawableHandle, NativePixmapType);
+-+
+-+	WSEGLError (*pfnWSEGL_CopyFromPBuffer)(void *, unsigned long, unsigned long, unsigned long, WSEGLPixelFormat, NativePixmapType);
+-+
+-+	WSEGLError (*pfnWSEGL_GetDrawableParameters)(WSEGLDrawableHandle, WSEGLDrawableParams *, WSEGLDrawableParams *);
+-+
+-+	WSEGLError (*pfnWSEGL_ConnectDrawable)(WSEGLDrawableHandle);
+-+
+-+	WSEGLError (*pfnWSEGL_DisconnectDrawable)(WSEGLDrawableHandle);
+-+
+-+
+-+} WSEGL_FunctionTable;
+-+
+-+
+-+WSEGL_IMPORT const WSEGL_FunctionTable *WSEGL_GetFunctionTablePointer(void);
+-+
+-+#ifdef __cplusplus
+-+}
+-+#endif
+-+
+-+#endif /* __WSEGL_H__ */
+-+
+-+/******************************************************************************
+-+ End of file (wsegl.h)
+-+******************************************************************************/
+-diff -Nurp qt-everywhere-opensource-src-4.6.3-orig//src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c qt-everywhere-opensource-src-4.6.3/src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c
+---- qt-everywhere-opensource-src-4.6.3-orig//src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c	2010-06-02 02:03:17.000000000 +0000
+-+++ qt-everywhere-opensource-src-4.6.3/src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c	2011-05-16 23:08:51.618597097 +0000
+-@@ -378,6 +378,20 @@ static WSEGLError wseglGetDrawableParame
+-     return WSEGL_SUCCESS;
+- }
+-
+-+/* Function stub for ConnectDrawable() */
+-+static WSEGLError wseglConnectDrawable(WSEGLDrawableHandle hDrawable)
+-+{
+-+    WSEGL_UNREFERENCED_PARAMETER(hDrawable);
+-+    return WSEGL_SUCCESS;
+-+}
+-+
+-+/* Function stub for DisconnectDrawable() */
+-+static WSEGLError wseglDisconnectDrawable(WSEGLDrawableHandle hDrawable)
+-+{
+-+    WSEGL_UNREFERENCED_PARAMETER(hDrawable);
+-+    return WSEGL_SUCCESS;
+-+}
+-+
+- static WSEGL_FunctionTable const wseglFunctions = {
+-     WSEGL_VERSION,
+-     wseglIsDisplayValid,
+-@@ -391,7 +405,9 @@ static WSEGL_FunctionTable const wseglFu
+-     wseglWaitNative,
+-     wseglCopyFromDrawable,
+-     wseglCopyFromPBuffer,
+--    wseglGetDrawableParameters
+-+    wseglGetDrawableParameters,
+-+    wseglConnectDrawable,
+-+    wseglDisconnectDrawable
+- };
+-
+- /* Return the table of WSEGL functions to the EGL implementation */
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch
+deleted file mode 100644
+index 8729ea3..0000000
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch
++++ /dev/null
+@@ -1,11 +0,0 @@
+---- ./src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl_orig.c	2012-02-27 18:53:22.919285167 +0530
+-+++ ./src/plugins/gfxdrivers/powervr/QWSWSEGL/pvrqwswsegl.c	2012-02-25 11:26:47.131221091 +0530
+-@@ -39,7 +39,7 @@
+- **
+- ****************************************************************************/
+-
+--#include <GLES/eglplatform.h>
+-+#include <EGL/eglplatform.h>
+- #include <wsegl.h>
+- #include <pvr2d.h>
+- #include <string.h>
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/cursor-hack.diff b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/cursor-hack.diff
+deleted file mode 100644
+index 683b3c4..0000000
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/cursor-hack.diff
++++ /dev/null
+@@ -1,34 +0,0 @@
+-Patch originally done by Bin Liu, rediffed by Koen Kooi for Qt 4.6.2
+-
+-This patch is a first step to get a working cursor when using the powervr driver, it flickers when hovering over a QGLWidget, but still better than no cursor at all
+-
+---- /tmp/pvreglscreen.cpp	2010-04-19 09:30:32.000000000 +0200
+-+++ qt-everywhere-opensource-src-4.6.2/src/plugins/gfxdrivers/powervr/pvreglscreen/pvreglscreen.cpp	2010-04-19 09:31:30.000000000 +0200
+-@@ -85,6 +85,9 @@
+- bool PvrEglScreen::initDevice()
+- {
+-     openTty();
+-+#ifndef QT_NO_QWS_CURSOR
+-+    QScreenCursor::initSoftwareCursor();
+-+#endif
+-     return true;
+- }
+-
+---- /tmp/qwindowsystem_qws.cpp	2010-04-19 09:32:47.000000000 +0200
+-+++ qt-everywhere-opensource-src-4.6.2/src/gui/embedded/qwindowsystem_qws.cpp	2010-04-19 09:33:30.000000000 +0200
+-@@ -3501,7 +3501,6 @@
+-         }
+-
+- #ifdef QT_QWS_CLIENTBLIT
+--#ifdef QT_NO_QWS_CURSOR
+-         // This optimization only really works when there isn't a crazy cursor
+-         // wizzing around.
+-         QRegion directPaint = (r - transparentRegion); // in gloal coords
+-@@ -3513,7 +3512,6 @@
+-                                          QWSRegionEvent::DirectPaint, id);
+-         }
+- #endif
+--#endif
+-     }
+-
+-     if (doLock)
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
+deleted file mode 100644
+index b26b7ea..0000000
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
++++ /dev/null
+@@ -1,68 +0,0 @@
+-#
+-# qmake configuration for common linux
+-#
+-
+-QMAKE_CFLAGS_THREAD	+= -D_REENTRANT
+-QMAKE_CXXFLAGS_THREAD	+= $$QMAKE_CFLAGS_THREAD
+-
+-QMAKE_INCDIR          =
+-QMAKE_LIBDIR          =
+-QMAKE_INCDIR_X11      =
+-QMAKE_LIBDIR_X11      =
+-QMAKE_INCDIR_QT       = $(OE_QMAKE_INCDIR_QT)
+-QMAKE_LIBDIR_QT       = $(OE_QMAKE_LIBDIR_QT)
+-QMAKE_INCDIR_OPENGL   =
+-QMAKE_LIBDIR_OPENGL   =
+-QMAKE_INCDIR_OPENGL_ES1 = $$QMAKE_INCDIR_OPENGL
+-QMAKE_LIBDIR_OPENGL_ES1 = $$QMAKE_LIBDIR_OPENGL
+-QMAKE_INCDIR_OPENGL_ES2 = $$QMAKE_INCDIR_OPENGL
+-QMAKE_LIBDIR_OPENGL_ES2 = $$QMAKE_LIBDIR_OPENGL
+-QMAKE_INCDIR_EGL      =
+-QMAKE_LIBDIR_EGL      =
+-QMAKE_INCDIR_OPENVG   =
+-QMAKE_LIBDIR_OPENVG   =
+-
+-
+-QMAKE_LIBS            =
+-QMAKE_LIBS_DYNLOAD    = -ldl
+-QMAKE_LIBS_X11        = $(OE_QMAKE_LIBS_X11)
+-QMAKE_LIBS_X11SM      = $(OE_QMAKE_LIBS_X11SM)
+-QMAKE_LIBS_NIS        = -lnsl
+-QMAKE_LIBS_EGL        = -lEGL -lIMGegl -lsrv_um
+-QMAKE_LIBS_OPENGL     = -lEGL -lGLES_CM -lIMGegl -lsrv_um
+-QMAKE_LIBS_OPENGL_QT  = -lEGL -lGLES_CM -lIMGegl -lsrv_um
+-QMAKE_LIBS_OPENGL_ES1 = -lEGL -lGLES_CM -lIMGegl -lsrv_um
+-QMAKE_LIBS_OPENGL_ES2 = -lEGL -lGLESv2 -lGLES_CM -lIMGegl -lsrv_um
+-QMAKE_LIBS_THREAD     = -lpthread
+-
+-QMAKE_MOC             = $(OE_QMAKE_MOC)
+-QMAKE_UIC             = $(OE_QMAKE_UIC)
+-QMAKE_UIC3            = $(OE_QMAKE_UIC3)
+-QMAKE_RCC             = $(OE_QMAKE_RCC)
+-QMAKE_QDBUSCPP2XML    = $(OE_QMAKE_QDBUSCPP2XML)
+-QMAKE_QDBUSXML2CPP    = $(OE_QMAKE_QDBUSXML2CPP)
+-
+-QMAKE_AR              = $(OE_QMAKE_AR) cqs
+-QMAKE_OBJCOPY         = objcopy
+-QMAKE_RANLIB          =
+-
+-QMAKE_TAR             = tar -cf
+-QMAKE_GZIP            = gzip -9f
+-
+-QMAKE_COPY            = cp -f
+-QMAKE_COPY_FILE       = $(COPY)
+-QMAKE_COPY_DIR        = $(COPY) -r
+-QMAKE_MOVE            = mv -f
+-QMAKE_DEL_FILE        = rm -f
+-QMAKE_DEL_DIR         = rmdir
+-QMAKE_STRIP           = $(OE_QMAKE_STRIP)
+-QMAKE_STRIPFLAGS_LIB += --strip-unneeded
+-QMAKE_CHK_DIR_EXISTS  = test -d
+-QMAKE_MKDIR           = mkdir -p
+-QMAKE_INSTALL_FILE    = install -m 644 -p
+-QMAKE_INSTALL_PROGRAM = install -m 755 -p
+-
+-#These defines are documented in the powervr README, please read it
+-DEFINES += QT_QWS_CLIENTBLIT
+-
+-include(unix.conf)
+diff --git a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb b/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
+deleted file mode 100644
+index c846c18..0000000
+--- a/meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
++++ /dev/null
+@@ -1,30 +0,0 @@
+-require ${COREBASE}/meta/recipes-qt/qt4/qt4-${PV}.inc
+-require ${COREBASE}/meta/recipes-qt/qt4/qt4-embedded.inc
+-
+-PR = "${INC_PR}.3"
+-
+-FILESEXTRAPATHS_append := ":${THISDIR}/${PN}:${COREBASE}/meta/recipes-qt/qt4/qt4-${PV}:${COREBASE}/meta/recipes-qt/qt4/files"
+-
+-DEFAULT_PREFERENCE = "-1"
+-
+-SRC_URI += " \
+-           file://0001-wsegl2-support.patch \
+-           file://002_pvrqwswsegl.c.patch \
+-           file://cursor-hack.diff \
+-"
+-SRC_URI_append_ti33x = " file://0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch"
+-SRC_URI_append_ti43x = " file://0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch"
+-
+-QT_CONFIG_FLAGS_append_armv6 = " -no-neon "
+-
+-QT_CONFIG_FLAGS += " \
+- -exceptions \
+-"
+-
+-QT_GLFLAGS = "-opengl es2 -depths 16,24,32 -plugin-gfx-powervr -D QT_QWS_CLIENTBLIT"
+-
+-PROVIDES += "qt4-embedded"
+-RPROVIDES_${PN} += "qt4-embedded"
+-RPROVIDES_${PN}-dev += "qt4-embedded-dev"
+-
+-DEPENDS += "virtual/egl"
 -- 
 2.2.0
 
