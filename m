@@ -1,29 +1,30 @@
 Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id 9C16E52A27
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTPS id C78AE52A7F
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Apr 2016 03:41:51 +0000 (UTC)
-Received: from vz-proxy-l003.mx.aol.com ([64.236.82.150])
-	by vms173013.mailsrvcs.net
+Received: from vz-proxy-l007.mx.aol.com ([64.236.82.151])
+	by vms173015.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X002NGRLRA050@vms173013.mailsrvcs.net> for
+	2014)) with ESMTPA id <0O4X00LSTRLR8E10@vms173015.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:51 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=0tGySW8maceftNfHUCUfCA==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=mp5G8qmefChaSRYmppUA:9
-Received: by 100.15.86.14 with SMTP id 76665ee7; Fri, 01 Apr 2016 03:41:51 GMT
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=NEAV23lmAAAA:8
+	a=PE2iM5pd_dAAC-tPnc0A:9
+Received: by 100.15.86.14 with SMTP id 75ad34c2; Fri, 01 Apr 2016 03:41:51 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id CA063161F60;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id E8CC6161F65;	Thu,
 	31 Mar 2016 23:41:49 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:28 -0400
-Message-id: <1459482106-27723-9-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:33 -0400
+Message-id: <1459482106-27723-14-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
 References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 08/26] udev: rename bbappends to eudev, add symlink for libudev.so.0
+Subject: [PATCH 13/26] eventdump: fix cross-compilation by passing correct parameters
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,65 +41,33 @@ X-List-Received-Date: Fri, 01 Apr 2016 03:41:52 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Old library name/version is hardcoded in SGX binaries
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../udev/{udev/keystone => eudev/dra7xx}/udev-cache.default            | 0
- .../udev/{udev/dra7xx => eudev/keystone}/udev-cache.default            | 0
- meta-arago-distro/recipes-core/udev/{udev => eudev}/local.rules        | 0
- meta-arago-distro/recipes-core/udev/{udev => eudev}/usb1-rules.sh      | 0
- meta-arago-distro/recipes-core/udev/{udev => eudev}/usb2-rules.sh      | 0
- .../recipes-core/udev/{udev_%.bbappend => eudev_%.bbappend}            | 3 ++-
- 6 files changed, 2 insertions(+), 1 deletion(-)
- rename meta-arago-distro/recipes-core/udev/{udev/keystone => eudev/dra7xx}/udev-cache.default (100%)
- rename meta-arago-distro/recipes-core/udev/{udev/dra7xx => eudev/keystone}/udev-cache.default (100%)
- rename meta-arago-distro/recipes-core/udev/{udev => eudev}/local.rules (100%)
- rename meta-arago-distro/recipes-core/udev/{udev => eudev}/usb1-rules.sh (100%)
- rename meta-arago-distro/recipes-core/udev/{udev => eudev}/usb2-rules.sh (100%)
- rename meta-arago-distro/recipes-core/udev/{udev_%.bbappend => eudev_%.bbappend} (88%)
+ meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/udev/udev/keystone/udev-cache.default b/meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache.default
-similarity index 100%
-rename from meta-arago-distro/recipes-core/udev/udev/keystone/udev-cache.default
-rename to meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache.default
-diff --git a/meta-arago-distro/recipes-core/udev/udev/dra7xx/udev-cache.default b/meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cache.default
-similarity index 100%
-rename from meta-arago-distro/recipes-core/udev/udev/dra7xx/udev-cache.default
-rename to meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cache.default
-diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules b/meta-arago-distro/recipes-core/udev/eudev/local.rules
-similarity index 100%
-rename from meta-arago-distro/recipes-core/udev/udev/local.rules
-rename to meta-arago-distro/recipes-core/udev/eudev/local.rules
-diff --git a/meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh b/meta-arago-distro/recipes-core/udev/eudev/usb1-rules.sh
-similarity index 100%
-rename from meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh
-rename to meta-arago-distro/recipes-core/udev/eudev/usb1-rules.sh
-diff --git a/meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh b/meta-arago-distro/recipes-core/udev/eudev/usb2-rules.sh
-similarity index 100%
-rename from meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh
-rename to meta-arago-distro/recipes-core/udev/eudev/usb2-rules.sh
-diff --git a/meta-arago-distro/recipes-core/udev/udev_%.bbappend b/meta-arago-distro/recipes-core/udev/eudev_%.bbappend
-similarity index 88%
-rename from meta-arago-distro/recipes-core/udev/udev_%.bbappend
-rename to meta-arago-distro/recipes-core/udev/eudev_%.bbappend
-index a84bbd8..4080723 100644
---- a/meta-arago-distro/recipes-core/udev/udev_%.bbappend
-+++ b/meta-arago-distro/recipes-core/udev/eudev_%.bbappend
-@@ -5,7 +5,7 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
+index c4bb15e..7eabf25 100644
+--- a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
++++ b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
+@@ -2,7 +2,7 @@ DESCRIPTION = "Utility for parsing system events"
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://eventdump.c;beginline=1;endline=34;md5=23b59be24a88ddc407b553035f3fd3e9"
  
--PR_append = "-arago4"
-+PR_append = "-arago5"
+-PR = "r1"
++PR = "r2"
+ PV = "1.0+git${SRCPV}"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ SRCREV = "5db45a36a05a78ea44a4cb25312ed5ee3c2bd76d"
+@@ -11,6 +11,8 @@ SRC_URI = "git://github.com/TI-ECS/eventdump.git;protocol=git"
  
-@@ -18,4 +18,5 @@ do_install_append() {
+ S = "${WORKDIR}/git"
  
-     install -m 0755 ${WORKDIR}/usb1-rules.sh ${D}${bindir}/usb1-rules.sh
-     install -m 0755 ${WORKDIR}/usb2-rules.sh ${D}${bindir}/usb2-rules.sh
-+    ln -sf libudev.so.1 ${D}${base_libdir}/libudev.so.0
++EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} DEST_DIR=${D} BIN_DIR=${bindir}"
++
+ do_install() {
+-	oe_runmake 'DEST_DIR=${D}' 'BIN_DIR=${bindir}' install
++	oe_runmake install
  }
 -- 
 2.2.0
