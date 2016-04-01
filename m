@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
 	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id 219BE52A71
+	by arago-project.org (Postfix) with ESMTPS id 3B25052A8B
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Apr 2016 03:41:52 +0000 (UTC)
-Received: from vz-proxy-l002.mx.aol.com ([64.236.82.153])
+Received: from vz-proxy-l003.mx.aol.com ([64.236.82.150])
 	by vms173013.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X006QVRLRDF20@vms173013.mailsrvcs.net> for
+	2014)) with ESMTPA id <0O4X002NGRLRA050@vms173013.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:52 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=FJ1kTJ0/xm5uTekQe8vMdQ==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=NiXzd9t8IwZ4eBYgX_4A:9
-Received: by 100.15.86.14 with SMTP id 46948da4; Fri, 01 Apr 2016 03:41:52 GMT
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=0tGySW8maceftNfHUCUfCA==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=B2jtJCznMWCOsT9QdfgA:9
+Received: by 100.15.86.14 with SMTP id 0e365902; Fri, 01 Apr 2016 03:41:52 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 0CEFA161F69;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id 2570E161F6D;	Thu,
 	31 Mar 2016 23:41:50 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:37 -0400
-Message-id: <1459482106-27723-18-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:41 -0400
+Message-id: <1459482106-27723-22-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
 References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 17/26] python3: fix configure failure to find cross-version of readelf
+Subject: [PATCH 21/26] FIXME: external-linaro-toolchain-cross: target Linaro gcc version doesn't match cross version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,24 +36,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Apr 2016 03:41:53 -0000
+X-List-Received-Date: Fri, 01 Apr 2016 03:41:54 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+meta-linaro only provides recipe to build gcc-5.2 for now
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-devtools/python/python3_%.bbappend | 2 ++
- 1 file changed, 2 insertions(+)
- create mode 100644 meta-arago-distro/recipes-devtools/python/python3_%.bbappend
+ .../recipes-core/meta/external-linaro-toolchain-cross.bb           | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-devtools/python/python3_%.bbappend b/meta-arago-distro/recipes-devtools/python/python3_%.bbappend
-new file mode 100644
-index 0000000..97f5a19
---- /dev/null
-+++ b/meta-arago-distro/recipes-devtools/python/python3_%.bbappend
-@@ -0,0 +1,2 @@
-+READELF_class-target = "arm-linux-gnueabihf-readelf"
-+export READELF
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
+index d448f47..92fbfca 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
+@@ -13,7 +13,10 @@ BPN = "external-linaro-toolchain"
+ INHIBIT_DEFAULT_DEPS = "1"
+ INHIBIT_AUTOTOOLS_DEPS = "1"
+ 
++#TGT_VER_GCC = "${ELT_VER_GCC}"
++TGT_VER_GCC = "5.2.1"
++
+ do_install() {
+-	install -d ${D}${libdir}/gcc/${TARGET_SYS}/${ELT_VER_GCC}/include/
+-	cp -a ${TOOLCHAIN_PATH}/lib/gcc/${ELT_TARGET_SYS}/${ELT_VER_GCC}/include/unwind.h ${D}/${libdir}/gcc/${TARGET_SYS}/${ELT_VER_GCC}/include/
++	install -d ${D}${libdir}/gcc/${TARGET_SYS}/${TGT_VER_GCC}/include/
++	cp -a ${TOOLCHAIN_PATH}/lib/gcc/${ELT_TARGET_SYS}/${ELT_VER_GCC}/include/unwind.h ${D}/${libdir}/gcc/${TARGET_SYS}/${TGT_VER_GCC}/include/
+ }
 -- 
 2.2.0
 
