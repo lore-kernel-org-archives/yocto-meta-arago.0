@@ -1,29 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
 	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id 7D65652A27
+	by arago-project.org (Postfix) with ESMTPS id 9E1D752AB2
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Apr 2016 03:42:04 +0000 (UTC)
-Received: from vz-proxy-l001.mx.aol.com ([64.236.82.158])
+Received: from vz-proxy-l007.mx.aol.com ([64.236.82.151])
 	by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X00DKIRLRM380@vms173023.mailsrvcs.net> for
+	2014)) with ESMTPA id <0O4X00JCARLRLV40@vms173023.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:52 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=W8DY27sA+pJ1DslXMfMu3Q==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=M7vdlXD7Sg3jjoq2kbsA:9
-Received: by 100.15.86.14 with SMTP id 6502f369; Fri, 01 Apr 2016 03:41:52 GMT
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=92VkO_JFNThLjfMOdkYA:9
+Received: by 100.15.86.14 with SMTP id 7d25e732; Fri, 01 Apr 2016 03:41:52 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id EA49B161F66;	Thu,
-	31 Mar 2016 23:41:49 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 0B2ED161F68;	Thu,
+	31 Mar 2016 23:41:50 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:34 -0400
-Message-id: <1459482106-27723-15-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:36 -0400
+Message-id: <1459482106-27723-17-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
 References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 14/26] serialcheck: fix cross-compilation by passing correct parameters
+Subject: [PATCH 16/26] ltp-ddt: fix make scripts failure due to new kernel task dependencies
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,22 +42,39 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-devtools/serialcheck/serialcheck_1.0.0.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/serialcheck/serialcheck_1.0.0.bb b/meta-arago-extras/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
-index 9cfb6da..16d3ddd 100644
---- a/meta-arago-extras/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
-+++ b/meta-arago-extras/recipes-devtools/serialcheck/serialcheck_1.0.0.bb
-@@ -14,7 +14,7 @@ CLEANBROKEN = "1"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+index 1d01ca1..26dde30 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+@@ -8,7 +8,7 @@ PR = "r11"
+ PV_append = "+git${SRCPV}"
  
- S = "${WORKDIR}/git"
+ PROVIDES += "ltp"
+-DEPENDS += "zip-native virtual/kernel alsa-lib"
++DEPENDS += "zip-native alsa-lib"
  
--CFLAGS_prepend = "-Wall -Wextra -Wno-sign-compare -Wno-pointer-sign "
-+EXTRA_OEMAKE = "CC="${CC}""
+ RDEPENDS_${PN} += "pm-qa serialcheck"
  
- do_install() {
-     install -d ${D}${bindir}
+@@ -41,6 +41,7 @@ EXTRA_OEMAKE_append = " \
+     DESTDIR=${D} \
+     CC='${CC}' \
+     KERNEL_CC='${KERNEL_CC}' \
++    KERNEL_SRC=${STAGING_KERNEL_DIR} \
+ "
+ 
+ TARGET_CC_ARCH += "${LDFLAGS}"
+@@ -92,6 +93,6 @@ do_install() {
+ }
+ 
+ # do_make_scripts should be a separate task for the lock to work
+-addtask make_scripts before do_compile
++addtask make_scripts after do_patch before do_compile
+ do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
+-do_make_scripts[deptask] = "do_populate_sysroot"
++do_make_scripts[depends] += "virtual/kernel:do_shared_workdir"
 -- 
 2.2.0
 
