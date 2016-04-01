@@ -1,30 +1,29 @@
 Return-Path: <denis@denix.org>
-Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
-	[206.46.173.15])
-	by arago-project.org (Postfix) with ESMTPS id A7DCA52A71
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTPS id 9C16E52A27
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Apr 2016 03:41:51 +0000 (UTC)
-Received: from vz-proxy-l007.mx.aol.com ([64.236.82.151])
-	by vms173015.mailsrvcs.net
+Received: from vz-proxy-l003.mx.aol.com ([64.236.82.150])
+	by vms173013.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X00LSTRLR8E10@vms173015.mailsrvcs.net> for
+	2014)) with ESMTPA id <0O4X002NGRLRA050@vms173013.mailsrvcs.net> for
 	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:51 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=l0vvf3ciAAAA:8
-	a=WuS4t2GBk-l0_k-8oq0A:9
-Received: by 100.15.86.14 with SMTP id 3e62a8ce; Fri, 01 Apr 2016 03:41:51 GMT
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=0tGySW8maceftNfHUCUfCA==:117
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=mp5G8qmefChaSRYmppUA:9
+Received: by 100.15.86.14 with SMTP id 76665ee7; Fri, 01 Apr 2016 03:41:51 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id BA4CD161F5D;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id CA063161F60;	Thu,
 	31 Mar 2016 23:41:49 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:25 -0400
-Message-id: <1459482106-27723-6-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:28 -0400
+Message-id: <1459482106-27723-9-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
 References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 05/26] wpa-gui-e: remove, as no longer supported and requiring qt4
+Subject: [PATCH 08/26] udev: rename bbappends to eudev, add symlink for libudev.so.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,93 +40,66 @@ X-List-Received-Date: Fri, 01 Apr 2016 03:41:52 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+Old library name/version is hardcoded in SGX binaries
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...was-not-declared-in-this-scope-when-using.patch | 39 ----------------------
- .../wpa-supplicant/wpa-gui-e_git.bb                | 28 ----------------
- 2 files changed, 67 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e/0001-wpagui-Fix-was-not-declared-in-this-scope-when-using.patch
- delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e_git.bb
+ .../udev/{udev/keystone => eudev/dra7xx}/udev-cache.default            | 0
+ .../udev/{udev/dra7xx => eudev/keystone}/udev-cache.default            | 0
+ meta-arago-distro/recipes-core/udev/{udev => eudev}/local.rules        | 0
+ meta-arago-distro/recipes-core/udev/{udev => eudev}/usb1-rules.sh      | 0
+ meta-arago-distro/recipes-core/udev/{udev => eudev}/usb2-rules.sh      | 0
+ .../recipes-core/udev/{udev_%.bbappend => eudev_%.bbappend}            | 3 ++-
+ 6 files changed, 2 insertions(+), 1 deletion(-)
+ rename meta-arago-distro/recipes-core/udev/{udev/keystone => eudev/dra7xx}/udev-cache.default (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev/dra7xx => eudev/keystone}/udev-cache.default (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev => eudev}/local.rules (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev => eudev}/usb1-rules.sh (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev => eudev}/usb2-rules.sh (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev_%.bbappend => eudev_%.bbappend} (88%)
 
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e/0001-wpagui-Fix-was-not-declared-in-this-scope-when-using.patch b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e/0001-wpagui-Fix-was-not-declared-in-this-scope-when-using.patch
-deleted file mode 100644
-index e6bc83a..0000000
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e/0001-wpagui-Fix-was-not-declared-in-this-scope-when-using.patch
-+++ /dev/null
-@@ -1,39 +0,0 @@
--From 8c707dd7af988ea29b569f42a8c462c86d65817b Mon Sep 17 00:00:00 2001
--From: Franklin S. Cooper Jr <fcooper@ti.com>
--Date: Fri, 10 May 2013 10:43:36 -0500
--Subject: [PATCH] wpagui: Fix was not declared in this scope when using gcc 4.7 based toolchain
--
--* Adding missing header to fix the following errors:
--    error: 'getopt' was not declared in this scope
--    error: 'optarg' was not declared in this scope
--
--Signed-off-by: Franklin S. Cooper Jr <fcooper@ti.com>
-----
-- wpagui.cpp |    5 +----
-- 1 files changed, 1 insertions(+), 4 deletions(-)
--
--diff --git a/wpagui.cpp b/wpagui.cpp
--index 97bf5ac..4b5ec23 100644
----- a/wpagui.cpp
--+++ b/wpagui.cpp
--@@ -12,16 +12,13 @@
--  * See README and COPYING for more details.
--  */
-- 
---#ifdef __MINGW32__
---/* Need to get getopt() */
---#include <unistd.h>
---#endif
-- 
-- #ifdef CONFIG_NATIVE_WINDOWS
-- #include <windows.h>
-- #endif /* CONFIG_NATIVE_WINDOWS */
-- 
-- #include <cstdio>
--+#include <unistd.h>
-- #include <QMessageBox>
-- #include <QCloseEvent>
-- #include <QImageReader>
---- 
--1.7.0.4
--
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e_git.bb b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e_git.bb
-deleted file mode 100644
-index 07da836..0000000
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e_git.bb
-+++ /dev/null
-@@ -1,28 +0,0 @@
--HOMEPAGE = "http://hostap.epitest.fi/wpa_supplicant/"
--SECTION = "network"
--DESCRIPTION = "Qt embedded interface for choosing which configured network \
--to connect to. It also provides a method for browsing 802.11 SSID scan \
--results, an event history log of messages generated by wpa_supplicant, and \
--a method to add or edit wpa_supplicant networks."
--LICENSE = "GPLv2 | BSD"
--LIC_FILES_CHKSUM = "file://../../COPYING;md5=c54ce9345727175ff66d17b67ff51f58 \
--                    file://../../README;md5=ac69bb94677a5725da586adce7406526 \
--"
--
--PV = "0.7.3+0.8.0-rc+git${SRCPV}"
--PR = "r1"
--
--SRCREV = "653c4893be17d12ef7bc6e941b765c92c1e4a161"
--
--SRC_URI = "git://w1.fi/srv/git/hostap.git;protocol=git \
--           file://0001-wpagui-Fix-was-not-declared-in-this-scope-when-using.patch"
--
--S = "${WORKDIR}/git/wpa_supplicant/wpa_gui-qt4"
--
--inherit qt4e
--ARM_INSTRUCTION_SET = "arm"
--
--do_install () {
--       install -d ${D}${bindir}
--       install -m 755 wpa_gui ${D}/${bindir}/wpa_gui-e
--}
+diff --git a/meta-arago-distro/recipes-core/udev/udev/keystone/udev-cache.default b/meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache.default
+similarity index 100%
+rename from meta-arago-distro/recipes-core/udev/udev/keystone/udev-cache.default
+rename to meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache.default
+diff --git a/meta-arago-distro/recipes-core/udev/udev/dra7xx/udev-cache.default b/meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cache.default
+similarity index 100%
+rename from meta-arago-distro/recipes-core/udev/udev/dra7xx/udev-cache.default
+rename to meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cache.default
+diff --git a/meta-arago-distro/recipes-core/udev/udev/local.rules b/meta-arago-distro/recipes-core/udev/eudev/local.rules
+similarity index 100%
+rename from meta-arago-distro/recipes-core/udev/udev/local.rules
+rename to meta-arago-distro/recipes-core/udev/eudev/local.rules
+diff --git a/meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh b/meta-arago-distro/recipes-core/udev/eudev/usb1-rules.sh
+similarity index 100%
+rename from meta-arago-distro/recipes-core/udev/udev/usb1-rules.sh
+rename to meta-arago-distro/recipes-core/udev/eudev/usb1-rules.sh
+diff --git a/meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh b/meta-arago-distro/recipes-core/udev/eudev/usb2-rules.sh
+similarity index 100%
+rename from meta-arago-distro/recipes-core/udev/udev/usb2-rules.sh
+rename to meta-arago-distro/recipes-core/udev/eudev/usb2-rules.sh
+diff --git a/meta-arago-distro/recipes-core/udev/udev_%.bbappend b/meta-arago-distro/recipes-core/udev/eudev_%.bbappend
+similarity index 88%
+rename from meta-arago-distro/recipes-core/udev/udev_%.bbappend
+rename to meta-arago-distro/recipes-core/udev/eudev_%.bbappend
+index a84bbd8..4080723 100644
+--- a/meta-arago-distro/recipes-core/udev/udev_%.bbappend
++++ b/meta-arago-distro/recipes-core/udev/eudev_%.bbappend
+@@ -5,7 +5,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago4"
++PR_append = "-arago5"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -18,4 +18,5 @@ do_install_append() {
+ 
+     install -m 0755 ${WORKDIR}/usb1-rules.sh ${D}${bindir}/usb1-rules.sh
+     install -m 0755 ${WORKDIR}/usb2-rules.sh ${D}${bindir}/usb2-rules.sh
++    ln -sf libudev.so.1 ${D}${base_libdir}/libudev.so.0
+ }
 -- 
 2.2.0
 
