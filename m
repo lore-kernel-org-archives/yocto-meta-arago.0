@@ -1,30 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173009pub.verizon.net (vms173009pub.verizon.net
-	[206.46.173.9])
-	by arago-project.org (Postfix) with ESMTPS id 36B6952A8B
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTPS id 896D152981
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Apr 2016 03:42:12 +0000 (UTC)
+	Fri,  1 Apr 2016 03:42:18 +0000 (UTC)
 Received: from vz-proxy-l007.mx.aol.com ([64.236.82.151])
-	by vms173009.mailsrvcs.net
+	by vms173007.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O4X00483RLRJD90@vms173009.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:41:57 -0500 (CDT)
+	2014)) with ESMTPA id <0O4X00FHARLPP070@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 31 Mar 2016 22:42:00 -0500 (CDT)
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
-	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=Pr_gA7GsAAAA:8 a=e5mUnYsNAAAA:8
-	a=QyXUC8HyAAAA:8 a=9kMmRS_KNFRkJiTnNzMA:9
-Received: by 100.15.86.14 with SMTP id 5c14721f; Fri, 01 Apr 2016 03:41:56 GMT
+	a=7OsogOcEt9IA:10 a=sozttTNsAAAA:8	a=UsUNhGW-_1_obwkpu-4A:9
+Received: by 100.15.86.14 with SMTP id 2d157523; Fri, 01 Apr 2016 03:42:00 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id CFBA6161F62;	Thu,
+	by gandalf.denix.org (Postfix) with ESMTP id AB7BD161F58;	Thu,
 	31 Mar 2016 23:41:49 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Mar 2016 23:41:30 -0400
-Message-id: <1459482106-27723-11-git-send-email-denis@denix.org>
+Date: Thu, 31 Mar 2016 23:41:20 -0400
+Message-id: <1459482106-27723-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-In-reply-to: <1459482106-27723-1-git-send-email-denis@denix.org>
-References: <1459482106-27723-1-git-send-email-denis@denix.org>
-Subject: [PATCH 10/26] liboil: overlay locally for gstreamer-1.2.3 dependency
+Subject: [PATCH 00/26] Initial batch of fixes for master/krogoth
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,387 +34,185 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Apr 2016 03:42:12 -0000
+X-List-Received-Date: Fri, 01 Apr 2016 03:42:18 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../liboil-0.3.17/0001-Fix-enable-vfp-flag.patch   |  41 ++++
- .../liboil-0.3.17/fix-unaligned-whitelist.patch    |  19 ++
- .../liboil/liboil-0.3.17/liboil_fix_for_x32.patch  | 222 +++++++++++++++++++++
- .../liboil/liboil-0.3.17/no-tests.patch            |  24 +++
- .../recipes-support/liboil/liboil_0.3.17.bb        |  27 +++
- 5 files changed, 333 insertions(+)
+Fixes necessary to make meta-arago work with master/krogoth (Yocto Project 2.1)
+
+Denys Dmytriyenko (26):
+  recipes-qt: remove all traces of qt4, no longer in oe-core
+  gstreamer: remove outdated 0.10.x version, no longer in oe-core
+  linux-libc-headers: remove version 4.1, default to 4.4
+  linux: remove bbappends for old kernel versions, removed from meta-ti
+  wpa-gui-e: remove, as no longer supported and requiring qt4
+  u-boot-fw-utils: remove old version
+  cryptodev-tests: remove, the change got upstreamed
+  udev: rename bbappends to eudev, add symlink for libudev.so.0
+  gstreamer: overlay .inc files from fido and update 1.2.3 recipes
+  liboil: overlay locally for gstreamer-1.2.3 dependency
+  obexd: fix typo in license URL
+  cpuloadgen: fix cross-compilation by passing correct parameters
+  eventdump: fix cross-compilation by passing correct parameters
+  serialcheck: fix cross-compilation by passing correct parameters
+  omapconf: bump SRCREV to pick up gcc-5 fixes
+  ltp-ddt: fix make scripts failure due to new kernel task dependencies
+  python3: fix configure failure to find cross-version of readelf
+  packagegroup-arago-console: alsa-utils-alsaconf got renamed to
+    alsa-utils-scripts
+  HACK: weston-init: overlay locally due to REQUIRED_DISTRO_FEATURES =
+    "opengl"
+  HACK: dt: disable for now as breaking with gcc-5
+  FIXME: external-linaro-toolchain-cross: target Linaro gcc version
+    doesn't match cross version
+  branding-core: disable SGX for now, until drivers updated for 4.4
+  external-linaro-toolchain.bbappend: drop unneeded fixes for broken
+    2015.05
+  arago-prefs: update toolchain preferences, drop gstreamer 0.10
+  toolchain*.inc: update toolchain preferences
+  arago.conf: disable bluez5, disable -fstack-protector, restore
+    git-native ASSUME_PROVIDED
+
+ meta-arago-distro/conf/distro/arago.conf           |   8 +-
+ .../conf/distro/include/arago-prefs.inc            |  27 +-
+ .../conf/distro/include/branding-core.inc          |   4 +
+ .../conf/distro/include/toolchain-gcc.inc          |   8 +-
+ .../conf/distro/include/toolchain-linaro.inc       |   6 +-
+ .../recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bb  |  33 -
+ .../u-boot/u-boot-fw-utils_2014.07.bbappend        |   7 -
+ .../packagegroups/packagegroup-arago-console.bb    |   4 +-
+ .../packagegroup-arago-tisdk-addons.bb             |   5 +-
+ .../keystone => eudev/dra7xx}/udev-cache.default   |   0
+ .../dra7xx => eudev/keystone}/udev-cache.default   |   0
+ .../recipes-core/udev/{udev => eudev}/local.rules  |   0
+ .../udev/{udev => eudev}/usb1-rules.sh             |   0
+ .../udev/{udev => eudev}/usb2-rules.sh             |   0
+ .../udev/{udev_%.bbappend => eudev_%.bbappend}     |   3 +-
+ .../recipes-devtools/python/python3_%.bbappend     |   2 +
+ .../cryptodev/cryptodev-tests_1.6.bbappend         |   3 -
+ .../linux-libc-headers/linux-libc-headers.inc      |  75 --
+ .../linux-libc-headers/linux-libc-headers_4.1.bb   |   7 -
+ .../linux/linux-ti-glsdk_3.8.bbappend              |  17 -
+ .../linux/sitara-linux-ti-staging_3.14.bbappend    |  13 -
+ .../gstreamer/gst-ffmpeg_0.10.13.bbappend          |   5 -
+ .../gst-plugins-bad-mm-accel_0.10.23.bbappend      |   9 -
+ ...k-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch |  29 -
+ ...ink-fixing-calculation-of-bytes-per-pixel.patch |  52 --
+ .../gstreamer/gst-plugins-bad_0.10.23.bbappend     |  15 -
+ .../gst-plugins-good-mm-accel_0.10.31.bbappend     |   6 -
+ .../gstreamer/gst-plugins-good_0.10.31.bbappend    |   6 -
+ meta-arago-distro/recipes-qt/qt4/arago-qt4.inc     |  25 -
+ ...-PATCH-make-demos-maximized-for-TISDK-use.patch |  48 -
+ .../qt4/files/0002-qwslock-messages.patch          |  67 --
+ meta-arago-distro/recipes-qt/qt4/files/qte.sh      |  11 -
+ .../qt4/nativesdk-qt4-tools_4.8.6.bbappend         |   9 -
+ .../qt4/qt4-embedded-gles_4.8.6.bbappend           |  12 -
+ .../recipes-qt/qt4/qt4-embedded_4.8.6.bbappend     |   3 -
+ .../recipes-connectivity/obexd/obexd_0.34.bb       |   2 +-
+ ...was-not-declared-in-this-scope-when-using.patch |  39 -
+ .../wpa-supplicant/wpa-gui-e_git.bb                |  28 -
+ .../meta/external-linaro-toolchain-cross.bb        |   7 +-
+ .../meta/external-linaro-toolchain.bbappend        |  10 +-
+ .../recipes-devtools/cpuloadgen/cpuloadgen_git.bb  |   4 +-
+ .../recipes-devtools/eventdump/eventdump_git.bb    |   6 +-
+ .../recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb      |   7 +-
+ .../recipes-devtools/omapconf/omapconf_git.bb      |   4 +-
+ .../serialcheck/serialcheck_1.0.0.bb               |   2 +-
+ .../recipes-graphics/wayland/weston-init.bb        |  28 +
+ .../recipes-graphics/wayland/weston-init/init      |  60 ++
+ .../wayland/weston-init/weston.service             |  15 +
+ .../gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb  |  47 -
+ .../gstreamer/gst-plugins-base-mm-accel_0.10.36.bb |  45 -
+ .../gstreamer/gst-plugins-good-mm-accel_0.10.31.bb |  47 -
+ .../gstreamer/gst-plugins-package-mm-accel.inc     |  17 -
+ .../gstreamer/gst-plugins-package.inc              |  57 ++
+ .../gstreamer/gstreamer-mm-accel.inc               |   9 -
+ .../gstreamer/gstreamer-mm-accel_0.10.36.bb        |  41 -
+ .../gstreamer/gstreamer1.0-libav.inc               |  31 +
+ .../gstreamer/gstreamer1.0-libav_1.2.3.bb          |   1 -
+ .../gstreamer/gstreamer1.0-plugins-bad.inc         | 135 +++
+ .../gstreamer/gstreamer1.0-plugins-bad_1.2.3.bb    |   1 -
+ .../gstreamer/gstreamer1.0-plugins-base.inc        |  40 +
+ .../gstreamer/gstreamer1.0-plugins-good.inc        |  58 ++
+ .../gstreamer/gstreamer1.0-plugins-good_1.2.3.bb   |   1 -
+ .../gstreamer/gstreamer1.0-plugins-ugly.inc        |  30 +
+ .../gstreamer/gstreamer1.0-plugins-ugly_1.2.3.bb   |   1 -
+ .../gstreamer/gstreamer1.0-plugins.inc             |  56 ++
+ .../recipes-multimedia/gstreamer/gstreamer1.0.inc  |  27 +
+ .../gstreamer/gstreamer1.0_1.2.3.bb                |   1 -
+ .../recipes-qt/qt-apps/quick-playground_1.0.bb     |  39 -
+ ...hanges-for-integrating-with-TI-graphics-S.patch | 719 ---------------
+ .../qt4-embedded-gles/0001-wsegl2-support.patch    | 997 ---------------------
+ .../qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch  |  11 -
+ .../qt4/qt4-embedded-gles/cursor-hack.diff         |  34 -
+ .../recipes-qt/qt4/qt4-embedded-gles/linux.conf    |  68 --
+ .../recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb      |  30 -
+ .../liboil-0.3.17/0001-Fix-enable-vfp-flag.patch   |  41 +
+ .../liboil-0.3.17/fix-unaligned-whitelist.patch    |  19 +
+ .../liboil/liboil-0.3.17/liboil_fix_for_x32.patch  | 222 +++++
+ .../liboil/liboil-0.3.17/no-tests.patch            |  24 +
+ .../recipes-support/liboil/liboil_0.3.17.bb        |  27 +
+ 79 files changed, 921 insertions(+), 2686 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bb
+ delete mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_2014.07.bbappend
+ rename meta-arago-distro/recipes-core/udev/{udev/keystone => eudev/dra7xx}/udev-cache.default (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev/dra7xx => eudev/keystone}/udev-cache.default (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev => eudev}/local.rules (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev => eudev}/usb1-rules.sh (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev => eudev}/usb2-rules.sh (100%)
+ rename meta-arago-distro/recipes-core/udev/{udev_%.bbappend => eudev_%.bbappend} (88%)
+ create mode 100644 meta-arago-distro/recipes-devtools/python/python3_%.bbappend
+ delete mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev-tests_1.6.bbappend
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.1.bb
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-glsdk_3.8.bbappend
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux/sitara-linux-ti-staging_3.14.bbappend
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-ffmpeg_0.10.13.bbappend
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bbappend
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-gstfbdevsink-Fix-depth-value-for-GST_VIDEO_CAPS_RGB_.patch
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad/0001-sys-fbdevsink-fixing-calculation-of-bytes-per-pixel.patch
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-bad_0.10.23.bbappend
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bbappend
+ delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/arago-qt4.inc
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/files/0001-PATCH-make-demos-maximized-for-TISDK-use.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/files/0002-qwslock-messages.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/files/qte.sh
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/nativesdk-qt4-tools_4.8.6.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt4/qt4-embedded_4.8.6.bbappend
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e/0001-wpagui-Fix-was-not-declared-in-this-scope-when-using.patch
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-gui-e_git.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston-init.bb
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston-init/init
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/weston-init/weston.service
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-bad-mm-accel_0.10.23.bb
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-base-mm-accel_0.10.36.bb
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-good-mm-accel_0.10.31.bb
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-package-mm-accel.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gst-plugins-package.inc
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel.inc
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer-mm-accel_0.10.36.bb
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-libav.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ugly.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins.inc
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0.inc
+ delete mode 100644 meta-arago-extras/recipes-qt/qt-apps/quick-playground_1.0.bb
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-Qt-4.x-v2-Changes-for-integrating-with-TI-graphics-S.patch
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/0001-wsegl2-support.patch
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/002_pvrqwswsegl.c.patch
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/cursor-hack.diff
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles/linux.conf
+ delete mode 100644 meta-arago-extras/recipes-qt/qt4/qt4-embedded-gles_4.8.6.bb
  create mode 100644 meta-arago-extras/recipes-support/liboil/liboil-0.3.17/0001-Fix-enable-vfp-flag.patch
  create mode 100644 meta-arago-extras/recipes-support/liboil/liboil-0.3.17/fix-unaligned-whitelist.patch
  create mode 100644 meta-arago-extras/recipes-support/liboil/liboil-0.3.17/liboil_fix_for_x32.patch
  create mode 100644 meta-arago-extras/recipes-support/liboil/liboil-0.3.17/no-tests.patch
  create mode 100644 meta-arago-extras/recipes-support/liboil/liboil_0.3.17.bb
 
-diff --git a/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/0001-Fix-enable-vfp-flag.patch b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/0001-Fix-enable-vfp-flag.patch
-new file mode 100644
-index 0000000..aff1cb1
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/0001-Fix-enable-vfp-flag.patch
-@@ -0,0 +1,41 @@
-+Upstream-Status: Inappropriate [configuration]
-+
-+From 1921498bcc06408e8b051a3a9e9ce4182998f748 Mon Sep 17 00:00:00 2001
-+From: David Schleef <ds@schleef.org>
-+Date: Fri, 8 Apr 2011 10:05:49 -0700
-+Subject: [PATCH 10/10] Fix --enable-vfp flag
-+
-+Patch from Christophe Lyon, fixes #36084.
-+---
-+ configure.ac           |    4 ++--
-+ liboil/arm/Makefile.am |    1 +
-+ 2 files changed, 3 insertions(+), 2 deletions(-)
-+
-+diff --git a/configure.ac b/configure.ac
-+index 98c81fb..407d88c 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -188,8 +188,8 @@ fi
-+ AC_ARG_ENABLE(vfp,
-+   AC_HELP_STRING([--enable-vfp],[compile with Vector Floating-point unit support]),
-+   enable_vfp=$enableval,enable_vfp=yes)
-+-if test "x$enable-vfp" = xyes -a x$HAVE_GCC_ASM = xyes -a x$HAVE_ARM = xyes; then
-+-  AS_COMPILER_FLAG(["-Wa,-mfpu=vfp"],
-++if test "x$enable_vfp" = xyes -a x$HAVE_GCC_ASM = xyes -a x$HAVE_ARM = xyes; then
-++  AS_COMPILER_FLAG(["-mfpu=vfp"],
-+     [VFP_CFLAGS="$VFP_CFLAGS -mfpu=vfp"],
-+     true)
-+   #AS_COMPILER_FLAG(["-Wa,-mfloat-abi=softfp"],
-+diff --git a/liboil/arm/Makefile.am b/liboil/arm/Makefile.am
-+index ead08ed..cd8d9fa 100644
-+--- a/liboil/arm/Makefile.am
-++++ b/liboil/arm/Makefile.am
-+@@ -6,4 +6,5 @@ libarm_la_SOURCES = \
-+ 	math_vfp_asm.S
-+ 
-+ libarm_la_CFLAGS = $(LIBOIL_CFLAGS) $(VFP_CFLAGS)
-++libarm_la_CCASFLAGS = $(LIBOIL_CFLAGS) $(VFP_CFLAGS)
-+ 
-+-- 
-+1.7.6
-+
-diff --git a/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/fix-unaligned-whitelist.patch b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/fix-unaligned-whitelist.patch
-new file mode 100644
-index 0000000..c8e3c1f
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/fix-unaligned-whitelist.patch
-@@ -0,0 +1,19 @@
-+Upstream: https://bugs.freedesktop.org/show_bug.cgi?id=31358
-+
-+configure: fix whitelisting of x86_64 unaligned memory access
-+
-+Fix typo in whitelist so cross-compile works for x86_64.
-+
-+Upstream-Status: Inappropriate [configuration]
-+
-+--- liboil-0.3.17/m4/as-unaligned-access.m4.orig	2009-02-26 14:40:08.000000000 -0500
-++++ liboil-0.3.17/m4/as-unaligned-access.m4	2010-11-03 12:19:55.000000000 -0400
-+@@ -9,7 +9,7 @@
-+         _AS_ECHO_N([(blacklisted) ])
-+         as_cv_unaligned_access=no
-+ 	;;
-+-      i?86*|x86_64|amd64|powerpc*|m68k*|cris*)
-++      i?86*|x86_64*|amd64*|powerpc*|m68k*|cris*)
-+         _AS_ECHO_N([(whitelisted) ])
-+         as_cv_unaligned_access=yes
-+ 	;;
-diff --git a/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/liboil_fix_for_x32.patch b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/liboil_fix_for_x32.patch
-new file mode 100644
-index 0000000..473380e
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/liboil_fix_for_x32.patch
-@@ -0,0 +1,222 @@
-+Upstream-Status: Pending
-+
-+Make the assembly syntax compatible with x32 gcc. Othewise x32 gcc throws errors.
-+
-+Signed-Off-By: Nitin A Kamble <nitin.a.kamble@intel.com>
-+2011/12/01
-+
-+
-+Index: liboil-0.3.17/liboil/amd64/wavelet.c
-+===================================================================
-+--- liboil-0.3.17.orig/liboil/amd64/wavelet.c
-++++ liboil-0.3.17/liboil/amd64/wavelet.c
-+@@ -21,14 +21,14 @@ deinterleave2_asm (int16_t *d1, int16_t 
-+   asm volatile ("\n"
-+       "  sub $2, %%rcx\n"
-+       "1:\n"
-+-      "  movw (%1,%%rcx,4), %%ax\n"
-+-      "  movw %%ax, (%0,%%rcx,2)\n"
-+-      "  movw 2(%1,%%rcx,4), %%ax\n"
-+-      "  movw %%ax, (%2,%%rcx,2)\n"
-+-      "  movw 4(%1,%%rcx,4), %%ax\n"
-+-      "  movw %%ax, 2(%0,%%rcx,2)\n"
-+-      "  movw 6(%1,%%rcx,4), %%ax\n"
-+-      "  movw %%ax, 2(%2,%%rcx,2)\n"
-++      "  movw (%q1,%%rcx,4), %%ax\n"
-++      "  movw %%ax, (%q0,%%rcx,2)\n"
-++      "  movw 2(%q1,%%rcx,4), %%ax\n"
-++      "  movw %%ax, (%q2,%%rcx,2)\n"
-++      "  movw 4(%q1,%%rcx,4), %%ax\n"
-++      "  movw %%ax, 2(%q0,%%rcx,2)\n"
-++      "  movw 6(%q1,%%rcx,4), %%ax\n"
-++      "  movw %%ax, 2(%q2,%%rcx,2)\n"
-+       "  sub $2, %%rcx\n"
-+       "  jge 1b\n"
-+       : "+r" (d1), "+r" (s_2xn), "+r" (d2), "+c" (n)
-+@@ -53,20 +53,20 @@ deinterleave2_mmx (int16_t *d1, int16_t 
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%1,%%rcx,4), %%mm0\n"
-+-      "  movq 8(%1,%%rcx,4), %%mm1\n"
-++      "  movq (%q1,%%rcx,4), %%mm0\n"
-++      "  movq 8(%q1,%%rcx,4), %%mm1\n"
-+       "  pslld $16, %%mm0\n"
-+       "  pslld $16, %%mm1\n"
-+       "  psrad $16, %%mm0\n"
-+       "  psrad $16, %%mm1\n"
-+       "  packssdw %%mm1, %%mm0\n"
-+-      "  movq %%mm0, (%0,%%rcx,2)\n"
-+-      "  movq (%1,%%rcx,4), %%mm0\n"
-+-      "  movq 8(%1,%%rcx,4), %%mm1\n"
-++      "  movq %%mm0, (%q0,%%rcx,2)\n"
-++      "  movq (%q1,%%rcx,4), %%mm0\n"
-++      "  movq 8(%q1,%%rcx,4), %%mm1\n"
-+       "  psrad $16, %%mm0\n"
-+       "  psrad $16, %%mm1\n"
-+       "  packssdw %%mm1, %%mm0\n"
-+-      "  movq %%mm0, (%2,%%rcx,2)\n"
-++      "  movq %%mm0, (%q2,%%rcx,2)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %3, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -93,10 +93,10 @@ deinterleave2_mmx_2 (int16_t *d1, int16_
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  pshufw $0xd8, (%1,%%rcx,4), %%mm0\n"
-+-      "  movd %%mm0, (%0,%%rcx,2)\n"
-+-      "  pshufw $0x8d, (%1,%%rcx,4), %%mm0\n"
-+-      "  movd %%mm0, (%2,%%rcx,2)\n"
-++      "  pshufw $0xd8, (%q1,%%rcx,4), %%mm0\n"
-++      "  movd %%mm0, (%q0,%%rcx,2)\n"
-++      "  pshufw $0x8d, (%q1,%%rcx,4), %%mm0\n"
-++      "  movd %%mm0, (%q2,%%rcx,2)\n"
-+       "  add $2, %%rcx\n"
-+       "  cmp %3, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -123,16 +123,16 @@ deinterleave2_mmx_3 (int16_t *d1, int16_
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%1,%%rcx,4), %%mm1\n"
-+-      "  movq (%1,%%rcx,4), %%mm2\n"
-+-      "  movq 8(%1,%%rcx,4), %%mm0\n"
-++      "  movq (%q1,%%rcx,4), %%mm1\n"
-++      "  movq (%q1,%%rcx,4), %%mm2\n"
-++      "  movq 8(%q1,%%rcx,4), %%mm0\n"
-+       "  punpcklwd %%mm0, %%mm1\n"
-+       "  punpckhwd %%mm0, %%mm2\n"
-+       "  movq %%mm1, %%mm0\n"
-+       "  punpcklwd %%mm2, %%mm0\n"
-+       "  punpckhwd %%mm2, %%mm1\n"
-+-      "  movq %%mm0, (%0,%%rcx,2)\n"
-+-      "  movq %%mm1, (%2,%%rcx,2)\n"
-++      "  movq %%mm0, (%q0,%%rcx,2)\n"
-++      "  movq %%mm1, (%q2,%%rcx,2)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %3, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -159,26 +159,26 @@ deinterleave2_mmx_4 (int16_t *d1, int16_
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%1,%%rcx,4), %%mm1\n"
-++      "  movq (%q1,%%rcx,4), %%mm1\n"
-+       "  movq %%mm1, %%mm2\n"
-+-      "  movq 8(%1,%%rcx,4), %%mm0\n"
-+-      "   movq 16(%1,%%rcx,4), %%mm5\n"
-++      "  movq 8(%q1,%%rcx,4), %%mm0\n"
-++      "   movq 16(%q1,%%rcx,4), %%mm5\n"
-+       "  punpcklwd %%mm0, %%mm1\n"
-+       "   movq %%mm5, %%mm6\n"
-+       "  punpckhwd %%mm0, %%mm2\n"
-+-      "   movq 24(%1,%%rcx,4), %%mm4\n"
-++      "   movq 24(%q1,%%rcx,4), %%mm4\n"
-+       "  movq %%mm1, %%mm0\n"
-+       "   punpcklwd %%mm4, %%mm5\n"
-+       "  punpcklwd %%mm2, %%mm0\n"
-+       "   punpckhwd %%mm4, %%mm6\n"
-+       "  punpckhwd %%mm2, %%mm1\n"
-+       "   movq %%mm5, %%mm4\n"
-+-      "  movq %%mm0, (%0,%%rcx,2)\n"
-++      "  movq %%mm0, (%q0,%%rcx,2)\n"
-+       "   punpcklwd %%mm6, %%mm4\n"
-+-      "  movq %%mm1, (%2,%%rcx,2)\n"
-++      "  movq %%mm1, (%q2,%%rcx,2)\n"
-+       "   punpckhwd %%mm6, %%mm5\n"
-+-      "   movq %%mm4, 8(%0,%%rcx,2)\n"
-+-      "   movq %%mm5, 8(%2,%%rcx,2)\n"
-++      "   movq %%mm4, 8(%q0,%%rcx,2)\n"
-++      "   movq %%mm5, 8(%q2,%%rcx,2)\n"
-+       "  add $8, %%rcx\n"
-+       "  cmp %3, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -252,13 +252,13 @@ interleave2_mmx (int16_t *d_2xn, int16_t
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%1,%%rcx,2), %%mm0\n"
-+-      "  movq (%2,%%rcx,2), %%mm1\n"
-++      "  movq (%q1,%%rcx,2), %%mm0\n"
-++      "  movq (%q2,%%rcx,2), %%mm1\n"
-+       "  movq %%mm0, %%mm2\n"
-+       "  punpckhwd %%mm1, %%mm0\n"
-+       "  punpcklwd %%mm1, %%mm2\n"
-+-      "  movq %%mm2, (%0,%%rcx,4)\n"
-+-      "  movq %%mm0, 8(%0,%%rcx,4)\n"
-++      "  movq %%mm2, (%q0,%%rcx,4)\n"
-++      "  movq %%mm0, 8(%q0,%%rcx,4)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %3, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -285,12 +285,12 @@ lift_add_shift1_mmx (int16_t *d, int16_t
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%2,%%rcx,2), %%mm1\n"
-+-      "  movq (%3,%%rcx,2), %%mm2\n"
-++      "  movq (%q2,%%rcx,2), %%mm1\n"
-++      "  movq (%q3,%%rcx,2), %%mm2\n"
-+       "  paddw %%mm2, %%mm1\n"
-+       "  psraw $1, %%mm1\n"
-+-      "  paddw (%1,%%rcx,2), %%mm1\n"
-+-      "  movq %%mm1, (%0,%%rcx,2)\n"
-++      "  paddw (%q1,%%rcx,2), %%mm1\n"
-++      "  movq %%mm1, (%q0,%%rcx,2)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %4, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -317,13 +317,13 @@ lift_sub_shift1_mmx (int16_t *d, int16_t
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%2,%%rcx,2), %%mm1\n"
-+-      "  movq (%3,%%rcx,2), %%mm2\n"
-+-      "  movq (%1,%%rcx,2), %%mm0\n"
-++      "  movq (%q2,%%rcx,2), %%mm1\n"
-++      "  movq (%q3,%%rcx,2), %%mm2\n"
-++      "  movq (%q1,%%rcx,2), %%mm0\n"
-+       "  paddw %%mm2, %%mm1\n"
-+       "  psraw $1, %%mm1\n"
-+       "  psubw %%mm1, %%mm0\n"
-+-      "  movq %%mm0, (%0,%%rcx,2)\n"
-++      "  movq %%mm0, (%q0,%%rcx,2)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %4, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -350,12 +350,12 @@ lift_add_shift2_mmx (int16_t *d, int16_t
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%2,%%rcx,2), %%mm1\n"
-+-      "  movq (%3,%%rcx,2), %%mm2\n"
-++      "  movq (%q2,%%rcx,2), %%mm1\n"
-++      "  movq (%q3,%%rcx,2), %%mm2\n"
-+       "  paddw %%mm2, %%mm1\n"
-+       "  psraw $2, %%mm1\n"
-+-      "  paddw (%1,%%rcx,2), %%mm1\n"
-+-      "  movq %%mm1, (%0,%%rcx,2)\n"
-++      "  paddw (%q1,%%rcx,2), %%mm1\n"
-++      "  movq %%mm1, (%q0,%%rcx,2)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %4, %%ecx\n"
-+       "  jl 1b\n"
-+@@ -382,13 +382,13 @@ lift_sub_shift2_mmx (int16_t *d, int16_t
-+   asm volatile ("\n"
-+       "  xor %%rcx, %%rcx\n"
-+       "1:\n"
-+-      "  movq (%2,%%rcx,2), %%mm1\n"
-+-      "  movq (%3,%%rcx,2), %%mm2\n"
-+-      "  movq (%1,%%rcx,2), %%mm0\n"
-++      "  movq (%q2,%%rcx,2), %%mm1\n"
-++      "  movq (%q3,%%rcx,2), %%mm2\n"
-++      "  movq (%q1,%%rcx,2), %%mm0\n"
-+       "  paddw %%mm2, %%mm1\n"
-+       "  psraw $2, %%mm1\n"
-+       "  psubw %%mm1, %%mm0\n"
-+-      "  movq %%mm0, (%0,%%rcx,2)\n"
-++      "  movq %%mm0, (%q0,%%rcx,2)\n"
-+       "  add $4, %%rcx\n"
-+       "  cmp %4, %%ecx\n"
-+       "  jl 1b\n"
-diff --git a/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/no-tests.patch b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/no-tests.patch
-new file mode 100644
-index 0000000..892d441
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/liboil/liboil-0.3.17/no-tests.patch
-@@ -0,0 +1,24 @@
-+Upstream-Status: Inappropriate [disable feature]
-+
-+--- liboil-0.3.9/liboil/liboilfunction.c.old	2006-09-18 13:03:20.000000000 +0100
-++++ liboil-0.3.9/liboil/liboilfunction.c	2006-09-18 13:04:10.000000000 +0100
-+@@ -345,7 +345,9 @@
-+     return;
-+   }
-+ 
-+-  test = oil_test_new (klass);
-++  klass->chosen_impl = klass->reference_impl;
-++  klass->func = klass->reference_impl->func;
-++/*  test = oil_test_new (klass);
-+   if (test == NULL) {
-+     OIL_ERROR ("failed to test function class %s", klass->name);
-+     return;
-+@@ -385,7 +387,7 @@
-+   klass->chosen_impl = min_impl;
-+   klass->func = min_impl->func;
-+ 
-+-  oil_test_free (test);
-++  oil_test_free (test);*/
-+ }
-+ 
-+ static void
-diff --git a/meta-arago-extras/recipes-support/liboil/liboil_0.3.17.bb b/meta-arago-extras/recipes-support/liboil/liboil_0.3.17.bb
-new file mode 100644
-index 0000000..03b7785
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/liboil/liboil_0.3.17.bb
-@@ -0,0 +1,27 @@
-+SUMMARY = "Library of simple functions optimized for various CPUs"
-+HOMEPAGE = "http://liboil.freedesktop.org/"
-+BUGTRACKER = "https://bugs.freedesktop.org/"
-+
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=ad80780d9c5205d63481a0184e199a15 \
-+                    file://liboil/liboil.h;endline=28;md5=95c794a66b88800d949fed17e437d9fb \
-+                    file://liboil/liboilcpu.c;endline=28;md5=89da69a61d88eedcba066f42353fb75a \
-+                    file://examples/example1.c;endline=29;md5=9d4dad9fcbbdf0441ee063f8af5170c9 \
-+                    file://testsuite/trans.c;endline=29;md5=380ecd43121fe3dcc0d8d7e5984f283d"
-+
-+DEPENDS = "glib-2.0"
-+PR = "r5"
-+
-+SRC_URI = "http://liboil.freedesktop.org/download/${BPN}-${PV}.tar.gz \
-+           file://no-tests.patch \
-+           file://fix-unaligned-whitelist.patch \
-+           file://0001-Fix-enable-vfp-flag.patch \
-+           file://liboil_fix_for_x32.patch \
-+          "
-+
-+SRC_URI[md5sum] = "47dc734f82faeb2964d97771cfd2e701"
-+SRC_URI[sha256sum] = "105f02079b0b50034c759db34b473ecb5704ffa20a5486b60a8b7698128bfc69"
-+
-+inherit autotools pkgconfig
-+
-+ARM_INSTRUCTION_SET = "arm"
 -- 
 2.2.0
 
