@@ -1,27 +1,28 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 12DF05299F
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id ABCE852996
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Apr 2016 02:37:47 +0000 (UTC)
-Received: from vz-proxy-l001.mx.aol.com ([64.236.82.158])
-	by vms173025.mailsrvcs.net
+	Mon, 11 Apr 2016 03:09:12 +0000 (UTC)
+Received: from vz-proxy-l006.mx.aol.com ([64.236.82.154])
+	by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O5G00AUM7AYXV30@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Sun, 10 Apr 2016 21:37:47 -0500 (CDT)
+	2014)) with ESMTPA id <0O5G00A6J8QWQ830@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Sun, 10 Apr 2016 22:08:57 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=W8DY27sA+pJ1DslXMfMu3Q==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=Dj8X1P2kUObT4IQL3KsA:9
-Received: by 100.15.86.14 with SMTP id 760cc199; Mon, 11 Apr 2016 02:37:46 GMT
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=Ut/DdBcw22SB5hFy08yqCQ==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=xNf9USuDAAAA:8 a=cH6R9-kdAAAA:8
+	a=FP58Ms26AAAA:8 a=-iLcRP7g064gVotAwm4A:9
+Received: by 100.15.86.14 with SMTP id 485a25c8; Mon, 11 Apr 2016 03:08:57 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 38722161F89;	Sun,
-	10 Apr 2016 22:37:46 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id AF3A0161F8A;	Sun,
+	10 Apr 2016 23:08:56 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sun, 10 Apr 2016 22:37:45 -0400
-Message-id: <1460342265-10959-1-git-send-email-denis@denix.org>
+Date: Sun, 10 Apr 2016 23:08:56 -0400
+Message-id: <1460344136-27266-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] tisdk-image, meta-toolchain-arago: deprecate use of opkg-cl
+Subject: [PATCH] vtun: fix compile with gcc5, don't pre-create /var/run dir
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,48 +35,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Apr 2016 02:37:47 -0000
+X-List-Received-Date: Mon, 11 Apr 2016 03:09:12 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass               | 2 +-
- meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ .../vtun/vtun/08-gcc5-inline.patch                   | 20 ++++++++++++++++++++
+ .../recipes-connectivity/vtun/vtun_3.0.3.bb          |  7 ++++++-
+ 2 files changed, 26 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-inline.patch
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index 86fbb58..a9bc0d2 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -99,7 +99,7 @@ HOST_CLEANUP_PACKAGES ?= ""
- cleanup_host_packages() {
-     if [ "${HOST_CLEANUP_PACKAGES}" != "" ]
-     then
--        opkg-cl ${IPKG_ARGS} --force-depends remove ${HOST_CLEANUP_PACKAGES}
-+        opkg ${IPKG_ARGS} --force-depends remove ${HOST_CLEANUP_PACKAGES}
-     fi
+diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-inline.patch b/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-inline.patch
+new file mode 100644
+index 0000000..c9a0090
+--- /dev/null
++++ b/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-inline.patch
+@@ -0,0 +1,20 @@
++Description: fix gcc5 build failure:
++ The visibility of one of the functions in the yacc grammar is increased so
++ the program links without error now.
++Origin: vendor
++Bug-Debian: https://bugs.debian.org/778164
++Author: "Potter, Tim (Cloud Services)" <timothy.potter@hp.com>
++Reviewed-by: gregor herrmann <gregoa@debian.org>
++Last-Update: 2015-07-23
++
++--- a/cfg_file.y
+++++ b/cfg_file.y
++@@ -624,7 +624,7 @@
++ }
++ 
++ /* Clear the VTUN_NAT_HACK flag which are not relevant to the current operation mode */
++-inline void clear_nat_hack_flags(int svr)
+++extern inline void clear_nat_hack_flags(int svr)
++ {
++ 	if (svr)
++ 		llist_trav(&host_list,clear_nat_hack_server,NULL);
+diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
+index 81bb00f..7b31421 100644
+--- a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
++++ b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
+@@ -8,7 +8,8 @@ LIC_FILES_CHKSUM = "file://vtun.h;startline=1;endline=17;md5=9ac9e7fefca60c72400
+ SRC_URI = "http://downloads.sourceforge.net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz"
+ 
+ SRC_URI += "file://remove_strip.patch \
+-	    file://Add_search_path.patch"
++	    file://Add_search_path.patch \
++	    file://08-gcc5-inline.patch"
+ 
+ SRC_URI[md5sum] = "f3becf2a0270910a841060c08d1db824"
+ SRC_URI[sha256sum] = "69dcbe4f8c5ce7d91b4150a6309e536d03b61841169746ca5788413ac7edb9cb"
+@@ -18,3 +19,7 @@ inherit autotools-brokensep
+ do_configure() {
+ 	oe_runconf --with-lzo-headers=${STAGING_INCDIR}/lzo --with-lzo-lib=${STAGING_LIBDIR} --with-ssl-headers=${STAGING_INCDIR}/openssl --with-ssl-lib=${STAGING_LIBDIR}
  }
- 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 0a94dc1..0f42484 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -126,12 +126,12 @@ cleanup_toolchain_packages() {
- 		# Clean up the native side of the toolchain
- 		opkg_dir="${SDK_OUTPUT}/${SDKPATHNATIVE}"
- 		opkg_conf="${SDK_OUTPUT}/etc/opkg-sdk.conf"
--		opkg-cl -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
-+		opkg -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
- 
- 		# Clean up the target side of the toolchain
- 		opkg_dir="${SDK_OUTPUT}/${SDKTARGETSYSROOT}"
- 		opkg_conf="${opkg_dir}/etc/opkg.conf"
--		opkg-cl -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
-+		opkg -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
- 
- 		# Clean up empty directories from cleaned up packages
- 		find ${SDK_OUTPUT} -depth -type d -empty -print0 | xargs -r0 /bin/rmdir
++
++do_install_append() {
++	rm -rf ${D}${localstatedir}/run
++}
 -- 
 2.2.0
 
