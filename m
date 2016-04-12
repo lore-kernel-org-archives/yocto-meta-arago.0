@@ -1,29 +1,27 @@
-Return-Path: <jake@udc0866934>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id F168552A16
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTPS id 26D5852A81
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Apr 2016 19:12:47 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3CJCl1H032755
-	for <meta-arago@arago-project.org>; Tue, 12 Apr 2016 14:12:47 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3CJClx0014392
-	for <meta-arago@arago-project.org>; Tue, 12 Apr 2016 14:12:47 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 12 Apr 2016 14:12:47 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3CJClHC002284;
-	Tue, 12 Apr 2016 14:12:47 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1aq3jy-0001Vj-Q1; Tue, 12 Apr 2016 15:12:46 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 12 Apr 2016 15:12:45 -0400
-Message-ID: <1460488365-5773-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH] configs: Add processor-sdk-02.00.02.11-config
+	Tue, 12 Apr 2016 20:32:16 +0000 (UTC)
+Received: from vz-proxy-l005.mx.aol.com ([64.236.82.152])
+	by vms173015.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O5J00BSPFPBJ040@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 12 Apr 2016 15:31:59 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=nvzXRzm1vpu138aXkkMA:9
+Received: by 100.15.86.14 with SMTP id 3cafcc01; Tue, 12 Apr 2016 20:31:59 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id D6C92161F97;	Tue,
+	12 Apr 2016 16:31:58 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 12 Apr 2016 16:31:58 -0400
+Message-id: <1460493118-8037-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] u-boot-fw-utils: add support for HS platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,35 +34,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 19:12:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 12 Apr 2016 20:32:17 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/processor-sdk/processor-sdk-02.00.02.11-config.txt | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-02.00.02.11-config.txt
+ meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend
 
-diff --git a/configs/processor-sdk/processor-sdk-02.00.02.11-config.txt b/configs/processor-sdk/processor-sdk-02.00.02.11-config.txt
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend
 new file mode 100644
-index 0000000..5b30303
+index 0000000..6f2f566
 --- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-02.00.02.11-config.txt
-@@ -0,0 +1,13 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.26,b09966906ef054834f0b465f0c5a2a937b4c4a4c,layers=
-+meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,80feff781e2a6c3b50a72655a627ca7d629c72ab,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,fido,e6bb433b399c1ad32e596b9c46571fbfe384a86e,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,97ce05c0b2a81f05388d7f727741529fb9177775,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,a7c1a2b0e6947740758136216e45ca6ca66321fc,layers=meta-networking:meta-ruby:meta-python:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,fido,c93678aa08bc0df0f1f36a84afe48723406de58e,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,10b71bed9cfe76baa22c72806ff814cf85c2f73b,layers=meta-linaro-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,fido,12520d7f729fe3d07c2f94b813994718edb2d987,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend
+@@ -0,0 +1,4 @@
++# The proper config doesn't currently exist anywhere in mainline U-boot.
++# For now just use a similar config which is good enough for U-boot utilities.
++UBOOT_MACHINE_dra7xx-hs-evm = "dra7xx_evm_config"
++UBOOT_MACHINE_am437x-hs-evm = "am43xx_evm_config"
 -- 
-1.9.1
+2.2.0
 
 
