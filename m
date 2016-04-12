@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by arago-project.org (Postfix) with ESMTPS id 4111752996
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id BACA0529EB
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Apr 2016 05:10:39 +0000 (UTC)
-Received: from vz-proxy-l005.mx.aol.com ([64.236.82.152])
-	by vms173021.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O5I004OM916OB20@vms173021.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 12 Apr 2016 00:10:24 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=aWhG__WUpEDR-ET7KkoA:9
-Received: by 100.15.86.14 with SMTP id 5e62b34a; Tue, 12 Apr 2016 05:10:23 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 60060161F94;	Tue,
-	12 Apr 2016 01:10:18 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 12 Apr 2016 01:10:17 -0400
-Message-id: <1460437817-4400-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] Revert "HACK: packagegroup*: disable opencl and openmp for now due to llvm build issues"
+	Tue, 12 Apr 2016 06:56:52 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3C6uqZP005865
+	for <meta-arago@arago-project.org>; Tue, 12 Apr 2016 01:56:52 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3C6upbp002568
+	for <meta-arago@arago-project.org>; Tue, 12 Apr 2016 01:56:51 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 12 Apr 2016 01:56:51 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u3C6upWl017337	for <meta-arago@arago-project.org>;
+	Tue, 12 Apr 2016 01:56:51 -0500
+Date: Tue, 12 Apr 2016 02:56:51 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1476957072.883.1460444211490.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-master
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-12_01-12-03
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,343 +36,224 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 05:10:39 -0000
+X-List-Received-Date: Tue, 12 Apr 2016 06:56:53 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_882_616848963.1460444211443"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_882_616848963.1460444211443
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This reverts commit 32b89275199b4911e899d141bee308f02834437d.
-This reverts commit ea1f9df2d9229d388ba880f585054e2ae3f609fc.
+<html>
+<head>
+<title>
+Status for 04/12/16
+</title>
+</head>
+<body>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../packagegroup-arago-tisdk-addons-sdk-host.bb    | 18 +++++-----
- .../packagegroup-arago-tisdk-addons-sdk-target.bb  | 23 ++++++-------
- .../packagegroup-arago-tisdk-addons.bb             | 40 +++++++++++-----------
- .../packagegroup-arago-tisdk-matrix.bb             | 20 +++++------
- ...packagegroup-arago-tisdk-multimedia-sdk-host.bb |  4 +--
- ...ckagegroup-arago-tisdk-multimedia-sdk-target.bb |  4 +--
- .../packagegroup-arago-tisdk-multimedia.bb         |  4 +--
- .../nativesdk-packagegroup-arago-sdk-host.bb       |  6 ++--
- 8 files changed, 58 insertions(+), 61 deletions(-)
+<h2>Status for 04/12/16</h2>
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 2295e49..1faf487 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r21"
-+PR = "r22"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -31,25 +31,25 @@ UTILS_append_ti43x = " \
-     pru-icss-src \
- "
- 
--#    opencl-examples-src
--#    openmpacc-examples-src
- UTILS_append_dra7xx = " \
-+    opencl-examples-src \
-+    openmpacc-examples-src \
- "
- 
--#    opencl-examples-src
--#    openmpacc-examples-src
- #    linalg-examples-src
- UTILS_append_k2hk-evm = " \
-+    opencl-examples-src \
-+    openmpacc-examples-src \
- "
- 
--#    opencl-examples-src
--#    openmpacc-examples-src
- UTILS_append_k2l-evm = " \
-+    opencl-examples-src \
-+    openmpacc-examples-src \
- "
- 
--#    opencl-examples-src
--#    openmpacc-examples-src
- UTILS_append_k2e-evm = " \
-+    opencl-examples-src \
-+    openmpacc-examples-src \
- "
- 
- EXTRA_LIBS = ""
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index b2a0c44..8db75a2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -119,24 +119,21 @@ EXTRA_LIBS_append_k2e-evm = "\
- UTILS_append_omap3 = " canutils-dev"
- UTILS_append_ti33x = " canutils-dev"
- UTILS_append_ti43x = " canutils-dev"
--#                        opencl-staticdev
--#                        openmpacc-dev
- UTILS_append_dra7xx = " canutils-dev \
-+                        opencl-staticdev \
-                         elfutils-dev \
-                         elfutils-staticdev \
-+                        openmpacc-dev \
- "
--#opencl-staticdev
--#                          openmpacc-dev
--#UTILS_append_k2hk-evm = " \
--#                          linalg-dev \
--#"
--#opencl-staticdev
--#                         openmpacc-dev
--UTILS_append_k2l-evm = " \
-+#                          linalg-dev
-+UTILS_append_k2hk-evm = " opencl-staticdev \
-+                          openmpacc-dev \
- "
--#opencl-staticdev
--#                         openmpacc-dev
--UTILS_append_k2e-evm = " \
-+UTILS_append_k2l-evm = " opencl-staticdev \
-+                         openmpacc-dev \
-+"
-+UTILS_append_k2e-evm = " opencl-staticdev \
-+                         openmpacc-dev \
- "
- UTILS_append_k2g-evm = " canutils-dev"
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index baaa03a..a617b7f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r45"
-+PR = "r46"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -58,31 +58,31 @@ UTILS_append_am180x-evm = " ti-pru-sw-examples"
- 
- UTILS_append_omap3 = " canutils"
- 
--#                        opencl-examples
- UTILS_append_dra7xx = " canutils \
-                         dsptop \
-                         gdbc6x \
-                         glsdk-example-apps \
-+                        opencl-examples \
- "
- 
- UTILS_append_keystone = " \
-     ti-ipc-rtos-fw \
- "
- 
--#    opencl-examples
- UTILS_append_k2hk-evm = " \
-+    opencl-examples \
-     gdbc6x \
-     dsptop \
- "
- 
--#    opencl-examples
- UTILS_append_k2l-evm = " \
-+    opencl-examples \
-     gdbc6x \
-     dsptop \
- "
- 
--#    opencl-examples
- UTILS_append_k2e-evm = " \
-+    opencl-examples \
-     gdbc6x \
-     dsptop \
- "
-@@ -103,26 +103,26 @@ EXTRA_PACKAGES = " \
-     nodejs-npm \
-     protobuf \
- "
--#    opencl-staticdev
--#    opencl-examples-dev
--#    openmpacc-examples-dev
- EXTRA_PACKAGES_append_dra7xx = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    openmpacc-examples-dev \
-+"
-+#    linalg-examples
-+EXTRA_PACKAGES_append_k2hk-evm = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    openmpacc-examples-dev \
- "
--#    opencl-staticdev
--#    opencl-examples-dev
--#    openmpacc-examples-dev
--#EXTRA_PACKAGES_append_k2hk-evm = " \
--#    linalg-examples \
--#"
--#    opencl-staticdev
--#    opencl-examples-dev
--#    openmpacc-examples-dev
- EXTRA_PACKAGES_append_k2l-evm = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    openmpacc-examples-dev \
- "
--#    opencl-staticdev
--#    opencl-examples-dev
--#    openmpacc-examples-dev
- EXTRA_PACKAGES_append_k2e-evm = " \
-+    opencl-staticdev \
-+    opencl-examples-dev \
-+    openmpacc-examples-dev \
- "
- 
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 9bb68f4..28f4b29 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r52"
-+PR = "r53"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -129,10 +129,10 @@ MATRIX_APPS_append_omap-a15 = "     \
-     matrix-gui-pm-demos-governor    \
- "
- 
--#    matrix-opencl-demo-floatcompute  
--#    matrix-opencl-demo-vecadd        
--#    matrix-video-analytics-opencv-opencl-opengl-demo
- MATRIX_APPS_append_dra7xx = "        \
-+    matrix-opencl-demo-floatcompute  \
-+    matrix-opencl-demo-vecadd        \
-+    matrix-video-analytics-opencv-opencl-opengl-demo \
- "
- 
- MATRIX_APPS_append_beagleboard = "  \
-@@ -171,19 +171,19 @@ MATRIX_APPS_append_keystone = " \
-     matrix-mc-demo-ipc          \
- "
- 
--#    matrix-opencl-demo-floatcompute  
--#    matrix-opencl-demo-vecadd        
- MATRIX_APPS_append_k2hk-evm = "      \
-+    matrix-opencl-demo-floatcompute  \
-+    matrix-opencl-demo-vecadd        \
- "
- 
--#    matrix-opencl-demo-floatcompute  
--#    matrix-opencl-demo-vecadd        
- MATRIX_APPS_append_k2l-evm = "       \
-+    matrix-opencl-demo-floatcompute  \
-+    matrix-opencl-demo-vecadd        \
- "
- 
--#    matrix-opencl-demo-floatcompute  
--#    matrix-opencl-demo-vecadd        
- MATRIX_APPS_append_k2e-evm = "       \
-+    matrix-opencl-demo-floatcompute  \
-+    matrix-opencl-demo-vecadd        \
- "
- 
- RDEPENDS_${PN} = "        \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-index ddf1148..80288f4 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add multimedia related sources into the SDK"
- LICENSE = "MIT"
--PR = "r10"
-+PR = "r11"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -21,8 +21,8 @@ MULTIMEDIA_append_ti43x = " \
-     image-gallery-src \
- "
- 
--#    qt-opencv-opencl-opengl-multithreaded-src
- MULTIMEDIA_append_dra7xx = " \
-+    qt-opencv-opencl-opengl-multithreaded-src \
- "
- 
- #Demo doesn't work on 3.14
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-index 991d29f..c74b79c 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to build and install header and libs into sdk"
- LICENSE = "MIT"
--PR = "r7"
-+PR = "r8"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -8,10 +8,10 @@ inherit packagegroup
- 
- MULTIMEDIA = ""
- 
--#    qt-opencv-opencl-opengl-multithreaded-dev
- MULTIMEDIA_append_dra7xx = " \
-     hevc-arm-decoder-dev \
-     hevc-arm-decoder-staticdev \
-+    qt-opencv-opencl-opengl-multithreaded-dev \
- "
- 
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-index 4423827..c17dde2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add multimedia related packages"
- LICENSE = "MIT"
--PR = "r17"
-+PR = "r18"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -26,9 +26,9 @@ MULTIMEDIA_append_omap-a15 = " \
-     amsdk-av-files \
- "
- 
--#    qt-opencv-opencl-opengl-multithreaded-dev
- MULTIMEDIA_append_dra7xx = " \
-     hevc-arm-decoder \
-+    qt-opencv-opencl-opengl-multithreaded-dev \
- "
- 
- MULTIMEDIA_append_am37x-evm = " \
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-index 331c801..a9efdc9 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-@@ -1,13 +1,13 @@
- DESCRIPTION = "Host packages for a standalone Arago SDK or external toolchain"
--PR = "r14"
-+PR = "r15"
- LICENSE = "MIT"
- 
- inherit packagegroup nativesdk
- 
--#               nativesdk-clocl
--#               nativesdk-clacc
- EXTRA_TOOLS = "nativesdk-ti-cgt6x \
-                nativesdk-ti-cgt-pru \
-+               nativesdk-clocl \
-+               nativesdk-clacc \
-                nativesdk-mtd-utils-ubifs \
- "
- 
--- 
-2.2.0
+<h2>BUILD_ID: build-2016-04-12_01-13-05</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-hs-evm</td>
+        <td id="am437x-hs-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-hs-evm</td>
+        <td id="dra7xx-hs-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.04"<br>
+MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_882_616848963.1460444211443--
