@@ -1,28 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id 4D93652092
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 151FF52AAD
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Apr 2016 20:52:44 +0000 (UTC)
-Received: from vz-proxy-l006.mx.aol.com ([64.236.82.153])
-	by vms173019.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O5L00DP4BBBGRA0@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 13 Apr 2016 15:52:29 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=FJ1kTJ0/xm5uTekQe8vMdQ==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=S2e5frwPAAAA:8 a=NEAV23lmAAAA:8
-	a=Y8pdBdaF8fjxrtnRHAwA:9
-Received: by 100.15.86.14 with SMTP id 1be87696; Wed, 13 Apr 2016 20:52:28 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 1CE5E161F9B;	Wed,
-	13 Apr 2016 16:52:23 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 13 Apr 2016 16:52:22 -0400
-Message-id: <1460580742-21424-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] opencv: 3.1 is in meta-oe, drop locally and use bbappend for qtwayland
+	Wed, 13 Apr 2016 23:00:55 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3DN0tVN029588
+	for <meta-arago@arago-project.org>; Wed, 13 Apr 2016 18:00:55 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3DN0ttn015296
+	for <meta-arago@arago-project.org>; Wed, 13 Apr 2016 18:00:55 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 13 Apr 2016 18:00:55 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u3DN0t0p023889	for <meta-arago@arago-project.org>;
+	Wed, 13 Apr 2016 18:00:55 -0500
+Date: Wed, 13 Apr 2016 19:00:54 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1666738514.895.1460588454892.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-master
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-13_16-54-48
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,316 +36,224 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Apr 2016 20:52:44 -0000
+X-List-Received-Date: Wed, 13 Apr 2016 23:00:56 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_894_803281308.1460588454846"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_894_803281308.1460588454846
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-support/opencv/opencv_%.bbappend       |   7 ++
- .../recipes-support/opencv/opencv_3.0.bb           | 135 ---------------------
- .../recipes-support/opencv/opencv_3.1.bb           | 135 ---------------------
- 3 files changed, 7 insertions(+), 270 deletions(-)
- create mode 100644 meta-arago-distro/recipes-support/opencv/opencv_%.bbappend
- delete mode 100644 meta-arago-extras/recipes-support/opencv/opencv_3.0.bb
- delete mode 100644 meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
+<html>
+<head>
+<title>
+Status for 04/13/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-support/opencv/opencv_%.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_%.bbappend
-new file mode 100644
-index 0000000..6d60a2f
---- /dev/null
-+++ b/meta-arago-distro/recipes-support/opencv/opencv_%.bbappend
-@@ -0,0 +1,7 @@
-+PACKAGECONFIG_append= " ${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"
-+
-+PACKAGECONFIG[qtwayland] = "-DWITH_QT=ON,-DWITH_QT=OFF,qtwayland,"
-+
-+inherit cmake_qt5
-+
-+ALLOW_EMPTY_${PN}-java = "1"
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv_3.0.bb b/meta-arago-extras/recipes-support/opencv/opencv_3.0.bb
-deleted file mode 100644
-index ef56a78..0000000
---- a/meta-arago-extras/recipes-support/opencv/opencv_3.0.bb
-+++ /dev/null
-@@ -1,135 +0,0 @@
--SUMMARY = "Opencv : The Open Computer Vision Library"
--HOMEPAGE = "http://opencv.org/"
--SECTION = "libs"
--
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=0ea90d28b4de883d7af5e6711f14f7bf"
--
--ARM_INSTRUCTION_SET = "arm"
--
--DEFAULT_PREFERENCE = "-1"
--
--DEPENDS = "python-numpy libtool swig swig-native python bzip2 zlib glib-2.0"
--
--SRCREV_opencv = "b3ac274617beb8e54c8bfebcb141090a57165ea2"
--SRCREV_contrib = "c8053da4f2621169746ef8670dc6145ee5958e9c"
--SRCREV_FORMAT = "opencv"
--SRC_URI = "git://github.com/Itseez/opencv.git;name=opencv \
--           git://github.com/Itseez/opencv_contrib.git;destsuffix=contrib;name=contrib"
--
--PV = "3.0+git${SRCPV}"
--
--S = "${WORKDIR}/git"
--
--EXTRA_OECMAKE = "-DPYTHON2_NUMPY_INCLUDE_DIRS:PATH=${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/numpy/core/include \
--		 -DOPENCV_EXTRA_MODULES_PATH=${WORKDIR}/contrib/modules \
--                 -DWITH_1394=OFF \
--                 -DCMAKE_SKIP_RPATH=ON \
--                 ${@bb.utils.contains("TARGET_CC_ARCH", "-msse3", "-DENABLE_SSE=1 -DENABLE_SSE2=1 -DENABLE_SSE3=1 -DENABLE_SSSE3=1", "", d)} \
--                 ${@base_conditional("libdir", "/usr/lib64", "-DLIB_SUFFIX=64", "", d)} \
--                 ${@base_conditional("libdir", "/usr/lib32", "-DLIB_SUFFIX=32", "", d)} \
--"
--
--PACKAGECONFIG ??= "eigen jpeg png tiff v4l libv4l gstreamer samples tbb libav jasper webp openexr\
--                   ${@bb.utils.contains("DISTRO_FEATURES", "x11", "gtk", "", d)} \
--                   ${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)} \
--		   ${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "libav", "", d)}"
--PACKAGECONFIG[eigen] = "-DWITH_EIGEN=ON,-DWITH_EIGEN=OFF,libeigen,"
--PACKAGECONFIG[gtk] = "-DWITH_GTK=ON,-DWITH_GTK=OFF,gtk+3,"
--PACKAGECONFIG[qtwayland] = "-DWITH_QT=ON,-DWITH_QT=OFF,qtwayland,"
--PACKAGECONFIG[jpeg] = "-DWITH_JPEG=ON,-DWITH_JPEG=OFF,jpeg,"
--PACKAGECONFIG[libav] = "-DWITH_FFMPEG=ON,-DWITH_FFMPEG=OFF,libav,"
--PACKAGECONFIG[png] = "-DWITH_PNG=ON,-DWITH_PNG=OFF,libpng,"
--PACKAGECONFIG[tiff] = "-DWITH_TIFF=ON,-DWITH_TIFF=OFF,tiff,"
--PACKAGECONFIG[v4l] = "-DWITH_V4L=ON,-DWITH_V4L=OFF,v4l-utils,"
--PACKAGECONFIG[libv4l] = "-DWITH_LIBV4L=ON,-DWITH_LIBV4L=OFF,v4l-utils,"
--PACKAGECONFIG[jasper] = "-DWITH_JASPER=ON,-DWITH_JASPER=OFF,jasper,"
--PACKAGECONFIG[webp] = "-DWITH_WEBP=ON,-DWITH_WEBP=OFF,libwebp,"
--PACKAGECONFIG[openexr] = "-DWITH_OPENEXR=ON,-DWITH_OPENEXR=OFF,,"
--PACKAGECONFIG[amdblas] = "-DWITH_OPENCLAMDBLAS=ON,-DWITH_OPENCLAMDBLAS=OFF,libclamdblas,"
--PACKAGECONFIG[amdfft] = "-DWITH_OPENCLAMDFFT=ON,-DWITH_OPENCLAMDFFT=OFF,libclamdfft,"
--PACKAGECONFIG[opencl] = "-DWITH_OPENCL=ON,-DWITH_OPENCL=OFF,opencl-headers,"
--PACKAGECONFIG[gstreamer] = "-DWITH_GSTREAMER=ON,-DWITH_GSTREAMER=OFF,gstreamer1.0 gstreamer1.0-plugins-base,"
--PACKAGECONFIG[oracle-java] = "-DJAVA_INCLUDE_PATH=${JAVA_HOME}/include -DJAVA_INCLUDE_PATH2=${JAVA_HOME}/include/linux -DJAVA_AWT_INCLUDE_PATH=${JAVA_HOME}/include -DJAVA_AWT_LIBRARY=${JAVA_HOME}/lib/amd64/libjawt.so -DJAVA_JVM_LIBRARY=${JAVA_HOME}/lib/amd64/server/libjvm.so,,ant-native oracle-jse-jdk oracle-jse-jdk-native,"
--PACKAGECONFIG[samples] = "-DBUILD_EXAMPLES=ON -DINSTALL_PYTHON_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,,"
--PACKAGECONFIG[tbb] = "-DWITH_TBB=ON,-DWITH_TBB=OFF,tbb,"
--
--inherit distutils-base pkgconfig cmake cmake_qt5
--#PARALLEL_MAKE = ""
--
--export BUILD_SYS
--export HOST_SYS
--export PYTHON_CSPEC="-I${STAGING_INCDIR}/${PYTHON_DIR}"
--export PYTHON="${STAGING_BINDIR_NATIVE}/python"
--export JAVA_HOME="${STAGING_DIR_NATIVE}/usr/bin/java"
--export ANT_DIR="${STAGING_DIR_NATIVE}/usr/share/ant/"
--
--TARGET_CC_ARCH += "-I${S}/include "
--
--PACKAGES += "${PN}-java-dbg ${PN}-java ${PN}-samples-dbg ${PN}-samples ${PN}-apps python-opencv"
--
--python populate_packages_prepend () {
--    cv_libdir = d.expand('${libdir}')
--    cv_libdir_dbg = d.expand('${libdir}/.debug')
--    do_split_packages(d, cv_libdir, '^lib(.*)\.so$', 'lib%s-dev', 'OpenCV %s development package', extra_depends='${PN}-dev', allow_links=True)
--    do_split_packages(d, cv_libdir, '^lib(.*)\.la$', 'lib%s-dev', 'OpenCV %s development package', extra_depends='${PN}-dev')
--    do_split_packages(d, cv_libdir, '^lib(.*)\.a$', 'lib%s-dev', 'OpenCV %s development package', extra_depends='${PN}-dev')
--    do_split_packages(d, cv_libdir, '^lib(.*)\.so\.*', 'lib%s', 'OpenCV %s library', extra_depends='', allow_links=True)
--
--    pn = d.getVar('PN', 1)
--    metapkg =  pn + '-dev'
--    d.setVar('ALLOW_EMPTY_' + metapkg, "1")
--    blacklist = [ metapkg ]
--    metapkg_rdepends = [ ]
--    packages = d.getVar('PACKAGES', 1).split()
--    for pkg in packages[1:]:
--        if not pkg in blacklist and not pkg in metapkg_rdepends and pkg.endswith('-dev'):
--            metapkg_rdepends.append(pkg)
--    d.setVar('RRECOMMENDS_' + metapkg, ' '.join(metapkg_rdepends))
--
--    blacklist = [ metapkg ]
--    metapkg =  pn
--    metapkg_rdepends = [ ]
--    for pkg in packages[1:]:
--        if not pkg in blacklist and not pkg in metapkg_rdepends and not pkg.endswith('-dev') and not pkg.endswith('-dbg') and not pkg.endswith('-doc') :
--            metapkg_rdepends.append(pkg)
--    bb.data.setVar('RDEPENDS_' + metapkg, ' '.join(metapkg_rdepends), d)
--
--}
--
--PACKAGES_DYNAMIC += "^libopencv-.*"
--
--FILES_${PN} = ""
--FILES_${PN}-apps = "${bindir}/* ${datadir}/OpenCV"
--FILES_${PN}-dbg += "${libdir}/.debug"
--FILES_${PN}-dev = "${includedir} ${libdir}/pkgconfig"
--FILES_${PN}-doc = "${datadir}/OpenCV/doc"
--FILES_${PN}-java = "${datadir}/OpenCV/java"
--FILES_${PN}-java-dbg = "${datadir}/OpenCV/java/.debug/"
--FILES_${PN}-samples = "${datadir}/OpenCV/samples/"
--FILES_${PN}-samples-dbg = "${datadir}/OpenCV/samples/bin/.debug"
--
--INSANE_SKIP_${PN}-apps = "staticdev"
--INSANE_SKIP_${PN}-java = "libdir"
--INSANE_SKIP_${PN}-java-dbg = "libdir"
--
--ALLOW_EMPTY_${PN} = "1"
--ALLOW_EMPTY_${PN}-java = "1"
--
--SUMMARY_python-opencv = "Python bindings to opencv"
--FILES_python-opencv = "${PYTHON_SITEPACKAGES_DIR}/*"
--RDEPENDS_python-opencv = "python-core python-numpy"
--
--do_install_append() {
--    cp ${S}/include/opencv/*.h ${D}${includedir}/opencv/
--    sed -i '/blobtrack/d' ${D}${includedir}/opencv/cvaux.h
--
--    # Move Python files into correct library folder (for multilib build)
--    if [ "$libdir" != "/usr/lib" ]; then
--        mv ${D}/usr/lib/* ${D}/${libdir}/
--        rm -rf ${D}/usr/lib
--    fi
--
--    install -d ${D}${datadir}/OpenCV/samples/bin/
--    cp -f bin/*-tutorial-* bin/*-example-* ${D}${datadir}/OpenCV/samples/bin/
--}
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-deleted file mode 100644
-index 54ddee8..0000000
---- a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-+++ /dev/null
-@@ -1,135 +0,0 @@
--SUMMARY = "Opencv : The Open Computer Vision Library"
--HOMEPAGE = "http://opencv.org/"
--SECTION = "libs"
--
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=0ea90d28b4de883d7af5e6711f14f7bf"
--
--ARM_INSTRUCTION_SET = "arm"
--
--DEFAULT_PREFERENCE = "-1"
--
--DEPENDS = "python-numpy libtool swig swig-native python bzip2 zlib glib-2.0"
--
--SRCREV_opencv = "92387b1ef8fad15196dd5f7fb4931444a68bc93a"
--SRCREV_contrib = "5409d5ad560523c85c6796cc5a009347072d883c"
--SRCREV_FORMAT = "opencv"
--SRC_URI = "git://github.com/Itseez/opencv.git;name=opencv \
--           git://github.com/Itseez/opencv_contrib.git;destsuffix=contrib;name=contrib"
--
--PV = "3.1+git${SRCPV}"
--
--S = "${WORKDIR}/git"
--
--EXTRA_OECMAKE = "-DPYTHON2_NUMPY_INCLUDE_DIRS:PATH=${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/numpy/core/include \
--		 -DOPENCV_EXTRA_MODULES_PATH=${WORKDIR}/contrib/modules \
--                 -DWITH_1394=OFF \
--                 -DCMAKE_SKIP_RPATH=ON \
--                 ${@bb.utils.contains("TARGET_CC_ARCH", "-msse3", "-DENABLE_SSE=1 -DENABLE_SSE2=1 -DENABLE_SSE3=1 -DENABLE_SSSE3=1", "", d)} \
--                 ${@base_conditional("libdir", "/usr/lib64", "-DLIB_SUFFIX=64", "", d)} \
--                 ${@base_conditional("libdir", "/usr/lib32", "-DLIB_SUFFIX=32", "", d)} \
--"
--
--PACKAGECONFIG ??= "eigen jpeg png tiff v4l libv4l gstreamer samples tbb libav jasper webp openexr\
--                   ${@bb.utils.contains("DISTRO_FEATURES", "x11", "gtk", "", d)} \
--                   ${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)} \
--		   ${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "libav", "", d)}"
--PACKAGECONFIG[eigen] = "-DWITH_EIGEN=ON,-DWITH_EIGEN=OFF,libeigen,"
--PACKAGECONFIG[gtk] = "-DWITH_GTK=ON,-DWITH_GTK=OFF,gtk+3,"
--PACKAGECONFIG[qtwayland] = "-DWITH_QT=ON,-DWITH_QT=OFF,qtwayland,"
--PACKAGECONFIG[jpeg] = "-DWITH_JPEG=ON,-DWITH_JPEG=OFF,jpeg,"
--PACKAGECONFIG[libav] = "-DWITH_FFMPEG=ON,-DWITH_FFMPEG=OFF,libav,"
--PACKAGECONFIG[png] = "-DWITH_PNG=ON,-DWITH_PNG=OFF,libpng,"
--PACKAGECONFIG[tiff] = "-DWITH_TIFF=ON,-DWITH_TIFF=OFF,tiff,"
--PACKAGECONFIG[v4l] = "-DWITH_V4L=ON,-DWITH_V4L=OFF,v4l-utils,"
--PACKAGECONFIG[libv4l] = "-DWITH_LIBV4L=ON,-DWITH_LIBV4L=OFF,v4l-utils,"
--PACKAGECONFIG[jasper] = "-DWITH_JASPER=ON,-DWITH_JASPER=OFF,jasper,"
--PACKAGECONFIG[webp] = "-DWITH_WEBP=ON,-DWITH_WEBP=OFF,libwebp,"
--PACKAGECONFIG[openexr] = "-DWITH_OPENEXR=ON,-DWITH_OPENEXR=OFF,,"
--PACKAGECONFIG[amdblas] = "-DWITH_OPENCLAMDBLAS=ON,-DWITH_OPENCLAMDBLAS=OFF,libclamdblas,"
--PACKAGECONFIG[amdfft] = "-DWITH_OPENCLAMDFFT=ON,-DWITH_OPENCLAMDFFT=OFF,libclamdfft,"
--PACKAGECONFIG[opencl] = "-DWITH_OPENCL=ON,-DWITH_OPENCL=OFF,opencl-headers,"
--PACKAGECONFIG[gstreamer] = "-DWITH_GSTREAMER=ON,-DWITH_GSTREAMER=OFF,gstreamer1.0 gstreamer1.0-plugins-base,"
--PACKAGECONFIG[oracle-java] = "-DJAVA_INCLUDE_PATH=${JAVA_HOME}/include -DJAVA_INCLUDE_PATH2=${JAVA_HOME}/include/linux -DJAVA_AWT_INCLUDE_PATH=${JAVA_HOME}/include -DJAVA_AWT_LIBRARY=${JAVA_HOME}/lib/amd64/libjawt.so -DJAVA_JVM_LIBRARY=${JAVA_HOME}/lib/amd64/server/libjvm.so,,ant-native oracle-jse-jdk oracle-jse-jdk-native,"
--PACKAGECONFIG[samples] = "-DBUILD_EXAMPLES=ON -DINSTALL_PYTHON_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,,"
--PACKAGECONFIG[tbb] = "-DWITH_TBB=ON,-DWITH_TBB=OFF,tbb,"
--
--inherit distutils-base pkgconfig cmake cmake_qt5
--#PARALLEL_MAKE = ""
--
--export BUILD_SYS
--export HOST_SYS
--export PYTHON_CSPEC="-I${STAGING_INCDIR}/${PYTHON_DIR}"
--export PYTHON="${STAGING_BINDIR_NATIVE}/python"
--export JAVA_HOME="${STAGING_DIR_NATIVE}/usr/bin/java"
--export ANT_DIR="${STAGING_DIR_NATIVE}/usr/share/ant/"
--
--TARGET_CC_ARCH += "-I${S}/include "
--
--PACKAGES += "${PN}-java-dbg ${PN}-java ${PN}-samples-dbg ${PN}-samples ${PN}-apps python-opencv"
--
--python populate_packages_prepend () {
--    cv_libdir = d.expand('${libdir}')
--    cv_libdir_dbg = d.expand('${libdir}/.debug')
--    do_split_packages(d, cv_libdir, '^lib(.*)\.so$', 'lib%s-dev', 'OpenCV %s development package', extra_depends='${PN}-dev', allow_links=True)
--    do_split_packages(d, cv_libdir, '^lib(.*)\.la$', 'lib%s-dev', 'OpenCV %s development package', extra_depends='${PN}-dev')
--    do_split_packages(d, cv_libdir, '^lib(.*)\.a$', 'lib%s-dev', 'OpenCV %s development package', extra_depends='${PN}-dev')
--    do_split_packages(d, cv_libdir, '^lib(.*)\.so\.*', 'lib%s', 'OpenCV %s library', extra_depends='', allow_links=True)
--
--    pn = d.getVar('PN', 1)
--    metapkg =  pn + '-dev'
--    d.setVar('ALLOW_EMPTY_' + metapkg, "1")
--    blacklist = [ metapkg ]
--    metapkg_rdepends = [ ]
--    packages = d.getVar('PACKAGES', 1).split()
--    for pkg in packages[1:]:
--        if not pkg in blacklist and not pkg in metapkg_rdepends and pkg.endswith('-dev'):
--            metapkg_rdepends.append(pkg)
--    d.setVar('RRECOMMENDS_' + metapkg, ' '.join(metapkg_rdepends))
--
--    blacklist = [ metapkg ]
--    metapkg =  pn
--    metapkg_rdepends = [ ]
--    for pkg in packages[1:]:
--        if not pkg in blacklist and not pkg in metapkg_rdepends and not pkg.endswith('-dev') and not pkg.endswith('-dbg') and not pkg.endswith('-doc') :
--            metapkg_rdepends.append(pkg)
--    bb.data.setVar('RDEPENDS_' + metapkg, ' '.join(metapkg_rdepends), d)
--
--}
--
--PACKAGES_DYNAMIC += "^libopencv-.*"
--
--FILES_${PN} = ""
--FILES_${PN}-apps = "${bindir}/* ${datadir}/OpenCV"
--FILES_${PN}-dbg += "${libdir}/.debug"
--FILES_${PN}-dev = "${includedir} ${libdir}/pkgconfig"
--FILES_${PN}-doc = "${datadir}/OpenCV/doc"
--FILES_${PN}-java = "${datadir}/OpenCV/java"
--FILES_${PN}-java-dbg = "${datadir}/OpenCV/java/.debug/"
--FILES_${PN}-samples = "${datadir}/OpenCV/samples/"
--FILES_${PN}-samples-dbg = "${datadir}/OpenCV/samples/bin/.debug"
--
--INSANE_SKIP_${PN}-apps = "staticdev"
--INSANE_SKIP_${PN}-java = "libdir"
--INSANE_SKIP_${PN}-java-dbg = "libdir"
--
--ALLOW_EMPTY_${PN} = "1"
--ALLOW_EMPTY_${PN}-java = "1"
--
--SUMMARY_python-opencv = "Python bindings to opencv"
--FILES_python-opencv = "${PYTHON_SITEPACKAGES_DIR}/*"
--RDEPENDS_python-opencv = "python-core python-numpy"
--
--do_install_append() {
--    cp ${S}/include/opencv/*.h ${D}${includedir}/opencv/
--    sed -i '/blobtrack/d' ${D}${includedir}/opencv/cvaux.h
--
--    # Move Python files into correct library folder (for multilib build)
--    if [ "$libdir" != "/usr/lib" ]; then
--        mv ${D}/usr/lib/* ${D}/${libdir}/
--        rm -rf ${D}/usr/lib
--    fi
--
--    install -d ${D}${datadir}/OpenCV/samples/bin/
--    cp -f bin/*-tutorial-* bin/*-example-* ${D}${datadir}/OpenCV/samples/bin/
--}
--- 
-2.2.0
+<h2>Status for 04/13/16</h2>
+
+<h2>BUILD_ID: build-2016-04-13_16-55-51</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am437x-hs-evm</td>
+        <td id="am437x-hs-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-hs-evm</td>
+        <td id="dra7xx-hs-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.04"<br>
+MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_894_803281308.1460588454846--
