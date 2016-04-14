@@ -1,30 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 91E2A52AAF
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 5C019529AD
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Apr 2016 17:33:37 +0000 (UTC)
+	Thu, 14 Apr 2016 18:13:03 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3EHXZbq021666;
-	Thu, 14 Apr 2016 12:33:35 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3EHXZ0S008538;
-	Thu, 14 Apr 2016 12:33:35 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 14 Apr 2016 12:33:34 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3EHXZ9r009184;
-	Thu, 14 Apr 2016 12:33:35 -0500
-Date: Thu, 14 Apr 2016 13:33:19 -0400
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3EID2Oi031555
+	for <meta-arago@arago-project.org>; Thu, 14 Apr 2016 13:13:03 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3EID2iY011429
+	for <meta-arago@arago-project.org>; Thu, 14 Apr 2016 13:13:02 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 14 Apr 2016 13:13:02 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u3EID2Vj007452	for <meta-arago@arago-project.org>;
+	Thu, 14 Apr 2016 13:13:02 -0500
+Date: Thu, 14 Apr 2016 14:13:02 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Thomas Kaufmann <Thomas.Kaufmann@duagon.com>
-Message-ID: <20160414173319.GI10048@edge>
-References: <87f35714305b4138b6523b1f5d7f04f4@chdua14.duagon.ads>
+To: <meta-arago@arago-project.org>
+Message-ID: <830534097.903.1460657582253.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <87f35714305b4138b6523b1f5d7f04f4@chdua14.duagon.ads>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: sdk created with arago fido contains hardcoded paths to build system in setup script
+X-Jenkins-Job: arago-core-tisdk-master
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-14_12-15-35
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,134 +36,224 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 17:33:39 -0000
-X-Groupsio-MsgNum: 7423
-Content-Type: multipart/mixed; boundary="TakKZr9L6Hm6aLOc"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 14 Apr 2016 18:13:03 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_902_1862087804.1460657582149"
 
---TakKZr9L6Hm6aLOc
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+------=_Part_902_1862087804.1460657582149
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 23, 2016 at 12:12:08PM +0000, Thomas Kaufmann wrote:
-> Hi I tried to get an answer to this from the TI e2e community, but so far 
-> without luck:
-> 
-> https://e2e.ti.com/support/embedded/linux/f/354/p/500188/1811754#1811754
-> 
-> My issue is this:
-> 
-> When I create a SDK for my target platform using arago with the populate_sdk 
-> command in bitbake. I receive a self extracting shell script, which unpacks 
-> all the rootfs, compilers, libraries and everything. Basically the SDK is 
-> working and I am able to develop for my target with it.
-> 
-> One thing bothers me:
-> 
-> in the environment-setup-cortexa8hf-vfp-non-linux-gnueabi file which needs 
-> to be sourced before using the SDK, there are some hardcoded paths which 
-> point to the linaro toolchain as it is installed on the original system, 
-> where I actually build the SDK,
-> 
-> e.g.: export CFLAGS=" 
-> -isystem/home/tkaufmann/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/include 
-> -fstack-protector -O2 -pipe -g -feliminate-unused-debug-types"
-> 
-> similar things are in CFLAGS, CXXFLAGS, LDFLAGS and CPPFLAGS
-> 
-> The plan was to use the compiler and sysroot as it is available in the SDK. 
-> This is working so far for sinple projects without separately installing the 
-> linaro toolchain. Why are these linaro based paths in the environment-setup 
-> script and how do I get rid of this to not confuse the users of the SDK?
-> 
-> I appreciate your feedback
+<html>
+<head>
+<title>
+Status for 04/14/16
+</title>
+</head>
+<body>
 
-Thomas,
+<h2>Status for 04/14/16</h2>
 
-Sorry for the delay. I just checked our SDK and there are no hardcoded paths 
-in there.
+<h2>BUILD_ID: build-2016-04-14_12-16-39</h2>
 
-Trying to figure out what's different I see that your setup script is called 
-"environment-setup-cortexa8hf-vfp-non-linux-gnueabi" while ours is just simple 
-"environment-setup". Also I see you mention populate_sdk in bitbake and now it 
-becomes clear - you should be using meta-toolchain-arago-tisdk recipe where 
-lots of stuff gets cleanup and configured properly...
+<h2>Clean Build: false</h2>
 
-Attached is the current environment-setup script from our SDK.
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
--- 
-Denys
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>master</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>am437x-hs-evm</td>
+        <td id="am437x-hs-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-hs-evm</td>
+        <td id="dra7xx-hs-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+    </tr>
+</table>
 
---TakKZr9L6Hm6aLOc
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: attachment; filename="environment-setup"
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
 
-SDK_PATH="/tmp/abc"
-if [ -z "$ZSH_NAME" ] && [ "x$0" = "x./environment-setup" ]; then
-    echo "Error: This script needs to be sourced. Please run as \". ./environment-setup\""
-    exit 1
-else
-    if [ -n "$BASH_SOURCE" ]; then
-        SDK_PATH="`dirname $BASH_SOURCE`"
-    fi
-    SDK_PATH=`readlink -f "$SDK_PATH"`
-    export SDK_PATH
-fi
-export SDK_SYS=x86_64-arago-linux
-export REAL_MULTIMACH_TARGET_SYS=cortexa8hf-neon-linux-gnueabi
-export TOOLCHAIN_SYS=arm-linux-gnueabihf
-export TOOLCHAIN_PREFIX=$TOOLCHAIN_SYS-
-export SDK_PATH_NATIVE=$SDK_PATH/sysroots/$SDK_SYS
-export SDK_PATH_TARGET=$SDK_PATH/sysroots/$REAL_MULTIMACH_TARGET_SYS
-export PATH=$SDK_PATH_NATIVE/usr/bin:$PATH
-export CPATH=$SDK_PATH_TARGET/usr/include:$CPATH
-export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH_TARGET
-export PKG_CONFIG_PATH=$SDK_PATH_TARGET/usr/lib/pkgconfig
-export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1
-export CONFIG_SITE=$SDK_PATH/site-config-$REAL_MULTIMACH_TARGET_SYS
-export CC=${TOOLCHAIN_PREFIX}gcc
-export CXX=${TOOLCHAIN_PREFIX}g++
-export GDB=${TOOLCHAIN_PREFIX}gdb
-export CPP="${TOOLCHAIN_PREFIX}gcc -E"
-export NM=${TOOLCHAIN_PREFIX}nm
-export AS=${TOOLCHAIN_PREFIX}as
-export AR=${TOOLCHAIN_PREFIX}ar
-export RANLIB=${TOOLCHAIN_PREFIX}ranlib
-export OBJCOPY=${TOOLCHAIN_PREFIX}objcopy
-export OBJDUMP=${TOOLCHAIN_PREFIX}objdump
-export STRIP=${TOOLCHAIN_PREFIX}strip
-export CONFIGURE_FLAGS="--target=arm-linux-gnueabi --host=arm-linux-gnueabi --build=x86_64-linux --with-libtool-sysroot=$SDK_PATH_TARGET"
-export CPPFLAGS=" -march=armv7-a -marm -mfpu=neon  -mfloat-abi=hard -mcpu=cortex-a8 --sysroot=$SDK_PATH_TARGET"
-export CFLAGS="$CPPFLAGS"
-export CXXFLAGS="$CPPFLAGS"
-export LDFLAGS=" --sysroot=$SDK_PATH_TARGET"
-export OECORE_NATIVE_SYSROOT=$SDK_PATH_NATIVE
-export OECORE_TARGET_SYSROOT=$SDK_PATH_TARGET
-export OECORE_ACLOCAL_OPTS="-I $SDK_PATH_NATIVE/usr/share/aclocal"
-export OECORE_DISTRO_VERSION="2016.03"
-export OECORE_SDK_VERSION="2016.03"
-export PS1="\[\e[32;1m\][linux-devkit]\[\e[0m\]:\w> "
-export PATH=$SDK_PATH_NATIVE/usr/bin/qt5:$PATH
-export OE_QMAKE_CFLAGS="$CFLAGS"
-export OE_QMAKE_CXXFLAGS="$CXXFLAGS"
-export OE_QMAKE_LDFLAGS="$LDFLAGS"
-export OE_QMAKE_CC=$CC
-export OE_QMAKE_CXX=$CXX
-export OE_QMAKE_LINK=$CXX
-export OE_QMAKE_AR=$AR
-export OE_QMAKE_LIBDIR_QT=$SDK_PATH_TARGET/usr/lib
-export OE_QMAKE_INCDIR_QT=$SDK_PATH_TARGET/usr/include/qt5
-export OE_QMAKE_HOST_BINDIR_QT=$SDK_PATH_NATIVE/usr/bin/qt5/
-export OE_QMAKE_MOC=$SDK_PATH_NATIVE/usr/bin/qt5/moc
-export OE_QMAKE_UIC=$SDK_PATH_NATIVE/usr/bin/qt5/uic
-export OE_QMAKE_UIC3=$SDK_PATH_NATIVE/usr/bin/qt5/uic3
-export OE_QMAKE_RCC=$SDK_PATH_NATIVE/usr/bin/qt5/rcc
-export OE_QMAKE_QDBUSCPP2XML=$SDK_PATH_NATIVE/usr/bin/qt5/qdbuscpp2xml
-export OE_QMAKE_QDBUSXML2CPP=$SDK_PATH_NATIVE/usr/bin/qt5/qdbusxml2cpp
-export OE_QMAKE_QT_CONFIG=$SDK_PATH_TARGET/usr/lib/qt5/mkspecs/qconfig.pri
-export OE_QMAKE_STRIP="echo"
-export QMAKESPEC=$SDK_PATH_TARGET/usr/lib/qt5/mkspecs/linux-oe-g++
-export QMAKE_DEFAULT_LIBDIRS=${QT_QMAKE_LIBDIR_QT}
-export QMAKE_DEFAULT_INCDIRS=${QT_QMAKE_INCDIR_QT}
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.04"<br>
+MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
+</p>
 
---TakKZr9L6Hm6aLOc--
+</body>
+</html>
+
+
+------=_Part_902_1862087804.1460657582149--
