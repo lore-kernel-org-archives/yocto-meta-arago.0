@@ -1,29 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 66F2652A53
+Return-Path: <denis@denix.org>
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by arago-project.org (Postfix) with ESMTPS id 4615D52A04
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Apr 2016 11:46:25 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3EBkPIO003159
-	for <meta-arago@arago-project.org>; Thu, 14 Apr 2016 06:46:25 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3EBkP88004297
-	for <meta-arago@arago-project.org>; Thu, 14 Apr 2016 06:46:25 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 14 Apr 2016 06:46:24 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u3EBkO5r031511	for <meta-arago@arago-project.org>;
-	Thu, 14 Apr 2016 06:46:24 -0500
-Date: Thu, 14 Apr 2016 07:46:23 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <715114627.899.1460634384114.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-master
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-13_20-46-29
+	Thu, 14 Apr 2016 14:14:49 +0000 (UTC)
+Received: from vz-proxy-l006.mx.aol.com ([64.236.82.153])
+	by vms173011.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O5M008AGNK9II20@vms173011.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 14 Apr 2016 09:14:33 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=FJ1kTJ0/xm5uTekQe8vMdQ==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=TN5SbgX9tSh-YHPD03MA:9
+Received: by 100.15.86.14 with SMTP id 0d2d7d19; Thu, 14 Apr 2016 14:14:33 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id B7A84161FA2;	Thu,
+	14 Apr 2016 10:14:32 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 14 Apr 2016 10:14:32 -0400
+Message-id: <1460643272-6615-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] HACK: packagrgoup*: ipsecmgr won't build against 4.4, disable it and netapi
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,224 +34,250 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 11:46:26 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_898_660629831.1460634383768"
+X-List-Received-Date: Thu, 14 Apr 2016 14:14:49 -0000
 
-------=_Part_898_660629831.1460634383768
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 04/14/16
-</title>
-</head>
-<body>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../packagegroup-arago-base-tisdk-server-extra.bb      | 16 ++++++++--------
+ .../packagegroups/packagegroup-arago-test-addons.bb    | 10 +++++-----
+ .../packagegroup-arago-tisdk-addons-sdk-host.bb        |  4 ++--
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb      | 18 +++++++++---------
+ 4 files changed, 24 insertions(+), 24 deletions(-)
 
-<h2>Status for 04/14/16</h2>
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index adc6108..d9b7eab 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r9"
++PR = "r10"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -86,6 +86,7 @@ ARAGO_SECURE_STORAGE = "\
+ #    mpm-transport
+ #    multiprocmgr
+ #    qmss-lld
++#    ipsecmgr-mod
+ ARAGO_TI_KEYSTONE_PKGS = "\
+     ${ARAGO_SECURE_STORAGE} \
+     uio-module-drv \
+@@ -103,7 +104,6 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+     hplib-mod \
+     pktlib \
+     cppi-lld \
+-    ipsecmgr-mod \
+     "
+ 
+ # The following packages are not yet ready for k2g-evm
+@@ -114,31 +114,31 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+ 
+ ARAGO_TI_PKGS = ""
+ ARAGO_TI_PKGS_append_keystone = " ${ARAGO_TI_KEYSTONE_PKGS}"
++#    netapi
++#    netapi-test
+ ARAGO_TI_PKGS_append_k2l-evm = "\
+     dfe-lld \
+     iqn2-lld \
+-    netapi \
+-    netapi-test \
+     hplib \
+     nwal-lld \
+     "
+ 
+ #    srio-lld
++#    netapi
++#    netapi-test
+ ARAGO_TI_PKGS_append_k2hk-evm = "\
+     mmap-lld \
+     hyplnk-lld \
+     aif2-lld \
+-    netapi \
+-    netapi-test \
+     hplib \
+     nwal-lld \
+     "
+ 
++#    netapi
++#    netapi-test
+ ARAGO_TI_PKGS_append_k2e-evm = "\
+     mmap-lld \
+     hyplnk-lld \
+-    netapi \
+-    netapi-test \
+     hplib \
+     nwal-lld \
+     "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+index f59d0db..fd1f5e9 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Task to install additional utilities/demos for test image"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r7"
++PR = "r8"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -22,6 +22,7 @@ TEST_ADDONS = " \
+ #    multiprocmgr-test
+ #    qmss-lld-test
+ #    mpm-transport-test
++#    ipsecmgr
+ TEST_ADDONS_TI_append_keystone = " \
+     pa-lld-test \
+     cppi-lld-test \
+@@ -32,7 +33,6 @@ TEST_ADDONS_TI_append_keystone = " \
+     sa-lld-test \
+     traceframework-test \
+     udma-test \
+-    ipsecmgr \
+     "
+ 
+ # The following are not yet ready for k2g-evm
+@@ -45,6 +45,7 @@ TEST_ADDONS_TI_append_keystone = " \
+ #    srio-lld-test
+ #    ipc-transport-srio-test
+ #    ipc-transport-qmss-test
++#    netapi-test
+ TEST_ADDONS_TI_append_k2hk-evm = " \
+     hyplnk-lld-test \
+     mmap-lld-test \
+@@ -52,27 +53,26 @@ TEST_ADDONS_TI_append_k2hk-evm = " \
+     nwal-lld-test \
+     hplib-test \
+     nwal-lld \
+-    netapi-test \
+     "
+ 
+ #    ipc-transport-qmss-test
++#    netapi-test
+ TEST_ADDONS_TI_append_k2l-evm = " \
+     dfe-lld-test \
+     iqn2-lld-test \
+     nwal-lld-test \
+     hplib-test \
+     nwal-lld \
+-    netapi-test \
+     "
+ 
+ #    ipc-transport-qmss-test
++#    netapi-test
+ TEST_ADDONS_TI_append_k2e-evm = " \
+     mmap-lld-test \
+     hyplnk-lld-test \
+     nwal-lld-test \
+     hplib-test \
+     nwal-lld \
+-    netapi-test \
+     "
+ 
+ RDEPENDS_${PN} = "\
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index c5628ef..e27f382 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r23"
++PR = "r24"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -65,10 +65,10 @@ EXTRA_LIBS_append_dra7xx = " \
+ "
+ 
+ #    cmem-mod-src
++#    ipsecmgr-mod-src
+ EXTRA_LIBS_append_keystone = " \
+     uio-module-drv-src \
+     hplib-mod-src \
+-    ipsecmgr-mod-src \
+ "
+ 
+ EXTRA_LIBS_append_k2hk-evm = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 32f3f4d..7d3647e 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
+ LICENSE = "MIT"
+-PR = "r28"
++PR = "r29"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -38,6 +38,8 @@ TI_SECURE_STORAGE_DEV = "\
+ #	qmss-lld-staticdev
+ #	ipc-transport-qmss-dev
+ #	ipc-transport-qmss-staticdev
++#	ipsecmgr-dev
++#	ipsecmgr-staticdev
+ EXTRA_LIBS_append_keystone = "\
+ 	${TI_SECURE_STORAGE_DEV} \
+ 	udma-dev \
+@@ -67,17 +69,15 @@ EXTRA_LIBS_append_keystone = "\
+ 	edma3-lld-staticdev \
+ 	lksctp-tools-dev \
+ 	lksctp-tools-staticdev \
+-	ipsecmgr-dev \
+-	ipsecmgr-staticdev \
+ 	"
+ 
++#	netapi-dev
++#	netapi-staticdev
+ EXTRA_LIBS_append_k2l-evm = "\
+ 	dfe-lld-dev \
+ 	dfe-lld-staticdev \
+ 	iqn2-lld-dev \
+ 	iqn2-lld-staticdev \
+-	netapi-dev \
+-	netapi-staticdev \
+ 	hplib-dev \
+ 	hplib-staticdev \
+ 	nwal-lld-dev \
+@@ -88,13 +88,13 @@ EXTRA_LIBS_append_k2l-evm = "\
+ #	srio-lld-staticdev
+ #	ipc-transport-srio-dev
+ #	ipc-transport-srio-staticdev
++#	netapi-dev
++#	netapi-staticdev
+ EXTRA_LIBS_append_k2hk-evm = "\
+ 	mmap-lld \
+ 	mmap-lld-staticdev \
+ 	hyplnk-lld-dev \
+ 	hyplnk-lld-staticdev \
+-	netapi-dev \
+-	netapi-staticdev \
+ 	hplib-dev \
+ 	hplib-staticdev \
+ 	nwal-lld-dev \
+@@ -103,13 +103,13 @@ EXTRA_LIBS_append_k2hk-evm = "\
+ 	aif2-lld-staticdev \
+ 	"
+ 
++#	netapi-dev
++#	netapi-staticdev
+ EXTRA_LIBS_append_k2e-evm = "\
+ 	mmap-lld \
+ 	mmap-lld-staticdev \
+ 	hyplnk-lld-dev \
+ 	hyplnk-lld-staticdev \
+-	netapi-dev \
+-	netapi-staticdev \
+ 	hplib-dev \
+ 	hplib-staticdev \
+ 	nwal-lld-dev \
+-- 
+2.2.0
 
-<h2>BUILD_ID: build-2016-04-13_20-47-33</h2>
 
-<h2>Clean Build: true</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>master</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>am437x-hs-evm</td>
-        <td id="am437x-hs-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am437x-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-hs-evm</td>
-        <td id="dra7xx-hs-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-hs-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2016.04"<br>
-MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-master"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="true"<br>
-CLEAN_SSTATE="true"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
-</p>
-
-</body>
-</html>
-
-
-------=_Part_898_660629831.1460634383768--
