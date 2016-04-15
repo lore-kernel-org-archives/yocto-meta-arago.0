@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id DCDEA5296D
+	by arago-project.org (Postfix) with ESMTPS id 6A79452079
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Apr 2016 22:35:41 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3FMZfiD023968
-	for <meta-arago@arago-project.org>; Fri, 15 Apr 2016 17:35:41 -0500
+	Fri, 15 Apr 2016 23:14:40 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3FNEe0C013158
+	for <meta-arago@arago-project.org>; Fri, 15 Apr 2016 18:14:40 -0500
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3FMZf7i009950
-	for <meta-arago@arago-project.org>; Fri, 15 Apr 2016 17:35:41 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3FNEe3A011008
+	for <meta-arago@arago-project.org>; Fri, 15 Apr 2016 18:14:40 -0500
 Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 15 Apr 2016 17:35:41 -0500
+	Fri, 15 Apr 2016 18:14:40 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u3FMZfta002887	for <meta-arago@arago-project.org>;
-	Fri, 15 Apr 2016 17:35:41 -0500
-Date: Fri, 15 Apr 2016 18:35:40 -0400
+	u3FNEdiW032132	for <meta-arago@arago-project.org>;
+	Fri, 15 Apr 2016 18:14:39 -0500
+Date: Fri, 15 Apr 2016 19:14:39 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <2026415012.911.1460759740972.JavaMail.jenkins@puget>
+Message-ID: <1258220737.913.1460762079680.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-master
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-15_17-06-58
+Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-15_18-47-26
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,10 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Apr 2016 22:35:43 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_910_1970638378.1460759740961"
+X-List-Received-Date: Fri, 15 Apr 2016 23:14:40 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_912_57700562.1460762079657"
 
-------=_Part_910_1970638378.1460759740961
+------=_Part_912_57700562.1460762079657
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +53,7 @@ Status for 04/15/16
 
 <h2>Status for 04/15/16</h2>
 
-<h2>BUILD_ID: build-2016-04-15_17-08-01</h2>
+<h2>BUILD_ID: build-2016-04-15_18-48-29</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -127,34 +126,24 @@ Status for 04/15/16
         <th>Target Test Result</th>
     </tr>
     <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
     <tr>
-        <td>am437x-hs-evm</td>
-        <td id="am437x-hs-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-hs-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
     <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
-    </tr>
-    <tr>
-        <td>dra7xx-hs-evm</td>
-        <td id="dra7xx-hs-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-hs-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=red>FAILED: CRITICAL</td>
     </tr>
 </table>
 
@@ -171,7 +160,7 @@ The configuration file passed to this script had the contents:
 <p>
 MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
 TISDK_VERSION="2016.04"<br>
-MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm"<br>
+MACHINES="k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
@@ -212,7 +201,7 @@ RUN_BUILD_TESTS="true"<br>
 STAF_ROOT="/usr/local/staf"<br>
 SKIP_TEST_FAILURES="false"<br>
 PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="tisdk-rootfs-image"<br>
+BITBAKE_COMMAND="tisdk-server-rootfs-image"<br>
 RESULTS_CONFIG_COMMENTS="false"<br>
 INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
 INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
@@ -236,4 +225,4 @@ BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
 </html>
 
 
-------=_Part_910_1970638378.1460759740961--
+------=_Part_912_57700562.1460762079657--
