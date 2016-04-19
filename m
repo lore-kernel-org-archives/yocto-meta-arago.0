@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 1F5C652AA0
+	by arago-project.org (Postfix) with ESMTPS id B9DA952A99
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Apr 2016 01:28:50 +0000 (UTC)
+	Tue, 19 Apr 2016 05:06:26 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3J1Snkw012491
-	for <meta-arago@arago-project.org>; Mon, 18 Apr 2016 20:28:49 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3J1SnHk012061
-	for <meta-arago@arago-project.org>; Mon, 18 Apr 2016 20:28:49 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 18 Apr 2016 20:28:48 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3J56QSs029138
+	for <meta-arago@arago-project.org>; Tue, 19 Apr 2016 00:06:26 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3J56QOr029787
+	for <meta-arago@arago-project.org>; Tue, 19 Apr 2016 00:06:26 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 19 Apr 2016 00:06:26 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u3J1Snbq024394	for <meta-arago@arago-project.org>;
-	Mon, 18 Apr 2016 20:28:49 -0500
-Date: Mon, 18 Apr 2016 21:28:48 -0400
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u3J56QvI028886	for <meta-arago@arago-project.org>;
+	Tue, 19 Apr 2016 00:06:26 -0500
+Date: Tue, 19 Apr 2016 01:06:26 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <864793404.927.1461029328930.JavaMail.jenkins@puget>
+Message-ID: <1486110608.929.1461042386039.JavaMail.jenkins@puget>
 MIME-Version: 1.0
 X-Jenkins-Job: arago-core-tisdk-master-rt
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] RT Core TISDK (krogoth/2.1) 2016.04 build 2016-04-18_12-27-33
+Subject: [nightly] RT Core TISDK (krogoth/2.1) 2016.04 build 2016-04-18_21-36-17
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Apr 2016 01:28:50 -0000
+X-List-Received-Date: Tue, 19 Apr 2016 05:06:27 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_926_101247804.1461029328825"
+	boundary="----=_Part_928_855657560.1461042386026"
 
-------=_Part_926_101247804.1461029328825
+------=_Part_928_855657560.1461042386026
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +54,7 @@ Status for 04/18/16
 
 <h2>Status for 04/18/16</h2>
 
-<h2>BUILD_ID: build-2016-04-18_12-28-37</h2>
+<h2>BUILD_ID: build-2016-04-18_21-37-20</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -138,13 +138,13 @@ Status for 04/18/16
     </tr>
     <tr>
         <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>k2hk-evm</td>
@@ -247,4 +247,4 @@ LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace/confi
 </html>
 
 
-------=_Part_926_101247804.1461029328825--
+------=_Part_928_855657560.1461042386026--
