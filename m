@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id D369A529E7
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 3BD0152A81
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Apr 2016 19:33:46 +0000 (UTC)
-Received: from vz-proxy-l003.mx.aol.com ([64.236.82.155])
-	by vms173017.mailsrvcs.net
+	Wed, 20 Apr 2016 19:33:48 +0000 (UTC)
+Received: from vz-proxy-l002.mx.aol.com ([64.236.82.148])
+	by vms173021.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O5Y00CX46BXKA10@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 20 Apr 2016 14:33:33 -0500 (CDT)
+	2014)) with ESMTPA id <0O5Y00AM76BXJU20@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 20 Apr 2016 14:33:34 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=i+tV1o3iWEoTTvx3QNPGxA==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=FP58Ms26AAAA:8
-	a=5r_yuN56d9ztwRJwsj4A:9
-Received: by 100.15.86.14 with SMTP id 1e780153; Wed, 20 Apr 2016 19:33:33 GMT
+X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=hkQRW7prCrFMEwk2DGUM9Q==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=VwQbUJbxAAAA:8
+	a=M0MY8R-vP_qWGsyUNCgA:9
+Received: by 100.15.86.14 with SMTP id 6a74d675; Wed, 20 Apr 2016 19:33:34 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id A9C97161FB5;	Wed,
+	by gandalf.denix.org (Postfix) with ESMTP id BEC51161FBB;	Wed,
 	20 Apr 2016 15:33:32 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 20 Apr 2016 15:33:11 -0400
-Message-id: <1461180805-25733-3-git-send-email-denis@denix.org>
+Date: Wed, 20 Apr 2016 15:33:17 -0400
+Message-id: <1461180805-25733-9-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
 In-reply-to: <1461180805-25733-1-git-send-email-denis@denix.org>
 References: <1461180805-25733-1-git-send-email-denis@denix.org>
-Subject: [PATCH 02/16] linuxptp: available now in meta-oe, drop locally
+Subject: [PATCH 08/16] mmc-utils: was upstreamed to oe-core, drop locally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,35 +43,32 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-connectivity/linuxptp/linuxptp_1.3.bb    | 20 --------------------
- 1 file changed, 20 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+ meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb | 17 -----------------
+ 1 file changed, 17 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb b/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+diff --git a/meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb b/meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb
 deleted file mode 100644
-index e8f92db..0000000
---- a/meta-arago-extras/recipes-connectivity/linuxptp/linuxptp_1.3.bb
+index 4747307..0000000
+--- a/meta-arago-extras/recipes-devtools/mmc/mmc-utils_git.bb
 +++ /dev/null
-@@ -1,20 +0,0 @@
--DESCRIPTION = "This software is an implementation of the Precision Time Protocol (PTP) \
--according to IEEE standard 1588 for Linux"
--HOMEPAGE = "http://linuxptp.sourceforge.net/"
--SECTION = "console/network"
+@@ -1,17 +0,0 @@
+-DESCRIPTION = "Userspace tools for MMC/SD devices"
+-HOMEPAGE = "http://git.kernel.org/cgit/linux/kernel/git/cjb/mmc-utils.git/"
 -LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
--PR = "r0"
+-LIC_FILES_CHKSUM = "file://mmc.c;beginline=1;endline=17;md5=d7747fc87f1eb22b946ef819969503f0"
 -
--SRC_URI = "http://iweb.dl.sourceforge.net/project/linuxptp/v${PV}/linuxptp-${PV}.tgz"
--SRC_URI[md5sum] = "664706a86fe1413391d4536080548501"
--SRC_URI[sha256sum] = "b1651186689ef06e56add506bd9bb55a700ca56e3f92ba71d08f3ad12fad3085"
+-BRANCH ?= "master"
+-SRCREV = "11f2ceabc4ad3f0dd568e0ce68166e4803e0615b"
 -
--EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} ARCH=${TARGET_ARCH} \
--		EXTRA_CFLAGS="-D_GNU_SOURCE -DHAVE_CLOCK_ADJTIME \
--		-DHAVE_ONESTEP_SYNC""
+-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/cjb/mmc-utils.git;protocol=git;branch=${BRANCH}"
+-PV = "1.0"
+-
+-S = "${WORKDIR}/git"
 -
 -do_install() {
--	install -d ${D}${bindir}/
--	install -c -m 755 ${S}/ptp4l ${D}${bindir}/
+-    install -d ${D}${bindir}
+-    install -m 0755 mmc ${D}${bindir}
 -}
 -- 
 2.2.0
