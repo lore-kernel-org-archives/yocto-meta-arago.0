@@ -1,30 +1,29 @@
-Return-Path: <a0869574local@uda0869574b>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 3E711529E7
+Return-Path: <denis@denix.org>
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTPS id 94447529E7
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Apr 2016 18:23:13 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3KINBIL012998
-	for <meta-arago@arago-project.org>; Wed, 20 Apr 2016 13:23:11 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3KINB7w023092
-	for <meta-arago@arago-project.org>; Wed, 20 Apr 2016 13:23:11 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 20 Apr 2016 13:23:10 -0500
-Received: from uda0869574b (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3KINBV8019895;
-	Wed, 20 Apr 2016 13:23:11 -0500
-Received: from a0869574local by uda0869574b with local (Exim 4.82)
-	(envelope-from <a0869574local@uda0869574b>)	id 1aswmM-0006d8-Jf;
-	Wed, 20 Apr 2016 14:23:10 -0400
-From: Jianzhong Xu <xuj@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 20 Apr 2016 14:23:07 -0400
-Message-ID: <1461176587-25453-1-git-send-email-xuj@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [master][PATCH] linalg: added support for AM57xx and made into a RTSC package.
+	Wed, 20 Apr 2016 18:34:17 +0000 (UTC)
+Received: from vz-proxy-l004.mx.aol.com ([64.236.82.151])
+	by vms173013.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O5Y00MO63KQIHA0@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 20 Apr 2016 13:34:02 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=hPB188JXhM0RP_5nJEYA:9
+Received: by 100.15.86.14 with SMTP id 5199aa8f; Wed, 20 Apr 2016 18:34:02 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 91E46161FB3;	Wed,
+	20 Apr 2016 14:34:01 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 20 Apr 2016 14:34:01 -0400
+Message-id: <1461177241-21326-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+In-reply-to: <1461177241-21326-1-git-send-email-denis@denix.org>
+References: <1461177241-21326-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] libgbm: drop locally, moved to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,140 +36,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Apr 2016 18:23:14 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 20 Apr 2016 18:34:17 -0000
 
-Signed-off-by: Jianzhong Xu <xuj@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-ti/linalg/linalg-examples_git.bb       | 44 ++--------------------
- meta-arago-extras/recipes-ti/linalg/linalg.inc     |  8 ++--
- meta-arago-extras/recipes-ti/linalg/linalg_git.bb  | 12 +++---
- 3 files changed, 15 insertions(+), 49 deletions(-)
+ meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb | 17 -----------------
+ meta-arago-extras/recipes-graphics/gbm/libgbm_9.0.0.bb  | 13 -------------
+ 2 files changed, 30 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb
+ delete mode 100644 meta-arago-extras/recipes-graphics/gbm/libgbm_9.0.0.bb
 
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb b/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb
-index 38fcdb7..58b3b88 100644
---- a/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb
-+++ b/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb
-@@ -8,38 +8,11 @@ RDEPENDS_${PN} += "opencl-runtime"
- 
- export LINALG_DIR = "${LINALG_INSTALL_DIR}"
- 
--EXAMPLES_ROOT = "${WORKDIR}/git/linalg_example_src"
--B = "${S}"
+diff --git a/meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb b/meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb
+deleted file mode 100644
+index 303f245..0000000
+--- a/meta-arago-extras/recipes-graphics/gbm/libgbm_10.0.0.bb
++++ /dev/null
+@@ -1,17 +0,0 @@
+-DESCRIPTION = "Userspace interface for the kernel GBM services."
+-HOMEPAGE = "http://git.ti.com"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://gbm.c;beginline=1;endline=26;md5=b871c7f2f477df29ee4c0ec437b187f7"
+-DEPENDS = "libdrm"
 -
--LINALG_EXAMPLE_LIST = "dgemm_test \
--                       dsyrk_test \
--                       eig \
--                       gemm_bench \
--                       ludinv \
--                       matmpy \
--                       ztrmm_test \
--                       ztrsm_test \
--"
+-inherit autotools pkgconfig
 -
--python do_unpack_append() {
--    import shutil
+-BRANCH = "next"
 -
--    git_dir = d.expand("${WORKDIR}/git/examples/arm+dsp")
--    s = d.getVar("EXAMPLES_ROOT", True)
+-SRCREV = "96f37555c7e82a417b02051661377b10e6b3966e"
 -
--    os.makedirs(s)
--    shutil.copy(os.path.join(git_dir,"Makefile"),s)
--    shutil.copy(os.path.join(git_dir,"make.inc"),s)
--    shutil.copy(os.path.join(git_dir,"run_tests_evm.sh"),s)
--    for example in d.getVar("LINALG_EXAMPLE_LIST", True).split():
--        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
--}
+-SRC_URI = "git://git.ti.com/glsdk/libgbm.git;protocol=git;branch=${BRANCH}"
 -
--EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
-+EXAMPLES_ROOT = "${WORKDIR}/git/examples/arm+dsp"
- 
- do_compile() {
--    cd ${EXAMPLES_ROOT}
--    oe_runmake
-+    cd examples/arm+dsp
-+    make
-     # Remove object files before installing so that the binaries are not present
-     find . -name "*.obj" -type f -delete
-     find . -name "*.o" -type f -delete
-@@ -47,16 +20,7 @@ do_compile() {
- 
- do_install() {
-     install -d ${D}${datadir}/ti/examples/linalg
+-S = "${WORKDIR}/git"
 -
--    install ${EXAMPLES_ROOT}/Makefile ${D}${datadir}/ti/examples/linalg
--    install ${EXAMPLES_ROOT}/make.inc ${D}${datadir}/ti/examples/linalg
--    install ${EXAMPLES_ROOT}/run_tests_evm.sh ${D}${datadir}/ti/examples/linalg
+-PR = "r0"
+diff --git a/meta-arago-extras/recipes-graphics/gbm/libgbm_9.0.0.bb b/meta-arago-extras/recipes-graphics/gbm/libgbm_9.0.0.bb
+deleted file mode 100644
+index 3905738..0000000
+--- a/meta-arago-extras/recipes-graphics/gbm/libgbm_9.0.0.bb
++++ /dev/null
+@@ -1,13 +0,0 @@
+-DESCRIPTION = "Userspace interface for the kernel GBM services."
+-HOMEPAGE = "http://git.ti.com"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://gbm.c;beginline=1;endline=26;md5=b871c7f2f477df29ee4c0ec437b187f7"
+-DEPENDS = "libdrm"
 -
--    cd ${EXAMPLES_ROOT}
--    for linalg_example in ${LINALG_EXAMPLE_LIST}; do
--        install -d ${D}${datadir}/ti/examples/linalg/${linalg_example}
--        cp -rv ${EXAMPLES_ROOT}/${linalg_example}/. ${D}${datadir}/ti/examples/linalg/${linalg_example}
--    done
-+    cp -r examples/arm+dsp/* ${D}${datadir}/ti/examples/linalg
- }
- 
- FILES_${PN} += "\
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-index 7c197b6..bb8efdf 100644
---- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
-+++ b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-@@ -2,7 +2,7 @@ HOMEPAGE = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git"
- LICENSE = "BSD-3-Clause"
- 
- PV = "1_2_0_0"
--INC_PR = "r0"
-+INC_PR = "r1"
- 
- S = "${WORKDIR}/git"
- 
-@@ -11,8 +11,8 @@ require recipes-ti/includes/ti-staging.inc
- 
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git;protocol=git;branch=${BRANCH}"
--LIC_FILES_CHKSUM = "file://docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
--SRCREV = "4de29dac3c6fbd16df1b19876593de0afdbcb30f"
-+LIC_FILES_CHKSUM = "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
-+SRCREV = "5e435f2457565ed7c6199406ef248370bb2a4ad2"
- 
- DEPENDS = "common-csl-ip \
-            libarch \
-@@ -40,4 +40,4 @@ export OMP_DIR ="${OMP_INSTALL_DIR}"
- export LIBARCH_DIR = "${LIBARCH_INSTALL_DIR}"
- export TARGET_ROOTDIR="${STAGING_DIR_TARGET}"
- 
--COMPATIBLE_MACHINE = "k2hk-evm"
-+COMPATIBLE_MACHINE = "k2hk-evm|am57xx"
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb b/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
-index 4d7a5a4..18754a7 100644
---- a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
-+++ b/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
-@@ -3,17 +3,19 @@ DESCRIPTION = "TI Linear Algebra Library"
- include linalg.inc
- PR = "${INC_PR}.0"
- 
--TARGET_k2hk-evm = "SOC_K2H"
--MEM_MODEL_k2hk-evm = "Large"
-+TARGET_k2hk-evm      = "SOC_K2H"
-+TARGET_am57xx-evm    = "SOC_AM572x"
-+MEM_MODEL_k2hk-evm   = "Large"
-+MEM_MODEL_am57xx-evm = "Small"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- do_compile() {
--   make ARMplusDSP MEM_MODEL=${MEM_MODEL} TARGET=${TARGET} LIBOS=LIB_OPENCL
--   make docs
-+   make -f build/Makefile MEM_MODEL=${MEM_MODEL} TARGET=${TARGET} LIBOS=LIB_OPENCL
- }
- 
- do_install() {
--   make installARMplusDSPlib DESTDIR=${D}${LINALG_INSTALL_DIR_RECIPE}
-+    install -d ${D}${LINALG_INSTALL_DIR_RECIPE}
-+    cp -r exports/linalg_${PV}/* ${D}${LINALG_INSTALL_DIR_RECIPE}
- }
- 
- # to create a package for LINALG
+-inherit autotools pkgconfig
+-
+-SRCREV = "cb86a2f2cecd41023bf1bf12fbcf11be11220f31"
+-
+-SRC_URI = "git://git.ti.com/glsdk/libgbm.git;protocol=git"
+-
+-S = "${WORKDIR}/git"
 -- 
-1.9.1
+2.2.0
 
 
