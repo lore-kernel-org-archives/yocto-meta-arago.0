@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by arago-project.org (Postfix) with ESMTPS id CDAB252A80
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id 3AE9652AC1
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Apr 2016 17:56:55 +0000 (UTC)
-Received: from vz-proxy-l006.mx.aol.com ([64.236.82.153])
-	by vms173023.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O670073MB6IYJA0@vms173023.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 25 Apr 2016 12:56:43 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=FJ1kTJ0/xm5uTekQe8vMdQ==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=L0-Mk3cr4GkqVsNRA_cA:9
-Received: by 100.15.86.14 with SMTP id 42b027c4; Mon, 25 Apr 2016 17:56:42 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 535E3161FB4;	Mon,
-	25 Apr 2016 13:56:42 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 25 Apr 2016 13:56:41 -0400
-Message-id: <1461607001-25675-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] conf, recipes: update for new SGX names, simplify conf and packagegroups
+	Mon, 25 Apr 2016 19:29:06 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3PJT53A023293
+	for <meta-arago@arago-project.org>; Mon, 25 Apr 2016 14:29:05 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3PJT5g4008156
+	for <meta-arago@arago-project.org>; Mon, 25 Apr 2016 14:29:05 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 25 Apr 2016 14:29:04 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u3PJT4XG007630	for <meta-arago@arago-project.org>;
+	Mon, 25 Apr 2016 14:29:05 -0500
+Date: Mon, 25 Apr 2016 15:29:04 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1034479225.973.1461612544819.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-04-25_15-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,353 +36,177 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Apr 2016 17:56:58 -0000
+X-List-Received-Date: Mon, 25 Apr 2016 19:29:07 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_972_1757198167.1461612544787"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_972_1757198167.1461612544787
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../conf/distro/arago-source-ipk.conf              |  4 +-
- .../conf/distro/include/arago-prefs.inc            | 47 ++++------------------
- .../packagegroup-arago-tisdk-graphics-sdk-host.bb  | 10 +----
- ...packagegroup-arago-tisdk-graphics-sdk-target.bb | 24 ++---------
- .../packagegroup-arago-tisdk-graphics.bb           | 38 ++---------------
- .../libgl/libgles-omap3_%.bbappend                 |  1 -
- ...Makefile_omapdrm-pvr => Makefile_ti-sgx-ddk-km} | 21 +++++-----
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  8 ++--
- .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  2 +-
- .../omapdrmtest/omapdrmtest_1.0.0.bb               |  2 +-
- 10 files changed, 34 insertions(+), 123 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-graphics/libgl/libgles-omap3_%.bbappend
- rename meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/{Makefile_omapdrm-pvr => Makefile_ti-sgx-ddk-km} (68%)
+<html>
+<head>
+<title>
+Status for 04/25/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-index 9dca564..90ae80f 100644
---- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-+++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-@@ -203,8 +203,8 @@ SRCIPK_INSTALL_DIR_pn-debugss-module-drv = "board-support/extra-drivers/${PN}-${
- CREATE_SRCIPK_pn-gdbserverproxy-module-drv = "1"
- SRCIPK_INSTALL_DIR_pn-gdbserverproxy-module-drv = "board-support/extra-drivers/${PN}-${PV}"
- 
--CREATE_SRCIPK_pn-omapdrm-pvr = "1"
--SRCIPK_INSTALL_DIR_pn-omapdrm-pvr = "board-support/extra-drivers/${PN}-${PV}"
-+CREATE_SRCIPK_pn-ti-sgx-ddk-km = "1"
-+SRCIPK_INSTALL_DIR_pn-ti-sgx-ddk-km = "board-support/extra-drivers/${PN}-${PV}"
- 
- CREATE_SRCIPK_pn-ti-linux-driver-examples = "1"
- SRCIPK_INSTALL_DIR_pn-ti-linux-driver-examples = "example-applications/linux-driver-examples-${PV}"
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 2d8368e..5b68fa1 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -21,34 +21,11 @@ PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
- 
- PREFERRED_PROVIDER_virtual/gettext = "gettext"
- 
--ARAGO_QT_PROVIDER = "${@base_conditional('QT_PROVIDER','qt5','',base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d),d)}"
--PREFERRED_PROVIDER_qt4-embedded = "${ARAGO_QT_PROVIDER}"
--
--PREFERRED_PROVIDER_omap3-sgx-modules = "omap3-sgx-modules"
--PREFERRED_PROVIDER_libgles-omap3 = "libgles-omap3"
--PREFERRED_PROVIDER_libgles-omap3-dev = "libgles-omap3-dev"
--PREFERRED_PROVIDER_libgles-omap3-dbg = "libgles-omap3-dbg"
--PREFERRED_PROVIDER_virtual/egl = "libgles-omap3"
--PREFERRED_PROVIDER_virtual/libgles1 = "libgles-omap3"
--PREFERRED_PROVIDER_virtual/libgles2 = "libgles-omap3"
--
--PREFERRED_PROVIDER_virtual/egl_omap-a15 = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_virtual/libgles1_omap-a15 = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_virtual/libgles2_omap-a15 = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_libgbm_omap-a15 = "libgbm"
--PREFERRED_PROVIDER_libgbm-dev_omap-a15 = "libgbm-dev"
--
--PREFERRED_PROVIDER_virtual/egl_ti43x = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_virtual/libgles1_ti43x = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_virtual/libgles2_ti43x = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_libgbm_ti43x = "libgbm"
--PREFERRED_PROVIDER_libgbm-dev_ti43x = "libgbm-dev"
--
--PREFERRED_PROVIDER_virtual/egl_ti33x = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_virtual/libgles1_ti33x = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_virtual/libgles2_ti33x = "omap5-sgx-ddk-um-linux"
--PREFERRED_PROVIDER_libgbm_ti33x = "libgbm"
--PREFERRED_PROVIDER_libgbm-dev_ti33x = "libgbm-dev"
-+PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
-+PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
-+PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
-+PREFERRED_PROVIDER_libgbm = "libgbm"
-+PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
- 
- PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
- PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
-@@ -61,28 +38,18 @@ PREFERRED_PROVIDER_virtual/libgles2_keystone = "mesa"
- PREFERRED_PROVIDER_virtual/libgl_keystone = "mesa"
- PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
- 
--# Use latest TI staging kernel and u-boot trees
- PREFERRED_PROVIDER_virtual/kernel = "linux-ti-staging${ARAGO_KERNEL_SUFFIX}"
- PREFERRED_VERSION_linux-ti-staging = "4.4%"
- 
--PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
--PREFERRED_PROVIDER_u-boot_am335x-evm = "u-boot-ti-staging"
--PREFERRED_PROVIDER_virtual/bootloader_am437x-evm = "u-boot-ti-staging"
--PREFERRED_PROVIDER_u-boot_am437x-evm = "u-boot-ti-staging"
--PREFERRED_PROVIDER_virtual/bootloader_omap-a15 = "u-boot-ti-staging"
--PREFERRED_PROVIDER_u-boot_omap-a15 = "u-boot-ti-staging"
--
-+PREFERRED_PROVIDER_virtual/bootloader = "u-boot-ti-staging"
-+PREFERRED_PROVIDER_u-boot = "u-boot-ti-staging"
- PREFERRED_VERSION_u-boot-ti-staging = "2015.07%"
- 
- # Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
- PREFERRED_VERSION_eudev = "3.1.5"
- PREFERRED_PROVIDER_eudev = "eudev"
- 
--# Set the PREFERRED_PROVIDER for jpeg functionality based on the MACHINE
--# architecture.  For armv7a devices libjpeg-turbo should be used to take
--# advantage of the SIMD instructions.
- PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
--PREFERRED_PROVIDER_jpeg_armv5te = "jpeg"
- 
- # Setting PREFERRED_VERSIONS due to selecting a specific version of a library or
- # application that does not have a GPLv3 license
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-index 2dae8ba..b987947 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-@@ -1,16 +1,10 @@
- DESCRIPTION = "Task to install graphics sources in SDK"
- LICENSE = "MIT"
--PR = "r4"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
-+PR = "r5"
- 
- inherit packagegroup
- 
--GRAPHICS_RDEPENDS = ""
--
--GRAPHICS_RDEPENDS_append_ti33x = " omapdrm-pvr-src"
--GRAPHICS_RDEPENDS_append_ti43x = " omapdrm-pvr-src"
--GRAPHICS_RDEPENDS_append_omap-a15 = " omapdrm-pvr-src"
-+GRAPHICS_RDEPENDS = "ti-sgx-ddk-km-src"
- 
- RDEPENDS_${PN} = "\
-     ${GRAPHICS_RDEPENDS} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-index 7c2300c..484baab 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-@@ -1,30 +1,12 @@
- DESCRIPTION = "Task to install graphics binaries on sdk target"
- LICENSE = "MIT"
--PR = "r6"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
-+PR = "r7"
- 
- inherit packagegroup
- 
--GRAPHICS_RDEPENDS = ""
--
--GRAPHICS_RDEPENDS_ti33x = "\
--    libgbm-dev \
--    omap5-sgx-ddk-um-linux-dev \
--    "
--
--GRAPHICS_RDEPENDS_omap3 = "\
--    libgles-omap3-dev \
--"
--
--GRAPHICS_RDEPENDS_ti43x = "\
--    libgbm-dev \
--    omap5-sgx-ddk-um-linux-dev \
--    "
--
--GRAPHICS_RDEPENDS_omap-a15 = "\
-+GRAPHICS_RDEPENDS = "\
-     libgbm-dev \
--    omap5-sgx-ddk-um-linux-dev \
-+    ti-sgx-ddk-um-dev \
-     "
- 
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-index 07fd8b3..a7bc08f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-@@ -1,8 +1,6 @@
- DESCRIPTION = "Task to install graphics binaries"
- LICENSE = "MIT"
--PR = "r12"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
-+PR = "r13"
- 
- inherit packagegroup
- 
-@@ -12,40 +10,12 @@ GRAPHICS_WESTON = "\
-     weston-examples \
- "
- 
--# Until SGX is fixed with 4.1 - omap3-sgx-modules
--GRAPHICS_SDK = "\
--    libgles-omap3 \
--    libgles-omap3-blitwsegl \
--    libgles-omap3-flipwsegl \
--    libgles-omap3-frontwsegl \
--    libgles-omap3-linuxfbwsegl \
--    libgles-omap3-rawdemos \
--"
--
--GRAPHICS_RDEPENDS = ""
--
--GRAPHICS_RDEPENDS_ti33x = "\
-+GRAPHICS_RDEPENDS = "\
-     libgbm \
--    omap5-sgx-ddk-um-linux \
--    omapdrm-pvr \
-+    ti-sgx-ddk-km \
-+    ti-sgx-ddk-um \
- "
- 
--GRAPHICS_RDEPENDS_ti43x = "\
--    libgbm \
--    omap5-sgx-ddk-um-linux \
--    omapdrm-pvr \
--"
--
--GRAPHICS_RDEPENDS_omap3 = "\
--    ${GRAPHICS_SDK} \
--"
--
--GRAPHICS_RDEPENDS_omap-a15 = "\
--    libgbm \
--    omap5-sgx-ddk-um-linux \
--    omapdrm-pvr \
--    "
--
- RDEPENDS_${PN} = "\
-     ${@base_contains('DISTRO_FEATURES', 'wayland', "${GRAPHICS_WESTON}", '', d)} \
-     ${GRAPHICS_RDEPENDS} \
-diff --git a/meta-arago-distro/recipes-graphics/libgl/libgles-omap3_%.bbappend b/meta-arago-distro/recipes-graphics/libgl/libgles-omap3_%.bbappend
-deleted file mode 100644
-index e0c105c..0000000
---- a/meta-arago-distro/recipes-graphics/libgl/libgles-omap3_%.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--RRECOMMENDS_${PN}_remove = "omap3-sgx-modules"
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapdrm-pvr b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km
-similarity index 68%
-rename from meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapdrm-pvr
-rename to meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km
-index 9f50900..8d9b583 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapdrm-pvr
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km
-@@ -1,26 +1,25 @@
--# omapdrm-pvr module
--omapdrm-pvr: linux
-+# ti-sgx-ddk-km module
-+ti-sgx-ddk-km: linux
- 	@echo ================================
--	@echo      Building omapdrm-pvr
-+	@echo      Building ti-sgx-ddk-km
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "omapdrm-pvr*" -type d`; \
-+	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
- 	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=arm TARGET_PRODUCT=__TARGET_PRODUCT__ KERNELDIR=$(LINUXKERNEL_INSTALL_DIR)
- 
--omapdrm-pvr_clean:
-+ti-sgx-ddk-km_clean:
- 	@echo ================================
--	@echo      Cleaning omapdrm-pvr
-+	@echo      Cleaning ti-sgx-ddk-km
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "omapdrm-pvr*" -type d`; \
-+	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
- 	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=arm KERNELDIR=$(LINUXKERNEL_INSTALL_DIR) clean
- 
--omapdrm-pvr_install:
-+ti-sgx-ddk-km_install:
- 	@echo ================================
--	@echo      Installing omapdrm-pvr
-+	@echo      Installing ti-sgx-ddk-km
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "omapdrm-pvr*" -type d`; \
-+	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
- 	cd ./eurasia_km/eurasiacon/binary2_omap_linux_release/target/kbuild; \
- 	make -C $(LINUXKERNEL_INSTALL_DIR) SUBDIRS=`pwd` INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) modules_install
--
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 5e0ae41..d76b5c7 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -36,7 +36,7 @@ SRC_URI = "\
-     file://Makefile_cmem-mod \
-     file://Makefile_debugss-module-drv \
-     file://Makefile_gdbserverproxy-module-drv \
--    file://Makefile_omapdrm-pvr \
-+    file://Makefile_ti-sgx-ddk-km \
-     file://Makefile_opencl-examples \
-     file://Makefile_boot-monitor \
-     file://Makefile_hplib-mod \
-@@ -85,7 +85,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
-                            ti-crypto-examples \
-                            linux-dtbs \
-                            cryptodev \
--                           omapdrm-pvr \
-+                           ti-sgx-ddk-km \
-                            pru-icss \
- "
- MAKEFILES_append_ti43x = " u-boot-spl \
-@@ -95,7 +95,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
-                            cryptodev \
-                            dual-camera-demo \
-                            image-gallery \
--                           omapdrm-pvr \
-+                           ti-sgx-ddk-km \
-                            pru-icss \
- "
- 
-@@ -112,7 +112,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               ${QUICK_PLAYGROUND} \
-                               omapconf \
-                               linux-dtbs \
--                              omapdrm-pvr \
-+                              ti-sgx-ddk-km \
-                               pru-icss \
- "
- MAKEFILES_append_am180x-evm = " pru \
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-index 8833cf6..1e9a8bf 100644
---- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "http://git.ti.com"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=e760965096e52da8f3969dd53b6bf158"
- 
--DEPENDS = "libdrm libgbm omap5-sgx-ddk-um-linux"
-+DEPENDS = "libdrm libgbm ti-sgx-ddk-um"
- 
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index f5880b4..1d22511 100644
---- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-@@ -2,7 +2,7 @@ DESCRIPTION = "Test applications for OMAP DRM interface"
- 
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://viddec3test.c;beginline=1;endline=16;md5=c391f44e40a29096285e3121923041df"
--DEPENDS += "libav libdce libdrm libgbm omap5-sgx-ddk-um-linux wayland"
-+DEPENDS += "libav libdce libdrm libgbm ti-sgx-ddk-um wayland"
- 
- inherit autotools pkgconfig
- 
--- 
-2.2.0
+<h2>Status for 04/25/16</h2>
+
+<h2>BUILD_ID: build-2016-04-25_15-01-43</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="dra7xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_972_1757198167.1461612544787--
