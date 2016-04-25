@@ -1,27 +1,29 @@
 Return-Path: <denis@denix.org>
 Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
 	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id D61E152A4A
+	by arago-project.org (Postfix) with ESMTPS id BF01352A3C
 	for <meta-arago@arago-project.org>;
 	Mon, 25 Apr 2016 15:13:14 +0000 (UTC)
-Received: from vz-proxy-l003.mx.aol.com ([64.236.82.155])
+Received: from vz-proxy-l007.mx.aol.com ([64.236.82.157])
 	by vms173013.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O6700IEC3LMVM00@vms173013.mailsrvcs.net> for
+	2014)) with ESMTPA id <0O67008ZX3LMO360@vms173013.mailsrvcs.net> for
 	meta-arago@arago-project.org; Mon, 25 Apr 2016 10:12:59 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=i+tV1o3iWEoTTvx3QNPGxA==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=V-ZfKAzCuhlz9H6k2v0A:9
-Received: by 100.15.86.14 with SMTP id 73220e52; Mon, 25 Apr 2016 15:12:59 GMT
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=EDyElNE8DnJcdewKkuvZJw==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=_TgPK9_xGviZd13XYt4A:9
+Received: by 100.15.86.14 with SMTP id 5e56eb6a; Mon, 25 Apr 2016 15:12:59 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 8D1F8161FAF;	Mon,
+	by gandalf.denix.org (Postfix) with ESMTP id 97E74161FC8;	Mon,
 	25 Apr 2016 11:12:58 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 25 Apr 2016 11:12:55 -0400
-Message-id: <1461597176-5337-1-git-send-email-denis@denix.org>
+Date: Mon, 25 Apr 2016 11:12:56 -0400
+Message-id: <1461597176-5337-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH 1/2] arago-prefs: unpin libdrm, pick up latest available
+In-reply-to: <1461597176-5337-1-git-send-email-denis@denix.org>
+References: <1461597176-5337-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] external-linaro-sdk-toolchain: don't strip sysroots binaries
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,23 +42,21 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 3 ---
- 1 file changed, 3 deletions(-)
+ meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index bab6868..2d8368e 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -19,9 +19,6 @@ include conf/distro/include/qt5-versions.inc
- # Use the latest version of ltp-ddt for kernel versions 3.8+
- PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+index 32e93fc..f9cbedd 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+@@ -5,6 +5,7 @@ require external-linaro-bfd-version.inc
+ PR = "r5"
  
--# Use the latest version of libdrm
--PREFERRED_VERSION_libdrm = "2.4.66"
--
- PREFERRED_PROVIDER_virtual/gettext = "gettext"
+ INHIBIT_PACKAGE_STRIP = "1"
++INHIBIT_SYSROOT_STRIP = "1"
+ INHIBIT_DEFAULT_DEPS = "1"
+ EXCLUDE_FROM_SHLIBS = "1"
  
- ARAGO_QT_PROVIDER = "${@base_conditional('QT_PROVIDER','qt5','',base_contains('MACHINE_FEATURES','sgx','qt4-embedded-gles','qt4-embedded',d),d)}"
 -- 
 2.2.0
 
