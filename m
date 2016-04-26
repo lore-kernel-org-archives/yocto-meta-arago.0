@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id 3AE9652AC1
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 10E5E52AC7
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Apr 2016 19:29:06 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3PJT53A023293
-	for <meta-arago@arago-project.org>; Mon, 25 Apr 2016 14:29:05 -0500
+	Tue, 26 Apr 2016 05:54:46 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3Q5sj6E015757
+	for <meta-arago@arago-project.org>; Tue, 26 Apr 2016 00:54:45 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3PJT5g4008156
-	for <meta-arago@arago-project.org>; Mon, 25 Apr 2016 14:29:05 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3Q5sjoo019826
+	for <meta-arago@arago-project.org>; Tue, 26 Apr 2016 00:54:45 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 25 Apr 2016 14:29:04 -0500
+	Tue, 26 Apr 2016 00:54:44 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u3PJT4XG007630	for <meta-arago@arago-project.org>;
-	Mon, 25 Apr 2016 14:29:05 -0500
-Date: Mon, 25 Apr 2016 15:29:04 -0400
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u3Q5sjdZ019049	for <meta-arago@arago-project.org>;
+	Tue, 26 Apr 2016 00:54:45 -0500
+Date: Tue, 26 Apr 2016 01:54:45 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <1034479225.973.1461612544819.JavaMail.jenkins@puget>
+Message-ID: <382449518.975.1461650085023.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Job: arago-core-tisdk-master
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-04-25_15-00-32
+Subject: [nightly] Core TISDK (krogoth/2.1) 2016.04 build 2016-04-25_23-00-32
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,25 +36,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Apr 2016 19:29:07 -0000
+X-List-Received-Date: Tue, 26 Apr 2016 05:54:46 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_972_1757198167.1461612544787"
+	boundary="----=_Part_974_1580065760.1461650085013"
 
-------=_Part_972_1757198167.1461612544787
+------=_Part_974_1580065760.1461650085013
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
 <html>
 <head>
 <title>
-Status for 04/25/16
+Status for 04/26/16
 </title>
 </head>
 <body>
 
-<h2>Status for 04/25/16</h2>
+<h2>Status for 04/26/16</h2>
 
-<h2>BUILD_ID: build-2016-04-25_15-01-43</h2>
+<h2>BUILD_ID: build-2016-04-25_23-01-35</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -72,14 +72,14 @@ Status for 04/25/16
     <tr>
         <td>bitbake</td>
         <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
+        <td>master</td>
         <td>HEAD</td>
         <td>layers=</td>
     </tr>
     <tr>
         <td>meta-arago</td>
         <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
+        <td>master</td>
         <td>HEAD</td>
         <td>layers=meta-arago-distro:meta-arago-extras</td>
     </tr>
@@ -87,34 +87,34 @@ Status for 04/25/16
         <td>meta-qt5</td>
         <td>git://github.com/meta-qt5/meta-qt5.git</td>
         <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>HEAD</td>
         <td>layers=</td>
     </tr>
     <tr>
         <td>meta-openembedded</td>
         <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
+        <td>master</td>
         <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
     </tr>
     <tr>
         <td>meta-ti</td>
         <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
+        <td>master</td>
         <td>HEAD</td>
         <td>layers=</td>
     </tr>
     <tr>
         <td>meta-linaro</td>
         <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
+        <td>master</td>
         <td>HEAD</td>
         <td>layers=meta-linaro-toolchain</td>
     </tr>
     <tr>
         <td>oe-core</td>
         <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
+        <td>master</td>
         <td>HEAD</td>
         <td>layers=meta</td>
     </tr>
@@ -127,9 +127,54 @@ Status for 04/25/16
         <th>Target Test Result</th>
     </tr>
     <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am437x-hs-evm</td>
+        <td id="am437x-hs-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-hs-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
         <td>dra7xx-evm</td>
         <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
         <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-hs-evm</td>
+        <td id="dra7xx-hs-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-hs-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
 </table>
 
@@ -144,16 +189,18 @@ git://arago-project.org/git/projects/tisdk-build-scripts.git
 The configuration file passed to this script had the contents:
 </p>
 <p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="dra7xx-evm"<br>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.04"<br>
+MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
 NUM_ARM9_BUILDS="1"<br>
 NUM_CORTEX_BUILDS="1"<br>
 TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
 BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
 SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master"<br>
 TEST_ROOT="$BUILD_ROOT/testing"<br>
 PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
 DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
@@ -166,7 +213,7 @@ SOURCE_DIR="${BUILD_ROOT}/sources"<br>
 CLEAN_BUILD="false"<br>
 CLEAN_SSTATE="false"<br>
 CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"<br>
 LOG_DIR="${BUILD_ROOT}/log-files"<br>
 BUILD_LOG_VERBOSE="true"<br>
 DL_DIR="/OE/downloads"<br>
@@ -200,13 +247,13 @@ EXPORT_ARAGO_SRC="0"<br>
 COPY_TO_WEB="true"<br>
 COPY_DEPLOY_TO_WEB="true"<br>
 COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
 CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
 </p>
 
 </body>
 </html>
 
 
-------=_Part_972_1757198167.1461612544787--
+------=_Part_974_1580065760.1461650085013--
