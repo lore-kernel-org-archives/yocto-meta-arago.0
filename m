@@ -1,27 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id 561CD52ADA
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 38A6652AF8
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Apr 2016 22:46:29 +0000 (UTC)
-Received: from vz-proxy-l003.mx.aol.com ([64.236.82.155])
-	by vms173013.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O6F00GI539G1U50@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 29 Apr 2016 17:46:29 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=i+tV1o3iWEoTTvx3QNPGxA==:117
-	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=i3vjkGWEehO7jjUfOZgA:9
-Received: by 100.15.86.14 with SMTP id 6cca91ae; Fri, 29 Apr 2016 22:46:28 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 69487161FCE;	Fri,
-	29 Apr 2016 18:46:28 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 29 Apr 2016 18:46:27 -0400
-Message-id: <1461969987-32602-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] arago.conf, packagegroup-*-gst, glsdk-example: simplify gstreamer dependencies
+	Sat, 30 Apr 2016 00:00:01 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3U000S0002035
+	for <meta-arago@arago-project.org>; Fri, 29 Apr 2016 19:00:00 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3U000F1015500
+	for <meta-arago@arago-project.org>; Fri, 29 Apr 2016 19:00:00 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 29 Apr 2016 18:59:59 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3TNxx7O016663	for
+	<meta-arago@arago-project.org>; Fri, 29 Apr 2016 18:59:59 -0500
+Date: Fri, 29 Apr 2016 19:59:44 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20160429235943.GF1546@edge>
+References: <20160127210049.58111529C9@arago-project.org>
+	<20160428194623.GA17066@denix.org>
+MIME-Version: 1.0
+In-Reply-To: <20160428194623.GA17066@denix.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: Re: [arago-commits] Gou, Hongmei : weston-init: update init scripts related to restarting Weston
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,159 +37,110 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Apr 2016 22:46:30 -0000
+X-List-Received-Date: Sat, 30 Apr 2016 00:00:02 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Ping.
 
-Since gstreamer 0.10 is now completely gone, no need to support both 0.10 and 1.x
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf           |  5 ----
- .../packagegroup-arago-gst-sdk-target.bb           | 18 ++++-----------
- .../packagegroups/packagegroup-arago-gst.bb        | 27 ++++++----------------
- .../glsdk-example-apps/glsdk-example-apps.bb       |  2 +-
- 4 files changed, 13 insertions(+), 39 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 1d68622..409b96a 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -35,8 +35,6 @@ DISTRO_FEATURES_BACKFILL_CONSIDERED = "bluez5"
- # Set additional distro features
- DISTRO_FEATURES += "pam wayland opengl"
- 
--# Set preferred gstreamer version (0.10 vs 1.0)
--GST_PROVIDER ?= "1.0"
- 
- # Set preferred Qt version
- QT_PROVIDER ?= "qt5"
-@@ -48,9 +46,6 @@ PACKAGECONFIG_pn-weston = "egl kms launch libinput"
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
- PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples"
- 
--# Configure gstreamer dependency based on GST_PROVIDER
--PACKAGECONFIG_pn-qtwebkit = "${@base_conditional('GST_PROVIDER', '0.10', 'gstreamer010', 'gstreamer', d)} qtlocation qtmultimedia qtsensors"
--
- # Add gstreamer in package configuration to enable video
- PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-index 8a331e4..84e7244 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-@@ -1,20 +1,12 @@
- DESCRIPTION = "Task to build and install header and libs in sdk"
- LICENSE = "MIT"
--PR = "r12"
-+PR = "r13"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- inherit packagegroup
- 
--GST_010_DEPS = " \
--    gstreamer-dev \
--    gst-plugins-base-dev \
--    gst-plugins-good-dev \
--    gst-plugins-bad-dev \
--    gst-ffmpeg-dev \
--"
--
--GST_1X_DEPS = " \
-+GSTREAMER_DEPS = " \
-     gstreamer1.0-dev \
-     gstreamer1.0-plugins-base-dev \
-     gstreamer1.0-plugins-good-dev \
-@@ -22,14 +14,14 @@ GST_1X_DEPS = " \
-     gstreamer1.0-libav-dev \
- "
- 
--GST_1X_DEPS_append_dra7xx = " \
-+GSTREAMER_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc-dev \
- "
- 
--GST_1X_DEPS_append_keystone = " \
-+GSTREAMER_DEPS_append_keystone = " \
-     gstreamer1.0-plugins-hevc-dev \
- "
- 
- RDEPENDS_${PN} = " \
--    ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
-+    ${GSTREAMER_DEPS} \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index 0ba7423..75a2579 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -1,23 +1,12 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
--PR = "r15"
-+PR = "r16"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- inherit packagegroup
- 
--GST_010_DEPS = " \
--    gstreamer \
--    gst-plugins-base \
--    gst-plugins-good \
--    gst-plugins-bad \
--    gst-plugins-base-meta \
--    gst-plugins-good-meta \
--    gst-plugins-bad-meta \
--    gst-ffmpeg \
--"
--
--GST_1X_DEPS = " \
-+GSTREAMER_DEPS = " \
-     gstreamer1.0 \
-     gstreamer1.0-plugins-base \
-     gstreamer1.0-plugins-good \
-@@ -28,21 +17,19 @@ GST_1X_DEPS = " \
-     gstreamer1.0-libav \
- "
- 
--GST_1X_DEPS_append_dra7xx = " \
-+GSTREAMER_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc \
- "
- 
--GST_1X_DEPS_append_keystone = " \
-+GSTREAMER_DEPS_append_keystone = " \
-     gstreamer1.0-plugins-hevc \
- "
- 
--GST_PLUGINS_PREFIX = "${@base_conditional('GST_PROVIDER', '0.10', 'gst-plugins', 'gstreamer1.0-plugins', d)}"
--
- GSTREAMER_ACCEL_MM = ""
--GSTREAMER_ACCEL_MM_omap-a15 = "${@base_contains('MACHINE_FEATURES', 'mmip', "${GST_PLUGINS_PREFIX}-ducati", '', d)}"
--GSTREAMER_ACCEL_MM_append_dra7xx = "${@base_contains('MACHINE_FEATURES', 'mmip', " ${GST_PLUGINS_PREFIX}-vpe", '', d)}"
-+GSTREAMER_ACCEL_MM_omap-a15 = "${@base_contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
-+GSTREAMER_ACCEL_MM_append_dra7xx = "${@base_contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
- 
- RDEPENDS_${PN} = "\
--    ${@base_conditional('GST_PROVIDER', '0.10', "${GST_010_DEPS}", "${GST_1X_DEPS}", d)} \
-+    ${GSTREAMER_DEPS} \
-     ${GSTREAMER_ACCEL_MM} \
-     "
-diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-index 8feed34..b4efe08 100644
---- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-+++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "http://git.ti.com/glsdk"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=10a9abb9c5bb19edd83a8cf66eef7148"
- 
--DEPENDS = "${@base_conditional('GST_PROVIDER', '0.10', 'gstreamer', 'gstreamer1.0', d)} libdrm ti-ipc"
-+DEPENDS = "gstreamer1.0 libdrm ti-ipc"
- 
- COMPATIBLE_MACHINE = "dra7xx"
- 
--- 
-2.2.0
-
+On Thu, Apr 28, 2016 at 03:46:23PM -0400, Denys Dmytriyenko wrote:
+> So, I was looking into Weston init script lately for another reason and 
+> noticed there was a hole in its logic. From the logs I came to this commit 
+> made few months ago. Particularly, I'm interested why the first part of the 
+> change was made:
+> 
+> * Bypass restarting Weston if SD card has calibration file already
+> 
+> This seems incorrect, because if calibration file is only available on SD 
+> card, it has to be copied to /etc and in order to take immediate effect, udev 
+> has to be reloaded and weston has to be restarted, which how it used to be 
+> before. Why is this now bypassed? Please provide details of what this change 
+> is meant to address and how is it supposed to work. Thanks.
+> 
+> -- 
+> Denys
+> 
+> 
+> On Wed, Jan 27, 2016 at 09:00:49PM +0000, Arago Project git wrote:
+> > Module: meta-arago
+> > Branch: master
+> > Commit: b057be5db06e0f2e0ebb649841e64f60a997c2c1
+> > URL:    http://arago-project.org/git/meta-arago.git?a=commit;h=b057be5db06e0f2e0ebb649841e64f60a997c2c1
+> > 
+> > Author: Gou, Hongmei <h-gou@ti.com>
+> > Date:   Thu Jan 28 01:48:05 2016 +0000
+> > 
+> > weston-init: update init scripts related to restarting Weston
+> > 
+> > * Bypass restarting Weston if SD card has calibration file already
+> > 
+> > * Increase the sleep time before Weston is restarted
+> >   It takes some time to complete the Weston termination procedure.
+> >   If Weston is restarted before the previous instance is fully
+> >   terminated, the restart of Weston will fail.
+> > 
+> > Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > 
+> > ---
+> > 
+> >  .../recipes-graphics/wayland/weston-init.bbappend  |    2 +-
+> >  .../recipes-graphics/wayland/weston-init/init      |    7 ++++---
+> >  2 files changed, 5 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> > index d9e15b6..4b5ad93 100644
+> > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> > @@ -1,4 +1,4 @@
+> > -PR_append = "-arago4"
+> > +PR_append = "-arago5"
+> >  
+> >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >  
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+> > index 2e2ae36..494584f 100644
+> > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+> > @@ -63,8 +63,9 @@ case "$1" in
+> >          # Check if SD card has a calibration rules file
+> >          SD_CALUDEV_FILE=/run/media/mmcblk0p1/ws-calibrate.rules
+> >          if [ "$SD_MOUNTED" = "1" -a -f "$SD_CALUDEV_FILE" ] ; then
+> > -            # Copy it over to udev location
+> > +            # Copy it over to udev location, and done
+> >              cp "$SD_CALUDEV_FILE" "$WS_CALUDEV_FILE"
+> > +            exit 0
+> >          else
+> >              # Run a calibration app and save output to udev rules
+> >              echo    "Calibrating touchscreen (first time only)"
+> > @@ -85,7 +86,7 @@ case "$1" in
+> >          udevadm control --reload
+> >          udevadm trigger
+> >          killproc weston
+> > -        sleep 1
+> > +        sleep 2
+> >          openvt -c 4 -f runWeston
+> >    ;;
+> >  
+> > @@ -96,7 +97,7 @@ case "$1" in
+> >  
+> >    restart)
+> >  	$0 stop
+> > -        sleep 1
+> > +        sleep 2
+> >          $0 start
+> >    ;;
+> >  
+> > 
+> > _______________________________________________
+> > arago-commits mailing list
+> > arago-commits@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/arago-commits
+> > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
