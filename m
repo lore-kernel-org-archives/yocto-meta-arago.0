@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 38A6652AF8
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 1976952004
 	for <meta-arago@arago-project.org>;
-	Sat, 30 Apr 2016 00:00:01 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u3U000S0002035
-	for <meta-arago@arago-project.org>; Fri, 29 Apr 2016 19:00:00 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3U000F1015500
-	for <meta-arago@arago-project.org>; Fri, 29 Apr 2016 19:00:00 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 29 Apr 2016 18:59:59 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u3TNxx7O016663	for
-	<meta-arago@arago-project.org>; Fri, 29 Apr 2016 18:59:59 -0500
-Date: Fri, 29 Apr 2016 19:59:44 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20160429235943.GF1546@edge>
-References: <20160127210049.58111529C9@arago-project.org>
-	<20160428194623.GA17066@denix.org>
-MIME-Version: 1.0
-In-Reply-To: <20160428194623.GA17066@denix.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [arago-commits] Gou, Hongmei : weston-init: update init scripts related to restarting Weston
+	Sat, 30 Apr 2016 01:20:01 +0000 (UTC)
+Received: from vz-proxy-l005.mx.aol.com ([64.236.82.152])
+	by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O6F00EJ4ACSFU50@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 29 Apr 2016 20:19:46 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
+	a=kziv93cY1bsA:10 a=sozttTNsAAAA:8	a=Ur62FL3oYWbrJEDz5v4A:9
+Received: by 100.15.86.14 with SMTP id 5b4d9e14; Sat, 30 Apr 2016 01:19:45 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 3A2E1161FD0;	Fri,
+	29 Apr 2016 21:19:40 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 29 Apr 2016 21:19:39 -0400
+Message-id: <1461979179-7317-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] arago.conf, images, packagegroups: add systemd initial support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,110 +34,108 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Apr 2016 00:00:02 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 30 Apr 2016 01:20:01 -0000
 
-Ping.
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/arago.conf               | 18 +++++++++++++-----
+ meta-arago-distro/conf/distro/include/arago-prefs.inc  |  8 --------
+ meta-arago-distro/recipes-core/images/arago-image.inc  |  5 -----
+ .../packagegroup-arago-standalone-sdk-target.bb        |  3 +--
+ 4 files changed, 14 insertions(+), 20 deletions(-)
 
-On Thu, Apr 28, 2016 at 03:46:23PM -0400, Denys Dmytriyenko wrote:
-> So, I was looking into Weston init script lately for another reason and 
-> noticed there was a hole in its logic. From the logs I came to this commit 
-> made few months ago. Particularly, I'm interested why the first part of the 
-> change was made:
-> 
-> * Bypass restarting Weston if SD card has calibration file already
-> 
-> This seems incorrect, because if calibration file is only available on SD 
-> card, it has to be copied to /etc and in order to take immediate effect, udev 
-> has to be reloaded and weston has to be restarted, which how it used to be 
-> before. Why is this now bypassed? Please provide details of what this change 
-> is meant to address and how is it supposed to work. Thanks.
-> 
-> -- 
-> Denys
-> 
-> 
-> On Wed, Jan 27, 2016 at 09:00:49PM +0000, Arago Project git wrote:
-> > Module: meta-arago
-> > Branch: master
-> > Commit: b057be5db06e0f2e0ebb649841e64f60a997c2c1
-> > URL:    http://arago-project.org/git/meta-arago.git?a=commit;h=b057be5db06e0f2e0ebb649841e64f60a997c2c1
-> > 
-> > Author: Gou, Hongmei <h-gou@ti.com>
-> > Date:   Thu Jan 28 01:48:05 2016 +0000
-> > 
-> > weston-init: update init scripts related to restarting Weston
-> > 
-> > * Bypass restarting Weston if SD card has calibration file already
-> > 
-> > * Increase the sleep time before Weston is restarted
-> >   It takes some time to complete the Weston termination procedure.
-> >   If Weston is restarted before the previous instance is fully
-> >   terminated, the restart of Weston will fail.
-> > 
-> > Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > 
-> > ---
-> > 
-> >  .../recipes-graphics/wayland/weston-init.bbappend  |    2 +-
-> >  .../recipes-graphics/wayland/weston-init/init      |    7 ++++---
-> >  2 files changed, 5 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-> > index d9e15b6..4b5ad93 100644
-> > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-> > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-> > @@ -1,4 +1,4 @@
-> > -PR_append = "-arago4"
-> > +PR_append = "-arago5"
-> >  
-> >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> >  
-> > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-> > index 2e2ae36..494584f 100644
-> > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-> > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-> > @@ -63,8 +63,9 @@ case "$1" in
-> >          # Check if SD card has a calibration rules file
-> >          SD_CALUDEV_FILE=/run/media/mmcblk0p1/ws-calibrate.rules
-> >          if [ "$SD_MOUNTED" = "1" -a -f "$SD_CALUDEV_FILE" ] ; then
-> > -            # Copy it over to udev location
-> > +            # Copy it over to udev location, and done
-> >              cp "$SD_CALUDEV_FILE" "$WS_CALUDEV_FILE"
-> > +            exit 0
-> >          else
-> >              # Run a calibration app and save output to udev rules
-> >              echo    "Calibrating touchscreen (first time only)"
-> > @@ -85,7 +86,7 @@ case "$1" in
-> >          udevadm control --reload
-> >          udevadm trigger
-> >          killproc weston
-> > -        sleep 1
-> > +        sleep 2
-> >          openvt -c 4 -f runWeston
-> >    ;;
-> >  
-> > @@ -96,7 +97,7 @@ case "$1" in
-> >  
-> >    restart)
-> >  	$0 stop
-> > -        sleep 1
-> > +        sleep 2
-> >          $0 start
-> >    ;;
-> >  
-> > 
-> > _______________________________________________
-> > arago-commits mailing list
-> > arago-commits@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/arago-commits
-> > 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 409b96a..de6064e 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -28,13 +28,21 @@ IMAGE_FSTYPES += "tar.gz.md5 tar.xz.md5"
+ # Also build 32bit Pseudo on 64bit machines, fix error when preloading libpseudo.so
+ NO32LIBS = "0"
+ 
+-# Set our distro features, don't forget all the standard libc ones
+-DISTRO_FEATURES = "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g ipv4 ipv6 pulseaudio ${DISTRO_FEATURES_LIBC}"
+-DISTRO_FEATURES_BACKFILL_CONSIDERED = "bluez5"
++# Start with default set of distro features
++DISTRO_FEATURES = "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}"
+ 
+-# Set additional distro features
+-DISTRO_FEATURES += "pam wayland opengl"
++# Remove some unwanted features
++DISTRO_FEATURES_remove = "x11"
++DISTRO_FEATURES_BACKFILL_CONSIDERED = "bluez5 sysvinit"
+ 
++# Add additional distro features
++DISTRO_FEATURES_append = " pam wayland opengl systemd"
++
++# Set global runtime providers for major components
++VIRTUAL-RUNTIME_dev_manager = "systemd"
++VIRTUAL-RUNTIME_init_manager = "systemd"
++VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
++VIRTUAL-RUNTIME_login_manager = "busybox shadow"
+ 
+ # Set preferred Qt version
+ QT_PROVIDER ?= "qt5"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index b64d0d3..14a7c8a 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -45,10 +45,6 @@ PREFERRED_PROVIDER_virtual/bootloader = "u-boot-ti-staging"
+ PREFERRED_PROVIDER_u-boot = "u-boot-ti-staging"
+ PREFERRED_VERSION_u-boot-ti-staging = "2016.05%"
+ 
+-# Pin down udev version from oe-core, as meta-oe pulls in newer systemd-enhanced version
+-PREFERRED_VERSION_eudev = "3.1.5"
+-PREFERRED_PROVIDER_eudev = "eudev"
+-
+ PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
+ 
+ # Setting PREFERRED_VERSIONS due to selecting a specific version of a library or
+@@ -70,7 +66,3 @@ PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
+ PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
+ PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
+ PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
+-
+-def filter_out(f, str, d):
+-    from re import match
+-    return " ".join(filter(lambda x: not match(f, x, 0), str.split()))
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
+index c14a5ee..7fb5726 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -8,11 +8,6 @@ IMAGE_FEATURES += "package-management splash"
+ # 4KB per 1 inode should be enough
+ EXTRA_IMAGECMD_ext2.gz += "-i 4096"
+ 
+-VIRTUAL-RUNTIME_dev_manager = "udev"
+-VIRTUAL-RUNTIME_init_manager = "sysvinit"
+-VIRTUAL-RUNTIME_initscripts = "initscripts"
+-VIRTUAL-RUNTIME_login_manager = "tinylogin shadow"
+-
+ ARAGO_IMAGE_EXTRA_INSTALL ?= ""
+ 
+ IMAGE_INSTALL += " \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+index e9a0e0b..e2f4f50 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+@@ -1,5 +1,5 @@
+ DESCRIPTION = "Target packages for the standalone SDK"
+-PR = "r11"
++PR = "r12"
+ LICENSE = "MIT"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -31,7 +31,6 @@ RDEPENDS_${PN} = "\
+     zlib-dev \
+     ncurses-dev \
+     opkg-dev \
+-    sysvinit-dev \
+     util-linux-dev \
+     ${@base_conditional('TCMODE', 'external-linaro', 'libgomp-dev', '', d)} \
+     "
+-- 
+2.2.0
+
 
