@@ -1,32 +1,29 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 4009152A8C
+Return-Path: <j-stiffler@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id BBDB252A1C
 	for <meta-arago@arago-project.org>;
-	Mon,  2 May 2016 17:59:11 +0000 (UTC)
+	Mon,  2 May 2016 18:59:47 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u42HxApd014703
-	for <meta-arago@arago-project.org>; Mon, 2 May 2016 12:59:10 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u42HxA56005227
-	for <meta-arago@arago-project.org>; Mon, 2 May 2016 12:59:10 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 2 May 2016 12:59:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u42HxA75020150;
-	Mon, 2 May 2016 12:59:10 -0500
-Date: Mon, 2 May 2016 13:58:55 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20160502175854.GN1546@edge>
-References: <20160428190038.C1285529EF@arago-project.org>
-	<4B26FB5A64EBA14C87266869E037F9581426AD99@DFLE09.ent.ti.com>
-	<20160502171436.GI1546@edge> <20160502173718.GK1546@edge>
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u42IxlgG017847
+	for <meta-arago@arago-project.org>; Mon, 2 May 2016 13:59:47 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u42Ixljn005091
+	for <meta-arago@arago-project.org>; Mon, 2 May 2016 13:59:47 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0224.002; Mon, 2 May 2016 13:59:47 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: k2 build failures
+Thread-Index: AdGknwkd99uUCvbuTRSxk3OTvKx+Gg==
+Date: Mon, 2 May 2016 18:59:47 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F9581426AF5A@DFLE09.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.221]
 MIME-Version: 1.0
-In-Reply-To: <20160502173718.GK1546@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-ti] Sam Nelson : cmem: Update to new eng version 4.11.00.00_eng
+Subject: k2 build failures
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,100 +36,112 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 17:59:12 -0000
+X-List-Received-Date: Mon, 02 May 2016 18:59:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4B26FB5A64EBA14C87266869E037F9581426AF5ADFLE09entticom_"
+
+--_000_4B26FB5A64EBA14C87266869E037F9581426AF5ADFLE09entticom_
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Moving discussion to meta-arago.
-What about ipsecmgr breakage?
+With migrating to krogoth, the k2 build failures are due to conflicts betwe=
+en the ocl-gl-headers and mesa, and I've discovered why mesa is being pulle=
+d in.
 
+In the opencv recipe, we are inheriting "cmake_qt5". This bbclass was chang=
+ed to add the dependency on qtbase, and this brings in mesa for keystone.
 
-On Mon, May 02, 2016 at 01:37:18PM -0400, Denys Dmytriyenko wrote:
-> On Mon, May 02, 2016 at 01:14:36PM -0400, Denys Dmytriyenko wrote:
-> > Sam,
-> 
-> Sorry, I was thinking Jake, but writing Sam due to the quoted commit below... :)
-> 
-> 
-> > I don't think anything was removed or disabled in meta-ti. Other than that, 
-> > yes, in due time cmem dependencies will be re-enabled in meta-arago.
-> > 
-> > -- 
-> > Denys
-> > 
-> > 
-> > On Mon, May 02, 2016 at 10:32:26AM -0400, Stiffler, Jacob wrote:
-> > > Denys,
-> > > 
-> > > Now that the build issue with CMEM has been resolved, will you be reverting 
-> > > the hacks to remove everything that depended on CMEM?
-> > > 
-> > > Thank you,
-> > > Jake
-> > > 
-> > > > -----Original Message-----
-> > > > From: meta-ti-bounces@yoctoproject.org [mailto:meta-ti-
-> > > > bounces@yoctoproject.org] On Behalf Of Arago Project git
-> > > > Sent: Thursday, April 28, 2016 3:01 PM
-> > > > To: meta-ti@yoctoproject.org
-> > > > Subject: [meta-ti] Sam Nelson : cmem: Update to new eng version
-> > > > 4.11.00.00_eng
-> > > > 
-> > > > Module: meta-ti
-> > > > Branch: master
-> > > > Commit: 257a370e7aec4a8954e79697deafec2cd7c2301d
-> > > > URL:    http://arago-project.org/git/meta-
-> > > > ti.git?a=commit;h=257a370e7aec4a8954e79697deafec2cd7c2301d
-> > > > 
-> > > > Author: Sam Nelson <sam.nelson@ti.com>
-> > > > Date:   Thu Apr 28 00:19:45 2016 +0000
-> > > > 
-> > > > cmem: Update to new eng version 4.11.00.00_eng
-> > > > 
-> > > > Resolves issues with kernel version 4.4
-> > > > 
-> > > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > > 
-> > > > ---
-> > > > 
-> > > >  recipes-bsp/cmem/cmem.inc |    6 +++---
-> > > >  1 files changed, 3 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/recipes-bsp/cmem/cmem.inc b/recipes-bsp/cmem/cmem.inc
-> > > > index 19d333c..413f925 100644
-> > > > --- a/recipes-bsp/cmem/cmem.inc
-> > > > +++ b/recipes-bsp/cmem/cmem.inc
-> > > > @@ -4,10 +4,10 @@ LICENSE = "GPLv2"
-> > > >  LIC_FILES_CHKSUM =
-> > > > "file://include/ti/cmem.h;beginline=1;endline=30;md5=9b745e2765a6ba8a6
-> > > > 36c91aed4b02ac1"
-> > > > 
-> > > >  BRANCH ?= "lu-next"
-> > > > -# This corresponds to version 4.10.02.05_eng -SRCREV =
-> > > > "8df44102413c2d653341c5b7e6caee882e206d8c"
-> > > > +# This corresponds to version 4.11.00.00_eng SRCREV =
-> > > > +"852e97b5584cbdb6aa0fdef02a7c4e245409bcb6"
-> > > > 
-> > > > -PV = "4.10.02.05+git${SRCPV}"
-> > > > +PV = "4.11.00.00+git${SRCPV}"
-> > > > 
-> > > >  SRC_URI = "git://git.ti.com/ipc/ludev.git;protocol=git;branch=${BRANCH}"
-> > > > 
-> > > > 
-> > > > --
-> > > > _______________________________________________
-> > > > meta-ti mailing list
-> > > > meta-ti@yoctoproject.org
-> > > > https://lists.yoctoproject.org/listinfo/meta-ti
-> > -- 
-> > _______________________________________________
-> > meta-ti mailing list
-> > meta-ti@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/meta-ti
-> -- 
-> _______________________________________________
-> meta-ti mailing list
-> meta-ti@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-ti
+I'm not sure of the best way to handle this. The easiest hack is the remove=
+ qtbase from the opencv dependencies for keystone only.
 
+Would it be possible to replace opencl's dependency on "ocl-gl-headers" wit=
+h "mesa-gl"? In the past, I made some attempts to use "mesa", but with the =
+SGX platforms, there was always a conflict with the ti sgx drivers, as both=
+ were installing common gles files. I do not remember mesa-gl being an opti=
+on before.
+
+Thank you,
+Jake
+
+--_000_4B26FB5A64EBA14C87266869E037F9581426AF5ADFLE09entticom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">With migrating to krogoth, the k2 build failures are=
+ due to conflicts between the ocl-gl-headers and mesa, and I&#8217;ve disco=
+vered why mesa is being pulled in.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In the opencv recipe, we are inheriting &#8220;cmake=
+_qt5&#8221;. This bbclass was changed to add the dependency on qtbase, and =
+this brings in mesa for keystone.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m not sure of the best way to handle this. T=
+he easiest hack is the remove qtbase from the opencv dependencies for keyst=
+one only.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Would it be possible to replace opencl&#8217;s depen=
+dency on &#8220;ocl-gl-headers&#8221; with &#8220;mesa-gl&#8221;? In the pa=
+st, I made some attempts to use &#8220;mesa&#8221;, but with the SGX platfo=
+rms, there was always a conflict with the ti sgx drivers, as both were inst=
+alling
+ common gles files. I do not remember mesa-gl being an option before.<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jake <o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_4B26FB5A64EBA14C87266869E037F9581426AF5ADFLE09entticom_--
