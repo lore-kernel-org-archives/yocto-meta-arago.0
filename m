@@ -1,27 +1,32 @@
-Return-Path: <denis@denix.org>
-Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
-	[206.46.173.15])
-	by arago-project.org (Postfix) with ESMTPS id 910FC529E6
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by arago-project.org (Postfix) with ESMTPS id 4009152A8C
 	for <meta-arago@arago-project.org>;
-	Mon,  2 May 2016 16:51:20 +0000 (UTC)
-Received: from vz-proxy-l005.mx.aol.com ([64.236.82.152])
-	by vms173015.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O6K004986SV12B0@vms173015.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 02 May 2016 11:51:05 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
-	a=yrkiwgmsf1kA:10 a=sozttTNsAAAA:8	a=BoIP8E-Byk5kaewDEQsA:9
-Received: by 100.15.86.14 with SMTP id 45ea7406; Mon, 02 May 2016 16:51:05 GMT
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id C78D7161FCE;	Mon,
-	2 May 2016 12:50:54 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 02 May 2016 12:50:54 -0400
-Message-id: <1462207854-4146-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] busybox: finally drop local copies of inetd files
+	Mon,  2 May 2016 17:59:11 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u42HxApd014703
+	for <meta-arago@arago-project.org>; Mon, 2 May 2016 12:59:10 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u42HxA56005227
+	for <meta-arago@arago-project.org>; Mon, 2 May 2016 12:59:10 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 2 May 2016 12:59:09 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u42HxA75020150;
+	Mon, 2 May 2016 12:59:10 -0500
+Date: Mon, 2 May 2016 13:58:55 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Message-ID: <20160502175854.GN1546@edge>
+References: <20160428190038.C1285529EF@arago-project.org>
+	<4B26FB5A64EBA14C87266869E037F9581426AD99@DFLE09.ent.ti.com>
+	<20160502171436.GI1546@edge> <20160502173718.GK1546@edge>
+MIME-Version: 1.0
+In-Reply-To: <20160502173718.GK1546@edge>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-ti] Sam Nelson : cmem: Update to new eng version 4.11.00.00_eng
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,100 +39,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 16:51:20 -0000
+X-List-Received-Date: Mon, 02 May 2016 17:59:12 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Moving discussion to meta-arago.
+What about ipsecmgr breakage?
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/busybox/busybox/inetd             | 33 ----------------------
- .../recipes-core/busybox/busybox/inetd.conf        | 20 -------------
- .../recipes-core/busybox/busybox_%.bbappend        |  7 +----
- 3 files changed, 1 insertion(+), 59 deletions(-)
- delete mode 100755 meta-arago-distro/recipes-core/busybox/busybox/inetd
- delete mode 100644 meta-arago-distro/recipes-core/busybox/busybox/inetd.conf
 
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox/inetd b/meta-arago-distro/recipes-core/busybox/busybox/inetd
-deleted file mode 100755
-index cf50bcd..0000000
---- a/meta-arago-distro/recipes-core/busybox/busybox/inetd
-+++ /dev/null
-@@ -1,33 +0,0 @@
--#!/bin/sh
--#
--# start/stop inetd super server.
--
--if ! [ -x /usr/sbin/inetd ]; then
--	exit 0
--fi
--
--case "$1" in
--    start)
--	echo -n "Starting internet superserver:"
--	echo -n " inetd" ; start-stop-daemon -S -x /usr/sbin/inetd > /dev/null
--	echo "."
--	;;
--    stop)
--	echo -n "Stopping internet superserver:"
--	echo -n " inetd" ; start-stop-daemon -K -x /usr/sbin/inetd > /dev/null
--	echo "."
--	;;
--    restart)
--	echo -n "Restarting internet superserver:"
--	echo -n " inetd "
--	killall -HUP inetd
--	echo "."
--	;;
--    *)
--	echo "Usage: /etc/init.d/inetd {start|stop|restart}"
--	exit 1
--	;;
--esac
--
--exit 0
--
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox/inetd.conf b/meta-arago-distro/recipes-core/busybox/busybox/inetd.conf
-deleted file mode 100644
-index b02fe85..0000000
---- a/meta-arago-distro/recipes-core/busybox/busybox/inetd.conf
-+++ /dev/null
-@@ -1,20 +0,0 @@
--# /etc/inetd.conf:  see inetd(8) for further informations.
--#
--# Internet server configuration database
--#
--# If you want to disable an entry so it isn't touched during
--# package updates just comment it out with a single '#' character.
--#
--# <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>
--#
--#:INTERNAL: Internal services
--#echo		stream	tcp	nowait	root	internal
--#echo		dgram	udp	wait	root	internal
--#chargen	stream	tcp	nowait	root	internal
--#chargen	dgram	udp	wait	root	internal
--#discard		stream	tcp	nowait	root	internal
--#discard		dgram	udp	wait	root	internal
--#daytime		stream	tcp	nowait	root	internal
--#daytime	dgram	udp	wait	root	internal
--#time		stream	tcp	nowait	root	internal
--#time		dgram	udp	wait	root	internal
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-index d85bfc5..e70f579 100644
---- a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-+++ b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-@@ -1,9 +1,4 @@
- # look for files in this layer first
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = "-arago19"
--
--SRC_URI += " \
--	file://inetd \
--	file://inetd.conf \
--"
-+PR_append = "-arago20"
--- 
-2.2.0
-
+On Mon, May 02, 2016 at 01:37:18PM -0400, Denys Dmytriyenko wrote:
+> On Mon, May 02, 2016 at 01:14:36PM -0400, Denys Dmytriyenko wrote:
+> > Sam,
+> 
+> Sorry, I was thinking Jake, but writing Sam due to the quoted commit below... :)
+> 
+> 
+> > I don't think anything was removed or disabled in meta-ti. Other than that, 
+> > yes, in due time cmem dependencies will be re-enabled in meta-arago.
+> > 
+> > -- 
+> > Denys
+> > 
+> > 
+> > On Mon, May 02, 2016 at 10:32:26AM -0400, Stiffler, Jacob wrote:
+> > > Denys,
+> > > 
+> > > Now that the build issue with CMEM has been resolved, will you be reverting 
+> > > the hacks to remove everything that depended on CMEM?
+> > > 
+> > > Thank you,
+> > > Jake
+> > > 
+> > > > -----Original Message-----
+> > > > From: meta-ti-bounces@yoctoproject.org [mailto:meta-ti-
+> > > > bounces@yoctoproject.org] On Behalf Of Arago Project git
+> > > > Sent: Thursday, April 28, 2016 3:01 PM
+> > > > To: meta-ti@yoctoproject.org
+> > > > Subject: [meta-ti] Sam Nelson : cmem: Update to new eng version
+> > > > 4.11.00.00_eng
+> > > > 
+> > > > Module: meta-ti
+> > > > Branch: master
+> > > > Commit: 257a370e7aec4a8954e79697deafec2cd7c2301d
+> > > > URL:    http://arago-project.org/git/meta-
+> > > > ti.git?a=commit;h=257a370e7aec4a8954e79697deafec2cd7c2301d
+> > > > 
+> > > > Author: Sam Nelson <sam.nelson@ti.com>
+> > > > Date:   Thu Apr 28 00:19:45 2016 +0000
+> > > > 
+> > > > cmem: Update to new eng version 4.11.00.00_eng
+> > > > 
+> > > > Resolves issues with kernel version 4.4
+> > > > 
+> > > > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > > > 
+> > > > ---
+> > > > 
+> > > >  recipes-bsp/cmem/cmem.inc |    6 +++---
+> > > >  1 files changed, 3 insertions(+), 3 deletions(-)
+> > > > 
+> > > > diff --git a/recipes-bsp/cmem/cmem.inc b/recipes-bsp/cmem/cmem.inc
+> > > > index 19d333c..413f925 100644
+> > > > --- a/recipes-bsp/cmem/cmem.inc
+> > > > +++ b/recipes-bsp/cmem/cmem.inc
+> > > > @@ -4,10 +4,10 @@ LICENSE = "GPLv2"
+> > > >  LIC_FILES_CHKSUM =
+> > > > "file://include/ti/cmem.h;beginline=1;endline=30;md5=9b745e2765a6ba8a6
+> > > > 36c91aed4b02ac1"
+> > > > 
+> > > >  BRANCH ?= "lu-next"
+> > > > -# This corresponds to version 4.10.02.05_eng -SRCREV =
+> > > > "8df44102413c2d653341c5b7e6caee882e206d8c"
+> > > > +# This corresponds to version 4.11.00.00_eng SRCREV =
+> > > > +"852e97b5584cbdb6aa0fdef02a7c4e245409bcb6"
+> > > > 
+> > > > -PV = "4.10.02.05+git${SRCPV}"
+> > > > +PV = "4.11.00.00+git${SRCPV}"
+> > > > 
+> > > >  SRC_URI = "git://git.ti.com/ipc/ludev.git;protocol=git;branch=${BRANCH}"
+> > > > 
+> > > > 
+> > > > --
+> > > > _______________________________________________
+> > > > meta-ti mailing list
+> > > > meta-ti@yoctoproject.org
+> > > > https://lists.yoctoproject.org/listinfo/meta-ti
+> > -- 
+> > _______________________________________________
+> > meta-ti mailing list
+> > meta-ti@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/meta-ti
+> -- 
+> _______________________________________________
+> meta-ti mailing list
+> meta-ti@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/meta-ti
 
