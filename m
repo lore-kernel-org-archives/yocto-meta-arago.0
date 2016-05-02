@@ -1,27 +1,27 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id C095B529E6
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by arago-project.org (Postfix) with ESMTPS id 910FC529E6
 	for <meta-arago@arago-project.org>;
-	Mon,  2 May 2016 16:43:42 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u42GhgqU003777
-	for <meta-arago@arago-project.org>; Mon, 2 May 2016 11:43:42 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u42Ghglg006874
-	for <meta-arago@arago-project.org>; Mon, 2 May 2016 11:43:42 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 2 May 2016 11:43:42 -0500
-Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u42GhgZt024917;	Mon, 2 May 2016 11:43:42 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 2 May 2016 12:43:38 -0400
-Message-ID: <1462207418-62497-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] doxygen: Update to work with flex 2.6.0
+	Mon,  2 May 2016 16:51:20 +0000 (UTC)
+Received: from vz-proxy-l005.mx.aol.com ([64.236.82.152])
+	by vms173015.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O6K004986SV12B0@vms173015.mailsrvcs.net> for
+	meta-arago@arago-project.org; Mon, 02 May 2016 11:51:05 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
+	a=yrkiwgmsf1kA:10 a=sozttTNsAAAA:8	a=BoIP8E-Byk5kaewDEQsA:9
+Received: by 100.15.86.14 with SMTP id 45ea7406; Mon, 02 May 2016 16:51:05 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id C78D7161FCE;	Mon,
+	2 May 2016 12:50:54 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 02 May 2016 12:50:54 -0400
+Message-id: <1462207854-4146-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] busybox: finally drop local copies of inetd files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,112 +34,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 16:43:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 02 May 2016 16:51:20 -0000
 
-Build failure reported with flex 2.6.0.
-Added patch from
-https://trac.macports.org/attachment/ticket/49881/doxygen_flex2_6_0.diff
-to resolve issue.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../doxygen/doxygen/patch-flex_2_6_0.diff          | 66 ++++++++++++++++++++++
- .../recipes-devtools/doxygen/doxygen_1.8.9.1.bb    |  4 +-
- 2 files changed, 69 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-devtools/doxygen/doxygen/patch-flex_2_6_0.diff
+ .../recipes-core/busybox/busybox/inetd             | 33 ----------------------
+ .../recipes-core/busybox/busybox/inetd.conf        | 20 -------------
+ .../recipes-core/busybox/busybox_%.bbappend        |  7 +----
+ 3 files changed, 1 insertion(+), 59 deletions(-)
+ delete mode 100755 meta-arago-distro/recipes-core/busybox/busybox/inetd
+ delete mode 100644 meta-arago-distro/recipes-core/busybox/busybox/inetd.conf
 
-diff --git a/meta-arago-extras/recipes-devtools/doxygen/doxygen/patch-flex_2_6_0.diff b/meta-arago-extras/recipes-devtools/doxygen/doxygen/patch-flex_2_6_0.diff
-new file mode 100644
-index 0000000..36d7379
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/doxygen/doxygen/patch-flex_2_6_0.diff
-@@ -0,0 +1,66 @@
-+--- src/code.l.orig
-++++ src/code.l
-+@@ -3695,7 +3695,7 @@ void codeFreeScanner()
-+ extern "C" { // some bogus code to keep the compiler happy
-+   void codeYYdummy() { yy_flex_realloc(0,0); } 
-+ }
-+-#elif YY_FLEX_SUBMINOR_VERSION<33
-++#elif YY_FLEX_MAJOR_VERSION<=2 && YY_FLEX_MINOR_VERSION<=5 && YY_FLEX_SUBMINOR_VERSION<33
-+ #error "You seem to be using a version of flex newer than 2.5.4 but older than 2.5.33. These versions do NOT work with doxygen! Please use version <=2.5.4 or >=2.5.33 or expect things to be parsed wrongly!"
-+ #endif
-+ 
-+--- src/commentscan.l.orig
-++++ src/commentscan.l
-+@@ -1098,7 +1098,7 @@ RCSTAG    "$"{ID}":"[^\n$]+"$"
-+ 					      // but we need to know the position in the input buffer where this 
-+ 					      // rule matched.
-+ 					      // for flex 2.5.33+ we should use YY_CURRENT_BUFFER_LVALUE
-+-#if YY_FLEX_MINOR_VERSION>=5 && YY_FLEX_SUBMINOR_VERSION>=33
-++#if YY_FLEX_MAJOR_VERSION>=2 && (YY_FLEX_MINOR_VERSION>5 || (YY_FLEX_MINOR_VERSION==5 && YY_FLEX_SUBMINOR_VERSION>=33))
-+ 					      inputPosition=prevPosition + (int)(yy_bp - YY_CURRENT_BUFFER_LVALUE->yy_ch_buf);
-+ #else
-+ 					      inputPosition=prevPosition + (int)(yy_bp - yy_current_buffer->yy_ch_buf);
-+@@ -1160,7 +1160,7 @@ RCSTAG    "$"{ID}":"[^\n$]+"$"
-+                                           g_memberGroupHeader.resize(0);
-+ 					  parseMore=TRUE;
-+                                           needNewEntry = TRUE;
-+-#if YY_FLEX_MINOR_VERSION>=5 && YY_FLEX_SUBMINOR_VERSION>=33
-++#if YY_FLEX_MAJOR_VERSION>=2 && (YY_FLEX_MINOR_VERSION>5 || (YY_FLEX_MINOR_VERSION==5 && YY_FLEX_SUBMINOR_VERSION>=33))
-+ 				          inputPosition=prevPosition + (int)(yy_bp - YY_CURRENT_BUFFER_LVALUE->yy_ch_buf) + strlen(yytext);
-+ #else
-+ 				          inputPosition=prevPosition + (int)(yy_bp - yy_current_buffer->yy_ch_buf) + strlen(yytext);
-+
-+--- src/fortrancode.l.orig
-++++ src/fortrancode.l
-+@@ -1289,7 +1289,7 @@ void parseFortranCode(CodeOutputInterfac
-+ extern "C" { // some bogus code to keep the compiler happy
-+   void fortrancodeYYdummy() { yy_flex_realloc(0,0); } 
-+ }
-+-#elif YY_FLEX_SUBMINOR_VERSION<33
-++#elif YY_FLEX_MAJOR_VERSION<=2 && YY_FLEX_MINOR_VERSION<=5 && YY_FLEX_SUBMINOR_VERSION<33
-+ #error "You seem to be using a version of flex newer than 2.5.4 but older than 2.5.33. These versions do NOT work with doxygen! Please use version <=2.5.4 or >=2.5.33 or expect things to be parsed wrongly!"
-+ #else
-+ extern "C" { // some bogus code to keep the compiler happy
-+
-+--- src/pycode.l.orig
-++++ src/pycode.l        
-+@@ -1503,7 +1503,7 @@ void parsePythonCode(CodeOutputInterface
-+ extern "C" { // some bogus code to keep the compiler happy
-+   void pycodeYYdummy() { yy_flex_realloc(0,0); } 
-+ }
-+-#elif YY_FLEX_SUBMINOR_VERSION<33
-++#elif YY_FLEX_MAJOR_VERSION<=2 && YY_FLEX_MINOR_VERSION<=5 && YY_FLEX_SUBMINOR_VERSION<33
-+ #error "You seem to be using a version of flex newer than 2.5.4. These are currently incompatible with 2.5.4, and do NOT work with doxygen! Please use version 2.5.4 or expect things to be parsed wrongly! A bug report has been submitted (#732132)."
-+ #endif
-+ 
-+--- src/vhdlcode.l
-++++ src.a/vhdlcode.l
-+@@ -1613,7 +1613,7 @@ void codeFreeVhdlScanner()
-+ extern "C" { // some bogus code to keep the compiler happy
-+   void vhdlcodeYYdummy() { yy_flex_realloc(0,0); } 
-+ }
-+-#elif YY_FLEX_SUBMINOR_VERSION<33
-++#elif YY_FLEX_MAJOR_VERSION<=2 && YY_FLEX_MINOR_VERSION<=5 && YY_FLEX_SUBMINOR_VERSION<33
-+ #error "You seem to be using a version of flex newer than 2.5.4 but older than 2.5.33. These versions do NOT work with doxygen! Please use version <=2.5.4 or >=2.5.33 or expect things to be parsed wrongly!"
-+ #endif
-+ 
-diff --git a/meta-arago-extras/recipes-devtools/doxygen/doxygen_1.8.9.1.bb b/meta-arago-extras/recipes-devtools/doxygen/doxygen_1.8.9.1.bb
-index 23919e8..68594e1 100644
---- a/meta-arago-extras/recipes-devtools/doxygen/doxygen_1.8.9.1.bb
-+++ b/meta-arago-extras/recipes-devtools/doxygen/doxygen_1.8.9.1.bb
-@@ -6,10 +6,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b380c86cea229fa42b9e543fc491f5eb"
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/inetd b/meta-arago-distro/recipes-core/busybox/busybox/inetd
+deleted file mode 100755
+index cf50bcd..0000000
+--- a/meta-arago-distro/recipes-core/busybox/busybox/inetd
++++ /dev/null
+@@ -1,33 +0,0 @@
+-#!/bin/sh
+-#
+-# start/stop inetd super server.
+-
+-if ! [ -x /usr/sbin/inetd ]; then
+-	exit 0
+-fi
+-
+-case "$1" in
+-    start)
+-	echo -n "Starting internet superserver:"
+-	echo -n " inetd" ; start-stop-daemon -S -x /usr/sbin/inetd > /dev/null
+-	echo "."
+-	;;
+-    stop)
+-	echo -n "Stopping internet superserver:"
+-	echo -n " inetd" ; start-stop-daemon -K -x /usr/sbin/inetd > /dev/null
+-	echo "."
+-	;;
+-    restart)
+-	echo -n "Restarting internet superserver:"
+-	echo -n " inetd "
+-	killall -HUP inetd
+-	echo "."
+-	;;
+-    *)
+-	echo "Usage: /etc/init.d/inetd {start|stop|restart}"
+-	exit 1
+-	;;
+-esac
+-
+-exit 0
+-
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/inetd.conf b/meta-arago-distro/recipes-core/busybox/busybox/inetd.conf
+deleted file mode 100644
+index b02fe85..0000000
+--- a/meta-arago-distro/recipes-core/busybox/busybox/inetd.conf
++++ /dev/null
+@@ -1,20 +0,0 @@
+-# /etc/inetd.conf:  see inetd(8) for further informations.
+-#
+-# Internet server configuration database
+-#
+-# If you want to disable an entry so it isn't touched during
+-# package updates just comment it out with a single '#' character.
+-#
+-# <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>
+-#
+-#:INTERNAL: Internal services
+-#echo		stream	tcp	nowait	root	internal
+-#echo		dgram	udp	wait	root	internal
+-#chargen	stream	tcp	nowait	root	internal
+-#chargen	dgram	udp	wait	root	internal
+-#discard		stream	tcp	nowait	root	internal
+-#discard		dgram	udp	wait	root	internal
+-#daytime		stream	tcp	nowait	root	internal
+-#daytime	dgram	udp	wait	root	internal
+-#time		stream	tcp	nowait	root	internal
+-#time		dgram	udp	wait	root	internal
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+index d85bfc5..e70f579 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+@@ -1,9 +1,4 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- DEPENDS = "flex-native bison-native"
- 
--SRC_URI = "http://ftp.stack.nl/pub/users/dimitri/${BP}.src.tar.gz"
-+SRC_URI = "http://ftp.stack.nl/pub/users/dimitri/${BP}.src.tar.gz \
-+	   file://patch-flex_2_6_0.diff;striplevel=0"
- SRC_URI[md5sum] = "3d1a5c26bef358c10a3894f356a69fbc"
- SRC_URI[sha256sum] = "d4ab6e28d4d45d8956cad17470aade3fbe2356e8f64b92167e738c1887feccec"
- 
-+PR = "r1"
- EXTRA_OECONF = "--prefix ${prefix}"
- 
- do_configure () {
+-PR_append = "-arago19"
+-
+-SRC_URI += " \
+-	file://inetd \
+-	file://inetd.conf \
+-"
++PR_append = "-arago20"
 -- 
-1.9.1
+2.2.0
 
 
