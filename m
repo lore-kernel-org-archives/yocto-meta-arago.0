@@ -1,30 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by arago-project.org (Postfix) with ESMTPS id D2B57529A4
+Return-Path: <j-stiffler@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 8227E52A65
 	for <meta-arago@arago-project.org>;
-	Tue,  3 May 2016 04:17:17 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u434HHFO031283
-	for <meta-arago@arago-project.org>; Mon, 2 May 2016 23:17:17 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u434HHke020663
-	for <meta-arago@arago-project.org>; Mon, 2 May 2016 23:17:17 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 2 May 2016 23:17:17 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u434HHdK005947;
-	Mon, 2 May 2016 23:17:17 -0500
-Date: Tue, 3 May 2016 00:17:01 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20160503041701.GS1546@edge>
-References: <20160127210049.58111529C9@arago-project.org>
-	<20160428194623.GA17066@denix.org> <20160429235943.GF1546@edge>
+	Tue,  3 May 2016 12:25:28 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u43CPRHb016583
+	for <meta-arago@arago-project.org>; Tue, 3 May 2016 07:25:27 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u43CPR4u017399
+	for <meta-arago@arago-project.org>; Tue, 3 May 2016 07:25:27 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 3 May 2016 07:25:27 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u43CPROP024206	for
+	<meta-arago@arago-project.org>; Tue, 3 May 2016 07:25:27 -0500
+Message-ID: <572898B7.4050309@ti.com>
+Date: Tue, 3 May 2016 08:25:27 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-In-Reply-To: <20160429235943.GF1546@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Re: [arago-commits] Gou, Hongmei : weston-init: update init scripts related to restarting Weston
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+References: <4B26FB5A64EBA14C87266869E037F9581426AF5A@DFLE09.ent.ti.com>
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F9581426AF5A@DFLE09.ent.ti.com>
+Subject: Re: k2 build failures
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,123 +37,161 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 May 2016 04:17:18 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 May 2016 12:25:30 -0000
+Content-Type: multipart/alternative;
+	boundary="------------030009020205000206020304"
 
-Hongmei, Eric, Jake,
-
-Ping again. I will be reverting this if not clarified. Thanks.
-
--- 
-Denys
+--------------030009020205000206020304
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On Fri, Apr 29, 2016 at 07:59:44PM -0400, Denys Dmytriyenko wrote:
-> Ping.
-> 
-> 
-> On Thu, Apr 28, 2016 at 03:46:23PM -0400, Denys Dmytriyenko wrote:
-> > So, I was looking into Weston init script lately for another reason and 
-> > noticed there was a hole in its logic. From the logs I came to this commit 
-> > made few months ago. Particularly, I'm interested why the first part of the 
-> > change was made:
-> > 
-> > * Bypass restarting Weston if SD card has calibration file already
-> > 
-> > This seems incorrect, because if calibration file is only available on SD 
-> > card, it has to be copied to /etc and in order to take immediate effect, udev 
-> > has to be reloaded and weston has to be restarted, which how it used to be 
-> > before. Why is this now bypassed? Please provide details of what this change 
-> > is meant to address and how is it supposed to work. Thanks.
-> > 
-> > -- 
-> > Denys
-> > 
-> > 
-> > On Wed, Jan 27, 2016 at 09:00:49PM +0000, Arago Project git wrote:
-> > > Module: meta-arago
-> > > Branch: master
-> > > Commit: b057be5db06e0f2e0ebb649841e64f60a997c2c1
-> > > URL:    http://arago-project.org/git/meta-arago.git?a=commit;h=b057be5db06e0f2e0ebb649841e64f60a997c2c1
-> > > 
-> > > Author: Gou, Hongmei <h-gou@ti.com>
-> > > Date:   Thu Jan 28 01:48:05 2016 +0000
-> > > 
-> > > weston-init: update init scripts related to restarting Weston
-> > > 
-> > > * Bypass restarting Weston if SD card has calibration file already
-> > > 
-> > > * Increase the sleep time before Weston is restarted
-> > >   It takes some time to complete the Weston termination procedure.
-> > >   If Weston is restarted before the previous instance is fully
-> > >   terminated, the restart of Weston will fail.
-> > > 
-> > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> > > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > 
-> > > ---
-> > > 
-> > >  .../recipes-graphics/wayland/weston-init.bbappend  |    2 +-
-> > >  .../recipes-graphics/wayland/weston-init/init      |    7 ++++---
-> > >  2 files changed, 5 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-> > > index d9e15b6..4b5ad93 100644
-> > > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-> > > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-> > > @@ -1,4 +1,4 @@
-> > > -PR_append = "-arago4"
-> > > +PR_append = "-arago5"
-> > >  
-> > >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > >  
-> > > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-> > > index 2e2ae36..494584f 100644
-> > > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-> > > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-> > > @@ -63,8 +63,9 @@ case "$1" in
-> > >          # Check if SD card has a calibration rules file
-> > >          SD_CALUDEV_FILE=/run/media/mmcblk0p1/ws-calibrate.rules
-> > >          if [ "$SD_MOUNTED" = "1" -a -f "$SD_CALUDEV_FILE" ] ; then
-> > > -            # Copy it over to udev location
-> > > +            # Copy it over to udev location, and done
-> > >              cp "$SD_CALUDEV_FILE" "$WS_CALUDEV_FILE"
-> > > +            exit 0
-> > >          else
-> > >              # Run a calibration app and save output to udev rules
-> > >              echo    "Calibrating touchscreen (first time only)"
-> > > @@ -85,7 +86,7 @@ case "$1" in
-> > >          udevadm control --reload
-> > >          udevadm trigger
-> > >          killproc weston
-> > > -        sleep 1
-> > > +        sleep 2
-> > >          openvt -c 4 -f runWeston
-> > >    ;;
-> > >  
-> > > @@ -96,7 +97,7 @@ case "$1" in
-> > >  
-> > >    restart)
-> > >  	$0 stop
-> > > -        sleep 1
-> > > +        sleep 2
-> > >          $0 start
-> > >    ;;
-> > >  
-> > > 
-> > > _______________________________________________
-> > > arago-commits mailing list
-> > > arago-commits@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/arago-commits
-> > > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+On 5/2/2016 2:59 PM, Stiffler, Jacob wrote:
+>
+> With migrating to krogoth, the k2 build failures are due to conflicts 
+> between the ocl-gl-headers and mesa, and I’ve discovered why mesa is 
+> being pulled in.
+>
+> In the opencv recipe, we are inheriting “cmake_qt5”. This bbclass was 
+> changed to add the dependency on qtbase, and this brings in mesa for 
+> keystone.
+>
+> I’m not sure of the best way to handle this. The easiest hack is the 
+> remove qtbase from the opencv dependencies for keystone only.
+>
+> Would it be possible to replace opencl’s dependency on 
+> “ocl-gl-headers” with “mesa-gl”? In the past, I made some attempts to 
+> use “mesa”, but with the SGX platforms, there was always a conflict 
+> with the ti sgx drivers, as both were installing common gles files. I 
+> do not remember mesa-gl being an option before.
+>
+
+I treid replacing opencl's dependency on ocl-gl-headers with 
+virtual/libgl. This appears to work for keystone, but for am57xx-evm, 
+there is a conflict between mesa-gl and libgbm recipes as mesa-gl also 
+provides a libgbm package. How can this conflict be resolved?
+
+> Thank you,
+>
+> Jake
+>
+>
+>
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
 > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
+
+--------------030009020205000206020304
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 5/2/2016 2:59 PM, Stiffler, Jacob
+      wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:4B26FB5A64EBA14C87266869E037F9581426AF5A@DFLE09.ent.ti.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 14 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">With migrating to krogoth, the k2 build
+          failures are due to conflicts between the ocl-gl-headers and
+          mesa, and I’ve discovered why mesa is being pulled in.
+          <o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">In the opencv recipe, we are inheriting
+          “cmake_qt5”. This bbclass was changed to add the dependency on
+          qtbase, and this brings in mesa for keystone.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">I’m not sure of the best way to handle
+          this. The easiest hack is the remove qtbase from the opencv
+          dependencies for keystone only.
+          <o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Would it be possible to replace opencl’s
+          dependency on “ocl-gl-headers” with “mesa-gl”? In the past, I
+          made some attempts to use “mesa”, but with the SGX platforms,
+          there was always a conflict with the ti sgx drivers, as both
+          were installing common gles files. I do not remember mesa-gl
+          being an option before.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+      </div>
+    </blockquote>
+    <br>
+    I treid replacing opencl's dependency on ocl-gl-headers with
+    virtual/libgl. This appears to work for keystone, but for
+    am57xx-evm, there is a conflict between mesa-gl and libgbm recipes
+    as mesa-gl also provides a libgbm package. How can this conflict be
+    resolved?<br>
+    <br>
+    <blockquote
+      cite="mid:4B26FB5A64EBA14C87266869E037F9581426AF5A@DFLE09.ent.ti.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal">Thank you,<o:p></o:p></p>
+        <p class="MsoNormal">Jake <o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+meta-arago mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:meta-arago@arago-project.org">meta-arago@arago-project.org</a>
+<a class="moz-txt-link-freetext" href="http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago">http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------030009020205000206020304--
