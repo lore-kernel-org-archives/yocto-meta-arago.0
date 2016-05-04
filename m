@@ -1,27 +1,27 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
-	by arago-project.org (Postfix) with ESMTPS id 73DE3529E8
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by arago-project.org (Postfix) with ESMTPS id BDE4052A65
 	for <meta-arago@arago-project.org>;
-	Wed,  4 May 2016 09:28:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u449SqWr030456
-	for <meta-arago@arago-project.org>; Wed, 4 May 2016 04:28:52 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u449SqHH008500
-	for <meta-arago@arago-project.org>; Wed, 4 May 2016 04:28:52 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 4 May 2016 04:28:52 -0500
+	Wed,  4 May 2016 09:48:48 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u449mmNv013123
+	for <meta-arago@arago-project.org>; Wed, 4 May 2016 04:48:48 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u449mmCU032319
+	for <meta-arago@arago-project.org>; Wed, 4 May 2016 04:48:48 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 4 May 2016 04:48:47 -0500
 Received: from sditapps09.india.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u449So2X007062;	Wed, 4 May 2016 04:28:51 -0500
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u449miGu012593;	Wed, 4 May 2016 04:48:46 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 4 May 2016 14:58:49 +0530
-Message-ID: <1462354129-15014-1-git-send-email-a0393906@ti.com>
+Date: Wed, 4 May 2016 15:18:43 +0530
+Message-ID: <1462355323-30809-1-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [master][PATCH] gstreamer1.0-plugins-bad: Update SRCREV
+Subject: [master][PATCH] gstreamer1.0-plugins-ducati: Update SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,32 +34,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 May 2016 09:28:52 -0000
+X-List-Received-Date: Wed, 04 May 2016 09:48:49 -0000
 Content-Type: text/plain
 
-This update ignores the frame_cropping flag set in the SPS
-and calculates width and height correctly
+This fixes the following issues:
+ * MPEG4 Video playback not smooth due to skipping of non-VOP coded frames
+ * Perform cleanup only during error scenarios such as remoteproc crash
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend                 | 4 ++--
+ .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb                 | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-index 5f4652c..6518c7a 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-@@ -35,8 +35,8 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git \
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+index ae934f3..7092344 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
  
- S = "${WORKDIR}/git"
+ require gstreamer1.0-plugins-ti.inc
  
--SRCREV = "9396248f2daf0b28b83ab0f01c4d17a8af46b1ca"
-+SRCREV = "3a7dce1011d2ad002f9341c8f0be2e409d73ea7b"
- SRCREV_ti43x = "a536c9e8d9cfaf47759dc194449a1887e0aee15d"
- SRCREV_ti33x = "a536c9e8d9cfaf47759dc194449a1887e0aee15d"
+-PR = "${INC_PR}.2"
+-SRCREV = "202da907a87904e0c4f42a44afc6f39f31832406"
++PR = "${INC_PR}.3"
++SRCREV = "0cab49ee483613f053923fd90b7042fe059f1944"
  
--PR_append = "-arago9"
-+PR_append = "-arago10"
+ SRC_URI = "git://git.ti.com/glsdk/gst-plugin-ducati.git;protocol=git"
 -- 
 1.9.1
 
