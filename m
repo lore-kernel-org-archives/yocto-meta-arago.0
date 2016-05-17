@@ -1,29 +1,29 @@
-Return-Path: <jake@udc0866934>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 3A251529E7
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id D469152079
 	for <meta-arago@arago-project.org>;
-	Tue, 17 May 2016 18:19:22 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4HIJLNa003423
-	for <meta-arago@arago-project.org>; Tue, 17 May 2016 13:19:21 -0500
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4HIJLMW023912
-	for <meta-arago@arago-project.org>; Tue, 17 May 2016 13:19:21 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 17 May 2016 13:19:21 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4HIJLP5015715;
-	Tue, 17 May 2016 13:19:21 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1b2jaS-0002AH-Ni; Tue, 17 May 2016 14:19:20 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Tue, 17 May 2016 21:48:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4HLmhX5014895
+	for <meta-arago@arago-project.org>; Tue, 17 May 2016 16:48:43 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4HLmhhP013677
+	for <meta-arago@arago-project.org>; Tue, 17 May 2016 16:48:43 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 17 May 2016 16:48:42 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u4HLmgdi021030	for <meta-arago@arago-project.org>;
+	Tue, 17 May 2016 16:48:43 -0500
+Date: Tue, 17 May 2016 17:48:42 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 17 May 2016 14:19:18 -0400
-Message-ID: <1463509158-8234-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+Message-ID: <1734988424.1157.1463521722799.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [tisdk-setup-scripts][PATCH] setup-uboot-env: Update for U-Boot 2016.05
+X-Jenkins-Job: arago-core-tisdk-master-systest
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] SysTest Core TISDK (krogoth/2.1) 2016.05 build 2016-05-17_14-57-00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,559 +36,216 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 May 2016 18:19:22 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 17 May 2016 21:48:44 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_1156_168124947.1463521722786"
 
-This addresses the following changes in U-Boot:
-* U-Boot prompt changed from "U-Boot#" to "=>"
-* "mmcargs" changed to "args_mmc"
-* "stop autoboot" prompt changed to "abort autoboot" for am335x only.
+------=_Part_1156_168124947.1463521722786
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This also disables the automatic upgrade of u-boot until a proper fix
-can be implemented
+<html>
+<head>
+<title>
+Status for 05/17/16
+</title>
+</head>
+<body>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- setup-uboot-env-am335x.sh     | 75 ++++++++++++++++++++--------------------
- setup-uboot-env-am43x.sh      | 79 ++++++++++++++++++++++---------------------
- setup-uboot-env-am57xx-evm.sh | 71 +++++++++++++++++++-------------------
- setup-uboot-env-k2g-evm.sh    | 37 ++++++++++----------
- setup-uboot-env-keystone.sh   | 64 +++++++++++++++++++----------------
- setup-uboot-env-omap5.sh      |  2 +-
- 6 files changed, 172 insertions(+), 156 deletions(-)
+<h2>Status for 05/17/16</h2>
 
-diff --git a/setup-uboot-env-am335x.sh b/setup-uboot-env-am335x.sh
-index d593c1c..1a65d5b 100644
---- a/setup-uboot-env-am335x.sh
-+++ b/setup-uboot-env-am335x.sh
-@@ -54,6 +54,9 @@ echo
- ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
- platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
- 
-+# Configure prompt for U-Boot 2016.05
-+prompt="=>"
-+
- 
- echo "Autodetected the following ip address of your host, correct it if necessary"
- read -p "[ $ipdefault ] " ip
-@@ -171,54 +174,54 @@ check_for_beaglebone() {
- echo "timeout 300" > $cwd/setupBoard.minicom
- echo "verbose on" >> $cwd/setupBoard.minicom
- 
--do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"reset\"" $cwd/setupBoard.minicom
--do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
-+do_expect "\"abort autoboot\"" "send \" \"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"abort autoboot\"" "send \" \"" $cwd/setupBoard.minicom
- 
- if [ "$kernel" -eq "1" ]; then
- 	if [ "$fs" -eq "1" ]; then
- 		#TFTP and NFS Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	else
- 		#TFTP and SD Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	fi
- else
- 	if [ "$fs" -eq "1" ]; then
- 		#SD and NFS Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	    else
- 		#SD and SD boot.
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 
- 	fi
- fi
-diff --git a/setup-uboot-env-am43x.sh b/setup-uboot-env-am43x.sh
-index 502af43..b93b371 100644
---- a/setup-uboot-env-am43x.sh
-+++ b/setup-uboot-env-am43x.sh
-@@ -54,6 +54,9 @@ echo
- ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
- platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
- 
-+# Configure prompt for U-Boot 2016.05
-+prompt="=>"
-+
- 
- echo "Autodetected the following ip address of your host, correct it if necessary"
- read -p "[ $ipdefault ] " ip
-@@ -126,57 +129,57 @@ fi
- echo "timeout 300" > $cwd/setupBoard.minicom
- echo "verbose on" >> $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
- if [ "$kernel" -eq "1" ]; then
- 	if [ "$fs" -eq "1" ]; then
- 		#TFTP and NFS Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	else
- 		#TFTP and SD Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	fi
- else
- 	if [ "$fs" -eq "1" ]; then
- 		#SD and NFS Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	    else
- 		#SD and SD boot.
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 
- 	fi
- fi
-diff --git a/setup-uboot-env-am57xx-evm.sh b/setup-uboot-env-am57xx-evm.sh
-index ae95368..e1628b7 100644
---- a/setup-uboot-env-am57xx-evm.sh
-+++ b/setup-uboot-env-am57xx-evm.sh
-@@ -54,6 +54,9 @@ echo "--------------------------------------------------------------------------
- ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
- platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
- 
-+# Configure prompt for U-Boot 2016.05
-+prompt="=>"
-+
- 
- echo "Autodetected the following ip address of your host, correct it if necessary"
- read -p "[ $ipdefault ] " ip
-@@ -132,53 +135,53 @@ check_for_board() {
- echo "timeout 300" > $cwd/setupBoard.minicom
- echo "verbose on" >> $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
- if [ "$kernel" -eq "1" ]; then
- 	if [ "$fs" -eq "1" ]; then
- 		#TFTP and NFS Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	else
- 		#TFTP and SD Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	fi
- else
- 	if [ "$fs" -eq "1" ]; then
- 		#SD and NFS Boot
--		do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv rootpath '$rootpath'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 	    else
- 		#SD and SD boot.
--		do_expect "\"U-Boot#\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run mmcargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--		do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'mmc dev \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; run loadimage; run loadfdt; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 
- 	fi
- fi
-diff --git a/setup-uboot-env-k2g-evm.sh b/setup-uboot-env-k2g-evm.sh
-index 3e8c1db..f41d278 100755
---- a/setup-uboot-env-k2g-evm.sh
-+++ b/setup-uboot-env-k2g-evm.sh
-@@ -81,6 +81,9 @@ echo "--------------------------------------------------------------------------
- ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
- platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
- 
-+# Configure prompt for U-Boot 2016.05
-+prompt="=>"
-+
- echo "Autodetected the following ip address of your host, correct it if necessary"
- read -p "[ $ipdefault ] " ip
- echo
-@@ -172,40 +175,40 @@ fi
- echo "timeout 300" > $cwd/setupBoard.minicom
- echo "verbose on" >> $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
--do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv nfs_root '$rootpath'\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv name_ubi $ubifsimage\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv name_kern $kernelimage\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv nfs_root '$rootpath'\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_ubi $ubifsimage\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_kern $kernelimage\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom
- 
--do_expect "\"U-Boot#\"" "send \"setenv bootcmd 'run envboot; run init_\${fs_mode} get_pmmc_\${kern_mode} run_pmmc get_fdt_\${kern_mode} get_mon_\${kern_mode} get_kern_\${kern_mode} run_mon run_kern'\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv bootcmd 'run envboot; run init_\${fs_mode} get_pmmc_\${kern_mode} run_pmmc get_fdt_\${kern_mode} get_mon_\${kern_mode} get_kern_\${kern_mode} run_mon run_kern'\"" $cwd/setupBoard.minicom
- 
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
- 
- if [ "$kernel" -eq "1" ]; then
- 	#TFTP
--	do_expect "\"U-Boot#\"" "send \"setenv kern_mode net\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv kern_mode net\"" $cwd/setupBoard.minicom
- else
- 	#SD
--	do_expect "\"U-Boot#\"" "send \"setenv kern_mode mmc\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv kern_mode mmc\"" $cwd/setupBoard.minicom
- fi
- 
- if [ "$fs" -eq "1" ]; then
- 	#NFS
--	do_expect "\"U-Boot#\"" "send \"setenv fs_mode net\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv fs_mode net\"" $cwd/setupBoard.minicom
- else
- 	#SD
--	do_expect "\"U-Boot#\"" "send \"setenv fs_mode mmc\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv fs_mode mmc\"" $cwd/setupBoard.minicom
- fi
- 
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 
- echo "end:" >> $cwd/setupBoard.minicom
- #echo "! killall -s SIGHUP minicom" >> $cwd/setupBoard.minicom
-diff --git a/setup-uboot-env-keystone.sh b/setup-uboot-env-keystone.sh
-index 750b8cf..7335758 100755
---- a/setup-uboot-env-keystone.sh
-+++ b/setup-uboot-env-keystone.sh
-@@ -81,6 +81,9 @@ echo "--------------------------------------------------------------------------
- ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
- platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
- 
-+# Configure prompt for U-Boot 2016.05
-+prompt="=>"
-+
- echo "Autodetected the following ip address of your host, correct it if necessary"
- read -p "[ $ipdefault ] " ip
- echo
-@@ -216,41 +219,42 @@ echo "timeout 1800" > $cwd/setupBoard.minicom
- echo "verbose on" >> $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
--if [ "$ubootupdate" != "y" ]; then
-+# Disable upgrading major U-boot versions
-+#if [ "$ubootupdate" != "y" ]; then
- 	# If not updating U-Boot, refure to procede if running an old MCSDK version.
--	cat >> $cwd/setupBoard.minicom << '__EOF__'
-+	cat >> $cwd/setupBoard.minicom << __EOF__
- expect {
--    "U-Boot#"
-+    "$prompt"
-     "# " goto uboot_update_required
-     timeout 60 goto end
- }
- send " "
- __EOF__
--fi
-+#fi
- 
- # Reset to the default environment
--do_expect "\"# \"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
--do_expect "\"# \"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
- 
- # Reset incase any variables are set when u-boot initializes
--do_expect "\"# \"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
- do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
- # Set vars required to flash u-boot
--do_expect "\"# \"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--do_expect "\"# \"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom
--do_expect "\"# \"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom
- 
- if [ "$ubootupdate" = "y" ]; then
- 	# Use common "burn_uboot" command
--	do_expect "\"# \"" "send \"if test -n \$burn_uboot_spi; then setenv burn_uboot \$burn_uboot_spi; fi\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"if test -n \$burn_uboot_spi; then setenv burn_uboot \$burn_uboot_spi; fi\"" $cwd/setupBoard.minicom
- 
- 	# Create command to print a known message if u-boot update succeeds
- 	update_uboot_success="U-Boot successfully updated"
- 
- 	# Create command to fetch and flash u-boot
--	do_expect "\"# \"" "send \"setenv update_uboot 'if run get_uboot_net burn_uboot; then echo $update_uboot_success; else echo U-boot update failed!; fi'\"" $cwd/setupBoard.minicom
--	do_expect "\"# \"" "send \"run update_uboot\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv update_uboot 'if run get_uboot_net burn_uboot; then echo $update_uboot_success; else echo U-boot update failed!; fi'\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"run update_uboot\"" $cwd/setupBoard.minicom
- 
- 	do_expect "\"$update_uboot_success\"" "send \"reset\"" $cwd/setupBoard.minicom
- 
-@@ -258,41 +262,41 @@ if [ "$ubootupdate" = "y" ]; then
- 	do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
- 	# Reset environment to the new U-Boot's defaults
--	do_expect "\"U-Boot#\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
--	do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
- 
- 	# Reset a second time incase any variables are set when u-boot initializes
--	do_expect "\"U-Boot#\"" "send \"reset\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
- 	do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- 
- 	# Reinitialize any variables previously set
--	do_expect "\"U-Boot#\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
--	do_expect "\"U-Boot#\"" "send setenv tftp_root '$tftproot'" $cwd/setupBoard.minicom
--	do_expect "\"U-Boot#\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send setenv tftp_root '$tftproot'" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom
- fi
- 
--do_expect "\"U-Boot#\"" "send setenv nfs_root '$rootpath'" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv name_ubi $ubifsimage\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"setenv name_kern $kernelimage\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send setenv nfs_root '$rootpath'" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_ubi $ubifsimage\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_kern $kernelimage\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
- 
- if [ "$secondary_boot" -eq "1" ]; then
- 	#TFTP and NFS Boot
--	do_expect "\"U-Boot#\"" "send \"setenv boot net\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv boot net\"" $cwd/setupBoard.minicom
- else
- 	#SD and NFS Boot
--	do_expect "\"U-Boot#\"" "send \"run get_ubi_net\"" $cwd/setupBoard.minicom
--	do_expect "\"U-Boot#\"" "send \"run burn_ubi\"" $cwd/setupBoard.minicom
--	do_expect "\"U-Boot#\"" "send \"setenv boot ubi\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"run get_ubi_net\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"run burn_ubi\"" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"setenv boot ubi\"" $cwd/setupBoard.minicom
- fi
- 
--do_expect "\"U-Boot#\"" "send \"saveenv\"" $cwd/setupBoard.minicom
--do_expect "\"U-Boot#\"" "send \"boot\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
- 
- cat >> $cwd/setupBoard.minicom << __EOF__
- goto end
- uboot_update_required:
--send echo; echo "*** U-boot is require to be updated before proceding!"; echo "*** Please re-run setup.sh and choose to update U-boot."; echo
-+send echo; echo "*** U-boot is require to be updated before proceding!"; echo "*** The automatic upgrade of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
- end:
- __EOF__
- #echo "! killall -s SIGHUP minicom" >> $cwd/setupBoard.minicom
-diff --git a/setup-uboot-env-omap5.sh b/setup-uboot-env-omap5.sh
-index 94b246a..7b6f084 100644
---- a/setup-uboot-env-omap5.sh
-+++ b/setup-uboot-env-omap5.sh
-@@ -39,7 +39,7 @@ echo "This step will set up the u-boot variables for booting the EVM."
- 
- ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
- platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
--prompt="U-Boot#"
-+prompt="$prompt"
- 
- echo "Autodetected the following ip address of your host, correct it if necessary"
- read -p "[ $ipdefault ] " ip
--- 
-1.9.1
+<h2>BUILD_ID: build-2016-05-17_14-58-01</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.30</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.05"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="0"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9=""<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master-systest"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/systest"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace"<br>
+LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace/configs/arago-core-tisdk-master-systest-append.txt"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_1156_168124947.1463521722786--
