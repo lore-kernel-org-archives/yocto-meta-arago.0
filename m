@@ -1,37 +1,32 @@
-Return-Path: <anandb@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id E441752004
+Return-Path: <denys@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 1FCEC529A5
 	for <meta-arago@arago-project.org>;
-	Wed, 18 May 2016 16:19:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4IGJAl5014653;
-	Wed, 18 May 2016 11:19:10 -0500
-Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4IGJ94l027992;
-	Wed, 18 May 2016 11:19:10 -0500
-Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4IGJ6ut010446;
-	Wed, 18 May 2016 21:49:07 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.03.0294.000; Wed, 18 May 2016 21:49:06 +0530
-From: "Balagopalakrishnan, Anand" <anandb@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [RFC][PATCH 2/2] weston-init: disable systemd
-	service to fall back to old initscript
-Thread-Index: AQHRr/kxfQ0P7DNtrE+t2Tcs4ZQGlJ++TB+ggAA0JACAAGDCXw==
-Date: Wed, 18 May 2016 16:19:05 +0000
-Message-ID: <05CF4794C98B244ABDC620C1090376227329A1B3@DBDE04.ent.ti.com>
+	Wed, 18 May 2016 16:43:54 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4IGhr3l018139;
+	Wed, 18 May 2016 11:43:54 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4IGhr4E020295;
+	Wed, 18 May 2016 11:43:53 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 18 May 2016 11:43:53 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4IGhr2m003670;
+	Wed, 18 May 2016 11:43:53 -0500
+Date: Wed, 18 May 2016 12:43:37 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Balagopalakrishnan, Anand" <anandb@ti.com>
+Message-ID: <20160518164337.GB16188@edge>
 References: <1463461288-32423-1-git-send-email-denis@denix.org>
 	<1463461288-32423-2-git-send-email-denis@denix.org>
-	<05CF4794C98B244ABDC620C10903762273299878@DBDE04.ent.ti.com>,
+	<05CF4794C98B244ABDC620C10903762273299878@DBDE04.ent.ti.com>
 	<20160518155905.GZ16188@edge>
-In-Reply-To: <20160518155905.GZ16188@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.56]
+	<05CF4794C98B244ABDC620C1090376227329A1B3@DBDE04.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <05CF4794C98B244ABDC620C1090376227329A1B3@DBDE04.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [RFC][PATCH 2/2] weston-init: disable systemd service to fall back to old initscript
 X-BeenThere: meta-arago@arago-project.org
@@ -46,95 +41,94 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 May 2016 16:19:11 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 18 May 2016 16:43:54 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-On the target filesystem, I see that weston.service is installed to /lib/sy=
-stemd/system. If you delete ${systemd_system_unitdir}, will those files als=
-o be removed?=0A=
-=0A=
-Regards,=0A=
-Anand=0A=
-________________________________________=0A=
-From: Dmytriyenko, Denys=0A=
-Sent: Wednesday, May 18, 2016 9:29 PM=0A=
-To: Balagopalakrishnan, Anand=0A=
-Cc: Denys Dmytriyenko; meta-arago@arago-project.org=0A=
-Subject: Re: [meta-arago] [RFC][PATCH 2/2] weston-init: disable systemd ser=
-vice to fall back to old initscript=0A=
-=0A=
-On Wed, May 18, 2016 at 07:23:59AM +0000, Balagopalakrishnan, Anand wrote:=
-=0A=
-> Instead of the following:=0A=
-> > +    rm -rf ${D}${systemd_system_unitdir}=0A=
->=0A=
-> should you have this line:=0A=
-> rm -f ${D}${systemd_system_unitdir}/weston.service=0A=
-=0A=
-Why?=0A=
-=0A=
-=0A=
-> -----Original Message-----=0A=
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@ara=
-go-project.org] On Behalf Of Denys Dmytriyenko=0A=
-> Sent: Tuesday, May 17, 2016 10:31 AM=0A=
-> To: meta-arago@arago-project.org=0A=
-> Subject: [meta-arago] [RFC][PATCH 2/2] weston-init: disable systemd servi=
-ce to fall back to old initscript=0A=
->=0A=
-> From: Denys Dmytriyenko <denys@ti.com>=0A=
->=0A=
-> Touchscreen calibration and other customizations are required from initsc=
-ript=0A=
->=0A=
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>=0A=
-> ---=0A=
->  meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend  | 5 +++=
-+-  meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston | 2 +-=
-=0A=
->  2 files changed, 5 insertions(+), 2 deletions(-)=0A=
->=0A=
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbapp=
-end b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend=0A=
-> index 78a839f..041e5ab 100644=0A=
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend=0A=
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend=0A=
-> @@ -1,4 +1,4 @@=0A=
-> -PR_append =3D ".arago6"=0A=
-> +PR_append =3D ".arago7"=0A=
->=0A=
->  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"=0A=
->=0A=
-> @@ -9,4 +9,7 @@ SRC_URI_append =3D " \=0A=
->  do_install_append() {=0A=
->      install -d ${D}${bindir}=0A=
->      install -m 755 ${WORKDIR}/runWeston ${D}${bindir}=0A=
-> +    rm -rf ${D}${systemd_system_unitdir}=0A=
->  }=0A=
-> +=0A=
-> +SYSTEMD_SERVICE_${PN} =3D ""=0A=
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWe=
-ston b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston=0A=
-> index 6ef574a..aed5d5f 100644=0A=
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston=0A=
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston=0A=
-> @@ -1,4 +1,4 @@=0A=
-> -#!/bin/bash=0A=
-> +#!/bin/sh=0A=
->=0A=
->  clear=0A=
->  cat << EOF=0A=
-> --=0A=
-> 2.2.0=0A=
->=0A=
-> _______________________________________________=0A=
-> meta-arago mailing list=0A=
-> meta-arago@arago-project.org=0A=
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago=0A=
-> _______________________________________________=0A=
-> meta-arago mailing list=0A=
-> meta-arago@arago-project.org=0A=
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago=0A=
+On Wed, May 18, 2016 at 12:19:05PM -0400, Balagopalakrishnan, Anand wrote:
+> On the target filesystem, I see that weston.service is installed to 
+> /lib/systemd/system. If you delete ${systemd_system_unitdir}, will those 
+> files also be removed?
+
+There are no other files in that directory coming from this package. So, this 
+package doesn't need that directory, as it will be empty. The package is only 
+responsible for the files and directories it provides, not for the entire 
+rootfs.
+
+-- 
+Denys
+
+
+> ________________________________________
+> From: Dmytriyenko, Denys
+> Sent: Wednesday, May 18, 2016 9:29 PM
+> To: Balagopalakrishnan, Anand
+> Cc: Denys Dmytriyenko; meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [RFC][PATCH 2/2] weston-init: disable systemd service to fall back to old initscript
+> 
+> On Wed, May 18, 2016 at 07:23:59AM +0000, Balagopalakrishnan, Anand wrote:
+> > Instead of the following:
+> > > +    rm -rf ${D}${systemd_system_unitdir}
+> >
+> > should you have this line:
+> > rm -f ${D}${systemd_system_unitdir}/weston.service
+> 
+> Why?
+> 
+> 
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> > Sent: Tuesday, May 17, 2016 10:31 AM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [RFC][PATCH 2/2] weston-init: disable systemd service to fall back to old initscript
+> >
+> > From: Denys Dmytriyenko <denys@ti.com>
+> >
+> > Touchscreen calibration and other customizations are required from initscript
+> >
+> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > ---
+> >  meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend  | 5 ++++-  meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston | 2 +-
+> >  2 files changed, 5 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> > index 78a839f..041e5ab 100644
+> > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> > @@ -1,4 +1,4 @@
+> > -PR_append = ".arago6"
+> > +PR_append = ".arago7"
+> >
+> >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >
+> > @@ -9,4 +9,7 @@ SRC_URI_append = " \
+> >  do_install_append() {
+> >      install -d ${D}${bindir}
+> >      install -m 755 ${WORKDIR}/runWeston ${D}${bindir}
+> > +    rm -rf ${D}${systemd_system_unitdir}
+> >  }
+> > +
+> > +SYSTEMD_SERVICE_${PN} = ""
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+> > index 6ef574a..aed5d5f 100644
+> > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+> > @@ -1,4 +1,4 @@
+> > -#!/bin/bash
+> > +#!/bin/sh
+> >
+> >  clear
+> >  cat << EOF
+> > --
+> > 2.2.0
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
