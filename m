@@ -1,27 +1,28 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id CCB2552AC9
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 38D2352996
 	for <meta-arago@arago-project.org>;
-	Fri, 20 May 2016 13:01:30 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4KD1ULt029686
-	for <meta-arago@arago-project.org>; Fri, 20 May 2016 08:01:30 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4KD1UXV014286
-	for <meta-arago@arago-project.org>; Fri, 20 May 2016 08:01:30 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 20 May 2016 08:01:30 -0500
-Received: from swubn04.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4KD1SGL017830;
-	Fri, 20 May 2016 08:01:29 -0500
-From: Karthik Ramanan <a0393906@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 20 May 2016 18:31:05 +0530
-Message-ID: <1463749265-16509-1-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] libav: Remove deprecated recipe
+	Fri, 20 May 2016 16:43:01 +0000 (UTC)
+Received: from vz-proxy-l007.mx.aol.com ([64.236.82.157])
+	by vms173019.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O7H00LRNIF7RMA0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 20 May 2016 11:42:44 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=EDyElNE8DnJcdewKkuvZJw==:117
+	a=yrkiwgmsf1kA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
+	a=WTBVgR4bEvGbKzlNsnUA:9
+Received: by 100.15.86.14 with SMTP id 4cb8dcd6; Fri, 20 May 2016 16:42:44 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 8584D16200B;	Fri,
+	20 May 2016 12:42:43 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 20 May 2016 12:42:43 -0400
+Message-id: <1463762563-19138-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] ltp-ddt: update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,62 +35,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 May 2016 13:01:31 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 20 May 2016 16:43:04 -0000
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-multimedia/libav/libav_9.16.bbappend   | 40 ----------------------
- 1 file changed, 40 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-multimedia/libav/libav_9.16.bbappend
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-multimedia/libav/libav_9.16.bbappend b/meta-arago-distro/recipes-multimedia/libav/libav_9.16.bbappend
-deleted file mode 100644
-index dc8977a..0000000
---- a/meta-arago-distro/recipes-multimedia/libav/libav_9.16.bbappend
-+++ /dev/null
-@@ -1,40 +0,0 @@
--PR_append = ".arago0"
--
--PACKAGECONFIG := "${@oe_filter_out('x264','${PACKAGECONFIG}', d)}"
--LICENSE_FLAGS = ""
--
--# Disable features that have potential commercial licensing restrictions
--EXTRA_OECONF += "\
--    --disable-encoder=libmp3lame \
--    --disable-decoder=mp3 \
--    --disable-decoder=mp3adu \
--    --disable-decoder=mp3adufloat \
--    --disable-decoder=mp3float \
--    --disable-decoder=mp3on4 \
--    --disable-decoder=mp3on4float \
--    --disable-muxer=mp3 \
--    --disable-demuxer=mp3 \
--    --disable-bsf=mp3_header_decompress \
--    --disable-bsf=mp3_header_compress   \
--                                 \
--    --disable-encoder=mpeg2video \
--    --disable-decoder=mpeg2video \
--    --disable-hwaccel=mpeg2_vaapi \
--    --disable-hwaccel=mpeg2_dxva2 \
--    --disable-muxer=mpeg2dvd \
--    --disable-muxer=mpeg2svcd \
--    --disable-muxer=mpeg2video \
--    --disable-muxer=mpeg2vob \
--                            \
--    --disable-encoder=ac3_fixed \
--    --disable-encoder=ac3 \
--    --disable-decoder=ac3 \
--    --disable-decoder=eac3 \
--    --disable-demuxer=ac3 \
--    --disable-demuxer=eac3 \
--    --disable-demuxer=dts \
--    --disable-muxer=ac3 \
--    --disable-muxer=eac3 \
--    --disable-muxer=dts \
--    --disable-parser=ac3 \
--"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+index 3a59067..88a60a3 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
+ 
+-PR = "r13"
++PR = "r14"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -16,7 +16,7 @@ inherit autotools-brokensep module-base kernel-module-split
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-SRCREV = "f8fb51fe163d9e3ba3eee2122f4b9da0a844f6f0"
++SRCREV = "11d2be92d855aab435efaa83a78cd040e9a697af"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-1.9.1
+2.2.0
 
 
