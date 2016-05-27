@@ -1,29 +1,29 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 8FCBB52AC6
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 14F1452A16
 	for <meta-arago@arago-project.org>;
-	Fri, 27 May 2016 13:18:02 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4RDI2vT020135
-	for <meta-arago@arago-project.org>; Fri, 27 May 2016 08:18:02 -0500
+	Fri, 27 May 2016 13:18:03 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u4RDI1LT013200
+	for <meta-arago@arago-project.org>; Fri, 27 May 2016 08:18:01 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4RDI2wi017086
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u4RDI2Ts028711
 	for <meta-arago@arago-project.org>; Fri, 27 May 2016 08:18:02 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
 	Fri, 27 May 2016 08:18:02 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u4RDI1Ck027612;	Fri, 27 May 2016 08:18:01 -0500
+	u4RDI1Cm027612;	Fri, 27 May 2016 08:18:02 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 27 May 2016 09:17:51 -0400
-Message-ID: <1464355073-24441-3-git-send-email-j-stiffler@ti.com>
+Date: Fri, 27 May 2016 09:17:53 -0400
+Message-ID: <1464355073-24441-5-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1464355073-24441-1-git-send-email-j-stiffler@ti.com>
 References: <1464355073-24441-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/4] python-pytools: add version 2016.2.1
+Subject: [PATCH 4/4] packagegroup-arago-tisdk-opencl: add python-pyopencl package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,38 +39,52 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 27 May 2016 13:18:03 -0000
 Content-Type: text/plain
 
-* Unfortunately the standard pypi SRC_URI is not available, so use
-  link from pypi homepage
-
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-devtools/python/python-pytools_2016.2.1.bb  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/python/python-pytools_2016.2.1.bb
+ .../packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb        | 3 ++-
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb      | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/python/python-pytools_2016.2.1.bb b/meta-arago-extras/recipes-devtools/python/python-pytools_2016.2.1.bb
-new file mode 100644
-index 0000000..fb597d4
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/python/python-pytools_2016.2.1.bb
-@@ -0,0 +1,17 @@
-+SUMMARY = "A collection of tools for Python"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://MANIFEST.in;md5=d41d8cd98f00b204e9800998ecf8427e"
-+
-+RDEPENDS_${PN} = " python-decorator \
-+                   python-appdirs \
-+                   python-six \
-+                   python-numpy \
-+"
-+
-+SRC_URI[md5sum] = "452dfa3023733a675cc1bee91c536cbd"
-+SRC_URI[sha256sum] = "8939d4a81e17ca30968126e9614100ab38df926b251b96a0b4736234195cca19"
-+
-+inherit pypi setuptools
-+
-+# Standard pypi SRC_URI is not available at this time
-+SRC_URI = "https://pypi.python.org/packages/1a/1e/ce42d53bad97ad16732c8d9ac1dd6ed22a906ea07f291df5f6f90a6c7a2a/pytools-2016.2.1.tar.gz"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
+index 211fcd3..ac235f0 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install headers and libraries of OpenCL/MP and related components"
+ LICENSE = "MIT"
+-PR = "r0"
++PR = "r1"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -9,6 +9,7 @@ inherit packagegroup
+ UTILS = " \
+     opencl-staticdev \
+     openmpacc-dev \
++    python-pyopencl-dev \
+ "
+ 
+ UTILS_append_k2hk-evm = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+index 24a8eef..6898dd6 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install OpenCL/MP and related components"
+ LICENSE = "MIT"
+-PR = "r0"
++PR = "r1"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -16,6 +16,7 @@ EXTRA_PKGS = " \
+     opencl-staticdev \
+     opencl-examples-dev \
+     openmpacc-examples-dev \
++    python-pyopencl \
+ "
+ 
+ EXTRA_PKGS_append_k2hk-evm = " \
 -- 
 2.7.4
 
