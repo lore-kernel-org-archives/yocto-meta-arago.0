@@ -1,30 +1,29 @@
-Return-Path: <a0226073@ares-ubuntu2>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 2D1BB52982
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
+	by arago-project.org (Postfix) with ESMTPS id 6CA5F52AC9
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Jun 2016 20:24:53 +0000 (UTC)
+	Wed,  1 Jun 2016 23:59:08 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u51KOkaL019732
-	for <meta-arago@arago-project.org>; Wed, 1 Jun 2016 15:24:46 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u51KOphs030500
-	for <meta-arago@arago-project.org>; Wed, 1 Jun 2016 15:24:51 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 1 Jun 2016 15:24:50 -0500
-Received: from ares-ubuntu2 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u51KOmlZ013185;
-	Wed, 1 Jun 2016 15:24:49 -0500
-Received: from a0226073 by ares-ubuntu2 with local (Exim 4.82)	(envelope-from
-	<a0226073@ares-ubuntu2>)	id 1b8Ch5-0007NP-6j;
-	Wed, 01 Jun 2016 16:24:47 -0400
-From: John Godbey <j-godbey@ti.com>
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u51Nx8bS030002
+	for <meta-arago@arago-project.org>; Wed, 1 Jun 2016 18:59:08 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u51Nx8kE022925
+	for <meta-arago@arago-project.org>; Wed, 1 Jun 2016 18:59:08 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 1 Jun 2016 18:59:07 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u51Nx7dr030072	for <meta-arago@arago-project.org>;
+	Wed, 1 Jun 2016 18:59:07 -0500
+Date: Wed, 1 Jun 2016 19:59:07 -0400
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 1 Jun 2016 16:23:59 -0400
-Message-ID: <1464812639-28320-1-git-send-email-j-godbey@ti.com>
-X-Mailer: git-send-email 1.9.1
+Message-ID: <1126888254.9.1464825547618.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] posix-smp-demo: add version 1.0.0.1
+X-Jenkins-Job: arago-core-tisdk-master-rt
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] RT Core TISDK (krogoth/2.1) 2016.05 build 2016-06-01_15-08-37
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,68 +36,215 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jun 2016 20:24:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 01 Jun 2016 23:59:10 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_8_1197429413.1464825547541"
 
-This patch provides the initial support for the posix-smp-demo
-in the Linux SDK.  The .inc file remains separate to support
-a later RTOS version of the same demo.
+------=_Part_8_1197429413.1464825547541
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: John Godbey <j-godbey@ti.com>
----
- .../posix-smp-demo/posix-smp-demo.inc                | 20 ++++++++++++++++++++
- .../posix-smp-demo/posix-smp-demo_git.bb             | 14 ++++++++++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo.inc
- create mode 100644 meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo_git.bb
+<html>
+<head>
+<title>
+Status for 06/01/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo.inc b/meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo.inc
-new file mode 100644
-index 0000000..33f5d73
---- /dev/null
-+++ b/meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo.inc
-@@ -0,0 +1,20 @@
-+SUMMARY = "This recipe creates a posix-smp-demo binaries."
-+
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://dhry.h;beginline=1;endline=377;md5=8f2fbe6e071d9ea4afeca73cfd656ec8"
-+
-+POSIX_SMP_GIT_URI = "git://git.ti.com/keystone-demos/posix-smp.git"
-+POSIX_SMP_GIT_PROTOCOL = "git"
-+POSIX_SMP_GIT_BRANCH = "sbl_prep"
-+
-+# Below commit ID corresponds to "DEV.POSIX-SMP.01.00.00.01"
-+POSIX_SMP_SRCREV = "55d7fd4c60c9d513932a86df3df8dee0244208e0"
-+
-+BRANCH = "${POSIX_SMP_GIT_BRANCH}"
-+SRC_URI = "${POSIX_SMP_GIT_URI};protocol=${POSIX_SMP_GIT_PROTOCOL};branch=${BRANCH}"
-+
-+SRCREV = "${POSIX_SMP_SRCREV}"
-+PV = "01.00.00.01"
-+INC_PR = "r1"
-+
-+S = "${WORKDIR}/git"
-diff --git a/meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo_git.bb b/meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo_git.bb
-new file mode 100644
-index 0000000..8e26005
---- /dev/null
-+++ b/meta-arago-extras/recipes-demo-applications/posix-smp-demo/posix-smp-demo_git.bb
-@@ -0,0 +1,14 @@
-+require posix-smp-demo.inc
-+
-+PR = "${INC_PR}.0"
-+
-+EXTRA_OEMAKE = "-f Makefile_linux EGCC="${CC}""
-+
-+do_compile() {
-+    oe_runmake posix-smp-demo-linux-armv7
-+}
-+
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -m 0755 posix-smp-demo-linux-armv7 ${D}${bindir}
-+}
--- 
-1.9.1
+<h2>Status for 06/01/16</h2>
+
+<h2>BUILD_ID: build-2016-06-01_15-09-39</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.30</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.05"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="0"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9=""<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master-rt"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace"<br>
+LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace/configs/arago-core-tisdk-master-rt-append.txt"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_8_1197429413.1464825547541--
