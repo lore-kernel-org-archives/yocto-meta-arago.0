@@ -1,28 +1,28 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 90C0952007
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 991D152090
 	for <meta-arago@arago-project.org>;
-	Thu,  2 Jun 2016 17:11:26 +0000 (UTC)
-Received: from vz-proxy-m004.mx.aol.com ([64.236.83.8])
-	by vms173025.mailsrvcs.net
+	Thu,  2 Jun 2016 19:09:54 +0000 (UTC)
+Received: from vz-proxy-m007.mx.aol.com ([64.236.83.14])
+	by vms173023.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O8500CTPMEDUIA0@vms173025.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 02 Jun 2016 12:11:01 -0500 (CDT)
+	2014)) with ESMTPA id <0O8500B0XRVYP4C0@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 02 Jun 2016 14:09:36 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=Bcm0RCOkHTZ4We9DUxtllQ==:117
-	a=pD_ry4oyNxEA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
-	a=WTBVgR4bEvGbKzlNsnUA:9
-Received: by 100.15.86.14 with SMTP id 0e673b79; Thu, 02 Jun 2016 17:11:01 GMT
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=MJxOpqxZADbEbEImuSX/mw==:117
+	a=eIhxMilvRf8A:10 a=pD_ry4oyNxEA:10	a=sozttTNsAAAA:8 a=x5BwiFZGAAAA:8
+	a=8rzGWIGGXaePXXifIJQA:9
+Received: by 100.15.86.14 with SMTP id 009e8714; Thu, 02 Jun 2016 19:09:35 GMT
 Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 369C8162037;	Thu,
-	2 Jun 2016 13:11:01 -0400 (EDT)
+	by gandalf.denix.org (Postfix) with ESMTP id 9C24A162037;	Thu,
+	2 Jun 2016 15:09:34 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 02 Jun 2016 13:11:00 -0400
-Message-id: <1464887460-15999-1-git-send-email-denis@denix.org>
+Date: Thu, 02 Jun 2016 15:09:34 -0400
+Message-id: <1464894574-25569-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.2.0
-Subject: [PATCH] ltp-ddt: update to the latest
+Subject: [PATCH] libdce: update to latest commit after 3.00.10.01
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,37 +35,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Jun 2016 17:11:26 -0000
+X-List-Received-Date: Thu, 02 Jun 2016 19:09:55 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../libdce/{libdce_3.00.08.02.bb => libdce_3.00.10.01.bb}              | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+ rename meta-arago-extras/recipes-multimedia/libdce/{libdce_3.00.08.02.bb => libdce_3.00.10.01.bb} (88%)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-index 88a60a3..873b1b7 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_1.0.0.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
+diff --git a/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.08.02.bb b/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb
+similarity index 88%
+rename from meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.08.02.bb
+rename to meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb
+index be17d90..aa61cb6 100644
+--- a/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.08.02.bb
++++ b/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb
+@@ -7,8 +7,7 @@ inherit autotools pkgconfig
+ DEPENDS = "libdrm ti-ipc"
  
--PR = "r14"
-+PR = "r15"
- PV_append = "+git${SRCPV}"
+ SRC_URI = "git://git.omapzoom.org/repo/libdce.git;protocol=git"
+-SRCREV = "3040e7e3f7d1ed42a1273ccc6b912328b90b16db"
++SRCREV = "4e9b02508ac3847df0af5c496a1be7b4ae082ad5"
  
- PROVIDES += "ltp"
-@@ -16,7 +16,7 @@ inherit autotools-brokensep module-base kernel-module-split
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRCREV = "11d2be92d855aab435efaa83a78cd040e9a697af"
-+SRCREV = "bd7bc9eea597808d0b98616c657bfbf7fa7e8ee3"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ S = "${WORKDIR}/git"
+ EXTRA_OECONF += "IPC_HEADERS=${STAGING_INCDIR}/ti/ipc/mm"
+-
 -- 
 2.2.0
 
