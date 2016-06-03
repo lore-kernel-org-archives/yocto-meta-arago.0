@@ -1,30 +1,30 @@
 Return-Path: <karthik.ramanan@ti.com>
 Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 9CF7252079
+	by arago-project.org (Postfix) with ESMTPS id D1C0752974
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Jun 2016 14:00:42 +0000 (UTC)
+	Fri,  3 Jun 2016 18:38:23 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u53E0fqM018508
-	for <meta-arago@arago-project.org>; Fri, 3 Jun 2016 09:00:41 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u53E0fR8025226
-	for <meta-arago@arago-project.org>; Fri, 3 Jun 2016 09:00:41 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 3 Jun 2016 09:00:41 -0500
-Received: from swubn04.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u53E0ZvQ031378;
-	Fri, 3 Jun 2016 09:00:40 -0500
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u53IcNeF014720
+	for <meta-arago@arago-project.org>; Fri, 3 Jun 2016 13:38:23 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u53IcNc9002898
+	for <meta-arago@arago-project.org>; Fri, 3 Jun 2016 13:38:23 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 3 Jun 2016 13:38:22 -0500
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u53IcKAH009013;
+	Fri, 3 Jun 2016 13:38:22 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 3 Jun 2016 19:30:01 +0530
-Message-ID: <1464962401-25784-2-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1464962401-25784-1-git-send-email-a0393906@ti.com>
-References: <1464962401-25784-1-git-send-email-a0393906@ti.com>
+Date: Sat, 4 Jun 2016 00:08:18 +0530
+Message-ID: <1464979098-23157-2-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1464979098-23157-1-git-send-email-a0393906@ti.com>
+References: <1464979098-23157-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Wed, 15 Jun 2016 03:59:10 +0000
-Subject: [PATCH 2/2] weston: Add soc peformance visualization tools
+Subject: [PATCH V2 2/2] weston: Add soc peformance visualization tools
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,7 +37,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jun 2016 14:00:43 -0000
+X-List-Received-Date: Fri, 03 Jun 2016 18:38:24 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
