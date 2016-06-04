@@ -1,29 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 19BF852974
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
+	[209.85.218.45])
+	by arago-project.org (Postfix) with ESMTPS id A4D8D52A18
 	for <meta-arago@arago-project.org>;
-	Sat,  4 Jun 2016 00:50:35 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u540oYO3024434
-	for <meta-arago@arago-project.org>; Fri, 3 Jun 2016 19:50:34 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u540oYCZ006336
-	for <meta-arago@arago-project.org>; Fri, 3 Jun 2016 19:50:34 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 3 Jun 2016 19:50:33 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u540oYQ0025007	for <meta-arago@arago-project.org>;
-	Fri, 3 Jun 2016 19:50:34 -0500
-Date: Fri, 3 Jun 2016 20:50:34 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <119933435.21.1465001434034.JavaMail.jenkins@puget>
+	Sat,  4 Jun 2016 10:37:37 +0000 (UTC)
+Received: by mail-oi0-f45.google.com with SMTP id e72so162959955oib.1
+	for <meta-arago@arago-project.org>;
+	Sat, 04 Jun 2016 03:37:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=W1+RCbG6D6K4vv8/NWNmqtTXSX738qwBysgkGI/ldJE=;
+	b=zlEHYG7v7T0nGXOrdq9cC1iSqbFORRIz1/yao43PuGVrOPLaYr/8erfJR1sxr57sH4
+	qMthr0Gf2DSkxVzuocSFUcc/lvPKqDX8G63LSgt3OVodMOSOBFuiaE8JowPXJbdnm9Cb
+	60a5tF7N3fnj3pqHwt4lAVtJjI6xz4x7FjTZ1VJMz65KAcesSZtXINYrSemXrlDQ1hz5
+	kOCMCKHiu5KOGFibkFcyWWbyjD0BrYYkS3D6wfDvFCA/ky1ePSiP80QahCQsk/mrrdw0
+	fgZYdCBBduk3hWpzOGKOdsMEQ3/FqHCApXHa3Bi+xKw33oyfSnAVkYXc8rm2nmmw8cwP
+	5qvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=W1+RCbG6D6K4vv8/NWNmqtTXSX738qwBysgkGI/ldJE=;
+	b=N26SRBJbkIZvy7PsBX9nPWS0Na+tezakTz8lBPfdGM2cM0y8tkr/TtU8gMwxPs4Kxs
+	8vBFAHyInNii9R7uTFxqWwuUMLgCapIJQ+1onDVtOh6Go0pxVvuezAe0l5mb0JwyTbBq
+	9nLYMsLGCwzQgsc/RFKnsApwRFZzWM0W9OpISSJi0cJQE/6UmQuMcAqIrxp/A+3HNZ0q
+	yuoFZy4EwUXXAiDj4DNpVN4a4XqY2PZDnoU97JRQzZCIq7CNKhmMjpQNNtKv6ysOrFrE
+	WUxqbgfBE0pBlcOtoKBJ++HzMOCQqP5nEdd6LzqyUQk8jVlbCoNHHwoHCkZ3+ST1P17l
+	qn7g==
+X-Gm-Message-State: ALyK8tKDOo+11sgx7yzsPpuxp6/IyX2gLhPF24F8ovhErBgBCu8fxW7e9VxAWIsnmo1YjEUmdmGlp6FvjtMJ0g==
+X-Received: by 10.202.170.15 with SMTP id t15mr3565074oie.3.1465036657142;
+	Sat, 04 Jun 2016 03:37:37 -0700 (PDT)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-master-rt
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] RT Core TISDK (krogoth/2.1) 2016.05 build 2016-06-03_20-09-09
+Received: by 10.202.204.129 with HTTP; Sat, 4 Jun 2016 03:37:17 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Sat, 4 Jun 2016 22:37:17 +1200
+Message-ID: <CADySD0EkXbgZ6MWCv-Dco6g1B0+k4-dxh5BKJ5xqPBYcHQtHrA@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: tisdk-rootfs-image error when using arago-krogoth-config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,181 +48,89 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Jun 2016 00:50:36 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_20_1515269144.1465001434019"
+X-List-Received-Date: Sat, 04 Jun 2016 10:37:38 -0000
+Content-Type: multipart/alternative; boundary=001a113cff38882fc70534716d8a
 
-------=_Part_20_1515269144.1465001434019
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--001a113cff38882fc70534716d8a
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<title>
-Status for 06/03/16
-</title>
-</head>
-<body>
+=E2=80=8BHi,
 
-<h2>Status for 06/03/16</h2>
+I am trying to build tisdk-rootfs-image and getting following error:
 
-<h2>BUILD_ID: build-2016-06-03_20-10-13</h2>
+http://pastebin.com/9SqudXGa
 
-<h2>Clean Build: false</h2>
+This is my build configuration:
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+Build Configuration:
+BB_VERSION        =3D "1.30.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Ubuntu-16.04"
+TARGET_SYS        =3D "arm-linux-gnueabi"
+MACHINE           =3D "am335x-evm"
+DISTRO            =3D "arago"
+DISTRO_VERSION    =3D "2016.05"
+TUNE_FEATURES     =3D "arm armv7a vfp thumb neon
+callconvention-hard       cortexa8"
+TARGET_FPU        =3D "hard"
+meta-arago-distro
+meta-arago-extras =3D "krogoth:01453ff0c02a472726f6dfe8f949abba55eab935"
+meta-qt5          =3D "krogoth:d715f2c1d340fa38f8a9860acc73de5e14a38b75"
+meta-networking
+meta-ruby
+meta-python
+meta-oe           =3D "krogoth:247b1267bbe95719cd4877d2d3cfbaf2a2f4865a"
+meta-ti           =3D "krogoth:1ae0cadb1200d0007a779958e852a48379d42c26"
+meta-linaro-toolchain =3D "krogoth:0f2a4dd08ab06768cc998fe3f7236e3942f4a2cc=
+"
+meta              =3D "krogoth:b0b91490e4ede61a302eb547da2cc65aa7da87ff"
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.30</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2g-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
+Any help is appreciated.
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+regards
+Ankur
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2016.05"<br>
-MACHINES="k2g-evm"<br>
-NUM_ARM9_BUILDS="0"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9=""<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-master-rt"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace"<br>
-LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace/configs/arago-core-tisdk-master-rt-append.txt"<br>
-</p>
+--001a113cff38882fc70534716d8a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-</body>
-</html>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif;font-size:small;color:rgb(51,51,153)">=E2=80=8BHi,<br><br></div><div =
+class=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;=
+color:rgb(51,51,153)">I am trying to build tisdk-rootfs-image and getting f=
+ollowing error:<br><br><a href=3D"http://pastebin.com/9SqudXGa">http://past=
+ebin.com/9SqudXGa</a><br><br></div><div class=3D"gmail_default" style=3D"fo=
+nt-family:georgia,serif;font-size:small;color:rgb(51,51,153)">This is my bu=
+ild configuration:<br><br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.30.0&quot;<br>BUILD_SYS=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>NATIVE=
+LSBSTRING=C2=A0=C2=A0 =3D &quot;Ubuntu-16.04&quot;<br>TARGET_SYS=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-linux-gnueabi&quot;<br>MACH=
+INE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;a=
+m335x-evm&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 =3D &quot;arago&quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=
+=A0 =3D &quot;2016.05&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &q=
+uot;arm armv7a vfp thumb neon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 callconve=
+ntion-hard=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cortexa8&quot;<br>TARGET_FPU=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;hard&quot;<br>meta-ara=
+go-distro <br>meta-arago-extras =3D &quot;krogoth:01453ff0c02a472726f6dfe8f=
+949abba55eab935&quot;<br>meta-qt5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 =3D &quot;krogoth:d715f2c1d340fa38f8a9860acc73de5e14a38b75&quo=
+t;<br>meta-networking=C2=A0=C2=A0 <br>meta-ruby=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 <br>meta-python=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <=
+br>meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+&quot;krogoth:247b1267bbe95719cd4877d2d3cfbaf2a2f4865a&quot;<br>meta-ti=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;krogoth=
+:1ae0cadb1200d0007a779958e852a48379d42c26&quot;<br>meta-linaro-toolchain =
+=3D &quot;krogoth:0f2a4dd08ab06768cc998fe3f7236e3942f4a2cc&quot;<br>meta=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D &quot;krogoth:b0b91490e4ede61a302eb547da2cc65aa7da87ff&quot;<br><br></=
+div><div class=3D"gmail_default" style=3D"font-family:georgia,serif;font-si=
+ze:small;color:rgb(51,51,153)">Any help is appreciated.<br><br></div><div c=
+lass=3D"gmail_default" style=3D"font-family:georgia,serif;font-size:small;c=
+olor:rgb(51,51,153)">regards<br></div><div class=3D"gmail_default" style=3D=
+"font-family:georgia,serif;font-size:small;color:rgb(51,51,153)">Ankur<br><=
+/div></div>
 
-
-------=_Part_20_1515269144.1465001434019--
+--001a113cff38882fc70534716d8a--
