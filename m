@@ -1,30 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A1CAA52A4F
+Return-Path: <denis@denix.org>
+Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
+	[206.46.173.13])
+	by arago-project.org (Postfix) with ESMTPS id 08EF0529BF
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Jun 2016 16:38:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u56Gc90n024941;
-	Mon, 6 Jun 2016 11:38:09 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u56GcKDs025068;
-	Mon, 6 Jun 2016 11:38:20 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 6 Jun 2016 11:38:20 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u56GcK1k013901;
-	Mon, 6 Jun 2016 11:38:20 -0500
-Date: Mon, 6 Jun 2016 12:38:04 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Message-ID: <20160606163804.GF13268@edge>
-References: <CADySD0EkXbgZ6MWCv-Dco6g1B0+k4-dxh5BKJ5xqPBYcHQtHrA@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CADySD0EkXbgZ6MWCv-Dco6g1B0+k4-dxh5BKJ5xqPBYcHQtHrA@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: tisdk-rootfs-image error when using arago-krogoth-config
+	Tue,  7 Jun 2016 23:19:22 +0000 (UTC)
+Received: from vz-proxy-m005.mx.aol.com ([64.236.83.15])
+	by vms173013.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O8F00BMTCRU7J70@vms173013.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 07 Jun 2016 18:19:06 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=NimJJ1rWho3RDXpqkQh0Zg==:117
+	a=pD_ry4oyNxEA:10 a=sozttTNsAAAA:8	a=x5BwiFZGAAAA:8
+	a=qnY5220AgA0-XhASMcAA:9
+Received: by 100.15.86.14 with SMTP id 75d3c3cd; Tue, 07 Jun 2016 23:19:06 GMT
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id 26CFE162042;	Tue,
+	7 Jun 2016 19:19:06 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 07 Jun 2016 19:19:05 -0400
+Message-id: <1465341545-20646-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.2.0
+Subject: [PATCH] libdce: moved to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,64 +35,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jun 2016 16:38:20 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 07 Jun 2016 23:19:22 -0000
 
-On Sat, Jun 04, 2016 at 10:37:17PM +1200, Ankur Tyagi wrote:
-> ​Hi,
-> 
-> I am trying to build tisdk-rootfs-image and getting following error:
-> 
-> http://pastebin.com/9SqudXGa
+From: Denys Dmytriyenko <denys@ti.com>
 
-After looking at the log, I see that you are using Linaro 4.9 toolchain. That 
-particular version of the toolchain had some packaging issues, which I worked 
-with Linaro team to resolve in the next versions. Still, in order to use 4.9, 
-I had to put some workarounds in corresponding recipes in Fido branch. Those 
-were rather ugly and version specific, so I didn't cary them over to Krogoth. 
-And on Krogoth we use Linaro 5.3 toolchain:
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-multimedia/libdce/libdce_3.00.10.01.bb          | 13 -------------
+ 1 file changed, 13 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb
 
-https://releases.linaro.org/components/toolchain/binaries/5.3-2016.02/
-https://releases.linaro.org/components/toolchain/binaries/5.3-2016.02/arm-linux-gnueabihf/gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf.tar.xz
-
+diff --git a/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb b/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb
+deleted file mode 100644
+index aa61cb6..0000000
+--- a/meta-arago-extras/recipes-multimedia/libdce/libdce_3.00.10.01.bb
++++ /dev/null
+@@ -1,13 +0,0 @@
+-DESCRIPTION = "Library used for remotely invoking the hw accelerated codec on IVA-HD"
+-LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://libdce.h;beginline=1;endline=31;md5=0a398cf815b8b5f31f552266cd453dae"
+-
+-inherit autotools pkgconfig
+-
+-DEPENDS = "libdrm ti-ipc"
+-
+-SRC_URI = "git://git.omapzoom.org/repo/libdce.git;protocol=git"
+-SRCREV = "4e9b02508ac3847df0af5c496a1be7b4ae082ad5"
+-
+-S = "${WORKDIR}/git"
+-EXTRA_OECONF += "IPC_HEADERS=${STAGING_INCDIR}/ti/ipc/mm"
 -- 
-Denys
-
-
-> This is my build configuration:
-> 
-> Build Configuration:
-> BB_VERSION        = "1.30.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "Ubuntu-16.04"
-> TARGET_SYS        = "arm-linux-gnueabi"
-> MACHINE           = "am335x-evm"
-> DISTRO            = "arago"
-> DISTRO_VERSION    = "2016.05"
-> TUNE_FEATURES     = "arm armv7a vfp thumb neon
-> callconvention-hard       cortexa8"
-> TARGET_FPU        = "hard"
-> meta-arago-distro
-> meta-arago-extras = "krogoth:01453ff0c02a472726f6dfe8f949abba55eab935"
-> meta-qt5          = "krogoth:d715f2c1d340fa38f8a9860acc73de5e14a38b75"
-> meta-networking
-> meta-ruby
-> meta-python
-> meta-oe           = "krogoth:247b1267bbe95719cd4877d2d3cfbaf2a2f4865a"
-> meta-ti           = "krogoth:1ae0cadb1200d0007a779958e852a48379d42c26"
-> meta-linaro-toolchain = "krogoth:0f2a4dd08ab06768cc998fe3f7236e3942f4a2cc"
-> meta              = "krogoth:b0b91490e4ede61a302eb547da2cc65aa7da87ff"
-> 
-> Any help is appreciated.
-> 
-> regards
-> Ankur
-
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+2.2.0
 
 
