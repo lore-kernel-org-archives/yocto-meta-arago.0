@@ -1,28 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id D37985208C
+Return-Path: <yesipov@gmail.com>
+Received: from mail-lf0-f66.google.com (mail-lf0-f66.google.com
+	[209.85.215.66])
+	by arago-project.org (Postfix) with ESMTPS id 0C6D05208C
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Jun 2016 07:27:03 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u587Qng1027942
-	for <meta-arago@arago-project.org>; Wed, 8 Jun 2016 02:26:49 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u587R3DW027805
-	for <meta-arago@arago-project.org>; Wed, 8 Jun 2016 02:27:03 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 8 Jun 2016 02:27:02 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u587R2Dj007499;	Wed, 8 Jun 2016 02:27:02 -0500
-Date: Wed, 8 Jun 2016 03:27:00 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <663074626.1.1465370821692.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-master
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (krogoth/2.1) 2016.05 build 2016-06-07_23-00-47
+	Wed,  8 Jun 2016 08:16:41 +0000 (UTC)
+Received: by mail-lf0-f66.google.com with SMTP id s186so79529lfs.2
+	for <meta-arago@arago-project.org>;
+	Wed, 08 Jun 2016 01:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=iAlD/zcsTm4Ogk+RV1q998mQAdtwTspxK1xKIbrNZKY=;
+	b=a8ivZXl6x2uZ+xMuXLI6lVCNdsWONF/QHgdSE9kqy83M+aFfoiGOQIdsvD0OBLCTEP
+	BGMe7VJ+hIyaDevzhXO2FwlY3hE59URIUH7ak1e31CC9qDTHYfxhWBSF1/laaPNCmAbs
+	XHzxWUMqVfRSE3PL/eLF2fyb34dakZvvxKrTx9REt74ZyFOf5c+hSi5MG0iLcBMMceLX
+	ik4iC9nXAStFV0jDEvYlGK+ZJomKfbH2wDtageRBgGyBvLLyUfcZvbGsQkRQETtpgH7z
+	gO/9kdRbenWtb+asfHHbKK/9vUED6Hz3BWY4ix/RxVDxGB5UNsKiH29a5aKzjx8LpSRI
+	vFHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=iAlD/zcsTm4Ogk+RV1q998mQAdtwTspxK1xKIbrNZKY=;
+	b=LOypv27Nh9xjB9CkKmNvFsnnrFXS/HxWQ3SwB5Oo3nVavr7+LmmPkZg+PpvYk0lpqK
+	G/RC4sng7NpWm4GZ2nsJDN4u4WraT/PjSY9Z55s8JzDREGcpAeYjuQzxancf8rc5vPmN
+	YWp2KtE0Bt5ujf/hXQHd+9Cw/S8/c1HqriG8JQnhpI0u/WIFFER/tm7kBhvi/FtRljDp
+	SuPVrDD7dnSdo+CvVUKDOtQZE2OT1vzty8JndeWe7CMyQNYPu2sJXLWhYoE79dL+CeAX
+	OImnHD/CMa9UAhtZRhdT5YjcqoYHTjarnFPq/5UEB9ISjUjORrJ7cqGIVdNkiODUxzxC
+	ZWQQ==
+X-Gm-Message-State: ALyK8tJT2iZynaSlQDhGyQvDARAVBn7YITheBTCreBoDzTudQIMzjDpkppYPt7mo5aoThw==
+X-Received: by 10.46.5.84 with SMTP id 81mr941497ljf.66.1465373799988;
+	Wed, 08 Jun 2016 01:16:39 -0700 (PDT)
+Received: from nw.d-systems.local ([185.75.190.112])
+	by smtp.gmail.com with ESMTPSA id f93sm2014lji.46.2016.06.08.01.16.38
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 08 Jun 2016 01:16:39 -0700 (PDT)
+From: Kirill Esipov <yesipov@gmail.com>
+To: meta-arago@arago-project.org
+Date: Wed,  8 Jun 2016 11:16:19 +0300
+Message-Id: <1465373779-26079-1-git-send-email-yesipov@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH] psplash_git: revert Remove patch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,224 +51,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 07:27:05 -0000
-Content-Type: multipart/mixed; boundary="----=_Part_0_451559313.1465370820883"
+X-List-Received-Date: Wed, 08 Jun 2016 08:16:41 -0000
 
-------=_Part_0_451559313.1465370820883
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+No need to remove patch due to updating psplash in oe-core.
 
-<html>
-<head>
-<title>
-Status for 06/08/16
-</title>
-</head>
-<body>
+Signed-off-by: Kirill Esipov <yesipov@gmail.com>
+---
+ meta-arago-distro/recipes-core/psplash/psplash_git.bbappend | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-<h2>Status for 06/08/16</h2>
-
-<h2>BUILD_ID: build-2016-06-07_23-01-49</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.30</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-hs-evm</td>
-        <td id="am437x-hs-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-hs-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-hs-evm</td>
-        <td id="dra7xx-hs-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-hs-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2016.05"<br>
-MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="0"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9=""<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-master"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
+index d354a93..8cbe754 100644
+--- a/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
++++ b/meta-arago-distro/recipes-core/psplash/psplash_git.bbappend
+@@ -1,7 +1,7 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = "-arago3"
++PR_append = "-arago4"
+ 
+ # Update which portion of the psplash.h file to use as a checksum. This tweak
+ # has already been done in oe-core master
+@@ -10,10 +10,6 @@ LIC_FILES_CHKSUM = "file://psplash.h;beginline=1;endline=16;md5=840fb2356b10a85b
+ # Updating to latest version of psplash. This is the version used in oe-core master
+ SRCREV = "de9979aefbc56af59b4d236a4b63dd19dcdcfb53"
+ 
+-# Remove backported patch from oe-core denzil since the SRCREV we are using
+-# includes this patch.
+-SRC_URI := "${@oe_filter_out('file://psplash_fix_bad_arg_segfault.patch','${SRC_URI}', d)}"
+-
+ SRC_URI += "file://psplash-18bpp.patch                      \
+             file://0003-Updated-configurability.patch.patch \
+             file://psplash-poky-img.h                       \
+-- 
+2.7.4
 
 
-------=_Part_0_451559313.1465370820883--
