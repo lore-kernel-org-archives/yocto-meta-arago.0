@@ -1,29 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTPS id C81A952A5B
+Return-Path: <j-stiffler@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id 76D5652A5B
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jun 2016 17:14:08 +0000 (UTC)
-Received: from vz-proxy-m002.mx.aol.com ([64.236.83.3])
-	by vms173007.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0O9A009YZD75E310@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 24 Jun 2016 12:13:53 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=yQ9kT6OsLgv7WE5tBE7I5g==:117
-	a=pD_ry4oyNxEA:10 a=sozttTNsAAAA:8	a=oqYQulIMzauqMbLm0WQA:9
-Received: by 100.15.86.14 with SMTP id 197ec0c0; Fri, 24 Jun 2016 17:13:53 GMT
-Received: from elrond.denix (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 05F6816207A;	Fri,
-	24 Jun 2016 13:13:53 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 24 Jun 2016 13:13:50 -0400
-Message-id: <20160624171350.18507-3-denis@denix.org>
-X-Mailer: git-send-email 2.9.0
-In-reply-to: <20160624171350.18507-1-denis@denix.org>
+	Fri, 24 Jun 2016 17:17:06 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5OHH6UA018399;
+	Fri, 24 Jun 2016 12:17:06 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5OHH6rT029025;
+	Fri, 24 Jun 2016 12:17:06 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0294.000; Fri, 24 Jun 2016 12:17:05 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH 2/3] k2-initramfs: update to latest with
+	fresh	FW images
+Thread-Index: AQHRzjvQKkK6GL0UHU+OwFhoXOMP3J/426Mg
+Date: Fri, 24 Jun 2016 17:17:05 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958142BE0E4@DFLE09.ent.ti.com>
 References: <20160624171350.18507-1-denis@denix.org>
-Subject: [PATCH 3/3] arago.conf: bump distro version
+	<20160624171350.18507-2-denis@denix.org>
+In-Reply-To: <20160624171350.18507-2-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
+MIME-Version: 1.0
+Subject: Re: [PATCH 2/3] k2-initramfs: update to latest with fresh	FW images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,28 +41,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 17:14:09 -0000
+X-List-Received-Date: Fri, 24 Jun 2016 17:17:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 75b3aab..25a1954 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -1,6 +1,6 @@
- # Name and version of the distribution
- DISTRO_NAME = "Arago"
--DISTRO_VERSION = "2016.05"
-+DISTRO_VERSION = "2016.06"
- DISTRO_FEED_URI ?= "http://gtautoftp.gt.design.ti.com"
- FEEDURIPREFIX ?= "lcpd/core-sdk/nightly/deploy/ipk/"
- 
--- 
-2.9.0
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> Sent: Friday, June 24, 2016 1:14 PM
+> To: meta-arago@arago-project.org
+> Subject: [meta-arago] [PATCH 2/3] k2-initramfs: update to latest with fre=
+sh
+> FW images
+>=20
+> From: Denys Dmytriyenko <denys@ti.com>
+>=20
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+>  meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb | 6 +++--=
+-
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.=
+bb
+> b/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
+> index e61edbd..46325aa 100644
+> --- a/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
+> +++ b/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
+> @@ -3,7 +3,7 @@ DESCRIPTION =3D "Prebuilt Keystone2 initramfs with
+> SerDes, QMSS and NETCP PA firmw
+>  LICENSE =3D "TI-TFL"
+>  LIC_FILES_CHKSUM =3D
+> "file://LICENSE;md5=3D3a86335d32864b0bef996bee26cc0f2c"
+>=20
+> -PV =3D "0.0.4"
+> +PV =3D "0.0.5"
+>  PR =3D "r0"
+>=20
+>  CLEANBROKEN =3D "1"
+> @@ -14,8 +14,8 @@ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+>=20
+>  SRC_URI =3D "http://arago-project.org/files/releases/k2-fw/${P}.tar.gz"
 
+This file is updated in place? This will break recreating all past releases=
+ and our upcoming release.
+
+>=20
+> -SRC_URI[md5sum] =3D "ba1fe7a7f9279ea7ed0d26fbba30e4d5"
+> -SRC_URI[sha256sum] =3D
+> "c76c0899cbe9b5dde45febf4be48175142dc49ddcfe759596090c183743e8b3b"
+> +SRC_URI[md5sum] =3D "7c1ffa2ef565532aee07c28ea56b748f"
+> +SRC_URI[sha256sum] =3D
+> "7816722c319fd83f5538649003158616481ded5f6a8361f66d38f738f93c0022"
+>=20
+>  S =3D "${WORKDIR}"
+>  TARGET =3D "k2-fw-initrd.cpio.gz"
+> --
+> 2.9.0
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
