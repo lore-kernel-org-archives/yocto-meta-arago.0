@@ -1,29 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 1F11E529A4
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id DC92A52A8E
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jun 2016 10:40:31 +0000 (UTC)
+	Fri, 24 Jun 2016 14:07:38 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5OAeUQ0020245
-	for <meta-arago@arago-project.org>; Fri, 24 Jun 2016 05:40:30 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5OE6lnE002589
+	for <meta-arago@arago-project.org>; Fri, 24 Jun 2016 09:06:47 -0500
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5OAeU7t028296
-	for <meta-arago@arago-project.org>; Fri, 24 Jun 2016 05:40:30 -0500
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5OE7cIQ014300
+	for <meta-arago@arago-project.org>; Fri, 24 Jun 2016 09:07:38 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Jun 2016 05:40:30 -0500
+	Fri, 24 Jun 2016 09:07:38 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u5OAeU7F031944	for <meta-arago@arago-project.org>;
-	Fri, 24 Jun 2016 05:40:30 -0500
-Date: Fri, 24 Jun 2016 06:40:30 -0400
+	u5OE7beb028905	for <meta-arago@arago-project.org>;
+	Fri, 24 Jun 2016 09:07:38 -0500
+Date: Fri, 24 Jun 2016 10:07:37 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <62782451.121.1466764830150.JavaMail.jenkins@puget>
+Message-ID: <1585523960.123.1466777257875.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-master-systest
+X-Jenkins-Job: arago-core-tisdk-master-rt
 X-Jenkins-Result: SUCCESS
-Subject: [nightly] SysTest Core TISDK (krogoth/2.1) 2016.05 build 2016-06-23_23-07-13
+Subject: [nightly] RT Core TISDK (krogoth/2.1) 2016.05 build 2016-06-24_06-40-30
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,11 +36,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 10:40:31 -0000
+X-List-Received-Date: Fri, 24 Jun 2016 14:07:39 -0000
 Content-Type: multipart/mixed;
-	boundary="----=_Part_120_1264191467.1466764830114"
+	boundary="----=_Part_122_1410710120.1466777257844"
 
-------=_Part_120_1264191467.1466764830114
+------=_Part_122_1410710120.1466777257844
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -54,7 +54,7 @@ Status for 06/24/16
 
 <h2>Status for 06/24/16</h2>
 
-<h2>BUILD_ID: build-2016-06-23_23-08-15</h2>
+<h2>BUILD_ID: build-2016-06-24_06-41-35</h2>
 
 <h2>Clean Build: false</h2>
 
@@ -129,7 +129,7 @@ Status for 06/24/16
     <tr>
         <td>am335x-evm</td>
         <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
     </tr>
     <tr>
         <td>am437x-evm</td>
@@ -138,33 +138,33 @@ Status for 06/24/16
     </tr>
     <tr>
         <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am57xx-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
     <tr>
         <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
     </tr>
 </table>
 
@@ -190,7 +190,7 @@ TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
 TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
 BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
 SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-master-systest"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master-rt"<br>
 TEST_ROOT="$BUILD_ROOT/testing"<br>
 PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
 DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
@@ -238,14 +238,14 @@ EXPORT_ARAGO_SRC="0"<br>
 COPY_TO_WEB="true"<br>
 COPY_DEPLOY_TO_WEB="true"<br>
 COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/systest"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
 CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace"<br>
-LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace/configs/arago-core-tisdk-master-systest-append.txt"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace"<br>
+LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace/configs/arago-core-tisdk-master-rt-append.txt"<br>
 </p>
 
 </body>
 </html>
 
 
-------=_Part_120_1264191467.1466764830114--
+------=_Part_122_1410710120.1466777257844--
