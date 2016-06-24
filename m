@@ -1,34 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 231A552A5B
+Return-Path: <denis@denix.org>
+Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
+	[206.46.173.25])
+	by arago-project.org (Postfix) with ESMTPS id 8115452A71
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jun 2016 18:09:18 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5OI8PDb028236;
-	Fri, 24 Jun 2016 13:08:25 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5OI9Gnu020763;
-	Fri, 24 Jun 2016 13:09:16 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Jun 2016 13:09:16 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5OI9EbO002928;
-	Fri, 24 Jun 2016 13:09:15 -0500
-Date: Fri, 24 Jun 2016 14:09:13 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>
-Message-ID: <20160624180912.GU2177@edge>
-References: <20160624171350.18507-1-denis@denix.org>
-	<20160624171350.18507-2-denis@denix.org>
-	<4B26FB5A64EBA14C87266869E037F958142BE0E4@DFLE09.ent.ti.com>
-	<20160624175516.GT2177@edge>
-	<4B26FB5A64EBA14C87266869E037F958142BE193@DFLE09.ent.ti.com>
-MIME-Version: 1.0
-In-Reply-To: <4B26FB5A64EBA14C87266869E037F958142BE193@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH 2/3] k2-initramfs: update to latest with fresh	FW images
+	Fri, 24 Jun 2016 18:17:02 +0000 (UTC)
+Received: from vz-proxy-m002.mx.aol.com ([64.236.83.3])
+	by vms173025.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0O9A00C4CG3ZYI70@vms173025.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 24 Jun 2016 13:16:47 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=yQ9kT6OsLgv7WE5tBE7I5g==:117
+	a=pD_ry4oyNxEA:10 a=sozttTNsAAAA:8	a=pGLkceISAAAA:8 a=xq3W2uTSAAAA:8
+	a=QTUh65IjiRifRMwz51YA:9
+Received: by 100.15.86.14 with SMTP id 4808e8d4; Fri, 24 Jun 2016 18:16:47 GMT
+Received: from elrond.denix (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id CAFEA162069;	Fri,
+	24 Jun 2016 14:16:46 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 24 Jun 2016 14:16:46 -0400
+Message-id: <20160624181646.18828-1-denis@denix.org>
+X-Mailer: git-send-email 2.9.0
+Subject: [PATCH] v4l-utils: update to 1.10.1 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,93 +35,162 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 18:09:18 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 24 Jun 2016 18:17:02 -0000
 
-On Fri, Jun 24, 2016 at 01:58:09PM -0400, Stiffler, Jacob wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Friday, June 24, 2016 1:55 PM
-> > To: Stiffler, Jacob
-> > Cc: Denys Dmytriyenko; meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [PATCH 2/3] k2-initramfs: update to latest with
-> > fresh FW images
-> > 
-> > On Fri, Jun 24, 2016 at 05:17:05PM +0000, Stiffler, Jacob wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> > > > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> > > > Sent: Friday, June 24, 2016 1:14 PM
-> > > > To: meta-arago@arago-project.org
-> > > > Subject: [meta-arago] [PATCH 2/3] k2-initramfs: update to latest
-> > > > with fresh FW images
-> > > >
-> > > > From: Denys Dmytriyenko <denys@ti.com>
-> > > >
-> > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > > ---
-> > > >  meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb | 6
-> > > > +++---
-> > > >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git
-> > > > a/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
-> > > > b/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
-> > > > index e61edbd..46325aa 100644
-> > > > --- a/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
-> > > > +++ b/meta-arago-distro/recipes-bsp/k2-initramfs/k2-initramfs_git.bb
-> > > > @@ -3,7 +3,7 @@ DESCRIPTION = "Prebuilt Keystone2 initramfs with
-> > > > SerDes, QMSS and NETCP PA firmw  LICENSE = "TI-TFL"
-> > > >  LIC_FILES_CHKSUM =
-> > > > "file://LICENSE;md5=3a86335d32864b0bef996bee26cc0f2c"
-> > > >
-> > > > -PV = "0.0.4"
-> > > > +PV = "0.0.5"
-> > > >  PR = "r0"
-> > > >
-> > > >  CLEANBROKEN = "1"
-> > > > @@ -14,8 +14,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > > >
-> > > >  SRC_URI = "http://arago-project.org/files/releases/k2-fw/${P}.tar.gz"
-> > >
-> > > This file is updated in place? This will break recreating all past
-> > > releases and our upcoming release.
-> > 
-> > No, it's a new version.
-> > 
-> 
-> OK. Thank you for the confirmation.
-> 
-> Are there any plans to create this image as part of the builds?
+From: Denys Dmytriyenko <denys@ti.com>
 
-Yes.
+Uses version 1.6.2 from meta-oe as a base.
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ ...a-ctl-Don-t-install-libmediactl-and-libv4.patch | 41 ++++++++++++++++++++
+ .../v4l-utils/export-mediactl-headers.patch        | 15 ++++++++
+ .../v4l2apps/v4l-utils/mediactl-pkgconfig.patch    | 12 ++++++
+ .../v4l2apps/v4l-utils_1.10.1.bb                   | 45 ++++++++++++++++++++++
+ 4 files changed, 113 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/export-mediactl-headers.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/mediactl-pkgconfig.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_1.10.1.bb
 
-> > > > -SRC_URI[md5sum] = "ba1fe7a7f9279ea7ed0d26fbba30e4d5"
-> > > > -SRC_URI[sha256sum] =
-> > > >
-> > "c76c0899cbe9b5dde45febf4be48175142dc49ddcfe759596090c183743e8b3b"
-> > > > +SRC_URI[md5sum] = "7c1ffa2ef565532aee07c28ea56b748f"
-> > > > +SRC_URI[sha256sum] =
-> > > >
-> > "7816722c319fd83f5538649003158616481ded5f6a8361f66d38f738f93c0022"
-> > > >
-> > > >  S = "${WORKDIR}"
-> > > >  TARGET = "k2-fw-initrd.cpio.gz"
-> > > > --
-> > > > 2.9.0
-> > > >
-> > > > _______________________________________________
-> > > > meta-arago mailing list
-> > > > meta-arago@arago-project.org
-> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
+new file mode 100644
+index 0000000..4b3de3c
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
+@@ -0,0 +1,41 @@
++From 4ee15a8a69b84526ece1180a288a37db077bcd9b Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Fri, 27 Feb 2015 21:55:36 +0000
++Subject: [PATCH] Revert "media-ctl: Don't install libmediactl and
++ libv4l2subdev"
++
++This reverts commit 0911dce53b08b0df3066be2c75f67e8a314d8729.
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++
++Conflicts:
++	utils/media-ctl/Makefile.am
++---
++ utils/media-ctl/Makefile.am | 11 +++--------
++ 1 file changed, 3 insertions(+), 8 deletions(-)
++
++diff --git a/utils/media-ctl/Makefile.am b/utils/media-ctl/Makefile.am
++index a3931fb..fe1fea5 100644
++--- a/utils/media-ctl/Makefile.am
+++++ b/utils/media-ctl/Makefile.am
++@@ -1,14 +1,9 @@
++-noinst_LTLIBRARIES = libmediactl.la libv4l2subdev.la
++-
+++lib_LTLIBRARIES = libmediactl.la libv4l2subdev.la
++ libmediactl_la_SOURCES = libmediactl.c mediactl-priv.h
++-libmediactl_la_CFLAGS = -static $(LIBUDEV_CFLAGS)
++-libmediactl_la_LDFLAGS = -static $(LIBUDEV_LIBS)
++-
+++libmediactl_la_CFLAGS = $(LIBUDEV_CFLAGS)
+++libmediactl_la_LDFLAGS = $(LIBUDEV_LIBS)
++ libv4l2subdev_la_SOURCES = libv4l2subdev.c
++ libv4l2subdev_la_LIBADD = libmediactl.la
++-libv4l2subdev_la_CFLAGS = -static
++-libv4l2subdev_la_LDFLAGS = -static
++-
++ mediactl_includedir=$(includedir)/mediactl
++ noinst_HEADERS = mediactl.h v4l2subdev.h
++ 
++-- 
++2.1.4
++
+diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/export-mediactl-headers.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/export-mediactl-headers.patch
+new file mode 100644
+index 0000000..c610e7e
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/export-mediactl-headers.patch
+@@ -0,0 +1,15 @@
++Index: v4l-utils-1.6.2/utils/media-ctl/Makefile.am
++===================================================================
++--- v4l-utils-1.6.2.orig/utils/media-ctl/Makefile.am
+++++ v4l-utils-1.6.2/utils/media-ctl/Makefile.am
++@@ -4,8 +4,8 @@ libmediactl_la_CFLAGS = $(LIBUDEV_CFLAGS
++ libmediactl_la_LDFLAGS = $(LIBUDEV_LIBS)
++ libv4l2subdev_la_SOURCES = libv4l2subdev.c
++ libv4l2subdev_la_LIBADD = libmediactl.la
++-mediactl_includedir=$(includedir)/mediactl
++-noinst_HEADERS = mediactl.h v4l2subdev.h
+++otherincludedir = $(includedir)/mediactl
+++otherinclude_HEADERS = mediactl.h v4l2subdev.h
++ 
++ pkgconfig_DATA = libmediactl.pc
++ bin_PROGRAMS = media-ctl
+diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/mediactl-pkgconfig.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/mediactl-pkgconfig.patch
+new file mode 100644
+index 0000000..34fb3cf
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/mediactl-pkgconfig.patch
+@@ -0,0 +1,12 @@
++Index: v4l-utils-1.6.2/utils/media-ctl/Makefile.am
++===================================================================
++--- v4l-utils-1.6.2.orig/utils/media-ctl/Makefile.am
+++++ v4l-utils-1.6.2/utils/media-ctl/Makefile.am
++@@ -7,6 +7,7 @@ libv4l2subdev_la_LIBADD = libmediactl.la
++ mediactl_includedir=$(includedir)/mediactl
++ noinst_HEADERS = mediactl.h v4l2subdev.h
++ 
+++pkgconfig_DATA = libmediactl.pc
++ bin_PROGRAMS = media-ctl
++ media_ctl_SOURCES = media-ctl.c options.c options.h tools.h
++ media_ctl_LDADD = libmediactl.la libv4l2subdev.la
+diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_1.10.1.bb b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_1.10.1.bb
+new file mode 100644
+index 0000000..6148695
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_1.10.1.bb
+@@ -0,0 +1,45 @@
++SUMMARY = "v4l2 and IR applications"
++LICENSE = "GPLv2 & LGPLv2.1"
++LIC_FILES_CHKSUM = "file://COPYING;md5=48da9957849056017dc568bbc43d8975 \
++                    file://COPYING.libv4l;md5=d749e86a105281d7a44c2328acebc4b0"
++PROVIDES = "libv4l media-ctl"
++
++DEPENDS = "jpeg \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'virtual/libx11', '', d)}"
++
++inherit autotools gettext pkgconfig
++
++PACKAGECONFIG ??= "media-ctl"
++PACKAGECONFIG[media-ctl] = "--enable-v4l-utils,--disable-v4l-utils,,"
++
++SRC_URI = "http://linuxtv.org/downloads/v4l-utils/v4l-utils-${PV}.tar.bz2 \
++           file://0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch \
++           file://mediactl-pkgconfig.patch \
++           file://export-mediactl-headers.patch \
++          "
++SRC_URI[md5sum] = "936c9c58343840e91294e4dcec7dc05f"
++SRC_URI[sha256sum] = "6147ccc29fe7dd3c5c3994d613c4f2a099bac8b44694a96e5cf4d7caca8336c0"
++
++EXTRA_OECONF = "--disable-qv4l2 --enable-shared --with-udevdir=${base_libdir}/udev"
++
++VIRTUAL-RUNTIME_ir-keytable-keymaps ?= "rc-keymaps"
++
++PACKAGES =+ "media-ctl ir-keytable rc-keymaps libv4l libv4l-dbg libv4l-dev"
++
++FILES_media-ctl = "${bindir}/media-ctl ${libdir}/libmediactl.so.*"
++
++FILES_ir-keytable = "${bindir}/ir-keytable ${base_libdir}/udev/rules.d/*-infrared.rules"
++RDEPENDS_ir-keytable += "${VIRTUAL-RUNTIME_ir-keytable-keymaps}"
++
++FILES_rc-keymaps = "${sysconfdir}/rc* ${base_libdir}/udev/rc*"
++
++FILES_${PN} = "${bindir} ${sbindir}"
++
++FILES_libv4l += "${libdir}/libv4l*${SOLIBS} ${libdir}/libv4l/*.so ${libdir}/libv4l/plugins/*.so \
++                 ${libdir}/libdvbv5*${SOLIBS} \
++                 ${libdir}/libv4l/*-decomp"
++
++FILES_libv4l-dbg += "${libdir}/libv4l/.debug ${libdir}/libv4l/plugins/.debug"
++FILES_libv4l-dev += "${includedir} ${libdir}/pkgconfig \
++                     ${libdir}/libv4l*${SOLIBSDEV} ${libdir}/*.la \
++                     ${libdir}/v4l*${SOLIBSDEV} ${libdir}/libv4l/*.la ${libdir}/libv4l/plugins/*.la"
+-- 
+2.9.0
+
 
