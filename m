@@ -1,46 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by arago-project.org (Postfix) with ESMTPS id 14FA252A82
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id E3A7B52079
 	for <meta-arago@arago-project.org>;
-	Sat, 25 Jun 2016 01:18:05 +0000 (UTC)
-Received: by mail-oi0-f68.google.com with SMTP id s17so21242667oih.1
-	for <meta-arago@arago-project.org>;
-	Fri, 24 Jun 2016 18:18:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=BV+hCQpwpGdRd5VP6ov4ld+k8GvtabY2qcQARZH9tvw=;
-	b=GuAnF15f/mPWN7mQEFwfJ9h1wyjBkp3MxYIJgzPSRFxjQ5O6pOUMVRJAT3xUZ3zN05
-	yq7vcQfim8FtcPIji5i0TsuB+sUiqcwgjGaK+Sk3cM7BdNEW/A1s93IKFOMPBUf/utmp
-	VuAycU95L4dlsH3oXgNoulILyTWxKLdSmEfPsCPGWZhJG9M1qylMNUYQNUhQBIcjP3MF
-	XoJ8rTUPHgoqUkWdJYd9vPIMJqPyyZURRminUmcKfugW+/rux5RQhaHr6to6e7R0Wb23
-	/vUNjDbhXLOXMh4qKpL/puA1k2JgFPsPxP0BVslI2AeShLte38+/AZNdWLU2YpZ7AzuN
-	LS2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=BV+hCQpwpGdRd5VP6ov4ld+k8GvtabY2qcQARZH9tvw=;
-	b=OtZ3CFOCG+igLkpVROTdMF86odQ1AgAMmElqVSu/O//w9NUhx98mbaQuUxY9ImI1Kj
-	GanNu/MB7Sn9gNYWkZpBQjn4Cm5jZx93dbQIvnHm5emVcsFMW5J39Q5N9s8FPvWBcuXn
-	y/g5UioniOyR1EdDzgiQBfpHH3hvA9AbaFR2zfA9R2l1dTDRtXjto7YnHGdFMQQ8F7b2
-	SQiCpkk01THCJsMJblNE272nF4hcQwJ7htTWbH7DEQ/NdEE5RBUoyumj1YdGx5mtBDj2
-	i/kngovuXvegFxv+HAvVm/CpqeUHMSnXa7gZDp4HQRVnpNslhHq6hlmq6nJc/uLOLWTa
-	qnNg==
-X-Gm-Message-State: ALyK8tJeoxjL1IOAJqkF/VCcsMGtENHDN8lZ6YFuv4gsvCvydqhtjcTuqWJVlwTp1FyNjfsbWAr1U6EMDuVUgg==
-X-Received: by 10.202.229.74 with SMTP id c71mr4753191oih.179.1466817484960;
-	Fri, 24 Jun 2016 18:18:04 -0700 (PDT)
+	Sat, 25 Jun 2016 06:46:49 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5P6klwU003760
+	for <meta-arago@arago-project.org>; Sat, 25 Jun 2016 01:46:47 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5P6klZv008712
+	for <meta-arago@arago-project.org>; Sat, 25 Jun 2016 01:46:47 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Sat, 25 Jun 2016 01:46:47 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u5P6klvt004888	for <meta-arago@arago-project.org>;
+	Sat, 25 Jun 2016 01:46:47 -0500
+Date: Sat, 25 Jun 2016 02:46:47 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1184405402.131.1466837207297.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.202.80.80 with HTTP; Fri, 24 Jun 2016 18:17:45 -0700 (PDT)
-In-Reply-To: <20160625001414.GX2177@edge>
-References: <CADySD0EGJ7JMswXzHbMGDQeGCHB0yrqq+zNfaS+ck1TzXD4KPw@mail.gmail.com>
-	<20160625001414.GX2177@edge>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sat, 25 Jun 2016 13:17:45 +1200
-Message-ID: <CADySD0H3hbUkmbombFd1xzgj3604KC5W71hUYNRe+LSjX-c-mw@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: ncurses-native compile error when building daisy branch on Ubuntu 16.04 64bit host
+X-Jenkins-Job: arago-core-tisdk-master-systest
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] SysTest Core TISDK (krogoth/2.1) 2016.05 build 2016-06-24_17-59-34
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,160 +36,216 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Jun 2016 01:18:05 -0000
-Content-Type: multipart/alternative; boundary=001a11409034243a830536100f4d
+X-List-Received-Date: Sat, 25 Jun 2016 06:46:50 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_130_917098503.1466837207280"
 
---001a11409034243a830536100f4d
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+------=_Part_130_917098503.1466837207280
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Thanks, it's working now.
+<html>
+<head>
+<title>
+Status for 06/25/16
+</title>
+</head>
+<body>
 
-On Sat, Jun 25, 2016 at 12:14 PM, Denys Dmytriyenko <denys@ti.com> wrote:
+<h2>Status for 06/25/16</h2>
 
->
-> http://lists.openembedded.org/pipermail/openembedded-core/2015-February/1=
-01820.html
->
->
-> On Sat, Jun 25, 2016 at 09:57:40AM +1200, Ankur Tyagi wrote:
-> > Hi,
-> >
-> > I am trying to build arago daisy branch on Ubuntu 16.04 64bit host
-> machine
-> > and I am getting this error:
-> >
-> > http://pastebin.com/pRaEr2Te
-> >
-> > Following is my build configuration
-> > =E2=80=8B:
-> > =E2=80=8B
-> >
-> > Toolchain: gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux
-> > (I have installed libstdc++6:i386 libncurses5:i386 libz1:i386 libc6:i38=
-6
-> > libc6-dev-i386)
-> >
-> > Build Configuration:
-> > BB_VERSION        =3D "1.26.0"
-> > BUILD_SYS         =3D "x86_64-linux"
-> > NATIVELSBSTRING   =3D "Ubuntu-16.04"
-> > TARGET_SYS        =3D "arm-linux-gnueabi"
-> > MACHINE           =3D "am335x-evm"
-> > DISTRO            =3D "arago"
-> > DISTRO_VERSION    =3D "2015.05"
-> > TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortex=
-a8"
-> > TARGET_FPU        =3D "vfp-neon"
-> > meta-ggl          =3D "master:9dbc979b22a14ddadc6359168420d369f5036225"
-> > meta-arago-distro
-> > meta-arago-extras =3D "daisy:f8c775ae64a26eb1182d515b2beb3544572bd799"
-> > meta-qt5          =3D "krogoth:d715f2c1d340fa38f8a9860acc73de5e14a38b75=
-"
-> > toolchain-layer
-> > meta-networking
-> > meta-ruby
-> > meta-oe           =3D "daisy:d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa"
-> > meta-ti           =3D "daisy:090b02a104924886afd0fa79be7b5d08eebf071f"
-> > meta-linaro-toolchain =3D "daisy:dbe0db0a1a5c015feb84ef689f48421594cb0b=
-51"
-> > meta              =3D "daisy:a4e80e831cd13e6418af0d770c5dbd5b9270eaa5"
-> >
-> > Is there a patch that fixes this problem ?
-> >
-> > thanks
-> > Ankur
->
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->
->
+<h2>BUILD_ID: build-2016-06-24_18-00-38</h2>
 
---001a11409034243a830536100f4d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<h2>Clean Build: false</h2>
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif;font-size:small;color:rgb(51,51,153)">Thanks, it&#39;s working now.<b=
-r></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Sat, J=
-un 25, 2016 at 12:14 PM, Denys Dmytriyenko <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:denys@ti.com" target=3D"_blank">denys@ti.com</a>&gt;</span> wrote:<=
-br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex"><a href=3D"http://lists.openembedded.org/=
-pipermail/openembedded-core/2015-February/101820.html" rel=3D"noreferrer" t=
-arget=3D"_blank">http://lists.openembedded.org/pipermail/openembedded-core/=
-2015-February/101820.html</a><br>
-<div><div class=3D"h5"><br>
-<br>
-On Sat, Jun 25, 2016 at 09:57:40AM +1200, Ankur Tyagi wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I am trying to build arago daisy branch on Ubuntu 16.04 64bit host mac=
-hine<br>
-&gt; and I am getting this error:<br>
-&gt;<br>
-&gt; <a href=3D"http://pastebin.com/pRaEr2Te" rel=3D"noreferrer" target=3D"=
-_blank">http://pastebin.com/pRaEr2Te</a><br>
-&gt;<br>
-&gt; Following is my build configuration<br>
-&gt; =E2=80=8B:<br>
-&gt; =E2=80=8B<br>
-&gt;<br>
-&gt; Toolchain: gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux<b=
-r>
-&gt; (I have installed libstdc++6:i386 libncurses5:i386 libz1:i386 libc6:i3=
-86<br>
-&gt; libc6-dev-i386)<br>
-&gt;<br>
-&gt; Build Configuration:<br>
-&gt; BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;1.26.0&quot;<br>
-&gt; BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;x86_64-linux&quot=
-;<br>
-&gt; NATIVELSBSTRING=C2=A0 =C2=A0=3D &quot;Ubuntu-16.04&quot;<br>
-&gt; TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arm-linux-gnueabi&quot=
-;<br>
-&gt; MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;am335x-evm&q=
-uot;<br>
-&gt; DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arago&quot;<=
-br>
-&gt; DISTRO_VERSION=C2=A0 =C2=A0 =3D &quot;2015.05&quot;<br>
-&gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0=3D &quot;armv7a vfp thumb neon callc=
-onvention-hard cortexa8&quot;<br>
-&gt; TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;vfp-neon&quot;<br>
-&gt; meta-ggl=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;master:9dbc979b22=
-a14ddadc6359168420d369f5036225&quot;<br>
-&gt; meta-arago-distro<br>
-&gt; meta-arago-extras =3D &quot;daisy:f8c775ae64a26eb1182d515b2beb3544572b=
-d799&quot;<br>
-&gt; meta-qt5=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;krogoth:d715f2c1d=
-340fa38f8a9860acc73de5e14a38b75&quot;<br>
-&gt; toolchain-layer<br>
-&gt; meta-networking<br>
-&gt; meta-ruby<br>
-&gt; meta-oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;daisy:d3d14d=
-3fcca7fcde362cf0b31411dc4eea6d20aa&quot;<br>
-&gt; meta-ti=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;daisy:090b02=
-a104924886afd0fa79be7b5d08eebf071f&quot;<br>
-&gt; meta-linaro-toolchain =3D &quot;daisy:dbe0db0a1a5c015feb84ef689f484215=
-94cb0b51&quot;<br>
-&gt; meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;daisy:a=
-4e80e831cd13e6418af0d770c5dbd5b9270eaa5&quot;<br>
-&gt;<br>
-&gt; Is there a patch that fixes this problem ?<br>
-&gt;<br>
-&gt; thanks<br>
-&gt; Ankur<br>
-<br>
-</div></div>&gt; _______________________________________________<br>
-&gt; meta-arago mailing list<br>
-&gt; <a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-proje=
-ct.org</a><br>
-&gt; <a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arag=
-o" rel=3D"noreferrer" target=3D"_blank">http://arago-project.org/cgi-bin/ma=
-ilman/listinfo/meta-arago</a><br>
-<br>
-</blockquote></div><br></div></div>
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
 
---001a11409034243a830536100f4d--
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.30</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am335x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am437x-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
+        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.05"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="0"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9=""<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master-systest"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/systest"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace"<br>
+LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace/configs/arago-core-tisdk-master-systest-append.txt"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_130_917098503.1466837207280--
