@@ -1,27 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 085765209D
+	by arago-project.org (Postfix) with ESMTPS id 5D5F552A81
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Jun 2016 15:12:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5RFBDmI018632
-	for <meta-arago@arago-project.org>; Mon, 27 Jun 2016 10:11:13 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5RFCE4Y004955
-	for <meta-arago@arago-project.org>; Mon, 27 Jun 2016 10:12:14 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 27 Jun 2016 10:12:14 -0500
+	Mon, 27 Jun 2016 15:12:16 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5RFBEVJ018635
+	for <meta-arago@arago-project.org>; Mon, 27 Jun 2016 10:11:14 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5RFCGhb011443
+	for <meta-arago@arago-project.org>; Mon, 27 Jun 2016 10:12:16 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 27 Jun 2016 10:12:16 -0500
 Received: from sditapps09.india.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u5RFCDgn028296;	Mon, 27 Jun 2016 10:12:13 -0500
+	u5RFCDgo028296;	Mon, 27 Jun 2016 10:12:15 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 27 Jun 2016 20:42:09 +0530
-Message-ID: <1467040331-32223-1-git-send-email-a0393906@ti.com>
+Date: Mon, 27 Jun 2016 20:42:10 +0530
+Message-ID: <1467040331-32223-2-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1467040331-32223-1-git-send-email-a0393906@ti.com>
+References: <1467040331-32223-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH V2 1/3] gstreamer1.0-plugins-bad: Upgrade to 1.6.3
+Subject: [PATCH V2 2/3] gstreamer1.0-plugins-ducati: Upgrade to GST 1.6.3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,63 +36,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jun 2016 15:12:15 -0000
+X-List-Received-Date: Mon, 27 Jun 2016 15:12:16 -0000
 Content-Type: text/plain
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../gstreamer1.0-plugins-bad_1.6.3.bbappend        | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+ .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb         | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-new file mode 100644
-index 0000000..fbc614a
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-@@ -0,0 +1,42 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+PACKAGECONFIG = "faad"
-+
-+# gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
-+PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-+PACKAGECONFIG_append_ti43x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-+PACKAGECONFIG_append_ti33x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-+
-+DEPENDS_append_omap-a15 = " \
-+    libdce \
-+    libdrm \
-+"
-+
-+DEPENDS_append_ti43x = " \
-+    libdrm \
-+"
-+
-+DEPENDS_append_ti33x = " \
-+    libdrm \
-+"
-+
-+SRC_URI_append_ti43x = " \
-+"
-+
-+SRC_URI_append_ti33x = " \
-+"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+index 11ec8f9..7b24eeb 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+@@ -4,7 +4,12 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
+ 
+ require gstreamer1.0-plugins-ti.inc
+ 
+-PR = "${INC_PR}.4"
+-SRCREV = "b2afa71ef76518ef8d368c6669c94d823e7972ba"
++PR = "${INC_PR}.11"
++SRCREV = "be329c73f19f48faec3d2c323532ba1ec1d22395"
+ 
+-SRC_URI = "git://git.ti.com/glsdk/gst-plugin-ducati.git;protocol=git"
 +BRANCH ?= "master"
 +
-+SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;branch=${BRANCH} \
++SRC_URI = "git://git.ti.com/glsdk/gst-plugin-ducati.git;protocol=git;branch=${BRANCH} \
 +          "
 +
-+S = "${WORKDIR}/git"
-+
-+SRCREV = "6c0aa1c20dae00ecfe8b4ca382274db3ea42f1e0"
-+SRCREV_ti43x = "d0160ca810be30bf2b2e7681f5047933402efb52"
-+SRCREV_ti33x = "d0160ca810be30bf2b2e7681f5047933402efb52"
-+
-+PR = "r11"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 -- 
 1.9.1
 
