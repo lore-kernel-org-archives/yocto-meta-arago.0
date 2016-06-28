@@ -1,29 +1,27 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 3022152960
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 9F0B55208C
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Jun 2016 17:49:54 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5SHnrFq014058
-	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 12:49:54 -0500
+	Tue, 28 Jun 2016 17:49:53 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5SHmmGQ022168
+	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 12:48:48 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5SHnrld012922
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5SHnrLC031893
 	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 12:49:53 -0500
 Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
 	Tue, 28 Jun 2016 12:49:53 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u5SHnqtJ004317;	Tue, 28 Jun 2016 12:49:53 -0500
+	u5SHnqtI004317;	Tue, 28 Jun 2016 12:49:53 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 28 Jun 2016 13:49:16 -0400
-Message-ID: <1467136156-24717-2-git-send-email-j-stiffler@ti.com>
+Date: Tue, 28 Jun 2016 13:49:15 -0400
+Message-ID: <1467136156-24717-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1467136156-24717-1-git-send-email-j-stiffler@ti.com>
-References: <1467136156-24717-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/2] openmpacc: bump SRCREV to version 1.3.2.0
+Subject: [PATCH 1/2] ocl: bump SRCREV to version 1.1.9.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,31 +39,50 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc       | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-index 4a00578..7e1adba 100644
---- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-+++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-@@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
- HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
- LICENSE = "BSD"
- 
--PV = "1.3.1.1"
-+PV = "1.3.2.0"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 8b21f84..9d371ee 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.8.3"
++PV = "1.1.9.0"
  INC_PR = "r0"
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
-@@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
- OMPACC_GIT_PROTOCOL = "git"
- OMPACC_GIT_BRANCH = "master"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
  
--OMPACC_SRCREV = "a2b22adc8759bf1f5f1f999dcda0fdfa88ba9eba"
-+OMPACC_SRCREV = "26f6f8ef0ff800da3d49cccd5853c761b0673d2a"
+-OCL_SRCREV = "a3bb92cb042342169340d350501ed573e8cd24ec"
++OCL_SRCREV = "79860f4b641a45bf689ea127a1525db90d74b5c7"
  
- BRANCH = "${OMPACC_GIT_BRANCH}"
- SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 7954f2f..e6b3e1c 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -27,6 +27,7 @@ DEPENDS = " ocl-gl-headers \
+             libloki \
+             pkgconfig-native \
+             libulm \
++            elfutils \
+ "
+ 
+ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
+@@ -52,7 +53,7 @@ OCL_BUILD_TARGET_k2g-evm  = "ARM_K2G"
+ ENABLE_ULM = "1"
+ ENABLE_ULM_k2g-evm = "0"
+ 
+-EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=${ENABLE_ULM}"
++EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=${ENABLE_ULM} -DOCL_VERSION=${PV}"
+ 
+ EXTRA_OEMAKE += "KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} LINUX_DEVKIT_ROOT=${STAGING_DIR_HOST}"
+ export KERNEL_INSTALL_DIR = "${STAGING_KERNEL_DIR}"
 -- 
 2.7.4
 
