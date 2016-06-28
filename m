@@ -1,30 +1,27 @@
-Return-Path: <a0869574local@uda0869574b>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
-	by arago-project.org (Postfix) with ESMTPS id 8051352960
+Return-Path: <sam.nelson@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 4524052990
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Jun 2016 20:15:53 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5SKFr1Q020362
-	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 15:15:53 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5SKFrkA029840
-	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 15:15:53 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 28 Jun 2016 15:15:53 -0500
-Received: from uda0869574b (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5SKFqJ8031149;
-	Tue, 28 Jun 2016 15:15:53 -0500
-Received: from a0869574local by uda0869574b with local (Exim 4.82)
-	(envelope-from <a0869574local@uda0869574b>)	id 1bHzQG-0005qD-AH;
-	Tue, 28 Jun 2016 16:15:52 -0400
-From: Jianzhong Xu <xuj@ti.com>
+	Tue, 28 Jun 2016 21:53:10 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5SLq4bb009958
+	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 16:52:04 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5SLrA3B023236
+	for <meta-arago@arago-project.org>; Tue, 28 Jun 2016 16:53:10 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 28 Jun 2016 16:53:10 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u5SLr8D6030172;	Tue, 28 Jun 2016 16:53:09 -0500
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 28 Jun 2016 16:15:49 -0400
-Message-ID: <1467144949-22421-1-git-send-email-xuj@ti.com>
+Date: Tue, 28 Jun 2016 17:53:06 -0400
+Message-ID: <1467150786-29194-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] LINALG: Added missing header files to examples source code.
+Subject: [PATCH] packagegroup-arago-tisdk-addons: Add uio-module-drv and related test code
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +34,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2016 20:15:53 -0000
+X-List-Received-Date: Tue, 28 Jun 2016 21:53:10 -0000
 Content-Type: text/plain
 
-Signed-off-by: Jianzhong Xu <xuj@ti.com>
----
- meta-arago-extras/recipes-ti/linalg/linalg.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Adds uio-module-drv component and related test code for omap-a15 and
+keystone2 platforms
 
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-index aa33923..31ea34b 100644
---- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
-+++ b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-@@ -2,7 +2,7 @@ HOMEPAGE = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git"
- LICENSE = "BSD-3-Clause"
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index efa6ab9..9e1fcbe 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -51,6 +51,8 @@ UTILS_append_omap-a15 = " mmc-utils \
+                           pru-icss \
+                           strongswan \
+                           ti-ipc-rtos-fw \
++                          uio-test-pruss \
++                          uio-module-drv-test \
+ "
  
- PV = "1_2_0_0"
--INC_PR = "r5"
-+INC_PR = "r6"
+ UTILS_append_dra7xx = " canutils \
+@@ -60,6 +62,7 @@ UTILS_append_dra7xx = " canutils \
+ "
  
- S = "${WORKDIR}/git"
+ UTILS_append_keystone = " \
++    uio-module-drv-test \
+     ti-ipc-rtos-fw \
+ "
  
-@@ -12,7 +12,7 @@ require recipes-ti/includes/ti-staging.inc
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git;protocol=git;branch=${BRANCH}"
- LIC_FILES_CHKSUM = "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
--SRCREV = "0833183162a47876a8f24532264da51010d80623"
-+SRCREV = "8e8a82255d8599c4093fcbe754cb34eb9d765b8c"
+@@ -81,7 +84,15 @@ UTILS_append_k2e-evm = " \
+ UTILS_append_k2g-evm = " canutils"
  
- DEPENDS = "common-csl-ip \
-            libarch \
+ EXTRA_LIBS = ""
+-EXTRA_LIBS_append_omap-a15 = " cmem"
++EXTRA_LIBS_append_omap-a15 = " \
++    cmem \
++    uio-module-drv \
++"
++
++EXTRA_LIBS_append_keystone = " \
++    cmem \
++    uio-module-drv \
++"
+ 
+ DEVTOOLS = " \
+     packagegroup-core-buildessential \
 -- 
 1.9.1
 
