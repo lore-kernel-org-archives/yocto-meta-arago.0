@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id AED0952AAE
+Return-Path: <j-stiffler@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
+	by arago-project.org (Postfix) with ESMTPS id 831C952AAE
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jun 2016 13:59:09 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5TDx9n8011344
-	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 08:59:09 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TDx9nZ016294
-	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 08:59:09 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 29 Jun 2016 08:59:08 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TDx8F3009303;
-	Wed, 29 Jun 2016 08:59:08 -0500
-Date: Wed, 29 Jun 2016 09:59:08 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20160629135908.GI24597@edge>
-References: <1467151876-29554-1-git-send-email-sam.nelson@ti.com>
+	Wed, 29 Jun 2016 14:01:56 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5TE1uLI031816
+	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 09:01:56 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TE1ulK032334
+	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 09:01:56 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 29 Jun 2016 09:01:56 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u5TE1tjX012292;	Wed, 29 Jun 2016 09:01:56 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 29 Jun 2016 10:01:17 -0400
+Message-ID: <1467208878-16652-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1467151876-29554-1-git-send-email-sam.nelson@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] packagegroup-arago-tisdk-addons: Add uio-module-drv and related test code
+Subject: [PATCH v2 1/2] ocl: bump SRCREV to version 1.1.9.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,77 +34,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jun 2016 13:59:09 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 29 Jun 2016 14:01:56 -0000
+Content-Type: text/plain
 
-Ack
+* version 1.1.9.0 adds a dependency on elfutils
+* OCL_VERSION is now required to be defined to cmake
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-extras/recipes-ti/ocl/ocl.inc       | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-On Tue, Jun 28, 2016 at 06:11:16PM -0400, Sam Nelson wrote:
-> Adds uio-module-drv component and related test code for omap-a15 and
-> keystone2 platforms
-> 
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> 
-> ---
-> Added PR bump
-> ---
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-addons.bb      | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index efa6ab9..75f8207 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to install additional utilities/demos for SDKs"
->  LICENSE = "MIT"
-> -PR = "r50"
-> +PR = "r51"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -51,6 +51,8 @@ UTILS_append_omap-a15 = " mmc-utils \
->                            pru-icss \
->                            strongswan \
->                            ti-ipc-rtos-fw \
-> +                          uio-test-pruss \
-> +                          uio-module-drv-test \
->  "
->  
->  UTILS_append_dra7xx = " canutils \
-> @@ -60,6 +62,7 @@ UTILS_append_dra7xx = " canutils \
->  "
->  
->  UTILS_append_keystone = " \
-> +    uio-module-drv-test \
->      ti-ipc-rtos-fw \
->  "
->  
-> @@ -81,7 +84,15 @@ UTILS_append_k2e-evm = " \
->  UTILS_append_k2g-evm = " canutils"
->  
->  EXTRA_LIBS = ""
-> -EXTRA_LIBS_append_omap-a15 = " cmem"
-> +EXTRA_LIBS_append_omap-a15 = " \
-> +    cmem \
-> +    uio-module-drv \
-> +"
-> +
-> +EXTRA_LIBS_append_keystone = " \
-> +    cmem \
-> +    uio-module-drv \
-> +"
->  
->  DEVTOOLS = " \
->      packagegroup-core-buildessential \
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 8b21f84..9d371ee 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.8.3"
++PV = "1.1.9.0"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "a3bb92cb042342169340d350501ed573e8cd24ec"
++OCL_SRCREV = "79860f4b641a45bf689ea127a1525db90d74b5c7"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 7954f2f..e6b3e1c 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -27,6 +27,7 @@ DEPENDS = " ocl-gl-headers \
+             libloki \
+             pkgconfig-native \
+             libulm \
++            elfutils \
+ "
+ 
+ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
+@@ -52,7 +53,7 @@ OCL_BUILD_TARGET_k2g-evm  = "ARM_K2G"
+ ENABLE_ULM = "1"
+ ENABLE_ULM_k2g-evm = "0"
+ 
+-EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=${ENABLE_ULM}"
++EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABLE_ULM=${ENABLE_ULM} -DOCL_VERSION=${PV}"
+ 
+ EXTRA_OEMAKE += "KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} LINUX_DEVKIT_ROOT=${STAGING_DIR_HOST}"
+ export KERNEL_INSTALL_DIR = "${STAGING_KERNEL_DIR}"
+-- 
+2.7.4
+
 
