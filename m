@@ -1,29 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id C6D4D52990
+	by arago-project.org (Postfix) with ESMTPS id D263C52A96
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jun 2016 12:45:34 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5TCiQA9002937
-	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 07:44:26 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TCjYZh030699
-	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 07:45:34 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 29 Jun 2016 07:45:34 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u5TCjYS2012643	for <meta-arago@arago-project.org>;
-	Wed, 29 Jun 2016 07:45:34 -0500
-Date: Wed, 29 Jun 2016 08:45:33 -0400
+	Wed, 29 Jun 2016 13:52:55 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5TDplbe010018
+	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 08:51:47 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TDqt7h022124
+	for <meta-arago@arago-project.org>; Wed, 29 Jun 2016 08:52:55 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 29 Jun 2016 08:52:55 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TDqtVX006414;
+	Wed, 29 Jun 2016 08:52:55 -0500
+Date: Wed, 29 Jun 2016 09:52:54 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <946410529.169.1467204333983.JavaMail.jenkins@puget>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <20160629135254.GA24597@edge>
+References: <1467040331-32223-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-master-rt
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] RT Core TISDK (krogoth/2.1) 2016.05 build 2016-06-29_07-00-47
+In-Reply-To: <1467040331-32223-1-git-send-email-a0393906@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH V2 1/3] gstreamer1.0-plugins-bad: Upgrade to 1.6.3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,216 +37,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jun 2016 12:45:35 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_168_709197397.1467204333926"
+X-List-Received-Date: Wed, 29 Jun 2016 13:52:56 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-------=_Part_168_709197397.1467204333926
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<html>
-<head>
-<title>
-Status for 06/29/16
-</title>
-</head>
-<body>
-
-<h2>Status for 06/29/16</h2>
-
-<h2>BUILD_ID: build-2016-06-29_07-01-54</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.30</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>krogoth</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>am335x-evm</td>
-        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am335x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am437x-evm</td>
-        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
-    </tr>
-    <tr>
-        <td>am57xx-evm</td>
-        <td id="am57xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="am57xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2hk-evm</td>
-        <td id="k2hk-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2hk-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2g-evm</td>
-        <td id="k2g-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2g-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2e-evm</td>
-        <td id="k2e-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2e-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-    <tr>
-        <td>k2l-evm</td>
-        <td id="k2l-evm-build-result" bgcolor=red>FAILED</td>
-        <td id="k2l-evm-target-result" bgcolor=yellow>SKIPPED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
-TISDK_VERSION="2016.05"<br>
-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
-NUM_ARM9_BUILDS="0"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9=""<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-master-rt"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/rt"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace"<br>
-LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-rt/workspace/configs/arago-core-tisdk-master-rt-append.txt"<br>
-</p>
-
-</body>
-</html>
+Thanks! I'll give it a try later today.
 
 
-------=_Part_168_709197397.1467204333926--
+On Mon, Jun 27, 2016 at 08:42:09PM +0530, Karthik Ramanan wrote:
+> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+> ---
+>  .../gstreamer1.0-plugins-bad_1.6.3.bbappend        | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+> new file mode 100644
+> index 0000000..fbc614a
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+> @@ -0,0 +1,42 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+> +PACKAGECONFIG = "faad"
+> +
+> +# gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
+> +PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
+> +PACKAGECONFIG_append_ti43x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
+> +PACKAGECONFIG_append_ti33x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
+> +
+> +DEPENDS_append_omap-a15 = " \
+> +    libdce \
+> +    libdrm \
+> +"
+> +
+> +DEPENDS_append_ti43x = " \
+> +    libdrm \
+> +"
+> +
+> +DEPENDS_append_ti33x = " \
+> +    libdrm \
+> +"
+> +
+> +SRC_URI_append_ti43x = " \
+> +"
+> +
+> +SRC_URI_append_ti33x = " \
+> +"
+> +
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +BRANCH ?= "master"
+> +
+> +SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;branch=${BRANCH} \
+> +          "
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +SRCREV = "6c0aa1c20dae00ecfe8b4ca382274db3ea42f1e0"
+> +SRCREV_ti43x = "d0160ca810be30bf2b2e7681f5047933402efb52"
+> +SRCREV_ti33x = "d0160ca810be30bf2b2e7681f5047933402efb52"
+> +
+> +PR = "r11"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
