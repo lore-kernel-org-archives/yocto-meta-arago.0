@@ -1,31 +1,29 @@
 Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
-	by arago-project.org (Postfix) with ESMTPS id 07F6B52AA3
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id CE06C52AD1
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jun 2016 22:00:57 +0000 (UTC)
+	Thu, 30 Jun 2016 08:34:44 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5TM0v4b012046;
-	Wed, 29 Jun 2016 17:00:57 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TM0v2a004743;
-	Wed, 29 Jun 2016 17:00:57 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 29 Jun 2016 17:00:57 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5TM0vgt026810;
-	Wed, 29 Jun 2016 17:00:57 -0500
-Date: Wed, 29 Jun 2016 18:00:56 -0400
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u5U8Yin2025386
+	for <meta-arago@arago-project.org>; Thu, 30 Jun 2016 03:34:44 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u5U8Yi7C019886
+	for <meta-arago@arago-project.org>; Thu, 30 Jun 2016 03:34:44 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 30 Jun 2016 03:34:44 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u5U8Yh0n009536	for <meta-arago@arago-project.org>;
+	Thu, 30 Jun 2016 03:34:44 -0500
+Date: Thu, 30 Jun 2016 04:34:42 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Message-ID: <20160629220056.GA27055@edge>
-References: <CADySD0EZ+BLv5pZ9N9Ju_4uKpbdjwrQFZoAVvWiOCkdqQv5Xyg@mail.gmail.com>
-	<CADySD0E3zcHM1EPKv1dyEvxVmR+woMLbsbrvRvG4Kbna1QMWvg@mail.gmail.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <354934182.173.1467275683531.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-In-Reply-To: <CADySD0E3zcHM1EPKv1dyEvxVmR+woMLbsbrvRvG4Kbna1QMWvg@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: Application run time problem when upgraded to Qt5.6.1 on AM335x
+X-Jenkins-Job: arago-core-tisdk-master-systest
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] SysTest Core TISDK (krogoth/2.1) 2016.05 build 2016-06-29_15-24-27
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,191 +36,216 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jun 2016 22:00:58 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 30 Jun 2016 08:34:45 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_172_345136447.1467275683211"
 
-Wasn't there a recent QML-related fix in SGX GLES code that might affect this?
+------=_Part_172_345136447.1467275683211
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=32077fb8f0b06258c9e3994c0649f49409eff41b
+<html>
+<head>
+<title>
+Status for 06/30/16
+</title>
+</head>
+<body>
 
--- 
-Denys
+<h2>Status for 06/30/16</h2>
+
+<h2>BUILD_ID: build-2016-06-29_15-25-31</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.30</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.05"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="0"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9=""<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master-systest"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/systest"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace"<br>
+LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace/configs/arago-core-tisdk-master-systest-append.txt"<br>
+</p>
+
+</body>
+</html>
 
 
-On Tue, Jun 28, 2016 at 09:10:54PM +1200, Ankur Tyagi wrote:
-> Hi,
-> 
-> Is this the right mailing list for below query?
-> 
-> Thanks
-> Ankur
-> On 27-Jun-2016 6:26 pm, "Ankur Tyagi" <ankur.tyagi85@gmail.com> wrote:
-> 
-> > Hi,
-> >
-> > ​​
-> > I am using daisy branch for development on AM335x based product.
-> > Recently I updated Qt version from 5.4.1 (daisy) -> 5.6.1 (krogoth) as
-> > Qt5.6.1 is declared as LTS.
-> >
-> > So I only updated meta-qt5 as I want rest of layers to be at daisy.
-> >
-> > My application is having runtime problems with Qt5.6.1. It is loading very
-> > slowly and I can see UI changes like transparency on button getting set,
-> > sliders moving in etc which were kind of spontaneous with Qt5.4.1
-> >
-> > It feels weird as if I am debugging through all the Qt qml code.
-> > But if I run SGX demos, they all run fine which is expected as I only
-> > update meta-qt5 layer
-> > ​.​
-> >
-> > Is there a reason for observing this ? Or is there something I missed in
-> > recipes ?
-> >
-> > Here are the changes that I did to upgrade Qt:
-> > - updated meta-qt5 layer to krogoth branch
-> > - copied recipes-qt from meta-arago krogoth branch into my meta-arago
-> > daisy branch
-> > - updated my qtbase_%.bbappend for customization's
-> >
-> > Here is my qtbase_%.bbappend:
-> >
-> > GLES_EXTRA_DEPS = ""
-> > PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl
-> > ${GLES_EXTRA_DEPS}"
-> >
-> > PACKAGECONFIG += "accessibility icu"
-> >
-> > QT_CONFIG_FLAGS += " \
-> >     -qpa eglfs \
-> >     -freetype \
-> >     -no-iconv \
-> >     -no-linuxfb \
-> >     -no-directfb \
-> >     -nomake examples \
-> >     -no-fontconfig \
-> >     -no-tslib \
-> >     -no-sql-sqlite \
-> >     -no-sql-sqlite2 \
-> >     -no-xcb \
-> >     -no-alsa \
-> >     -no-pulseaudio \
-> > "
-> >
-> > I also have removed "x11 wayland" from DISTRO_FEATURES as MACHINE_FEATURES
-> > have "sgx"
-> >
-> > Here is the Qt configuration log:
-> >
-> > Build options:
-> >   Configuration .......... accessibility audio-backend c++11 clock-gettime
-> > clock-monotonic compile_examples concurrent cross_compile dbus dbus-linked
-> > egl eglfs evdev eventfd freetype full-config getaddrinfo getifaddrs glib
-> > harfbuzz icu inotify ipv6ifname kms large-config largefile libudev
-> > medium-config minimal-config mremap neon nis no-widgets opengl opengles2
-> > openssl pcre png posix_fallocate qpa qpa reduce_exports release shared
-> > silent small-config system-jpeg system-png system-zlib threadsafe-cloexec
-> >   Build parts ............ libs
-> >   Mode ................... release
-> >   Using sanitizer(s)...... none
-> >   Using C++ standard ..... c++11
-> >   Using gold linker....... no
-> >   Using new DTAGS ........ no
-> >   Using PCH .............. no
-> >   Using LTCG ............. no
-> >   Target compiler supports:
-> >     Neon ................. yes
-> >
-> > Qt modules and options:
-> >   Qt D-Bus ............... yes (linked to dbus-1)
-> >   Qt Concurrent .......... yes
-> >   Qt GUI ................. yes
-> >   Qt Widgets ............. no
-> >   Large File ............. yes
-> >   QML debugging .......... yes
-> >   Use system proxies ..... no
-> >
-> > Support enabled for:
-> >   Accessibility .......... yes
-> >   ALSA ................... no
-> >   CUPS ................... no
-> >   Evdev .................. yes
-> >   FontConfig ............. no
-> >   FreeType ............... qt
-> >   Glib ................... yes
-> >   GStreamer .............. no
-> >   GTK theme .............. no
-> >   HarfBuzz ............... yes (bundled copy)
-> >   Iconv .................. no
-> >   ICU .................... yes
-> >   Image formats:
-> >     GIF .................. yes (plugin, using bundled copy)
-> >     JPEG ................. yes (plugin, using system library)
-> >     PNG .................. yes (in QtGui, using system library)
-> >   libinput................ no
-> >   Logging backends:
-> >     journald ............... no
-> >     syslog   ............... no
-> >   mtdev .................. no
-> >   Networking:
-> >     getaddrinfo .......... yes
-> >     getifaddrs ........... yes
-> >     IPv6 ifname .......... yes
-> >     libproxy.............. no
-> >     OpenSSL .............. yes (loading libraries at run-time)
-> >   NIS .................... yes
-> >   OpenGL / OpenVG:
-> >     EGL .................. yes
-> >     OpenGL ............... yes (OpenGL ES 2.0+)
-> >     OpenVG ............... no
-> >   PCRE ................... yes (bundled copy)
-> >   pkg-config ............. yes
-> >   PulseAudio ............. no
-> >   QPA backends:
-> >     DirectFB ............. no
-> >     EGLFS ................ yes
-> >       EGLFS i.MX6 ........ no
-> >       EGLFS i.MX6 Wayland. no
-> >       EGLFS EGLDevice .... no
-> >       EGLFS GBM .......... no
-> >       EGLFS Mali ......... no
-> >       EGLFS Raspberry Pi . no
-> >       EGLFS X11 .......... no
-> >     LinuxFB .............. no
-> >     Mir client............ no
-> >     XCB .................. no
-> >   Session management ..... yes
-> >   SQL drivers:
-> >     DB2 .................. no
-> >     InterBase ............ no
-> >     MySQL ................ no
-> >     OCI .................. no
-> >     ODBC ................. no
-> >     PostgreSQL ........... no
-> >     SQLite 2 ............. no
-> >     SQLite ............... no
-> >     TDS .................. no
-> >   tslib .................. no
-> >   udev ................... yes
-> >   xkbcommon-x11........... no
-> >   xkbcommon-evdev......... no
-> >   zlib ................... yes (system library)
-> > ​
-> >
-> > ​
-> > ​
-> > Any help in investigating this is appreciated as I would really like to
-> > upgrade to Qt LTS.​
-> >
-> > thanks
-> > Ankur
-> >
-
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
-
+------=_Part_172_345136447.1467275683211--
