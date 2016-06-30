@@ -1,44 +1,45 @@
 Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by arago-project.org (Postfix) with ESMTPS id 2F54A52990
+Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
+	[209.85.218.46])
+	by arago-project.org (Postfix) with ESMTPS id C7A8C529A5
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jun 2016 09:40:28 +0000 (UTC)
-Received: by mail-oi0-f48.google.com with SMTP id f189so56958432oig.3
+	Thu, 30 Jun 2016 09:43:49 +0000 (UTC)
+Received: by mail-oi0-f46.google.com with SMTP id r2so57137792oih.2
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jun 2016 02:40:28 -0700 (PDT)
+	Thu, 30 Jun 2016 02:43:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=mkEnE/8ckXNZkKuOdEYN0WdzKE/kXS7cE/bnseyZw+w=;
-	b=tmfyCT5KY9MTsE9JWXiEvlIYYAQEcXFYZp9yvim61bgQSbSvXU/blkk51iniEbehDz
-	z2xomqxlkCqs4QuNH/JO6Ah6EOBeJRFDqTHRqad4xLj/k6Xf2Mg9iTHxo/WudzpTHFYe
-	WAkibrC9zm0uEUXz3palon/2H00vmk1hElhfKkaMzS8as8h7S3hdIV+ACKZQm8DPpMkz
-	5wrqil2bejmKEr8SnrfaMXuq4vlbAzoCU4PL+w9Pqpfzp0IXc2HOuWZH0yomjEQ3ju6Q
-	nZjkHnjiQqT/u/e5yOCTANgiftduWaW5qxSk4dQbA39rt2yALgfemPm4plFoBb79aJOD
-	QJmQ==
+	:cc; bh=Y6LmCFYcACnXW4o2rQMr8/fRkC9E00SSm2Yw8/8HAV0=;
+	b=SdtJjD5hx5dUYzd1iySCletoVnA9wEaUw/WkTpjIAtryc3x1sB6WBLoaaLrWOrG7WO
+	HWCrppr0XBnn/mKCp2jP8Ys8shVLrEq982w5jJL45oEcJbO+X73MAkfS5oU2/emzutmM
+	unXungmjtIWQOkUSv6BQUbSGQZcbd6/wFyUgSlvAHBk3Rhe4i3vNWkzrBCNaAURO7Eog
+	/eVo3DMU9f1bcCFMzTEnCrRnVyrhcqoUl8z1ExqxeMVCuYGvoHsD8SF2ZwM1nCmYxE9R
+	OMe5aNoTwb++4zhOds7w3uRk6M7fN4gpnLMxoDc0Pemrn7D8FLsTwEEHyb+sE4qivLjS
+	hpMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc;
-	bh=mkEnE/8ckXNZkKuOdEYN0WdzKE/kXS7cE/bnseyZw+w=;
-	b=E1fOSJs3kJiOCx3nxp2Pktu4jXAgcH0fUlSMEt77jdHFj4mqdsL999Mt2QZ/DB1UAR
-	xthN9Pl2OCmpanJOWQ2YzJugXoWxGmApeDIMHk/imHuKYv8268QiIT1/0EAJbKluXUJd
-	1U7hP6tdG98sXILCXKYpHFvzbL9U3AWLDf9qQUowiLq7Q7oiF8MjFb5JnUeHd1OiYL9u
-	j/ctLSyV/aRyK2l7jW+Bdm8FFRANWYz4jI6UF1BP4sHOFrxUFAbFOwVtr5njYpGHH3qT
-	pPW+ZeAsa/XrOBrnBlLDhayZx9BNiH+p1MTq1Ce4Vngs/e+mEJxrghcGjBbQLvdTjP4Y
-	4MrA==
-X-Gm-Message-State: ALyK8tLBFD9gHj6kSYmS2CXi//QavPlzCBuU7OYHSSlXech1AFGN4ywezf+fgDoPvz/BXRqPGhdcsH5GndL26g==
+	bh=Y6LmCFYcACnXW4o2rQMr8/fRkC9E00SSm2Yw8/8HAV0=;
+	b=ULFWcW5lIWg6rslAJhyTmK4v5/ixwh+YR1EdTmaWJ2lctqtTllPyOaCmVvOLXQTwzS
+	/zHiiBZgzN8aJXriZn6rmfO2QDMPLvhc0WYOtEjlBlKjC/J14OXqOQdNs+yW0Pr6HtwJ
+	VxFeaERwH5zObvREqrmWPkc0Z0RysGP/vapEYQhFuYAvubUtK9jLyRxcI5c6zr0oNUQs
+	eBisvywnDtfQktvveceoxCXi6BRbHk1/cjdIMk9EpWX/Fxs7Sq8Qng5CvmBUJWAk6lAj
+	3lm2Wf7lqvn4YEBKozpRWKoVlf0vMTIb3C97Z6qv6YNJlRt03LnFm2jcLlRua3XDGsib
+	pqkw==
+X-Gm-Message-State: ALyK8tIhU/vEEVS8ijjH9dIHxIr3iixcKPy3Ed617664h02lK8Z95O0xzhT+1b4IClUXUC2GYDqC0SErwW9nPg==
 MIME-Version: 1.0
-X-Received: by 10.202.189.198 with SMTP id n189mr9043348oif.111.1467279627995; 
-	Thu, 30 Jun 2016 02:40:27 -0700 (PDT)
-Received: by 10.202.80.80 with HTTP; Thu, 30 Jun 2016 02:40:27 -0700 (PDT)
-Received: by 10.202.80.80 with HTTP; Thu, 30 Jun 2016 02:40:27 -0700 (PDT)
-In-Reply-To: <20160629220056.GA27055@edge>
+X-Received: by 10.202.231.198 with SMTP id e189mr8017400oih.3.1467279829766;
+	Thu, 30 Jun 2016 02:43:49 -0700 (PDT)
+Received: by 10.202.80.80 with HTTP; Thu, 30 Jun 2016 02:43:49 -0700 (PDT)
+Received: by 10.202.80.80 with HTTP; Thu, 30 Jun 2016 02:43:49 -0700 (PDT)
+In-Reply-To: <CADySD0G_JoFbBqb2BkQvtyOj8x85SyNjgw9uHkvWoyHaM4yPXQ@mail.gmail.com>
 References: <CADySD0EZ+BLv5pZ9N9Ju_4uKpbdjwrQFZoAVvWiOCkdqQv5Xyg@mail.gmail.com>
 	<CADySD0E3zcHM1EPKv1dyEvxVmR+woMLbsbrvRvG4Kbna1QMWvg@mail.gmail.com>
 	<20160629220056.GA27055@edge>
-Date: Thu, 30 Jun 2016 21:40:27 +1200
-Message-ID: <CADySD0G_JoFbBqb2BkQvtyOj8x85SyNjgw9uHkvWoyHaM4yPXQ@mail.gmail.com>
+	<CADySD0G_JoFbBqb2BkQvtyOj8x85SyNjgw9uHkvWoyHaM4yPXQ@mail.gmail.com>
+Date: Thu, 30 Jun 2016 21:43:49 +1200
+Message-ID: <CADySD0Hk61e+e13JBY2zHnVHGHoXuun-HVWWLHxNQuX7MS2FDg@mail.gmail.com>
 From: Ankur Tyagi <ankur.tyagi85@gmail.com>
 To: Denys Dmytriyenko <denys@ti.com>
 Cc: meta-arago@arago-project.org
@@ -55,229 +56,255 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jun 2016 09:40:29 -0000
-Content-Type: multipart/alternative; boundary=001a113d693a0350fc05367ba919
+X-List-Received-Date: Thu, 30 Jun 2016 09:43:50 -0000
+Content-Type: multipart/alternative; boundary=001a11407a640a1cd805367bb553
 
---001a113d693a0350fc05367ba919
+--001a11407a640a1cd805367bb553
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Denis,
+Ahh, now I got your point..sorry for the last reply
 
-But I only updated meta-qt5 to krogoth, rest all layers are still at Daisy.
+I am not sure that I can back port this patch but I will try and let you
+know.
 
-So omap3-sgx is being used, the below mentioned commit would not have any
-impact
+Thanks for the response
 
 Regards
 Ankur
-On 30-Jun-2016 10:00 am, "Denys Dmytriyenko" <denys@ti.com> wrote:
+On 30-Jun-2016 9:40 pm, "Ankur Tyagi" <ankur.tyagi85@gmail.com> wrote:
 
-> Wasn't there a recent QML-related fix in SGX GLES code that might affect
-> this?
+> Hi Denis,
 >
+> But I only updated meta-qt5 to krogoth, rest all layers are still at Dais=
+y.
 >
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=3D32077fb8f0=
-b06258c9e3994c0649f49409eff41b
+> So omap3-sgx is being used, the below mentioned commit would not have any
+> impact
 >
-> --
-> Denys
+> Regards
+> Ankur
+> On 30-Jun-2016 10:00 am, "Denys Dmytriyenko" <denys@ti.com> wrote:
 >
->
-> On Tue, Jun 28, 2016 at 09:10:54PM +1200, Ankur Tyagi wrote:
-> > Hi,
-> >
-> > Is this the right mailing list for below query?
-> >
-> > Thanks
-> > Ankur
-> > On 27-Jun-2016 6:26 pm, "Ankur Tyagi" <ankur.tyagi85@gmail.com> wrote:
-> >
-> > > Hi,
-> > >
-> > > =E2=80=8B=E2=80=8B
-> > > I am using daisy branch for development on AM335x based product.
-> > > Recently I updated Qt version from 5.4.1 (daisy) -> 5.6.1 (krogoth) a=
-s
-> > > Qt5.6.1 is declared as LTS.
-> > >
-> > > So I only updated meta-qt5 as I want rest of layers to be at daisy.
-> > >
-> > > My application is having runtime problems with Qt5.6.1. It is loading
-> very
-> > > slowly and I can see UI changes like transparency on button getting
-> set,
-> > > sliders moving in etc which were kind of spontaneous with Qt5.4.1
-> > >
-> > > It feels weird as if I am debugging through all the Qt qml code.
-> > > But if I run SGX demos, they all run fine which is expected as I only
-> > > update meta-qt5 layer
-> > > =E2=80=8B.=E2=80=8B
-> > >
-> > > Is there a reason for observing this ? Or is there something I missed
-> in
-> > > recipes ?
-> > >
-> > > Here are the changes that I did to upgrade Qt:
-> > > - updated meta-qt5 layer to krogoth branch
-> > > - copied recipes-qt from meta-arago krogoth branch into my meta-arago
-> > > daisy branch
-> > > - updated my qtbase_%.bbappend for customization's
-> > >
-> > > Here is my qtbase_%.bbappend:
-> > >
-> > > GLES_EXTRA_DEPS =3D ""
-> > > PACKAGECONFIG[gles2] =3D "-opengl es2 -eglfs,,virtual/libgles2
-> virtual/egl
-> > > ${GLES_EXTRA_DEPS}"
-> > >
-> > > PACKAGECONFIG +=3D "accessibility icu"
-> > >
-> > > QT_CONFIG_FLAGS +=3D " \
-> > >     -qpa eglfs \
-> > >     -freetype \
-> > >     -no-iconv \
-> > >     -no-linuxfb \
-> > >     -no-directfb \
-> > >     -nomake examples \
-> > >     -no-fontconfig \
-> > >     -no-tslib \
-> > >     -no-sql-sqlite \
-> > >     -no-sql-sqlite2 \
-> > >     -no-xcb \
-> > >     -no-alsa \
-> > >     -no-pulseaudio \
-> > > "
-> > >
-> > > I also have removed "x11 wayland" from DISTRO_FEATURES as
-> MACHINE_FEATURES
-> > > have "sgx"
-> > >
-> > > Here is the Qt configuration log:
-> > >
-> > > Build options:
-> > >   Configuration .......... accessibility audio-backend c++11
-> clock-gettime
-> > > clock-monotonic compile_examples concurrent cross_compile dbus
-> dbus-linked
-> > > egl eglfs evdev eventfd freetype full-config getaddrinfo getifaddrs
-> glib
-> > > harfbuzz icu inotify ipv6ifname kms large-config largefile libudev
-> > > medium-config minimal-config mremap neon nis no-widgets opengl
-> opengles2
-> > > openssl pcre png posix_fallocate qpa qpa reduce_exports release share=
+>> Wasn't there a recent QML-related fix in SGX GLES code that might affect
+>> this?
+>>
+>>
+>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=3D32077fb8f=
+0b06258c9e3994c0649f49409eff41b
+>>
+>> --
+>> Denys
+>>
+>>
+>> On Tue, Jun 28, 2016 at 09:10:54PM +1200, Ankur Tyagi wrote:
+>> > Hi,
+>> >
+>> > Is this the right mailing list for below query?
+>> >
+>> > Thanks
+>> > Ankur
+>> > On 27-Jun-2016 6:26 pm, "Ankur Tyagi" <ankur.tyagi85@gmail.com> wrote:
+>> >
+>> > > Hi,
+>> > >
+>> > > =E2=80=8B=E2=80=8B
+>> > > I am using daisy branch for development on AM335x based product.
+>> > > Recently I updated Qt version from 5.4.1 (daisy) -> 5.6.1 (krogoth) =
+as
+>> > > Qt5.6.1 is declared as LTS.
+>> > >
+>> > > So I only updated meta-qt5 as I want rest of layers to be at daisy.
+>> > >
+>> > > My application is having runtime problems with Qt5.6.1. It is loadin=
+g
+>> very
+>> > > slowly and I can see UI changes like transparency on button getting
+>> set,
+>> > > sliders moving in etc which were kind of spontaneous with Qt5.4.1
+>> > >
+>> > > It feels weird as if I am debugging through all the Qt qml code.
+>> > > But if I run SGX demos, they all run fine which is expected as I onl=
+y
+>> > > update meta-qt5 layer
+>> > > =E2=80=8B.=E2=80=8B
+>> > >
+>> > > Is there a reason for observing this ? Or is there something I misse=
 d
-> > > silent small-config system-jpeg system-png system-zlib
-> threadsafe-cloexec
-> > >   Build parts ............ libs
-> > >   Mode ................... release
-> > >   Using sanitizer(s)...... none
-> > >   Using C++ standard ..... c++11
-> > >   Using gold linker....... no
-> > >   Using new DTAGS ........ no
-> > >   Using PCH .............. no
-> > >   Using LTCG ............. no
-> > >   Target compiler supports:
-> > >     Neon ................. yes
-> > >
-> > > Qt modules and options:
-> > >   Qt D-Bus ............... yes (linked to dbus-1)
-> > >   Qt Concurrent .......... yes
-> > >   Qt GUI ................. yes
-> > >   Qt Widgets ............. no
-> > >   Large File ............. yes
-> > >   QML debugging .......... yes
-> > >   Use system proxies ..... no
-> > >
-> > > Support enabled for:
-> > >   Accessibility .......... yes
-> > >   ALSA ................... no
-> > >   CUPS ................... no
-> > >   Evdev .................. yes
-> > >   FontConfig ............. no
-> > >   FreeType ............... qt
-> > >   Glib ................... yes
-> > >   GStreamer .............. no
-> > >   GTK theme .............. no
-> > >   HarfBuzz ............... yes (bundled copy)
-> > >   Iconv .................. no
-> > >   ICU .................... yes
-> > >   Image formats:
-> > >     GIF .................. yes (plugin, using bundled copy)
-> > >     JPEG ................. yes (plugin, using system library)
-> > >     PNG .................. yes (in QtGui, using system library)
-> > >   libinput................ no
-> > >   Logging backends:
-> > >     journald ............... no
-> > >     syslog   ............... no
-> > >   mtdev .................. no
-> > >   Networking:
-> > >     getaddrinfo .......... yes
-> > >     getifaddrs ........... yes
-> > >     IPv6 ifname .......... yes
-> > >     libproxy.............. no
-> > >     OpenSSL .............. yes (loading libraries at run-time)
-> > >   NIS .................... yes
-> > >   OpenGL / OpenVG:
-> > >     EGL .................. yes
-> > >     OpenGL ............... yes (OpenGL ES 2.0+)
-> > >     OpenVG ............... no
-> > >   PCRE ................... yes (bundled copy)
-> > >   pkg-config ............. yes
-> > >   PulseAudio ............. no
-> > >   QPA backends:
-> > >     DirectFB ............. no
-> > >     EGLFS ................ yes
-> > >       EGLFS i.MX6 ........ no
-> > >       EGLFS i.MX6 Wayland. no
-> > >       EGLFS EGLDevice .... no
-> > >       EGLFS GBM .......... no
-> > >       EGLFS Mali ......... no
-> > >       EGLFS Raspberry Pi . no
-> > >       EGLFS X11 .......... no
-> > >     LinuxFB .............. no
-> > >     Mir client............ no
-> > >     XCB .................. no
-> > >   Session management ..... yes
-> > >   SQL drivers:
-> > >     DB2 .................. no
-> > >     InterBase ............ no
-> > >     MySQL ................ no
-> > >     OCI .................. no
-> > >     ODBC ................. no
-> > >     PostgreSQL ........... no
-> > >     SQLite 2 ............. no
-> > >     SQLite ............... no
-> > >     TDS .................. no
-> > >   tslib .................. no
-> > >   udev ................... yes
-> > >   xkbcommon-x11........... no
-> > >   xkbcommon-evdev......... no
-> > >   zlib ................... yes (system library)
-> > > =E2=80=8B
-> > >
-> > > =E2=80=8B
-> > > =E2=80=8B
-> > > Any help in investigating this is appreciated as I would really like =
-to
-> > > upgrade to Qt LTS.=E2=80=8B
-> > >
-> > > thanks
-> > > Ankur
-> > >
->
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->
->
+>> in
+>> > > recipes ?
+>> > >
+>> > > Here are the changes that I did to upgrade Qt:
+>> > > - updated meta-qt5 layer to krogoth branch
+>> > > - copied recipes-qt from meta-arago krogoth branch into my meta-arag=
+o
+>> > > daisy branch
+>> > > - updated my qtbase_%.bbappend for customization's
+>> > >
+>> > > Here is my qtbase_%.bbappend:
+>> > >
+>> > > GLES_EXTRA_DEPS =3D ""
+>> > > PACKAGECONFIG[gles2] =3D "-opengl es2 -eglfs,,virtual/libgles2
+>> virtual/egl
+>> > > ${GLES_EXTRA_DEPS}"
+>> > >
+>> > > PACKAGECONFIG +=3D "accessibility icu"
+>> > >
+>> > > QT_CONFIG_FLAGS +=3D " \
+>> > >     -qpa eglfs \
+>> > >     -freetype \
+>> > >     -no-iconv \
+>> > >     -no-linuxfb \
+>> > >     -no-directfb \
+>> > >     -nomake examples \
+>> > >     -no-fontconfig \
+>> > >     -no-tslib \
+>> > >     -no-sql-sqlite \
+>> > >     -no-sql-sqlite2 \
+>> > >     -no-xcb \
+>> > >     -no-alsa \
+>> > >     -no-pulseaudio \
+>> > > "
+>> > >
+>> > > I also have removed "x11 wayland" from DISTRO_FEATURES as
+>> MACHINE_FEATURES
+>> > > have "sgx"
+>> > >
+>> > > Here is the Qt configuration log:
+>> > >
+>> > > Build options:
+>> > >   Configuration .......... accessibility audio-backend c++11
+>> clock-gettime
+>> > > clock-monotonic compile_examples concurrent cross_compile dbus
+>> dbus-linked
+>> > > egl eglfs evdev eventfd freetype full-config getaddrinfo getifaddrs
+>> glib
+>> > > harfbuzz icu inotify ipv6ifname kms large-config largefile libudev
+>> > > medium-config minimal-config mremap neon nis no-widgets opengl
+>> opengles2
+>> > > openssl pcre png posix_fallocate qpa qpa reduce_exports release shar=
+ed
+>> > > silent small-config system-jpeg system-png system-zlib
+>> threadsafe-cloexec
+>> > >   Build parts ............ libs
+>> > >   Mode ................... release
+>> > >   Using sanitizer(s)...... none
+>> > >   Using C++ standard ..... c++11
+>> > >   Using gold linker....... no
+>> > >   Using new DTAGS ........ no
+>> > >   Using PCH .............. no
+>> > >   Using LTCG ............. no
+>> > >   Target compiler supports:
+>> > >     Neon ................. yes
+>> > >
+>> > > Qt modules and options:
+>> > >   Qt D-Bus ............... yes (linked to dbus-1)
+>> > >   Qt Concurrent .......... yes
+>> > >   Qt GUI ................. yes
+>> > >   Qt Widgets ............. no
+>> > >   Large File ............. yes
+>> > >   QML debugging .......... yes
+>> > >   Use system proxies ..... no
+>> > >
+>> > > Support enabled for:
+>> > >   Accessibility .......... yes
+>> > >   ALSA ................... no
+>> > >   CUPS ................... no
+>> > >   Evdev .................. yes
+>> > >   FontConfig ............. no
+>> > >   FreeType ............... qt
+>> > >   Glib ................... yes
+>> > >   GStreamer .............. no
+>> > >   GTK theme .............. no
+>> > >   HarfBuzz ............... yes (bundled copy)
+>> > >   Iconv .................. no
+>> > >   ICU .................... yes
+>> > >   Image formats:
+>> > >     GIF .................. yes (plugin, using bundled copy)
+>> > >     JPEG ................. yes (plugin, using system library)
+>> > >     PNG .................. yes (in QtGui, using system library)
+>> > >   libinput................ no
+>> > >   Logging backends:
+>> > >     journald ............... no
+>> > >     syslog   ............... no
+>> > >   mtdev .................. no
+>> > >   Networking:
+>> > >     getaddrinfo .......... yes
+>> > >     getifaddrs ........... yes
+>> > >     IPv6 ifname .......... yes
+>> > >     libproxy.............. no
+>> > >     OpenSSL .............. yes (loading libraries at run-time)
+>> > >   NIS .................... yes
+>> > >   OpenGL / OpenVG:
+>> > >     EGL .................. yes
+>> > >     OpenGL ............... yes (OpenGL ES 2.0+)
+>> > >     OpenVG ............... no
+>> > >   PCRE ................... yes (bundled copy)
+>> > >   pkg-config ............. yes
+>> > >   PulseAudio ............. no
+>> > >   QPA backends:
+>> > >     DirectFB ............. no
+>> > >     EGLFS ................ yes
+>> > >       EGLFS i.MX6 ........ no
+>> > >       EGLFS i.MX6 Wayland. no
+>> > >       EGLFS EGLDevice .... no
+>> > >       EGLFS GBM .......... no
+>> > >       EGLFS Mali ......... no
+>> > >       EGLFS Raspberry Pi . no
+>> > >       EGLFS X11 .......... no
+>> > >     LinuxFB .............. no
+>> > >     Mir client............ no
+>> > >     XCB .................. no
+>> > >   Session management ..... yes
+>> > >   SQL drivers:
+>> > >     DB2 .................. no
+>> > >     InterBase ............ no
+>> > >     MySQL ................ no
+>> > >     OCI .................. no
+>> > >     ODBC ................. no
+>> > >     PostgreSQL ........... no
+>> > >     SQLite 2 ............. no
+>> > >     SQLite ............... no
+>> > >     TDS .................. no
+>> > >   tslib .................. no
+>> > >   udev ................... yes
+>> > >   xkbcommon-x11........... no
+>> > >   xkbcommon-evdev......... no
+>> > >   zlib ................... yes (system library)
+>> > > =E2=80=8B
+>> > >
+>> > > =E2=80=8B
+>> > > =E2=80=8B
+>> > > Any help in investigating this is appreciated as I would really like
+>> to
+>> > > upgrade to Qt LTS.=E2=80=8B
+>> > >
+>> > > thanks
+>> > > Ankur
+>> > >
+>>
+>> > _______________________________________________
+>> > meta-arago mailing list
+>> > meta-arago@arago-project.org
+>> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>>
+>>
 
---001a113d693a0350fc05367ba919
+--001a11407a640a1cd805367bb553
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p dir=3D"ltr">Hi Denis,</p>
+<p dir=3D"ltr">Ahh, now I got your point..sorry for the last reply </p>
+<p dir=3D"ltr">I am not sure that I can back port this patch but I will try=
+ and let you know.</p>
+<p dir=3D"ltr">Thanks for the response </p>
+<p dir=3D"ltr">Regards <br>
+Ankur</p>
+<div class=3D"gmail_quote">On 30-Jun-2016 9:40 pm, &quot;Ankur Tyagi&quot; =
+&lt;<a href=3D"mailto:ankur.tyagi85@gmail.com">ankur.tyagi85@gmail.com</a>&=
+gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p dir=
+=3D"ltr">Hi Denis,</p>
 <p dir=3D"ltr">But I only updated meta-qt5 to krogoth, rest all layers are =
 still at Daisy.</p>
 <p dir=3D"ltr">So omap3-sgx is being used, the below mentioned commit would=
@@ -285,10 +312,11 @@ still at Daisy.</p>
 <p dir=3D"ltr">Regards <br>
 Ankur</p>
 <div class=3D"gmail_quote">On 30-Jun-2016 10:00 am, &quot;Denys Dmytriyenko=
-&quot; &lt;<a href=3D"mailto:denys@ti.com">denys@ti.com</a>&gt; wrote:<br t=
-ype=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex">Wasn&#39;t there a recen=
-t QML-related fix in SGX GLES code that might affect this?<br>
+&quot; &lt;<a href=3D"mailto:denys@ti.com" target=3D"_blank">denys@ti.com</=
+a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Wasn&#=
+39;t there a recent QML-related fix in SGX GLES code that might affect this=
+?<br>
 <br>
 <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=3D3=
 2077fb8f0b06258c9e3994c0649f49409eff41b" rel=3D"noreferrer" target=3D"_blan=
@@ -307,7 +335,8 @@ On Tue, Jun 28, 2016 at 09:10:54PM +1200, Ankur Tyagi wrote:<br>
 &gt; Thanks<br>
 &gt; Ankur<br>
 &gt; On 27-Jun-2016 6:26 pm, &quot;Ankur Tyagi&quot; &lt;<a href=3D"mailto:=
-ankur.tyagi85@gmail.com">ankur.tyagi85@gmail.com</a>&gt; wrote:<br>
+ankur.tyagi85@gmail.com" target=3D"_blank">ankur.tyagi85@gmail.com</a>&gt; =
+wrote:<br>
 &gt;<br>
 &gt; &gt; Hi,<br>
 &gt; &gt;<br>
@@ -496,12 +525,13 @@ ike to<br>
 <br>
 &gt; _______________________________________________<br>
 &gt; meta-arago mailing list<br>
-&gt; <a href=3D"mailto:meta-arago@arago-project.org">meta-arago@arago-proje=
-ct.org</a><br>
+&gt; <a href=3D"mailto:meta-arago@arago-project.org" target=3D"_blank">meta=
+-arago@arago-project.org</a><br>
 &gt; <a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arag=
 o" rel=3D"noreferrer" target=3D"_blank">http://arago-project.org/cgi-bin/ma=
 ilman/listinfo/meta-arago</a><br>
 <br>
 </blockquote></div>
+</blockquote></div>
 
---001a113d693a0350fc05367ba919--
+--001a11407a640a1cd805367bb553--
