@@ -1,30 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173009pub.verizon.net (vms173009pub.verizon.net
-	[206.46.173.9])
-	by arago-project.org (Postfix) with ESMTPS id 21EF452975
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 8FF9152975
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Jul 2016 22:34:34 +0000 (UTC)
-Received: from vz-proxy-m005.mx.aol.com ([64.236.83.15])
-	by vms173009.mailsrvcs.net
+	Fri,  8 Jul 2016 22:34:48 +0000 (UTC)
+Received: from vz-proxy-m006.mx.aol.com ([64.236.83.10])
+	by vms173019.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OA000JZUPD6T480@vms173009.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 08 Jul 2016 17:34:19 -0500 (CDT)
+	2014)) with ESMTPA id <0OA000JDBPD6IC90@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 08 Jul 2016 17:34:33 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=NimJJ1rWho3RDXpqkQh0Zg==:117
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=pKq81LsWol7b8sI3Hpopew==:117
 	a=cAmyUtKerLwA:10 a=sozttTNsAAAA:8	a=VwQbUJbxAAAA:8
-	a=stxDjALv1UpVkrx7u04A:9
-	a=r3-E5IcuVrtcCUKC:21	a=NKfpHimIgURKkxU4:21
-Received: by 100.15.86.14 with SMTP id 33f820d7; Fri, 08 Jul 2016 22:34:18 GMT
+	a=zx-GAdwck4han6BJVKMA:9
+Received: by 100.15.86.14 with SMTP id 2a0fc5ca; Fri, 08 Jul 2016 22:34:33 GMT
 Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id CAF431620A8;	Fri,  8 Jul 2016 18:34:17 -0400 (EDT)
+	with ESMTP id BCB52162066;	Fri,  8 Jul 2016 18:34:17 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 08 Jul 2016 18:34:16 -0400
-Message-id: <1468017256-9345-2-git-send-email-denis@denix.org>
+Date: Fri, 08 Jul 2016 18:34:15 -0400
+Message-id: <1468017256-9345-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-reply-to: <1468017256-9345-1-git-send-email-denis@denix.org>
-References: <1468017256-9345-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] kexec-tools: remove old custom 2.0.7 version
+Subject: [PATCH 1/2] kexec-tools: add version from git with latest ARM patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,323 +34,259 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jul 2016 22:34:35 -0000
+X-List-Received-Date: Fri, 08 Jul 2016 22:34:48 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...01-kexec-ks2-use-KS2-aliased-addresses-on.patch | 273 ---------------------
- .../recipes-kernel/kexec/kexec-tools_2.0.7.bb      |  20 --
- 2 files changed, 293 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch
- delete mode 100644 meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb
+ .../recipes-kernel/kexec/kexec-tools/kdump         | 163 +++++++++++++++++++++
+ .../recipes-kernel/kexec/kexec-tools/kdump.conf    |  18 +++
+ .../recipes-kernel/kexec/kexec-tools_2.0.13pre.bb  |  40 +++++
+ 3 files changed, 221 insertions(+)
+ create mode 100755 meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump
+ create mode 100644 meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump.conf
+ create mode 100644 meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb
 
-diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch b/meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch
-deleted file mode 100644
-index 6f6eef1..0000000
---- a/meta-arago-extras/recipes-kernel/kexec/kexec-tools-2.0.7/0001-kexec-ks2-use-KS2-aliased-addresses-on.patch
-+++ /dev/null
-@@ -1,273 +0,0 @@
--From b19043c87b481d7faf6ffa72eb6e47920ef51f49 Mon Sep 17 00:00:00 2001
--From: Vitaly Andrianov <vitalya@ti.com>
--Date: Tue, 5 Aug 2014 13:40:06 -0400
--Subject: [KEXEC-TOOLS PATCH] kexec/ks2: use KS2 aliased addresses only
--
--KS2 SOC doesn't have physical memory at the first 4GB address range.
--In order to access the memory at boot time it aliases two GB of the memory
--to the that range. So, when kexec creates elf header for the crash kernel
--it has to convert KS2 physical addresses to the corresponding aliased ones.
--That is what the patch does.
--
--It also limits available memory to the first 4GB and replaces ELF64
--header by ELF32 ones.
--
--Signed-off-by: Vitaly Andrianov <vitalya@ti.com>
-----
-- kdump/kdump.c                     | 39 ++++++++++++++++++++-------------------
-- kexec/arch/arm/crashdump-arm.c    | 13 +++++++++----
-- kexec/arch/arm/kexec-arm.c        | 10 ++++++++--
-- kexec/arch/arm/kexec-zImage-arm.c |  6 +++---
-- kexec/crashdump-elf.c             |  4 +++-
-- kexec/kexec.h                     |  6 ++++++
-- 6 files changed, 49 insertions(+), 29 deletions(-)
--
--diff --git a/kdump/kdump.c b/kdump/kdump.c
--index 821ee7c..2900416 100644
----- a/kdump/kdump.c
--+++ b/kdump/kdump.c
--@@ -30,8 +30,8 @@ static void *map_addr(int fd, unsigned long size, off_t offset)
-- 	void *result;
-- 	result = mmap(0, size, PROT_READ, MAP_SHARED, fd, offset);
-- 	if (result == MAP_FAILED) {
---		fprintf(stderr, "Cannot mmap " DEV_MEM " offset: %llu size: %lu: %s\n",
---			(unsigned long long)offset, size, strerror(errno));
--+		fprintf(stderr, "Cannot mmap " DEV_MEM " offset: %08x size: %lu: %s\n",
--+			(unsigned long)offset, size, strerror(errno));
-- 		exit(5);
-- 	}
-- 	return result;
--@@ -61,7 +61,7 @@ static void *xmalloc(size_t size)
-- }
-- 
-- static void *collect_notes(
---	int fd, Elf64_Ehdr *ehdr, Elf64_Phdr *phdr, size_t *note_bytes)
--+	int fd, Elf32_Ehdr *ehdr, Elf32_Phdr *phdr, size_t *note_bytes)
-- {
-- 	int i;
-- 	size_t bytes, result_bytes;
--@@ -81,7 +81,7 @@ static void *collect_notes(
-- 
-- 	/* Walk through and capture the notes */
-- 	for(i = 0; i < ehdr->e_phnum; i++) {
---		Elf64_Nhdr *hdr, *lhdr, *nhdr;
--+		Elf32_Nhdr *hdr, *lhdr, *nhdr;
-- 		void *pnotes;
-- 		if (phdr[i].p_type != PT_NOTE) {
-- 			continue;
--@@ -92,8 +92,8 @@ static void *collect_notes(
-- 		unmap_addr(pnotes, phdr[i].p_filesz);
-- 
-- 		/* Walk through the new notes and find the real length */
---		hdr = (Elf64_Nhdr *)(notes + result_bytes);
---		lhdr = (Elf64_Nhdr *)(notes + result_bytes + phdr[i].p_filesz);
--+		hdr = (Elf32_Nhdr *)(notes + result_bytes);
--+		lhdr = (Elf32_Nhdr *)(notes + result_bytes + phdr[i].p_filesz);
-- 		for(; hdr < lhdr; hdr = nhdr) {
-- 			size_t hdr_size;
-- 			/* If there is not a name this is a invalid/reserved note
--@@ -107,7 +107,7 @@ static void *collect_notes(
-- 				((hdr->n_namesz + 3) & ~3) +
-- 				((hdr->n_descsz + 3) & ~3);
-- 
---			nhdr = (Elf64_Nhdr *)(((char *)hdr) + hdr_size); 
--+			nhdr = (Elf32_Nhdr *)(((char *)hdr) + hdr_size);
-- 			/* if the note does not fit in the segment stop here */
-- 			if (nhdr > lhdr) {
-- 				break;
--@@ -121,13 +121,13 @@ static void *collect_notes(
-- }
-- 
-- static void *generate_new_headers(
---	Elf64_Ehdr *ehdr, Elf64_Phdr *phdr, size_t note_bytes, size_t *header_bytes)
--+	Elf32_Ehdr *ehdr, Elf32_Phdr *phdr, size_t note_bytes, size_t *header_bytes)
-- {
-- 	unsigned phnum;
-- 	size_t bytes;
-- 	char *headers;
---	Elf64_Ehdr *nehdr;
---	Elf64_Phdr *nphdr;
--+	Elf32_Ehdr *nehdr;
--+	Elf32_Phdr *nphdr;
-- 	unsigned long long offset;
-- 	int i;
-- 	/* Count the number of program headers.
--@@ -148,8 +148,8 @@ static void *generate_new_headers(
-- 	headers = xmalloc(bytes);
-- 
-- 	/* Setup pointers to the new headers */
---	nehdr = (Elf64_Ehdr *)headers;
---	nphdr = (Elf64_Phdr *)(headers + sizeof(*nehdr));
--+	nehdr = (Elf32_Ehdr *)headers;
--+	nphdr = (Elf32_Phdr *)(headers + sizeof(*nehdr));
-- 	
-- 	/* Copy and adjust the Elf header */
-- 	memcpy(nehdr, ehdr, sizeof(*nehdr));
--@@ -213,8 +213,8 @@ int main(int argc, char **argv)
-- {
-- 	char *start_addr_str, *end;
-- 	unsigned long long start_addr;
---	Elf64_Ehdr *ehdr;
---	Elf64_Phdr *phdr;
--+	Elf32_Ehdr *ehdr;
--+	Elf32_Phdr *phdr;
-- 	void *notes, *headers;
-- 	size_t note_bytes, header_bytes;
-- 	int fd;
--@@ -235,6 +235,7 @@ int main(int argc, char **argv)
-- 		exit(1);
-- 	}
-- 	start_addr = strtoull(start_addr_str, &end, 0);
--+
-- 	if ((start_addr_str == end) || (*end != '\0')) {
-- 		fprintf(stderr, "Bad core dump start addres: %s\n",
-- 			start_addr_str);
--@@ -256,21 +257,21 @@ int main(int argc, char **argv)
-- 		(ehdr->e_ident[EI_MAG1] != ELFMAG1) ||
-- 		(ehdr->e_ident[EI_MAG2] != ELFMAG2) ||
-- 		(ehdr->e_ident[EI_MAG3] != ELFMAG3) ||
---		(ehdr->e_ident[EI_CLASS] != ELFCLASS64) ||
--+		(ehdr->e_ident[EI_CLASS] != ELFCLASS32) ||
-- 		(ehdr->e_ident[EI_DATA] != ELFDATALOCAL) ||
-- 		(ehdr->e_ident[EI_VERSION] != EV_CURRENT) ||
-- 		(ehdr->e_type != ET_CORE) ||
-- 		(ehdr->e_version != EV_CURRENT) ||
---		(ehdr->e_ehsize != sizeof(Elf64_Ehdr)) ||
---		(ehdr->e_phentsize != sizeof(Elf64_Phdr)) ||
--+		(ehdr->e_ehsize != sizeof(Elf32_Ehdr)) ||
--+		(ehdr->e_phentsize != sizeof(Elf32_Phdr)) ||
-- 		(ehdr->e_phnum == 0))
-- 	{
-- 		fprintf(stderr, "Invalid Elf header\n");
-- 		exit(4);
-- 	}
---	
-- 	/* Get the program header */
---	phdr = map_addr(fd, sizeof(*phdr)*(ehdr->e_phnum), ehdr->e_phoff);
--+	phdr = map_addr(fd, sizeof(*phdr)*(ehdr->e_phnum),
--+			ehdr->e_phoff + start_addr);
-- 
-- 	/* Collect up the notes */
-- 	note_bytes = 0;
--diff --git a/kexec/arch/arm/crashdump-arm.c b/kexec/arch/arm/crashdump-arm.c
--index b523e5f..23f5999 100644
----- a/kexec/arch/arm/crashdump-arm.c
--+++ b/kexec/arch/arm/crashdump-arm.c
--@@ -143,16 +143,21 @@ static int crash_range_callback(void *UNUSED(data), int UNUSED(nr),
-- 	if (usablemem_rgns.size >= CRASH_MAX_MEMORY_RANGES)
-- 		return 1;
-- 
--+
-- 	range = usablemem_rgns.ranges + usablemem_rgns.size;
-- 
--+	/* Keystone2 cannot use more than 2GB of DDR */ 
--+	if ((base + length) >= K2_MEM_2G_END)
--+		return 0;
--+
-- 	if (strncmp(str, "System RAM\n", 11) == 0) {
---		range->start = base;
---		range->end = base + length - 1;
--+		range->start = base - K2_ALIAS_OFFSET;
--+		range->end = base + length - 1 - K2_ALIAS_OFFSET;
-- 		range->type = RANGE_RAM;
-- 		usablemem_rgns.size++;
-- 	} else if (strncmp(str, "Crash kernel\n", 13) == 0) {
---		crash_reserved_mem.start = base;
---		crash_reserved_mem.end = base + length - 1;
--+		crash_reserved_mem.start = base - K2_ALIAS_OFFSET;
--+		crash_reserved_mem.end = base + length - 1 - K2_ALIAS_OFFSET;
-- 		crash_reserved_mem.type = RANGE_RAM;
-- 	}
-- 
--diff --git a/kexec/arch/arm/kexec-arm.c b/kexec/arch/arm/kexec-arm.c
--index 6e8e320..d6b204d 100644
----- a/kexec/arch/arm/kexec-arm.c
--+++ b/kexec/arch/arm/kexec-arm.c
--@@ -61,8 +61,14 @@ int get_memory_ranges(struct memory_range **range, int *ranges,
-- 			continue;
-- 		}
-- 
---		memory_range[memory_ranges].start = start;
---		memory_range[memory_ranges].end = end;
--+		if (start < K2_MEM_START || start >= K2_MEM_2G_END)
--+			continue;
--+
--+		if (end > K2_MEM_2G_END)
--+			end == K2_MEM_2G_END;
--+
--+		memory_range[memory_ranges].start = start - K2_ALIAS_OFFSET;
--+		memory_range[memory_ranges].end = end - K2_ALIAS_OFFSET;
-- 		memory_range[memory_ranges].type = type;
-- 		memory_ranges++;
-- 	}
--diff --git a/kexec/arch/arm/kexec-zImage-arm.c b/kexec/arch/arm/kexec-zImage-arm.c
--index 44b87bb..a4aa000 100644
----- a/kexec/arch/arm/kexec-zImage-arm.c
--+++ b/kexec/arch/arm/kexec-zImage-arm.c
--@@ -93,7 +93,7 @@ int zImage_arm_probe(const char *UNUSED(buf), off_t UNUSED(len))
-- 	/* 
-- 	 * Only zImage loading is supported. Do not check if
-- 	 * the buffer is valid kernel image
---	 */	
--+	 */
-- 	return 0;
-- }
-- 
--@@ -150,7 +150,7 @@ int atag_arm_load(struct kexec_info *info, unsigned long base,
-- 	off_t len;
-- 	struct tag *params;
-- 	uint32_t *initrd_start = NULL;
---	
--+
-- 	buf = xmalloc(getpagesize());
-- 	if (!buf) {
-- 		fprintf(stderr, "Compiling ATAGs: out of memory\n");
--@@ -407,7 +407,7 @@ int zImage_arm_load(int argc, char **argv, const char *buf, off_t len,
-- 			 */
-- 			return -1;
-- 		}
---		base = start;
--+		base = start - K2_ALIAS_OFFSET;
-- 	} else {
-- 		base = locate_hole(info, len + extra_size, 0, 0,
-- 				   ULONG_MAX, INT_MAX);
--diff --git a/kexec/crashdump-elf.c b/kexec/crashdump-elf.c
--index c869347..0585cba 100644
----- a/kexec/crashdump-elf.c
--+++ b/kexec/crashdump-elf.c
--@@ -151,7 +151,7 @@ int FUNC(struct kexec_info *info,
-- 		bufp += sizeof(PHDR);
-- 		phdr->p_type	= PT_NOTE;
-- 		phdr->p_flags	= 0;
---		phdr->p_offset  = phdr->p_paddr = notes_addr;
--+		phdr->p_offset  = phdr->p_paddr = notes_addr - K2_ALIAS_OFFSET;
-- 		phdr->p_vaddr   = 0;
-- 		phdr->p_filesz	= phdr->p_memsz	= notes_len;
-- 		/* Do we need any alignment of segments? */
--@@ -202,6 +202,8 @@ int FUNC(struct kexec_info *info,
-- 			continue;
-- 		mstart = range->start;
-- 		mend = range->end;
--+		if (mend >= 0x100000000ULL)
--+			continue;
-- 		if (!mstart && !mend)
-- 			continue;
-- 		phdr = (PHDR *) bufp;
--diff --git a/kexec/kexec.h b/kexec/kexec.h
--index 2fad7dc..de6f4da 100644
----- a/kexec/kexec.h
--+++ b/kexec/kexec.h
--@@ -297,4 +297,10 @@ int xen_kexec_load(struct kexec_info *info);
-- int xen_kexec_unload(uint64_t kexec_flags);
-- void xen_kexec_exec(void);
-- 
--+/* Keystone2 definitions */
--+
--+#define K2_MEM_START  0x800000000ULL
--+#define K2_MEM_2G_END 0x880000000ULL
--+#define K2_ALIAS_OFFSET 0x780000000ULL
--+
-- #endif /* KEXEC_H */
---- 
--1.9.1
--
-diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb
-deleted file mode 100644
-index a28ab7d..0000000
---- a/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.7.bb
-+++ /dev/null
-@@ -1,20 +0,0 @@
--require recipes-kernel/kexec/kexec-tools.inc
--export LDFLAGS = "-L${STAGING_LIBDIR}"
--EXTRA_OECONF = " --with-zlib=yes"
--
--PR = "r0"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--S = "${WORKDIR}/git"
--
--BRANCH="master"
--SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git;protocol=git;branch=${BRANCH}"
--SRC_URI_append_keystone = " file://0001-kexec-ks2-use-KS2-aliased-addresses-on.patch"
--
--SRCREV = "4afd47956f05ec8f71daf688d5d52837d6e40b2c"
--
--PACKAGES =+ "kexec kdump"
--
--FILES_kexec = "${sbindir}/kexec"
--FILES_kdump = "${sbindir}/kdump"
+diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump b/meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump
+new file mode 100755
+index 0000000..3fb133f
+--- /dev/null
++++ b/meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump
+@@ -0,0 +1,163 @@
++#! /bin/sh
++#
++#  kdump
++#
++#  Description: The kdump script provides the support:
++#		1. Load a kdump kernel image into memory;
++#		2. Copy away vmcore when system panic.
++#
++
++#default
++KDUMP_KVER="`uname -r`"
++KDUMP_KIMAGE="/boot/bzImage-${KDUMP_KVER}"
++KDUMP_CMDLINE="`cat /proc/cmdline`"
++KDUMP_CMDLINE_APPEND="kdump_needed maxcpus=1 irqpoll reset_devices"
++KDUMP_VMCORE_PATH="/var/crash/`date +"%Y-%m-%d"`"
++
++#get right kernel image
++march="`uname -m`"
++case ${march} in
++	x86*|i?86)
++		;;
++		*)
++		KDUMP_KIMAGE="/boot/uImage-${KDUMP_KVER}"
++		;;
++esac
++
++KEXEC=usr/sbin/kexec
++KEXEC_ARGS="-p"
++
++MAKEDUMPFILE=/usr/bin/makedumpfile
++MAKEDUMPFILE_ARGS="-E -d 1"
++
++LOGGER="logger -p info -t kdump"
++
++if [ -f /etc/sysconfig/kdump.conf ]; then
++	. /etc/sysconfig/kdump.conf
++fi
++
++do_check()
++{
++	#check makedumpfile
++	if [ ! -e ${MAKEDUMPFILE} -o ! -x ${MAKEDUMPFILE} ] ;then
++		echo "No makedumpfile found."
++		return 1;
++	fi
++
++	#check kexec
++	if [ ! -e ${KEXEC} -o ! -x ${KEXEC} ] ;then
++		echo "No kexec found."
++		return 1;
++	fi
++
++	#check whether kdump kernel image exists on the system
++	if [ ! -f ${KDUMP_KIMAGE} ]; then
++		echo "No kdump kernel image found."
++		return 1
++	fi
++}
++
++do_save_vmcore()
++{
++	mkdir -p ${KDUMP_VMCORE_PATH}
++	echo "Saving a vmcore to ${KDUMP_VMCORE_PATH}."
++
++	${MAKEDUMPFILE} ${MAKEDUMPFILE_ARGS} /proc/vmcore ${KDUMP_VMCORE_PATH}/vmcore-"`date +"%H:%M:%S"`"
++#	cp --sparse=always /proc/vmcore ${KDUMP_VMCORE_PATH}/vmcore-"`date +"%H:%M:%S"`"
++	rc=$?
++	if [ ${rc} == 0 ]; then
++		${LOGGER} "Saved a vmcore to ${KDUMP_VMCORE_PATH}."
++	else
++		${LOGGER} "Failed to save vmcore!"
++	fi
++	return ${rc}
++}
++
++do_start()
++{
++	#check file
++	do_check
++
++	#check whether the running kernel supports kdump.
++	if [ ! -e /sys/kernel/kexec_crash_loaded ]; then
++		echo "Kdump isn't supported on the running kernel!!!"
++		${LOGGER} "Kdump isn't supported on the running kernel!!!"
++		return 1
++	fi
++
++	#check whether kdump kernel image has been loaded
++	rc=`cat /sys/kernel/kexec_crash_loaded`
++	if [ ${rc} != 0 ]; then
++		echo "Kdump is already running.";
++		${LOGGER} "Kdump is already running."
++		return 0
++	fi
++
++	#check the running kernel cmdline option,insure "crashkenrel=" always set.
++	grep -q crashkernel= /proc/cmdline
++	if [ $? != 0 ]; then
++		echo "Kdump isn't supported on the running kernel,please check boot option!!!"
++		${LOGGER} "Kdump isn't supported on the running kernel,please check boot option!!!"
++		return 1
++	fi
++
++	#handle kdump cmdline parameters, remove some useless options
++	kcmdline=""
++	for x in `cat /proc/cmdline`; do
++		case $x in
++			crashkernel*)
++				;;
++			*)
++				kcmdline="${kcmdline} $x"
++				;;
++		esac
++	done
++
++	KDUMP_CMDLINE="${kcmdline} ${KDUMP_CMDLINE_APPEND}"
++
++	#Load the kdump kernel image
++	${KEXEC} ${KEXEC_ARGS} "${KDUMP_KIMAGE}" --append="${KDUMP_CMDLINE}"
++	if [ $? != 0 ]; then
++		echo "Failed to load kdump kernel!"
++		${LOGGER} "Failed to load kdump kernel!"
++		return 1
++	fi
++
++	echo "Kdump started up."
++	${LOGGER} "Kdump started up."
++}
++
++do_stop()
++{
++	${KEXEC} -p -u 2>/dev/null
++	if [ $? == 0 ]; then
++		echo "Kdump has been stopped."
++		${LOGGER} "Kdump has been stopped."
++	else
++		echo "Failed to stop kdump!"
++		${LOGGER} "Failed to stop kdump!"
++	fi
++}
++
++case "$1" in
++  start)
++	if [ -s /proc/vmcore ]; then
++		do_save_vmcore
++		reboot
++	else
++		do_start
++	fi
++	;;
++ restart)
++	do_stop
++	do_start
++	;;
++  stop)
++	do_stop
++	;;
++   *)
++	echo $"Usage: $0 {start|stop|restart}"
++	exit 1
++esac
++
++exit $?
+diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump.conf b/meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump.conf
+new file mode 100644
+index 0000000..42a2435
+--- /dev/null
++++ b/meta-arago-extras/recipes-kernel/kexec/kexec-tools/kdump.conf
+@@ -0,0 +1,18 @@
++#the kdump kernel version string.
++#KDUMP_KVER="`uname -r`"
++
++#this will be passed to the kdump kernel as kdump kernel command line, it
++#usually comes from /proc/cmdline
++#KDUMP_CMDLINE="`cat /proc/cmdline`"
++
++# append arguments to the kdump commandline
++#KDUMP_CMDLINE_APPEND="kdump_needed maxcpus=1 irqpoll reset_devices"
++
++#the kernel image for kdump
++#KDUMP_KIMAGE="/boot/bzImage-${KDUMP_KVER}"
++
++#Where to save the vmcore
++#KDUMP_VMCORE_PATH="/var/crash/`date +"%Y-%m-%d"`"
++
++#the arguments to makedumpfile
++MAKEDUMPFILE_ARGS="--dump-dmesg -x /boot/vmlinux-`uname -r`"
+diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb
+new file mode 100644
+index 0000000..7f498c9
+--- /dev/null
++++ b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb
+@@ -0,0 +1,40 @@
++require recipes-kernel/kexec/kexec-tools.inc
++export LDFLAGS = "-L${STAGING_LIBDIR}"
++EXTRA_OECONF = " --with-zlib=yes"
++
++S = "${WORKDIR}/git"
++
++PV = "2.0.12+2.0.13pre"
++
++BRANCH="master"
++SRCREV = "4db7f295d59651ead1f7632198fe8c113a2e8890"
++
++SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git;protocol=git;branch=${BRANCH}"
++
++SRC_URI += " \
++    file://kdump \
++    file://kdump.conf \
++"
++
++PACKAGES =+ "kexec kdump vmcore-dmesg"
++
++ALLOW_EMPTY_${PN} = "1"
++RRECOMMENDS_${PN} = "kexec kdump vmcore-dmesg"
++
++FILES_kexec = "${sbindir}/kexec"
++FILES_kdump = "${sbindir}/kdump ${sysconfdir}/init.d/kdump \
++               ${sysconfdir}/sysconfig/kdump.conf"
++FILES_vmcore-dmesg = "${sbindir}/vmcore-dmesg"
++
++inherit update-rc.d
++
++INITSCRIPT_PACKAGES = "kdump"
++INITSCRIPT_NAME_kdump = "kdump"
++INITSCRIPT_PARAMS_kdump = "start 56 2 3 4 5 . stop 56 0 1 6 ."
++
++do_install_append () {
++        install -d ${D}${sysconfdir}/init.d
++        install -m 0755 ${WORKDIR}/kdump ${D}${sysconfdir}/init.d/kdump
++        install -d ${D}${sysconfdir}/sysconfig
++        install -m 0644 ${WORKDIR}/kdump.conf ${D}${sysconfdir}/sysconfig
++}
 -- 
 2.7.4
 
