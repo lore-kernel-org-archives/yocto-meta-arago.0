@@ -1,31 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173009pub.verizon.net (vms173009pub.verizon.net
-	[206.46.173.9])
-	by arago-project.org (Postfix) with ESMTPS id 2B98652A50
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 1A249529DB
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Jul 2016 00:46:19 +0000 (UTC)
-Received: from vz-proxy-m002.mx.aol.com ([64.236.83.3])
-	by vms173009.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OA600J40FGU5X80@vms173009.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 11 Jul 2016 19:46:06 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=yQ9kT6OsLgv7WE5tBE7I5g==:117
-	a=cAmyUtKerLwA:10 a=sozttTNsAAAA:8	a=HihYlcsHAAAA:8
-	a=ClY_2aExlruHihV4NfcA:9
-	a=7Zwj6sZBwVKJAoWSPKxL6X1jA+E=:19	a=xwRk7YDtje0VNCMl:21
-	a=P-NVg5gXY8FNBToo:21 a=pioVBywg4_cA:10
-Received: by 100.15.86.14 with SMTP id 446f6896; Tue, 12 Jul 2016 00:46:06 GMT
-Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id DAFA41620AF;	Mon, 11 Jul 2016 20:46:05 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 11 Jul 2016 20:45:59 -0400
-Message-id: <1468284359-16073-5-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-reply-to: <1468284359-16073-1-git-send-email-denis@denix.org>
-References: <1468284359-16073-1-git-send-email-denis@denix.org>
-Subject: [tisdk-build-scripts][PATCH 5/5] arago-core-tisdk-krogoth-farm: add basic config for new farm
+	Tue, 12 Jul 2016 04:43:21 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u6C4fJup005750
+	for <meta-arago@arago-project.org>; Mon, 11 Jul 2016 23:41:19 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u6C4hKDZ031957
+	for <meta-arago@arago-project.org>; Mon, 11 Jul 2016 23:43:20 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 11 Jul 2016 23:43:19 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u6C4hJ7c003119	for <meta-arago@arago-project.org>;
+	Mon, 11 Jul 2016 23:43:20 -0500
+Date: Tue, 12 Jul 2016 00:43:19 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <122941719.257.1468298599805.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-master-systest
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] SysTest Core TISDK (krogoth/2.1) 2016.05 build 2016-07-11_17-07-58
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,363 +36,216 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2016 00:46:19 -0000
+X-List-Received-Date: Tue, 12 Jul 2016 04:43:22 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_256_1988541140.1468298599701"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_256_1988541140.1468298599701
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- configs/arago-core-tisdk-krogoth-farm.txt | 340 ++++++++++++++++++++++++++++++
- 1 file changed, 340 insertions(+)
- create mode 100644 configs/arago-core-tisdk-krogoth-farm.txt
+<html>
+<head>
+<title>
+Status for 07/11/16
+</title>
+</head>
+<body>
 
-diff --git a/configs/arago-core-tisdk-krogoth-farm.txt b/configs/arago-core-tisdk-krogoth-farm.txt
-new file mode 100644
-index 0000000..fa497b3
---- /dev/null
-+++ b/configs/arago-core-tisdk-krogoth-farm.txt
-@@ -0,0 +1,340 @@
-+################################################################################
-+#                      Core TISDK configuration file                           #
-+################################################################################
-+
-+# This variable contains the list of variables found in this congif file
-+# that MUST be set to a value.  Failure to set these variables could
-+# lead to corruption of the host system or the build script not
-+# executing properly
-+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
-+
-+# This variable holds the SDK version you are building.  This will be picked
-+# up in the installer name if you choose to package an installer.  You can
-+# also use this in the CONFIG_FILE name below.
-+TISDK_VERSION="2016.07"
-+
-+# This variable contains the list of machines to build an SDK for
-+MACHINES=""
-+
-+# These variables indicate the maximum number of parallel builds that can be
-+# done for each architecture.  Some things to note are:
-+#   1. You should add these values together to get the maximum number of
-+#      parallel builds.  If this is too many for your system then reduce the
-+#      numbers.
-+#   2. The machines will be built spread over the parallel builds and load
-+#      balancing is handled automatically
-+#   3. If there are no machines of a particular architectur then nothing will
-+#      be built for that architecture
-+#   4. In the case of just a couple of machines it may be faster to do only
-+#      one build building both serially rather than two parallel builds
-+#      depending on your system resources
-+NUM_ARM9_BUILDS="0"
-+NUM_CORTEX_BUILDS="1"
-+
-+# These variables contain the location of the bin directory where the toolchain
-+# for each architecture is installed.
-+TOOLCHAIN_ROOT_ARM9=""
-+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
-+
-+# SECDEV variables for AM4 and DRA7
-+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"
-+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"
-+
-+# This variable holds the unique ID for the build that will be used to
-+# identify the build.
-+BUILD_ID="`date +build-%F_%H-%M-%S`"
-+
-+# This variable contains the script directory where these scripts are running
-+# from.  This is to allow finding other files used during the build later.
-+# You should likely not change this
-+SCRIPTS_ROOT="$PWD"
-+
-+# This variable points to be base of your build where the sources will be
-+# checked out and the tmp build diretories for each architecture will be
-+# created using the oe-layertool-setup.sh script from the repo at:
-+#   git clone git://arago-project.org/git/projects/oe-layersetup.git
-+# This will be created using the 
-+#   - These directories will look like:
-+#       - BUILD_ROOT/sources
-+#       - BUILD_ROOT/arm9-1/arago-tmp
-+#       - BUILD_ROOT/cortex-1/arago-tmp
-+#       - BUILD_ROOT/cortex-2/arago-tmp
-+BUILD_ROOT="/OE/auto-arago-krogoth"
-+
-+# This variable points to the base location where files will be extracted for
-+# testing purposes.  This should not be confused with the NFS root which
-+# will be configured below.
-+# This variable should always be declared AFTER the BUILD_ROOT variable.
-+# The build scripts will create subdirectories such as:
-+#   - TEST_ROOT/am335x-evm-test
-+# You can usually just take the default value
-+TEST_ROOT="$BUILD_ROOT/testing"
-+
-+# This variable points to the directory where files will be placed to allow
-+# for final packaging.
-+# This variable should always be declared AFTER the BUILD_ROOT variable
-+# You can usually just take the default value
-+PACKAGE_ROOT="$BUILD_ROOT/packaging"
-+
-+# This variable points to the base location where the SDK files will
-+# be deployed.  This is essentially the final staging directory
-+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
-+
-+# This variable contains the "filter" string to look for inside of the
-+# SDK to select which file system to test.  Currently only testing of
-+# one file system is supported.
-+FS_FILTER="tisdk-*rootfs-"
-+
-+# This variable indicates the type of FS images being generated.  By default
-+# this is tar.gz images.  This should match what you set in your recipes
-+FS_IMAGE_TYPE="tar.gz"
-+
-+# This variable contains the "filter" string to look for inside of the
-+# OE build directory to find the SDK image.  Since the image name can
-+# vary based on the recipe settings this string will account for that.
-+SDK_FILTER="arago-core-tisdk-image-"
-+
-+# This variable indicates the type of SDK images being generated.  By default
-+# this is tar.gz images.  This should match what you set in your recipes
-+SDK_IMAGE_TYPE="tar.gz"
-+
-+# This variable points to an NFS share which has been pre-configured.  The
-+# target testing will be done by creating a subdirectory in this NFS_ROOT
-+# for each machine to boot the target board.
-+# This directory should be configured to allow writing by the jenkins user
-+# at a minimum, although allowing writing by anyone is simple.
-+NFS_ROOT="/home/jenkins/nfs-root"
-+
-+# This variable points to the location where the sources will be checked out
-+# using the oe-layertool-setup.sh script from the following repository:
-+#   git clone git://arago-project.org/git/projects/oe-layersetup.git
-+SOURCE_DIR="${BUILD_ROOT}/sources"
-+
-+# This variable indicates whether we should do a clean build which means
-+# Removing the build directories
-+CLEAN_BUILD="false"
-+
-+# This variable indicates whether we should clean shared state (sstate)
-+CLEAN_SSTATE="false"
-+
-+# This variable means that we should clean not only build build directories,
-+# but also the sources as well and do a fully clean build.
-+CLEAN_ALL="true"
-+
-+# This is the configuration file to use in the oe-layertool-setup.sh script
-+# to configure the build.
-+CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"
-+
-+# This directory will contain the log files for the various parts of the build.
-+# This includes:
-+#   1. Overall build process log (i.e. which machines are in which build dir)
-+#   2. Build logs for individual machines
-+#   3. Test logs for individual machines
-+#   4. Packaging logs for individual machines
-+LOG_DIR="${BUILD_ROOT}/log-files"
-+
-+# Setting this variable to "true" will enable logging stdout and stderr of the 
-+# bitbake command to the appropriate machine's build_log.txt.
-+BUILD_LOG_VERBOSE="true"
-+
-+# This is the directory where you want to configure your build to download
-+# files to.  This is best done as a shared directory among the builds to
-+# save download time and space.
-+DL_DIR="${BUILD_ROOT}/downloads"
-+
-+# Setting this variable will configure the builds to attempt to use a mirror to 
-+# obtain the build sources.
-+SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
-+
-+# Seeting this variable to "1" configures the build to generate mirror tarballs
-+# of the source repos.
-+BB_GENERATE_MIRROR_TARBALLS="1"
-+
-+# This variable points to an optional location where additional installer
-+# content can be placed to be packaged inside of any image recipe that
-+# inherits the tisdk-image class.  It is expected that the directory
-+# structure should match the structure as you want it placed in the SDK.
-+# If you are not building an SDK image with external components then this
-+# is not required.
-+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
-+
-+# This variable points to the directory with the test scripts you want to
-+# run.  The entire directory will be copied to make removing the test scripts
-+# easier during cleanup.
-+# NOTE: The assumption is that this directory contains at least the
-+#       following files:
-+#           - opentest.sh // This is called by opentest framework
-+#           - S90-fake-pointercal // This fakes pointer calibration
-+#           - nightly-test.sh // This is called by opentest.sh and does
-+#                                machine specific testing
-+# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
-+#       the opentest.sh script should call the scripts in the new directory.
-+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
-+
-+# This variable points to the directory within the target filesystem that
-+# the scripts directory in TEST_SCRIPTS will be copied as.
-+TEST_SCRIPTS_TGT="home/root/test-scripts"
-+
-+# This variable may be used to specify the exact network interface used to
-+# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
-+# Useful on multi-homed machines with multiple interfaces, when guessing
-+# between eth0 and eth1 is not possible. Leave empty for default behavior.
-+TEST_LOCAL_IFACE="eth1"
-+
-+# This variable contains the tarball name for the opentest CLI which is
-+# required to do target side testing.
-+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
-+
-+# Pre-configured conf/site_info.xml file for OpenTest client
-+OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
-+
-+# This variable specifies the IP address of the TEE to be used with OpenTest
-+# Defaults to 128.247.105.11 if not set
-+OPENTEST_TEE_IP="none"
-+
-+# This variable specifies the hardware capabilities to be used with OpenTest
-+# Capabilities are separated by underscores, some excamples are here:
-+# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
-+# Defaults to "linux" if not set
-+# Limit the board selection to official TI GT farm, avoiding personal boards
-+OPENTEST_HW_CAP="linux_tigt_farm"
-+
-+# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
-+# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
-+OPENTEST_BOOTLOADERS="false"
-+
-+# Specify the number of attempts to boot the target (default is 1)
-+OPENTEST_BOOT_ATTEMPTS="3"
-+
-+# Specify timeout in seconds for boot to finish (default is 150 sec)
-+OPENTEST_BOOT_TIMEOUT="300"
-+
-+# This variable will allow control over whether to perform build testing or
-+# skip it.  This should usually be set to true but may be changed for
-+# prototyping.
-+RUN_BUILD_TESTS="false"
-+
-+# This variable points to the STAF installation location which is used
-+# during the build test steps to call into the OpenTest Framework.  This
-+# default value is the default value from the STAF installer
-+STAF_ROOT="/usr/local/staf"
-+
-+# This variable indicates whether to continue the build process for a machine
-+# even when the build testing fails.  This can be useful in the case of
-+# the test system being down to allow the full packaging of the SDK to
-+# continue.
-+SKIP_TEST_FAILURES="false"
-+
-+# This variable indicates whether to productize the build by packaging
-+# it into an installer and web content.  This will require that
-+# InstallBuilder be installed on your host system and that you have
-+# and project file created to package it.  If not then you can use
-+# the simple SDK tarball that was created during the build as your
-+# SDK.
-+PRODUCTIZE_SDK="false"
-+
-+# This variable contains the command(s) that bitbake should run. Each command
-+# should be seperated by a semicolon.
-+BITBAKE_COMMAND="arago-base-tisdk-image tisdk-rootfs-image meta-toolchain-arago-tisdk"
-+
-+# This variable controls whether the build configuration included at the bottom
-+# of the results file includes comments or not. The default is "false" to filter
-+# comments out.
-+RESULTS_CONFIG_COMMENTS="false"
-+
-+################################################################################
-+# The following variables only need to be set if PRODUCTIZE_SDK is true.
-+# If not you do not need to set these variables.  If you do want to
-+# publish an SDK you will need access to other tools such as webgen that
-+# are not available outside of TI.
-+################################################################################
-+
-+# This points to the location where the InstallBuilder application has
-+# been extracted.
-+INSTALL_BUILDER="/home/jenkins/installbuilder"
-+
-+# This variable points to the root diretory where the installer content will be
-+# staged to build the installer.
-+INSTALLER_ROOT="$BUILD_ROOT/installer"
-+
-+# This variable will point to the InstallBuilder file used to build the SDK
-+# installer
-+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
-+
-+# This variable will provide the prefix for the installer filename and default 
-+# installation directory.
-+# NOTE: This prefix should match the installer filename given in the webgen.mak
-+#  
-+# Installer name will have the form: 
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
-+# Installation directory will have the form:
-+#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
-+INSTALLER_PREFIX="ti-sdk"
-+
-+# This variable points to a directory where additional SD card content
-+# is located.  In general this directory should have a structure like
-+#   - <machine>/boot - holds extra boot partition content
-+#   - <machine>/start_here - holds the extra start_here partition content
-+# Many times you will want to use symlinks here to save space, so the
-+# build scripts will use the -L option to copy the linked file instead of
-+# the symlink.
-+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
-+
-+# This variable determines whether the uImage and dtb files should be placed in
-+# the boot partition tarball or not.  For newer kernel and u-boot combinations
-+# the uImage and dtb files are kept in the rootfs partition and placing it in
-+# the boot partition will cause confusion.
-+PACKAGE_BOOT_KERNEL_FILES="false"
-+
-+# This variable points to the directory where the webgen tool has been
-+# Installed.
-+WEBGEN_ROOT="/home/jenkins/webgen"
-+
-+# This variable points to the location where additional webgen/webpage files
-+# are located.  Many times you will want to use symlinks here to save space
-+# so the build scripts will use the -L option to copy the linked file instead
-+# of the symlink.
-+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
-+
-+# This variable points to the root location where the publish SDK data is
-+# stored.  This data is the webgen.mak files required to build the SDK
-+# ti.com style web pages.
-+# The general assumption is that the directory structure looks like:
-+#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
-+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
-+
-+# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
-+# to the webgen exports directory. Setting this variable to "1" will override
-+# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
-+EXPORT_ARAGO_SRC="0"
-+
-+# This variable specifies whether or not to copy the build contents to
-+# a remote web hosting server.
-+COPY_TO_WEB="false"
-+
-+# This variable specifies whether or not to copy the deploy contents to a
-+# remote web hosting server. These are unprocessed intermediate artifacts,
-+# such as images, IPK feeds etc, so may not be distributed publicly as is.
-+COPY_DEPLOY_TO_WEB="false"
-+
-+# This variable specifies whether or not to copy the "golden" contents to a
-+# remote web hosting server. These are images that passed run-time tests.
-+COPY_GOLDEN_TO_WEB="false"
-+
-+# This variable points to the user@webhost:<basepath> location where the
-+# deploy contents should be placed.  This is best done if you have done a
-+# key exchange between these systems so that your SCP command will not ask
-+# for a password.
-+#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
-+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
-+
-+# This variable determines whether the DEPLOY_ROOT will be cleaned after
-+# the remote copy.  The reason for this is that if the files already exist
-+# on the remote system there is no need to keep them on the local system.
-+CLEAN_AFTER_COPY="true"
-+
-+# This variable determines if the results directory should be copied before
-+# the deploy directory is cleaned.  If this value is set then the results
-+# will be copied to the given directory.  If not then they will not be
-+# copied and will be cleaned if CLEAN_AFTER_COPY is true.
-+BACKUP_RESULTS=""
--- 
-2.7.4
+<h2>Status for 07/11/16</h2>
+
+<h2>BUILD_ID: build-2016-07-11_17-09-04</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.30</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-networking:meta-ruby:meta-python:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>krogoth</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>am335x-evm</td>
+        <td id="am335x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am335x-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>am437x-evm</td>
+        <td id="am437x-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am437x-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>am57xx-evm</td>
+        <td id="am57xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="am57xx-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+    <tr>
+        <td>k2hk-evm</td>
+        <td id="k2hk-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2hk-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2g-evm</td>
+        <td id="k2g-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2g-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2e-evm</td>
+        <td id="k2e-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2e-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+    <tr>
+        <td>k2l-evm</td>
+        <td id="k2l-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="k2l-evm-target-result" bgcolor=lime>PASSED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"<br>
+TISDK_VERSION="2016.05"<br>
+MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2g-evm k2e-evm k2l-evm"<br>
+NUM_ARM9_BUILDS="0"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9=""<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"<br>
+TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"<br>
+TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-master-systest"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_CONF_SITE_INFO="/home/jenkins/site_info.xml"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly/systest"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace"<br>
+LOCAL_CONF_APPEND="/home/jenkins/jobs/arago-core-tisdk-master-systest/workspace/configs/arago-core-tisdk-master-systest-append.txt"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_256_1988541140.1468298599701--
