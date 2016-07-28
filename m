@@ -1,29 +1,27 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id A2F5152AC2
+Return-Path: <denis@denix.org>
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by arago-project.org (Postfix) with ESMTPS id 88FA9529F1
 	for <meta-arago@arago-project.org>;
-	Thu, 28 Jul 2016 13:04:58 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u6SD1V1u025758
-	for <meta-arago@arago-project.org>; Thu, 28 Jul 2016 08:01:31 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u6SD4viA018076
-	for <meta-arago@arago-project.org>; Thu, 28 Jul 2016 08:04:57 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 28 Jul 2016 08:04:57 -0500
-Received: from sditapps09.india.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u6SD4piN022138;	Thu, 28 Jul 2016 08:04:56 -0500
-From: Karthik Ramanan <a0393906@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 28 Jul 2016 18:34:49 +0530
-Message-ID: <1469711089-3342-4-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1469711089-3342-1-git-send-email-a0393906@ti.com>
-References: <1469711089-3342-1-git-send-email-a0393906@ti.com>
-MIME-Version: 1.0
-Subject: [PATCH 4/4] gstreamer1.0: Switch to GST 1.6.3
+	Thu, 28 Jul 2016 17:04:28 +0000 (UTC)
+Received: from vz-proxy-m003.mx.aol.com ([64.236.83.2])
+	by vms173021.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0OB10028PBEN8D80@vms173021.mailsrvcs.net> for
+	meta-arago@arago-project.org; Thu, 28 Jul 2016 12:04:09 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=WpDWSorv c=1 sm=1 tr=0	a=EDCZS3Slg7tGr17y9w9vtg==:117
+	a=cAmyUtKerLwA:10 a=sozttTNsAAAA:8	a=Q4-j1AaZAAAA:8 a=HihYlcsHAAAA:8
+	a=NEAV23lmAAAA:8 a=KKAkSRfTAAAA:8	a=VG8tWVyoPSWjoNX224UA:9
+Received: by 100.15.86.14 with SMTP id 5a707678; Thu, 28 Jul 2016 17:04:08 GMT
+Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
+	with ESMTP id D8EBB1620BD;	Thu, 28 Jul 2016 13:03:57 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 28 Jul 2016 13:03:57 -0400
+Message-id: <1469725437-7974-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] arago-krogoth-config: pin down meta-qt5 before _prepend bug
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,30 +34,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jul 2016 13:04:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 28 Jul 2016 17:04:28 -0000
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ configs/arago-krogoth-config.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index cc481cb..a67aaf0 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -66,3 +66,11 @@ PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
- PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
- PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
- PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
-+
-+PREFERRED_VERSION_gstreamer1.0 = "1.6.3"
-+PREFERRED_VERSION_gstreamer1.0-plugins-ugly = "1.6.3"
-+PREFERRED_VERSION_gstreamer1.0-libav = "1.6.3"
-+PREFERRED_VERSION_gstreamer1.0-plugins-good = "1.6.3"
-+PREFERRED_VERSION_gstreamer1.0-plugins-bad = "1.6.3"
-+PREFERRED_VERSION_gstreamer1.0-plugins-base = "1.6.3"
+diff --git a/configs/arago-krogoth-config.txt b/configs/arago-krogoth-config.txt
+index 562828a..6e5aead 100644
+--- a/configs/arago-krogoth-config.txt
++++ b/configs/arago-krogoth-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.30,HEAD,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,krogoth,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,HEAD,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,48b4084675a15fe3fd10b58f54728dfaa2bd6c72,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
+ meta-ti,git://arago-project.org/git/meta-ti.git,krogoth,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,krogoth,HEAD,layers=meta-linaro-toolchain
 -- 
-1.9.1
+2.7.4
 
 
