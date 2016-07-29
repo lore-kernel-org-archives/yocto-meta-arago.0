@@ -1,31 +1,30 @@
-Return-Path: <denys@ti.com>
+Return-Path: <a0850405@a0850405-t7500>
 Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id BABDF5298A
+	by arago-project.org (Postfix) with ESMTPS id 4634052AB2
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Jul 2016 23:14:01 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u6TNAP5W003362
-	for <meta-arago@arago-project.org>; Fri, 29 Jul 2016 18:10:25 -0500
+	Fri, 29 Jul 2016 23:35:37 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u6TNW1G6015215
+	for <meta-arago@arago-project.org>; Fri, 29 Jul 2016 18:32:01 -0500
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u6TNE0pW028469
-	for <meta-arago@arago-project.org>; Fri, 29 Jul 2016 18:14:00 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u6TNZZQN032740
+	for <meta-arago@arago-project.org>; Fri, 29 Jul 2016 18:35:35 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 29 Jul 2016 18:14:00 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u6TNDxUZ022250;
-	Fri, 29 Jul 2016 18:14:00 -0500
-Date: Fri, 29 Jul 2016 19:13:59 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20160729231359.GC31835@edge>
-References: <1469711089-3342-1-git-send-email-a0393906@ti.com>
-	<1469711089-3342-4-git-send-email-a0393906@ti.com>
+	Fri, 29 Jul 2016 18:35:35 -0500
+Received: from a0850405-T7500 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u6TNZZ78018476;
+	Fri, 29 Jul 2016 18:35:35 -0500
+Received: from a0850405 by a0850405-T7500 with local (Exim 4.82)
+	(envelope-from <a0850405@a0850405-t7500>)	id 1bTHJW-000EmP-TG;
+	Fri, 29 Jul 2016 19:35:34 -0400
+From: Carlos Hernandez <ceh@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 29 Jul 2016 19:35:27 -0400
+Message-ID: <1469835327-56779-1-git-send-email-ceh@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1469711089-3342-4-git-send-email-a0393906@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 4/4] gstreamer1.0: Switch to GST 1.6.3
+Subject: [PATCH] busybox: rtcwake: Allow poweroff with rtcwake
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,38 +37,92 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jul 2016 23:14:02 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 29 Jul 2016 23:35:37 -0000
+Content-Type: text/plain
 
-This patch was corrupted for some reason. I ended up redoing it manually.
+Useful to test rtcwake from poweroff.
 
-On Thu, Jul 28, 2016 at 06:34:49PM +0530, Karthik Ramanan wrote:
-> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-> ---
->  meta-arago-distro/conf/distro/include/arago-prefs.inc | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> index cc481cb..a67aaf0 100644
-> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> @@ -66,3 +66,11 @@ PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
->  PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
->  PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
->  PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
-> +
-> +PREFERRED_VERSION_gstreamer1.0 = "1.6.3"
-> +PREFERRED_VERSION_gstreamer1.0-plugins-ugly = "1.6.3"
-> +PREFERRED_VERSION_gstreamer1.0-libav = "1.6.3"
-> +PREFERRED_VERSION_gstreamer1.0-plugins-good = "1.6.3"
-> +PREFERRED_VERSION_gstreamer1.0-plugins-bad = "1.6.3"
-> +PREFERRED_VERSION_gstreamer1.0-plugins-base = "1.6.3"
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Carlos Hernandez <ceh@ti.com>
+---
+ ...cwake-Allow-poweroff-with-rtcwake-command.patch | 56 ++++++++++++++++++++++
+ .../recipes-core/busybox/busybox_%.bbappend        |  2 +
+ 2 files changed, 58 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-core/busybox/busybox/0001-rtcwake-Allow-poweroff-with-rtcwake-command.patch
+
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/0001-rtcwake-Allow-poweroff-with-rtcwake-command.patch b/meta-arago-distro/recipes-core/busybox/busybox/0001-rtcwake-Allow-poweroff-with-rtcwake-command.patch
+new file mode 100644
+index 000000000000..da47888ef8fd
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/busybox/busybox/0001-rtcwake-Allow-poweroff-with-rtcwake-command.patch
+@@ -0,0 +1,56 @@
++From 81e46127ec781dec6789457e918582a5a4eae50a Mon Sep 17 00:00:00 2001
++From: Dave Gerlach <d-gerlach@ti.com>
++Date: Tue, 9 Jun 2015 10:54:19 -0500
++Subject: [PATCH] rtcwake: Allow poweroff with rtcwake command
++
++rtcwake will support poweroff as an option for -m with this
++patch by calling poweroff from the command line and also not disabling
++the rtc alarm1 interrupt at exit.
++
++Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
++---
++ util-linux/rtcwake.c | 15 +++++++++++----
++ 1 file changed, 11 insertions(+), 4 deletions(-)
++
++diff --git a/util-linux/rtcwake.c b/util-linux/rtcwake.c
++index 8aee0cfcbd56..a0edee5d8647 100644
++--- a/util-linux/rtcwake.c
+++++ b/util-linux/rtcwake.c
++@@ -133,6 +133,7 @@ int rtcwake_main(int argc UNUSED_PARAM, char **argv)
++	unsigned seconds = seconds; /* for compiler */
++	int utc = -1;
++	int fd;
+++        int poweroff = 0;
++
++ #if ENABLE_LONG_OPTS
++	static const char rtcwake_longopts[] ALIGN1 =
++@@ -211,9 +212,14 @@ int rtcwake_main(int argc UNUSED_PARAM, char **argv)
++	fflush_all();
++	usleep(10 * 1000);
++
++-	if (strcmp(suspend, "on") != 0)
++-		xopen_xwrite_close(SYS_POWER_PATH, suspend);
++-	else {
+++	if (strcmp(suspend, "on")) {
+++		if (!strcmp(suspend, "poweroff")) {
+++			system("poweroff");
+++			poweroff = 1;
+++		} else {
+++			xopen_xwrite_close(SYS_POWER_PATH, suspend);
+++		}
+++	} else {
++		/* "fake" suspend ... we'll do the delay ourselves */
++		unsigned long data;
++
++@@ -226,7 +232,8 @@ int rtcwake_main(int argc UNUSED_PARAM, char **argv)
++		} while (!(data & RTC_AF));
++	}
++
++-	xioctl(fd, RTC_AIE_OFF, 0);
+++	if (!poweroff)
+++		xioctl(fd, RTC_AIE_OFF, 0);
++
++	if (ENABLE_FEATURE_CLEAN_UP)
++		close(fd);
++--
++1.9.1
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+index 709ebdaaf8c1..d3c258c9bfd6 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
++++ b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
+@@ -1,4 +1,6 @@
+ # look for files in this layer first
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
++SRC_URI_append = " file://0001-rtcwake-Allow-poweroff-with-rtcwake-command.patch "
++
+ PR_append = ".arago20"
+-- 
+1.9.1
+
 
