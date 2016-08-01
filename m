@@ -1,27 +1,31 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 5A195529A0
+Return-Path: <denys@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
+	by arago-project.org (Postfix) with ESMTPS id 1AD1852A93
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Aug 2016 16:42:09 +0000 (UTC)
+	Mon,  1 Aug 2016 16:56:06 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u71Gg8tx017587
-	for <meta-arago@arago-project.org>; Mon, 1 Aug 2016 11:42:08 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u71Gg8xH029663
-	for <meta-arago@arago-project.org>; Mon, 1 Aug 2016 11:42:08 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 1 Aug 2016 11:42:07 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u71Gg7ns011756;	Mon, 1 Aug 2016 11:42:07 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 1 Aug 2016 12:41:29 -0400
-Message-ID: <1470069689-16900-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u71Gu5ni030228
+	for <meta-arago@arago-project.org>; Mon, 1 Aug 2016 11:56:05 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u71Gu4DG013426
+	for <meta-arago@arago-project.org>; Mon, 1 Aug 2016 11:56:05 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 1 Aug 2016 11:56:04 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u71Gu478023492;
+	Mon, 1 Aug 2016 11:56:04 -0500
+Date: Mon, 1 Aug 2016 12:56:04 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Message-ID: <20160801165603.GB3677@edge>
+References: <4B26FB5A64EBA14C87266869E037F958142EFC43@DFLE09.ent.ti.com>
 MIME-Version: 1.0
-Subject: [PATCH v2] gstreamer1.0-plugins-bad: fix compilation for k2 machines
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F958142EFC43@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "R,
+	Karthik" <karthik.ramanan@ti.com>
+Subject: Re: gstreamer 1.6: bad plugins
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,38 +38,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Aug 2016 16:42:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 01 Aug 2016 16:56:06 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Previously, the SRCREV was set to a commit compatible with only
-  omap-a15 and overridden to a generic commit for select machines.
-* Now set SRCREV to the generic commit, and override for omap-a15.
+Surprisingly, I don't see this error in my K2 builds...
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
-v2 changes: 
-* Use more generic omap-a15 instead of dra7xx
 
- .../gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend              | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-index bb69168..bfcd750 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-@@ -35,8 +35,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
- 
- S = "${WORKDIR}/git"
- 
--SRCREV = "f0694b5fcec997036ef7df4d382b28e833c8ebfd"
--SRCREV_ti43x = "d0160ca810be30bf2b2e7681f5047933402efb52"
--SRCREV_ti33x = "d0160ca810be30bf2b2e7681f5047933402efb52"
-+SRCREV_omap-a15 = "f0694b5fcec997036ef7df4d382b28e833c8ebfd"
-+SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
- 
--PR = "r20"
-+PR = "r21"
--- 
-2.7.4
-
+On Mon, Aug 01, 2016 at 06:52:36AM -0400, Stiffler, Jacob wrote:
+>    Karthik, Denys,
+> 
+>     
+> 
+>    We are seeing a failure with building the gstreamer1.0-plugins-bad for k2
+>    since upgrading to 1.6.
+> 
+>     
+> 
+>    In file included from
+>    ../../../../git/gst-libs/gst/drm/gstdrmallocator.c:32:0:
+> 
+>    ../../../../git/gst-libs/gst/drm/gstdrmallocator.h:39:21: fatal error:
+>    xf86drm.h: No such file or directory
+> 
+>    compilation terminated.
+> 
+>    Makefile:866: recipe for target 'libgstdrm_1.0_la-gstdrmallocator.lo'
+>    failed
+> 
+>    make[4]: *** [libgstdrm_1.0_la-gstdrmallocator.lo] Error 1
+> 
+>    make[4]: Leaving directory
+>    '/home/gtbldadm/processor-sdk-linux-krogoth-build/build-CORTEX_1/arago-tmp-external-linaro-toolchain/work/k2hk_evm-linux-gnueabi/gstreamer1.0-plugins-bad/1.6.3-r20/build/gst-libs/gst/drm'
+> 
+>    Makefile:1050: recipe for target 'drm' failed
+> 
+>     
+> 
+>     
+> 
+>    This appears to be related to
+>    http://git.ti.com/glsdk/gstreamer1-0-plugins-bad/commit/04ee4d353888a210c5ee5792ff402eb8c3d3e6e4.
+>    Is there a config option to disable the drm allocator?
+> 
+>     
+> 
+>    I am also curious as to why we are using different versions of these
+>    plugins for ti33x and ti43x. Should k2 also use that commit? I am
+>    referring to the lines in gstreamer1.0-plugins-bad_git.bbappend:
+> 
+>     
+> 
+>      38 SRCREV = "f0694b5fcec997036ef7df4d382b28e833c8ebfd"
+> 
+>      39 SRCREV_ti43x = "d0160ca810be30bf2b2e7681f5047933402efb52"
+> 
+>      40 SRCREV_ti33x = "d0160ca810be30bf2b2e7681f5047933402efb52"
+> 
+>     
+> 
+>     
+> 
+>    Thank you,
+> 
+>    Jake
 
