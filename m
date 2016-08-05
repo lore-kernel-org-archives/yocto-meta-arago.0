@@ -1,27 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id AA31E52A7A
+Return-Path: <h-gou@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 9BC2452AD8
 	for <meta-arago@arago-project.org>;
-	Thu,  4 Aug 2016 22:35:57 +0000 (UTC)
-Received: from vz-proxy-m001.mx.aol.com ([64.236.83.14])
-	by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OBE00GNOPFNM260@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 04 Aug 2016 17:35:57 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=MJxOpqxZADbEbEImuSX/mw==:117
-	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=Q4-j1AaZAAAA:8 a=HihYlcsHAAAA:8
-	a=NEAV23lmAAAA:8 a=KKAkSRfTAAAA:8	a=0nkqcwn4NtTMHTo71dwA:9
-Received: by 100.15.86.14 with SMTP id 6975404a; Thu, 04 Aug 2016 22:35:57 GMT
-Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id BFBA61620AC;	Thu,  4 Aug 2016 18:35:46 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 04 Aug 2016 18:35:46 -0400
-Message-id: <1470350146-24577-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [oe-layersetup][PATCH] arago-2016.02: add config for CoreSDK ti2016.02 release
+	Fri,  5 Aug 2016 14:52:26 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u75Em8Ra011095
+	for <meta-arago@arago-project.org>; Fri, 5 Aug 2016 09:48:08 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u75EqPNp023510
+	for <meta-arago@arago-project.org>; Fri, 5 Aug 2016 09:52:25 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 5 Aug 2016 09:52:24 -0500
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u75EqOob023076;	Fri, 5 Aug 2016 09:52:24 -0500
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 5 Aug 2016 10:52:13 -0400
+Message-ID: <1470408733-32154-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] arm-benchmarks: bump SRCREV to increase the number of runs for dhrystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,35 +34,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Aug 2016 22:35:57 -0000
+X-List-Received-Date: Fri, 05 Aug 2016 14:52:26 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- configs/coresdk/coresdk-2016.02-config.txt | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 configs/coresdk/coresdk-2016.02-config.txt
+ .../recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb            | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/configs/coresdk/coresdk-2016.02-config.txt b/configs/coresdk/coresdk-2016.02-config.txt
-new file mode 100644
-index 0000000..f9e03f2
---- /dev/null
-+++ b/configs/coresdk/coresdk-2016.02-config.txt
-@@ -0,0 +1,12 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.30,25859009b710cb35ac8f9ee9eb3a7305f9e13402,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,krogoth,ti2016.02,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,48b4084675a15fe3fd10b58f54728dfaa2bd6c72,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,247b1267bbe95719cd4877d2d3cfbaf2a2f4865a,layers=meta-networking:meta-ruby:meta-python:meta-oe
-+meta-ti,git://arago-project.org/git/meta-ti.git,krogoth,ti2016.02,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,krogoth,85faf6c6824597e7fd9e2d35fc9d8da2e9f90bc7,layers=meta-linaro-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,krogoth,dd330056ace289c8a9c5d77b6bb6e860b9f0913e,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+index d1c6369..7e75a74 100644
+--- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
++++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
+@@ -4,10 +4,10 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
+ SECTION = "system"
+ 
+-PR = "r10"
++PR = "r11"
+ 
+ BRANCH ?= "master"
+-SRCREV = "0d703edb90f8485a0a2bc3eae0d94d2c534d5785"
++SRCREV = "5bcbca9b3d75a6aa6d0e25132cc36a6ad2883de3"
+ 
+ SRC_URI = "git://git.ti.com/apps/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
+ 
 -- 
-2.7.4
+1.9.1
 
 
