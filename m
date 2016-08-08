@@ -1,32 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
-	by arago-project.org (Postfix) with ESMTPS id 953AB52A5B
+Return-Path: <h-gou@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id 43E0B52A5F
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Aug 2016 15:36:09 +0000 (UTC)
+	Mon,  8 Aug 2016 15:36:34 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u78Fa7ke027076
-	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 10:36:07 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78Fa73E030921
-	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 10:36:07 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 8 Aug 2016 10:36:06 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78Fa7XJ032271;
-	Mon, 8 Aug 2016 10:36:07 -0500
-Date: Mon, 8 Aug 2016 11:36:06 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20160808153606.GL18333@edge>
-References: <1470663570-5175-1-git-send-email-j-stiffler@ti.com>
-	<20160808144445.GG18333@edge>
-	<f20ccd21-7218-e968-4e75-6e5406414fb4@ti.com>
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u78FaXmb020426
+	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 10:36:33 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78FaXCx031236
+	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 10:36:33 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 8 Aug 2016 10:36:32 -0500
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u78FaW05006746;	Mon, 8 Aug 2016 10:36:32 -0500
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 8 Aug 2016 11:36:24 -0400
+Message-ID: <1470670585-26473-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <f20ccd21-7218-e968-4e75-6e5406414fb4@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/3] linux: copy-defconfig: move create_srcipk task after configure
+Subject: [PATCH 1/2] matrix-gui-multimedia-demos: add DSP C66x image processing demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,84 +34,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Aug 2016 15:36:10 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 08 Aug 2016 15:36:34 -0000
+Content-Type: text/plain
 
-On Mon, Aug 08, 2016 at 11:09:32AM -0400, Jacob Stiffler wrote:
-> 
-> 
-> On 8/8/2016 10:44 AM, Denys Dmytriyenko wrote:
-> >Didn't I already submit this last week when Sam reported it?
-> 
-> I don't recall seeing it. I just checked patchwork, but I do not see
-> it there either.
+* dsp66imgproc displays the video output using kmssink
+* dsp66imgproc-f2f saves the video output to a file
 
-Hmm, it seems the fix got buried in my secure boot work that got me 
-distracted... Nevermind.
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
+ .../recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb     | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
+index e05da29..70e60ab 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+ 
+ require matrix-gui-apps-git.inc
+ 
+-PR = "${INC_PR}.5"
++PR = "${INC_PR}.6"
+ 
+ inherit allarch
+ 
+@@ -23,6 +23,8 @@ PACKAGES = "matrix-multimedia-demo-aac \
+             matrix-multimedia-demo-ivahdh264enc \
+             matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec \
+             matrix-multimedia-demo-h265dec \
++            matrix-multimedia-demo-dsp66imgproc \
++            matrix-multimedia-demo-dsp66imgproc-f2f \
+ "
+ 
+ RDEPENDS_matrix-multimedia-demo-aac = "${MULTIMEDIA_RDEPENDS}"
+@@ -34,6 +36,8 @@ RDEPENDS_matrix-multimedia-demo-ivahdh264dec             = "${MULTIMEDIA_RDEPEND
+ RDEPENDS_matrix-multimedia-demo-ivahdh264enc             = "${MULTIMEDIA_RDEPENDS}"
+ RDEPENDS_matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec = "${MULTIMEDIA_RDEPENDS}"
+ RDEPENDS_matrix-multimedia-demo-h265dec      = "${MULTIMEDIA_RDEPENDS}"
++RDEPENDS_matrix-multimedia-demo-dsp66imgproc  = "${MULTIMEDIA_RDEPENDS}"
++RDEPENDS_matrix-multimedia-demo-dsp66imgproc-f2f  = "${MULTIMEDIA_RDEPENDS}"
+ 
+ 
+ # Split the matrix files by multimedia demos
+@@ -46,6 +50,8 @@ FILES_matrix-multimedia-demo-ivahdh264dec                = "${MATRIX_APP_DIR}/iv
+ FILES_matrix-multimedia-demo-ivahdh264enc                = "${MATRIX_APP_DIR}/ivahd_multimedia_h264enc/*"
+ FILES_matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec    = "${MATRIX_APP_DIR}/ivahd_multimedia_vip_vpe_mpeg4encdec/*"
+ FILES_matrix-multimedia-demo-h265dec      = "${MATRIX_APP_DIR}/arm_multimedia_h265dec/*"
++FILES_matrix-multimedia-demo-dsp66imgproc     = "${MATRIX_APP_DIR}/dsp66_multimedia_imgproc/*"
++FILES_matrix-multimedia-demo-dsp66imgproc-f2f     = "${MATRIX_APP_DIR}/dsp66_multimedia_imgproc_f2f/*"
+ 
+ # Split the ${bindir} files by multimedia demos
+ FILES_matrix-multimedia-demo-aac += "${bindir}/runAACDec.sh"
+@@ -57,3 +63,5 @@ FILES_matrix-multimedia-demo-ivahdh264dec               += "${bindir}/runIvahdH2
+ FILES_matrix-multimedia-demo-ivahdh264enc               += "${bindir}/runIvahdH264Enc.sh"
+ FILES_matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec   += "${bindir}/runIvahdVipVpeMpeg4EncDec.sh"
+ FILES_matrix-multimedia-demo-h265dec      += "${bindir}/runH265Dec.sh"
++FILES_matrix-multimedia-demo-dsp66imgproc    += "${bindir}/runDsp66ImgProc.sh"
++FILES_matrix-multimedia-demo-dsp66imgproc-f2f    += "${bindir}/runDsp66ImgProcSave2File.sh"
+-- 
+1.9.1
 
-> >On Mon, Aug 08, 2016 at 09:39:28AM -0400, Jacob Stiffler wrote:
-> >>* With sstate support for the sourceipk class, create_srcipk can no
-> >>   longer be successfully called within another task.
-> >>* Move the create_srcipk task after configure so that the build
-> >>   defconfig is included in the src package.
-> >>
-> >>Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> >>---
-> >>  meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc          | 7 +++++--
-> >>  .../recipes-kernel/linux/linux-ti-staging-rt_%.bbappend            | 2 +-
-> >>  .../recipes-kernel/linux/linux-ti-staging-systest_%.bbappend       | 2 +-
-> >>  meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend | 2 +-
-> >>  4 files changed, 8 insertions(+), 5 deletions(-)
-> >>
-> >>diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-> >>index b9db1ee..46de4a3 100644
-> >>--- a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-> >>+++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-> >>@@ -5,7 +5,10 @@ CONFIG_NAME ?= "tisdk_${MACHINE}_defconfig"
-> >>  # the function to build the sourceipk again.  This is done as a
-> >>  # do_compile_prepend so that we can pick up any changes to the
-> >>  # defconfig thay may have been done by the sanitizer code.
-> >>-do_compile_prepend() {
-> >>+do_configure_append() {
-> >>      cp ${B}/.config ${S}/arch/arm/configs/${CONFIG_NAME}
-> >>-    sourceipk_do_create_srcipk
-> >>  }
-> >>+
-> >>+# Move create_srcipk task so that the release defconfig is included.
-> >>+deltask do_create_srcipk
-> >>+addtask create_srcipk after do_configure before do_compile
-> >>diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
-> >>index 7c90ac5..a3241ab 100644
-> >>--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
-> >>+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
-> >>@@ -1,4 +1,4 @@
-> >>-MACHINE_KERNEL_PR_append = ".arago0"
-> >>+MACHINE_KERNEL_PR_append = ".arago1"
-> >>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-> >>diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
-> >>index 7c90ac5..a3241ab 100644
-> >>--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
-> >>+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
-> >>@@ -1,4 +1,4 @@
-> >>-MACHINE_KERNEL_PR_append = ".arago0"
-> >>+MACHINE_KERNEL_PR_append = ".arago1"
-> >>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-> >>diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-> >>index 4c50655..6ae4bd7 100644
-> >>--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-> >>+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-> >>@@ -1,4 +1,4 @@
-> >>-MACHINE_KERNEL_PR_append = ".arago4"
-> >>+MACHINE_KERNEL_PR_append = ".arago5"
-> >>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
-> >>-- 
-> >>2.7.4
-> >>
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
