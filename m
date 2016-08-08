@@ -1,29 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
-	by arago-project.org (Postfix) with ESMTPS id 9F0B15298D
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 50C705207C
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Aug 2016 13:40:10 +0000 (UTC)
+	Mon,  8 Aug 2016 14:44:48 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id u78De9J6024490
-	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 08:40:09 -0500
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u78Ee9kV022540
+	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 09:40:09 -0500
 Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78De93j026555
-	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 08:40:09 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78Eilwv003532
+	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 09:44:47 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 8 Aug 2016 08:40:09 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u78De8Zm002651;	Mon, 8 Aug 2016 08:40:09 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 8 Aug 2016 09:39:30 -0400
-Message-ID: <1470663570-5175-3-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1470663570-5175-1-git-send-email-j-stiffler@ti.com>
+	Mon, 8 Aug 2016 09:44:46 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78EikBs023421;
+	Mon, 8 Aug 2016 09:44:46 -0500
+Date: Mon, 8 Aug 2016 10:44:45 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20160808144445.GG18333@edge>
 References: <1470663570-5175-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/3] ti-tisdk-makefile: update defconfig name
+In-Reply-To: <1470663570-5175-1-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH 1/3] linux: copy-defconfig: move create_srcipk task after configure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,39 +37,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Aug 2016 13:40:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 08 Aug 2016 14:44:48 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Add ARAGO_KERNEL_SUFFIX to defconfig name
+Didn't I already submit this last week when Sam reported it?
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 9184568..75f40d2 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -48,7 +48,7 @@ SRC_URI = "\
-     file://Makefile_linalg-examples \
- "
- 
--PR = "r72"
-+PR = "r73"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -187,7 +187,7 @@ KERNEL_DEVICETREE_k2e-evm = "keystone-k2e-evm.dtb"
- KERNEL_DEVICETREE_k2g-evm = "keystone-k2g-evm.dtb"
- KERNEL_DEVICETREE_k2l-evm = "keystone-k2l-evm.dtb"
- 
--DEFCONFIG = "tisdk_${MACHINE}_defconfig"
-+DEFCONFIG = "tisdk_${MACHINE}${ARAGO_KERNEL_SUFFIX}_defconfig"
- 
- AMSDK_DEFCONFIG = "singlecore-omap2plus_defconfig"
- 
--- 
-2.7.4
-
+On Mon, Aug 08, 2016 at 09:39:28AM -0400, Jacob Stiffler wrote:
+> * With sstate support for the sourceipk class, create_srcipk can no
+>   longer be successfully called within another task.
+> * Move the create_srcipk task after configure so that the build
+>   defconfig is included in the src package.
+> 
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc          | 7 +++++--
+>  .../recipes-kernel/linux/linux-ti-staging-rt_%.bbappend            | 2 +-
+>  .../recipes-kernel/linux/linux-ti-staging-systest_%.bbappend       | 2 +-
+>  meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend | 2 +-
+>  4 files changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> index b9db1ee..46de4a3 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> +++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> @@ -5,7 +5,10 @@ CONFIG_NAME ?= "tisdk_${MACHINE}_defconfig"
+>  # the function to build the sourceipk again.  This is done as a
+>  # do_compile_prepend so that we can pick up any changes to the
+>  # defconfig thay may have been done by the sanitizer code.
+> -do_compile_prepend() {
+> +do_configure_append() {
+>      cp ${B}/.config ${S}/arch/arm/configs/${CONFIG_NAME}
+> -    sourceipk_do_create_srcipk
+>  }
+> +
+> +# Move create_srcipk task so that the release defconfig is included.
+> +deltask do_create_srcipk
+> +addtask create_srcipk after do_configure before do_compile
+> diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+> index 7c90ac5..a3241ab 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+> +++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+> @@ -1,4 +1,4 @@
+> -MACHINE_KERNEL_PR_append = ".arago0"
+> +MACHINE_KERNEL_PR_append = ".arago1"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+>  
+> diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+> index 7c90ac5..a3241ab 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+> +++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+> @@ -1,4 +1,4 @@
+> -MACHINE_KERNEL_PR_append = ".arago0"
+> +MACHINE_KERNEL_PR_append = ".arago1"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+>  
+> diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+> index 4c50655..6ae4bd7 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+> +++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+> @@ -1,4 +1,4 @@
+> -MACHINE_KERNEL_PR_append = ".arago4"
+> +MACHINE_KERNEL_PR_append = ".arago5"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+>  
+> -- 
+> 2.7.4
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
