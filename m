@@ -1,29 +1,47 @@
-Return-Path: <denys@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 098235208C
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
+	[209.85.216.171])
+	by arago-project.org (Postfix) with ESMTPS id C342952A1A
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Aug 2016 19:24:55 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u78JOsDt023549
-	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 14:24:54 -0500
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u78JOrpO024988
-	for <meta-arago@arago-project.org>; Mon, 8 Aug 2016 14:24:53 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 8 Aug 2016 14:24:53 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u78JOqmI012431	for <meta-arago@arago-project.org>;
-	Mon, 8 Aug 2016 14:24:52 -0500
-Date: Mon, 8 Aug 2016 15:24:52 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <882735112.457.1470684292724.JavaMail.jenkins@puget>
+	Tue,  9 Aug 2016 13:08:55 +0000 (UTC)
+Received: by mail-qt0-f171.google.com with SMTP id 52so5116279qtq.3
+	for <meta-arago@arago-project.org>;
+	Tue, 09 Aug 2016 06:08:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=HzmVKnAMdoQr8w0zqW6HIDAStVS6ZbOYH4aJuAazbT0=;
+	b=wJ/dGQmYqMQ6RCkBzXKUnOJZf1pFzmjlQnRhYqFHONyzb0V55F7pXiduAhf2011nsQ
+	lUdA33Zsg/HsCr6O1l+63se7LgSln/iMN7ngIrgOHHFQXODkuW2kVfyv2+sGlwFCWuGl
+	CHCo2TmheiFgQdLQVpDBuZUnh2MXktjSZ19N5SodLDsTQHqC9Ft3V3nvp9MaPxo+WHjt
+	uq4U0p1tlUjsEx6R757b/SbwDn0xrtFjh17buYd2vu7R0P7QCyZoOaBxeHlZyEnXJETa
+	kPNx84LAp6enVpi3+TBlLa1x6Zefje8NZBCevSwxut4ygY2rYbIAFjRyZWUeiegDfSDr
+	LOcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=HzmVKnAMdoQr8w0zqW6HIDAStVS6ZbOYH4aJuAazbT0=;
+	b=fq2Vd4YBeAcB6uL+kvq641UbdniYLRdUELIqyqQXCsmvt6XmP9A9uXeYXTH5mTi/ic
+	3QW2MB7kSrx6WhqhXdyjsp0+h5Ki1FMPZQbRTqSV4XxNe1ZINbbyLtLC0LZwlxYze53A
+	kok0OEdO35PxKu51yOrGFf0IPqVVcDZcPxsH7ZayFijw46zdCPXGGYzsqvTxR1UidO5f
+	Y6r37+F6YMBzo2gxGbzavo3uxgDLfOocBupt2dpt0LQviCBJxUcLLx5nCxwLxY4tQwq5
+	cvg6sAmanN7HGIo8pL1n0zDyptrtcEccUf5BiSa++kZZz714sPZwHZxg1c0nDtr2PcA0
+	SFtw==
+X-Gm-Message-State: AEkoouvvz1lb5XtCLZ5tVjDBCyl2SFZDCxY51MtngHUIZb9Wz8G3EWhy/iTNwXytnWHiEkeUN1VkXJE5qn4tVQ==
+X-Received: by 10.237.41.225 with SMTP id o88mr35078893qtd.18.1470748135636;
+	Tue, 09 Aug 2016 06:08:55 -0700 (PDT)
 MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-daisy
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-08-08_15-00-47
+Received: by 10.200.47.198 with HTTP; Tue, 9 Aug 2016 06:08:55 -0700 (PDT)
+Received: by 10.200.47.198 with HTTP; Tue, 9 Aug 2016 06:08:55 -0700 (PDT)
+In-Reply-To: <CADySD0FeO9P+H0ueUwz4XYQcWDO8Bi8oQ1UC-=iA4=L1Kar0Mg@mail.gmail.com>
+References: <CADySD0E6EM9Ahia5FYPrd7BSC8Xp4Oz4f7GxC4qzq_923jZ23A@mail.gmail.com>
+	<CADySD0E9tLqd7Ki3x8qUxmEdEU1Fr0k86jHswPnfeWtP1xvTEw@mail.gmail.com>
+	<CADySD0FeO9P+H0ueUwz4XYQcWDO8Bi8oQ1UC-=iA4=L1Kar0Mg@mail.gmail.com>
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Wed, 10 Aug 2016 01:08:55 +1200
+Message-ID: <CADySD0Fn8KjtvFtt9+UpuCNk0PK4SmfWhtPsin-5KucG=_9+qQ@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Psplash screen disappeares when login prompt comes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,177 +54,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Aug 2016 19:24:58 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_456_1970442557.1470684292708"
+X-List-Received-Date: Tue, 09 Aug 2016 13:08:56 -0000
+Content-Type: multipart/alternative; boundary=94eb2c12542a2dc6bd0539a33cf9
 
-------=_Part_456_1970442557.1470684292708
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+--94eb2c12542a2dc6bd0539a33cf9
+Content-Type: text/plain; charset=UTF-8
 
-<html>
-<head>
-<title>
-Status for 08/08/16
-</title>
-</head>
-<body>
+Hi,
 
-<h2>Status for 08/08/16</h2>
+I have created a custom splash screen using psplash for am335x evm based
+device having touchscreen.
 
-<h2>BUILD_ID: build-2016-08-08_15-01-58</h2>
+Splash screen is displayed during boot process but when login prompt comes,
+my screen goes blank.
 
-<h2>Clean Build: false</h2>
+My question is how can I make splash screen visible until my application
+starts ?
 
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
+I have modified my /etc/inittab to disable getty on virtual terminal
+(touchscreen), getty is only enabled for serial console.
 
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
+I searched TI forum for some pointers but I am not making any progress
 
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
+Thanks
+Ankur
 
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="dra7xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
-</p>
+--94eb2c12542a2dc6bd0539a33cf9
+Content-Type: text/html; charset=UTF-8
 
-</body>
-</html>
+<p dir="ltr">Hi,</p>
+<p dir="ltr">I have created a custom splash screen using psplash for am335x evm based device having touchscreen.</p>
+<p dir="ltr">Splash screen is displayed during boot process but when login prompt comes, my screen goes blank.</p>
+<p dir="ltr">My question is how can I make splash screen visible until my application starts ?</p>
+<p dir="ltr">I have modified my /etc/inittab to disable getty on virtual terminal (touchscreen), getty is only enabled for serial console.</p>
+<p dir="ltr">I searched TI forum for some pointers but I am not making any progress </p>
+<p dir="ltr">Thanks<br>
+<font color="#888888">Ankur</font></p>
 
-
-------=_Part_456_1970442557.1470684292708--
+--94eb2c12542a2dc6bd0539a33cf9--
