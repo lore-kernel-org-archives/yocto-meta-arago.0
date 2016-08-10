@@ -1,28 +1,26 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by arago-project.org (Postfix) with ESMTPS id 9E344529AA
+Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
+	[206.46.173.7])
+	by arago-project.org (Postfix) with ESMTPS id 444AD529AA
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Aug 2016 19:44:17 +0000 (UTC)
-Received: from vz-proxy-m001.mx.aol.com ([64.236.83.14])
-	by vms173025.mailsrvcs.net
+	Wed, 10 Aug 2016 19:44:43 +0000 (UTC)
+Received: from vz-proxy-m002.mx.aol.com ([64.236.83.3])
+	by vms173007.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OBP00FQRLH6OI80@vms173025.mailsrvcs.net> for
+	2014)) with ESMTPA id <0OBP0015PLH63VM0@vms173007.mailsrvcs.net> for
 	meta-arago@arago-project.org; Wed, 10 Aug 2016 14:44:05 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=MJxOpqxZADbEbEImuSX/mw==:117
-	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=Yn3J_3Fnp01haV9CedMA:9
-Received: by 100.15.86.14 with SMTP id 3d80fc9d; Wed, 10 Aug 2016 19:44:05 GMT
+X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=yQ9kT6OsLgv7WE5tBE7I5g==:117
+	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=8WInZxtUmQaPytMsKwoA:9
+Received: by 100.15.86.14 with SMTP id 30897187; Wed, 10 Aug 2016 19:44:05 GMT
 Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id 765AD1620E6;	Wed, 10 Aug 2016 15:43:54 -0400 (EDT)
+	with ESMTP id 680ED1620C3;	Wed, 10 Aug 2016 15:43:54 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 10 Aug 2016 15:43:51 -0400
-Message-id: <1470858232-3586-2-git-send-email-denis@denix.org>
+Date: Wed, 10 Aug 2016 15:43:50 -0400
+Message-id: <1470858232-3586-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-reply-to: <1470858232-3586-1-git-send-email-denis@denix.org>
-References: <1470858232-3586-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/3] tisdk-image, images: switch to tar.xz images to save on size and speed
+Subject: [PATCH 1/3] meta-toolchain-arago: switch from bzip2 to xz compression for devkits
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,78 +33,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Aug 2016 19:44:17 -0000
+X-List-Received-Date: Wed, 10 Aug 2016 19:44:43 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+xz provides much better compression ratio (~40% smaller) and supports
+multi-threading when compressing.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass                    | 6 +++---
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 5 +++--
- meta-arago-distro/recipes-core/images/arago-test-image.bb        | 2 +-
- 3 files changed, 7 insertions(+), 6 deletions(-)
+ .../recipes-core/meta/meta-toolchain-arago.bb              | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index 9a7c7e8..78393ce 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -40,7 +40,7 @@ TISDK_TOOLCHAIN ?= "meta-toolchain-arago"
- TOOLCHAIN_SUFFIX ?= "-sdk"
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index 014bc76..8457d6d 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -10,7 +10,11 @@ inherit toolchain-scripts
  
- # List of the type of target file system images we want to include
--TARGET_IMAGE_TYPES ?= "tar.bz2 tar.gz ubi"
-+TARGET_IMAGE_TYPES ?= "tar.xz tar.gz ubi"
+ require recipes-core/meta/meta-toolchain.bb
  
- # If EXTRA_TISDK_FILES points to a valid directory then all the contents
- # of that directory will be added to the SDK using the same directory
-@@ -411,9 +411,9 @@ sw_manifest_target() {
-     for image in ${TARGET_IMAGES}
-     do
-         # Only extract tar.gz or tar.bz2 types
--        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.bz2 ]
-+        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
-         then
--            tar xjf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.bz2 -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-+            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-         elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz ]
-         then
-             tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index c8afb0e..806644c 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -3,7 +3,8 @@
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
+-PR = "r32"
++PR = "r33"
++
++XZ_COMPRESSION_LEVEL ?= "-e -6"
++XZ_INTEGRITY_CHECK ?= "crc32"
++XZ_THREADS ?= "-T 0"
  
--IMAGE_FSTYPES = "tar.gz"
-+IMAGE_FSTYPES = "tar.xz"
-+IMAGE_NAME_SUFFIX = ""
+ # This function creates an environment-setup-script for use in a deployable SDK
+ toolchain_create_sdk_env_script () {
+@@ -142,7 +146,7 @@ fakeroot tar_sdk() {
+ 	# Package it up
+ 	mkdir -p ${SDK_DEPLOY}
+ 	cd ${SDK_OUTPUT}/${SDKPATH}
+-	tar --owner=root --group=root -cj --file=${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.bz2 .
++	tar --owner=root --group=root -c . | xz -f -k -c ${XZ_COMPRESSION_LEVEL} ${XZ_THREADS} --check=${XZ_INTEGRITY_CHECK} - > ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz
+ }
  
- inherit tisdk-image
+ fakeroot create_shar() {
+@@ -269,7 +273,7 @@ fi
+ payload_offset=$(($(grep -na -m1 "^MARKER:$" $0|cut -d':' -f1) + 1))
  
-@@ -15,7 +16,7 @@ HOST_CLEANUP_PACKAGES = ""
- TOOLCHAIN_CLEANUP_PACKAGES = "libgnutls-dev libgnutls-extra26 libgnutls-openssl27 libtasn1-dev"
+ printf "Extracting SDK..."
+-tail -n +$payload_offset $0| $SUDO_EXEC tar xj -C $target_sdk_dir
++tail -n +$payload_offset $0| $SUDO_EXEC tar xJ -C $target_sdk_dir
+ echo "done"
  
- # Set DTB filters for each machine.  Use "unknown" by default to avoid
--# picking up DTB files for devices with not DTB support.
-+# picking up DTB files for devices with no DTB support.
- DTB_FILTER = "unknown"
- DTB_FILTER_ti33x = "am335x"
- DTB_FILTER_omap5-evm = "omap5"
-diff --git a/meta-arago-distro/recipes-core/images/arago-test-image.bb b/meta-arago-distro/recipes-core/images/arago-test-image.bb
-index 403041f..911e9b8 100644
---- a/meta-arago-distro/recipes-core/images/arago-test-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-test-image.bb
-@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3
+ printf "Setting it up..."
+@@ -335,8 +339,8 @@ exit 0
+ MARKER:
+ EOF
+ 	# append the SDK tarball
+-	cat ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.bz2 >> ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
++	cat ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz >> ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
  
- require arago-image.inc
- 
--IMAGE_FSTYPES = "tar.gz ext2.gz"
-+IMAGE_FSTYPES = "tar.xz"
- 
- IMAGE_INSTALL += "\
-     packagegroup-arago-base \
+ 	# delete the old tarball, we don't need it anymore
+-	rm ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.bz2
++	rm ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz
+ }
 -- 
 2.7.4
 
