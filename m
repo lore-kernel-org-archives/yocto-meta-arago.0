@@ -1,28 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 25E7252A98
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by arago-project.org (Postfix) with ESMTPS id 3AC30529AA
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Aug 2016 19:25:29 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u7AJPRLw020461
-	for <meta-arago@arago-project.org>; Wed, 10 Aug 2016 14:25:27 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u7AJPQZ6011323
-	for <meta-arago@arago-project.org>; Wed, 10 Aug 2016 14:25:26 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 10 Aug 2016 14:25:26 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u7AJPQ2R024356;	Wed, 10 Aug 2016 14:25:26 -0500
-Date: Wed, 10 Aug 2016 15:25:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Message-ID: <801638908.461.1470857126251.JavaMail.jenkins@puget>
-MIME-Version: 1.0
-X-Jenkins-Job: arago-core-tisdk-daisy
-X-Jenkins-Result: SUCCESS
-Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-08-10_15-00-47
+	Wed, 10 Aug 2016 19:44:13 +0000 (UTC)
+Received: from vz-proxy-m003.mx.aol.com ([64.236.83.2])
+	by vms173023.mailsrvcs.net
+	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
+	2014)) with ESMTPA id <0OBP00AGNLH66B70@vms173023.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 10 Aug 2016 14:44:00 -0500 (CDT)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=EDCZS3Slg7tGr17y9w9vtg==:117
+	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=UnlzRPJZ_KHurPqH_dsA:9
+Received: by 100.15.86.14 with SMTP id 59904f76; Wed, 10 Aug 2016 19:44:00 GMT
+Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
+	with ESMTP id 82F9E1620E7;	Wed, 10 Aug 2016 15:43:54 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 10 Aug 2016 15:43:52 -0400
+Message-id: <1470858232-3586-3-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+In-reply-to: <1470858232-3586-1-git-send-email-denis@denix.org>
+References: <1470858232-3586-1-git-send-email-denis@denix.org>
+Subject: [PATCH 3/3] images: clean up old use of ROOTFS_SIZE for initrd/ext images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,177 +35,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Aug 2016 19:25:34 -0000
-Content-Type: multipart/mixed;
-	boundary="----=_Part_460_1372095770.1470857126231"
+X-List-Received-Date: Wed, 10 Aug 2016 19:44:13 -0000
 
-------=_Part_460_1372095770.1470857126231
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+From: Denys Dmytriyenko <denys@ti.com>
 
-<html>
-<head>
-<title>
-Status for 08/10/16
-</title>
-</head>
-<body>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/images/arago-base-image.bb  |  3 ---
+ .../recipes-core/images/arago-console-image.bb             | 14 --------------
+ 2 files changed, 17 deletions(-)
 
-<h2>Status for 08/10/16</h2>
-
-<h2>BUILD_ID: build-2016-08-10_15-02-04</h2>
-
-<h2>Clean Build: false</h2>
-
-<h2>Clean Sources: false</h2>
-<h2><u>Repository Revisions</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Repository</th>
-        <th>Git URL</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Layers</th>
-    </tr>
-
-    <tr>
-        <td>bitbake</td>
-        <td>git://git.openembedded.org/bitbake</td>
-        <td>1.26</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-arago</td>
-        <td>git://arago-project.org/git/meta-arago.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-arago-distro:meta-arago-extras</td>
-    </tr>
-    <tr>
-        <td>meta-qt5</td>
-        <td>git://github.com/meta-qt5/meta-qt5.git</td>
-        <td>master</td>
-        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-openembedded</td>
-        <td>git://git.openembedded.org/meta-openembedded</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
-    </tr>
-    <tr>
-        <td>meta-ti</td>
-        <td>git://arago-project.org/git/meta-ti.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=</td>
-    </tr>
-    <tr>
-        <td>meta-linaro</td>
-        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta-linaro-toolchain</td>
-    </tr>
-    <tr>
-        <td>oe-core</td>
-        <td>git://git.openembedded.org/openembedded-core</td>
-        <td>daisy</td>
-        <td>HEAD</td>
-        <td>layers=meta</td>
-    </tr>
-</table>
-<h2><u>Build and Target Test Results</u></h2>
-<table border=1 cellspacing=1 cellpadding=1>
-    <tr>
-        <th>Machine</th>
-        <th>Build Result</th>
-        <th>Target Test Result</th>
-    </tr>
-    <tr>
-        <td>dra7xx-evm</td>
-        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
-        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
-    </tr>
-</table>
-
-<p>
-These builds were performed using the build-oesdk.sh script at:
-</p>
-<p>
-git://arago-project.org/git/projects/tisdk-build-scripts.git
-</p>
-
-<p>
-The configuration file passed to this script had the contents:
-</p>
-<p>
-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
-TISDK_VERSION="2015.06"<br>
-MACHINES="dra7xx-evm"<br>
-NUM_ARM9_BUILDS="1"<br>
-NUM_CORTEX_BUILDS="1"<br>
-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
-BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
-SCRIPTS_ROOT="$PWD"<br>
-BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
-TEST_ROOT="$BUILD_ROOT/testing"<br>
-PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
-FS_FILTER="tisdk-*rootfs-"<br>
-FS_IMAGE_TYPE="tar.gz"<br>
-SDK_FILTER="arago-core-tisdk-image-"<br>
-SDK_IMAGE_TYPE="tar.gz"<br>
-NFS_ROOT="/home/jenkins/nfs-root"<br>
-SOURCE_DIR="${BUILD_ROOT}/sources"<br>
-CLEAN_BUILD="false"<br>
-CLEAN_SSTATE="false"<br>
-CLEAN_ALL="false"<br>
-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
-LOG_DIR="${BUILD_ROOT}/log-files"<br>
-BUILD_LOG_VERBOSE="true"<br>
-DL_DIR="/OE/downloads"<br>
-BB_GENERATE_MIRROR_TARBALLS="0"<br>
-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
-TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
-TEST_LOCAL_IFACE="eth1"<br>
-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
-OPENTEST_TEE_IP="none"<br>
-OPENTEST_HW_CAP="linux_tigt_farm"<br>
-OPENTEST_BOOTLOADERS="false"<br>
-OPENTEST_BOOT_ATTEMPTS="3"<br>
-OPENTEST_BOOT_TIMEOUT="300"<br>
-RUN_BUILD_TESTS="true"<br>
-STAF_ROOT="/usr/local/staf"<br>
-SKIP_TEST_FAILURES="false"<br>
-PRODUCTIZE_SDK="false"<br>
-BITBAKE_COMMAND="arago-core-tisdk-image"<br>
-RESULTS_CONFIG_COMMENTS="false"<br>
-INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
-INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
-INSTALLER_PREFIX="ti-sdk"<br>
-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
-PACKAGE_BOOT_KERNEL_FILES="false"<br>
-WEBGEN_ROOT="/home/jenkins/webgen"<br>
-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
-EXPORT_ARAGO_SRC="0"<br>
-COPY_TO_WEB="true"<br>
-COPY_DEPLOY_TO_WEB="true"<br>
-COPY_GOLDEN_TO_WEB="true"<br>
-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
-CLEAN_AFTER_COPY="true"<br>
-BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
-</p>
-
-</body>
-</html>
+diff --git a/meta-arago-distro/recipes-core/images/arago-base-image.bb b/meta-arago-distro/recipes-core/images/arago-base-image.bb
+index 5d88872..57ca93a 100644
+--- a/meta-arago-distro/recipes-core/images/arago-base-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-base-image.bb
+@@ -3,9 +3,6 @@
+ 
+ require arago-image.inc
+ 
+-# The size of the uncompressed ramdisk is 8MB
+-ROOTFS_SIZE = "10240"
+-
+ IMAGE_INSTALL += "packagegroup-arago-base"
+ 
+ export IMAGE_BASENAME = "arago-base-image"
+diff --git a/meta-arago-distro/recipes-core/images/arago-console-image.bb b/meta-arago-distro/recipes-core/images/arago-console-image.bb
+index cb8b1cc..b455b2e 100644
+--- a/meta-arago-distro/recipes-core/images/arago-console-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-console-image.bb
+@@ -5,20 +5,6 @@ require arago-image.inc
+ 
+ COMPATIBLE_MACHINE = "(?!arago)"
+ 
+-# The size of the uncompressed ramdisk is 32MB
+-ROOTFS_SIZE = "32768"
+-
+-# DM646x have many modules, bump to 40MB
+-ROOTFS_SIZE_dm6467 = "40960"
+-
+-# AM3517 have many modules, bump to 64MB
+-ROOTFS_SIZE_am3517-evm = "65536"
+-
+-# Double beagle/hawk/overo ramdisk size, due to gazillions of kernel modules
+-ROOTFS_SIZE_beagleboard = "81920"
+-ROOTFS_SIZE_hawkboard = "81920"
+-ROOTFS_SIZE_overo = "81920"
+-
+ IMAGE_INSTALL += "\
+     packagegroup-arago-base \
+     packagegroup-arago-console \
+-- 
+2.7.4
 
 
-------=_Part_460_1372095770.1470857126231--
