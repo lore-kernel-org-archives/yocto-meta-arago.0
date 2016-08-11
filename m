@@ -1,26 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
 	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTPS id 444AD529AA
+	by arago-project.org (Postfix) with ESMTPS id 54E2952AB6
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Aug 2016 19:44:43 +0000 (UTC)
-Received: from vz-proxy-m002.mx.aol.com ([64.236.83.3])
+	Thu, 11 Aug 2016 02:36:23 +0000 (UTC)
+Received: from vz-proxy-m005.mx.aol.com ([64.236.83.15])
 	by vms173007.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OBP0015PLH63VM0@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Wed, 10 Aug 2016 14:44:05 -0500 (CDT)
+	2014)) with ESMTPA id <0OBQ00AA04K2KJ20@vms173007.mailsrvcs.net> for
+	meta-arago@arago-project.org; Wed, 10 Aug 2016 21:36:02 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=MtGvkDue c=1 sm=1 tr=0	a=yQ9kT6OsLgv7WE5tBE7I5g==:117
-	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=8WInZxtUmQaPytMsKwoA:9
-Received: by 100.15.86.14 with SMTP id 30897187; Wed, 10 Aug 2016 19:44:05 GMT
-Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id 680ED1620C3;	Wed, 10 Aug 2016 15:43:54 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 10 Aug 2016 15:43:50 -0400
-Message-id: <1470858232-3586-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH 1/3] meta-toolchain-arago: switch from bzip2 to xz compression for devkits
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=NimJJ1rWho3RDXpqkQh0Zg==:117
+	a=kj9zAlcOel0A:10 a=7z1cN_iqozsA:10	a=sozttTNsAAAA:8 a=ZGQzPcu6AAAA:8
+	a=OLhSgXS0AAAA:8 a=NEAV23lmAAAA:8	a=HihYlcsHAAAA:8
+	a=W_WH4yxB1FS5N5Hxs-0A:9 a=CjuIK1q_8ugA:10
+Received: by 100.15.86.14 with SMTP id 09deb746; Thu, 11 Aug 2016 02:36:02 GMT
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 0D04C1620E6; Wed,
+	10 Aug 2016 22:36:02 -0400 (EDT)
+Date: Wed, 10 Aug 2016 22:36:01 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Hongmei Gou <h-gou@ti.com>
+Message-id: <20160811023601.GU8521@denix.org>
+References: <1470673008-28768-1-git-send-email-h-gou@ti.com>
+MIME-version: 1.0
+In-reply-to: <1470673008-28768-1-git-send-email-h-gou@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, Djordje Senicic <d-senicic1@ti.com>
+Subject: Re: [PATCH] glfw3: add version 3.1.2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,65 +39,121 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Aug 2016 19:44:43 -0000
+X-List-Received-Date: Thu, 11 Aug 2016 02:36:23 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Can you please provide more info in the description about what this is and 
+where it's coming from (i.e. what about that patch?)
 
-xz provides much better compression ratio (~40% smaller) and supports
-multi-threading when compressing.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/meta/meta-toolchain-arago.bb              | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 014bc76..8457d6d 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -10,7 +10,11 @@ inherit toolchain-scripts
- 
- require recipes-core/meta/meta-toolchain.bb
- 
--PR = "r32"
-+PR = "r33"
-+
-+XZ_COMPRESSION_LEVEL ?= "-e -6"
-+XZ_INTEGRITY_CHECK ?= "crc32"
-+XZ_THREADS ?= "-T 0"
- 
- # This function creates an environment-setup-script for use in a deployable SDK
- toolchain_create_sdk_env_script () {
-@@ -142,7 +146,7 @@ fakeroot tar_sdk() {
- 	# Package it up
- 	mkdir -p ${SDK_DEPLOY}
- 	cd ${SDK_OUTPUT}/${SDKPATH}
--	tar --owner=root --group=root -cj --file=${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.bz2 .
-+	tar --owner=root --group=root -c . | xz -f -k -c ${XZ_COMPRESSION_LEVEL} ${XZ_THREADS} --check=${XZ_INTEGRITY_CHECK} - > ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz
- }
- 
- fakeroot create_shar() {
-@@ -269,7 +273,7 @@ fi
- payload_offset=$(($(grep -na -m1 "^MARKER:$" $0|cut -d':' -f1) + 1))
- 
- printf "Extracting SDK..."
--tail -n +$payload_offset $0| $SUDO_EXEC tar xj -C $target_sdk_dir
-+tail -n +$payload_offset $0| $SUDO_EXEC tar xJ -C $target_sdk_dir
- echo "done"
- 
- printf "Setting it up..."
-@@ -335,8 +339,8 @@ exit 0
- MARKER:
- EOF
- 	# append the SDK tarball
--	cat ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.bz2 >> ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
-+	cat ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz >> ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
- 
- 	# delete the old tarball, we don't need it anymore
--	rm ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.bz2
-+	rm ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz
- }
 -- 
-2.7.4
+Denys
 
+
+On Mon, Aug 08, 2016 at 12:16:48PM -0400, Hongmei Gou wrote:
+> Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+> Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> ---
+>  .../glfw3/files/0001_xkb_unicode.patch             | 52 ++++++++++++++++++++++
+>  .../recipes-graphics/glfw3/glfw3_git.bb            | 24 ++++++++++
+>  2 files changed, 76 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-graphics/glfw3/files/0001_xkb_unicode.patch
+>  create mode 100644 meta-arago-extras/recipes-graphics/glfw3/glfw3_git.bb
+> 
+> diff --git a/meta-arago-extras/recipes-graphics/glfw3/files/0001_xkb_unicode.patch b/meta-arago-extras/recipes-graphics/glfw3/files/0001_xkb_unicode.patch
+> new file mode 100644
+> index 0000000..7c9b9d3
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-graphics/glfw3/files/0001_xkb_unicode.patch
+> @@ -0,0 +1,52 @@
+> +--- a/src/xkb_unicode.c	2015-10-12 15:09:07.000000000 -0400
+> ++++ b/src/xkb_unicode.c	2016-04-08 08:20:23.229370629 -0400
+> +@@ -1,5 +1,5 @@
+> + //========================================================================
+> +-// GLFW 3.1 X11 - www.glfw.org
+> ++// GLFW 3.1patched X11 - www.glfw.org
+> + //------------------------------------------------------------------------
+> + // Copyright (c) 2002-2006 Marcus Geelnard
+> + // Copyright (c) 2006-2010 Camilla Berglund <elmindreda@elmindreda.org>
+> +@@ -827,24 +827,24 @@
+> +   { 0x13be, 0x0178 },
+> +   { 0x20ac, 0x20ac },
+> +   // Numeric keypad with numlock on
+> +-  { XK_KP_Space, ' ' },
+> +-  { XK_KP_Equal, '=' },
+> +-  { XK_KP_Multiply, '*' },
+> +-  { XK_KP_Add, '+' },
+> +-  { XK_KP_Separator, ',' },
+> +-  { XK_KP_Subtract, '-' },
+> +-  { XK_KP_Decimal, '.' },
+> +-  { XK_KP_Divide, '/' },
+> +-  { XK_KP_0, 0x0030 },
+> +-  { XK_KP_1, 0x0031 },
+> +-  { XK_KP_2, 0x0032 },
+> +-  { XK_KP_3, 0x0033 },
+> +-  { XK_KP_4, 0x0034 },
+> +-  { XK_KP_5, 0x0035 },
+> +-  { XK_KP_6, 0x0036 },
+> +-  { XK_KP_7, 0x0037 },
+> +-  { XK_KP_8, 0x0038 },
+> +-  { XK_KP_9, 0x0039 }
+> ++  { 0xff80 /*XKB_KEY_KP_Space*/,     ' ' },
+> ++  { 0xffbd /*XKB_KEY_KP_Equal*/,     '=' },
+> ++  { 0xffaa /*XKB_KEY_KP_Multiply*/,  '*' },
+> ++  { 0xffab /*XKB_KEY_KP_Add*/,       '+' },
+> ++  { 0xffac /*XKB_KEY_KP_Separator*/, ',' },
+> ++  { 0xffad /*XKB_KEY_KP_Subtract*/,  '-' },
+> ++  { 0xffae /*XKB_KEY_KP_Decimal*/,   '.' },
+> ++  { 0xffaf /*XKB_KEY_KP_Divide*/,    '/' },
+> ++  { 0xffb0 /*XKB_KEY_KP_0*/, 0x0030 },
+> ++  { 0xffb1 /*XKB_KEY_KP_1*/, 0x0031 },
+> ++  { 0xffb2 /*XKB_KEY_KP_2*/, 0x0032 },
+> ++  { 0xffb3 /*XKB_KEY_KP_3*/, 0x0033 },
+> ++  { 0xffb4 /*XKB_KEY_KP_4*/, 0x0034 },
+> ++  { 0xffb5 /*XKB_KEY_KP_5*/, 0x0035 },
+> ++  { 0xffb6 /*XKB_KEY_KP_6*/, 0x0036 },
+> ++  { 0xffb7 /*XKB_KEY_KP_7*/, 0x0037 },
+> ++  { 0xffb8 /*XKB_KEY_KP_8*/, 0x0038 },
+> ++  { 0xffb9 /*XKB_KEY_KP_9*/, 0x0039 }
+> + };
+> + 
+> + 
+> diff --git a/meta-arago-extras/recipes-graphics/glfw3/glfw3_git.bb b/meta-arago-extras/recipes-graphics/glfw3/glfw3_git.bb
+> new file mode 100644
+> index 0000000..aa1abe9
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-graphics/glfw3/glfw3_git.bb
+> @@ -0,0 +1,24 @@
+> +SUMMARY = "GLFW cross platform graphics framework"
+> +DESCRIPTION = "A multi-platform library for OpenGL and OpenGLES, window and input"
+> +HOMEPAGE = "http://glfw.org/"
+> +LICENSE = "Zlib & Libpng"
+> +LIC_FILES_CHKSUM = "file://COPYING.txt;md5=f543d41f3829a608a406b713e4e72731"
+> +
+> +PV = "3.1.2"
+> +PR = "r0"
+> +
+> +BRANCH = "master"
+> +SRC_URI = "git://github.com/glfw/glfw.git;branch=${BRANCH}"
+> +SRCREV = "30306e54705c3adae9fe082c816a3be71963485c"
+> +
+> +SRC_URI += "file://0001_xkb_unicode.patch"
+> +
+> +DEPENDS = "glib-2.0 virtual/libgles2 virtual/egl weston wayland wayland-native"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +inherit cmake pkgconfig
+> +
+> +EXTRA_OECMAKE += "-DGLFW_USE_WAYLAND=ON -DGLFW_CLIENT_LIBRARY=glesv2 -DGLFW_BUILD_EXAMPLES=ON -DGFLW_BUILD_TESTS=ON"
+> +
+> +FILES_${PN} += "/usr/lib/cmake/*"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
 
