@@ -1,26 +1,26 @@
 Return-Path: <denis@denix.org>
-Received: from vms173007pub.verizon.net (vms173007pub.verizon.net
-	[206.46.173.7])
-	by arago-project.org (Postfix) with ESMTPS id B7492529D0
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id C96D0529AE
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Aug 2016 20:27:03 +0000 (UTC)
-Received: from vz-proxy-m005.mx.aol.com ([64.236.83.15])
-	by vms173007.mailsrvcs.net
+	Fri, 12 Aug 2016 23:44:07 +0000 (UTC)
+Received: from vz-proxy-m001.mx.aol.com ([64.236.83.14])
+	by vms173019.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OBT00GMGCSNXZ10@vms173007.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 12 Aug 2016 15:26:48 -0500 (CDT)
+	2014)) with ESMTPA id <0OBT00CDHLWUUX20@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Fri, 12 Aug 2016 18:43:52 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=btqxfxui c=1 sm=1 tr=0	a=NimJJ1rWho3RDXpqkQh0Zg==:117
-	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=Oltfr6-AKHLbKKvpsh4A:9
-Received: by 100.15.86.14 with SMTP id 26ed1292; Fri, 12 Aug 2016 20:26:48 GMT
+X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=MJxOpqxZADbEbEImuSX/mw==:117
+	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=10mRZlE9BZS-hQOEZDAA:9
+Received: by 100.15.86.14 with SMTP id 573823a3; Fri, 12 Aug 2016 23:43:52 GMT
 Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id 37DC21620F0;	Fri, 12 Aug 2016 16:26:47 -0400 (EDT)
+	with ESMTP id C95B11620C3;	Fri, 12 Aug 2016 19:43:41 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 12 Aug 2016 16:26:46 -0400
-Message-id: <1471033606-27540-1-git-send-email-denis@denix.org>
+Date: Fri, 12 Aug 2016 19:43:41 -0400
+Message-id: <1471045421-20205-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] branding-bleeding: skip packaging of TI-SDK tarball
+Subject: [PATCH] images: make arago-base-tisdk-image proper initramfs, move test package from tisdk-image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,26 +33,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Aug 2016 20:27:04 -0000
+X-List-Received-Date: Fri, 12 Aug 2016 23:44:08 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-bleeding.inc | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb       | 4 ++++
+ meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb           | 1 -
+ .../recipes-core/images/tisdk-server-extra-rootfs-image.bb            | 2 +-
+ meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb    | 1 -
+ 4 files changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-index e946f01..6ecf628 100644
---- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-@@ -8,3 +8,6 @@ SRCREV_pn-linux-ti-staging-rt = "${AUTOREV}"
- SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
- SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
- SRCREV_pn-ltp-ddt = "${AUTOREV}"
+diff --git a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+index 93150c8..59e55c3 100644
+--- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+@@ -4,12 +4,16 @@
+ require arago-image.inc
+ inherit remove-net-rules
+ 
++IMAGE_FSTYPES += "cpio.xz"
 +
-+# Build and assemble TI-SDK, but don't package it
-+IMAGE_FSTYPES_pn-arago-core-tisdk-image = ""
+ COMPATIBLE_MACHINE = "omap3|omapl138|ti33x|ti43x|omap4|omap-a15|keystone"
+ 
+ IMAGE_INSTALL += "\
+     packagegroup-arago-base \
+     packagegroup-arago-console \
+     packagegroup-arago-base-tisdk \
++    packagegroup-arago-test \
++    systemd-initramfs \
+     "
+ 
+ BAD_RECOMMENDATIONS += " \
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+index 8747e52..5667b0f 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+@@ -3,7 +3,6 @@
+ require arago-base-tisdk-image.bb
+ 
+ IMAGE_INSTALL += "\
+-    packagegroup-arago-test \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics','',d)} \
+     packagegroup-arago-tisdk-qte \
+     packagegroup-arago-tisdk-addons \
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
+index 48ea31d..aafb814 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
+@@ -9,4 +9,4 @@ IMAGE_INSTALL += "\
+ 
+ export IMAGE_BASENAME = "tisdk-server-extra-rootfs-image"
+ 
+-IMAGE_FSTYPES = "tar.gz"
++IMAGE_FSTYPES = "tar.xz"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+index 3ce26a4..bd2a3c3 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+@@ -5,7 +5,6 @@ require arago-base-tisdk-image.bb
+ SPLASH = ""
+ 
+ IMAGE_INSTALL += "\
+-    packagegroup-arago-test \
+     packagegroup-arago-tisdk-addons \
+     ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl','',d)} \
+     packagegroup-arago-tisdk-crypto \
 -- 
 2.7.4
 
