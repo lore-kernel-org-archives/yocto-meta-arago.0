@@ -1,26 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by arago-project.org (Postfix) with ESMTPS id 0A298529AA
+Return-Path: <j-stiffler@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id AEF52529AE
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Aug 2016 23:09:25 +0000 (UTC)
-Received: from vz-proxy-m006.mx.aol.com ([64.236.83.10])
-	by vms173019.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0OBR0000MPNOGZ60@vms173019.mailsrvcs.net> for
-	meta-arago@arago-project.org; Thu, 11 Aug 2016 18:09:24 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=WcjxEBVX c=1 sm=1 tr=0	a=pKq81LsWol7b8sI3Hpopew==:117
-	a=7z1cN_iqozsA:10 a=sozttTNsAAAA:8	a=ZjrMvQNILFuM7USNcIUA:9
-Received: by 100.15.86.14 with SMTP id 11c26434; Thu, 11 Aug 2016 23:09:24 GMT
-Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id 852321620C3;	Thu, 11 Aug 2016 19:09:23 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 11 Aug 2016 19:09:22 -0400
-Message-id: <1470956962-1146-1-git-send-email-denis@denix.org>
+	Fri, 12 Aug 2016 12:27:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u7CCRVcl023835
+	for <meta-arago@arago-project.org>; Fri, 12 Aug 2016 07:27:31 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u7CCRUa8020458
+	for <meta-arago@arago-project.org>; Fri, 12 Aug 2016 07:27:30 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 12 Aug 2016 07:27:29 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u7CCRTsb022993;	Fri, 12 Aug 2016 07:27:29 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 12 Aug 2016 08:26:52 -0400
+Message-ID: <1471004812-19489-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] packagegroup-arago-test*: move omapdrmtest from main test group to addons
+MIME-Version: 1.0
+Subject: [PATCH] ti-tisdk-makefile: u-boot-spl: pass in dtc path from kernel
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -33,64 +34,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Aug 2016 23:09:25 -0000
+X-List-Received-Date: Fri, 12 Aug 2016 12:27:32 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* u-boot build now requires he path the the device tree compiler (dtc)
+  in order to build successfully.
 
-Since main test group will be included in initramfs, omapdrmtest is not
-essesntial and it pulls in SGX/GLES and Wayland dependencies.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Carlos Hernandez <ceh@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-test-addons.bb    | 6 +++++-
- .../recipes-core/packagegroups/packagegroup-arago-test.bb           | 3 +--
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl           | 4 ++--
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-index 5d5ee6e..c4f50ea 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Task to install additional utilities/demos for test image"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r10"
-+PR = "r11"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl
+index 65f6288..f12a4a5 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_u-boot-spl
+@@ -3,12 +3,12 @@ u-boot-spl: u-boot
+ u-boot-spl_clean: u-boot_clean
+ u-boot-spl_install: u-boot_install
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+-u-boot:
++u-boot: linux-dtbs
+ 	@echo ===================================
+ 	@echo    Building U-boot
+ 	@echo ===================================
+ 	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-boot-* CROSS_COMPILE=$(CROSS_COMPILE) $(UBOOT_MACHINE)
+-	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-boot-* CROSS_COMPILE=$(CROSS_COMPILE)
++	$(MAKE) -j $(MAKE_JOBS) -C $(TI_SDK_PATH)/board-support/u-boot-* CROSS_COMPILE=$(CROSS_COMPILE) DTC=$(LINUXKERNEL_INSTALL_DIR)/scripts/dtc/dtc
  
-@@ -18,6 +18,10 @@ TEST_ADDONS_TI = " \
-     cmem-test \
-     "
+ u-boot_clean:
+ 	@echo ===================================
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 6118a99..515de94 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -48,7 +48,7 @@ SRC_URI = "\
+     file://Makefile_linalg-examples \
+ "
  
-+TEST_ADDONS_TI_append_omap-a15 = " \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
-+    "
-+
- TEST_ADDONS_TI_append_keystone = " \
-     mpm-transport-test \
-     multiprocmgr-test \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 8ff0399..d01ba36 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r43"
-+PR = "r44"
+-PR = "r74"
++PR = "r75"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -50,7 +50,6 @@ ARAGO_TI_TEST_append_ti43x = " \
- 
- ARAGO_TI_TEST_append_omap-a15 = " \
-     omapconf \
--    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
-     ti-ipc-test \
-     "
- 
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
 -- 
 2.7.4
 
