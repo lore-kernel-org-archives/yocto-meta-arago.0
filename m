@@ -1,30 +1,30 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
-	by arago-project.org (Postfix) with ESMTPS id 374AD5209D
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 6F19352A82
 	for <meta-arago@arago-project.org>;
-	Mon, 22 Aug 2016 20:26:41 +0000 (UTC)
+	Mon, 22 Aug 2016 20:26:42 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u7MKQdAM005537
-	for <meta-arago@arago-project.org>; Mon, 22 Aug 2016 15:26:39 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u7MKQdP7013284
-	for <meta-arago@arago-project.org>; Mon, 22 Aug 2016 15:26:39 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 22 Aug 2016 15:26:39 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u7MKQgLi021795
+	for <meta-arago@arago-project.org>; Mon, 22 Aug 2016 15:26:42 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u7MKQfnx013290
+	for <meta-arago@arago-project.org>; Mon, 22 Aug 2016 15:26:41 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 22 Aug 2016 15:26:40 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u7MKQato027787	for <meta-arago@arago-project.org>;
-	Mon, 22 Aug 2016 15:26:39 -0500
+	u7MKQatp027787	for <meta-arago@arago-project.org>;
+	Mon, 22 Aug 2016 15:26:40 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 22 Aug 2016 16:19:08 -0400
-Message-ID: <1471897150-34179-4-git-send-email-e-ruei1@ti.com>
+Date: Mon, 22 Aug 2016 16:19:09 -0400
+Message-ID: <1471897150-34179-5-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1471897150-34179-1-git-send-email-e-ruei1@ti.com>
 References: <1471897150-34179-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/5] packagegroup-arago-tisdk-matrix: add touch demos
+Subject: [PATCH 4/5] matrix-gui-apps-git: bump SRCREV to pick up the touch demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,48 +37,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Aug 2016 20:26:41 -0000
+X-List-Received-Date: Mon, 22 Aug 2016 20:26:43 -0000
 Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 4027889..4fcc504 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r59"
-+PR = "r60"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 3641a50..3592cd4 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "a51c0d791e5b15452196f6903ef077401738e631"
++SRCREV = "e6651c1a79b5949817b09e06cc36d828fed8ff3e"
+ BRANCH = "master"
+-INC_PR = "r41"
++INC_PR = "r42"
  
-@@ -30,8 +30,13 @@ MATRIX_COMMON_APPS = "              \
- #    matrix-gui-thermostat-demo
- MATRIX_QT_APPS = " \
-     matrix-gui-qt5-demos \
-+"
-+
-+MATRIX_TOUCH_APPS = " \
-+    matrix-gui-touch-demos \
- "
- 
-+
- MATRIX_QT_APPS_keystone = ""
- 
- MATRIX_SGX_DEMOS = " \
-@@ -117,6 +122,7 @@ RDEPENDS_${PN} = "        \
-     ${MATRIX_GUI}         \
-     ${MATRIX_COMMON_APPS} \
-     ${MATRIX_QT_APPS}     \
-+    ${MATRIX_TOUCH_APPS}  \
-     ${MATRIX_APPS}        \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx',"${MATRIX_SGX_DEMOS}",'',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','opencl',"${MATRIX_OPENCL_APPS}",'',d)} \
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.9.1
 
