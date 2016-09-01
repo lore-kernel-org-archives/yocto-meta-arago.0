@@ -1,33 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id DC929529E3
+Return-Path: <matti.kaasinen@gmail.com>
+Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
+	[209.85.216.172])
+	by arago-project.org (Postfix) with ESMTPS id 8FA8C52A69
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Sep 2016 13:01:49 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u81D1nbD002086
-	for <meta-arago@arago-project.org>; Thu, 1 Sep 2016 08:01:49 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u81D1mwj028202
-	for <meta-arago@arago-project.org>; Thu, 1 Sep 2016 08:01:48 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Thu, 1 Sep 2016 08:01:47 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] openmpacc: add dev dependency on clacc
-Thread-Index: AQHSA7LhmA5t0uNcUkyeTqbEft+lm6BkDUSAgACNN+A=
-Date: Thu, 1 Sep 2016 13:01:46 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958142F9F6F@DFLE09.ent.ti.com>
-References: <1472666993-16783-1-git-send-email-j-stiffler@ti.com>
-	<20160831233557.GV10236@edge>
-In-Reply-To: <20160831233557.GV10236@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.222]
+	Thu,  1 Sep 2016 17:29:33 +0000 (UTC)
+Received: by mail-qt0-f172.google.com with SMTP id 11so33107798qtc.0
+	for <meta-arago@arago-project.org>;
+	Thu, 01 Sep 2016 10:29:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=45LN5wsiRqE/xDoUPwclBuxtAFm5BudmIzjMxdW0E/o=;
+	b=TkXom7TIkwCCcuuidahDFtBBYSVokSfr8BJanjZLRGnIqJwufJeJFXXBbX3YbxAD4c
+	SF5fgXV71SE0D3HOcGP3WJsQToK6aHrrQvSPRM3WZvMotynYXUW4JpBegOCqnVeKiRYX
+	qHteuKHjFPZJQ2syltA0Y1UPTciTovFv24f64XyJTsQtig5NJGyvmThDn2EI/ztx5Edm
+	AFm3cJvxnAuh7WpT1A0fQnRT+kkgvQUqzMEF5zfWHdq0+Qd/ZhUmf8OWrGPrH0hlwNMn
+	tfkDSk3b3fElZNNDrU8+2OsTMLggU3/dvZU8fi45QUbj3aZ0qVUYGMVJo3JA7qdL9TDJ
+	HRag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=45LN5wsiRqE/xDoUPwclBuxtAFm5BudmIzjMxdW0E/o=;
+	b=LuRnxiaJZ4+9WVwQigAW+cMbfiM76wNK8bG15ngy7yxJ0nXcIQOEvX9oyff+4iC4n7
+	U80zwZL6VrLC2j/bZwIt9P3mxSoHvayaRXwGUckEEKfjMabLBMnJLA/RDEwa+u7cWwNS
+	BXetRsjpbGpQtjMQU56LJKM7Z3qLSP1HMnFO4+IU4lPC83FosxdB+KOZaCsuWbj/m13Y
+	Qh5o6ajFakgLngPI8wWNm/F80m1hmQcOKULf4cg7jwxx8pZLG63qDBVGnUrYofhgklit
+	F8y6bAbu02VQBEX6S7HcDiriyjJ0tuxDF2b9qH+STzgwBfp4Q+e1CGfdQPhzpIrxNt0M
+	r7Ng==
+X-Gm-Message-State: AE9vXwN/kg99QtKgsP0MFd5ZVztKItz2AygQDLG/9FjNTcXJe4fPT+0DASNwOUIMT6l1ghAklayeP48GS8Vz9w==
+X-Received: by 10.200.53.171 with SMTP id k40mr9294579qtb.47.1472750973198;
+	Thu, 01 Sep 2016 10:29:33 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] openmpacc: add dev dependency on clacc
+Received: by 10.55.122.196 with HTTP; Thu, 1 Sep 2016 10:29:32 -0700 (PDT)
+From: matti kaasinen <matti.kaasinen@gmail.com>
+Date: Thu, 1 Sep 2016 20:29:32 +0300
+Message-ID: <CADnUhn0hoi67iF9LGyoYj3LOUATyr7R8JOTMbx9o7otT-29B9w@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: meta-ti/krogoth status
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,58 +48,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Sep 2016 13:01:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 01 Sep 2016 17:29:34 -0000
+Content-Type: multipart/alternative; boundary=001a113e5a9c99a8e9053b758e94
+
+--001a113e5a9c99a8e9053b758e94
+Content-Type: text/plain; charset=UTF-8
+
+Hi!
+What is the status of meta-ti/krogoth layer at the moment? I have not
+seen [meta-arago]
+[nightly] RT Core TISDK (krogoth/2.1)
+<http://arago-project.org/pipermail/meta-arago/2016-August/008135.html>
+runs since Aug 4. However, latest updates in
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti?h=krogoth seems to be
+three days old.
+
+Thanks,
+Matti
+
+--001a113e5a9c99a8e9053b758e94
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-When will you be providing the release layer config?
+<div dir=3D"ltr"><div><div><div>Hi!<br></div>What is the status of meta-ti/=
+krogoth layer at the moment? I have not seen <a href=3D"http://arago-projec=
+t.org/pipermail/meta-arago/2016-August/008135.html">[meta-arago] [nightly] =
+RT Core TISDK (krogoth/2.1)</a> runs since Aug 4. However, latest updates i=
+n <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti?h=3Dkrogoth"=
+>http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti?h=3Dkrogoth</a> seems to=
+ be three days old.<br><br></div>Thanks,<br></div>Matti<br></div>
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, August 31, 2016 7:36 PM
-> To: Stiffler, Jacob
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [PATCH] openmpacc: add dev dependency on
-> clacc
->=20
-> Ack. I'll push outstanding patches tomorrow, after the release is out.
->=20
-> On Wed, Aug 31, 2016 at 02:09:53PM -0400, Jacob Stiffler wrote:
-> > * clacc is the openmpacc kernel compiler and is thus required when
-> >   developing with the openmpacc package.
-> >
-> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > ---
-> >  meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> > index 8fec0d1..a28a922 100644
-> > --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> > +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> > @@ -2,12 +2,13 @@ DESCRIPTION =3D "TI OpenMP-Acc host runtime and
-> development packages"
-> >
-> >  include openmpacc.inc
-> >
-> > -PR =3D "${INC_PR}.0"
-> > +PR =3D "${INC_PR}.1"
-> >
-> >  inherit cmake
-> >
-> >  DEPENDS =3D "boost boost-native opencl"
-> >  RDEPENDS_${PN} +=3D "opencl-runtime"
-> > +RDEPENDS_${PN}-dev +=3D "clacc"
-> >
-> >  S =3D "${WORKDIR}/git/host"
-> >
-> > --
-> > 1.9.1
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+--001a113e5a9c99a8e9053b758e94--
