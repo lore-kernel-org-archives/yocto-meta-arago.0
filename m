@@ -1,27 +1,29 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by arago-project.org (Postfix) with ESMTPS id 5EB9C52AB0
+	by arago-project.org (Postfix) with ESMTPS id 1D50C52AAE
 	for <meta-arago@arago-project.org>;
 	Thu, 15 Sep 2016 18:35:51 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u8FIZot2004061
-	for <meta-arago@arago-project.org>; Thu, 15 Sep 2016 13:35:50 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u8FIZnlh022373
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u8FIZpNa004064
+	for <meta-arago@arago-project.org>; Thu, 15 Sep 2016 13:35:51 -0500
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u8FIZn9P022384
 	for <meta-arago@arago-project.org>; Thu, 15 Sep 2016 13:35:49 -0500
 Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 15 Sep 2016 13:35:48 -0500
+	Thu, 15 Sep 2016 13:35:49 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u8FIZm2j021260;	Thu, 15 Sep 2016 13:35:49 -0500
+	u8FIZm2l021260;	Thu, 15 Sep 2016 13:35:49 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 15 Sep 2016 14:35:07 -0400
-Message-ID: <1473964509-21429-1-git-send-email-j-stiffler@ti.com>
+Date: Thu, 15 Sep 2016 14:35:09 -0400
+Message-ID: <1473964509-21429-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1473964509-21429-1-git-send-email-j-stiffler@ti.com>
+References: <1473964509-21429-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/3] ti-llvm3.6: bump SRCREV for updates
+Subject: [PATCH 3/3] openmpacc: bump SRCREV to version 1.4.0.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,39 +41,31 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-index 76e5754..e1db5ec 100644
---- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-+++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "LLVM 3.6 with support for TI C66x intrinsics"
- HOMEPAGE = "https://gitorious.design.ti.com/ocl/llvm33-src"
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+index 7e1adba..f222968 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+@@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
+ HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
+ LICENSE = "BSD"
  
--PR = "r4"
-+PR = "r5"
+-PV = "1.3.2.0"
++PV = "1.4.0.0"
+ INC_PR = "r0"
  
- do_configure_prepend_class-native() {
-     # Fix paths in llvm-config
-@@ -27,14 +27,14 @@ LLVM_GIT_URI = "git://git.ti.com/opencl/llvm.git"
- LLVM_GIT_PROTOCOL = "git"
- LLVM_GIT_BRANCH = "release_36_ti"
- LLVM_GIT_DESTSUFFIX = "git"
--LLVM_GIT_SRCREV = "0076d468809dd17d72fa8cb45cb17e91c2ae525f"
-+LLVM_GIT_SRCREV = "798386e2513c812ab4b01df5b57c88b225e756bb"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
+@@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
+ OMPACC_GIT_PROTOCOL = "git"
+ OMPACC_GIT_BRANCH = "master"
  
- CLANG_GIT_NAME = "clang"
- CLANG_GIT_URI = "git://git.ti.com/opencl/clang.git"
- CLANG_GIT_PROTOCOL = "git"
- CLANG_GIT_BRANCH = "release_36_ti"
- CLANG_GIT_DESTSUFFIX = "${LLVM_GIT_DESTSUFFIX}/tools/clang"
--CLANG_GIT_SRCREV = "588b1961bfa2c1722db13fd4b68a2477d1cf0e5d"
-+CLANG_GIT_SRCREV = "5d6b4dfcaf29619cffbb2013a1e0a02e70e0154e"
+-OMPACC_SRCREV = "26f6f8ef0ff800da3d49cccd5853c761b0673d2a"
++OMPACC_SRCREV = "af81476c403758bba065b056c63bb7dd4dd92704"
  
- SRC_URI = " \
-   ${LLVM_GIT_URI};protocol=${LLVM_GIT_PROTOCOL};branch=${LLVM_GIT_BRANCH};destsuffix=${LLVM_GIT_DESTSUFFIX};name=${LLVM_GIT_NAME} \
+ BRANCH = "${OMPACC_GIT_BRANCH}"
+ SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
 -- 
 2.7.4
 
