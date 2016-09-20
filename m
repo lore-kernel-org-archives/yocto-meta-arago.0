@@ -1,27 +1,27 @@
 Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by arago-project.org (Postfix) with ESMTPS id 516E05299F
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by arago-project.org (Postfix) with ESMTPS id 4141252A71
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Sep 2016 23:23:49 +0000 (UTC)
-Received: from vz-proxy-l004.mx.aol.com ([64.236.82.151])
-	by vms173013.mailsrvcs.net
+	Tue, 20 Sep 2016 16:26:31 +0000 (UTC)
+Received: from vz-proxy-l002.mx.aol.com ([64.236.82.148])
+	by vms173019.mailsrvcs.net
 	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0ODR00C10YBNZ780@vms173013.mailsrvcs.net> for
-	meta-arago@arago-project.org; Mon, 19 Sep 2016 18:23:47 -0500 (CDT)
+	2014)) with ESMTPA id <0ODT001S49NH5JA0@vms173019.mailsrvcs.net> for
+	meta-arago@arago-project.org; Tue, 20 Sep 2016 11:26:06 -0500 (CDT)
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=Nc0brD34 c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
-	a=GW1xBdLrtEIA:10 a=sozttTNsAAAA:8	a=SuVqM90zMaeU9C8CWdcA:9
-Received: by 100.15.110.130 with SMTP id 01751542;
-	Mon, 19 Sep 2016 23:23:47 GMT
+X-CMAE-Analysis: v=2.1 cv=EdU1O6SC c=1 sm=1 tr=0	a=hkQRW7prCrFMEwk2DGUM9Q==:117
+	a=GW1xBdLrtEIA:10 a=sozttTNsAAAA:8	a=1DmWfQz_zpB2DQqBSUsA:9
+Received: by 100.15.110.130 with SMTP id 56ff4372;
+	Tue, 20 Sep 2016 16:26:06 GMT
 Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id B4415162138;	Mon, 19 Sep 2016 19:23:46 -0400 (EDT)
+	with ESMTP id 81B45162137;	Tue, 20 Sep 2016 12:26:04 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 19 Sep 2016 19:23:46 -0400
-Message-id: <1474327426-15554-1-git-send-email-denis@denix.org>
+Date: Tue, 20 Sep 2016 12:26:04 -0400
+Message-id: <1474388764-23133-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [tisdk-build-scripts][PATCH] machine-specific-functions, run-opentest: add am335x-hs-evm and k2e-hs-evm platforms
+Subject: [PATCH] u-boot-fw-utils: add support for am335x and k2e HS platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,94 +34,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Sep 2016 23:23:53 -0000
+X-List-Received-Date: Tue, 20 Sep 2016 16:26:31 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- lib/oesdk/machine-specific-functions |  2 +-
- lib/run-opentest                     | 24 ++++++++++++++++++------
- 2 files changed, 19 insertions(+), 7 deletions(-)
+ meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/lib/oesdk/machine-specific-functions b/lib/oesdk/machine-specific-functions
-index 6d100d4..17d70de 100644
---- a/lib/oesdk/machine-specific-functions
-+++ b/lib/oesdk/machine-specific-functions
-@@ -21,7 +21,7 @@ parse_machines() {
-                 ARM9_MACHINES="$ARM9_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""ARM9"
-                 ;;
--            am335x-evm | am437x-evm | am437x-hs-evm | am37x-evm | am3517-evm | k2hk-evm | k2e-evm | k2g-evm | k2l-evm | beagleboard | beaglebone | pandaboard | omap5-evm | dra7xx-evm | dra7xx-hs-evm | am57xx-evm | am57xx-hs-evm )
-+            am335x-evm | am335x-hs-evm | am437x-evm | am437x-hs-evm | am37x-evm | am3517-evm | k2hk-evm | k2e-evm | k2e-hs-evm | k2g-evm | k2l-evm | beagleboard | beaglebone | pandaboard | omap5-evm | dra7xx-evm | dra7xx-hs-evm | am57xx-evm | am57xx-hs-evm )
-                 CORTEX_MACHINES="$CORTEX_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""CORTEX"
-                 ;;
-diff --git a/lib/run-opentest b/lib/run-opentest
-index cb164d4..dde0596 100644
---- a/lib/run-opentest
-+++ b/lib/run-opentest
-@@ -16,6 +16,9 @@ set_opentest_platform() {
-         am437x-evm )
-             oplatform="am43xx-gpevm"
-             ;;
-+        am335x-hs-evm )
-+            oplatform="am335x-hsevm"
-+            ;;
-         am437x-hs-evm )
-             oplatform="am43xx-hsevm"
-             ;;
-@@ -25,6 +28,9 @@ set_opentest_platform() {
-         dra7xx-hs-evm )
-             oplatform="dra7xx-hsevm"
-             ;;
-+        k2e-hs-evm )
-+            oplatform="k2e-hsevm"
-+            ;;
-         * )
-             return 2
-             ;;
-@@ -42,6 +48,12 @@ set_opentest_dtb() {
-         am335x-evm|am57xx-evm )
-             odtb="$machine.dtb"
-             ;;
-+        am335x-hs-evm )
-+            odtb="am335x-evm.dtb"
-+            ;;
-+        am57xx-hs-evm )
-+            odtb="am57xx-evm.dtb"
-+            ;;
-         beaglebone )
-             odtb="am335x-boneblack.dtb"
-             ;;
-@@ -51,21 +63,21 @@ set_opentest_dtb() {
-         am437x-hs-evm )
-             odtb="am437x-gp-evm.dtb"
-             ;;
--        dra7xx-hs-evm )
-+        dra7xx-evm )
-             odtb="dra7-evm.dtb"
-             ;;
--        am57xx-hs-evm )
--            odtb="am57xx-evm.dtb"
-+        dra7xx-hs-evm )
-+            odtb="dra7-evm.dtb"
-             ;;
-         omap5-evm )
-             odtb="omap5-uevm.dtb"
-             ;;
--        dra7xx-evm )
--            odtb="dra7-evm.dtb"
--            ;;
-         k2hk-evm|k2e-evm|k2g-evm|k2l-evm )
-             odtb="keystone-$machine.dtb"
-             ;;
-+        k2e-hs-evm )
-+            odtb="keystone-k2e.dtb"
-+            ;;
-         * )
-             odtb=""
-             ;;
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend
+index 8c18c6b..6c116ac 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-fw-utils_%.bbappend
+@@ -1,5 +1,7 @@
+ # The proper config doesn't currently exist anywhere in mainline U-boot.
+ # For now just use a similar config which is good enough for U-boot utilities.
+-UBOOT_MACHINE_dra7xx-hs-evm = "dra7xx_evm_config"
++UBOOT_MACHINE_am335x-hs-evm = "am335x_evm_config"
+ UBOOT_MACHINE_am437x-hs-evm = "am43xx_evm_config"
++UBOOT_MACHINE_dra7xx-hs-evm = "dra7xx_evm_config"
+ UBOOT_MACHINE_am57xx-hs-evm = "am57xx_evm_config"
++UBOOT_MACHINE_k2e-hs-evm = "k2e_evm_config"
 -- 
 2.7.4
 
