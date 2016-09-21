@@ -1,27 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by arago-project.org (Postfix) with ESMTPS id 7512E52A12
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id 013B85299E
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Sep 2016 19:30:35 +0000 (UTC)
-Received: from vz-proxy-l004.mx.aol.com ([64.236.82.151])
-	by vms173017.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0ODT001QZI6EG9N0@vms173017.mailsrvcs.net> for
-	meta-arago@arago-project.org; Tue, 20 Sep 2016 14:30:20 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=eaPqxu9IKnv3tbb7QsXVMw==:117
-	a=GW1xBdLrtEIA:10 a=sozttTNsAAAA:8	a=uIm26YOzJoj7PdznjHUA:9
-Received: by 100.15.110.130 with SMTP id 65914c26;
-	Tue, 20 Sep 2016 19:30:20 GMT
-Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id 4E181162145;	Tue, 20 Sep 2016 15:30:14 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 20 Sep 2016 15:30:13 -0400
-Message-id: <1474399813-28560-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] recipes: introduce k2e SOC family
+	Wed, 21 Sep 2016 19:24:24 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u8LJON88028586
+	for <meta-arago@arago-project.org>; Wed, 21 Sep 2016 14:24:23 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u8LJONEp016580
+	for <meta-arago@arago-project.org>; Wed, 21 Sep 2016 14:24:23 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 21 Sep 2016 14:24:22 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u8LJOMOl016039	for <meta-arago@arago-project.org>;
+	Wed, 21 Sep 2016 14:24:22 -0500
+Date: Wed, 21 Sep 2016 15:24:22 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1452383929.545.1474485862727.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-09-21_15-00-47
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,183 +36,177 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Sep 2016 19:30:36 -0000
+X-List-Received-Date: Wed, 21 Sep 2016 19:24:25 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_544_508623627.1474485862711"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_544_508623627.1474485862711
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb       | 3 ++-
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc      | 2 +-
- .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb       | 2 +-
- .../recipes-core/packagegroups/packagegroup-arago-test-addons.bb      | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb         | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 ++--
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb     | 2 +-
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
- meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb                | 4 ++--
- meta-arago-extras/recipes-ti/ocl/opencl_git.bb                        | 2 +-
- 10 files changed, 14 insertions(+), 13 deletions(-)
+<html>
+<head>
+<title>
+Status for 09/21/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-index 06884ae..009d6bc 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-@@ -3,7 +3,8 @@ require arago-core-tisdk-image.inc
- DEPLOY_SPL_NAME_omapl138 = ""
- DEPLOY_SPL_NAME_k2hk-evm = ""
- DEPLOY_SPL_NAME_k2l-evm = ""
--DEPLOY_SPL_NAME_k2e-evm = ""
-+DEPLOY_SPL_NAME_k2g-evm = ""
-+DEPLOY_SPL_NAME_k2e = ""
- 
- ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
- export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index f97bf18..17d796a 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -26,7 +26,7 @@ DTB_FILTER_am57xx-hs-evm = "${DTB_FILTER_am57xx-evm}"
- DTB_FILTER_ti43x = "am43"
- DTB_FILTER_k2hk-evm = "k2hk"
- DTB_FILTER_k2l-evm = "k2l"
--DTB_FILTER_k2e-evm = "k2e"
-+DTB_FILTER_k2e = "k2e"
- DTB_FILTER_k2g-evm = "k2g"
- 
- # List of target side images to build for the SDK
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-index 3d8b891..6a7019a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-@@ -134,7 +134,7 @@ ARAGO_TI_PKGS_append_k2hk-evm = "\
-     nwal-lld \
-     "
- 
--ARAGO_TI_PKGS_append_k2e-evm = "\
-+ARAGO_TI_PKGS_append_k2e = "\
-     mmap-lld \
-     hyplnk-lld \
-     netapi \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-index e463f99..54fb39e 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-@@ -67,7 +67,7 @@ TEST_ADDONS_TI_append_k2l-evm = " \
-     netapi-test \
-     "
- 
--TEST_ADDONS_TI_append_k2e-evm = " \
-+TEST_ADDONS_TI_append_k2e = " \
-     mmap-lld-test \
-     hyplnk-lld-test \
-     nwal-lld-test \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 6fcd6b0..c402eff 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -60,7 +60,7 @@ EXTRA_LIBS_append_k2l-evm = " \
-     gdbserverproxy-module-drv-src \
- "
- 
--EXTRA_LIBS_append_k2e-evm = " \
-+EXTRA_LIBS_append_k2e = " \
-     debugss-module-drv-src \
-     gdbserverproxy-module-drv-src \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index b768c70..005cb5b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -103,7 +103,7 @@ EXTRA_LIBS_append_k2hk-evm = "\
- 	aif2-lld-staticdev \
- 	"
- 
--EXTRA_LIBS_append_k2e-evm = "\
-+EXTRA_LIBS_append_k2e = "\
- 	mmap-lld \
- 	mmap-lld-staticdev \
- 	hyplnk-lld-dev \
-@@ -136,7 +136,7 @@ EXTRA_LIBS_append_k2hk-evm = " libulm-staticdev \
- EXTRA_LIBS_append_k2l-evm = " libulm-staticdev \
-                               gdbserver-c6x-dev \
- "
--EXTRA_LIBS_append_k2e-evm = " libulm-staticdev \
-+EXTRA_LIBS_append_k2e = " libulm-staticdev \
-                               gdbserver-c6x-dev \
- "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index db841ce..f02f062 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -74,7 +74,7 @@ UTILS_append_k2l-evm = " \
-     dsptop \
- "
- 
--UTILS_append_k2e-evm = " \
-+UTILS_append_k2e = " \
-     gdbc6x \
-     dsptop \
- "
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 515de94..b6a8201 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -143,7 +143,7 @@ MAKEFILES_append_k2l-evm = " opencl-examples \
-                              openmpacc-examples \
- "
- 
--MAKEFILES_append_k2e-evm = " opencl-examples \
-+MAKEFILES_append_k2e = " opencl-examples \
-                              gdbserverproxy-module-drv \
-                              debugss-module-drv \
-                              openmpacc-examples \
-@@ -183,7 +183,7 @@ KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
- KERNEL_DEVICETREE_dra7xx-evm = "dra7-evm.dtb dra7-evm-lcd-lg.dtb dra7-evm-lcd-osd.dtb dra72-evm.dtb dra72-evm-revc.dtb dra72-evm-lcd-lg.dtb dra72-evm-lcd-osd.dtb"
- KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb am571x-idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-osd.dtb"
- KERNEL_DEVICETREE_k2hk-evm = "keystone-k2hk-evm.dtb"
--KERNEL_DEVICETREE_k2e-evm = "keystone-k2e-evm.dtb"
-+KERNEL_DEVICETREE_k2e = "keystone-k2e-evm.dtb"
- KERNEL_DEVICETREE_k2g-evm = "keystone-k2g-evm.dtb"
- KERNEL_DEVICETREE_k2l-evm = "keystone-k2l-evm.dtb"
- 
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-index 8420217..25a39f8 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-@@ -35,7 +35,7 @@ DEPENDS_append_k2l-evm  = " multiprocmgr-rtos \
-                             rm-lld-rtos \
- "
- 
--DEPENDS_append_k2e-evm  = " multiprocmgr-rtos \
-+DEPENDS_append_k2e  = " multiprocmgr-rtos \
-                             qmss-lld-rtos \
-                             cppi-lld-rtos \
-                             rm-lld-rtos \
-@@ -50,7 +50,7 @@ S_k2g-evm = "${WORKDIR}/git/monitor_vayu"
- 
- BUILD_TARGET_k2hk-evm = "ARM_K2H"
- BUILD_TARGET_k2l-evm  = "ARM_K2L"
--BUILD_TARGET_k2e-evm  = "ARM_K2E"
-+BUILD_TARGET_k2e  = "ARM_K2E"
- BUILD_TARGET_dra7xx   = "ARM_AM57"
- BUILD_TARGET_k2g-evm  = "ARM_K2G"
- 
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-index e6b3e1c..4500ad5 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-@@ -47,7 +47,7 @@ export WANT_LLVM_RELEASE = "3.6-ti"
- OCL_BUILD_TARGET_dra7xx   = "ARM_AM57"
- OCL_BUILD_TARGET_k2hk-evm = "ARM_K2H"
- OCL_BUILD_TARGET_k2l-evm  = "ARM_K2L"
--OCL_BUILD_TARGET_k2e-evm  = "ARM_K2E"
-+OCL_BUILD_TARGET_k2e  = "ARM_K2E"
- OCL_BUILD_TARGET_k2g-evm  = "ARM_K2G"
- 
- ENABLE_ULM = "1"
--- 
-2.7.4
+<h2>Status for 09/21/16</h2>
+
+<h2>BUILD_ID: build-2016-09-21_15-01-59</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="dra7xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_544_508623627.1474485862711--
