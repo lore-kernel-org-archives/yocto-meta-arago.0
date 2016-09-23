@@ -1,28 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
-	[206.46.173.15])
-	by arago-project.org (Postfix) with ESMTPS id AB14052A60
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id E069F529E6
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Sep 2016 17:53:46 +0000 (UTC)
-Received: from vz-proxy-l005.mx.aol.com ([64.236.82.152])
-	by vms173015.mailsrvcs.net
-	(Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16
-	2014)) with ESMTPA id <0ODY007THXP7OA60@vms173015.mailsrvcs.net> for
-	meta-arago@arago-project.org; Fri, 23 Sep 2016 12:53:31 -0500 (CDT)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.1 cv=J+9Xl1TS c=1 sm=1 tr=0	a=a3t/a0oOYlYu/nGe1mf8ZA==:117
-	a=GW1xBdLrtEIA:10 a=sozttTNsAAAA:8	a=pWLPaeMjz_0GOfFNYjcA:9
-	a=ju9G8d9LirMYgQpn:21 a=a9HzVhsmCG-DoIEr:21
-Received: by 100.15.110.130 with SMTP id 5434df73;
-	Fri, 23 Sep 2016 17:53:31 GMT
-Received: from sam.denix (sam [192.168.0.5])	by gandalf.denix.org (Postfix)
-	with ESMTP id 8FE6216212C;	Fri, 23 Sep 2016 13:53:30 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 23 Sep 2016 13:53:29 -0400
-Message-id: <1474653209-16121-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] optee-os: update with latest patches and change the output names slightly
+	Fri, 23 Sep 2016 19:24:16 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u8NJOF0x000435
+	for <meta-arago@arago-project.org>; Fri, 23 Sep 2016 14:24:15 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u8NJODrX020911
+	for <meta-arago@arago-project.org>; Fri, 23 Sep 2016 14:24:14 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 23 Sep 2016 14:24:11 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u8NJOB0A006541	for <meta-arago@arago-project.org>;
+	Fri, 23 Sep 2016 14:24:11 -0500
+Date: Fri, 23 Sep 2016 15:24:11 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <1195150845.549.1474658651022.JavaMail.jenkins@puget>
+MIME-Version: 1.0
+X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-09-23_15-00-47
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,276 +36,177 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Sep 2016 17:53:47 -0000
+X-List-Received-Date: Fri, 23 Sep 2016 19:24:17 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_548_1430236188.1474658651013"
 
-From: Denys Dmytriyenko <denys@ti.com>
+------=_Part_548_1430236188.1474658651013
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- ...0001-plat-ti-Fixed-issues-with-MMU-mapping.patch} |  2 +-
- ...onitor-update-to-support-platform-services.patch} |  2 +-
- ...ve-load-address-to-the-end-of-DRAM-and-inc.patch} | 12 ++++++------
- ...=> 0004-plat-ti-Add-DRA72x-platform-flavor.patch} | 20 ++++++++++----------
- ...005-plat-ti-Add-AM57xx-EVM-platform-flavor.patch} | 18 +++++++++---------
- .../recipes-security/optee/optee-os_git.bbappend     | 15 ++++++++-------
- 6 files changed, 35 insertions(+), 34 deletions(-)
- rename meta-arago-distro/recipes-security/optee/optee-os/{optee2-0001-plat-ti-Fixed-issues-with-MMU-mapping.patch => 0001-plat-ti-Fixed-issues-with-MMU-mapping.patch} (95%)
- rename meta-arago-distro/recipes-security/optee/optee-os/{optee2-0002-monitor-update-to-support-platform-services.patch => 0002-monitor-update-to-support-platform-services.patch} (99%)
- rename meta-arago-distro/recipes-security/optee/optee-os/{optee2-0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch => 0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch} (84%)
- rename meta-arago-distro/recipes-security/optee/optee-os/{optee2-0004-plat-ti-Add-DRA72x-platform-flavor.patch => 0004-plat-ti-Add-DRA72x-platform-flavor.patch} (84%)
- rename meta-arago-distro/recipes-security/optee/optee-os/{optee2-0005-plat-ti-Add-AM572x-EVM-platform-flavor.patch => 0005-plat-ti-Add-AM57xx-EVM-platform-flavor.patch} (69%)
+<html>
+<head>
+<title>
+Status for 09/23/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0001-plat-ti-Fixed-issues-with-MMU-mapping.patch b/meta-arago-distro/recipes-security/optee/optee-os/0001-plat-ti-Fixed-issues-with-MMU-mapping.patch
-similarity index 95%
-rename from meta-arago-distro/recipes-security/optee/optee-os/optee2-0001-plat-ti-Fixed-issues-with-MMU-mapping.patch
-rename to meta-arago-distro/recipes-security/optee/optee-os/0001-plat-ti-Fixed-issues-with-MMU-mapping.patch
-index 34a1e07..8be9623 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0001-plat-ti-Fixed-issues-with-MMU-mapping.patch
-+++ b/meta-arago-distro/recipes-security/optee/optee-os/0001-plat-ti-Fixed-issues-with-MMU-mapping.patch
-@@ -1,4 +1,4 @@
--From b5bd9af7136d8ffefc732cf5602eb7927a947f2b Mon Sep 17 00:00:00 2001
-+From 60914b0195e17e25c8cf7abf4a125f48699681b2 Mon Sep 17 00:00:00 2001
- From: Harinarayan Bhatta <harinarayan@ti.com>
- Date: Wed, 10 Aug 2016 11:13:53 +0530
- Subject: [PATCH 1/5] plat-ti: Fixed issues with MMU mapping
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0002-monitor-update-to-support-platform-services.patch b/meta-arago-distro/recipes-security/optee/optee-os/0002-monitor-update-to-support-platform-services.patch
-similarity index 99%
-rename from meta-arago-distro/recipes-security/optee/optee-os/optee2-0002-monitor-update-to-support-platform-services.patch
-rename to meta-arago-distro/recipes-security/optee/optee-os/0002-monitor-update-to-support-platform-services.patch
-index 3da4c2a..1267eca 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0002-monitor-update-to-support-platform-services.patch
-+++ b/meta-arago-distro/recipes-security/optee/optee-os/0002-monitor-update-to-support-platform-services.patch
-@@ -1,4 +1,4 @@
--From 0b5ff7f704573b19eae4184535045b4f8124956d Mon Sep 17 00:00:00 2001
-+From 0cfabf5d6c20c8d91db026561db6c4624a1e7c3a Mon Sep 17 00:00:00 2001
- From: Daniel Allred <d-allred@ti.com>
- Date: Wed, 19 Aug 2015 16:01:26 -0500
- Subject: [PATCH 2/5] monitor: update to support platform services
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch b/meta-arago-distro/recipes-security/optee/optee-os/0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch
-similarity index 84%
-rename from meta-arago-distro/recipes-security/optee/optee-os/optee2-0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch
-rename to meta-arago-distro/recipes-security/optee/optee-os/0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch
-index 9144f59..2300d2e 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch
-+++ b/meta-arago-distro/recipes-security/optee/optee-os/0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch
-@@ -1,4 +1,4 @@
--From 7f5fd58d527534aebbb10e0db96eb8575da6919f Mon Sep 17 00:00:00 2001
-+From 4bcc24cc6761851b8c4d397165f7e55f99771029 Mon Sep 17 00:00:00 2001
- From: "Andrew F. Davis" <afd@ti.com>
- Date: Fri, 9 Sep 2016 08:13:48 -0500
- Subject: [PATCH 3/5] plat-ti: Move load address to the end of DRAM and
-@@ -7,7 +7,7 @@ Subject: [PATCH 3/5] plat-ti: Move load address to the end of DRAM and
- The load address of OPTEE is, by default in U-Boot, the end of DRAM.
- For DRA7xx EVM this is 0xe0000000. Make this change here.
- 
--We also move and expand the shared memory allocation to 2MB as suggested
-+We also move and expand the shared memory allocation as suggested
- by the comment above the definition.
- 
- Signed-off-by: Andrew F. Davis <afd@ti.com>
-@@ -16,7 +16,7 @@ Signed-off-by: Andrew F. Davis <afd@ti.com>
-  1 file changed, 6 insertions(+), 6 deletions(-)
- 
- diff --git a/core/arch/arm/plat-ti/platform_config.h b/core/arch/arm/plat-ti/platform_config.h
--index 107219f..8b52540 100644
-+index 107219f..606aab3 100644
- --- a/core/arch/arm/plat-ti/platform_config.h
- +++ b/core/arch/arm/plat-ti/platform_config.h
- @@ -30,16 +30,16 @@
-@@ -25,7 +25,7 @@ index 107219f..8b52540 100644
-  
- -#define DRAM0_BASE		0x94C00000
- -#define DRAM0_SIZE		0x00800000
--+#define DRAM0_BASE		0xdeb00000
-++#define DRAM0_BASE		0xde900000
- +#define DRAM0_SIZE		0x01500000
-  
-  #ifdef CFG_WITH_PAGER
-@@ -35,7 +35,7 @@ index 107219f..8b52540 100644
-  /* Location of protected DDR on the DRA7xx platform */
- -#define TZDRAM_BASE		0x94D00000
- -#define TZDRAM_SIZE		0x00700000
--+#define TZDRAM_BASE		0xdeb00000
-++#define TZDRAM_BASE		0xde900000
- +#define TZDRAM_SIZE		0x01300000
-  
-  #define CFG_TEE_CORE_NB_CORE	2
-@@ -47,7 +47,7 @@ index 107219f..8b52540 100644
- -#define CFG_SHMEM_START		(DRAM0_BASE)
- -#define CFG_SHMEM_SIZE		0x100000
- +#define CFG_SHMEM_START		(DRAM0_BASE + 0x01300000)
--+#define CFG_SHMEM_SIZE		0x200000
-++#define CFG_SHMEM_SIZE		0x400000
-  
-  #define CFG_TEE_RAM_VA_SIZE	(1024 * 1024)
-  
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0004-plat-ti-Add-DRA72x-platform-flavor.patch b/meta-arago-distro/recipes-security/optee/optee-os/0004-plat-ti-Add-DRA72x-platform-flavor.patch
-similarity index 84%
-rename from meta-arago-distro/recipes-security/optee/optee-os/optee2-0004-plat-ti-Add-DRA72x-platform-flavor.patch
-rename to meta-arago-distro/recipes-security/optee/optee-os/0004-plat-ti-Add-DRA72x-platform-flavor.patch
-index c047203..4e16bc2 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0004-plat-ti-Add-DRA72x-platform-flavor.patch
-+++ b/meta-arago-distro/recipes-security/optee/optee-os/0004-plat-ti-Add-DRA72x-platform-flavor.patch
-@@ -1,4 +1,4 @@
--From 0d6b6dbb2e26fa5e0a80e212d0a292575e2a77a3 Mon Sep 17 00:00:00 2001
-+From 8ca27cab5a89eeaa35050d838af08efd9a25c668 Mon Sep 17 00:00:00 2001
- From: "Andrew F. Davis" <afd@ti.com>
- Date: Fri, 9 Sep 2016 09:54:57 -0500
- Subject: [PATCH 4/5] plat-ti: Add DRA72x platform flavor
-@@ -16,17 +16,17 @@ Signed-off-by: Andrew F. Davis <afd@ti.com>
-  2 files changed, 26 insertions(+), 3 deletions(-)
- 
- diff --git a/core/arch/arm/plat-ti/conf.mk b/core/arch/arm/plat-ti/conf.mk
--index 7ac154f..7f9cb77 100644
-+index 7ac154f..b6ee1d3 100644
- --- a/core/arch/arm/plat-ti/conf.mk
- +++ b/core/arch/arm/plat-ti/conf.mk
- @@ -1,4 +1,4 @@
- -PLATFORM_FLAVOR ?= dra7xx
--+PLATFORM_FLAVOR ?= dra7xx_evm
-++PLATFORM_FLAVOR ?= dra7_evm
-  
-  # 32-bit flags
-  arm32-platform-cpuarch		:= cortex-a15
- diff --git a/core/arch/arm/plat-ti/platform_config.h b/core/arch/arm/plat-ti/platform_config.h
--index 8b52540..ae6ff41 100644
-+index 606aab3..3c4f6d5 100644
- --- a/core/arch/arm/plat-ti/platform_config.h
- +++ b/core/arch/arm/plat-ti/platform_config.h
- @@ -28,7 +28,7 @@
-@@ -34,9 +34,9 @@ index 8b52540..ae6ff41 100644
-  #define PLATFORM_CONFIG_H
-  
- -#if defined(PLATFORM_FLAVOR_dra7xx)
--+#if defined(PLATFORM_FLAVOR_dra7xx_evm)
-++#if defined(PLATFORM_FLAVOR_dra7_evm)
-  
-- #define DRAM0_BASE		0xdeb00000
-+ #define DRAM0_BASE		0xde900000
-  #define DRAM0_SIZE		0x01500000
- @@ -37,7 +37,7 @@
-  #error Pager not supported on this platform
-@@ -44,16 +44,16 @@ index 8b52540..ae6ff41 100644
-  
- -/* Location of protected DDR on the DRA7xx platform */
- +/* Location of protected DDR on the DRA7xx EVM */
-- #define TZDRAM_BASE		0xdeb00000
-+ #define TZDRAM_BASE		0xde900000
-  #define TZDRAM_SIZE		0x01300000
-  
- @@ -51,6 +51,29 @@
-  #define GIC_BASE            0x48211000
-  #define SECRAM_BASE         0x40200000
-  
--+#elif defined(PLATFORM_FLAVOR_dra72x_evm_revc)
-++#elif defined(PLATFORM_FLAVOR_dra72_evm_revc)
- +
--+#define DRAM0_BASE		0xfeb00000
-++#define DRAM0_BASE		0xfe900000
- +#define DRAM0_SIZE		0x01500000
- +
- +#ifdef CFG_WITH_PAGER
-@@ -61,7 +61,7 @@ index 8b52540..ae6ff41 100644
- +#endif /*CFG_WITH_PAGER*/
- +
- +/* Location of protected DDR on the DRA72x EVM rev. C */
--+#define TZDRAM_BASE		0xfeb00000
-++#define TZDRAM_BASE		0xfe900000
- +#define TZDRAM_SIZE		0x01300000
- +
- +#define CFG_TEE_CORE_NB_CORE	1
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0005-plat-ti-Add-AM572x-EVM-platform-flavor.patch b/meta-arago-distro/recipes-security/optee/optee-os/0005-plat-ti-Add-AM57xx-EVM-platform-flavor.patch
-similarity index 69%
-rename from meta-arago-distro/recipes-security/optee/optee-os/optee2-0005-plat-ti-Add-AM572x-EVM-platform-flavor.patch
-rename to meta-arago-distro/recipes-security/optee/optee-os/0005-plat-ti-Add-AM57xx-EVM-platform-flavor.patch
-index 878a5d7..dffd6c1 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os/optee2-0005-plat-ti-Add-AM572x-EVM-platform-flavor.patch
-+++ b/meta-arago-distro/recipes-security/optee/optee-os/0005-plat-ti-Add-AM57xx-EVM-platform-flavor.patch
-@@ -1,10 +1,10 @@
--From 2ec4bfae82ff054847c2541f23e89d3c0033eef1 Mon Sep 17 00:00:00 2001
-+From c66ebf13c8756bd770b0977fe7c52a693bf706a1 Mon Sep 17 00:00:00 2001
- From: "Andrew F. Davis" <afd@ti.com>
- Date: Fri, 9 Sep 2016 10:00:57 -0500
--Subject: [PATCH 5/5] plat-ti: Add AM572x EVM platform flavor
-+Subject: [PATCH 5/5] plat-ti: Add AM57xx EVM platform flavor
- 
--The AM572x EVM is based on the DRA7x EVM exept that is has more memory
--and uses a different UART port. Add this EVM here.
-+The AM57xx EVM flavor is based on the DRA7x EVM exept that is has more
-+memory and uses a different UART port. Add this EVM here.
- 
- Signed-off-by: Andrew F. Davis <afd@ti.com>
- ---
-@@ -12,24 +12,24 @@ Signed-off-by: Andrew F. Davis <afd@ti.com>
-  1 file changed, 23 insertions(+)
- 
- diff --git a/core/arch/arm/plat-ti/platform_config.h b/core/arch/arm/plat-ti/platform_config.h
--index ae6ff41..9ae4232 100644
-+index 3c4f6d5..4a57466 100644
- --- a/core/arch/arm/plat-ti/platform_config.h
- +++ b/core/arch/arm/plat-ti/platform_config.h
- @@ -74,6 +74,29 @@
-  #define GIC_BASE            0x48211000
-  #define SECRAM_BASE         0x40200000
-  
--+#elif defined(PLATFORM_FLAVOR_am572x_evm)
-++#elif defined(PLATFORM_FLAVOR_am57xx_evm)
- +
--+#define DRAM0_BASE		0xfeb00000
-++#define DRAM0_BASE		0xfe900000
- +#define DRAM0_SIZE		0x01500000
- +
- +#ifdef CFG_WITH_PAGER
- +#error Pager not supported on this platform
- +#endif /*CFG_WITH_PAGER*/
- +
--+/* Location of protected DDR on the AM572x EVM */
--+#define TZDRAM_BASE		0xfeb00000
-++/* Location of protected DDR on the AM57xx EVM */
-++#define TZDRAM_BASE		0xfe900000
- +#define TZDRAM_SIZE		0x01300000
- +
- +#define CFG_TEE_CORE_NB_CORE	2
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index c52d4bf..c44eaa0 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -1,6 +1,6 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--PR_append = ".arago0"
-+PR_append = ".arago1"
- 
- is_armv7 = "1"
- 
-@@ -14,11 +14,11 @@ EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
- "
- 
- SRC_URI += " \
--    file://optee2-0001-plat-ti-Fixed-issues-with-MMU-mapping.patch \
--    file://optee2-0002-monitor-update-to-support-platform-services.patch \
--    file://optee2-0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch \
--    file://optee2-0004-plat-ti-Add-DRA72x-platform-flavor.patch \
--    file://optee2-0005-plat-ti-Add-AM572x-EVM-platform-flavor.patch \
-+    file://0001-plat-ti-Fixed-issues-with-MMU-mapping.patch \
-+    file://0002-monitor-update-to-support-platform-services.patch \
-+    file://0003-plat-ti-Move-load-address-to-the-end-of-DRAM-and-inc.patch \
-+    file://0004-plat-ti-Add-DRA72x-platform-flavor.patch \
-+    file://0005-plat-ti-Add-AM57xx-EVM-platform-flavor.patch \
- "
- 
- do_compile() {
-@@ -29,7 +29,8 @@ do_compile() {
-         oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=$flavor
-         ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
-             ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee.bin tee.bin.signed; \
--            mv tee.bin.signed $flavor.optee; \
-+            normfl=`echo $flavor | tr "_" "-"`
-+            mv tee.bin.signed $normfl.optee; \
-         )
-     done
- }
--- 
-2.7.4
+<h2>Status for 09/23/16</h2>
+
+<h2>BUILD_ID: build-2016-09-23_15-01-57</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="dra7xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_548_1430236188.1474658651013--
