@@ -1,30 +1,28 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id B119252987
+Return-Path: <poojaprajod@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id DBCE652987
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Sep 2016 20:38:02 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C6A5820928;
-	Tue, 27 Sep 2016 20:38:02 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id gMsiNF9anDLA; Tue, 27 Sep 2016 20:38:02 +0000 (UTC)
-Received: from gandalf.denix.org (pool-100-15-110-130.washdc.fios.verizon.net
-	[100.15.110.130])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A138C202B9;
-	Tue, 27 Sep 2016 20:38:01 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id 48FD216214B;
-	Tue, 27 Sep 2016 16:38:01 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 27 Sep 2016 16:38:00 -0400
-Message-Id: <1475008680-24729-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] kernel-fitimage, arago.conf: package OPTEE OS image files into FIT
+	Wed, 28 Sep 2016 10:55:19 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u8SAtJKR007166
+	for <meta-arago@arago-project.org>; Wed, 28 Sep 2016 05:55:19 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u8SAtIYU001434
+	for <meta-arago@arago-project.org>; Wed, 28 Sep 2016 05:55:18 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 28 Sep 2016 05:55:17 -0500
+Received: from uda0132412.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u8SAtGDO000667;	Wed, 28 Sep 2016 05:55:17 -0500
+From: Pooja Prajod <a0132412@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 28 Sep 2016 16:25:13 +0530
+Message-ID: <1475060113-11769-1-git-send-email-a0132412@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Cc: Pooja Prajod <a0132412@ti.com>
+Subject: gst-plugins-ti: SRCREV updates for ducati and vpe plugins
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,310 +35,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Sep 2016 20:38:03 -0000
+X-List-Received-Date: Wed, 28 Sep 2016 10:55:20 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Pooja Prajod <a0132412@ti.com>
 ---
- meta-arago-distro/classes/kernel-fitimage.bbclass | 193 +++++++++++++++++++---
- meta-arago-distro/conf/distro/arago.conf          |   4 +
- 2 files changed, 171 insertions(+), 26 deletions(-)
+ .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb                 | 4 ++--
+ .../recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
-index a294fa0..23b162b 100644
---- a/meta-arago-distro/classes/kernel-fitimage.bbclass
-+++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
-@@ -2,6 +2,8 @@ inherit kernel-uboot uboot-sign
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+index a5d0e80..0f33e7c 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
  
- FITIMAGE_HASH_ALGO ?= "sha1"
- FITIMAGE_DTB_BY_NAME ?= "0"
-+FITIMAGE_TEE_BY_NAME ?= "0"
-+FITIMAGE_CONF_BY_NAME ?= "0"
+ require gstreamer1.0-plugins-ti.inc
  
- XZ_COMPRESSION_LEVEL ?= "-e -6"
- XZ_INTEGRITY_CHECK ?= "crc32"
-@@ -36,6 +38,9 @@ python __anonymous () {
-         if d.getVar('UBOOT_SIGN_ENABLE', True):
-             uboot_pn = d.getVar('PREFERRED_PROVIDER_u-boot', True) or 'u-boot'
-             d.appendVarFlag('do_assemble_fitimage', 'depends', ' %s:do_deploy' % uboot_pn)
-+
-+        if d.getVar('FITIMAGE_OPTEE', True):
-+            d.appendVarFlag('do_assemble_fitimage', 'depends', ' optee-os:do_deploy')
- }
+-PR = "${INC_PR}.20"
+-SRCREV = "7ce9b730de98ceb9d3b63a5977b2e470fab04efb"
++PR = "${INC_PR}.21"
++SRCREV = "90a8e90f97fff93bd63cd168cfe36a9b69f123d9"
  
- # Options for the device tree compiler passed to mkimage '-D' feature:
-@@ -89,7 +94,7 @@ EOF
- 	;;
- 	sectend)
- 		cat << EOF >> ${1}
--	};
-+        };
- EOF
- 	;;
- 	fitend)
-@@ -171,6 +176,36 @@ EOF
- }
+ BRANCH ?= "master"
  
- #
-+# Emit the fitImage ITS TEE section
-+#
-+# $1 ... .its filename
-+# $2 ... Image counter/name
-+# $3 ... Path to TEE image
-+fitimage_emit_section_tee() {
-+
-+	tee_csum=${FITIMAGE_HASH_ALGO}
-+
-+	cat << EOF >> ${1}
-+                ${2} {
-+                        description = "OPTEE OS Image";
-+                        data = /incbin/("${3}");
-+                        type = "tee";
-+                        arch = "${UBOOT_ARCH}";
-+                        compression = "none";
-+EOF
-+	if test -n "${FITIMAGE_HASH_ALGO}"; then
-+		cat << EOF >> ${1}
-+                        hash@1 {
-+                                algo = "${tee_csum}";
-+                        };
-+EOF
-+	fi
-+	cat << EOF >> ${1}
-+                };
-+EOF
-+}
-+
-+#
- # Emit the fitImage ITS setup section
- #
- # $1 ... .its filename
-@@ -262,7 +297,11 @@ fitimage_emit_section_config() {
- 	fi
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+index 4e4b82c..bf63153 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
  
- 	# Test if we have any DTBs at all
--	conf_desc="Linux kernel"
-+	if test -n "${FITIMAGE_TEE}"; then
-+		conf_desc="Linux kernel, OPTEE OS Image"
-+	else
-+		conf_desc="Linux kernel"
-+	fi
- 	kernel_line="kernel = \"kernel@${2}\";"
- 	fdt_line=""
- 	ramdisk_line=""
-@@ -282,54 +321,131 @@ fitimage_emit_section_config() {
- 		setup_line="setup = \"setup@${5}\";"
- 	fi
+ require gstreamer1.0-plugins-ti.inc
  
--	cat << EOF >> ${1}
--                default = "conf@1";
--                conf@1 {
-+	if test -n "${FITIMAGE_TEE}"; then
-+		teecount=1
-+		for TEE in ${FITIMAGE_TEE}; do
-+			DTB=`basename ${TEE} | sed 's,\.optee$,.dtb,g'`
-+
-+			if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
-+				conf_name="${DTB}"
-+			else
-+				conf_name="conf@${teecount}"
-+			fi
-+
-+			if [ "x${teecount}" = "x1" ]; then
-+				cat << EOF >> ${1}
-+                default = "${conf_name}";
-+EOF
-+			fi
-+
-+			cat << EOF >> ${1}
-+                ${conf_name} {
-                         description = "${conf_desc}";
--			${kernel_line}
--			${fdt_line}
--			${ramdisk_line}
--			${setup_line}
-+                        ${kernel_line}
-+                        fdt = "${DTB}";
-+                        ${ramdisk_line}
-+                        ${setup_line}
-+                        loadables = "${TEE}";
- EOF
+-PR = "${INC_PR}.10"
+-SRCREV = "f1d4d67fa7a76f97a49114b1543ee72ecb0192f0"
++PR = "${INC_PR}.11"
++SRCREV = "a8de8d940393131c81aba3ec32e37bf92b72282d"
  
--	if test -n "${FITIMAGE_HASH_ALGO}"; then
--		cat << EOF >> ${1}
-+			if test -n "${FITIMAGE_HASH_ALGO}"; then
-+				cat << EOF >> ${1}
-                         hash@1 {
-                                 algo = "${conf_csum}";
-                         };
- EOF
--	fi
-+			fi
- 
--	if [ ! -z "${conf_sign_keyname}" ] ; then
-+			if [ ! -z "${conf_sign_keyname}" ] ; then
- 
--		sign_line="sign-images = \"kernel\""
-+				sign_line="sign-images = \"kernel\""
- 
--		if [ -n "${3}" ]; then
--			sign_line="${sign_line}, \"fdt\""
--		fi
-+				if [ -n "${3}" ]; then
-+					sign_line="${sign_line}, \"fdt\""
-+				fi
-+
-+				if [ -n "${4}" ]; then
-+					sign_line="${sign_line}, \"ramdisk\""
-+				fi
-+
-+				if [ -n "${5}" ]; then
-+					sign_line="${sign_line}, \"setup\""
-+				fi
-+
-+				sign_line="${sign_line};"
-+
-+				cat << EOF >> ${1}
-+                        signature@1 {
-+                                algo = "${conf_csum},rsa2048";
-+                                key-name-hint = "${conf_sign_keyname}";
-+                                ${sign_line}
-+                        };
-+EOF
-+			fi
-+
-+			cat << EOF >> ${1}
-+                };
-+EOF
-+
-+			teecount=`expr ${teecount} + 1`
-+		done
-+	else
- 
--		if [ -n "${4}" ]; then
--			sign_line="${sign_line}, \"ramdisk\""
-+		if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
-+			conf_name="${3}"
-+		else
-+			conf_name="conf@$1"
- 		fi
- 
--		if [ -n "${5}" ]; then
--			sign_line="${sign_line}, \"setup\""
-+		cat << EOF >> ${1}
-+                default = "${conf_name}";
-+                ${conf_name} {
-+                        description = "${conf_desc}";
-+                        ${kernel_line}
-+                        ${fdt_line}
-+                        ${ramdisk_line}
-+                        ${setup_line}
-+EOF
-+
-+		if test -n "${FITIMAGE_HASH_ALGO}"; then
-+			cat << EOF >> ${1}
-+                        hash@1 {
-+                                algo = "${conf_csum}";
-+                        };
-+EOF
- 		fi
- 
--		sign_line="${sign_line};"
-+		if [ ! -z "${conf_sign_keyname}" ] ; then
- 
--		cat << EOF >> ${1}
-+			sign_line="sign-images = \"kernel\""
-+
-+			if [ -n "${3}" ]; then
-+				sign_line="${sign_line}, \"fdt\""
-+			fi
-+
-+			if [ -n "${4}" ]; then
-+				sign_line="${sign_line}, \"ramdisk\""
-+			fi
-+
-+			if [ -n "${5}" ]; then
-+				sign_line="${sign_line}, \"setup\""
-+			fi
-+
-+			sign_line="${sign_line};"
-+
-+			cat << EOF >> ${1}
-                         signature@1 {
-                                 algo = "${conf_csum},rsa2048";
-                                 key-name-hint = "${conf_sign_keyname}";
--				${sign_line}
-+                                ${sign_line}
-                         };
- EOF
--	fi
-+		fi
- 
--	cat << EOF >> ${1}
-+		cat << EOF >> ${1}
-                 };
- EOF
-+	fi
- }
- 
- #
-@@ -384,6 +500,31 @@ fitimage_assemble() {
- 	fi
- 
- 	#
-+	# Step 2a: Prepare OP/TEE image section
-+	#
-+	if test -n "${FITIMAGE_TEE}"; then
-+		mkdir -p ${B}/usr
-+		teecount=1
-+		for TEE in ${FITIMAGE_TEE}; do
-+			rm -f ${B}/usr/${TEE}
-+			if [ -e "${DEPLOY_DIR_IMAGE}/${TEE}" ]; then
-+				cp ${DEPLOY_DIR_IMAGE}/${TEE} ${B}/usr/.
-+			fi
-+			TEE_PATH="usr/${TEE}"
-+			fitimage_ti_secure ${TEE_PATH} ${TEE_PATH}.sec
-+			if [ "x${FITIMAGE_TEE_BY_NAME}" = "x1" ] ; then
-+				fitimage_emit_section_tee ${1} ${TEE} ${TEE_PATH}.sec
-+			else
-+				fitimage_emit_section_tee ${1} "tee@${teecount}" ${TEE_PATH}.sec
-+			fi
-+			if [ "x${teecount}" = "x1" ]; then
-+				teeref=${TEE}
-+			fi
-+			teecount=`expr ${teecount} + 1`
-+		done
-+	fi
-+
-+	#
- 	# Step 3: Prepare a setup section. (For x86)
- 	#
- 	if test -e arch/${ARCH}/boot/setup.bin ; then
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index db6f119..c44857e 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -26,14 +26,18 @@ IMAGE_FSTYPES += "tar.xz.md5"
- KERNEL_CLASSES = "kernel-fitimage"
- FITIMAGE_HASH_ALGO = ""
- FITIMAGE_DTB_BY_NAME = "1"
-+FITIMAGE_TEE_BY_NAME = "1"
-+FITIMAGE_CONF_BY_NAME = "1"
- 
- KERNEL_IMAGETYPES_dra7xx-hs-evm = "zImage fitImage"
- INITRAMFS_IMAGE_dra7xx-hs-evm = "arago-base-tisdk-image"
- INITRAMFS_FSTYPES_dra7xx-hs-evm = "cpio.xz"
-+FITIMAGE_TEE_dra7xx-hs-evm = "dra7-evm.optee dra72-evm-revc.optee"
- 
- KERNEL_IMAGETYPES_am57xx-hs-evm = "zImage fitImage"
- INITRAMFS_IMAGE_am57xx-hs-evm = "arago-base-tisdk-image"
- INITRAMFS_FSTYPES_am57xx-hs-evm = "cpio.xz"
-+FITIMAGE_TEE_am57xx-hs-evm = "am57xx-evm.optee"
- 
- KERNEL_IMAGETYPES_am437x-hs-evm = "zImage fitImage"
- INITRAMFS_IMAGE_am437x-hs-evm = "arago-base-tisdk-image"
+ SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git \
+            file://ti-video.conf \
 -- 
-2.7.4
+1.9.1
 
 
