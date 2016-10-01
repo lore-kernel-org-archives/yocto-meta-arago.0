@@ -1,49 +1,29 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-yw0-f193.google.com (mail-yw0-f193.google.com
-	[209.85.161.193])
-	by arago-project.org (Postfix) with ESMTPS id B887F52A63
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 169D452A1A
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Sep 2016 22:39:30 +0000 (UTC)
-Received: by mail-yw0-f193.google.com with SMTP id t204so4377917ywt.2
-	for <meta-arago@arago-project.org>;
-	Fri, 30 Sep 2016 15:39:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=09zDTi2qVugUAVahXsI+Pix15gF5sodXwpUnYMARCjY=;
-	b=JsLNBNWvdRgThnV9VkT37NZZqNc/b1mS06/31UL/vKzNyBqWc2qGZQegYEIa4DZ7Oy
-	t/BSnkCLs9gng1qjgmwEcCdkuzi886EuXCeqrUGXglIC50ytDTm2aMJqyCIzO3sMMFY0
-	HbN+D+UWgLOIdEcLJ4WWPYeeEVaew/oDRjyTnPcpRJF33F4ORpcBvN5ADMm9/sm0KOe1
-	oZpUZI3l5hOFRL2cRaNhPy+3FLGZ9OQsclhB1AoL5tWlZJi9jBBXu3ZBrwaAykSzlvPN
-	wFUcI6kT3x2i7ApCu7qkreIYr39SPG5NWFrAIbGtTNdvSVypk7/q3S4pnzF+5HEeedMD
-	Losw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=09zDTi2qVugUAVahXsI+Pix15gF5sodXwpUnYMARCjY=;
-	b=JLiKyNkEumGWk9aaSLaekBjE62stn6iFWTjgGMKf1MuYYDueBVEN2xfZTnmqZ7/khL
-	Rre5cHanFHor2Kw+213qIZgiM7v1dBxCp3+5PCGUravQhMQJ3j33dc7Gilu69jv6snwt
-	Jv2A9HzXzQUiNsz9eb0Q5fdHvT7RQb6KJtTR6xaPJObwBE95O7u89b9DCPDRgup90KtQ
-	ZFE6KbbhYvElPYtr4TWSyTY9uGubrP2LGkjs+u0OTzmoHotE4QQgxq27EUkY06GTL5q9
-	A4G1K1w4AwmvQCrnm37/w/IN6HNoh4MrLVSmDRBtnjF6mF09aonhl0tNz2zWBm1otjwq
-	bhMQ==
-X-Gm-Message-State: AA6/9RmAVlSpusHKm7/roA8RgkxlCFd5c+7zp7lgSJNQ7Qd9II+qGNwneyeCrAe51MVeWp2v+0WOQqjVqCPU2g==
-X-Received: by 10.129.179.197 with SMTP id r188mr6096482ywh.88.1475275170552; 
-	Fri, 30 Sep 2016 15:39:30 -0700 (PDT)
+	Sat,  1 Oct 2016 19:24:13 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u91JODVJ004347
+	for <meta-arago@arago-project.org>; Sat, 1 Oct 2016 14:24:13 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u91JOBCK006745
+	for <meta-arago@arago-project.org>; Sat, 1 Oct 2016 14:24:12 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Sat, 1 Oct 2016 14:24:10 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u91JOAtF009937	for <meta-arago@arago-project.org>;
+	Sat, 1 Oct 2016 14:24:10 -0500
+Date: Sat, 1 Oct 2016 15:24:09 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <401775631.565.1475349849920.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Received: by 10.83.6.14 with HTTP; Fri, 30 Sep 2016 15:39:10 -0700 (PDT)
-In-Reply-To: <CADySD0H46Tixf7rDweykCTmH36+zYoKyOivfouT1SshWpYB_Vg@mail.gmail.com>
-References: <CADySD0GqKG6vC=uAzRgsH4wR=UKGEpMH62pk+90GpCEG-9TqdQ@mail.gmail.com>
-	<20160929202451.GN7475@edge>
-	<CADySD0HngXjuunr5YfCnptqgMHhQ=CiksH47OzW5OjjRFJ1Ejg@mail.gmail.com>
-	<20160930164713.GT7475@edge>
-	<CADySD0H46Tixf7rDweykCTmH36+zYoKyOivfouT1SshWpYB_Vg@mail.gmail.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sat, 1 Oct 2016 11:39:10 +1300
-Message-ID: <CADySD0F=F9-jO8dqxJPJJyncQYd-JSY=+MA43Riq8kvmohfPww@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: linux-libc-headers and linux-ti-staging fetch errors
+X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-10-01_15-00-47
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,130 +36,176 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Sep 2016 22:39:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 01 Oct 2016 19:24:18 -0000
+Content-Type: multipart/mixed; boundary="----=_Part_564_66465953.1475349849912"
 
-If I try using arago-daisy-config, I am able to fetch linux libc and
-linux ti staging.
+------=_Part_564_66465953.1475349849912
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-It looks like there is some issue with arago-krogoth-config for a fresh setup.
-Don't know if anyone has tried it..
+<html>
+<head>
+<title>
+Status for 10/01/16
+</title>
+</head>
+<body>
 
-On Sat, Oct 1, 2016 at 10:37 AM, Ankur Tyagi <ankur.tyagi85@gmail.com> wrote:
-> I tried again after removing it but still having fetch errors..
->
-> On Sat, Oct 1, 2016 at 5:47 AM, Denys Dmytriyenko <denys@ti.com> wrote:
->> Maybe your download directory got corrupted? Try removing this:
->>
->> /home/ankur/arago/oe-layersetup/downloads/git2/git.ti.com.ti-linux-kernel.ti-linux-kernel.git
->>
->> --
->> Denys
->>
->>
->> On Fri, Sep 30, 2016 at 11:12:40PM +1300, Ankur Tyagi wrote:
->>> Hi Denys,
->>>
->>> I am able to clone ti-linux-kernel.git (it took loooong time) which
->>> means git.ti.com is not blocked
->>>
->>> ankur@at:~/arago$ git clone git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git
->>> Cloning into 'ti-linux-kernel'...
->>> remote: Counting objects: 6374745, done.
->>> remote: Compressing objects: 100% (909332/909332), done.
->>> remote: Total 6374745 (delta 5431716), reused 6369969 (delta 5427279)
->>> Receiving objects: 100% (6374745/6374745), 1.22 GiB | 185.00 KiB/s, done.
->>> Resolving deltas: 100% (5431716/5431716), done.
->>> Checking connectivity... done.
->>> Checking out files: 100% (52223/52223), done.
->>>
->>> But I still get fetch errors for linux-libc-headers and linux-ti-staging
->>>
->>> regards
->>> Ankur
->>>
->>> On Fri, Sep 30, 2016 at 9:24 AM, Denys Dmytriyenko <denys@ti.com> wrote:
->>> > Can you access this repository:
->>> > git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git
->>> >
->>> > Try to see if you have git.ti.com blocked or require any proxy on your side.
->>> >
->>> > --
->>> > Denys
->>> >
->>> >
->>> > On Fri, Sep 30, 2016 at 08:38:49AM +1300, Ankur Tyagi wrote:
->>> >> Hi,
->>> >>
->>> >> I am getting fetch errors for linux-libc-headers and linux-ti-staging.
->>> >> I have tried removing build directory but every time I get this error:
->>> >>
->>> >> ERROR: linux-libc-headers-4.4-r0.arago0 do_fetch: Fetcher failure:
->>> >> Fetch command failed with exit code 128, output:
->>> >> Cloning into bare repository
->>> >> '/home/ankur/arago/oe-layersetup/downloads/git2/git.ti.com.ti-linux-kernel.ti-linux-kernel.git'...
->>> >> fatal: read error: Connection reset by peer
->>> >> fatal: early EOF
->>> >> fatal: index-pack failed
->>> >>
->>> >> ERROR: linux-libc-headers-4.4-r0.arago0 do_fetch: Function failed:
->>> >> Fetcher failure for URL:
->>> >> 'git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=ti-lsk-linux-4.4.y'.
->>> >> Unable to fetch URL from any source.
->>> >> ERROR: Logfile of failure stored in:
->>> >> /home/ankur/arago/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/armv7ahf-neon-linux-gnueabi/linux-libc-headers/4.4-r0.arago0/temp/log.do_fetch.3981
->>> >> ERROR: Task 787
->>> >> (/home/ankur/arago/oe-layersetup/sources/oe-core/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_4.4.bb,
->>> >> do_fetch) failed with exit code '1'
->>> >>
->>> >> ERROR: linux-ti-staging-4.4.21+gitAUTOINC+d42bcf7359-r22d.arago5
->>> >> do_fetch: Fetcher failure: Fetch command failed with exit code 128,
->>> >> output:
->>> >> Cloning into bare repository
->>> >> '/home/ankur/arago/oe-layersetup/downloads/git2/git.ti.com.ti-linux-kernel.ti-linux-kernel.git'...
->>> >> fatal: read error: Connection reset by peer
->>> >> fatal: early EOF
->>> >> fatal: index-pack failed
->>> >>
->>> >> ERROR: linux-ti-staging-4.4.21+gitAUTOINC+d42bcf7359-r22d.arago5
->>> >> do_fetch: Function failed: Fetcher failure for URL:
->>> >> 'git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=ti-lsk-linux-4.4.y'.
->>> >> Unable to fetch URL from any source.
->>> >> ERROR: Logfile of failure stored in:
->>> >> /home/ankur/arago/oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/beaglebone-linux-gnueabi/linux-ti-staging/4.4.21+gitAUTOINC+d42bcf7359-r22d.arago5/temp/log.do_fetch.4436
->>> >> ERROR: Task 52 (/home/ankur/arago/oe-layersetup/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_4.4.bb,
->>> >> do_fetch) failed with exit code '1'
->>> >>
->>> >>
->>> >> Following is my build configuration
->>> >>
->>> >> BB_VERSION        = "1.30.0"
->>> >> BUILD_SYS         = "x86_64-linux"
->>> >> NATIVELSBSTRING   = "Ubuntu-16.04"
->>> >> TARGET_SYS        = "arm-linux-gnueabi"
->>> >> MACHINE           = "beaglebone"
->>> >> DISTRO            = "arago"
->>> >> DISTRO_VERSION    = "2016.08"
->>> >> TUNE_FEATURES     = "arm armv7a vfp thumb neon       callconvention-hard"
->>> >> TARGET_FPU        = "hard"
->>> >> meta-arago-distro
->>> >> meta-arago-extras = "krogoth:8cfe40ad0264888e81f0e960a11c89eccaba4a8b"
->>> >> meta-qt5          = "HEAD:48b4084675a15fe3fd10b58f54728dfaa2bd6c72"
->>> >> meta-networking
->>> >> meta-ruby
->>> >> meta-python
->>> >> meta-oe           = "krogoth:895b25b387cae428c38990f4d2747603ee9dc92d"
->>> >> meta-ti           = "krogoth:2bbab55c0aa8bb2279d7f3cf09d99156f60befc1"
->>> >> meta-linaro-toolchain
->>> >> meta-optee        = "krogoth:85faf6c6824597e7fd9e2d35fc9d8da2e9f90bc7"
->>> >> meta              = "krogoth:687d3b8d54aa3190bbbbc94ae2f91303fccf7c8d"
->>> >>
->>> >> Is there anything that I can do ?
->>> >>
->>> >> regards
->>> >> Ankur
->>> >> _______________________________________________
->>> >> meta-arago mailing list
->>> >> meta-arago@arago-project.org
->>> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+<h2>Status for 10/01/16</h2>
 
+<h2>BUILD_ID: build-2016-10-01_15-01-57</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="dra7xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+</p>
+
+</body>
+</html>
+
+
+------=_Part_564_66465953.1475349849912--
