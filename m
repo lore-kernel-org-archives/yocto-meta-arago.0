@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id B3DC75298F
+	by arago-project.org (Postfix) with ESMTPS id B5161529A6
 	for <meta-arago@arago-project.org>;
 	Mon,  3 Oct 2016 19:48:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7B9A320914;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9438320058;
 	Mon,  3 Oct 2016 19:48:40 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id Uw8iq9aKXKo1; Mon,  3 Oct 2016 19:48:40 +0000 (UTC)
+	with ESMTP id Ds4tvXFagLN5; Mon,  3 Oct 2016 19:48:40 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-110-130.washdc.fios.verizon.net
 	[100.15.110.130])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5803320058;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 653BE208EA;
 	Mon,  3 Oct 2016 19:48:39 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id E1CF516212C;
+	by gandalf.denix.org (Postfix) with ESMTP id EED42162157;
 	Mon,  3 Oct 2016 15:48:38 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon,  3 Oct 2016 15:48:36 -0400
-Message-Id: <1475524117-18960-1-git-send-email-denis@denix.org>
+Date: Mon,  3 Oct 2016 15:48:37 -0400
+Message-Id: <1475524117-18960-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [PATCH 1/2] Revert "kernel-fitimage: move ramdisk section right after kernel to fix u-boot loading"
+In-Reply-To: <1475524117-18960-1-git-send-email-denis@denix.org>
+References: <1475524117-18960-1-git-send-email-denis@denix.org>
+Subject: [PATCH 2/2] kernel-fitimage: expand FDT-to-TEE mapping, simplify code
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,90 +43,163 @@ X-List-Received-Date: Mon, 03 Oct 2016 19:48:41 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-This reverts commit 030b6607ee4ef781f1150908e6d1f05fea29dc91.
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/kernel-fitimage.bbclass | 32 +++++++++++------------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+ meta-arago-distro/classes/kernel-fitimage.bbclass | 111 +++++++---------------
+ 1 file changed, 33 insertions(+), 78 deletions(-)
 
 diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
-index d9b9ff8..23b162b 100644
+index 23b162b..773c254 100644
 --- a/meta-arago-distro/classes/kernel-fitimage.bbclass
 +++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
-@@ -473,18 +473,7 @@ fitimage_assemble() {
- 	fitimage_emit_section_kernel ${1} "${kernelcount}" linux.bin.sec "${linux_comp}"
+@@ -296,16 +296,12 @@ fitimage_emit_section_config() {
+ 		conf_sign_keyname="${UBOOT_SIGN_KEYNAME}"
+ 	fi
  
- 	#
--	# Step 2: Prepare a ramdisk section.
--	#
--	if [ "x${ramdiskcount}" = "x1" ] ; then
--		copy_initramfs
--		RAMDISK_FILE="usr/${INITRAMFS_IMAGE}-${MACHINE}.cpio"
--		xz -f -k -c ${XZ_COMPRESSION_LEVEL} ${XZ_THREADS} --check=${XZ_INTEGRITY_CHECK} ${RAMDISK_FILE} > ${RAMDISK_FILE}.xz
--		fitimage_ti_secure ${RAMDISK_FILE}.xz ${RAMDISK_FILE}.xz.sec
--		fitimage_emit_section_ramdisk ${1} "${ramdiskcount}" ${RAMDISK_FILE}.xz.sec
+-	# Test if we have any DTBs at all
+-	if test -n "${FITIMAGE_TEE}"; then
+-		conf_desc="Linux kernel, OPTEE OS Image"
+-	else
+-		conf_desc="Linux kernel"
 -	fi
--
--	#
--	# Step 3: Prepare a DTB image section
-+	# Step 2: Prepare a DTB image section
- 	#
- 	if test -n "${KERNEL_DEVICETREE}"; then
- 		dtbcount=1
-@@ -511,7 +500,7 @@ fitimage_assemble() {
++	conf_desc="Linux kernel"
+ 	kernel_line="kernel = \"kernel@${2}\";"
+ 	fdt_line=""
+ 	ramdisk_line=""
+ 
++	# Test if we have any DTBs at all
+ 	if [ -n "${3}" ]; then
+ 		conf_desc="${conf_desc}, FDT blob"
+ 		fdt_line="fdt = \"${3}\";"
+@@ -321,31 +317,47 @@ fitimage_emit_section_config() {
+ 		setup_line="setup = \"setup@${5}\";"
  	fi
  
- 	#
--	# Step 4: Prepare OP/TEE image section
-+	# Step 2a: Prepare OP/TEE image section
- 	#
- 	if test -n "${FITIMAGE_TEE}"; then
- 		mkdir -p ${B}/usr
-@@ -536,13 +525,24 @@ fitimage_assemble() {
- 	fi
+-	if test -n "${FITIMAGE_TEE}"; then
+-		teecount=1
+-		for TEE in ${FITIMAGE_TEE}; do
+-			DTB=`basename ${TEE} | sed 's,\.optee$,.dtb,g'`
++	dtbcount=1
++	for DTB in ${KERNEL_DEVICETREE}; do
  
- 	#
--	# Step 5: Prepare a setup section. (For x86)
-+	# Step 3: Prepare a setup section. (For x86)
- 	#
- 	if test -e arch/${ARCH}/boot/setup.bin ; then
- 		setupcount=1
- 		fitimage_emit_section_setup ${1} "${setupcount}" arch/${ARCH}/boot/setup.bin
- 	fi
+-			if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
+-				conf_name="${DTB}"
+-			else
+-				conf_name="conf@${teecount}"
+-			fi
++		if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
++			conf_name="${DTB}"
++		else
++			conf_name="conf@${dtbcount}"
++		fi
  
-+	#
-+	# Step 4: Prepare a ramdisk section.
-+	#
-+	if [ "x${ramdiskcount}" = "x1" ] ; then
-+		copy_initramfs
-+		RAMDISK_FILE="usr/${INITRAMFS_IMAGE}-${MACHINE}.cpio"
-+		xz -f -k -c ${XZ_COMPRESSION_LEVEL} ${XZ_THREADS} --check=${XZ_INTEGRITY_CHECK} ${RAMDISK_FILE} > ${RAMDISK_FILE}.xz
-+		fitimage_ti_secure ${RAMDISK_FILE}.xz ${RAMDISK_FILE}.xz.sec
-+		fitimage_emit_section_ramdisk ${1} "${ramdiskcount}" ${RAMDISK_FILE}.xz.sec
-+	fi
+-			if [ "x${teecount}" = "x1" ]; then
+-				cat << EOF >> ${1}
++		if [ "x${dtbcount}" = "x1" ]; then
++			cat << EOF >> ${1}
+                 default = "${conf_name}";
+ EOF
+-			fi
++		fi
 +
- 	fitimage_emit_section_maint ${1} sectend
++		if test -n "${FITIMAGE_TEE}"; then
++			teecount=1
++			for TEE in ${FITIMAGE_TEE}; do
++				teename=`basename ${TEE} ".optee"`
++				loadables_line=""
++				final_conf_desc="${conf_desc}"
++				if [ "${DTB#$teename}" != "${DTB}" ]; then
++					loadables_line="loadables = \"${TEE}\";"
++					final_conf_desc="${conf_desc}, OPTEE OS Image"
++					break
++				fi
++				teecount=`expr ${teecount} + 1`
++			done
++		else
++			loadables_line=""
++			final_conf_desc="${conf_desc}"
++		fi
  
- 	# Force the first Kernel and DTB in the default config
-@@ -552,7 +552,7 @@ fitimage_assemble() {
- 	fi
+ 			cat << EOF >> ${1}
+                 ${conf_name} {
+-                        description = "${conf_desc}";
++                        description = "${final_conf_desc}";
+                         ${kernel_line}
+                         fdt = "${DTB}";
+                         ${ramdisk_line}
+                         ${setup_line}
+-                        loadables = "${TEE}";
++                        ${loadables_line}
+ EOF
  
- 	#
--	# Step 6: Prepare a configurations section
-+	# Step 5: Prepare a configurations section
- 	#
- 	fitimage_emit_section_maint ${1} confstart
+ 			if test -n "${FITIMAGE_HASH_ALGO}"; then
+@@ -387,65 +399,8 @@ EOF
+                 };
+ EOF
  
-@@ -567,7 +567,7 @@ fitimage_assemble() {
- 	fitimage_emit_section_maint ${1} fitend
+-			teecount=`expr ${teecount} + 1`
++		dtbcount=`expr ${dtbcount} + 1`
+ 		done
+-	else
+-
+-		if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
+-			conf_name="${3}"
+-		else
+-			conf_name="conf@$1"
+-		fi
+-
+-		cat << EOF >> ${1}
+-                default = "${conf_name}";
+-                ${conf_name} {
+-                        description = "${conf_desc}";
+-                        ${kernel_line}
+-                        ${fdt_line}
+-                        ${ramdisk_line}
+-                        ${setup_line}
+-EOF
+-
+-		if test -n "${FITIMAGE_HASH_ALGO}"; then
+-			cat << EOF >> ${1}
+-                        hash@1 {
+-                                algo = "${conf_csum}";
+-                        };
+-EOF
+-		fi
+-
+-		if [ ! -z "${conf_sign_keyname}" ] ; then
+-
+-			sign_line="sign-images = \"kernel\""
+-
+-			if [ -n "${3}" ]; then
+-				sign_line="${sign_line}, \"fdt\""
+-			fi
+-
+-			if [ -n "${4}" ]; then
+-				sign_line="${sign_line}, \"ramdisk\""
+-			fi
+-
+-			if [ -n "${5}" ]; then
+-				sign_line="${sign_line}, \"setup\""
+-			fi
+-
+-			sign_line="${sign_line};"
+-
+-			cat << EOF >> ${1}
+-                        signature@1 {
+-                                algo = "${conf_csum},rsa2048";
+-                                key-name-hint = "${conf_sign_keyname}";
+-                                ${sign_line}
+-                        };
+-EOF
+-		fi
+-
+-		cat << EOF >> ${1}
+-                };
+-EOF
+-	fi
+ }
  
- 	#
--	# Step 7: Assemble the image
-+	# Step 6: Assemble the image
- 	#
- 	uboot-mkimage \
- 		${@'-D "${UBOOT_MKIMAGE_DTCOPTS}"' if len('${UBOOT_MKIMAGE_DTCOPTS}') else ''} \
+ #
 -- 
 2.7.4
 
