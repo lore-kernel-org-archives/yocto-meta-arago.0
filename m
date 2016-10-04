@@ -1,28 +1,28 @@
 Return-Path: <poojaprajod@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by arago-project.org (Postfix) with ESMTPS id 09B9C52A5B
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by arago-project.org (Postfix) with ESMTPS id 3467C52987
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Oct 2016 11:27:52 +0000 (UTC)
+	Tue,  4 Oct 2016 11:39:33 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u94BRqIZ005773
-	for <meta-arago@arago-project.org>; Tue, 4 Oct 2016 06:27:52 -0500
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u94BRpnI005784
-	for <meta-arago@arago-project.org>; Tue, 4 Oct 2016 06:27:51 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 4 Oct 2016 06:27:51 -0500
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id u94BdW4q008239
+	for <meta-arago@arago-project.org>; Tue, 4 Oct 2016 06:39:32 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u94BdVro018062
+	for <meta-arago@arago-project.org>; Tue, 4 Oct 2016 06:39:31 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 4 Oct 2016 06:39:31 -0500
 Received: from uda0132412.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	u94BRnMH000670;	Tue, 4 Oct 2016 06:27:50 -0500
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u94BdTMf019307;	Tue, 4 Oct 2016 06:39:30 -0500
 From: Pooja Prajod <a0132412@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 4 Oct 2016 16:57:46 +0530
-Message-ID: <1475580466-4324-1-git-send-email-a0132412@ti.com>
+Date: Tue, 4 Oct 2016 17:09:28 +0530
+Message-ID: <1475581168-4503-1-git-send-email-a0132412@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 Cc: Pooja Prajod <a0132412@ti.com>
-Subject: [V3] omapdrmtest: Update-SRCREV
+Subject: [V2] gstreamer: Update SRCREV for gstreamer-plugins-bad
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,33 +35,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2016 11:27:53 -0000
+X-List-Received-Date: Tue, 04 Oct 2016 11:39:33 -0000
 Content-Type: text/plain
 
-Update recipe to include patches for:
-1. Add signal handler for viddec3test and videnc2test
-2. Fix Segfault issue with viidec3test dual decode
+Update recipe to pick include patch -
+gstkmssink: Store encoder and plane data
 
 Signed-off-by: Pooja Prajod <a0132412@ti.com>
 ---
- meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb | 4 ++--
+ .../gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend                 | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index a625e25..e219170 100644
---- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-@@ -6,8 +6,8 @@ DEPENDS += "libav libdce libdrm libgbm ti-sgx-ddk-um wayland"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+index bfcd750..6dd3117 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+@@ -35,7 +35,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
  
- inherit autotools pkgconfig
+ S = "${WORKDIR}/git"
  
--PR = "r16"
--SRCREV = "c3f20b080571f5f363bfb7e0956b6c56004004f8"
-+PR = "r18"
-+SRCREV = "e4a2932a836c54f4a20b4be9d541d11d3a246a31"
+-SRCREV_omap-a15 = "f0694b5fcec997036ef7df4d382b28e833c8ebfd"
++SRCREV_omap-a15 = "aec06528aca416c7b2c77db5b6dcb24907728ef7"
+ SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
  
- SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git \
- "
+-PR = "r21"
++PR = "r22"
 -- 
 1.9.1
 
