@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id AF7F9529BA
+Return-Path: <denys@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 6E50552991
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Oct 2016 20:48:23 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 60B6A208EA;
-	Tue,  4 Oct 2016 20:48:23 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id pGi4oXyrX4pJ; Tue,  4 Oct 2016 20:48:23 +0000 (UTC)
-Received: from gandalf.denix.org (pool-100-15-110-130.washdc.fios.verizon.net
-	[100.15.110.130])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3B9B52031B;
-	Tue,  4 Oct 2016 20:48:22 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id A1559161A4E;
-	Tue,  4 Oct 2016 16:48:21 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue,  4 Oct 2016 16:48:20 -0400
-Message-Id: <1475614100-17676-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] syslog-ng: overlay config file to avoid syntax error parsing
+	Wed,  5 Oct 2016 18:23:55 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u95INr7H006812
+	for <meta-arago@arago-project.org>; Wed, 5 Oct 2016 13:23:53 -0500
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u95INqe6032652
+	for <meta-arago@arago-project.org>; Wed, 5 Oct 2016 13:23:52 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 5 Oct 2016 13:23:52 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u95INqcb011208;
+	Wed, 5 Oct 2016 13:23:52 -0500
+Date: Wed, 5 Oct 2016 14:23:52 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Pooja Prajod <a0132412@ti.com>
+Message-ID: <20161005182351.GO12745@edge>
+References: <1475580466-4324-1-git-send-email-a0132412@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1475580466-4324-1-git-send-email-a0132412@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [V3] omapdrmtest: Update-SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,188 +37,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Oct 2016 20:48:24 -0000
+X-List-Received-Date: Wed, 05 Oct 2016 18:23:59 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Tue, Oct 04, 2016 at 04:57:46PM +0530, Pooja Prajod wrote:
+> Update recipe to include patches for:
+> 1. Add signal handler for viddec3test and videnc2test
+> 2. Fix Segfault issue with viidec3test dual decode
+> 
+> Signed-off-by: Pooja Prajod <a0132412@ti.com>
+> ---
+>  meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+> index a625e25..e219170 100644
+> --- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+> +++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+> @@ -6,8 +6,8 @@ DEPENDS += "libav libdce libdrm libgbm ti-sgx-ddk-um wayland"
+>  
+>  inherit autotools pkgconfig
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-support/syslog-ng/files/syslog-ng.conf | 155 +++++++++++++++++++++
- .../syslog-ng/syslog-ng_3.6.4.bbappend             |   2 +
- 2 files changed, 157 insertions(+)
- create mode 100644 meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.conf
- create mode 100644 meta-arago-distro/recipes-support/syslog-ng/syslog-ng_3.6.4.bbappend
+This does not apply, because omapdrmtest is currently at revision r15 and 
+commit a30dd9a5fc1ae7cdfb8c17a4685efb7eaf693ddc in meta-arago:
+http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb;h=b0863793c684c12e384f0a9382c3dbad407aa18e;hb=HEAD
 
-diff --git a/meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.conf b/meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.conf
-new file mode 100644
-index 0000000..25124af
---- /dev/null
-+++ b/meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.conf
-@@ -0,0 +1,155 @@
-+@version: 3.5
-+#
-+# Syslog-ng configuration file, compatible with default Debian syslogd
-+# installation. Originally written by anonymous (I can't find his name)
-+# Revised, and rewrited by me (SZALAY Attila <sasa@debian.org>)
-+
-+# First, set some global options.
-+options { chain_hostnames(off); flush_lines(0); use_dns(no); use_fqdn(no);
-+	  owner("root"); group("adm"); perm(0640); stats_freq(0);
-+	  bad_hostname("^gconfd$");
-+};
-+
-+########################
-+# Sources
-+########################
-+# This is the default behavior of sysklogd package
-+# Logs may come from unix stream, but not from another machine.
-+#
-+source s_src { unix-dgram("/dev/log"); internal();
-+       	     file("/proc/kmsg" program_override("kernel"));
-+};
-+
-+# If you wish to get logs from remote machine you should uncomment
-+# this and comment the above source line.
-+#
-+#source s_net { tcp(ip(127.0.0.1) port(1000) authentication(required) encrypt(allow)); };
-+
-+########################
-+# Destinations
-+########################
-+# First some standard logfile
-+#
-+destination d_auth { file("/var/log/auth.log"); };
-+destination d_cron { file("/var/log/cron.log"); };
-+destination d_daemon { file("/var/log/daemon.log"); };
-+destination d_kern { file("/var/log/kern.log"); };
-+destination d_lpr { file("/var/log/lpr.log"); };
-+destination d_mail { file("/var/log/mail.log"); };
-+destination d_syslog { file("/var/log/syslog"); };
-+destination d_user { file("/var/log/user.log"); };
-+destination d_uucp { file("/var/log/uucp.log"); };
-+
-+# This files are the log come from the mail subsystem.
-+#
-+destination d_mailinfo { file("/var/log/mail/mail.info"); };
-+destination d_mailwarn { file("/var/log/mail/mail.warn"); };
-+destination d_mailerr { file("/var/log/mail/mail.err"); };
-+
-+# Logging for INN news system
-+#
-+destination d_newscrit { file("/var/log/news/news.crit"); };
-+destination d_newserr { file("/var/log/news/news.err"); };
-+destination d_newsnotice { file("/var/log/news/news.notice"); };
-+
-+# Some catch-all logfiles.
-+#
-+destination d_debug { file("/var/log/debug"); };
-+destination d_error { file("/var/log/error"); };
-+destination d_messages { file("/var/log/messages"); };
-+
-+# The root's console.
-+#
-+destination d_console { usertty("root"); };
-+
-+# Virtual console.
-+#
-+destination d_console_all { file("/dev/tty10"); };
-+
-+# The named pipe /dev/xconsole is for the nsole' utility.  To use it,
-+# you must invoke nsole' with the -file' option:
-+#
-+#    $ xconsole -file /dev/xconsole [...]
-+#
-+destination d_xconsole { pipe("/dev/xconsole"); };
-+
-+# Send the messages to an other host
-+#
-+#destination d_net { tcp("127.0.0.1" port(1000) authentication(on) encrypt(on) log_fifo_size(1000)); };
-+
-+# Debian only
-+destination d_ppp { file("/var/log/ppp.log"); };
-+
-+########################
-+# Filters
-+########################
-+# Here's come the filter options. With this rules, we can set which
-+# message go where.
-+
-+filter f_dbg { level(debug); };
-+filter f_info { level(info); };
-+filter f_notice { level(notice); };
-+filter f_warn { level(warn); };
-+filter f_err { level(err); };
-+filter f_crit { level(crit .. emerg); };
-+
-+filter f_debug { level(debug) and not facility(auth, authpriv, news, mail); };
-+filter f_error { level(err .. emerg) ; };
-+filter f_messages { level(info,notice,warn) and
-+                    not facility(auth,authpriv,cron,daemon,mail,news); };
-+
-+filter f_auth { facility(auth, authpriv) and not filter(f_debug); };
-+filter f_cron { facility(cron) and not filter(f_debug); };
-+filter f_daemon { facility(daemon) and not filter(f_debug); };
-+filter f_kern { facility(kern) and not filter(f_debug); };
-+filter f_lpr { facility(lpr) and not filter(f_debug); };
-+filter f_local { facility(local0, local1, local3, local4, local5,
-+                        local6, local7) and not filter(f_debug); };
-+filter f_mail { facility(mail) and not filter(f_debug); };
-+filter f_news { facility(news) and not filter(f_debug); };
-+filter f_syslog3 { not facility(auth, authpriv, mail) and not filter(f_debug); };
-+filter f_user { facility(user) and not filter(f_debug); };
-+filter f_uucp { facility(uucp) and not filter(f_debug); };
-+
-+filter f_cnews { level(notice, err, crit) and facility(news); };
-+filter f_cother { level(debug, info, notice, warn) or facility(daemon, mail); };
-+
-+filter f_ppp { facility(local2) and not filter(f_debug); };
-+filter f_console { level(warn .. emerg); };
-+
-+########################
-+# Log paths
-+########################
-+log { source(s_src); filter(f_auth); destination(d_auth); };
-+log { source(s_src); filter(f_cron); destination(d_cron); };
-+log { source(s_src); filter(f_daemon); destination(d_daemon); };
-+log { source(s_src); filter(f_kern); destination(d_kern); };
-+log { source(s_src); filter(f_lpr); destination(d_lpr); };
-+log { source(s_src); filter(f_syslog3); destination(d_syslog); };
-+log { source(s_src); filter(f_user); destination(d_user); };
-+log { source(s_src); filter(f_uucp); destination(d_uucp); };
-+
-+log { source(s_src); filter(f_mail); destination(d_mail); };
-+#log { source(s_src); filter(f_mail); filter(f_info); destination(d_mailinfo); };
-+#log { source(s_src); filter(f_mail); filter(f_warn); destination(d_mailwarn); };
-+#log { source(s_src); filter(f_mail); filter(f_err); destination(d_mailerr); };
-+
-+log { source(s_src); filter(f_news); filter(f_crit); destination(d_newscrit); };
-+log { source(s_src); filter(f_news); filter(f_err); destination(d_newserr); };
-+log { source(s_src); filter(f_news); filter(f_notice); destination(d_newsnotice); };
-+#log { source(s_src); filter(f_cnews); destination(d_console_all); };
-+#log { source(s_src); filter(f_cother); destination(d_console_all); };
-+
-+#log { source(s_src); filter(f_ppp); destination(d_ppp); };
-+
-+log { source(s_src); filter(f_debug); destination(d_debug); };
-+log { source(s_src); filter(f_error); destination(d_error); };
-+log { source(s_src); filter(f_messages); destination(d_messages); };
-+
-+log { source(s_src); filter(f_console); destination(d_console_all);
-+				    destination(d_xconsole); };
-+log { source(s_src); filter(f_crit); destination(d_console); };
-+
-+# All messages send to a remote site
-+#
-+#log { source(s_src); destination(d_net); };
-diff --git a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_3.6.4.bbappend b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_3.6.4.bbappend
-new file mode 100644
-index 0000000..931a1d9
---- /dev/null
-+++ b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_3.6.4.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".arago0"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
--- 
-2.7.4
+PR = "r15"
+SRCREV = "a30dd9a5fc1ae7cdfb8c17a4685efb7eaf693ddc"
 
+> -PR = "r16"
+> -SRCREV = "c3f20b080571f5f363bfb7e0956b6c56004004f8"
+> +PR = "r18"
+> +SRCREV = "e4a2932a836c54f4a20b4be9d541d11d3a246a31"
+>  
+>  SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git \
+>  "
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
