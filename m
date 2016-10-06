@@ -1,30 +1,28 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 941B6529A3
+Return-Path: <poojaprajod@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id F41E352975
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Oct 2016 19:37:24 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 487F420928;
-	Wed,  5 Oct 2016 19:37:24 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id tot-k8tiNWY8; Wed,  5 Oct 2016 19:37:24 +0000 (UTC)
-Received: from gandalf.denix.org (pool-100-15-106-107.washdc.fios.verizon.net
-	[100.15.106.107])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C97E22001E;
-	Wed,  5 Oct 2016 19:37:22 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id 1EA1016215C;
-	Wed,  5 Oct 2016 15:37:22 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed,  5 Oct 2016 15:37:21 -0400
-Message-Id: <1475696241-20878-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] omapconf: update to version 1.73
+	Thu,  6 Oct 2016 07:24:51 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u967OmTg013068
+	for <meta-arago@arago-project.org>; Thu, 6 Oct 2016 02:24:48 -0500
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u967OmOl019583
+	for <meta-arago@arago-project.org>; Thu, 6 Oct 2016 02:24:48 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 6 Oct 2016 02:24:47 -0500
+Received: from uda0132412.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	u967Ohqf032422;	Thu, 6 Oct 2016 02:24:45 -0500
+From: Pooja Prajod <a0132412@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 6 Oct 2016 12:54:40 +0530
+Message-ID: <1475738680-16635-1-git-send-email-a0132412@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Cc: Pooja Prajod <a0132412@ti.com>
+Subject: [V4 rebased] omapdrmtest: Update-SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +35,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Oct 2016 19:37:29 -0000
+X-List-Received-Date: Thu, 06 Oct 2016 07:24:56 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Update recipe to include patches for:
+1. Add signal handler for viddec3test and videnc2test
+2. Fix Segfault issue with viidec3test dual decode
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Pooja Prajod <a0132412@ti.com>
 ---
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index fa08cfa..697ef34 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -4,13 +4,13 @@ HOMEPAGE = "https://github.com/omapconf/omapconf"
- LICENSE = "GPLv2 | BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
+diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+index b086379..e219170 100644
+--- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
+@@ -6,8 +6,8 @@ DEPENDS += "libav libdce libdrm libgbm ti-sgx-ddk-um wayland"
  
--PV = "1.72"
--PR = "r2"
-+PV = "1.73"
-+PR = "r0"
+ inherit autotools pkgconfig
  
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
+-PR = "r15"
+-SRCREV = "a30dd9a5fc1ae7cdfb8c17a4685efb7eaf693ddc"
++PR = "r18"
++SRCREV = "e4a2932a836c54f4a20b4be9d541d11d3a246a31"
  
- BRANCH ?= "master"
--SRCREV = "340f7dddb23664d8323c8d2002443606b95d969b"
-+SRCREV = "a5dac6c5a65c672bd299b42ca495566a7cc137a4"
- 
- SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
- 
+ SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git \
+ "
 -- 
-2.7.4
+1.9.1
 
 
