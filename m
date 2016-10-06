@@ -1,30 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id C187452A7D
+Return-Path: <denys@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [198.47.19.11])
+	by arago-project.org (Postfix) with ESMTPS id DF6DF52A63
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Oct 2016 19:34:43 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A5BE1208FE;
-	Thu,  6 Oct 2016 19:34:42 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id YhEIIj0vR7R7; Thu,  6 Oct 2016 19:34:42 +0000 (UTC)
-Received: from gandalf.denix.org (pool-100-15-106-107.washdc.fios.verizon.net
-	[100.15.106.107])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 50941202B9;
-	Thu,  6 Oct 2016 19:34:41 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id 56798162152;
-	Thu,  6 Oct 2016 15:34:40 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu,  6 Oct 2016 15:34:36 -0400
-Message-Id: <1475782479-31904-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH 1/4] python-pybind11: add pybind11 for operability between C++11 and Python
+	Thu,  6 Oct 2016 19:38:18 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id u96JcHEk010526;
+	Thu, 6 Oct 2016 14:38:17 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id u96JcHPN032000;
+	Thu, 6 Oct 2016 14:38:17 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 6 Oct 2016 14:38:16 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id u96JcGrA019686;
+	Thu, 6 Oct 2016 14:38:17 -0500
+Date: Thu, 6 Oct 2016 15:38:16 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>
+Message-ID: <20161006193816.GA12745@edge>
+References: <1475775104-6182-1-git-send-email-denis@denix.org>
+	<4B26FB5A64EBA14C87266869E037F95814304334@DFLE09.ent.ti.com>
+MIME-Version: 1.0
+In-Reply-To: <4B26FB5A64EBA14C87266869E037F95814304334@DFLE09.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] branding-processor-sdk: enable RESERVE_CMEM by	default
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,52 +38,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Oct 2016 19:34:48 -0000
+X-List-Received-Date: Thu, 06 Oct 2016 19:38:19 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Thu, Oct 06, 2016 at 06:18:15PM +0000, Stiffler, Jacob wrote:
+> Seeing this reminds me how out of date this file has become. I'll try to 
+> send a patch by the end of next week.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-extras/recipes-devtools/python/python-pybind11.inc    | 9 +++++++++
- .../recipes-devtools/python/python-pybind11_1.8.1.bb             | 2 ++
- .../recipes-devtools/python/python3-pybind11_1.8.1.bb            | 2 ++
- 3 files changed, 13 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/python/python-pybind11.inc
- create mode 100644 meta-arago-extras/recipes-devtools/python/python-pybind11_1.8.1.bb
- create mode 100644 meta-arago-extras/recipes-devtools/python/python3-pybind11_1.8.1.bb
+Sounds good, thanks.
 
-diff --git a/meta-arago-extras/recipes-devtools/python/python-pybind11.inc b/meta-arago-extras/recipes-devtools/python/python-pybind11.inc
-new file mode 100644
-index 0000000..e13f6a5
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/python/python-pybind11.inc
-@@ -0,0 +1,9 @@
-+SUMMARY = "Seamless operability between C++11 and Python"
-+HOMEPAGE = "https://github.com/wjakob/pybind11"
-+LICENSE = "BSD-2-Clause"
-+LIC_FILES_CHKSUM = "file://PKG-INFO;md5=1e9383cd3e97753d7dd6067d079519ea"
-+PR = "r0"
-+
-+SRC_URI = "https://pypi.python.org/packages/89/0b/f3a25633e49be5fae17ed2c7751c8106a08199db70e3c82e8cc043388ba9/pybind11-1.8.1.tar.gz"
-+SRC_URI[md5sum] = "67845d8fd89a1c400dc7c61ccdee14d6"
-+SRC_URI[sha256sum] = "358d4b7d8c38cd1dde66064178c6bbaaa2c479a44e67e642820fe0f329a4fff8"
-diff --git a/meta-arago-extras/recipes-devtools/python/python-pybind11_1.8.1.bb b/meta-arago-extras/recipes-devtools/python/python-pybind11_1.8.1.bb
-new file mode 100644
-index 0000000..e567430
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/python/python-pybind11_1.8.1.bb
-@@ -0,0 +1,2 @@
-+inherit pypi setuptools
-+require python-pybind11.inc
-diff --git a/meta-arago-extras/recipes-devtools/python/python3-pybind11_1.8.1.bb b/meta-arago-extras/recipes-devtools/python/python3-pybind11_1.8.1.bb
-new file mode 100644
-index 0000000..355e284
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/python/python3-pybind11_1.8.1.bb
-@@ -0,0 +1,2 @@
-+inherit pypi setuptools3
-+require python-pybind11.inc
--- 
-2.7.4
 
+> But as opencl is the main consumer of CMEM, could we use that machine 
+> feature to determine whether or not to reserve memory for CMEM?
+
+Well, I guess that's an option, as long as it stays in ProcessorSDK branding 
+for now - CoreSDK still needs to build w/o CMEM enabled, but building OpenCL 
+is fine, even though it won't work properly w/o CMEM...
+
+
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
+> > Sent: Thursday, October 06, 2016 1:32 PM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [PATCH] branding-processor-sdk: enable
+> > RESERVE_CMEM by default
+> > 
+> > From: Denys Dmytriyenko <denys@ti.com>
+> > 
+> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > ---
+> >  meta-arago-distro/conf/distro/include/branding-processor-sdk.inc | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/meta-arago-distro/conf/distro/include/branding-processor-
+> > sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > index bd51f76..d97518d 100644
+> > --- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > +++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+> > @@ -1,6 +1,7 @@
+> >  ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
+> > 
+> >  # Set CMEM reserved memory region
+> > +RESERVE_CMEM_omap-a15 = "1"
+> >  CMEM_BASE_omap-a15 ?= "a0000000"
+> >  CMEM_SIZE_omap-a15 ?= "08000000"
+> > 
+> > --
+> > 2.7.4
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
