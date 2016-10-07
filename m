@@ -1,30 +1,29 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id C66CC529A3
+Return-Path: <jake@udc0866934>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by arago-project.org (Postfix) with ESMTPS id 5103352A15
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Oct 2016 21:49:26 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D5AAB20A36;
-	Thu,  6 Oct 2016 21:49:26 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 11psN-jz1OY9; Thu,  6 Oct 2016 21:49:26 +0000 (UTC)
-Received: from gandalf.denix.org (pool-100-15-106-107.washdc.fios.verizon.net
-	[100.15.106.107])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B75A9208E7;
-	Thu,  6 Oct 2016 21:49:25 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id CD1A8162169;
-	Thu,  6 Oct 2016 17:49:24 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu,  6 Oct 2016 17:49:24 -0400
-Message-Id: <1475790564-31438-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] kms++: switch SRC_URI to git protocol to avoid TLS issues
+	Fri,  7 Oct 2016 11:56:15 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id u97BuE6I018072
+	for <meta-arago@arago-project.org>; Fri, 7 Oct 2016 06:56:14 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id u97BuDRv023513
+	for <meta-arago@arago-project.org>; Fri, 7 Oct 2016 06:56:13 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 7 Oct 2016 06:56:13 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id u97BuDMa001577;
+	Fri, 7 Oct 2016 06:56:13 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1bsTl6-0002hq-Rv; Fri, 07 Oct 2016 07:56:12 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 7 Oct 2016 07:56:06 -0400
+Message-ID: <1475841366-10370-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [oe-layersetup][PATCH] configs: add processor-sdk-03.01.00.06-config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +36,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Oct 2016 21:49:27 -0000
+X-List-Received-Date: Fri, 07 Oct 2016 11:56:15 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ configs/processor-sdk/processor-sdk-03.01.00.06-config.txt | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-03.01.00.06-config.txt
 
-diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-index c8f3854..9b30569 100644
---- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-+++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-@@ -7,7 +7,7 @@ PV = "1.0"
- PR = "r0"
- 
- BRANCH = "master"
--SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=http;branch=${BRANCH}"
-+SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
- SRCREV = "546e8d16dbc4dc74038dbcf86567186dbd80c3ab"
- 
- DEPENDS = "drm python3 python3-pybind11"
+diff --git a/configs/processor-sdk/processor-sdk-03.01.00.06-config.txt b/configs/processor-sdk/processor-sdk-03.01.00.06-config.txt
+new file mode 100644
+index 0000000..0ab5543
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-03.01.00.06-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.30,bee144eeed6c08ec2829533e82f94405058ce453,layers=
++meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,6b3984287c3c15fde80dcc5a0999fb85c6a8a6c6,layers=
++meta-arago,http://arago-project.org/git/meta-arago.git,krogoth,b6fea965af0129f552d45e9c7d85937e6076f645,layers=meta-arago-distro:meta-arago-extras
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,48b4084675a15fe3fd10b58f54728dfaa2bd6c72,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,247b1267bbe95719cd4877d2d3cfbaf2a2f4865a,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
++meta-ti,http://arago-project.org/git/meta-ti.git,krogoth,008497c611bc381014d310678e7dd39668959fea,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,krogoth,85faf6c6824597e7fd9e2d35fc9d8da2e9f90bc7,layers=meta-linaro-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,krogoth,8bbfe9bd229e3f795577eb5df1cd5104651e2ba2,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
 -- 
-2.7.4
+1.9.1
 
 
