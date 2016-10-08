@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 9BD5952A93
+	by arago-project.org (Postfix) with ESMTPS id 9C1E452A9D
 	for <meta-arago@arago-project.org>;
 	Sat,  8 Oct 2016 04:36:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7CAE120A34;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id B0A84202B9;
 	Sat,  8 Oct 2016 04:36:56 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 3B7_cHV0rISa; Sat,  8 Oct 2016 04:36:56 +0000 (UTC)
+	with ESMTP id aPMhMeNrQjrE; Sat,  8 Oct 2016 04:36:56 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-106-107.washdc.fios.verizon.net
 	[100.15.106.107])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 62DD0202B9;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 995CF2099C;
 	Sat,  8 Oct 2016 04:36:55 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id E1ED2162066;
+	by gandalf.denix.org (Postfix) with ESMTP id EE9AF16216F;
 	Sat,  8 Oct 2016 00:36:54 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sat,  8 Oct 2016 00:36:53 -0400
-Message-Id: <1475901414-2167-1-git-send-email-denis@denix.org>
+Date: Sat,  8 Oct 2016 00:36:54 -0400
+Message-Id: <1475901414-2167-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/2] bluez: use overrides instead of immediate assignment
+In-Reply-To: <1475901414-2167-1-git-send-email-denis@denix.org>
+References: <1475901414-2167-1-git-send-email-denis@denix.org>
+Subject: [master][PATCH 2/2] sourceipk: python3 fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,34 +43,55 @@ X-List-Received-Date: Sat, 08 Oct 2016 04:37:01 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+sourceipk is still causing breakage even after parsing, so disable for now
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ meta-arago-distro/classes/sourceipk.bbclass                        | 6 +++---
+ meta-arago-distro/conf/distro/arago.conf                           | 2 +-
+ meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-index 8cb5cfb..21d696c 100644
---- a/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/bluez/bluez4_4.101.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".arago1"
-+PR_append = ".arago2"
+diff --git a/meta-arago-distro/classes/sourceipk.bbclass b/meta-arago-distro/classes/sourceipk.bbclass
+index d8da195..1e49489 100644
+--- a/meta-arago-distro/classes/sourceipk.bbclass
++++ b/meta-arago-distro/classes/sourceipk.bbclass
+@@ -328,9 +328,9 @@ addtask create_srcipk after do_patch before do_configure
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ python () {
+     if d.getVar('do_compileconfigs', False):
+-	deps = d.getVarFlag('do_compileconfigs', 'deps') or []
+-	deps.append('do_create_srcipk')
+-	d.setVarFlag('do_compileconfigs', 'deps', deps)
++        deps = d.getVarFlag('do_compileconfigs', 'deps') or []
++        deps.append('do_create_srcipk')
++        d.setVarFlag('do_compileconfigs', 'deps', deps)
+ }
  
-@@ -8,9 +8,10 @@ SRC_URI += "file://bluez4-fix-synchronization-between-bluetoothd-and-dr.patch \
- "
- # udev 150-170 provide its on hid2hci tool and udev rules for it. Therefore,
- # disabling hid2hci from bluez4.
--EXTRA_OECONF := "${@oe_filter_out('--enable-hid2hci', '${EXTRA_OECONF}', d)}"
+ #Add source packages to list of packages OE knows about
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 256d904..4190aa8 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -108,7 +108,7 @@ require conf/distro/include/toolchain-${TOOLCHAIN_TYPE}.inc
+ require conf/distro/include/arago-prefs.inc
  
--EXTRA_OECONF := "${@'${EXTRA_OECONF}'.replace('--disable-hidd', '--enable-hidd')}"
-+EXTRA_OECONF_remove = "--enable-hid2hci"
-+EXTRA_OECONF_remove = "--disable-hidd"
-+EXTRA_OECONF_append = " --enable-hid"
+ # Enable generation of source packages for SDKs
+-require arago-source-ipk.conf
++#require arago-source-ipk.conf
  
- DEPENDS += "libsndfile1"
+ # Allow branding on top of Arago Distro and Core TI-SDK
+ # If ARAGO_BRAND is not set in local.conf, default to core
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+index 6ae4bd7..f8f3cff 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+@@ -2,4 +2,4 @@ MACHINE_KERNEL_PR_append = ".arago5"
  
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+ 
+-require copy-defconfig.inc
++#require copy-defconfig.inc
 -- 
 2.7.4
 
