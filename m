@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 7FC3B52A98
+	by arago-project.org (Postfix) with ESMTPS id 5191052AA7
 	for <meta-arago@arago-project.org>;
-	Thu, 20 Oct 2016 02:48:04 +0000 (UTC)
+	Thu, 20 Oct 2016 02:48:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5381120A3E;
-	Thu, 20 Oct 2016 02:48:04 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 73CCE20058;
+	Thu, 20 Oct 2016 02:48:05 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id BiaHWHi8TlhG; Thu, 20 Oct 2016 02:48:04 +0000 (UTC)
+	with ESMTP id N1-WfW97nBO6; Thu, 20 Oct 2016 02:48:05 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-106-107.washdc.fios.verizon.net
 	[100.15.106.107])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3763120992;
-	Thu, 20 Oct 2016 02:48:03 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4945F20911;
+	Thu, 20 Oct 2016 02:48:04 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id 586B6162179;
+	by gandalf.denix.org (Postfix) with ESMTP id 5B4AF16217A;
 	Wed, 19 Oct 2016 22:48:02 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 19 Oct 2016 22:47:56 -0400
-Message-Id: <1476931679-4689-5-git-send-email-denis@denix.org>
+Date: Wed, 19 Oct 2016 22:47:57 -0400
+Message-Id: <1476931679-4689-6-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1476931679-4689-1-git-send-email-denis@denix.org>
 References: <1476931679-4689-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 5/8] FIXME: weston: disable custom patches until ported from 1.9 to 1.11
+Subject: [master][PATCH 6/8] arago: clients PACKAGECONFIG now required to build weston examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,33 +45,22 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-graphics/wayland/weston_1.11.0.bbappend      | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-index 6b00ae0..c96e6d1 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-@@ -8,11 +8,11 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 7931897..aa2601e 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -74,7 +74,7 @@ VIRTUAL-RUNTIME_login_manager = "busybox shadow"
+ QT_PROVIDER ?= "qt5"
  
- RDEPENDS_${PN} += "weston-conf"
+ # Distro-specific package configuration
+-PACKAGECONFIG_pn-weston = "egl kms launch"
++PACKAGECONFIG_pn-weston = "egl kms launch clients"
  
--SRC_URI += " \
--	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
--	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
--	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch \
--	file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \
--	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
--	file://0001-Add-soc-performance-monitor-utilites.patch \
--"
-+#SRC_URI += " \
-+#	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
-+#	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
-+#	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch \
-+#	file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \
-+#	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
-+#	file://0001-Add-soc-performance-monitor-utilites.patch \
-+#"
+ # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
+ PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
 -- 
 2.7.4
 
