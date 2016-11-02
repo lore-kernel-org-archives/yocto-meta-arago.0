@@ -1,30 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A580952093
+Return-Path: <karthik.ramanan@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [198.47.19.12])
+	by arago-project.org (Postfix) with ESMTPS id 6CD5B529B9
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Nov 2016 20:17:00 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C1297209DE;
-	Tue,  1 Nov 2016 20:17:00 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id qoUnx9VtnJIK; Tue,  1 Nov 2016 20:17:00 +0000 (UTC)
-Received: from gandalf.denix.org (pool-100-15-106-107.washdc.fios.verizon.net
-	[100.15.106.107])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A2415203C9;
-	Tue,  1 Nov 2016 20:16:59 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id D4DAF162186;
-	Tue,  1 Nov 2016 16:16:58 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue,  1 Nov 2016 16:16:58 -0400
-Message-Id: <1478031418-15227-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] optee-os: bump SRCREV to pull newer baseline with fixes
+	Wed,  2 Nov 2016 14:13:58 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id uA2EDwoQ019931
+	for <meta-arago@arago-project.org>; Wed, 2 Nov 2016 09:13:58 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uA2EDwet014979
+	for <meta-arago@arago-project.org>; Wed, 2 Nov 2016 09:13:58 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 2 Nov 2016 09:13:57 -0500
+Received: from swubn04.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id uA2EDuRO026960;
+	Wed, 2 Nov 2016 09:13:57 -0500
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 2 Nov 2016 19:40:32 +0530
+Message-ID: <1478095832-20251-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] packagegroup-*-graphics: selectively enable gc320
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,35 +34,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Nov 2016 20:17:00 -0000
+X-List-Received-Date: Wed, 02 Nov 2016 14:13:59 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Using older OPTEE OS baseline to apply our patches caused boot issues.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb           | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index fe3a575..b31b55a 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -1,10 +1,10 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index ef2b71d..250a2f7 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install graphics binaries"
+ LICENSE = "MIT"
+-PR = "r13"
++PR = "r16"
  
--PR_append = ".arago2"
-+PR_append = ".arago3"
+ inherit packagegroup
  
- is_armv7 = "1"
+@@ -16,6 +16,13 @@ GRAPHICS_RDEPENDS = "\
+     ti-sgx-ddk-um \
+ "
  
--SRCREV = "bfdfbe74610fc692ddedf45d5f2da520cebccb83"
-+SRCREV = "8dceff9b18e7c2e0cb879ea458e85a1806dff447"
- 
- EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
-                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
++
++GRAPHICS_RDEPENDS_append_omap-a15 = "\
++    ti-gc320-tests \
++    ti-gc320-driver \
++    ti-gc320-libs  \
++"
++
+ RDEPENDS_${PN} = "\
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${GRAPHICS_WESTON}", '', d)} \
+     ${GRAPHICS_RDEPENDS} \
 -- 
-2.7.4
+1.9.1
 
 
