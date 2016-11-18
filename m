@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 0068E5299E
+	by arago-project.org (Postfix) with ESMTPS id 0795552A20
 	for <meta-arago@arago-project.org>;
 	Fri, 18 Nov 2016 22:09:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id ECB7520863;
-	Fri, 18 Nov 2016 22:09:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 195A820B01;
+	Fri, 18 Nov 2016 22:09:54 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id ZOHnktc5_TnC; Fri, 18 Nov 2016 22:09:53 +0000 (UTC)
+	with ESMTP id XqNsAaw2LZ0P; Fri, 18 Nov 2016 22:09:54 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7AFFD2084E;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9BA4F20AB6;
 	Fri, 18 Nov 2016 22:09:52 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id A4DCB1621A4;
+	by gandalf.denix.org (Postfix) with ESMTP id C9E3C1621A8;
 	Fri, 18 Nov 2016 17:09:51 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 18 Nov 2016 17:09:43 -0500
-Message-Id: <1479506990-10407-2-git-send-email-denis@denix.org>
+Date: Fri, 18 Nov 2016 17:09:46 -0500
+Message-Id: <1479506990-10407-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1479506990-10407-1-git-send-email-denis@denix.org>
 References: <1479506990-10407-1-git-send-email-denis@denix.org>
-Subject: [PATCH 1/8] arm-benchmarks: fix build with any toolchain, pass CC var
+Subject: [PATCH 4/8] am-sysinfo: fix build with any toolchain, pass CC var
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,27 +45,29 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb        | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-index 7e75a74..d167f08 100644
---- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-+++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-@@ -1,10 +1,10 @@
--DESCRIPTION = "ARM Benchmarks"
-+SUMMARY = "ARM Benchmarks"
- HOMEPAGE = "https://gforge.ti.com/gf/project/am_benchmarks/"
+diff --git a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
+index 0fa7366..207c24d 100644
+--- a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
++++ b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
+@@ -1,4 +1,4 @@
+-DESCRIPTION = "AM SysInfo"
++SUMMARY = "AM SysInfo"
+ HOMEPAGE = "https://gforge.ti.com/gf/project/am_sysinfo/"
  LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://COPYING;md5=7aefb5e1cffc7b6a3ef18b803f957922"
+ LIC_FILES_CHKSUM = "file://mem_util/mem_util.c;beginline=1;endline=37;md5=8aa8e714ab729cfe8177298af8a5a25d"
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://mem_util/mem_util.c;beginline=1;endline=37;md5=8aa8e7
  SECTION = "system"
  
--PR = "r11"
-+PR = "r12"
+ PACKAGE_STRIP = "no"
+-PR = "r9"
++PR = "r10"
  
  BRANCH ?= "master"
- SRCREV = "5bcbca9b3d75a6aa6d0e25132cc36a6ad2883de3"
-@@ -14,14 +14,12 @@ SRC_URI = "git://git.ti.com/apps/arm_benchmarks.git;protocol=git;branch=${BRANCH
+ SRCREV = "5df7da69a50d27b7f594db0918c5e6793c3a6237"
+@@ -16,11 +16,10 @@ SRC_URI = "git://git.ti.com/apps/am_sysinfo.git;protocol=git;branch=${BRANCH}"
  S = "${WORKDIR}/git"
  
  do_compile() {
@@ -76,11 +78,8 @@ index 7e75a74..d167f08 100644
 -	oe_runmake release
 +	oe_runmake release CC="${CC}"
  }
- do_install() {
  
- 	oe_runmake DESTDIR=${D} install
- }
--
+ do_install() {
 -- 
 2.7.4
 
