@@ -1,28 +1,30 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id C30B352ACF
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 5454552ACD
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Nov 2016 18:46:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id uAIIk4pO026823
-	for <meta-arago@arago-project.org>; Fri, 18 Nov 2016 12:46:04 -0600
+	Fri, 18 Nov 2016 18:46:05 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id uAIIk5nJ030935
+	for <meta-arago@arago-project.org>; Fri, 18 Nov 2016 12:46:05 -0600
 Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uAIIk46K009161
-	for <meta-arago@arago-project.org>; Fri, 18 Nov 2016 12:46:04 -0600
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id uAIIk51k024434
+	for <meta-arago@arago-project.org>; Fri, 18 Nov 2016 12:46:05 -0600
 Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
 	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 18 Nov 2016 12:46:03 -0600
+	Fri, 18 Nov 2016 12:46:04 -0600
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	uAIIk3Cb017375	for <meta-arago@arago-project.org>;
-	Fri, 18 Nov 2016 12:46:03 -0600
+	uAIIk3Ce017375	for <meta-arago@arago-project.org>;
+	Fri, 18 Nov 2016 12:46:04 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 18 Nov 2016 13:45:56 -0500
-Message-ID: <1479494759-57664-1-git-send-email-e-ruei1@ti.com>
+Date: Fri, 18 Nov 2016 13:45:59 -0500
+Message-ID: <1479494759-57664-4-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1479494759-57664-1-git-send-email-e-ruei1@ti.com>
+References: <1479494759-57664-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 0/3] packagegroup: Add QtWebengine when using QT5
+Subject: [PATCH 3/3] packagegroup-arago-qte-toolchain-target:Add QtWebengine when using Qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,18 +40,33 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 18 Nov 2016 18:46:05 -0000
 Content-Type: text/plain
 
-Include QtWebengine at the QT5 package 
-
-Eric Ruei (3):
-  packagegroup-arago-qte: Add QtWebengine when using Qt5
-  packagegroup-arago-tisdk-qte: Add QtWebengine examples to Qt5 demos
-  packagegroup-arago-qte-toolchain-target:Add QtWebengine when using Qt5
-
- .../recipes-core/packagegroups/packagegroup-arago-qte.bb              | 3 ++-
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb        | 3 ++-
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
  .../packagegroups/packagegroup-arago-qte-toolchain-target.bb          | 4 +++-
- 3 files changed, 7 insertions(+), 3 deletions(-)
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+index 74d6dd0..1264e46 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Target packages for Qt Embedded SDK"
+ LICENSE = "MIT"
+ 
+-PR = "r9"
++PR = "r10"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -63,6 +63,8 @@ QT5_DEV = " \
+         qtsvg-dev \
+         qtxmlpatterns-dev \
+         qtquick1-dev \
++        qtwebengine-mkspecs \
++        qtwebengine-dev \
+ "
+ 
+ RDEPENDS_${PN} += " \
 -- 
 1.9.1
 
