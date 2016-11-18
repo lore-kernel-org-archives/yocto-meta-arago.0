@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 1F86D529C6
+	by arago-project.org (Postfix) with ESMTPS id 06DC45299E
 	for <meta-arago@arago-project.org>;
 	Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3DDFF2084E;
-	Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 25CE42084E;
+	Fri, 18 Nov 2016 22:09:56 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id xTOs8D7ZXuGx; Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
+	with ESMTP id 4R_eT_6gqcCu; Fri, 18 Nov 2016 22:09:56 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 16F5B2098D;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0F0AC204AF;
 	Fri, 18 Nov 2016 22:09:54 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id D5B4D1621A9;
-	Fri, 18 Nov 2016 17:09:51 -0500 (EST)
+	by gandalf.denix.org (Postfix) with ESMTP id 05D671621AC;
+	Fri, 18 Nov 2016 17:09:52 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 18 Nov 2016 17:09:47 -0500
-Message-Id: <1479506990-10407-6-git-send-email-denis@denix.org>
+Date: Fri, 18 Nov 2016 17:09:50 -0500
+Message-Id: <1479506990-10407-9-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1479506990-10407-1-git-send-email-denis@denix.org>
 References: <1479506990-10407-1-git-send-email-denis@denix.org>
-Subject: [PATCH 5/8] cpuloadgen: fix build with any toolchain, pass CC var
+Subject: [PATCH 8/8] screenshot: fix build with any toolchain, pass CC var
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,37 +39,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Nov 2016 22:09:55 -0000
+X-List-Received-Date: Fri, 18 Nov 2016 22:09:56 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb b/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-index 99bc6a4..a792060 100644
---- a/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-+++ b/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-@@ -5,7 +5,7 @@ LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=c6c2eb46c569d0cd7884089fea6b4f31"
+diff --git a/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb b/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb
+index c10dc25..d43ffd1 100644
+--- a/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb
++++ b/meta-arago-extras/recipes-graphics/screenshot/screenshot_1.0.bb
+@@ -1,10 +1,10 @@
+-DESCRIPTION = "Screenshot"
++SUMMARY = "Screenshot"
+ HOMEPAGE = "https://gitorious.org/screenshot"
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=5cad16cc3f514a15adb1d710b82d5fc4"
+ SECTION = "graphics"
  
- PV = "0.93"
--PR = "r0"
-+PR = "r1"
+-PR = "r1"
++PR = "r2"
  
  BRANCH ?= "master"
- SRCREV ?= "301d69899d6f4d84f143e0ed86957eea416a27a6"
-@@ -14,7 +14,7 @@ SRC_URI = "git://github.com/ptitiano/cpuloadgen.git;protocol=git;branch=${BRANCH
+ SRCREV = "169242aa7a265d5c94755d74601ad4a3f1828c96"
+@@ -17,7 +17,7 @@ do_compile() {
+     export CROSS_COMPILE=${TARGET_PREFIX}
+     export CFLAGS='${TARGET_CC_ARCH}'
+     # build the release version
+-    make release
++    make release CC="${CC}"
+ }
  
- S = "${WORKDIR}/git"
- 
--EXTRA_OEMAKE = "DESTDIR=${D}${bindir} CROSS_COMPILE=${TARGET_PREFIX}"
-+EXTRA_OEMAKE = "DESTDIR=${D}${bindir} CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}""
- 
- do_install () {
-     install -d ${D}${bindir}
+ do_install() {
 -- 
 2.7.4
 
