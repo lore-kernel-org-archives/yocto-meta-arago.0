@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 20260529F8
+	by arago-project.org (Postfix) with ESMTPS id 1F86D529C6
 	for <meta-arago@arago-project.org>;
 	Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2F253208E7;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 3DDFF2084E;
 	Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id mW6AIglK9TOM; Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
+	with ESMTP id xTOs8D7ZXuGx; Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 057FD2084E;
-	Fri, 18 Nov 2016 22:09:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 16F5B2098D;
+	Fri, 18 Nov 2016 22:09:54 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id EE2201621AB;
+	by gandalf.denix.org (Postfix) with ESMTP id D5B4D1621A9;
 	Fri, 18 Nov 2016 17:09:51 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 18 Nov 2016 17:09:49 -0500
-Message-Id: <1479506990-10407-8-git-send-email-denis@denix.org>
+Date: Fri, 18 Nov 2016 17:09:47 -0500
+Message-Id: <1479506990-10407-6-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1479506990-10407-1-git-send-email-denis@denix.org>
 References: <1479506990-10407-1-git-send-email-denis@denix.org>
-Subject: [PATCH 7/8] omapconf: fix build with any toolchain, pass CC var
+Subject: [PATCH 5/8] cpuloadgen: fix build with any toolchain, pass CC var
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,36 +45,31 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 697ef34..8ae572c 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -1,11 +1,11 @@
--DESCRIPTION = "Diagnostic tool for TI OMAP processors"
-+SUMMARY = "Diagnostic tool for TI OMAP processors"
- HOMEPAGE = "https://github.com/omapconf/omapconf"
+diff --git a/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb b/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
+index 99bc6a4..a792060 100644
+--- a/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
++++ b/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
+@@ -5,7 +5,7 @@ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=c6c2eb46c569d0cd7884089fea6b4f31"
  
- LICENSE = "GPLv2 | BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
- 
- PV = "1.73"
+ PV = "0.93"
 -PR = "r0"
 +PR = "r1"
  
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
+ BRANCH ?= "master"
+ SRCREV ?= "301d69899d6f4d84f143e0ed86957eea416a27a6"
+@@ -14,7 +14,7 @@ SRC_URI = "git://github.com/ptitiano/cpuloadgen.git;protocol=git;branch=${BRANCH
  
-@@ -17,7 +17,7 @@ SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
  S = "${WORKDIR}/git"
  
- do_compile () {
--    oe_runmake CROSS_COMPILE=${TARGET_PREFIX} install
-+    oe_runmake CC="${CC}" all
- }
+-EXTRA_OEMAKE = "DESTDIR=${D}${bindir} CROSS_COMPILE=${TARGET_PREFIX}"
++EXTRA_OEMAKE = "DESTDIR=${D}${bindir} CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}""
  
  do_install () {
+     install -d ${D}${bindir}
 -- 
 2.7.4
 
