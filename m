@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 097EB5299E
+	by arago-project.org (Postfix) with ESMTPS id 20260529F8
 	for <meta-arago@arago-project.org>;
 	Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 208A320863;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2F253208E7;
 	Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id GD64uYD1oJ6M; Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
+	with ESMTP id mW6AIglK9TOM; Fri, 18 Nov 2016 22:09:55 +0000 (UTC)
 Received: from gandalf.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 052B320AFB;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 057FD2084E;
 	Fri, 18 Nov 2016 22:09:53 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by gandalf.denix.org (Postfix) with ESMTP id E17DE1621AA;
+	by gandalf.denix.org (Postfix) with ESMTP id EE2201621AB;
 	Fri, 18 Nov 2016 17:09:51 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 18 Nov 2016 17:09:48 -0500
-Message-Id: <1479506990-10407-7-git-send-email-denis@denix.org>
+Date: Fri, 18 Nov 2016 17:09:49 -0500
+Message-Id: <1479506990-10407-8-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1479506990-10407-1-git-send-email-denis@denix.org>
 References: <1479506990-10407-1-git-send-email-denis@denix.org>
-Subject: [PATCH 6/8] eventdump: fix build with any toolchain, pass CC var
+Subject: [PATCH 7/8] omapconf: fix build with any toolchain, pass CC var
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,33 +45,36 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb | 6 +++---
+ meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
-index 7eabf25..d01833b 100644
---- a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
-+++ b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
-@@ -1,8 +1,8 @@
--DESCRIPTION = "Utility for parsing system events"
-+SUMMARY = "Utility for parsing system events"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://eventdump.c;beginline=1;endline=34;md5=23b59be24a88ddc407b553035f3fd3e9"
+diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
+index 697ef34..8ae572c 100644
+--- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
++++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
+@@ -1,11 +1,11 @@
+-DESCRIPTION = "Diagnostic tool for TI OMAP processors"
++SUMMARY = "Diagnostic tool for TI OMAP processors"
+ HOMEPAGE = "https://github.com/omapconf/omapconf"
  
--PR = "r2"
-+PR = "r3"
- PV = "1.0+git${SRCPV}"
+ LICENSE = "GPLv2 | BSD"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
  
- SRCREV = "5db45a36a05a78ea44a4cb25312ed5ee3c2bd76d"
-@@ -11,7 +11,7 @@ SRC_URI = "git://github.com/TI-ECS/eventdump.git;protocol=git"
+ PV = "1.73"
+-PR = "r0"
++PR = "r1"
  
+ COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
+ 
+@@ -17,7 +17,7 @@ SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
  S = "${WORKDIR}/git"
  
--EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} DEST_DIR=${D} BIN_DIR=${bindir}"
-+EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} DEST_DIR=${D} BIN_DIR=${bindir} CC="${CC}""
+ do_compile () {
+-    oe_runmake CROSS_COMPILE=${TARGET_PREFIX} install
++    oe_runmake CC="${CC}" all
+ }
  
- do_install() {
- 	oe_runmake install
+ do_install () {
 -- 
 2.7.4
 
