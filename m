@@ -1,28 +1,29 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 0C9DA52983
+Return-Path: <denys@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id A9C6852983
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Dec 2016 20:12:17 +0000 (UTC)
+	Tue,  6 Dec 2016 20:23:48 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id uB6KCGAh002181
-	for <meta-arago@arago-project.org>; Tue, 6 Dec 2016 14:12:16 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uB6KCGsC018913
-	for <meta-arago@arago-project.org>; Tue, 6 Dec 2016 14:12:16 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 6 Dec 2016 14:12:16 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	uB6KCGWp003635	for <meta-arago@arago-project.org>;
-	Tue, 6 Dec 2016 14:12:16 -0600
-From: Eric Ruei <e-ruei1@ti.com>
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id uB6KNkAw030531
+	for <meta-arago@arago-project.org>; Tue, 6 Dec 2016 14:23:46 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uB6KNkGU031521
+	for <meta-arago@arago-project.org>; Tue, 6 Dec 2016 14:23:46 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 6 Dec 2016 14:23:46 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	uB6KNiGv015635	for <meta-arago@arago-project.org>;
+	Tue, 6 Dec 2016 14:23:46 -0600
+Date: Tue, 6 Dec 2016 15:23:43 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 6 Dec 2016 15:12:09 -0500
-Message-ID: <1481055129-26965-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
+Message-ID: <1538471982.63.1481055823178.JavaMail.jenkins@puget>
 MIME-Version: 1.0
-Subject: [PATCH] weston: fix hotplug weston termination problem at compositor-drm
+X-Jenkins-Job: arago-core-tisdk-daisy
+X-Jenkins-Result: SUCCESS
+Subject: [nightly] Core TISDK (daisy/1.6) 2015.06 build 2016-12-06_15-01-12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,157 +36,177 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Dec 2016 20:12:17 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 06 Dec 2016 20:23:52 -0000
+Content-Type: multipart/mixed;
+	boundary="----=_Part_62_1896500908.1481055823156"
 
-The weston_compositor_exit() is always invoked at function update_outputs()
-if all connector ids are greater than 31 because the 32-bit b->connector_allocator
-will be zero. Need to increase the size of both crtc_allocator and
-connector_allocator from 32-bit to 64-bit until a better solution is implemented.
+------=_Part_62_1896500908.1481055823156
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- ...drm-fix-hotplug-weston-termination-proble.patch | 110 +++++++++++++++++++++
- .../recipes-graphics/wayland/weston_1.9.0.bbappend |   3 +-
- 2 files changed, 112 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
+<html>
+<head>
+<title>
+Status for 12/06/16
+</title>
+</head>
+<body>
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
-new file mode 100644
-index 0000000..35f289c
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
-@@ -0,0 +1,110 @@
-+From 1d956770aa7d1ba4ca1bbb7eff469f27d7267b02 Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Wed, 23 Nov 2016 16:54:51 -0500
-+Subject: [PATCH] compositor-drm: fix hotplug weston termination problem
-+
-+The weston_compositor_exit() is always invoked at function update_outputs()
-+if all connector ids are greater than 31 because the 32-bit b->connector_allocator
-+will be zero. Need to increase the size of both crtc_allocator and
-+connector_allocator from 32-bit to 64-bit until a better solution is implemented.
-+
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ src/compositor-drm.c | 30 +++++++++++++++---------------
-+ 1 file changed, 15 insertions(+), 15 deletions(-)
-+
-+diff --git a/src/compositor-drm.c b/src/compositor-drm.c
-+index 6485b39..e4d889f 100644
-+--- a/src/compositor-drm.c
-++++ b/src/compositor-drm.c
-+@@ -103,8 +103,8 @@ struct drm_backend {
-+ 	struct gbm_device *gbm;
-+ 	uint32_t *crtcs;
-+ 	int num_crtcs;
-+-	uint32_t crtc_allocator;
-+-	uint32_t connector_allocator;
-++	uint64_t crtc_allocator;
-++	uint64_t connector_allocator;
-+ 	struct wl_listener session_listener;
-+ 	uint32_t format;
-+ 
-+@@ -1360,8 +1360,8 @@ drm_output_destroy(struct weston_output *output_base)
-+ 		       &output->connector_id, 1, &origcrtc->mode);
-+ 	drmModeFreeCrtc(origcrtc);
-+ 
-+-	b->crtc_allocator &= ~(1 << output->crtc_id);
-+-	b->connector_allocator &= ~(1 << output->connector_id);
-++	b->crtc_allocator &= ~(1ULL << output->crtc_id);
-++	b->connector_allocator &= ~(1ULL << output->connector_id);
-+ 
-+ 	if (b->use_pixman) {
-+ 		drm_output_fini_pixman(output);
-+@@ -1842,8 +1842,8 @@ find_crtc_for_connector(struct drm_backend *b,
-+ 		drmModeFreeEncoder(encoder);
-+ 
-+ 		for (i = 0; i < resources->count_crtcs; i++) {
-+-			if (possible_crtcs & (1 << i) &&
-+-			    !(b->crtc_allocator & (1 << resources->crtcs[i])))
-++			if (possible_crtcs & (1ULL << i) &&
-++			    !(b->crtc_allocator & (1ULL << resources->crtcs[i])))
-+ 				return i;
-+ 		}
-+ 	}
-+@@ -2404,9 +2404,9 @@ create_output_for_connector(struct drm_backend *b,
-+ 
-+ 	output->crtc_id = resources->crtcs[i];
-+ 	output->pipe = i;
-+-	b->crtc_allocator |= (1 << output->crtc_id);
-++	b->crtc_allocator |= (1ULL << output->crtc_id);
-+ 	output->connector_id = connector->connector_id;
-+-	b->connector_allocator |= (1 << output->connector_id);
-++	b->connector_allocator |= (1ULL << output->connector_id);
-+ 
-+ 	output->original_crtc = drmModeGetCrtc(b->drm.fd, output->crtc_id);
-+ 	output->dpms_prop = drm_get_prop(b->drm.fd, connector, "DPMS");
-+@@ -2511,8 +2511,8 @@ err_free:
-+ 	}
-+ 
-+ 	drmModeFreeCrtc(output->original_crtc);
-+-	b->crtc_allocator &= ~(1 << output->crtc_id);
-+-	b->connector_allocator &= ~(1 << output->connector_id);
-++	b->crtc_allocator &= ~(1ULL << output->crtc_id);
-++	b->connector_allocator &= ~(1ULL << output->connector_id);
-+ 	free(output);
-+ 
-+ 	return -1;
-+@@ -2658,7 +2658,7 @@ update_outputs(struct drm_backend *b, struct udev_device *drm_device)
-+ 	drmModeRes *resources;
-+ 	struct drm_output *output, *next;
-+ 	int x = 0, y = 0;
-+-	uint32_t connected = 0, disconnects = 0;
-++	uint64_t connected = 0, disconnects = 0;
-+ 	int i;
-+ 
-+ 	resources = drmModeGetResources(b->drm.fd);
-+@@ -2680,9 +2680,9 @@ update_outputs(struct drm_backend *b, struct udev_device *drm_device)
-+ 			continue;
-+ 		}
-+ 
-+-		connected |= (1 << connector_id);
-++		connected |= (1ULL << connector_id);
-+ 
-+-		if (!(b->connector_allocator & (1 << connector_id))) {
-++		if (!(b->connector_allocator & (1ULL << connector_id))) {
-+ 			struct weston_output *last =
-+ 				container_of(b->compositor->output_list.prev,
-+ 					     struct weston_output, link);
-+@@ -2707,8 +2707,8 @@ update_outputs(struct drm_backend *b, struct udev_device *drm_device)
-+ 	if (disconnects) {
-+ 		wl_list_for_each_safe(output, next, &b->compositor->output_list,
-+ 				      base.link) {
-+-			if (disconnects & (1 << output->connector_id)) {
-+-				disconnects &= ~(1 << output->connector_id);
-++			if (disconnects & (1ULL << output->connector_id)) {
-++				disconnects &= ~(1ULL << output->connector_id);
-+ 				weston_log("connector %d disconnected\n",
-+ 				       output->connector_id);
-+ 				drm_output_destroy(&output->base);
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
-index cde8374..9cc1023 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
-@@ -2,7 +2,7 @@
- PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
- PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
- 
--PR_append = ".arago15"
-+PR_append = ".arago16"
- 
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-@@ -16,4 +16,5 @@ SRC_URI += " \
- 	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
- 	file://0001-Add-soc-performance-monitor-utilites.patch \
- 	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
-+	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
- "
--- 
-1.9.1
+<h2>Status for 12/06/16</h2>
+
+<h2>BUILD_ID: build-2016-12-06_15-02-14</h2>
+
+<h2>Clean Build: false</h2>
+
+<h2>Clean Sources: false</h2>
+<h2><u>Repository Revisions</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Repository</th>
+        <th>Git URL</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Layers</th>
+    </tr>
+
+    <tr>
+        <td>bitbake</td>
+        <td>git://git.openembedded.org/bitbake</td>
+        <td>1.26</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-arago</td>
+        <td>git://arago-project.org/git/meta-arago.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-arago-distro:meta-arago-extras</td>
+    </tr>
+    <tr>
+        <td>meta-qt5</td>
+        <td>git://github.com/meta-qt5/meta-qt5.git</td>
+        <td>master</td>
+        <td>17eb158c6d2cd290b054b5bd54311aa44a02d04d</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-openembedded</td>
+        <td>git://git.openembedded.org/meta-openembedded</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=toolchain-layer:meta-networking:meta-ruby:meta-oe</td>
+    </tr>
+    <tr>
+        <td>meta-ti</td>
+        <td>git://arago-project.org/git/meta-ti.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=</td>
+    </tr>
+    <tr>
+        <td>meta-linaro</td>
+        <td>git://git.linaro.org/openembedded/meta-linaro.git</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta-linaro-toolchain</td>
+    </tr>
+    <tr>
+        <td>oe-core</td>
+        <td>git://git.openembedded.org/openembedded-core</td>
+        <td>daisy</td>
+        <td>HEAD</td>
+        <td>layers=meta</td>
+    </tr>
+</table>
+<h2><u>Build and Target Test Results</u></h2>
+<table border=1 cellspacing=1 cellpadding=1>
+    <tr>
+        <th>Machine</th>
+        <th>Build Result</th>
+        <th>Target Test Result</th>
+    </tr>
+    <tr>
+        <td>dra7xx-evm</td>
+        <td id="dra7xx-evm-build-result" bgcolor=lime>PASSED</td>
+        <td id="dra7xx-evm-target-result" bgcolor=red>FAILED</td>
+    </tr>
+</table>
+
+<p>
+These builds were performed using the build-oesdk.sh script at:
+</p>
+<p>
+git://arago-project.org/git/projects/tisdk-build-scripts.git
+</p>
+
+<p>
+The configuration file passed to this script had the contents:
+</p>
+<p>
+MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"<br>
+TISDK_VERSION="2015.06"<br>
+MACHINES="dra7xx-evm"<br>
+NUM_ARM9_BUILDS="1"<br>
+NUM_CORTEX_BUILDS="1"<br>
+TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"<br>
+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"<br>
+BUILD_ID="`date +build-%F_%H-%M-%S`"<br>
+SCRIPTS_ROOT="$PWD"<br>
+BUILD_ROOT="/home/jenkins/tisdk-build-daisy"<br>
+TEST_ROOT="$BUILD_ROOT/testing"<br>
+PACKAGE_ROOT="$BUILD_ROOT/packaging"<br>
+DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"<br>
+FS_FILTER="tisdk-*rootfs-"<br>
+FS_IMAGE_TYPE="tar.gz"<br>
+SDK_FILTER="arago-core-tisdk-image-"<br>
+SDK_IMAGE_TYPE="tar.gz"<br>
+NFS_ROOT="/home/jenkins/nfs-root"<br>
+SOURCE_DIR="${BUILD_ROOT}/sources"<br>
+CLEAN_BUILD="false"<br>
+CLEAN_SSTATE="false"<br>
+CLEAN_ALL="false"<br>
+CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"<br>
+LOG_DIR="${BUILD_ROOT}/log-files"<br>
+BUILD_LOG_VERBOSE="true"<br>
+DL_DIR="/OE/downloads"<br>
+BB_GENERATE_MIRROR_TARBALLS="0"<br>
+INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"<br>
+TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"<br>
+TEST_SCRIPTS_TGT="home/root/test-scripts"<br>
+TEST_LOCAL_IFACE="eth1"<br>
+OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"<br>
+OPENTEST_TEE_IP="none"<br>
+OPENTEST_HW_CAP="linux_tigt_farm"<br>
+OPENTEST_BOOTLOADERS="false"<br>
+OPENTEST_BOOT_ATTEMPTS="3"<br>
+OPENTEST_BOOT_TIMEOUT="300"<br>
+RUN_BUILD_TESTS="true"<br>
+STAF_ROOT="/usr/local/staf"<br>
+SKIP_TEST_FAILURES="false"<br>
+PRODUCTIZE_SDK="false"<br>
+BITBAKE_COMMAND="arago-core-tisdk-image"<br>
+RESULTS_CONFIG_COMMENTS="false"<br>
+INSTALL_BUILDER="/home/jenkins/installbuilder"<br>
+INSTALLER_ROOT="$BUILD_ROOT/installer"<br>
+INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"<br>
+INSTALLER_PREFIX="ti-sdk"<br>
+SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"<br>
+PACKAGE_BOOT_KERNEL_FILES="false"<br>
+WEBGEN_ROOT="/home/jenkins/webgen"<br>
+WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"<br>
+WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"<br>
+EXPORT_ARAGO_SRC="0"<br>
+COPY_TO_WEB="true"<br>
+COPY_DEPLOY_TO_WEB="true"<br>
+COPY_GOLDEN_TO_WEB="true"<br>
+WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"<br>
+CLEAN_AFTER_COPY="true"<br>
+BACKUP_RESULTS="/home/jenkins/jobs/arago-core-tisdk-daisy/workspace"<br>
+</p>
+
+</body>
+</html>
 
 
+------=_Part_62_1896500908.1481055823156--
