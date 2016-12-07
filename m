@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 2558D5298D
+Return-Path: <denys@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 9DAF15298D
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Dec 2016 20:09:11 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3E15220A48;
-	Wed,  7 Dec 2016 20:09:11 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id ReDi6u1B_tX0; Wed,  7 Dec 2016 20:09:11 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1DA232017D;
-	Wed,  7 Dec 2016 20:09:10 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id 6FD391621C8;
-	Wed,  7 Dec 2016 15:09:09 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed,  7 Dec 2016 15:09:09 -0500
-Message-Id: <1481141349-24399-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [tisdk-build-scripts][PATCH] configs/farm: update SECDEV path to match AUTO/CAT separation
+	Wed,  7 Dec 2016 20:19:58 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id uB7KJwO2024708
+	for <meta-arago@arago-project.org>; Wed, 7 Dec 2016 14:19:58 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uB7KJwpB019457
+	for <meta-arago@arago-project.org>; Wed, 7 Dec 2016 14:19:58 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 7 Dec 2016 14:19:57 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id uB7KJw9N013083;
+	Wed, 7 Dec 2016 14:19:58 -0600
+Date: Wed, 7 Dec 2016 15:19:57 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Eric Ruei <e-ruei1@ti.com>
+Message-ID: <20161207201957.GU28380@edge>
+References: <1481141306-30373-1-git-send-email-e-ruei1@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1481141306-30373-1-git-send-email-e-ruei1@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH V2] weston: fix hotplug weston termination problem at compositor-drm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,47 +37,178 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Dec 2016 20:09:11 -0000
+X-List-Received-Date: Wed, 07 Dec 2016 20:19:58 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+Sorry, Eric, that line is correct, but should be in your patch to weston, see 
+below.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- configs/farm/arago-krogoth.txt | 4 ++--
- configs/farm/arago-master.txt  | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/configs/farm/arago-krogoth.txt b/configs/farm/arago-krogoth.txt
-index 68443e3..c9ffc8a 100644
---- a/configs/farm/arago-krogoth.txt
-+++ b/configs/farm/arago-krogoth.txt
-@@ -37,8 +37,8 @@ TOOLCHAIN_ROOT_ARM9=""
- TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
- 
- # SECDEV variables for CAT and AUTO
--TI_SECURE_DEV_PKG_CAT="/opt/secdev-am"
--TI_SECURE_DEV_PKG_AUTO="/opt/secdev-dra7"
-+TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
-+TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
- 
- # This variable holds the unique ID for the build that will be used to
- # identify the build.
-diff --git a/configs/farm/arago-master.txt b/configs/farm/arago-master.txt
-index 4d40cf3..b077139 100644
---- a/configs/farm/arago-master.txt
-+++ b/configs/farm/arago-master.txt
-@@ -37,8 +37,8 @@ TOOLCHAIN_ROOT_ARM9=""
- TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
- 
- # SECDEV variables for CAT and AUTO
--TI_SECURE_DEV_PKG_CAT="/opt/secdev-am"
--TI_SECURE_DEV_PKG_AUTO="/opt/secdev-dra7"
-+TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
-+TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
- 
- # This variable holds the unique ID for the build that will be used to
- # identify the build.
--- 
-2.7.4
+On Wed, Dec 07, 2016 at 03:08:26PM -0500, Eric Ruei wrote:
+> The weston_compositor_exit() is always invoked at function update_outputs()
+> if all connector ids are greater than 31 because the 32-bit b->connector_allocator
+> will be zero. Need to increase the size of both crtc_allocator and
+> connector_allocator from 32-bit to 64-bit until a better solution is implemented.
+> 
+> Upstream-Status: Submitted [wayland-devel@lists.freedesktop.org]
 
+Don't need it here ^
+
+
+> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ---
+>  ...drm-fix-hotplug-weston-termination-proble.patch | 110 +++++++++++++++++++++
+>  .../recipes-graphics/wayland/weston_1.9.0.bbappend |   3 +-
+>  2 files changed, 112 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
+> 
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
+> new file mode 100644
+> index 0000000..35f289c
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
+> @@ -0,0 +1,110 @@
+> +From 1d956770aa7d1ba4ca1bbb7eff469f27d7267b02 Mon Sep 17 00:00:00 2001
+> +From: Eric Ruei <e-ruei1@ti.com>
+> +Date: Wed, 23 Nov 2016 16:54:51 -0500
+> +Subject: [PATCH] compositor-drm: fix hotplug weston termination problem
+> +
+> +The weston_compositor_exit() is always invoked at function update_outputs()
+> +if all connector ids are greater than 31 because the 32-bit b->connector_allocator
+> +will be zero. Need to increase the size of both crtc_allocator and
+> +connector_allocator from 32-bit to 64-bit until a better solution is implemented.
+
+> Upstream-Status: Submitted [wayland-devel@lists.freedesktop.org]
+
+But should be here ^
+
+
+> +
+> +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> +---
+> + src/compositor-drm.c | 30 +++++++++++++++---------------
+> + 1 file changed, 15 insertions(+), 15 deletions(-)
+> +
+> +diff --git a/src/compositor-drm.c b/src/compositor-drm.c
+> +index 6485b39..e4d889f 100644
+> +--- a/src/compositor-drm.c
+> ++++ b/src/compositor-drm.c
+> +@@ -103,8 +103,8 @@ struct drm_backend {
+> + 	struct gbm_device *gbm;
+> + 	uint32_t *crtcs;
+> + 	int num_crtcs;
+> +-	uint32_t crtc_allocator;
+> +-	uint32_t connector_allocator;
+> ++	uint64_t crtc_allocator;
+> ++	uint64_t connector_allocator;
+> + 	struct wl_listener session_listener;
+> + 	uint32_t format;
+> + 
+> +@@ -1360,8 +1360,8 @@ drm_output_destroy(struct weston_output *output_base)
+> + 		       &output->connector_id, 1, &origcrtc->mode);
+> + 	drmModeFreeCrtc(origcrtc);
+> + 
+> +-	b->crtc_allocator &= ~(1 << output->crtc_id);
+> +-	b->connector_allocator &= ~(1 << output->connector_id);
+> ++	b->crtc_allocator &= ~(1ULL << output->crtc_id);
+> ++	b->connector_allocator &= ~(1ULL << output->connector_id);
+> + 
+> + 	if (b->use_pixman) {
+> + 		drm_output_fini_pixman(output);
+> +@@ -1842,8 +1842,8 @@ find_crtc_for_connector(struct drm_backend *b,
+> + 		drmModeFreeEncoder(encoder);
+> + 
+> + 		for (i = 0; i < resources->count_crtcs; i++) {
+> +-			if (possible_crtcs & (1 << i) &&
+> +-			    !(b->crtc_allocator & (1 << resources->crtcs[i])))
+> ++			if (possible_crtcs & (1ULL << i) &&
+> ++			    !(b->crtc_allocator & (1ULL << resources->crtcs[i])))
+> + 				return i;
+> + 		}
+> + 	}
+> +@@ -2404,9 +2404,9 @@ create_output_for_connector(struct drm_backend *b,
+> + 
+> + 	output->crtc_id = resources->crtcs[i];
+> + 	output->pipe = i;
+> +-	b->crtc_allocator |= (1 << output->crtc_id);
+> ++	b->crtc_allocator |= (1ULL << output->crtc_id);
+> + 	output->connector_id = connector->connector_id;
+> +-	b->connector_allocator |= (1 << output->connector_id);
+> ++	b->connector_allocator |= (1ULL << output->connector_id);
+> + 
+> + 	output->original_crtc = drmModeGetCrtc(b->drm.fd, output->crtc_id);
+> + 	output->dpms_prop = drm_get_prop(b->drm.fd, connector, "DPMS");
+> +@@ -2511,8 +2511,8 @@ err_free:
+> + 	}
+> + 
+> + 	drmModeFreeCrtc(output->original_crtc);
+> +-	b->crtc_allocator &= ~(1 << output->crtc_id);
+> +-	b->connector_allocator &= ~(1 << output->connector_id);
+> ++	b->crtc_allocator &= ~(1ULL << output->crtc_id);
+> ++	b->connector_allocator &= ~(1ULL << output->connector_id);
+> + 	free(output);
+> + 
+> + 	return -1;
+> +@@ -2658,7 +2658,7 @@ update_outputs(struct drm_backend *b, struct udev_device *drm_device)
+> + 	drmModeRes *resources;
+> + 	struct drm_output *output, *next;
+> + 	int x = 0, y = 0;
+> +-	uint32_t connected = 0, disconnects = 0;
+> ++	uint64_t connected = 0, disconnects = 0;
+> + 	int i;
+> + 
+> + 	resources = drmModeGetResources(b->drm.fd);
+> +@@ -2680,9 +2680,9 @@ update_outputs(struct drm_backend *b, struct udev_device *drm_device)
+> + 			continue;
+> + 		}
+> + 
+> +-		connected |= (1 << connector_id);
+> ++		connected |= (1ULL << connector_id);
+> + 
+> +-		if (!(b->connector_allocator & (1 << connector_id))) {
+> ++		if (!(b->connector_allocator & (1ULL << connector_id))) {
+> + 			struct weston_output *last =
+> + 				container_of(b->compositor->output_list.prev,
+> + 					     struct weston_output, link);
+> +@@ -2707,8 +2707,8 @@ update_outputs(struct drm_backend *b, struct udev_device *drm_device)
+> + 	if (disconnects) {
+> + 		wl_list_for_each_safe(output, next, &b->compositor->output_list,
+> + 				      base.link) {
+> +-			if (disconnects & (1 << output->connector_id)) {
+> +-				disconnects &= ~(1 << output->connector_id);
+> ++			if (disconnects & (1ULL << output->connector_id)) {
+> ++				disconnects &= ~(1ULL << output->connector_id);
+> + 				weston_log("connector %d disconnected\n",
+> + 				       output->connector_id);
+> + 				drm_output_destroy(&output->base);
+> +-- 
+> +1.9.1
+> +
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+> index cde8374..9cc1023 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.9.0.bbappend
+> @@ -2,7 +2,7 @@
+>  PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+>  PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+>  
+> -PR_append = ".arago15"
+> +PR_append = ".arago16"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+> @@ -16,4 +16,5 @@ SRC_URI += " \
+>  	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
+>  	file://0001-Add-soc-performance-monitor-utilites.patch \
+>  	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
+> +	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
+>  "
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
