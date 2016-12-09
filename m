@@ -1,31 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 6A69252094
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 9F374529C6
 	for <meta-arago@arago-project.org>;
-	Thu,  8 Dec 2016 21:45:33 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id uB8LjXwt024000;
-	Thu, 8 Dec 2016 15:45:33 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uB8LjXef023446;
-	Thu, 8 Dec 2016 15:45:33 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 8 Dec 2016 15:45:32 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uB8LjWXU028516;
-	Thu, 8 Dec 2016 15:45:32 -0600
-Date: Thu, 8 Dec 2016 16:45:32 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20161208214531.GW28380@edge>
-References: <1481142324-24891-1-git-send-email-denis@denix.org>
-	<1034c2f8-70bf-ed4c-f307-834c1195ba90@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1034c2f8-70bf-ed4c-f307-834c1195ba90@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [RFC][PATCH] opencl, openmp: don't hardcode specific toolchain, pass the one being used for the build
+	Fri,  9 Dec 2016 16:42:12 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 3C61F209D7;
+	Fri,  9 Dec 2016 16:42:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id RDUoKfDRxsqN; Fri,  9 Dec 2016 16:42:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 22B9C207AF;
+	Fri,  9 Dec 2016 16:42:11 +0000 (UTC)
+Received: from sam.denix (sam [192.168.0.5])
+	by mail.denix.org (Postfix) with ESMTP id B07611621C7;
+	Fri,  9 Dec 2016 11:42:10 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri,  9 Dec 2016 11:42:10 -0500
+Message-Id: <1481301730-25205-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH] opencl: update to version 1.1.11.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,117 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Dec 2016 21:45:33 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 09 Dec 2016 16:42:16 -0000
 
-Yes, that was my intention with this RFC. I'll start a separate discussion 
-with mctools guys to get it fixed in their code, eventually. Meanwhile, we 
-might need these changes to get us going...
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index be5eb18..259a481 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.10.3"
++PV = "1.1.11.1"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "108ff29cd27e9af39c1f0b4945cb5dd1be7fed41"
++OCL_SRCREV = "a2bbf9c699b20788ca12020a00039be3a29bdd19"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
 -- 
-Denys
+2.7.4
 
-
-On Thu, Dec 08, 2016 at 03:53:49PM -0500, Jacob Stiffler wrote:
-> Is this something we should propose to fix in the sources?
-> 
-> - Jake
-> 
-> 
-> On 12/7/2016 3:25 PM, Denys Dmytriyenko wrote:
-> >From: Denys Dmytriyenko <denys@ti.com>
-> >
-> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >---
-> >  meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb | 10 +++++++---
-> >  meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb     |  9 +++++++--
-> >  .../recipes-ti/openmpacc/openmpacc-examples_git.bb      | 17 +++++++++++++++--
-> >  3 files changed, 29 insertions(+), 7 deletions(-)
-> >
-> >diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> >index 2a4b714..c69b7e2 100644
-> >--- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> >+++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> >@@ -1,10 +1,10 @@
-> >-DESCRIPTION = "TI OpenCL example applications"
-> >+SUMMARY = "TI OpenCL example applications"
-> >  HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> >  LICENSE = "BSD"
-> >  include ocl.inc
-> >-PR = "${INC_PR}.0"
-> >+PR = "${INC_PR}.1"
-> >  COMPATIBLE_MACHINE = "dra7xx|keystone"
-> >  PACKAGE_ARCH = "${MACHINE_ARCH}"
-> >@@ -55,8 +55,12 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
-> >                   TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
-> >  "
-> >+do_configure() {
-> >+    sed "s|arm-linux-gnueabihf-g++|${CXX}|g" -i make.inc
-> >+}
-> >+
-> >  do_compile() {
-> >-    oe_runmake
-> >+    oe_runmake CC="${CC}" CPP="${CPP}" CXX="${CXX}"
-> >  }
-> >  do_install() {
-> >diff --git a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-> >index f41c291..75ce462 100644
-> >--- a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-> >+++ b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-> >@@ -1,8 +1,8 @@
-> >-DESCRIPTION = "TI OpenMP-Acc C compiler"
-> >+SUMMARY = "TI OpenMP-Acc C compiler"
-> >  include openmpacc.inc
-> >-PR = "${INC_PR}.0"
-> >+PR = "${INC_PR}.1"
-> >  DEPENDS = "boost elfutils"
-> >  RDEPENDS_${PN} += "clocl"
-> >@@ -23,6 +23,11 @@ EXTRA_OEMAKE = " -C ${S}/clacc \
-> >                    CXX="${CXX}" \
-> >  "
-> >+do_configure() {
-> >+    sed "s|arm-linux-gnueabihf-gcc|${TOOLCHAIN_PREFIX}gcc|g" -i clacc/clacc.h
-> >+    sed "s|arm-linux-gnueabihf-g++|${TOOLCHAIN_PREFIX}g++|g" -i clacc/clacc.h
-> >+}
-> >+
-> >  do_compile() {
-> >      oe_runmake
-> >  }
-> >diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-> >index 703e754..e96fa76 100644
-> >--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-> >+++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-> >@@ -1,8 +1,8 @@
-> >-DESCRIPTION = "TI OpenMP-Acc example applications"
-> >+SUMMARY = "TI OpenMP-Acc example applications"
-> >  include openmpacc.inc
-> >-PR = "${INC_PR}.0"
-> >+PR = "${INC_PR}.1"
-> >  DEPENDS = "openmpacc clacc-native clocl-native ti-cgt6x-native"
-> >  RDEPENDS_${PN} += "opencl-runtime"
-> >@@ -44,6 +44,19 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
-> >                   TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
-> >  "
-> >+MKFILELIST = "vecadd/Makefile vecadd_complex/Makefile dsplib_fft/Makefile \
-> >+null/Makefile dspheap/Makefile target_implicit_map/Makefile printf_debug/Makefile \
-> >+edmamgr/Makefile vecadd_t/Makefile target_orphan_call/Makefile target_update/Makefile \
-> >+edmabw/Makefile sub_section/Makefile vecadd_lib/Makefile local/Makefile"
-> >+
-> >+do_configure() {
-> >+    sed "s|arm-linux-gnueabihf-gcc|${CC}|g" -i make.inc
-> >+    sed "s|arm-linux-gnueabihf-g++|${CXX}|g" -i make.inc
-> >+    for f in ${MKFILELIST}; do
-> >+        sed "s|-fopenmp|-fopenmp ${TUNE_CCARGS}${TOOLCHAIN_OPTIONS}|g" -i $f
-> >+    done
-> >+}
-> >+
-> >  do_compile() {
-> >      oe_runmake
-> >  }
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
