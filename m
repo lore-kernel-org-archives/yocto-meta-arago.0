@@ -1,27 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 18C3952AEC
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 99C4952AEE
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Dec 2016 17:35:30 +0000 (UTC)
+	Wed, 21 Dec 2016 17:35:33 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBLHZTFU019026
-	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:29 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZT4W018460
-	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:29 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 21 Dec 2016 11:35:29 -0600
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBLHZXae011397
+	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:33 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZX7D018503
+	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:33 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 21 Dec 2016 11:35:32 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZRgc021607;
-	Wed, 21 Dec 2016 11:35:28 -0600
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZRgd021607;
+	Wed, 21 Dec 2016 11:35:32 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 21 Dec 2016 23:05:23 +0530
-Message-ID: <1482341725-21409-1-git-send-email-a0393906@ti.com>
+Date: Wed, 21 Dec 2016 23:05:24 +0530
+Message-ID: <1482341725-21409-2-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1482341725-21409-1-git-send-email-a0393906@ti.com>
+References: <1482341725-21409-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/3] glsdk-example-apps: update gsttestplayer, boottime script
+Subject: [PATCH 2/3] gstreamer1.0-plugins-bad: kmssink-handle display disable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,31 +39,25 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 21 Dec 2016 17:35:35 -0000
 Content-Type: text/plain
 
-Contains bug fixes/improvements for
- * gsttestplayer to remove extra queues
- * cpuload-plugins - boot time script improvements
-
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../glsdk-example-apps/glsdk-example-apps.bb       |    4 ++--
+ .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-index 32d4cb6..94c1362 100644
---- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-+++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-@@ -14,9 +14,9 @@ inherit autotools pkgconfig
- SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git \
- 	 "
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+index 33291ee..7ceb1b3 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+@@ -37,7 +37,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
  
--SRCREV="d8d7123b70aa811d95e63c1f4b597feee8d4fd84"
-+SRCREV="8384727bef3368b95b690dd50e6735c9344a8590"
+ S = "${WORKDIR}/git"
  
--PR = "r46"
-+PR = "r47"
+-SRCREV_omap-a15 = "aec06528aca416c7b2c77db5b6dcb24907728ef7"
++SRCREV_omap-a15 = "07050013051af00828be115eb7bce0fc08abb79f"
+ SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
  
- do_install_append () {
-     install -d ${D}${sysconfdir}/glsdkstatcoll
+-PR = "r23"
++PR = "r24"
 -- 
 1.7.9.5
 
