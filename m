@@ -1,29 +1,29 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 99C4952AEE
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id E4F9252AEF
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Dec 2016 17:35:33 +0000 (UTC)
+	Wed, 21 Dec 2016 17:35:34 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBLHZXae011397
-	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:33 -0600
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBLHZYt2028986
+	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:34 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZX7D018503
-	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:33 -0600
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZYer018516
+	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:34 -0600
 Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 21 Dec 2016 11:35:32 -0600
+	Wed, 21 Dec 2016 11:35:34 -0600
 Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZRgd021607;
-	Wed, 21 Dec 2016 11:35:32 -0600
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZRge021607;
+	Wed, 21 Dec 2016 11:35:33 -0600
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 21 Dec 2016 23:05:24 +0530
-Message-ID: <1482341725-21409-2-git-send-email-a0393906@ti.com>
+Date: Wed, 21 Dec 2016 23:05:25 +0530
+Message-ID: <1482341725-21409-3-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1482341725-21409-1-git-send-email-a0393906@ti.com>
 References: <1482341725-21409-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/3] gstreamer1.0-plugins-bad: kmssink-handle display disable
+Subject: [PATCH 3/3] gstreamer1.0-plugins-ducati: fix segfault in vc1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,28 +36,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2016 17:35:35 -0000
+X-List-Received-Date: Wed, 21 Dec 2016 17:35:36 -0000
 Content-Type: text/plain
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |    4 ++--
+ .../gstreamer1.0-plugins-ducati_git.bb             |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-index 33291ee..7ceb1b3 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-@@ -37,7 +37,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+index 0f33e7c..d4a6b28 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
+@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
  
- S = "${WORKDIR}/git"
+ require gstreamer1.0-plugins-ti.inc
  
--SRCREV_omap-a15 = "aec06528aca416c7b2c77db5b6dcb24907728ef7"
-+SRCREV_omap-a15 = "07050013051af00828be115eb7bce0fc08abb79f"
- SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
+-PR = "${INC_PR}.21"
+-SRCREV = "90a8e90f97fff93bd63cd168cfe36a9b69f123d9"
++PR = "${INC_PR}.22"
++SRCREV = "bd51fbfbf288da80d1a83cad4c03be3e7f0d8c40"
  
--PR = "r23"
-+PR = "r24"
+ BRANCH ?= "master"
+ 
 -- 
 1.7.9.5
 
