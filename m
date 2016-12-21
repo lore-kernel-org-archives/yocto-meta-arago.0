@@ -1,30 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id C432352A9E
+Return-Path: <karthik.ramanan@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 18C3952AEC
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Dec 2016 02:22:35 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id AF4A620A39;
-	Wed, 21 Dec 2016 02:22:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Z7I1w0U-77Sy; Wed, 21 Dec 2016 02:22:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8FE11208B1;
-	Wed, 21 Dec 2016 02:22:33 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id 101CC1621D8;
-	Tue, 20 Dec 2016 21:22:33 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 20 Dec 2016 21:22:32 -0500
-Message-Id: <1482286952-8213-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] weston: rename bbappend to 1.11.1
+	Wed, 21 Dec 2016 17:35:30 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBLHZTFU019026
+	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:29 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZT4W018460
+	for <meta-arago@arago-project.org>; Wed, 21 Dec 2016 11:35:29 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 21 Dec 2016 11:35:29 -0600
+Received: from swubn01.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBLHZRgc021607;
+	Wed, 21 Dec 2016 11:35:28 -0600
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 21 Dec 2016 23:05:23 +0530
+Message-ID: <1482341725-21409-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [PATCH 1/3] glsdk-example-apps: update gsttestplayer, boottime script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +34,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Dec 2016 02:22:36 -0000
+X-List-Received-Date: Wed, 21 Dec 2016 17:35:35 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Contains bug fixes/improvements for
+ * gsttestplayer to remove extra queues
+ * cpuload-plugins - boot time script improvements
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../wayland/{weston-conf_1.11.0.bb => weston-conf_1.11.1.bb}              | 0
- .../wayland/{weston_1.11.0.bbappend => weston_1.11.1.bbappend}            | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-distro/recipes-graphics/wayland/{weston-conf_1.11.0.bb => weston-conf_1.11.1.bb} (100%)
- rename meta-arago-distro/recipes-graphics/wayland/{weston_1.11.0.bbappend => weston_1.11.1.bbappend} (100%)
+ .../glsdk-example-apps/glsdk-example-apps.bb       |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.0.bb b/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.1.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.0.bb
-rename to meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.1.bb
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.1.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-rename to meta-arago-distro/recipes-graphics/wayland/weston_1.11.1.bbappend
+diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
+index 32d4cb6..94c1362 100644
+--- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
++++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
+@@ -14,9 +14,9 @@ inherit autotools pkgconfig
+ SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git \
+ 	 "
+ 
+-SRCREV="d8d7123b70aa811d95e63c1f4b597feee8d4fd84"
++SRCREV="8384727bef3368b95b690dd50e6735c9344a8590"
+ 
+-PR = "r46"
++PR = "r47"
+ 
+ do_install_append () {
+     install -d ${D}${sysconfdir}/glsdkstatcoll
 -- 
-2.7.4
+1.7.9.5
 
 
