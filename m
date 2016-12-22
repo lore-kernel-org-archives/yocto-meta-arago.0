@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 2712052AFB
+Return-Path: <denys@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 4EED952B10
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Dec 2016 21:34:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8FD8920A48;
-	Thu, 22 Dec 2016 21:34:25 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id fNou79gC9zUt; Thu, 22 Dec 2016 21:34:25 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 713FA207BD;
-	Thu, 22 Dec 2016 21:34:24 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id AD6F81621ED;
-	Thu, 22 Dec 2016 16:34:23 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 22 Dec 2016 16:34:22 -0500
-Message-Id: <1482442462-6020-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [tisdk-build-scripts][PATCH] farm/arago-morty: add config for building morty branch in the farm
+	Thu, 22 Dec 2016 21:45:06 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBMLj5wx021623
+	for <meta-arago@arago-project.org>; Thu, 22 Dec 2016 15:45:05 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMLj4NJ024825
+	for <meta-arago@arago-project.org>; Thu, 22 Dec 2016 15:45:05 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 22 Dec 2016 15:45:03 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMLj3ee006020;
+	Thu, 22 Dec 2016 15:45:03 -0600
+Date: Thu, 22 Dec 2016 16:45:03 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20161222214502.GD28380@edge>
+References: <1482416729-15556-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1482416729-15556-1-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [tisdk-setup-scripts][PATCH 0/8] keystone: utilize UART boot
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,78 +37,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Dec 2016 21:34:28 -0000
+X-List-Received-Date: Thu, 22 Dec 2016 21:45:08 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Thu, Dec 22, 2016 at 09:25:21AM -0500, Jacob Stiffler wrote:
+> For keystone EVMs, there is no MMC interface, so U-Boot cannot be
+> updated by simply flashing an SD card. U-Boot is updated by using a
+> another instance of U-Boot to flash the board. Howver, a board may or
+> may not have U-Boot flashed, and if it is, it is unmanageable to
+> support all possible versions of U-Boot and the various default
+> environments.
+> 
+> Therefore these patches automate using UART boot to boot an instance
+> of the packaged version of U-Boot which is used to flash and configure
+> the board. In this way, only the packaged version of U-Boot needs to
+> be supported.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- configs/farm/{arago-master.txt => arago-morty.txt} | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
- copy configs/farm/{arago-master.txt => arago-morty.txt} (98%)
+While I haven't reviewed the code in all the detail, the overall concept 
+seems fine to me. Please merge the patches when ready. Thanks.
 
-diff --git a/configs/farm/arago-master.txt b/configs/farm/arago-morty.txt
-similarity index 98%
-copy from configs/farm/arago-master.txt
-copy to configs/farm/arago-morty.txt
-index b077139..b419b20 100644
---- a/configs/farm/arago-master.txt
-+++ b/configs/farm/arago-morty.txt
-@@ -11,7 +11,7 @@ MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_RO
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
- # also use this in the CONFIG_FILE name below.
--TISDK_VERSION="2016.08"
-+TISDK_VERSION="2017.01"
- 
- # This variable contains the list of machines to build an SDK for
- MACHINES=""
-@@ -34,7 +34,7 @@ NUM_CORTEX_BUILDS="1"
- # These variables contain the location of the bin directory where the toolchain
- # for each architecture is installed.
- TOOLCHAIN_ROOT_ARM9=""
--TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
-+TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.11/bin/"
- 
- # SECDEV variables for CAT and AUTO
- TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
-@@ -59,7 +59,7 @@ SCRIPTS_ROOT="$PWD"
- #       - BUILD_ROOT/arm9-1/arago-tmp
- #       - BUILD_ROOT/cortex-1/arago-tmp
- #       - BUILD_ROOT/cortex-2/arago-tmp
--BUILD_ROOT="/OE/farm-arago-master"
-+BUILD_ROOT="/OE/farm-arago-morty"
- 
- # This variable points to the base location where files will be extracted for
- # testing purposes.  This should not be confused with the NFS root which
-@@ -87,7 +87,7 @@ FS_FILTER="tisdk-*rootfs-"
- 
- # This variable indicates the type of FS images being generated.  By default
- # this is tar.gz images.  This should match what you set in your recipes
--FS_IMAGE_TYPE="tar.gz"
-+FS_IMAGE_TYPE="tar.xz"
- 
- # This variable contains the "filter" string to look for inside of the
- # OE build directory to find the SDK image.  Since the image name can
-@@ -96,7 +96,7 @@ SDK_FILTER="arago-core-tisdk-image-"
- 
- # This variable indicates the type of SDK images being generated.  By default
- # this is tar.gz images.  This should match what you set in your recipes
--SDK_IMAGE_TYPE="tar.gz"
-+SDK_IMAGE_TYPE="tar.xz"
- 
- # This variable points to an NFS share which has been pre-configured.  The
- # target testing will be done by creating a subdirectory in this NFS_ROOT
-@@ -123,7 +123,7 @@ CLEAN_ALL="false"
- 
- # This is the configuration file to use in the oe-layertool-setup.sh script
- # to configure the build.
--CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"
-+CONFIG_FILE="${BUILD_ROOT}/configs/arago-morty-config.txt"
- 
- # This directory will contain the log files for the various parts of the build.
- # This includes:
 -- 
-2.7.4
+Denys
 
+
+> Jacob Stiffler (8):
+>   setup-uboot-env-keystone.sh: add prompt_feedback function
+>   setup-uboot-env-keystone.sh: enhance do_expect function
+>   setup-uboot-env-keystone.sh: add detection of BMC port
+>   setup-uboot-env-keystone.sh: make updating ubifs an independent option
+>   setup-uboot-env-keystone.sh: create minicom script to update board
+>   add-to-group: require user to logout for group change
+>   setup-package-install: Add screen and lrzsz packages
+>   setup-uboot-env-keystone: use UART boot to boot latest version of
+>     U-Boot
+> 
+>  add-to-group.sh             |   2 +
+>  setup-package-install.sh    |   2 +-
+>  setup-uboot-env-keystone.sh | 379 ++++++++++++++++++++++++++------------------
+>  3 files changed, 225 insertions(+), 158 deletions(-)
+> 
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
