@@ -1,30 +1,31 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id B4A6F52A2B
+Return-Path: <jake@udc0866934>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 8210552AFD
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Dec 2016 03:47:34 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 87D632091B;
-	Thu, 22 Dec 2016 03:47:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id qGh3e7y4ZEa0; Thu, 22 Dec 2016 03:47:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 64DB1207BD;
-	Thu, 22 Dec 2016 03:47:33 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id A4BEF1621E2;
-	Wed, 21 Dec 2016 22:47:32 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 21 Dec 2016 22:47:32 -0500
-Message-Id: <1482378452-11605-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master/morty][PATCH] libnl: rename bbappend to version 3.2.28
+	Thu, 22 Dec 2016 14:25:37 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBMEPaw2021853
+	for <meta-arago@arago-project.org>; Thu, 22 Dec 2016 08:25:36 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMEPat7012514
+	for <meta-arago@arago-project.org>; Thu, 22 Dec 2016 08:25:36 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 22 Dec 2016 08:25:35 -0600
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMEPZ5g020891;
+	Thu, 22 Dec 2016 08:25:35 -0600
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1cK4JL-00044K-JV; Thu, 22 Dec 2016 09:25:35 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 22 Dec 2016 09:25:27 -0500
+Message-ID: <1482416729-15556-7-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1482416729-15556-1-git-send-email-j-stiffler@ti.com>
+References: <1482416729-15556-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
+Subject: [tisdk-setup-scripts][PATCH 6/8] add-to-group: require user to logout for group change
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,21 +38,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Dec 2016 03:47:35 -0000
+X-List-Received-Date: Thu, 22 Dec 2016 14:25:40 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../libnl/{libnl_3.2.25.bbappend => libnl_3.2.28.bbappend}                | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-distro/recipes-support/libnl/{libnl_3.2.25.bbappend => libnl_3.2.28.bbappend} (100%)
+ add-to-group.sh | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-support/libnl/libnl_3.2.25.bbappend b/meta-arago-distro/recipes-support/libnl/libnl_3.2.28.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-support/libnl/libnl_3.2.25.bbappend
-rename to meta-arago-distro/recipes-support/libnl/libnl_3.2.28.bbappend
+diff --git a/add-to-group.sh b/add-to-group.sh
+index 6fa66e7..1bedd3e 100644
+--- a/add-to-group.sh
++++ b/add-to-group.sh
+@@ -90,8 +90,10 @@ if [ "$host_upper" -gt "$min_ver_upper" -o "$host_upper" -eq "$min_ver_upper" ];
+             fi
+ 
+             echo "Until then you will be required to use sudo when accessing a serial device."
++            echo "Please logout now and log back in so that the group changes are in effect."
+             echo
+             read -p "Press return to continue" REPLY
++            exit 0
+ 
+         else
+             echo "User '$username' is already apart of the 'dialout' group"
 -- 
-2.7.4
+1.9.1
 
 
