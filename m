@@ -1,31 +1,31 @@
 Return-Path: <jake@udc0866934>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 8AD9A52AFF
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 8991B52AFE
 	for <meta-arago@arago-project.org>;
 	Thu, 22 Dec 2016 14:25:37 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBMEPaG3008998
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id uBMEPaXE021848
 	for <meta-arago@arago-project.org>; Thu, 22 Dec 2016 08:25:36 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMEPZOU012483
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMEPZOT012483
 	for <meta-arago@arago-project.org>; Thu, 22 Dec 2016 08:25:36 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
 	Thu, 22 Dec 2016 08:25:35 -0600
 Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMEPZY4005156;
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id uBMEPZJD020879;
 	Thu, 22 Dec 2016 08:25:35 -0600
 Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1cK4JL-000443-6V; Thu, 22 Dec 2016 09:25:35 -0500
+	<jake@udc0866934>)	id 1cK4JL-000447-Aq; Thu, 22 Dec 2016 09:25:35 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Dec 2016 09:25:24 -0500
-Message-ID: <1482416729-15556-4-git-send-email-j-stiffler@ti.com>
+Date: Thu, 22 Dec 2016 09:25:25 -0500
+Message-ID: <1482416729-15556-5-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1482416729-15556-1-git-send-email-j-stiffler@ti.com>
 References: <1482416729-15556-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [tisdk-setup-scripts][PATCH 3/8] setup-uboot-env-keystone.sh: add detection of BMC port
+Subject: [tisdk-setup-scripts][PATCH 4/8] setup-uboot-env-keystone.sh: make updating ubifs an independent option
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,120 +41,72 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Thu, 22 Dec 2016 14:25:41 -0000
 Content-Type: text/plain
 
-* add the ability to auto-detect the BMC port
-* The BMC may be used to reboot and configure the bootmode.
-
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- setup-uboot-env-keystone.sh | 51 ++++++++++++++++++++++++++++++++-------------
- 1 file changed, 37 insertions(+), 14 deletions(-)
+ setup-uboot-env-keystone.sh | 34 ++++++++++++++++++++--------------
+ 1 file changed, 20 insertions(+), 14 deletions(-)
 
 diff --git a/setup-uboot-env-keystone.sh b/setup-uboot-env-keystone.sh
-index 356e9c7..da90629 100755
+index da90629..0ec6e8e 100755
 --- a/setup-uboot-env-keystone.sh
 +++ b/setup-uboot-env-keystone.sh
-@@ -210,7 +210,8 @@ check_for_board() {
-                 board_vendor="0403"
-                 board_product="6010"
-                 num_port="2"
--                uart_port="1"
-+                uart_port_idx="1"
-+                bmc_port_idx="2"
-             fi
-         ;;
+@@ -170,6 +170,17 @@ copy_to_tftproot "$ubifsimages"
+ echo "--------------------------------------------------------------------------------"
+ prompt_feedback "Would you like to update U-boot on the board?" ubootupdate y y n
  
-@@ -223,7 +224,8 @@ check_for_board() {
-                 board_vendor="10c4"
-                 board_product="ea70"
-                 num_port="2"
--                uart_port="1"
-+                uart_port_idx="1"
-+                bmc_port_idx="2"
-             fi
-         ;;
-     esac
-@@ -333,6 +335,9 @@ if [ "$minicom" = "y" ]; then
-         else
-             echo ""
-             prompt_feedback "Board could not be detected. Please connect the board to the PC." temp "Press any key to try checking again"
++prompt_feedback "Would you like to update the UBI filesystem on the board?" ubifsupdate y y n
 +
-+            # Set to default board to allow user to specify the correct ports.
-+            board=k2evm
-         fi
-     done
++if [ "$ubifsupdate" = "y" ]; then
++    echo "Available ubi images in $tftproot:"
++    for file in $tftproot/*-${platform}.ubi; do
++	basefile=`basename $file`
++	echo "    $basefile"
++    done
++    echo
++    prompt_feedback "Which ubi image do you want to boot?" ubifsimage $ubifsimagedefault
++fi
  
-@@ -352,33 +357,51 @@ if [ "$minicom" = "y" ]; then
-             echo -n "Detecting connection to board... "
-             loopCount=0
-             usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
--            port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port} | tail -1 | grep "attached" |  awk '{ print $NF }'`
--            while [ -z "$port" ] && [ "$loopCount" -ne "10" ]
-+            uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+            bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+            while [ -z "$uart_port" ] && [ "$loopCount" -ne "10" ]
-             do
-                 #count to 10 and timeout if no connection is found
-                 loopCount=$((loopCount+1))
- 
-                 sleep 1
-                 usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
--                port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+                uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+                bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-             done
- 
-             #check to see if we actually found a port
--            if [ -n "$port" ]; then
--                echo "${platform} autodetected at /dev/$port"
-+            if [ -n "$uart_port" ]; then
-+                echo "${platform} (UART) autodetected at /dev/$uart_port"
-+                echo
-+                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_uart_port "/dev/$uart_port"
-+
-+                echo "${platform} (BMC) autodetected at /dev/$bmc_port"
-                 echo
--                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_port "/dev/$port"
-+                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_bmc_port "/dev/$bmc_port"
-+
-+                if [ ! -e "${dev_uart_port}" ]; then
-+                    echo; echo "ERROR: ${dev_uart_port} does not exist!"
-+                    dev_uart_port=""
-+                fi
-+
-+                if [ ! -e "${dev_bmc_port}" ]; then
-+                    echo; echo "ERROR: ${dev_bmc_port} does not exist!"
-+                    dev_bmc_port=""
-+                fi
-+
-+                if [ "$dev_uart_port" = "$dev_bmc_port" ]; then
-+                    echo; echo "ERROR: UART and BMC cannot be the same port: $dev_uart_port!"
-+                    dev_uart_port=""
-+                fi
- 
--                if [ ! -e "${dev_port}" ]
--                then
--                    echo "ERROR: ${dev_port} does not exist!"
--                else
-+                if [ -n "$dev_uart_port" ] && [ -n "$dev_bmc_port" ]; then
-                     break
-                 fi
-             fi
- 
-             #if we didn't find a port and reached the timeout limit then ask to reconnect
--            if [ -z "$port" ] && [ "$loopCount" = "10" ]; then
-+            if [ -z "$uart_port" ] && [ "$loopCount" = "10" ]; then
-                 echo ""
-                 echo "Unable to detect which port the board is connected to."
-                 echo "Please reconnect your board."
-@@ -393,7 +416,7 @@ if [ "$minicom" = "y" ]; then
-             fi
-         done
- 
--        sed -i -e "s|^pu port.*$|pu port             $dev_port|g" ${HOME}/.minirc.dfl
-+        sed -i -e "s|^pu port.*$|pu port             $dev_uart_port|g" ${HOME}/.minirc.dfl
-     fi
- 
+ echo "Select secondary boot:"
+ echo " 1: NFS"
+@@ -187,14 +198,6 @@ if [ "$secondary_boot" -eq "1" ]; then
      echo
+     prompt_feedback "Which kernel image do you want to boot from TFTP?" kernelimage $kernelimagedefault
+ else
+-    echo
+-    echo "Available ubi images in $tftproot:"
+-    for file in $tftproot/*-${platform}.ubi; do
+-	basefile=`basename $file`
+-	echo "    $basefile"
+-    done
+-    echo
+-    prompt_feedback "Which ubi image do you want to boot?" ubifsimage $ubifsimagedefault
+     kernelimage=zImage
+ fi
+ 
+@@ -296,14 +299,17 @@ do_expect "\"$prompt\"" "send \"setenv name_ubi $ubifsimage\"" $cwd/setupBoard.m
+ do_expect "\"$prompt\"" "send \"setenv name_kern $kernelimage\"" $cwd/setupBoard.minicom
+ do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 
++if [ "$ubifsupdate" = "y" ]; then
++    do_expect "\"$prompt\"" "send \"run get_ubi_net\"" $cwd/setupBoard.minicom
++    do_expect "\"$prompt\"" "send \"run burn_ubi\"" $cwd/setupBoard.minicom
++fi
++
+ if [ "$secondary_boot" -eq "1" ]; then
+-	#TFTP and NFS Boot
+-	do_expect "\"$prompt\"" "send \"setenv boot net\"" $cwd/setupBoard.minicom
++    #TFTP and NFS Boot
++    do_expect "\"$prompt\"" "send \"setenv boot net\"" $cwd/setupBoard.minicom
+ else
+-	#SD and NFS Boot
+-	do_expect "\"$prompt\"" "send \"run get_ubi_net\"" $cwd/setupBoard.minicom
+-	do_expect "\"$prompt\"" "send \"run burn_ubi\"" $cwd/setupBoard.minicom
+-	do_expect "\"$prompt\"" "send \"setenv boot ubi\"" $cwd/setupBoard.minicom
++    #UBI Boot
++    do_expect "\"$prompt\"" "send \"setenv boot ubi\"" $cwd/setupBoard.minicom
+ fi
+ 
+ do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 -- 
 1.9.1
 
