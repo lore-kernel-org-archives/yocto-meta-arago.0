@@ -1,30 +1,35 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A2E7552094
+Return-Path: <h-gou@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 57D4152A05
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Jan 2017 00:16:26 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id ACA6820AF0;
-	Tue, 10 Jan 2017 00:16:26 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id lxjwvVhF_Jkp; Tue, 10 Jan 2017 00:16:26 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8CEFC2078F;
-	Tue, 10 Jan 2017 00:16:25 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id C7A9A1621FE;
-	Mon,  9 Jan 2017 19:16:24 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon,  9 Jan 2017 19:16:24 -0500
-Message-Id: <1484007384-26869-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] packagegroup-*-tisdk-qte: add qtsvg-examples to the list and sort it
+	Tue, 10 Jan 2017 15:32:52 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v0AFWfv8001039
+	for <meta-arago@arago-project.org>; Tue, 10 Jan 2017 09:32:41 -0600
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v0AFWabP020951
+	for <meta-arago@arago-project.org>; Tue, 10 Jan 2017 09:32:36 -0600
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0294.000; Tue, 10 Jan 2017 09:32:36 -0600
+From: "Gou, Hongmei" <h-gou@ti.com>
+To: "Kay, Doug" <dkay@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [PATCH] tisdk-image: update ECCN in software
+	manifest to replace "5D002 TSU" with "Publically Available"
+Thread-Index: AQHSasb/mpF0Ueb2NUyb3NgpocVqcKEwvBvQgAEY1kA=
+Date: Tue, 10 Jan 2017 15:32:35 +0000
+Message-ID: <2E957F12D11D904590FA9AF86D366BD926CBD111@DLEE08.ent.ti.com>
+References: <1484000571-26874-1-git-send-email-h-gou@ti.com>
+	<1A6FEBBC20441C4FAFB00BAED02AB1AA436B301A@DLEE10.ent.ti.com>
+In-Reply-To: <1A6FEBBC20441C4FAFB00BAED02AB1AA436B301A@DLEE10.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.221]
+MIME-Version: 1.0
+Cc: "James, Charlsie" <charlsie@ti.com>, "Manbeck, Jack" <j-manbeck2@ti.com>
+Subject: Re: [PATCH] tisdk-image: update ECCN in software manifest to replace "5D002 TSU" with "Publically Available"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,43 +42,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jan 2017 00:16:26 -0000
+X-List-Received-Date: Tue, 10 Jan 2017 15:32:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Denys Dmytriyenko <denys@ti.com>
+Hi Doug,
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb     | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Below is what will show in software manifest with the patch submitted:
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index 1df51e7..f2f87be 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r15"
-+PR = "r16"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -20,11 +20,12 @@ QT5_DEMOS = "\
-     qtdeclarative-tools \
-     qtlocation-examples \
-     qtmultimedia-examples \
-+    qtquick1-examples \
-     qtscript-examples \
-+    qtsvg-examples \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
--    qtwebkit-examples-examples \
--    qtquick1-examples \
-     qtwebengine-examples \
-+    qtwebkit-examples-examples \
- "
- 
- QT_DEMOS = "\
--- 
-2.7.4
+Export Information
+
+ECCN for Software included in this release: Publicly Available
+
+ECCN for Technology (e.g., user documentation, specifications) included in =
+this release: Publicly Available
+
+Are you suggesting replace both ECCN lines above with a single line of "ECC=
+N =3D Publicly Available" as shown below?
+
+Export Information
+
+ECCN =3D Publicly Available
+
+Meanwhile, I will update the commit message to use "Publicly Available" ins=
+tead of "Publically Available".
+
+Thanks,
+Hongmei
+
+> -----Original Message-----
+> From: Kay, Doug
+> Sent: Monday, January 09, 2017 5:39 PM
+> To: Gou, Hongmei; meta-arago@arago-project.org
+> Cc: Chengalvala, Vivek; Manbeck, Jack; James, Charlsie
+> Subject: RE: [meta-arago] [PATCH] tisdk-image: update ECCN in software
+> manifest to replace "5D002 TSU" with "Publically Available"
+>=20
+> Hongmei and All,
+>=20
+> To be consistent with the US Government, let's spell "Publicly Available"=
+ the
+> way they do.
+>=20
+> 	ECCN =3D Publicly Available
+>=20
+> Thanks.
+> Doug
+>=20
+> -----Original Message-----
+> From: Gou, Hongmei
+> Sent: Monday, January 09, 2017 5:23 PM
+> To: meta-arago@arago-project.org
+> Cc: Chengalvala, Vivek; Kay, Doug; Manbeck, Jack; James, Charlsie; Gou,
+> Hongmei
+> Subject: [meta-arago] [PATCH] tisdk-image: update ECCN in software
+> manifest to replace "5D002 TSU" with "Publically Available"
+>=20
+> * The recent regulation changes eliminate the 5D002 with TSU license
+> exception
+>   designation. Software previously classified as publically available enc=
+ryption
+>   source code (i.e. 5D002 TSU) should be replaced with Publically Availab=
+le.
+>=20
+> Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> ---
+>  meta-arago-distro/classes/tisdk-image.bbclass | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-
+> distro/classes/tisdk-image.bbclass
+> index 78393ce..94c2718 100644
+> --- a/meta-arago-distro/classes/tisdk-image.bbclass
+> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
+> @@ -168,11 +168,11 @@ Your company is responsible for confirming the
+> applicable license terms for any
+>=20
+>  <h2><b>Export Information</b></h2>
+>  <p>
+> -ECCN for Software included in this release: 5D002 License Exception TSU
+> +ECCN for Software included in this release: Publicly Available
+>  </p>
+>=20
+>  <p>
+> -ECCN for Technology (e.g., user documentation, specifications) included =
+in
+> this release: 5D002 License Exception TSU
+> +ECCN for Technology (e.g., user documentation, specifications) included =
+in
+> this release: Publicly Available
+>  </p>
+>=20
+>  <h2><b>Manifest</b></h2>
+> --
+> 1.9.1
 
 
