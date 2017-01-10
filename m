@@ -1,28 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 4C77C52094
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id A2E7552094
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Jan 2017 22:23:29 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v09MNQNO021942
-	for <meta-arago@arago-project.org>; Mon, 9 Jan 2017 16:23:26 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v09MNQVl004362
-	for <meta-arago@arago-project.org>; Mon, 9 Jan 2017 16:23:26 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 9 Jan 2017 16:23:25 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v09MNPXd014923;	Mon, 9 Jan 2017 16:23:25 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 9 Jan 2017 17:22:51 -0500
-Message-ID: <1484000571-26874-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Cc: charlsie@ti.com, j-manbeck2@ti.com, dkay@ti.com
-Subject: [PATCH] tisdk-image: update ECCN in software manifest to replace "5D002 TSU" with "Publically Available"
+	Tue, 10 Jan 2017 00:16:26 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id ACA6820AF0;
+	Tue, 10 Jan 2017 00:16:26 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id lxjwvVhF_Jkp; Tue, 10 Jan 2017 00:16:26 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8CEFC2078F;
+	Tue, 10 Jan 2017 00:16:25 +0000 (UTC)
+Received: from sam.denix (sam [192.168.0.5])
+	by mail.denix.org (Postfix) with ESMTP id C7A9A1621FE;
+	Mon,  9 Jan 2017 19:16:24 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon,  9 Jan 2017 19:16:24 -0500
+Message-Id: <1484007384-26869-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH] packagegroup-*-tisdk-qte: add qtsvg-examples to the list and sort it
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -35,37 +37,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jan 2017 22:23:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 10 Jan 2017 00:16:26 -0000
 
-* The recent regulation changes eliminate the 5D002 with TSU license exception
-  designation. Software previously classified as publically available encryption
-  source code (i.e. 5D002 TSU) should be replaced with Publically Available.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb     | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index 78393ce..94c2718 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -168,11 +168,11 @@ Your company is responsible for confirming the applicable license terms for any
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+index 1df51e7..f2f87be 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add Qt embedded related packages"
+ LICENSE = "MIT"
+-PR = "r15"
++PR = "r16"
  
- <h2><b>Export Information</b></h2>
- <p>
--ECCN for Software included in this release: 5D002 License Exception TSU
-+ECCN for Software included in this release: Publicly Available
- </p>
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- <p>
--ECCN for Technology (e.g., user documentation, specifications) included in this release: 5D002 License Exception TSU
-+ECCN for Technology (e.g., user documentation, specifications) included in this release: Publicly Available
- </p>
+@@ -20,11 +20,12 @@ QT5_DEMOS = "\
+     qtdeclarative-tools \
+     qtlocation-examples \
+     qtmultimedia-examples \
++    qtquick1-examples \
+     qtscript-examples \
++    qtsvg-examples \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
+-    qtwebkit-examples-examples \
+-    qtquick1-examples \
+     qtwebengine-examples \
++    qtwebkit-examples-examples \
+ "
  
- <h2><b>Manifest</b></h2>
+ QT_DEMOS = "\
 -- 
-1.9.1
+2.7.4
 
 
