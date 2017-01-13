@@ -1,34 +1,31 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id DC86B52A79
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 6B42652A93
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Jan 2017 20:33:19 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v0BKX8hR012774
-	for <meta-arago@arago-project.org>; Wed, 11 Jan 2017 14:33:08 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v0BKX2ZJ010128
-	for <meta-arago@arago-project.org>; Wed, 11 Jan 2017 14:33:02 -0600
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0294.000; Wed, 11 Jan 2017 14:33:02 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [PATCH v2] tisdk-image: update ECCN in software
-	manifest to replace "5D002 TSU" with "Publicly Available"
-Thread-Index: AQHSa1oOhoBOCI44p02dDsKKdHJLHKEzvQhQ
-Date: Wed, 11 Jan 2017 20:33:01 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926CBDCEA@DLEE08.ent.ti.com>
-References: <1484063753-23523-1-git-send-email-h-gou@ti.com>
-In-Reply-To: <1484063753-23523-1-git-send-email-h-gou@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.221]
-MIME-Version: 1.0
-Cc: "James, Charlsie" <charlsie@ti.com>, "Manbeck, Jack" <j-manbeck2@ti.com>,
-	"Kay, Doug" <dkay@ti.com>
-Subject: Re: [PATCH v2] tisdk-image: update ECCN in software manifest to replace "5D002 TSU" with "Publicly Available"
+	Fri, 13 Jan 2017 21:31:28 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 29F7620AAE;
+	Fri, 13 Jan 2017 21:31:28 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id KucJSR61WVW4; Fri, 13 Jan 2017 21:31:28 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E5C232078F;
+	Fri, 13 Jan 2017 21:31:23 +0000 (UTC)
+Received: from sam.denix (sam [192.168.0.5])
+	by mail.denix.org (Postfix) with ESMTP id 1A77F16231E;
+	Fri, 13 Jan 2017 16:31:23 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri, 13 Jan 2017 16:30:54 -0500
+Message-Id: <1484343054-16397-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Cc: charlsie@ti.com, j-manbeck2@ti.com, dkay@ti.com
+Subject: [PATCH] openssl, openssh, dropbear: remove TSU notice from crypto packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,62 +38,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jan 2017 20:33:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 13 Jan 2017 21:31:29 -0000
 
-Ping
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-connectivity/openssh/openssh_%.bbappend        | 13 -------------
+ .../recipes-connectivity/openssl/openssl_1.0.2h.bbappend   | 10 ----------
+ .../recipes-core/dropbear/dropbear_%.bbappend              | 14 --------------
+ 3 files changed, 37 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-connectivity/openssh/openssh_%.bbappend
+ delete mode 100644 meta-arago-distro/recipes-core/dropbear/dropbear_%.bbappend
 
-> -----Original Message-----
-> From: Gou, Hongmei
-> Sent: Tuesday, January 10, 2017 10:56 AM
-> To: meta-arago@arago-project.org
-> Cc: Chengalvala, Vivek; Kay, Doug; Manbeck, Jack; James, Charlsie; Gou,
-> Hongmei
-> Subject: [meta-arago] [PATCH v2] tisdk-image: update ECCN in software
-> manifest to replace "5D002 TSU" with "Publicly Available"
->=20
-> * The recent regulation changes eliminate the 5D002 with TSU license
-> exception
->   designation. Software previously classified as publicly available encry=
-ption
->   source code (i.e. 5D002 TSU) should be replaced with Publicly Available=
-.
->=20
-> Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> ---
-> v2 changes:
-> * Use correct spelling of "Publicly" in the commit message
->=20
->  meta-arago-distro/classes/tisdk-image.bbclass | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-
-> distro/classes/tisdk-image.bbclass
-> index 78393ce..94c2718 100644
-> --- a/meta-arago-distro/classes/tisdk-image.bbclass
-> +++ b/meta-arago-distro/classes/tisdk-image.bbclass
-> @@ -168,11 +168,11 @@ Your company is responsible for confirming the
-> applicable license terms for any
->=20
->  <h2><b>Export Information</b></h2>
->  <p>
-> -ECCN for Software included in this release: 5D002 License Exception TSU
-> +ECCN for Software included in this release: Publicly Available
->  </p>
->=20
->  <p>
-> -ECCN for Technology (e.g., user documentation, specifications) included =
-in
-> this release: 5D002 License Exception TSU
-> +ECCN for Technology (e.g., user documentation, specifications) included =
-in
-> this release: Publicly Available
->  </p>
->=20
->  <h2><b>Manifest</b></h2>
-> --
-> 1.9.1
+diff --git a/meta-arago-distro/recipes-connectivity/openssh/openssh_%.bbappend b/meta-arago-distro/recipes-connectivity/openssh/openssh_%.bbappend
+deleted file mode 100644
+index 597d6da..0000000
+--- a/meta-arago-distro/recipes-connectivity/openssh/openssh_%.bbappend
++++ /dev/null
+@@ -1,13 +0,0 @@
+-################################################################################
+-######################### TSU EXEMPTION REQUIRED ###############################
+-################################################################################
+-# This package requires TSU exemption. Any update to the version of openssh being
+-# appended must be double checked to see if a new TSU exemption must be made.
+-#
+-# Versions of openssh that are TSU Exempted:
+-# openssh-5.6p1
+-# openssh-5.9p1
+-# openssh-6.1p1
+-# openssh-6.2p2
+-
+-PR_append = ".arago0"
+diff --git a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2h.bbappend b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2h.bbappend
+index 96d6263..e74bcba 100644
+--- a/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2h.bbappend
++++ b/meta-arago-distro/recipes-connectivity/openssl/openssl_1.0.2h.bbappend
+@@ -1,13 +1,3 @@
+-################################################################################
+-######################### TSU EXEMPTION REQUIRED ###############################
+-################################################################################
+-# Versions of openssl that are TSU Exempted:
+-# openssl-1.0.0a
+-# openssl-1.0.0d
+-#
+-# This package requires TSU exemption. Any update to the version of openssl being
+-# appended must be double checked to see if a new TSU exemption must be made.
+-
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ PR_append = ".arago0"
+diff --git a/meta-arago-distro/recipes-core/dropbear/dropbear_%.bbappend b/meta-arago-distro/recipes-core/dropbear/dropbear_%.bbappend
+deleted file mode 100644
+index e8ffa4a..0000000
+--- a/meta-arago-distro/recipes-core/dropbear/dropbear_%.bbappend
++++ /dev/null
+@@ -1,14 +0,0 @@
+-################################################################################
+-######################### TSU EXEMPTION REQUIRED ###############################
+-################################################################################
+-# Versions of dropbear that are TSU Exempted:
+-# dropbear-0.51
+-# dropbear-2012.55
+-# dropbear-2013.58
+-# dropbear-2014.63
+-# dropbear-2015.71
+-#
+-# This package requires TSU exemption. Any update to the version of dropbear being
+-# appended must be double checked to see if a new TSU exemption must be made.
+-
+-PR_append = ".arago1"
+-- 
+2.7.4
 
 
