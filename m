@@ -1,30 +1,31 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 1CD4752A8C
+	by arago-project.org (Postfix) with ESMTPS id 230C252A85
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Jan 2017 19:51:51 +0000 (UTC)
+	Mon, 16 Jan 2017 21:50:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 181E820AFB;
-	Mon, 16 Jan 2017 19:51:51 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id B5C4620AFB;
+	Mon, 16 Jan 2017 21:50:00 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id eXE6nPfSe-6x; Mon, 16 Jan 2017 19:51:51 +0000 (UTC)
+	with ESMTP id GicsOQAZEr-E; Mon, 16 Jan 2017 21:50:00 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id ED82C208D7;
-	Mon, 16 Jan 2017 19:51:49 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8DD84208D7;
+	Mon, 16 Jan 2017 21:49:58 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id 44D0516231E;
-	Mon, 16 Jan 2017 14:51:49 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id A1D3C16231E;
+	Mon, 16 Jan 2017 16:49:57 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 16 Jan 2017 14:51:49 -0500
-Message-Id: <1484596309-23831-1-git-send-email-denys@ti.com>
+Date: Mon, 16 Jan 2017 16:49:57 -0500
+Message-Id: <1484603397-24408-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty][PATCH] README, layer.conf: update for morty and list dependencies
+Cc: "Andrew F . Davis" <afd@ti.com>
+Subject: [PATCH] optee-os: switch to ti_optee_os branch as it's meant for production
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,152 +38,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jan 2017 19:51:51 -0000
+X-List-Received-Date: Mon, 16 Jan 2017 21:50:01 -0000
+
+Increase core log level.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Andrew F. Davis <afd@ti.com>
 ---
- meta-arago-distro/README          | 27 ++++++++++++++++++---------
- meta-arago-distro/conf/layer.conf | 14 ++++++++++++++
- meta-arago-extras/README          | 20 ++++++++++++--------
- meta-arago-extras/conf/layer.conf | 10 ++++++++++
- 4 files changed, 54 insertions(+), 17 deletions(-)
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index d07d989..f9f82cd 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -1,26 +1,35 @@
- meta-arago-distro provides Arago distribution configuration for TI SDK products
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 7bccbfa..7ae2a4a 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -1,20 +1,21 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--This layer works with the latest Yocto Project release (currently 2.1+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+This layer works with the latest Yocto Project release (currently 2.2) and tracks
-+the stable/maintenance branches (currently "morty") of the corresponding layers:
+-PR_append = ".arago6"
++PR_append = ".arago7"
  
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: morty
- revision: HEAD
- layers: meta
+ is_armv7 = "1"
  
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: morty
- revision: HEAD
--layers: meta-oe, toolchain-layer, meta-networking
-+layers: meta-oe, meta-networking, meta-python
+ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+-BRANCH = "ti_optee_os-next"
+-SRCREV = "8573c0500487bd341aa5b37870ac92fc54292914"
++BRANCH = "ti_optee_os"
++SRCREV = "4556015010dbf648d236a72857e927317b0f6438"
  
--URI: git://arago-project.org/git/meta-ti
--branch: master
-+URI: git://git.yoctoproject.org/meta-ti
-+branch: morty
- revision: HEAD
+ EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
+                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
+                 ta-targets=ta_arm32 \
+                 LIBGCC_LOCATE_CFLAGS=--sysroot=${STAGING_DIR_HOST} \
+                 CFG_TEE_TA_LOG_LEVEL=0 \
++                CFG_TEE_CORE_LOG_LEVEL=2 \
+ "
  
-+URI: https://github.com/meta-qt5/meta-qt5
-+branch: morty
-+revision: HEAD
-+
-+URI: git://arago-project.org/git/meta-arago
-+branch: morty
-+revision: HEAD
-+layers: meta-arago-extras
-+
- URI: git://git.linaro.org/openembedded/meta-linaro
--branch: master
-+branch: morty
- revision: HEAD
--layers: meta-linaro-toolchain
-+layers: meta-linaro-toolchain, meta-optee
- 
- Send pull requests to meta-arago@arago-project.org
- 
-diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-index f4e2a17..c86a41a 100644
---- a/meta-arago-distro/conf/layer.conf
-+++ b/meta-arago-distro/conf/layer.conf
-@@ -8,6 +8,20 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
- BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
- BBFILE_PRIORITY_meta-arago-distro = "10"
- 
-+LAYERDEPENDS_meta-arago-distro = " \
-+    core \
-+    meta-ti \
-+    openembedded-layer \
-+    networking-layer \
-+    meta-python \
-+    linaro-toolchain \
-+    meta-optee \
-+    qt5-layer \
-+    meta-arago-extras \
-+"
-+
-+BB_DANGLINGAPPENDS_WARNONLY = "true"
-+
- SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
-     weston-init->weston \
-     weston-init->kbd \
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index fb97d4b..2478a08 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -1,24 +1,28 @@
- meta-arago-extras provides additional TI SDK applications that are distro-agnostic
- 
--This layer works with the latest Yocto Project release (currently 2.1+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+This layer works with the latest Yocto Project release (currently 2.2) and tracks
-+the stable/maintenance branches (currently "morty") of the corresponding layers:
- 
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: morty
- revision: HEAD
- layers: meta
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: morty
- revision: HEAD
--layers: meta-oe, toolchain-layers, meta-networking
-+layers: meta-oe, meta-networking, meta-python
- 
--URI: git://arago-project.org/git/meta-ti
--branch: master
-+URI: git://git.yoctoproject.org/meta-ti
-+branch: morty
-+revision: HEAD
-+
-+URI: https://github.com/meta-qt5/meta-qt5
-+branch: morty
- revision: HEAD
- 
- URI: git://git.linaro.org/openembedded/meta-linaro
--branch: master
-+branch: morty
- revision: HEAD
- layers: meta-linaro-toolchain
- 
-diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-index 605d083..83ac107 100644
---- a/meta-arago-extras/conf/layer.conf
-+++ b/meta-arago-extras/conf/layer.conf
-@@ -13,6 +13,16 @@ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
- 
- LICENSE_PATH += "${LAYERDIR}/licenses"
- 
-+LAYERDEPENDS_meta-arago-extras = " \
-+    core \
-+    meta-ti \
-+    openembedded-layer \
-+    networking-layer \
-+    meta-python \
-+    linaro-toolchain \
-+    qt5-layer \
-+"
-+
- SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
-     matrix-gui-multimedia-demos->amsdk-av-files \
-     matrix-gui-oprofile-demos->oprofile \
+ do_compile() {
 -- 
 2.7.4
 
