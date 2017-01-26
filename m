@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
+Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3D927529DF
+	by arago-project.org (Postfix) with ESMTPS id 017B45299E
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Jan 2017 22:14:02 +0000 (UTC)
+	Thu, 26 Jan 2017 21:11:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6D0B820B1D;
-	Wed, 25 Jan 2017 22:14:02 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0A7C620AB6;
+	Thu, 26 Jan 2017 21:11:01 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id f4UbZuml6rqy; Wed, 25 Jan 2017 22:14:02 +0000 (UTC)
+	with ESMTP id G8jKv1zffJkk; Thu, 26 Jan 2017 21:11:00 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4C984209A1;
-	Wed, 25 Jan 2017 22:14:01 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DE672208B1;
+	Thu, 26 Jan 2017 21:10:59 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id 5EDE716231F;
-	Wed, 25 Jan 2017 17:14:00 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
+	by mail.denix.org (Postfix) with ESMTP id 0E04516231F;
+	Thu, 26 Jan 2017 16:10:59 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed, 25 Jan 2017 17:13:59 -0500
-Message-Id: <1485382439-4460-1-git-send-email-denis@denix.org>
+Date: Thu, 26 Jan 2017 16:10:58 -0500
+Message-Id: <1485465058-12998-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] arago.conf: update feed URL for the new location
+Subject: [PATCH] arago.conf: allow switching between systemd and sysvinit with a variable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,30 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jan 2017 22:14:02 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Thu, 26 Jan 2017 21:11:01 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
 diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 1adb9c9..9916bef 100644
+index a8e9a4b..b434509 100644
 --- a/meta-arago-distro/conf/distro/arago.conf
 +++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -1,8 +1,9 @@
- # Name and version of the distribution
- DISTRO_NAME = "Arago"
- DISTRO_VERSION = "2017.01"
--DISTRO_FEED_URI ?= "http://gtautoftp.gt.design.ti.com"
--FEEDURIPREFIX ?= "lcpd/core-sdk/nightly/deploy/ipk/"
-+DISTRO_FEED_URI ?= "http://lcpd.gt.design.ti.com"
-+BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
-+FEEDURIPREFIX ?= "packages/${DISTRO}-master/${BUILD_VARIANT}/"
+@@ -60,14 +60,17 @@ DISTRO_FEATURES = "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}"
+ DISTRO_FEATURES_remove = "x11"
  
- OPKG_ARGS_remove = "--prefer-arch-to-version"
+ # Add additional distro features
+-DISTRO_FEATURES_append = " pam wayland opengl systemd"
++DISTRO_FEATURES_append = " pam wayland opengl"
+ 
+ # Set global runtime providers for major components
+-VIRTUAL-RUNTIME_dev_manager = "systemd"
+-VIRTUAL-RUNTIME_init_manager = "systemd"
+-VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
++ARAGO_SYSVINIT ?= "0"
++VIRTUAL-RUNTIME_dev_manager = "${@base_conditional("ARAGO_SYSVINIT", "1", "udev", "systemd", d)}"
++VIRTUAL-RUNTIME_init_manager = "${@base_conditional("ARAGO_SYSVINIT", "1", "sysvinit", "systemd", d)}"
++VIRTUAL-RUNTIME_initscripts = "${@base_conditional("ARAGO_SYSVINIT", "1", "initscripts", "systemd-compat-units", d)}"
+ VIRTUAL-RUNTIME_login_manager = "busybox shadow"
+ 
++DISTRO_FEATURES_append = "${@base_conditional("ARAGO_SYSVINIT", "1", "", " systemd", d)}"
++
+ # Set preferred Qt version
+ QT_PROVIDER ?= "qt5"
  
 -- 
 2.7.4
