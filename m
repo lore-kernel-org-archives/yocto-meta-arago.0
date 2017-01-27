@@ -1,30 +1,30 @@
-Return-Path: <poojaprajod@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 5BBB552AF5
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 2E5B552A83
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Jan 2017 12:02:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v0RC2DeA003218
-	for <meta-arago@arago-project.org>; Fri, 27 Jan 2017 06:02:13 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v0RC2D1J005466
-	for <meta-arago@arago-project.org>; Fri, 27 Jan 2017 06:02:13 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 27 Jan 2017 06:02:12 -0600
-Received: from uda0132412.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v0RC29g0020872;	Fri, 27 Jan 2017 06:02:12 -0600
-From: Pooja Prajod <a0132412@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 27 Jan 2017 17:32:05 +0530
-Message-ID: <1485518525-30230-3-git-send-email-a0132412@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1485518525-30230-1-git-send-email-a0132412@ti.com>
-References: <1485518525-30230-1-git-send-email-a0132412@ti.com>
-MIME-Version: 1.0
-Cc: Pooja Prajod <a0132412@ti.com>
-Subject: [PATCH 3/3] gstreamer: Remove gst 1.6 recipe
+	Fri, 27 Jan 2017 23:53:17 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 1C0E120B73;
+	Fri, 27 Jan 2017 23:53:17 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 8dLkvBM6ICCT; Fri, 27 Jan 2017 23:53:17 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id ECB7E20A3A;
+	Fri, 27 Jan 2017 23:53:15 +0000 (UTC)
+Received: from sam.denix (sam [192.168.0.5])
+	by mail.denix.org (Postfix) with ESMTP id 2464216232B;
+	Fri, 27 Jan 2017 18:53:15 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri, 27 Jan 2017 18:53:14 -0500
+Message-Id: <1485561194-15126-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [krogoth][PATCH] arago.conf: update feed URL for the new location
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,68 +37,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jan 2017 12:02:13 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 27 Jan 2017 23:53:17 -0000
 
-Remove gst 1.6 recipe since the gstreamer version
-is upgraded to gst 1.8
-
-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../gstreamer1.0-plugins-bad_1.6.3.bbappend        | 43 ----------------------
- 1 file changed, 43 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+ meta-arago-distro/conf/distro/arago.conf | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-deleted file mode 100644
-index 7ceb1b3..0000000
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-+++ /dev/null
-@@ -1,43 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--PACKAGECONFIG = "faad"
--
--# gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
--PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
--PACKAGECONFIG_append_ti43x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
--PACKAGECONFIG_append_ti33x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
--
--DEPENDS_append_omap-a15 = " \
--    libdce \
--    libdrm \
--"
--
--DEPENDS_append_ti43x = " \
--    libdrm \
--"
--
--DEPENDS_append_ti33x = " \
--    libdrm \
--"
--
--SRC_URI_append_ti43x = " \
--    file://0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch \
--"
--
--SRC_URI_append_ti33x = " \
--    file://0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch \
--"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--BRANCH ?= "master"
--
--SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;branch=${BRANCH} \
--          "
--
--S = "${WORKDIR}/git"
--
--SRCREV_omap-a15 = "07050013051af00828be115eb7bce0fc08abb79f"
--SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
--
--PR = "r24"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index f7236d8..e8a7a22 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,8 +1,9 @@
+ # Name and version of the distribution
+ DISTRO_NAME = "Arago"
+ DISTRO_VERSION = "2016.12"
+-DISTRO_FEED_URI ?= "http://gtautoftp.gt.design.ti.com"
+-FEEDURIPREFIX ?= "lcpd/core-sdk/nightly/deploy/ipk/"
++DISTRO_FEED_URI ?= "http://lcpd.gt.design.ti.com"
++BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE', True))+int(d.getVar('ARAGO_SYSTEST_ENABLE', True))*2]}"
++FEEDURIPREFIX ?= "packages/${DISTRO}-krogoth/${BUILD_VARIANT}/"
+ 
+ OPKG_ARGS_remove = "--prefer-arch-to-version"
+ 
 -- 
-1.9.1
+2.7.4
 
 
