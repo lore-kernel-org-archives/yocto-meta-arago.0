@@ -1,27 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 06D1C52A90
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id A02F352AA8
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Feb 2017 19:48:20 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v11JmAix016221
-	for <meta-arago@arago-project.org>; Wed, 1 Feb 2017 13:48:10 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v11Jm5P1003684
-	for <meta-arago@arago-project.org>; Wed, 1 Feb 2017 13:48:05 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 1 Feb 2017 13:48:05 -0600
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v11Jm5WY023416;	Wed, 1 Feb 2017 13:48:05 -0600
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 1 Feb 2017 14:45:49 -0500
-Message-ID: <1485978350-1239-1-git-send-email-j-stiffler@ti.com>
+	Wed,  1 Feb 2017 20:55:42 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8DD1D20B64;
+	Wed,  1 Feb 2017 20:55:42 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id YPa-_XRUHdr2; Wed,  1 Feb 2017 20:55:42 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6D690208D1;
+	Wed,  1 Feb 2017 20:55:41 +0000 (UTC)
+Received: from sam.denix (sam [192.168.0.5])
+	by mail.denix.org (Postfix) with ESMTP id C25E51621BE;
+	Wed,  1 Feb 2017 15:55:40 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed,  1 Feb 2017 15:55:40 -0500
+Message-Id: <1485982540-24076-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH 1/2] packagegroup-*-graphics: complete gc320 integration
+Subject: [PATCH] external-linaro-toolchain: normalize licenses to use SPDX names
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,61 +37,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2017 19:48:21 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 01 Feb 2017 20:55:43 -0000
 
-* add to libs to devkit and driver sources to SDK
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb     | 6 +++++-
- .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb   | 6 +++++-
- 2 files changed, 10 insertions(+), 2 deletions(-)
+ .../recipes-core/meta/external-linaro-toolchain.bbappend     | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-index b987947..d2dce0d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-@@ -1,11 +1,15 @@
- DESCRIPTION = "Task to install graphics sources in SDK"
- LICENSE = "MIT"
--PR = "r5"
-+PR = "r6"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index c79767f..13b7640 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -116,13 +116,13 @@ FILES_libgomp-dev += "\
+ #    to the release schedule - http://www.gnu.org/software/gdb/schedule/
+ # binutils version 2.17 was the last one under GPL version 2 (or later), according
+ #    to the published releases - http://ftp.gnu.org/gnu/binutils/
+-ELT_LIC_LIBC := "LGPLv2.1+"
+-ELT_LIC_GCC := "${@["GPLv3+", "GPLv2+"][elt_get_gcc_version(d) <= "4.2.1"]}"
+-ELT_LIC_RLE := "${@["GPLv3+ with GCC RLE", "GPLv2+ with GCC RLE"][elt_get_gcc_version(d) <= "4.3.3"]}"
+-ELT_LIC_GDB := "${@["GPLv3+", "GPLv2+"][elt_get_gdb_version(d) <= "6.6"]}"
+-#ELT_LIC_BFD := "${@["GPLv3+", "GPLv2+"][elt_get_bfd_version(d) <= "2.17"]}"
++ELT_LIC_LIBC := "LGPL-2.1"
++ELT_LIC_GCC := "${@["GPL-3", "GPL-2"][elt_get_gcc_version(d) <= "4.2.1"]}"
++ELT_LIC_RLE := "${@["GPL-3-with-GCC-exception", "GPL-2-with-GCC-exception"][elt_get_gcc_version(d) <= "4.3.3"]}"
++ELT_LIC_GDB := "${@["GPL-3", "GPL-2"][elt_get_gdb_version(d) <= "6.6"]}"
++#ELT_LIC_BFD := "${@["GPL-3", "GPL-2"][elt_get_bfd_version(d) <= "2.17"]}"
  
- inherit packagegroup
- 
- GRAPHICS_RDEPENDS = "ti-sgx-ddk-km-src"
- 
-+GRAPHICS_RDEPENDS_append_omap-a15 = "\
-+    ti-gc320-driver-src \
-+"
-+
- RDEPENDS_${PN} = "\
-     ${GRAPHICS_RDEPENDS} \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-index 484baab..573601b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install graphics binaries on sdk target"
- LICENSE = "MIT"
--PR = "r7"
-+PR = "r8"
- 
- inherit packagegroup
- 
-@@ -9,6 +9,10 @@ GRAPHICS_RDEPENDS = "\
-     ti-sgx-ddk-um-dev \
-     "
- 
-+GRAPHICS_RDEPENDS_append_omap-a15 = "\
-+    ti-gc320-libs-dev \
-+"
-+
- RDEPENDS_${PN} = "\
-     ${GRAPHICS_RDEPENDS} \
- "
+-LICENSE = "${ELT_LIC_LIBC}"
++LICENSE = "${ELT_LIC_LIBC}&${ELT_LIC_GCC}&${ELT_LIC_RLE}&${ELT_LIC_GDB}"
+ LICENSE_ldd = "${ELT_LIC_LIBC}"
+ LICENSE_glibc = "${ELT_LIC_LIBC}"
+ LICENSE_glibc-thread-db = "${ELT_LIC_LIBC}"
 -- 
 2.7.4
 
