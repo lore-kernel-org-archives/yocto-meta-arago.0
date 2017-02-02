@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 5E86A52A81
+	by arago-project.org (Postfix) with ESMTPS id A9A2852B36
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Feb 2017 21:22:25 +0000 (UTC)
+	Thu,  2 Feb 2017 19:58:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7483D20B64;
-	Wed,  1 Feb 2017 21:22:24 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A377920999;
+	Thu,  2 Feb 2017 19:58:25 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id hhYqbP4EJ1lm; Wed,  1 Feb 2017 21:22:24 +0000 (UTC)
+	with ESMTP id V31FL8ICfLGH; Thu,  2 Feb 2017 19:58:25 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5551E208D1;
-	Wed,  1 Feb 2017 21:22:23 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 83D79208AE;
+	Thu,  2 Feb 2017 19:58:24 +0000 (UTC)
 Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id DA0FA1621BE;
-	Wed,  1 Feb 2017 16:22:22 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id F233A16232F;
+	Thu,  2 Feb 2017 14:58:23 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  1 Feb 2017 16:22:21 -0500
-Message-Id: <1485984141-8043-1-git-send-email-denys@ti.com>
+Date: Thu,  2 Feb 2017 14:58:23 -0500
+Message-Id: <1486065503-26606-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] cryptodev: backport patch for user page API change in recent kernels
+Subject: [PATCH] packagegroup-matrix: machinevision app depends on opencl, move to corresponding list
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,74 +37,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Feb 2017 21:22:27 -0000
+X-List-Received-Date: Thu, 02 Feb 2017 19:58:25 -0000
+
+So it can be guarded by opencl DISTRO_FEATURE.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../cryptodev/cryptodev-module_%.bbappend          |  6 +++-
- ...st-to-another-change-in-the-user-page-API.patch | 40 ++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-kernel/cryptodev/files/0001-Adjust-to-another-change-in-the-user-page-API.patch
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb  | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
-index f8a35cd..02bf90b 100644
---- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
-@@ -1,3 +1,7 @@
--PR_append = ".arago0"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+
-+PR_append = ".arago1"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index a851ed5..848492c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r61"
++PR = "r62"
  
- KERNEL_MODULE_AUTOLOAD += "cryptodev"
-+
-+SRC_URI += "file://0001-Adjust-to-another-change-in-the-user-page-API.patch"
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/files/0001-Adjust-to-another-change-in-the-user-page-API.patch b/meta-arago-distro/recipes-kernel/cryptodev/files/0001-Adjust-to-another-change-in-the-user-page-API.patch
-new file mode 100644
-index 0000000..fb75278
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/cryptodev/files/0001-Adjust-to-another-change-in-the-user-page-API.patch
-@@ -0,0 +1,40 @@
-+From f126e4837e6334d0464540995df7426fedf6b175 Mon Sep 17 00:00:00 2001
-+From: Michael Weiser <michael.weiser@gmx.de>
-+Date: Fri, 11 Nov 2016 18:09:32 +0100
-+Subject: [PATCH] Adjust to another change in the user page API
-+
-+4.9.0 will replace the write and force flags of get_user_pages_remote()
-+with a gup_flags parameter[1]. Distinguish the two APIs based on kernel
-+version we're compiling for.
-+
-+[1] https://github.com/torvalds/linux/commit/9beae1ea89305a9667ceaab6d0bf46a045ad71e7
-+
-+Upstream-Status: Backport
-+
-+Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
-+---
-+ zc.c | 8 +++++++-
-+ 1 file changed, 7 insertions(+), 1 deletion(-)
-+
-+diff --git a/zc.c b/zc.c
-+index a97b49f..e766ee3 100644
-+--- a/zc.c
-++++ b/zc.c
-+@@ -65,7 +65,13 @@ int __get_userbuf(uint8_t __user *addr, uint32_t len, int write,
-+ 	ret = get_user_pages(
-+ #endif
-+ 			task, mm,
-+-			(unsigned long)addr, pgcount, write, 0, pg, NULL);
-++			(unsigned long)addr, pgcount,
-++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 9, 0))
-++			write ? FOLL_WRITE : 0,
-++#else
-++			write, 0,
-++#endif
-++			pg, NULL);
-+ 	up_read(&mm->mmap_sem);
-+ 	if (ret != pgcount)
-+ 		return -EINVAL;
-+-- 
-+1.9.1
-+
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -37,7 +37,6 @@ MATRIX_TOUCH_APPS = " \
+     matrix-gui-touch-demos \
+ "
+ 
+-
+ MATRIX_QT_APPS_keystone = ""
+ 
+ MATRIX_SGX_DEMOS = " \
+@@ -58,7 +57,8 @@ MATRIX_OPENCL_APPS = " \
+ "
+ 
+ MATRIX_OPENCL_APPS_append_dra7xx = " \
+-    ${@bb.utils.contains('MACHINE_FEATURES','opencl','matrix-video-analytics-opencv-opencl-opengl-demo','',d)} \
++    matrix-video-analytics-opencv-opencl-opengl-demo \
++    matrix-machinevision-demo-dlp3dscanner \
+ "
+ 
+ MATRIX_APPS = ""
+@@ -109,7 +109,6 @@ MATRIX_APPS_append_omap-a15 = "     \
+ 
+ MATRIX_APPS_append_dra7xx += " \
+     matrix-multimedia-demo-dsp66imgproc \
+-    matrix-machinevision-demo-dlp3dscanner \
+ "
+ 
+ MATRIX_APPS_append_keystone = " \
 -- 
 2.7.4
 
