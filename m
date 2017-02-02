@@ -1,30 +1,28 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A9A2852B36
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 6868252A7D
 	for <meta-arago@arago-project.org>;
-	Thu,  2 Feb 2017 19:58:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A377920999;
-	Thu,  2 Feb 2017 19:58:25 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id V31FL8ICfLGH; Thu,  2 Feb 2017 19:58:25 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 83D79208AE;
-	Thu,  2 Feb 2017 19:58:24 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id F233A16232F;
-	Thu,  2 Feb 2017 14:58:23 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu,  2 Feb 2017 14:58:23 -0500
-Message-Id: <1486065503-26606-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] packagegroup-matrix: machinevision app depends on opencl, move to corresponding list
+	Thu,  2 Feb 2017 20:48:43 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v12Kmh30007411
+	for <meta-arago@arago-project.org>; Thu, 2 Feb 2017 14:48:43 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v12KmgbK010242
+	for <meta-arago@arago-project.org>; Thu, 2 Feb 2017 14:48:42 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 2 Feb 2017 14:48:42 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v12KmghD015912	for <meta-arago@arago-project.org>;
+	Thu, 2 Feb 2017 14:48:42 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 2 Feb 2017 15:48:37 -0500
+Message-ID: <1486068517-57574-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] dual-camera-demo: update BRANCH and SRCREV to pick up the latest fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,54 +35,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Feb 2017 19:58:25 -0000
+X-List-Received-Date: Thu, 02 Feb 2017 20:48:43 -0000
+Content-Type: text/plain
 
-So it can be guarded by opencl DISTRO_FEATURE.
+- fix tearing issue
+- bug fix for resolution less than 640
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb  | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ .../recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb     | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index a851ed5..848492c 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r61"
-+PR = "r62"
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+index 1b1cbfe..6c36b98 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+@@ -7,10 +7,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
+ DEPENDS += "libdrm"
+ require recipes-core/matrix/matrix-gui-paths.inc
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+-PR = "r15"
++PR = "r16"
  
-@@ -37,7 +37,6 @@ MATRIX_TOUCH_APPS = " \
-     matrix-gui-touch-demos \
- "
+-BRANCH = "drm"
+-SRCREV = "9acc9b17da17ae84e3d4d25fb83d4a8e4cf53fd2"
++BRANCH = "master"
++SRCREV = "5e250641bfbc8a1a90e5b98527d2012729d54c09"
  
--
- MATRIX_QT_APPS_keystone = ""
- 
- MATRIX_SGX_DEMOS = " \
-@@ -58,7 +57,8 @@ MATRIX_OPENCL_APPS = " \
- "
- 
- MATRIX_OPENCL_APPS_append_dra7xx = " \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','matrix-video-analytics-opencv-opencl-opengl-demo','',d)} \
-+    matrix-video-analytics-opencv-opencl-opengl-demo \
-+    matrix-machinevision-demo-dlp3dscanner \
- "
- 
- MATRIX_APPS = ""
-@@ -109,7 +109,6 @@ MATRIX_APPS_append_omap-a15 = "     \
- 
- MATRIX_APPS_append_dra7xx += " \
-     matrix-multimedia-demo-dsp66imgproc \
--    matrix-machinevision-demo-dlp3dscanner \
- "
- 
- MATRIX_APPS_append_keystone = " \
+ SRC_URI = "git://git.ti.com/sitara-linux/dual-camera-demo.git;protocol=git;branch=${BRANCH} \
+            file://desc_dual-camera.html \
 -- 
-2.7.4
+1.9.1
 
 
