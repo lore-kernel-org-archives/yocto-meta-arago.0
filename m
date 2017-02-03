@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3230952A63
+Return-Path: <h-gou@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 365D652A69
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Feb 2017 01:14:49 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 337FE20AC4;
-	Fri,  3 Feb 2017 01:14:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 8sbb1XM5bLgj; Fri,  3 Feb 2017 01:14:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 029FE208D1;
-	Fri,  3 Feb 2017 01:14:47 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id 1B0CE16233E;
-	Thu,  2 Feb 2017 20:14:47 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu,  2 Feb 2017 20:14:46 -0500
-Message-Id: <1486084486-30921-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] conf/distro: switch to 4.9 kernel
+	Fri,  3 Feb 2017 22:22:31 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v13MMUCf028014
+	for <meta-arago@arago-project.org>; Fri, 3 Feb 2017 16:22:30 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v13MMULO018478
+	for <meta-arago@arago-project.org>; Fri, 3 Feb 2017 16:22:30 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 3 Feb 2017 16:22:29 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v13MMTKv025786;	Fri, 3 Feb 2017 16:22:29 -0600
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 3 Feb 2017 17:22:13 -0500
+Message-ID: <1486160539-23523-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [morty/krogoth][PATCH 0/6] Add barcode-roi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,93 +34,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 01:14:49 -0000
+X-List-Received-Date: Fri, 03 Feb 2017 22:22:32 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/include/arago-prefs.inc      | 5 -----
- meta-arago-distro/conf/distro/include/branding-core.inc    | 8 ++++++++
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc    | 4 ++--
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 4 ++--
- 4 files changed, 12 insertions(+), 9 deletions(-)
+Add barcode demo to detect region of interest (ROI)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 10475f0..353f918 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -23,11 +23,6 @@ PREFERRED_PROVIDER_virtual/libgl_keystone = "mesa"
- PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
- 
- PREFERRED_PROVIDER_virtual/kernel = "linux-ti-staging${ARAGO_KERNEL_SUFFIX}"
--PREFERRED_VERSION_linux-ti-staging = "4.4%"
--
--PREFERRED_PROVIDER_virtual/bootloader = "u-boot-ti-staging"
--PREFERRED_PROVIDER_u-boot = "u-boot-ti-staging"
--PREFERRED_VERSION_u-boot-ti-staging = "2016.05%"
- 
- PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
- 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index a506e3c..ffdd690 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -10,3 +10,11 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor = "1"
- 
- # Raise priority for sample IPC FW images
- ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
-+
-+# Temporarily disable "sgx" machine feature for all SOCs while building
-+# latest code base, until it is fixed for 4.9 kernel
-+MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('sgx', '')}"
-+
-+# Temporarily disable "opencl" machine feature for all SOCs while building
-+# latest code base, until it is fixed for 4.9 kernel
-+MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('opencl', '')}"
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 09b11c3..762a6a5 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -20,7 +20,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
- SDKGCCVERSION ?= "6.2%"
- SDKBINUVERSION ?= "2.27%"
- SDKGLIBCVERSION ?= "2.24%"
--SDKLINUXLIBCVERSION ?= "4.4%"
-+SDKLINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
-@@ -38,7 +38,7 @@ GCCVERSION ?= "6.2%"
- BINUVERSION ?= "2.27%"
- GLIBCVERSION ?= "2.24%"
- GLIBCINITVERSION ?= "2.24%"
--LINUXLIBCVERSION ?= "4.4"
-+LINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
- PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index bbe6fd1..65b7beb 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -32,7 +32,7 @@ PREFERRED_PROVIDER_gcc-runtime = "external-linaro-toolchain"
- SDKGCCVERSION ?= "linaro-6.2%"
- SDKBINUVERSION ?= "linaro-2.27%"
- SDKGLIBCVERSION ?= "2.24%"
--SDKLINUXLIBCVERSION ?= "4.4%"
-+SDKLINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_gcc-crosssdk-initial-${SDK_SYS} ?= "${SDKGCCVERSION}"
-@@ -51,7 +51,7 @@ GCCVERSION ?= "linaro-6.2%"
- BINUVERSION ?= "linaro-2.27%"
- GLIBCVERSION ?= "2.24%"
- GLIBCINITVERSION ?= "2.24%"
--LINUXLIBCVERSION ?= "4.4"
-+LINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
- PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
+Hongmei Gou (6):
+  barcode-roi: add barcode ROI detection demo
+  arago-source-ipk: add SRCIPK for barcode-roi demo
+  ti-tisdk-makefile: add barcode-roi demo
+  matrix-gui-machinevision-demos: add barcode-roi demo
+  packagegroup-arago-tisdk-matrix: add barcode-roi demo
+  packagegroup-arago-tisdk-multimedia-sdk*: add barcode-roi demo
+
+ .../conf/distro/arago-source-ipk.conf              |  3 +++
+ .../packagegroup-arago-tisdk-matrix.bb             |  6 ++++-
+ ...packagegroup-arago-tisdk-multimedia-sdk-host.bb |  9 ++++++-
+ ...ckagegroup-arago-tisdk-multimedia-sdk-target.bb |  8 +++++-
+ .../ti-tisdk-makefile/Makefile_barcode-roi         | 19 ++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  7 +++++-
+ .../recipes-apps/barcode-demo/barcode-roi_git.bb   | 29 ++++++++++++++++++++++
+ .../matrix/matrix-gui-machinevision-demos_2.0.bb   | 24 +++++++++++++++---
+ 8 files changed, 98 insertions(+), 7 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_barcode-roi
+ create mode 100644 meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
+
 -- 
-2.7.4
+1.9.1
 
 
