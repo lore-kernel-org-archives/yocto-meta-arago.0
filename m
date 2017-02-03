@@ -1,29 +1,29 @@
 Return-Path: <h-gou@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 46C6C52B00
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 3EE7652AF7
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Feb 2017 22:22:31 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v13MMULQ028017
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v13MMUnf026227
 	for <meta-arago@arago-project.org>; Fri, 3 Feb 2017 16:22:30 -0600
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v13MMUtq018493
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v13MMU3L005391
 	for <meta-arago@arago-project.org>; Fri, 3 Feb 2017 16:22:30 -0600
 Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
 	Fri, 3 Feb 2017 16:22:30 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v13MMTL0025786;	Fri, 3 Feb 2017 16:22:30 -0600
+	v13MMTKx025786;	Fri, 3 Feb 2017 16:22:30 -0600
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 3 Feb 2017 17:22:16 -0500
-Message-ID: <1486160539-23523-4-git-send-email-h-gou@ti.com>
+Date: Fri, 3 Feb 2017 17:22:15 -0500
+Message-ID: <1486160539-23523-3-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1486160539-23523-1-git-send-email-h-gou@ti.com>
 References: <1486160539-23523-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH 3/6] ti-tisdk-makefile: add barcode-roi demo
+Subject: [morty/krogoth][PATCH 2/6] arago-source-ipk: add SRCIPK for barcode-roi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,84 +41,23 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_barcode-roi            | 19 +++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb        |  7 ++++++-
- 2 files changed, 25 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_barcode-roi
+ meta-arago-distro/conf/distro/arago-source-ipk.conf | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_barcode-roi b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_barcode-roi
-new file mode 100644
-index 0000000..7d7ae56
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_barcode-roi
-@@ -0,0 +1,19 @@
-+# barcode-roi build targets
+diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+index 96f2db2..5d2796f 100644
+--- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
++++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+@@ -357,6 +357,9 @@ CREATE_SRCIPK_pn-linalg-examples = "1"
+ SRCIPK_INSTALL_DIR_pn-linalg-examples = "example-applications/${PN}-${PV}"
+ SRCIPK_SRC_DIR_pn-linalg-examples = "${EXAMPLES_ROOT}"
+ 
++CREATE_SRCIPK_pn-barcode-roi = "1"
++SRCIPK_INSTALL_DIR_pn-barcode-roi = "example-applications/${PN}-${PV}"
 +
-+barcode-roi:
-+	@echo =============================
-+	@echo    Building Barcode ROI
-+	@echo =============================
-+	@cd example-applications; cd `find . -name "*barcode-roi*"`; make -f Makefile.build release
-+
-+barcode-roi_clean:
-+	@echo =============================
-+	@echo    Cleaning Barcode ROI
-+	@echo =============================
-+	@cd example-applications; cd `find . -name "*barcode-roi*"`; make -f Makefile.build clean
-+
-+barcode-roi_install:
-+	@echo ================================================
-+	@echo   Installing Barcode ROI - Release version
-+	@echo ================================================
-+	@cd example-applications; cd `find . -name "*barcode-roi*"`; make -f Makefile.build install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 25cde69..8cc0758 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -47,9 +47,10 @@ SRC_URI = "\
-     file://Makefile_openmpacc-examples \
-     file://Makefile_linalg-examples \
-     file://Makefile_ti-gc320-driver \
-+    file://Makefile_barcode-roi \
- "
+ CREATE_SRCIPK_pn-boot-monitor = "1"
+ SRCIPK_INSTALL_DIR_pn-boot-monitor = "board-support/${PN}-${PV}"
  
--PR = "r76"
-+PR = "r77"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -88,6 +89,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
-                            cryptodev \
-                            ti-sgx-ddk-km \
-                            pru-icss \
-+                           barcode-roi \
- "
- MAKEFILES_append_ti43x = " u-boot-spl \
-                            ${QUICK_PLAYGROUND} \
-@@ -98,6 +100,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
-                            image-gallery \
-                            ti-sgx-ddk-km \
-                            pru-icss \
-+                           barcode-roi \
- "
- 
- MAKEFILES_append_dra7xx = " cryptodev \
-@@ -116,6 +119,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               cmem-mod \
-                               pru-icss \
-                               ti-gc320-driver \
-+                              barcode-roi \
- "
- MAKEFILES_append_am180x-evm = " pru \
-                                 u-boot-legacy \
-@@ -130,6 +134,7 @@ MAKEFILES_append_keystone = " u-boot-spl \
-                               hplib-mod \
-                               uio-module-drv \
-                               ipsecmgr-mod \
-+                              barcode-roi \
- "
- 
- MAKEFILES_append_k2hk-evm = " opencl-examples \
 -- 
 1.9.1
 
