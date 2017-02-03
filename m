@@ -1,27 +1,29 @@
 Return-Path: <h-gou@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 365D652A69
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 4258B52AFD
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Feb 2017 22:22:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v13MMUCf028014
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v13MMU46015669
 	for <meta-arago@arago-project.org>; Fri, 3 Feb 2017 16:22:30 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v13MMULO018478
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v13MMU0H018482
 	for <meta-arago@arago-project.org>; Fri, 3 Feb 2017 16:22:30 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 3 Feb 2017 16:22:29 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 3 Feb 2017 16:22:30 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v13MMTKv025786;	Fri, 3 Feb 2017 16:22:29 -0600
+	v13MMTKw025786;	Fri, 3 Feb 2017 16:22:30 -0600
 From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 3 Feb 2017 17:22:13 -0500
-Message-ID: <1486160539-23523-1-git-send-email-h-gou@ti.com>
+Date: Fri, 3 Feb 2017 17:22:14 -0500
+Message-ID: <1486160539-23523-2-git-send-email-h-gou@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1486160539-23523-1-git-send-email-h-gou@ti.com>
+References: <1486160539-23523-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH 0/6] Add barcode-roi demo
+Subject: [morty/krogoth][PATCH 1/6] barcode-roi: add barcode ROI detection demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,28 +39,47 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 03 Feb 2017 22:22:32 -0000
 Content-Type: text/plain
 
-Add barcode demo to detect region of interest (ROI)
-
-Hongmei Gou (6):
-  barcode-roi: add barcode ROI detection demo
-  arago-source-ipk: add SRCIPK for barcode-roi demo
-  ti-tisdk-makefile: add barcode-roi demo
-  matrix-gui-machinevision-demos: add barcode-roi demo
-  packagegroup-arago-tisdk-matrix: add barcode-roi demo
-  packagegroup-arago-tisdk-multimedia-sdk*: add barcode-roi demo
-
- .../conf/distro/arago-source-ipk.conf              |  3 +++
- .../packagegroup-arago-tisdk-matrix.bb             |  6 ++++-
- ...packagegroup-arago-tisdk-multimedia-sdk-host.bb |  9 ++++++-
- ...ckagegroup-arago-tisdk-multimedia-sdk-target.bb |  8 +++++-
- .../ti-tisdk-makefile/Makefile_barcode-roi         | 19 ++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  7 +++++-
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
  .../recipes-apps/barcode-demo/barcode-roi_git.bb   | 29 ++++++++++++++++++++++
- .../matrix/matrix-gui-machinevision-demos_2.0.bb   | 24 +++++++++++++++---
- 8 files changed, 98 insertions(+), 7 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_barcode-roi
+ 1 file changed, 29 insertions(+)
  create mode 100644 meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
 
+diff --git a/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb b/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
+new file mode 100644
+index 0000000..d828ef7
+--- /dev/null
++++ b/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
+@@ -0,0 +1,29 @@
++DESCRIPTION = "Barcode demo to detect region of interest"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://detect_barcode.cpp;beginline=1;endline=25;md5=babab64d39715b3671dd16bcb4f4917b"
++
++DEPENDS += "opencv"
++
++PV = "01.00.00"
++PR = "r1"
++
++BRANCH = "master"
++SRC_URI = "git://git.ti.com/apps/barcode-roi-detection.git;protocol=git;branch=${BRANCH}"
++
++SRCREV = "50fa051f66012ebaa10eba1cb289287c4c5e7432"
++
++S = "${WORKDIR}/git"
++
++do_install() {
++    install -d ${D}${bindir}
++    install -m 755 ${S}/detect_barcode ${D}${bindir}
++
++    install -d ${D}${datadir}/ti/image
++    install -m 644 ${S}/test/sample_barcode.jpg ${D}${datadir}/ti/image
++}
++
++FILES_${PN} += "\
++    ${datadir}/ti/image \
++"
++
++INSANE_SKIP_${PN} = "ldflags"
 -- 
 1.9.1
 
