@@ -1,30 +1,46 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 86BA952970
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-yb0-f196.google.com (mail-yb0-f196.google.com
+	[209.85.213.196])
+	by arago-project.org (Postfix) with ESMTPS id A52B55209B
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Feb 2017 23:26:51 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 26E0120B82;
-	Fri,  3 Feb 2017 23:26:51 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id PRtuDEIzpnaX; Fri,  3 Feb 2017 23:26:51 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 051DA20893;
-	Fri,  3 Feb 2017 23:26:49 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id 4C2F3162335;
-	Fri,  3 Feb 2017 18:26:49 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri,  3 Feb 2017 18:26:48 -0500
-Message-Id: <1486164408-1611-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty][PATCH] attr: corresponding fix got merged to morty, drop locally
+	Sat,  4 Feb 2017 21:42:44 +0000 (UTC)
+Received: by mail-yb0-f196.google.com with SMTP id j82so2169883ybg.2
+	for <meta-arago@arago-project.org>;
+	Sat, 04 Feb 2017 13:42:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=aQktE6FEH+uPWiRlmL+2BjRrEa4yuL+OlJnPuDYJUJo=;
+	b=oA85i39PwG+YYUjd8Uf7278HYJvJRnSgfm7rezjw2jTaQ3ucmqYs1b/7zdUyVgwTaO
+	sr9gTBj+21HN8KglMqEtMn5mQ+WEilSmh8W9LGh4fVb8QxSyW9UJlCTNql3IdU8ji/A0
+	BH6qHGkkspEclc9vQTCCB8Z45uLOo9tciaMW6l3YQzFexwd3SaG1pCX5vRx/ao9i9nm3
+	p1/Ee4otFFAohKGUUOlldhmcYrIwu3hgH0NMN9yem5odVSAOyHv7BElClp8EnDjg9YKW
+	WvRpKVJLeu+QK4wFVjJOpptpFznY7NgvPpDQd9GvF6FoeG8765uhujnfaYGpOWLdJKOD
+	mLPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=aQktE6FEH+uPWiRlmL+2BjRrEa4yuL+OlJnPuDYJUJo=;
+	b=c+K4/P47D4gn9uzrF1qU3I6uCX6M39Edz84eBwGUoYTLVZPVXWoxsmIyAAQTMllu8V
+	oUuCdPDiCh9M/QWKJcX22AQEVcWEr2LuSRHsovpRL3GmRKoqNktb2C0etd3uxLkMWCsr
+	tKDCo7sxs3+Kxd21l6PDled1rhcnxtwAJUZaGH5UWmJB6RK+9glyQG8DQZeYO3cm4CsD
+	eq7NWF7sVWs9VHJFawb9bfzEZwbOzVtMOnMEkNHVT2Al0es7g1sn18q61Qt93YxhOy1a
+	KrJkMxHPkjSFf3mhyYWV54YuCCzlfMxCbJjzqGQvEF7DLrI4OU8WSUY+zL71QTAP4A9e
+	ryAA==
+X-Gm-Message-State: AMke39kfNhHNoRUkWFHYjdXfl7c93LueyR7BBzCAtyQ8BUCoYyWA0uSdGttP70B2VFyMu+H0QjkaIAVgeyJh2g==
+X-Received: by 10.37.177.138 with SMTP id h10mr2391883ybj.9.1486244564543;
+	Sat, 04 Feb 2017 13:42:44 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.129.80.215 with HTTP; Sat, 4 Feb 2017 13:42:24 -0800 (PST)
+In-Reply-To: <20170203003337.GA19545@edge>
+References: <CADySD0FEFTwomoxgH9hhP97vxkW5aH5EJqh4h1+_thpS5cPsFQ@mail.gmail.com>
+	<20170203003337.GA19545@edge>
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Sun, 5 Feb 2017 10:42:24 +1300
+Message-ID: <CADySD0Hr2rmA8Eu6bdngmEMri67Fc7_2JiFhJmQWTYhAb0CO1w@mail.gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Cc: meta-arago@arago-project.org
+Subject: Re: How to remove linux headers from rootfs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,31 +53,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Feb 2017 23:26:52 -0000
+X-List-Received-Date: Sat, 04 Feb 2017 21:42:45 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-support/attr/acl_%.bbappend  | 1 -
- meta-arago-distro/recipes-support/attr/attr_%.bbappend | 1 -
- 2 files changed, 2 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-support/attr/acl_%.bbappend
- delete mode 100644 meta-arago-distro/recipes-support/attr/attr_%.bbappend
+Hi Denys,
 
-diff --git a/meta-arago-distro/recipes-support/attr/acl_%.bbappend b/meta-arago-distro/recipes-support/attr/acl_%.bbappend
-deleted file mode 100644
-index 59be8ee..0000000
---- a/meta-arago-distro/recipes-support/attr/acl_%.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--EXTRA_OECONF_append_class-target = "${@['', ' --disable-gettext '][(d.getVar('USE_NLS', True) == 'no')]}"
-diff --git a/meta-arago-distro/recipes-support/attr/attr_%.bbappend b/meta-arago-distro/recipes-support/attr/attr_%.bbappend
-deleted file mode 100644
-index 59be8ee..0000000
---- a/meta-arago-distro/recipes-support/attr/attr_%.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--EXTRA_OECONF_append_class-target = "${@['', ' --disable-gettext '][(d.getVar('USE_NLS', True) == 'no')]}"
--- 
-2.7.4
+I have following dev packages installed in my rootfs which I don't want
 
+- linux-libc-headers-dev
+- libgcc-s-dev
+- libc6-dev
+
+I haven't explicitly added any -dev package.
+How can I remove them ?
+
+Thanks
+Ankur
+
+On Fri, Feb 3, 2017 at 1:33 PM, Denys Dmytriyenko <denys@ti.com> wrote:
+> On Fri, Feb 03, 2017 at 01:26:38PM +1300, Ankur Tyagi wrote:
+>> Hi,
+>>
+>> I have an image recipe which include packagegroup-core-boot which
+>> brings in external-linaro-toolchain which in turn adds
+>> linux-libc-headers.
+>>
+>> How can I remove linux-libc-headers from my end root FS ?
+>
+> linux-libc-headers is an empty package. linux-libc-headers-dev is the one that
+> contains all the standard headers required for development. Which one you have?
+>
+> --
+> Denys
 
