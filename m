@@ -1,27 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id C99D152AEB
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 31DE052A1B
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Feb 2017 17:32:25 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v16HWEc7018480
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 11:32:14 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v16HW9pg026717
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 11:32:09 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 6 Feb 2017 11:32:08 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v16HW3ix029378;	Mon, 6 Feb 2017 11:32:06 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 6 Feb 2017 12:32:00 -0500
-Message-ID: <1486402320-29803-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH] packagegroup-arago-gst*: add gstreamer1.0-plugins-dsp66
+	Mon,  6 Feb 2017 17:52:20 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id BBC63209B9;
+	Mon,  6 Feb 2017 17:52:19 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Vlh0Fr3XLzYA; Mon,  6 Feb 2017 17:52:19 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9A62B20893;
+	Mon,  6 Feb 2017 17:52:18 +0000 (UTC)
+Received: from sam.denix (sam [192.168.0.5])
+	by mail.denix.org (Postfix) with ESMTP id CD389162335;
+	Mon,  6 Feb 2017 12:52:17 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon,  6 Feb 2017 12:52:17 -0500
+Message-Id: <1486403537-6318-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty][PATCH v2] attr: corresponding fix got merged to oe-core/morty, drop locally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,66 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 17:32:29 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 06 Feb 2017 17:52:20 -0000
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb   | 4 +++-
- .../recipes-core/packagegroups/packagegroup-arago-gst.bb              | 4 +++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+v2 - correct subject a bit
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-index 84e7244..739371f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to build and install header and libs in sdk"
- LICENSE = "MIT"
--PR = "r13"
-+PR = "r14"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -16,10 +16,12 @@ GSTREAMER_DEPS = " \
- 
- GSTREAMER_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc-dev \
-+    gstreamer1.0-plugins-dsp66-dev \
- "
- 
- GSTREAMER_DEPS_append_keystone = " \
-     gstreamer1.0-plugins-hevc-dev \
-+    gstreamer1.0-plugins-dsp66-dev \
- "
- 
- RDEPENDS_${PN} = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index d34051e..4fc0255 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add gstreamer and gstreamer plugins"
- LICENSE = "MIT"
--PR = "r16"
-+PR = "r17"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -19,10 +19,12 @@ GSTREAMER_DEPS = " \
- 
- GSTREAMER_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc \
-+    gstreamer1.0-plugins-dsp66 \
- "
- 
- GSTREAMER_DEPS_append_keystone = " \
-     gstreamer1.0-plugins-hevc \
-+    gstreamer1.0-plugins-dsp66 \
- "
- 
- GSTREAMER_ACCEL_MM = ""
+ meta-arago-distro/recipes-support/attr/acl_%.bbappend  | 1 -
+ meta-arago-distro/recipes-support/attr/attr_%.bbappend | 1 -
+ 2 files changed, 2 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/attr/acl_%.bbappend
+ delete mode 100644 meta-arago-distro/recipes-support/attr/attr_%.bbappend
+
+diff --git a/meta-arago-distro/recipes-support/attr/acl_%.bbappend b/meta-arago-distro/recipes-support/attr/acl_%.bbappend
+deleted file mode 100644
+index 59be8ee..0000000
+--- a/meta-arago-distro/recipes-support/attr/acl_%.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-EXTRA_OECONF_append_class-target = "${@['', ' --disable-gettext '][(d.getVar('USE_NLS', True) == 'no')]}"
+diff --git a/meta-arago-distro/recipes-support/attr/attr_%.bbappend b/meta-arago-distro/recipes-support/attr/attr_%.bbappend
+deleted file mode 100644
+index 59be8ee..0000000
+--- a/meta-arago-distro/recipes-support/attr/attr_%.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-EXTRA_OECONF_append_class-target = "${@['', ' --disable-gettext '][(d.getVar('USE_NLS', True) == 'no')]}"
 -- 
-1.9.1
+2.7.4
 
 
