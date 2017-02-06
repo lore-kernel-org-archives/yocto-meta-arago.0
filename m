@@ -1,30 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 31DE052A1B
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 63BAA5298B
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Feb 2017 17:52:20 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BBC63209B9;
-	Mon,  6 Feb 2017 17:52:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Vlh0Fr3XLzYA; Mon,  6 Feb 2017 17:52:19 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9A62B20893;
-	Mon,  6 Feb 2017 17:52:18 +0000 (UTC)
-Received: from sam.denix (sam [192.168.0.5])
-	by mail.denix.org (Postfix) with ESMTP id CD389162335;
-	Mon,  6 Feb 2017 12:52:17 -0500 (EST)
+	Mon,  6 Feb 2017 18:11:04 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v16IB4aY018594
+	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 12:11:04 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v16IB3Ti018456
+	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 12:11:04 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 6 Feb 2017 12:11:02 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v16IB2kL021674;
+	Mon, 6 Feb 2017 12:11:02 -0600
+Date: Mon, 6 Feb 2017 13:11:02 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon,  6 Feb 2017 12:52:17 -0500
-Message-Id: <1486403537-6318-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty][PATCH v2] attr: corresponding fix got merged to oe-core/morty, drop locally
+To: Hongmei Gou <h-gou@ti.com>
+Message-ID: <20170206181101.GI25590@edge>
+References: <1486160539-23523-1-git-send-email-h-gou@ti.com>
+	<1486160539-23523-6-git-send-email-h-gou@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1486160539-23523-6-git-send-email-h-gou@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/krogoth][PATCH 5/6] packagegroup-arago-tisdk-matrix: add barcode-roi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,33 +38,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 17:52:20 -0000
+X-List-Received-Date: Mon, 06 Feb 2017 18:11:04 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
-v2 - correct subject a bit
+Hongmei,
 
- meta-arago-distro/recipes-support/attr/acl_%.bbappend  | 1 -
- meta-arago-distro/recipes-support/attr/attr_%.bbappend | 1 -
- 2 files changed, 2 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-support/attr/acl_%.bbappend
- delete mode 100644 meta-arago-distro/recipes-support/attr/attr_%.bbappend
+Can you please re-do this patch due to this change:
+http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=908f169117c7589eabc78a392e8c43eb099553cd
 
-diff --git a/meta-arago-distro/recipes-support/attr/acl_%.bbappend b/meta-arago-distro/recipes-support/attr/acl_%.bbappend
-deleted file mode 100644
-index 59be8ee..0000000
---- a/meta-arago-distro/recipes-support/attr/acl_%.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--EXTRA_OECONF_append_class-target = "${@['', ' --disable-gettext '][(d.getVar('USE_NLS', True) == 'no')]}"
-diff --git a/meta-arago-distro/recipes-support/attr/attr_%.bbappend b/meta-arago-distro/recipes-support/attr/attr_%.bbappend
-deleted file mode 100644
-index 59be8ee..0000000
---- a/meta-arago-distro/recipes-support/attr/attr_%.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--EXTRA_OECONF_append_class-target = "${@['', ' --disable-gettext '][(d.getVar('USE_NLS', True) == 'no')]}"
+barcode-roi depends on opencv/opencl and hence should be in MATRIX_OPENCL_APPS 
+list, which gets conditionally included based on corresponding MACHINE_FEATURE.
+
 -- 
-2.7.4
+Denys
 
+
+On Fri, Feb 03, 2017 at 05:22:18PM -0500, Hongmei Gou wrote:
+> Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> ---
+>  .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb   | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+> index a851ed5..7358da4 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to include Matrix v2"
+>  LICENSE = "MIT"
+> -PR = "r61"
+> +PR = "r62"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -76,6 +76,7 @@ MATRIX_APPS_append_ti33x = "        \
+>      matrix-gui-pm-demos-governor    \
+>                                      \
+>      matrix-gui-ethernet-demos       \
+> +    matrix-machinevision-demo-barcoderoi \
+>  "
+>  
+>  MATRIX_APPS_append_ti43x = "        \
+> @@ -91,6 +92,7 @@ MATRIX_APPS_append_ti43x = "        \
+>                                      \
+>      matrix-gui-apps-dual-camera     \
+>      matrix-gui-apps-image-gallery   \
+> +    matrix-machinevision-demo-barcoderoi \
+>  "
+>  
+>  MATRIX_APPS_append_omap-a15 = "     \
+> @@ -105,6 +107,7 @@ MATRIX_APPS_append_omap-a15 = "     \
+>      matrix-gui-generic-pm           \
+>      matrix-gui-clocks               \
+>      matrix-gui-pm-demos-governor    \
+> +    matrix-machinevision-demo-barcoderoi \
+>  "
+>  
+>  MATRIX_APPS_append_dra7xx += " \
+> @@ -116,6 +119,7 @@ MATRIX_APPS_append_keystone = " \
+>      matrix-gui-utility-demos    \
+>      matrix-mc-demo-ipc          \
+>      matrix-multimedia-demo-dsp66imgproc-f2f \
+> +    matrix-machinevision-demo-barcoderoi-f2f \
+>  "
+>  
+>  RDEPENDS_${PN} = "        \
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
