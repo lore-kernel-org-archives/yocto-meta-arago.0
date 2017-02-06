@@ -1,47 +1,41 @@
 Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-yw0-f193.google.com (mail-yw0-f193.google.com
-	[209.85.161.193])
-	by arago-project.org (Postfix) with ESMTPS id A9D5152B02
+Received: from mail-yw0-f171.google.com (mail-yw0-f171.google.com
+	[209.85.161.171])
+	by arago-project.org (Postfix) with ESMTPS id EDFB752AD0
 	for <meta-arago@arago-project.org>;
-	Sat,  4 Feb 2017 22:02:53 +0000 (UTC)
-Received: by mail-yw0-f193.google.com with SMTP id v73so4471702ywg.1
+	Mon,  6 Feb 2017 09:03:48 +0000 (UTC)
+Received: by mail-yw0-f171.google.com with SMTP id v200so45059637ywc.3
 	for <meta-arago@arago-project.org>;
-	Sat, 04 Feb 2017 14:02:54 -0800 (PST)
+	Mon, 06 Feb 2017 01:03:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hZ3glaTk48W8z5objOkcNNEYk9lGT4ZYs3VLZekfjwA=;
-	b=RyjXcx9MJoCYthFVdCXYtMC5xoq2loPbC8a86AI6/3G4TJXwW02WXZ5Eaj7uqTaAmg
-	iNa8pTPxincSLR+M4/Got6TCTCY923oeXTlSz0Z7lYECvDIoPxbFhpTpiZWQeqgaLcM5
-	VTSfpyvE8xRx3/tOqwll8SBK7x/JtvVv9ef3cgxJXMltw1z91rXng3ge/O9pv1PPfOEQ
-	iS+kZZGGEOZvy53odl0xARGpMtgnPBxousUESByVDPqGsF/bEqcyQdTsgnhL+pURuBR2
-	bMarf7/lmcvJYa0p0TgvOqqYxkR7Btrtv2SYv9zM83x1e48qauQezWNQ3PowVoZ1T+PR
-	2hFQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=t6mdJiE+szn05rW3vWGECmWx4Xgo6ls7AnL7oibRU7E=;
+	b=YWQph+rhPLksMb6ukaxJzrCi7s+9ad4Ku94AGShw5JdXsEDSlCXPyTco+FZaeKZ+63
+	NTREOOPnVmkz0qWco27Q7MQn9uHlIk4Z69GRy89BC71GA8p3CpPwEk1nufdAOy3KpmxQ
+	LqiMxwR0nW52dY76/A8vt/4qNsPrYzu+pkEczCj90aulKf3F7Q3vqK+XYIMBpMTEAKWs
+	AW3ciAu4M5tQ/dL574CyAe+0LP3qPzhal9UsD2YXL9WwZ3QRm3XA08M7OKP2NzOV3RLo
+	1rzoyhsR9pIGLJFXEZpR4xlh7IUa6eIuVcoLdbJFgbkcelMHG8R7dRkCwyysN8SPiPlf
+	ucBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hZ3glaTk48W8z5objOkcNNEYk9lGT4ZYs3VLZekfjwA=;
-	b=ZfgADz4SV1yPdXoPzWHwnJVnhlUgzhtLTiKjunORWQSJphIywoAINZ0aj5laESxSgl
-	FaPQwQXdnFmsRWZR0tsjdpYpw88lob3i3MVcWzf9NPMLX+5P4dyKnRFQHacbJQzSfvAV
-	bZlS/uQEyFyDDWPROkikZaO8UnH7iz8cNsoPMhhqq0n6IKyAybHJ1mC0fEDwtWYgAfG1
-	4F4rgBUHd+PzDUTlgJKWJX6GAfe6BQOcd2XxfWK4kd4ZZ1oMi9rLsy+cnGfXluoUKUVJ
-	J4vvqM2asSiDYQ6Po/CA8HAmHXvY5nmhUwiKKXpOfBoAiNUZ45qivucLWR67UbYsGPCc
-	mOew==
-X-Gm-Message-State: AIkVDXKdyiwGk/7Kw/wkiSDuUolsfRsje6gOUMj07w/dCCavp/USVs423O+731tevKP8jmQh1V7No+all99xEA==
-X-Received: by 10.129.116.136 with SMTP id p130mr2595990ywc.151.1486245773729; 
-	Sat, 04 Feb 2017 14:02:53 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=t6mdJiE+szn05rW3vWGECmWx4Xgo6ls7AnL7oibRU7E=;
+	b=sE1yebe7sgUFv/tcoYhTlVd1CYceXJkK3jxZiWZEq9OUdb3c6phyjWO8P4ZiIJ6vm4
+	sMHz8/slfdmM/qNDPA97Wmn47OywrItULKribbDTqDpClDT0e1mQ0okCsWsGm9sjI7ck
+	L+p/T8BGbL6/9ts/0BTiBczhn8/iHOhw7Ng1mBjBPK5Dz2C9jkjIdu/lHO+D/yaLR8wu
+	il+tlrNGISdeAmyBhy9C8nl0n1x3mVjx0HacdaLsaSGpddKff7Tt3jSqLvmDVJu+snLM
+	YhCavJsaAYF+fJUuWsbnpNniQYfUOf/ZJDrvef6Adid0NAQy5qLZGTAMNfrzvoUyj8vd
+	gk4A==
+X-Gm-Message-State: AMke39mRVF5e/4VYkOtDWYjkbOycF7D2suQcmJpj7nzQr0yp6lZdh8fnGxuJx+bGaC+ygNfhvuNsjjbcl+bGnA==
+X-Received: by 10.13.248.198 with SMTP id i189mr6172915ywf.274.1486371828708; 
+	Mon, 06 Feb 2017 01:03:48 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.129.80.215 with HTTP; Sat, 4 Feb 2017 14:02:33 -0800 (PST)
-In-Reply-To: <CADySD0Hr2rmA8Eu6bdngmEMri67Fc7_2JiFhJmQWTYhAb0CO1w@mail.gmail.com>
-References: <CADySD0FEFTwomoxgH9hhP97vxkW5aH5EJqh4h1+_thpS5cPsFQ@mail.gmail.com>
-	<20170203003337.GA19545@edge>
-	<CADySD0Hr2rmA8Eu6bdngmEMri67Fc7_2JiFhJmQWTYhAb0CO1w@mail.gmail.com>
+Received: by 10.129.80.215 with HTTP; Mon, 6 Feb 2017 01:03:28 -0800 (PST)
 From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sun, 5 Feb 2017 11:02:33 +1300
-Message-ID: <CADySD0Ht7tH=QC6C6r2f-PgTX1P192x5o0jry8yo-Fe6OVk3mQ@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: How to remove linux headers from rootfs
+Date: Mon, 6 Feb 2017 22:03:28 +1300
+Message-ID: <CADySD0GYzbgy90bbYg-Gvz+xS963pEOd0qUExa8TkHGC39U4cg@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: tisdk-rootfs-image recipe bitbake error on morty branch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,46 +48,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Feb 2017 22:02:53 -0000
+X-List-Received-Date: Mon, 06 Feb 2017 09:03:49 -0000
 Content-Type: text/plain; charset=UTF-8
 
-To add more, linux-libc-headers  indeed produce linux-libc-headers-dev
+Hi,
 
-bitbake -e linux-libc-headers | grep "^PACKAGES="
-PACKAGES="linux-libc-headers-dbg linux-libc-headers-staticdev
-linux-libc-headers-dev linux-libc-headers-doc
-linux-libc-headers-locale  linux-libc-headers"
+I am getting following error when trying to bitbake tisdk-rootfs-image
+on morty branch
 
-And forgot to mention that I am using *daisy* branch..
+http://pastebin.com/RYjxsNXa
 
-On Sun, Feb 5, 2017 at 10:42 AM, Ankur Tyagi <ankur.tyagi85@gmail.com> wrote:
-> Hi Denys,
->
-> I have following dev packages installed in my rootfs which I don't want
->
-> - linux-libc-headers-dev
-> - libgcc-s-dev
-> - libc6-dev
->
-> I haven't explicitly added any -dev package.
-> How can I remove them ?
->
-> Thanks
-> Ankur
->
-> On Fri, Feb 3, 2017 at 1:33 PM, Denys Dmytriyenko <denys@ti.com> wrote:
->> On Fri, Feb 03, 2017 at 01:26:38PM +1300, Ankur Tyagi wrote:
->>> Hi,
->>>
->>> I have an image recipe which include packagegroup-core-boot which
->>> brings in external-linaro-toolchain which in turn adds
->>> linux-libc-headers.
->>>
->>> How can I remove linux-libc-headers from my end root FS ?
->>
->> linux-libc-headers is an empty package. linux-libc-headers-dev is the one that
->> contains all the standard headers required for development. Which one you have?
->>
->> --
->> Denys
+This is my build configuration:
+
+Build Configuration:
+BB_VERSION        = "1.32.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-16.04"
+TARGET_SYS        = "arm-linux-gnueabi"
+MACHINE           = "am335x-evm"
+DISTRO            = "arago"
+DISTRO_VERSION    = "2017.01"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon       callconvention-hard"
+TARGET_FPU        = "hard"
+meta-arago-distro
+meta-arago-extras = "morty:6b2b36c1438b60388f56ce4e37771d6faf1dade8"
+meta-qt5          = "morty:4020adfd5198cf581eb20fbfd7d5b4c1a42fcdf4"
+meta-networking
+meta-ruby
+meta-python
+meta-oe           = "morty:1efa5d623bc64659b57389e50be2568b1355d5f7"
+meta-ti           = "morty:935753e93814a75db2072e5d1b31b759f835e95c"
+meta-linaro-toolchain
+meta-optee        = "morty:d4639deb43bb6c62ac06aaf951245edc9b9f410e"
+meta              = "morty:79f821fb6c1b425ca5cb5e6db360c2743d6c989e"
+
+Regards
+Ankur
 
