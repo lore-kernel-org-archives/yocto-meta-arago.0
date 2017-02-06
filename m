@@ -1,27 +1,27 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <h-gou@ti.com>
 Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id BBB41529BC
+	by arago-project.org (Postfix) with ESMTPS id 30E7A52999
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Feb 2017 15:16:59 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v16FGxxs030933
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 09:16:59 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v16FGxa3026010
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 09:16:59 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 6 Feb 2017 09:16:59 -0600
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v16FGxSs008109;	Mon, 6 Feb 2017 09:16:59 -0600
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Mon,  6 Feb 2017 16:44:01 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v16Gi09p009344
+	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 10:44:00 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v16Gi0kT014380
+	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 10:44:00 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 6 Feb 2017 10:44:00 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v16Gi0Ow027816;	Mon, 6 Feb 2017 10:44:00 -0600
+From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 6 Feb 2017 10:14:43 -0500
-Message-ID: <1486394083-684-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Mon, 6 Feb 2017 11:43:57 -0500
+Message-ID: <1486399437-29605-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [krogoth/morty][PATCH] parse-ip: fix for use with systemd
+Subject: [morty/krogoth][patch] ti-tisdk-makefile: add am572x-idk-pru-excl-uio.dtb to linux-dtbs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,56 +34,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 15:17:00 -0000
+X-List-Received-Date: Mon, 06 Feb 2017 16:44:01 -0000
 Content-Type: text/plain
 
-* The keystone parse-ip initscript displays the IP address on the
-  EVM's LCD by echoing a magic string over uart, and the BMC
-  intercepts this magic string, and prints the following two lines to
-  the LCD.
-* systemd will suppress all stdout from legacy initscripts
-* Therefore force writing to /dev/ttyS0 so that the message is not
-  suppressed.
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb            | 2 +-
- meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init | 5 ++---
- 2 files changed, 3 insertions(+), 4 deletions(-)
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-index 047e7df..69a8cf7 100644
---- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-+++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip.bb
-@@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 8cc0758..c27bba6 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -50,7 +50,7 @@ SRC_URI = "\
+     file://Makefile_barcode-roi \
+ "
  
- SRC_URI = "file://init"
+-PR = "r77"
++PR = "r78"
  
--PR = "r5"
-+PR = "r6"
- 
- S = "${WORKDIR}"
- 
-diff --git a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
-index a693156..7d42d43 100644
---- a/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
-+++ b/meta-arago-distro/recipes-tisdk/parse-ip/parse-ip/keystone/init
-@@ -36,12 +36,11 @@ case "$1" in
- 	echo ' ' >> ipaddr
-         echo '#>>>>> LCD 12' >> ipaddr
-         echo 'IP Address:' >> ipaddr
--        cat ipaddr
-         wait
-         sleep 1
- 
--        echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` > ipaddr
--        cat ipaddr
-+        echo `ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'` >> ipaddr
-+        cat ipaddr > /dev/ttyS0
-         wait
-         sleep 1
-     ;;
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
+@@ -188,7 +188,7 @@ KERNEL_DEVICETREE_ti43x = "am43x-epos-evm.dtb am437x-gp-evm.dtb am437x-gp-evm-hd
+ KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb am335x-bonegreen.dtb"
+ KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
+ KERNEL_DEVICETREE_dra7xx-evm = "dra7-evm.dtb dra7-evm-lcd-lg.dtb dra7-evm-lcd-osd.dtb dra72-evm.dtb dra72-evm-revc.dtb dra72-evm-lcd-lg.dtb dra72-evm-lcd-osd.dtb"
+-KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb am571x-idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-osd.dtb"
++KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb am571x-idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-osd.dtb am572x-idk-pru-excl-uio.dtb"
+ KERNEL_DEVICETREE_k2hk-evm = "keystone-k2hk-evm.dtb"
+ KERNEL_DEVICETREE_k2e = "keystone-k2e-evm.dtb"
+ KERNEL_DEVICETREE_k2g = "keystone-k2g-evm.dtb"
 -- 
-2.7.4
+1.9.1
 
 
